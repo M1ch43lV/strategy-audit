@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-u"""expand — расширение корпуса новыми репозиториями.
+u"""expand — expanding the corpus with new repositories.
 
-Клонирует поверхностно (--depth 1), затем считает, сколько НОВЫХ имён классов
-даёт каждый репозиторий сверх уже имеющихся.
+Clones shallowly (--depth 1), then counts how many NEW class names
+each repository contributes beyond those already present.
 
-ЗАЧЕМ СЧИТАТЬ ПРИРОСТ, А НЕ ЧИСЛО ФАЙЛОВ. Экосистема freqtrade состоит из
-копий: в нынешнем корпусе 484 вхождения из 1055 — повторы, Schism лежит в 16
-репозиториях. Репозиторий на тысячу файлов может не добавить НИ ОДНОЙ новой
-стратегии. Знаменатель корпуса — уникальные классы, и прирост считается по нему.
+WHY COUNT THE INCREMENT, NOT THE NUMBER OF FILES. The freqtrade ecosystem consists of
+copies: in the current corpus 484 occurrences out of 1055 are duplicates, Schism lives in 16
+repositories. A repository with a thousand files may add NO new
+strategy. The corpus denominator is unique classes, and the increment is counted against it.
 
-⚠ Клонирование чужого кода. Ничего не исполняется на этом шаге: только
-разбор AST в find_strategies. Запускается позже, тем же прибором, что и
-остальные 571.
+⚠ Cloning someone else's code. Nothing is executed at this step: only
+AST parsing in find_strategies. It runs later, with the same instrument as the
+remaining 571.
 """
 from __future__ import print_function
 
@@ -26,10 +26,10 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 from harness import find_strategies
 
 REPOS = os.path.join(_ROOT, "repos")
-MAX_KB = 60000          # объявленный предел: репозитории тяжелее не берём
+MAX_KB = 60000          # declared limit: heavier repositories are not taken
 
-# TOTAL: перечень запрашиваемых пар — это ВХОД исследования, объявленный
-# намеренно, а не область проверки. Расширение списка — решение, не находка.
+# TOTAL: the list of requested pairs is the INPUT of the study, declared
+# intentionally, not the scope of verification. Extending the list is a decision, not a finding.
 WANT = [
     "keithorange/HUGE_FreqTrade_Strategy_Collection",
     "Foxel05/freqtrade-stuff",
@@ -66,7 +66,7 @@ def known_names():
 
 def main():
     base = known_names()
-    print(u"уже известно уникальных классов: %d" % len(base), flush=True)
+    print(u"already known unique classes: %d" % len(base), flush=True)
     grand = set(base)
     report = []
     for full in WANT:
@@ -77,29 +77,29 @@ def main():
                                 "https://github.com/%s.git" % full, path],
                                capture_output=True, timeout=600)
             if r.returncode != 0:
-                print(u"  ✗ %-52s НЕ КЛОНИРОВАЛСЯ: %s"
+                print(u"  ✗ %-52s NOT CLONED: %s"
                       % (full, r.stderr.decode("utf-8", "replace")[:80]), flush=True)
                 continue
         names = {n for _f, n in find_strategies(path)}
         new = names - grand
         grand |= names
         report.append((len(new), len(names), full))
-        print(u"  %-52s классов %4d · НОВЫХ %4d"
+        print(u"  %-52s classes %4d · NEW %4d"
               % (full, len(names), len(new)), flush=True)
 
     report.sort(reverse=True)
     print()
-    print(u"ИТОГО уникальных классов было %d, стало %d — прирост %d"
+    print(u"TOTAL unique classes were %d, now %d — increment %d"
           % (len(base), len(grand), len(grand) - len(base)))
-    print(u"⚠ предел объявлен: репозитории тяжелее %d КБ не брались" % MAX_KB)
+    print(u"⚠ limit declared: repositories heavier than %d KB were not taken" % MAX_KB)
     print()
-    print(u"кто дал прирост:")
+    print(u"who contributed the increment:")
     for new, tot, full in report:
         if new:
-            print(u"   +%-4d из %-4d  %s" % (new, tot, full))
+            print(u"   +%-4d out of %-4d  %s" % (new, tot, full))
     dead = [f for n, t, f in report if n == 0]
     if dead:
-        print(u"НЕ ДАЛИ НИ ОДНОЙ НОВОЙ (%d): %s" % (len(dead), u", ".join(dead)))
+        print(u"CONTRIBUTED NO NEW (%d): %s" % (len(dead), u", ".join(dead)))
 
 
 if __name__ == "__main__":

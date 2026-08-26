@@ -1,34 +1,34 @@
 # -*- coding: utf-8 -*-
-u"""traps — проверки из «Backtesting Traps» сообщества freqtrade.
+u"""traps — checks from the freqtrade community's "Backtesting Traps".
 
-ИСТОЧНИК, И ОН НЕ МОЙ. На вопрос «что ещё, кроме проверок на смещение,
-выдаёт подогнанную стратегию» участники freqtrade Discord дали ссылку:
+SOURCE, AND IT'S NOT MINE. When asked "what else, besides bias checks,
+reveals a fitted strategy", freqtrade Discord members gave a link:
 https://brookmiles.github.io/freqtrade-stuff/2021/04/12/backtesting-traps/
 
-Это знание практиков, которого нет ни в одной статистике. Здесь оно
-переведено в машинные проверки — без добавлений от меня, потому что
-добавления были бы моими догадками поверх их опыта.
+This is practitioner knowledge absent from any statistics. Here it is
+translated into machine checks — without additions from me, because
+additions would be my guesses on top of their experience.
 
-ЧТО ПРОВЕРЯЕТСЯ (номера — по их документу):
+WHAT IS CHECKED (numbers per their document):
 
-  №5 Нереалистичный трейлинг. `trailing_stop = True` с очень тесным
-     `trailing_stop_positive`: бэктест ведёт цену к максимуму свечи,
-     подтягивает стоп и опускает цену — выходит «идеальная свеча»,
-     продажа чуть ниже максимума почти всегда. Их красный флаг: трейлинг
-     МЕНЬШЕ типичного спреда (0.1–0.5%).
+  #5 Unrealistic trailing. `trailing_stop = True` with a very tight
+     `trailing_stop_positive`: backtest leads price to candle high,
+     pulls stop up and drops price — an "ideal candle" emerges,
+     selling just below the high almost always. Their red flag: trailing
+     LESS than typical spread (0.1–0.5%).
 
-  №5б `trailing_stop = True` БЕЗ `trailing_stop_positive`: стоп тянется на
-     полную дистанцию `stoploss`, а не на несколько процентов.
+  #5b `trailing_stop = True` WITHOUT `trailing_stop_positive`: stop trails
+     the full `stoploss` distance, not a few percent.
 
-  №6 Эксплуатация ROI. Тесный `minimal_roi` на длинном таймфрейме: цена
-     вряд ли дойдёт до цели раньше стопа в реальных условиях.
+  #6 ROI exploitation. Tight `minimal_roi` on a long timeframe: price
+     unlikely to reach target before stop in real conditions.
 
-  Плюс `stoploss = -0.99` — объявленный стоп, который стопом не является.
+  Plus `stoploss = -0.99` — a declared stop that is not a stop.
 
-ЧЕГО ЗДЕСЬ НЕТ И ПОЧЕМУ. Их ловушки №2 (неисполненные лимитные ордера),
-№3 (проскальзывание) и №4 (много сделок с малой прибылью) требуют данных о
-длительности сделок и средней сделке в процентах, которых в карточках пока
-нет. Врать про «проверено» нельзя: они названы здесь как НЕ ПОКРЫТЫЕ.
+WHAT'S MISSING HERE AND WHY. Their traps #2 (unfilled limit orders),
+#3 (slippage) and #4 (many trades with small profit) require data on
+trade duration and average trade in percent, which cards lack so far.
+Lying about "checked" is not allowed: they are named here as NOT COVERED.
 """
 from __future__ import print_function
 
@@ -45,7 +45,7 @@ _ROOT = os.environ.get("AUDIT_ROOT") or os.path.dirname(os.path.abspath(__file__
 sys.path.insert(0, _ROOT)
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-SPREAD = 0.005          # их число: типичный спред 0.1–0.5%
+SPREAD = 0.005          # their number: typical spread 0.1–0.5%
 TF_MIN = {"1m": 1, "3m": 3, "5m": 5, "15m": 15, "30m": 30, "1h": 60,
           "2h": 120, "4h": 240, "6h": 360, "8h": 480, "12h": 720,
           "1d": 1440, "3d": 4320, "1w": 10080}
@@ -77,16 +77,16 @@ def inspect(path, cls):
          "trailing_stop_positive_offset": None, "stoploss": None,
          "timeframe": None, "roi_first": None, "roi_zero": None,
          "leverage": 1.0}
-    # ПЛЕЧО. Hippocritical, freqtrade Discord 22.08: «if you have 1% trailing
-    # and do 10x leverage then it essentially becomes 0.1% trailing». Это не
-    # мнение — это в исходнике движка:
+    # LEVERAGE. Hippocritical, freqtrade Discord 22.08: «if you have 1% trailing
+    # and do 10x leverage then it essentially becomes 0.1% trailing». This is not
+    # an opinion — it's in the engine source:
     #     stop_rate = open * (1 + offset - trailing_stop_positive / leverage)
-    # Дистанция трейлинга ДЕЛИТСЯ на плечо, значит и сравнивать со спредом надо
-    # делённую. Я читал эту строку утром и не связал.
+    # The trailing distance is DIVIDED by leverage, so the value compared with the spread must be
+    # the divided distance. I read this line in the morning and did not make the connection.
     #
-    # ⚠ ЧЕГО ЭТОТ РАЗБОР НЕ ВИДИТ: плечо из конфига, плечо из динамического
-    # leverage(), плечо, зависящее от пары. Здесь берётся только буквальный
-    # `return <число>` — это НИЖНЯЯ ГРАНИЦА числа таких стратегий, а не оно.
+    # ⚠ WHAT THIS ANALYSIS DOESN'T SEE: leverage from config, leverage from dynamic
+    # leverage(), leverage depending on the pair. Only the literal
+    # `return <number>` is the LOWER BOUND of the number of such strategies, not the number itself.
     m = re.search(r"def\s+leverage\s*\(.*?return\s+([0-9.]+)", src, re.S)
     if m:
         try:
@@ -127,8 +127,8 @@ def inspect(path, cls):
 
 
 def flags(v, notes=None):
-    u"""Дисквалифицирующие ловушки. `notes` — список для наблюдений,
-    которые ловушками НЕ являются (см. 22.08 про широкий трейлинг)."""
+    u"""Disqualifying traps. `notes` — a list for observations
+    that are NOT traps (see 22.08 about wide trailing)."""
     out = []
     if notes is None:
         notes = []
@@ -139,16 +139,16 @@ def flags(v, notes=None):
     tsp = v.get("trailing_stop_positive")
     if v.get("trailing_stop") is True:
         if tsp is None:
-            # ⚠ БОЛЬШЕ НЕ ЛОВУШКА, 22.08. Hippocritical (freqtrade Discord):
+            # ⚠ NO LONGER A TRAP, 22.08. Hippocritical (freqtrade Discord):
             # «if you have loose trailing you wont have a trap; if you have
-            # things like 0.1% trailing then not». Он прав: широкий трейлинг
-            # (на полном расстоянии стопа) ИСПОЛНИМ в реальности — он далеко от
-            # спреда и наливается надёжно. Ловушкой делает ТЕСНОТА, а не сам
-            # трейлинг. Это наблюдение, а не дисквалификация.
+            # things like 0.1% trailing then not». He's right: wide trailing
+            # (at the full stop distance) IS executable in reality — it's far from
+            # the spread and fills reliably. What makes it a trap is TIGHTNESS, not the
+            # trailing itself. This is an observation, not a disqualification.
             #
-            # Проверено перед изменением: на корпусе 895 ни один вердикт от
-            # этого флага не зависел — из девяти выбитых на G8 ноль выбиты им
-            # одним. Правило меняется по существу, а не под результат.
+            # Verified before the change: on the corpus of 895, not a single verdict from
+            # this flag depended — out of nine knocked out on G8, zero were knocked out by it
+            # alone. The rule changes in substance, not to fit the result.
             notes.append((u"loose trailing (no trailing_stop_positive)",
                           u"stop trails at the full stoploss distance (%s). Wide, "
                           u"but executable — a note, not a trap"
@@ -161,22 +161,22 @@ def flags(v, notes=None):
                             u"trailing_stop_positive = %.4f at %.0fx leverage = "
                             u"%.5f effective, below the 0.1–0.5%% spread the trap "
                             u"article names" % (tsp, lv, eff)))
-    # ⚠ БОЛЬШЕ НЕ ЛОВУШКИ, 22.08 — по ОПРЕДЕЛЕНИЮ сообщества.
+    # ⚠ NO LONGER TRAPS, 22.08 — by the COMMUNITY'S DEFINITION.
     # Hippocritical (freqtrade Discord): «a backtesting trap is where you have
     # a different result from backtest to dry run. backtesting works on
     # candles, where dry/live runs work on ticker data».
     #
-    # Термин принадлежит сообществу: я сам записал в CORRECTIONS.md, что
-    # вопрос про 177 — «the community's call, not mine». Ответ получен —
-    # значит исполняется, а не обсуждается.
+    # The term belongs to the community: I myself wrote in CORRECTIONS.md that
+    # the question about 177 is — «the community's call, not mine». The answer was received —
+    # so it's being executed, not discussed.
     #
-    # Обе категории ниже НЕ дают расхождения бэктеста с прогоном: трейлинг
-    # выключен и там и там, стоп −0.99 работает одинаково в обоих. Они
-    # вводят в заблуждение ЧИТАТЕЛЯ и портят риск — это другой род дефекта.
+    # Both categories below do NOT cause backtest-vs-live divergence: trailing
+    # is off in both, the −0.99 stop works identically in both. They
+    # mislead the READER and spoil risk — that's a different kind of defect.
     #
-    # Проверено ПЕРЕД изменением: 8 стратегий держались на G8 только этими
-    # двумя флагами; проведённые по их собственным колонкам, все 8 падают на
-    # G12 (не обходят «купил и держал»). Итог лестницы 0 из 456 не двинулся.
+    # Verified BEFORE the change: 8 strategies held on G8 only by these
+    # two flags; run by their own columns, all 8 fall on
+    # G12 (don't beat «buy and hold»). The ladder result of 0 out of 456 didn't move.
     if tsp is not None and v.get("trailing_stop") is not True:
         notes.append((u"inert trailing setting",
                       u"trailing_stop_positive = %s while trailing_stop is not "
@@ -191,9 +191,9 @@ def flags(v, notes=None):
                       % sl))
     roi = v.get("roi_zero")
     if roi is not None and mins is None:
-        # тотальность: длительность свечи неизвестна ⇒ судить о «тесной цели на
-        # длинной свече» НЕЛЬЗЯ. Раньше здесь молча не было ловушки. Теперь
-        # незнание названо вслух и попадает в наблюдения.
+        # totality: candle duration is unknown ⇒ judging a "tight target on
+        # a long candle" is NOT ALLOWED. Previously there was no trap here silently. Now
+        # the ignorance is named aloud and enters observations.
         notes.append((u"roi trap not evaluated",
                       u"timeframe %r is unknown to TF_MIN, so the ROI-vs-candle "
                       u"check has no defined answer here" % (tf,)))
@@ -234,10 +234,10 @@ def main():
     flagged_all, flagged_surv = set(), set()
     for name in allrows:
         p = where.get(name)
-        # TOTAL: отсутствие исходника — определённое значение «НЕ ОСМОТРЕНА»,
-        # оно попадает в tally и потому видно в отчёте, а не пропадает молча.
+        # TOTAL: missing source — definite value "NOT REVIEWED",
+        # it enters the tally and is therefore visible in the report, not silently lost.
         if not p:
-            tally[u"НЕ ОСМОТРЕНА: исходник не найден"] += 1
+            tally[u"NOT REVIEWED: source not found"] += 1
             continue
         fl = flags(inspect(p, name))
         for lab, _d in fl:
@@ -247,24 +247,24 @@ def main():
             if name in survivors:
                 flagged_surv.add(name)
 
-    print(u"BACKTESTING TRAPS (источник — сообщество freqtrade, не я)")
-    print(u"проверено стратегий: %d · прошедших воронку: %d"
+    print(u"BACKTESTING TRAPS (source — freqtrade community, not me)")
+    print(u"strategies checked: %d · passed the funnel: %d"
           % (len(allrows), len(survivors)))
     print()
     for lab, c in tally.most_common():
         print(u"   %-42s %4d" % (lab, c))
     print()
-    print(u"помечено ХОТЯ БЫ ОДНОЙ ловушкой: %d из %d (%.0f%%)"
+    print(u"flagged with AT LEAST ONE trap: %d of %d (%.0f%%)"
           % (len(flagged_all), len(allrows), 100.0 * len(flagged_all) / max(len(allrows), 1)))
-    print(u"среди ПРОШЕДШИХ ВОРОНКУ:         %d из %d (%.0f%%)"
+    print(u"among THOSE PASSING THE FUNNEL:         %d of %d (%.0f%%)"
           % (len(flagged_surv), len(survivors),
              100.0 * len(flagged_surv) / max(len(survivors), 1)))
     print()
-    print(u"НЕ ПОКРЫТО (нужны длительность сделок и средняя сделка в %%):")
-    print(u"   их №2 неисполненные лимитные ордера")
-    print(u"   их №3 проскальзывание")
-    print(u"   их №4 много сделок с прибылью ниже 0.5%%")
-    print(u"   их красный флаг: средняя длительность КОРОЧЕ свечи")
+    print(u"NOT COVERED (need trade durations and average trade in %%):")
+    print(u"   their #2 unfilled limit orders")
+    print(u"   their #3 slippage")
+    print(u"   their #4 many trades with profit below 0.5%%")
+    print(u"   their red flag: average duration SHORTER than candle")
 
 
 if __name__ == "__main__":

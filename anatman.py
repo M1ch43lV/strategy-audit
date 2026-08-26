@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-u"""anatman — все прожитые дефекты этого прибора как ИСПОЛНЯЕМЫЕ случаи.
+u"""anatman — all observed defects of this instrument as EXECUTABLE cases.
 
-ЗАЧЕМ. За сутки прибор поймал у себя десять дефектов. Семь из них были
-починены В КОДЕ и не удерживались ничем: любая следующая правка могла вернуть
-их молча. Починка без своего случая — это обещание, а не механизм.
+WHY. In a day the instrument caught ten defects in itself. Seven of them were
+fixed IN CODE and held by nothing: any subsequent edit could silently bring
+them back. A fix without its own case is a promise, not a mechanism.
 
-ПРАВИЛО, ПО КОТОРОМУ ЗДЕСЬ ВСЁ УСТРОЕНО. Случай берётся ПРОЖИТЫЙ: та самая
-строка, то самое имя, то самое число, на которых сломалось. Выдуманный случай
-проверяет мою фантазию о дефекте, а не дефект.
+THE RULE BY WHICH EVERYTHING HERE IS ARRANGED. A case is taken as OBSERVED: the very
+line, the very name, the very number on which it broke. A fabricated case
+tests my imagination about the defect, not the defect.
 
-И к каждому запрету — контрольный пропуск. Проверка, которая только
-отказывает, не проверена: «всё сломано» такой же слепой ответ, как «всё цело».
+And to every prohibition — a control pass. A check that only
+refuses is not verified: "everything is broken" is as blind an answer as "everything is intact".
 """
 from __future__ import print_function
 
@@ -29,50 +29,50 @@ RESULTS = []
 
 
 def case(num, date, name, fn):
-    u"""Один прожитый случай. Печатает и запоминает исход."""
+    u"""One observed case. Prints and remembers the outcome."""
     try:
         ok, detail = fn()
     except Exception as ex:
-        ok, detail = False, u"посторонняя ошибка %r" % (ex,)
+        ok, detail = False, u"extraneous error %r" % (ex,)
     RESULTS.append((num, name, ok))
     print(u"  %s №%-2d [%s] %s%s"
-          % (u"OK    " if ok else u"ПРОВАЛ", num, date, name,
+          % (u"OK    " if ok else u"FAIL", num, date, name,
              u"" if ok else u"   ← " + str(detail)))
 
 
-# ─────────────────────────── случаи ───────────────────────────
+# ─────────────────────────── cases ───────────────────────────
 
 def c1():
-    u"""20.08 · конфиг молча перекрывал таймфрейм стратегии.
-    Пятиминутки считались по часовым и давали 6014 сделок без единой жалобы."""
+    u"""20.08 · config silently overrode the strategy's timeframe.
+    Five-minute bars were computed by hourly ones and gave 6014 trades without a single complaint."""
     cfg = json.load(io.open(os.path.join(_ROOT, "user_data", "config.json"),
                             encoding="utf-8"))
     return ("timeframe" not in cfg,
-            u"в конфиге снова есть ключ timeframe — он перекроет стратегию")
+            u"the config again has a timeframe key — it will override the strategy")
 
 
 def c2():
-    u"""21.08 · Ichi/ichi, SAR/Sar и ещё четыре пары различаются ТОЛЬКО
-    регистром. На Windows это ОДИН файл, и прогон пропускал вторую из пары."""
+    u"""21.08 · Ichi/ichi, SAR/Sar and four more pairs differ ONLY in
+    case. On Windows this is ONE file, and the run skipped the second of the pair."""
     src = io.open(os.path.join(_ROOT, "corpus.py"), encoding="utf-8").read()
     has = "def card_path" in src and "hashlib.md5(name" in src
-    return (has, u"corpus.py больше не различает имена по регистру")
+    return (has, u"corpus.py no longer distinguishes names by case")
 
 
 def c3():
-    u"""21.08 · np.NAN удалён в numpy 2.0 — 38 стратегий падали на имени,
-    которое было ПСЕВДОНИМОМ np.nan. Восстановление ничего не меняет по сути."""
+    u"""21.08 · np.NAN removed in numpy 2.0 — 38 strategies crashed on a name
+    that was an ALIAS of np.nan. Restoration changes nothing in essence."""
     r = subprocess.run([os.path.join(_ROOT, "ftenv", "Scripts", "python.exe"),
                         "-c", "import numpy;print(numpy.NAN is numpy.nan)"],
                        capture_output=True, timeout=120)
     out = r.stdout.decode("utf-8", "replace").strip()
-    return (out == "True", u"псевдоним не восстановлен в дочернем процессе: %r" % out)
+    return (out == "True", u"alias not restored in the child process: %r" % out)
 
 
 def c4():
-    u"""21.08 · «Fatal exception!» — это ЗАГОЛОВОК трассировки, а не причина.
-    Так 76 стратегий получили пустое объяснение. Имя исключения бывает
-    С ТОЧКАМИ: numpy.exceptions.DTypePromotionError."""
+    u"""21.08 · "Fatal exception!" is the HEADER of a traceback, not the cause.
+    Thus 76 strategies got an empty explanation. An exception name can have
+    DOTS: numpy.exceptions.DTypePromotionError."""
     import harness
     fake = (u"2026-08-21 09:02:01 - freqtrade - ERROR - Fatal exception!\n"
             u"Traceback (most recent call last):\n"
@@ -81,13 +81,13 @@ def c4():
     ok = bool(tail) and tail[-1][0] == "numpy.exceptions.DTypePromotionError"
     src = io.open(os.path.join(_ROOT, "harness.py"), encoding="utf-8").read()
     ok = ok and r"[\w.]*(?:Error|Exception)" in src
-    return (ok, u"причина снова берётся из ярлыка, а не из конца трассировки")
+    return (ok, u"the cause is again taken from the label, not from the end of the traceback")
 
 
 def c5():
-    u"""20.08 · «Expectancy» у freqtrade — В ВАЛЮТЕ. При stake_amount:
-    unlimited она компаундирует, то есть НЕ свободна от масштаба. Я объявлял
-    её независимой от конфигурации; это сдвинуло опубликованное число в 5 раз."""
+    u"""20.08 · "Expectancy" in freqtrade is IN CURRENCY. With stake_amount:
+    unlimited it compounds, i.e. is NOT scale-free. I declared it
+    independent of configuration; this shifted the published number by 5 times."""
     import harness
     line = u"│ Expectancy (Ratio)                     │ 0.53 (0.29)   │"
     d = harness.parse_summary(line)
@@ -96,40 +96,40 @@ def c5():
                             encoding="utf-8"))
     compounding = cfg.get("stake_amount") == "unlimited"
     return (got == 0.53 and compounding,
-            u"разбор дал %r; компаундирование=%r — если ставка перестала "
-            u"компаундировать, оговорку в README надо пересмотреть"
+            u"parsing gave %r; compounding=%r — if the stake stopped "
+            u"compounding, the README caveat must be reconsidered"
             % (got, compounding))
 
 
 def c6():
-    u"""20.08 · p-значение 5.896: научная запись 5.896e-05 обрезалась.
-    Вероятность вне [0,1] есть сломанный прибор, а не удивительный результат."""
+    u"""20.08 · p-value 5.896: scientific notation 5.896e-05 was truncated.
+    A probability outside [0,1] is a broken instrument, not a surprising result."""
     import harness
     bad = u"│ Mean profit p-value  │ 5.896   │"
     d = harness.parse_summary(bad)
     good = harness.parse_summary(u"│ Mean profit p-value  │ 1.36e-65   │")
     return (d.get("p_value") is None and "parse_warning" in d
             and good.get("p_value") == 1.36e-65,
-            u"сторож невозможного молчит либо научная запись снова теряется")
+            u"the impossible guard is silent or scientific notation is lost again")
 
 
 def c7():
-    u"""21.08 · у сильных эффектов p = 1.4e-65, и 1-p/2 схлопывается в единицу:
-    обратная нормаль падает. Прежний сторож ловил только ноль."""
+    u"""21.08 · for strong effects p = 1.4e-65, and 1-p/2 collapses to one:
+    the inverse normal falls. The old guard only caught zero."""
     import power
     sd = power.implied_sd(mean=1.0, n=300, p=1.36e-65)
     return (sd is not None and sd > 0,
-            u"крошечное p снова роняет расчёт мощности (получено %r)" % (sd,))
+            u"tiny p again drops the power calculation (got %r)" % (sd,))
 
 
 def c8():
-    u"""20.08 · stats/funnel читали ОДНУ папку, и пять стратегий, выбранных
-    МНОЮ вручную, попали бы в знаменатель популяции.
+    u"""20.08 · stats/funnel read ONE folder, and five strategies chosen
+    MANUALLY by me would have ended up in the population denominator.
 
-    21.08 случай ПЕРЕСТРОЕН. Он был написан на ДВА имени файла, и когда
-    stats.py удалили, проверка сломалась бы — то есть держалась на случае,
-    а не на классе. Теперь она сама находит ВСЕ модули, читающие results/,
-    и требует отбора популяции от каждого, называя их число."""
+    21.08 the case is REBUILT. It was written for TWO file names, and when
+    stats.py was deleted, the check would have broken — that is, it held on a case,
+    not on a class. Now it finds ALL modules reading results/ by itself,
+    and requires population selection from each, naming their count."""
     import glob as _g
     seen, bad = [], []
     for p in sorted(_g.glob(os.path.join(_ROOT, "*.py"))):
@@ -145,13 +145,13 @@ def c8():
         if "source" not in src:
             bad.append(name)
     return (len(seen) >= 3 and not bad,
-            u"популяция не отбирается в [%s]; читателей results/ найдено %d"
+            u"population is not selected in [%s]; readers of results/ found %d"
             % (u", ".join(bad) or u"—", len(seen)))
 
 
 def c9():
-    u"""20.08 · доли режутся по НОМЕРУ в списке, значит список обязан быть
-    одинаковым во всех процессах. Проверено трижды — но проверка стареет."""
+    u"""20.08 · shares are cut by NUMBER in the list, so the list must be
+    identical in all processes. Checked three times — but the check ages."""
     import hashlib
     from harness import find_strategies
     def plan():
@@ -166,53 +166,53 @@ def c9():
                 seen.add(n); out.append(n)
         return hashlib.md5(u"|".join(out).encode("utf-8")).hexdigest()[:16], len(out)
     a = plan(); b = plan()
-    return (a == b, u"список стратегий НЕ детерминирован: %r против %r" % (a, b))
+    return (a == b, u"strategy list is NOT deterministic: %r vs %r" % (a, b))
 
 
 def c10():
-    u"""20.08 · сначала четыре прогона писали в одну папку, через час — два
-    загрузчика в одни файлы свечей. Замок обязан отказывать второму."""
+    u"""20.08 · first four runs wrote to one folder, an hour later — two
+    loaders into the same candle files. The lock must refuse the second."""
     import runlock
     first = runlock.acquire("anatman_proba", quiet=True)
     second = runlock.acquire("anatman_proba", quiet=True)
     runlock.release("anatman_proba")
     return (first and not second,
-            u"замок пропустил второго писателя (%r, %r)" % (first, second))
+            u"lock let the second writer through (%r, %r)" % (first, second))
 
 
 def c11():
-    u"""21.08 · критерий исключения был УЗОК: только lookahead-analysis.
-    Сквозь него прошла NOTankAi_15_Cleaned_v2 с итогом +63 645 298% —
-    «смещения не обнаружено». Поймал ВТОРОЙ детектор: recursive-analysis
-    нашёл, что её пороги плывут на 9% от объёма загруженной истории.
-    Из 67 прошедших воронку 51 помечена ИМЕННО ВТОРЫМ, а не первым."""
+    u"""21.08 · the exclusion criterion was NARROW: only lookahead-analysis.
+    NOTankAi_15_Cleaned_v2 passed through it with a result of +63 645 298% —
+    "no shift detected." The SECOND detector caught it: recursive-analysis
+    found that its thresholds drift by 9% of the loaded history volume.
+    Of the 67 that passed the funnel, 51 were marked by EXACTLY THE SECOND, not the first."""
     src = io.open(os.path.join(_ROOT, "funnel.py"), encoding="utf-8").read()
     both = ("recursive" in src and "lookahead" in src
             and "r in la or r in rc" in src)
-    return (both, u"воронка снова исключает только по одному детектору")
+    return (both, u"funnel again excludes only by one detector")
 
 
 def main():
-    print(u"ANATMAN — прожитые дефекты как исполняемые случаи")
-    print(u"каждый случай = та самая строка, на которой сломалось\n")
-    case(1, "20.08", u"конфиг не перекрывает таймфрейм стратегии", c1)
-    case(2, "21.08", u"имена, различные лишь регистром, дают разные карточки", c2)
-    case(3, "21.08", u"псевдоним np.NAN восстановлен в дочернем процессе", c3)
-    case(4, "21.08", u"причина отказа — исключение, а не ярлык трассировки", c4)
-    case(5, "20.08", u"ожидание читается как ВАЛЮТА, ставка компаундирует", c5)
-    case(6, "20.08", u"p вне [0,1] отвергается; научная запись сохраняется", c6)
-    case(7, "21.08", u"крошечное p не роняет расчёт мощности", c7)
-    case(8, "20.08", u"популяции не смешиваются в знаменателе", c8)
-    case(9, "20.08", u"список для долей детерминирован", c9)
-    case(10, "20.08", u"замок отказывает второму писателю", c10)
+    print(u"ANATMAN — observed defects as executable cases")
+    print(u"each case = the very line on which it broke\n")
+    case(1, "20.08", u"config does not override strategy timeframe", c1)
+    case(2, "21.08", u"names differing only in case give different cards", c2)
+    case(3, "21.08", u"alias np.NAN restored in child process", c3)
+    case(4, "21.08", u"failure reason is an exception, not a traceback label", c4)
+    case(5, "20.08", u"expectation is read as CURRENCY, rate compounds", c5)
+    case(6, "20.08", u"p outside [0,1] is rejected; scientific notation is preserved", c6)
+    case(7, "21.08", u"tiny p does not drop the power calculation", c7)
+    case(8, "20.08", u"populations do not mix in the denominator", c8)
+    case(9, "20.08", u"list for shares is deterministic", c9)
+    case(10, "20.08", u"lock refuses the second writer", c10)
 
-    case(11, "21.08", u"исключение учитывает ОБА детектора freqtrade", c11)
+    case(11, "21.08", u"exclusion accounts for BOTH freqtrade detectors", c11)
 
     ok = sum(1 for _n, _t, o in RESULTS if o)
-    print(u"\nИТОГ: %d/%d" % (ok, len(RESULTS)))
-    print(u"\nОТДЕЛЬНЫЕ НАБОРЫ (с диверсией, требуют freqtrade):")
-    print(u"   python tf_guard_selftest.py    9/9  — подмена ТФ, код 0 без чисел")
-    print(u"   python loadscan.py --selftest       — слепота к отказу загрузки")
+    print(u"\nTOTAL: %d/%d" % (ok, len(RESULTS)))
+    print(u"\nSEPARATE SETS (with diversion, require freqtrade):")
+    print(u"   python tf_guard_selftest.py    9/9  — TF substitution, code 0 without numbers")
+    print(u"   python loadscan.py --selftest       — blindness to load failure")
     return 0 if ok == len(RESULTS) else 1
 
 

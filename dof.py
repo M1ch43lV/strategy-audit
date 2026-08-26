@@ -1,28 +1,28 @@
 # -*- coding: utf-8 -*-
-u"""dof — степени свободы стратегии и ПРОВЕРКА, предсказывают ли они что-нибудь.
+u"""dof — strategy degrees of freedom and a CHECK of whether they predict anything.
 
-ПОВОД. `froggleston` во freqtrade Discord: «bias checks aren't the only thing
-that points to strategies that are gamed». Он прав. Родные детекторы ловят
-заглядывание и рекурсию индикаторов, но не ловят подгонку через ПЕРЕБОР
-ПАРАМЕТРОВ: пятьдесят пять «чистых» стратегий могут быть пятьюдесятью пятью
-вариантами перебора на одном и том же шуме.
+REASON. `froggleston` in the freqtrade Discord: "bias checks aren't the only thing
+that points to strategies that are gamed". He's right. The native detectors catch
+lookahead and indicator recursion, but don't catch overfitting via PARAMETER
+SWEEPING: fifty-five "clean" strategies can be fifty-five
+sweep variants on the same noise.
 
-ЧЕГО ЗДЕСЬ НАМЕРЕННО НЕТ. Мне предложили готовый гейт: DoF/sqrt(N) > 0.5 —
-красный флаг, > 1.0 — не проходит. Порог выдуман, и объявить его гейтом
-значило бы сделать ровно то, за что этот репозиторий бьёт других: назвать
-правилом число, взятое из головы.
+WHAT IS DELIBERATELY ABSENT HERE. I was offered a ready-made gate: DoF/sqrt(N) > 0.5 —
+red flag, > 1.0 — fails. The threshold is made up, and declaring it a gate
+would mean doing exactly what this repository criticizes others for: calling a number
+pulled from thin air a rule.
 
-Поэтому здесь СЧИТАЕТСЯ ВЕЛИЧИНА и проверяется, связана ли она с падением
-вне выборки. Если связи нет — предложение не подтвердилось, и так и будет
-написано. Порог, если он появится, будет выведен из данных.
+So here the VALUE IS CALCULATED and it's checked whether it's related to out-of-sample
+degradation. If there's no relation — the proposal isn't confirmed, and that's exactly what
+will be written. A threshold, if it appears, will be derived from the data.
 
-ЧТО СЧИТАЕТСЯ. Только то, что видно в коде без запуска:
-  * объявленные гиперпараметры freqtrade (IntParameter и родня) и РАЗМЕР
-    их пространства перебора, когда границы заданы числами
-  * ветвления в логике входа и выхода
-  * различные длины окон индикаторов (timeperiod=, window=, length=)
-Это НЕ полные степени свободы: автор мог перебирать руками и не оставить
-следов. Значит величина — нижняя граница, и так она и названа.
+WHAT IS CALCULATED. Only what's visible in the code without running it:
+  * declared freqtrade hyperparameters (IntParameter and kin) and the SIZE
+    of their search space, when bounds are given as numbers
+  * branches in entry and exit logic
+  * various indicator window lengths (timeperiod=, window=, length=)
+This is NOT full degrees of freedom: the author could have swept manually and left no
+traces. So the value is a lower bound, and that's how it's named.
 """
 from __future__ import print_function
 
@@ -54,7 +54,7 @@ def const(node):
 
 
 def space_size(call):
-    u"""Сколько значений перебирается у одного объявленного параметра."""
+    u"""How many values are swept for one declared parameter."""
     name = getattr(call.func, "id", None) or getattr(call.func, "attr", "")
     if name == "BooleanParameter":
         return 2
@@ -131,31 +131,31 @@ def main():
         b = r["runs"]["out_sample"].get("summary")
         if not isinstance(a, dict) or a.get("trades") is None:
             continue
-        # `where` строится полным обходом repos/ ДО этого цикла, поэтому
-        # отсутствие ключа — определённый ответ «файла стратегии в корпусе
-        # нет», а не «не знаю». Семантика объявлена, проверка на месте:
-        # уносить её в переменную нельзя — это прячет её от totality.py.
-        m = measure(where.get(r["strategy"], ""), r["strategy"]) if where.get(r["strategy"]) else None  # TOTAL: полный обход repos/
+        # `where` is built by a full traversal of repos/ BEFORE this loop, so
+        # a missing key is a definite answer "the strategy file in the corpus
+        # no», not «I don't know». The semantics are declared, the check is in place:
+        # you cannot carry it into a variable — that hides it from totality.py.
+        m = measure(where.get(r["strategy"], ""), r["strategy"]) if where.get(r["strategy"]) else None  # TOTAL: full traversal of repos/
         if not m:
             continue
         e1 = a.get("expectancy")
         e2 = b.get("expectancy") if isinstance(b, dict) else None
         rows.append((r["strategy"], m, a.get("trades"), e1, e2))
 
-    print(u"стратегий с измеренными степенями свободы: %d" % len(rows))
+    print(u"strategies with measured degrees of freedom: %d" % len(rows))
     par = [r for r in rows if r[1]["params"] > 0]
-    print(u"объявляют гиперпараметры freqtrade: %d (%.0f%%)"
+    print(u"declare freqtrade hyperparameters: %d (%.0f%%)"
           % (len(par), 100.0 * len(par) / max(len(rows), 1)))
     if par:
         sp = sorted(x[1]["log10_space"] for x in par)
-        print(u"размер перебора, порядок 10^: медиана %.1f · максимум %.1f"
+        print(u"search size, order of 10^: median %.1f · max %.1f"
               % (sp[len(sp) // 2], sp[-1]))
         top = sorted(par, key=lambda x: -x[1]["log10_space"])[:5]
         for n, m, t, e1, e2 in top:
-            print(u"   %-30s параметров %3d · перебор 10^%.1f · сделок %s"
+            print(u"   %-30s parameters %3d · search 10^%.1f · trades %s"
                   % (n[:30], m["params"], m["log10_space"], t))
 
-    # ПРЕДСКАЗЫВАЕТ ЛИ? сравнение удержания вне выборки у высоких и низких DoF
+    # DOES IT PREDICT? comparison of out-of-sample retention for high and low DoF
     keep = [(r[1]["dof"], r[3], r[4], r[2]) for r in rows
             if r[3] is not None and r[4] is not None and r[3] > 0]
     keep = [(d, e2 / e1, n) for d, e1, e2, n in keep]
@@ -166,17 +166,17 @@ def main():
         hi = [k for _d, k, _n in keep[half:]]
         med = lambda v: sorted(v)[len(v) // 2]
         print()
-        print(u"СВЯЗЬ СО СТОЙКОСТЬЮ ВНЕ ВЫБОРКИ (доля удержанного ожидания):")
-        print(u"   низкие DoF (медиана %d): удержано %.2f  n=%d"
+        print(u"RELATION TO OUT-OF-SAMPLE ROBUSTNESS (fraction of retained expectation):")
+        print(u"   low DoF (median %d): retained %.2f  n=%d"
               % (med([d for d, _k, _n in keep[:half]]), med(lo), len(lo)))
-        print(u"   высокие DoF (медиана %d): удержано %.2f  n=%d"
+        print(u"   high DoF (median %d): retained %.2f  n=%d"
               % (med([d for d, _k, _n in keep[half:]]), med(hi), len(hi)))
-        print(u"   разница медиан: %+.2f" % (med(hi) - med(lo)))
+        print(u"   median difference: %+.2f" % (med(hi) - med(lo)))
         print()
-        print(u"⚠ Это НАБЛЮДЕНИЕ, а не гейт. Порог не вводится, пока связь не")
-        print(u"   доказана на предварительно объявленной проверке.")
+        print(u"⚠ This is an OBSERVATION, not a gate. No threshold is introduced until the relation is")
+        print(u"   proven on a pre-declared check.")
     else:
-        print(u"\nданных для проверки связи мало (%d) — вывода нет" % len(keep))
+        print(u"\ntoo few data to check the relation (%d) — no conclusion" % len(keep))
 
 
 if __name__ == "__main__":

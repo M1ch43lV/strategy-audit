@@ -1,44 +1,45 @@
 # -*- coding: utf-8 -*-
-u"""multiplicity — поправка на множественность проверок. Раньше её НЕ БЫЛО.
+u"""multiplicity — correction for multiple testing. Previously it was NOT THERE.
 
-ПОВОД. Внешний разбор указал на дыру, которую я называл оговоркой, но не
-считал: воронка гоняет сотни стратегий через p < 0.05 дважды. При 464
-проверяемых стратегиях порог 0.05 сам по себе пропускает десятки кандидатов
-ПО ЧИСТОЙ СЛУЧАЙНОСТИ. Признавать это в примечании и не считать — то же
-самое, что печатать «не проверено» без причины.
+REASON. An external review pointed out a hole that I called a caveat but did not
+count: the funnel runs hundreds of strategies through p < 0.05 twice. With 464
+tested strategies, the 0.05 threshold alone lets dozens of candidates through
+BY PURE CHANCE. Acknowledging this in a note and not counting it is the same
+as printing "not verified" without reason.
 
-ЧТО СЧИТАЕТСЯ ЗДЕСЬ
+WHAT IS COUNTED HERE
 
-  ① Бенджамини–Хохберг (FDR) по p-значениям окна автора и окна вне выборки
-     раздельно. FDR, а не Бонферрони: цель — доля ложных среди отобранных,
-     а не полное отсутствие ложных. Бонферрони при n≈460 отсекал бы почти
-     всё и превратил бы вывод в тавтологию.
+  ① Benjamini–Hochberg (FDR) on p-values of the author window and the
+     out-of-sample window separately. FDR, not Bonferroni: the goal is the
+     proportion of false positives among selected ones, not the complete
+     absence of false positives. Bonferroni at n≈460 would cut almost
+     everything and turn the conclusion into a tautology.
 
-  ② ЗАВИСИМОСТЬ — И ЧЕГО ЭТОТ СЧЁТ НЕ ДОКАЗЫВАЕТ. Стратегии корпуса не
-     независимы: 65% — копии, семейства (NFI, Elliot, ClucHAnix) делят логику.
-     Здесь считаются ТОЧНЫЕ совпадения по отпечатку (сделки, ожидание в
-     выборке, ожидание вне) — и всё.
+  ② DEPENDENCE — AND WHAT THIS COUNT DOES NOT PROVE. Corpus strategies are not
+     independent: 65% are copies, families (NFI, Elliot, ClucHAnix) share logic.
+     Here, EXACT matches by fingerprint (trades, in-sample expectation,
+     out-of-sample expectation) are counted — and that's all.
 
-     ⚠ ПОПРАВКА К СОБСТВЕННОМУ УТВЕРЖДЕНИЮ 21.08. Сначала я написал, что
-     раз различных отпечатков 414 из 436, то поправка «консервативна». Это
-     слишком сильно. Гарантия FDR у Бенджамини–Хохберга держится при
-     независимости или положительной зависимости определённого класса; при
-     произвольной зависимости — не держится. А совпадение трёх чисел НЕ
-     ЕСТЬ оценка корреляционной структуры p-значений: две стратегии могут
-     различаться по всем трём и быть почти полностью связаны по доходностям,
-     и наоборот.
+     ⚠ CORRECTION TO MY OWN STATEMENT OF 21.08. I first wrote that since there
+     are 414 distinct fingerprints out of 436, the correction is
+     "conservative." That is too strong. The FDR guarantee of
+     Benjamini–Hochberg holds under independence or positive dependence of a
+     certain class; under arbitrary dependence, it does not hold. And the
+     coincidence of three numbers IS NOT an estimate of the correlation
+     structure of p-values: two strategies can differ on all three and be
+     almost fully linked in returns, and vice versa.
 
-     Что можно утверждать честно: отпечаток нашёл столько-то ТОЧНЫХ
-     дубликатов; это не измеряет зависимость между гипотезами и не
-     используется как доказательство независимости. BH считается по ПОЛНОМУ
-     числу проверок, а не по уменьшенному эффективному, — то есть
-     кластеризация не даёт нам никакого преимущества.
+     What can be honestly claimed: the fingerprint found so many EXACT
+     duplicates; this does not measure dependence between hypotheses and is
+     not used as evidence of independence. BH is computed on the FULL number
+     of tests, not on a reduced effective one — that is, clustering gives us
+     no advantage.
 
-  ③ Сколько кандидатов прошло бы ⑤ и ⑦ ПО СЛУЧАЙНОСТИ при нулевой гипотезе.
+  ③ How many candidates would pass ⑤ and ⑦ BY CHANCE under the null hypothesis.
 
-ЧЕГО ЗДЕСЬ НЕТ. Блочного бутстрэпа по временной зависимости и учёта
-корреляции между стратегиями на уровне доходностей — для них нужны
-потрейдовые ряды, которых в карточках нет. Названо, а не умолчано.
+WHAT IS NOT HERE. Block bootstrap for temporal dependence and accounting for
+correlation between strategies at the returns level — those require
+per-trade series, which are not in the cards. Named, not omitted.
 """
 from __future__ import print_function
 
@@ -55,18 +56,18 @@ ALPHA = 0.05
 
 
 def fmt_p(p):
-    u"""Подача p-значения. Ноль невозможен — печатаем порядок."""
+    u"""p-value presentation. Zero is impossible — we print the order of magnitude."""
     if p is None:
         return u"—"
     if p == 0:
-        return u"<1e-300 (подчёркнуто ниже машинного нуля)"
+        return u"<1e-300 (shown as below machine precision)"
     return (u"%.5f" % p) if p >= 1e-4 else (u"%.2e" % p)
 
 
-# Реализация BH ОДНА и живёт в ledger_block.py — том модуле, что обязан
-# работать в CI без остального дерева. Здесь она импортируется, а не копируется:
-# две копии «одной и той же» формулы расходятся молча, и заметить это может
-# только тот, кто читает обе.
+# The BH implementation is SINGLE and lives in ledger_block.py — the module that must
+# to work in CI without the rest of the tree. Here it is imported, not copied:
+# two copies of the "same" formula diverge silently, and only someone reading
+# both can notice it.
 from ledger_block import bh  # noqa: E402
 
 
@@ -89,22 +90,22 @@ def main():
                      r["runs"]["lookahead"]["level"],
                      r["runs"]["recursive"]["level"]))
 
-    print(u"стратегий с >=30 сделок и p-значением: %d" % len(rows))
+    print(u"strategies with >=30 trades and p-value: %d" % len(rows))
 
-    # ── ① FDR в окне автора ────────────────────────────────────────────
+    # ── ① FDR in author window ────────────────────────────────────────────
     pos = [r for r in rows if (r[1].get("expectancy") or 0) > 0]
     p_in = [r[1]["p_value"] for r in pos]
     raw_in = sum(1 for p in p_in if p < ALPHA)
     thr_in, k_in = bh(p_in)
     print()
-    print(u"① ОКНО АВТОРА, положительное ожидание: %d" % len(pos))
-    print(u"   p < 0.05 без поправки          %3d" % raw_in)
-    print(u"   Бенджамини–Хохберг (FDR 5%%)    %3d   порог p <= %s"
+    print(u"① AUTHOR WINDOW, positive expectation: %d" % len(pos))
+    print(u"   p < 0.05 without correction          %3d" % raw_in)
+    print(u"   Benjamini–Hochberg (FDR 5%%)    %3d   threshold p <= %s"
           % (k_in, fmt_p(thr_in)))
-    print(u"   ожидалось ЧИСТО СЛУЧАЙНО       %.1f  (0.05 x %d)"
+    print(u"   expected PURELY BY CHANCE       %.1f  (0.05 x %d)"
           % (0.05 * len(pos), len(pos)))
 
-    # ── ② FDR вне выборки, среди прошедших ⑤ ───────────────────────────
+    # ── ② FDR out-of-sample, among those passing ⑤ ───────────────────────────
     sig_in = [r for r in pos if r[1]["p_value"] < ALPHA]
     out = [r for r in sig_in if r[2] and r[2].get("p_value") is not None
            and (r[2].get("expectancy") or 0) > 0]
@@ -112,48 +113,48 @@ def main():
     raw_out = sum(1 for p in p_out if p < ALPHA)
     thr_out, k_out = bh(p_out)
     print()
-    print(u"② ВНЕ ВЫБОРКИ, среди значимых в выборке: %d" % len(out))
-    print(u"   p < 0.05 без поправки          %3d" % raw_out)
-    print(u"   Бенджамини–Хохберг (FDR 5%%)    %3d   порог p <= %s"
+    print(u"② OUT-OF-SAMPLE, among in-sample significant: %d" % len(out))
+    print(u"   p < 0.05 without correction          %3d" % raw_out)
+    print(u"   Benjamini–Hochberg (FDR 5%%)    %3d   threshold p <= %s"
           % (k_out, fmt_p(thr_out)))
 
-    # ── ③ зависимость: сколько НЕЗАВИСИМЫХ проверок на самом деле ──────
+    # ── ③ dependence: how many INDEPENDENT checks actually ──────
     key = collections.Counter()
     for n, a, b, _l, _r in rows:
         key[(a.get("trades"), a.get("expectancy"),
              (b or {}).get("expectancy"))] += 1
     dup = sum(v - 1 for v in key.values() if v > 1)
     print()
-    print(u"③ ЗАВИСИМОСТЬ МЕЖДУ ПРОВЕРКАМИ")
-    print(u"   стратегий                      %3d" % len(rows))
-    print(u"   различных по числам            %3d" % len(key))
-    print(u"   дубликатов (одна логика)       %3d" % dup)
-    print(u"   ⇒ это НЕ оценка зависимости p-значений и НЕ доказательство")
-    print(u"     независимости. BH считался по ПОЛНОМУ числу проверок (%d),"
+    print(u"③ DEPENDENCE BETWEEN CHECKS")
+    print(u"   strategies                      %3d" % len(rows))
+    print(u"   distinct by numbers             %3d" % len(key))
+    print(u"   duplicates (same logic)         %3d" % dup)
+    print(u"   ⇒ this is NOT an estimate of p-value dependence and NOT proof of")
+    print(u"     independence. BH was computed on the FULL number of checks (%d),"
           % len(rows))
-    print(u"     а не по уменьшенному эффективному — кластеризация не даёт")
-    print(u"     нам преимущества. При произвольной зависимости гарантия FDR")
-    print(u"     у BH не держится, и это остаётся ОТКРЫТЫМ ограничением.")
+    print(u"     not the reduced effective one — clustering gives us no advantage.")
+    print(u"     Under arbitrary dependence, the FDR guarantee of BH does not hold,")
+    print(u"     and this remains an OPEN limitation.")
 
-    # ── итог по всем слоям ─────────────────────────────────────────────
+    # ── summary across all layers ─────────────────────────────────────────────
     final = [r for r in out if r[2]["p_value"] <= (thr_out or 0)
-             and r[3] != u"НАЙДЕНО" and r[4] != u"НАЙДЕНО"]
+             and r[3] != u"FOUND" and r[4] != u"FOUND"]
     print()
-    print(u"ИТОГ ПОСЛЕ ПОПРАВКИ НА МНОЖЕСТВЕННОСТЬ:")
-    print(u"   прошли ⑦ без поправки, чисты по детекторам: см. funnel.py")
-    print(u"   прошли ⑦ ПОСЛЕ FDR и чисты по детекторам:  %d" % len(final))
+    print(u"SUMMARY AFTER MULTIPLICITY CORRECTION:")
+    print(u"   passed ⑦ without correction, clean by detectors: see funnel.py")
+    print(u"   passed ⑦ AFTER FDR and clean by detectors:  %d" % len(final))
     for n, a, b, _l, _r in sorted(final, key=lambda x: x[2]["p_value"])[:10]:
         beats = (b.get("total_pct") or 0) > (b.get("market_change_pct") or 0)
-        # ⚠ ПОДАЧА ОТДЕЛЬНО ОТ ХРАНЕНИЯ. «%.5f» печатал 0.00000, и читатель
-        # прочёл бы это как p = 0. Ноль здесь невозможен: это лишь «меньше
-        # 1e-5». Печатается научная запись, значение хранится сырым.
+        # ? PRESENTATION SEPARATE FROM STORAGE. "%.5f" printed 0.00000, and a reader
+        # would read that as p = 0. Zero is impossible here: it is only "less than
+        # 1e-5". Scientific notation is printed, the value is stored raw.
         print(u"      %-30s p_out %s · %s"
               % (n[:30], fmt_p(b["p_value"]),
-                 u"ОБЫГРАЛ рынок" if beats else u"проиграл рынку"))
+                 u"BEAT the market" if beats else u"lost to the market"))
     print()
-    print(u"⚠ НЕ ПОКРЫТО: блочный бутстрэп по временной зависимости и")
-    print(u"   корреляция доходностей между стратегиями — нужны потрейдовые")
-    print(u"   ряды, которых в карточках нет.")
+    print(u"⚠ NOT COVERED: block bootstrap for temporal dependence and")
+    print(u"   return correlation between strategies — per-trade series are needed,")
+    print(u"   which are not in the cards.")
 
 
 if __name__ == "__main__":

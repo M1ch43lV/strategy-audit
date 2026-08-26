@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-u"""corpus — прогон одного и того же аудита по всему собранному корпусу.
+u"""corpus — running the same audit over the entire collected corpus.
 
-Дедупликация по ИМЕНИ КЛАССА: одна и та же стратегия расселена по многим
-репозиториям (Schism — в 16), и разбирать её 16 раз значило бы раздуть
-корпус повторами и исказить любую сводную статистику. Первое вхождение
-выигрывает, остальные записываются как копии.
+Deduplication by CLASS NAME: the same strategy is scattered across many
+repositories (Schism — in 16), and analyzing it 16 times would bloat the
+corpus with repeats and distort any summary statistics. The first occurrence
+wins; the rest are recorded as copies.
 """
 import io, json, os, sys
 import os as _os
@@ -15,23 +15,23 @@ from harness import find_strategies, audit_one, RESULTS
 REPOS = _os.path.join(_ROOT, "repos")
 LOCK = _os.path.join(_ROOT, "corpus.lock")
 
-# ⚠ ПРОЖИТЫЙ ДЕФЕКТ 20.08, ДВАЖДЫ. Сначала я трижды перезапустил прогон, ни
-# разу не убив предыдущий, и получил ЧЕТЫРЕ процесса, писавших в одну папку
-# РАЗНЫМИ версиями кода: по карточке стало невозможно сказать, чем она
-# посчитана. Починил здесь — и через час два ЗАГРУЗЧИКА свечей писали одни и
-# те же файлы. Тот же класс, второе место, потому что я чинил случай.
+# ⚠ OBSERVED DEFECT 20.08, TWICE. First, I restarted the run three times without
+# killing the previous one, and got FOUR processes writing to one folder
+# with DIFFERENT code versions: the card made it impossible to tell what
+# computed it. Fixed here — and an hour later two CANDLE LOADERS wrote the same
+# files. Same class, second place, because I fixed the case.
 #
-# Результат неизвестного происхождения хуже отсутствующего: он выглядит как
-# знание. Поэтому замок вынесен в runlock.py и берётся ВЕЗДЕ, где пишут в
-# общее, а не пересказывается в каждом файле заново.
+# A result of unknown origin is worse than a missing one: it looks like
+# knowledge. So the lock is moved to runlock.py and taken EVERYWHERE that writes to
+# shared resources, rather than retold in each file anew.
 #
-# РАСПАРАЛЛЕЛИВАНИЕ. Пятиминутная стратегия — 55 с в окне автора и 149 с вне
-# него (замерено, не прикинуто); 351 таких = 26 часов в одну нитку. Работа
-# режется на НЕПЕРЕСЕКАЮЩИЕСЯ доли по остатку от деления, у каждой свой
-# замок. Запрет двух писателей никуда не делся: он был про РАЗНЫЕ ВЕРСИИ кода
-# в одной папке, а не про число процессов. Поэтому вдобавок к замку каждая
-# карточка ШТАМПУЕТСЯ отпечатком harness.py: замок предотвращает смешение,
-# отпечаток даёт его ОБНАРУЖИТЬ. Запрет без обнаружения — обещание.
+# PARALLELIZATION. A five-minute strategy — 55 s in the author’s window and 149 s outside
+# it (measured, not estimated); 351 of those = 26 hours in a single thread. The work
+# is split into NON-OVERLAPPING shares by the remainder of division, each with its own
+# lock. The ban on two writers hasn't gone away: it was about DIFFERENT VERSIONS of code
+# in one folder, not about the number of processes. Therefore, in addition to the lock, each
+# card is STAMPED with a fingerprint of harness.py: the lock prevents mixing,
+# the fingerprint allows DETECTING it. A ban without detection is a promise.
 import hashlib
 import runlock
 
@@ -47,15 +47,15 @@ if not runlock.acquire("corpus-%d" % SHARD):
 import atexit
 atexit.register(lambda: runlock.release("corpus-%d" % SHARD))
 
-# ⚠ ПРОЖИТЫЙ ДЕФЕКТ 21.08. Шесть пар имён в корпусе различаются ТОЛЬКО
-# РЕГИСТРОМ (Ichi/ichi, SAR/Sar, BBRSI/bbrsi, HLHB/hlhb, mabStra/MabStra,
-# SuperTrend/Supertrend). Файловая система Windows регистр не различает, и
-# `os.path.exists(results/ichi.json)` отвечало ПРАВДУ про Ichi.json. Прогон
-# считал вторую стратегию пары уже посчитанной и МОЛЧА её пропускал.
+# ⚠ OBSERVED DEFECT 21.08. Six pairs of names in the corpus differ ONLY
+# IN CASE (Ichi/ichi, SAR/Sar, BBRSI/bbrsi, HLHB/hlhb, mabStra/MabStra,
+# SuperTrend/Supertrend). The Windows file system does not distinguish case, and
+# `os.path.exists(results/ichi.json)` returned TRUE about Ichi.json. The run
+# considered the second strategy of the pair already computed and SILENTLY skipped it.
 #
-# Потеряно 6 из 571 — 1%. Мало, но это ровно «тихое усечение, читающееся как
-# полный охват», запрещённое собственной пререгистрацией. Лечение — не
-# «помнить про регистр», а сделать имя файла однозначным.
+# Lost 6 out of 571 — 1%. Little, but it's exactly "silent truncation reading as
+# full coverage," prohibited by its own preregistration. The cure is not
+# "remember the case," but making the file name unambiguous.
 ALL_NAMES = []
 
 
@@ -80,15 +80,15 @@ for d in sorted(os.listdir(REPOS)):
             continue
         seen.add(n)
         plan.append((repo, f, n))
-# Доли режутся по НОМЕРУ в списке, поэтому список обязан быть одинаковым во
-# всех процессах. Проверено: три независимых запуска дали один отпечаток
-# (dac6309df791d209, 571). Но проверка «однажды» стареет, поэтому отпечаток
-# ПЕЧАТАЕТСЯ каждой долей: разойдутся списки — это будет видно в логах, а не
-# останется тихой потерей стратегий.
+# Shares are cut by the NUMBER in the list, so the list must be identical across
+# all processes. Verified: three independent runs gave one fingerprint
+# (dac6309df791d209, 571). But a "once" check ages, so the fingerprint
+# is PRINTED by each share: if lists diverge, it will be visible in logs, not
+# remain a silent loss of strategies.
 ALL_NAMES.extend(n for _, _, n in plan)
 PLAN_MD5 = hashlib.md5(u"|".join(n for _, _, n in plan).encode("utf-8")).hexdigest()[:16]
 mine = [x for i, x in enumerate(plan) if i % SHARDS == SHARD]
-print(u"уникальных стратегий: %d · копий пропущено: %d · доля %d/%d = %d шт · код %s · список %s"
+print(u"unique strategies: %d · copies skipped: %d · share %d/%d = %d pcs · code %s · list %s"
       % (len(plan), dup, SHARD, SHARDS, len(mine), CODE_MD5, PLAN_MD5), flush=True)
 plan = mine
 done = 0
@@ -100,13 +100,13 @@ for repo, f, n in plan:
         r = audit_one(repo, f, n)
     except Exception as ex:
         r = {"repo": repo, "file": f, "strategy": n, "static": [],
-             "runs": {k: {"level": u"НЕ ПРИМЕНИМА", "why": repr(ex)[:150],
+             "runs": {k: {"level": u"NA", "why": repr(ex)[:150],
                           "summary": None} for k in
                       ("in_sample", "out_sample", "lookahead", "recursive")}}
     r["code_md5"], r["plan_md5"] = CODE_MD5, PLAN_MD5
-    r["source"] = "corpus"          # чем посчитано — свойство карточки, не памяти
-    # запись через временный файл: оборванный процесс не оставит полукарточку,
-    # которую следующий прогон примет за готовую и пропустит
+    r["source"] = "corpus"          # than computed — a property of the card, not of memory
+    # write via a temporary file: an interrupted process won't leave a half-card,
+    # which the next run would take as complete and skip
     tmp = out + ".tmp"
     io.open(tmp, "w", encoding="utf-8").write(json.dumps(r, ensure_ascii=False, indent=2))
     _os.replace(tmp, out)

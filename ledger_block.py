@@ -1,62 +1,62 @@
 # -*- coding: utf-8 -*-
-u"""ledger_block — ЕДИНСТВЕННОЕ место, где числа превращаются в текст.
+u"""ledger_block — the ONLY place where numbers become text.
 
-ЗАЧЕМ ОТДЕЛЬНЫМ ФАЙЛОМ. Блок чисел в README обязан быть проверяем на ЧИСТОЙ
-машине, где нет ни карточек `results/`, ни клонов `repos/`, ни freqtrade.
-Поэтому сборка блока отделена от источника: `ledger.py` кормит её карточками,
-`verify_ledger.py` — опубликованным LEDGER.csv. Реализация ОДНА, и это
-существенно: две независимые реализации «одного и того же» расходятся молча,
-а расхождение обнаруживается только тем, кто читает обе.
+WHY A SEPARATE FILE. The number block in README must be verifiable on a CLEAN
+machine with no `results/` cards, no `repos/` clones, no freqtrade.
+So block assembly is separated from the source: `ledger.py` feeds it cards,
+`verify_ledger.py` — the published LEDGER.csv. There is ONE implementation, and this
+matters: two independent implementations of "the same thing" diverge silently,
+and the divergence is only detected by someone reading both.
 
-Здесь нет ни pandas, ни freqtrade, ни обращений к сети — только stdlib, иначе
-проверка не пройдёт в CI и правило снова станет прозой.
+No pandas, no freqtrade, no network calls here — only stdlib, otherwise
+the check won't pass in CI and the rule becomes prose again.
 
-ЛЕСТНИЦА МОНОТОННА ПО ЭПОХАМ. Ступени идут E0,E0,…,E1,E2,E3,E4 — эпоха не
-убывает. Отсюда следует, что для восстановления всей картины достаточно ОДНОГО
-поля `dropped_at`: стратегия жива до своей ступени и мертва на ней и после.
-Именно поэтому CSV несёт одно поле, а не одиннадцать булевых.
+LADDER IS MONOTONIC BY EPOCHS. Steps go E0,E0,…,E1,E2,E3,E4 — epoch never
+decreases. It follows that to reconstruct the whole picture, ONE
+field `dropped_at` suffices: a strategy is alive until its step and dead on it and after.
+That's why the CSV carries one field, not eleven booleans.
 """
 from __future__ import print_function
 
 LADDER = [
-    ("G0_measured",   "E0", u"обе половины посчитаны"),
-    ("G1_trades",     "E0", u"сделок >= 30 в окне автора"),
-    ("G2_is_pos",     "E0", u"ожидание > 0 в окне автора"),
-    ("G3_is_sig",     "E0", u"p < 0.05 в окне автора"),
-    ("G4_os_pos",     "E0", u"ожидание > 0 вне выборки"),
-    ("G5_os_sig",     "E0", u"p < 0.05 вне выборки"),
-    ("G6_lookahead",  "E0", u"нет заглядывания вперёд"),
-    ("G7_recursive",  "E1", u"индикаторы не зависят от объёма истории"),
-    ("G8_traps",      "E2", u"ни одной ловушки сообщества"),
-    ("G9_candle",     "E3", u"длительность ИЗМЕРЕНА и не короче свечи"),
-    ("G10_fdr",       "E4", u"p вне выборки проходит порог Бенджамини-Хохберга"),
-    # ── E6: размер эффекта и экономический гейт (22.08) ──────────────────
-    # Дыра, названная внешним разбором и подтверждённая счётом: лестница
-    # требовала ЗНАЧИМОСТИ и не требовала ВЕЛИЧИНЫ. p=1e-8 при микроскопическом
-    # эффекте бесполезнее, чем p=0.003 при устойчивом. G11 требует, чтобы
-    # нижняя граница 95% интервала средней сделки была положительна ПОСЛЕ
-    # удвоенной издержки; G12 — чтобы стратегия обошла альтернативу.
-    ("G11_effect",    "E6", u"нижняя граница 95% CI средней сделки > 0 при 2x издержке"),
-    ("G12_economic",  "E6", u"обошла «купил и держал» на тех же парах"),
+    ("G0_measured",   "E0", u"both halves computed"),
+    ("G1_trades",     "E0", u"trades >= 30 in author's window"),
+    ("G2_is_pos",     "E0", u"expectancy > 0 in author's window"),
+    ("G3_is_sig",     "E0", u"p < 0.05 in author's window"),
+    ("G4_os_pos",     "E0", u"expectancy > 0 out-of-sample"),
+    ("G5_os_sig",     "E0", u"p < 0.05 out of sample"),
+    ("G6_lookahead",  "E0", u"no lookahead"),
+    ("G7_recursive",  "E1", u"indicators do not depend on history length"),
+    ("G8_traps",      "E2", u"no community traps"),
+    ("G9_candle",     "E3", u"duration MEASURED and not shorter than a candle"),
+    ("G10_fdr",       "E4", u"out-of-sample p passes the Benjamini-Hochberg threshold"),
+    # ── E6: effect size and economic gate (22.08) ──────────────────
+    # A hole named by external review and confirmed by the count: the ladder
+    # required SIGNIFICANCE and did not require MAGNITUDE. p=1e-8 with a microscopic
+    # effect is more useless than p=0.003 with a robust one. G11 requires that
+    # the lower bound of the 95% interval of the average trade was positive AFTER
+    # doubled costs; G12 — that the strategy beat the alternative.
+    ("G11_effect",    "E6", u"lower bound of 95% CI of average trade > 0 at 2x cost"),
+    ("G12_economic",  "E6", u"beat \"buy and hold\" on the same pairs"),
 ]
 EPOCHS = ["E0", "E1", "E2", "E3", "E4", "E5", "E6"]
 GATE_EPOCH = dict((k, e) for k, e, _d in LADDER)
 
 def beats(r):
-    u"""Обошла ли «купил и держал»: True / False / None.
+    u"""Did it beat "buy and hold": True / False / None.
 
-    ⚠ 22.08, свойство ТОТАЛЬНОСТИ (totality.py). Раньше здесь стояло
-    `r.get("beats_bh")` прямо в условии: у 399 строк из 895 поле ПУСТО —
-    стратегия не измерялась, — и пустое молча читалось как «НЕ обошла».
-    «Не знаю» схлопывалось в «нет». Ни одна из 399 не доходит до места
-    подсчёта, поэтому опубликованные числа не менялись, но частичная
-    функция здесь БЫЛА. Теперь неизвестность — отдельное значение.
+    ⚠ 22.08, TOTALITY property (totality.py). Previously `r.get("beats_bh")`
+    stood directly in the condition: in 399 of 895 rows the field is EMPTY —
+    the strategy was not measured — and empty was silently read as "did NOT beat".
+    "Don't know" collapsed into "no". None of the 399 reaches the counting point,
+    so published numbers did not change, but a partial function WAS here. Now
+    unknown is a separate value.
     """
     v = r.get("beats_bh")
-    # ⚠ вход приходит ДВУХ видов: из CSV — строкой, из ledger.py в памяти —
-    # настоящим bool. Первая версия знала только строку и падала на bool:
-    # чиня частичность, я ввёл новую. Тотальность = определённый ответ на
-    # КАЖДЫЙ вид входа, а не только на ожидаемый.
+    # ⚠ input comes in TWO kinds: from CSV — as a string, from ledger.py in memory —
+    # as a real bool. The first version knew only the string and crashed on bool:
+    # while fixing partiality, I introduced a new one. Totality = a defined answer for
+    # EACH kind of input, not just the expected one.
     if isinstance(v, bool):
         return v
     if v is None:
@@ -70,7 +70,7 @@ def beats(r):
 
 
 def n_beat(rows):
-    u"""Считаем только ЗНАЯ. Незнание не прибавляется ни к одной стороне."""
+    u"""We count only KNOWING. Not knowing is not added to either side."""
     return sum(1 for r in rows if beats(r) is True)
 
 
@@ -83,12 +83,13 @@ ALPHA = 0.05
 
 
 def bh(pvals, alpha=ALPHA):
-    u"""Бенджамини–Хохберг. Возвращает (порог, сколько отвергнуто).
+    u"""Benjamini–Hochberg. Returns (threshold, how many rejected).
 
-    Повторён здесь, а не импортирован из multiplicity.py, ровно по одной
-    причине: этот модуль обязан работать в CI без остального дерева. Чтобы
-    копия не разошлась с оригиналом молча, `multiplicity.py` импортирует ЕЁ,
-    а не наоборот — источник один, направление зависимости объявлено.
+    Repeated here rather than imported from multiplicity.py for exactly one
+    reason: this module must work in CI without the rest of the tree. So that
+    the copy does not silently diverge from the original, `multiplicity.py`
+    imports IT, not the other way around — one source, dependency direction
+    declared.
     """
     n = len(pvals)
     if not n:
@@ -103,22 +104,22 @@ def bh(pvals, alpha=ALPHA):
 
 
 def by(pvals, alpha=ALPHA):
-    u"""Бенджамини–Йекутиели: FDR при ПРОИЗВОЛЬНОЙ зависимости.
+    u"""Benjamin–Yekutieli: FDR under ARBITRARY dependence.
 
-    ЗАЧЕМ ДОБАВЛЕНО (22.08, после внешнего разбора). BH держит FDR при
-    независимости или положительной зависимости определённого класса. У нас
-    65% корпуса — копии, то есть структура зависимости произвольна, и гарантия
-    BH формально не действует. Мы записали это ограничение в multiplicity.py
-    ещё 21.08, но записать ограничение — не то же самое, что снять его.
+    WHY ADDED (22.08, after external review). BH holds FDR under
+    independence or positive dependence of a certain class. In our
+    corpus 65% are copies, i.e. the dependence structure is arbitrary, and the BH
+    guarantee formally does not apply. We recorded this limitation in multiplicity.py
+    already on 21.08, but recording a limitation is not the same as removing it.
 
-    BY снимает: тот же ход, порог делится на гармоническое число H_n. Ценой
-    строгости — при n=81 это в 4.98 раза более жёсткий порог.
+    BY removes it: same move, threshold divided by the harmonic number H_n. At the cost
+    of strictness — for n=81 this is a 4.98 times stricter threshold.
 
-    ⚠ ЭТО ПРАВИЛО ЭПОХИ E5: добавлено ПОСЛЕ данных, по внешнему замечанию.
-    Оно НЕ вводится как ступень лестницы — оно ничего не меняет (все шесть
-    выживших проходят и его), и вводить ступень, чтобы получить тот же ответ,
-    значило бы наращивать степени свободы без нужды. Печатается как проверка
-    устойчивости рядом с BH.
+    ⚠ THIS IS AN E5-ERA RULE: added AFTER the data, based on an external remark.
+    It is NOT introduced as a ladder step — it changes nothing (all six
+    survivors pass it too), and introducing a step to get the same answer
+    would mean increasing degrees of freedom needlessly. Printed as a robustness
+    check next to BH.
     """
     n = len(pvals)
     if not n:
@@ -133,19 +134,19 @@ def by(pvals, alpha=ALPHA):
 
 
 def alive_at(row, gate):
-    u"""Дожила ли строка ДО этой ступени (не пройдя её ещё)."""
+    u"""Whether the row survived UP TO this step (without having passed it yet)."""
     d = row.get("dropped_at") or ""
     return (not d) or GATE_ORDER[d] >= GATE_ORDER[gate]
 
 
 def passed(row, gate):
-    u"""Прошла ли строка эту ступень."""
+    u"""Whether the row passed this step."""
     d = row.get("dropped_at") or ""
     return (not d) or GATE_ORDER[d] > GATE_ORDER[gate]
 
 
 def survivors_at(rows, epoch):
-    u"""Кто выжил бы, если применять ТОЛЬКО правила эпох <= epoch."""
+    u"""Who would have survived if applying ONLY rules of epochs <= epoch."""
     lim = EPOCHS.index(epoch)
     out = []
     for r in rows:
@@ -156,11 +157,11 @@ def survivors_at(rows, epoch):
 
 
 def bh_population(rows):
-    u"""p-значения вне выборки для поправки на множественность.
+    u"""Out-of-sample p-values for multiplicity correction.
 
-    Популяция та же, что в multiplicity.py: сделок >= 30, ожидание и
-    значимость в окне автора, положительное ожидание вне его. Считается из
-    полей строки, поэтому воспроизводима из опубликованного CSV."""
+    Same population as in multiplicity.py: trades >= 30, expectation and
+    significance in the author's window, positive expectation outside it. Computed from
+    row fields, so reproducible from the published CSV."""
     p = []
     for r in rows:
         try:
@@ -181,16 +182,16 @@ def bh_population(rows):
 
 
 def n_repos(path):
-    u"""Сколько репозиториев вошло в свип.
+    u"""How many repositories entered the sweep.
 
-    ⚠ ДЕФЕКТ 22.08, опубликованный. Считалось `len(src.keys())`, а
-    `corpus_sources.json` — словарь из трёх ключей, где список репозиториев
-    лежит внутри `repos`. В README ушло «repositories swept 3» вместо 53.
+    ⚠ DEFECT 22.08, published. Counted `len(src.keys())`, while
+    `corpus_sources.json` is a dictionary of three keys, where the repository list
+    sits inside `repos`. README got "repositories swept 3" instead of 53.
 
-    Проверка `verify_ledger` это НЕ ПОЙМАЛА, и не могла: обе стороны считали
-    одной и той же неверной формулой. Сверка двух величин, выведенных из
-    общего источника, доказывает согласие, а не правильность. Отсюда второй
-    заслон ниже — проверка правдоподобия, независимая от формулы.
+    The `verify_ledger` check did NOT CATCH this, and could not: both sides counted
+    with the same wrong formula. Reconciling two quantities derived from a
+    common source proves agreement, not correctness. Hence the second
+    guard below — a plausibility check independent of the formula.
     """
     import io as _io
     import json as _json
@@ -206,30 +207,30 @@ def n_repos(path):
 
 
 def repos_plausible(n_repo, n_rows):
-    u"""Заслон, не зависящий от формулы: столько стратегий из стольких
-    репозиториев физически неправдоподобно. Возвращает текст жалобы или None."""
+    u"""Guard independent of the formula: this many strategies from that many
+    repositories is physically implausible. Returns complaint text or None."""
     if n_repo <= 0:
-        return u"репозиториев 0 при %d стратегиях" % n_rows
+        return u"repositories 0 at %d strategies" % n_rows
     if n_rows and n_rows / float(n_repo) > 200:
-        return (u"%d стратегий из %d репозиториев — %.0f на репозиторий, "
-                u"похоже на ошибку счёта" % (n_rows, n_repo, n_rows / float(n_repo)))
+        return (u"%d strategies from %d repositories — %.0f per repository, "
+                u"looks like a counting error" % (n_rows, n_repo, n_rows / float(n_repo)))
     return None
 
 
 
-# ── класс утверждения: машинно, а не прозой ──────────────────────────────
-# Внешний разбор 22.08: «отделить descriptive / exploratory / confirmatory
-# МАШИННО, а не только словами». Справедливо: до сих пор класс жил в тексте,
-# а текст не имеет кода возврата. Здесь каждое публикуемое число несёт свой
-# класс и список эпох, без которых оно не существует.
-DESCRIPTIVE = "descriptive"      # счёт того, что есть; решений не требует
-REPAIR = "repair-adjusted"       # правило доопределено ПОСЛЕ данных
-EXPLORATORY = "exploratory"      # правило пришло после данных извне
-PREREG = "pre-registered"        # правило объявлено ДО прогона
+# ── assertion class: machine-readable, not prose ──────────────────────────────
+# External review 22.08: "separate descriptive / exploratory / confirmatory
+# MACHINE-READABLY, not just in words." Fair: until now the class lived in text,
+# and text has no return code. Here every published number carries its own
+# the class and the list of epochs without which it does not exist.
+DESCRIPTIVE = "descriptive"      # a count of what exists; requires no decisions
+REPAIR = "repair-adjusted"       # rule redefined AFTER data
+EXPLORATORY = "exploratory"      # rule arrived after data from outside
+PREREG = "pre-registered"        # rule declared BEFORE the run
 
 
 def claims(rows, n_repo):
-    u"""Публикуемые утверждения с их классом. Одна строка — одно число."""
+    u"""Published assertions with their class. One line — one number."""
     thr, k_bh = bh(bh_population(rows))
     thr_by, k_by = by(bh_population(rows))
     e0 = survivors_at(rows, "E0")
@@ -246,9 +247,9 @@ def claims(rows, n_repo):
          DESCRIPTIVE, "-", "ladder gate G2"),
         ("survivors under pre-registered rules", len(e0), PREREG, "E0",
          "CHECKLIST.md 2026-08-20 15:00, commit 4d5a937"),
-        # ⚠ 22.08: обе строки назывались одинаково «of those, beat buy-and-hold».
-        # Потребитель, читающий таблицу по ключу, молча терял одну из них.
-        # Ключ машинной таблицы обязан быть уникальным — иначе она не машинная.
+        # ⚠ 22.08: both lines were named identically «of those, beat buy-and-hold».
+        # A consumer reading the table by key silently lost one of them.
+        # The key of a machine table must be unique — otherwise it is not machine-readable.
         ("beat buy-and-hold under pre-registered rules",
          n_beat(e0), PREREG, "E0",
          "freqtrade Market change"),
@@ -268,7 +269,7 @@ def claims(rows, n_repo):
 
 
 def build(rows, n_repo):
-    u"""Тот самый блок, который лежит в README между маркерами."""
+    u"""That very block that lies in the README between markers."""
     codes = sorted(set(r.get("code_md5") or "" for r in rows))
     plans = sorted(set(r.get("plan_md5") or "" for r in rows))
     thr, k_bh = bh(bh_population(rows))

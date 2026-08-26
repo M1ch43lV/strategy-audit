@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-u"""loadscan — сколько корпуса вообще ЗАГРУЖАЕТСЯ, прежде чем тратить часы.
+u"""loadscan — how much corpus is actually LOADED before spending hours.
 
-freqtrade сам печатает столбец Status в `list-strategies`. Дешевле спросить
-его, чем узнать через пять часов прогона, что треть корпуса не импортируется.
-«Не смогли загрузить» — категория для отчёта, а не молчание.
+freqtrade itself prints the Status column in `list-strategies`. It is cheaper to ask
+it than to find out after a five-hour run that a third of the corpus does not import.
+«Failed to load» is a category for the report, not silence.
 
-⚠ ПЕРВАЯ ВЕРСИЯ ЭТОЙ ПРОВЕРКИ БЫЛА СЛЕПА. Разбор строки требовал ИМЯ
-стратегии, а freqtrade у неудачной загрузки печатает в этом столбце «--».
-Отказ не мог быть посчитан НИКОГДА, и проверка отрапортовала «не загрузилось
-0» по корпусу, которого не видела. Поймано диверсией, не рассуждением.
-Опознаём строку по ФАЙЛУ — он есть всегда, имя при отказе отсутствует.
+⚠ THE FIRST VERSION OF THIS CHECK WAS BLIND. Parsing the line required the STRATEGY
+NAME, and freqtrade prints «--» in that column for a failed load.
+A failure could NEVER be counted, and the check reported «failed to load
+0» for a corpus it had not seen. Caught by sabotage, not reasoning.
+We identify the line by FILE — it is always present; the name is absent on failure.
 """
 from __future__ import print_function
 import io, os, re, subprocess, sys
@@ -45,10 +45,10 @@ def scan(path):
 
 
 def selftest():
-    u"""Проверка обязана УМЕТЬ увидеть отказ — иначе «отказов 0» есть свойство
-    прибора, а не корпуса. Подкладывается заведомо несобираемая стратегия и
-    требуется, чтобы её посчитали; и тут же требуется, чтобы исправные рядом
-    считались исправными — «всё сломано» такой же слепой ответ, как «всё цело».
+    u"""The check MUST be ABLE to see a failure — otherwise «0 failures» is a property
+    of the instrument, not the corpus. A deliberately unbuildable strategy is planted and
+    required to be counted; and at the same time, intact ones nearby are required to be
+    counted as intact — «everything is broken» is as blind an answer as «everything is fine».
     """
     d = os.path.join(_ROOT, "_sabotage")
     os.makedirs(d, exist_ok=True)
@@ -57,9 +57,9 @@ def selftest():
     failed = [x for x in rows if x[2] == "LOAD FAILED"]
     okrows = [x for x in rows if x[2] == "OK"]
     good = len(failed) == 1 and failed[0][1] == "BrokenOnPurpose.py"
-    print(u"  %s диверсия посчитана как отказ (%d)" % (u"OK" if good else u"ПРОВАЛ", len(failed)))
-    print(u"  %s исправные рядом посчитаны исправными (%d)"
-          % (u"OK" if okrows else u"ПРОВАЛ", len(okrows)))
+    print(u"  %s sabotage counted as failure (%d)" % (u"OK" if good else u"FAIL", len(failed)))
+    print(u"  %s intact ones nearby counted as intact (%d)"
+          % (u"OK" if okrows else u"FAIL", len(okrows)))
     return 0 if (good and okrows) else 1
 
 
@@ -69,24 +69,24 @@ def main():
         p = os.path.join(REPOS, d)
         if not os.path.isdir(p):
             continue
-        # TOTAL: диагностический обход, в вердикт не входит
+        # TOTAL: diagnostic walk, not part of the verdict
     for sub, dirs, _ in os.walk(p):
             dirs[:] = [x for x in dirs if x not in (".git", "__pycache__", "venv")]
             for name, loc, st in scan(sub):
-                # ключ — файл в своём репозитории: os.walk заходит и в
-                # родителя, и в потомка, поэтому без ключа выйдут повторы
+                # key — file in its own repository: os.walk enters both
+                # the parent and the child, so without a key duplicates will appear
                 seen.setdefault((d, loc), st)
     ok = sum(1 for v in seen.values() if v == "OK")
     bad = sum(1 for v in seen.values() if v != "OK")
-    print(u"ФАЙЛОВ СО СТРАТЕГИЯМИ: %d · загрузились %d · НЕ ЗАГРУЗИЛИСЬ %d (%.1f%%)"
+    print(u"FILES WITH STRATEGIES: %d · loaded %d · FAILED TO LOAD %d (%.1f%%)"
           % (len(seen), ok, bad, 100.0 * bad / max(1, len(seen))))
     badf = sorted(k[1] for k, v in seen.items() if v != "OK")
     if badf:
-        print(u"примеры незагружаемых: %s" % u", ".join(badf[:10]))
+        print(u"examples of unloadable: %s" % u", ".join(badf[:10]))
 
 
 if __name__ == "__main__":
     if "--selftest" in sys.argv:
-        print(u"loadscan — самопроверка диверсией")
+        print(u"loadscan — self-check by sabotage")
         raise SystemExit(selftest())
     main()

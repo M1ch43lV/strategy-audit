@@ -1,31 +1,31 @@
 # -*- coding: utf-8 -*-
-u"""sync_repo — опубликованный код обязан быть ТЕМ ЖЕ, что считал числа.
+u"""sync_repo — published code must be THE SAME that computed the numbers.
 
-ПОВОД, ПРОЖИТЫЙ 21.08. В репозитории лежали `replicate.py` и `stats.py`, давно
-выброшенные из работы. Внешний рецензент прочёл репозиторий и **похвалил их как
-сильную сторону**. Ничего ложного написано не было: файлы существовали, код
-работал. Он просто больше не имел отношения к числам, а отличить это читатель
-не мог. Дефект не в рецензенте.
+REASON, OBSERVED ON 21.08. The repository contained `replicate.py` and `stats.py`, long
+since removed from the workflow. An external reviewer read the repository and **praised
+them as a strength**. Nothing false was written: the files existed, the code
+worked. It just no longer related to the numbers, and a reader couldn't tell the
+difference. The defect is not in the reviewer.
 
-ЧТО ЗДЕСЬ ДВЕ ПРОВЕРКИ, И ВТОРАЯ ВАЖНЕЕ:
+THERE ARE TWO CHECKS HERE, AND THE SECOND IS MORE IMPORTANT:
 
-  ① РАСХОЖДЕНИЕ — файл есть в обоих местах, но содержимое разное.
-     Опубликована не та версия, что считала.
+  ① DIVERGENCE — file exists in both places, but content differs.
+     The published version is not the one that computed.
 
-  ② СИРОТА — файл есть в репозитории и НЕТ в рабочем наборе.
-     Именно так выжили replicate.py и stats.py. Проверка «все ли мои файлы
-     опубликованы» этого НЕ ВИДИТ: она смотрит в одну сторону. Смотреть
-     обязательно в обе.
+  ② ORPHAN — file exists in the repository and NOT in the working set.
+     That's exactly how replicate.py and stats.py survived. The check "are all my
+     files published" does NOT SEE this: it looks one way. You must look
+     both ways.
 
-Набор объявлен списком ниже, а не выведен из содержимого папки: иначе любой
-случайный файл в рабочей директории молча стал бы «частью конвейера».
+The set is declared by the list below, not derived from folder contents: otherwise any
+random file in the working directory would silently become "part of the pipeline".
 
-ЗАПУСК:  python sync_repo.py             только показать
-         python sync_repo.py --apply     скопировать и удалить сирот
-         python sync_repo.py --orphans   ТОЛЬКО ② — работает на чистой копии
-                                         репозитория, где рабочего дерева нет;
-                                         именно эта форма стоит в CI
-         python sync_repo.py --selftest  диверсия: проверка обязана находить
+RUN:  python sync_repo.py             show only
+      python sync_repo.py --apply     copy and delete orphans
+      python sync_repo.py --orphans   ONLY ② — works on a clean repo copy
+                                      where there's no working tree;
+                                      this exact form is in CI
+      python sync_repo.py --selftest  sabotage: the check must find
 """
 from __future__ import print_function
 
@@ -39,59 +39,59 @@ _ROOT = os.environ.get("AUDIT_ROOT") or os.path.dirname(os.path.abspath(__file__
 REPO = os.path.join(_ROOT, "repo")
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-# КОНВЕЙЕР — ровно эти модули считают опубликованные числа.
-# TOTAL: манифест конвейера — перечисление здесь не дефект, а сам предмет:
-# опубликованный код обязан быть объявлен, и sync_repo отказывает сиротам.
+# PIPELINE — exactly these modules compute the published numbers.
+# TOTAL: pipeline manifest — listing here is not a defect, but the subject itself:
+# published code must be declared, and sync_repo refuses orphans.
 PIPELINE = [
     "totality.py",
-    "harness.py",        # измерение: движок, оба окна, оба прибора
-    "corpus.py",         # свип корпуса долями
-    "ledger.py",         # реестр: строка на стратегию, эпохи решений
-    "ledger_block.py",   # единственная сборка блока чисел
-    "dca.py",            # усреднение входа: обнаружение, группы, парный A/B
-    "multiplicity.py",   # поправка на множественность
-    "traps.py",          # ловушки бэктеста сообщества
-    "dof.py",            # степени свободы
-    "power.py",          # мощность
-    "coverage.py",       # покрытие пар данными
-    "loadscan.py",       # причины отказа загрузки
-    "report.py",         # карточки и указатели
-    "census_repos.py",   # перепись источников
-    "harvest.py",        # сбор репозиториев
-    "expand.py",         # расширение корпуса
-    "longonly.py",       # вариант с выключенным шортом
-    "fetch_bulk.py",     # свечи из месячных архивов
-    "setup_ft.py",       # рабочая папка freqtrade
-    "tfscan.py",         # какие таймфреймы объявлены
-    "runlock.py",        # один писатель на общий ресурс
-    "anatman.py",        # прожитые дефекты как исполняемые случаи
-    "tf_guard_selftest.py",  # диверсия против сторожа таймфрейма
-    "sync_repo.py",      # этот файл: опубликованное = рабочее
+    "harness.py",        # measurement: engine, both windows, both instruments
+    "corpus.py",         # corpus sweep by fractions
+    "ledger.py",         # registry: one line per strategy, decision epochs
+    "ledger_block.py",   # single build of the number block
+    "dca.py",            # entry averaging: detection, groups, paired A/B
+    "multiplicity.py",   # multiplicity correction
+    "traps.py",          # community backtest pitfalls
+    "dof.py",            # degrees of freedom
+    "power.py",          # power
+    "coverage.py",       # pair data coverage
+    "loadscan.py",       # download failure reasons
+    "report.py",         # cards and pointers
+    "census_repos.py",   # source census
+    "harvest.py",        # repository collection
+    "expand.py",         # corpus expansion
+    "longonly.py",       # short-disabled variant
+    "fetch_bulk.py",     # candles from monthly archives
+    "setup_ft.py",       # freqtrade working folder
+    "tfscan.py",         # which timeframes are declared
+    "runlock.py",        # one writer for a shared resource
+    "anatman.py",        # observed defects as executable cases
+    "tf_guard_selftest.py",  # sabotage against the timeframe guard
+    "sync_repo.py",      # this file: published = working
 ]
 
-# Живёт только в репозитории: проверяет опубликованное на чистой машине.
-REPO_ONLY = ["verify_ledger.py", "freeze_guard.py"]  # TOTAL: манифест и ЕСТЬ объявление
+# Lives only in the repository: checks published on a clean machine.
+REPO_ONLY = ["verify_ledger.py", "freeze_guard.py"]  # TOTAL: manifest AND IS declaration
 
 
 def orphans_only():
-    u"""② без ①. На чистой копии репозитория рабочего дерева нет, поэтому
-    сравнивать не с чем — но спросить «есть ли здесь код, которого нет в
-    конвейере» можно, и это как раз тот вопрос, который был пропущен."""
+    u"""② without ①. On a clean repository copy there is no working tree, so
+    there is nothing to compare against — but asking "is there code here that is not in the
+    pipeline" is possible, and that is exactly the question that was missed."""
     here = os.path.dirname(os.path.abspath(__file__))
     known = set(PIPELINE) | set(REPO_ONLY) | {"sync_repo.py"}
     found = sorted(f for f in os.listdir(here) if f.endswith(".py"))
     orphans = [f for f in found if f not in known]
     absent = [f for f in PIPELINE if not os.path.exists(os.path.join(here, f))]
-    print(u"опубликовано модулей: %d, объявлено в конвейере: %d"
+    print(u"published modules: %d, declared in pipeline: %d"
           % (len(found), len(PIPELINE)))
     for f in orphans:
-        print(u"  СИРОТА: %s — опубликован, но не объявлен частью конвейера" % f)
+        print(u"  ORPHAN: %s — published but not declared as part of the pipeline" % f)
     for f in absent:
-        print(u"  ПРОПАЛ: %s — объявлен конвейером, но не опубликован" % f)
+        print(u"  MISSING: %s — declared by the pipeline but not published" % f)
     if orphans or absent:
-        print(u"код и его объявление разошлись")
+        print(u"code and its declaration diverged")
         return 1
-    print(u"каждый опубликованный модуль объявлен, и наоборот")
+    print(u"every published module is declared, and vice versa")
     return 0
 
 
@@ -100,14 +100,14 @@ def main():
     if "--orphans" in sys.argv:
         return orphans_only()
     if not os.path.isdir(REPO):
-        print(u"нет папки %s" % REPO)
+        print(u"no folder %s" % REPO)
         return 1
 
     missing, differ, same = [], [], []
     for f in PIPELINE:
         src, dst = os.path.join(_ROOT, f), os.path.join(REPO, f)
         if not os.path.exists(src):
-            print(u"⛔ в рабочем наборе НЕТ %s — список конвейера врёт" % f)
+            print(u"⛔ working set has NO %s — pipeline list lies" % f)
             return 1
         if not os.path.exists(dst):
             missing.append(f)
@@ -120,48 +120,48 @@ def main():
     orphans = sorted(f for f in os.listdir(REPO)
                      if f.endswith(".py") and f not in known)
 
-    print(u"КОНВЕЙЕР: %d модулей" % len(PIPELINE))
-    print(u"  совпадают         %3d" % len(same))
-    print(u"  не опубликованы   %3d   %s" % (len(missing), u", ".join(missing) or u"—"))
-    print(u"  расходятся        %3d   %s" % (len(differ), u", ".join(differ) or u"—"))
-    print(u"  СИРОТЫ            %3d   %s" % (len(orphans), u", ".join(orphans) or u"—"))
+    print(u"PIPELINE: %d modules" % len(PIPELINE))
+    print(u"  match             %3d" % len(same))
+    print(u"  not published     %3d   %s" % (len(missing), u", ".join(missing) or u"—"))
+    print(u"  differ            %3d   %s" % (len(differ), u", ".join(differ) or u"—"))
+    print(u"  ORPHANS           %3d   %s" % (len(orphans), u", ".join(orphans) or u"—"))
     if orphans:
-        print(u"  ⚠ сирота — опубликованный код, которого нет в конвейере.")
-        print(u"    Читатель считает его частью работы. Так выжили replicate.py")
-        print(u"    и stats.py, и внешний разбор похвалил именно их.")
+        print(u"  ⚠ orphan — published code not in the pipeline.")
+        print(u"    Reader considers it part of the work. That is how replicate.py")
+        print(u"    and stats.py survived, and external review praised exactly them.")
 
     if not apply:
         if missing or differ or orphans:
-            print(u"\nничего не тронуто. Применить: python sync_repo.py --apply")
+            print(u"\nnothing touched. To apply: python sync_repo.py --apply")
             return 1
-        print(u"\nопубликованный код совпадает с рабочим")
+        print(u"\npublished code matches working code")
         return 0
 
     for f in missing + differ:
         shutil.copy2(os.path.join(_ROOT, f), os.path.join(REPO, f))
-        print(u"скопирован %s" % f)
-    # ⚠ 22.08: прежняя версия УДАЛЯЛА сирот сама и снесла freeze_guard.py —
-    # файл, добавленный в список только во второй копии этого же скрипта.
-    # Это повтор класса «инструмент владеет общей папкой» (17.08, rmtree и
-    # .docx оператора). Удаление теперь требует ОТДЕЛЬНОГО флага, а по
-    # умолчанию сироты НАЗЫВАЮТСЯ и остаются жить.
+        print(u"copied %s" % f)
+    # ⚠ 22.08: previous version DELETED orphans itself and removed freeze_guard.py —
+    # file added to the list only in the second copy of this same script.
+    # This is a repeat of the class "tool owns a shared folder" (17.08, rmtree and
+    # .docx operator). Deletion now requires a SEPARATE flag, and by
+    # default orphans are NAMED and remain alive.
     if orphans and "--delete-orphans" not in sys.argv:
-        print(u"⚠ сироты НЕ удалены — нужен явный --delete-orphans:")
+        print(u"⚠ orphans NOT deleted — explicit --delete-orphans required:")
         for f in orphans:
             print(u"     %s" % f)
-        print(u"  прежде чем удалять, проверьте, не забыт ли файл в списке")
+        print(u"  before deleting, check whether the file was omitted from the list")
     elif orphans:
         for f in orphans:
             os.remove(os.path.join(REPO, f))
-            print(u"удалён сирота %s" % f)
-    print(u"готово: %d скопировано, %d удалено"
+            print(u"orphan %s deleted" % f)
+    print(u"done: %d copied, %d deleted"
           % (len(missing) + len(differ),
              len(orphans) if "--delete-orphans" in sys.argv else 0))
     return 0
 
 
 def selftest():
-    u"""Диверсия: проверка обязана УМЕТЬ находить, а не только соглашаться."""
+    u"""Sabotage: the check must BE ABLE to find, not just agree."""
     import tempfile
     ok = []
     d = tempfile.mkdtemp()
@@ -173,20 +173,20 @@ def selftest():
 
     globals()["_ROOT"], globals()["REPO"] = d, r
     globals()["PIPELINE"], globals()["REPO_ONLY"] = ["a.py"], []
-    ok.append((u"сирота найдена", main() == 1))
+    ok.append((u"orphan found", main() == 1))
 
     os.remove(os.path.join(r, "ghost.py"))
-    ok.append((u"чистое состояние проходит", main() == 0))
+    ok.append((u"clean state passes", main() == 0))
 
     io.open(os.path.join(r, "a.py"), "w", encoding="utf-8").write(u"x = 2\n")
-    ok.append((u"расхождение найдено", main() == 1))
+    ok.append((u"discrepancy found", main() == 1))
 
     shutil.rmtree(d, ignore_errors=True)
     print()
     for n, v in ok:
-        print(u"  %-28s %s" % (n, u"OK" if v else u"ПРОВАЛ"))
+        print(u"  %-28s %s" % (n, u"OK" if v else u"FAIL"))
     bad = [n for n, v in ok if not v]
-    print(u"самопроверка: %d/%d" % (len(ok) - len(bad), len(ok)))
+    print(u"self-check: %d/%d" % (len(ok) - len(bad), len(ok)))
     return 1 if bad else 0
 
 

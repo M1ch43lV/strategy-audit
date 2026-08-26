@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-"""Готовит рабочую папку freqtrade и переводит скачанные свечи в его формат.
+"""Prepares the freqtrade working folder and converts downloaded candles into its format.
 
-Данные берутся с публичного зеркала Binance (data-api.binance.vision), потому
-что основной API закрыт по геолокации, а собственный `download-data` freqtrade
-ходит именно туда. Поэтому конвертируем, а не качаем повторно.
+Data is taken from the public Binance mirror (data-api.binance.vision), because
+the main API is geo-blocked, and freqtrade's own `download-data` goes exactly
+there. So we convert rather than download again.
 """
 import json
 import sys as _sys
 _sys.path.insert(0, "C:/tmp/audit")
 import runlock as _rl
-if not _rl.acquire("fetch"):      # общая папка свечей — один писатель
+if not _rl.acquire("fetch"):      # shared candle folder — one writer
     raise SystemExit(2)
 import atexit as _at
 _at.register(lambda: _rl.release("fetch"))
@@ -32,7 +32,7 @@ n = 0
 for src_name, ft_name in PAIRS.items():
     p = os.path.join(SRC, src_name + ".csv")
     if not os.path.exists(p) or os.path.getsize(p) < 1000:
-        print("  пропуск (нет данных):", src_name)
+        print("  skip (no data):", src_name)
         continue
     df = pd.read_csv(p)
     df = df.rename(columns={"ts": "date"})
@@ -40,7 +40,7 @@ for src_name, ft_name in PAIRS.items():
     out = os.path.join(UD, "data", "binance", ft_name + "-1h.feather")
     df.reset_index(drop=True).to_feather(out)
     n += 1
-    print("  %-10s -> %s  (%d свечей)" % (src_name, os.path.basename(out), len(df)))
+    print("  %-10s -> %s  (%d candles)" % (src_name, os.path.basename(out), len(df)))
 
 cfg = {
     "max_open_trades": 8,
@@ -75,6 +75,6 @@ cfg = {
 with open(os.path.join(UD, "config.json"), "w") as f:
     json.dump(cfg, f, indent=2)
 
-print("\nпар переведено: %d" % n)
-print("конфиг: %s" % os.path.join(UD, "config.json"))
-print("⚠ ключи биржи ПУСТЫЕ — бэктест их не требует и не должен")
+print("\npairs converted: %d" % n)
+print("config: %s" % os.path.join(UD, "config.json"))
+print("⚠ exchange keys are EMPTY — backtest doesn't need them and shouldn't")

@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
-u"""report — карточки и указатели. ВЫВОД ПО-АНГЛИЙСКИ, комментарии по-русски.
+u"""report — cards and pointers. OUTPUT IN ENGLISH, comments in Russian.
 
-⚠ ПОВОД ПЕРЕПИСАТЬ, 21.08. Внешний читатель во freqtrade Discord написал:
-«it also doesn't list strategies that simply don't load». Формально он неправ —
-227 неизмеренных перечислены с причиной у каждой. Практически он прав:
+⚠ REASON TO REWRITE, 21.08. An external reader in the freqtrade Discord wrote:
+"it also doesn't list strategies that simply don't load". Formally he is wrong —
+227 unmeasured ones are listed with a reason for each. Practically he is right:
 
-  README вёл на results/INDEX.md — а там ПЯТЬ стратегий разбора
-  на corpus/ ссылки не было вовсе
-  corpus/INDEX.md и все 566 карточек были НА РУССКОМ в англоязычном репозитории
+  README led to results/INDEX.md — and there were FIVE analysis strategies
+  there was no link to corpus/ at all
+  corpus/INDEX.md and all 566 cards were IN RUSSIAN in an English-language repository
 
-Информация существовала, а парадная дверь вела не в ту комнату. Это мой же
-класс дефекта: «мы это опубликовали» — ответ про слово, а не про предмет.
-Проверять надо не «есть ли файл», а «может ли читатель его найти и прочесть».
+The information existed, but the front door led to the wrong room. This is my own
+class of defect: "we published it" — an answer about the word, not the thing.
+You should check not "does the file exist", but "can the reader find and read it".
 
-Мера — СРЕДНЯЯ СДЕЛКА В ПРОЦЕНТАХ там, где она есть: ожидание в валюте при
-`stake_amount: unlimited` компаундирует и не свободно от масштаба.
+Measure — AVERAGE TRADE IN PERCENT where available: expectation in currency with
+`stake_amount: unlimited` compounds and is not scale-free.
 """
 from __future__ import print_function
 
@@ -34,11 +34,11 @@ RESULTS = os.path.join(ROOT, "results")
 OUT = os.path.join(ROOT, "repo", "results")
 CORP = os.path.join(ROOT, "repo", "corpus")
 
-PASS, FOUND = u"ПРОШЛА", u"НАЙДЕНО"
-MARK = {PASS: u"pass", FOUND: u"FOUND", u"НЕ ПРИМЕНИМА": u"n/a",
-        u"НЕ ЗАПУСКАЛИ": u"not run"}
-EN = {PASS: u"clean", FOUND: u"**found**", u"НЕ ПРИМЕНИМА": u"could not run",
-      u"НЕ ЗАПУСКАЛИ": u"not run"}
+PASS, FOUND = u"PASS", u"FOUND"
+MARK = {PASS: u"pass", FOUND: u"FOUND", u"NA": u"n/a",
+        u"SKIP": u"not run"}
+EN = {PASS: u"clean", FOUND: u"**found**", u"NA": u"could not run",
+      u"SKIP": u"not run"}
 
 
 def g(s, k):
@@ -59,14 +59,14 @@ _COLLIDE = set()
 
 
 def md_name(name):
-    u"""Имя файла карточки, устойчивое к регистру.
+    u"""Case-insensitive card filename.
 
-    ⚠ ДЕФЕКТ 22.08. Карточка писалась как `strategy + ".md"`. В корпусе есть
-    ДЕСЯТЬ пар имён, различающихся только регистром — Ichi/ichi, SAR/Sar,
-    SuperTrend/Supertrend и ещё семь. Файловая система Windows их не
-    различает, вторая карточка затирала первую, и десять стратегий пропадали
-    из публикации молча. Ровно этот дефект уже был починен в corpus.py, а
-    здесь остался: я починил СЛУЧАЙ, а не КЛАСС.
+    ⚠ DEFECT 22.08. The card was written as `strategy + ".md"`. The corpus contains
+    TEN pairs of names differing only in case — Ichi/ichi, SAR/Sar,
+    SuperTrend/Supertrend and seven more. The Windows file system does not
+    distinguish them, the second card overwrote the first, and ten strategies disappeared
+    from the publication silently. Exactly this defect was already fixed in corpus.py, but
+    here it remained: I fixed the INSTANCE, not the CLASS.
     """
     if name.lower() in _COLLIDE:
         return u"%s__%s" % (name, hashlib.md5(
@@ -117,13 +117,13 @@ def card(r):
         e1, e2 = g(a, "expectancy"), (g(b, "expectancy") if b else None)
         L.append(u"**Retained out of sample: %s**" % (survives(e1, e2) or u"—"))
         L.append(u"")
-        # ⚠ ПРОЖИТЫЙ ДЕФЕКТ 21.08. «Удержано» сравнивает МЕДВЕЖЬЕ окно автора
-        # (рынок −58%) с БЫЧЬИМ вне выборки (+346%). Для стратегии с длинным
-        # перекосом это отношение измеряет везение с режимом, а не стойкость:
-        # чем хуже ей было в 2018-2020, тем красивее «удержание». Семейство
-        # NFI показало 3.22 против 1.73 у прочих — и при этом ОБЫГРАЛО рынок
-        # реже (8% против 12%). Два показателя противоречили друг другу,
-        # и сломанным оказался мой.
+        # ⚠ OBSERVED DEFECT 21.08. "Held" compares the author's BEARISH window
+        # (market −58%) with a BULLISH out-of-sample (+346%). For a strategy with a long
+        # bias, this ratio measures luck with the regime, not resilience:
+        # the worse it did in 2018-2020, the prettier the "holding". The NFI family
+        # showed 3.22 vs 1.73 for others — and yet BEAT the market
+        # less often (8% vs. 12%). The two metrics contradicted each other,
+        # and mine was the broken one.
         L.append(u"> **Read that number with care.** The author's window was a "
                  u"bear market (buy-and-hold −58%) and the out-of-sample window "
                  u"a bull market (+346%). For a long-biased strategy this ratio "
@@ -144,9 +144,9 @@ def card(r):
             L.append(u"")
             L.append(u"**Excess over buy-and-hold** (regime-free): %s."
                      % u", ".join(exc))
-        # ⑨ Длительность против собственной свечи. Сделка, открытая и закрытая
-        # внутри одной свечи, оценена движком по ДОПУЩЕНИЮ о порядке максимума
-        # и минимума, а не по измерению — и допущение обычно лестное.
+        # ⑨ Duration against its own candle. A trade opened and closed
+        # within one candle is valued by the engine by ASSUMPTION about the order of high
+        # and low, not by measurement — and the assumption is usually flattering.
         for lab, s in ((u"author's window", a), (u"out of sample", b)):
             if isinstance(s, dict) and s.get("dur_over_candle") is not None \
                     and s.get("dur_over_candle") < 1.0:
@@ -307,7 +307,7 @@ if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     os.makedirs(CORP, exist_ok=True)
     rows, crows = [], []
-    # собрать имена, совпадающие без учёта регистра, ДО первой записи
+    # collect names matching case-insensitively BEFORE the first write
     seen_low = {}
     for f in sorted(os.listdir(RESULTS)):
         if f.endswith(".json"):
@@ -316,7 +316,7 @@ if __name__ == "__main__":
             seen_low[nm.lower()] = seen_low.get(nm.lower(), 0) + 1
     _COLLIDE.update(k for k, v in seen_low.items() if v > 1)
     if _COLLIDE:
-        print(u"имён с коллизией по регистру: %d (карточки получат хеш)"
+        print(u"of names with case collision: %d (cards will get a hash)"
               % len(_COLLIDE))
     for f in sorted(os.listdir(RESULTS)):
         if not f.endswith(".json"):

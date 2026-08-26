@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-u"""harvest — забрать ТОЛЬКО файлы стратегий, не клонируя репозиторий.
+u"""harvest — fetch ONLY strategy files, without cloning the repository.
 
-ПОВОД. Я отсёк четыре репозитория по объёму (>60 МБ) и записал это как
-объявленный предел. Проверка показала, что предел был выбран по НЕ ТОМУ
-признаку: они тяжелы РЕЗУЛЬТАТАМИ БЭКТЕСТОВ и данными, а не стратегиями.
-MoniGoMani — 271 МБ и 21 файл .py. GeneTrader — 226 МБ и 49.
+RATIONALE. I cut four repositories by size (>60 MB) and recorded this as a
+stated limit. Verification showed the limit was chosen by the WRONG
+criterion: they are heavy with BACKTEST RESULTS and data, not strategies.
+MoniGoMani — 271 MB and 21 .py files. GeneTrader — 226 MB and 49.
 
-Размер репозитория ничего не говорит о числе стратегий. Признак заменён:
-берём дерево через API, скачиваем только .py, оставляем те, где есть
-IStrategy. Предел по объёму исчезает вместе с оговоркой в отчёте.
+Repository size says nothing about the number of strategies. The criterion is replaced:
+we get the tree via API, download only .py files, keep those that have
+IStrategy. The size limit disappears along with the caveat in the report.
 
-⚠ Ничего не исполняется: файлы кладутся на диск и разбираются AST'ом тем же
-find_strategies, что и остальной корпус.
+⚠ Nothing is executed: files are placed on disk and parsed with AST by the same
+find_strategies as the rest of the corpus.
 """
 from __future__ import print_function
 
@@ -54,11 +54,11 @@ def harvest(full):
     out_dir = os.path.join(REPOS, d)
     meta = gh_json("repos/" + full)
     if not meta:
-        return (full, 0, 0, u"репозиторий недоступен")
+        return (full, 0, 0, u"repository unavailable")
     br = meta.get("default_branch") or "main"
     tree = gh_json("repos/%s/git/trees/%s?recursive=1" % (full, br))
     if not tree or "tree" not in tree:
-        return (full, 0, 0, u"дерево не получено")
+        return (full, 0, 0, u"tree not fetched")
     pys = [t for t in tree["tree"]
            if t.get("type") == "blob" and t["path"].endswith(".py")
            and (t.get("size") or 0) < MAX_FILE]
@@ -79,14 +79,14 @@ def harvest(full):
 def main():
     targets = sys.argv[1:]
     if not targets:
-        print(u"укажи репозитории через пробел")
+        print(u"specify repositories separated by spaces")
         return 2
     base = set()
     for x in sorted(os.listdir(REPOS)):
         p = os.path.join(REPOS, x)
         if os.path.isdir(p):
             base |= {n for _f, n in find_strategies(p)}
-    print(u"уникальных классов до забора: %d" % len(base), flush=True)
+    print(u"unique classes before fetch: %d" % len(base), flush=True)
     grand = set(base)
     for full in targets:
         name, got, cls, err = harvest(full)
@@ -97,10 +97,10 @@ def main():
         names = {n for _f, n in find_strategies(p)}
         new = names - grand
         grand |= names
-        print(u"  %-46s файлов %3d · классов %3d · НОВЫХ %3d"
+        print(u"  %-46s files %3d · classes %3d · NEW %3d"
               % (name, got, len(names), len(new)), flush=True)
     print()
-    print(u"уникальных классов стало: %d (прирост %d)"
+    print(u"unique classes now: %d (increase %d)"
           % (len(grand), len(grand) - len(base)))
 
 

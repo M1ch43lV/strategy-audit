@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-u"""Самопроверка сторожа предмета — ДИВЕРСИЕЙ, а не рассуждением.
+u"""Self-check of the item guard — by SABOTAGE, not by reasoning.
 
-Дефект 20.08: ключ `timeframe` в конфиге ПЕРЕОПРЕДЕЛЯЛ таймфрейм, объявленный
-стратегией. Пятиминутки считались по часовым и выдавали правдоподобные числа.
-Ключ убран — но это чинит СЛУЧАЙ. Здесь проверяется, что чинится КЛАСС:
-сторож обязан поймать подмену, даже если ключ вернут.
+Defect 20.08: the `timeframe` key in the config OVERRODE the timeframe declared
+by the strategy. Five-minute bars were calculated on hourly ones and produced plausible numbers.
+The key was removed — but that fixes the CASE. Here it is verified that the CLASS is fixed:
+the guard must catch the substitution even if the key is returned.
 
-M-17: контроль обязан УВИДЕТЬ и отказ, и норму. Сторож, который всегда
-отказывает, ничего не проверяет.
+M-17: the control must SEE both failure and norm. A guard that always
+fails checks nothing.
 """
 from __future__ import print_function
 import os as _os
@@ -41,56 +41,56 @@ def case(n, cond, detail=u""):
         print(u"  ✗ %s   %s" % (n, detail))
 
 
-print(u"СТОРОЖ ПРЕДМЕТА — самопроверка диверсией\n")
+print(u"ITEM GUARD — self-check by sabotage\n")
 
-# ── №1: САМ ДЕФЕКТ, дословно. Конфиг навязывает 1h пятиминутной стратегии.
+# ── #1: THE DEFECT ITSELF, verbatim. Config imposes 1h on a five-minute strategy.
 cfg = json.load(io.open(REAL, encoding="utf-8"))
 cfg["timeframe"] = "1h"
 io.open(SAB, "w", encoding="utf-8").write(json.dumps(cfg, ensure_ascii=False, indent=2))
 harness.CFG = SAB
 src5 = io.open(S5M, encoding="utf-8", errors="replace").read()
 tf5 = harness.declared_tf(src5)
-case(u"№0 стратегия объявляет 5m", tf5 == "5m", u"объявлено %r" % tf5)
+case(u"#0 strategy declares 5m", tf5 == "5m", u"declared %r" % tf5)
 lvl, why, s = harness.backtest("ASDTSRockwellTrading", RANGE, path=S5M, want_tf=tf5)
-case(u"№1 подмена таймфрейма ОТВЕРГНУТА", lvl == harness.NA, u"вернулось %s / %s" % (lvl, why))
-case(u"№2 причина названа предметно", u"ПРЕДМЕТ НЕ ТОТ" in (why or u""), why)
-case(u"№3 число НЕ отдано наружу", s is None, u"отдано %r" % (s,))
-print(u"     движок сказал: %s" % why)
+case(u"#1 timeframe substitution REJECTED", lvl == harness.NA, u"returned %s / %s" % (lvl, why))
+case(u"#2 reason named concretely", u"ITEM NOT THE SAME" in (why or u""), why)
+case(u"#3 number NOT given outside", s is None, u"given %r" % (s,))
+print(u"     engine said: %s" % why)
 
-# ── №4-6: КОНТРОЛЬ. Тот же сторож обязан ПРОПУСТИТЬ честный прогон.
+# ── #4-6: CONTROL. The same guard must PASS an honest run.
 harness.CFG = REAL
 src1 = io.open(S1H, encoding="utf-8", errors="replace").read()
 tf1 = harness.declared_tf(src1)
 lvl2, why2, s2 = harness.backtest("MACDCrossoverWithTrend", RANGE,
                                   path=None, want_tf=tf1)
-case(u"№4 честный прогон ПРОПУЩЕН", lvl2 == harness.PASS, u"%s / %s" % (lvl2, why2))
-case(u"№5 таймфрейм движка записан в карточку",
+case(u"#4 honest run SKIPPED", lvl2 == harness.PASS, u"%s / %s" % (lvl2, why2))
+case(u"#5 engine timeframe written to the card",
      bool(s2) and s2.get("used_timeframe") == tf1,
      u"%r" % (s2.get("used_timeframe") if s2 else None))
-case(u"№6 пропущенные пары перечислены полем",
+case(u"#6 skipped pairs listed by field",
      bool(s2) and isinstance(s2.get("missing_pairs"), list),
      u"%r" % (s2.get("missing_pairs") if s2 else None))
 if s2:
-    print(u"     считано на %s, пар без истории: %s"
-          % (s2.get("used_timeframe"), s2.get("missing_pairs") or u"нет"))
+    print(u"     read on %s, pairs without history: %s"
+          % (s2.get("used_timeframe"), s2.get("missing_pairs") or u"none"))
 
-# ── №7-8: КОД 0 НЕ ЕСТЬ РЕЗУЛЬТАТ. freqtrade выходит С НУЛЁМ при ошибке
-# конфигурации. Случай прожит: ClucCrypROI без `stoploss` давал карточку
-# из одних None, помеченную как УСПЕШНЫЙ прогон.
+# ?? #7-8: CODE 0 IS NOT A RESULT. freqtrade exits WITH ZERO on a
+# configuration error. Observed case: ClucCrypROI without `stoploss` gave a card
+# of all None, marked as a SUCCESSFUL run.
 S_ERR = os.path.join(_ROOT, "repos", "PeetCrypto_freqtrade-stuff", "ClucCrypROI.py")
 if os.path.exists(S_ERR):
     lvl3, why3, s3 = harness.backtest("ClucCrypROI", RANGE, path=S_ERR, want_tf=None)
-    case(u"№7 код 0 без чисел НЕ считается прогоном",
+    case(u"#7 code 0 without numbers is NOT considered a run",
          lvl3 == harness.NA and s3 is None, u"%s / %r" % (lvl3, s3))
-    case(u"№8 причина взята из ERROR движка",
+    case(u"#8 reason taken from the engine's ERROR",
          u"stoploss" in (why3 or u""), why3)
-    print(u"     движок сказал: %s" % why3)
+    print(u"     engine said: %s" % why3)
 else:
-    case(u"№7-8 случай ClucCrypROI доступен", False, S_ERR)
+    case(u"#7-8 ClucCrypROI case is available", False, S_ERR)
 
 try:
     os.remove(SAB)
 except Exception:
     pass
-print(u"\nИТОГ: %d/%d" % (ok, ok + fail))
+print(u"\nTOTAL: %d/%d" % (ok, ok + fail))
 sys.exit(1 if fail else 0)

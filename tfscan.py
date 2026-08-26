@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-u"""tfscan — какие таймфреймы объявляют стратегии корпуса.
+u"""tfscan — which timeframes the corpus strategies declare.
 
-ЗАЧЕМ. Я гоню весь корпус на часовых свечах, потому что скачал только их.
-Стратегия, объявившая `timeframe = '5m'`, на этих данных либо не запустится,
-либо — что хуже — запустится не на том. Второе дало бы числа, выглядящие
-как результат. Это надо ЗНАТЬ до публикации, а не после.
+WHY. I run the entire corpus on hourly candles because I only downloaded those.
+A strategy declaring `timeframe = '5m'` will either not run on this data,
+or — worse — run on the wrong one. The latter would produce numbers that look
+like a result. This must be KNOWN before publication, not after.
 """
 import collections
 import os as _os
@@ -35,14 +35,14 @@ for d in sorted(os.listdir(_os.path.join(_ROOT, "repos"))):
         seen.add(n)
         src = io.open(f, encoding="utf-8", errors="replace").read()
         m = RX.search(src)
-        tf[m.group(1) if m else u"НЕ ОБЪЯВЛЕН"] += 1
+        tf[m.group(1) if m else u"NOT DECLARED"] += 1
 
-print(u"ТАЙМФРЕЙМЫ (уникальных стратегий %d):" % len(seen))
+print(u"TIMEFRAMES (unique strategies %d):" % len(seen))
 for k, v in tf.most_common(12):
-    mark = u"  ← есть данные" if k == "1h" else u""
+    mark = u"  ← data available" if k == "1h" else u""
     print(u"   %-14s %4d%s" % (k, v, mark))
 h1 = tf.get("1h", 0)
 print()
-print(u"На часовых данных корректны %d из %d (%.0f%%)."
+print(u"On hourly data, %d of %d are valid (%.0f%%)."
       % (h1, len(seen), 100.0 * h1 / max(1, len(seen))))
-print(u"Остальным нужны СВОИ свечи, иначе прогон бессмыслен.")
+print(u"The rest need their OWN candles, otherwise the run is meaningless.")

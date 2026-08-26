@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-u"""Один писатель на общий ресурс. Замок с проверкой ЖИВОСТИ, не с обещанием.
+u"""One writer to a shared resource. A lock with LIVENESS check, not a promise.
 
-ПОВОД, ДВАЖДЫ. 20.08 я трижды перезапустил corpus.py, ни разу не убив
-предыдущий: четыре процесса писали карточки, и по карточке нельзя было
-сказать, какой версией кода она посчитана. Починил — но починил СЛУЧАЙ:
-через час два загрузчика писали одни и те же файлы свечей. Тот же класс,
-второе место. Поэтому замок вынесен сюда и берётся ВЕЗДЕ, где пишут в
-общее.
+REASON, TWICE. On 20.08 I restarted corpus.py three times, never killing the
+previous one: four processes wrote cards, and from a card you couldn't tell
+which code version computed it. Fixed — but fixed the INSTANCE:
+an hour later two loaders wrote the same candle files. Same class,
+second place. So the lock is moved here and taken EVERYWHERE that writes to
+shared.
 
-Мёртвый замок (процесса нет) снимается сам — иначе первое же падение
-заблокировало бы работу навсегда, и замок начали бы обходить руками.
+A dead lock (no process) is removed by itself — otherwise the first crash
+would block work forever, and the lock would start being bypassed by hand.
 """
 from __future__ import print_function
 import io, os, sys
@@ -18,7 +18,7 @@ LOCKDIR = os.environ.get("AUDIT_ROOT") or os.path.dirname(os.path.abspath(__file
 
 
 def _alive(pid):
-    u"""Жив ли процесс. Пустой ответ tasklist = мёртв."""
+    u"""Is the process alive. Empty tasklist response = dead."""
     try:
         import subprocess
         out = subprocess.check_output(
@@ -26,11 +26,11 @@ def _alive(pid):
             stderr=subprocess.STDOUT).decode("cp866", "replace")
         return str(pid) in out
     except Exception:
-        return True          # не смог проверить ⇒ считаю живым (осторожная сторона)
+        return True          # could not check ⇒ consider alive (cautious side)
 
 
 def acquire(name, quiet=False):
-    u"""True — замок наш. False — работает другой, его PID НАЗВАН."""
+    u"""True — the lock is ours. False — another is working, its PID is NAMED."""
     p = os.path.join(LOCKDIR, "%s.lock" % name)
     if os.path.exists(p):
         try:
@@ -39,12 +39,12 @@ def acquire(name, quiet=False):
             old = None
         if old and _alive(old):
             if not quiet:
-                print(u"ОТКАЗ: «%s» уже занят процессом PID %d. "
-                      u"Два писателя на один ресурс дают результат "
-                      u"неизвестного происхождения." % (name, old))
+                print(u"REFUSAL: \"%s\" is already held by process PID %d. "
+                      u"Two writers to one resource yield a result "
+                      u"of unknown origin." % (name, old))
             return False
         if not quiet:
-            print(u"замок «%s» был мёртв (PID %s) — снимаю" % (name, old))
+            print(u"lock \"%s\" was dead (PID %s) — removing" % (name, old))
     io.open(p, "w", encoding="utf-8").write(u"%d" % os.getpid())
     return True
 

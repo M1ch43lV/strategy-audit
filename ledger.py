@@ -1,62 +1,67 @@
 # -*- coding: utf-8 -*-
-u"""ledger — ОДНА СТРОКА НА СТРАТЕГИЮ, из которой восстановим весь путь.
+u"""ledger — ONE LINE PER STRATEGY, from which we restore the entire path.
 
-ЗАЧЕМ. До сих пор итоговые числа («55 прошли», «0 обыграли рынок») жили в
-прозе README и в выводе funnel.py. Их нельзя было ни пересчитать из одного
-места, ни привязать к версии кода. 21.08 это дало дефект прямо на глазах:
-внешний рецензент похвалил два файла, которые давно выброшены, потому что
-опубликованные числа выглядели авторитетно и НЕ НЕСЛИ провенанса.
+WHY. Until now, the final numbers ("55 passed", "0 beat the market") lived in
+README prose and in funnel.py output. They could neither be recomputed from a
+single place nor tied to a code version. On 21.08 this produced a defect right
+before our eyes: an external reviewer praised two files that had long been
+discarded, because the published numbers looked authoritative and CARRIED NO
+PROVENANCE.
 
-ЧТО ЗДЕСЬ. У каждого числа четыре координаты, и они печатаются вместе с ним:
+WHAT'S HERE. Each number has four coordinates, and they are printed alongside it:
 
-    ЧТО считалось · КАКИМ кодом (code_md5) · НА КАКОМ корпусе (plan_md5)
-                  · ПРИ КАКОМ наборе решений (эпоха)
+    WHAT was counted · WITH WHICH code (code_md5) · ON WHICH corpus (plan_md5)
+                  · UNDER WHICH set of decisions (epoch)
 
-ЭПОХИ — не украшение. Порядок «правило → данные» или «данные → правило»
-меняет доказательную силу вывода, и он ПРОВЕРЕН ПО ГИТУ, не по памяти:
+EPOCHS are not decoration. The order "rule → data" or "data → rule"
+changes the evidential strength of the conclusion, and it is VERIFIED VIA GIT,
+not from memory:
 
-  E0  ОБЪЯВЛЕНО ДО ПРОГОНА
-      ступени ①–⑦ (сделки ≥30, ожидание>0 и p<0.05 в окне автора и вне его).
-      CHECKLIST.md 20.08 15:00 называет ОБА прибора — lookahead-analysis и
-      recursive-analysis — до начала свипа (git: 4d5a937).
+  E0  DECLARED BEFORE THE RUN
+      steps ①–⑦ (trades ≥30, expectation>0 and p<0.05 in the author's window
+      and outside it). CHECKLIST.md 20.08 15:00 names BOTH instruments —
+      lookahead-analysis and recursive-analysis — before the sweep began
+      (git: 4d5a937).
 
-  E1  ПОСЛЕ ДАННЫХ, ВЫЗВАНО РЕЗУЛЬТАТОМ  ← настоящая утечка
-      Оба прибора МЕРИЛИСЬ с первого коммита харнесса (be77d12, 20.08 14:42),
-      но какой из них ИСКЛЮЧАЕТ — объявлено не было. Опубликованная воронка
-      (fff3d17, 21.08 10:56) исключала ТОЛЬКО по заглядыванию. Исключение по
-      рекурсии добавлено ПОСЛЕ того, как я увидел, что стратегии, обыгравшие
-      рынок вне выборки, — NOTankAi_15 (+63 645 298%) и NowoIchimoku1hV2.
-      ⚠ Поправка к моей же записи 21.08 22:41: я написал «второй детектор
-      введён после данных». По гиту это НЕВЕРНО — введён был не прибор, а
-      РЕШЕНИЕ, какой из объявленных приборов считается исключающим.
-      Недоопределённость пререгистрации, разрешённая после результата.
+  E1  AFTER DATA, CAUSED BY THE RESULT  ← real leakage
+      Both instruments were MEASURED from the first harness commit (be77d12,
+      20.08 14:42), but which one EXCLUDES was not declared. The published
+      funnel (fff3d17, 21.08 10:56) excluded ONLY by lookahead. Exclusion by
+      recursion was added AFTER I saw that the strategies that beat the market
+      out of sample were NOTankAi_15 (+63 645 298%) and NowoIchimoku1hV2.
+      ⚠ Correction to my own note of 21.08 22:41: I wrote "the second detector
+      was introduced after the data". Per git this is WRONG — what was
+      introduced was not the instrument, but the DECISION about which of the
+      declared instruments counts as excluding. Underdetermined
+      preregistration, resolved after the result.
 
-  E2  ПОСЛЕ ДАННЫХ, ИСТОЧНИК ВНЕШНИЙ (не вызвано нашим результатом)
-      ловушки бэктеста из документации сообщества freqtrade (traps.py).
+  E2  AFTER DATA, SOURCE EXTERNAL (not caused by our result)
+      backtest traps from the freqtrade community documentation (traps.py).
 
-  E3  ПОСЛЕ ДАННЫХ, ИСТОЧНИК ВНЕШНИЙ
-      сделка короче собственной свечи (dur_over_candle < 1).
+  E3  AFTER DATA, SOURCE EXTERNAL
+      trade shorter than its own candle (dur_over_candle < 1).
 
-  E4  ПОСЛЕ ДАННЫХ, ВЫЗВАНО ВНЕШНИМ РАЗБОРОМ
-      поправка на множественность (Бенджамини–Хохберг).
+  E4  AFTER DATA, CAUSED BY EXTERNAL REVIEW
+      multiplicity correction (Benjamini–Hochberg).
 
-Различие E1 и E2/E3 существенно и его НЕЛЬЗЯ схлопывать: E1 — правило,
-выбранное потому, что не понравился результат; E2/E3 — правило, пришедшее
-из чужого документа, безразличного к нашему результату. Оба — степени
-свободы исследователя, и оба помечены. Но виноваты они по-разному.
+The distinction between E1 and E2/E3 is essential and MUST NOT be collapsed:
+E1 — a rule chosen because the result was disliked; E2/E3 — a rule that came
+from someone else's document, indifferent to our result. Both are researcher
+degrees of freedom, and both are marked. But they are culpable differently.
 
-ЗАПУСК:  python ledger.py            печать сводки
-         python ledger.py --csv      + LEDGER.csv рядом с карточками
-         python ledger.py --publish  + repo/LEDGER.csv, repo/LEDGER.md и
-                                     перезапись блока чисел в repo/README.md
-         python ledger.py --verify   сверить блок README с пересчётом,
-                                     код возврата 1 при расхождении
+RUN:  python ledger.py            print summary
+      python ledger.py --csv      + LEDGER.csv next to the cards
+      python ledger.py --publish  + repo/LEDGER.csv, repo/LEDGER.md and
+                                  overwrite the numbers block in repo/README.md
+      python ledger.py --verify   verify the README block against recomputation,
+                                  exit code 1 on mismatch
 
-ПОЧЕМУ --publish И --verify. Числа в README раньше набирались руками и
-устаревали молча: 21.08 опубликованный блок говорил «571 стратегия, 55
-чистых», когда корпус был 900. Внешний читатель верит опубликованному, а не
-коду. Поэтому блок между маркерами `<!-- LEDGER:BEGIN -->` и
-`<!-- LEDGER:END -->` МАШИННЫЙ. Правило без кода возврата не действует.
+WHY --publish AND --verify. The numbers in README used to be typed by hand and
+went stale silently: on 21.08 the published block said "571 strategies, 55
+clean" when the corpus was 900. An external reader trusts what is published,
+not the code. Therefore the block between the markers `<!-- LEDGER:BEGIN -->`
+and `<!-- LEDGER:END -->` is MACHINE-GENERATED. A rule without an exit code
+does not work.
 """
 from __future__ import print_function
 
@@ -69,8 +74,8 @@ import os
 import sys
 import warnings
 
-# Чужие стратегии содержат неверные escape-последовательности; ast поднимает
-# SyntaxWarning про ЧУЖОЙ файл. Глушим только это.
+# Foreign strategies contain invalid escape sequences; ast raises
+# SyntaxWarning about the FOREIGN file. We mute only that.
 warnings.filterwarnings("ignore", category=SyntaxWarning)
 
 _ROOT = os.environ.get("AUDIT_ROOT") or os.path.dirname(os.path.abspath(__file__))
@@ -82,7 +87,7 @@ from harness import find_strategies, PASS
 from ledger_block import (ALPHA, EPOCHS, GATE_EPOCH, LADDER, bh, bh_population,
                           build, claims, survivors_at)
 
-FOUND = u"НАЙДЕНО"
+FOUND = u"FOUND"
 BEGIN = u"<!-- LEDGER:BEGIN -->"
 END = u"<!-- LEDGER:END -->"
 
@@ -123,16 +128,16 @@ def load(population="corpus"):
 
 
 def ci_low(mean_pct, p_value, n):
-    u"""Нижняя граница 95% интервала средней сделки, в процентах.
+    u"""Lower bound of the 95% interval of the average trade, in percent.
 
-    Восстанавливается из того, что печатает freqtrade: среднее, p-значение и
-    число сделок. z берётся из p (двусторонний), стандартная ошибка = |m| / z,
-    граница = m - 1.96*se. Нормальное приближение допустимо: у выживших от 304
-    до 2688 сделок.
+    Reconstructed from what freqtrade prints: mean, p-value, and
+    number of trades. z is taken from p (two-sided), standard error = |m| / z,
+    bound = m - 1.96*se. Normal approximation is acceptable: survivors have from 304
+    to 2688 trades.
 
-    ⚠ ЗАЧЕМ (E6, 22.08). Лестница требовала ЗНАЧИМОСТИ и не требовала
-    ВЕЛИЧИНЫ. p = 1e-8 при микроскопическом эффекте бесполезнее, чем p = 0.003
-    при устойчивом. Возражение внешнее, дыра наша.
+    ⚠ WHY (E6, 22.08). The ladder required SIGNIFICANCE and did not require
+    MAGNITUDE. p = 1e-8 with a microscopic effect is less useful than p = 0.003
+    with a stable one. The objection is external, the hole is ours.
     """
     from statistics import NormalDist
     if mean_pct is None or p_value is None or not n:
@@ -147,32 +152,32 @@ def ci_low(mean_pct, p_value, n):
     return mean_pct - 1.96 * se
 
 
-EXTRA_COST_PCT = 0.20   # удвоение издержки 0.1%->0.2% за сторону = 0.20 пп/сделку
+EXTRA_COST_PCT = 0.20   # doubling the cost from 0.1% to 0.2% per side = 0.20 pp/trade
 
 
 def recursive_kind(node):
-    u"""РАЗДЕЛИТЬ ДВЕ РАЗНЫЕ ВЕЩИ ПОД ОДНИМ ЯРЛЫКОМ.
+    u"""SPLIT TWO DIFFERENT THINGS UNDER ONE LABEL.
 
-    `recursive-analysis` даёт «НАЙДЕНО» в двух несравнимых случаях:
-      · ОТКАЗ  — startup_candle_count=0, движок вообще не стал считать. Это
-                 проверка ОБЪЯВЛЕНИЯ: автор не сказал, сколько ему нужно
-                 прогрева. Дефект реальный, но НИЧЕГО не измерено.
-      · ДРЕЙФ  — движок посчитал и увидел, что значения индикаторов зависят
-                 от объёма поданной истории. Это ИЗМЕРЕНИЕ.
+    `recursive-analysis` gives "FOUND" in two incomparable cases:
+      · REFUSAL  — startup_candle_count=0, the engine did not compute at all. This is
+                 a check of the DECLARATION: the author did not say how much
+                 warm-up he needs. The defect is real, but NOTHING is measured.
+      · DRIFT  — the engine computed and saw that indicator values depend
+                 on the amount of supplied history. This is a MEASUREMENT.
 
-    Смешивать их — значит выдавать проверку объявления за измерение. Ступень
-    G7 остаётся одна (обе причины дисквалифицируют), но в реестре стоит вид,
-    и доля каждого вида печатается. Иначе фраза «26 стратегий выбиты
-    рекурсией» читается как найденный дрейф, а может оказаться формальностью.
+    Mixing them means passing off a declaration check as a measurement. Step
+    G7 remains one (both reasons disqualify), but the registry stores the kind,
+    and the share of each kind is printed. Otherwise the phrase "26 strategies knocked out
+    by recursion" reads as found drift, but may turn out to be a formality.
     """
     if not isinstance(node, dict):
         return u""
     if node.get("level") != FOUND:
         return u""
     why = node.get("why") or u""
-    if u"ОТКАЗАЛСЯ" in why or u"startup_candle_count" in why:
+    if u"REFUSED" in why or u"startup_candle_count" in why:
         return u"refused_no_warmup"
-    if u"меняются" in why or u"%" in why:
+    if u"change" in why or u"%" in why:
         return u"drift_measured"
     return u"other"
 
@@ -184,16 +189,16 @@ def beats_precomputed(b):
 
 
 def row_of(r, where):
-    u"""Одна строка реестра. G10 (поправка на множественность) заполняется
-    вторым проходом: порог считается по всей популяции, а не по строке."""
+    u"""One registry row. G10 (multiplicity correction) is filled
+    in a second pass: the threshold is computed over the whole population, not per row."""
     a = r["runs"]["in_sample"].get("summary")
     b = r["runs"]["out_sample"].get("summary")
     a = a if isinstance(a, dict) else {}
     b = b if isinstance(b, dict) else {}
-    # ⚠ 22.08, тотальность: было `tr = ... if p else []`. Не нашли исходник —
-    # список ловушек пуст — G8 ПРОЙДЕНА. «Не смотрели» читалось как «чисто»,
-    # ровно дефект G9_candle. На этом корпусе латентно (0 строк из 895 без
-    # исходника), но умолчание было льстивым. Теперь незнание — своё значение.
+    # ⚠ 22.08, totality: it was `tr = ... if p else []`. Did not find the source —
+    # the trap list is empty — G8 PASSED. "Did not look" read as "clean",
+    # exactly the G9_candle defect. On this corpus it is latent (0 rows out of 895 without
+    # source), but the default was flattering. Now ignorance — its own value.
     p = where.get(r["strategy"])
     inspected = p is not None
     tr = traps_mod.flags(traps_mod.inspect(p, r["strategy"])) if inspected else []
@@ -205,28 +210,28 @@ def row_of(r, where):
     g["G3_is_sig"] = (a.get("p_value") if a.get("p_value") is not None else 1) < ALPHA
     g["G4_os_pos"] = (b.get("expectancy") or 0) > 0
     g["G5_os_sig"] = (b.get("p_value") if b.get("p_value") is not None else 1) < ALPHA
-    # ⚠⚠ 22.08 ВЕЧЕР, НАЙДЕНО НЕЗАВИСИМЫМ АУДИТОМ. Было `!= FOUND`, то есть
-    # «НЕ ПРИМЕНИМА» (проверку выполнить НЕ УДАЛОСЬ) засчитывалось как
-    # ПРОЙДЕННУЮ. Из 72 дошедших до G6 не проверены 49; из 14 опубликованных
-    # выживших детектор заглядывания отработал только на ДВУХ.
+    # ⚠⚠ 22.08 EVENING, FOUND BY INDEPENDENT AUDIT. It was `!= FOUND`, i.e.
+    # "NOT APPLICABLE" (the check could NOT be performed) was counted as
+    # PASSED. Of 72 that reached G6, 49 were not checked; of 14 published
+    # survivors, the lookahead detector worked on only TWO.
     #
-    # Это ТОТ ЖЕ класс, что чинился сегодня в G9_candle («отсутствие поля =
-    # пропуск») и в G8_traps («исходник не найден = ловушек нет»). Случай был
-    # починен дважды, КЛАСС не перебран — нарушено собственное запечатанное
-    # правило `feedback_fix_the_class_not_the_case` в тот же день, когда на
-    # него ссылались.
+    # This is THE SAME class as fixed today in G9_candle ("missing field =
+    # skip”) and in G8_traps (“source not found = no traps”). The case was
+    # fixed twice, the CLASS was not re-enumerated — violating its own sealed
+    # rule `feedback_fix_the_class_not_the_case` on the same day it was
+    # referenced.
     #
-    # Теперь ворота требуют ПОЛОЖИТЕЛЬНОГО вердикта, как уже требуют G8 и G9:
-    # незнание не есть прохождение.
+    # Now the gates require a POSITIVE verdict, as G8 and G9 already do:
+    # ignorance is not passing.
     g["G6_lookahead"] = r["runs"]["lookahead"]["level"] == PASS
     g["G7_recursive"] = r["runs"]["recursive"]["level"] == PASS
-    g["G8_traps"] = inspected and len(tr) == 0   # неосмотренная НЕ проходит
-    # ⚠ ОТСУТСТВИЕ ПОЛЯ — НЕ «ПРОШЛА». Карточки, посчитанные до появления слоя
-    # длительности, поля не содержат, и `not card.get("intracandle")` молча
-    # читалось как «прошла». Наличие ≠ содержание — ступень требует ИЗМЕРЕНИЯ.
+    g["G8_traps"] = inspected and len(tr) == 0   # uninspected does NOT pass
+    # ⚠ MISSING FIELD IS NOT “PASSED”. Cards counted before the duration layer
+    # appeared contain no field, and `not card.get("intracandle")` silently
+    # read as “passed”. Presence ≠ content — the step requires MEASUREMENT.
     g["G9_candle"] = (b.get("dur_over_candle") is not None
                       and not bool(b.get("intracandle")))
-    g["G10_fdr"] = None                       # второй проход
+    g["G10_fdr"] = None                       # second pass
     lo = ci_low(b.get("avg_profit_pct"), b.get("p_value"), b.get("trades"))
     g["G11_effect"] = bool(lo is not None and (lo - EXTRA_COST_PCT) > 0)
     g["G12_economic"] = bool(beats_precomputed(b))
@@ -257,7 +262,7 @@ def row_of(r, where):
 
 
 def finalize(rows):
-    u"""Второй проход: порог BH по всей популяции, затем ступень отсева."""
+    u"""Second pass: BH threshold over the entire population, then the culling step."""
     p_out = bh_population(rows)
     thr, k = bh(p_out)
     for r in rows:
@@ -269,13 +274,13 @@ def finalize(rows):
                 dropped = kname
                 break
         r["dropped_at"] = dropped
-        r["survives_through"] = u"все" if not dropped else GATE_EPOCH[dropped]
+        r["survives_through"] = u"all" if not dropped else GATE_EPOCH[dropped]
     return (thr if k else None), len(p_out), k
 
 
 def n_repos():
-    u"""Одна реализация на два места — в ledger_block. Своя копия здесь уже
-    разошлась с истиной и напечатала 3 вместо 53."""
+    u"""One implementation for two places — in ledger_block. A local copy here has already
+    diverged from the truth and printed 3 instead of 53."""
     from ledger_block import n_repos as _n
     return _n(os.path.join(_ROOT, "corpus_sources.json"))
 
@@ -297,7 +302,7 @@ def rewrite_readme(text, blk):
 
 
 def ledger_md(rows, blk):
-    u"""LEDGER.md — публичное объяснение того, что означают эти числа."""
+    u"""LEDGER.md — public explanation of what these numbers mean."""
     surv = survivors_at(rows, "E4")
     L = [
         u"# The ledger",
@@ -386,8 +391,8 @@ def ledger_md(rows, blk):
 
 
 def arg_population():
-    u"""Популяции НИКОГДА не смешиваются в одном знаменателе: пять стратегий,
-    выбранных мной вручную, не имеют права попасть в знаменатель корпуса."""
+    u"""Populations are NEVER mixed in one denominator: five strategies,
+    manually chosen by me, must not enter the corpus denominator."""
     for a in sys.argv[1:]:
         if a.startswith("--pop="):
             return a.split("=", 1)[1]
@@ -399,7 +404,7 @@ def main():
     pop = arg_population()
     rows_raw = load(pop)
     if not rows_raw:
-        print(u"популяция %r пуста — считать нечего" % pop)
+        print(u"population %r is empty — nothing to count" % pop)
         return 1
     rows = [row_of(r, where) for r in rows_raw]
     thr, n_bh, k_bh = finalize(rows)
@@ -408,25 +413,25 @@ def main():
     plan = collections.Counter(x["plan_md5"] for x in rows)
     homogeneous = len(code) <= 1 and len(plan) <= 1
 
-    print(u"РЕЕСТР — по одной строке на стратегию")
+    print(u"REGISTRY — one row per strategy")
     print(u"=" * 68)
-    print(u"ПОПУЛЯЦИЯ: %s (смешивать популяции запрещено)" % pop)
-    print(u"КОДОМ:  %s" % u", ".join(u"%s x%d" % (c or u"-", n)
+    print(u"POPULATION: %s (mixing populations is forbidden)" % pop)
+    print(u"BY CODE:  %s" % u", ".join(u"%s x%d" % (c or u"-", n)
                                      for c, n in code.most_common(3)))
-    print(u"КОРПУС: %s" % u", ".join(u"%s x%d" % (c or u"-", n)
+    print(u"CORPUS: %s" % u", ".join(u"%s x%d" % (c or u"-", n)
                                      for c, n in plan.most_common(3)))
-    print(u"СТРОК:  %d   репозиториев: %d" % (len(rows), n_repos()))
-    print(u"BH:     порог %s по %d проверкам, отвергнуто %d"
-          % ((u"%.3e" % thr) if thr else u"нет", n_bh, k_bh))
+    print(u"ROWS:  %d   repositories: %d" % (len(rows), n_repos()))
+    print(u"BH:     threshold %s over %d checks, rejected %d"
+          % ((u"%.3e" % thr) if thr else u"none", n_bh, k_bh))
     nodur = sum(1 for x in rows
                 if x["gates"]["G0_measured"] and x["dur_over_candle"] is None)
-    print(u"БЕЗ ⑨:  %d строк посчитаны до появления слоя длительности" % nodur)
+    print(u"WITHOUT ⑨:  %d rows counted before the duration layer appeared" % nodur)
     if not homogeneous:
-        print(u"⚠ строки посчитаны РАЗНЫМИ версиями кода/плана — реестр")
-        print(u"  неоднороден; публиковать итог нельзя до пересчёта")
+        print(u"⚠ rows counted by DIFFERENT code/plan versions — registry")
+        print(u"  is heterogeneous; cannot publish the total until recomputation")
     print()
 
-    print(u"ЛЕСТНИЦА — где именно сходит корпус")
+    print(u"LADDER — where exactly the corpus descends")
     print(u"-" * 68)
     alive = rows
     for kname, ep, desc in LADDER:
@@ -438,33 +443,33 @@ def main():
     g7 = [r for r in rows if r["dropped_at"] == "G7_recursive"]
     if g7:
         kinds = collections.Counter(r["recursive_kind"] for r in g7)
-        print(u"ЧЕМ ИМЕННО ВЫБИТЫ НА G7 (эпоха E1) — %d стратегий" % len(g7))
+        print(u"WHAT EXACTLY KNOCKED OUT ON G7 (epoch E1) — %d strategies" % len(g7))
         print(u"-" * 68)
         for k, n in kinds.most_common():
             what = {u"refused_no_warmup":
-                    u"движок ОТКАЗАЛСЯ считать: прогрев не объявлен (проверка "
-                    u"ОБЪЯВЛЕНИЯ, ничего не измерено)",
+                    u"engine REFUSED to count: warm-up not declared (check "
+                    u"DECLARATIONS, nothing measured)",
                     u"drift_measured":
-                    u"дрейф индикаторов ИЗМЕРЕН"}.get(k, k or u"без причины")
+                    u"indicator drift MEASURED"}.get(k, k or u"without reason")
             print(u"  %4d  %s" % (n, what))
         print()
 
-    print(u"ВЫЖИВШИЕ ПО ЭПОХАМ — одно число на каждый набор решений")
+    print(u"SURVIVORS BY EPOCH — one number per decision set")
     print(u"-" * 68)
     for ep in EPOCHS:
         s = survivors_at(rows, ep)
         beat = [r for r in s if r["beats_bh"]]
-        print(u"  до %s включительно:  выживших %4d   обыграли рынок %3d"
+        print(u"  through %s inclusive:  survivors %4d   beat the market %3d"
               % (ep, len(s), len(beat)))
         if beat and len(beat) <= 5:
             for r in beat:
-                print(u"        %-30s вне выборки %+.1f%% против рынка %+.1f%%"
+                print(u"        %-30s out-of-sample %+.1f%% vs market %+.1f%%"
                       % (r["strategy"][:30], r["os_total"] or 0,
                          r["os_market"] or 0))
     print()
-    print(u"ЧИТАТЬ ТАК: разница между строками — это НЕ разные измерения, а")
-    print(u"одно измерение при разных наборах решений. E0 объявлено до данных;")
-    print(u"E1 выбрано ПОСЛЕ и ИЗ-ЗА результата; E2-E4 пришли извне после.")
+    print(u"READ AS: the difference between rows is NOT different measurements, but")
+    print(u"one measurement under different decision sets. E0 is declared before data;")
+    print(u"E1 is chosen AFTER and BECAUSE of the result; E2-E4 came from outside later.")
 
     blk = build(rows, n_repos())
     repo_dir = os.path.join(_ROOT, "repo")
@@ -472,54 +477,54 @@ def main():
     if "--csv" in sys.argv:
         out = os.path.join(_ROOT, "LEDGER.csv")
         write_csv(rows, out)
-        print(u"\nзаписан %s (%d строк)" % (out, len(rows)))
+        print(u"\nrecorded %s (%d rows)" % (out, len(rows)))
 
     if "--publish" in sys.argv:
         if pop != "corpus":
-            print(u"\nОТКАЗ ПУБЛИКОВАТЬ: в README идут числа КОРПУСА, а не")
-            print(u"популяции %r. Пять ручных разборов — не популяция." % pop)
+            print(u"\nREFUSAL TO PUBLISH: README contains CORPUS numbers, not")
+            print(u"population %r. Five manual parses are not a population." % pop)
             return 1
         if not homogeneous:
-            print(u"\nОТКАЗ ПУБЛИКОВАТЬ: реестр неоднороден по коду или корпусу.")
-            print(u"Сначала пересчитайте всё одной версией харнесса.")
+            print(u"\nREFUSAL TO PUBLISH: registry is heterogeneous by code or corpus.")
+            print(u"First recompute everything with one harness version.")
             return 1
         write_csv(rows, os.path.join(repo_dir, "LEDGER.csv"))
-        # класс каждого утверждения — машинно, файлом, а не абзацем
+        # class of each claim — by machine, by file, not by paragraph
         with io.open(os.path.join(repo_dir, "CLAIMS.csv"), "w",
                      encoding="utf-8", newline="") as fh:
             w = csv.writer(fh)
             w.writerow(["claim", "value", "class", "epochs_required", "source"])
             for row in claims(rows, n_repos()):
                 w.writerow(row)
-        print(u"записан CLAIMS.csv — класс каждого числа")
+        print(u"recorded CLAIMS.csv — class of each number")
         io.open(os.path.join(repo_dir, "LEDGER.md"), "w",
                 encoding="utf-8").write(ledger_md(rows, blk))
         rp = os.path.join(repo_dir, "README.md")
         new = rewrite_readme(io.open(rp, encoding="utf-8").read(), blk)
         if new is None:
-            print(u"\n⚠ в README нет маркеров реестра — блок НЕ вставлен")
+            print(u"\n⚠ README has no registry markers — block NOT inserted")
             return 1
         io.open(rp, "w", encoding="utf-8").write(new)
-        print(u"\nопубликовано: LEDGER.csv, LEDGER.md, блок чисел в README")
+        print(u"\npublished: LEDGER.csv, LEDGER.md, number block in README")
 
     if "--verify" in sys.argv:
         rp = os.path.join(repo_dir, "README.md")
         txt = io.open(rp, encoding="utf-8").read()
         if BEGIN not in txt or END not in txt:
-            print(u"\nОТКАЗ: в README нет маркеров реестра")
+            print(u"\nREFUSAL: README has no registry markers")
             return 1
         have = txt.split(BEGIN, 1)[1].split(END, 1)[0].strip()
         if have != blk.strip():
-            print(u"\nРАСХОЖДЕНИЕ: числа в README не совпадают с пересчётом")
+            print(u"\nMISMATCH: numbers in README do not match recomputation")
             hl, wl = have.splitlines(), blk.strip().splitlines()
             for i in range(max(len(hl), len(wl))):
-                a = hl[i] if i < len(hl) else u"(нет строки)"
-                b = wl[i] if i < len(wl) else u"(нет строки)"
+                a = hl[i] if i < len(hl) else u"(no row)"
+                b = wl[i] if i < len(wl) else u"(no row)"
                 if a != b:
                     print(u"  README: %s" % a)
-                    print(u"  реестр: %s" % b)
+                    print(u"  registry: %s" % b)
             return 1
-        print(u"\nчисла в README совпадают с реестром")
+        print(u"\nnumbers in README match the registry")
     return 0
 
 

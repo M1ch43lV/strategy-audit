@@ -52,10 +52,10 @@ def _klines(symbol, start):
     out = []
     t = int(dt.datetime.strptime(start, "%Y-%m-%d")
             .replace(tzinfo=dt.timezone.utc).timestamp() * 1000)
-    # TOTAL: недетерминизм НАМЕРЕН и объявлен — это граница выгрузки
-    # «до сейчас». Прогон в другой день даст другой хвост данных, и это
-    # свойство предмета, а не дефект: depth_run.json фиксирует, ЧТО было
-    # скачано, а числа в DEPTH.md порождаются из него, не из сети.
+    # TOTAL: nondeterminism is INTENTIONAL and declared — this is the export
+    # boundary "as of now". A run on another day yields a different data tail,
+    # and that is a property of the subject, not a defect: depth_run.json
+    # records WHAT was downloaded, and DEPTH.md numbers derive from it, not the network.
     now = int(time.time() * 1000)
     while t < now:
         url = ("%s/fapi/v1/klines?symbol=%s&interval=1h&startTime=%d&limit=1500"

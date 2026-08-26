@@ -17,6 +17,19 @@ data/
 # checkout failed CI, while the working tree passed. See CORRECTIONS.md.
 !CLAIMS.csv
 
+# Downloaded upstream strategy repositories - regenerate from the corpus
+# source list. Their nested .git directories and worktrees do not belong to
+# this audit repository.
+/repos/
+
+# Freqtrade runtime state: generated configs, trained FreqAI models and
+# backtest archives. Recreated by setup/run scripts and potentially very large.
+/user_data/
+
+# Raw per-strategy harness output. The versioned evidence is rendered into the
+# corpus cards / ledger; keep the five tracked Markdown case studies visible.
+/results/*.json
+
 # Secrets — never commit. This list is convenience, not a control:
 # the control is tools/secret_gate.py, wired as a pre-commit hook.
 *.env
@@ -33,3 +46,8 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+
+# Runtime logs and process locks
+*.log
+/fetch.lock
+/corpus.lock
