@@ -189,6 +189,10 @@ captured all of it.
   Nothing is omitted for being inconvenient.
 - **[LEDGER.csv](LEDGER.csv)** — the whole thing as one table, if you would
   rather check it than read about it.
+- **[EXECUTION_PROFILES.md](EXECUTION_PROFILES.md)** — the additive canonical
+  manifest for the next regime audit: one implementation per strategy, with
+  spot/futures and long/short capability kept separate from repair provenance.
+  It does not rewrite the frozen 895-row result ladder above.
 
 ## The corpus is biased, and that is the point
 

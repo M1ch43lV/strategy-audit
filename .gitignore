@@ -17,6 +17,12 @@ data/
 # checkout failed CI, while the working tree passed. See CORRECTIONS.md.
 !CLAIMS.csv
 
+# Published, reproducible canonical strategy/run-profile manifest.
+!EXECUTION_PROFILES.csv
+!PROFILE_CLASS1.json
+!PROFILE_REPAIRS.json
+!PROFILE_SMOKE.json
+
 # Downloaded upstream strategy repositories - regenerate from the corpus
 # source list. Their nested .git directories and worktrees do not belong to
 # this audit repository.

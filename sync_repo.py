@@ -63,6 +63,13 @@ PIPELINE = [
     "fetch_bulk.py",     # candles from monthly archives
     "setup_ft.py",       # freqtrade working folder
     "tfscan.py",         # which timeframes are declared
+    "depth.py",          # depth-conditioned forward-return diagnostic
+    "loadcheck.py",      # first-gate import/load failure attribution
+    "resolvable.py",     # barrier-race sample-size diagnostic
+    "execution_profiles.py",  # canonical implementation and run-profile manifest
+    "profile_repairs.py",     # reproducible Class 2 compatibility overlays
+    "profile_smoke.py",       # mode-correct futures runtime validation
+    "profile_freqtrade.py",   # author-package extension launcher for smoke tests
     "runlock.py",        # one writer for a shared resource
     "anatman.py",        # observed defects as executable cases
     "tf_guard_selftest.py",  # sabotage against the timeframe guard
