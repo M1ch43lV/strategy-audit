@@ -1,0 +1,15 @@
+--- original/repos/jaredrsommer_freqtradestrategies/AstroQAV4.py
++++ patched/repos/jaredrsommer_freqtradestrategies/AstroQAV4.py
+@@ -242,9 +242,9 @@
+         dataframe['%-ha_wick'] = (heikinashi['high'] - heikinashi['close'])
+         dataframe['%-HLC3'] = (dataframe['high'] + dataframe['low'] + dataframe['close']) / 3
+ 
+-        #murrey_math_levels = calculate_murrey_math_levels(dataframe)
+-        #for level, value in murrey_math_levels.items():
+-        #    dataframe[level] = value
++        murrey_math_levels = calculate_murrey_math_levels(dataframe)
++        for level, value in murrey_math_levels.items():
++            dataframe[level] = value
+ 
+         dataframe["%-+3/8"] = dataframe["[+3/8]P"]
+         dataframe["%-+2/8"] = dataframe["[+2/8]P"]

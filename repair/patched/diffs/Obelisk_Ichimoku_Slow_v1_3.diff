@@ -1,0 +1,11 @@
+--- original/repos/PeetCrypto_freqtrade-stuff/Obelisk_Ichimoku_Slow_v1_3.py
++++ patched/repos/PeetCrypto_freqtrade-stuff/Obelisk_Ichimoku_Slow_v1_3.py
+@@ -197,7 +197,7 @@
+ 
+         dataframe.loc[ (dataframe['trend_pulse'] > 0), 'trending'] = 3
+         dataframe.loc[ (dataframe['trend_over'] > 0) , 'trending'] = 0
+-        dataframe['trending'].fillna(method='ffill', inplace=True)
++        dataframe['trending'].ffill(inplace=True)
+ 
+         return dataframe
+ 

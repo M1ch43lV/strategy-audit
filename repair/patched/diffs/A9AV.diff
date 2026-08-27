@@ -1,0 +1,20 @@
+--- original/repos/jaredrsommer_freqtradestrategies/A9AV.py
++++ patched/repos/jaredrsommer_freqtradestrategies/A9AV.py
+@@ -87,7 +87,7 @@
+         dataframe.loc[
+             (dataframe['volume'] > dataframe['SMA_9']) &
+             (dataframe['close'].shift(1) < dataframe['close']) &
+-            (~dataframe['sell_signal'].rolling(window=self.opposing_signal_filter.value).any()),
++            (~(dataframe['sell_signal'].rolling(window=self.opposing_signal_filter.value).max() > 0)),
+             'buy_signal'
+         ] = 1
+ 
+@@ -103,7 +103,7 @@
+         dataframe.loc[
+             (dataframe['volume'] > dataframe['SMA_9']) &
+             (dataframe['close'].shift(1) > dataframe['close']) &
+-            (~dataframe['buy_signal'].rolling(window=self.opposing_signal_filter.value).any()),
++            (~(dataframe['buy_signal'].rolling(window=self.opposing_signal_filter.value).max() > 0)),
+             'sell_signal'
+         ] = 1
+ 

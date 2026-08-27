@@ -1,0 +1,37 @@
+{
+  "repo": "DonaldSimpson/remora-freqtrade",
+  "file": "repos/DonaldSimpson_remora-freqtrade/examples/advanced_risk_filter_strategy.py",
+  "strategy": "AdvancedRiskFilterStrategy",
+  "static": [],
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "ValueError: Remora API key missing. Set REMORA_API_KEY env var.",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "out_sample": {
+      "level": "NOT-RUN",
+      "why": "did not run in the author's window",
+      "summary": null,
+      "level_ru": "НЕ ЗАПУСКАЛИ",
+      "why_ru": "в выборке не отработала"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 16.8,
+  "extra_syspath": "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\repos\\DonaldSimpson_remora-freqtrade"
+}

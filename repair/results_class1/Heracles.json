@@ -1,0 +1,83 @@
+{
+  "repo": "PeetCrypto/freqtrade-stuff",
+  "file": "repos/PeetCrypto_freqtrade-stuff/Heracles.py",
+  "strategy": "Heracles",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 20 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 20 свечей, startup_candle_count не задан (по умолчанию 0)"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 168,
+        "total_pct": -73.47,
+        "expectancy": -4.37,
+        "p_value": 0.03097,
+        "market_change_pct": -57.43,
+        "sharpe": -0.74,
+        "sortino": -0.68,
+        "profit_factor": 0.56,
+        "drawdown_pct": 82.5,
+        "cagr_pct": -48.45,
+        "used_timeframe": "4h",
+        "declared_timeframe": "4h",
+        "missing_pairs": [],
+        "avg_profit_pct": -1.56,
+        "avg_duration_min": 13871.0,
+        "win_pct": 62.5,
+        "dur_over_candle": 57.8,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 611,
+        "total_pct": -41.62,
+        "expectancy": -0.68,
+        "p_value": 0.7978,
+        "market_change_pct": 337.47,
+        "sharpe": -0.05,
+        "sortino": -0.04,
+        "profit_factor": 0.96,
+        "drawdown_pct": 84.65,
+        "cagr_pct": -7.98,
+        "used_timeframe": "4h",
+        "declared_timeframe": "4h",
+        "missing_pairs": [],
+        "avg_profit_pct": 0.28,
+        "avg_duration_min": 14490.0,
+        "win_pct": 68.6,
+        "dur_over_candle": 60.38,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "4h",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 39.0,
+  "extra_syspath": ""
+}

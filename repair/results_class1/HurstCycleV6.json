@@ -1,0 +1,67 @@
+{
+  "repo": "jaredrsommer/freqtradestrategies",
+  "file": "repos/jaredrsommer_freqtradestrategies/HurstCycleV6.py",
+  "strategy": "HurstCycleV6",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "sign of lookahead leakage",
+      "detail": "centred window center=True",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "признак утечки будущего",
+      "detail_ru": "центрированное окно center=True"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 1057,
+        "total_pct": 2744319.2,
+        "expectancy": 25963.28,
+        "p_value": 4.542e-15,
+        "market_change_pct": -58.11,
+        "sharpe": 6.76,
+        "sortino": 13.09,
+        "profit_factor": 3.99,
+        "drawdown_pct": 7.33,
+        "cagr_pct": 16350.89,
+        "used_timeframe": "15m",
+        "declared_timeframe": "15m",
+        "missing_pairs": [],
+        "avg_profit_pct": 3.46,
+        "avg_duration_min": 1814.0,
+        "win_pct": 69.1,
+        "dur_over_candle": 120.93,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "TIMED OUT",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "ПРЕВЫШЕНО ВРЕМЯ"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "freqtrade REFUSED to analyse: startup_candle_count=0, \"will cause recursive issues for some indicators\"",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "freqtrade ОТКАЗАЛСЯ анализировать: startup_candle_count=0, «приведёт к рекурсивным проблемам у части индикаторов»"
+    }
+  },
+  "declared_timeframe": "15m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 2612.6,
+  "extra_syspath": ""
+}

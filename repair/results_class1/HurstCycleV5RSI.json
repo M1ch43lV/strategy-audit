@@ -1,0 +1,64 @@
+{
+  "repo": "jaredrsommer/freqtradestrategies",
+  "file": "repos/jaredrsommer_freqtradestrategies/HurstCycleV5RSI (2).py",
+  "strategy": "HurstCycleV5RSI",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 160 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 160 свечей, startup_candle_count не задан (по умолчанию 0)"
+    },
+    {
+      "level": "FOUND",
+      "what": "dead trailing-stop settings",
+      "detail": "trailing_stop=False but trailing_stop_positive=0.015 is set - reads as an active protection",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "мёртвые настройки трейлинга",
+      "detail_ru": "trailing_stop=False, но trailing_stop_positive=0.015 задан — читается как работающая защита"
+    },
+    {
+      "level": "FOUND",
+      "what": "sign of lookahead leakage",
+      "detail": "centred window center=True",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "признак утечки будущего",
+      "detail_ru": "центрированное окно center=True"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "TypeError: NDFrame.fillna() got an unexpected keyword argument 'method'",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "out_sample": {
+      "level": "NOT-RUN",
+      "why": "did not run in the author's window",
+      "summary": null,
+      "level_ru": "НЕ ЗАПУСКАЛИ",
+      "why_ru": "в выборке не отработала"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "freqtrade REFUSED to analyse: startup_candle_count=0, \"will cause recursive issues for some indicators\"",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "freqtrade ОТКАЗАЛСЯ анализировать: startup_candle_count=0, «приведёт к рекурсивным проблемам у части индикаторов»"
+    }
+  },
+  "declared_timeframe": "1h",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 52.2,
+  "extra_syspath": ""
+}

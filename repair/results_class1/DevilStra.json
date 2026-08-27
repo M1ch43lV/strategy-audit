@@ -1,0 +1,74 @@
+{
+  "repo": "PeetCrypto/freqtrade-stuff",
+  "file": "repos/PeetCrypto_freqtrade-stuff/DevilStra.py",
+  "strategy": "DevilStra",
+  "static": [],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 158,
+        "total_pct": -56.99,
+        "expectancy": -3.61,
+        "p_value": 0.1831,
+        "market_change_pct": -57.43,
+        "sharpe": -0.44,
+        "sortino": -0.43,
+        "profit_factor": 0.72,
+        "drawdown_pct": 63.86,
+        "cagr_pct": -34.38,
+        "used_timeframe": "4h",
+        "declared_timeframe": "4h",
+        "missing_pairs": [],
+        "avg_profit_pct": -1.0,
+        "avg_duration_min": 10978.0,
+        "win_pct": 67.1,
+        "dur_over_candle": 45.74,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 531,
+        "total_pct": 23.72,
+        "expectancy": 0.45,
+        "p_value": 0.9578,
+        "market_change_pct": 337.47,
+        "sharpe": 0.01,
+        "sortino": 0.01,
+        "profit_factor": 1.01,
+        "drawdown_pct": 86.0,
+        "cagr_pct": 3.34,
+        "used_timeframe": "4h",
+        "declared_timeframe": "4h",
+        "missing_pairs": [],
+        "avg_profit_pct": 0.64,
+        "avg_duration_min": 12339.0,
+        "win_pct": 65.7,
+        "dur_over_candle": 51.41,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "4h",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 34.6,
+  "extra_syspath": ""
+}

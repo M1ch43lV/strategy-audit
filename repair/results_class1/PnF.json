@@ -1,0 +1,47 @@
+{
+  "repo": "jaredrsommer/freqtradestrategies",
+  "file": "repos/jaredrsommer_freqtradestrategies/PnF (copy).py",
+  "strategy": "PnF",
+  "static": [
+    {
+      "level": "PASSED",
+      "what": "warm-up declared",
+      "detail": "200 against a requirement of 12",
+      "level_ru": "ПРОШЛА",
+      "what_ru": "прогрев объявлен",
+      "detail_ru": "200 при потребности 12"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "TypeError: Invalid value '1' for dtype 'str'. Value should be a string or missing value, got 'int' instead.",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "out_sample": {
+      "level": "NOT-RUN",
+      "why": "did not run in the author's window",
+      "summary": null,
+      "level_ru": "НЕ ЗАПУСКАЛИ",
+      "why_ru": "в выборке не отработала"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "15m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 46.5,
+  "extra_syspath": ""
+}

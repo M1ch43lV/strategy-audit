@@ -193,6 +193,13 @@ captured all of it.
   manifest for the next regime audit: one implementation per strategy, with
   spot/futures and long/short capability kept separate from repair provenance.
   It does not rewrite the frozen 895-row result ladder above.
+- **[REGIME_AUDIT_PLAN.md](REGIME_AUDIT_PLAN.md)** — the active, versioned
+  regime-study plan. **[REGIME_ELIGIBILITY.md](REGIME_ELIGIBILITY.md)** and
+  **[REGIME_ELIGIBILITY.csv](REGIME_ELIGIBILITY.csv)** implement its technical
+  Stage 6 before any regime-performance ranking.
+- **[repair/REGISTER.md](repair/REGISTER.md)** — the complete Class 1/Class 2
+  repair provenance and reproducible overlays. **[cluster/CLUSTERS.md](cluster/CLUSTERS.md)**
+  preserves the preregistered source taxonomy as interpretation metadata.
 
 ## The corpus is biased, and that is the point
 

@@ -1,0 +1,16 @@
+--- original/repos/Foxel05_freqtrade-stuff/strategies/Obelisk_Ichimoku_ZEMA_v1.py
++++ patched/repos/Foxel05_freqtrade-stuff/strategies/Obelisk_Ichimoku_ZEMA_v1.py
+@@ -176,11 +176,11 @@
+ 
+         dataframe.loc[ (dataframe['trend_pulse'] > 0), 'trending'] = 3
+         dataframe.loc[ (dataframe['trend_over'] > 0) , 'trending'] = 0
+-        dataframe['trending'].fillna(method='ffill', inplace=True)
++        dataframe['trending'].ffill(inplace=True)
+ 
+         dataframe.loc[ (dataframe['bear_trend_pulse'] > 0), 'bear_trending'] = 3
+         dataframe.loc[ (dataframe['bear_trend_over'] > 0) , 'bear_trending'] = 0
+-        dataframe['bear_trending'].fillna(method='ffill', inplace=True)
++        dataframe['bear_trending'].ffill(inplace=True)
+ 
+         return dataframe
+ 

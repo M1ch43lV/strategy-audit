@@ -1,0 +1,16 @@
+{
+  "strategy": "TankAi",
+  "file": "repos/jaredrsommer_freqtradestrategies/TankAi.py",
+  "run_class": "freqai",
+  "config": "user_data\\freqai_configs\\TankAi.json",
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "KeyError: 'DI_cutoff'\r"
+    },
+    "out_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "KeyError: 'DI_cutoff'\r"
+    }
+  }
+}

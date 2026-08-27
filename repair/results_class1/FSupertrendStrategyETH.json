@@ -1,0 +1,38 @@
+{
+  "repo": "MelvynClark/Freqtrade-Strategy",
+  "file": "repos/MelvynClark_Freqtrade-Strategy/FSupertrendStrategy - ETH.py",
+  "strategy": "FSupertrendStrategyETH",
+  "static": [],
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "numpy.exceptions.DTypePromotionError: The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that n",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "out_sample": {
+      "level": "NOT-RUN",
+      "why": "did not run in the author's window",
+      "summary": null,
+      "level_ru": "НЕ ЗАПУСКАЛИ",
+      "why_ru": "в выборке не отработала"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "1h",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 58.5,
+  "extra_syspath": ""
+}

@@ -1,0 +1,74 @@
+{
+  "repo": "PeetCrypto/freqtrade-stuff",
+  "file": "repos/PeetCrypto_freqtrade-stuff/GodStra.py",
+  "strategy": "GodStraNew",
+  "static": [],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 3,
+        "total_pct": 61.7,
+        "expectancy": 205.65,
+        "p_value": 0.2884,
+        "market_change_pct": -57.43,
+        "sharpe": 0.08,
+        "sortino": -100.0,
+        "profit_factor": 0.0,
+        "drawdown_pct": 0.0,
+        "cagr_pct": 27.12,
+        "used_timeframe": "4h",
+        "declared_timeframe": "4h",
+        "missing_pairs": [],
+        "avg_profit_pct": 62.26,
+        "avg_duration_min": 276800.0,
+        "win_pct": 100.0,
+        "dur_over_candle": 1153.33,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 3,
+        "total_pct": 266.61,
+        "expectancy": 888.69,
+        "p_value": 0.1904,
+        "market_change_pct": 337.47,
+        "sharpe": 0.03,
+        "sortino": -100.0,
+        "profit_factor": 0.0,
+        "drawdown_pct": 0.0,
+        "cagr_pct": 22.22,
+        "used_timeframe": "4h",
+        "declared_timeframe": "4h",
+        "missing_pairs": [],
+        "avg_profit_pct": 269.04,
+        "avg_duration_min": 3342960.0,
+        "win_pct": 100.0,
+        "dur_over_candle": 13929.0,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "4h",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 70.2,
+  "extra_syspath": ""
+}

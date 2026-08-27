@@ -1,0 +1,67 @@
+{
+  "repo": "mlsys-io/PortfolioBench",
+  "file": "repos/mlsys-io_PortfolioBench/strategy/AdaptiveMAStrategy.py",
+  "strategy": "AdaptiveMAStrategy",
+  "static": [
+    {
+      "level": "PASSED",
+      "what": "warm-up declared",
+      "detail": "50 against a requirement of 14",
+      "level_ru": "ПРОШЛА",
+      "what_ru": "прогрев объявлен",
+      "detail_ru": "50 при потребности 14"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 3195,
+        "total_pct": -93.63,
+        "expectancy": -0.29,
+        "p_value": 5.993e-28,
+        "market_change_pct": -58.48,
+        "sharpe": -16.37,
+        "sortino": -21.79,
+        "profit_factor": 0.51,
+        "drawdown_pct": 93.73,
+        "cagr_pct": -74.77,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.26,
+        "avg_duration_min": 86.0,
+        "win_pct": 30.1,
+        "dur_over_candle": 17.2,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "TIMED OUT",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "ПРЕВЫШЕНО ВРЕМЯ"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "indicators change with the amount of history: kama_slow -0.028%, kama_slow_prev -0.028%, rsi 0.765%, adx -1.964%",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "индикаторы меняются от объёма истории: kama_slow -0.028%, kama_slow_prev -0.028%, rsi 0.765%, adx -1.964%"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 2814.7,
+  "extra_syspath": ""
+}

@@ -22,6 +22,8 @@ data/
 !PROFILE_CLASS1.json
 !PROFILE_REPAIRS.json
 !PROFILE_SMOKE.json
+!REGIME_ELIGIBILITY.csv
+!cluster/CLUSTERS.csv
 
 # Downloaded upstream strategy repositories - regenerate from the corpus
 # source list. Their nested .git directories and worktrees do not belong to

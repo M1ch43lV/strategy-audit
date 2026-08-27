@@ -1,0 +1,46 @@
+{
+  "repo": "TheoBrigitte/freqtrade",
+  "file": "repos/TheoBrigitte_freqtrade/strategies/fastsupertrend/FastSupertrend_optim_quick5.py",
+  "strategy": "FastSupertrend_optim_quick5",
+  "static": [
+    {
+      "level": "PASSED",
+      "what": "warm-up declared",
+      "detail": "26 against a requirement of 7",
+      "level_ru": "ПРОШЛА",
+      "what_ru": "прогрев объявлен",
+      "detail_ru": "26 при потребности 7"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "ImportError: Short strategies cannot run in spot markets. Please make sure that this is the correct strategy and that your trading mode configuration is correct",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "out_sample": {
+      "level": "NOT-RUN",
+      "why": "did not run in the author's window",
+      "summary": null,
+      "level_ru": "НЕ ЗАПУСКАЛИ",
+      "why_ru": "в выборке не отработала"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "1h",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 25.7,
+  "extra_syspath": ""
+}

@@ -1,0 +1,11 @@
+--- original/repos/ShahAnuj2610_my-freqtrade/user_data/strategies/NASOSRv6_private_Reinuvader_20211121.py
++++ patched/repos/ShahAnuj2610_my-freqtrade/user_data/strategies/NASOSRv6_private_Reinuvader_20211121.py
+@@ -1136,7 +1136,7 @@
+     pm = Series(pm_arr)
+ 
+     # Mark the trend direction up/down
+-    pmx = np.where((pm_arr > 0.00), np.where((mavalue < pm_arr), 'down', 'up'), np.NaN)
++    pmx = np.where((pm_arr > 0.00), np.where((mavalue < pm_arr), 'down', 'up'), 'nan')
+ 
+     return pm, pmx
+ 

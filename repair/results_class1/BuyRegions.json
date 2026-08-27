@@ -1,0 +1,76 @@
+{
+  "repo": "nateemma/strategies",
+  "file": "repos/nateemma_strategies/TSPredict/BuyRegions.py",
+  "strategy": "BuyRegions",
+  "static": [],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 1995,
+        "total_pct": -97.11,
+        "expectancy": -0.49,
+        "p_value": 1.744e-05,
+        "market_change_pct": -58.92,
+        "sharpe": -5.03,
+        "sortino": -3.2,
+        "profit_factor": 0.66,
+        "drawdown_pct": 97.47,
+        "cagr_pct": -83.01,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.46,
+        "avg_duration_min": 1449.0,
+        "win_pct": 80.4,
+        "dur_over_candle": 289.8,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 2677,
+        "total_pct": -98.72,
+        "expectancy": -0.37,
+        "p_value": 2.139e-06,
+        "market_change_pct": 347.65,
+        "sharpe": -1.99,
+        "sortino": -1.45,
+        "profit_factor": 0.71,
+        "drawdown_pct": 98.84,
+        "cagr_pct": -49.01,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.41,
+        "avg_duration_min": 930.0,
+        "win_pct": 78.9,
+        "dur_over_candle": 186.0,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "indicators change with the amount of history: rmi 0.019%, srmi -0.350%, guard_metric -0.350%",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "индикаторы меняются от объёма истории: rmi 0.019%, srmi -0.350%, guard_metric -0.350%"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 2714.3,
+  "extra_syspath": "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\repos\\nateemma_strategies"
+}

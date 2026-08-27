@@ -1,0 +1,55 @@
+{
+  "repo": "jaredrsommer/freqtradestrategies",
+  "file": "repos/jaredrsommer_freqtradestrategies/TankAi.py",
+  "strategy": "TankAi",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 200 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 200 свечей, startup_candle_count не задан (по умолчанию 0)"
+    },
+    {
+      "level": "FOUND",
+      "what": "sign of lookahead leakage",
+      "detail": "centred window center=True",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "признак утечки будущего",
+      "detail_ru": "центрированное окно center=True"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "freqAI is not enabled. Please enable it in your config to use this strategy.",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "out_sample": {
+      "level": "NOT-RUN",
+      "why": "did not run in the author's window",
+      "summary": null,
+      "level_ru": "НЕ ЗАПУСКАЛИ",
+      "why_ru": "в выборке не отработала"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "freqAI is not enabled. Please enable it in your config to use this strategy.\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "30m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 37.5,
+  "extra_syspath": ""
+}

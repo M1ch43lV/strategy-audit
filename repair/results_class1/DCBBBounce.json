@@ -1,0 +1,85 @@
+{
+  "repo": "davidzr/freqtrade-strategies",
+  "file": "repos/davidzr_freqtrade-strategies/strategies/DCBBBounce/DCBBBounce.py",
+  "strategy": "DCBBBounce",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 200 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 200 свечей, startup_candle_count не задан (по умолчанию 0)"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 46,
+        "total_pct": -15.78,
+        "expectancy": -3.43,
+        "p_value": 0.2543,
+        "market_change_pct": -58.51,
+        "sharpe": -0.21,
+        "sortino": -0.14,
+        "profit_factor": 0.17,
+        "drawdown_pct": 17.37,
+        "cagr_pct": -8.23,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": -1.06,
+        "avg_duration_min": 3573.0,
+        "win_pct": 56.5,
+        "dur_over_candle": 714.6,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 90,
+        "total_pct": -11.86,
+        "expectancy": -1.32,
+        "p_value": 0.4534,
+        "market_change_pct": 347.65,
+        "sharpe": -0.06,
+        "sortino": -0.04,
+        "profit_factor": 0.46,
+        "drawdown_pct": 13.37,
+        "cagr_pct": -1.93,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.38,
+        "avg_duration_min": 1834.0,
+        "win_pct": 56.7,
+        "dur_over_candle": 366.8,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "indicators change with the amount of history: dcbb_diff_upper -0.225%, dcbb_diff_lower 0.421%, adx 2.757%, dm_plus -1.611%, dm_minus -0.650%",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "индикаторы меняются от объёма истории: dcbb_diff_upper -0.225%, dcbb_diff_lower 0.421%, adx 2.757%, dm_plus -1.611%, dm_minus -0.650%"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 242.0,
+  "extra_syspath": ""
+}

@@ -1,0 +1,16 @@
+{
+  "strategy": "NOTankAi_17",
+  "file": "repos/jaredrsommer_freqtradestrategies/NoTankAi_17.py",
+  "run_class": "freqai",
+  "config": "user_data\\freqai_configs\\NOTankAi_17.json",
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "ImportError: Short strategies cannot run in spot markets. Please make sure that this is the correct strategy and that your trading mode configuration is correct"
+    },
+    "out_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "ImportError: Short strategies cannot run in spot markets. Please make sure that this is the correct strategy and that your trading mode configuration is correct"
+    }
+  }
+}

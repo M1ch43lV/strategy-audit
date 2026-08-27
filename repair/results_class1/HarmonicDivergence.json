@@ -1,0 +1,48 @@
+{
+  "repo": "TheoBrigitte/freqtrade",
+  "file": "repos/TheoBrigitte_freqtrade/strategies/harmonic-divergence/HarmonicDivergence.py",
+  "strategy": "HarmonicDivergence",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 200 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 200 свечей, startup_candle_count не задан (по умолчанию 0)"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "Market entry orders require entry_pricing.price_side = \"other\".",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "out_sample": {
+      "level": "NOT-RUN",
+      "why": "did not run in the author's window",
+      "summary": null,
+      "level_ru": "НЕ ЗАПУСКАЛИ",
+      "why_ru": "в выборке не отработала"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "PASSED",
+      "why": "no recursive drift found",
+      "level_ru": "ПРОШЛА",
+      "why_ru": "рекурсивных отклонений не найдено"
+    }
+  },
+  "declared_timeframe": "15m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 2115.1,
+  "extra_syspath": ""
+}

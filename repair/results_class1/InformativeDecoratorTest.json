@@ -1,0 +1,39 @@
+{
+  "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
+  "file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats/informative_decorator_strategy.py",
+  "strategy": "InformativeDecoratorTest",
+  "static": [],
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "No data found. Terminating.",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "out_sample": {
+      "level": "NOT-RUN",
+      "why": "did not run in the author's window",
+      "summary": null,
+      "level_ru": "НЕ ЗАПУСКАЛИ",
+      "why_ru": "в выборке не отработала"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "exit code 2",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "код 2"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "exit code 2",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "код 2"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 20.5,
+  "extra_syspath": "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+}

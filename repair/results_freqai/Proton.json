@@ -1,0 +1,19 @@
+{
+  "strategy": "Proton",
+  "file": "repos/obseries_freqtrade-strategy-ichiv1/user_data/strategies/proton.py",
+  "run_class": "freqai",
+  "source_tree": "original",
+  "config": "user_data\\freqai_configs\\Proton.json",
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "ImportError: Short strategies cannot run in spot markets. Please make sure that this is the correct strategy and that your trading mode configuration is correct"
+    },
+    "out_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "ImportError: Short strategies cannot run in spot markets. Please make sure that this is the correct strategy and that your trading mode configuration is correct"
+    }
+  },
+  "_tf_retried": true,
+  "main_timeframe_from_engine": "5m"
+}

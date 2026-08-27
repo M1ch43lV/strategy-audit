@@ -1,0 +1,11 @@
+--- original/repos/PeetCrypto_freqtrade-stuff/NFIXMod1.3_TraNz (3).py
++++ patched/repos/PeetCrypto_freqtrade-stuff/NFIXMod1.3_TraNz (3).py
+@@ -8630,7 +8630,7 @@
+     pm = Series(pm_arr)
+ 
+     # Mark the trend direction up/down
+-    pmx = np.where((pm_arr > 0.00), np.where((mavalue < pm_arr), 'down',  'up'), np.NaN)
++    pmx = np.where((pm_arr > 0.00), np.where((mavalue < pm_arr), 'down',  'up'), 'nan')
+ 
+     return pm, pmx
+ 

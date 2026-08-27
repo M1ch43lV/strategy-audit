@@ -1,0 +1,40 @@
+{
+  "repo": "mlsys-io/PortfolioBench",
+  "file": "repos/mlsys-io_PortfolioBench/user_data/strategies/exp_gradient.py",
+  "strategy": "ExponentialGradientPortfolio",
+  "static": [],
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "TIMED OUT",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "ПРЕВЫШЕНО ВРЕМЯ"
+    },
+    "out_sample": {
+      "level": "NOT-RUN",
+      "why": "did not run in the author's window",
+      "summary": null,
+      "level_ru": "НЕ ЗАПУСКАЛИ",
+      "why_ru": "в выборке не отработала"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "PASSED",
+      "why": "no recursive drift found",
+      "level_ru": "ПРОШЛА",
+      "why_ru": "рекурсивных отклонений не найдено"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 1830.6,
+  "extra_syspath": ""
+}

@@ -1,0 +1,46 @@
+{
+  "repo": "PeetCrypto/freqtrade-stuff",
+  "file": "repos/PeetCrypto_freqtrade-stuff/Test_MAMA4.py",
+  "strategy": "Test_MAMA4",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "dead trailing-stop settings",
+      "detail": "trailing_stop=False but trailing_stop_positive=0.04 is set - reads as an active protection",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "мёртвые настройки трейлинга",
+      "detail_ru": "trailing_stop=False, но trailing_stop_positive=0.04 задан — читается как работающая защита"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "ValueError: cannot reindex on an axis with duplicate labels",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "out_sample": {
+      "level": "NOT-RUN",
+      "why": "did not run in the author's window",
+      "summary": null,
+      "level_ru": "НЕ ЗАПУСКАЛИ",
+      "why_ru": "в выборке не отработала"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 157.8,
+  "extra_syspath": ""
+}

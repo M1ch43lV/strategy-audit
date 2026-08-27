@@ -1,0 +1,85 @@
+{
+  "repo": "jaredrsommer/freqtradestrategies",
+  "file": "repos/jaredrsommer_freqtradestrategies/pcb20.py",
+  "strategy": "pcb20",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 21 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 21 свечей, startup_candle_count не задан (по умолчанию 0)"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 1320,
+        "total_pct": -98.23,
+        "expectancy": -0.74,
+        "p_value": 2.345e-55,
+        "market_change_pct": -54.99,
+        "sharpe": -15.78,
+        "sortino": -19.59,
+        "profit_factor": 0.17,
+        "drawdown_pct": 98.23,
+        "cagr_pct": -86.97,
+        "used_timeframe": "6h",
+        "declared_timeframe": "6h",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.92,
+        "avg_duration_min": 225.0,
+        "win_pct": 15.8,
+        "dur_over_candle": 0.62,
+        "intracandle": true
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 1378,
+        "total_pct": -98.71,
+        "expectancy": -0.72,
+        "p_value": 1.228e-39,
+        "market_change_pct": 340.2,
+        "sharpe": -4.08,
+        "sortino": -6.13,
+        "profit_factor": 0.23,
+        "drawdown_pct": 98.77,
+        "cagr_pct": -48.96,
+        "used_timeframe": "6h",
+        "declared_timeframe": "6h",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.95,
+        "avg_duration_min": 193.0,
+        "win_pct": 15.5,
+        "dur_over_candle": 0.54,
+        "intracandle": true
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "indicators change with the amount of history: wave_ci -0.241%, OBV -179.123%, rsi -0.786%, rsi_slope 3.108%, rsi_ma -1.041%",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "индикаторы меняются от объёма истории: wave_ci -0.241%, OBV -179.123%, rsi -0.786%, rsi_slope 3.108%, rsi_ma -1.041%"
+    }
+  },
+  "declared_timeframe": "6h",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 54.8,
+  "extra_syspath": ""
+}

@@ -1,0 +1,65 @@
+{
+  "repo": "PeetCrypto/freqtrade-stuff",
+  "file": "repos/PeetCrypto_freqtrade-stuff/ClucHAwerk.py",
+  "strategy": "ClucHAwerk",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 168 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 168 свечей, startup_candle_count не задан (по умолчанию 0)"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 2183,
+        "total_pct": -88.38,
+        "expectancy": -0.4,
+        "p_value": 8.423e-18,
+        "market_change_pct": -55.55,
+        "sharpe": -10.6,
+        "sortino": -15.51,
+        "profit_factor": 0.6,
+        "drawdown_pct": 88.46,
+        "cagr_pct": -65.91,
+        "used_timeframe": "1m",
+        "declared_timeframe": "1m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.29,
+        "avg_duration_min": 28.0,
+        "win_pct": 42.0,
+        "dur_over_candle": 28.0,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "TIMED OUT",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "ПРЕВЫШЕНО ВРЕМЯ"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "1m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 1842.7,
+  "extra_syspath": ""
+}

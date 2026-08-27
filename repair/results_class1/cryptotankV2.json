@@ -1,0 +1,75 @@
+{
+  "repo": "jaredrsommer/freqtradestrategies",
+  "file": "repos/jaredrsommer_freqtradestrategies/cryptotankV2.py",
+  "strategy": "cryptotankV2",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 50 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 50 свечей, startup_candle_count не задан (по умолчанию 0)"
+    },
+    {
+      "level": "FOUND",
+      "what": "trailing at the full stop distance",
+      "detail": "trailing_stop=True without trailing_stop_positive => the stop trails the FULL stoploss distance",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "трейлинг на полном стопе",
+      "detail_ru": "trailing_stop=True без trailing_stop_positive ⇒ стоп тащится на ВСЁ расстояние стоп-лосса"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 770,
+        "total_pct": -81.0,
+        "expectancy": -1.05,
+        "p_value": 0.007002,
+        "market_change_pct": -58.37,
+        "sharpe": -1.96,
+        "sortino": -1.15,
+        "profit_factor": 0.59,
+        "drawdown_pct": 82.13,
+        "cagr_pct": -56.41,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.46,
+        "avg_duration_min": 3274.0,
+        "win_pct": 92.5,
+        "dur_over_candle": 654.8,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "TIMED OUT",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "ПРЕВЫШЕНО ВРЕМЯ"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "indicators change with the amount of history: ema_124 -0.012%, buy_rsi_16 1.932%, buy_rsi_ma_14 3.839%, rsi_ma_slope 23.184%",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "индикаторы меняются от объёма истории: ema_124 -0.012%, buy_rsi_16 1.932%, buy_rsi_ma_14 3.839%, rsi_ma_slope 23.184%"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 2474.3,
+  "extra_syspath": ""
+}

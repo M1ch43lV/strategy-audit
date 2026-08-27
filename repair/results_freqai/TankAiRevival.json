@@ -1,0 +1,17 @@
+{
+  "strategy": "TankAiRevival",
+  "file": "repos/jaredrsommer_freqtradestrategies/TankAiRevival.py",
+  "run_class": "freqai",
+  "source_tree": "original",
+  "config": "user_data\\freqai_configs\\TankAiRevival.json",
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "KeyError: 'DI_cutoff'\r"
+    },
+    "out_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "KeyError: 'DI_cutoff'\r"
+    }
+  }
+}

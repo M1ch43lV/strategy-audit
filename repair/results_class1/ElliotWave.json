@@ -1,0 +1,66 @@
+{
+  "repo": "jaredrsommer/freqtradestrategies",
+  "file": "repos/jaredrsommer_freqtradestrategies/ElliotWave.py",
+  "strategy": "ElliotWave",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 50 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 50 свечей, startup_candle_count не задан (по умолчанию 0)"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 382,
+        "total_pct": -47.7,
+        "expectancy": -1.25,
+        "p_value": 0.1706,
+        "market_change_pct": -45.47,
+        "sharpe": -0.74,
+        "sortino": -1.02,
+        "profit_factor": 0.84,
+        "drawdown_pct": 70.82,
+        "cagr_pct": -28.78,
+        "used_timeframe": "4h",
+        "declared_timeframe": "4h",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.27,
+        "avg_duration_min": 5482.0,
+        "win_pct": 49.0,
+        "dur_over_candle": 22.84,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "TIMED OUT",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "ПРЕВЫШЕНО ВРЕМЯ"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Could not load markets.\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "4h",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 2352.8,
+  "extra_syspath": ""
+}

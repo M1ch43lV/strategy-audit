@@ -1,0 +1,63 @@
+{
+  "repo": "TheoBrigitte/freqtrade",
+  "file": "repos/TheoBrigitte_freqtrade/strategies/GeneTrader/GeneStrategy.py",
+  "strategy": "GeneStrategy",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up too short",
+      "detail": "declared 168, needs at least 200",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев занижен",
+      "detail_ru": "объявлено 168, нужно не менее 200"
+    },
+    {
+      "level": "FOUND",
+      "what": "dead trailing-stop settings",
+      "detail": "trailing_stop=False but trailing_stop_positive=0.02 is set - reads as an active protection",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "мёртвые настройки трейлинга",
+      "detail_ru": "trailing_stop=False, но trailing_stop_positive=0.02 задан — читается как работающая защита"
+    },
+    {
+      "level": "FOUND",
+      "what": "sign of lookahead leakage",
+      "detail": "centred window center=True",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "признак утечки будущего",
+      "detail_ru": "центрированное окно center=True"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "numpy.exceptions.DTypePromotionError: The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that n",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "out_sample": {
+      "level": "NOT-RUN",
+      "why": "did not run in the author's window",
+      "summary": null,
+      "level_ru": "НЕ ЗАПУСКАЛИ",
+      "why_ru": "в выборке не отработала"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "config_variant": "price_side=other (market orders)",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 284.6,
+  "extra_syspath": ""
+}

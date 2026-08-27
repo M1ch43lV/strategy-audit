@@ -1,0 +1,73 @@
+{
+  "repo": "PeetCrypto/freqtrade-stuff",
+  "file": "repos/PeetCrypto_freqtrade-stuff/Dracula.py",
+  "strategy": "Dracula",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 150 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 150 свечей, startup_candle_count не задан (по умолчанию 0)"
+    },
+    {
+      "level": "FOUND",
+      "what": "dead trailing-stop settings",
+      "detail": "trailing_stop=False but trailing_stop_positive=0.01 is set - reads as an active protection",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "мёртвые настройки трейлинга",
+      "detail_ru": "trailing_stop=False, но trailing_stop_positive=0.01 задан — читается как работающая защита"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 15,
+        "total_pct": -5.32,
+        "expectancy": -3.55,
+        "p_value": 0.04833,
+        "market_change_pct": -55.54,
+        "sharpe": -0.23,
+        "sortino": -0.27,
+        "profit_factor": 0.18,
+        "drawdown_pct": 5.32,
+        "cagr_pct": -2.69,
+        "used_timeframe": "1m",
+        "declared_timeframe": "1m",
+        "missing_pairs": [],
+        "avg_profit_pct": -1.1,
+        "avg_duration_min": 59.0,
+        "win_pct": 33.3,
+        "dur_over_candle": 59.0,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "TIMED OUT",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "ПРЕВЫШЕНО ВРЕМЯ"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "1m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 1804.3,
+  "extra_syspath": ""
+}

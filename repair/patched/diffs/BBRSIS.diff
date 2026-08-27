@@ -1,0 +1,11 @@
+--- original/repos/davidzr_freqtrade-strategies/strategies/BBRSIS/BBRSIS.py
++++ patched/repos/davidzr_freqtrade-strategies/strategies/BBRSIS/BBRSIS.py
+@@ -72,7 +72,7 @@
+         
+         dataframe['rsi'] = ta.RSI(dataframe, timeperiod=20)
+         
+-        dataframe.fillna(method='ffill', inplace = True)
++        dataframe.ffill(inplace = True)
+         
+         # Bollinger bands
+         bollinger = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=3)

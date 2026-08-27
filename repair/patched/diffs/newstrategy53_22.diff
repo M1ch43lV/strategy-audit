@@ -1,0 +1,11 @@
+--- original/repos/TheoBrigitte_freqtrade/strategies/GeneTrader/NewStrategy53_22.py
++++ patched/repos/TheoBrigitte_freqtrade/strategies/GeneTrader/NewStrategy53_22.py
+@@ -904,7 +904,7 @@
+ 
+     pm = Series(pm_arr)
+ 
+-    pmx = np.where((pm_arr > 0.00), np.where((mavalue < pm_arr), 'down',  'up'), np.NaN)
++    pmx = np.where((pm_arr > 0.00), np.where((mavalue < pm_arr), 'down',  'up'), 'nan')
+ 
+     return pm, pmx
+     

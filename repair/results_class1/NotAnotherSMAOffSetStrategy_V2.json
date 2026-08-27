@@ -1,0 +1,67 @@
+{
+  "repo": "Foxel05/freqtrade-stuff",
+  "file": "repos/Foxel05_freqtrade-stuff/strategies/NotAnotherSMAOffSetStrategy_V2.py",
+  "strategy": "NotAnotherSMAOffSetStrategy_V2",
+  "static": [
+    {
+      "level": "PASSED",
+      "what": "warm-up declared",
+      "detail": "200 against a requirement of 100",
+      "level_ru": "ПРОШЛА",
+      "what_ru": "прогрев объявлен",
+      "detail_ru": "200 при потребности 100"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 3,
+        "total_pct": 0.96,
+        "expectancy": 3.2,
+        "p_value": 0.3974,
+        "market_change_pct": -59.05,
+        "sharpe": 0.06,
+        "sortino": -100.0,
+        "profit_factor": 4.75,
+        "drawdown_pct": 0.25,
+        "cagr_pct": 0.48,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": 0.97,
+        "avg_duration_min": 72.0,
+        "win_pct": 66.7,
+        "dur_over_candle": 14.4,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "engine exited with code 0 but produced no summary (no trades at all, or output not parsed)",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "indicators change with the amount of history: EWO -12.317%",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "индикаторы меняются от объёма истории: EWO -12.317%"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 174.9,
+  "extra_syspath": ""
+}

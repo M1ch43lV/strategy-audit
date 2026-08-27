@@ -1,0 +1,101 @@
+{
+  "repo": "ShahAnuj2610/my-freqtrade-nfi-nextgen",
+  "file": "repos/ShahAnuj2610_my-freqtrade-nfi-nextgen/user_data/strategies/NostalgiaForInfinityX2.py",
+  "strategy": "NostalgiaForInfinityX2",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 200 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 200 свечей, startup_candle_count не задан (по умолчанию 0)"
+    },
+    {
+      "level": "FOUND",
+      "what": "dead trailing-stop settings",
+      "detail": "trailing_stop=False but trailing_stop_positive=0.01 is set - reads as an active protection",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "мёртвые настройки трейлинга",
+      "detail_ru": "trailing_stop=False, но trailing_stop_positive=0.01 задан — читается как работающая защита"
+    },
+    {
+      "level": "FOUND",
+      "what": "sign of lookahead leakage",
+      "detail": "centred window center=True",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "признак утечки будущего",
+      "detail_ru": "центрированное окно center=True"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 2,
+        "total_pct": 0.61,
+        "expectancy": 3.03,
+        "p_value": 0.3222,
+        "market_change_pct": -59.75,
+        "sharpe": 0.09,
+        "sortino": -100.0,
+        "profit_factor": 0.0,
+        "drawdown_pct": 0.0,
+        "cagr_pct": 0.3,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": 0.77,
+        "avg_duration_min": 675.0,
+        "win_pct": 100.0,
+        "dur_over_candle": 135.0,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 36,
+        "total_pct": 22.86,
+        "expectancy": 6.35,
+        "p_value": 3.808e-07,
+        "market_change_pct": 347.65,
+        "sharpe": 0.31,
+        "sortino": -100.0,
+        "profit_factor": 0.0,
+        "drawdown_pct": 0.0,
+        "cagr_pct": 3.23,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": 1.62,
+        "avg_duration_min": 752.0,
+        "win_pct": 100.0,
+        "dur_over_candle": 150.4,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "indicators change with the amount of history: ema_100_1h -0.014%, ema_100_4h -0.020%",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "индикаторы меняются от объёма истории: ema_100_1h -0.014%, ema_100_4h -0.020%"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 1561.7,
+  "extra_syspath": ""
+}

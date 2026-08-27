@@ -1,0 +1,85 @@
+{
+  "repo": "davidzr/freqtrade-strategies",
+  "file": "repos/davidzr_freqtrade-strategies/strategies/EMABreakout/EMABreakout.py",
+  "strategy": "EMABreakout",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 200 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 200 свечей, startup_candle_count не задан (по умолчанию 0)"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 1251,
+        "total_pct": -91.63,
+        "expectancy": -0.73,
+        "p_value": 0.002368,
+        "market_change_pct": -58.37,
+        "sharpe": -2.82,
+        "sortino": -1.66,
+        "profit_factor": 0.35,
+        "drawdown_pct": 91.69,
+        "cagr_pct": -71.08,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.44,
+        "avg_duration_min": 2297.0,
+        "win_pct": 67.9,
+        "dur_over_candle": 459.4,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 4483,
+        "total_pct": -96.28,
+        "expectancy": -0.21,
+        "p_value": 0.1391,
+        "market_change_pct": 347.65,
+        "sharpe": -0.8,
+        "sortino": -0.46,
+        "profit_factor": 0.78,
+        "drawdown_pct": 97.43,
+        "cagr_pct": -39.86,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.12,
+        "avg_duration_min": 2096.0,
+        "win_pct": 70.3,
+        "dur_over_candle": 419.2,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "indicators change with the amount of history: rsi 0.935%",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "индикаторы меняются от объёма истории: rsi 0.935%"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 584.4,
+  "extra_syspath": ""
+}

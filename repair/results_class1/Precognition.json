@@ -1,0 +1,74 @@
+{
+  "repo": "PeetCrypto/freqtrade-stuff",
+  "file": "repos/PeetCrypto_freqtrade-stuff/precognition (1).py",
+  "strategy": "Precognition",
+  "static": [],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 1329,
+        "total_pct": 4542716.71,
+        "expectancy": 34181.47,
+        "p_value": 3.37e-63,
+        "market_change_pct": -58.23,
+        "sharpe": 16.88,
+        "sortino": 30.33,
+        "profit_factor": 406.97,
+        "drawdown_pct": 6.25,
+        "cagr_pct": 21058.12,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": 3.04,
+        "avg_duration_min": 47.0,
+        "win_pct": 99.5,
+        "dur_over_candle": 9.4,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 4520,
+        "total_pct": 57436642.12,
+        "expectancy": 127072.22,
+        "p_value": 0.0,
+        "market_change_pct": 347.65,
+        "sharpe": 33.53,
+        "sortino": 9.03,
+        "profit_factor": 117.75,
+        "drawdown_pct": 2.34,
+        "cagr_pct": 675.52,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": 2.96,
+        "avg_duration_min": 38.0,
+        "win_pct": 99.4,
+        "dur_over_candle": 7.6,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 196.6,
+  "extra_syspath": ""
+}

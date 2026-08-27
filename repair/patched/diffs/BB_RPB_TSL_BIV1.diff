@@ -1,0 +1,21 @@
+--- original/repos/PeetCrypto_freqtrade-stuff/BB_RPB_TSL_BI-v4_EWO2-v3.py
++++ patched/repos/PeetCrypto_freqtrade-stuff/BB_RPB_TSL_BI-v4_EWO2-v3.py
+@@ -290,8 +290,7 @@
+     ## Slippage params
+ 
+     is_optimize_slip = False
+-    max_slip = DecimalParameter(0.33, 0.80, default=0.33, decimals=3, optimize=is_optimize_slip , load=True)
+-
++    max_slip = DecimalParameter(0.33, 0.80, default=0.33, decimals=3, optimize=is_optimize_slip , load=True, space='buy')
+     ## Sell params
+ 
+     sell_btc_safe = IntParameter(-400, -300, default=-365, optimize = False)
+@@ -968,7 +967,7 @@
+     pm = Series(pm_arr)
+ 
+     # Mark the trend direction up/down
+-    pmx = np.where((pm_arr > 0.00), np.where((mavalue < pm_arr), 'down',  'up'), np.NaN)
++    pmx = np.where((pm_arr > 0.00), np.where((mavalue < pm_arr), 'down',  'up'), 'nan')
+ 
+     return pm, pmx
+ 

@@ -1,0 +1,85 @@
+{
+  "repo": "davidzr/freqtrade-strategies",
+  "file": "repos/davidzr_freqtrade-strategies/strategies/Hacklemore2/Hacklemore2.py",
+  "strategy": "Hacklemore2",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 24 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 24 свечей, startup_candle_count не задан (по умолчанию 0)"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 60,
+        "total_pct": -69.94,
+        "expectancy": -11.66,
+        "p_value": 0.1681,
+        "market_change_pct": -58.11,
+        "sharpe": -0.28,
+        "sortino": -0.14,
+        "profit_factor": 0.19,
+        "drawdown_pct": 74.27,
+        "cagr_pct": -45.13,
+        "used_timeframe": "15m",
+        "declared_timeframe": "15m",
+        "missing_pairs": [],
+        "avg_profit_pct": -3.21,
+        "avg_duration_min": 48391.0,
+        "win_pct": 80.0,
+        "dur_over_candle": 3226.07,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 583,
+        "total_pct": 77.18,
+        "expectancy": 1.32,
+        "p_value": 0.6497,
+        "market_change_pct": 347.19,
+        "sharpe": 0.09,
+        "sortino": 0.04,
+        "profit_factor": 1.27,
+        "drawdown_pct": 61.98,
+        "cagr_pct": 9.24,
+        "used_timeframe": "15m",
+        "declared_timeframe": "15m",
+        "missing_pairs": [],
+        "avg_profit_pct": 0.45,
+        "avg_duration_min": 16484.0,
+        "win_pct": 82.2,
+        "dur_over_candle": 1098.93,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "freqtrade REFUSED to analyse: startup_candle_count=0, \"will cause recursive issues for some indicators\"",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "freqtrade ОТКАЗАЛСЯ анализировать: startup_candle_count=0, «приведёт к рекурсивным проблемам у части индикаторов»"
+    }
+  },
+  "declared_timeframe": "15m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 1962.7,
+  "extra_syspath": ""
+}

@@ -1,0 +1,74 @@
+{
+  "repo": "PeetCrypto/freqtrade-stuff",
+  "file": "repos/PeetCrypto_freqtrade-stuff/Zeus_HO (1).py",
+  "strategy": "Zeus",
+  "static": [],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 652,
+        "total_pct": -7.91,
+        "expectancy": -0.12,
+        "p_value": 0.8582,
+        "market_change_pct": -57.43,
+        "sharpe": -0.12,
+        "sortino": -0.07,
+        "profit_factor": 0.96,
+        "drawdown_pct": 50.51,
+        "cagr_pct": -4.03,
+        "used_timeframe": "4h",
+        "declared_timeframe": "4h",
+        "missing_pairs": [],
+        "avg_profit_pct": 0.1,
+        "avg_duration_min": 2519.0,
+        "win_pct": 71.0,
+        "dur_over_candle": 10.5,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 2114,
+        "total_pct": 20.13,
+        "expectancy": 0.1,
+        "p_value": 0.9029,
+        "market_change_pct": 337.47,
+        "sharpe": 0.05,
+        "sortino": 0.03,
+        "profit_factor": 1.02,
+        "drawdown_pct": 62.31,
+        "cagr_pct": 2.87,
+        "used_timeframe": "4h",
+        "declared_timeframe": "4h",
+        "missing_pairs": [],
+        "avg_profit_pct": 0.12,
+        "avg_duration_min": 3219.0,
+        "win_pct": 71.9,
+        "dur_over_candle": 13.41,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "4h",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 27.8,
+  "extra_syspath": ""
+}

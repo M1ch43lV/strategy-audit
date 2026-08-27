@@ -1,0 +1,17 @@
+--- original/repos/jaredrsommer_freqtradestrategies/HurstCycleV4.py
++++ patched/repos/jaredrsommer_freqtradestrategies/HurstCycleV4.py
+@@ -96,10 +96,10 @@
+             'h2': self.h2
+         }
+         amplitudes = {
+-            'cp': dataframe['cycle_move_mean'].fillna(method='ffill').fillna(0),
+-            'h0': dataframe['h0_move_mean'].fillna(method='ffill').fillna(0),
+-            'h1': dataframe['h1_move_mean'].fillna(method='ffill').fillna(0),
+-            'h2': dataframe['h2_move_mean'].fillna(method='ffill').fillna(0)
++            'cp': dataframe['cycle_move_mean'].ffill().fillna(0),
++            'h0': dataframe['h0_move_mean'].ffill().fillna(0),
++            'h1': dataframe['h1_move_mean'].ffill().fillna(0),
++            'h2': dataframe['h2_move_mean'].ffill().fillna(0)
+         }
+         composite = np.zeros(len(dataframe))
+         for cycle_name, period in cycles.items():

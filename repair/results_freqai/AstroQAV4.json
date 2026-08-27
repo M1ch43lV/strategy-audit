@@ -1,0 +1,17 @@
+{
+  "strategy": "AstroQAV4",
+  "file": "repos/jaredrsommer_freqtradestrategies/AstroQAV4.py",
+  "run_class": "freqai",
+  "source_tree": "class2-overlay",
+  "config": "user_data\\freqai_configs\\AstroQAV4.json",
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "KeyError: 'DI_cutoff'\r"
+    },
+    "out_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "KeyError: 'DI_cutoff'\r"
+    }
+  }
+}

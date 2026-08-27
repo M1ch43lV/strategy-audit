@@ -52,9 +52,9 @@ implementations: 53 Class 1 and 83 Class 2. Across the complete repair stack,
 is `behavior_changed`, and the 764 originals are `not_applicable`. These counts
 come from `EXECUTION_PROFILES.csv`; they are not hard-coded analysis inputs.
 
-Sixty-six rows require runtime or manual review. Fifty-eight of those expose
-short-related source/configuration disagreement; four have no recognized entry
-logic, and the remaining cases have mode evidence that needs confirmation.
+Seventy rows require runtime or manual review. Sixty-one expose dormant or
+missing short-path disagreement, four have no recognized entry logic, and five
+historically ran in spot despite static futures intent.
 Test and template candidates remain visible through `artifact_role`; they are
 not silently deleted from the corpus.
 

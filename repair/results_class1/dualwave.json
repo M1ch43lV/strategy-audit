@@ -1,0 +1,85 @@
+{
+  "repo": "TheoBrigitte/freqtrade",
+  "file": "repos/TheoBrigitte_freqtrade/strategies/wave/dualwave.py",
+  "strategy": "dualwave",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up too short",
+      "detail": "declared 30, needs at least 200",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев занижен",
+      "detail_ru": "объявлено 30, нужно не менее 200"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 408,
+        "total_pct": -89.13,
+        "expectancy": -2.18,
+        "p_value": 0.0008041,
+        "market_change_pct": -58.53,
+        "sharpe": -1.79,
+        "sortino": -1.04,
+        "profit_factor": 0.41,
+        "drawdown_pct": 89.23,
+        "cagr_pct": -67.03,
+        "used_timeframe": "15m",
+        "declared_timeframe": "15m",
+        "missing_pairs": [],
+        "avg_profit_pct": -1.27,
+        "avg_duration_min": 5157.0,
+        "win_pct": 86.3,
+        "dur_over_candle": 343.8,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 1359,
+        "total_pct": -93.63,
+        "expectancy": -0.69,
+        "p_value": 0.09589,
+        "market_change_pct": 347.19,
+        "sharpe": -0.5,
+        "sortino": -0.24,
+        "profit_factor": 0.8,
+        "drawdown_pct": 95.78,
+        "cagr_pct": -34.64,
+        "used_timeframe": "15m",
+        "declared_timeframe": "15m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.36,
+        "avg_duration_min": 5323.0,
+        "win_pct": 89.9,
+        "dur_over_candle": 354.87,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "indicators change with the amount of history: rsi_2h -6.713%, rsi_ma_2h -8.339%, rsi_ma_pcnt_2h -972.673%, wave_t1_2h -48.902%, wave_t2_2h -55.776%",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "индикаторы меняются от объёма истории: rsi_2h -6.713%, rsi_ma_2h -8.339%, rsi_ma_pcnt_2h -972.673%, wave_t1_2h -48.902%, wave_t2_2h -55.776%"
+    }
+  },
+  "declared_timeframe": "15m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 638.9,
+  "extra_syspath": ""
+}

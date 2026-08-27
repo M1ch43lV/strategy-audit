@@ -1,0 +1,46 @@
+{
+  "repo": "freqtrade/freqtrade-strategies",
+  "file": "repos/freqtrade_freqtrade-strategies/user_data/strategies/AlmgrenChrissStrategy.py",
+  "strategy": "AlmgrenChrissStrategy",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up too short",
+      "detail": "declared 30, needs at least 96",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев занижен",
+      "detail_ru": "объявлено 30, нужно не менее 96"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "ImportError: Short strategies cannot run in spot markets. Please make sure that this is the correct strategy and that your trading mode configuration is correct",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "out_sample": {
+      "level": "NOT-RUN",
+      "why": "did not run in the author's window",
+      "summary": null,
+      "level_ru": "НЕ ЗАПУСКАЛИ",
+      "why_ru": "в выборке не отработала"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "15m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 17.8,
+  "extra_syspath": ""
+}

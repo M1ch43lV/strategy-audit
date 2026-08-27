@@ -1,0 +1,1076 @@
+[
+ {
+  "strategy": "A9AV",
+  "rule": [
+   "rolling_any_masked"
+  ],
+  "action": "patched",
+  "reason": [
+   "disputed rows 0..n-2 (n<=5) always fall inside the 4+ rows where SMA_9 is NaN and the ANDed term is False"
+  ],
+  "file": "repos/jaredrsommer_freqtradestrategies/A9AV.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "output_equivalent",
+  "repair_rules": [
+   "rolling_any_masked"
+  ]
+ },
+ {
+  "strategy": "AstroQAV4",
+  "rule": [
+   "restore_commented_feature_source"
+  ],
+  "action": "patched",
+  "reason": [
+   "re-enables the source of 15 columns that 15 consumer lines read; every consumed key is produced by the function"
+  ],
+  "file": "repos/jaredrsommer_freqtradestrategies/AstroQAV4.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "behavior_changed",
+  "repair_rules": [
+   "restore_commented_feature_source"
+  ]
+ },
+ {
+  "strategy": "BB_RPB_TSL",
+  "rule": [
+   "dead_np_where_dtype",
+   "param_missing_space"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision",
+   "space stated by the file itself: max_slip -> buy_params"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/BB_RPB_TSL.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype",
+   "param_missing_space"
+  ]
+ },
+ {
+  "strategy": "BB_RPB_TSL_2",
+  "rule": [
+   "dead_np_where_dtype",
+   "param_missing_space"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision",
+   "space stated by the file itself: max_slip -> buy_params"
+  ],
+  "file": "repos/davidzr_freqtrade-strategies/strategies/BB_RPB_TSL_2/BB_RPB_TSL_2.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype",
+   "param_missing_space"
+  ]
+ },
+ {
+  "strategy": "BB_RPB_TSL_BI",
+  "rule": [
+   "dead_np_where_dtype",
+   "param_missing_space"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision",
+   "space stated by the file itself: max_slip -> buy_params"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/BB_RPB_TSL_BI.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype",
+   "param_missing_space"
+  ]
+ },
+ {
+  "strategy": "BB_RPB_TSL_BIV1",
+  "rule": [
+   "dead_np_where_dtype",
+   "param_missing_space"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision",
+   "space stated by the file itself: max_slip -> buy_params"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/BB_RPB_TSL_BI-v4_EWO2-v3.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype",
+   "param_missing_space"
+  ]
+ },
+ {
+  "strategy": "BB_RPB_TSL_SMA_Tranz",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/BB_RPB_TSL_SMA_Tranz_1_5_2_MAIN (10).py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "BB_RPB_TSL_SMA_Tranz_TB_1_1_1",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/davidzr_freqtrade-strategies/strategies/BB_RPB_TSL_SMA_Tranz_TB_1_1_1/BB_RPB_TSL_SMA_Tranz_TB_1_1_1.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "BB_RPB_TSL_SMA_Tranz_TB_MOD",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/davidzr_freqtrade-strategies/strategies/BB_RPB_TSL_SMA_Tranz_TB_MOD/BB_RPB_TSL_SMA_Tranz_TB_MOD.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "BB_RPB_TSL_Tranz",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/davidzr_freqtrade-strategies/strategies/BB_RPB_TSL_Tranz/BB_RPB_TSL_Tranz.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "BB_RPB_TSLmeneguzzo",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/davidzr_freqtrade-strategies/strategies/BB_RPB_TSLmeneguzzo/BB_RPB_TSLmeneguzzo.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "BBMod1",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/davidzr_freqtrade-strategies/strategies/BBMod1/BBMod1.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "BBRSIS",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/davidzr_freqtrade-strategies/strategies/BBRSIS/BBRSIS.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "BreakoutStrategy",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/flaviosiotto_freqtrade-strategy/user_data/strategies/breakout-strategy.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "ClucHAnix_BB_RPB_TraNz",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/ShahAnuj2610_my-freqtrade/user_data/strategies/BB_RPB_TSL_ClucHAnix_BB_RPB_MOD_CTT_Dynamic_Offsets_COMBINED_MOD_TraNz_1.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "DIV_v1",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/DIV_v1.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "FakeoutStrategy",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/flaviosiotto_freqtrade-strategy/user_data/strategies/fakeout-strategy.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "falconTrader",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/TheoBrigitte_freqtrade/strategies/falcon/falconTrader.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "GeneStrategy",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/TheoBrigitte_freqtrade/strategies/GeneTrader/GeneStrategy.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "GeneStrategy_v2",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/TheoBrigitte_freqtrade/strategies/GeneTrader/GeneStrategy_v2.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "GeneTrader_gen10_1734895087_6007",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/TheoBrigitte_freqtrade/strategies/GeneTrader/GeneTrader_gen10_1734895087_6007.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "GeneTrader_gen5_1735014093_4541",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/TheoBrigitte_freqtrade/strategies/GeneTrader/GeneTrader_gen5_1735014093_4541.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "HEW",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/jaredrsommer_freqtradestrategies/HEW.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "HurstCycleV4",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/jaredrsommer_freqtradestrategies/HurstCycleV4.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "HurstCycleV5RSI",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/jaredrsommer_freqtradestrategies/HurstCycleV5RSI (2).py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "ichiV1_Marius",
+  "rule": [
+   "param_missing_space"
+  ],
+  "action": "patched",
+  "reason": [
+   "space stated by the file itself: max_slip -> buy_params"
+  ],
+  "file": "repos/davidzr_freqtrade-strategies/strategies/ichiV1_Marius/ichiV1_Marius.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "param_missing_space"
+  ]
+ },
+ {
+  "strategy": "KitchenSink",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/jaredrsommer_freqtradestrategies/KitchenSink (2).py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "LitmusSimpleStrategy",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusSimpleStrategy.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "Matrix",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: agg(level=)"
+  ],
+  "file": "repos/TheoBrigitte_freqtrade/sources/sponsors/Matrix.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "MultiMA_TSL3",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 2 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/MultiMA_TSL.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "MultiMA_TSL3_Mod",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/davidzr_freqtrade-strategies/strategies/MultiMA_TSL3_Mod/MultiMA_TSL3_Mod.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "MultiRSI",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/MultiRSI.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "NASOSRv6_private_Reinuvader_20211121",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/ShahAnuj2610_my-freqtrade/user_data/strategies/NASOSRv6_private_Reinuvader_20211121.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "newstrategy53",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/TheoBrigitte_freqtrade/strategies/GeneTrader/newstrategy53.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "newstrategy53_22",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/TheoBrigitte_freqtrade/strategies/GeneTrader/NewStrategy53_22.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "NFI731_BUSD",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/NFI731_BUSD.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "NfiNextModded",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/NfiNextModded.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "NFIX_BB_RPB",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/NFIX_BB_RPB.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "NFIX_BB_RPB_c7c477d_20211030",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/davidzr_freqtrade-strategies/strategies/NFIX_BB_RPB_c7c477d_20211030/NFIX_BB_RPB_c7c477d_20211030.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "NostalgiaForInfinity772martinsk3",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/TheoBrigitte_freqtrade/strategies/nfix/NostalgiaForInfinity772martinsk3.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "NostalgiaForInfinityNext",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/Foxel05_freqtrade-stuff/strategies/NostalgiaForInfinityNext.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "NostalgiaForInfinityNext772",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/TheoBrigitte_freqtrade/sources/nfix/NostalgiaForInfinityNext772.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "NostalgiaForInfinityNext_ChangeToTower_V5_2",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/NostalgiaForInfinityNext_ChangeToTower_V5_2.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "NostalgiaForInfinityNext_ChangeToTower_V5_3",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/NostalgiaForInfinityNext_ChangeToTower_V5_3.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "NostalgiaForInfinityNext_ChangeToTower_V6",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/NostalgiaForInfinityNext_ChangeToTower_V6.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "NostalgiaForInfinityNext_maximizer",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/davidzr_freqtrade-strategies/strategies/NostalgiaForInfinityNext_maximizer/NostalgiaForInfinityNext_maximizer.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "NostalgiaForInfinityNextV7155",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/nfiv7155.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "NostalgiaForInfinityV7_7_2",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/davidzr_freqtrade-strategies/strategies/NostalgiaForInfinityV7_7_2/NostalgiaForInfinityV7_7_2.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "NostalgiaForInfinityX",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/NFIXMod1.3_TraNz (3).py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "NostalgiaForInfinityXw",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/NostalgiaForInfinityXw (1).py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "Obelisk_3EMA_StochRSI_ATR",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/Obelisk_3EMA_StochRSI_ATR.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "Obelisk_Ichimoku_Slow_v1_3",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/Obelisk_Ichimoku_Slow_v1_3.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "Obelisk_Ichimoku_ZEMA_v1",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/Foxel05_freqtrade-stuff/strategies/Obelisk_Ichimoku_ZEMA_v1.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "ObeliskIM_v1_1",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/ObeliskIM_v1_1.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "ObeliskRSI_v6_1",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/ObeliskRSI_v6_1.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "pmaxTest",
+  "rule": [
+   "dead_np_where_dtype"
+  ],
+  "action": "patched",
+  "reason": [
+   "dataframe['pmx'] has 1 store(s) and 0 loads - write-only, so the value cannot affect any trading decision"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/pmaxTest.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "dead_np_where_dtype"
+  ]
+ },
+ {
+  "strategy": "ScalpingCCI",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/ScalpingCCI.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "slownsteady",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/TheoBrigitte_freqtrade/strategies/slownsteady/slownsteady_v2.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ },
+ {
+  "strategy": "Stinkfist",
+  "rule": [
+   "pandas_removed_keywords"
+  ],
+  "action": "patched",
+  "reason": [
+   "pandas documents exact replacements for: fillna(method=)"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/Stinkfist.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent",
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ]
+ }
+]

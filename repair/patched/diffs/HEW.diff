@@ -1,0 +1,13 @@
+--- original/repos/jaredrsommer_freqtradestrategies/HEW.py
++++ patched/repos/jaredrsommer_freqtradestrategies/HEW.py
+@@ -766,8 +766,8 @@
+                         if end_idx is None:
+                             segment[1] = idx
+ 
+-        dataframe['vtl_up'] = dataframe['vtl_up'].fillna(method='ffill')
+-        dataframe['vtl_down'] = dataframe['vtl_down'].fillna(method='ffill')
++        dataframe['vtl_up'] = dataframe['vtl_up'].ffill()
++        dataframe['vtl_down'] = dataframe['vtl_down'].ffill()
+         dataframe['vtl-spread'] = dataframe['vtl_down'] - dataframe['vtl_up']
+         dataframe['vtl_up_slope'] = dataframe['vtl_up'].diff()
+         dataframe['vtl_dn_slope'] = dataframe['vtl_down'].diff()

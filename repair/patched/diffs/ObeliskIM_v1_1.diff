@@ -1,0 +1,11 @@
+--- original/repos/PeetCrypto_freqtrade-stuff/ObeliskIM_v1_1.py
++++ patched/repos/PeetCrypto_freqtrade-stuff/ObeliskIM_v1_1.py
+@@ -120,7 +120,7 @@
+         dataframe.loc[
+             qtpylib.crossed_above(dataframe['tenkan_sen'], dataframe['kijun_sen']),
+             'tk_cross_up'] = 3
+-        dataframe['tk_cross_up'].fillna(method='ffill', inplace=True, limit=2)
++        dataframe['tk_cross_up'].ffill(inplace=True, limit=2)
+         dataframe['tk_cross_up'].fillna(value=0, inplace=True)
+ 
+         # dataframe['rsi_ok'] = (dataframe['rsi'] < 75).astype('int')

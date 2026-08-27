@@ -1,0 +1,65 @@
+{
+  "repo": "davidzr/freqtrade-strategies",
+  "file": "repos/davidzr_freqtrade-strategies/strategies/StrategyScalpingFast2/StrategyScalpingFast2.py",
+  "strategy": "StrategyScalpingFast2",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 20 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 20 свечей, startup_candle_count не задан (по умолчанию 0)"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 1468,
+        "total_pct": -95.32,
+        "expectancy": -0.65,
+        "p_value": 0.0021,
+        "market_change_pct": -55.54,
+        "sharpe": -3.09,
+        "sortino": -1.72,
+        "profit_factor": 0.38,
+        "drawdown_pct": 95.49,
+        "cagr_pct": -78.32,
+        "used_timeframe": "1m",
+        "declared_timeframe": "1m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.47,
+        "avg_duration_min": 2138.0,
+        "win_pct": 71.0,
+        "dur_over_candle": 2138.0,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "TIMED OUT",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "ПРЕВЫШЕНО ВРЕМЯ"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Could not load markets.\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Could not load markets.\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "1m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 1570.5,
+  "extra_syspath": ""
+}

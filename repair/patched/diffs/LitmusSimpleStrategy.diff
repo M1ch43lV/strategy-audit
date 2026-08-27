@@ -1,0 +1,51 @@
+--- original/repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusSimpleStrategy.py
++++ patched/repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusSimpleStrategy.py
+@@ -349,25 +349,25 @@
+             dataframe["!-trade_return_long_masked"] > 0, "!-trade_return_long_masked"].rolling(
+             1000, min_periods=1).mean()
+         dataframe["!-trade_return_long_expected_win"] = dataframe[
+-            "!-trade_return_long_expected_win"].fillna(method="backfill").fillna(method="ffill")
++            "!-trade_return_long_expected_win"].bfill().ffill()
+ 
+         dataframe["!-trade_return_long_expected_loss"] = dataframe.loc[
+             dataframe["!-trade_return_long_masked"] <= 0, "!-trade_return_long_masked"].rolling(
+             1000, min_periods=1).mean()
+         dataframe["!-trade_return_long_expected_loss"] = dataframe[
+-            "!-trade_return_long_expected_loss"].fillna(method="backfill").fillna(method="ffill")
++            "!-trade_return_long_expected_loss"].bfill().ffill()
+ 
+         dataframe["!-trade_return_short_expected_win"] = dataframe.loc[
+             dataframe["!-trade_return_short_masked"] <= 0, "!-trade_return_short_masked"].rolling(
+             1000, min_periods=1).mean()
+         dataframe["!-trade_return_short_expected_win"] = dataframe[
+-            "!-trade_return_short_expected_win"].fillna(method="backfill").fillna(method="ffill")
++            "!-trade_return_short_expected_win"].bfill().ffill()
+ 
+         dataframe["!-trade_return_short_expected_loss"] = dataframe.loc[
+             dataframe["!-trade_return_short_masked"] > 0, "!-trade_return_short_masked"].rolling(
+             1000, min_periods=1).mean()
+         dataframe["!-trade_return_short_expected_loss"] = dataframe[
+-            "!-trade_return_short_expected_loss"].fillna(method="backfill").fillna(method="ffill")
++            "!-trade_return_short_expected_loss"].bfill().ffill()
+ 
+         # Simple trade return measure for sample_weights
+         dataframe["!-trade_return"] = dataframe["close"].pct_change(window).shift(-window)
+@@ -399,16 +399,14 @@
+             "!-trade_return_max_price_change_masked"].rolling(
+             5000, min_periods=1).median()
+         dataframe["!-trade_return_median_max_price_change"] = dataframe[
+-            "!-trade_return_median_max_price_change"].fillna(
+-            method="backfill").fillna(method="ffill")
++            "!-trade_return_median_max_price_change"].bfill().ffill()
+ 
+         dataframe["!-trade_return_median_min_price_change"] = dataframe.loc[
+             dataframe["!-trade_return_min_price_change_masked"] > 0,
+             "!-trade_return_min_price_change_masked"].rolling(
+             5000, min_periods=1).median()
+         dataframe["!-trade_return_median_min_price_change"] = dataframe[
+-            "!-trade_return_median_min_price_change"].fillna(
+-            method="backfill").fillna(method="ffill")
++            "!-trade_return_median_min_price_change"].bfill().ffill()
+ 
+         return dataframe
+ 

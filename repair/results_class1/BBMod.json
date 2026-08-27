@@ -1,0 +1,48 @@
+{
+  "repo": "eovie/freqtrade_strs",
+  "file": "repos/eovie_freqtrade_strs/binance/Archive/BBMod.py",
+  "strategy": "BBMod",
+  "static": [
+    {
+      "level": "PASSED",
+      "what": "warm-up declared",
+      "detail": "200 against a requirement of 200",
+      "level_ru": "ПРОШЛА",
+      "what_ru": "прогрев объявлен",
+      "detail_ru": "200 при потребности 200"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "TypeError: Invalid value '0' for dtype 'datetime64[ms, UTC]'",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "out_sample": {
+      "level": "NOT-RUN",
+      "why": "did not run in the author's window",
+      "summary": null,
+      "level_ru": "НЕ ЗАПУСКАЛИ",
+      "why_ru": "в выборке не отработала"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "indicators change with the amount of history: EWO -12.317%",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "индикаторы меняются от объёма истории: EWO -12.317%"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "config_variant": "price_side=other (market orders)",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 96.9,
+  "extra_syspath": ""
+}

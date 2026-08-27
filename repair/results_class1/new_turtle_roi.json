@@ -1,0 +1,48 @@
+{
+  "repo": "TheoBrigitte/freqtrade",
+  "file": "repos/TheoBrigitte_freqtrade/strategies/turtle/new_turtle_roi.py",
+  "strategy": "new_turtle_roi",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "dead trailing-stop settings",
+      "detail": "trailing_stop=False but trailing_stop_positive=0.01 is set - reads as an active protection",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "мёртвые настройки трейлинга",
+      "detail_ru": "trailing_stop=False, но trailing_stop_positive=0.01 задан — читается как работающая защита"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "TypeError: Invalid value 'False' for dtype 'float64'",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "out_sample": {
+      "level": "NOT-RUN",
+      "why": "did not run in the author's window",
+      "summary": null,
+      "level_ru": "НЕ ЗАПУСКАЛИ",
+      "why_ru": "в выборке не отработала"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "freqtrade REFUSED to analyse: startup_candle_count=0, \"will cause recursive issues for some indicators\"",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "freqtrade ОТКАЗАЛСЯ анализировать: startup_candle_count=0, «приведёт к рекурсивным проблемам у части индикаторов»"
+    }
+  },
+  "declared_timeframe": "1d",
+  "code_md5": "df39e7b6b43f",
+  "config_variant": "price_side=other (market orders)",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 63.3,
+  "extra_syspath": ""
+}

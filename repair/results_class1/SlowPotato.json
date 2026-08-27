@@ -1,0 +1,77 @@
+{
+  "repo": "davidzr/freqtrade-strategies",
+  "file": "repos/davidzr_freqtrade-strategies/strategies/SlowPotato/SlowPotato.py",
+  "strategy": "SlowPotato",
+  "static": [],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 5,
+        "total_pct": -66.37,
+        "expectancy": -132.74,
+        "p_value": 0.07692,
+        "market_change_pct": -58.23,
+        "sharpe": -0.15,
+        "sortino": -0.62,
+        "profit_factor": 0.01,
+        "drawdown_pct": 66.5,
+        "cagr_pct": -41.97,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": -40.15,
+        "avg_duration_min": 626148.0,
+        "win_pct": 40.0,
+        "dur_over_candle": 125229.6,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 633,
+        "total_pct": -14.86,
+        "expectancy": -0.23,
+        "p_value": 0.9249,
+        "market_change_pct": 347.65,
+        "sharpe": -0.02,
+        "sortino": -0.0,
+        "profit_factor": 0.95,
+        "drawdown_pct": 76.05,
+        "cagr_pct": -2.46,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": 0.22,
+        "avg_duration_min": 15625.0,
+        "win_pct": 99.4,
+        "dur_over_candle": 3125.0,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "PASSED",
+      "why": "no bias detected",
+      "level_ru": "ПРОШЛА",
+      "why_ru": "смещения не обнаружено"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "freqtrade REFUSED to analyse: startup_candle_count=0, \"will cause recursive issues for some indicators\"",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "freqtrade ОТКАЗАЛСЯ анализировать: startup_candle_count=0, «приведёт к рекурсивным проблемам у части индикаторов»"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "config_variant": "price_side=other (market orders)",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 701.0,
+  "extra_syspath": ""
+}

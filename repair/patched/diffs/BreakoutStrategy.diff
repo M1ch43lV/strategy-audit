@@ -1,0 +1,20 @@
+--- original/repos/flaviosiotto_freqtrade-strategy/user_data/strategies/breakout-strategy.py
++++ patched/repos/flaviosiotto_freqtrade-strategy/user_data/strategies/breakout-strategy.py
+@@ -43,7 +43,7 @@
+                 dataframe.iloc[ilocs_max].index,
+                 f'upper_peak_{val}'
+                 ] = dataframe['high']
+-            dataframe[f'upper_peak_{val}'].fillna(method='ffill', inplace=True)
++            dataframe[f'upper_peak_{val}'].ffill(inplace=True)
+ 
+         for val in self.sell_peak_order.range:
+             ilocs_min = argrelextrema(dataframe['low'].values, np.less_equal, order=val)[0]
+@@ -51,7 +51,7 @@
+                 dataframe.iloc[ilocs_min].index,
+                 f'lower_peak_{val}'
+                 ] = dataframe['low']
+-            dataframe[f'lower_peak_{val}'].fillna(method='ffill', inplace=True)
++            dataframe[f'lower_peak_{val}'].ffill(inplace=True)
+ 
+         return dataframe
+ 

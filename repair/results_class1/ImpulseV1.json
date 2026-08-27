@@ -1,0 +1,75 @@
+{
+  "repo": "jaredrsommer/freqtradestrategies",
+  "file": "repos/jaredrsommer_freqtradestrategies/ImpulseV1.py",
+  "strategy": "ImpulseV1",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 200 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 200 свечей, startup_candle_count не задан (по умолчанию 0)"
+    },
+    {
+      "level": "FOUND",
+      "what": "trailing at the full stop distance",
+      "detail": "trailing_stop=True without trailing_stop_positive => the stop trails the FULL stoploss distance",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "трейлинг на полном стопе",
+      "detail_ru": "trailing_stop=True без trailing_stop_positive ⇒ стоп тащится на ВСЁ расстояние стоп-лосса"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 1097,
+        "total_pct": -89.51,
+        "expectancy": -0.82,
+        "p_value": 0.003939,
+        "market_change_pct": -58.37,
+        "sharpe": -2.51,
+        "sortino": -1.22,
+        "profit_factor": 0.43,
+        "drawdown_pct": 91.4,
+        "cagr_pct": -67.61,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.41,
+        "avg_duration_min": 2813.0,
+        "win_pct": 79.0,
+        "dur_over_candle": 562.6,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "TIMED OUT",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "ПРЕВЫШЕНО ВРЕМЯ"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "indicators change with the amount of history: ema1_23 -0.011%",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "индикаторы меняются от объёма истории: ema1_23 -0.011%"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 2487.8,
+  "extra_syspath": ""
+}

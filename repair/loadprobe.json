@@ -1,0 +1,2061 @@
+[
+ {
+  "strategy": "A9AV",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "AdaptiveMAStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "AdaptiveRenkoStrategy",
+  "result": "ModuleNotFoundError: No module named 'pyrenko'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "AdvancedRiskFilterStrategy",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\DonaldSimpson_remora-freqtrade"
+  ]
+ },
+ {
+  "strategy": "ADX_15M_USDT",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ADX_15M_USDT2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "adx_opt_strat",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "AdxSmasS",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "AlexBattleTankKiller",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "AlexBattleTankKillerV3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "AlexBTK_CT",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "AlligatorStrat",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "AlmgrenChrissStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ARIMA_15",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ARIMASTR",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Astro",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "AstroQAV4",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "AutoArimaTripleV1",
+  "result": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\micro\\\\GitHub\\\\freqtrade-benchmarks\\\\strategy-audit\\\\repos\\\\PeetCrypto_freqtrade-stuff\\\\../logs/strat",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "AwesomeMacdS",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BaseStrategy",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\nateemma_strategies"
+  ]
+ },
+ {
+  "strategy": "BasketStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BB_RPB_3c",
+  "result": "ModuleNotFoundError: No module named 'user_data.freqtrade3cw'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BB_RPB_TSL",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BB_RPB_TSL_2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BB_RPB_TSL_BI",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BB_RPB_TSL_BIV1",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BB_RPB_TSL_SMA_Tranz",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BB_RPB_TSL_SMA_Tranz_TB_1_1_1",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BB_RPB_TSL_SMA_Tranz_TB_MOD",
+  "result": "NameError: name 'BB_RPB_TSL_SMA_Tranz_TB' is not defined",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BB_RPB_TSL_Tranz",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BB_RPB_TSLmeneguzzo",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BB_RSI",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "bb_rsi_opt_new",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BB_Strategy04",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BbandRsi",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BBands",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "bbema",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BBMod",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BBMod1",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BbRoi",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BBRSI",
+  "result": "ModuleNotFoundError: No module named 'freqtrade.indicator_helpers'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "bbrsi1_strategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BBRSIoriginal",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BBRSIS",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BcmbigzDevelop",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BestSingleAssetPortfolio",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "beta_factors_model",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BigZ0307HO",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BigZ03HO",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BinanceStream",
+  "result": "ModuleNotFoundError: No module named 'binance'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BinClucMadDevelop",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BinClucMadSMADevelop",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BinHV27_short",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BinHV27_werkkrew",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BlueEyes_MPP_v1",
+  "result": "NameError: name 'IStrategy' is not defined",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BreakEven",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BreakoutStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "BuyRegions",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\nateemma_strategies"
+  ]
+ },
+ {
+  "strategy": "Cenderawasih_30m",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Cenderawasih_3_kucoin",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Chained",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Chispei",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "chispei",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Cluc7werk",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ClucCrypROI",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ClucCrypSlow",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ClucHAnix",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ClucHAnix5m",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ClucHAnix_BB_RPB",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ClucHAnix_BB_RPB_HO2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ClucHAnix_BB_RPB_MOD",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ClucHAnix_BB_RPB_MOD_trailing_buy",
+  "result": "NameError: name 'logging' is not defined",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ClucHAnix_BB_RPB_TraNz",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ClucHAwerk",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Cluckie",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CombinedBinHAndClucV6H",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ConsensusShort",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "COPY_HL",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CopyLitmusMinMaxBroadClassificationStrategy",
+  "result": "ModuleNotFoundError: No module named 'freqtrade.litmus'",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "CoreStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CryptoFrog",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CryptoFrog_nateema",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CryptoFrogHO",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CryptoFrogHO2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CryptoFrogHO2A",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CryptoFrogHO3A1",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CryptoFrogHO3A2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CryptoFrogHO3A3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CryptoFrogHO3A4",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CryptoFrogNFI",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CryptoFrogNFI2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CryptoFrogNFIHO1A",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CryptoFrogOffset",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "cryptohassle",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "CryptoPredictionTraining",
+  "result": "ModuleNotFoundError: No module named 'keras.utils.vis_utils'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "cryptotankV2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "custom_sell",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Danke",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "DCBBBounce",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "DevilStra",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Dimond",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "DIV_v1",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "DoesNothingStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Dracula",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "DualModelPolymarketPortfolio",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\mlsys-io_PortfolioBench"
+  ]
+ },
+ {
+  "strategy": "dualwave",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "DWT",
+  "result": "ModuleNotFoundError: No module named 'custom_indicators'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "DWT_Leveraged",
+  "result": "ModuleNotFoundError: No module named 'custom_indicators'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "DWT_LongShort",
+  "result": "ModuleNotFoundError: No module named 'custom_indicators'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "DWT_short",
+  "result": "ModuleNotFoundError: No module named 'custom_indicators'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Dyna_opti",
+  "result": "ModuleNotFoundError: No module named 'custom_indicators'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "EasyInEasyOut",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ElliotWave",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "EMA50",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "EMABBRSI",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "EMABreakout",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "EmaCrossStrategy",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\mlsys-io_PortfolioBench"
+  ]
+ },
+ {
+  "strategy": "EMAVolume",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Enchilada",
+  "result": "ModuleNotFoundError: No module named 'technical.tradingview'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "EnsembleStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "EnsembleStrategyV1",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "EnsembleStrategyV2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ep3mas2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "epretrace",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "EXPERIMENTAL_STRATEGY",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ExponentialGradientPortfolio",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FAdxSmaStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FakeoutStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "falconTrader",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend_optim3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend_optim3_rsi_70",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend_optim3_rsi_75",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend_optim3_rsi_752",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend_optim3_rsi_75fix",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend_optim3_rsi_75fix_signal",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend_optim3_rsi_75lev",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend_optim3_rsi_75sell",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend_optim3_rsi_80",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend_optim_quick",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend_optim_quick2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend_optim_quick3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend_optim_quick4",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend_optim_quick5",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrend_ts_origstop_fix",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FastSupertrendOpt",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FileLoadingStrategy",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\keithorange_FreqTradeCustomOrders"
+  ]
+ },
+ {
+  "strategy": "FisherHull",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FixedRiskRewardLoss",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FOttStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FReinforcedStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "freqai_rl_test_strat",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "freqai_test_classifier",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "freqai_test_multimodel_classifier_strat",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "freqai_test_multimodel_strat",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "freqai_test_strat",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "FreqaiExampleHybridStrategy",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "FreqaiExampleStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FSampleStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FSupertrendStrategyBTC",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FSupertrendStrategyETH",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FTT_DWT_FBB_FUTURES",
+  "result": "ModuleNotFoundError: No module named 'custom_indicators'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "FundingCarry",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "GeneStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "GeneStrategy_v2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "GeneTrader_gen10_1734895087_6007",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "GeneTrader_gen5_1735014093_4541",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "GKD_C",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "GKD_CT",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "GKD_FisherTransform",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "GodStra",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "GodStraNew",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "GodStraNew40",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "GodStraNew_SMAonly",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "GPR",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "GPTREV",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Guacamole",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "GymStrategy",
+  "result": "ModuleNotFoundError: No module named 'stable_baselines3'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Hacklemore",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Hacklemore2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Hacklemore3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "haGradient",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "HarmonicDivergence",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "HarmonicDivergence_fix",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Heracles",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "HEW",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "HLHB",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "HSI",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "HurstCycle7",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "HurstCycleV4",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "HurstCycleV5",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "HurstCycleV5RSI",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "HurstCycleV6",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Ichimoku_SenkouSpanCross",
+  "result": "ImportError: cannot import name 'accumulation_distribution' from 'technical.indicators' (C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\ftenv\\Lib\\site-p",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Ichimoku_v12",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Ichimoku_v30",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Ichimoku_v32",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Ichimoku_v33",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Ichimoku_v35",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "IchimokuStrategy",
+  "result": "ImportError: cannot import name 'accumulation_distribution' from 'technical.indicators' (C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\ftenv\\Lib\\site-p",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ichiV1_Marius",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "IchiVwapAdx",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ImpulseV1",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "InformativeDecoratorTest",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "Insomnia_short",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "JustROCR",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "JustROCR2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "JustROCR3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "JustROCR4",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "JustROCR5",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "JustROCR6",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "kalthetank",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Kamaflage",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "keltnerchannel",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "KitchenSink",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "KMM",
+  "result": "ModuleNotFoundError: No module named 'openai'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Lateralus",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "LitmusEntryRollClassificationStrategy",
+  "result": "ModuleNotFoundError: No module named 'freqtrade.litmus'",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "LitmusGoodMinMaxClassificationStrategy",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "LitmusMetaStrategy",
+  "result": "ModuleNotFoundError: No module named 'freqtrade.litmus'",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "LitmusMinMaxBroadClassificationStrategy",
+  "result": "ModuleNotFoundError: No module named 'freqtrade.litmus'",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "LitmusMinMaxClassificationStrategy",
+  "result": "ModuleNotFoundError: No module named 'zigzag'",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "LitmusMinMaxRegretClassificationStrategy",
+  "result": "ModuleNotFoundError: No module named 'zigzag'",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "LitmusMinMaxSegmentClassificationStrategy",
+  "result": "ModuleNotFoundError: No module named 'zigzag'",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "LitmusMinMaxStrategy",
+  "result": "ModuleNotFoundError: No module named 'zigzag'",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "LitmusMinMaxTrendStrategy",
+  "result": "ModuleNotFoundError: No module named 'zigzag'",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "LitmusMLDPStrategy",
+  "result": "ModuleNotFoundError: No module named 'freqtrade.litmus'",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "LitmusSimpleStrategy",
+  "result": "ModuleNotFoundError: No module named 'cointanalysis'",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "LongShortRangeTradingMachetesV1",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "mabStra",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "macd_recovery",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MACDCCI",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MACDRL",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MACDRS",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MACDRSI200",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MacheteV8b",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MacheteV8bRallimod",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MacheteV8bRallimod2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "mark_strat",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "mark_strat_opt",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MarketChyperHyperStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MasterMoniGoManiHyperStrategy",
+  "result": "SystemExit: MoniGoManiHyperStrategy - ERROR - The MoniGoMani Configuration filenames could not be loaded from\".hurry\"... Please run \"python3 ./mgm-hurry setup\" to",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Matrix",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Miku_PP_v3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MKR",
+  "result": "ModuleNotFoundError: No module named 'tslearn'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MlpSpeculativeStrategy",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\mlsys-io_PortfolioBench"
+  ]
+ },
+ {
+  "strategy": "momentum",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "momentum_rsi",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "momentum_wick",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MomentumRegimeBasket15m",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MostOfAll",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "multi_tf",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MultiMa",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MultiMA_TSL",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MultiMA_TSL3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MultiMA_TSL3_Mod",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MultiMA_TSL5",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MultiRSI",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MultiTargetClassifierTestStrategy",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "MultiTargetRegressorTestStrategy",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "MyStrategyNew10",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "MyStrategyTemplate",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NASOSRv6_private_Reinuvader_20211121",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "new_turtle",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "new_turtle_roi",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "newstrategy53",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "newstrategy53_22",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NFI46Frog",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NFI4Frog",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NFI731_BUSD",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NfiNextModded",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NFIX_BB_RPB",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NFIX_BB_RPB_c7c477d_20211030",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NoLost",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinity772martinsk3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityNext",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityNext772",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityNext_ChangeToTower_V5_2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityNext_ChangeToTower_V5_3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityNext_ChangeToTower_V6",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityNext_maximizer",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityNextV7155",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityV7_7_2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityX",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityX2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityX3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityX4",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityX5",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityX6",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityX7",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NostalgiaForInfinityXw",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NOTankAi_15",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NOTankAi_17",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NOTankAi_19",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NotAnotherSMAOffSetStrategy_V2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NowoIchimoku1hV1",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "NowoIchimoku5mV2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Obelisk_3EMA_StochRSI_ATR",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Obelisk_Ichimoku_Slow_v1_3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Obelisk_Ichimoku_ZEMA_v1",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ObeliskIM_v1_1",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ObeliskRSI_v6_1",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ONS_Portfolio",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "pcb20",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Persia",
+  "result": "ModuleNotFoundError: No module named 'numpy.lib.function_base'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Pmax",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "pmaxTest",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "PnF",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "PolymarketLogicalArbStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "PolymarketMeanReversionStrategy",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\mlsys-io_PortfolioBench"
+  ]
+ },
+ {
+  "strategy": "PolymarketMomentumStrategy",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\mlsys-io_PortfolioBench"
+  ]
+ },
+ {
+  "strategy": "Precognition",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Prediction_Strategy",
+  "result": "ModuleNotFoundError: No module named 'numba'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "PRICEFOLLOWING2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Proton",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "qrsi",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "quantumfirst",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "QuickAdapterV3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "QuickBuyStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "RaposaDivergenceV1",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "redditMA",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "RegimeFilterStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ReinforcedSmoothScalpS",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "RenkoYolo",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "RLAgentStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "RLStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "RSIBB02",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "RSIDivTirail",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "RsiquiV2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "RsiquiV5",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ScalpingCCI",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Schism",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Schism2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Schism3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Schism4",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Schism5",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Schism6",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "simple_patterns",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "SimpleHopt1Ashort",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "SimpleHoptS",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "SimpleRiskFilterStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "slownsteady",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "SlowPotato",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "SMAOPv1_TTF",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "SmartMoneyStrategyHyperopt",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Solipsis",
+  "result": "ModuleNotFoundError: No module named 'custom_indicators'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Solipsis3",
+  "result": "ModuleNotFoundError: No module named 'custom_indicators'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Solipsis4",
+  "result": "ModuleNotFoundError: No module named 'custom_indicators'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Solipsis5",
+  "result": "ModuleNotFoundError: No module named 'custom_indicators'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Solipsis6",
+  "result": "ModuleNotFoundError: No module named 'custom_indicators'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "SolipsisCon",
+  "result": "ModuleNotFoundError: No module named 'custom_indicators'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "SolipsisMM",
+  "result": "ModuleNotFoundError: No module named 'custom_indicators'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "SqueezeMomentum",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Stavix2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Stinkfist",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Strategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Strategy001_custom_exit",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "StrategyAnalysis",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "StrategyScalpingFast2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "SuperHV27",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "SuperTrend",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Supertrend",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "SuperTrendPure",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "SwingHigh",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "tacos1",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Tank5ModulusDCA",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Tank5ModulusDCAV3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "TankAi",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "TankAiRevival",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "TD",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "tesla4",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "tesla7",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Test_MAMA4",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "TestStrategyLegacyV1",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "TestStrategyNoImplements",
+  "result": "OK",
+  "extra_syspath": [
+   "repos\\markdregan_FreqAI-Marcos-Lopez-De-Prado"
+  ]
+ },
+ {
+  "strategy": "thetank2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ThreeCommasStrategy",
+  "result": "ModuleNotFoundError: No module named 'dotenv'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ToTheMoon",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "TrainCatBoostStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "TrendFollowingStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "tsp0chicken",
+  "result": "ModuleNotFoundError: No module named 'utils'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "TSPredict",
+  "result": "ModuleNotFoundError: No module named 'utils'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "TuplaBollinger",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "turbov8",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "TWAPStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "TwoCandleTheory",
+  "result": "ModuleNotFoundError: No module named 'pykalman'",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "UpSliceStrategy",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ViN",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "VolatilitySystemV2",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "WTAI",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "WTHO",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "WTRSIAI",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "WTX3",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "YourStrat",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ZaratustraDCA2_06",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ZaratustraDCA2_07",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "ZaratustraDCA5",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "Zeus",
+  "result": "OK",
+  "extra_syspath": []
+ },
+ {
+  "strategy": "zorkv7_0_0",
+  "result": "OK",
+  "extra_syspath": []
+ }
+]

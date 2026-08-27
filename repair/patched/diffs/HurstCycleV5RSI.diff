@@ -1,0 +1,13 @@
+--- original/repos/jaredrsommer_freqtradestrategies/HurstCycleV5RSI (2).py
++++ patched/repos/jaredrsommer_freqtradestrategies/HurstCycleV5RSI (2).py
+@@ -601,8 +601,8 @@
+ 
+ 
+         # Forward fill NaN values with the last valid value
+-        dataframe['vtl_up'] = dataframe['vtl_up'].fillna(method='ffill')
+-        dataframe['vtl_down'] = dataframe['vtl_down'].fillna(method='ffill')
++        dataframe['vtl_up'] = dataframe['vtl_up'].ffill()
++        dataframe['vtl_down'] = dataframe['vtl_down'].ffill()
+         dataframe['vtl-spread'] = dataframe['vtl_down'] - dataframe['vtl_up']
+ 
+         # Then calculate slopes

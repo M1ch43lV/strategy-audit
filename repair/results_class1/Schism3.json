@@ -1,0 +1,83 @@
+{
+  "repo": "PeetCrypto/freqtrade-stuff",
+  "file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.3.py",
+  "strategy": "Schism3",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 14 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 14 свечей, startup_candle_count не задан (по умолчанию 0)"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 879,
+        "total_pct": -83.59,
+        "expectancy": -0.95,
+        "p_value": 0.008608,
+        "market_change_pct": -58.42,
+        "sharpe": -2.04,
+        "sortino": -0.83,
+        "profit_factor": 0.51,
+        "drawdown_pct": 84.15,
+        "cagr_pct": -59.5,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.44,
+        "avg_duration_min": 3280.0,
+        "win_pct": 87.9,
+        "dur_over_candle": 656.0,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 2752,
+        "total_pct": -79.02,
+        "expectancy": -0.29,
+        "p_value": 0.5407,
+        "market_change_pct": 347.65,
+        "sharpe": -0.26,
+        "sortino": -0.1,
+        "profit_factor": 0.92,
+        "drawdown_pct": 93.81,
+        "cagr_pct": -21.43,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.06,
+        "avg_duration_min": 3481.0,
+        "win_pct": 87.0,
+        "dur_over_candle": 696.2,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 1458.0,
+  "extra_syspath": ""
+}

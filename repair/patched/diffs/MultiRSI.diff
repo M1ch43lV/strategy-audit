@@ -1,0 +1,11 @@
+--- original/repos/PeetCrypto_freqtrade-stuff/MultiRSI.py
++++ patched/repos/PeetCrypto_freqtrade-stuff/MultiRSI.py
+@@ -46,7 +46,7 @@
+ 
+         dataframe['rsi'] = ta.RSI(dataframe, timeperiod=14)
+ 
+-        dataframe.fillna(method='ffill', inplace=True)
++        dataframe.ffill(inplace=True)
+ 
+         return dataframe
+ 

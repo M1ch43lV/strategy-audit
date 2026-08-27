@@ -1,0 +1,11 @@
+--- original/repos/TheoBrigitte_freqtrade/strategies/slownsteady/slownsteady_v2.py
++++ patched/repos/TheoBrigitte_freqtrade/strategies/slownsteady/slownsteady_v2.py
+@@ -120,7 +120,7 @@
+         #
+         dataframe['volume_rolling'] = dataframe['volume'].shift(14).rolling(14).mean()
+ 
+-        dataframe.fillna(method='ffill', inplace=True)
++        dataframe.ffill(inplace=True)
+ 
+         return dataframe
+ 

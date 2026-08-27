@@ -1,0 +1,11 @@
+--- original/repos/TheoBrigitte_freqtrade/strategies/GeneTrader/GeneStrategy_v2.py
++++ patched/repos/TheoBrigitte_freqtrade/strategies/GeneTrader/GeneStrategy_v2.py
+@@ -968,7 +968,7 @@
+     pm = Series(pm_arr)
+ 
+     # Mark the trend direction up/down
+-    pmx = np.where((pm_arr > 0.00), np.where((mavalue < pm_arr), 'down',  'up'), np.NaN)
++    pmx = np.where((pm_arr > 0.00), np.where((mavalue < pm_arr), 'down',  'up'), 'nan')
+ 
+     return pm, pmx
+     

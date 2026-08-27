@@ -1,0 +1,11 @@
+--- original/repos/PeetCrypto_freqtrade-stuff/ObeliskRSI_v6_1.py
++++ patched/repos/PeetCrypto_freqtrade-stuff/ObeliskRSI_v6_1.py
+@@ -123,7 +123,7 @@
+         dataframe_long = resample_to_interval(dataframe, resample_rsi_indicator)
+         dataframe_long['rsi'] = ta.RSI(dataframe_long, timeperiod=14)
+         dataframe = resampled_merge(dataframe, dataframe_long)
+-        dataframe[resample_rsi_key].fillna(method='ffill', inplace=True)
++        dataframe[resample_rsi_key].ffill(inplace=True)
+ 
+         # bull used to select between two different sets of buy/sell threshold values
+         # based on long RSI

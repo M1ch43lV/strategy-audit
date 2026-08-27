@@ -1,0 +1,39 @@
+{
+  "repo": "nateemma/strategies",
+  "file": "repos/nateemma_strategies/Framework/BaseStrategy.py",
+  "strategy": "BaseStrategy",
+  "static": [],
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "KeyError: None",
+      "summary": null,
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "out_sample": {
+      "level": "NOT-RUN",
+      "why": "did not run in the author's window",
+      "summary": null,
+      "level_ru": "НЕ ЗАПУСКАЛИ",
+      "why_ru": "в выборке не отработала"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "output not parsed",
+      "level_ru": "НЕ ПРИМЕНИМА",
+      "why_ru": "вывод не разобран"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "indicators change with the amount of history: atr_norm -173.735%, atr_pct -0.844%, atr_pct_roll -1.115%, rsi_scaled -9.524%, fisher_wr -4.233%",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "индикаторы меняются от объёма истории: atr_norm -173.735%, atr_pct -0.844%, atr_pct_roll -1.115%, rsi_scaled -9.524%, fisher_wr -4.233%"
+    }
+  },
+  "declared_timeframe": "15m",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 93.0,
+  "extra_syspath": "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\repos\\nateemma_strategies"
+}

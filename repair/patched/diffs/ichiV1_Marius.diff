@@ -1,0 +1,11 @@
+--- original/repos/davidzr_freqtrade-strategies/strategies/ichiV1_Marius/ichiV1_Marius.py
++++ patched/repos/davidzr_freqtrade-strategies/strategies/ichiV1_Marius/ichiV1_Marius.py
+@@ -219,7 +219,7 @@
+ ##################################################################    
+     ## Slippage params
+     is_optimize_slip = False
+-    max_slip = DecimalParameter(0.33, 0.80, default=0.33, decimals=3, optimize=is_optimize_slip , load=True)
++    max_slip = DecimalParameter(0.33, 0.80, default=0.33, decimals=3, optimize=is_optimize_slip , load=True, space='buy')
+     buy_btc_safe = IntParameter(-300, 50, default=buy_params['buy_btc_safe'], optimize = True)
+     buy_btc_safe_1d = DecimalParameter(-0.5, -0.015, default=buy_params['buy_btc_safe_1d'], optimize=True)
+     antipump_threshold = DecimalParameter(0, 0.4, default=buy_params['antipump_threshold'], space='buy', optimize=True)

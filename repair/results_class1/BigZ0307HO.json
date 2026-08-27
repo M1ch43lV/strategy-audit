@@ -1,0 +1,94 @@
+{
+  "repo": "davidzr/freqtrade-strategies",
+  "file": "repos/davidzr_freqtrade-strategies/strategies/BigZ0307HO/BigZ0307HO.py",
+  "strategy": "BigZ0307HO",
+  "static": [
+    {
+      "level": "FOUND",
+      "what": "warm-up not declared",
+      "detail": "longest indicator is 200 candles, startup_candle_count not set (defaults to 0)",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "прогрев не объявлен",
+      "detail_ru": "самый длинный индикатор 200 свечей, startup_candle_count не задан (по умолчанию 0)"
+    },
+    {
+      "level": "FOUND",
+      "what": "dead trailing-stop settings",
+      "detail": "trailing_stop=False but trailing_stop_positive=0.01 is set - reads as an active protection",
+      "level_ru": "НАЙДЕНО",
+      "what_ru": "мёртвые настройки трейлинга",
+      "detail_ru": "trailing_stop=False, но trailing_stop_positive=0.01 задан — читается как работающая защита"
+    }
+  ],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 3985,
+        "total_pct": -98.73,
+        "expectancy": -0.25,
+        "p_value": 3.646e-11,
+        "market_change_pct": -59.05,
+        "sharpe": -10.97,
+        "sortino": -8.4,
+        "profit_factor": 0.61,
+        "drawdown_pct": 98.73,
+        "cagr_pct": -88.72,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.31,
+        "avg_duration_min": 419.0,
+        "win_pct": 67.9,
+        "dur_over_candle": 83.8,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 6668,
+        "total_pct": -98.74,
+        "expectancy": -0.15,
+        "p_value": 2.104e-05,
+        "market_change_pct": 347.65,
+        "sharpe": -2.81,
+        "sortino": -1.89,
+        "profit_factor": 0.77,
+        "drawdown_pct": 98.78,
+        "cagr_pct": -49.09,
+        "used_timeframe": "5m",
+        "declared_timeframe": "5m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.17,
+        "avg_duration_min": 367.0,
+        "win_pct": 70.7,
+        "dur_over_candle": 73.4,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "PASSED",
+      "why": "no bias detected",
+      "level_ru": "ПРОШЛА",
+      "why_ru": "смещения не обнаружено"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "indicators change with the amount of history: bb_lowerband_1h 3.629%, bb_middleband_1h 3.126%, bb_upperband_1h 2.629%, ema_100_1h -0.014%, ewo -12.317%",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "индикаторы меняются от объёма истории: bb_lowerband_1h 3.629%, bb_middleband_1h 3.126%, bb_upperband_1h 2.629%, ema_100_1h -0.014%, ewo -12.317%"
+    }
+  },
+  "declared_timeframe": "5m",
+  "code_md5": "df39e7b6b43f",
+  "config_variant": "price_side=other (market orders)",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 2020.2,
+  "extra_syspath": ""
+}

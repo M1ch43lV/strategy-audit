@@ -1,0 +1,20 @@
+--- original/repos/TheoBrigitte_freqtrade/sources/sponsors/Matrix.py
++++ patched/repos/TheoBrigitte_freqtrade/sources/sponsors/Matrix.py
+@@ -314,7 +314,7 @@
+         dataframe['buy_count'] = (
+             (buy_df['coef'].gt(self.buy_min_corr_coef.value)) & 
+             (buy_df['close'].lt(buy_df[f'zema_{self.buy_zema_len.value}'] * self.buy_offset.value))
+-        ).sum(level=0)
++        ).groupby(level=0).sum()
+         # END SUPER NORMAL BUY SIGNALS
+ 
+         # Evaluate if we should buy based on if enough of the above buys happened
+@@ -342,7 +342,7 @@
+         dataframe['sell_count'] = (
+             (sell_df['coef'].gt(self.sell_min_corr_coef.value)) & 
+             (sell_df['close'].gt(sell_df[f'zema_{self.sell_zema_len.value}'] * self.sell_offset.value))
+-        ).sum(level=0)
++        ).groupby(level=0).sum()
+         # END SUPER NORMAL SELL SIGNALS
+ 
+         # Evaluate if we should sell based on if enough of the above sells happened

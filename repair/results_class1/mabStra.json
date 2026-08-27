@@ -1,0 +1,74 @@
+{
+  "repo": "PeetCrypto/freqtrade-stuff",
+  "file": "repos/PeetCrypto_freqtrade-stuff/mabStra.py",
+  "strategy": "mabStra",
+  "static": [],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 483,
+        "total_pct": -89.69,
+        "expectancy": -1.86,
+        "p_value": 0.0002396,
+        "market_change_pct": -57.43,
+        "sharpe": -2.13,
+        "sortino": -2.42,
+        "profit_factor": 0.59,
+        "drawdown_pct": 92.85,
+        "cagr_pct": -67.84,
+        "used_timeframe": "4h",
+        "declared_timeframe": "4h",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.98,
+        "avg_duration_min": 6475.0,
+        "win_pct": 51.3,
+        "dur_over_candle": 26.98,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 691,
+        "total_pct": -98.82,
+        "expectancy": -1.43,
+        "p_value": 0.005914,
+        "market_change_pct": 337.47,
+        "sharpe": -0.59,
+        "sortino": -0.78,
+        "profit_factor": 0.74,
+        "drawdown_pct": 98.82,
+        "cagr_pct": -49.64,
+        "used_timeframe": "4h",
+        "declared_timeframe": "4h",
+        "missing_pairs": [],
+        "avg_profit_pct": -1.54,
+        "avg_duration_min": 5123.0,
+        "win_pct": 49.5,
+        "dur_over_candle": 21.35,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    },
+    "recursive": {
+      "level": "NOT-APPLICABLE",
+      "why": "Fatal exception!\r",
+      "level_ru": "НЕ ПРИМЕНИМА"
+    }
+  },
+  "declared_timeframe": "4h",
+  "code_md5": "df39e7b6b43f",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 61.1,
+  "extra_syspath": ""
+}

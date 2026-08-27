@@ -25,18 +25,20 @@ import warnings
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 REPOS = os.path.join(ROOT, "repos")
-DEFAULT_REPAIR = os.path.abspath(os.path.join(ROOT, os.pardir, "repair"))
+DEFAULT_REPAIR = os.path.join(ROOT, "repair")
 FIELDS = [
     "strategy_id", "implementation_id", "strategy", "repo", "original_file",
     "canonical_file", "canonical_population", "repair_class", "repair_rules",
     "environment_repair_status", "environment_repair_rules",
     "equivalence_status", "source_tree", "variant", "ledger_present",
-    "original_measured_spot", "canonical_measured", "declared_timeframe", "declared_can_short",
+    "original_measured_spot", "historical_is_trades", "historical_os_trades",
+    "historical_full_measured", "canonical_measured", "declared_timeframe", "declared_can_short",
     "static_long_entry", "static_short_entry", "signal_capability", "direction_capability",
     "has_leverage_callback", "artifact_role", "author_mode_intent", "mode_support",
     "run_profile", "validated_modes",
     "runtime_smoke_status", "runtime_smoke_timerange", "observed_long_trades",
-    "observed_short_trades", "runtime_config_sha256", "evidence_level",
+    "observed_short_trades", "canonical_observed_trades", "trade_evidence_source",
+    "runtime_config_sha256", "evidence_level",
     "classification_status", "classification_reason", "source_sha256",
 ]
 
@@ -275,6 +277,24 @@ def _measured(card):
     return isinstance(summary, dict) and summary.get("trades") is not None
 
 
+def _card_trades(card):
+    total = 0
+    found = False
+    for name in ("in_sample", "out_sample"):
+        summary = (((card or {}).get("runs") or {}).get(name) or {}).get("summary")
+        if isinstance(summary, dict) and summary.get("trades") is not None:
+            total += int(summary["trades"])
+            found = True
+    return total if found else None
+
+
+def _number(value):
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return 0
+
+
 def _load_patch_report(repair_root):
     path = os.path.join(repair_root, "patch_class2_report.json")
     if not os.path.exists(path):
@@ -283,12 +303,12 @@ def _load_patch_report(repair_root):
     return {row["strategy"]: row for row in rows if row.get("action") == "patched"}
 
 
-def _ledger_names():
+def _ledger_rows():
     path = os.path.join(ROOT, "LEDGER.csv")
     if not os.path.exists(path):
-        return set()
+        return {}
     with io.open(path, newline="", encoding="utf-8-sig") as handle:
-        return {row["strategy"] for row in csv.DictReader(handle)}
+        return {row["strategy"]: row for row in csv.DictReader(handle)}
 
 
 def _smoke_results():
@@ -333,7 +353,7 @@ def build(repair_root=DEFAULT_REPAIR):
     class1_cards = _load_cards(os.path.join(repair_root, "results_class1"))
     freqai_cards = _load_cards(os.path.join(repair_root, "results_freqai"))
     patches = _load_patch_report(repair_root)
-    ledger = _ledger_names()
+    ledger = _ledger_rows()
     smoke_results = _smoke_results()
     profile_repairs = _profile_repairs()
     profile_class1 = _profile_class1()
@@ -354,9 +374,17 @@ def build(repair_root=DEFAULT_REPAIR):
             else "template_candidate" if profile["signal_capability"] == "unknown"
             else "strategy"
         )
-        original_ok = _measured(original_cards.get(strategy))
+        ledger_row = ledger.get(strategy) or {}
+        historical_full = bool(ledger_row.get("is_trades") != "" and
+                               ledger_row.get("os_trades") != "")
+        original_ok = _measured(original_cards.get(strategy)) or historical_full
         class1_ok = _measured(class1_cards.get(strategy))
         freqai_ok = _measured(freqai_cards.get(strategy))
+        original_trades = (_number(ledger_row.get("is_trades")) +
+                           _number(ledger_row.get("os_trades"))
+                           if historical_full else _card_trades(original_cards.get(strategy)))
+        class1_trades = _card_trades(class1_cards.get(strategy))
+        freqai_trades = _card_trades(freqai_cards.get(strategy))
         patch = patches.get(strategy)
 
         canonical_path = original_path
@@ -366,6 +394,9 @@ def build(repair_root=DEFAULT_REPAIR):
         equivalence = "not_applicable"
         source_tree = "original"
         canonical_ok = original_ok
+        canonical_trades = original_trades
+        trade_source = "historical_ledger" if historical_full else (
+            "original_result_card" if original_trades is not None else "")
 
         # Prefer a working original.  Otherwise select the strongest documented
         # repair available; the original result remains available for the paired
@@ -380,6 +411,8 @@ def build(repair_root=DEFAULT_REPAIR):
                 equivalence = patch.get("equivalence_status", "not_assessed")
                 source_tree = patch.get("source_tree", "class2-overlay")
                 canonical_ok = class1_ok or freqai_ok
+                canonical_trades = class1_trades if class1_ok else freqai_trades
+                trade_source = "class1_result_card" if class1_ok else "freqai_result_card"
         elif not original_ok and class1_ok:
             population = "repaired"
             repair_class = "class1"
@@ -387,6 +420,8 @@ def build(repair_root=DEFAULT_REPAIR):
             equivalence = "strict_equivalent"
             source_tree = "original+compatibility-environment"
             canonical_ok = True
+            canonical_trades = class1_trades
+            trade_source = "class1_result_card"
         elif not original_ok and freqai_ok:
             population = "repaired"
             repair_class = "freqai_runtime"
@@ -394,6 +429,8 @@ def build(repair_root=DEFAULT_REPAIR):
             equivalence = "not_assessed"
             source_tree = "original+freqai-runtime"
             canonical_ok = True
+            canonical_trades = freqai_trades
+            trade_source = "freqai_result_card"
 
         profile_repair = profile_repairs.get(strategy)
         if profile_repair:
@@ -419,7 +456,8 @@ def build(repair_root=DEFAULT_REPAIR):
 
         # A successful historical result validates only the old spot mode.  It
         # does not validate the inferred direction or futures compatibility.
-        validated_modes = ["spot"] if original_ok else []
+        validated_modes = ["spot"] if (
+            original_ok or (canonical_ok and profile["run_profile"] == "spot_long")) else []
         if original_ok:
             if profile["mode_support"] == "futures":
                 profile["mode_support"] = "both"
@@ -437,6 +475,8 @@ def build(repair_root=DEFAULT_REPAIR):
                 profile["evidence_level"] = "runtime_smoke"
             if profile["classification_status"] == "provisional":
                 profile["classification_status"] = "validated"
+            canonical_trades = _number(smoke.get("long_trades")) + _number(smoke.get("short_trades"))
+            trade_source = "runtime_smoke"
 
         digest = hashlib.sha256(io.open(canonical_path, "rb").read()).hexdigest()
         row = {
@@ -456,6 +496,9 @@ def build(repair_root=DEFAULT_REPAIR):
             "variant": "native",
             "ledger_present": str(strategy in ledger).lower(),
             "original_measured_spot": str(original_ok).lower(),
+            "historical_is_trades": ledger_row.get("is_trades", ""),
+            "historical_os_trades": ledger_row.get("os_trades", ""),
+            "historical_full_measured": str(historical_full).lower(),
             "canonical_measured": str(canonical_ok).lower(),
             "declared_timeframe": timeframe,
             "declared_can_short": can_short,
@@ -468,6 +511,8 @@ def build(repair_root=DEFAULT_REPAIR):
             "runtime_smoke_timerange": smoke.get("timerange", ""),
             "observed_long_trades": smoke.get("long_trades", ""),
             "observed_short_trades": smoke.get("short_trades", ""),
+            "canonical_observed_trades": "" if canonical_trades is None else canonical_trades,
+            "trade_evidence_source": trade_source,
             "runtime_config_sha256": smoke.get("runtime_config_sha256", ""),
             "source_sha256": "sha256_" + digest,
         }

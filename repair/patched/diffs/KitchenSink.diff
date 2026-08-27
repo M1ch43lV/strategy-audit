@@ -1,0 +1,13 @@
+--- original/repos/jaredrsommer_freqtradestrategies/KitchenSink (2).py
++++ patched/repos/jaredrsommer_freqtradestrategies/KitchenSink (2).py
+@@ -722,8 +722,8 @@
+                     active_down_segment = None
+ 
+ 
+-        dataframe['vtl_up'] = dataframe['vtl_up'].fillna(method='ffill')
+-        dataframe['vtl_down'] = dataframe['vtl_down'].fillna(method='ffill')
++        dataframe['vtl_up'] = dataframe['vtl_up'].ffill()
++        dataframe['vtl_down'] = dataframe['vtl_down'].ffill()
+         dataframe['vtl-spread'] = dataframe['vtl_down'] - dataframe['vtl_up']
+ 
+         dataframe['vtl_up_slope'] = dataframe['vtl_up'].diff()

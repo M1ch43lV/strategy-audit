@@ -1,0 +1,11 @@
+--- original/repos/PeetCrypto_freqtrade-stuff/ScalpingCCI.py
++++ patched/repos/PeetCrypto_freqtrade-stuff/ScalpingCCI.py
+@@ -74,7 +74,7 @@
+ 
+         dataframe = resampled_merge(dataframe, dataframe_daily)
+ 
+-        dataframe.fillna(method='ffill', inplace=True)
++        dataframe.ffill(inplace=True)
+ 
+         pd.set_option('display.max_rows', 500)
+         pd.set_option('display.max_columns', 500)

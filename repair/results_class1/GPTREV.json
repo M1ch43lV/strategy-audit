@@ -1,0 +1,77 @@
+{
+  "repo": "jaredrsommer/freqtradestrategies",
+  "file": "repos/jaredrsommer_freqtradestrategies/GPTREV.py",
+  "strategy": "GPTREV",
+  "static": [],
+  "runs": {
+    "in_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 222,
+        "total_pct": -47.57,
+        "expectancy": -2.14,
+        "p_value": 0.04899,
+        "market_change_pct": -55.6,
+        "sharpe": -0.77,
+        "sortino": -2.04,
+        "profit_factor": 0.74,
+        "drawdown_pct": 55.82,
+        "cagr_pct": -27.59,
+        "used_timeframe": "1m",
+        "declared_timeframe": "1m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.53,
+        "avg_duration_min": 1992.0,
+        "win_pct": 44.1,
+        "dur_over_candle": 1992.0,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "out_sample": {
+      "level": "PASSED",
+      "why": "",
+      "summary": {
+        "trades": 378,
+        "total_pct": -87.55,
+        "expectancy": -2.32,
+        "p_value": 0.0003514,
+        "market_change_pct": 348.13,
+        "sharpe": -0.57,
+        "sortino": -1.26,
+        "profit_factor": 0.66,
+        "drawdown_pct": 88.99,
+        "cagr_pct": -27.52,
+        "used_timeframe": "1m",
+        "declared_timeframe": "1m",
+        "missing_pairs": [],
+        "avg_profit_pct": -0.7,
+        "avg_duration_min": 2544.0,
+        "win_pct": 45.0,
+        "dur_over_candle": 2544.0,
+        "intracandle": false
+      },
+      "level_ru": "ПРОШЛА"
+    },
+    "lookahead": {
+      "level": "PASSED",
+      "why": "no bias detected",
+      "level_ru": "ПРОШЛА",
+      "why_ru": "смещения не обнаружено"
+    },
+    "recursive": {
+      "level": "FOUND",
+      "why": "indicators change with the amount of history: rsi_15m -1.565%, adx_15m 35.104%, macdf_15m -123.747%, macdd_15m -195.903%, macdh_15m 656.941%",
+      "level_ru": "НАЙДЕНО",
+      "why_ru": "индикаторы меняются от объёма истории: rsi_15m -1.565%, adx_15m 35.104%, macdf_15m -123.747%, macdd_15m -195.903%, macdh_15m 656.941%"
+    }
+  },
+  "declared_timeframe": "1m",
+  "code_md5": "df39e7b6b43f",
+  "config_variant": "price_side=other (market orders)",
+  "source": "class1_rerun",
+  "run_class": "class1",
+  "elapsed_s": 1721.6,
+  "extra_syspath": ""
+}

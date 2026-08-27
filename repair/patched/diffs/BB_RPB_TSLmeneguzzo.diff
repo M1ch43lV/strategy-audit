@@ -1,0 +1,11 @@
+--- original/repos/davidzr_freqtrade-strategies/strategies/BB_RPB_TSLmeneguzzo/BB_RPB_TSLmeneguzzo.py
++++ patched/repos/davidzr_freqtrade-strategies/strategies/BB_RPB_TSLmeneguzzo/BB_RPB_TSLmeneguzzo.py
+@@ -1044,7 +1044,7 @@
+     pm = Series(pm_arr)
+ 
+     # Mark the trend direction up/down
+-    pmx = np.where((pm_arr > 0.00), np.where((mavalue < pm_arr), 'down',  'up'), np.NaN)
++    pmx = np.where((pm_arr > 0.00), np.where((mavalue < pm_arr), 'down',  'up'), 'nan')
+ 
+     return pm, pmx
+ 
