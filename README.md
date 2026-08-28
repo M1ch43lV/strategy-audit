@@ -204,6 +204,9 @@ captured all of it.
 - **[PROFILE_BIAS.json](PROFILE_BIAS.json)** stores identity-bound canonical
   look-ahead and recursive reruns produced resumably by `profile_bias.py`,
   including native futures diagnostics that never inherit a historical spot PASS.
+- **[Dockerfile.audit](Dockerfile.audit)** and
+  **[profile_bias_docker.ps1](profile_bias_docker.ps1)** provide the pinned
+  Linux diagnostic runtime used when Windows Smart App Control blocks PyPI DLLs.
 - **[repair/REGISTER.md](repair/REGISTER.md)** — the complete Class 1/Class 2
   repair provenance and reproducible overlays. **[cluster/CLUSTERS.md](cluster/CLUSTERS.md)**
   preserves the preregistered source taxonomy as interpretation metadata.

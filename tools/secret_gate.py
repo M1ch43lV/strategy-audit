@@ -67,6 +67,12 @@ PATTERNS = [
                 r"['\"][A-Za-z0-9/+_\-]{16,}['\"]")),
 ]
 
+# Cryptographic evidence is intentionally 64 hexadecimal characters too. Only
+# exempt a value when the same line explicitly labels it as SHA-256; do not
+# allow-list the whole result file, because an unrelated credential in that
+# file must still stop the commit.
+SHA256_EVIDENCE = re.compile(r"(?i)(?:sha256[_:]|@sha256:)[a-f0-9]{64}\b")
+
 # Names that must NEVER appear in a public repository.
 FORBIDDEN_NAMES = re.compile(
     r"(?:^|/)(?:id_rsa|id_ed25519|id_ecdsa|id_dsa|id_deploy[^/]*|"
@@ -101,6 +107,9 @@ def scan_text(path, text):
         if len(line) > 4000:
             continue
         for name, rx in PATTERNS:
+            if name in (u"exchange key/secret (64 hex)",
+                        u"Binance key (64 alphanumeric)") and SHA256_EVIDENCE.search(line):
+                continue
             if rx.search(line):
                 hits.append((i, name))
                 break
@@ -175,6 +184,12 @@ def selftest():
 
     # ── MUST NOT BE CAUGHT ──
     case(u"ordinary code", "i.py", "x = compute(a, b)  # ok", False)
+    case(u"labelled sha256 evidence", "result.json",
+         '"output_sha256": "sha256_' + "a1"*32 + '"', False)
+    case(u"docker digest evidence", "Dockerfile.audit",
+         "FROM image@sha256:" + "b2"*32, False)
+    case(u"unlabelled 64 hex remains blocked", "result.json",
+         '"value": "' + "c3"*32 + '"', True)
     case(u"commit hash (40 hex) — not a secret", "j.md",
          "commit 8b63377f1b4390ab12cd34ef56ab78cd90ef12ab", False)
     case(u"public certifi", "venv/certifi/cacert.pem",

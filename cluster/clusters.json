@@ -1316,7 +1316,7 @@
   "provenance": "repaired",
   "repair_class": "class2",
   "measured": true,
-  "eligibility_status": "pending_diagnostics",
+  "eligibility_status": "ineligible",
   "direction": "long_short",
   "speed": "scalp",
   "logic": "momentum",

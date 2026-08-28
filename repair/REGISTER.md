@@ -400,3 +400,8 @@ overrides only `RMI`: it fills the two numeric intermediates `maxup` and
 series are otherwise unchanged. This is recorded as Class 1 rule
 `datetime_safe_rmi_fillna`; it restores compatibility without changing the
 strategy's intended behavior.
+
+The same global Class 1 aliases used by the original Windows audit environment
+are activated in the Linux diagnostic runtime through the versioned
+`repair/sitecustomize.py`. This is environment parity, not an additional
+strategy repair.

@@ -1,0 +1,11 @@
+# Numerical stack used by the versioned strategy audit.
+numpy==2.5.2
+pandas==3.0.5
+scipy==1.18.1
+TA-Lib==0.7.1
+
+# Optional dependencies already present in the original Windows audit venv and
+# imported by canonical/repaired strategies during resolver discovery.
+arrow==1.4.0
+PyWavelets==1.9.0
+scikit-optimize==0.10.2

@@ -94,24 +94,24 @@
         "attempted_timeranges": [
           "20200301-20200401"
         ],
-        "debug_log": "user_data/profile_bias_logs/FTT_DWT_FBB_FUTURES-lookahead.log",
-        "elapsed_s": 29.5,
-        "output_sha256": "sha256_49ba465c3a5dbba8b254f198beddbdda7e9b6d3b9f7dba59ce0aab35629cab95",
-        "status": "NA",
+        "elapsed_s": 72.7,
+        "output_sha256": "sha256_3523cc4cac6d11faa1d2e1fc1da658a95fa86304f2c6bfa14c25b02fb4390a92",
+        "runtime_id": "docker:sha256:0ec226373544bf433a0f3191f21c677ea40625613f4feed36d63aa030fda5d8b",
+        "status": "PASS",
         "timerange": "20200301-20200401",
-        "why": "DLL load failed while importing _group_columns: Eine Anwendungssteuerungsrichtlinie hat diese Datei blockiert."
+        "why": "no bias detected"
       },
       "mode": "futures",
       "recursive": {
         "attempted_timeranges": [
           "20200301-20200401"
         ],
-        "debug_log": "user_data/profile_bias_logs/FTT_DWT_FBB_FUTURES-recursive.log",
-        "elapsed_s": 2.2,
-        "output_sha256": "sha256_7ce922ff4e42c7fec28989827556f930487b8ade686ece0e3dee256de73f5186",
-        "status": "NA",
+        "elapsed_s": 32.2,
+        "output_sha256": "sha256_71d41d151212cc4415419d3afea5295396a89b6281e11a26ce073a443bcde520",
+        "runtime_id": "docker:sha256:0ec226373544bf433a0f3191f21c677ea40625613f4feed36d63aa030fda5d8b",
+        "status": "FOUND",
         "timerange": "20200301-20200401",
-        "why": "DLL load failed while importing _group_columns: Eine Anwendungssteuerungsrichtlinie hat diese Datei blockiert."
+        "why": "recursive drift: fisher_rsi -0.048%, fisher_wr -0.027%"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"

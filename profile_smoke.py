@@ -25,7 +25,9 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 MANIFEST = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
 OUTPUT = os.path.join(ROOT, "PROFILE_SMOKE.json")
 FUTURES_CONFIG = os.path.join(ROOT, "profile_futures_config.json")
-PYTHON = os.path.join(ROOT, "ftenv", "Scripts", "python.exe")
+# Use the interpreter running this pipeline. PROFILE_PYTHON remains available
+# for an explicit isolated runtime, while Docker/WSL can use their own Python.
+PYTHON = os.environ.get("PROFILE_PYTHON", sys.executable)
 FT_WRAPPER = os.path.join(ROOT, "profile_freqtrade.py")
 CLASS1 = os.path.join(ROOT, "PROFILE_CLASS1.json")
 EXPORT_DIR = os.path.join(ROOT, "user_data", "profile_smoke")

@@ -39,8 +39,8 @@ pair/timerange completeness check that produced the status.
 | Status | Strategies |
 |---|---:|
 | `eligible` | 25 |
-| `ineligible` | 731 |
-| `pending_diagnostics` | 144 |
+| `ineligible` | 732 |
+| `pending_diagnostics` | 143 |
 
 ## Native run profiles
 
@@ -62,7 +62,7 @@ Reasons are non-exclusive.
 | `canonical_implementation_not_measured` | 278 |
 | `lookahead_found` | 40 |
 | `no_trades_in_full_measurement` | 5 |
-| `recursive_bias_found` | 457 |
+| `recursive_bias_found` | 458 |
 | `technical_trap_found` | 42 |
 
 ## Pending reasons
@@ -77,11 +77,11 @@ cannot be both failed and pending on one row.
 | `artifact_role_requires_review` | 14 |
 | `exact_regime_window_coverage_not_verified` | 80 |
 | `execution_profile_unresolved` | 1 |
-| `futures_mode_bias_diagnostics_not_completed` | 82 |
-| `lookahead_not_completed` | 620 |
+| `futures_mode_bias_diagnostics_not_completed` | 81 |
+| `lookahead_not_completed` | 619 |
 | `native_mode_not_runtime_validated` | 278 |
 | `output_equivalent_requires_canonical_bias_rerun` | 4 |
-| `recursive_bias_not_completed` | 217 |
+| `recursive_bias_not_completed` | 216 |
 | `zero_trades_in_smoke_requires_full_window` | 13 |
 
 The machine-readable row-level record is `REGIME_ELIGIBILITY.csv`.

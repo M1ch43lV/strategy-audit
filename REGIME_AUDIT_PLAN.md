@@ -2,8 +2,8 @@
 
 **Working title:** Regime-Aware Audit and Strategy Selection for Public Freqtrade Strategies
 **Status:** Discussion draft / implementation handoff
-**Version:** 0.7
-**Date:** 2026-08-27
+**Version:** 0.8
+**Date:** 2026-08-28
 **Primary target:** Codex / other AI coding sessions working on `Apex-prim/strategy-audit`
 **Repository:** https://github.com/Apex-prim/strategy-audit
 
@@ -1536,7 +1536,7 @@ Historical spot PASS values are not inherited by futures profiles. Missing
 evidence is `pending_diagnostics`, never an implicit PASS or FAIL. Profit,
 significance, market comparison, taxonomy, and cluster membership are excluded
 from the rule.
-**Current snapshot:** 25 eligible, 144 pending diagnostics, 731 ineligible
+**Current snapshot:** 25 eligible, 143 pending diagnostics, 732 ineligible
 across 900 native `strategy_id × run_profile` rows. The coverage inventory
 passes 820 rows and leaves 80 pending. These counts are generated, not frozen
 constants.
@@ -1579,11 +1579,36 @@ runs rather than monopolizing the queue.
 **Current snapshot:** seven canonical records produced. `MacdStrategy`, `SMAOG`,
 and futures `RegimeFilterStrategy` newly satisfy eligibility; `Dimond` and
 futures-short `AdxSmasS` are excluded by native recursive findings;
-`FTT_DWT_FBB_FUTURES` remains pending. Its copied RMI helper was repaired as
-Class 1 after the original recursive run exposed a current-pandas datetime
-fill incompatibility. The repaired rerun is currently `NA` because Windows
-Smart App Control blocks the environment's unsigned SciPy binary modules; this
-is recorded as an infrastructure prerequisite, not a strategy finding.
+`FTT_DWT_FBB_FUTURES` passes native look-ahead analysis but is excluded by
+reproducible recursive drift in `fisher_rsi` and `fisher_wr`. Its copied RMI
+helper was repaired as Class 1 after the original recursive run exposed a
+current-pandas datetime fill incompatibility; that compatibility repair is
+separate from the subsequent bias finding.
+
+## Decision 0.8-01 — Pinned Linux diagnostic runtime
+
+**Status:** adopted and implemented
+**Timing:** after Windows infrastructure failure, before further bias results
+**Class:** operational reproducibility; no strategy or selection-rule change
+**Decision:** run the remaining native bias diagnostics in the versioned
+`Dockerfile.audit` runtime when Windows Smart App Control blocks unsigned PyPI
+DLLs. The image pins Freqtrade 2026.7 and the same NumPy, pandas, SciPy, TA-Lib,
+and optional strategy dependencies as the original audit environment. The
+repository is mounted read/write so raw ignored candles are reused, while
+`profile_bias.py` records the container image ID with each new diagnostic.
+The global Class 1 compatibility aliases are activated through the versioned
+`repair/sitecustomize.py` in every subprocess. `profile_bias_docker.ps1`
+rebuilds and launches this runtime.
+**Validation:** FTT first reproduced its old RMI failure boundary, then passed
+look-ahead analysis after the already classified Class 1 repairs were present.
+The fully fingerprinted recursive rerun found drift of -0.048 percent in
+`fisher_rsi` and -0.027 percent in `fisher_wr`, both above the preregistered
+0.01-percent tolerance. One- and two-thread OpenBLAS sensitivity reruns
+reproduced both values exactly to three decimal places. Stage 6 consequently
+moved from 25/144/731 to
+25 eligible, 143 pending, and 732 ineligible.
+**Reason:** retain Smart App Control and avoid unsupported per-file bypasses
+while keeping the numerical audit stack fixed and reproducible.
 
 ---
 

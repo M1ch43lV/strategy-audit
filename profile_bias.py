@@ -27,7 +27,9 @@ ELIGIBILITY = os.path.join(ROOT, "REGIME_ELIGIBILITY.csv")
 OUTPUT = os.path.join(ROOT, "PROFILE_BIAS.json")
 SPOT_CONFIG = os.path.join(ROOT, "user_data", "config.json")
 CONFIG_DIR = os.path.join(ROOT, "user_data", "profile_configs")
-PYTHON = os.path.join(ROOT, "ftenv", "Scripts", "python.exe")
+# Use the interpreter running this pipeline. This keeps the Windows venv and
+# the Linux/Docker execution path equivalent without host-specific branching.
+PYTHON = os.environ.get("PROFILE_PYTHON", sys.executable)
 FT_WRAPPER = os.path.join(ROOT, "profile_freqtrade.py")
 LOG_DIR = os.path.join(ROOT, "user_data", "profile_bias_logs")
 WINDOWS = {"spot": "20190101-20190401", "futures": "20200301-20200401"}
@@ -168,6 +170,7 @@ def run_diagnostic(row, diagnostic, timeout, fallback_timeout):
                 "status": status, "why": why, "timerange": timerange,
                 "attempted_timeranges": attempted,
                 "elapsed_s": round(time.time() - started, 1),
+                "runtime_id": os.environ.get("PROFILE_RUNTIME_ID", "native_unversioned"),
                 "output_sha256": "sha256_" + hashlib.sha256(
                     output.encode("utf-8")).hexdigest(),
             }
@@ -210,11 +213,16 @@ def main(argv=None):
     parser.add_argument("--diagnostics", default="lookahead,recursive")
     parser.add_argument("--timeout", type=int, default=1200)
     parser.add_argument("--fallback-timeout", type=int, default=300)
+    parser.add_argument("--force", action="store_true",
+                        help="rerun selected diagnostics even when PASS/FOUND is stored")
     args = parser.parse_args(argv)
     wanted = set(filter(None, args.diagnostics.split(",")))
     if not wanted <= {"lookahead", "recursive"}:
         raise SystemExit("diagnostics must be lookahead and/or recursive")
-    rows = candidates(args.profiles, args.eligibility)
+    if args.force and args.only:
+        rows = _csv(args.profiles)
+    else:
+        rows = candidates(args.profiles, args.eligibility)
     if args.only:
         rows = [row for row in rows if row["strategy_id"] in set(args.only)]
     rows = rows[:args.limit]
@@ -229,7 +237,8 @@ def main(argv=None):
             previous = {}
         previous.update(current_identity)
         for diagnostic in ("lookahead", "recursive"):
-            if diagnostic not in wanted or previous.get(diagnostic, {}).get("status") in ("PASS", "FOUND"):
+            if diagnostic not in wanted or (not args.force and
+                    previous.get(diagnostic, {}).get("status") in ("PASS", "FOUND")):
                 continue
             print("[%d/%d] %s %s %s" %
                   (number, len(rows), strategy, mode, diagnostic), flush=True)
