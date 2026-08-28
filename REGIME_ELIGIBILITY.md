@@ -39,8 +39,8 @@ pair/timerange completeness check that produced the status.
 | Status | Strategies |
 |---|---:|
 | `eligible` | 29 |
-| `ineligible` | 743 |
-| `pending_diagnostics` | 128 |
+| `ineligible` | 748 |
+| `pending_diagnostics` | 123 |
 
 ## Native run profiles
 
@@ -60,9 +60,9 @@ Reasons are non-exclusive.
 |---|---:|
 | `behavior_changed_primary_exclusion` | 1 |
 | `canonical_implementation_not_measured` | 278 |
-| `lookahead_found` | 42 |
+| `lookahead_found` | 43 |
 | `no_trades_in_full_measurement` | 5 |
-| `recursive_bias_found` | 469 |
+| `recursive_bias_found` | 474 |
 | `technical_trap_found` | 42 |
 
 ## Pending reasons
@@ -77,11 +77,11 @@ cannot be both failed and pending on one row.
 | `artifact_role_requires_review` | 14 |
 | `exact_regime_window_coverage_not_verified` | 80 |
 | `execution_profile_unresolved` | 1 |
-| `futures_mode_bias_diagnostics_not_completed` | 66 |
-| `lookahead_not_completed` | 604 |
+| `futures_mode_bias_diagnostics_not_completed` | 62 |
+| `lookahead_not_completed` | 600 |
 | `native_mode_not_runtime_validated` | 278 |
 | `output_equivalent_requires_canonical_bias_rerun` | 4 |
-| `recursive_bias_not_completed` | 201 |
+| `recursive_bias_not_completed` | 196 |
 | `zero_trades_in_smoke_requires_full_window` | 13 |
 
 The machine-readable row-level record is `REGIME_ELIGIBILITY.csv`.

@@ -2,7 +2,7 @@
 
 **Working title:** Regime-Aware Audit and Strategy Selection for Public Freqtrade Strategies
 **Status:** Discussion draft / implementation handoff
-**Version:** 0.11
+**Version:** 0.12
 **Date:** 2026-08-28
 **Primary target:** Codex / other AI coding sessions working on `Apex-prim/strategy-audit`
 **Repository:** https://github.com/Apex-prim/strategy-audit
@@ -1536,7 +1536,7 @@ Historical spot PASS values are not inherited by futures profiles. Missing
 evidence is `pending_diagnostics`, never an implicit PASS or FAIL. Profit,
 significance, market comparison, taxonomy, and cluster membership are excluded
 from the rule.
-**Current snapshot:** 29 eligible, 128 pending diagnostics, 743 ineligible
+**Current snapshot:** 29 eligible, 123 pending diagnostics, 748 ineligible
 across 900 native `strategy_id × run_profile` rows. The coverage inventory
 passes 820 rows and leaves 80 pending. These counts are generated, not frozen
 constants.
@@ -1576,7 +1576,7 @@ PASS. A short diagnostic window may expand to the frozen full window when the
 look-ahead analyzer sees too few trades; the fallback is time-bounded and
 resumable. Zero-trade smokes and unresolved coverage are handled before bias
 runs rather than monopolizing the queue.
-**Current snapshot:** twenty-two canonical records produced. `MacdStrategy`, `SMAOG`,
+**Current snapshot:** twenty-seven canonical records produced. `MacdStrategy`, `SMAOG`,
 and futures `RegimeFilterStrategy` newly satisfy eligibility; `Dimond` and
 futures-short `AdxSmasS` are excluded by native recursive findings;
 `FTT_DWT_FBB_FUTURES` passes native look-ahead analysis but is excluded by
@@ -1674,6 +1674,30 @@ startup value is changed because doing so would alter strategy behavior.
 summary counters for an unbiased result when Freqtrade reports biased columns.
 The five status transitions result from newly completed diagnostics; the
 parser detail change does not alter any PASS/FOUND status.
+
+## Decision 0.12-01 — Fourth controlled futures bias batch
+
+**Status:** completed
+**Timing:** after the third five-strategy checkpoint
+**Class:** measurement checkpoint; no selection-rule or strategy change
+**Decision:** process `ZaratustraDCA5`, `BinHV27_short`, `ConsensusShort`,
+`FakeoutStrategy`, and `AlmgrenChrissStrategy` in the same fingerprinted native
+futures runtime. `ZaratustraDCA5` passes look-ahead analysis but recursive
+analysis refuses its authored `startup_candle_count=0`. The output-equivalent
+Class 2 `BinHV27_short` overlay produces recursive drift of 63370.607 percent
+in `trend`; its look-ahead fallback over the full window is externally killed
+with process status -9 and remains `NA`, not a fabricated PASS or finding.
+`ConsensusShort` passes look-ahead analysis and produces recursive drift in
+`consensus_buy` and `rmi`. The strict-equivalent Class 2 `FakeoutStrategy`
+overlay produces look-ahead findings in its peak and entry columns, while its
+zero startup count also prevents a recursive PASS. `AlmgrenChrissStrategy`
+passes look-ahead analysis and produces recursive drift in `rsi` and `kappa`.
+Each strategy has at least one native finding, so the inconclusive
+`BinHV27_short` look-ahead result does not leave that strategy pending under
+the unchanged eligibility rule. No compatibility or source repair is needed.
+**Current snapshot:** 29 eligible, 123 pending diagnostics, and 748 ineligible.
+**Reason:** measure repaired and original strategies under identical gates,
+while preserving an infrastructure-limited diagnostic as inconclusive.
 
 ---
 
