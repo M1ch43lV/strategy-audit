@@ -16,6 +16,7 @@ import os
 import sys
 
 import profile_bias
+import profile_smoke
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -23,6 +24,8 @@ PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
 LEDGER = os.path.join(ROOT, "LEDGER.csv")
 COVERAGE = os.path.join(ROOT, "REGIME_COVERAGE.csv")
 BIAS = os.path.join(ROOT, "PROFILE_BIAS.json")
+FULL_MEASUREMENT = os.path.join(ROOT, "PROFILE_FULL_WINDOW.json")
+FULL_TIMERANGE = "20200301-20260821"
 OUTPUT = os.path.join(ROOT, "REGIME_ELIGIBILITY.csv")
 REPORT = os.path.join(ROOT, "REGIME_ELIGIBILITY.md")
 
@@ -50,16 +53,23 @@ def _integer(value):
         return 0
 
 
-def classify(profile, ledger, coverage=None, bias=None):
+def classify(profile, ledger, coverage=None, bias=None, full_measurement=None):
     hard = []
     pending = []
     coverage = coverage or {}
     bias = bias or {}
+    full_measurement = full_measurement or {}
     run_profile = profile["run_profile"]
     expected_mode = "futures" if run_profile.startswith("futures_") else "spot"
     measured = profile["canonical_measured"] == "true"
     trades = _integer(profile.get("canonical_observed_trades"))
+    observed_trades = profile.get("canonical_observed_trades", "")
     trade_source = profile.get("trade_evidence_source", "")
+    if measured and trades == 0 and trade_source == "runtime_smoke" and \
+            full_measurement.get("status") == "measured":
+        trades = _integer(full_measurement.get("trades"))
+        observed_trades = full_measurement.get("trades", 0)
+        trade_source = "runtime_full_window"
 
     if run_profile == "unknown":
         pending.append("execution_profile_unresolved")
@@ -153,7 +163,7 @@ def classify(profile, ledger, coverage=None, bias=None):
         "equivalence_status": equivalence,
         "artifact_role": profile["artifact_role"],
         "canonical_measured": profile["canonical_measured"],
-        "canonical_observed_trades": profile.get("canonical_observed_trades", ""),
+        "canonical_observed_trades": observed_trades,
         "trade_evidence_source": trade_source,
         "validated_modes": profile.get("validated_modes", ""),
         "lookahead": lookahead,
@@ -174,7 +184,7 @@ def classify(profile, ledger, coverage=None, bias=None):
 
 
 def build(profile_path=PROFILES, ledger_path=LEDGER, coverage_path=COVERAGE,
-          bias_path=BIAS):
+          bias_path=BIAS, full_measurement_path=FULL_MEASUREMENT):
     profiles = _read_csv(profile_path)
     ledger = {row["strategy"]: row for row in _read_csv(ledger_path)}
     coverage_rows = _read_csv(coverage_path) if os.path.exists(coverage_path) else []
@@ -184,17 +194,37 @@ def build(profile_path=PROFILES, ledger_path=LEDGER, coverage_path=COVERAGE,
             bias_path, encoding="utf-8")).get("results") or {}
     else:
         stored_bias = {}
+    if os.path.exists(full_measurement_path):
+        stored_full = json.load(io.open(
+            full_measurement_path, encoding="utf-8")).get("results") or {}
+    else:
+        stored_full = {}
     # A source/config/rule/mode/profile change invalidates old evidence even if
     # profile_bias.py has not yet been rerun. This makes the identity binding a
     # consumer-side gate, not merely metadata written by the producer.
     bias = {}
+    full = {}
     for profile in profiles:
         result = stored_bias.get(profile["strategy_id"])
         if result and profile_bias.identity_matches(profile, result):
             bias[profile["strategy_id"]] = result
+        measurement = stored_full.get(profile["strategy_id"])
+        try:
+            expected_smoke_identity = profile_smoke._identity(profile)
+        except (OSError, ValueError, KeyError, json.JSONDecodeError):
+            expected_smoke_identity = {}
+        if measurement and expected_smoke_identity and \
+                measurement.get("timerange") == FULL_TIMERANGE and \
+                measurement.get("run_profile") == profile.get("run_profile") and \
+                measurement.get("mode") == ("futures" if profile.get(
+                    "run_profile", "").startswith("futures_") else "spot") and all(
+                measurement.get(key) == value
+                for key, value in expected_smoke_identity.items()):
+            full[profile["strategy_id"]] = measurement
     return [classify(row, ledger.get(row["strategy_id"], {}),
                      coverage.get((row["strategy_id"], row["run_profile"]), {}),
-                     bias.get(row["strategy_id"], {}))
+                     bias.get(row["strategy_id"], {}),
+                     full.get(row["strategy_id"], {}))
             for row in profiles]
 
 
@@ -317,6 +347,13 @@ def selftest():
     assert failed["eligibility_status"] == "ineligible"
     smoke = dict(base, canonical_observed_trades="0", trade_evidence_source="runtime_smoke")
     assert classify(smoke, {"lookahead": "NA", "recursive": "NA"})["eligibility_status"] == "pending_diagnostics"
+    full_pass = classify(smoke, {"lookahead": "PASS", "recursive": "PASS"},
+                         coverage, {}, {"status": "measured", "trades": 3})
+    assert full_pass["eligibility_status"] == "eligible"
+    assert full_pass["trade_evidence_source"] == "runtime_full_window"
+    full_zero = classify(smoke, {"lookahead": "PASS", "recursive": "PASS"},
+                         coverage, {}, {"status": "measured", "trades": 0})
+    assert "no_trades_in_full_measurement" in full_zero["exclusion_reasons"]
     assert classify(base, {"lookahead": "PASS", "recursive": "PASS"})["eligibility_status"] == "pending_diagnostics"
     print("regime_eligibility selftest: PASS")
 
@@ -327,6 +364,7 @@ def main(argv=None):
     parser.add_argument("--ledger", default=LEDGER)
     parser.add_argument("--coverage", default=COVERAGE)
     parser.add_argument("--bias", default=BIAS)
+    parser.add_argument("--full-measurement", default=FULL_MEASUREMENT)
     parser.add_argument("--output", default=OUTPUT)
     parser.add_argument("--report", default=REPORT)
     parser.add_argument("--selftest", action="store_true")
@@ -334,7 +372,8 @@ def main(argv=None):
     if args.selftest:
         selftest()
         return 0
-    rows = build(args.profiles, args.ledger, args.coverage, args.bias)
+    rows = build(args.profiles, args.ledger, args.coverage, args.bias,
+                 args.full_measurement)
     _write_csv(rows, args.output)
     _write_report(rows, args.report)
     counts = collections.Counter(row["eligibility_status"] for row in rows)

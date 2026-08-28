@@ -331,6 +331,8 @@ def main(argv=None):
             continue
         result = run_one(row, args.timerange, args.timeout)
         result.update(identity)
+        result["runtime_id"] = os.environ.get(
+            "PROFILE_RUNTIME_ID", "native_unversioned")
         data["results"][name] = result
         write_results(data, args.output)
         detail = ("L=%s S=%s" % (result.get("long_trades"), result.get("short_trades"))

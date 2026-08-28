@@ -1,0 +1,19 @@
+{
+  "config": "profile_futures_config.json",
+  "results": {
+    "FOttStrategy": {
+      "canonical_sha256": "sha256_6825ddc4bb1edd9ac497fb8786acc4e039189ea470ada917617623b1b6382085",
+      "class1_rules": [],
+      "elapsed_s": 1800.0,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+      "status": "timeout",
+      "timerange": "20200301-20260821",
+      "why": "timeout after 1800 seconds"
+    }
+  },
+  "schema_version": 1,
+  "timerange": "20200301-20260821"
+}

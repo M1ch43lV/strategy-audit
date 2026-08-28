@@ -2,7 +2,7 @@
 
 **Working title:** Regime-Aware Audit and Strategy Selection for Public Freqtrade Strategies
 **Status:** Discussion draft / implementation handoff
-**Version:** 0.14
+**Version:** 0.15
 **Date:** 2026-08-28
 **Primary target:** Codex / other AI coding sessions working on `Apex-prim/strategy-audit`
 **Repository:** https://github.com/Apex-prim/strategy-audit
@@ -1747,6 +1747,29 @@ profiles first require their preregistered full-window zero-trade measurement;
 `haGradient` retains the documented source/analyzer incompatibility.
 **Reason:** maximize measured coverage without weakening the repair standard
 or treating an analyzer exception as a PASS or bias finding.
+
+## Decision 0.15-01 — Separate full-window trade evidence
+
+**Status:** implemented and calibration started
+**Timing:** after exhausting the directly runnable futures bias queue, before
+resolving zero-trade smoke profiles
+**Class:** implementation and measurement checkpoint; no eligibility-rule or
+strategy change
+**Decision:** store full-window backtest evidence in
+`PROFILE_FULL_WINDOW.json` rather than overwriting `PROFILE_SMOKE.json`.
+`regime_eligibility.py` consumes a full-window result only when its canonical
+source and effective runtime-config hashes match the current execution profile.
+A measured positive trade count replaces zero-trade smoke evidence; a measured
+zero becomes `no_trades_in_full_measurement`; failures and timeouts leave the
+strategy pending. `profile_smoke_docker.ps1` binds each result to the pinned
+container image. The first calibration runs `FOttStrategy` over
+2020-03-01 through 2026-08-21 exclusive and reaches the fixed 1800-second
+limit while remaining CPU-active. It is recorded as `timeout`, not as zero
+trades or a strategy failure. The current eligibility snapshot therefore
+remains 31 eligible, 114 pending diagnostics, and 755 ineligible.
+**Reason:** keep short smoke evidence immutable, prevent mixed-window records,
+and make expensive full-window measurements resumable without relaxing the
+zero-trade gate.
 
 ---
 
