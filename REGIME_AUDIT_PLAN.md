@@ -2,7 +2,7 @@
 
 **Working title:** Regime-Aware Audit and Strategy Selection for Public Freqtrade Strategies
 **Status:** Discussion draft / implementation handoff
-**Version:** 0.12
+**Version:** 0.13
 **Date:** 2026-08-28
 **Primary target:** Codex / other AI coding sessions working on `Apex-prim/strategy-audit`
 **Repository:** https://github.com/Apex-prim/strategy-audit
@@ -1536,7 +1536,7 @@ Historical spot PASS values are not inherited by futures profiles. Missing
 evidence is `pending_diagnostics`, never an implicit PASS or FAIL. Profit,
 significance, market comparison, taxonomy, and cluster membership are excluded
 from the rule.
-**Current snapshot:** 29 eligible, 123 pending diagnostics, 748 ineligible
+**Current snapshot:** 31 eligible, 118 pending diagnostics, 751 ineligible
 across 900 native `strategy_id × run_profile` rows. The coverage inventory
 passes 820 rows and leaves 80 pending. These counts are generated, not frozen
 constants.
@@ -1576,7 +1576,7 @@ PASS. A short diagnostic window may expand to the frozen full window when the
 look-ahead analyzer sees too few trades; the fallback is time-bounded and
 resumable. Zero-trade smokes and unresolved coverage are handled before bias
 runs rather than monopolizing the queue.
-**Current snapshot:** twenty-seven canonical records produced. `MacdStrategy`, `SMAOG`,
+**Current snapshot:** thirty-two canonical records produced. `MacdStrategy`, `SMAOG`,
 and futures `RegimeFilterStrategy` newly satisfy eligibility; `Dimond` and
 futures-short `AdxSmasS` are excluded by native recursive findings;
 `FTT_DWT_FBB_FUTURES` passes native look-ahead analysis but is excluded by
@@ -1698,6 +1698,27 @@ the unchanged eligibility rule. No compatibility or source repair is needed.
 **Current snapshot:** 29 eligible, 123 pending diagnostics, and 748 ineligible.
 **Reason:** measure repaired and original strategies under identical gates,
 while preserving an infrastructure-limited diagnostic as inconclusive.
+
+## Decision 0.13-01 — Fifth controlled futures bias batch
+
+**Status:** completed
+**Timing:** after the fourth five-strategy checkpoint
+**Class:** measurement checkpoint; no selection-rule or strategy change
+**Decision:** process `TWAPStrategy`, `FAdxSmaStrategy`,
+`FReinforcedStrategy`, `FSampleStrategy`, and `FSupertrendStrategy` in the same
+fingerprinted native futures runtime. `FAdxSmaStrategy` and the futures-long
+`FSupertrendStrategy` pass both native bias gates and become eligible.
+`TWAPStrategy` passes look-ahead analysis but produces recursive `rsi` drift.
+The strict-equivalent Class 2 `FReinforcedStrategy` overlay passes look-ahead
+analysis but produces recursive drift in its Bollinger bands.
+`FSampleStrategy` passes look-ahead analysis but produces recursive drift in
+`adx`, `rsi`, `sar`, and `tema`. The repaired implementation is therefore
+measured under the same gate without its provenance either excluding or
+favoring it.
+**Current snapshot:** 31 eligible, 118 pending diagnostics, and 751 ineligible.
+**Reason:** continue profile-balanced measurement and confirm that a
+futures-long strategy can enter the shared canonical corpus while remaining a
+distinct run profile for later analysis.
 
 ---
 

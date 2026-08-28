@@ -213,6 +213,35 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_0006006514c97e0364dd454829ff7e3b067c0b9b876878fe66a899019081f55b"
     },
+    "FAdxSmaStrategy": {
+      "canonical_sha256": "sha256_450ed20d7fee0b7316fa4856c549aad4664299f40f5f6de6ca5be791f7ac7cad",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "elapsed_s": 26.1,
+        "output_sha256": "sha256_94bb793941d84c5c57b2eaaf175e0357f968a35d5b03f37da65ed766c42406e1",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "PASS",
+        "timerange": "20200301-20200401",
+        "why": "no bias detected"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "elapsed_s": 22.1,
+        "output_sha256": "sha256_1270b6c93b9db1aa4e46b8dee8f07183a247062019b344d01dc51a1dfab7c352",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "PASS",
+        "timerange": "20200301-20200401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
     "FOttStrategy": {
       "canonical_sha256": "sha256_6825ddc4bb1edd9ac497fb8786acc4e039189ea470ada917617623b1b6382085",
       "class1_rules": [],
@@ -238,6 +267,95 @@
         "why": "no recursive deviations found"
       },
       "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "FReinforcedStrategy": {
+      "canonical_sha256": "sha256_915eb861e6b1e6244ba669a25f0806d4b36378b95615df1f05c392bf64a98c17",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "elapsed_s": 31.2,
+        "output_sha256": "sha256_7d5e3dc68816a88778f3eadd07d5c0047d2d14c71313d6def095d262d3921f66",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "PASS",
+        "timerange": "20200301-20200401",
+        "why": "no bias detected"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/FReinforcedStrategy-recursive.log",
+        "elapsed_s": 24.0,
+        "output_sha256": "sha256_f42c3ee306623e80cf2a6d9bb7a78915639dece9ed67ab6c3aa2bc226f8584ae",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "FOUND",
+        "timerange": "20200301-20200401",
+        "why": "recursive drift: bb_lowerband -0.043%, bb_middleband -0.025%"
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "FSampleStrategy": {
+      "canonical_sha256": "sha256_faf8a6df56f2b494d886a31a40b63e2ac75c26fd19c6816c68fa7bbec5645bfe",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "elapsed_s": 29.9,
+        "output_sha256": "sha256_412c0a8bdd842a2bc48dc8f5d6eaf4aeb2efb8ba5acef4fbc3404096e7e09e17",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "PASS",
+        "timerange": "20200301-20200401",
+        "why": "no bias detected"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/FSampleStrategy-recursive.log",
+        "elapsed_s": 22.2,
+        "output_sha256": "sha256_8ad3fd546e72ea5af328055c44acbe69304f1e8f788c4d52560a502db4e95e69",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "FOUND",
+        "timerange": "20200301-20200401",
+        "why": "recursive drift: adx -9.753%, rsi 1.239%, sar -0.092%, tema 0.022%"
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "FSupertrendStrategy": {
+      "canonical_sha256": "sha256_6d4760637514311f1664b6a00460f07cf29a762a15b29e89febd73da73316bb8",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "elapsed_s": 31.5,
+        "output_sha256": "sha256_895df6477f22bc712198f1324d701283ef093a1d82b73957b7989d45cd33f6a6",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "PASS",
+        "timerange": "20200301-20200401",
+        "why": "no bias detected"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "elapsed_s": 23.2,
+        "output_sha256": "sha256_3068fd988cd68c243cb7d87c52f4aa68cc8fb59e0024ccf20c1739269d35bcf2",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "PASS",
+        "timerange": "20200301-20200401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "futures_long",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
     "FTT_DWT_FBB_FUTURES": {
@@ -526,6 +644,36 @@
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_0006006514c97e0364dd454829ff7e3b067c0b9b876878fe66a899019081f55b"
+    },
+    "TWAPStrategy": {
+      "canonical_sha256": "sha256_fa97ab1802e2508d2742cfdb01d607c0a41d1eb84b217cf6cb0567429620221d",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "elapsed_s": 61.3,
+        "output_sha256": "sha256_e96840327375f567651fe614aee0e9bbe2393e67dde0dc925a9f6cacf184f902",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "PASS",
+        "timerange": "20200301-20200401",
+        "why": "no bias detected"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/TWAPStrategy-recursive.log",
+        "elapsed_s": 23.1,
+        "output_sha256": "sha256_2f4f2776255059c9846f9cb0012718ba84493964c7f75eb9ed83758ff6297443",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "FOUND",
+        "timerange": "20200301-20200401",
+        "why": "recursive drift: rsi -2.110%"
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
     "ToTheMoon": {
       "canonical_sha256": "sha256_50166db0362cdc89a798fc1caa7554f57c217a8d8f34f2ed8f6c498a7744a795",
