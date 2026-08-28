@@ -2,7 +2,7 @@
 
 **Working title:** Regime-Aware Audit and Strategy Selection for Public Freqtrade Strategies
 **Status:** Discussion draft / implementation handoff
-**Version:** 0.9
+**Version:** 0.10
 **Date:** 2026-08-28
 **Primary target:** Codex / other AI coding sessions working on `Apex-prim/strategy-audit`
 **Repository:** https://github.com/Apex-prim/strategy-audit
@@ -1536,7 +1536,7 @@ Historical spot PASS values are not inherited by futures profiles. Missing
 evidence is `pending_diagnostics`, never an implicit PASS or FAIL. Profit,
 significance, market comparison, taxonomy, and cluster membership are excluded
 from the rule.
-**Current snapshot:** 25 eligible, 138 pending diagnostics, 737 ineligible
+**Current snapshot:** 29 eligible, 133 pending diagnostics, 738 ineligible
 across 900 native `strategy_id × run_profile` rows. The coverage inventory
 passes 820 rows and leaves 80 pending. These counts are generated, not frozen
 constants.
@@ -1576,7 +1576,7 @@ PASS. A short diagnostic window may expand to the frozen full window when the
 look-ahead analyzer sees too few trades; the fallback is time-bounded and
 resumable. Zero-trade smokes and unresolved coverage are handled before bias
 runs rather than monopolizing the queue.
-**Current snapshot:** twelve canonical records produced. `MacdStrategy`, `SMAOG`,
+**Current snapshot:** seventeen canonical records produced. `MacdStrategy`, `SMAOG`,
 and futures `RegimeFilterStrategy` newly satisfy eligibility; `Dimond` and
 futures-short `AdxSmasS` are excluded by native recursive findings;
 `FTT_DWT_FBB_FUTURES` passes native look-ahead analysis but is excluded by
@@ -1593,7 +1593,8 @@ separate from the subsequent bias finding.
 **Decision:** run the remaining native bias diagnostics in the versioned
 `Dockerfile.audit` runtime when Windows Smart App Control blocks unsigned PyPI
 DLLs. The image pins Freqtrade 2026.7 and the same NumPy, pandas, SciPy, TA-Lib,
-and optional strategy dependencies as the original audit environment. The
+and non-FreqAI optional strategy dependencies as the original audit
+environment. The
 repository is mounted read/write so raw ignored candles are reused, while
 `profile_bias.py` records the container image ID with each new diagnostic.
 The global Class 1 compatibility aliases are activated through the versioned
@@ -1627,6 +1628,26 @@ loaded successfully through their strict-equivalent source overlays and Class
 **Current snapshot:** 25 eligible, 138 pending diagnostics, and 737 ineligible.
 **Reason:** confirm that the Docker runtime and compatibility overlays remain
 stable on a mixed original/repaired futures batch before wider execution.
+
+## Decision 0.10-01 — Second controlled futures bias batch
+
+**Status:** completed
+**Timing:** after the first five-strategy checkpoint
+**Class:** measurement and environment-parity checkpoint; no selection-rule
+change
+**Decision:** add the non-FreqAI optional packages already present in the
+original Windows audit environment to `requirements-audit-runtime.txt`, then
+rerun the second five-strategy futures batch in one fingerprinted image.
+`FastSupertrend_ts_origstop_fix`, `momentum`, `momentum_rsi`, and
+`momentum_wick` pass both native bias gates and become eligible. `ToTheMoon`
+initially failed resolver discovery because `ephem` was absent from the Linux
+runtime; after restoring the same `ephem==4.2.1` dependency used by the Windows
+audit, look-ahead passes and recursive analysis refuses the author's
+`startup_candle_count=0`. No start value is invented, so `ToTheMoon` is
+excluded by the existing recursive rule.
+**Current snapshot:** 29 eligible, 133 pending diagnostics, and 738 ineligible.
+**Reason:** preserve environment parity while keeping dependency repair
+separate from the subsequent strategy-level eligibility result.
 
 ---
 
