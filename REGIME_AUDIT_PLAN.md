@@ -2,7 +2,7 @@
 
 **Working title:** Regime-Aware Audit and Strategy Selection for Public Freqtrade Strategies
 **Status:** Discussion draft / implementation handoff
-**Version:** 0.13
+**Version:** 0.14
 **Date:** 2026-08-28
 **Primary target:** Codex / other AI coding sessions working on `Apex-prim/strategy-audit`
 **Repository:** https://github.com/Apex-prim/strategy-audit
@@ -1536,7 +1536,7 @@ Historical spot PASS values are not inherited by futures profiles. Missing
 evidence is `pending_diagnostics`, never an implicit PASS or FAIL. Profit,
 significance, market comparison, taxonomy, and cluster membership are excluded
 from the rule.
-**Current snapshot:** 31 eligible, 118 pending diagnostics, 751 ineligible
+**Current snapshot:** 31 eligible, 114 pending diagnostics, 755 ineligible
 across 900 native `strategy_id × run_profile` rows. The coverage inventory
 passes 820 rows and leaves 80 pending. These counts are generated, not frozen
 constants.
@@ -1576,7 +1576,7 @@ PASS. A short diagnostic window may expand to the frozen full window when the
 look-ahead analyzer sees too few trades; the fallback is time-bounded and
 resumable. Zero-trade smokes and unresolved coverage are handled before bias
 runs rather than monopolizing the queue.
-**Current snapshot:** thirty-two canonical records produced. `MacdStrategy`, `SMAOG`,
+**Current snapshot:** thirty-seven canonical records produced. `MacdStrategy`, `SMAOG`,
 and futures `RegimeFilterStrategy` newly satisfy eligibility; `Dimond` and
 futures-short `AdxSmasS` are excluded by native recursive findings;
 `FTT_DWT_FBB_FUTURES` passes native look-ahead analysis but is excluded by
@@ -1719,6 +1719,34 @@ favoring it.
 **Reason:** continue profile-balanced measurement and confirm that a
 futures-long strategy can enter the shared canonical corpus while remaining a
 distinct run profile for later analysis.
+
+## Decision 0.14-01 — Sixth controlled futures bias batch
+
+**Status:** completed
+**Timing:** after the fifth five-strategy checkpoint
+**Class:** measurement and repair-boundary checkpoint; no selection-rule or
+strategy change
+**Decision:** process `HurstCycleV5`, `IchiVwapAdx`, `NOTankAi_17`,
+`NOTankAi_19`, and `haGradient` in the same fingerprinted native futures
+runtime. `IchiVwapAdx` produces both Chikou-related look-ahead findings and
+recursive drift. Both NOTank variants produce look-ahead findings in adaptive
+RSI and signal columns plus large recursive drift in their oscillator and
+threshold means. `HurstCycleV5` cannot complete look-ahead analysis because
+`pandas_ta` returns no RSI for an intentionally short analyzer slice and the
+source performs arithmetic on that value; its authored zero startup count
+independently prevents a recursive PASS, so it is ineligible. `haGradient`
+explicitly requires 120 FFT samples while declaring only 20 startup candles;
+the look-ahead and recursive analyzers reach 102- and 31-row partial histories
+and the source deliberately raises. Substituting NaN/no-signal behavior or
+changing either startup value can reach a trading decision, so neither case
+meets the file-specific equivalence proof required for Class 2. No repair is
+invented. `haGradient` therefore remains pending with both diagnostics `NA`.
+**Current snapshot:** 31 eligible, 114 pending diagnostics, and 755 ineligible.
+The directly runnable futures bias queue is exhausted. Five other futures
+profiles first require their preregistered full-window zero-trade measurement;
+`haGradient` retains the documented source/analyzer incompatibility.
+**Reason:** maximize measured coverage without weakening the repair standard
+or treating an analyzer exception as a PASS or bias finding.
 
 ---
 

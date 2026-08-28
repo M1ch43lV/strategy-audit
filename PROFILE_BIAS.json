@@ -450,6 +450,68 @@
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
+    "HurstCycleV5": {
+      "canonical_sha256": "sha256_07b26bff1c85b6b79c1a686b016181a5fd4d32633360e741dc26070b843a908d",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/HurstCycleV5-lookahead.log",
+        "elapsed_s": 26.6,
+        "output_sha256": "sha256_070c8a7dc8b432c787538e1d5b7932bd1cd14a1ccec46005e814c89bd99e45de",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "NA",
+        "timerange": "20200301-20200401",
+        "why": "unsupported operand type(s) for -: 'NoneType' and 'int'"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/HurstCycleV5-recursive.log",
+        "elapsed_s": 23.1,
+        "output_sha256": "sha256_b4c6de437c2755315e7ab9a0119c4e86afa2982514db055bde420fc56ca9b285",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "FOUND",
+        "timerange": "20200301-20200401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "IchiVwapAdx": {
+      "canonical_sha256": "sha256_fa6a8a7ff342075d17f9abdf257ea68e9876b2a8dfa64d3ae8471014184cd67f",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/IchiVwapAdx-lookahead.log",
+        "elapsed_s": 41.4,
+        "output_sha256": "sha256_af2f0b0b550184d6623d8f4440370715ee66b4098a874689064ac00a82105841",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "FOUND",
+        "timerange": "20200301-20200401",
+        "why": "bias: entries 11, exits 10 of 20 signals; indicators chikou, ha_chikou, chikou_filled, chikou_bullish, chikou_bearish, chikou_clear_space,"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/IchiVwapAdx-recursive.log",
+        "elapsed_s": 25.2,
+        "output_sha256": "sha256_aa43fdf78b3d4d0cff02efe5b28f63c9d2f5332f449139de7145df33f6bc9ef5",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "FOUND",
+        "timerange": "20200301-20200401",
+        "why": "recursive drift: atr_50 -0.063%, volatility_ratio 0.063%"
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
     "MACDRL": {
       "canonical_sha256": "sha256_bfe6537cf2a665c8f9750ec886b91a0ff7dffcf200dcba937c480a315acb62e7",
       "class1_rules": [],
@@ -527,6 +589,68 @@
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_0006006514c97e0364dd454829ff7e3b067c0b9b876878fe66a899019081f55b"
+    },
+    "NOTankAi_17": {
+      "canonical_sha256": "sha256_d1d72095cae0bc356106af96667d74f8871c1327dfc91af49298c1bdd650649f",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NOTankAi_17-lookahead.log",
+        "elapsed_s": 56.6,
+        "output_sha256": "sha256_c04c941c5aeab6234711e050ec04d8b981d753954f184d6dd1025f128d8bf75b",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "FOUND",
+        "timerange": "20200301-20200401",
+        "why": "bias: entries 11, exits 9 of 20 signals; indicators rsi_low_adj, rsi_high_adj, enter_tag, enter_long, enter_short, exit_tag, exit_long,"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NOTankAi_17-recursive.log",
+        "elapsed_s": 27.0,
+        "output_sha256": "sha256_7285ebc8b3eeb8584ed2db834f5aeb5d14b90d979dc7eb33864f09aabf48a97f",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "FOUND",
+        "timerange": "20200301-20200401",
+        "why": "recursive drift: mmlextreme_oscillator -277.329%, min_threshold_mean -9.513%, max_threshold_mean -10.017%"
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "NOTankAi_19": {
+      "canonical_sha256": "sha256_09c6d6c3812bef5bb3b4bb78b897cfb47b0ae1103e4380c0344aede708ced569",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NOTankAi_19-lookahead.log",
+        "elapsed_s": 64.0,
+        "output_sha256": "sha256_c40d65bd444533b564d486da08680f3162d5eb9855367dcf19c2bbac444bc198",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "FOUND",
+        "timerange": "20200301-20200401",
+        "why": "bias: entries 10, exits 10 of 20 signals; indicators rsi_low_adj, rsi_high_adj, btc_rsi_mean, enter_tag, enter_long, enter_short, exit_tag,"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NOTankAi_19-recursive.log",
+        "elapsed_s": 27.6,
+        "output_sha256": "sha256_038323524454452003708763d781cef639d48ff627b83cab387ec16c4360e330",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "FOUND",
+        "timerange": "20200301-20200401",
+        "why": "recursive drift: mmlextreme_oscillator -277.329%, min_threshold_mean -9.513%, max_threshold_mean -10.017%"
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
     "RegimeFilterStrategy": {
       "canonical_sha256": "sha256_11c48354d533ffb7016721014861842ec5220ddcf1bdf66237a96cb9bd5e9a55",
@@ -849,6 +973,37 @@
         "why": "startup_candle_count=0 refused by recursive-analysis"
       },
       "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "haGradient": {
+      "canonical_sha256": "sha256_ebeacb1830a66aef5f0aa0e8ad1c77eaf81a6ec1dbe52627e3670b0272548e02",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/haGradient-lookahead.log",
+        "elapsed_s": 53.2,
+        "output_sha256": "sha256_79c4add07cd23303489999f2779c4ace719c97e4543c3639e73d6895a37ebd52",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "NA",
+        "timerange": "20200301-20200401",
+        "why": "Insufficient data points for FFT: 102. Need at least 120 data points."
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/haGradient-recursive.log",
+        "elapsed_s": 26.5,
+        "output_sha256": "sha256_200a07d8590a81240faca86a0e449015dc952de44c42522857aa6f8593206b81",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "NA",
+        "timerange": "20200301-20200401",
+        "why": "Insufficient data points for FFT: 31. Need at least 120 data points."
+      },
+      "run_profile": "futures_long",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
     "momentum": {
