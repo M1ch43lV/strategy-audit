@@ -1,0 +1,29 @@
+{
+  "policy_version": "1",
+  "window_start": "2020-03-01T00:00:00Z",
+  "window_end_exclusive": "2026-08-21T00:00:00Z",
+  "spot_pairs": [
+    "BTC/USDT",
+    "ETH/USDT",
+    "LTC/USDT",
+    "XRP/USDT",
+    "ADA/USDT",
+    "XLM/USDT",
+    "XMR/USDT",
+    "DASH/USDT"
+  ],
+  "futures_pairs": [
+    "BTC/USDT:USDT",
+    "ETH/USDT:USDT",
+    "LTC/USDT:USDT",
+    "XRP/USDT:USDT",
+    "ADA/USDT:USDT",
+    "XLM/USDT:USDT",
+    "XMR/USDT:USDT",
+    "DASH/USDT:USDT"
+  ],
+  "availability_end_exclusive": {
+    "spot:XMR/USDT": "2024-02-20T03:00:00Z"
+  },
+  "gap_policy": "accept_only_gaps_shared_by_every_pair_active_at_that_timestamp"
+}

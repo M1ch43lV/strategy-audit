@@ -20,8 +20,10 @@ data/
 # Published, reproducible canonical strategy/run-profile manifest.
 !EXECUTION_PROFILES.csv
 !PROFILE_CLASS1.json
+!PROFILE_BIAS.json
 !PROFILE_REPAIRS.json
 !PROFILE_SMOKE.json
+!REGIME_COVERAGE.csv
 !REGIME_ELIGIBILITY.csv
 !cluster/CLUSTERS.csv
 

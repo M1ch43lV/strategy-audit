@@ -2,7 +2,7 @@
 
 **Working title:** Regime-Aware Audit and Strategy Selection for Public Freqtrade Strategies
 **Status:** Discussion draft / implementation handoff
-**Version:** 0.6
+**Version:** 0.7
 **Date:** 2026-08-27
 **Primary target:** Codex / other AI coding sessions working on `Apex-prim/strategy-audit`
 **Repository:** https://github.com/Apex-prim/strategy-audit
@@ -1287,7 +1287,7 @@ Do not begin with the full corpus backtest.
 25. **Implemented:** build `regime_eligible` by `strategy_id × run_profile` from technical audit fields.
 26. **Implemented:** produce row-level exclusion and pending reasons in `REGIME_ELIGIBILITY.csv` and the summary in `REGIME_ELIGIBILITY.md`.
 27. **Implemented:** do not use whole-window profitability/significance as eligibility gates.
-28. Before Stage 7, complete the pending canonical bias diagnostics and populate `REGIME_COVERAGE.csv` with exact frozen-window pair/candle checks; regenerate the table without changing its rules.
+28. **Coverage implemented:** `REGIME_COVERAGE.csv` records exact frozen-window pair/candle checks; before Stage 7, complete the remaining native-profile coverage and canonical bias diagnostics, then regenerate eligibility without changing its rules.
 
 ## Stage 7 — Phase A attribution
 
@@ -1536,13 +1536,54 @@ Historical spot PASS values are not inherited by futures profiles. Missing
 evidence is `pending_diagnostics`, never an implicit PASS or FAIL. Profit,
 significance, market comparison, taxonomy, and cluster membership are excluded
 from the rule.
-**Current snapshot:** 0 eligible, 171 pending diagnostics, 729 ineligible
-across 900 native `strategy_id × run_profile` rows. Twenty-two rows pass every
-other technical gate but remain pending until exact frozen-window coverage is
-recorded. These counts are generated, not frozen constants.
+**Current snapshot:** 25 eligible, 144 pending diagnostics, 731 ineligible
+across 900 native `strategy_id × run_profile` rows. The coverage inventory
+passes 820 rows and leaves 80 pending. These counts are generated, not frozen
+constants.
 **Reason:** admit every technically trustworthy strategy without repeating the
 old whole-window economic survivor funnel or rewarding strategies whose bias
 checks simply never ran.
+
+## Decision 0.7-01 — Native candle-coverage gate
+
+**Status:** adopted and implemented
+**Timing:** before regime-performance ranking
+**Class:** methodological
+**Decision:** freeze the Stage 6 coverage window at 2020-03-01 00:00 UTC through
+2026-08-21 00:00 UTC exclusive. Require every native-profile pair/timeframe
+file to cover its documented available history, contain monotonic unique
+timestamps, and have no pair-specific interior gaps. Exchange-wide gaps shared
+by every active pair are recorded but accepted. The documented XMR/USDT
+delisting boundary is available-history metadata, not fabricated missing data.
+Missing files and unresolved timeframes remain `PENDING`, never `PASS` or a
+permanent strategy exclusion.
+**Current snapshot:** 820 PASS and 80 PENDING coverage rows. Raw candles remain
+ignored; the versioned CSV stores temporal evidence and a source fingerprint.
+**Reason:** preserve the original pair-available-history design while making
+changing basket composition and local data incompleteness explicit.
+
+## Decision 0.7-02 — Canonical native-mode bias reruns
+
+**Status:** adopted and in progress
+**Timing:** before regime-performance ranking
+**Class:** methodological
+**Decision:** store canonical look-ahead and recursive reruns separately from
+the historical ledger in `PROFILE_BIAS.json`, bound to canonical source,
+effective config, mode, timerange, and output hashes. Spot may retain a valid
+historical diagnostic for an unchanged canonical implementation. Futures may
+retain historical FOUND as disqualifying evidence but never inherit a spot
+PASS. A short diagnostic window may expand to the frozen full window when the
+look-ahead analyzer sees too few trades; the fallback is time-bounded and
+resumable. Zero-trade smokes and unresolved coverage are handled before bias
+runs rather than monopolizing the queue.
+**Current snapshot:** seven canonical records produced. `MacdStrategy`, `SMAOG`,
+and futures `RegimeFilterStrategy` newly satisfy eligibility; `Dimond` and
+futures-short `AdxSmasS` are excluded by native recursive findings;
+`FTT_DWT_FBB_FUTURES` remains pending. Its copied RMI helper was repaired as
+Class 1 after the original recursive run exposed a current-pandas datetime
+fill incompatibility. The repaired rerun is currently `NA` because Windows
+Smart App Control blocks the environment's unsigned SciPy binary modules; this
+is recorded as an infrastructure prerequisite, not a strategy finding.
 
 ---
 

@@ -32,7 +32,8 @@ FIELDS = [
     "environment_repair_status", "environment_repair_rules",
     "equivalence_status", "source_tree", "variant", "ledger_present",
     "original_measured_spot", "historical_is_trades", "historical_os_trades",
-    "historical_full_measured", "canonical_measured", "declared_timeframe", "declared_can_short",
+    "historical_full_measured", "canonical_measured", "declared_timeframe",
+    "execution_timeframe", "timeframe_source", "declared_can_short",
     "static_long_entry", "static_short_entry", "signal_capability", "direction_capability",
     "has_leverage_callback", "artifact_role", "author_mode_intent", "mode_support",
     "run_profile", "validated_modes",
@@ -348,6 +349,27 @@ def _rel(path, base=ROOT):
     return os.path.relpath(path, base).replace(os.sep, "/")
 
 
+def _config_timeframe(environment):
+    source = environment.get("config_source")
+    if not source or "timeframe" not in (environment.get("config_keys") or []):
+        return ""
+    path = os.path.join(ROOT, source.replace("/", os.sep))
+    try:
+        data = json.load(io.open(path, encoding="utf-8-sig"))
+    except ValueError:
+        # Some author configs are JSONC. Reuse the same quote-aware parser as
+        # the runtime smoke harness rather than deleting // inside URLs.
+        try:
+            from profile_smoke import _read_jsonc
+            data = _read_jsonc(path)
+        except (ValueError, OSError):
+            return ""
+    except OSError:
+        return ""
+    value = data.get("timeframe")
+    return value if isinstance(value, str) else ""
+
+
 def build(repair_root=DEFAULT_REPAIR):
     original_cards = _load_cards(os.path.join(ROOT, "results"))
     class1_cards = _load_cards(os.path.join(repair_root, "results_class1"))
@@ -366,6 +388,11 @@ def build(repair_root=DEFAULT_REPAIR):
         node = strategy_node(original_path, strategy, source)
         can_short = declared_can_short(node)
         timeframe = declared_text(node, "timeframe")
+        environment = profile_class1.get(strategy) or {}
+        config_timeframe = _config_timeframe(environment)
+        execution_timeframe = timeframe or config_timeframe
+        timeframe_source = ("strategy_source" if timeframe else
+                            "author_config" if config_timeframe else "unresolved")
         long_entry, short_entry, methods, _writes = entry_writes(node)
         profile = _profile(original_path, node, can_short, long_entry, short_entry, methods)
         rel_lower = _rel(original_path).lower()
@@ -466,7 +493,6 @@ def build(repair_root=DEFAULT_REPAIR):
             profile["evidence_level"] = "runtime_full"
 
         smoke = smoke_results.get(strategy) or {}
-        environment = profile_class1.get(strategy) or {}
         if smoke.get("status") == "measured":
             if smoke.get("mode") and smoke["mode"] not in validated_modes:
                 validated_modes.append(smoke["mode"])
@@ -501,6 +527,8 @@ def build(repair_root=DEFAULT_REPAIR):
             "historical_full_measured": str(historical_full).lower(),
             "canonical_measured": str(canonical_ok).lower(),
             "declared_timeframe": timeframe,
+            "execution_timeframe": execution_timeframe,
+            "timeframe_source": timeframe_source,
             "declared_can_short": can_short,
             "static_long_entry": str(long_entry).lower(),
             "static_short_entry": str(short_entry).lower(),

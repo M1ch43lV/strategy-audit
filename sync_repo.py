@@ -67,7 +67,9 @@ PIPELINE = [
     "loadcheck.py",      # first-gate import/load failure attribution
     "resolvable.py",     # barrier-race sample-size diagnostic
     "execution_profiles.py",  # canonical implementation and run-profile manifest
+    "regime_coverage.py",  # exact native-profile candle coverage inventory
     "regime_eligibility.py",  # technical Stage 6 inclusion/exclusion matrix
+    "profile_bias.py",  # resumable canonical native-mode bias diagnostics
     "profile_repairs.py",     # reproducible Class 2 compatibility overlays
     "profile_smoke.py",       # mode-correct futures runtime validation
     "profile_freqtrade.py",   # author-package extension launcher for smoke tests

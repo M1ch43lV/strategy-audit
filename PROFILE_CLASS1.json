@@ -9,18 +9,18 @@
       "note": "pyrenko imports with benchmark numpy when installed without its obsolete numpy 1.18.5 pin, but the author supplied no required stoploss and explicitly lists a sample config as unfinished."
     },
     "DWT_LongShort": {
-      "rules": ["restore_copied_local_module"],
-      "python_paths": ["repos/werkkrew_freqtrade-strategies/strategies/solipsis"],
+      "rules": ["restore_copied_local_module", "datetime_safe_rmi_fillna"],
+      "python_paths": ["repair/compat_helpers", "repos/werkkrew_freqtrade-strategies/strategies/solipsis"],
       "status": "applied"
     },
     "DWT_short": {
-      "rules": ["restore_copied_local_module"],
-      "python_paths": ["repos/werkkrew_freqtrade-strategies/strategies/solipsis"],
+      "rules": ["restore_copied_local_module", "datetime_safe_rmi_fillna"],
+      "python_paths": ["repair/compat_helpers", "repos/werkkrew_freqtrade-strategies/strategies/solipsis"],
       "status": "applied"
     },
     "FTT_DWT_FBB_FUTURES": {
-      "rules": ["restore_copied_local_module"],
-      "python_paths": ["repos/werkkrew_freqtrade-strategies/strategies/solipsis"],
+      "rules": ["restore_copied_local_module", "datetime_safe_rmi_fillna"],
+      "python_paths": ["repair/compat_helpers", "repos/werkkrew_freqtrade-strategies/strategies/solipsis"],
       "status": "applied"
     },
     "TSPredict": {

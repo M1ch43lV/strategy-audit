@@ -386,3 +386,17 @@ silently “repaired”: incomplete author configurations, unavailable historica
 model/dependency stacks, and the credential-bearing `KMM` source remain blocked
 or partial. `HurstCycleV4` succeeded in a longer control window and therefore
 was correctly classified as a smoke-window limitation rather than repaired.
+
+## Class 1: datetime-safe copied RMI helper
+
+`DWT_LongShort`, `DWT_short`, and `FTT_DWT_FBB_FUTURES` import the author's
+copied Solipsis `custom_indicators.py`. Its `RMI` implementation calls
+`fillna(0)` on the whole Freqtrade dataframe. Current pandas rejects integer
+zero for the timezone-aware `date` column before the indicator can run.
+
+`repair/compat_helpers/custom_indicators.py` re-exports the copied module and
+overrides only `RMI`: it fills the two numeric intermediates `maxup` and
+`maxdown` that the formula actually consumes. The formula and its returned
+series are otherwise unchanged. This is recorded as Class 1 rule
+`datetime_safe_rmi_fillna`; it restores compatibility without changing the
+strategy's intended behavior.

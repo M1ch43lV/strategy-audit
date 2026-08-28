@@ -11,14 +11,18 @@ import argparse
 import collections
 import csv
 import io
+import json
 import os
 import sys
+
+import profile_bias
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
 LEDGER = os.path.join(ROOT, "LEDGER.csv")
 COVERAGE = os.path.join(ROOT, "REGIME_COVERAGE.csv")
+BIAS = os.path.join(ROOT, "PROFILE_BIAS.json")
 OUTPUT = os.path.join(ROOT, "REGIME_ELIGIBILITY.csv")
 REPORT = os.path.join(ROOT, "REGIME_ELIGIBILITY.md")
 
@@ -27,6 +31,7 @@ FIELDS = [
     "canonical_population", "repair_class", "equivalence_status",
     "artifact_role", "canonical_measured", "canonical_observed_trades",
     "trade_evidence_source", "validated_modes", "lookahead", "recursive",
+    "lookahead_evidence_source", "recursive_evidence_source", "bias_evidence_mode",
     "recursive_kind", "traps_n", "coverage_status", "coverage_evidence",
     "regime_eligible", "eligibility_status",
     "exclusion_reasons", "pending_reasons", "coverage_policy",
@@ -45,10 +50,11 @@ def _integer(value):
         return 0
 
 
-def classify(profile, ledger, coverage=None):
+def classify(profile, ledger, coverage=None, bias=None):
     hard = []
     pending = []
     coverage = coverage or {}
+    bias = bias or {}
     run_profile = profile["run_profile"]
     expected_mode = "futures" if run_profile.startswith("futures_") else "spot"
     measured = profile["canonical_measured"] == "true"
@@ -70,14 +76,41 @@ def classify(profile, ledger, coverage=None):
     if expected_mode not in set(filter(None, profile.get("validated_modes", "").split(";"))):
         pending.append("native_mode_not_runtime_validated")
 
+    expected_bias_mode = "futures" if run_profile.startswith("futures_") else "spot"
+    # build() admits only records whose full current identity matches. Keep
+    # these checks too so direct classify() calls cannot cross source/mode.
+    bias_valid = bool(
+        bias.get("canonical_sha256") == profile.get("source_sha256") and
+        bias.get("run_profile") == run_profile and bias.get("mode") == expected_bias_mode)
+    native_lookahead = (bias.get("lookahead") or {}).get("status") if bias_valid else None
+    native_recursive = (bias.get("recursive") or {}).get("status") if bias_valid else None
+    native_complete = native_lookahead in ("PASS", "FOUND") and \
+        native_recursive in ("PASS", "FOUND")
+
     equivalence = profile.get("equivalence_status")
     if equivalence == "behavior_changed":
         hard.append("behavior_changed_primary_exclusion")
-    elif equivalence == "output_equivalent":
+    elif equivalence == "output_equivalent" and not native_complete:
         pending.append("output_equivalent_requires_canonical_bias_rerun")
 
-    lookahead = ledger.get("lookahead", "NA") or "NA"
-    recursive = ledger.get("recursive", "NA") or "NA"
+    historical_lookahead = ledger.get("lookahead", "NA") or "NA"
+    historical_recursive = ledger.get("recursive", "NA") or "NA"
+    if expected_bias_mode == "spot":
+        lookahead = native_lookahead if native_lookahead in ("PASS", "FOUND") else historical_lookahead
+        recursive = native_recursive if native_recursive in ("PASS", "FOUND") else historical_recursive
+    else:
+        # A historical FOUND remains disqualifying evidence. Historical PASS
+        # is not promoted across execution modes.
+        lookahead = (native_lookahead if native_lookahead in ("PASS", "FOUND") else
+                     "FOUND" if historical_lookahead == "FOUND" else "NA")
+        recursive = (native_recursive if native_recursive in ("PASS", "FOUND") else
+                     "FOUND" if historical_recursive == "FOUND" else "NA")
+    historical_label = ("historical_spot_not_inherited" if expected_bias_mode == "futures"
+                        else "historical_spot")
+    lookahead_source = ("canonical_native" if native_lookahead in ("PASS", "FOUND") else
+                        historical_label if historical_lookahead != "NA" else "missing")
+    recursive_source = ("canonical_native" if native_recursive in ("PASS", "FOUND") else
+                        historical_label if historical_recursive != "NA" else "missing")
     traps_n = _integer(ledger.get("traps_n"))
     if lookahead == "FOUND":
         hard.append("lookahead_found")
@@ -98,7 +131,7 @@ def classify(profile, ledger, coverage=None):
 
     # The historical bias diagnostics were spot runs. Futures candidates must
     # be checked in their native mode even if a historical spot field says PASS.
-    if expected_mode == "futures" and measured:
+    if expected_mode == "futures" and measured and not native_complete:
         pending.append("futures_mode_bias_diagnostics_not_completed")
 
     hard = list(dict.fromkeys(hard))
@@ -125,6 +158,9 @@ def classify(profile, ledger, coverage=None):
         "validated_modes": profile.get("validated_modes", ""),
         "lookahead": lookahead,
         "recursive": recursive,
+        "lookahead_evidence_source": lookahead_source,
+        "recursive_evidence_source": recursive_source,
+        "bias_evidence_mode": expected_bias_mode if bias_valid else "",
         "recursive_kind": ledger.get("recursive_kind", ""),
         "traps_n": traps_n,
         "coverage_status": coverage_status,
@@ -137,13 +173,28 @@ def classify(profile, ledger, coverage=None):
     }
 
 
-def build(profile_path=PROFILES, ledger_path=LEDGER, coverage_path=COVERAGE):
+def build(profile_path=PROFILES, ledger_path=LEDGER, coverage_path=COVERAGE,
+          bias_path=BIAS):
     profiles = _read_csv(profile_path)
     ledger = {row["strategy"]: row for row in _read_csv(ledger_path)}
     coverage_rows = _read_csv(coverage_path) if os.path.exists(coverage_path) else []
     coverage = {(row["strategy_id"], row["run_profile"]): row for row in coverage_rows}
+    if os.path.exists(bias_path):
+        stored_bias = json.load(io.open(
+            bias_path, encoding="utf-8")).get("results") or {}
+    else:
+        stored_bias = {}
+    # A source/config/rule/mode/profile change invalidates old evidence even if
+    # profile_bias.py has not yet been rerun. This makes the identity binding a
+    # consumer-side gate, not merely metadata written by the producer.
+    bias = {}
+    for profile in profiles:
+        result = stored_bias.get(profile["strategy_id"])
+        if result and profile_bias.identity_matches(profile, result):
+            bias[profile["strategy_id"]] = result
     return [classify(row, ledger.get(row["strategy_id"], {}),
-                     coverage.get((row["strategy_id"], row["run_profile"]), {}))
+                     coverage.get((row["strategy_id"], row["run_profile"]), {}),
+                     bias.get(row["strategy_id"], {}))
             for row in profiles]
 
 
@@ -169,6 +220,12 @@ def _write_report(rows, path):
         reason for row in rows for reason in row["exclusion_reasons"].split(";") if reason)
     pending = collections.Counter(
         reason for row in rows for reason in row["pending_reasons"].split(";") if reason)
+    coverage_only = sum(
+        not row["exclusion_reasons"] and
+        set(filter(None, row["pending_reasons"].split(";"))) ==
+        {"exact_regime_window_coverage_not_verified"}
+        for row in rows)
+    eligible = statuses["eligible"]
     text = """# Regime eligibility — technical Stage 6
 
 This table is keyed by `strategy_id × run_profile` and uses the single
@@ -198,8 +255,8 @@ Coverage uses available pair history, matching the existing audit. Exact pair
 and candle coverage for the frozen regime window is a hard Stage 7 precondition.
 Until `REGIME_COVERAGE.csv` supplies a `PASS` for a strategy/run-profile row,
 that row remains `pending_diagnostics` rather than being called eligible.
-At the current checkpoint, 22 rows pass every gate other than this coverage
-check; that is a workload count, not an eligibility result.
+At the current checkpoint, %d rows pass all gates including coverage; %d pass
+every other gate and wait only for coverage.
 
 The coverage input schema is `strategy_id,run_profile,coverage_status,coverage_evidence`.
 `coverage_status` is `PASS`, `FAIL`, or `PENDING`; evidence should identify the
@@ -237,7 +294,8 @@ cannot be both failed and pending on one row.
 %s
 
 The machine-readable row-level record is `REGIME_ELIGIBILITY.csv`.
-""" % (_table(statuses), _table(profiles), _table(exclusions), _table(pending))
+""" % (eligible, coverage_only, _table(statuses), _table(profiles),
+       _table(exclusions), _table(pending))
     tmp = path + ".tmp"
     with io.open(tmp, "w", encoding="utf-8") as handle:
         handle.write(text)
@@ -268,6 +326,7 @@ def main(argv=None):
     parser.add_argument("--profiles", default=PROFILES)
     parser.add_argument("--ledger", default=LEDGER)
     parser.add_argument("--coverage", default=COVERAGE)
+    parser.add_argument("--bias", default=BIAS)
     parser.add_argument("--output", default=OUTPUT)
     parser.add_argument("--report", default=REPORT)
     parser.add_argument("--selftest", action="store_true")
@@ -275,7 +334,7 @@ def main(argv=None):
     if args.selftest:
         selftest()
         return 0
-    rows = build(args.profiles, args.ledger, args.coverage)
+    rows = build(args.profiles, args.ledger, args.coverage, args.bias)
     _write_csv(rows, args.output)
     _write_report(rows, args.report)
     counts = collections.Counter(row["eligibility_status"] for row in rows)

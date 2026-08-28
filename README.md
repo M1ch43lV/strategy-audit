@@ -197,6 +197,13 @@ captured all of it.
   regime-study plan. **[REGIME_ELIGIBILITY.md](REGIME_ELIGIBILITY.md)** and
   **[REGIME_ELIGIBILITY.csv](REGIME_ELIGIBILITY.csv)** implement its technical
   Stage 6 before any regime-performance ranking.
+- **[REGIME_COVERAGE.md](REGIME_COVERAGE.md)**, the corresponding
+  **[CSV](REGIME_COVERAGE.csv)**, and
+  **[policy](REGIME_COVERAGE_POLICY.json)** provide the exact candle-coverage
+  gate behind Stage 6 without committing raw market data.
+- **[PROFILE_BIAS.json](PROFILE_BIAS.json)** stores identity-bound canonical
+  look-ahead and recursive reruns produced resumably by `profile_bias.py`,
+  including native futures diagnostics that never inherit a historical spot PASS.
 - **[repair/REGISTER.md](repair/REGISTER.md)** — the complete Class 1/Class 2
   repair provenance and reproducible overlays. **[cluster/CLUSTERS.md](cluster/CLUSTERS.md)**
   preserves the preregistered source taxonomy as interpretation metadata.

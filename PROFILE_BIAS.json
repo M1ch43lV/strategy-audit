@@ -1,0 +1,198 @@
+{
+  "results": {
+    "AdxSmasS": {
+      "canonical_sha256": "sha256_c6ec923fd109df306c257bb36ae8a19a96989f1e96b4fe29a72a41cfbc5f250e",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "elapsed_s": 26.1,
+        "output_sha256": "sha256_31405784489eed17a882aa8a02fab95fd7a29efd3170336bfefe51dede486bcd",
+        "status": "PASS",
+        "timerange": "20200301-20200401",
+        "why": "no bias detected"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "elapsed_s": 4.6,
+        "output_sha256": "sha256_0eb7d766306c68bfba9c86c052bf1035cc6b86e5f7470d79de84912b2c52854c",
+        "status": "FOUND",
+        "timerange": "20200301-20200401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "futures_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "Dimond": {
+      "canonical_sha256": "sha256_4376ba0fb9f4d80259bfb1742ad810b3bb67005b3b3e527f7ab2f4626597c7b6",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 72.8,
+        "output_sha256": "sha256_4c60b8b065b9978c2c0c8fefa10481712eceab0f718c11de6f613a5b6ed73e6b",
+        "status": "NA",
+        "timerange": "20200301-20260820",
+        "why": "too few trades (0/10)"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 6.2,
+        "output_sha256": "sha256_fb35ecdd23c94f9b4b911c7675256139cef43773aec589bc71916f91f9d8f3a2",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_0006006514c97e0364dd454829ff7e3b067c0b9b876878fe66a899019081f55b"
+    },
+    "FOttStrategy": {
+      "canonical_sha256": "sha256_6825ddc4bb1edd9ac497fb8786acc4e039189ea470ada917617623b1b6382085",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 1346.9,
+        "status": "NA",
+        "timerange": "20200301-20260820",
+        "why": "TIMEOUT"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "elapsed_s": 37.8,
+        "output_sha256": "sha256_032131fea8c0ad92f7ff0154697438fae70b4af2bdd08307bbe466333d884610",
+        "status": "PASS",
+        "timerange": "20200301-20200401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "FTT_DWT_FBB_FUTURES": {
+      "canonical_sha256": "sha256_afe6cdaf156b32d542e3e49d150a7195b9632bd3ade0ba5693d6495471aaa3a7",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "datetime_safe_rmi_fillna"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/FTT_DWT_FBB_FUTURES-lookahead.log",
+        "elapsed_s": 29.5,
+        "output_sha256": "sha256_49ba465c3a5dbba8b254f198beddbdda7e9b6d3b9f7dba59ce0aab35629cab95",
+        "status": "NA",
+        "timerange": "20200301-20200401",
+        "why": "DLL load failed while importing _group_columns: Eine Anwendungssteuerungsrichtlinie hat diese Datei blockiert."
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/FTT_DWT_FBB_FUTURES-recursive.log",
+        "elapsed_s": 2.2,
+        "output_sha256": "sha256_7ce922ff4e42c7fec28989827556f930487b8ade686ece0e3dee256de73f5186",
+        "status": "NA",
+        "timerange": "20200301-20200401",
+        "why": "DLL load failed while importing _group_columns: Eine Anwendungssteuerungsrichtlinie hat diese Datei blockiert."
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "MacdStrategy": {
+      "canonical_sha256": "sha256_e06777de204f9d3a848741b779cbe25967cbb34043f01d8af9402ef40275f8e6",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 16.4,
+        "output_sha256": "sha256_057b30ee924d9d4baa16a39c485973991ca1bba5ff3c71d7076bf2e45b6a646b",
+        "status": "PASS",
+        "timerange": "20200301-20260820",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_0006006514c97e0364dd454829ff7e3b067c0b9b876878fe66a899019081f55b"
+    },
+    "RegimeFilterStrategy": {
+      "canonical_sha256": "sha256_11c48354d533ffb7016721014861842ec5220ddcf1bdf66237a96cb9bd5e9a55",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "elapsed_s": 11.5,
+        "output_sha256": "sha256_6a890b6fe37715a902bf99a2a5c48b82c52cc9e98c726e11f5ca5e36f423100b",
+        "status": "PASS",
+        "timerange": "20200301-20200401",
+        "why": "no bias detected"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "elapsed_s": 7.5,
+        "output_sha256": "sha256_323aa537141f4b9cee6315181d6d1114aaaecd6c4dd151caf5e97de48c0ba52f",
+        "status": "PASS",
+        "timerange": "20200301-20200401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "SMAOG": {
+      "canonical_sha256": "sha256_5909c02736a7ef61b0092ab9ab54511563725485ef218e3355a3f5571d746a18",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 84.9,
+        "output_sha256": "sha256_f96fd1bce5ff8b49f86d6d2d91ac715c7ba9a272d6fa6c0bbfda979748cc18d7",
+        "status": "PASS",
+        "timerange": "20200301-20260820",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 7.0,
+        "output_sha256": "sha256_5660e2ee82c70351a430133b79bfdf5911581bd566ba0965d171f6f7da65fa85",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_0006006514c97e0364dd454829ff7e3b067c0b9b876878fe66a899019081f55b"
+    }
+  },
+  "schema_version": 1
+}
