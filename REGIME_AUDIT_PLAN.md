@@ -2,7 +2,7 @@
 
 **Working title:** Regime-Aware Audit and Strategy Selection for Public Freqtrade Strategies
 **Status:** Discussion draft / implementation handoff
-**Version:** 0.8
+**Version:** 0.9
 **Date:** 2026-08-28
 **Primary target:** Codex / other AI coding sessions working on `Apex-prim/strategy-audit`
 **Repository:** https://github.com/Apex-prim/strategy-audit
@@ -1536,7 +1536,7 @@ Historical spot PASS values are not inherited by futures profiles. Missing
 evidence is `pending_diagnostics`, never an implicit PASS or FAIL. Profit,
 significance, market comparison, taxonomy, and cluster membership are excluded
 from the rule.
-**Current snapshot:** 25 eligible, 143 pending diagnostics, 732 ineligible
+**Current snapshot:** 25 eligible, 138 pending diagnostics, 737 ineligible
 across 900 native `strategy_id × run_profile` rows. The coverage inventory
 passes 820 rows and leaves 80 pending. These counts are generated, not frozen
 constants.
@@ -1576,7 +1576,7 @@ PASS. A short diagnostic window may expand to the frozen full window when the
 look-ahead analyzer sees too few trades; the fallback is time-bounded and
 resumable. Zero-trade smokes and unresolved coverage are handled before bias
 runs rather than monopolizing the queue.
-**Current snapshot:** seven canonical records produced. `MacdStrategy`, `SMAOG`,
+**Current snapshot:** twelve canonical records produced. `MacdStrategy`, `SMAOG`,
 and futures `RegimeFilterStrategy` newly satisfy eligibility; `Dimond` and
 futures-short `AdxSmasS` are excluded by native recursive findings;
 `FTT_DWT_FBB_FUTURES` passes native look-ahead analysis but is excluded by
@@ -1609,6 +1609,24 @@ moved from 25/144/731 to
 25 eligible, 143 pending, and 732 ineligible.
 **Reason:** retain Smart App Control and avoid unsupported per-file bypasses
 while keeping the numerical audit stack fixed and reproducible.
+
+## Decision 0.9-01 — First controlled futures bias batch
+
+**Status:** completed
+**Timing:** after the pinned runtime validation, before further batch expansion
+**Class:** measurement checkpoint; no methodology or strategy change
+**Decision:** process native futures diagnostics in five-strategy checkpoints
+before increasing batch size. The first batch covered `MACDRS`, `MACDRL`,
+`ZaratustraDCA2_06`, `DWT_LongShort`, and `DWT_short`. All five passed
+look-ahead analysis and produced native recursive findings. The two MACD
+strategies declare `startup_candle_count=0`; choosing a replacement would be
+strategy authorship, so no repair is made. Zaratustra and both DWT variants
+show indicator drift above the preregistered tolerance. The DWT strategies
+loaded successfully through their strict-equivalent source overlays and Class
+1 helper repairs, separating repair success from bias eligibility.
+**Current snapshot:** 25 eligible, 138 pending diagnostics, and 737 ineligible.
+**Reason:** confirm that the Docker runtime and compatibility overlays remain
+stable on a mixed original/repaired futures batch before wider execution.
 
 ---
 
