@@ -2,7 +2,7 @@
 
 **Working title:** Regime-Aware Audit and Strategy Selection for Public Freqtrade Strategies
 **Status:** Discussion draft / implementation handoff
-**Version:** 0.10
+**Version:** 0.11
 **Date:** 2026-08-28
 **Primary target:** Codex / other AI coding sessions working on `Apex-prim/strategy-audit`
 **Repository:** https://github.com/Apex-prim/strategy-audit
@@ -1536,7 +1536,7 @@ Historical spot PASS values are not inherited by futures profiles. Missing
 evidence is `pending_diagnostics`, never an implicit PASS or FAIL. Profit,
 significance, market comparison, taxonomy, and cluster membership are excluded
 from the rule.
-**Current snapshot:** 29 eligible, 133 pending diagnostics, 738 ineligible
+**Current snapshot:** 29 eligible, 128 pending diagnostics, 743 ineligible
 across 900 native `strategy_id × run_profile` rows. The coverage inventory
 passes 820 rows and leaves 80 pending. These counts are generated, not frozen
 constants.
@@ -1576,7 +1576,7 @@ PASS. A short diagnostic window may expand to the frozen full window when the
 look-ahead analyzer sees too few trades; the fallback is time-bounded and
 resumable. Zero-trade smokes and unresolved coverage are handled before bias
 runs rather than monopolizing the queue.
-**Current snapshot:** seventeen canonical records produced. `MacdStrategy`, `SMAOG`,
+**Current snapshot:** twenty-two canonical records produced. `MacdStrategy`, `SMAOG`,
 and futures `RegimeFilterStrategy` newly satisfy eligibility; `Dimond` and
 futures-short `AdxSmasS` are excluded by native recursive findings;
 `FTT_DWT_FBB_FUTURES` passes native look-ahead analysis but is excluded by
@@ -1648,6 +1648,32 @@ excluded by the existing recursive rule.
 **Current snapshot:** 29 eligible, 133 pending diagnostics, and 738 ineligible.
 **Reason:** preserve environment parity while keeping dependency repair
 separate from the subsequent strategy-level eligibility result.
+
+## Decision 0.11-01 — Third controlled futures bias batch
+
+**Status:** completed
+**Timing:** after the second five-strategy checkpoint
+**Class:** measurement and reporting checkpoint; no selection-rule or strategy
+change
+**Decision:** process `RsiquiV2`, `RsiquiV5`, `TrendFollowingStrategy`,
+`VolatilitySystemV2`, and `ZaratustraDCA2_07` in the same fingerprinted native
+futures runtime. Both Rsiqui variants produce genuine look-ahead findings:
+Freqtrade identifies `rsi_gra`, plus strategy-specific entry or exit columns,
+as biased even though its separate biased-entry and biased-exit counters are
+zero. The result parser now records those indicator columns and preserves raw
+logs for positive findings; this is an evidence-detail change, not a change to
+the gate. Both Rsiqui variants, `TrendFollowingStrategy`, and
+`VolatilitySystemV2` also declare `startup_candle_count=0`, which recursive
+analysis refuses; under Decision 0.6-01, a refused diagnostic is not a PASS and
+therefore cannot establish eligibility. It is not relabelled as look-ahead
+bias. `ZaratustraDCA2_07` passes look-ahead analysis but produces
+recursive drift above tolerance in ATR and DMI-family indicators. No source or
+startup value is changed because doing so would alter strategy behavior.
+**Current snapshot:** 29 eligible, 128 pending diagnostics, and 743 ineligible.
+**Reason:** retain reproducible positive evidence and avoid mistaking zero
+summary counters for an unbiased result when Freqtrade reports biased columns.
+The five status transitions result from newly completed diagnostics; the
+parser detail change does not alter any PASS/FOUND status.
 
 ---
 

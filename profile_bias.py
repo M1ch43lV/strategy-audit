@@ -119,12 +119,21 @@ def _lookahead(output, returncode):
     too_few = re.search(r"too few trades caught \((\d+)/(\d+)\)", output, re.I)
     if too_few:
         return "NA", "too few trades (%s/%s)" % too_few.groups()
-    match = re.search(r"[│|]\s*(Yes|No)\s*[│|]\s*(\d*)\s*[│|]\s*(\d*)\s*[│|]\s*(\d*)", output)
+    match = re.search(
+        r"(?:\||\u2502)\s*(Yes|No)\s*(?:\||\u2502)\s*(\d*)\s*"
+        r"(?:\||\u2502)\s*(\d*)\s*(?:\||\u2502)\s*(\d*)\s*"
+        r"(?:\||\u2502)\s*([^\|\u2502\r\n]*)\s*(?:\||\u2502)",
+        output,
+    )
     if match and match.group(1) == "No":
         return "PASS", "no bias detected"
     if match and match.group(1) == "Yes":
-        return "FOUND", "bias: entries %s, exits %s of %s signals" % (
+        why = "bias: entries %s, exits %s of %s signals" % (
             match.group(3), match.group(4), match.group(2))
+        indicators = match.group(5).strip()
+        if indicators:
+            why += "; indicators " + indicators
+        return "FOUND", why
     errors = re.findall(r"(?:ERROR - |(?:Error|Exception): )(.+)", output)
     return "NA", errors[-1].strip()[:300] if errors else "lookahead output not parsed"
 
@@ -174,7 +183,9 @@ def run_diagnostic(row, diagnostic, timeout, fallback_timeout):
                 "output_sha256": "sha256_" + hashlib.sha256(
                     output.encode("utf-8")).hexdigest(),
             }
-            if status == "NA":
+            # Preserve inconclusive and positive findings for auditability.
+            # PASS logs are omitted because their output hash is sufficient.
+            if status in ("NA", "FOUND"):
                 os.makedirs(LOG_DIR, exist_ok=True)
                 log_path = os.path.join(LOG_DIR, "%s-%s.log" % (
                     profile_smoke._safe(strategy), diagnostic))
@@ -203,6 +214,22 @@ def candidates(profile_path, eligibility_path):
              "recursive_bias_not_completed" in row["pending_reasons"])]
 
 
+def selftest():
+    border = "\u2502"
+    found = "%s Yes %s 20 %s 0 %s 0 %s rsi_gra, enter_long %s" % (
+        border, border, border, border, border, border)
+    assert _lookahead(found, 0) == (
+        "FOUND",
+        "bias: entries 0, exits 0 of 20 signals; indicators rsi_gra, enter_long",
+    )
+    passed = "%s No %s 4 %s 0 %s 0 %s  %s" % (
+        border, border, border, border, border, border)
+    assert _lookahead(passed, 0) == ("PASS", "no bias detected")
+    assert _lookahead("too few trades caught (2/20)", 0) == (
+        "NA", "too few trades (2/20)")
+    print("profile_bias selftest: PASS")
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--profiles", default=PROFILES)
@@ -215,7 +242,11 @@ def main(argv=None):
     parser.add_argument("--fallback-timeout", type=int, default=300)
     parser.add_argument("--force", action="store_true",
                         help="rerun selected diagnostics even when PASS/FOUND is stored")
+    parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
+    if args.selftest:
+        selftest()
+        return 0
     wanted = set(filter(None, args.diagnostics.split(",")))
     if not wanted <= {"lookahead", "recursive"}:
         raise SystemExit("diagnostics must be lookahead and/or recursive")
