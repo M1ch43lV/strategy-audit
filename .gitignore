@@ -26,6 +26,7 @@ data/
 !REGIME_COVERAGE.csv
 !REGIME_ELIGIBILITY.csv
 !cluster/CLUSTERS.csv
+!results/regime/*.csv
 
 # Downloaded upstream strategy repositories - regenerate from the corpus
 # source list. Their nested .git directories and worktrees do not belong to

@@ -1,0 +1,42 @@
+{
+  "max_open_trades": 8,
+  "stake_currency": "USDT",
+  "stake_amount": "unlimited",
+  "tradable_balance_ratio": 0.99,
+  "dry_run": true,
+  "dry_run_wallet": 1000,
+  "entry_pricing": {
+    "price_side": "other",
+    "use_order_book": true
+  },
+  "exit_pricing": {
+    "price_side": "other",
+    "use_order_book": true
+  },
+  "exchange": {
+    "name": "binance",
+    "key": "",
+    "secret": "",
+    "ccxt_config": {},
+    "ccxt_async_config": {},
+    "pair_whitelist": [
+      "BTC/USDT",
+      "ETH/USDT",
+      "LTC/USDT",
+      "XRP/USDT",
+      "ADA/USDT",
+      "XLM/USDT",
+      "XMR/USDT",
+      "DASH/USDT"
+    ],
+    "pair_blacklist": []
+  },
+  "pairlists": [
+    {
+      "method": "StaticPairList",
+      "allow_inactive": true
+    }
+  ],
+  "dataformat_ohlcv": "feather",
+  "datadir": "user_data/data/binance"
+}

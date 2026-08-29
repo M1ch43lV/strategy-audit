@@ -1,0 +1,46 @@
+{
+  "input_sha256": {
+    "ADA_USDT-1d.feather": "sha256_a4745fdba161e307c02050520360f681a2408503509b4a57fc26dc87338af6c6",
+    "BTC_USDT-1d.feather": "sha256_282b5e3284c5ec627a8e0a67c2ee07c740ac66dba6b9f5b7d471bd556dad0e00",
+    "DASH_USDT-1d.feather": "sha256_c56355854aa168bf309656bba292e930d9b323d44c7b4810717f8753c431adfb",
+    "ETH_USDT-1d.feather": "sha256_74e425a959ca228d959cd05ba6d58db3307e24b16171746150dc441769ef89fa",
+    "LTC_USDT-1d.feather": "sha256_ff82369cc69d111f96d112d86a1a07aff125499f592416e23fbf4fc3e5b6247b",
+    "XLM_USDT-1d.feather": "sha256_9ec9a0c206eee48c75995c8dbf277554f4fb606af72a9615cc6258a27cd398e6",
+    "XMR_USDT-1d.feather": "sha256_f40014adbdd32f38d23a77761f177b584b2f32e6c13dfbab1583adc43cf8719a",
+    "XRP_USDT-1d.feather": "sha256_18b43582f2eba171cc1d25973b1e08136c5c3ba85ad3a0a58923c4e4ef3220af"
+  },
+  "output_sha256": {
+    "regime_btc_episodes.csv": "sha256_6c83d2d15994f3efab7d20e61cfb9a3c7181a3d8807e7cd4e181cb8fe4e8ac07",
+    "regime_daily.csv": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+    "regime_episodes.csv": "sha256_651a26999d6f4a95c1869749d0985789048403cb93ebca703ddd295b1cbc9678",
+    "regime_feature_distributions.csv": "sha256_d00b28059974190d818f80b58094da3fd854bd74de75fbe46e0a4529406181fd",
+    "regime_state_summary.csv": "sha256_642599ae407c69685779b6ed329c0ec673847b375ebaa463f4a86595fe6fd4f3",
+    "regime_transitions.csv": "sha256_1af76323937baa45171f8ed025d413948cd9c96adc11cdbe52212dc489234809"
+  },
+  "pairs": [
+    "BTC/USDT",
+    "ETH/USDT",
+    "LTC/USDT",
+    "XRP/USDT",
+    "ADA/USDT",
+    "XLM/USDT",
+    "XMR/USDT",
+    "DASH/USDT"
+  ],
+  "parameters": {
+    "adx_bull_bear": 25.0,
+    "adx_sideways": 20.0,
+    "annualization_days": 365,
+    "availability_lag_days": 1,
+    "dmi_period": 14,
+    "realized_vol_period": 30,
+    "return_periods": [
+      30,
+      90
+    ],
+    "ser_period": 30
+  },
+  "schema_version": 1,
+  "window_end_exclusive": "2026-08-21T00:00:00+00:00",
+  "window_start": "2020-03-01T00:00:00+00:00"
+}

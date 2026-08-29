@@ -1,0 +1,156 @@
+{
+  "all_exact": true,
+  "results": [
+    {
+      "baseline": {
+        "class1_rules": [],
+        "elapsed_s": 6.7,
+        "long_trades": 7,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20200401",
+        "trades": 7,
+        "trades_sha256": "sha256_48c9614e69564f5039357a3adc499fa30a3797d08f4828f85a0d999ad7925bc8"
+      },
+      "exact_trade_match": true,
+      "run_profile": "spot_long",
+      "strategy_id": "MacdStrategy",
+      "timerange": "20200301-20200401",
+      "ungated_adapter": {
+        "class1_rules": [],
+        "elapsed_s": 6.8,
+        "long_trades": 7,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20200401",
+        "trades": 7,
+        "trades_sha256": "sha256_48c9614e69564f5039357a3adc499fa30a3797d08f4828f85a0d999ad7925bc8"
+      }
+    },
+    {
+      "baseline": {
+        "class1_rules": [],
+        "elapsed_s": 8.9,
+        "long_trades": 19,
+        "mode": "futures",
+        "run_profile": "futures_long_short",
+        "short_trades": 46,
+        "status": "measured",
+        "timerange": "20200301-20200401",
+        "trades": 65,
+        "trades_sha256": "sha256_bd44fa588e6a59b5b6ec09b593a35e54d3b8393499d870d60262db5bbca6b3f3"
+      },
+      "exact_trade_match": true,
+      "run_profile": "futures_long_short",
+      "strategy_id": "RegimeFilterStrategy",
+      "timerange": "20200301-20200401",
+      "ungated_adapter": {
+        "class1_rules": [],
+        "elapsed_s": 8.0,
+        "long_trades": 19,
+        "mode": "futures",
+        "run_profile": "futures_long_short",
+        "short_trades": 46,
+        "status": "measured",
+        "timerange": "20200301-20200401",
+        "trades": 65,
+        "trades_sha256": "sha256_bd44fa588e6a59b5b6ec09b593a35e54d3b8393499d870d60262db5bbca6b3f3"
+      }
+    },
+    {
+      "baseline": {
+        "class1_rules": [],
+        "elapsed_s": 6.8,
+        "long_trades": 13,
+        "mode": "futures",
+        "run_profile": "futures_long_short",
+        "short_trades": 2,
+        "status": "measured",
+        "timerange": "20200301-20200401",
+        "trades": 15,
+        "trades_sha256": "sha256_dd8be000c9dd53c6b1720207812268183408e47e6376b65de2540e4715839a50"
+      },
+      "exact_trade_match": true,
+      "run_profile": "futures_long_short",
+      "strategy_id": "FAdxSmaStrategy",
+      "timerange": "20200301-20200401",
+      "ungated_adapter": {
+        "class1_rules": [],
+        "elapsed_s": 6.7,
+        "long_trades": 13,
+        "mode": "futures",
+        "run_profile": "futures_long_short",
+        "short_trades": 2,
+        "status": "measured",
+        "timerange": "20200301-20200401",
+        "trades": 15,
+        "trades_sha256": "sha256_dd8be000c9dd53c6b1720207812268183408e47e6376b65de2540e4715839a50"
+      }
+    },
+    {
+      "baseline": {
+        "class1_rules": [],
+        "elapsed_s": 8.0,
+        "long_trades": 83,
+        "mode": "futures",
+        "run_profile": "futures_long",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20200401",
+        "trades": 83,
+        "trades_sha256": "sha256_9977a5efe166f06667062d987ac6bf6271519aa7c61504944aaa7f603f42c7f1"
+      },
+      "exact_trade_match": true,
+      "run_profile": "futures_long",
+      "strategy_id": "FSupertrendStrategy",
+      "timerange": "20200301-20200401",
+      "ungated_adapter": {
+        "class1_rules": [],
+        "elapsed_s": 8.5,
+        "long_trades": 83,
+        "mode": "futures",
+        "run_profile": "futures_long",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20200401",
+        "trades": 83,
+        "trades_sha256": "sha256_9977a5efe166f06667062d987ac6bf6271519aa7c61504944aaa7f603f42c7f1"
+      }
+    },
+    {
+      "baseline": {
+        "class1_rules": [],
+        "elapsed_s": 14.8,
+        "long_trades": 0,
+        "mode": "futures",
+        "run_profile": "futures_long_short",
+        "short_trades": 682,
+        "status": "measured",
+        "timerange": "20200301-20200401",
+        "trades": 682,
+        "trades_sha256": "sha256_24c63724570c1e8659be5fe7834c5b9699a604cef85c58e9a287099ff3fe4036"
+      },
+      "exact_trade_match": true,
+      "run_profile": "futures_long_short",
+      "strategy_id": "momentum",
+      "timerange": "20200301-20200401",
+      "ungated_adapter": {
+        "class1_rules": [],
+        "elapsed_s": 16.0,
+        "long_trades": 0,
+        "mode": "futures",
+        "run_profile": "futures_long_short",
+        "short_trades": 682,
+        "status": "measured",
+        "timerange": "20200301-20200401",
+        "trades": 682,
+        "trades_sha256": "sha256_24c63724570c1e8659be5fe7834c5b9699a604cef85c58e9a287099ff3fe4036"
+      }
+    }
+  ],
+  "schema_version": 1
+}
