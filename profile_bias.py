@@ -14,6 +14,7 @@ import io
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import time
@@ -32,7 +33,9 @@ CONFIG_DIR = os.path.join(ROOT, "user_data", "profile_configs")
 PYTHON = os.environ.get("PROFILE_PYTHON", sys.executable)
 FT_WRAPPER = os.path.join(ROOT, "profile_freqtrade.py")
 LOG_DIR = os.path.join(ROOT, "user_data", "profile_bias_logs")
+ISOLATED_DIR = os.path.join(ROOT, "user_data", "profile_bias_strategies")
 WINDOWS = {"spot": "20190101-20190401", "futures": "20200301-20200401"}
+INTERMEDIATE_WINDOW = "20200101-20220101"
 FALLBACK_WINDOW = "20200301-20260820"
 
 
@@ -68,6 +71,8 @@ def _runtime(row):
     if mode == "futures":
         config, env, repair, extra = profile_smoke._runtime(row["strategy_id"])
     else:
+        _base_config, env, repair, extra = profile_smoke._runtime(
+            row["strategy_id"], mode="spot")
         data = json.load(io.open(SPOT_CONFIG, encoding="utf-8"))
         # Current lookahead-analysis forces market orders. Freqtrade then
         # requires price_side=other before it evaluates a single signal. This
@@ -75,14 +80,19 @@ def _runtime(row):
         # or signal generation, and keeps original strategy sources untouched.
         data.setdefault("entry_pricing", {})["price_side"] = "other"
         data.setdefault("exit_pricing", {})["price_side"] = "other"
+        pairlists = data.setdefault("pairlists", [{"method": "StaticPairList"}])
+        for pairlist in pairlists:
+            if pairlist.get("method") == "StaticPairList":
+                pairlist["allow_inactive"] = True
         os.makedirs(CONFIG_DIR, exist_ok=True)
-        config = os.path.join(CONFIG_DIR, "bias_spot.json")
-        with io.open(config, "w", encoding="utf-8") as handle:
+        shard = re.sub(r"[^A-Za-z0-9_.-]+", "_", os.environ.get("PROFILE_BIAS_SHARD", ""))
+        config = os.path.join(CONFIG_DIR, "bias_spot%s.json" % ("_" + shard if shard else ""))
+        with io.open(config, "w", encoding="utf-8", newline="\n") as handle:
             json.dump(data, handle, ensure_ascii=False, indent=2, sort_keys=True)
             handle.write("\n")
-        env = os.environ.copy()
-        repair = {"rules": ["bias_market_order_price_side_compatibility"]}
-        extra = []
+        repair = dict(repair)
+        repair["rules"] = list(repair.get("rules", [])) + [
+            "bias_market_order_price_side_compatibility"]
     return mode, config, env, repair, extra
 
 
@@ -109,6 +119,17 @@ def _error(output, returncode):
     if errors:
         return errors[-1].strip()[:300]
     return "process exit %d or unparsed output" % returncode
+
+
+def _isolated_strategy(row, canonical):
+    """Expose only the target file to analyzers that enumerate a whole path."""
+    directory = os.path.join(ISOLATED_DIR, profile_smoke._safe(row["strategy_id"]))
+    os.makedirs(directory, exist_ok=True)
+    target = os.path.join(directory, os.path.basename(canonical))
+    temporary = target + ".tmp"
+    shutil.copyfile(canonical, temporary)
+    os.replace(temporary, target)
+    return directory
 
 
 def _lookahead(output, returncode):
@@ -155,14 +176,19 @@ def run_diagnostic(row, diagnostic, timeout, fallback_timeout):
     strategy = row["strategy_id"]
     canonical = os.path.join(ROOT, row["canonical_file"].replace("/", os.sep))
     mode, config, env, repair, extra = _runtime(row)
+    strategy_path = _isolated_strategy(row, canonical)
+    original_directory = os.path.dirname(canonical)
+    existing_imports = env.get("PROFILE_STRATEGY_IMPORT_PATH", "")
+    env["PROFILE_STRATEGY_IMPORT_PATH"] = os.pathsep.join(
+        [original_directory] + ([existing_imports] if existing_imports else []))
     started = time.time()
     timeranges = [WINDOWS[mode]]
     if diagnostic == "lookahead" and timeranges[0] != FALLBACK_WINDOW:
-        timeranges.append(FALLBACK_WINDOW)
+        timeranges.extend([INTERMEDIATE_WINDOW, FALLBACK_WINDOW])
     attempted = []
     for attempt, timerange in enumerate(timeranges):
         command = [PYTHON, FT_WRAPPER, diagnostic + "-analysis", "--config", config,
-                   "--strategy", strategy, "--strategy-path", os.path.dirname(canonical),
+                   "--strategy", strategy, "--strategy-path", strategy_path,
                    "--timerange", timerange, "--no-color"] + extra
         try:
             process = subprocess.run(command, capture_output=True,

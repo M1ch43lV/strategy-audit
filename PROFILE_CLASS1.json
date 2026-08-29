@@ -33,6 +33,12 @@
       "python_paths": ["repos/nateemma_strategies"],
       "status": "applied"
     },
+    "BuyRegions": {
+      "rules": ["restore_copied_local_module"],
+      "python_paths": ["repos/nateemma_strategies"],
+      "status": "applied",
+      "note": "The strategy imports the author's adjacent utils package; analyzer isolation must retain the repository package root."
+    },
     "FreqaiExampleHybridStrategy": {
       "rules": ["restore_author_config"],
       "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/config_examples/config_freqai.example.json",

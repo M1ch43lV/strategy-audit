@@ -9,6 +9,12 @@ import freqtrade
 
 
 def main() -> int:
+    import_paths = os.environ.get("PROFILE_STRATEGY_IMPORT_PATH", "")
+    for path in import_paths.split(os.pathsep):
+        if path and path not in sys.path:
+            # Append so installed packages retain precedence over corpus files
+            # named like real packages (for example technical.py).
+            sys.path.append(path)
     extensions = os.environ.get("PROFILE_FREQTRADE_PATH", "")
     for path in extensions.split(os.pathsep):
         package = os.path.join(path, "freqtrade")

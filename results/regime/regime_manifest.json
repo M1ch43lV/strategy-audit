@@ -40,6 +40,12 @@
     ],
     "ser_period": 30
   },
+  "runtime_versions": {
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.13.14",
+    "ta_lib": "0.7.1"
+  },
   "schema_version": 1,
   "window_end_exclusive": "2026-08-21T00:00:00+00:00",
   "window_start": "2020-03-01T00:00:00+00:00"

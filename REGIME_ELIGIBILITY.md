@@ -27,7 +27,7 @@ Coverage uses available pair history, matching the existing audit. Exact pair
 and candle coverage for the frozen regime window is a hard Stage 7 precondition.
 Until `REGIME_COVERAGE.csv` supplies a `PASS` for a strategy/run-profile row,
 that row remains `pending_diagnostics` rather than being called eligible.
-At the current checkpoint, 31 rows pass all gates including coverage; 0 pass
+At the current checkpoint, 67 rows pass all gates including coverage; 0 pass
 every other gate and wait only for coverage.
 
 The coverage input schema is `strategy_id,run_profile,coverage_status,coverage_evidence`.
@@ -38,9 +38,9 @@ pair/timerange completeness check that produced the status.
 
 | Status | Strategies |
 |---|---:|
-| `eligible` | 31 |
-| `ineligible` | 755 |
-| `pending_diagnostics` | 114 |
+| `eligible` | 67 |
+| `ineligible` | 826 |
+| `pending_diagnostics` | 7 |
 
 ## Native run profiles
 
@@ -60,9 +60,9 @@ Reasons are non-exclusive.
 |---|---:|
 | `behavior_changed_primary_exclusion` | 1 |
 | `canonical_implementation_not_measured` | 278 |
-| `lookahead_found` | 46 |
-| `no_trades_in_full_measurement` | 5 |
-| `recursive_bias_found` | 481 |
+| `lookahead_found` | 56 |
+| `no_trades_in_full_measurement` | 6 |
+| `recursive_bias_found` | 545 |
 | `technical_trap_found` | 42 |
 
 ## Pending reasons
@@ -75,13 +75,13 @@ cannot be both failed and pending on one row.
 | Reason | Strategies |
 |---|---:|
 | `artifact_role_requires_review` | 14 |
-| `exact_regime_window_coverage_not_verified` | 80 |
+| `exact_regime_window_coverage_not_verified` | 36 |
 | `execution_profile_unresolved` | 1 |
-| `futures_mode_bias_diagnostics_not_completed` | 54 |
-| `lookahead_not_completed` | 592 |
+| `futures_mode_bias_diagnostics_not_completed` | 51 |
+| `lookahead_not_completed` | 495 |
 | `native_mode_not_runtime_validated` | 278 |
 | `output_equivalent_requires_canonical_bias_rerun` | 4 |
-| `recursive_bias_not_completed` | 187 |
-| `zero_trades_in_smoke_requires_full_window` | 13 |
+| `recursive_bias_not_completed` | 182 |
+| `zero_trades_in_smoke_requires_full_window` | 8 |
 
 The machine-readable row-level record is `REGIME_ELIGIBILITY.csv`.

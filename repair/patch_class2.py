@@ -256,6 +256,10 @@ FILL_MAP = {"ffill": "ffill", "pad": "ffill", "bfill": "bfill", "backfill": "bfi
 RX_FILLNA = re.compile(r"\.fillna\(\s*(?P<args>[^()]*)\)")
 RX_METHOD_ARG = re.compile(r"""method\s*=\s*['"](?P<m>ffill|pad|bfill|backfill)['"]""")
 RX_SUM_LEVEL = re.compile(r"\.(?P<fn>sum|mean|min|max|std|var|count)\(\s*level\s*=\s*(?P<lv>\d+)\s*\)")
+RX_CHAINED_FILL_INPLACE = re.compile(
+    r"^(?P<i>[ \t]*)(?P<t>dataframe\[[^\n]+\])\.fillna\(\s*"
+    r"method\s*=\s*['\"](?P<m>ffill|pad|bfill|backfill)['\"]\s*,\s*"
+    r"inplace\s*=\s*True\s*\)[ \t]*$", re.M)
 
 
 def _split_args(s):
@@ -299,12 +303,21 @@ def pre_pandas_renames(src, path):
         hits.append("fillna(method=)")
     if RX_SUM_LEVEL.search(src):
         hits.append("agg(level=)")
+    if RX_CHAINED_FILL_INPLACE.search(src):
+        hits.append("chained fillna(method=, inplace=True)")
     if not hits:
         return False, "no removed-pandas-keyword call present"
     return True, "pandas documents exact replacements for: " + ", ".join(sorted(set(hits)))
 
 
 def apply_pandas_renames(src):
+    def chained_repl(m):
+        method = FILL_MAP[m.group("m")]
+        return "%s%s = %s.%s()" % (
+            m.group("i"), m.group("t"), m.group("t"), method)
+
+    src = RX_CHAINED_FILL_INPLACE.sub(chained_repl, src)
+
     def fill_repl(m):
         args = _split_args(m.group("args"))
         meth, rest = None, []

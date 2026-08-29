@@ -197,7 +197,7 @@ class Obelisk_Ichimoku_Slow_v1_3(IStrategy):
 
         dataframe.loc[ (dataframe['trend_pulse'] > 0), 'trending'] = 3
         dataframe.loc[ (dataframe['trend_over'] > 0) , 'trending'] = 0
-        dataframe['trending'].ffill(inplace=True)
+        dataframe['trending'] = dataframe['trending'].ffill()
 
         return dataframe
 

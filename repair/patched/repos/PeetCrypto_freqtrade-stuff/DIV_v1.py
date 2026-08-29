@@ -102,8 +102,8 @@ def divergence(dataframe: DataFrame, source='rsi'):
     dataframe['rsi_bottom'] = np.NaN
     dataframe.loc[(dataframe['close'].shift() <= dataframe['close'].shift(2)) & (dataframe['close'] >= dataframe['close'].shift()), 'ohlc_bottom'] = dataframe['close'].shift()
     dataframe.loc[(dataframe[source].shift() <= dataframe[source].shift(2)) & (dataframe[source] >= dataframe[source].shift()), 'rsi_bottom'] = dataframe[source].shift()
-    dataframe["ohlc_bottom"].ffill(inplace=True)
-    dataframe["rsi_bottom"].ffill(inplace=True)
+    dataframe["ohlc_bottom"] = dataframe["ohlc_bottom"].ffill()
+    dataframe["rsi_bottom"] = dataframe["rsi_bottom"].ffill()
 
     # Detect divergence
     dataframe['bullish_divergence'] = np.NaN

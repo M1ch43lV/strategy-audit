@@ -12,10 +12,13 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+import profile_smoke
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DAILY = ROOT / "results" / "regime" / "regime_daily.csv"
 OUT = ROOT / "results" / "regime"
+FULL_MANIFEST = OUT / "full_backtest_manifest.json"
 START = pd.Timestamp("2020-03-01T00:00:00Z")
 END = pd.Timestamp("2026-08-21T00:00:00Z")
 
@@ -73,13 +76,19 @@ def read_archive(path: Path, profiles: dict[str, dict]) -> list[dict]:
     return records
 
 
-def archive_inventory(search_root: Path, profiles: dict[str, dict]) -> tuple[list[dict], list[dict]]:
+def archive_inventory(search_root: Path, profiles: dict[str, dict],
+                      archive_paths: list[Path] | None = None) -> tuple[list[dict], list[dict]]:
     accepted, rejected = [], []
     seen = set()
-    for path in sorted(search_root.rglob("*.zip")):
+    paths = sorted(archive_paths) if archive_paths is not None else sorted(search_root.rglob("*.zip"))
+    for path in paths:
         for record in read_archive(path, profiles):
             profile = profiles[record["strategy_id"]]
             expected_mode = "futures" if profile["run_profile"].startswith("futures_") else "spot"
+            config_path = (profile_smoke.FUTURES_CONFIG if expected_mode == "futures"
+                           else profile_smoke.SPOT_CONFIG)
+            expected_pairs = set(profile_smoke._read_jsonc(config_path)["exchange"]["pair_whitelist"])
+            actual_pairs = set(record["summary"].get("pairlist") or [])
             reason = ""
             if not record["source_match"]:
                 reason = "canonical_source_hash_mismatch"
@@ -88,6 +97,8 @@ def archive_inventory(search_root: Path, profiles: dict[str, dict]) -> tuple[lis
             elif (profile["execution_timeframe"] and
                   record["summary"].get("timeframe") != profile["execution_timeframe"]):
                 reason = "execution_timeframe_mismatch"
+            elif actual_pairs != expected_pairs:
+                reason = "not_canonical_pooled_pair_universe"
             elif pd.isna(record["start"]) or pd.isna(record["end"]):
                 reason = "missing_backtest_window"
             if reason:
@@ -196,13 +207,22 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--search-root", type=Path, default=ROOT / "user_data")
     parser.add_argument("--outdir", type=Path, default=OUT)
+    parser.add_argument("--full-manifest", type=Path, default=FULL_MANIFEST)
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:
         selftest()
         return 0
     profiles = eligible_profiles()
-    accepted, rejected = archive_inventory(args.search_root, profiles)
+    archive_paths = None
+    evidence_source = "bootstrap_archive_scan"
+    if args.full_manifest.exists():
+        full = json.loads(args.full_manifest.read_text(encoding="utf-8"))
+        archive_paths = [ROOT / row["archive"] for strategy, row in full["results"].items()
+                         if strategy in profiles and row.get("status") == "measured"
+                         and row.get("archive")]
+        evidence_source = str(args.full_manifest.relative_to(ROOT))
+    accepted, rejected = archive_inventory(args.search_root, profiles, archive_paths)
     trades = attribute(accepted)
     args.outdir.mkdir(parents=True, exist_ok=True)
     _write(trades, args.outdir / "trade_regime_attribution.csv")
@@ -220,12 +240,14 @@ def main(argv=None) -> int:
             "source_sha256": row["source_sha256"],
             "config_sha256": row["config_sha256"],
             "timeframe": row["summary"].get("timeframe"),
+            "pairlist": row["summary"].get("pairlist") or [],
             "mode": row["mode"], "start": row["start"].isoformat(),
             "end": row["end"].isoformat(),
         } for row in accepted],
         "evidence_scope": ("Phase A descriptive attribution; source, native mode, and "
                            "timeframe are verified. Stage 9+ runs require a separately "
                            "locked runtime/config/data manifest."),
+        "archive_selection_source": evidence_source,
         "rejected_archives": rejected,
         "trades": len(trades),
     }

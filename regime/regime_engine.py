@@ -5,10 +5,12 @@ import argparse
 import hashlib
 import json
 import os
+import sys
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import talib
 
 from .episodes import build_episodes, build_transitions, episode_ids
 from .features import asset_features, classify_dmi, signed_efficiency_ratio, wilder_dmi
@@ -93,6 +95,8 @@ def build(datadir: Path = DATA) -> tuple[pd.DataFrame, dict]:
                        "annualization_days": 365, "availability_lag_days": 1},
         "window_start": START.isoformat(), "window_end_exclusive": END.isoformat(),
         "pairs": [f"{p}/USDT" for p in PAIRS], "input_sha256": fingerprints,
+        "runtime_versions": {"python": sys.version.split()[0], "numpy": np.__version__,
+                             "pandas": pd.__version__, "ta_lib": talib.__version__},
     }
     return daily, manifest
 

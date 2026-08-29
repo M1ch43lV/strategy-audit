@@ -46,7 +46,7 @@ class FakeoutStrategy(IStrategy):
                 dataframe.iloc[ilocs_max].index,
                 f'upper_peak_{val}'
                 ] = dataframe['high']
-            dataframe[f'upper_peak_{val}'].ffill(inplace=True)
+            dataframe[f'upper_peak_{val}'] = dataframe[f'upper_peak_{val}'].ffill()
             dataframe[f'count_upper_peak_{val}'] = dataframe.apply( lambda x: self._count_over_level(x['high'], x[f'upper_peak_{val}']), axis=1 )
 
         for val in self.buy_peak_order.range:
@@ -56,7 +56,7 @@ class FakeoutStrategy(IStrategy):
                 dataframe.iloc[ilocs_min].index,
                 f'lower_peak_{val}'
                 ] = dataframe['low']
-            dataframe[f'lower_peak_{val}'].ffill(inplace=True)
+            dataframe[f'lower_peak_{val}'] = dataframe[f'lower_peak_{val}'].ffill()
             dataframe[f'count_lower_peak_{val}'] = dataframe.apply( lambda x: self._count_under_level(x['low'], x[f'lower_peak_{val}']), axis=1 )
 
         return dataframe

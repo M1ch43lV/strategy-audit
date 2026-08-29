@@ -112,16 +112,18 @@
       "trades": 5
     },
     "BreakoutStrategy": {
-      "canonical_sha256": "sha256_0a6a334c883b2bf6fc83ee844ecef4f1aba8454e71254609aee9226545f8675e",
-      "elapsed_s": 8.0,
-      "long_trades": 0,
+      "canonical_sha256": "sha256_eea5d910199cdf8203ca531a6e88cd87f25b59146e012cf425e955dfd19d57b7",
+      "class1_rules": [],
+      "elapsed_s": 65.0,
+      "long_trades": 215,
       "mode": "futures",
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
-      "short_trades": 0,
+      "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+      "short_trades": 232,
       "status": "measured",
       "timerange": "20200301-20200401",
-      "trades": 0
+      "trades": 447
     },
     "COPY_HL": {
       "canonical_sha256": "sha256_d0bd7e88717f4745ad89e44d496be3032e4896bd0bf69960d1baca3e7ec22100",
@@ -216,16 +218,18 @@
       "trades": 15
     },
     "FOttStrategy": {
-      "canonical_sha256": "sha256_6825ddc4bb1edd9ac497fb8786acc4e039189ea470ada917617623b1b6382085",
-      "elapsed_s": 132.3,
-      "long_trades": 0,
+      "canonical_sha256": "sha256_cb0e3fc3a809039143cf038a6d7a71f057e302ddc8ba95e66fe682bdafa3287b",
+      "class1_rules": [],
+      "elapsed_s": 33.4,
+      "long_trades": 82,
       "mode": "futures",
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
-      "short_trades": 0,
+      "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+      "short_trades": 105,
       "status": "measured",
       "timerange": "20200301-20200401",
-      "trades": 0
+      "trades": 187
     },
     "FReinforcedStrategy": {
       "canonical_sha256": "sha256_915eb861e6b1e6244ba669a25f0806d4b36378b95615df1f05c392bf64a98c17",

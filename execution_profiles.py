@@ -150,6 +150,36 @@ def declared_text(class_node, attribute):
     return ""
 
 
+def declared_timeframe(class_node):
+    """Return the strategy's authored candle interval, including v1 syntax.
+
+    Freqtrade renamed ``ticker_interval`` to ``timeframe``.  Treating the old
+    attribute as absent loses author metadata and can make a current runtime
+    silently fall back to an unrelated configuration interval.  This function
+    records the authored value only; it does not edit or claim that the legacy
+    strategy is executable.
+    """
+    current = declared_text(class_node, "timeframe")
+    if current:
+        return current, "strategy_source"
+    legacy = declared_text(class_node, "ticker_interval")
+    if legacy:
+        return legacy, "legacy_strategy_source"
+    return "", ""
+
+
+def normalize_timeframe(value):
+    """Normalize unambiguous legacy spellings for data/profile selection."""
+    if not value:
+        return ""
+    text = value.strip().lower()
+    if text.endswith("hr") and text[:-2].isdigit():
+        return text[:-2] + "h"
+    if text.isdigit():
+        return text + "m"
+    return text
+
+
 def _target_strings(target):
     return {
         node.value
@@ -387,11 +417,11 @@ def build(repair_root=DEFAULT_REPAIR):
         source = _read(original_path)
         node = strategy_node(original_path, strategy, source)
         can_short = declared_can_short(node)
-        timeframe = declared_text(node, "timeframe")
+        timeframe, declared_timeframe_source = declared_timeframe(node)
         environment = profile_class1.get(strategy) or {}
         config_timeframe = _config_timeframe(environment)
-        execution_timeframe = timeframe or config_timeframe
-        timeframe_source = ("strategy_source" if timeframe else
+        execution_timeframe = normalize_timeframe(timeframe or config_timeframe)
+        timeframe_source = (declared_timeframe_source if timeframe else
                             "author_config" if config_timeframe else "unresolved")
         long_entry, short_entry, methods, _writes = entry_writes(node)
         profile = _profile(original_path, node, can_short, long_entry, short_entry, methods)
@@ -588,6 +618,11 @@ class OldLong(IStrategy):
     long_entry, short_entry, methods, _ = entry_writes(node)
     assert long_entry and not short_entry
     assert _profile("x.py", node, "absent", long_entry, short_entry, methods)["run_profile"] == "spot_long"
+
+    legacy = ast.parse("class Legacy(IStrategy):\n    ticker_interval = '1hr'\n").body[0]
+    assert declared_timeframe(legacy) == ("1hr", "legacy_strategy_source")
+    assert normalize_timeframe("1hr") == "1h"
+    assert normalize_timeframe("15") == "15m"
     print("execution_profiles selftest: PASS")
 
 

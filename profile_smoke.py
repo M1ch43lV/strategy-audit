@@ -25,6 +25,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 MANIFEST = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
 OUTPUT = os.path.join(ROOT, "PROFILE_SMOKE.json")
 FUTURES_CONFIG = os.path.join(ROOT, "profile_futures_config.json")
+SPOT_CONFIG = os.path.join(ROOT, "profile_spot_config.json")
 # Use the interpreter running this pipeline. PROFILE_PYTHON remains available
 # for an explicit isolated runtime, while Docker/WSL can use their own Python.
 PYTHON = os.environ.get("PROFILE_PYTHON", sys.executable)
@@ -32,6 +33,7 @@ FT_WRAPPER = os.path.join(ROOT, "profile_freqtrade.py")
 CLASS1 = os.path.join(ROOT, "PROFILE_CLASS1.json")
 EXPORT_DIR = os.path.join(ROOT, "user_data", "profile_smoke")
 CONFIG_DIR = os.path.join(ROOT, "user_data", "profile_configs")
+LOG_DIR = os.path.join(ROOT, "user_data", "profile_smoke_logs")
 
 
 def read_manifest(path):
@@ -129,12 +131,13 @@ def _class1(strategy):
     return _read_jsonc(CLASS1).get("strategies", {}).get(strategy, {})
 
 
-def _runtime(strategy):
+def _runtime(strategy, mode="futures"):
     repair = _class1(strategy)
-    config_path = FUTURES_CONFIG
+    base_config = FUTURES_CONFIG if mode == "futures" else SPOT_CONFIG
+    config_path = base_config
     source = repair.get("config_source")
     if source:
-        config = _read_jsonc(FUTURES_CONFIG)
+        config = _read_jsonc(base_config)
         author = _read_jsonc(os.path.join(ROOT, source.replace("/", os.sep)))
         for key in repair.get("config_keys", []):
             if key not in author:
@@ -142,7 +145,7 @@ def _runtime(strategy):
             config[key] = author[key]
         os.makedirs(CONFIG_DIR, exist_ok=True)
         config_path = os.path.join(CONFIG_DIR, _safe(strategy) + ".json")
-        with io.open(config_path, "w", encoding="utf-8") as handle:
+        with io.open(config_path, "w", encoding="utf-8", newline="\n") as handle:
             json.dump(config, handle, ensure_ascii=False, indent=2, sort_keys=True)
             handle.write("\n")
 
@@ -169,7 +172,8 @@ def _identity(row):
     """Bind every result to the exact canonical code and effective config."""
     canonical = os.path.abspath(os.path.join(
         ROOT, row["canonical_file"].replace("/", os.sep)))
-    config_path, _env, _repair, _args = _runtime(row["strategy_id"])
+    mode = "futures" if row["run_profile"].startswith("futures_") else "spot"
+    config_path, _env, _repair, _args = _runtime(row["strategy_id"], mode)
     identities = {}
     for field, path in (("canonical_sha256", canonical),
                         ("runtime_config_sha256", config_path)):
@@ -212,24 +216,28 @@ def _trades(archive, strategy):
     strategies = data["strategy"]
     trades = strategies[strategy].get("trades") or []
     shorts = sum(bool(trade.get("is_short")) for trade in trades)
-    return len(trades) - shorts, shorts
+    semantic = json.dumps(trades, sort_keys=True, separators=(",", ":"))
+    return (len(trades) - shorts, shorts,
+            "sha256_" + hashlib.sha256(semantic.encode("utf-8")).hexdigest())
 
 
-def run_one(row, timerange, timeout):
+def run_one(row, timerange, timeout, pair=None, extra_env=None):
     strategy = row["strategy_id"]
     canonical = os.path.abspath(os.path.join(ROOT, row["canonical_file"].replace("/", os.sep)))
     profile = row["run_profile"]
-    if not profile.startswith("futures_"):
-        raise ValueError("only futures profiles are currently supported by this runner")
+    mode = "futures" if profile.startswith("futures_") else "spot"
     if not os.path.exists(canonical):
         raise ValueError("canonical source not found: %s" % row["canonical_file"])
 
     os.makedirs(EXPORT_DIR, exist_ok=True)
-    prefix = os.path.join(EXPORT_DIR, _safe(strategy))
+    suffix = "-" + _safe(pair) if pair else ""
+    prefix = os.path.join(EXPORT_DIR, _safe(strategy) + suffix)
     try:
-        config_path, env, class1, extra_args = _runtime(strategy)
+        config_path, env, class1, extra_args = _runtime(strategy, mode)
+        if extra_env:
+            env.update(extra_env)
     except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
-        return {"status": "failed", "mode": "futures", "run_profile": profile,
+        return {"status": "failed", "mode": mode, "run_profile": profile,
                 "timerange": timerange, "elapsed_s": 0,
                 "why": "Class 1 runtime setup failed: %s" % exc}
     cmd = [
@@ -237,36 +245,46 @@ def run_one(row, timerange, timeout):
         "--strategy", strategy, "--strategy-path", os.path.dirname(canonical),
         "--timerange", timerange, "--fee", "0.001", "--export", "trades",
         "--backtest-directory", prefix, "--cache", "none",
-    ] + extra_args
+    ] + (["--pairs", pair] if pair else []) + extra_args
     started = time.time()
     try:
         proc = subprocess.run(cmd, cwd=ROOT, env=env, stdout=subprocess.PIPE,
                               stderr=subprocess.STDOUT, timeout=timeout)
         output = proc.stdout.decode("utf-8", "replace")
     except subprocess.TimeoutExpired:
-        return {"status": "timeout", "mode": "futures", "run_profile": profile,
+        return {"status": "timeout", "mode": mode, "run_profile": profile,
                 "timerange": timerange, "elapsed_s": round(time.time() - started, 1),
                 "class1_rules": class1.get("rules", []),
                 "why": "timeout after %d seconds" % timeout}
 
     archive = _archive(prefix, started)
     if not archive:
-        return {"status": "failed", "mode": "futures", "run_profile": profile,
+        os.makedirs(LOG_DIR, exist_ok=True)
+        log_path = os.path.join(LOG_DIR, _safe(strategy) + suffix + ".log")
+        with io.open(log_path, "w", encoding="utf-8") as handle:
+            handle.write(output)
+        return {"status": "failed", "mode": mode, "run_profile": profile,
                 "timerange": timerange, "elapsed_s": round(time.time() - started, 1),
                 "class1_rules": class1.get("rules", []),
-                "why": _error(output, proc.returncode)}
+                "why": _error(output, proc.returncode),
+                "debug_log": os.path.relpath(log_path, ROOT).replace(os.sep, "/")}
     try:
-        longs, shorts = _trades(archive, strategy)
+        longs, shorts, trades_sha256 = _trades(archive, strategy)
     except (ValueError, KeyError, zipfile.BadZipFile) as exc:
-        return {"status": "failed", "mode": "futures", "run_profile": profile,
+        return {"status": "failed", "mode": mode, "run_profile": profile,
                 "timerange": timerange, "elapsed_s": round(time.time() - started, 1),
                 "class1_rules": class1.get("rules", []),
                 "why": "%s: %s" % (type(exc).__name__, exc)}
-    return {"status": "measured", "mode": "futures", "run_profile": profile,
+    with io.open(archive, "rb") as archive_handle:
+        archive_sha256 = "sha256_" + hashlib.sha256(archive_handle.read()).hexdigest()
+    return {"status": "measured", "mode": mode, "run_profile": profile,
             "timerange": timerange, "elapsed_s": round(time.time() - started, 1),
             "class1_rules": class1.get("rules", []),
             "long_trades": longs, "short_trades": shorts,
-            "trades": longs + shorts}
+            "trades": longs + shorts, "trades_sha256": trades_sha256,
+            "archive": os.path.relpath(archive, ROOT).replace(os.sep, "/"),
+            "archive_sha256": archive_sha256,
+            "runtime_id": os.environ.get("PROFILE_RUNTIME_ID", "native_unversioned")}
 
 
 def select(rows, strategies, profiles, limit):

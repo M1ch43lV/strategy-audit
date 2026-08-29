@@ -95,17 +95,17 @@ class Obelisk_3EMA_StochRSI_ATR(IStrategy):
         dataframe.loc[
             qtpylib.crossed_above(dataframe['go_long'], 0),
             'take_profit'] = dataframe['close'] + dataframe['atr'] * 2
-        dataframe['take_profit'].ffill(inplace=True)
+        dataframe['take_profit'] = dataframe['take_profit'].ffill()
 
         dataframe.loc[
             qtpylib.crossed_above(dataframe['go_long'], 0),
             'stop_loss'] = dataframe['close'] - dataframe['atr'] * 3
-        dataframe['stop_loss'].ffill(inplace=True)
+        dataframe['stop_loss'] = dataframe['stop_loss'].ffill()
 
         dataframe.loc[
             qtpylib.crossed_above(dataframe['go_long'], 0),
             'stop_pct'] = (dataframe['atr'] * 3) / dataframe['close']
-        dataframe['stop_pct'].ffill(inplace=True)
+        dataframe['stop_pct'] = dataframe['stop_pct'].ffill()
 
         # add indicator mapped to correct DatetimeIndex to custom_info
         self.custom_info[metadata['pair']] = dataframe[['date', 'stop_pct', 'take_profit']].copy().set_index('date')

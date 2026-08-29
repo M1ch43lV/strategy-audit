@@ -4,6 +4,9 @@
   "rule": [
    "rolling_any_masked"
   ],
+  "repair_rules": [
+   "rolling_any_masked"
+  ],
   "action": "patched",
   "reason": [
    "disputed rows 0..n-2 (n<=5) always fall inside the 4+ rows where SMA_9 is NaN and the ANDed term is False"
@@ -12,14 +15,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "output_equivalent",
-  "repair_rules": [
-   "rolling_any_masked"
-  ]
+  "equivalence_status": "output_equivalent"
  },
  {
   "strategy": "AstroQAV4",
   "rule": [
+   "restore_commented_feature_source"
+  ],
+  "repair_rules": [
    "restore_commented_feature_source"
   ],
   "action": "patched",
@@ -30,14 +33,15 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "behavior_changed",
-  "repair_rules": [
-   "restore_commented_feature_source"
-  ]
+  "equivalence_status": "behavior_changed"
  },
  {
   "strategy": "BB_RPB_TSL",
   "rule": [
+   "dead_np_where_dtype",
+   "param_missing_space"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype",
    "param_missing_space"
   ],
@@ -50,15 +54,15 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype",
-   "param_missing_space"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "BB_RPB_TSL_2",
   "rule": [
+   "dead_np_where_dtype",
+   "param_missing_space"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype",
    "param_missing_space"
   ],
@@ -71,15 +75,15 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype",
-   "param_missing_space"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "BB_RPB_TSL_BI",
   "rule": [
+   "dead_np_where_dtype",
+   "param_missing_space"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype",
    "param_missing_space"
   ],
@@ -92,15 +96,15 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype",
-   "param_missing_space"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "BB_RPB_TSL_BIV1",
   "rule": [
+   "dead_np_where_dtype",
+   "param_missing_space"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype",
    "param_missing_space"
   ],
@@ -113,15 +117,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype",
-   "param_missing_space"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "BB_RPB_TSL_SMA_Tranz",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -132,14 +135,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "BB_RPB_TSL_SMA_Tranz_TB_1_1_1",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -150,14 +153,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "BB_RPB_TSL_SMA_Tranz_TB_MOD",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -168,14 +171,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "BB_RPB_TSL_Tranz",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -186,14 +189,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "BB_RPB_TSLmeneguzzo",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -204,14 +207,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "BBMod1",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -222,14 +225,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "BBRSIS",
   "rule": [
+   "pandas_removed_keywords"
+  ],
+  "repair_rules": [
    "pandas_removed_keywords"
   ],
   "action": "patched",
@@ -240,32 +243,32 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "BreakoutStrategy",
   "rule": [
    "pandas_removed_keywords"
   ],
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ],
   "action": "patched",
   "reason": [
-   "pandas documents exact replacements for: fillna(method=)"
+   "pandas documents exact replacements for: chained fillna(method=, inplace=True), fillna(method=)"
   ],
   "file": "repos/flaviosiotto_freqtrade-strategy/user_data/strategies/breakout-strategy.py",
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "ClucHAnix_BB_RPB_TraNz",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -276,50 +279,50 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "DIV_v1",
   "rule": [
    "pandas_removed_keywords"
   ],
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ],
   "action": "patched",
   "reason": [
-   "pandas documents exact replacements for: fillna(method=)"
+   "pandas documents exact replacements for: chained fillna(method=, inplace=True), fillna(method=)"
   ],
   "file": "repos/PeetCrypto_freqtrade-stuff/DIV_v1.py",
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "FakeoutStrategy",
   "rule": [
    "pandas_removed_keywords"
   ],
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ],
   "action": "patched",
   "reason": [
-   "pandas documents exact replacements for: fillna(method=)"
+   "pandas documents exact replacements for: chained fillna(method=, inplace=True), fillna(method=)"
   ],
   "file": "repos/flaviosiotto_freqtrade-strategy/user_data/strategies/fakeout-strategy.py",
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "falconTrader",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -330,14 +333,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "GeneStrategy",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -348,14 +351,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "GeneStrategy_v2",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -366,14 +369,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "GeneTrader_gen10_1734895087_6007",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -384,14 +387,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "GeneTrader_gen5_1735014093_4541",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -402,14 +405,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "HEW",
   "rule": [
+   "pandas_removed_keywords"
+  ],
+  "repair_rules": [
    "pandas_removed_keywords"
   ],
   "action": "patched",
@@ -420,14 +423,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "HurstCycleV4",
   "rule": [
+   "pandas_removed_keywords"
+  ],
+  "repair_rules": [
    "pandas_removed_keywords"
   ],
   "action": "patched",
@@ -438,14 +441,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "HurstCycleV5RSI",
   "rule": [
+   "pandas_removed_keywords"
+  ],
+  "repair_rules": [
    "pandas_removed_keywords"
   ],
   "action": "patched",
@@ -456,14 +459,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "ichiV1_Marius",
   "rule": [
+   "param_missing_space"
+  ],
+  "repair_rules": [
    "param_missing_space"
   ],
   "action": "patched",
@@ -474,14 +477,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "param_missing_space"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "KitchenSink",
   "rule": [
+   "pandas_removed_keywords"
+  ],
+  "repair_rules": [
    "pandas_removed_keywords"
   ],
   "action": "patched",
@@ -492,14 +495,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "LitmusSimpleStrategy",
   "rule": [
+   "pandas_removed_keywords"
+  ],
+  "repair_rules": [
    "pandas_removed_keywords"
   ],
   "action": "patched",
@@ -510,14 +513,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "Matrix",
   "rule": [
+   "pandas_removed_keywords"
+  ],
+  "repair_rules": [
    "pandas_removed_keywords"
   ],
   "action": "patched",
@@ -528,14 +531,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "MultiMA_TSL3",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -546,14 +549,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "MultiMA_TSL3_Mod",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -564,14 +567,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "MultiRSI",
   "rule": [
+   "pandas_removed_keywords"
+  ],
+  "repair_rules": [
    "pandas_removed_keywords"
   ],
   "action": "patched",
@@ -582,14 +585,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NASOSRv6_private_Reinuvader_20211121",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -600,14 +603,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "newstrategy53",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -618,14 +621,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "newstrategy53_22",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -636,14 +639,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NFI731_BUSD",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -654,14 +657,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NfiNextModded",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -672,14 +675,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NFIX_BB_RPB",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -690,14 +693,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NFIX_BB_RPB_c7c477d_20211030",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -708,14 +711,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NostalgiaForInfinity772martinsk3",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -726,14 +729,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NostalgiaForInfinityNext",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -744,14 +747,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NostalgiaForInfinityNext772",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -762,14 +765,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NostalgiaForInfinityNext_ChangeToTower_V5_2",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -780,14 +783,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NostalgiaForInfinityNext_ChangeToTower_V5_3",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -798,14 +801,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NostalgiaForInfinityNext_ChangeToTower_V6",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -816,14 +819,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NostalgiaForInfinityNext_maximizer",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -834,14 +837,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NostalgiaForInfinityNextV7155",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -852,14 +855,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NostalgiaForInfinityV7_7_2",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -870,14 +873,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NostalgiaForInfinityX",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -888,14 +891,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "NostalgiaForInfinityXw",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -906,68 +909,68 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "Obelisk_3EMA_StochRSI_ATR",
   "rule": [
    "pandas_removed_keywords"
   ],
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ],
   "action": "patched",
   "reason": [
-   "pandas documents exact replacements for: fillna(method=)"
+   "pandas documents exact replacements for: chained fillna(method=, inplace=True), fillna(method=)"
   ],
   "file": "repos/PeetCrypto_freqtrade-stuff/Obelisk_3EMA_StochRSI_ATR.py",
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "Obelisk_Ichimoku_Slow_v1_3",
   "rule": [
    "pandas_removed_keywords"
   ],
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ],
   "action": "patched",
   "reason": [
-   "pandas documents exact replacements for: fillna(method=)"
+   "pandas documents exact replacements for: chained fillna(method=, inplace=True), fillna(method=)"
   ],
   "file": "repos/PeetCrypto_freqtrade-stuff/Obelisk_Ichimoku_Slow_v1_3.py",
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "Obelisk_Ichimoku_ZEMA_v1",
   "rule": [
    "pandas_removed_keywords"
   ],
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ],
   "action": "patched",
   "reason": [
-   "pandas documents exact replacements for: fillna(method=)"
+   "pandas documents exact replacements for: chained fillna(method=, inplace=True), fillna(method=)"
   ],
   "file": "repos/Foxel05_freqtrade-stuff/strategies/Obelisk_Ichimoku_ZEMA_v1.py",
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "ObeliskIM_v1_1",
   "rule": [
+   "pandas_removed_keywords"
+  ],
+  "repair_rules": [
    "pandas_removed_keywords"
   ],
   "action": "patched",
@@ -978,32 +981,32 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "ObeliskRSI_v6_1",
   "rule": [
    "pandas_removed_keywords"
   ],
+  "repair_rules": [
+   "pandas_removed_keywords"
+  ],
   "action": "patched",
   "reason": [
-   "pandas documents exact replacements for: fillna(method=)"
+   "pandas documents exact replacements for: chained fillna(method=, inplace=True), fillna(method=)"
   ],
   "file": "repos/PeetCrypto_freqtrade-stuff/ObeliskRSI_v6_1.py",
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "pmaxTest",
   "rule": [
+   "dead_np_where_dtype"
+  ],
+  "repair_rules": [
    "dead_np_where_dtype"
   ],
   "action": "patched",
@@ -1014,14 +1017,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "dead_np_where_dtype"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "ScalpingCCI",
   "rule": [
+   "pandas_removed_keywords"
+  ],
+  "repair_rules": [
    "pandas_removed_keywords"
   ],
   "action": "patched",
@@ -1032,14 +1035,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "slownsteady",
   "rule": [
+   "pandas_removed_keywords"
+  ],
+  "repair_rules": [
    "pandas_removed_keywords"
   ],
   "action": "patched",
@@ -1050,14 +1053,14 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  },
  {
   "strategy": "Stinkfist",
   "rule": [
+   "pandas_removed_keywords"
+  ],
+  "repair_rules": [
    "pandas_removed_keywords"
   ],
   "action": "patched",
@@ -1068,9 +1071,6 @@
   "population": "repaired",
   "repair_class": "class2",
   "source_tree": "class2-overlay",
-  "equivalence_status": "strict_equivalent",
-  "repair_rules": [
-   "pandas_removed_keywords"
-  ]
+  "equivalence_status": "strict_equivalent"
  }
 ]

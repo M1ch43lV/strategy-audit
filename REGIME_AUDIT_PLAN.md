@@ -2,7 +2,7 @@
 
 **Working title:** Regime-Aware Audit and Strategy Selection for Public Freqtrade Strategies
 **Status:** Discussion draft / implementation handoff
-**Version:** 0.15
+**Version:** 0.18
 **Date:** 2026-08-28
 **Primary target:** Codex / other AI coding sessions working on `Apex-prim/strategy-audit`
 **Repository:** https://github.com/Apex-prim/strategy-audit
@@ -774,11 +774,11 @@ and reported as a sensitivity variant rather than as the author's futures
 strategy.
 
 The historical repair register contains 59 source overlays. The execution-
-profile audit adds 25 generated Class 2 overlays and an explicit Class 1
+profile audit adds 26 generated Class 2 overlays and an explicit Class 1
 environment/configuration register. The current canonical manifest therefore
-contains 764 original, 53 Class 1, and 83 Class 2 implementations; across the
-complete stack it records 131 `strict_equivalent`, four `output_equivalent`,
-one `behavior_changed`, and 764 `not_applicable` rows. These are implementation
+contains 763 original, 53 Class 1, and 84 Class 2 implementations; across the
+complete stack it records 132 `strict_equivalent`, four `output_equivalent`,
+one `behavior_changed`, and 763 `not_applicable` rows. These are implementation
 snapshot counts only. Recompute them from the manifests before preregistration
 rather than copying them into analysis code.
 
@@ -1536,7 +1536,7 @@ Historical spot PASS values are not inherited by futures profiles. Missing
 evidence is `pending_diagnostics`, never an implicit PASS or FAIL. Profit,
 significance, market comparison, taxonomy, and cluster membership are excluded
 from the rule.
-**Current snapshot:** 31 eligible, 114 pending diagnostics, 755 ineligible
+**Current snapshot:** 31 eligible, 113 pending diagnostics, 756 ineligible
 across 900 native `strategy_id × run_profile` rows. The coverage inventory
 passes 820 rows and leaves 80 pending. These counts are generated, not frozen
 constants.
@@ -1770,6 +1770,134 @@ remains 31 eligible, 114 pending diagnostics, and 755 ineligible.
 **Reason:** keep short smoke evidence immutable, prevent mixed-window records,
 and make expensive full-window measurements resumable without relaxing the
 zero-trade gate.
+
+## Decision 0.16-01 — FOtt pandas compatibility and linear recurrence
+
+**Status:** completed
+**Timing:** after the first full-window timeout exposed quadratic scaling and
+before any regime-performance result
+**Class:** implementation and measurement checkpoint; no eligibility-rule
+change
+**Decision:** add a strict-equivalent Class 2 overlay for `FOttStrategy`.
+The source repeats two unused-variable whole-DataFrame loops once per candle,
+which reaches the same shift-recursive fixed point at quadratic cost. The
+overlay evaluates each recurrence once from left to right. It also replaces a
+legacy chained `Series.iat` assignment whose write no longer reaches the
+DataFrame under pandas 3 Copy-on-Write with the identical NumPy recurrence.
+A dedicated verifier compares the overlay against emulated writable
+pre-Copy-on-Write pandas semantics over rising, falling, and deterministic
+random inputs at four lengths; all twelve cases match exactly. The 31-day
+native smoke changes from the broken zero-trade execution to 82 long and 105
+short trades. Eight pair-sharded full-window runs complete in approximately
+121 to 131 seconds each and produce 6447 trades in total. Native look-ahead
+analysis passes, but recursive analysis finds 12.616-percent drift in `ott`
+and 4.950-percent drift in `var`; `FOttStrategy` is therefore ineligible under
+the unchanged gate rather than remaining pending.
+**Current snapshot:** 31 eligible, 113 pending diagnostics, and 756 ineligible.
+**Reason:** restore the author's executable recurrence and make its full-window
+measurement tractable without allowing a compatibility repair to bypass the
+same bias diagnostics applied to originals.
+
+## Decision 0.17-01 — Legacy timeframe evidence and remaining Stage 6 repairs
+
+**Status:** implemented; remaining FreqAI diagnostics in progress
+**Timing:** before regime-performance inspection or ranking
+**Class:** implementation and measurement checkpoint; no eligibility-rule change
+**Decision:** recognize an authored legacy `ticker_interval` as timeframe
+metadata and normalize only unambiguous historical spellings (`Nhr` to `Nh`, a
+bare integer to minutes) for candle selection. This does not promote runtime
+status or edit an original strategy. Coverage consequently moves from 820 PASS
+and 80 PENDING to 864 PASS and 36 PENDING. The remainder consists of genuinely
+dynamic/missing configuration, an unavailable 5h series, one unknown test
+artifact, and the already documented weekly source gaps.
+
+The current-pandas chained inplace `ffill` failure in the strict-equivalent
+Class 2 Breakout/Fakeout family is replaced in overlays by direct DataFrame
+assignment. `BreakoutStrategy` then produces trades and native look-ahead and
+recursive findings, so it is ineligible rather than pending. The same
+mechanical rule changes the canonical hash of `FakeoutStrategy`; its older
+positive bias record is deliberately invalidated and must be rerun. XGBoost
+3.4.1 is restored to the pinned Linux runtime. TensorFlow has no Python 3.14
+wheel for that image, so the two TensorFlow FreqAI full-window runs use the
+otherwise version-matched Windows Python 3.13 audit environment and record that
+runtime explicitly.
+
+**Current snapshot:** 31 eligible, 112 pending diagnostics, and 757 ineligible.
+`TSPredict` has already produced positive full-window trades while its remaining
+pair shards continue; `tsp0chicken` follows in the same native runtime.
+**Reason:** recover author-specified data intervals and executable compatibility
+without confusing metadata, environment parity, or a repaired load with a bias
+PASS.
+
+## Decision 0.17-02 — Frozen causal feature engine and regime evidence
+
+**Status:** Stages 2–4 implemented
+**Timing:** before inspecting strategy-by-regime performance
+**Class:** methodological freeze plus implementation
+**Decision:** add `REGIME_PREREGISTRATION.md` and freeze the primary engine at
+pinned TA-Lib Wilder DMI(14)/ADX(14), thresholds 20/25, four states, and a
+one-completed-UTC-day availability lag. Calculate the same engine for BTC and
+each of the eight audit coins. Store continuous SER(30), 30/90-day returns,
+30-day annualized realized volatility, relative strength, DMI spreads, and
+availability-aware eight-coin breadth without using them as primary gates.
+Generated evidence contains 18,000 pair-days plus state summaries, 1,614
+episodes, 64 transition edges, feature distributions, and fixed sanity
+timelines. Its manifest binds all eight input feather files, all output tables,
+and every frozen parameter by hash. Synthetic direction/range, future-mutation,
+one-day-lag, key uniqueness, BTC-consistency, episode-partition, and output-hash
+tests pass.
+**Reason:** establish a transparent causal market-state layer before any
+strategy outcome can influence thresholds or categories.
+
+## Decision 0.17-03 — Phase A attribution boundary and entry-only adapter
+
+**Status:** implemented and corpus evidence collection in progress
+**Timing:** after feature freeze, before any strategy ranking
+**Class:** implementation-only
+**Decision:** attribute a trade exactly once using its entry timestamp's causal
+`pair × UTC-day` state. Accept Phase A archives only when the embedded strategy
+source hash, native spot/futures mode, and execution timeframe match the
+canonical profile; retain the embedded config hash and label this evidence
+descriptive rather than a locked validation run. Duplicate archive exports are
+removed before the entry-date join. Install optional gating around Freqtrade's
+`IStrategy.advise_entry`: first obtain the author's entry columns, then suppress
+only disallowed `enter_long`/`enter_short` values. Original exits are never
+changed, missing regime rows fail closed, and `ungated` returns the original
+DataFrame unchanged. Exact trade-list integration checks across diverse native
+profiles remain required before scaling gated runs.
+**Reason:** separate descriptive attribution from causal gated performance and
+implement the planned treatment without editing strategy sources.
+
+## Decision 0.18-01 - Exhausted Stage 6 diagnostics and pooled Phase A runs
+
+**Status:** Stage 6 complete; Stage 7 canonical pooled runs in progress
+**Timing:** before inspecting strategy-by-regime performance or ranking
+**Class:** implementation and measurement checkpoint; no eligibility-rule change
+**Decision:** finish the native bias queue with one-file analyzer isolation,
+author-helper paths at low precedence, and LF-stable generated config identity.
+When the short look-ahead window contains too few trades, try the fixed
+2020-01-01 through 2022-01-01 intermediate window before the frozen full
+fallback. This is a diagnostic resource bound, not a result threshold or a
+performance split. `BuyRegions` passes after restoring its author's adjacent
+`utils` package as Class 1; `ElliotV5_SMA` passes in the intermediate window.
+`Fakebuy` times out there after 900 seconds, and the other six unresolved rows
+remain `pending_diagnostics`: one full-window process is killed with only 17
+canonical trades, one authored trailing-stop relationship cannot be made valid
+without changing exit behavior, two FFT strategies cannot process the
+analyzer's partial histories without behavioral edits, and two portfolio
+strategies remain below the analyzer's immutable minimum-trade requirement.
+No `NA` is promoted to PASS or FAIL.
+
+The final Stage 6 snapshot is 67 eligible, seven pending diagnostics, and 826
+ineligible. Coverage is 864 PASS and 36 PENDING; every remaining coverage-only
+gap belongs to a row already blocked by another gate. Stage 7 uses one pooled
+native backtest per eligible strategy over the complete eight-pair universe;
+pair-sharded runs are not accepted because they change shared capital and
+`max_open_trades` mechanics. The five-profile ungated adapter equivalence suite
+is complete with exact semantic trade-list hashes.
+**Reason:** close every safely actionable technical gap while preserving
+inconclusive evidence and ensure Phase A reflects the actual pooled execution
+mechanics rather than a convenient sum of independent pair runs.
 
 ---
 

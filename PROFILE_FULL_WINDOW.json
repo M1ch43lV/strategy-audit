@@ -1,19 +1,625 @@
 {
   "config": "profile_futures_config.json",
+  "pair_universes": {
+    "futures": [
+      "BTC/USDT:USDT",
+      "ETH/USDT:USDT",
+      "LTC/USDT:USDT",
+      "XRP/USDT:USDT",
+      "ADA/USDT:USDT",
+      "XLM/USDT:USDT",
+      "XMR/USDT:USDT",
+      "DASH/USDT:USDT"
+    ],
+    "spot": [
+      "BTC/USDT",
+      "ETH/USDT",
+      "LTC/USDT",
+      "XRP/USDT",
+      "ADA/USDT",
+      "XLM/USDT",
+      "XMR/USDT",
+      "DASH/USDT"
+    ]
+  },
+  "pairs": [
+    "BTC/USDT:USDT",
+    "ETH/USDT:USDT",
+    "LTC/USDT:USDT",
+    "XRP/USDT:USDT",
+    "ADA/USDT:USDT",
+    "XLM/USDT:USDT",
+    "XMR/USDT:USDT",
+    "DASH/USDT:USDT"
+  ],
   "results": {
-    "FOttStrategy": {
-      "canonical_sha256": "sha256_6825ddc4bb1edd9ac497fb8786acc4e039189ea470ada917617623b1b6382085",
-      "class1_rules": [],
-      "elapsed_s": 1800.0,
+    "BreakoutStrategy": {
+      "canonical_sha256": "sha256_0a6a334c883b2bf6fc83ee844ecef4f1aba8454e71254609aee9226545f8675e",
+      "measurement_scope": "pair_shards",
       "mode": "futures",
+      "pair_results": {
+        "ADA/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 647.8,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "status": "timeout",
+          "timerange": "20200301-20260821",
+          "why": "timeout after 600 seconds"
+        },
+        "BTC/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 63.2,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "status": "failed",
+          "timerange": "20200301-20260821",
+          "why": "A value is being set on a copy of a DataFrame or Series through chained assignment using an inplace method."
+        },
+        "DASH/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 199.5,
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 0
+        },
+        "ETH/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 606.6,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "status": "timeout",
+          "timerange": "20200301-20260821",
+          "why": "timeout after 600 seconds"
+        },
+        "LTC/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 74.4,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "status": "failed",
+          "timerange": "20200301-20260821",
+          "why": "A value is being set on a copy of a DataFrame or Series through chained assignment using an inplace method."
+        },
+        "XLM/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 636.6,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "status": "timeout",
+          "timerange": "20200301-20260821",
+          "why": "timeout after 600 seconds"
+        },
+        "XMR/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 198.9,
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 0
+        },
+        "XRP/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 606.6,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "status": "timeout",
+          "timerange": "20200301-20260821",
+          "why": "timeout after 600 seconds"
+        }
+      },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
       "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
-      "status": "timeout",
+      "status": "incomplete",
       "timerange": "20200301-20260821",
-      "why": "timeout after 1800 seconds"
+      "why": "2/8 pairs completed; no positive pair yet"
+    },
+    "FOttStrategy": {
+      "canonical_sha256": "sha256_cb0e3fc3a809039143cf038a6d7a71f057e302ddc8ba95e66fe682bdafa3287b",
+      "long_trades": 3187,
+      "measurement_scope": "full_window_trade_presence",
+      "mode": "futures",
+      "pair_results": {
+        "ADA/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 129.7,
+          "long_trades": 466,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 462,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 928
+        },
+        "BTC/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 120.6,
+          "long_trades": 260,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 272,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 532
+        },
+        "DASH/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 129.6,
+          "long_trades": 476,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 488,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 964
+        },
+        "ETH/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 120.9,
+          "long_trades": 369,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 394,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 763
+        },
+        "LTC/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 121.8,
+          "long_trades": 408,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 424,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 832
+        },
+        "XLM/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 130.3,
+          "long_trades": 427,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 429,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 856
+        },
+        "XMR/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 131.3,
+          "long_trades": 325,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 342,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 667
+        },
+        "XRP/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 121.9,
+          "long_trades": 456,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 449,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 905
+        }
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+      "short_trades": 3260,
+      "status": "measured",
+      "timerange": "20200301-20260821",
+      "trades": 6447,
+      "why": "at least one pair produced trades over the full window"
+    },
+    "Insomnia_short": {
+      "canonical_sha256": "sha256_7125fe8db9f08f1b3cee2b0d4a73cd3f64f074e323de6bb7d914cb051a7ecbcb",
+      "long_trades": 0,
+      "measurement_scope": "all_pairs_full_window",
+      "mode": "futures",
+      "pair_results": {
+        "ADA/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 36.2,
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 0
+        },
+        "BTC/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 36.9,
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 0
+        },
+        "DASH/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 36.6,
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 0
+        },
+        "ETH/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 34.4,
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 0
+        },
+        "LTC/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 36.6,
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 0
+        },
+        "XLM/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 36.0,
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 0
+        },
+        "XMR/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 37.0,
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 0
+        },
+        "XRP/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 34.3,
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 0
+        }
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20260821",
+      "trades": 0,
+      "why": "all configured pairs completed with zero trades"
+    },
+    "TSPredict": {
+      "canonical_sha256": "sha256_c4169a4567fed0e84595fd4351124973acb36335cd4185707e8516cb29d1c08e",
+      "long_trades": 17958,
+      "measurement_scope": "full_window_trade_presence",
+      "mode": "futures",
+      "pair_results": {
+        "ADA/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 362.4,
+          "long_trades": 1897,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 1897
+        },
+        "BTC/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 348.4,
+          "long_trades": 1213,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 1213
+        },
+        "DASH/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 379.6,
+          "long_trades": 2435,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 2435
+        },
+        "ETH/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 348.7,
+          "long_trades": 1778,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 1778
+        },
+        "LTC/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 357.7,
+          "long_trades": 1910,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 1910
+        },
+        "XLM/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 365.4,
+          "long_trades": 2679,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 2679
+        },
+        "XMR/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 397.3,
+          "long_trades": 4020,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 4020
+        },
+        "XRP/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 359.5,
+          "long_trades": 2026,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 2026
+        }
+      },
+      "run_profile": "futures_long",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20260821",
+      "trades": 17958,
+      "why": "at least one pair produced trades over the full window"
+    },
+    "tsp0chicken": {
+      "canonical_sha256": "sha256_9a34b8c859793b0577d22898005970549eee9f8d857328e68eec125ef4ee6e4b",
+      "long_trades": 3675,
+      "measurement_scope": "full_window_trade_presence",
+      "mode": "futures",
+      "pair_results": {
+        "ADA/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 65.7,
+          "long_trades": 558,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 558,
+          "trades_sha256": "sha256_611d6afb9b5a12b64d24471a8760f22d21081841e656102d3f8fe296cadf7e72"
+        },
+        "BTC/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 56.2,
+          "long_trades": 168,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 168,
+          "trades_sha256": "sha256_6bc95cfc0594c4b4a65d97f1c29176f8bc51db64c057727cc9de520b6b228237"
+        },
+        "DASH/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 62.4,
+          "long_trades": 703,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 703,
+          "trades_sha256": "sha256_07a4f057d9d05aa19b711bdda4d0607299fac832a7b63f88ed1d0082e2289d07"
+        },
+        "ETH/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 57.9,
+          "long_trades": 331,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 331,
+          "trades_sha256": "sha256_76e99d4dcf3ed3f25d0327ad91d05998638c792e682854074d7bf359f92ecd6c"
+        },
+        "LTC/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 62.5,
+          "long_trades": 455,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 455,
+          "trades_sha256": "sha256_2332d66abdbdaa9549c02a57c4ef0d39ad3b89de0db5c61daf052bc1a38808f0"
+        },
+        "XLM/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 64.9,
+          "long_trades": 549,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 549,
+          "trades_sha256": "sha256_c429e8efb21bd333066036c16be6573c8aacedc8e3a8d36c3907bc762da55ab1"
+        },
+        "XMR/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 63.7,
+          "long_trades": 424,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 424,
+          "trades_sha256": "sha256_58f8f66a5f2df730fd9a12708a22db9b2127fbc891b116b9fbae292cd61e906d"
+        },
+        "XRP/USDT:USDT": {
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "elapsed_s": 66.9,
+          "long_trades": 487,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 487,
+          "trades_sha256": "sha256_add687c7f0fcafa3db9749ff18f5e0a3b2ec2f2bd1499a51831839e6613c3c3f"
+        }
+      },
+      "run_profile": "futures_long",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20260821",
+      "trades": 3675,
+      "why": "at least one pair produced trades over the full window"
     }
   },
-  "schema_version": 1,
+  "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+  "schema_version": 2,
   "timerange": "20200301-20260821"
 }

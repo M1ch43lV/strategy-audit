@@ -1,5 +1,37 @@
 {
   "results": {
+    "AdxSmas": {
+      "canonical_sha256": "sha256_21c5d2067b687a0a3ee5badb191604ed9238f744ee64f959bf74537b50b5ab2b",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 37.5,
+        "output_sha256": "sha256_6d76dab7eae1d040670cf5f505fb82ef35b866b34f97a0ec0022dc0c39cfdaa3",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/AdxSmas-recursive.log",
+        "elapsed_s": 29.8,
+        "output_sha256": "sha256_ef3abfa2658a7ac439eb50b1a44916f69257ac78958ce3fcb48a83b3da29b45b",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
     "AdxSmasS": {
       "canonical_sha256": "sha256_c6ec923fd109df306c257bb36ae8a19a96989f1e96b4fe29a72a41cfbc5f250e",
       "class1_rules": [],
@@ -57,6 +89,293 @@
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
+    "AverageStrategy": {
+      "canonical_sha256": "sha256_de84f5e8ddc67cb03ef6b1f03e37bd94313ac0a448a096f29c6812721c692ed5",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 44.2,
+        "output_sha256": "sha256_1e9cbbc6811e1de5b0aa870fcb09667466d8bbc5dc1e156b0bafa8e1a1bfe7bd",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/AverageStrategy-recursive.log",
+        "elapsed_s": 34.7,
+        "output_sha256": "sha256_e70d6c75d1a68a5b6ae41f2fb22248df283590a0d71a78839da4ebfa8b4ba1ac",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "BB_RPB_TSL_RNG": {
+      "canonical_sha256": "sha256_841148b7f976afeebb82d91feb1428f1a8c9e26e9e74257ab658ef90e9f5104b",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 44.3,
+        "output_sha256": "sha256_884b68f8299ed3c61a01be6effc989f28c25431f7877759d6d6dea85ef095e69",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/BB_RPB_TSL_RNG-recursive.log",
+        "elapsed_s": 31.3,
+        "output_sha256": "sha256_42fd38741cc64be2fd60066bfe6c28d94795d25595ff7bdaa380ddb6b783df40",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "BB_RPB_TSL_RNG_TBS": {
+      "canonical_sha256": "sha256_9b4f2bf2615eaf990d77f698cd94ccf88507c718387a0240fcc11b33a8eaace6",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 47.9,
+        "output_sha256": "sha256_047771e0c762afa8748c9f0ec3a537dca905173a165778349534d94ced020995",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/BB_RPB_TSL_RNG_TBS-recursive.log",
+        "elapsed_s": 31.1,
+        "output_sha256": "sha256_3f2af4b6d7ffb7d65505f6416589c67c74d46bfebc383346b7acb23d1dfef905",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "BB_RPB_TSL_RNG_TBS_GOLD": {
+      "canonical_sha256": "sha256_2618c192ea74e925aacd62b5edaa23ffb39b5a69e3b0c73145e43862d814c6b5",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 52.4,
+        "output_sha256": "sha256_5ccfc732342fb77df64f8eaa5dfd789214ac7e7206edd7fb530c067c9ce72787",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/BB_RPB_TSL_RNG_TBS_GOLD-recursive.log",
+        "elapsed_s": 28.2,
+        "output_sha256": "sha256_724d5ee877aa5d47dd37cf4823af309b013a1b72f2cbc1736235a0b76ce2b2bc",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "BbandRsi": {
+      "canonical_sha256": "sha256_90324695a35b696fb82415ff9e33c332981cca9c90c57b21183f2f4925cf563f",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 79.1,
+        "output_sha256": "sha256_fc8eb447a0ad0e7df457a42adaf4a4bc17b9b27723f2da461c30abdaa572a3e7",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/BbandRsi-recursive.log",
+        "elapsed_s": 32.1,
+        "output_sha256": "sha256_ed497767968801ce91146c3b8e689440a3782c696046bf6d36c2433c81a43648",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "BbandRsiRolling": {
+      "canonical_sha256": "sha256_5e85e7186701e649036bf656328ddfc3bb071f1a0918247eff21ef2af05d8e03",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 44.6,
+        "output_sha256": "sha256_69b189b17a7f10decbfa47f3257c8f600f236ad2d4d1556250f111aa5ff866e1",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/BbandRsiRolling-recursive.log",
+        "elapsed_s": 28.8,
+        "output_sha256": "sha256_66f46b8d4544f756d2f8a5e679e59467a3237c2410d31df102b1909bc9e0b2c0",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "BigTrader": {
+      "canonical_sha256": "sha256_7b6f6aae620843dd5e21f6108346d403f7c991d64a7c3cc4a79bb6b84670fa52",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 165.7,
+        "output_sha256": "sha256_6182ff1675d6b530deb246089cdd14676493baeb700873a9ba88b5fe7038889a",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200301-20260820",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 39.7,
+        "output_sha256": "sha256_6df9d132dff227c6e2b29882201cf6e5cb4f8aea71f411ffe249b9f58da8bdd1",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "BigZ04_TSL3": {
+      "canonical_sha256": "sha256_49aae769360226b3ae0115efa042afa218717141e9141ad618954fc14e7d3bbf",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 47.6,
+        "output_sha256": "sha256_67b65d3ccff3de5b9167628c7d8171cd1ae96fce1f7ca8832d871cd6e1cb1f86",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 30.4,
+        "output_sha256": "sha256_f18540502de23b6e9b2d44849c49b2addc40c51fb4cc4abedce642f47a5590ef",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "BinHV27": {
+      "canonical_sha256": "sha256_62b8250f065c4767b639e129bbb7e778db8715558db6b0a8bb5570bf4a00ae25",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 54.2,
+        "output_sha256": "sha256_28a831ff4676246709ad0831005090af71ca4099ec4e31eb389a00c03f2f7378",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/BinHV27-recursive.log",
+        "elapsed_s": 33.9,
+        "output_sha256": "sha256_1e69bd0c81ef6351deef1f11f3e87fb2af237936e843b9211b9bd6a746235680",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
     "BinHV27_short": {
       "canonical_sha256": "sha256_123093f3a1ce763c65fc9ebaadddc4bf50f9187d0924c4a1ee21e31ecc4778be",
       "class1_rules": [],
@@ -89,6 +408,626 @@
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
+    "BreakoutStrategy": {
+      "canonical_sha256": "sha256_eea5d910199cdf8203ca531a6e88cd87f25b59146e012cf425e955dfd19d57b7",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/BreakoutStrategy-lookahead.log",
+        "elapsed_s": 56.1,
+        "output_sha256": "sha256_3fe10b22a05f57d9f63ffdfd2582ccd4508ec65bc302e9a37514fe50582e6170",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "FOUND",
+        "timerange": "20200301-20200401",
+        "why": "bias: entries 2, exits 0 of 20 signals; indicators upper_peak_60, enter_long, lower_peak_60, enter_short"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/BreakoutStrategy-recursive.log",
+        "elapsed_s": 21.8,
+        "output_sha256": "sha256_3816a475e15136231fc14298d650db1b9236d53d85075b935e4e8ff57fafeb1c",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "FOUND",
+        "timerange": "20200301-20200401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "BuyRegions": {
+      "canonical_sha256": "sha256_837173d07b03ad4b83d9fd3520bac1ecc0c4494413f41c0b88b2c4e99924d6b9",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 68.0,
+        "output_sha256": "sha256_6770ea1ee4ae264f05a83d95639252f8c2f3c6d84da6b5ab71ecfea6427cad70",
+        "runtime_id": "windows-ftenv:freqtrade-2026.7-python-3.13",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "CMCWinner": {
+      "canonical_sha256": "sha256_3cf873558c07dc8a5fbf9c9fdf59d0ead8dc4da6ea649f8060a1194b199180cc",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 38.8,
+        "output_sha256": "sha256_2961f4191e50af9bce616941ef15f87a77f37c27ace7fa16538b770b8ce3aea0",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/CMCWinner-recursive.log",
+        "elapsed_s": 28.8,
+        "output_sha256": "sha256_ac9cf842878c941f31aa63dc4567d93370404a3bcb8ff8936b0bfdb615225f4e",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Cluc4werk": {
+      "canonical_sha256": "sha256_9f4e7aaa40846e3c79b5dd4de309f60ab600cd8cf2e0e826b4e8e600acce9b51",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 67.8,
+        "output_sha256": "sha256_07022ee696edb3431d6b041450f34610c79fe349775176cefd533654011e9eaa",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Cluc4werk-recursive.log",
+        "elapsed_s": 29.5,
+        "output_sha256": "sha256_28490c8731fb38d3ce1fd7757f284b2da97622e8b6abc27b35cd331b3aa6b06c",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Cluc5werk": {
+      "canonical_sha256": "sha256_177d8129f4219afa755c5564398eae4385f679ef66a3627c31e22281ab1dd66d",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 153.3,
+        "output_sha256": "sha256_1508d5eb8f41650a01b29f4ef1921c6821d189355168dd3abc836dd33384bf15",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Cluc5werk-recursive.log",
+        "elapsed_s": 31.0,
+        "output_sha256": "sha256_c231257e4fa0407e3f46741f00ad05d34b2dbbb43d40330e3f6d501127c81d3e",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Cluc7werk": {
+      "canonical_sha256": "sha256_ab01a4950e79cc9ff627cd46c5e1b467894cf8bf154e27e9008ec99087f289c9",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 94.4,
+        "output_sha256": "sha256_48b82ff271548b9fc2b6a9f23c0fa7f60e1479d87f7cc6d874f6514e5f555841",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 35.8,
+        "output_sha256": "sha256_606f316b5727c8472e047d2478ad474cf0b37471c3b7a06b1fec89fa8bb9f138",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "ClucHAnix": {
+      "canonical_sha256": "sha256_acdf6026a23b5c3ff1748c1aed5f5d5160ef7392f7dadb12a7adb3d025414b88",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/ClucHAnix-lookahead.log",
+        "elapsed_s": 192.0,
+        "output_sha256": "sha256_2fde6567e6e3334c1b996ba38508035d543c8d3fd919d1b10714b5efdd5eab30",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "NA",
+        "timerange": "20190101-20190401",
+        "why": "No data found. Terminating."
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/ClucHAnix-recursive.log",
+        "elapsed_s": 31.8,
+        "output_sha256": "sha256_91d172df0e738a7e842804aac0ad2d355bb9fbb0adb0d372fbbcadd1f4bee213",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "ClucHAnix_5m": {
+      "canonical_sha256": "sha256_1d891b45265a8a5df63254fe980f016e2a5bae7573bc178b3c0c7b9c3c10921a",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 100.3,
+        "output_sha256": "sha256_7cd0a298200620242a5a8b5220ef86f1581517caf991d4be56eb1aa8fcc24443",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 35.3,
+        "output_sha256": "sha256_71098a924666f229f6b669b26ac86c745f347b4fba998eb36afb325dc237555c",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "ClucHAnix_5m1": {
+      "canonical_sha256": "sha256_b360b019fc39aa4b21ec35e88f75d9db03536aa79aeae24f4c30976bd109492b",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 97.1,
+        "output_sha256": "sha256_d43bd83059e0aae2805d3406bf738ec159c749effe5c539b5dd8a61eceb3ad0d",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 37.6,
+        "output_sha256": "sha256_79bc28805cf40e1271bb3c15c72e4538a571579d754046042b4a53d449377a59",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "ClucHAwerk": {
+      "canonical_sha256": "sha256_57f7650eee2ec4041179843a55ffd4f3c20d55fdceb66146948b2e06455a9ef4",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 224.7,
+        "output_sha256": "sha256_114d0668d394121219d9c03c366eee1ef079e384076031d77f888c524ca2ea74",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 50.6,
+        "output_sha256": "sha256_ba3182b609e4d260f6d5ca027d9fcbb2b647c852f8d47d7e0a245e2793984b79",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "ClucMay72018": {
+      "canonical_sha256": "sha256_8318baa109a49169a5d0bdcc97c22a3423be09d491bfb310654f64ee200deeaa",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 42.3,
+        "output_sha256": "sha256_faac762c5b2e6d02ffebfa7d80c4086279f2a3e1c1efa5a83c6ebf7f2c904290",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/ClucMay72018-recursive.log",
+        "elapsed_s": 33.1,
+        "output_sha256": "sha256_6370bce1129810fa0685c96ef3f5b5581c33ebc5b7e703a95edf88e849fa8afd",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "CofiBitStrategy": {
+      "canonical_sha256": "sha256_22bda2594f7f47d818269b4edfab953f1d8c7f26369d9087679a235292531f65",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 37.7,
+        "output_sha256": "sha256_d12c4a8a22f47cce3daa18c3d9a2f6d9301327acb5decbcec282f29ba3d42299",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/CofiBitStrategy-recursive.log",
+        "elapsed_s": 29.0,
+        "output_sha256": "sha256_d973fb5136877fa9fa3e52091e5009fd99846cca0e7311505c2ad7d997a65860",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "CombinedBinHAndCluc": {
+      "canonical_sha256": "sha256_ac3ab1a70862fbf66c26955ede2925469b4d4336d34c964cd2f037f01a66d3ac",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 39.5,
+        "output_sha256": "sha256_3dda372e00979ecd2a6f175e0a8d4b2ec6a46c103f415259c81228192239c1d4",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/CombinedBinHAndCluc-recursive.log",
+        "elapsed_s": 30.4,
+        "output_sha256": "sha256_a9689af70e2893dc38cc2ff18c2b320a60361e63df7b4826ef22db259ab2831f",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "CombinedBinHAndCluc2021": {
+      "canonical_sha256": "sha256_f3fed45418a98317fd2c1f81658fe3991e323b30a2b7e98f6f81a9200d953e33",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 40.3,
+        "output_sha256": "sha256_50695f7599048fcb91b1a1da0221f5f3303995322654b209a01c81ca9600094f",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/CombinedBinHAndCluc2021-recursive.log",
+        "elapsed_s": 28.8,
+        "output_sha256": "sha256_d69d3c26a88aa528c24b3d5644195e2baf0dcd6da9a33092ff24491880524461",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "CombinedBinHAndCluc2021Bull": {
+      "canonical_sha256": "sha256_1e9664a5c6494319cec70e7d76d7e5518b6b349e1b082c45c46d0efff8c44bc4",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 39.5,
+        "output_sha256": "sha256_7f48ef0b4a9552d22a939ed5b0d37fba6e91dc02cbaa32a6d73ea76a92f360b1",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/CombinedBinHAndCluc2021Bull-recursive.log",
+        "elapsed_s": 27.1,
+        "output_sha256": "sha256_3d3eee5e3863d71a261b6994174ae40ad0f4200cd0f062285801422a5e830477",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "CombinedBinHAndClucV6": {
+      "canonical_sha256": "sha256_7ee4bea1ad004c61766a9ff303e0510ea2c100a7d324038b2a14899ede369a45",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 46.6,
+        "output_sha256": "sha256_258d27f504d75a57291e06eaccc3f4e1d198d46953f07e125f4e00b61d5ec571",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 28.4,
+        "output_sha256": "sha256_452d82286355116ad598ca747adbd3fd53f4d09bbfc11220dd8cb9ba27cbd996",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "CombinedBinHAndClucV7": {
+      "canonical_sha256": "sha256_d16ea1c3384ef58832ac6202779f9608eb9f23385d23169e2c5bc2b10f71244a",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 48.4,
+        "output_sha256": "sha256_7d8c6e18ed3f584d37d8685acfb7eb318641c7b141f855f53a824bff3e129b41",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 30.4,
+        "output_sha256": "sha256_e39039f6529978f78b075793b17acb054a460b615197300899e872d773097e92",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "CombinedBinHClucAndMADV3": {
+      "canonical_sha256": "sha256_4ca3200a239bf843a26cda39bdc4bd0a4cf67ed5d7de7ff8d196781d7a042840",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 43.9,
+        "output_sha256": "sha256_b98ecd6661fcdb53fd9a435d894c2e77e6393be9785568d4bf05835cc06c09b5",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 31.3,
+        "output_sha256": "sha256_79e7f60e69eba106c8e1c81e3916a81a408cb7bec80409661fa0acf21753f0c9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "CombinedBinHClucAndMADV6": {
+      "canonical_sha256": "sha256_5a2e13597c2efd601245592fae584697b5d9338f69dea4135a99de832a4b8b08",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 73.4,
+        "output_sha256": "sha256_22b710eb92732c81341d8b70899a25a072440844b019270a75f25ae190779d21",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 31.6,
+        "output_sha256": "sha256_a435fc570a23737fe27bf3c88703e9c15161d62332d025571f0884829fd634b7",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "CombinedBinHClucAndMADV9": {
+      "canonical_sha256": "sha256_3a3c2c36f9c9d43ce7a00aac6005bff078093124d3b9738aa8b29548575a0eaf",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 48.5,
+        "output_sha256": "sha256_94762fac3cc0fa2a14cd1413848c88b0f047f8fe93094a0e566ff7328d2b4eb6",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 33.3,
+        "output_sha256": "sha256_aa1710e3bd42703186f10b6107bd823288c7612c0a84351509467e96831d622c",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
     "ConsensusShort": {
       "canonical_sha256": "sha256_4e8ceeaec14c13bb5dfcd5f42971e3375635c496a76f90ab13f90883aee527a6",
       "class1_rules": [],
@@ -118,6 +1057,73 @@
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "CustomStoplossWithPSAR": {
+      "canonical_sha256": "sha256_b36b8c6862592b1dab923a7fd4923480036502414adb3810150ef2d57c7ca1ba",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 141.8,
+        "output_sha256": "sha256_9b8b67f9d34612514305450d06f6671df6af30de25d89f42b25c8a8648aab5d8",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200301-20260820",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/CustomStoplossWithPSAR-recursive.log",
+        "elapsed_s": 28.2,
+        "output_sha256": "sha256_7fae35a4b4fa6839d5fb9e364742d5471740608d4285820bf6dca6355c50ac6f",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "DCBBBounce": {
+      "canonical_sha256": "sha256_8447c7afc4091c713b9882b6fc368c0a56ba3212b4297a9394c5d28f84a20441",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "debug_log": "user_data/profile_bias_logs/DCBBBounce-lookahead.log",
+        "elapsed_s": 106.5,
+        "output_sha256": "sha256_408321f4aed942cbf33d726d1cc17c022df3f8e0fe05739211e860b2a8db7880",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "NA",
+        "timerange": "20200301-20260820",
+        "why": "process exit -9 or unparsed output"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/DCBBBounce-recursive.log",
+        "elapsed_s": 32.9,
+        "output_sha256": "sha256_e0a0d8d2be738a29de4141783b8540c5eeb65e219160e8459b94a69ed6b8e62e",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "recursive drift: dcbb_diff_upper -0.225%, dcbb_diff_lower 0.421%, adx 2.757%, dm_plus -1.611%, dm_minus -0.650%"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
     },
     "DWT_LongShort": {
       "canonical_sha256": "sha256_75fd58b313a0c6d98623b7f104a2fa8122c7a445c35243beb3e7b18b934b64bc",
@@ -183,6 +1189,39 @@
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
+    "DevilStra": {
+      "canonical_sha256": "sha256_3fd994557200ac051046ea86b1197c4c1422e7227ae3672b3207c35a0aee3175",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/DevilStra-lookahead.log",
+        "elapsed_s": 30.0,
+        "output_sha256": "sha256_aa2dc11178649ada54a5d4341fa30f0ed1c16aa0d4e7fbd2f89c02df4fc73b0a",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "NA",
+        "timerange": "20190101-20190401",
+        "why": "Can only compare identically-labeled (both index and columns) DataFrame objects"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/DevilStra-recursive.log",
+        "elapsed_s": 31.6,
+        "output_sha256": "sha256_dc7e0eccf5db76b2a1ebb443dd2b1dac3e6d620e180fc363f7b7b38d91d0cf3a",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
     "Dimond": {
       "canonical_sha256": "sha256_4376ba0fb9f4d80259bfb1742ad810b3bb67005b3b3e527f7ab2f4626597c7b6",
       "class1_rules": [
@@ -193,8 +1232,10 @@
           "20190101-20190401",
           "20200301-20260820"
         ],
-        "elapsed_s": 72.8,
-        "output_sha256": "sha256_4c60b8b065b9978c2c0c8fefa10481712eceab0f718c11de6f613a5b6ed73e6b",
+        "debug_log": "user_data/profile_bias_logs/Dimond-lookahead.log",
+        "elapsed_s": 137.9,
+        "output_sha256": "sha256_2d9b367d4659e17ad8279d96470c2a4f3131b9156428d6782435660646944e6f",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "NA",
         "timerange": "20200301-20260820",
         "why": "too few trades (0/10)"
@@ -204,14 +1245,209 @@
         "attempted_timeranges": [
           "20190101-20190401"
         ],
-        "elapsed_s": 6.2,
-        "output_sha256": "sha256_fb35ecdd23c94f9b4b911c7675256139cef43773aec589bc71916f91f9d8f3a2",
+        "debug_log": "user_data/profile_bias_logs/Dimond-recursive.log",
+        "elapsed_s": 39.8,
+        "output_sha256": "sha256_8ca8b227c104312f9ab8f615ef355316c32ef0011850bd8faaf85a2ca9a825d9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "FOUND",
         "timerange": "20190101-20190401",
         "why": "startup_candle_count=0 refused by recursive-analysis"
       },
       "run_profile": "spot_long",
-      "runtime_config_sha256": "sha256_0006006514c97e0364dd454829ff7e3b067c0b9b876878fe66a899019081f55b"
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Dracula": {
+      "canonical_sha256": "sha256_afbc20276d6883e060df79692b920de67d6b50430472692c0b536529eb96b089",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Dracula-lookahead.log",
+        "elapsed_s": 62.2,
+        "output_sha256": "sha256_59f019d46b660faf026320a49b90aa01e196f7c5d80f16552c874f14159b191d",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "NA",
+        "timerange": "20190101-20190401",
+        "why": "cannot reindex on an axis with duplicate labels"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Dracula-recursive.log",
+        "elapsed_s": 25.3,
+        "output_sha256": "sha256_73e70ab25903f7bdecb9b8db8c8ddefc88068c4c9121a00eb78672c701d45ddc",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "EMA50": {
+      "canonical_sha256": "sha256_d62465f056d7f0c715b598389abb3203359fc5ee91e2a5609c3286331979aad2",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 48.9,
+        "output_sha256": "sha256_251aac222791ff4cd207a54411b9415c90b17e3fc98628dbd2e9a669d5f8e697",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/EMA50-recursive.log",
+        "elapsed_s": 35.8,
+        "output_sha256": "sha256_12a0556a0980ee7a00d7594f853fb0432dc0d8789b9e6f484051f2900bf40b55",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "recursive drift: rsi 0.935%"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "EMABreakout": {
+      "canonical_sha256": "sha256_73e717aa307d2536b81890529eee86b829eb1694a836e161dee0bfd3a2a77085",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 44.9,
+        "output_sha256": "sha256_17e3a8bab03ae0af0c9e19c7a1bcaa239c938150e1eaefb5c2eaa147efc6b249",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/EMABreakout-recursive.log",
+        "elapsed_s": 28.5,
+        "output_sha256": "sha256_0895914dda2462780aeed1f8686ff9d2dc923a543e8e1d40ed87032ef5f104b3",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "recursive drift: rsi 0.935%"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "EMASkipPump": {
+      "canonical_sha256": "sha256_1874b03c9de1bc51ae089ba37e2e4c662af5d23f89686f5c6ccf7ee4fdc220bc",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 39.7,
+        "output_sha256": "sha256_cab034497b24da32676b94179cae6b72985adee5d7d9a82533b8b94a6606c480",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/EMASkipPump-recursive.log",
+        "elapsed_s": 30.8,
+        "output_sha256": "sha256_de185b2539884cc9825d41948ff8bf8820766d10fef74d4c7b7bc3a95db41b59",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "ElliotV2": {
+      "canonical_sha256": "sha256_64c0944eecd053640c8b1120971cdb24f2072756d5465a092f1aeb1d09d7c222",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 145.7,
+        "output_sha256": "sha256_79025cd6147f3eefc08a507968d8abddbfbef3eb5c58443a36def2b42ce5c55a",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200301-20260820",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 31.6,
+        "output_sha256": "sha256_5d8d1e92a87dfeba9f35d98b084fbde6039d36869316057bc4c98d76cc6b3aa8",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "ElliotV5_SMA": {
+      "canonical_sha256": "sha256_95998392fb5d668ea4ed15d0f2f16ba57b9e36e782de5a047c991fefad7d3679",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101"
+        ],
+        "elapsed_s": 85.3,
+        "output_sha256": "sha256_499e822a675572b22d701027265bc4b7ed2c11372e77def1d1a58900147c8efd",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 36.8,
+        "output_sha256": "sha256_7a403a00504b326b4b36131d0dabe96efbdf525f03e466a0402b94ca56063f00",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
     },
     "FAdxSmaStrategy": {
       "canonical_sha256": "sha256_450ed20d7fee0b7316fa4856c549aad4664299f40f5f6de6ca5be791f7ac7cad",
@@ -243,28 +1479,31 @@
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
     "FOttStrategy": {
-      "canonical_sha256": "sha256_6825ddc4bb1edd9ac497fb8786acc4e039189ea470ada917617623b1b6382085",
+      "canonical_sha256": "sha256_cb0e3fc3a809039143cf038a6d7a71f057e302ddc8ba95e66fe682bdafa3287b",
       "class1_rules": [],
       "lookahead": {
         "attempted_timeranges": [
-          "20200301-20200401",
-          "20200301-20260820"
+          "20200301-20200401"
         ],
-        "elapsed_s": 1346.9,
-        "status": "NA",
-        "timerange": "20200301-20260820",
-        "why": "TIMEOUT"
+        "elapsed_s": 40.5,
+        "output_sha256": "sha256_b8f210f4c99f05c06fbdb6ba8fd14b09b21f8a2c420141f64a859afb2ec70add",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "PASS",
+        "timerange": "20200301-20200401",
+        "why": "no bias detected"
       },
       "mode": "futures",
       "recursive": {
         "attempted_timeranges": [
           "20200301-20200401"
         ],
-        "elapsed_s": 37.8,
-        "output_sha256": "sha256_032131fea8c0ad92f7ff0154697438fae70b4af2bdd08307bbe466333d884610",
-        "status": "PASS",
+        "debug_log": "user_data/profile_bias_logs/FOttStrategy-recursive.log",
+        "elapsed_s": 26.2,
+        "output_sha256": "sha256_ffc378d6a9175eade9ee2d6a50b93589ec651a3eaf5b55458e5c0783a47f52d5",
+        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "status": "FOUND",
         "timerange": "20200301-20200401",
-        "why": "no recursive deviations found"
+        "why": "recursive drift: ott -12.616%, var -4.950%"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -390,20 +1629,50 @@
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
+    "Fakebuy": {
+      "canonical_sha256": "sha256_5e07dd92c40c78d793d6556a8526f801d54ba5cc4d4014fbe752c06b9f5e0452",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101"
+        ],
+        "elapsed_s": 934.8,
+        "status": "NA",
+        "timerange": "20200101-20220101",
+        "why": "TIMEOUT"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 34.2,
+        "output_sha256": "sha256_9caab3ed8354772adb2fea4ab9b1d58bf838cbc70ffa51fb611a95ba4f569dd6",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
     "FakeoutStrategy": {
-      "canonical_sha256": "sha256_8c6212935a05d349c98ef7d43bf88a68f96d5041830302b49cbe84149acf18fd",
+      "canonical_sha256": "sha256_b4790052e54e014cf451ab4ecea9f67d7cdc1f637a2b1bfe54cc57b1ce8a7f66",
       "class1_rules": [],
       "lookahead": {
         "attempted_timeranges": [
           "20200301-20200401"
         ],
         "debug_log": "user_data/profile_bias_logs/FakeoutStrategy-lookahead.log",
-        "elapsed_s": 46.4,
-        "output_sha256": "sha256_9bb8f1ec3648e44cda34b7a95b8e3c8f03fca4439b1fbb92fadd4eec1300ea6a",
-        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "elapsed_s": 103.7,
+        "output_sha256": "sha256_faad259c732464b559d2948411897ae4d1f6d3aac559d5bd1f9c047e407e31f9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "FOUND",
         "timerange": "20200301-20200401",
-        "why": "bias: entries 20, exits 11 of 20 signals; indicators upper_peak_120, lower_peak_120, enter_long, enter_short"
+        "why": "bias: entries 9, exits 4 of 20 signals; indicators upper_peak_120, count_upper_peak_120, lower_peak_120, enter_long, enter_short,"
       },
       "mode": "futures",
       "recursive": {
@@ -411,9 +1680,9 @@
           "20200301-20200401"
         ],
         "debug_log": "user_data/profile_bias_logs/FakeoutStrategy-recursive.log",
-        "elapsed_s": 20.8,
-        "output_sha256": "sha256_46f7b2f317b163a054bd55a7a48bbe212bf8a976840446a0cf55e2e36809d9eb",
-        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "elapsed_s": 39.8,
+        "output_sha256": "sha256_51557b1b87978eaacbd044a4e7ff3227cd54b5a26fd59e1f2b3992ad4503a417",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "FOUND",
         "timerange": "20200301-20200401",
         "why": "startup_candle_count=0 refused by recursive-analysis"
@@ -450,6 +1719,301 @@
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
+    "FiveMinCrossAbove": {
+      "canonical_sha256": "sha256_64f31d59144414adf14ef5ac7bdb78c878631b9bcf234180b67c30caf4dc99f9",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 43.4,
+        "output_sha256": "sha256_02042327e94b1648343cf213cc6b9c052cd432dd75765ebc24a8691f53091e84",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/FiveMinCrossAbove-recursive.log",
+        "elapsed_s": 29.5,
+        "output_sha256": "sha256_7233476c505ca4728227bbdb4c13cbf3b9e6533bb66e369c711a2795fc779637",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "GPTREV": {
+      "canonical_sha256": "sha256_b99d3c1c821513b7ef394788fb2d55d480818900281ff922ef098a33d8896971",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 66.0,
+        "output_sha256": "sha256_91e38fad2bb6d0f4994a29172d5e8ba2291c76aa17d00f4f54cc4dcba11d02c2",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/GPTREV-recursive.log",
+        "elapsed_s": 27.8,
+        "output_sha256": "sha256_de3b820a918dfd7d433c757a84d2aeb2291fae0b4f5c9dfa3019bfcd672e6ee9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "recursive drift: rsi_15m -1.565%, adx_15m 35.104%, macdf_15m -123.747%, macdd_15m -195.903%, macdh_15m 656.941%"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "GodStraNew": {
+      "canonical_sha256": "sha256_ccd91d678e825cf08bd074c7e1e1a68cd3d63c10de72c6887fd86b471dbc40cd",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "debug_log": "user_data/profile_bias_logs/GodStraNew-lookahead.log",
+        "elapsed_s": 66.7,
+        "output_sha256": "sha256_e612bdfca4ffabdc6414c9be7060aaed24883f359ee3f740e7a12e6c49e5630b",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "NA",
+        "timerange": "20200301-20260820",
+        "why": "too few trades (0/10)"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/GodStraNew-recursive.log",
+        "elapsed_s": 28.6,
+        "output_sha256": "sha256_2d6166c10856ca0e339b9703fb83c3459963738d39e4ae4fee9e7d0b69669c32",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "GodStraNew40": {
+      "canonical_sha256": "sha256_025eaa29d44b69e29285ac796514dd34b2cf43073852689cb8e602717531bb03",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "debug_log": "user_data/profile_bias_logs/GodStraNew40-lookahead.log",
+        "elapsed_s": 66.0,
+        "output_sha256": "sha256_32829c7b9327c3377f1f887882079f2834f2cecc178e1de6631d3f6c90b43b56",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "NA",
+        "timerange": "20200301-20260820",
+        "why": "too few trades (0/10)"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/GodStraNew40-recursive.log",
+        "elapsed_s": 28.6,
+        "output_sha256": "sha256_4594d6d5a41c8e7817200b13483f0f0d9988a01eaaf367d73d167f7d37ba5d82",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "GodStraNew_SMAonly": {
+      "canonical_sha256": "sha256_9555628b8d3d148ef11f766e66f5d33c02e70d4924f5e6088526fa8a039b3bde",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "debug_log": "user_data/profile_bias_logs/GodStraNew_SMAonly-lookahead.log",
+        "elapsed_s": 150.5,
+        "output_sha256": "sha256_89fd2a8bf940b0b7f5223beb159945dd04c57103aea4c8f4d811a96e87030b72",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "NA",
+        "timerange": "20200301-20260820",
+        "why": "too few trades (0/10)"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/GodStraNew_SMAonly-recursive.log",
+        "elapsed_s": 30.4,
+        "output_sha256": "sha256_4e697b18f0868c8ad0f36b6578d30a81205dafcbdf6a223312f732a7c0aa53a9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Gumbo1": {
+      "canonical_sha256": "sha256_5e3498b397df229436fa78b9069089645e6283dee974271187d6bce72c37dc59",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 46.5,
+        "output_sha256": "sha256_e139b1a694f298e060bfd8a03d02653c086b930dbdb813189d19f7e114ab5d25",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 37.8,
+        "output_sha256": "sha256_75a3ba941ba40195a902ce0049c72d7fa34d2349c57cd4abd493189792648bf3",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "HansenSmaOffsetV1": {
+      "canonical_sha256": "sha256_dd5294ed0e16a064605bf95c4c7c871afab306d2a254ce09eda65f667b40ff04",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 138.1,
+        "output_sha256": "sha256_61bb1c77d5c987f4d6d1384b7fdbef1d775c5af32344aa0b2b981d08abc999cd",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200301-20260820",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/HansenSmaOffsetV1-recursive.log",
+        "elapsed_s": 32.5,
+        "output_sha256": "sha256_63b07b9e52b710d3d3fe356012b85eb11167a7428d0ee9b70b72e7efdc85c9d3",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Heracles": {
+      "canonical_sha256": "sha256_8039952f7ce86bfbe955482dca98d1ff89e33e3fb6037bdf99dc53265459fe0b",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Heracles-lookahead.log",
+        "elapsed_s": 34.2,
+        "output_sha256": "sha256_faa505ccbcc2a385931baa46ac41139fc95cf8e51fa015fe13641ec3ba070b89",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "bias: entries 5, exits 0 of 20 signals"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Heracles-recursive.log",
+        "elapsed_s": 29.5,
+        "output_sha256": "sha256_65b0953c4625d397b4eae15709b802e515162fee9122fc0dd0f19b3806398504",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "HourBasedStrategy": {
+      "canonical_sha256": "sha256_e5b07aa38e7a1c4ab62fab23b3492f6570ea75f73706cc270a72909a89328846",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 35.5,
+        "output_sha256": "sha256_7cae4b2c024aca87ede1bb26d4ed6ce740ce333ed6fff70654ff63dafa775c5e",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/HourBasedStrategy-recursive.log",
+        "elapsed_s": 28.4,
+        "output_sha256": "sha256_d5927c0cd7e15441719d4b2e0de817f47440c43ad60803ce6b2f3969885881ed",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
     "HurstCycleV5": {
       "canonical_sha256": "sha256_07b26bff1c85b6b79c1a686b016181a5fd4d32633360e741dc26070b843a908d",
       "class1_rules": [],
@@ -481,6 +2045,105 @@
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
+    "HyperStra_GSN_SMAOnly": {
+      "canonical_sha256": "sha256_d9254aa62eb976592a5d5cc5320b2cc1fadb3d88d52432653de23213c8516b9f",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "debug_log": "user_data/profile_bias_logs/HyperStra_GSN_SMAOnly-lookahead.log",
+        "elapsed_s": 127.6,
+        "output_sha256": "sha256_fda2325d611c8a3fa84b763e3db8f9b3a90b33536a6825ecb079f0cba620ecb2",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "NA",
+        "timerange": "20200301-20260820",
+        "why": "process exit -9 or unparsed output"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 31.7,
+        "output_sha256": "sha256_30d912bad36d9e89f85637edae29b1ee0d6827faa55f9758fef928a4e37efbf7",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "HyperStra_SMAOnly": {
+      "canonical_sha256": "sha256_441c29d71c2f21235e9933239b1b106def00109fefb8be15834f0e70e5cd62e9",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "debug_log": "user_data/profile_bias_logs/HyperStra_SMAOnly-lookahead.log",
+        "elapsed_s": 160.3,
+        "output_sha256": "sha256_166c106427c03aa29e0600ca5ef1bd97b3c6a8527e0e02d17a98cb39616b6e67",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20200301-20260820",
+        "why": "bias: entries 11, exits 10 of 11 signals; indicators enter_long"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 32.9,
+        "output_sha256": "sha256_4e0f6f1b1eafe992e6b2b6f3be2ddca44cd1a12cc252b9f04d70865ebec5fcc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Ichess": {
+      "canonical_sha256": "sha256_e132e60059f1ecc830795e810555d5424a0a19ca0a74a17deb0fdf02880f7c98",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 68.0,
+        "output_sha256": "sha256_b46cfc2d373c3e5a8b4b506e78b75b17e56c8233e2d7fb2604fe1fd0b04e18ce",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200301-20260820",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Ichess-recursive.log",
+        "elapsed_s": 29.8,
+        "output_sha256": "sha256_3ee1e05a8d8c7fdd3f9858c1a609539045f1029953905a164ddce2f042ef6e13",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
     "IchiVwapAdx": {
       "canonical_sha256": "sha256_fa6a8a7ff342075d17f9abdf257ea68e9876b2a8dfa64d3ae8471014184cd67f",
       "class1_rules": [],
@@ -511,6 +2174,231 @@
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "Ichimoku": {
+      "canonical_sha256": "sha256_377b0bc34d771853f170018b2aca5ee4b60d730dca233fd9141005f79fb69231",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 44.1,
+        "output_sha256": "sha256_eef7255dca7f86bcaeed1e0c7403692949d537196d3a049db1ab1b08d678aa62",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Ichimoku-recursive.log",
+        "elapsed_s": 35.2,
+        "output_sha256": "sha256_17a6c7aae8583c229d3b4fe813c05f7871aee86527413cab5a97ea592e257300",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Ichimoku_v31": {
+      "canonical_sha256": "sha256_b8c58ef260550293607f8432194f7be4e4ed64c24dba2fd0decb9f8dec8fbae8",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 41.7,
+        "output_sha256": "sha256_431fb4ed5852fd866d4bcf87e4113bf93b687053c9b8d92df453cfc2f4e121ef",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 31.9,
+        "output_sha256": "sha256_2f5f8cb589d60a47d7edb0d759cec3385a94f5f9a6f7905a5fa02efcd255ff55",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Ichimoku_v37": {
+      "canonical_sha256": "sha256_ab55a132c009484ace8d44aee152e8b951639b3e2b37b0825b4aa5513baa79a5",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 93.3,
+        "output_sha256": "sha256_571a56aaf9a5b12452cf95bf924eb056472c55c187c9d00e2fe6bfce8d414762",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200301-20260820",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 36.6,
+        "output_sha256": "sha256_3ebda390a7f78e0d703f3daab7c5613b9e7d00231d77f6a48ffdbecda5fead23",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "InformativeSample": {
+      "canonical_sha256": "sha256_52e59a9eeb8a7a285c2247ba5a2049004b3cae559c09669f49008c33b8f0d659",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 46.9,
+        "output_sha256": "sha256_754582a51adf8efe1f0a62fb561381e1f33809e3604540ce56051e792a8bd6cf",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/InformativeSample-recursive.log",
+        "elapsed_s": 30.7,
+        "output_sha256": "sha256_83147eeaf0ed81e561f5c7e9f64658c7cb7b136fd9d41a88af4f5d91c7ea3f61",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "InverseVolatilityPortfolio": {
+      "canonical_sha256": "sha256_72b09bfee3e1c5cc4ddb01ae5294845a4ca2bb5ffd5044c4a60b8891d243dd64",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "debug_log": "user_data/profile_bias_logs/InverseVolatilityPortfolio-lookahead.log",
+        "elapsed_s": 57.5,
+        "output_sha256": "sha256_6b972ee7ab1f494a59dad93a6e4aca518f254c121b2f33774c572a597ba47633",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "NA",
+        "timerange": "20200301-20260820",
+        "why": "too few trades (0/10)"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 23.4,
+        "output_sha256": "sha256_7c1478742a9b8cf11651b866b450c070f25fa6fcbaa56fe1acc09b3d7acca6bf",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "KAMACCIRSI": {
+      "canonical_sha256": "sha256_85f30514549c92f16853e999d2241d7bc8fbcf8bf540394a71f39b5120f273a2",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 42.8,
+        "output_sha256": "sha256_8c81a6a48a1bead3e2a8bc988999c98b9cd89cb26579e5c7882b8948d3f8b1e3",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 30.5,
+        "output_sha256": "sha256_81832128f1f31aeeb8f971175458eb8b62821b91f22b19233d0dfe58d11081a1",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Low_BB": {
+      "canonical_sha256": "sha256_fa2c70df8480b1fcd50777d3511f67725667a2172adde8efd20577a00240c481",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Low_BB-lookahead.log",
+        "elapsed_s": 296.8,
+        "output_sha256": "sha256_73816df9b68b3b343b5fdc2bcdf4666681bfaa4f5c09f1586cdf50008874019f",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "NA",
+        "timerange": "20200301-20260820",
+        "why": "process exit -9 or unparsed output"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Low_BB-recursive.log",
+        "elapsed_s": 32.4,
+        "output_sha256": "sha256_c4b7f1e67a88db82b8e5daeaeb5ab18ca3836d5c6a0393374a5603659c67cb34",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
     },
     "MACDRL": {
       "canonical_sha256": "sha256_bfe6537cf2a665c8f9750ec886b91a0ff7dffcf200dcba937c480a315acb62e7",
@@ -570,6 +2458,228 @@
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
+    "MACDStrategy": {
+      "canonical_sha256": "sha256_354b4a91525320c0ae8f6557df4f22341785e492870b9b107187444140a79f08",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 40.4,
+        "output_sha256": "sha256_c0d83296d5798302637202db3a3e74d4201ecaebc7227487cf25a3a3e0d1cc85",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/MACDStrategy-recursive.log",
+        "elapsed_s": 32.2,
+        "output_sha256": "sha256_d3021e6ff37efe4653538d6c102b224fd9a87eb16b86f162bbd231350688b5d5",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "MACDStrategy_crossed": {
+      "canonical_sha256": "sha256_105ba624b14907376ea52c56c0ee503072635a595253ca44b3c29820886a5c15",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 41.5,
+        "output_sha256": "sha256_46867aae3e62556dff326e7c9ef9d28112bd1f8948a3b6e93381f4cec2231c84",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/MACDStrategy_crossed-recursive.log",
+        "elapsed_s": 31.8,
+        "output_sha256": "sha256_6a648227ba6e4a80887b88e6d3ac42fe054d62be4ca32fd34958fb1095c6e2e3",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "MACD_EMA": {
+      "canonical_sha256": "sha256_1f6a6896ebba81543bf8416c2bf3b0cb1419018d2a7fcb6dbeb7d20523fc4ea7",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 42.7,
+        "output_sha256": "sha256_a25d9b3f5d939a1fcddbc1d965544a03fc60dede8a7eb321510f10d8715fa58f",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/MACD_EMA-recursive.log",
+        "elapsed_s": 27.5,
+        "output_sha256": "sha256_ec990728594ce4cd92e71d695fc00a3127cab79b9ad696f0cb2f66b9d8ec8a32",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "MACD_TRIPLE_MA": {
+      "canonical_sha256": "sha256_8d5f191c4d92a3ee8f8da3d698e5107781a46994f0ea3cb5c430c96388629401",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 36.7,
+        "output_sha256": "sha256_40fe3f9ce76f4b5b3e21617ef26bd18f9f5eb5e0de3b5de641c2705b95123b63",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 30.0,
+        "output_sha256": "sha256_6bd03270318983fb50b1283fc44a5731db7e0c07e302173c720d17bfef5a16db",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "MACD_TRI_EMA": {
+      "canonical_sha256": "sha256_4c459d412a21b8335672ba7e6b2fc2761d823bafe90eac0f153ace459c254f0d",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 45.8,
+        "output_sha256": "sha256_929802bebdc7084a1061b07c888f112e6186f161933f71b425603340b68bb9b4",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/MACD_TRI_EMA-recursive.log",
+        "elapsed_s": 30.1,
+        "output_sha256": "sha256_ef7fadf09d33de271f23f66594021f85ab24755a0cd9447424c068c6659a8e91",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "MADisplaceV3": {
+      "canonical_sha256": "sha256_421a02c82cad7cd971de08772dcf372f27c60e43081f05c8a50949eb1401d907",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 44.1,
+        "output_sha256": "sha256_6394cccc0d543d6bfabd22e8b11a3a781e484f0f0b87c4a7fe13b638926b81e8",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 32.1,
+        "output_sha256": "sha256_9d429b52cbf0486dce194a856f6281d8d03ed9bcc676b95ca2a9e899727c3fcf",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "MFI": {
+      "canonical_sha256": "sha256_77f6179b7131aacd3208d22975e34076f86e67f1b84d80e6d9a54a9aefd2b110",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 46.4,
+        "output_sha256": "sha256_8e45c192407071e417cde151b0a90d09cb16872e858d453cf7938dd1577fc19d",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/MFI-recursive.log",
+        "elapsed_s": 33.4,
+        "output_sha256": "sha256_7946a4001751555cf0ba813e82d3de957cd25e8e9a6c7ef6d79aeab65b004065",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
     "MacdStrategy": {
       "canonical_sha256": "sha256_e06777de204f9d3a848741b779cbe25967cbb34043f01d8af9402ef40275f8e6",
       "class1_rules": [
@@ -580,15 +2690,189 @@
           "20190101-20190401",
           "20200301-20260820"
         ],
-        "elapsed_s": 16.4,
-        "output_sha256": "sha256_057b30ee924d9d4baa16a39c485973991ca1bba5ff3c71d7076bf2e45b6a646b",
+        "elapsed_s": 69.1,
+        "output_sha256": "sha256_b6a0a38ed2e6df3fae3af7ace8fe148895817903ae125c80a4747d0ef27f2409",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "PASS",
         "timerange": "20200301-20260820",
         "why": "no bias detected"
       },
       "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 32.4,
+        "output_sha256": "sha256_354c88c21412d16ce8141863adf391c18f8143ef50869820a488022d4b9f896d",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
       "run_profile": "spot_long",
-      "runtime_config_sha256": "sha256_0006006514c97e0364dd454829ff7e3b067c0b9b876878fe66a899019081f55b"
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "MarketChyperHyperStrategy": {
+      "canonical_sha256": "sha256_29bc8e0e7645cd329e31b603352f6a61c136ffea728ed85e695381ba4ab3b866",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 37.4,
+        "output_sha256": "sha256_fb5d9d17bb9c6d14f2b16f50b498b2c5d85a307423637be89f3e5b37c5f1392e",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 30.2,
+        "output_sha256": "sha256_2b2623c52fdf0525d2555d844c586af23b9694ef2159c14147d00b038bb9edaa",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "MaxSharpePortfolio": {
+      "canonical_sha256": "sha256_84faf7b45c84795b01661fbce3483afc6aa70dfb671806c7f47c4dede867bc03",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "debug_log": "user_data/profile_bias_logs/MaxSharpePortfolio-lookahead.log",
+        "elapsed_s": 99.7,
+        "output_sha256": "sha256_a16f4705618f066a657b36e4ed101dc3a51edf51bab8ff8cbdbf0ee09e95838b",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20200301-20260820",
+        "why": "bias: entries 18, exits 20 of 20 signals; indicators target_weight, enter_long, exit_long"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 32.7,
+        "output_sha256": "sha256_e2cba4870ab2560d2ab31b20f3754d42bb19e85850a9f2a4b99d3d5dc8fa227d",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "MinimumVariancePortfolio": {
+      "canonical_sha256": "sha256_b4245dfd2479a35699f7e6f8e991bd59d0fe7f26944075c5f2417b296c0300c0",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "debug_log": "user_data/profile_bias_logs/MinimumVariancePortfolio-lookahead.log",
+        "elapsed_s": 58.0,
+        "output_sha256": "sha256_142f2d4ee1fca791d5e9a5df1930caed40003dd78d006de7e11eaed765b99f4e",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20200301-20260820",
+        "why": "bias: entries 17, exits 20 of 20 signals; indicators target_weight, enter_long, exit_long"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 22.9,
+        "output_sha256": "sha256_6ad8712bc11c565b35e8137dc8fd0cfdd873badeb93d7f26f9037b6f1d973a55",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Minmax": {
+      "canonical_sha256": "sha256_b69e76191caee9b44a2f0bc47bc583e59568d90a4838b35c62c10b219b9ef52c",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 64.0,
+        "output_sha256": "sha256_8783785446638ebcf48d9dc7c52a46503371645bf14495708d5c559d2b16f839",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Minmax-recursive.log",
+        "elapsed_s": 35.2,
+        "output_sha256": "sha256_204f233831f0b809c772dcf9742ccb3662fdeca42be0f70b27c3020a38722766",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "MomentumRegimeBasket": {
+      "canonical_sha256": "sha256_6992337acd7a8120fefd353186183b21bff62c117971ef6cfb9bf4c5ac0af1ba",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "debug_log": "user_data/profile_bias_logs/MomentumRegimeBasket-lookahead.log",
+        "elapsed_s": 55.7,
+        "output_sha256": "sha256_aa096a6e81382ed78d79f584c374efd05630f04dcf9c3c3812c05ea91c3538c0",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20200301-20260820",
+        "why": "bias: entries 17, exits 20 of 20 signals; indicators hold, enter_long, exit_long"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 22.6,
+        "output_sha256": "sha256_47bd8a2e1df464352c292b7bf3a2d2f63665f305d173d5fbd88548abffa54209",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
     },
     "NOTankAi_17": {
       "canonical_sha256": "sha256_d1d72095cae0bc356106af96667d74f8871c1327dfc91af49298c1bdd650649f",
@@ -652,6 +2936,133 @@
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
+    "NostalgiaForInfinityV1": {
+      "canonical_sha256": "sha256_73271ad1c5f2d271ae03eb5a67855e566bcd9a57b2a36b99b06fcc625bdb12e9",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 43.7,
+        "output_sha256": "sha256_7e58a04b9c9fb65c36beaddcf3a6db9b8d275eae4315100f3a41e4acb6ff3edd",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 32.5,
+        "output_sha256": "sha256_522ae46a7513acfddeda8bd350d30b6c38899b50c1f1c79f7cefcb8f615b17e0",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NostalgiaForInfinityV2": {
+      "canonical_sha256": "sha256_7fb7ad41e5da73eb55495e56f1d46694762e47731e48e7fe7238900cfc6c5294",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 45.4,
+        "output_sha256": "sha256_e31f00e3a733bbf9ed6bfdca43aeeddd7691d1885b016afd80be8f8a8bb8374c",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 32.0,
+        "output_sha256": "sha256_cb5159764820e196e894f9e1a0cba33e3ae93c4ca586f5e297d039f9e2a85e1f",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Precognition": {
+      "canonical_sha256": "sha256_422eb36baa3589ec8a38471ac2805e6dc04db320e136d84f2c8362468dbc3c9b",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Precognition-lookahead.log",
+        "elapsed_s": 41.1,
+        "output_sha256": "sha256_2243058c7b0fc0b4ea18f499b2d26b82b8ebdd77c2a4cf5448a6679bbc9476d7",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "bias: entries 20, exits 0 of 20 signals; indicators enter_long"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Precognition-recursive.log",
+        "elapsed_s": 33.5,
+        "output_sha256": "sha256_38f0966c45f0803f47c3bd38a9b6590f7a95eed6d7aef1aac21a84763b184f11",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Quickie": {
+      "canonical_sha256": "sha256_79be21c3eea3f5f0e7c3cb3b449ec1691949e286462715afe6e79f69f036f14d",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 42.5,
+        "output_sha256": "sha256_bcccd400e6ca877ecbd389ea2b8856020a559cbbacbd90260a090879dc44c837",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Quickie-recursive.log",
+        "elapsed_s": 29.0,
+        "output_sha256": "sha256_9b19112507b36b6298c8126bf9a9c0b8b2c8c2e6238542bf6093cd9daf27ee42",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
     "RegimeFilterStrategy": {
       "canonical_sha256": "sha256_11c48354d533ffb7016721014861842ec5220ddcf1bdf66237a96cb9bd5e9a55",
       "class1_rules": [],
@@ -678,6 +3089,72 @@
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "ReinforcedAverageStrategy": {
+      "canonical_sha256": "sha256_9fb9bec08a64b96822d3219baa7f6efc3a000cad999afc9d18f27ef532a4c773",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 71.8,
+        "output_sha256": "sha256_bc6bd531e45e80ac27d0ad13e3086b1a0bca673d5401cc775c241099df03cdca",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200301-20260820",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/ReinforcedAverageStrategy-recursive.log",
+        "elapsed_s": 35.2,
+        "output_sha256": "sha256_dbafa0308531ee290288183133d965af6b109443e9f172807b5897eb31caba0e",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "RiskParityPortfolio": {
+      "canonical_sha256": "sha256_50273073b25558dc3fbb8c1f8913307e6cb5172c13d4e44745ff71d320912273",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "debug_log": "user_data/profile_bias_logs/RiskParityPortfolio-lookahead.log",
+        "elapsed_s": 53.6,
+        "output_sha256": "sha256_b50468626e2338fa74173bcfa4b4c8b8d19a20dc7803c17d6c2793fa74b55244",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "NA",
+        "timerange": "20200301-20260820",
+        "why": "too few trades (0/10)"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 22.1,
+        "output_sha256": "sha256_52f45f903bd495b13f76f57afe72400f2ae93b432b35af5b4b70e50f5c934fc6",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
     },
     "RsiquiV2": {
       "canonical_sha256": "sha256_57911f40d1275a5d5abf083358b24aacba42e3691f8241b97d15e30c5a1c704c",
@@ -739,6 +3216,38 @@
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
+    "SMAIP3": {
+      "canonical_sha256": "sha256_34e0c7bf06726a853caf5976a616d18de9b0d77ebd1785236d2999a4cad201f6",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 149.6,
+        "output_sha256": "sha256_420fb261fae677b067b1b9bde6083be03cb2301f644ccf8a9d931b0bff76ba53",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200301-20260820",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 30.0,
+        "output_sha256": "sha256_7eff031599de7054ca8ee0c5b24b84c54ba6513d11ef973bda6d70c7de913636",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
     "SMAOG": {
       "canonical_sha256": "sha256_5909c02736a7ef61b0092ab9ab54511563725485ef218e3355a3f5571d746a18",
       "class1_rules": [
@@ -749,8 +3258,9 @@
           "20190101-20190401",
           "20200301-20260820"
         ],
-        "elapsed_s": 84.9,
-        "output_sha256": "sha256_f96fd1bce5ff8b49f86d6d2d91ac715c7ba9a272d6fa6c0bbfda979748cc18d7",
+        "elapsed_s": 158.9,
+        "output_sha256": "sha256_a23cd4ab85d8bb0ff5449c90305115b335a7e7db1082cd563ca839c27aaf894a",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "PASS",
         "timerange": "20200301-20260820",
         "why": "no bias detected"
@@ -760,14 +3270,427 @@
         "attempted_timeranges": [
           "20190101-20190401"
         ],
-        "elapsed_s": 7.0,
-        "output_sha256": "sha256_5660e2ee82c70351a430133b79bfdf5911581bd566ba0965d171f6f7da65fa85",
+        "elapsed_s": 31.2,
+        "output_sha256": "sha256_729e112d24618416b48d67700fbf0236ad2fdbd0cd736a4ddc7b7843044d371c",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "PASS",
         "timerange": "20190101-20190401",
         "why": "no recursive deviations found"
       },
       "run_profile": "spot_long",
-      "runtime_config_sha256": "sha256_0006006514c97e0364dd454829ff7e3b067c0b9b876878fe66a899019081f55b"
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "SMAOffsetV2": {
+      "canonical_sha256": "sha256_34e0584ebcfc856146c507a49e30684ff3eff356aef78756736f6be5e7bf2d67",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 45.7,
+        "output_sha256": "sha256_76e107551b849f6f7be7deae6bd5608b98ab37e784e3c98d5467482cda5c8565",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 32.5,
+        "output_sha256": "sha256_e8490c39c0227a05fdd60d1f1a21f31142f7143ae02890a519ca1441f1b71461",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "SampleStrategyV2": {
+      "canonical_sha256": "sha256_c0fc5e4af5d30cc587240161a92dcd96fc877d1adaeffa56271bf98ae9bd13f6",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 109.9,
+        "output_sha256": "sha256_820ad7d085b7d5977c10f89adbdc909b5675615c2707c4da969ea20a16f3952c",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 35.3,
+        "output_sha256": "sha256_938a93261bdfa455136bd44150726a946cb90da244200e098c9a990f9092fcde",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Scalp": {
+      "canonical_sha256": "sha256_e7dca7c74ce5ef04cceca52f988463828242e66cc9aaefe8bcef8ea63db2720d",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 63.4,
+        "output_sha256": "sha256_0cf8a96ac833de88d9f65c3cc176cacfec8b88411ea926ffeab6d24251a717b5",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Scalp-recursive.log",
+        "elapsed_s": 33.4,
+        "output_sha256": "sha256_2b4be2134374b0e42ca99c616efd331a2e4404c102f7e43a9266e833a8010203",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Seb": {
+      "canonical_sha256": "sha256_7523b678ca65e9a98edb4bdbbe0499f6b886cf5c88cd11b78d8aba6955788a18",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 68.5,
+        "output_sha256": "sha256_7ee45e94adbf427379881c305c315014259a13eb23f03bc728f3944e9540a3df",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Seb-recursive.log",
+        "elapsed_s": 29.9,
+        "output_sha256": "sha256_a578569d49ff9b3c6741b4808b79fcd83ada0f2fd8007ad72f100a5ecf753cb1",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Simple": {
+      "canonical_sha256": "sha256_94180c92536515ed957b297fe6cae74ca4ad4c2128b36d91d6b8bd5c312c5b83",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 45.4,
+        "output_sha256": "sha256_838109d5d92ef78d47b2f6a414b812f6548d81cc9400a1c1f350cd705348b06e",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Simple-recursive.log",
+        "elapsed_s": 30.0,
+        "output_sha256": "sha256_df5ffadd55cc7f2ed9acb2db84cf4658a0de064a2b190b8ec160e3e679de6435",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Slowbro": {
+      "canonical_sha256": "sha256_021729094e3a95a70ac5c52b23ffdf91243982106455f344f16f36847e92bbda",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 96.4,
+        "output_sha256": "sha256_3f6ecb5bd727b885ec970d80894ffbbb8a3ebb7e1eb520a11ecd5261fa3d3a14",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200301-20260820",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 38.0,
+        "output_sha256": "sha256_59d1e68e5f53eafe97fae4a40904cee583fc57ad4ecb14d83fb5a6f544d80f23",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "SmoothOperator": {
+      "canonical_sha256": "sha256_d87471094a60fd1b65d14b205045c5680da5779eb909fb95b9aa2e4678878aaf",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 50.0,
+        "output_sha256": "sha256_cf90265feb2004296cde56b192ad5149b27bbfdd186a5345c5cbed7b7972e534",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/SmoothOperator-recursive.log",
+        "elapsed_s": 33.7,
+        "output_sha256": "sha256_e3605d1a0086df9e6f5636df125e3d37fc681ae1c8b519112097940d05362172",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "SmoothScalp": {
+      "canonical_sha256": "sha256_0364d41573bbaa271449efa84c2b8daa2160c284dd643eada173cc5e3cb01f1f",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 56.5,
+        "output_sha256": "sha256_5d40a287a33743290f6d0dfb04aa72bddad0282477d3a83369d6bf8f2adfa546",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/SmoothScalp-recursive.log",
+        "elapsed_s": 31.5,
+        "output_sha256": "sha256_1bdc32fbb113bee6c515ead137a6af4fa2feeebb8d84f765e50bb4c98ebe92a3",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "StochRSITEMA": {
+      "canonical_sha256": "sha256_fe2b7dde3da374b2cb305ccb389e177d7fed55ecaebf7aca11f5e0ee1f49b187",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 53.3,
+        "output_sha256": "sha256_94a1ce34f87f4110ac92e77eaaa42f635f96f45fde9d3b012d58228017286a28",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 38.2,
+        "output_sha256": "sha256_7dcbf011dd026cfe12c4ecfe68fac0a5b24f025ff24e8e230d5cd3c4a4a43822",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "SwingHighToSky": {
+      "canonical_sha256": "sha256_73facc48a0031bc1e90d195ada426fea50a063c1a8de7e5faab937a9a795e45f",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 38.6,
+        "output_sha256": "sha256_920a21866a8ef779e10158b4f214287bbc20df565c34be7a9e923418c4fb9110",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/SwingHighToSky-recursive.log",
+        "elapsed_s": 31.4,
+        "output_sha256": "sha256_33893e8e477191724a9f6fec4724682938dc420a1a36755f1f39495efeb13836",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "TDSequentialStrategy": {
+      "canonical_sha256": "sha256_18c8e9e537d1855db07ecbb50a1cf56c3813015228f81f3140503ef7fad6c254",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 42.5,
+        "output_sha256": "sha256_bf5f61d23ceab817a74c770be64225e31e1a31144a3b4f66bf6a6ef8f9dc9702",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 52.6,
+        "output_sha256": "sha256_553ba70b717fdd29aa70c30af86dc8f343ba47a3e548c5fabe17db060d24ea82",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "TGMA": {
+      "canonical_sha256": "sha256_b16afc1c9ecd4e58bf3c83310a11b439d6dca9d140e3f19ecf564c7479bc5484",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/TGMA-lookahead.log",
+        "elapsed_s": 28.5,
+        "output_sha256": "sha256_d55608aae7de63ed981499ccdce1c126f105c35867129ef2ca5b6a1b6168b922",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "NA",
+        "timerange": "20190101-20190401",
+        "why": "Configuration error: The config trailing_stop_positive_offset needs to be greater than trailing_stop_positive in your config."
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 28.1,
+        "output_sha256": "sha256_472aa29b40bd605c851cfec7304003d5e167e40a17c97c03cbcfe11c37e9fd76",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "TSPredict": {
+      "canonical_sha256": "sha256_c4169a4567fed0e84595fd4351124973acb36335cd4185707e8516cb29d1c08e",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/TSPredict-lookahead.log",
+        "elapsed_s": 44.6,
+        "output_sha256": "sha256_e58cdc0b02c2adfc0f8613f4ee01cefe3e3f6d644d6df418f0f2d01b0275b870",
+        "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+        "status": "FOUND",
+        "timerange": "20200301-20200401",
+        "why": "bias: entries 20, exits 20 of 20 signals; indicators predicted_gain, curr_target, shifted_pred, enter_tag, enter_long, enter_short"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "elapsed_s": 10.3,
+        "output_sha256": "sha256_92fac280b70a71b989325df509ffb14ab7e0debcab7e860709e41b1ebc59bdcc",
+        "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+        "status": "PASS",
+        "timerange": "20200301-20200401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "futures_long",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
     "TWAPStrategy": {
       "canonical_sha256": "sha256_fa97ab1802e2508d2742cfdb01d607c0a41d1eb84b217cf6cb0567429620221d",
@@ -798,6 +3721,69 @@
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "TechnicalExampleStrategy": {
+      "canonical_sha256": "sha256_20911a433b0ef0e1c152bf697364aafe29ec31d0e5aa4fffb840189ecb0883ed",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 53.5,
+        "output_sha256": "sha256_00963dbcee91d8c3c0050318a25d138b6e67b7a1c1c075a7455994ae5de7aff4",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/TechnicalExampleStrategy-recursive.log",
+        "elapsed_s": 35.4,
+        "output_sha256": "sha256_22207222b318ca1b762f65d07e6702d927e9ca0694c754070100ab3e1294af4c",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "TheRealPullbackV2": {
+      "canonical_sha256": "sha256_631a50d574af0e0cb36a3cb538c4abe04614c4dcbf7afbfd2d8efc5bb97a19fc",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 50.7,
+        "output_sha256": "sha256_0fd73e801faed599d0e004bbc48b9486fb29ce96c2ec8a76247b0a6efc98c19b",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 36.3,
+        "output_sha256": "sha256_f6ef8d2b4c793f7cb6707505b2251f4c59250995fe91ff9af1cda30efc38de0d",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
     },
     "ToTheMoon": {
       "canonical_sha256": "sha256_50166db0362cdc89a798fc1caa7554f57c217a8d8f34f2ed8f6c498a7744a795",
@@ -858,6 +3844,132 @@
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
+    "TrixStrategy": {
+      "canonical_sha256": "sha256_9b74c00f6e2cf99bee130c1f59c6f4d4e00d3d0dbefc5582d3c6877ba4d8ff11",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 45.5,
+        "output_sha256": "sha256_647c2576108acc2a65699de0ed05a875ba0a7554cbc82006d6e0465e79026640",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 35.2,
+        "output_sha256": "sha256_ee29226c9e8353167df86a2c9ef64fa966715c6ec3f104cccd25a5a3db928ab8",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "TrixV15Strategy": {
+      "canonical_sha256": "sha256_ea28010f0a22d0b900812def28c1ba510d0a5799430a3e0fde9ac45de3737dfb",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 38.0,
+        "output_sha256": "sha256_3c196c7e900169997b1a98efabf60c493b927625556b79af1bdc7c38e89a5245",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 39.3,
+        "output_sha256": "sha256_d983a2eefd8ff3ca19a2becb512041e99144cb2b86194cf7efa75d354b558b24",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "UltimateMomentumIndicator": {
+      "canonical_sha256": "sha256_9b3eeaf6f377fa6e9bf0e3745e98e57abf17b32de0c429e0233370e48f4ca66b",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 48.8,
+        "output_sha256": "sha256_4a4d4710c414e017f74c050a4ec6c3387bed628e01217971558bcaf22eb39ff2",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 34.0,
+        "output_sha256": "sha256_3581194755dc08c03042347c013905a08ed5343a704387961cdf2044253d25c5",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "VWAP": {
+      "canonical_sha256": "sha256_22c03a360e06d99b62c661df17d785223604de4b1d4da40a567c540d5aad7614",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 182.7,
+        "output_sha256": "sha256_a37313ed65659462cdc5479e21a7e70bf5fc408c844b5aa2cd521a5eb79bb199",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200301-20260820",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/VWAP-recursive.log",
+        "elapsed_s": 36.0,
+        "output_sha256": "sha256_cc893437b037f96590be78d1409b3a4589387f9591f06ba8460f829da65d0ba2",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
     "VolatilitySystemV2": {
       "canonical_sha256": "sha256_604d9b2fc6e8f0b76b6d9341f64c7a98b5c5e7c9a1af237fd7584b9d671bf6a8",
       "class1_rules": [],
@@ -886,6 +3998,101 @@
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "WaveTrendStra": {
+      "canonical_sha256": "sha256_7167d7a967d9438407ac8fe6c949a7332839ff7a71833d0969dceb12a9b6c0ad",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 37.7,
+        "output_sha256": "sha256_c4e12f0b3af43f77b4f352bf01df048055cac433e6f62ff522d682b1b64b2777",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/WaveTrendStra-recursive.log",
+        "elapsed_s": 35.0,
+        "output_sha256": "sha256_97ff8dae4b2e320532e6c0523f71a7aff6aaef8ce65ff347c49b24aaf8ab8a74",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "XtraThicc": {
+      "canonical_sha256": "sha256_af99ee5fbb7552e454b16405df73fa31bc812e9e342ccf67fd67e3eba56f7095",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 75.1,
+        "output_sha256": "sha256_8d270e8def1cf07b794f763b51ecbbdb974d61aa357691d8e4ebef26c11646cc",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 33.1,
+        "output_sha256": "sha256_b0a4c86f26b68ae8c768b47878acb6a80a58c7627aac2c9ce951b83439b0c381",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "YOLO": {
+      "canonical_sha256": "sha256_b822711c4fee44f2fe1f1768d0d1f7583d29e263250caa357917a028a0ca83ee",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 90.0,
+        "output_sha256": "sha256_f08f8ccf95ce81da9c0b296aa66739ad4d2d2cbc11ef5bef51e5831efc777673",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/YOLO-recursive.log",
+        "elapsed_s": 35.1,
+        "output_sha256": "sha256_e9c559248208c8c5d767b62584165cee959f47d372c4437bfa08ca799f35d2fe",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
     },
     "ZaratustraDCA2_06": {
       "canonical_sha256": "sha256_ad8a574db20aa81dea127dca5cb4d40cfb7a5e37040d9214b03fb4c8248f33e5",
@@ -975,6 +4182,135 @@
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
+    "Zeus": {
+      "canonical_sha256": "sha256_23662b687769f48d45f4a8702651b5322f3e34bc796f965d3e71952cb1dee042",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Zeus-lookahead.log",
+        "elapsed_s": 39.9,
+        "output_sha256": "sha256_bc44454aeecf67a42dea371ebd77e9a252ec4cd1aec4c3b2510c502e7b59f778",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "bias: entries 8, exits 7 of 20 signals; indicators trend_ichimoku_base, trend_kst_diff, enter_long"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Zeus-recursive.log",
+        "elapsed_s": 39.1,
+        "output_sha256": "sha256_9bef40157c438cd3ed34b2c4b340bcda79b4708d9adfd960134105884bde14f8",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "adaptive_trend": {
+      "canonical_sha256": "sha256_61efb0b6ba37ddcea04199685cb1d4b975f419d42ae58cf1cd56b7e16ad316f5",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 84.2,
+        "output_sha256": "sha256_7a3e5d32d7bf58ddb73b848c4bad38ea1664e3c7f60e0951ae07cdf5e7f5002e",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200301-20260820",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 34.3,
+        "output_sha256": "sha256_eb89a0e7a9231d1d39c48a7eb60ab12a24cce171aca63b075d7ed507887ba79b",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "bestV2": {
+      "canonical_sha256": "sha256_3ae96b72ac7a2002a10be76269903831ab4c671bcbb50265ecfc906af73d298f",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 140.3,
+        "output_sha256": "sha256_161f71dc7ca4a9f020bb1f6b87cba05e22a892780e749af09f2fafbbf04050b0",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200301-20260820",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 26.3,
+        "output_sha256": "sha256_094a0fbab7c163297dbd979ad7836db72e6b024975b2b9ce511558caa1b4cde6",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "dualwave": {
+      "canonical_sha256": "sha256_21be3f4a214bcd2dcd3148d192b3293fd16f9aa35736ca8e1d80f0ad1bea90fc",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 57.9,
+        "output_sha256": "sha256_c622a7e35b6a35250ae7198f18cb18b14b66f11cd25cab20ef2c80a32767389a",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/dualwave-recursive.log",
+        "elapsed_s": 34.9,
+        "output_sha256": "sha256_d1dce3e365eacc20d0e1206db72bd38186deb9bde3a4610bb1a7c437e1dcd29e",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "recursive drift: rsi_2h -6.713%, rsi_ma_2h -8.339%, rsi_ma_pcnt_2h -972.673%, wave_t1_2h -48.902%, wave_t2_2h -55.776%"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
     "haGradient": {
       "canonical_sha256": "sha256_ebeacb1830a66aef5f0aa0e8ad1c77eaf81a6ec1dbe52627e3670b0272548e02",
       "class1_rules": [],
@@ -983,9 +4319,9 @@
           "20200301-20200401"
         ],
         "debug_log": "user_data/profile_bias_logs/haGradient-lookahead.log",
-        "elapsed_s": 53.2,
-        "output_sha256": "sha256_79c4add07cd23303489999f2779c4ace719c97e4543c3639e73d6895a37ebd52",
-        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "elapsed_s": 70.6,
+        "output_sha256": "sha256_33c27eafd7c024b4035fcb74a0b739d0241d18f8bee22c8f866452433d0c3187",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "NA",
         "timerange": "20200301-20200401",
         "why": "Insufficient data points for FFT: 102. Need at least 120 data points."
@@ -996,15 +4332,144 @@
           "20200301-20200401"
         ],
         "debug_log": "user_data/profile_bias_logs/haGradient-recursive.log",
-        "elapsed_s": 26.5,
-        "output_sha256": "sha256_200a07d8590a81240faca86a0e449015dc952de44c42522857aa6f8593206b81",
-        "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
+        "elapsed_s": 27.0,
+        "output_sha256": "sha256_071b49c09e960611f93d0efcf8f6168a03e1a38bc266665f932a2b935372d0b4",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "NA",
         "timerange": "20200301-20200401",
         "why": "Insufficient data points for FFT: 31. Need at least 120 data points."
       },
       "run_profile": "futures_long",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "hansencandlepatternV1": {
+      "canonical_sha256": "sha256_d408e504abc90afb7ecb729ee19c52e47b98236db25079f16e3535979418be4f",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 40.6,
+        "output_sha256": "sha256_6046c44abffd913b47ac5b67c8c69e981bc11c7ebc3ddf08fb0a113408bfc8c7",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/hansencandlepatternV1-recursive.log",
+        "elapsed_s": 35.1,
+        "output_sha256": "sha256_d32a30e6835fe772aabb2f5f9d7c4e08c88ac3d07d464d57f84a2a7493f1079d",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "heikin": {
+      "canonical_sha256": "sha256_07066eafd68797351eb47db30804fbc8776de7e7e25afb651718565e7e387821",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 41.6,
+        "output_sha256": "sha256_6bfe4ea84d6fcb3b92d19a448039d7aac936c24680aa70a2f1246a71bc9473cd",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/heikin-recursive.log",
+        "elapsed_s": 29.5,
+        "output_sha256": "sha256_16f519136f7a3b0084d8e9fa4395878f39c56208dce90a3a2b729cbb6c4703d8",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "kalthetank": {
+      "canonical_sha256": "sha256_07482022a9351fae7fdc25277a0b62c8a046d2f9c74b7ba5fa49c164262e311a",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/kalthetank-lookahead.log",
+        "elapsed_s": 52.1,
+        "output_sha256": "sha256_751a61182ddf705a75a91f32a5a452edaf8de972c2ce71643614ab37d122812b",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "NA",
+        "timerange": "20190101-20190401",
+        "why": "Insufficient data points for FFT: 93. Need at least 282 data points."
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/kalthetank-recursive.log",
+        "elapsed_s": 32.4,
+        "output_sha256": "sha256_3164b22e060b659985831eacd40024671ab75b5d2e0077c1d7c75f8b6a3a4de0",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "NA",
+        "timerange": "20190101-20190401",
+        "why": "Insufficient data points for FFT: 211. Need at least 282 data points."
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "mabStra": {
+      "canonical_sha256": "sha256_a7796af206e8a84718ebfe09d2a29323a414dab9cbe9a07829162ff3d7b61888",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 33.8,
+        "output_sha256": "sha256_6280f826b33ee14ee4eda9611700c40eed516db49e4bc0d0d430f2a5c36f883f",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/mabStra-recursive.log",
+        "elapsed_s": 31.4,
+        "output_sha256": "sha256_f0ed54334bf46f2e92a379eb27af3c17d1c42621b62bbb985758d5b5f73e897d",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
     },
     "momentum": {
       "canonical_sha256": "sha256_5fc5ee322b436311dd7ea645d011523f6cfbef55cad748ac9e35fbb9dd410bbc",
@@ -1091,6 +4556,104 @@
         "why": "no recursive deviations found"
       },
       "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
+    "pcb20": {
+      "canonical_sha256": "sha256_3e410200fd866339971ebaf78d0f27e1ed47d830523bac35cc8e6bf18686f560",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 32.4,
+        "output_sha256": "sha256_04d784bd05a1e4b3f8ba5f34210fdadca6bc91a0851831e679ed9e0625e95153",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/pcb20-recursive.log",
+        "elapsed_s": 27.0,
+        "output_sha256": "sha256_873921a648f8b7214791e147e5d3e4fb5e565315d8fd4cd7dd930233f5f446cb",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "recursive drift: wave_ci -0.241%, OBV -179.123%, rsi -0.786%, rsi_slope 3.108%, rsi_ma -1.041%"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "tbtest": {
+      "canonical_sha256": "sha256_0b7026eaebc4bf8aae227bf794025abe9ab4db08d49faf7e333e0a3f320e0a8c",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/tbtest-lookahead.log",
+        "elapsed_s": 39.4,
+        "output_sha256": "sha256_eba97f267b6e8a556ca5037c9af281ce74bb0c415adff47f85bf97a9cbf522a6",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "NA",
+        "timerange": "20190101-20190401",
+        "why": "cannot reindex on an axis with duplicate labels"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/tbtest-recursive.log",
+        "elapsed_s": 36.2,
+        "output_sha256": "sha256_a73f09ee9cf34938ab2881ee0db3faa96e0d9db22c301207b57642832a18f1f7",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "tsp0chicken": {
+      "canonical_sha256": "sha256_9a34b8c859793b0577d22898005970549eee9f8d857328e68eec125ef4ee6e4b",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/tsp0chicken-lookahead.log",
+        "elapsed_s": 23.6,
+        "output_sha256": "sha256_a9a5361c47adddb0b814c6047342023a98ba537cb1be0b361b4b4974091366d7",
+        "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+        "status": "FOUND",
+        "timerange": "20200301-20200401",
+        "why": "bias: entries 20, exits 20 of 20 signals; indicators dc_EWM, dc_1/2, dc_1/3, dc_1/4, gain, profit, loss, target_profit, target_loss, local_mean,"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/tsp0chicken-recursive.log",
+        "elapsed_s": 8.2,
+        "output_sha256": "sha256_310b54bd48ffc32251860caf5b2eca54680b68fc788f1b155786e04bc71581f1",
+        "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
+        "status": "NA",
+        "timerange": "20200301-20200401",
+        "why": "Insufficient data points for FFT: 139. Need at least None data points."
+      },
+      "run_profile": "futures_long",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     }
   },

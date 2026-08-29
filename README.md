@@ -194,7 +194,11 @@ captured all of it.
   spot/futures and long/short capability kept separate from repair provenance.
   It does not rewrite the frozen 895-row result ladder above.
 - **[REGIME_AUDIT_PLAN.md](REGIME_AUDIT_PLAN.md)** — the active, versioned
-  regime-study plan. **[REGIME_ELIGIBILITY.md](REGIME_ELIGIBILITY.md)** and
+  regime-study plan. **[REGIME_PREREGISTRATION.md](REGIME_PREREGISTRATION.md)**
+  freezes the causal classifier and exposes the decisions that must be closed
+  before ranking. **[REGIME_DATA_REPORT.md](REGIME_DATA_REPORT.md)** summarizes
+  the fingerprinted daily states, episodes, transitions, and sanity timelines
+  generated under `results/regime/`. **[REGIME_ELIGIBILITY.md](REGIME_ELIGIBILITY.md)** and
   **[REGIME_ELIGIBILITY.csv](REGIME_ELIGIBILITY.csv)** implement its technical
   Stage 6 before any regime-performance ranking.
 - **[REGIME_COVERAGE.md](REGIME_COVERAGE.md)**, the corresponding

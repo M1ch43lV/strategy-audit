@@ -43,7 +43,7 @@ class BreakoutStrategy(IStrategy):
                 dataframe.iloc[ilocs_max].index,
                 f'upper_peak_{val}'
                 ] = dataframe['high']
-            dataframe[f'upper_peak_{val}'].ffill(inplace=True)
+            dataframe[f'upper_peak_{val}'] = dataframe[f'upper_peak_{val}'].ffill()
 
         for val in self.sell_peak_order.range:
             ilocs_min = argrelextrema(dataframe['low'].values, np.less_equal, order=val)[0]
@@ -51,7 +51,7 @@ class BreakoutStrategy(IStrategy):
                 dataframe.iloc[ilocs_min].index,
                 f'lower_peak_{val}'
                 ] = dataframe['low']
-            dataframe[f'lower_peak_{val}'].ffill(inplace=True)
+            dataframe[f'lower_peak_{val}'] = dataframe[f'lower_peak_{val}'].ffill()
 
         return dataframe
 

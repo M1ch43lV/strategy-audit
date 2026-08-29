@@ -191,6 +191,76 @@ def patch_empty_loc_signals(source):
     return source, len(replacements)
 
 
+def patch_fott_quadratic_recurrence(source):
+    """Linearize two unused-variable fixpoint loops in FOttStrategy.ott().
+
+    Each original outer iteration advances a shift-based recurrence by one
+    row. Repeating it ``len(df)`` times reaches exactly the same fixed point as
+    a single left-to-right recurrence, but with quadratic instead of linear
+    cost. The exact source anchors keep this rule file-specific.
+    """
+    if "class FOttStrategy(IStrategy):" not in source:
+        return source, 0
+    old_var = '''        df["Var"] = 0.0
+        for i in range(pds, len(df)):
+            df["Var"].iat[i] = (alpha * df["CMO"].iat[i] * df["close"].iat[i]) + (
+                1 - alpha * df["CMO"].iat[i]
+            ) * df["Var"].iat[i - 1]
+'''
+    new_var = '''        var = np.zeros(len(df), dtype=float)
+        for i in range(pds, len(df)):
+            var[i] = (alpha * df["CMO"].iat[i] * df["close"].iat[i]) + (
+                1 - alpha * df["CMO"].iat[i]
+            ) * var[i - 1]
+        df["Var"] = var
+'''
+    if source.count(old_var) != 1:
+        return source, 0
+    source = source.replace(old_var, new_var)
+    start = source.find('        df["longstop"] = 0.0\n')
+    end = source.find('        # get xover\n', start)
+    if start < 0 or end < 0 or '        for i in df["UD"]:\n' not in source[start:end]:
+        return source, 0
+    stops = '''        longstop = np.empty(len(df), dtype=float)
+        shortstop = np.empty(len(df), dtype=float)
+        if len(df):
+            longstop[0] = df["newlongstop"].iat[0]
+            shortstop[0] = df["newshortstop"].iat[0]
+        for i in range(1, len(df)):
+            previous_long = longstop[i - 1]
+            previous_short = shortstop[i - 1]
+            new_long = df["newlongstop"].iat[i]
+            new_short = df["newshortstop"].iat[i]
+            longstop[i] = (max(new_long, previous_long)
+                           if df["Var"].iat[i] > previous_long else new_long)
+            shortstop[i] = (min(new_short, previous_short)
+                            if df["Var"].iat[i] < previous_short else new_short)
+        df["longstop"] = longstop
+        df["shortstop"] = shortstop
+
+'''
+    changed = source[:start] + stops + source[end:]
+    start = changed.find('        df["trend"] = 0\n')
+    end = changed.find('        # get OTT\n', start)
+    if start < 0 or end < 0 or '        for i in df["UD"]:\n' not in changed[start:end]:
+        return source, 0
+    trend = '''        trend = np.empty(len(df), dtype=float)
+        direction = np.empty(len(df), dtype=float)
+        if len(df):
+            trend[0] = np.nan
+            direction[0] = 1
+        for i in range(1, len(df)):
+            trend[i] = (1 if df["xshortstop"].iat[i] == 1 else
+                        -1 if df["xlongstop"].iat[i] == 1 else trend[i - 1])
+            direction[i] = (1 if df["xshortstop"].iat[i] == 1 else
+                            -1 if df["xlongstop"].iat[i] == 1 else direction[i - 1])
+        df["trend"] = trend
+        df["dir"] = direction
+
+'''
+    return changed[:start] + trend + changed[end:], 3
+
+
 def _load():
     with io.open(MANIFEST, newline="", encoding="utf-8-sig") as handle:
         rows = {row["strategy_id"]: row for row in csv.DictReader(handle)}
@@ -291,6 +361,29 @@ def build():
             "output_sha256": _sha(changed),
             "source_tree": "profile-class2-overlay",
         }
+    # FOttStrategy loads and trades in the short smoke, so it is not part of
+    # the failure-driven loop above. Its quadratic recurrence only becomes an
+    # execution blocker on the frozen full window and is handled explicitly.
+    strategy = "FOttStrategy"
+    if strategy in rows:
+        row = rows[strategy]
+        base_file = row.get("original_file") or row["canonical_file"]
+        original = _read(os.path.join(ROOT, base_file.replace("/", os.sep)))
+        changed, count = patch_fott_quadratic_recurrence(original)
+        if count:
+            os.makedirs(OVERLAYS, exist_ok=True)
+            destination = os.path.join(OVERLAYS, strategy + ".py")
+            io.open(destination, "w", encoding="utf-8", newline="").write(changed)
+            repairs_by_strategy[strategy] = {
+                "strategy": strategy, "population": "repaired",
+                "repair_class": "class2",
+                "repair_rules": ["linearize_quadratic_fixpoint_recurrence"],
+                "equivalence_status": "strict_equivalent",
+                "base_file": base_file,
+                "overlay_file": os.path.relpath(destination, ROOT).replace(os.sep, "/"),
+                "input_sha256": _sha(original), "output_sha256": _sha(changed),
+                "source_tree": "profile-class2-overlay",
+            }
     repairs = [repairs_by_strategy[name] for name in sorted(repairs_by_strategy)]
     return {"schema_version": 1, "repairs": repairs}
 
@@ -312,6 +405,18 @@ def selftest():
              "dataframe.loc[(), ['exit_short', 'exit_tag']] = (0, 'short_out')\n"
              "dataframe.loc[(), ['exit_long', 'exit_tag']] = (0, 'long_out')\n")
     assert patch_empty_loc_signals(empty)[1] == 3
+    fott = ('class FOttStrategy(IStrategy):\n'
+            '        df["longstop"] = 0.0\n        for i in df["UD"]:\n'
+            '            pass\n        # get xover\n'
+            '        df["trend"] = 0\n        for i in df["UD"]:\n'
+            '            pass\n        # get OTT\n')
+    fott = fott.replace('class FOttStrategy(IStrategy):\n',
+        'class FOttStrategy(IStrategy):\n        df["Var"] = 0.0\n'
+        '        for i in range(pds, len(df)):\n'
+        '            df["Var"].iat[i] = (alpha * df["CMO"].iat[i] * df["close"].iat[i]) + (\n'
+        '                1 - alpha * df["CMO"].iat[i]\n'
+        '            ) * df["Var"].iat[i - 1]\n')
+    assert patch_fott_quadratic_recurrence(fott)[1] == 3
     print("profile_repairs selftest: PASS")
 
 

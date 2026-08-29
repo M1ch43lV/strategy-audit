@@ -6,8 +6,8 @@
      dataframe.loc[(dataframe[source].shift() <= dataframe[source].shift(2)) & (dataframe[source] >= dataframe[source].shift()), 'rsi_bottom'] = dataframe[source].shift()
 -    dataframe["ohlc_bottom"].fillna(method='ffill', inplace=True)
 -    dataframe["rsi_bottom"].fillna(method='ffill', inplace=True)
-+    dataframe["ohlc_bottom"].ffill(inplace=True)
-+    dataframe["rsi_bottom"].ffill(inplace=True)
++    dataframe["ohlc_bottom"] = dataframe["ohlc_bottom"].ffill()
++    dataframe["rsi_bottom"] = dataframe["rsi_bottom"].ffill()
  
      # Detect divergence
      dataframe['bullish_divergence'] = np.NaN

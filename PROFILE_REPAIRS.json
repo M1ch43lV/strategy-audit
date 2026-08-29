@@ -44,6 +44,20 @@
       "strategy": "DWT_short"
     },
     {
+      "base_file": "repos/MelvynClark_Freqtrade-Strategy/FOTT.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_954f72eb6bee7a46c0939c91e2b8cf9b01d44a53c2587002a006f26ab7a6fddd",
+      "output_sha256": "sha256_cb0e3fc3a809039143cf038a6d7a71f057e302ddc8ba95e66fe682bdafa3287b",
+      "overlay_file": "user_data/profile_repairs/FOttStrategy.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "linearize_quadratic_fixpoint_recurrence"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "FOttStrategy"
+    },
+    {
       "base_file": "repos/freqtrade_freqtrade-strategies/user_data/strategies/futures/FReinforcedStrategy.py",
       "equivalence_status": "strict_equivalent",
       "input_sha256": "sha256_4148d3d2d736a454a470649646a59b77a62f7d4ccb7f7bc6d2ecc5ad0ec01152",
