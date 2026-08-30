@@ -1,7 +1,8 @@
 # Regime audit preregistration
 
-**Status:** frozen for feature generation and attribution; ranking choices marked
-`OPEN` below must be resolved before Stage 9 produces any ranked strategy table.
+**Status:** frozen for feature generation and attribution; the eligibility
+expansion amendment below was accepted on 2026-08-30 before ranking; choices
+marked `OPEN` must be resolved before Stage 9 produces any ranked strategy table.
 
 ## Scope and causal clock
 
@@ -12,6 +13,35 @@ defined by `EXECUTION_PROFILES.csv`. Technical admission is defined only by
 The analysis window is 2020-03-01 00:00 UTC through 2026-08-21 00:00 UTC
 (exclusive end). A daily candle is usable only on the following UTC day. No
 feature, label, gate, or attribution may use the still-open daily candle.
+
+## Frozen eligibility expansion amendment
+
+The user authorized maximizing technically trustworthy strategy coverage on
+2026-08-30, before any strategy-by-regime ranking was inspected. The complete
+prospective protocol is frozen in `ELIGIBILITY_EXPANSION_PLAN.md`.
+
+The completed 67-profile Stage 6 corpus is retained as `E0_strict67` and must
+be reported as a nested confirmatory sensitivity. A new
+`E1_expanded_confirmatory` corpus may add deduplicated profiles only after a
+predeclared equivalent repair or missing diagnostic is completed and every
+original technical gate returns `PASS`. The eligibility thresholds themselves
+are not relaxed.
+
+Recursive `FOUND` rows with exact decision-invariance evidence but no fresh
+recursive `PASS` are `E2_drift_sensitivity`, never E1. Behavior-changing,
+lookahead-rewritten, trap-corrected, or otherwise derived variants are
+`E3_derived_exploratory` and cannot support confirmatory claims about the
+published originals.
+
+The candidate universe, repair boundary, identity/equivalence requirements,
+resource attempts, and stop rule are fixed before expansion measurements. No
+profit or regime outcome may select a repair, candidate, diagnostic window, or
+stopping point. E1 and its hashes must be frozen before Stage 9 ranking.
+
+E0 and E1 are reported side by side. Strategy copy families are dependence
+clusters, with family-clustered or hierarchical uncertainty and an
+equal-family-weight sensitivity. Where inferential multiplicity correction is
+applicable, report both Benjamini-Hochberg and Benjamini-Yekutieli results.
 
 ## Frozen primary model
 

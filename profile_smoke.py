@@ -168,6 +168,23 @@ def _runtime(strategy, mode="futures"):
     return config_path, env, repair, extra_args
 
 
+def _override_config(strategy, config_path, overrides):
+    """Write a deterministic top-level config overlay for controlled diagnostics."""
+    config = _read_jsonc(config_path)
+    config.update(overrides)
+    semantic = json.dumps(overrides, sort_keys=True, separators=(",", ":"))
+    digest = hashlib.sha256(semantic.encode("utf-8")).hexdigest()[:12]
+    os.makedirs(CONFIG_DIR, exist_ok=True)
+    path = os.path.join(CONFIG_DIR, "%s-override-%s.json" %
+                        (_safe(strategy), digest))
+    tmp = path + ".tmp"
+    with io.open(tmp, "w", encoding="utf-8", newline="\n") as handle:
+        json.dump(config, handle, ensure_ascii=False, indent=2, sort_keys=True)
+        handle.write("\n")
+    os.replace(tmp, path)
+    return path
+
+
 def _identity(row):
     """Bind every result to the exact canonical code and effective config."""
     canonical = os.path.abspath(os.path.join(
@@ -184,6 +201,11 @@ def _identity(row):
 
 def _safe(name):
     return re.sub(r"[^A-Za-z0-9_.-]+", "_", name)
+
+
+def _sha256_file(path):
+    with io.open(path, "rb") as handle:
+        return "sha256_" + hashlib.sha256(handle.read()).hexdigest()
 
 
 def _error(output, returncode):
@@ -221,7 +243,8 @@ def _trades(archive, strategy):
             "sha256_" + hashlib.sha256(semantic.encode("utf-8")).hexdigest())
 
 
-def run_one(row, timerange, timeout, pair=None, extra_env=None):
+def run_one(row, timerange, timeout, pair=None, extra_env=None,
+            config_overrides=None):
     strategy = row["strategy_id"]
     canonical = os.path.abspath(os.path.join(ROOT, row["canonical_file"].replace("/", os.sep)))
     profile = row["run_profile"]
@@ -234,6 +257,8 @@ def run_one(row, timerange, timeout, pair=None, extra_env=None):
     prefix = os.path.join(EXPORT_DIR, _safe(strategy) + suffix)
     try:
         config_path, env, class1, extra_args = _runtime(strategy, mode)
+        if config_overrides:
+            config_path = _override_config(strategy, config_path, config_overrides)
         if extra_env:
             env.update(extra_env)
     except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
@@ -277,6 +302,7 @@ def run_one(row, timerange, timeout, pair=None, extra_env=None):
                 "why": "%s: %s" % (type(exc).__name__, exc)}
     with io.open(archive, "rb") as archive_handle:
         archive_sha256 = "sha256_" + hashlib.sha256(archive_handle.read()).hexdigest()
+    runtime_config_sha256 = _sha256_file(config_path)
     return {"status": "measured", "mode": mode, "run_profile": profile,
             "timerange": timerange, "elapsed_s": round(time.time() - started, 1),
             "class1_rules": class1.get("rules", []),
@@ -284,6 +310,8 @@ def run_one(row, timerange, timeout, pair=None, extra_env=None):
             "trades": longs + shorts, "trades_sha256": trades_sha256,
             "archive": os.path.relpath(archive, ROOT).replace(os.sep, "/"),
             "archive_sha256": archive_sha256,
+            "runtime_config_sha256": runtime_config_sha256,
+            "config_overrides": config_overrides or {},
             "runtime_id": os.environ.get("PROFILE_RUNTIME_ID", "native_unversioned")}
 
 

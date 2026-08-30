@@ -1,0 +1,99 @@
+{
+  "results": {
+    "AlwaysBuy": {
+      "attempts": {
+        "1": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_220546dcb09d63d77859e4dbbd2a2b36eccd8d8f2d82b17baf2f30d9479de77e",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.5,
+          "implementation_id": "AlwaysBuy:220546dcb09d",
+          "mode": "spot",
+          "output_sha256": "sha256_04173392342743917dcc9e69441001273c771fbcb16fb90485620333fe940817",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_95a7ac1f8fcde1135582b7583c1d34c8277b17c53cfd5d513ed9c18bd176574b",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 1,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
+        }
+      },
+      "latest_startup_candle_count": 1
+    },
+    "AwesomeMacd": {
+      "attempts": {
+        "1": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_cd96564fec14589a8d58c78a9cdf55da29161ef6cb9e819fd225bc412e57eede",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/AwesomeMacd-recursive-warmup1.log",
+          "diagnostic_rule": "diagnostic_only_startup_candle_count_1",
+          "elapsed_s": 24.3,
+          "implementation_id": "AwesomeMacd:cd96564fec14",
+          "mode": "spot",
+          "output_sha256": "sha256_df7b15e15f84b1b68b3da0be6c1b6e528f74e695a01202631eb038a1b3ac0849",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_95a7ac1f8fcde1135582b7583c1d34c8277b17c53cfd5d513ed9c18bd176574b",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 1,
+          "status": "NA",
+          "timerange": "20190101-20190401",
+          "why": "negative dimensions are not allowed"
+        },
+        "34": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_cd96564fec14589a8d58c78a9cdf55da29161ef6cb9e819fd225bc412e57eede",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/AwesomeMacd-recursive-startup-34.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.1,
+          "implementation_id": "AwesomeMacd:cd96564fec14",
+          "mode": "spot",
+          "output_sha256": "sha256_64bb85826d9232f8f7f94c12c49772395cd306509e1cbed98707425e9514026e",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_d5c32f0d63cde928b373f0846bc3830ddbbbf76ef43a6b4e73c66d733798e54a",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 34,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: adx -7.135%, macd 14.966%, macdsignal 21.760%, macdhist -13.872%"
+        }
+      },
+      "latest_startup_candle_count": 34
+    },
+    "HourBasedStrategy_5m": {
+      "attempts": {
+        "1": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_20e040454b100d156d19ce35b633d36c8e7a554713e961d8e6aaeaaf72f014ae",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.9,
+          "implementation_id": "HourBasedStrategy_5m:20e040454b10",
+          "mode": "spot",
+          "output_sha256": "sha256_9c7de5c1f5a86183ab949acae19e77fd90e7aa4dcac187513cdb4584abe25b47",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_95a7ac1f8fcde1135582b7583c1d34c8277b17c53cfd5d513ed9c18bd176574b",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 1,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
+        }
+      },
+      "latest_startup_candle_count": 1
+    }
+  },
+  "rule": "diagnostic_startup_override_v1",
+  "schema_version": 1
+}

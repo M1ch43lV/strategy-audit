@@ -1,0 +1,40 @@
+{
+  "ruleset": "zero_warmup_analyzer_adapter_v1",
+  "schema_version": 1,
+  "strategies": {
+    "AlwaysBuy": {
+      "admission_status": "provisional_E1_pass_pending_consumer_regeneration",
+      "canonical_sha256": "sha256_220546dcb09d63d77859e4dbbd2a2b36eccd8d8f2d82b17baf2f30d9479de77e",
+      "equivalence_evidence": "ELIGIBILITY_EXPANSION_EQUIVALENCE.json#AlwaysBuy|startup=1",
+      "implementation_id": "AlwaysBuy:220546dcb09d",
+      "lookahead_evidence": "ELIGIBILITY_EXPANSION_LOOKAHEAD.json#AlwaysBuy",
+      "recursive_evidence": "ELIGIBILITY_EXPANSION_WARMUP.json#AlwaysBuy/attempts/1",
+      "run_profile": "spot_long",
+      "static_proof": {
+        "entry_history_dependency": "none; enter_long is assigned 1 on every row",
+        "exit_history_dependency": "none; populate_exit_trend returns the input frame",
+        "indicator_history_dependency": "none; populate_indicators returns the input frame",
+        "reviewed_file": "repos/davidzr_freqtrade-strategies/strategies/AlwaysBuy/AlwaysBuy.py",
+        "startup_override_changes_strategy_config": true,
+        "why_admissible": "the override is diagnostic-only; current native recursive analysis passes and original versus adapted full-window pooled trades are exactly identical"
+      }
+    },
+    "HourBasedStrategy_5m": {
+      "admission_status": "provisional_E1_pass_pending_consumer_regeneration",
+      "canonical_sha256": "sha256_20e040454b100d156d19ce35b633d36c8e7a554713e961d8e6aaeaaf72f014ae",
+      "equivalence_evidence": "ELIGIBILITY_EXPANSION_EQUIVALENCE.json#HourBasedStrategy_5m|startup=1",
+      "implementation_id": "HourBasedStrategy_5m:20e040454b10",
+      "lookahead_evidence": "ELIGIBILITY_EXPANSION_LOOKAHEAD.json#HourBasedStrategy_5m",
+      "recursive_evidence": "ELIGIBILITY_EXPANSION_WARMUP.json#HourBasedStrategy_5m/attempts/1",
+      "run_profile": "spot_long",
+      "static_proof": {
+        "entry_history_dependency": "none; entry uses only the current row's derived minute and fixed parameter values",
+        "exit_history_dependency": "none; exit uses only the current row's derived minute and fixed parameter values",
+        "indicator_history_dependency": "none; minute is derived row-locally from the current candle timestamp",
+        "reviewed_file": "repos/eovie_freqtrade_strs/binance/Archive/HourBasedStrategy.py",
+        "startup_override_changes_strategy_config": true,
+        "why_admissible": "the override is diagnostic-only; current native recursive analysis passes and original versus adapted full-window pooled trades are exactly identical"
+      }
+    }
+  }
+}
