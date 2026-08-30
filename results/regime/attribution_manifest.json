@@ -1,0 +1,410 @@
+{
+  "accepted_archive_evidence": [
+    {
+      "archive": "user_data\\profile_smoke\\FAdxSmaStrategy-2026-08-27_07-31-56.zip",
+      "config_sha256": "sha256_2c92c0597474829cf95717f7f59d34b5e841d057399d1f2aab40909d6430bb68",
+      "end": "2020-04-01T00:00:00+00:00",
+      "mode": "futures",
+      "pairlist": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "source_sha256": "sha256_450ed20d7fee0b7316fa4856c549aad4664299f40f5f6de6ca5be791f7ac7cad",
+      "start": "2020-03-01T00:00:00+00:00",
+      "strategy_id": "FAdxSmaStrategy",
+      "timeframe": "1h"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\FastSupertrend_ts_origstop_fix-2026-08-27_07-49-06.zip",
+      "config_sha256": "sha256_2c92c0597474829cf95717f7f59d34b5e841d057399d1f2aab40909d6430bb68",
+      "end": "2020-04-01T00:00:00+00:00",
+      "mode": "futures",
+      "pairlist": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "source_sha256": "sha256_901ab15cf044f08f0e0ffacdb888820dd8ded5d114af5bfc28943342deca6849",
+      "start": "2020-03-01T00:00:00+00:00",
+      "strategy_id": "FastSupertrend_ts_origstop_fix",
+      "timeframe": "1h"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\FSupertrendStrategy-2026-08-27_07-32-06.zip",
+      "config_sha256": "sha256_2c92c0597474829cf95717f7f59d34b5e841d057399d1f2aab40909d6430bb68",
+      "end": "2020-04-01T00:00:00+00:00",
+      "mode": "futures",
+      "pairlist": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "source_sha256": "sha256_6d4760637514311f1664b6a00460f07cf29a762a15b29e89febd73da73316bb8",
+      "start": "2020-03-01T00:00:00+00:00",
+      "strategy_id": "FSupertrendStrategy",
+      "timeframe": "1h"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\momentum-2026-08-27_07-25-02.zip",
+      "config_sha256": "sha256_2c92c0597474829cf95717f7f59d34b5e841d057399d1f2aab40909d6430bb68",
+      "end": "2020-04-01T00:00:00+00:00",
+      "mode": "futures",
+      "pairlist": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "source_sha256": "sha256_5fc5ee322b436311dd7ea645d011523f6cfbef55cad748ac9e35fbb9dd410bbc",
+      "start": "2020-03-01T00:00:00+00:00",
+      "strategy_id": "momentum",
+      "timeframe": "5m"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\momentum_rsi-2026-08-27_07-25-13.zip",
+      "config_sha256": "sha256_2c92c0597474829cf95717f7f59d34b5e841d057399d1f2aab40909d6430bb68",
+      "end": "2020-04-01T00:00:00+00:00",
+      "mode": "futures",
+      "pairlist": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "source_sha256": "sha256_790d6063e14873345565840908f2259b40537ce15d7a08847eb831a0193df665",
+      "start": "2020-03-01T00:00:00+00:00",
+      "strategy_id": "momentum_rsi",
+      "timeframe": "5m"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\momentum_wick-2026-08-27_07-25-24.zip",
+      "config_sha256": "sha256_2c92c0597474829cf95717f7f59d34b5e841d057399d1f2aab40909d6430bb68",
+      "end": "2020-04-01T00:00:00+00:00",
+      "mode": "futures",
+      "pairlist": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "source_sha256": "sha256_a8e0f2ee2d8dd5646c1399d09f70c8a2be8d50549aa4967f7cbcd0ffd3b26cc4",
+      "start": "2020-03-01T00:00:00+00:00",
+      "strategy_id": "momentum_wick",
+      "timeframe": "5m"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\RegimeFilterStrategy-2026-08-27_07-18-44.zip",
+      "config_sha256": "sha256_2c92c0597474829cf95717f7f59d34b5e841d057399d1f2aab40909d6430bb68",
+      "end": "2020-04-01T00:00:00+00:00",
+      "mode": "futures",
+      "pairlist": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "source_sha256": "sha256_11c48354d533ffb7016721014861842ec5220ddcf1bdf66237a96cb9bd5e9a55",
+      "start": "2020-03-01T00:00:00+00:00",
+      "strategy_id": "RegimeFilterStrategy",
+      "timeframe": "1h"
+    }
+  ],
+  "accepted_archives": 7,
+  "attributed_profiles": 7,
+  "attributed_strategies": [
+    "FAdxSmaStrategy",
+    "FSupertrendStrategy",
+    "FastSupertrend_ts_origstop_fix",
+    "RegimeFilterStrategy",
+    "momentum",
+    "momentum_rsi",
+    "momentum_wick"
+  ],
+  "eligible_profiles": 29,
+  "evidence_scope": "Phase A descriptive attribution; source, native mode, and timeframe are verified. Stage 9+ runs require a separately locked runtime/config/data manifest.",
+  "missing_strategies": [
+    "BBRSIv2",
+    "BigZ03",
+    "BigZ03HO",
+    "BigZ04_TSL4",
+    "BinClucMad",
+    "ClucHAnix_5M_E0V1E",
+    "ClucHAnix_5m_old",
+    "CombinedBinHAndClucV3",
+    "CombinedBinHClucAndMADV5",
+    "EMA_CROSSOVER_STRATEGY",
+    "FlawlessVictory",
+    "ForexSignal",
+    "NWEv6_new",
+    "PowerTower",
+    "RobotradingBody",
+    "StochasticCciStrategy",
+    "TenderEnter",
+    "botbaby",
+    "cryptotank",
+    "cryptotankV5",
+    "fahmibah",
+    "momentum_long"
+  ],
+  "rejected_archives": [
+    {
+      "archive": "user_data\\backtest_results\\backtest-result-2026-08-25_00-04-20.zip",
+      "reason": "native_mode_mismatch",
+      "strategy_id": "FSupertrendStrategy"
+    },
+    {
+      "archive": "user_data\\backtest_results\\backtest-result-2026-08-25_00-05-03.zip",
+      "reason": "native_mode_mismatch",
+      "strategy_id": "FSupertrendStrategy"
+    },
+    {
+      "archive": "user_data\\backtest_results\\backtest-result-2026-08-25_00-13-15.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "StochasticCciStrategy"
+    },
+    {
+      "archive": "user_data\\backtest_results\\backtest-result-2026-08-25_00-13-43.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "StochasticCciStrategy"
+    },
+    {
+      "archive": "user_data\\backtest_results\\backtest-result-2026-08-25_00-35-57.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "cryptotank"
+    },
+    {
+      "archive": "user_data\\backtest_results\\backtest-result-2026-08-25_00-36-50.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "cryptotank"
+    },
+    {
+      "archive": "user_data\\backtest_results\\backtest-result-2026-08-26_07-45-18.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ03HO"
+    },
+    {
+      "archive": "user_data\\backtest_results\\backtest-result-2026-08-26_08-07-20.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ03HO"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BBRSIv2-ADA_USDT-2026-08-29_06-36-54.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BBRSIv2"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BBRSIv2-BTC_USDT-2026-08-29_06-35-20.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BBRSIv2"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BBRSIv2-DASH_USDT-2026-08-29_06-37-39.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BBRSIv2"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BBRSIv2-ETH_USDT-2026-08-29_06-35-18.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BBRSIv2"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BBRSIv2-LTC_USDT-2026-08-29_06-36-04.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BBRSIv2"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BBRSIv2-XLM_USDT-2026-08-29_06-36-55.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BBRSIv2"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BBRSIv2-XRP_USDT-2026-08-29_06-36-09.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BBRSIv2"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BigZ03-ADA_USDT-2026-08-29_06-40-30.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ03"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BigZ03-BTC_USDT-2026-08-29_06-39-29.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ03"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BigZ03-DASH_USDT-2026-08-29_06-41-36.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ03"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BigZ03-ETH_USDT-2026-08-29_06-38-50.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ03"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BigZ03-LTC_USDT-2026-08-29_06-39-32.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ03"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BigZ03-XLM_USDT-2026-08-29_06-40-59.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ03"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BigZ03-XRP_USDT-2026-08-29_06-40-56.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ03"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BigZ04_TSL4-ADA_USDT-2026-08-29_06-43-20.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ04_TSL4"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BigZ04_TSL4-BTC_USDT-2026-08-29_06-42-18.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ04_TSL4"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BigZ04_TSL4-DASH_USDT-2026-08-29_06-43-52.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ04_TSL4"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BigZ04_TSL4-ETH_USDT-2026-08-29_06-42-15.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ04_TSL4"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BigZ04_TSL4-LTC_USDT-2026-08-29_06-42-51.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ04_TSL4"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BigZ04_TSL4-XLM_USDT-2026-08-29_06-43-24.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ04_TSL4"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BigZ04_TSL4-XRP_USDT-2026-08-29_06-42-52.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BigZ04_TSL4"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BinClucMad-ADA_USDT-2026-08-29_06-45-19.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BinClucMad"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BinClucMad-BTC_USDT-2026-08-29_06-44-28.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BinClucMad"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BinClucMad-DASH_USDT-2026-08-29_06-45-51.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BinClucMad"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BinClucMad-ETH_USDT-2026-08-29_06-44-27.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BinClucMad"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BinClucMad-LTC_USDT-2026-08-29_06-44-50.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BinClucMad"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BinClucMad-XLM_USDT-2026-08-29_06-45-21.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BinClucMad"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BinClucMad-XMR_USDT-2026-08-29_06-45-40.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BinClucMad"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\BinClucMad-XRP_USDT-2026-08-29_06-44-52.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "BinClucMad"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\ClucHAnix_5M_E0V1E-ADA_USDT-2026-08-29_06-52-40.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "ClucHAnix_5M_E0V1E"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\ClucHAnix_5M_E0V1E-BTC_USDT-2026-08-29_06-48-49.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "ClucHAnix_5M_E0V1E"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\ClucHAnix_5M_E0V1E-DASH_USDT-2026-08-29_06-54-19.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "ClucHAnix_5M_E0V1E"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\ClucHAnix_5M_E0V1E-ETH_USDT-2026-08-29_06-48-51.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "ClucHAnix_5M_E0V1E"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\ClucHAnix_5M_E0V1E-LTC_USDT-2026-08-29_06-50-50.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "ClucHAnix_5M_E0V1E"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\ClucHAnix_5M_E0V1E-XLM_USDT-2026-08-29_06-52-41.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "ClucHAnix_5M_E0V1E"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\ClucHAnix_5M_E0V1E-XMR_USDT-2026-08-29_06-53-44.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "ClucHAnix_5M_E0V1E"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\ClucHAnix_5M_E0V1E-XRP_USDT-2026-08-29_06-50-52.zip",
+      "reason": "not_canonical_pooled_pair_universe",
+      "strategy_id": "ClucHAnix_5M_E0V1E"
+    }
+  ],
+  "schema_version": 1,
+  "trades": 1810
+}
