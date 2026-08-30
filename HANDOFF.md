@@ -9,8 +9,8 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-08-30T13:23:26+02:00
-- Stopped because: required user decision stop before Stage 9 ranking
+- Last update: 2026-08-30T13:26:08+02:00
+- Stopped because: no user answer yet at the required Stage 9 decision stop
 - Next agent should: wait for the nine user choices, freeze them in the preregistration, then begin Stage 9
 
 ## Objective
@@ -34,7 +34,7 @@ git log --oneline -10
 git status --short
 ```
 
-Last observed (2026-08-30 13:23): docker `{'measured': 67}`; native
+Last observed (2026-08-30 13:26): docker `{'measured': 67}`; native
 `{'measured': 19}`; HEAD `Complete pooled Phase A attribution`; status clean.
 
 ## Before starting a benchmark - MANDATORY
