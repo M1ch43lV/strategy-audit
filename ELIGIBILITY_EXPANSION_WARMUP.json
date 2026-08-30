@@ -20,9 +20,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "34": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_a8bfcc43a306c293e0b774c4b1dd534bf380f962fa0a4f1e332a0b491bd5a969",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/ASDTSRockwellTrading-recursive-startup-34.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 21.9,
+          "implementation_id": "ASDTSRockwellTrading:a8bfcc43a306",
+          "mode": "spot",
+          "output_sha256": "sha256_b2f1353388f418f4f10f155ad49404c9acfb9b88bee9dbb1939ee4249992c9aa",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_d5c32f0d63cde928b373f0846bc3830ddbbbf76ef43a6b4e73c66d733798e54a",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 34,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: macd -189.560%, macdsignal 49.669%, macdhist -15.747%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 34
     },
     "AlwaysBuy": {
       "attempts": {
@@ -114,9 +134,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband -0.026%, bb_middleband -0.038%"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_58f6a2d72a769ef615f71f0af66d558a1397efd08ab60cabe2625f8e8e60482d",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/BBRSI2-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 25.0,
+          "implementation_id": "BBRSI2:58f6a2d72a76",
+          "mode": "spot",
+          "output_sha256": "sha256_175a9d1cac58f7edf6cd738d81e16e03b5db83d16dcdea7165207909103462d5",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi -1.353%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "BBRSI21": {
       "attempts": {
@@ -139,9 +179,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband -0.035%, bb_middleband -0.024%, bb_upperband -0.012%"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_906ff2c0fd9ae2ab397afb80a4e201579a06ff7726f43b9412b305580882e714",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/BBRSI21-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.5,
+          "implementation_id": "BBRSI21:906ff2c0fd9a",
+          "mode": "spot",
+          "output_sha256": "sha256_9a30a94f81098d0e422c1a99ab64260ffc99b0133d04108266da549af15f0ad8",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi 12.447%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "BBRSI3366": {
       "attempts": {
@@ -164,9 +224,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband -0.030%, bb_middleband -0.024%, bb_upperband -0.018%, sar -0.040%"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_b03a199248ae5592b29e08fd7e02d0e774c4d5d14f61df0315d0e62deced9d51",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/BBRSI3366-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.6,
+          "implementation_id": "BBRSI3366:b03a199248ae",
+          "mode": "spot",
+          "output_sha256": "sha256_d3e058c9564190a470fab2954888f0219c4e6d83f2d4abbd9723afa46980a33e",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi 12.447%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "BB_RPB_TSL_RNG_2": {
       "attempts": {
@@ -189,9 +269,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband2 -0.035%, bb_middleband2 -0.024%, bb_upperband2 -0.012%, bb_lowerband3 -0.041%, bb_middleband3 -0.024%"
+        },
+        "100": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_ca91ce1da4c1ea2e7a0d0419a89fcfae71f8c3b736479bc96f0eb50eaedf3723",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/BB_RPB_TSL_RNG_2-recursive-startup-100.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 23.6,
+          "implementation_id": "BB_RPB_TSL_RNG_2:ca91ce1da4c1",
+          "mode": "spot",
+          "output_sha256": "sha256_d99dfa37a5a9a71ff0525622207857dbbfd94a3ffe6598b6ac7494da79015d4a",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_baaf5008914ea3ca16d00cc7d9340953ba84a9d6963fd5d8cee2032ce82992c7",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 100,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: srsi_fk 1.278%, srsi_fd 0.711%, rsi -0.033%, rsi_slow -0.256%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 100
     },
     "BBlower": {
       "attempts": {
@@ -213,9 +313,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "50": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_ef24be71cd83d2dede30f20e2bfd257b89ebb46a1ea97b1321245427ee66de5a",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/BBlower-recursive-startup-50.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.7,
+          "implementation_id": "BBlower:ef24be71cd83",
+          "mode": "spot",
+          "output_sha256": "sha256_730117171551993c1cd164a46fb72c701ccf02628aed419ec2080a27c8a46df2",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7d266430b447848b3748eff65279fd65e1b98e5a8b77c6e56bbc0a54610519f9",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 50,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: CMO 2.259%, RSI -0.369%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 50
     },
     "Bandtastic": {
       "attempts": {
@@ -238,9 +358,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband1 -0.011%, bb_middleband1 -0.024%, bb_upperband1 -0.037%, bb_middleband2 -0.024%, bb_upperband2 -0.050%"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_a4536c793bf49fb82dbaa508b0c126c5884e0eed6749b145313374228af28704",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/Bandtastic-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.3,
+          "implementation_id": "Bandtastic:a4536c793bf4",
+          "mode": "spot",
+          "output_sha256": "sha256_894ebe2db428ddbe941e6445568f256833557d9c371ad4ce663136cf16554ddf",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi 3.688%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "BinHV45": {
       "attempts": {
@@ -263,9 +403,28 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: upper -0.042%, mid -0.043%, lower -0.044%, bbdelta 2.343%"
+        },
+        "40": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_dad74375f7b6746a8003d047f6bebee2929f1d0258651cb71295aae3abe0ad2e",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 24.7,
+          "implementation_id": "BinHV45:dad74375f7b6",
+          "mode": "spot",
+          "output_sha256": "sha256_15885360579ad0e3459bf672e5366845d2d89c9acff6666263e5c47ede1c0c07",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_529a3b15eb407c533a55f962c1d245caa3f517c25393857fa92bbbf825b1a709",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 40,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 40
     },
     "BinHV45_kanaxe": {
       "attempts": {
@@ -287,9 +446,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "40": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_3de55f927af3e2ead320718bc308a4a20caaecee5255169cf7f9a173cb9ebeb3",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 24.5,
+          "implementation_id": "BinHV45_kanaxe:3de55f927af3",
+          "mode": "spot",
+          "output_sha256": "sha256_f8444f0a59a9f2472fcedf9599ec338285b9f46654b0404d955407f292d679d5",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_529a3b15eb407c533a55f962c1d245caa3f517c25393857fa92bbbf825b1a709",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 40,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 40
     },
     "BinHV45_stash": {
       "attempts": {
@@ -311,9 +489,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "40": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_37a6a89a6302a13818680edd27ee1494d4758aa8110abd90f348e11ba20d7feb",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 24.3,
+          "implementation_id": "BinHV45_stash:37a6a89a6302",
+          "mode": "spot",
+          "output_sha256": "sha256_a17a7f8e2ff0a1a0283cedfb663f9d5ca7dc55de44acbc7a35240b01ee5c2ecb",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_529a3b15eb407c533a55f962c1d245caa3f517c25393857fa92bbbf825b1a709",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 40,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 40
     },
     "BinHV45_werkkrew": {
       "attempts": {
@@ -335,9 +532,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "40": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_379b5bd8faf969db26b0f2b424ed0cffb10cbc4b19c752da79412dbf72bff62b",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 24.7,
+          "implementation_id": "BinHV45_werkkrew:379b5bd8faf9",
+          "mode": "spot",
+          "output_sha256": "sha256_b6eccdd6e0c9a76af93b9a2fd0a526e018efb960a739f792ef387a17509db756",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_529a3b15eb407c533a55f962c1d245caa3f517c25393857fa92bbbf825b1a709",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 40,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 40
     },
     "BollingerBandStrategy": {
       "attempts": {
@@ -359,9 +575,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "21": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_3e8442e9e3ec032cb6813435451dd5a2602c56b77d5a02302685c37bfbbdbcfd",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.4,
+          "implementation_id": "BollingerBandStrategy:3e8442e9e3ec",
+          "mode": "spot",
+          "output_sha256": "sha256_26ae819e8f8dd74a477708a44c9f01cc49b0bd6dba96a8c9d74e169ad2953cfd",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_07c9aea873fb97e59e1a25a74e8c905fc59046f73ce33cebf7f6b9d80c0fe819",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 21,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 21
     },
     "BuyOrDie": {
       "attempts": {
@@ -383,9 +618,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_aa771c3bd6580c2b73fa2d98475a9e1104b97d5208cbf91282b8f1570a97debe",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.7,
+          "implementation_id": "BuyOrDie:aa771c3bd658",
+          "mode": "spot",
+          "output_sha256": "sha256_1a040ba383fe651d951026a12d361202d2550f7a0a0e12c7765f75b946748cc5",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "CCI_BB": {
       "attempts": {
@@ -408,9 +662,28 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband1 -0.035%"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_6368aeed4ade63a6facb257a1adc2fb20a3452762761e6b0d05edfb1ec71986b",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.8,
+          "implementation_id": "CCI_BB:6368aeed4ade",
+          "mode": "spot",
+          "output_sha256": "sha256_6c8b030bb05745e333b98a9d9b4d204c1b69b682ceac4a8faf30ccb4fa2f3a87",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "Candle2": {
       "attempts": {
@@ -433,9 +706,28 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: pattern_CO2 -20.000%"
+        },
+        "6": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_34ea4c0954a2680beebb9dec767e2842d60385398b13b723e2240dffc0798341",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.2,
+          "implementation_id": "Candle2:34ea4c0954a2",
+          "mode": "spot",
+          "output_sha256": "sha256_a02f2bcfd9965a82216b67c0bdd545cdf9b57b7bea1e6dcbd14eb173c237fa82",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_f2328fda5ec2eb2e7ca3260cb43f198a5ea99861792d843a546dce49ca777926",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 6,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 6
     },
     "Chandem": {
       "attempts": {
@@ -458,9 +750,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband -0.028%, bb_middleband -0.013%"
+        },
+        "50": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_ea3340cf291f0626a6064d5a5dd68dbc829fab5b6d26718e2ecd838f279c9072",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/Chandem-recursive-startup-50.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.4,
+          "implementation_id": "Chandem:ea3340cf291f",
+          "mode": "spot",
+          "output_sha256": "sha256_c0f94c0545d81e64eab1784f82b0bdb625bdc17d72d8593f9bf9956f96771184",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7d266430b447848b3748eff65279fd65e1b98e5a8b77c6e56bbc0a54610519f9",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 50,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: CMO 23.791%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 50
     },
     "Chandemtwo": {
       "attempts": {
@@ -483,9 +795,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband -0.028%, bb_middleband -0.013%"
+        },
+        "50": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_1db6f2e33e51eba0155ef4903fe198aa716b36936fd87ed7c8771b59ccf34722",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/Chandemtwo-recursive-startup-50.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 23.5,
+          "implementation_id": "Chandemtwo:1db6f2e33e51",
+          "mode": "spot",
+          "output_sha256": "sha256_725d7d0843045169e71878f3534ef88d2b34cab340f3e98768c612b86cf59745",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7d266430b447848b3748eff65279fd65e1b98e5a8b77c6e56bbc0a54610519f9",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 50,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: CMO 23.791%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 50
     },
     "Cluc4": {
       "attempts": {
@@ -508,9 +840,28 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband -0.026%, bb_middleband -0.038%"
+        },
+        "168": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_b1c9929b686df7537b4d5763d0971a5d9d31088f62a7c785aa7886775077d6f5",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 25.2,
+          "implementation_id": "Cluc4:b1c9929b686d",
+          "mode": "spot",
+          "output_sha256": "sha256_2547c0fac79713cc00cd5a53e6f1f754bdc27209850fe2c9d32ffc2056de8030",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_bd4def906376e4c238fc80918533e4b67147ba62890565cb1b8aa5dc40c933bc",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 168,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 168
     },
     "CombinedBinHAndClucHyperV0": {
       "attempts": {
@@ -533,9 +884,28 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: lower_21 -0.042%, bbdelta_21 10.497%, bb_lowerband_20 -0.026%, bb_middleband_91 -0.039%"
+        },
+        "91": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_1f9bfbc3e5ead0693dc39113707711284f79561b7df5a03de00011c76bb9a4f3",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 25.2,
+          "implementation_id": "CombinedBinHAndClucHyperV0:1f9bfbc3e5ea",
+          "mode": "spot",
+          "output_sha256": "sha256_1397611965d620abe6fcaa89aeea3c3e3c2b6e1afc17672f9618efdaa2d4894d",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_f1e796502e91c794d7c68409586c363cac665ed1ad882a8869bc87543630a55f",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 91,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 91
     },
     "CombinedBinHAndClucHyperV3": {
       "attempts": {
@@ -558,9 +928,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: lower_21 -0.042%, bbdelta_21 10.497%, bb_typical_lower_20 -0.026%, bb_typical_mid_91 -0.039%"
+        },
+        "91": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_82200df31c45c2cb8b5c3ad3199c9d9cd0866d995374ba392cda4e752cdb88be",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/CombinedBinHAndClucHyperV3-recursive-startup-91.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 25.0,
+          "implementation_id": "CombinedBinHAndClucHyperV3:82200df31c45",
+          "mode": "spot",
+          "output_sha256": "sha256_4ba20cf7b88eae81ba6d1a078bf4cdf96717d4571a4e77668967ddbb2ff5aad3",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_f1e796502e91c794d7c68409586c363cac665ed1ad882a8869bc87543630a55f",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 91,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: atr_rate_14 0.062%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 91
     },
     "Combined_Indicators": {
       "attempts": {
@@ -583,9 +973,28 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband -0.026%, bb_middleband -0.038%"
+        },
+        "50": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_39dc56f0be05e4dbfacf08f203b6ad7baa9d8a06cbd1ed5f593799ef26657de9",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 24.3,
+          "implementation_id": "Combined_Indicators:39dc56f0be05",
+          "mode": "spot",
+          "output_sha256": "sha256_f62e8948041936a800d5d95bb686c35aed79538ccaa3736ae2e8a414f79929e4",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7d266430b447848b3748eff65279fd65e1b98e5a8b77c6e56bbc0a54610519f9",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 50,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 50
     },
     "DD": {
       "attempts": {
@@ -608,9 +1017,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband -0.035%, bb_middleband -0.024%, bb_upperband -0.012%"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_e952577e654404ec71a06f4bff0ebc20398bf1b8b03d8d35d8be43c692d31461",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/DD-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.7,
+          "implementation_id": "DD:e952577e6544",
+          "mode": "spot",
+          "output_sha256": "sha256_ea707b02063308ea64fcc0ca2e23fd1d4340e35f9cb45d56ca31a9b7cb90ba64",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi 12.447%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "Diamond": {
       "attempts": {
@@ -656,9 +1085,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "350": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_a39c1efc229c6f937bfd289c517f466c6e2c147661aeabfe58c1f91a622f5e5d",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/EMA520015_V17-recursive-startup-350.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 21.7,
+          "implementation_id": "EMA520015_V17:a39c1efc229c",
+          "mode": "spot",
+          "output_sha256": "sha256_40b3823e32674af39dfaeb9a485ca56eb9e7a143be22a8600b89a46c510fc647",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_3b98779ef670619bab7520b65f8033c44c9f7e156b82571786a4885102d608f2",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 350,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: ema200 -0.299%, ema100 -0.018%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 350
     },
     "EasyInEasyOut": {
       "attempts": {
@@ -680,9 +1129,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_07e228cc77effc9e80891d4bd5bd9b6a2f6a70845daa0db91f9e1d3933ee461a",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 25.3,
+          "implementation_id": "EasyInEasyOut:07e228cc77ef",
+          "mode": "spot",
+          "output_sha256": "sha256_657a8c67c1423b30e039b4fb72827253afd0cd2360110e7a71c2d0e87dedb3d7",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "FVGChannel": {
       "attempts": {
@@ -754,9 +1222,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "28": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_758d3730e57c7337f988ac68420d8140a0bff72d99fa9182017cd1f8b160c869",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 21.9,
+          "implementation_id": "Freqtrade_backtest_validation_freqtrade1:758d3730e57c",
+          "mode": "spot",
+          "output_sha256": "sha256_c73b22f4e8bdb1e30bd7ef39f58537802c7fa9914a1f7b63c60b1a45f68ff01c",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_f959b3166f56d4fe41b600a074e562a9c1f413ad6b6559af9c307de57c479ba0",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 28,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 28
     },
     "GKD_Baseline": {
       "attempts": {
@@ -779,9 +1266,29 @@
           "status": "NA",
           "timerange": "20190101-20190401",
           "why": "'>' not supported between instances of 'float' and 'NoneType'"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_b2941c2286406cbed4f0dfaca3fc67b2c9326e83a658c32b07a9646db583b721",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/GKD_Baseline-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.7,
+          "implementation_id": "GKD_Baseline:b2941c228640",
+          "mode": "spot",
+          "output_sha256": "sha256_359c02b3f0c1f6b1100a5fa87d69fd066f0654dcb4708d145ab00a678a363a3b",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: atr -4.871%, goldie_max -0.045%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "GKD_BaselineAllMAs": {
       "attempts": {
@@ -804,9 +1311,29 @@
           "status": "NA",
           "timerange": "20190101-20190401",
           "why": "'>' not supported between instances of 'float' and 'NoneType'"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_dff087dc468bdc6664fd0ae41cf91e26f7620aa7d70c693c8681f1467900d93a",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/GKD_BaselineAllMAs-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 21.9,
+          "implementation_id": "GKD_BaselineAllMAs:dff087dc468b",
+          "mode": "spot",
+          "output_sha256": "sha256_18f2cf60c18908957581782f62c1212f5af010e8ae01b07791f281a63ada85be",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: atr -4.871%, goldie_max -0.045%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "GKD_HurstExponent": {
       "attempts": {
@@ -829,9 +1356,29 @@
           "status": "NA",
           "timerange": "20190101-20190401",
           "why": "unsupported operand type(s) for -: 'NoneType' and 'NoneType'"
+        },
+        "69": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_c169beca3ea5e4b9b27e81344b62fee5df4308a772665b5d48f71b759f938f27",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/GKD_HurstExponent-recursive-startup-69.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.9,
+          "implementation_id": "GKD_HurstExponent:c169beca3ea5",
+          "mode": "spot",
+          "output_sha256": "sha256_608c6165b01dabafb11c2931937f9f1219a2e528f5203d24d702c3fc022b3a5a",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_8441acde492311d5b0de863f5a7dd4d23de79be10af531c7240945ea7627eb01",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 69,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: hurst_smooth 0.127%, baseline_diff 0.043%, atr 0.428%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 69
     },
     "GKD_PFE": {
       "attempts": {
@@ -854,9 +1401,29 @@
           "status": "NA",
           "timerange": "20190101-20190401",
           "why": "unsupported operand type(s) for -: 'NoneType' and 'NoneType'"
+        },
+        "24": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_74b9df4754e95213f2735328799341c1720c3279fca9e50982462e0434b259e8",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/GKD_PFE-recursive-startup-24.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.4,
+          "implementation_id": "GKD_PFE:74b9df4754e9",
+          "mode": "spot",
+          "output_sha256": "sha256_5c4768c1e53947874b7b5f6138cb04b3c4a0f03ba4e2fbab78108f515bf00b47",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_db33df0cd52754198b2fc022250f7ef886042c88974865585b934a0d3c011e91",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 24,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: pfe_smooth 0.028%, baseline_diff 0.686%, atr -2.284%, goldie_max -0.020%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 24
     },
     "GodCard": {
       "attempts": {
@@ -879,9 +1446,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: sar -0.040%, bb_lowerband -0.030%, bb_middleband -0.024%, bb_upperband -0.018%, bb_lowerband2 -0.035%"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_e06d7d46985c24a1965691ad4e755f96f257d5395087cc9639e4bcbd279fc350",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/GodCard-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.4,
+          "implementation_id": "GodCard:e06d7d46985c",
+          "mode": "spot",
+          "output_sha256": "sha256_00f2269b14a447de96b882c33df26e6ac47bbf48b6c837457135e0557b499c62",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi 12.447%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "HSI": {
       "attempts": {
@@ -929,9 +1516,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: smooth 0.073%, cycle 419.850%, q1 -5.928%, sine 1481.311%, lead_sine -5.975%"
+        },
+        "5": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_7580e8750833b04c282ae6e730f7292e228852ed013a3142e5ae2b59cf174e98",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/HilbertSineWave-recursive-startup-5.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 28.0,
+          "implementation_id": "HilbertSineWave:7580e8750833",
+          "mode": "spot",
+          "output_sha256": "sha256_489da7e02256fd46d632069640c3ed5360f5aa9e5bde83524722886addccb3c9",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_365a15af0a1ed94653685863fd9ffb28bdca77125e3a6ac1d8cca52291c0a4b6",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 5,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: cycle -547.776%, q1 -436.625%, i1 -647.647%, delta_phase -44.527%, sine -1373.364%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 5
     },
     "HourBasedStrategy_5m": {
       "attempts": {
@@ -977,9 +1584,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "200": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_cd665b8c497274fb1f403d1cf07b74bd8216d9bc296caad4708d36680cdbcd2d",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.2,
+          "implementation_id": "JuicyTrend:cd665b8c4972",
+          "mode": "spot",
+          "output_sha256": "sha256_04cf93656723086750f837f9e02c9165807c0694ac9fb56a000c9a32b8667581",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_d0802df3120289b0e60fbbb3675169be2b1f9579e990e3b4cf2778bd714d3448",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 200,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 200
     },
     "KC_BB": {
       "attempts": {
@@ -1002,9 +1628,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband2 -0.035%, bb_middleband2 -0.024%, bb_upperband2 -0.012%, ema_fast 0.016%"
+        },
+        "28": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_0b4818db5d7ac7e165b67f426d130e416f090e39ea3d7026fc6c15ce1fd6b142",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/KC_BB-recursive-startup-28.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 25.2,
+          "implementation_id": "KC_BB:0b4818db5d7a",
+          "mode": "spot",
+          "output_sha256": "sha256_36f72e08a09eb5ee027116167748aa9480602e7862da6e8c99f39f3c8e601db1",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_f959b3166f56d4fe41b600a074e562a9c1f413ad6b6559af9c307de57c479ba0",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 28,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi 5.367%, fisher -7.549%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 28
     },
     "MACDStrategyADA": {
       "attempts": {
@@ -1026,9 +1672,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "34": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_10fe039bf4c0b26084e180ae8c6895a56c5286283f1cc5c733fb9f0d457cd493",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/MACDStrategyADA-recursive-startup-34.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.6,
+          "implementation_id": "MACDStrategyADA:10fe039bf4c0",
+          "mode": "spot",
+          "output_sha256": "sha256_87a0d1d2dbed1d41c3784041578cd6e8d80756efba09c131422451c075a69c6f",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_d5c32f0d63cde928b373f0846bc3830ddbbbf76ef43a6b4e73c66d733798e54a",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 34,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: macd -189.560%, macdsignal 49.669%, macdhist -15.747%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 34
     },
     "MACDStrategyAVAX": {
       "attempts": {
@@ -1050,9 +1716,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "34": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_99caf98ab9bd8ba5ea0fb1ed676f284b736526d0a1c6fadd6062bd06b9120e29",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/MACDStrategyAVAX-recursive-startup-34.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.6,
+          "implementation_id": "MACDStrategyAVAX:99caf98ab9bd",
+          "mode": "spot",
+          "output_sha256": "sha256_1645be605385df99b65d12604dbdef57c886c2a0e47d6e48fe5af37f4e106ff2",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_d5c32f0d63cde928b373f0846bc3830ddbbbf76ef43a6b4e73c66d733798e54a",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 34,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: macd -189.560%, macdsignal 49.669%, macdhist -15.747%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 34
     },
     "MACDStrategyBTC": {
       "attempts": {
@@ -1074,9 +1760,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "34": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_0f82e3251478757520ad3736e1d2fc81b14f24e48bc5369611b4c164b98d0237",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/MACDStrategyBTC-recursive-startup-34.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 23.5,
+          "implementation_id": "MACDStrategyBTC:0f82e3251478",
+          "mode": "spot",
+          "output_sha256": "sha256_a3fc094bf1677875ea9efb3b8bc657e47e1ca0c13710cdb64ce66fbd3c0c3bc7",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_d5c32f0d63cde928b373f0846bc3830ddbbbf76ef43a6b4e73c66d733798e54a",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 34,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: macd -189.560%, macdsignal 49.669%, macdhist -15.747%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 34
     },
     "MACDStrategyENJ": {
       "attempts": {
@@ -1098,9 +1804,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "34": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_f81a4ca780d73aca17377ff07d699c5d680a6ddb49e38352b928fc1fad8dfa7d",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/MACDStrategyENJ-recursive-startup-34.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.4,
+          "implementation_id": "MACDStrategyENJ:f81a4ca780d7",
+          "mode": "spot",
+          "output_sha256": "sha256_04bcdc0a7400537a111e2a2fe0c3274398a6f6596115ec3db2104c5fc144eb74",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_d5c32f0d63cde928b373f0846bc3830ddbbbf76ef43a6b4e73c66d733798e54a",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 34,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: macd -189.560%, macdsignal 49.669%, macdhist -15.747%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 34
     },
     "MACDStrategyETC": {
       "attempts": {
@@ -1122,9 +1848,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "34": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_0a33db88c825b23a53bb2224922011ea9e7ae71aff29d7a07d5a6b85119bb50c",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/MACDStrategyETC-recursive-startup-34.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.7,
+          "implementation_id": "MACDStrategyETC:0a33db88c825",
+          "mode": "spot",
+          "output_sha256": "sha256_6d1deaf8e58e44b802100f79ff037081e12c0efe87220856360de74629cef1ee",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_d5c32f0d63cde928b373f0846bc3830ddbbbf76ef43a6b4e73c66d733798e54a",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 34,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: macd -189.560%, macdsignal 49.669%, macdhist -15.747%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 34
     },
     "MACDStrategySOL": {
       "attempts": {
@@ -1146,9 +1892,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "34": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_72005a2d344a587ba56576576664bef32c8eb7c4d76bd7f20b487849c7c6a8a2",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/MACDStrategySOL-recursive-startup-34.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 24.0,
+          "implementation_id": "MACDStrategySOL:72005a2d344a",
+          "mode": "spot",
+          "output_sha256": "sha256_6df17422d214975ce46fdeaf83a8c4328aeefa81e09ccad8641e5dad09f5d644",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_d5c32f0d63cde928b373f0846bc3830ddbbbf76ef43a6b4e73c66d733798e54a",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 34,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: macd -189.560%, macdsignal 49.669%, macdhist -15.747%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 34
     },
     "MACDStrategyXRP": {
       "attempts": {
@@ -1170,9 +1936,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "34": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_1d2e080ab020a0d66ba0db880d48c026a61711772effbdf600bae1d3e0c09f0c",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/MACDStrategyXRP-recursive-startup-34.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.8,
+          "implementation_id": "MACDStrategyXRP:1d2e080ab020",
+          "mode": "spot",
+          "output_sha256": "sha256_b55912539add0c2f098a98a33a078c9e72ea84a376142a1721b9197ce71873f7",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_d5c32f0d63cde928b373f0846bc3830ddbbbf76ef43a6b4e73c66d733798e54a",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 34,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: macd -189.560%, macdsignal 49.669%, macdhist -15.747%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 34
     },
     "MabStra": {
       "attempts": {
@@ -1194,9 +1980,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "28": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_63fcdd4567ba1cd9f4312e8804316ee150df41e393e21dce168d3440b5e162c9",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 23.4,
+          "implementation_id": "MabStra:63fcdd4567ba",
+          "mode": "spot",
+          "output_sha256": "sha256_1168c05a7da543d95f6e13a02c99b2ea2ef9b4db70dcfdcd542c649042d526c4",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_f959b3166f56d4fe41b600a074e562a9c1f413ad6b6559af9c307de57c479ba0",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 28,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 28
     },
     "Macd": {
       "attempts": {
@@ -1218,9 +2023,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "816": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_446ed2df0ec1dfe061d36f061db5b48e3d13ad94fd643b3d05d4896954003628",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 21.9,
+          "implementation_id": "Macd:446ed2df0ec1",
+          "mode": "spot",
+          "output_sha256": "sha256_d5289c7e59b33fc6ec9307a59b9c091cc6f57488034f1b9470c1cb657c85a54c",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_0159cc54bc7db073df3fe7ebf872016ab6f0d18fd6fa7a48c0b597ecfbc4a9bd",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 816,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 816
     },
     "Maro4hMacdSd": {
       "attempts": {
@@ -1242,9 +2066,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "28": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_114c6ed905e4d1a6ccbb6cece35ef72b74cc6579c57d79ccf96729c4214383c2",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.4,
+          "implementation_id": "Maro4hMacdSd:114c6ed905e4",
+          "mode": "spot",
+          "output_sha256": "sha256_53e44ac49bd0dd27d585a44eb86317902fab8d1e44b4cec2828255a9bf6b5a03",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_f959b3166f56d4fe41b600a074e562a9c1f413ad6b6559af9c307de57c479ba0",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 28,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 28
     },
     "MomStrategy": {
       "attempts": {
@@ -1266,9 +2109,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "100": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_2da571c15eaccef45d6e365ba6b44e23f2e66a769a958b24dfb5ea8400ca40ec",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/MomStrategy-recursive-startup-100.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.0,
+          "implementation_id": "MomStrategy:2da571c15eac",
+          "mode": "spot",
+          "output_sha256": "sha256_6d16b60be5180bba8282f38958017bbb5139ad843d95a6b543db0ca1c38ea8e3",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_baaf5008914ea3ca16d00cc7d9340953ba84a9d6963fd5d8cee2032ce82992c7",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 100,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: adx -0.199%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 100
     },
     "ONUR": {
       "attempts": {
@@ -1291,9 +2154,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_middleband -0.024%, bb_upperband -0.050%"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_9f8513da455c78b71e76581be1dfe41ed480cf174a0dc99303d213f1cf34d68e",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/ONUR-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.5,
+          "implementation_id": "ONUR:9f8513da455c",
+          "mode": "spot",
+          "output_sha256": "sha256_f2749b93a4a293ea592213492585f231b9383aa4122ecf910371553f97803758",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi 3.688%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "OmaGann": {
       "attempts": {
@@ -1316,9 +2199,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: high_ma 0.026%, low_ma 0.106%, jfghla 0.106%"
+        },
+        "10": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_aaffac4314decb5c5a84c12eb6d97140b8559bcf1d90e176d4a2a1b4eddd4840",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/OmaGann-recursive-startup-10.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.1,
+          "implementation_id": "OmaGann:aaffac4314de",
+          "mode": "spot",
+          "output_sha256": "sha256_c71bc87d9027ece864cbb3beaa4453224eb0e72b532005c5c05e1c36c752a64f",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_3d8d242fa7340cf4c2ad379ef41ed8b4cefe33ebe598073ef687a343b047074f",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 10,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: high_ma 0.149%, low_ma 0.103%, jfghla 0.103%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 10
     },
     "RSI": {
       "attempts": {
@@ -1340,9 +2243,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "14": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_acb5e51ca6984f75e897ddda25986f841dbf591bd2b401a7d26c29d6cde0692b",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/RSI-recursive-startup-14.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.6,
+          "implementation_id": "RSI:acb5e51ca698",
+          "mode": "spot",
+          "output_sha256": "sha256_3b59afc2f0065c04a4e3cdddf80729bd2a971e1ec335b8d18882967ec80c5f68",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_002b92823d6a551b385c1d0cdc5d2d5ff2ced640ba51ba5e27c9b2d1f3b6deee",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 14,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi -17.409%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 14
     },
     "RSI_BB": {
       "attempts": {
@@ -1365,9 +2288,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband1 -0.011%, bb_upperband3 -0.063%"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_a6b9af248ea093a49165f11b6cd25ad54a362eeb2ab13ed86ced748b000afea3",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/RSI_BB-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.8,
+          "implementation_id": "RSI_BB:a6b9af248ea0",
+          "mode": "spot",
+          "output_sha256": "sha256_d06bd1e117c9212bbe8e4f616a18af005e5018a4e17505073574ae0ca5d23780",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi 3.688%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "RSI_EMA_strategy": {
       "attempts": {
@@ -1389,9 +2332,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "14": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_14bbc9a9afabf070781eb9a4fe33e39fa545957ae6183a81991ed383ef58fe4f",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/RSI_EMA_strategy-recursive-startup-14.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 23.0,
+          "implementation_id": "RSI_EMA_strategy:14bbc9a9afab",
+          "mode": "spot",
+          "output_sha256": "sha256_23fc2e2aaf14df06c5165b827994a18b915167134010f993dbff76109ab52cf2",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_002b92823d6a551b385c1d0cdc5d2d5ff2ced640ba51ba5e27c9b2d1f3b6deee",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 14,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi 3.702%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 14
     },
     "ReinforcedSmoothScalp": {
       "attempts": {
@@ -1414,9 +2377,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: resample_75_open 0.132%, resample_75_high -0.042%, resample_75_low 0.117%, resample_75_volume -81.479%, bb_lowerband 0.011%"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_583e7138ae98ed75b200ea447193f6594f4616b27bd9fdd48546d7b13cf94fd0",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/ReinforcedSmoothScalp-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.1,
+          "implementation_id": "ReinforcedSmoothScalp:583e7138ae98",
+          "mode": "spot",
+          "output_sha256": "sha256_cd3168ada0c8bb6a49f9edd431e0f517366c1662712eca2c23d5ef9a80eef286",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi 3.688%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "Roth01": {
       "attempts": {
@@ -1439,9 +2422,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_low -0.035%, bb_mid -0.024%, bb_upper -0.012%, bb_perc -452.850%, sar -0.040%"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_b1564ed8157dccb28dcd0acd5e11737d55e7776fe239afa566a9937519d698a2",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/Roth01-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.5,
+          "implementation_id": "Roth01:b1564ed8157d",
+          "mode": "spot",
+          "output_sha256": "sha256_5ef62fd74cecec79b14d44f4d557b66d28b2e40b51bc3bdf2cae70c39286a41c",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi 12.447%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "Roth03": {
       "attempts": {
@@ -1464,9 +2467,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_low -0.035%, bb_mid -0.024%, bb_upper -0.012%, bb_perc -452.850%, sar -0.040%"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_8b36f446c9d8af0318baff5385dd10ba3405de71f1331fc6af3e4c7a7687d847",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/Roth03-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.7,
+          "implementation_id": "Roth03:8b36f446c9d8",
+          "mode": "spot",
+          "output_sha256": "sha256_79e5dda5e5bd09a58b7fe8034ddb96ada0f55f243f11cc12d7059f2090cfaffc",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi 12.447%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "SimpleHopt": {
       "attempts": {
@@ -1489,9 +2512,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband -0.099%, bb_upperband 0.024%, bb_middleband -0.038%"
+        },
+        "12": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_d55cca4892b5bd7cbfb19c5e318e98b6f9a3d175f9d5a95e10b1c30a0d799f7d",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/SimpleHopt-recursive-startup-12.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.4,
+          "implementation_id": "SimpleHopt:d55cca4892b5",
+          "mode": "spot",
+          "output_sha256": "sha256_49bbae2c1284644a1260c2b3b1d734a0230be55c2b97b3dec94aa1dca90e5c23",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_e91b599a0a5cbd7171fcd4f9195356654f019b3bd5bce2b8735643bfac981a39",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 12,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi_7 -14.690%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 12
     },
     "SlowPotato": {
       "attempts": {
@@ -1513,9 +2556,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "1440": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_fc15e7ac4e797207d14decaebf1d770155c29ac0819d90a4eb1fc45d197eec96",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.9,
+          "implementation_id": "SlowPotato:fc15e7ac4e79",
+          "mode": "spot",
+          "output_sha256": "sha256_9f3da13bb79654b738016cbad7ae4b3b2baf0ae58bd58109606679b81e6ab839",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_3142e66ee54deec18b6e94769d397d47096e50079cea643c3ffe4000bb1b397a",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 1440,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 1440
     },
     "SmartMoneyStrategy": {
       "attempts": {
@@ -1537,9 +2599,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "200": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_f89d1e0ec3dd685a6214d917e5d3beda8b003a44e8a528af6e3a70fe415944c3",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.6,
+          "implementation_id": "SmartMoneyStrategy:f89d1e0ec3dd",
+          "mode": "spot",
+          "output_sha256": "sha256_391fec70bcb0ae5df8274ab3ac070445483d7864855590fae101b90da7808ec1",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_d0802df3120289b0e60fbbb3675169be2b1f9579e990e3b4cf2778bd714d3448",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 200,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 200
     },
     "Strategy001": {
       "attempts": {
@@ -1561,9 +2642,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "100": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_2357996e6594458e8db45b5f757918462afa3c998de9d06e2af0c009ddc4b80d",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 25.8,
+          "implementation_id": "Strategy001:2357996e6594",
+          "mode": "spot",
+          "output_sha256": "sha256_0a44c5d8bf75d04fcea2855b75c35adca7f46c7898c5c8276ee7d5d60cedf652",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_baaf5008914ea3ca16d00cc7d9340953ba84a9d6963fd5d8cee2032ce82992c7",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 100,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 100
     },
     "Strategy001_custom_exit": {
       "attempts": {
@@ -1585,9 +2685,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "100": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_d53ac16d0e81b755a19ea83c535f50a6dd0629c76087b822ae399fabeaa5e841",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/Strategy001_custom_exit-recursive-startup-100.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 25.9,
+          "implementation_id": "Strategy001_custom_exit:d53ac16d0e81",
+          "mode": "spot",
+          "output_sha256": "sha256_f9c4d830d7fdee02b2eb33dc0746dba8fe4cfedc368cb87ed4314805bec52bd4",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_baaf5008914ea3ca16d00cc7d9340953ba84a9d6963fd5d8cee2032ce82992c7",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 100,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi -0.033%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 100
     },
     "Strategy001_custom_sell": {
       "attempts": {
@@ -1609,9 +2729,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "100": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_a826f21cc567c5e11ef75aca97a4f186028051a0c8fd57c9ad2b0215239a77bd",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/Strategy001_custom_sell-recursive-startup-100.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 25.3,
+          "implementation_id": "Strategy001_custom_sell:a826f21cc567",
+          "mode": "spot",
+          "output_sha256": "sha256_00daf0fd7a46dd9dda4c97073a5f2357edcce9886031f44267b6de6357f72fc3",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_baaf5008914ea3ca16d00cc7d9340953ba84a9d6963fd5d8cee2032ce82992c7",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 100,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi -0.033%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 100
     },
     "Strategy002": {
       "attempts": {
@@ -1634,9 +2774,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband -0.035%, sar -0.040%"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_d1ca86a4ceb68ef828b35490ce1112330dad209cc3bb1e1b6c303c21ab3d8a90",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/Strategy002-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.4,
+          "implementation_id": "Strategy002:d1ca86a4ceb6",
+          "mode": "spot",
+          "output_sha256": "sha256_5de0302e2686d3360932b7efc3a7768c6ba8885dfcaed5edc0480bc7ea24385b",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi 12.447%, fisher_rsi -21.865%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "Strategy003": {
       "attempts": {
@@ -1659,9 +2819,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband -0.035%, sar -0.040%"
+        },
+        "100": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_055984b4672779b36a2391f790ccbcd320e408eb0634e34718d7182acaeef9c9",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/Strategy003-recursive-startup-100.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 23.5,
+          "implementation_id": "Strategy003:055984b46727",
+          "mode": "spot",
+          "output_sha256": "sha256_a0f67e94bbeb4da0aa3c02e537b12a4c8cda513a79494e2321883615b20bcc62",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_baaf5008914ea3ca16d00cc7d9340953ba84a9d6963fd5d8cee2032ce82992c7",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 100,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi -0.033%, fisher_rsi 0.039%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 100
     },
     "Strategy004": {
       "attempts": {
@@ -1683,9 +2863,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "5": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_1b4c001e80b077aaf3ec227577c78d3283be549c7d25ce9279ea03f1db5de64a",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.7,
+          "implementation_id": "Strategy004:1b4c001e80b0",
+          "mode": "spot",
+          "output_sha256": "sha256_fae1743114f24180fa404afba0999fd67df777c0871fb02a523533770521be65",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_365a15af0a1ed94653685863fd9ffb28bdca77125e3a6ac1d8cca52291c0a4b6",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 5,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 5
     },
     "Strategy005": {
       "attempts": {
@@ -1708,9 +2907,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: sar -0.040%"
+        },
+        "40": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_797b293f5acd809f8c77f26b38c004c87b75d8847be4cde4d0224040cc591030",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/Strategy005-recursive-startup-40.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.6,
+          "implementation_id": "Strategy005:797b293f5acd",
+          "mode": "spot",
+          "output_sha256": "sha256_ce80d9f11e276b0c151cf53ee4a1f522e05f5de33455c096cb3f571c1f538bf8",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_529a3b15eb407c533a55f962c1d245caa3f517c25393857fa92bbbf825b1a709",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 40,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: macd 134.391%, macdsignal -81.255%, minus_di 1.308%, rsi -2.484%, fisher_rsi 2.720%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 40
     },
     "StrategyScalpingFast2": {
       "attempts": {
@@ -1733,9 +2952,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: resample_5_open -0.043%, resample_5_high -0.041%, resample_5_volume -37.961%, bb_lowerband -0.040%, bb_upperband -0.032%"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_2db927e231f91ec7a6c8b3286319b75f8ab40fe26487bd189711cc4dfe94456d",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/StrategyScalpingFast2-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 25.2,
+          "implementation_id": "StrategyScalpingFast2:2db927e231f9",
+          "mode": "spot",
+          "output_sha256": "sha256_449a5ff144e1e4bc3a3a7c8e5de11211127ec584a965ad3a90da31f7811d4e26",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi -1.353%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "TemaMaster": {
       "attempts": {
@@ -1758,9 +2997,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband -0.020%, bb_middleband -0.012%"
+        },
+        "26": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_14b43e368f1f886524492c57186899d70da7c99259f4a35047d711c9ec6ee0b8",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/TemaMaster-recursive-startup-26.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.5,
+          "implementation_id": "TemaMaster:14b43e368f1f",
+          "mode": "spot",
+          "output_sha256": "sha256_b0adf23fc95d8c538878417964d0469f34872cb68483c615ead85881190c1e79",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_aba1a1d12522a47c4ec70b50284a82dbdf3a39a5175f57717d91d19c69371b1d",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 26,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: CMO -9.057%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 26
     },
     "TemaMaster3": {
       "attempts": {
@@ -1783,9 +3042,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband -0.037%, bb_middleband -0.053%, bb_upperband -0.068%"
+        },
+        "180": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_1381bf162ddf6528df085ac697af8fe48034c173ad7a9a9a0bf10ed31989dc99",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/TemaMaster3-recursive-startup-180.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 24.8,
+          "implementation_id": "TemaMaster3:1381bf162ddf",
+          "mode": "spot",
+          "output_sha256": "sha256_c977d1884d9f666976c446dc4965fdfcade499bce05c8db8747e2da547a3baa1",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_334a5dfdc4dbc7f0d10f697962bfe4cde0cfe76cc998fe4b80f3be0bae87d23d",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 180,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: CMO 150.557%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 180
     },
     "TemaPure": {
       "attempts": {
@@ -1808,9 +3087,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband -0.021%, bb_middleband -0.013%"
+        },
+        "50": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_266bf1f3434cfaabc886bdb11833306b9a340224d008d925213522ca2fcf18d1",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/TemaPure-recursive-startup-50.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.6,
+          "implementation_id": "TemaPure:266bf1f3434c",
+          "mode": "spot",
+          "output_sha256": "sha256_3a554122bd1469e3c7545f1571294cf06b1bd91b03224f0fb73a694e2fe27c05",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7d266430b447848b3748eff65279fd65e1b98e5a8b77c6e56bbc0a54610519f9",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 50,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: CMO 23.791%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 50
     },
     "TemaPureNeat": {
       "attempts": {
@@ -1833,9 +3132,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_lowerband -0.019%, bb_middleband -0.013%"
+        },
+        "25": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_c76e6d10166b7c7002c01daae3b842602d8c5302aee287fb0dbbc0c25f62eb04",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/TemaPureNeat-recursive-startup-25.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.9,
+          "implementation_id": "TemaPureNeat:c76e6d10166b",
+          "mode": "spot",
+          "output_sha256": "sha256_d6acf531ec8b1fe654b101cc96d64216b999945a0d44e71b3ffac0568416776f",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_88c41947cea3cdb286209e6d1de01cf472f2b5ab9d45efbabda5ac63f10f1aab",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 25,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: CMO -7.886%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 25
     },
     "TemaPureTwo": {
       "attempts": {
@@ -1857,9 +3176,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "50": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_ba20c955f30b6a78b86079c0d25da12f177ec065be94e406373682f24f64b7ee",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/TemaPureTwo-recursive-startup-50.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.2,
+          "implementation_id": "TemaPureTwo:ba20c955f30b",
+          "mode": "spot",
+          "output_sha256": "sha256_5389126dff5503f7b978046520503c5d8583a0669086fda5484470bded22c0f5",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7d266430b447848b3748eff65279fd65e1b98e5a8b77c6e56bbc0a54610519f9",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 50,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: CMO 23.791%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 50
     },
     "TouchEmaDelayStrategy": {
       "attempts": {
@@ -1881,9 +3220,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "50": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_0aced2ab943202ac70f496f22f37da9ea258a164c0e0a62f45d6db023b716665",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/TouchEmaDelayStrategy-recursive-startup-50.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 23.4,
+          "implementation_id": "TouchEmaDelayStrategy:0aced2ab9432",
+          "mode": "spot",
+          "output_sha256": "sha256_412a8f7e0a0fe9d575b0b2aedfc76714d1fb3d4c8ed4ad333e49cb539e1a4211",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7d266430b447848b3748eff65279fd65e1b98e5a8b77c6e56bbc0a54610519f9",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 50,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: ema_long_50 -0.019%, ema_short_50 -0.019%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 50
     },
     "TouchEmaStrategy": {
       "attempts": {
@@ -1905,9 +3264,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "60": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_92446d7b27c0aaaf848f987d73f5d2d322b8db0157f88e58f29cddfdfbbf076d",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.5,
+          "implementation_id": "TouchEmaStrategy:92446d7b27c0",
+          "mode": "spot",
+          "output_sha256": "sha256_46a25b9052c2be05b2a39f07bb08be844384c20ff445c0d4b5ebca182fdf9d97",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_e8ec63453b7ec52721949964414305352bf91754720d81fdf428fab292115524",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 60,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 60
     },
     "Trend_Strength_Directional": {
       "attempts": {
@@ -1929,9 +3307,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "74": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_cc01382c741063baf476a2ebebca015ab457d105d4285855a497101c3e48a153",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/Trend_Strength_Directional-recursive-startup-74.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.7,
+          "implementation_id": "Trend_Strength_Directional:cc01382c7410",
+          "mode": "spot",
+          "output_sha256": "sha256_2d53a3a780abd52ee4b9e47989bac49e045d8617f13eba3d9b8e49efebebee77",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_5ee431f7808d3d2de72d6dfc3b3478e93924887090aaf5a15d757152675930f2",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 74,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi 0.020%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 74
     },
     "TwoCandle": {
       "attempts": {
@@ -1953,9 +3351,28 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "80": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_461de9e30dbfec9d93ec25c5fbbad201ff39e887eced6edbf942a6045f2940c4",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.8,
+          "implementation_id": "TwoCandle:461de9e30dbf",
+          "mode": "spot",
+          "output_sha256": "sha256_f6fcc2ac17b828cbc006492d74f5b0162e0bbf45d9e1d3fde2f643949e39a773",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_2ea0dd51e09364ce1500089b6b327e842614115f74f674fb44e4858ae0c6d27a",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 80,
+          "status": "PASS",
+          "timerange": "20190101-20190401",
+          "why": "no recursive deviations found"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 80
     },
     "bbandrsi": {
       "attempts": {
@@ -1978,9 +3395,29 @@
           "status": "FOUND",
           "timerange": "20190101-20190401",
           "why": "recursive drift: bb_middleband -0.024%, bb_upperband -0.050%"
+        },
+        "20": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_da1704cb344a370f1aa6cd433d5c6e60e0a826c918fad886509a8ea2b4adaba4",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/bbandrsi-recursive-startup-20.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.3,
+          "implementation_id": "bbandrsi:da1704cb344a",
+          "mode": "spot",
+          "output_sha256": "sha256_e16f9487ba836b1677f289925c0ca42ad485d991ea89ab62884df2a57a38865a",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_23b2ac14f76cef707277a1e4c6a48f59cfdf39a44b312dab8efb6b08f20d5186",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 20,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: rsi 3.688%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 20
     },
     "e6v34": {
       "attempts": {
@@ -2002,9 +3439,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "100": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_d5a9c0ddb19cc3434c2da014e5df462c7e1eb58e996ebec9b0e946f6e123aa4b",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/e6v34-recursive-startup-100.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 24.1,
+          "implementation_id": "e6v34:d5a9c0ddb19c",
+          "mode": "spot",
+          "output_sha256": "sha256_305f0c5290cedd50d485a1cd1626fb151f019acbddbad3d5f5d39e0b020853e5",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_baaf5008914ea3ca16d00cc7d9340953ba84a9d6963fd5d8cee2032ce82992c7",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 100,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: vol_mean -0.889%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 100
     },
     "ema": {
       "attempts": {
@@ -2026,9 +3483,29 @@
           "status": "PASS",
           "timerange": "20190101-20190401",
           "why": "no recursive deviations found"
+        },
+        "64": {
+          "admission_effect": "none_pilot_only",
+          "canonical_sha256": "sha256_3b862241b94410164e74a70f69187e6bcfd11f28c5ad89fced3fb5819646405b",
+          "class1_rules": [
+            "bias_market_order_price_side_compatibility"
+          ],
+          "debug_log": "user_data/expansion_logs/ema-recursive-startup-64.log",
+          "diagnostic_rule": "diagnostic_startup_override_v1",
+          "elapsed_s": 22.5,
+          "implementation_id": "ema:3b862241b944",
+          "mode": "spot",
+          "output_sha256": "sha256_bdcb51298d15b51a9bcfa93c54b818b834c7c90798d699228ac8611c34beba1a",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_f58c8a69926b8b3bd483815abc2842d464afebb6a7850da206618bab47232640",
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 64,
+          "status": "FOUND",
+          "timerange": "20190101-20190401",
+          "why": "recursive drift: ema 110.430%"
         }
       },
-      "latest_startup_candle_count": 1
+      "latest_startup_candle_count": 64
     }
   },
   "rule": "diagnostic_startup_override_v1",
