@@ -44,6 +44,62 @@
       "startup_candle_count": 1,
       "strategy_id": "AlwaysBuy"
     },
+    "BinHV45_kanaxe|startup=40": {
+      "admission_effect": "none_equivalence_only",
+      "diagnostic_output_sha256": "sha256_f8444f0a59a9f2472fcedf9599ec338285b9f46654b0404d955407f292d679d5",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "BinHV45_kanaxe:3de55f927af3",
+      "original": {
+        "class1_rules": [],
+        "debug_log": "user_data/profile_smoke_logs/BinHV45_kanaxe.log",
+        "elapsed_s": 189.5,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "status": "failed",
+        "timerange": "20200301-20260821",
+        "why": "process exit -9 without a readable backtest archive"
+      },
+      "override": {
+        "class1_rules": [],
+        "debug_log": "user_data/profile_smoke_logs/BinHV45_kanaxe.log",
+        "elapsed_s": 42.0,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "status": "failed",
+        "timerange": "20200301-20260821",
+        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+      },
+      "startup_candle_count": 40,
+      "strategy_id": "BinHV45_kanaxe"
+    },
+    "BinHV45|startup=40": {
+      "admission_effect": "none_equivalence_only",
+      "diagnostic_output_sha256": "sha256_15885360579ad0e3459bf672e5366845d2d89c9acff6666263e5c47ede1c0c07",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "BinHV45:dad74375f7b6",
+      "original": {
+        "class1_rules": [],
+        "debug_log": "user_data/profile_smoke_logs/BinHV45.log",
+        "elapsed_s": 173.3,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "status": "failed",
+        "timerange": "20200301-20260821",
+        "why": "process exit -9 without a readable backtest archive"
+      },
+      "override": {
+        "class1_rules": [],
+        "debug_log": "user_data/profile_smoke_logs/BinHV45.log",
+        "elapsed_s": 181.7,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "status": "failed",
+        "timerange": "20200301-20260821",
+        "why": "process exit -9 without a readable backtest archive"
+      },
+      "startup_candle_count": 40,
+      "strategy_id": "BinHV45"
+    },
     "Diamond|startup=11": {
       "admission_effect": "none_equivalence_only",
       "diagnostic_output_sha256": "sha256_4e5781b8464f057d52349f5934410b19fcf16a01b1046b4477c1177fc2e6e1c7",
@@ -131,6 +187,50 @@
       },
       "startup_candle_count": 1,
       "strategy_id": "HourBasedStrategy_5m"
+    },
+    "Macd|startup=816": {
+      "admission_effect": "none_equivalence_only",
+      "diagnostic_output_sha256": "sha256_d5289c7e59b33fc6ec9307a59b9c091cc6f57488034f1b9470c1cb657c85a54c",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "Macd:446ed2df0ec1",
+      "original": {
+        "archive": "user_data/profile_smoke/Macd-2026-08-30_21-58-03.zip",
+        "archive_sha256": "sha256_56a1ec6dbef762024bc9e455c9e9138cf607847905f82baabcb0d092b5c30cb6",
+        "class1_rules": [],
+        "config_overrides": {},
+        "elapsed_s": 59.2,
+        "long_trades": 903,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 903,
+        "trades_sha256": "sha256_7a8417039769fb7370cbdd0f19ce6da82f8cb47ed60b4c35d7db5d31077d3007"
+      },
+      "override": {
+        "archive": "user_data/profile_smoke/Macd-2026-08-30_21-58-53.zip",
+        "archive_sha256": "sha256_ea0103183d5085b250dcf721edeefc50db323780aa840911ce5bd150dfaa6224",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 816
+        },
+        "elapsed_s": 49.8,
+        "long_trades": 905,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_20c5503c38fb56f61e9239681c7f48de69dfedb68b20723f58d340256c6506a1",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 905,
+        "trades_sha256": "sha256_d3150832f06c1b7ffd1c2f64ad048e520c43ca75911ecef643bfe6b37691775e"
+      },
+      "startup_candle_count": 816,
+      "strategy_id": "Macd"
     }
   },
   "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
