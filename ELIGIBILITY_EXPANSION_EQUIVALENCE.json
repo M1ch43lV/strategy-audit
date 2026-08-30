@@ -44,6 +44,50 @@
       "startup_candle_count": 1,
       "strategy_id": "AlwaysBuy"
     },
+    "Diamond|startup=11": {
+      "admission_effect": "none_equivalence_only",
+      "diagnostic_output_sha256": "sha256_4e5781b8464f057d52349f5934410b19fcf16a01b1046b4477c1177fc2e6e1c7",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "Diamond:98f108f9df8f",
+      "original": {
+        "archive": "user_data/profile_smoke/Diamond-2026-08-30_20-12-30.zip",
+        "archive_sha256": "sha256_a53fc4fa8d02841537990093aebe4256636370d30ecfa75481655a960a360fb9",
+        "class1_rules": [],
+        "config_overrides": {},
+        "elapsed_s": 147.9,
+        "long_trades": 4756,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 4756,
+        "trades_sha256": "sha256_2e4335507d6ccf3586127575d96ca59cc3e120c41c3648f3521612e71b75db9e"
+      },
+      "override": {
+        "archive": "user_data/profile_smoke/Diamond-2026-08-30_20-14-57.zip",
+        "archive_sha256": "sha256_7d69dd07041c759afdb6689f5e3de2bd87400713304fd1e4ef5234a55192cadd",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 11
+        },
+        "elapsed_s": 147.2,
+        "long_trades": 4756,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_73daf3c0fe82362b681abb50d7ba3edf79be3413c99273f4268a9292d3a98fb7",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 4756,
+        "trades_sha256": "sha256_6176d02aec15eb7b36de20fa45a39e7ca54e619f7667b1d116ed29d2cdea1a7a"
+      },
+      "startup_candle_count": 11,
+      "strategy_id": "Diamond"
+    },
     "HourBasedStrategy_5m|startup=1": {
       "admission_effect": "none_equivalence_only",
       "diagnostic_output_sha256": "sha256_9c7de5c1f5a86183ab949acae19e77fd90e7aa4dcac187513cdb4584abe25b47",
