@@ -20,6 +20,226 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
     },
+    "BinHV45": {
+      "canonical_sha256": "sha256_dad74375f7b6746a8003d047f6bebee2929f1d0258651cb71295aae3abe0ad2e",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 46.2,
+        "output_sha256": "sha256_4495c4ce9a8fd10c04edc36713dd9e470877c10af34c933a12ab54940042b2f9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "BinHV45_kanaxe": {
+      "canonical_sha256": "sha256_3de55f927af3e2ead320718bc308a4a20caaecee5255169cf7f9a173cb9ebeb3",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 67.0,
+        "output_sha256": "sha256_63087588fa52614991315a4a6cbf2d35a64e34ab5f0dcada149eabf7c7178fbe",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "BinHV45_stash": {
+      "canonical_sha256": "sha256_37a6a89a6302a13818680edd27ee1494d4758aa8110abd90f348e11ba20d7feb",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 67.6,
+        "output_sha256": "sha256_94738da1623b748cd2c313fd9233585214bd246b5d9fa63aae312a9f9bd3df1b",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "BinHV45_werkkrew": {
+      "canonical_sha256": "sha256_379b5bd8faf969db26b0f2b424ed0cffb10cbc4b19c752da79412dbf72bff62b",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 53.3,
+        "output_sha256": "sha256_ccc7431b517ff4ce25c9e4f13d0dd06cf7cb01fc93b72b2d61fc96ba57d080d0",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "BollingerBandStrategy": {
+      "canonical_sha256": "sha256_3e8442e9e3ec032cb6813435451dd5a2602c56b77d5a02302685c37bfbbdbcfd",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 33.7,
+        "output_sha256": "sha256_fd5ba5d851adf9c348a43133ef92e70970238f7b6391b70a3d76fae3a5820606",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "BuyOrDie": {
+      "canonical_sha256": "sha256_aa771c3bd6580c2b73fa2d98475a9e1104b97d5208cbf91282b8f1570a97debe",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 34.5,
+        "output_sha256": "sha256_e1217e9e8cabb11adfbe43b4113109f19dcdb0a6f8b824eaf1d6f6626537d37f",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "CCI_BB": {
+      "canonical_sha256": "sha256_6368aeed4ade63a6facb257a1adc2fb20a3452762761e6b0d05edfb1ec71986b",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 33.7,
+        "output_sha256": "sha256_1a348b3acb02d0e0bfc426ee48fc57109ef1ac6bbc6119ea8d82e4b0a1497fe7",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Candle2": {
+      "canonical_sha256": "sha256_34ea4c0954a2680beebb9dec767e2842d60385398b13b723e2240dffc0798341",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 29.8,
+        "output_sha256": "sha256_c126322ad08ee38b61cdb8c5a44f20f825045b5f3e33650a560cbffa1aec0dcb",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Cluc4": {
+      "canonical_sha256": "sha256_b1c9929b686df7537b4d5763d0971a5d9d31088f62a7c785aa7886775077d6f5",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 49.2,
+        "output_sha256": "sha256_81f9c670e2e27497d606c9d5c1cceedcb0f4608978237b7a7ea9901ac11964db",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "CombinedBinHAndClucHyperV0": {
+      "canonical_sha256": "sha256_1f9bfbc3e5ead0693dc39113707711284f79561b7df5a03de00011c76bb9a4f3",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 54.6,
+        "output_sha256": "sha256_142ba0d558be4f693325e449007263c444a31466986968d981b0db994543f8ac",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Combined_Indicators": {
+      "canonical_sha256": "sha256_39dc56f0be05e4dbfacf08f203b6ad7baa9d8a06cbd1ed5f593799ef26657de9",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 51.0,
+        "output_sha256": "sha256_1b2d424a25ff883024a3c99121f97310061ca7e8fa2f191ea155863e3a3fe4e5",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
     "Diamond": {
       "canonical_sha256": "sha256_98f108f9df8f22b4b9be921b912ada3eff7669b25fc9ec455992ec902a385902",
       "class1_rules": [
@@ -40,6 +260,46 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
     },
+    "EasyInEasyOut": {
+      "canonical_sha256": "sha256_07e228cc77effc9e80891d4bd5bd9b6a2f6a70845daa0db91f9e1d3933ee461a",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 68.5,
+        "output_sha256": "sha256_9e3c1e16fd9b8f0b554b44d0182d1563d481640c716322f8dfe5a350b2fe48c0",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Freqtrade_backtest_validation_freqtrade1": {
+      "canonical_sha256": "sha256_758d3730e57c7337f988ac68420d8140a0bff72d99fa9182017cd1f8b160c869",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 25.5,
+        "output_sha256": "sha256_a2111335138b8474a85c3a07b5c453019b4cde88f1bbb3ca61542784e3819c62",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
     "HourBasedStrategy_5m": {
       "canonical_sha256": "sha256_20e040454b100d156d19ce35b633d36c8e7a554713e961d8e6aaeaaf72f014ae",
       "class1_rules": [
@@ -51,6 +311,206 @@
         ],
         "elapsed_s": 32.8,
         "output_sha256": "sha256_511799d02df892788c50b5e39ed6e46719e2249e491bfcc507ebab482f9ab08b",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "JuicyTrend": {
+      "canonical_sha256": "sha256_cd665b8c497274fb1f403d1cf07b74bd8216d9bc296caad4708d36680cdbcd2d",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 27.1,
+        "output_sha256": "sha256_83c4dc1b5fce3604b567710d6fd2b41bc988ef6fc27d9f34376e5a5a6cf2b767",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "MabStra": {
+      "canonical_sha256": "sha256_63fcdd4567ba1cd9f4312e8804316ee150df41e393e21dce168d3440b5e162c9",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 24.8,
+        "output_sha256": "sha256_1f970c97b041ecad1e5f69836d6a1e963d1a66e3dc3450e13e69209c5265350f",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Macd": {
+      "canonical_sha256": "sha256_446ed2df0ec1dfe061d36f061db5b48e3d13ad94fd643b3d05d4896954003628",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 26.1,
+        "output_sha256": "sha256_dd830cbfbb07b3f57a2d9c7f8c3fccf68ba144e06f80db446f2697bf533ff087",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Maro4hMacdSd": {
+      "canonical_sha256": "sha256_114c6ed905e4d1a6ccbb6cece35ef72b74cc6579c57d79ccf96729c4214383c2",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 31.0,
+        "output_sha256": "sha256_6e5a3b7e99a5ec346493bbde7e4b2a5e0963deb90e9bbae94aa24145b8676192",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "SlowPotato": {
+      "canonical_sha256": "sha256_fc15e7ac4e797207d14decaebf1d770155c29ac0819d90a4eb1fc45d197eec96",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 40.9,
+        "output_sha256": "sha256_e3e41bc412dad91c88f9d489922bd3b646ed315220fd1f782f8ddb679706d720",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "SmartMoneyStrategy": {
+      "canonical_sha256": "sha256_f89d1e0ec3dd685a6214d917e5d3beda8b003a44e8a528af6e3a70fe415944c3",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 30.2,
+        "output_sha256": "sha256_1024ec0b5558900be199b2831c30c9e76d04202863161721341a10baf2a8da55",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Strategy001": {
+      "canonical_sha256": "sha256_2357996e6594458e8db45b5f757918462afa3c998de9d06e2af0c009ddc4b80d",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 48.3,
+        "output_sha256": "sha256_4551cea145ea3472eb7283b7d187b91b885eb22f134d996558f7184c548767ac",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "Strategy004": {
+      "canonical_sha256": "sha256_1b4c001e80b077aaf3ec227577c78d3283be549c7d25ce9279ea03f1db5de64a",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 30.0,
+        "output_sha256": "sha256_2f1e58d91cbea4c62548e97b8eb71cefed2eb9d1505e22291ff81e155af8f7d4",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "TouchEmaStrategy": {
+      "canonical_sha256": "sha256_92446d7b27c0aaaf848f987d73f5d2d322b8db0157f88e58f29cddfdfbbf076d",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 31.9,
+        "output_sha256": "sha256_30b68f218f0cd85d56f613da82224e99c70852391f17fd66bf724d45c9cf1934",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "TwoCandle": {
+      "canonical_sha256": "sha256_461de9e30dbfec9d93ec25c5fbbad201ff39e887eced6edbf942a6045f2940c4",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 28.8,
+        "output_sha256": "sha256_d607d37fb7e1f972d4a446cf42e97f4f869ec99ad1be435cda4da49579500551",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "PASS",
         "timerange": "20190101-20190401",
