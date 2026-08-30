@@ -187,6 +187,7 @@ def selftest():
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--only", action="append", default=[])
+    parser.add_argument("--skip", action="append", default=[])
     parser.add_argument("--limit", type=int, default=1)
     parser.add_argument("--timeout", type=int, default=1200)
     parser.add_argument("--startup-candle-count", type=int,
@@ -203,6 +204,9 @@ def main(argv=None):
     if args.only:
         wanted = set(args.only)
         rows = [row for row in rows if row["strategy_id"] in wanted]
+    if args.skip:
+        skipped = set(args.skip)
+        rows = [row for row in rows if row["strategy_id"] not in skipped]
     rows = rows[:args.limit]
     data = _load(OUTPUT)
     for number, row in enumerate(rows, 1):
