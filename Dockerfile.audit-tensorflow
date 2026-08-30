@@ -1,0 +1,17 @@
+ARG BASE_IMAGE=python:3.12-slim@sha256:2c941e860699f878900b0edc2403613c234d4b32eda3cc9fa7036991a2a63c4a
+FROM ${BASE_IMAGE}
+
+# Python 3.12 is the newest locally pinned Linux base with a TensorFlow 2.21
+# wheel. The repository mount and Class 1 compatibility shim match the standard
+# audit runtime; only the interpreter boundary differs.
+ENV PYTHONPATH=/audit/repair
+
+COPY requirements-audit-runtime.txt requirements-audit-tensorflow.txt /tmp/
+RUN python -m pip install --no-cache-dir \
+      freqtrade==2026.7 \
+      -r /tmp/requirements-audit-tensorflow.txt \
+    && python -c "import freqtrade,numpy,pandas,scipy,talib; assert freqtrade.__version__ == '2026.7'; assert numpy.__version__ == '2.5.2'; assert pandas.__version__ == '3.0.5'; assert scipy.__version__ == '1.18.1'; assert talib.__version__ == '0.7.1'" \
+    && python -c "import tensorflow,keras; assert tensorflow.__version__ == '2.21.0'; assert keras.__version__ == '3.15.1'"
+
+LABEL org.opencontainers.image.title="strategy-audit TensorFlow runtime" \
+      org.opencontainers.image.description="Pinned Python 3.12 runtime for TensorFlow-dependent Stage 7 profiles"

@@ -1,3 +1,5 @@
 **
 !Dockerfile.audit
+!Dockerfile.audit-tensorflow
 !requirements-audit-runtime.txt
+!requirements-audit-tensorflow.txt

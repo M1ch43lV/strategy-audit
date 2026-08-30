@@ -1,36 +1,30 @@
-# Shared handoff — Codex and Claude
+# Shared handoff - Codex and Claude
 
 <!--
-  PROTOCOL. Read this whole file (it is short by design). Then read ONLY the plan
-  section named under "Plan pointer". Do not read REGIME_AUDIT_PLAN.md in full:
-  it is ~72 KB and re-reading it every turn is the single largest token cost.
-
-  Overwrite sections in place. NEVER append. This file must stay under 120 lines.
-  Prose here goes stale within one turn; the manifests and git log do not, so
-  trust them over anything written below.
+  Read this whole file, run the Machine state commands, then read only the
+  section named under Plan pointer. Machine state overrides prose.
+  Overwrite sections in place; never append. Keep this file under 120 lines.
 -->
 
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-08-30T11:40+02:00
-- Stopped because: five-hour usage limit, resets 12:18
-- Next agent should: run the Machine state commands, then continue Stage 7
+- Last update: 2026-08-30T13:23:26+02:00
+- Stopped because: required user decision stop before Stage 9 ranking
+- Next agent should: wait for the nine user choices, freeze them in the preregistration, then begin Stage 9
 
 ## Objective
 
-Complete `REGIME_AUDIT_PLAN.md` autonomously. Stage 6 is frozen. Stage 7 collects
-canonical pooled full-window evidence for all 67 eligible profiles.
+Complete `REGIME_AUDIT_PLAN.md` autonomously. Stages 1-8 are complete. Stage 9
+must not inspect or rank discovery outcomes until the open choices are frozen.
 
 ## Plan pointer
 
-- File: `strategy-audit/REGIME_AUDIT_PLAN.md`
-- Read only the section: **## Stage 7 — Phase A attribution** (line ~1292)
-- Read further sections only when Stage 7 is closed out.
+- File: `strategy-audit/REGIME_PREREGISTRATION.md`
+- Read only the section: **## OPEN before Stage 9 ranking**
+- After the user decides, update that file before reading Stage 9 outputs.
 
-## Machine state — authoritative, check before trusting any prose below
-
-Run these first. They are cheap and they are never stale:
+## Machine state - authoritative, check before trusting prose
 
 ```bash
 cd strategy-audit
@@ -40,54 +34,56 @@ git log --oneline -10
 git status --short
 ```
 
-Last observed (2026-08-30 11:45): docker `{'measured': 64, 'failed': 3}`; native `{'measured': 19}`
-(the transient native `failed: 1` was a blocked-DLL attempt, since removed).
-If your own run of the commands disagrees, your run is right and this line is stale.
+Last observed (2026-08-30 13:23): docker `{'measured': 67}`; native
+`{'measured': 19}`; HEAD `Complete pooled Phase A attribution`; status clean.
 
-## In flight
+## Before starting a benchmark - MANDATORY
 
-- The 3 remaining docker failures (`BuyRegions`, `NWEv6_new`, `StochRSITEMA`)
-  must be finished IN DOCKER. Do NOT retry them in the Windows ftenv.
-- `regime/full_backtest.py` imports only results whose timerange, measurement
-  scope, canonical source hash, and config hash all match.
+```bash
+docker ps --format "{{.ID}}|{{.Image}}|{{.Status}}|{{.Command}}" | grep -i "regime\|backtest"
+```
 
-## WINDOWS BLOCKER — do not repeat
+If this prints a container, a measurement is already running. Do not start a
+second one: runners share the manifest and have no lock. Memory-heavy profiles
+must use one worker.
 
-- Windows Smart App Control / Application Control now blocks EVERY compiled
-  native extension DLL under `ftenv` and `.venv` (observed: scipy `_zeros`,
-  `_reordering`). Any Windows-native freqtrade backtest fails at import with
-  "Eine Anwendungssteuerungsrichtlinie hat diese Datei blockiert" / "DLL load
-  failed". The version-matched Windows ftenv is therefore UNUSABLE for new runs.
-- Consequence: the 19 already-imported `windows-ftenv` results stay valid (they
-  were measured before the policy tightened), but no new native run can be
-  produced. `Cluc7werk`/`ClucHAwerk` were only measurable natively before; they
-  are already imported, so they need no rerun.
-- All new measurements must run in Docker only.
+## Current checkpoint
 
-## Constants — do not rederive
+- Stage 7 is complete: 67/67 identity-bound pooled profiles, 286,616 trades.
+- Attribution accepted 67 archives with zero rejects and zero missing profiles.
+- BTC state matched 286,616 trades; coin state matched 285,613. The 1,003 local
+  gaps are only `XMR/USDT:USDT` after the documented spot delisting; no imputation.
+- Separate BTC-only, BTC x coin, and episode summaries are generated.
+- `BuyRegions` measured 15,780 trades in the digest-pinned Python 3.12
+  TensorFlow image; the standard Python 3.14 image remains unchanged.
+- No strategy-by-regime performance or ranking was inspected.
 
-- Canonical Stage 7 timerange: `20200301-20260821`, all eight pairs pooled.
-- Stage 6 snapshot: 67 eligible, 7 pending diagnostics, 826 ineligible;
-  coverage 864 PASS, 36 PENDING.
-- Commit `084daaa` was pushed only to fork `M1ch43lV/strategy-audit`.
+## Constants - do not rederive
+
+- Canonical timerange: `20200301-20260821`, all eight pairs pooled.
+- Stage 6: 67 eligible, 7 pending diagnostics, 826 ineligible; coverage 864 PASS,
+  36 PENDING.
+- Windows Application Control blocks compiled DLLs in `ftenv` and `.venv`.
+  Existing 19 `windows-ftenv` results remain valid; all new runs use Docker.
+- Stage 7 runtime IDs and every archive SHA are bound in
+  `results/regime/full_backtest_manifest.json`.
 
 ## Next concrete steps
 
-1. Let the one-worker Docker queue finish the remaining profiles.
-2. Repair only operational failures and rerun them in an appropriate pinned
-   runtime. Do not change strategy behaviour.
-3. Run `python -m regime.attribution` only after 67/67 measured coverage.
-4. Stop and ask the user once about the nine open preregistration choices.
-5. Implement Stages 9-12 after that decision, validate, document, commit, and
-   push only to the fork's `main`.
+1. Obtain one user answer covering all nine `OPEN` choices.
+2. Freeze the choices in `REGIME_PREREGISTRATION.md` before inspecting rankings.
+3. Run Stage 9 discovery, lock Stage 10 selection, then Stage 11 validation.
+4. Complete Stage 12 robustness/exploratory analysis without changing primary rules.
+5. Validate, document, commit, and push only to fork `main`.
 
 ## Do not redo
 
-- Stages 1-6 are complete and frozen.
+- Stages 1-6 are frozen.
+- Stage 7 pooled measurement and Phase A attribution are complete.
 - Stage 8 ungated equivalence is complete on five profiles.
 - The 19 native identity-matching results are already imported.
 
 ## Blockers / decisions needed
 
-- Stage 9 cannot begin until the user freezes the nine `OPEN` choices in
-  `REGIME_PREREGISTRATION.md`. This is the only planned user decision stop.
+- The nine choices under the Plan pointer are the only blocker. Do not infer
+  them from the generated strategy-regime summaries.

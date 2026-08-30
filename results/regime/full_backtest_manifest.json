@@ -198,12 +198,14 @@
       "trades_sha256": "sha256_7c5d2482fd1b67c9bc25ee691a70a039586305fb1e3ab3d56c0fa0f3a19f58bd"
     },
     "BuyRegions": {
+      "archive": "user_data/profile_smoke/BuyRegions-2026-08-30_11-01-03.zip",
+      "archive_sha256": "sha256_e396c90658e79b37c927c0cd47d01b225d5e3c018c32c09b0d5e689374d202a0",
       "canonical_sha256": "sha256_837173d07b03ad4b83d9fd3520bac1ecc0c4494413f41c0b88b2c4e99924d6b9",
       "class1_rules": [
         "restore_copied_local_module"
       ],
-      "debug_log": "user_data/profile_smoke_logs/BuyRegions.log",
-      "elapsed_s": 27.7,
+      "elapsed_s": 1506.6,
+      "long_trades": 15780,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -218,9 +220,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "failed",
+      "runtime_id": "docker:sha256:4ff7fcaae9ee29d01320bac6ce39fb4d266a4c2defd23587f025d843a067c353",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20260821",
-      "why": "Impossible to load Strategy 'BuyRegions'. This class does not exist or contains Python code errors."
+      "trades": 15780,
+      "trades_sha256": "sha256_5f38696e69ecf6961364e8787e8143e38b864c59eeae82c80a1aef85e58f5d1c"
     },
     "Cluc7werk": {
       "archive": "user_data/profile_smoke/Cluc7werk-2026-08-29_21-07-03.zip",
@@ -1035,10 +1040,12 @@
       "trades_sha256": "sha256_c02158fa1d5a7a84254830f248f53a29495f091eee9e167946583a2cd1b65340"
     },
     "NWEv6_new": {
+      "archive": "user_data/profile_smoke/NWEv6_new-2026-08-30_10-00-23.zip",
+      "archive_sha256": "sha256_88a93a231e3b97322c406cb5efa0017aa9bd82e0c8b7a65cb2d308a983566907",
       "canonical_sha256": "sha256_643838521ab8df98448412e1aa8fc023e6352914d35a57db1c39c476b8f6c7dd",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/NWEv6_new.log",
-      "elapsed_s": 569.9,
+      "elapsed_s": 734.3,
+      "long_trades": 6773,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -1053,9 +1060,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "failed",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20260821",
-      "why": "process exit -9 without a readable backtest archive"
+      "trades": 6773,
+      "trades_sha256": "sha256_5b9010f1e11c8dee17a500946093a5f3c7e4a68fef9ce01f824674fddc5854d8"
     },
     "NostalgiaForInfinityV1": {
       "archive": "user_data/profile_smoke/NostalgiaForInfinityV1-2026-08-30_06-01-08.zip",
@@ -1338,10 +1348,12 @@
       "trades_sha256": "sha256_01139045aa82a9e5bb70d2cab7593926529943076760319799212af3740ae5d9"
     },
     "StochRSITEMA": {
+      "archive": "user_data/profile_smoke/StochRSITEMA-2026-08-30_09-48-11.zip",
+      "archive_sha256": "sha256_8881efc80872f29c4acd52e407c2533c421357d62ea3c1af1b24747aa29fcb14",
       "canonical_sha256": "sha256_fe2b7dde3da374b2cb305ccb389e177d7fed55ecaebf7aca11f5e0ee1f49b187",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/StochRSITEMA.log",
-      "elapsed_s": 77.3,
+      "elapsed_s": 106.5,
+      "long_trades": 3906,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -1356,9 +1368,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "failed",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20260821",
-      "why": "process exit -9 without a readable backtest archive"
+      "trades": 3906,
+      "trades_sha256": "sha256_3833faff47521ce42c17ebacd5b3a4db59b7de96a41500d8c391ada0ea817a83"
     },
     "StochasticCciStrategy": {
       "archive": "user_data/profile_smoke/StochasticCciStrategy-2026-08-29_21-20-56.zip",
@@ -1866,6 +1881,7 @@
     }
   },
   "runtime_ids": [
+    "docker:sha256:4ff7fcaae9ee29d01320bac6ce39fb4d266a4c2defd23587f025d843a067c353",
     "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
     "windows-ftenv:freqtrade-2026.7-python-3.13"
   ],

@@ -45,8 +45,12 @@ def main(argv=None) -> int:
     parser.add_argument("--timeout", type=int, default=3600)
     parser.add_argument("--workers", type=int, default=2)
     parser.add_argument("--force", action="store_true")
+    parser.add_argument("--import-manifest", action="append", type=Path, default=[],
+                        help="import identity-matching measured results from another runtime")
+    parser.add_argument("--import-only", action="store_true")
     args = parser.parse_args(argv)
     rows = eligible()
+    row_by_strategy = {row["strategy_id"]: row for row in rows}
     if args.strategy:
         wanted = set(args.strategy)
         rows = [row for row in rows if row["strategy_id"] in wanted]
@@ -54,9 +58,41 @@ def main(argv=None) -> int:
         if missing:
             raise SystemExit("not currently eligible: " + ", ".join(sorted(missing)))
     data = _load(args.output)
+    data.pop("runtime_id", None)
     data.update({"schema_version": 1, "timerange": TIMERANGE,
-                 "measurement_scope": "canonical_pooled_native_pair_universe",
-                 "runtime_id": os.environ.get("PROFILE_RUNTIME_ID", "native_unversioned")})
+                 "measurement_scope": "canonical_pooled_native_pair_universe"})
+
+    imported = 0
+    for path in args.import_manifest:
+        foreign = _load(path)
+        if foreign.get("timerange") != TIMERANGE:
+            raise SystemExit(f"import timerange mismatch: {path}")
+        for strategy, result in foreign.get("results", {}).items():
+            row = row_by_strategy.get(strategy)
+            if not row or result.get("status") != "measured":
+                continue
+            identity = profile_smoke._identity(row)
+            if (result.get("measurement_scope") !=
+                    "canonical_pooled_native_pair_universe" or
+                    not all(result.get(key) == value for key, value in identity.items())):
+                raise SystemExit(f"import identity mismatch: {strategy} from {path}")
+            data["results"][strategy] = result
+            imported += 1
+
+    def refresh_runtime_ids() -> None:
+        data["runtime_ids"] = sorted({
+            result.get("runtime_id", "native_unversioned")
+            for result in data["results"].values()
+            if result.get("status") == "measured"
+        })
+
+    if args.import_manifest:
+        refresh_runtime_ids()
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        _write(data, args.output)
+        print(f"imported measured full backtests: {imported}", flush=True)
+    if args.import_only:
+        return 0
 
     def run(row):
         strategy = row["strategy_id"]
@@ -81,11 +117,13 @@ def main(argv=None) -> int:
             strategy, result, cached = future.result()
             with LOCK:
                 data["results"][strategy] = result
+                refresh_runtime_ids()
                 _write(data, args.output)
             print(f"{strategy}: {'cached' if cached else result['status']} trades={result.get('trades', '')}",
                   flush=True)
-    measured = sum(row.get("status") == "measured" for row in data["results"].values())
-    print(f"canonical pooled full backtests measured: {measured}/{len(rows)}")
+    measured = sum(data["results"].get(strategy, {}).get("status") == "measured"
+                   for strategy in row_by_strategy)
+    print(f"canonical pooled full backtests measured: {measured}/{len(row_by_strategy)}")
     return 0
 
 

@@ -1,9 +1,9 @@
 # Regime-based Freqtrade Strategy Audit
 
 **Working title:** Regime-Aware Audit and Strategy Selection for Public Freqtrade Strategies
-**Status:** Discussion draft / implementation handoff
-**Version:** 0.18
-**Date:** 2026-08-28
+**Status:** Stage 7 complete / Stage 9 awaiting preregistration decisions
+**Version:** 0.19
+**Date:** 2026-08-30
 **Primary target:** Codex / other AI coding sessions working on `Apex-prim/strategy-audit`
 **Repository:** https://github.com/Apex-prim/strategy-audit
 
@@ -1217,6 +1217,7 @@ results/regime/
     regime_eligibility.csv
     strategy_taxonomy.csv
     trade_regime_attribution.csv
+    strategy_btc_regime_summary.csv
     strategy_regime_summary.csv
     regime_gated_backtests.csv
     regime_benchmarks.csv
@@ -1295,6 +1296,10 @@ Do not begin with the full corpus backtest.
 26. Produce BTC-only and BTC×coin performance summaries.
 27. Produce episode-level consistency statistics.
 28. Do not yet claim that regime gating improves portfolio performance.
+
+**Implementation status:** complete. All canonical pooled trades are annotated
+with every causal state available at entry; BTC-only, BTC x coin, and episode
+summaries are separate, and Phase A remains descriptive.
 
 ## Stage 8 — regime-gate adapter
 
@@ -1898,6 +1903,35 @@ is complete with exact semantic trade-list hashes.
 **Reason:** close every safely actionable technical gap while preserving
 inconclusive evidence and ensure Phase A reflects the actual pooled execution
 mechanics rather than a convenient sum of independent pair runs.
+
+---
+
+## Decision 0.19-01 - Complete canonical pooled Phase A attribution
+
+**Status:** Stage 7 complete; Stage 9 blocked only on the frozen open choices
+**Timing:** before inspecting strategy-by-regime performance or ranking
+**Class:** implementation and measurement checkpoint; no methodology change
+**Decision:** accept the complete identity-bound corpus of 67 pooled native
+backtests over all eight pairs and the frozen `20200301-20260821` timerange.
+The corpus contains 286,616 trades. Every trade has a causal BTC state; 285,613
+also have a coin-local state. The remaining 1,003 are exclusively
+`XMR/USDT:USDT` trades after the documented spot XMR delisting boundary. They
+retain the available BTC state, remain excluded from BTC x coin cells, and are
+not assigned an imputed local state.
+
+`BuyRegions`, the final profile, was measured in a separate digest-pinned Linux
+Python 3.12 image because the standard Freqtrade 2026.7 Python 3.14 image has no
+TensorFlow 2.21 wheel and Windows Application Control blocks the former native
+environment. Freqtrade and all frozen numerical package versions match; the
+manifest records the image digest, and no strategy bytes or signals changed.
+`trade_regime_attribution.csv`, `strategy_btc_regime_summary.csv`,
+`strategy_regime_summary.csv`, `strategy_episode_summary.csv`, and
+`attribution_manifest.json` are the Phase A evidence. The row-level CSV omits
+only the redundant repeated archive path; the manifest retains the complete
+verified strategy-to-archive mapping.
+**Reason:** close Stage 7 with all preregistered profiles, preserve genuinely
+unavailable local state rather than fabricating coverage, and keep BTC-only,
+BTC x coin, and episode evidence distinct before any Stage 9 selection.
 
 ---
 

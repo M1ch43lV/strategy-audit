@@ -429,6 +429,13 @@ with Freqtrade 2026.7, TensorFlow 2.21.0, XGBoost 3.4.1, NumPy 2.5.2, pandas
 3.0.5, SciPy 1.18.1, and TA-Lib 0.7.1. Every result records this runtime ID;
 the boundary is environment compatibility, not a Class 2 strategy edit.
 
+When Windows Application Control later blocked that environment, the canonical
+pooled `BuyRegions` run moved to `Dockerfile.audit-tensorflow`: a separate
+digest-pinned Python 3.12 Linux base with the same Freqtrade, TensorFlow, Keras,
+NumPy, pandas, SciPy, and TA-Lib versions. The standard Python 3.14 audit image
+is unchanged. The manifest records the special image digest, and neither the
+canonical strategy bytes nor signal calculations are modified.
+
 ## Class 1: historical delisted-pair execution
 
 The frozen spot basket intentionally retains XMR/USDT through its documented

@@ -21,10 +21,19 @@ OUT = ROOT / "results" / "regime"
 FULL_MANIFEST = OUT / "full_backtest_manifest.json"
 START = pd.Timestamp("2020-03-01T00:00:00Z")
 END = pd.Timestamp("2026-08-21T00:00:00Z")
+MEASUREMENT_SCOPE = "canonical_pooled_native_pair_universe"
 
 
 def _sha(data: bytes) -> str:
     return "sha256_" + hashlib.sha256(data).hexdigest()
+
+
+def _file_sha(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return "sha256_" + digest.hexdigest()
 
 
 def eligible_profiles() -> dict[str, dict]:
@@ -117,10 +126,11 @@ def archive_inventory(search_root: Path, profiles: dict[str, dict],
 
 def attribute(archives: list[dict], daily_path: Path = DAILY) -> pd.DataFrame:
     states = pd.read_csv(daily_path, parse_dates=["date"])
-    keep = ["date", "pair", "btc_regime", "coin_regime", "btc_adx", "coin_adx",
-            "btc_ser_30", "coin_ser_30", "btc_return_90d", "coin_return_90d",
-            "btc_realized_vol_30d", "coin_realized_vol_30d", "rs_30d", "rs_90d",
-            "btc_episode_id", "coin_episode_id"]
+    btc_fields = ["btc_regime", "btc_adx", "btc_ser_30", "btc_return_90d",
+                  "btc_realized_vol_30d", "btc_episode_id"]
+    coin_fields = ["coin_regime", "coin_adx", "coin_ser_30", "coin_return_90d",
+                   "coin_realized_vol_30d", "rs_30d", "rs_90d", "coin_episode_id"]
+    keep = ["date", "pair"] + btc_fields + coin_fields
     states = states[keep].set_index(["pair", "date"])
     rows = []
     seen_trades = set()
@@ -138,8 +148,13 @@ def attribute(archives: list[dict], daily_path: Path = DAILY) -> pd.DataFrame:
                 continue
             seen_trades.add(semantic_key)
             pair = trade["pair"].split(":", 1)[0]
-            key = (pair, opened.normalize())
-            state = states.loc[key] if key in states.index else None
+            day = opened.normalize()
+            pair_key = (pair, day)
+            pair_state = states.loc[pair_key] if pair_key in states.index else None
+            btc_key = ("BTC/USDT", day)
+            btc_state = pair_state
+            if btc_state is None and btc_key in states.index:
+                btc_state = states.loc[btc_key]
             row = {
                 "strategy_id": archive["strategy_id"], "pair": trade["pair"],
                 "trade_ordinal": ordinal, "open_date": opened,
@@ -150,22 +165,25 @@ def attribute(archives: list[dict], daily_path: Path = DAILY) -> pd.DataFrame:
                 "trade_duration": trade.get("trade_duration"),
                 "enter_tag": trade.get("enter_tag") or "",
                 "exit_reason": trade.get("exit_reason") or "",
-                "archive": str(archive["archive"].relative_to(ROOT)),
-                "regime_match": state is not None,
+                "btc_regime_match": btc_state is not None,
+                "coin_regime_match": pair_state is not None,
+                "regime_match": btc_state is not None and pair_state is not None,
             }
-            if state is not None:
-                row.update(state.to_dict())
+            if btc_state is not None:
+                row.update({field: btc_state[field] for field in btc_fields})
+            if pair_state is not None:
+                row.update({field: pair_state[field] for field in coin_fields})
             rows.append(row)
     return pd.DataFrame(rows)
 
 
-def summarize(trades: pd.DataFrame) -> pd.DataFrame:
-    matched = trades[trades["regime_match"]].copy()
+def _summarize(trades: pd.DataFrame, keys: list[str], match_column: str) -> pd.DataFrame:
+    matched = trades[trades[match_column]].copy()
     if matched.empty:
-        return pd.DataFrame(columns=["strategy_id", "btc_regime", "coin_regime", "trades"])
+        return pd.DataFrame(columns=keys + ["trades"])
     matched["win_profit"] = matched["profit_abs"].clip(lower=0)
     matched["loss_profit"] = -matched["profit_abs"].clip(upper=0)
-    grouped = matched.groupby(["strategy_id", "btc_regime", "coin_regime"], dropna=False)
+    grouped = matched.groupby(keys, dropna=False)
     result = grouped.agg(
         trades=("profit_abs", "size"), long_trades=("is_short", lambda x: int((~x).sum())),
         short_trades=("is_short", "sum"), profit_abs=("profit_abs", "sum"),
@@ -179,8 +197,17 @@ def summarize(trades: pd.DataFrame) -> pd.DataFrame:
     return result
 
 
+def summarize(trades: pd.DataFrame) -> pd.DataFrame:
+    return _summarize(trades, ["strategy_id", "btc_regime", "coin_regime"],
+                      "regime_match")
+
+
+def summarize_btc(trades: pd.DataFrame) -> pd.DataFrame:
+    return _summarize(trades, ["strategy_id", "btc_regime"], "btc_regime_match")
+
+
 def summarize_episodes(trades: pd.DataFrame) -> pd.DataFrame:
-    matched = trades[trades["regime_match"]].copy()
+    matched = trades[trades["btc_regime_match"]].copy()
     if matched.empty:
         return pd.DataFrame(columns=["strategy_id", "btc_regime", "episodes"])
     by_episode = (matched.groupby(["strategy_id", "btc_regime", "btc_episode_id"])
@@ -215,20 +242,46 @@ def main(argv=None) -> int:
         return 0
     profiles = eligible_profiles()
     archive_paths = None
+    manifest_rejections = []
     evidence_source = "bootstrap_archive_scan"
     if args.full_manifest.exists():
         full = json.loads(args.full_manifest.read_text(encoding="utf-8"))
-        archive_paths = [ROOT / row["archive"] for strategy, row in full["results"].items()
-                         if strategy in profiles and row.get("status") == "measured"
-                         and row.get("archive")]
+        archive_paths = []
+        for strategy, row in full["results"].items():
+            if strategy not in profiles or row.get("status") != "measured":
+                continue
+            path = ROOT / row.get("archive", "")
+            identity = profile_smoke._identity(profiles[strategy])
+            reason = ""
+            if not row.get("archive") or not path.is_file():
+                reason = "manifest_archive_missing"
+            elif row.get("measurement_scope") != MEASUREMENT_SCOPE:
+                reason = "manifest_measurement_scope_mismatch"
+            elif any(row.get(key) != value for key, value in identity.items()):
+                reason = "manifest_identity_mismatch"
+            elif _file_sha(path) != row.get("archive_sha256"):
+                reason = "manifest_archive_hash_mismatch"
+            if reason:
+                manifest_rejections.append({"strategy_id": strategy,
+                                            "archive": row.get("archive", ""),
+                                            "reason": reason})
+            else:
+                archive_paths.append(path)
         evidence_source = str(args.full_manifest.relative_to(ROOT))
     accepted, rejected = archive_inventory(args.search_root, profiles, archive_paths)
+    rejected = manifest_rejections + rejected
     trades = attribute(accepted)
     args.outdir.mkdir(parents=True, exist_ok=True)
     _write(trades, args.outdir / "trade_regime_attribution.csv")
+    _write(summarize_btc(trades), args.outdir / "strategy_btc_regime_summary.csv")
     _write(summarize(trades), args.outdir / "strategy_regime_summary.csv")
     _write(summarize_episodes(trades), args.outdir / "strategy_episode_summary.csv")
     covered = sorted(set(trades["strategy_id"])) if not trades.empty else []
+    btc_matched = int(trades["btc_regime_match"].sum()) if not trades.empty else 0
+    coin_matched = int(trades["coin_regime_match"].sum()) if not trades.empty else 0
+    unmatched_coin_pairs = ({str(pair): int(count) for pair, count in
+                             trades.loc[~trades["coin_regime_match"], "pair"]
+                             .value_counts().items()} if not trades.empty else {})
     evidence = {
         "schema_version": 1, "eligible_profiles": len(profiles),
         "attributed_profiles": len(covered), "attributed_strategies": covered,
@@ -245,11 +298,16 @@ def main(argv=None) -> int:
             "end": row["end"].isoformat(),
         } for row in accepted],
         "evidence_scope": ("Phase A descriptive attribution; source, native mode, and "
-                           "timeframe are verified. Stage 9+ runs require a separately "
+                           "timeframe plus manifest source/config identity and archive "
+                           "digest are verified. Stage 9+ runs require a separately "
                            "locked runtime/config/data manifest."),
         "archive_selection_source": evidence_source,
         "rejected_archives": rejected,
         "trades": len(trades),
+        "btc_regime_matched_trades": btc_matched,
+        "coin_regime_matched_trades": coin_matched,
+        "coin_regime_unmatched_trades": len(trades) - coin_matched,
+        "coin_regime_unmatched_by_pair": unmatched_coin_pairs,
     }
     (args.outdir / "attribution_manifest.json").write_text(
         json.dumps(evidence, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -277,10 +335,18 @@ def selftest() -> None:
                  "close_timestamp": 2, "is_short": False, "open_rate": 1,
                  "close_rate": 2, "profit_ratio": 1, "profit_abs": 1,
                  "trade_duration": 1440}
-        archive = {"strategy_id": "S", "archive": ROOT / "dummy.zip", "trades": [trade]}
+        xmr_trade = dict(trade, pair="XMR/USDT:USDT", open_timestamp=3,
+                         close_timestamp=4)
+        archive = {"strategy_id": "S", "archive": ROOT / "dummy.zip",
+                   "trades": [trade, xmr_trade]}
         rows = attribute([archive, archive], path)
-        assert len(rows) == 1
+        assert len(rows) == 2
         assert rows.iloc[0]["btc_regime"] == "BULL"
+        assert rows["btc_regime_match"].all()
+        assert rows["coin_regime_match"].tolist() == [True, False]
+        assert int(summarize_btc(rows)["trades"].sum()) == 2
+        assert int(summarize(rows)["trades"].sum()) == 1
+        assert _file_sha(path) == _sha(path.read_bytes())
     print("regime attribution selftest: PASS")
 
 

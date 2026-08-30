@@ -211,6 +211,9 @@ captured all of it.
 - **[Dockerfile.audit](Dockerfile.audit)** and
   **[profile_bias_docker.ps1](profile_bias_docker.ps1)** provide the pinned
   Linux diagnostic runtime used when Windows Smart App Control blocks PyPI DLLs.
+  **[Dockerfile.audit-tensorflow](Dockerfile.audit-tensorflow)** is the isolated
+  Python 3.12 variant for TensorFlow-dependent profiles that cannot load in the
+  standard Python 3.14 image.
 - **[repair/REGISTER.md](repair/REGISTER.md)** — the complete Class 1/Class 2
   repair provenance and reproducible overlays. **[cluster/CLUSTERS.md](cluster/CLUSTERS.md)**
   preserves the preregistered source taxonomy as interpretation metadata.

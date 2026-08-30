@@ -1,0 +1,7 @@
+-r requirements-audit-runtime.txt
+
+# BuyRegions imports the author's DataframeUtils module, whose import-time
+# TensorFlow dependency is unavailable in the standard Python 3.14 audit image.
+# These versions match the previously validated Windows audit environment.
+tensorflow==2.21.0
+keras==3.15.1
