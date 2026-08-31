@@ -105,8 +105,10 @@ def selftest():
     # stored row is only revisited while its one recovery attempt is unused.
     assert not set(measured) & set(recovery)
     assert len(measured) + len(stored["results"]) == 26
-    for strategy, _startup in recovery:
-        assert strategy in {"BinHV45", "BinHV45_kanaxe"}, strategy
+    for strategy, startup in recovery:
+        key = "%s|startup=%d" % (strategy, startup)
+        assert key in stored["results"]
+        assert equivalence.recoverable(stored["results"][key])
     print("eligibility_warmup_equivalence_queue selftest: PASS "
           "(%d to measure, %d recoverable)" % (len(measured), len(recovery)))
 

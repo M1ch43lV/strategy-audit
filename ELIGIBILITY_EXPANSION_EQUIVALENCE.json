@@ -72,6 +72,118 @@
       "startup_candle_count": 40,
       "strategy_id": "BinHV45_kanaxe"
     },
+    "BinHV45_stash|startup=40": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "class1_rules": [],
+            "debug_log": "user_data/profile_smoke_logs/BinHV45_stash.log",
+            "elapsed_s": 203.9,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "status": "failed",
+            "timerange": "20200301-20260821",
+            "why": "process exit -9 without a readable backtest archive"
+          },
+          "outcome": "resource_inconclusive",
+          "override": {
+            "class1_rules": [],
+            "debug_log": "user_data/profile_smoke_logs/BinHV45_stash.log",
+            "elapsed_s": 194.2,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "status": "failed",
+            "timerange": "20200301-20260821",
+            "why": "process exit -9 without a readable backtest archive"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_a17a7f8e2ff0a1a0283cedfb663f9d5ca7dc55de44acbc7a35240b01ee5c2ecb",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "BinHV45_stash:37a6a89a6302",
+      "original": {
+        "class1_rules": [],
+        "debug_log": "user_data/profile_smoke_logs/BinHV45_stash.log",
+        "elapsed_s": 203.9,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "status": "failed",
+        "timerange": "20200301-20260821",
+        "why": "process exit -9 without a readable backtest archive"
+      },
+      "outcome": "resource_inconclusive",
+      "override": {
+        "class1_rules": [],
+        "debug_log": "user_data/profile_smoke_logs/BinHV45_stash.log",
+        "elapsed_s": 194.2,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "status": "failed",
+        "timerange": "20200301-20260821",
+        "why": "process exit -9 without a readable backtest archive"
+      },
+      "startup_candle_count": 40,
+      "strategy_id": "BinHV45_stash",
+      "terminal_state": "recovery_available"
+    },
+    "BinHV45_werkkrew|startup=40": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "class1_rules": [],
+            "debug_log": "user_data/profile_smoke_logs/BinHV45_werkkrew.log",
+            "elapsed_s": 187.4,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "status": "failed",
+            "timerange": "20200301-20260821",
+            "why": "process exit -9 without a readable backtest archive"
+          },
+          "outcome": "resource_inconclusive",
+          "override": {
+            "class1_rules": [],
+            "debug_log": "user_data/profile_smoke_logs/BinHV45_werkkrew.log",
+            "elapsed_s": 192.4,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "status": "failed",
+            "timerange": "20200301-20260821",
+            "why": "process exit -9 without a readable backtest archive"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_b6eccdd6e0c9a76af93b9a2fd0a526e018efb960a739f792ef387a17509db756",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "BinHV45_werkkrew:379b5bd8faf9",
+      "original": {
+        "class1_rules": [],
+        "debug_log": "user_data/profile_smoke_logs/BinHV45_werkkrew.log",
+        "elapsed_s": 187.4,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "status": "failed",
+        "timerange": "20200301-20260821",
+        "why": "process exit -9 without a readable backtest archive"
+      },
+      "outcome": "resource_inconclusive",
+      "override": {
+        "class1_rules": [],
+        "debug_log": "user_data/profile_smoke_logs/BinHV45_werkkrew.log",
+        "elapsed_s": 192.4,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "status": "failed",
+        "timerange": "20200301-20260821",
+        "why": "process exit -9 without a readable backtest archive"
+      },
+      "startup_candle_count": 40,
+      "strategy_id": "BinHV45_werkkrew",
+      "terminal_state": "recovery_available"
+    },
     "BinHV45|startup=40": {
       "admission_effect": "none_equivalence_only",
       "diagnostic_output_sha256": "sha256_15885360579ad0e3459bf672e5366845d2d89c9acff6666263e5c47ede1c0c07",
