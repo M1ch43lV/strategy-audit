@@ -256,6 +256,94 @@
       "startup_candle_count": 11,
       "strategy_id": "Diamond"
     },
+    "Freqtrade_backtest_validation_freqtrade1|startup=28": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "archive": "user_data/profile_smoke/Freqtrade_backtest_validation_freqtrade1-2026-08-31_04-59-22.zip",
+            "archive_sha256": "sha256_273bd73d0c7eeffb3067030db5192c2c81feae50e3d7ca442bceeac01a680193",
+            "class1_rules": [],
+            "config_overrides": {},
+            "elapsed_s": 48.9,
+            "long_trades": 8748,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 8748,
+            "trades_sha256": "sha256_d2e800545abd892b42d2276838e362a130545c6a3f746d3293da7437c0eabe51"
+          },
+          "outcome": "not_equivalent",
+          "override": {
+            "archive": "user_data/profile_smoke/Freqtrade_backtest_validation_freqtrade1-2026-08-31_05-00-08.zip",
+            "archive_sha256": "sha256_151dfb4b3b17cd7d413f5a148c0b1f98b929d258f8095087a502d9fd79d145cb",
+            "class1_rules": [],
+            "config_overrides": {
+              "startup_candle_count": 28
+            },
+            "elapsed_s": 45.8,
+            "long_trades": 8750,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_149b7fe9a76982967fc680705a31175a14ec237679dd72f877d08e6f1f79779f",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 8750,
+            "trades_sha256": "sha256_11fc9d8d71262a5c98b7c28e1f2ca2559489d83efb9538a20669126548607a56"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_c73b22f4e8bdb1e30bd7ef39f58537802c7fa9914a1f7b63c60b1a45f68ff01c",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "Freqtrade_backtest_validation_freqtrade1:758d3730e57c",
+      "original": {
+        "archive": "user_data/profile_smoke/Freqtrade_backtest_validation_freqtrade1-2026-08-31_04-59-22.zip",
+        "archive_sha256": "sha256_273bd73d0c7eeffb3067030db5192c2c81feae50e3d7ca442bceeac01a680193",
+        "class1_rules": [],
+        "config_overrides": {},
+        "elapsed_s": 48.9,
+        "long_trades": 8748,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 8748,
+        "trades_sha256": "sha256_d2e800545abd892b42d2276838e362a130545c6a3f746d3293da7437c0eabe51"
+      },
+      "outcome": "not_equivalent",
+      "override": {
+        "archive": "user_data/profile_smoke/Freqtrade_backtest_validation_freqtrade1-2026-08-31_05-00-08.zip",
+        "archive_sha256": "sha256_151dfb4b3b17cd7d413f5a148c0b1f98b929d258f8095087a502d9fd79d145cb",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 28
+        },
+        "elapsed_s": 45.8,
+        "long_trades": 8750,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_149b7fe9a76982967fc680705a31175a14ec237679dd72f877d08e6f1f79779f",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 8750,
+        "trades_sha256": "sha256_11fc9d8d71262a5c98b7c28e1f2ca2559489d83efb9538a20669126548607a56"
+      },
+      "startup_candle_count": 28,
+      "strategy_id": "Freqtrade_backtest_validation_freqtrade1",
+      "terminal_state": "not_equivalent"
+    },
     "HourBasedStrategy_5m|startup=1": {
       "admission_effect": "none_equivalence_only",
       "diagnostic_output_sha256": "sha256_9c7de5c1f5a86183ab949acae19e77fd90e7aa4dcac187513cdb4584abe25b47",
@@ -343,6 +431,182 @@
       },
       "startup_candle_count": 816,
       "strategy_id": "Macd"
+    },
+    "Strategy001|startup=100": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "archive": "user_data/profile_smoke/Strategy001-2026-08-31_05-11-06.zip",
+            "archive_sha256": "sha256_3dcd049132e1a14535077ee4763951bca5c806c37d2677d6ba7e42cf424e11fc",
+            "class1_rules": [],
+            "config_overrides": {},
+            "elapsed_s": 662.4,
+            "long_trades": 11783,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 11783,
+            "trades_sha256": "sha256_6ab63e1632f5c41f1c907c50ff3353b6bf4c4579ab9f004585c0bc41595d6097"
+          },
+          "outcome": "not_equivalent",
+          "override": {
+            "archive": "user_data/profile_smoke/Strategy001-2026-08-31_05-22-04.zip",
+            "archive_sha256": "sha256_b76d600bfff9eb532b8b178917fd042241ffee91a579118f8b57860559a8e354",
+            "class1_rules": [],
+            "config_overrides": {
+              "startup_candle_count": 100
+            },
+            "elapsed_s": 658.1,
+            "long_trades": 11783,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_476f64e209b840bb3ccc1aad760facb476ef068b70b1e405ab47e5d0992753c4",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 11783,
+            "trades_sha256": "sha256_9253c296a397d55a1bcde82ed40bcdc0ec0d245ac1f10e15b0554607546b00c3"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_0a44c5d8bf75d04fcea2855b75c35adca7f46c7898c5c8276ee7d5d60cedf652",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "Strategy001:2357996e6594",
+      "original": {
+        "archive": "user_data/profile_smoke/Strategy001-2026-08-31_05-11-06.zip",
+        "archive_sha256": "sha256_3dcd049132e1a14535077ee4763951bca5c806c37d2677d6ba7e42cf424e11fc",
+        "class1_rules": [],
+        "config_overrides": {},
+        "elapsed_s": 662.4,
+        "long_trades": 11783,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 11783,
+        "trades_sha256": "sha256_6ab63e1632f5c41f1c907c50ff3353b6bf4c4579ab9f004585c0bc41595d6097"
+      },
+      "outcome": "not_equivalent",
+      "override": {
+        "archive": "user_data/profile_smoke/Strategy001-2026-08-31_05-22-04.zip",
+        "archive_sha256": "sha256_b76d600bfff9eb532b8b178917fd042241ffee91a579118f8b57860559a8e354",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 100
+        },
+        "elapsed_s": 658.1,
+        "long_trades": 11783,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_476f64e209b840bb3ccc1aad760facb476ef068b70b1e405ab47e5d0992753c4",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 11783,
+        "trades_sha256": "sha256_9253c296a397d55a1bcde82ed40bcdc0ec0d245ac1f10e15b0554607546b00c3"
+      },
+      "startup_candle_count": 100,
+      "strategy_id": "Strategy001",
+      "terminal_state": "not_equivalent"
+    },
+    "Strategy004|startup=5": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "archive": "user_data/profile_smoke/Strategy004-2026-08-31_05-23-53.zip",
+            "archive_sha256": "sha256_d523b23618be82d62af72f1cb5ea2973cab6c26bb88ecd8b4a828935249644b4",
+            "class1_rules": [],
+            "config_overrides": {},
+            "elapsed_s": 105.6,
+            "long_trades": 5116,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 5116,
+            "trades_sha256": "sha256_7c3dc80dfd982e897300d44eeffeda935ab62ea10d6ee448f789ad4a9fc67d25"
+          },
+          "outcome": "equivalent",
+          "override": {
+            "archive": "user_data/profile_smoke/Strategy004-2026-08-31_05-25-39.zip",
+            "archive_sha256": "sha256_c67cc07dca5b8433e70edaa1b2f4688c326bf8b79e52f8faccfb62fd2d7b03fb",
+            "class1_rules": [],
+            "config_overrides": {
+              "startup_candle_count": 5
+            },
+            "elapsed_s": 106.8,
+            "long_trades": 5116,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_8b541253e0d8e7a94132962853bd1af3d472990c9ff82749d3e54b1022b3cd23",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 5116,
+            "trades_sha256": "sha256_7c3dc80dfd982e897300d44eeffeda935ab62ea10d6ee448f789ad4a9fc67d25"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_fae1743114f24180fa404afba0999fd67df777c0871fb02a523533770521be65",
+      "exact_semantic_trade_equivalence": true,
+      "implementation_id": "Strategy004:1b4c001e80b0",
+      "original": {
+        "archive": "user_data/profile_smoke/Strategy004-2026-08-31_05-23-53.zip",
+        "archive_sha256": "sha256_d523b23618be82d62af72f1cb5ea2973cab6c26bb88ecd8b4a828935249644b4",
+        "class1_rules": [],
+        "config_overrides": {},
+        "elapsed_s": 105.6,
+        "long_trades": 5116,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 5116,
+        "trades_sha256": "sha256_7c3dc80dfd982e897300d44eeffeda935ab62ea10d6ee448f789ad4a9fc67d25"
+      },
+      "outcome": "equivalent",
+      "override": {
+        "archive": "user_data/profile_smoke/Strategy004-2026-08-31_05-25-39.zip",
+        "archive_sha256": "sha256_c67cc07dca5b8433e70edaa1b2f4688c326bf8b79e52f8faccfb62fd2d7b03fb",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 5
+        },
+        "elapsed_s": 106.8,
+        "long_trades": 5116,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_8b541253e0d8e7a94132962853bd1af3d472990c9ff82749d3e54b1022b3cd23",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 5116,
+        "trades_sha256": "sha256_7c3dc80dfd982e897300d44eeffeda935ab62ea10d6ee448f789ad4a9fc67d25"
+      },
+      "startup_candle_count": 5,
+      "strategy_id": "Strategy004",
+      "terminal_state": "equivalent"
     }
   },
   "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
