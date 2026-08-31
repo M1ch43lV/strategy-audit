@@ -324,6 +324,62 @@
       "strategy_id": "CombinedBinHAndClucHyperV0",
       "terminal_state": "recovery_available"
     },
+    "Combined_Indicators|startup=50": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "class1_rules": [],
+            "debug_log": "user_data/profile_smoke_logs/Combined_Indicators.log",
+            "elapsed_s": 177.7,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "status": "failed",
+            "timerange": "20200301-20260821",
+            "why": "process exit -9 without a readable backtest archive"
+          },
+          "outcome": "resource_inconclusive",
+          "override": {
+            "class1_rules": [],
+            "debug_log": "user_data/profile_smoke_logs/Combined_Indicators.log",
+            "elapsed_s": 187.6,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "status": "failed",
+            "timerange": "20200301-20260821",
+            "why": "process exit -9 without a readable backtest archive"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_f62e8948041936a800d5d95bb686c35aed79538ccaa3736ae2e8a414f79929e4",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "Combined_Indicators:39dc56f0be05",
+      "original": {
+        "class1_rules": [],
+        "debug_log": "user_data/profile_smoke_logs/Combined_Indicators.log",
+        "elapsed_s": 177.7,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "status": "failed",
+        "timerange": "20200301-20260821",
+        "why": "process exit -9 without a readable backtest archive"
+      },
+      "outcome": "resource_inconclusive",
+      "override": {
+        "class1_rules": [],
+        "debug_log": "user_data/profile_smoke_logs/Combined_Indicators.log",
+        "elapsed_s": 187.6,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "status": "failed",
+        "timerange": "20200301-20260821",
+        "why": "process exit -9 without a readable backtest archive"
+      },
+      "startup_candle_count": 50,
+      "strategy_id": "Combined_Indicators",
+      "terminal_state": "recovery_available"
+    },
     "Diamond|startup=11": {
       "admission_effect": "none_equivalence_only",
       "diagnostic_output_sha256": "sha256_4e5781b8464f057d52349f5934410b19fcf16a01b1046b4477c1177fc2e6e1c7",
@@ -631,6 +687,182 @@
       },
       "startup_candle_count": 816,
       "strategy_id": "Macd"
+    },
+    "Maro4hMacdSd|startup=28": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "archive": "user_data/profile_smoke/Maro4hMacdSd-2026-08-31_05-50-17.zip",
+            "archive_sha256": "sha256_273d14702326770a50cb8cf9b98024f78052041291740efcdf1cd6ea9f17b4d6",
+            "class1_rules": [],
+            "config_overrides": {},
+            "elapsed_s": 111.8,
+            "long_trades": 17127,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 17127,
+            "trades_sha256": "sha256_a3b0c9438f0c7f979c2cfd3e16aea31841118c60bbd222a50a7de8858d72de18"
+          },
+          "outcome": "not_equivalent",
+          "override": {
+            "archive": "user_data/profile_smoke/Maro4hMacdSd-2026-08-31_05-52-01.zip",
+            "archive_sha256": "sha256_b5df2912d5e77fcb41858d18555508e6aa8a3917d31ec7ee89dfdd13e8b38e87",
+            "class1_rules": [],
+            "config_overrides": {
+              "startup_candle_count": 28
+            },
+            "elapsed_s": 102.9,
+            "long_trades": 17137,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_149b7fe9a76982967fc680705a31175a14ec237679dd72f877d08e6f1f79779f",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 17137,
+            "trades_sha256": "sha256_f1f6b95e1c1c3fe470d82e8064c4865d7440748017c4ad0d974662aebd17b9d2"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_53e44ac49bd0dd27d585a44eb86317902fab8d1e44b4cec2828255a9bf6b5a03",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "Maro4hMacdSd:114c6ed905e4",
+      "original": {
+        "archive": "user_data/profile_smoke/Maro4hMacdSd-2026-08-31_05-50-17.zip",
+        "archive_sha256": "sha256_273d14702326770a50cb8cf9b98024f78052041291740efcdf1cd6ea9f17b4d6",
+        "class1_rules": [],
+        "config_overrides": {},
+        "elapsed_s": 111.8,
+        "long_trades": 17127,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 17127,
+        "trades_sha256": "sha256_a3b0c9438f0c7f979c2cfd3e16aea31841118c60bbd222a50a7de8858d72de18"
+      },
+      "outcome": "not_equivalent",
+      "override": {
+        "archive": "user_data/profile_smoke/Maro4hMacdSd-2026-08-31_05-52-01.zip",
+        "archive_sha256": "sha256_b5df2912d5e77fcb41858d18555508e6aa8a3917d31ec7ee89dfdd13e8b38e87",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 28
+        },
+        "elapsed_s": 102.9,
+        "long_trades": 17137,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_149b7fe9a76982967fc680705a31175a14ec237679dd72f877d08e6f1f79779f",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 17137,
+        "trades_sha256": "sha256_f1f6b95e1c1c3fe470d82e8064c4865d7440748017c4ad0d974662aebd17b9d2"
+      },
+      "startup_candle_count": 28,
+      "strategy_id": "Maro4hMacdSd",
+      "terminal_state": "not_equivalent"
+    },
+    "SlowPotato|startup=1440": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "archive": "user_data/profile_smoke/SlowPotato-2026-08-31_05-56-13.zip",
+            "archive_sha256": "sha256_0faf9c1e0ce8f9b1d2093e2e7c72ca5a598ee0e19fa7629fa21be3a756a2d517",
+            "class1_rules": [],
+            "config_overrides": {},
+            "elapsed_s": 254.4,
+            "long_trades": 1835,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 1835,
+            "trades_sha256": "sha256_e9f3f0b529243acbfb72ec0575401f15fe3745f1a1353a48f230ce3efbde587f"
+          },
+          "outcome": "not_equivalent",
+          "override": {
+            "archive": "user_data/profile_smoke/SlowPotato-2026-08-31_06-00-27.zip",
+            "archive_sha256": "sha256_0bd3191a12aa9d7488cedd5834eabd553cb17d2b8a26834eb3c934a1b05a6fea",
+            "class1_rules": [],
+            "config_overrides": {
+              "startup_candle_count": 1440
+            },
+            "elapsed_s": 253.9,
+            "long_trades": 1899,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_45bef8b5e3e892e0d7137f9c1e9bd0322818e4f4164713b48e4c2303bd62959c",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 1899,
+            "trades_sha256": "sha256_cda94ab84c818036174486441039a533e875e7ad81b323f17f2d56ca449c1fd4"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_9f3da13bb79654b738016cbad7ae4b3b2baf0ae58bd58109606679b81e6ab839",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "SlowPotato:fc15e7ac4e79",
+      "original": {
+        "archive": "user_data/profile_smoke/SlowPotato-2026-08-31_05-56-13.zip",
+        "archive_sha256": "sha256_0faf9c1e0ce8f9b1d2093e2e7c72ca5a598ee0e19fa7629fa21be3a756a2d517",
+        "class1_rules": [],
+        "config_overrides": {},
+        "elapsed_s": 254.4,
+        "long_trades": 1835,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 1835,
+        "trades_sha256": "sha256_e9f3f0b529243acbfb72ec0575401f15fe3745f1a1353a48f230ce3efbde587f"
+      },
+      "outcome": "not_equivalent",
+      "override": {
+        "archive": "user_data/profile_smoke/SlowPotato-2026-08-31_06-00-27.zip",
+        "archive_sha256": "sha256_0bd3191a12aa9d7488cedd5834eabd553cb17d2b8a26834eb3c934a1b05a6fea",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 1440
+        },
+        "elapsed_s": 253.9,
+        "long_trades": 1899,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_45bef8b5e3e892e0d7137f9c1e9bd0322818e4f4164713b48e4c2303bd62959c",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 1899,
+        "trades_sha256": "sha256_cda94ab84c818036174486441039a533e875e7ad81b323f17f2d56ca449c1fd4"
+      },
+      "startup_candle_count": 1440,
+      "strategy_id": "SlowPotato",
+      "terminal_state": "not_equivalent"
     },
     "Strategy001|startup=100": {
       "admission_effect": "none_equivalence_only",
