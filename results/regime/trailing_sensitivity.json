@@ -57,6 +57,1197 @@
         "trades": 124,
         "trades_sha256": "sha256_9cd8f435430380c43b55a43654b2fc04d273752db06f23248c0508941cbf7cb4"
       }
+    },
+    "Cluc7werk": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": -0.31460991869177635,
+          "max_drawdown_account": 0.91351000593182,
+          "profit_total": -0.91333057596,
+          "profit_total_abs": -913.33057596,
+          "sharpe": -8.886488070547902,
+          "sortino": -12.179968791659464,
+          "total_trades": 2163,
+          "winrate": 0.19972260748959778
+        },
+        "trades": 2163,
+        "trades_sha256": "sha256_b9792de099e8cdc4367b9326a0fc1d836cadc0beab85d149d5cf690e27a722d5"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": false,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.01007,
+        "trailing_stop_positive_offset": 0.01258
+      },
+      "implementation_id": "Cluc7werk:ab01a4950e79",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "Cluc7werk",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/Cluc7werk-2026-08-31_13-11-00.zip",
+        "archive_sha256": "sha256_3656dcb6db71361b22ea64bc0ecf99e591ce72c3d6cf23f857673e38ec405bca",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 299.0,
+        "long_trades": 2055,
+        "metrics": {
+          "cagr": 0.10952197074515801,
+          "max_drawdown_account": 0.2096363477050334,
+          "profit_total": 0.9597858713799999,
+          "profit_total_abs": 959.7858713799999,
+          "sharpe": 1.1501386353068126,
+          "sortino": 9.421649752348374,
+          "total_trades": 2055,
+          "winrate": 0.3440389294403893
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 2055,
+        "trades_sha256": "sha256_3b6228809e14fb176dfaf073a1db52f8a897dd79f23bf582e829c773d02b0eea"
+      }
+    },
+    "ClucHAwerk": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": -0.4066969365775296,
+          "max_drawdown_account": 0.9659947632384207,
+          "profit_total": -0.9659435904300001,
+          "profit_total_abs": -965.9435904300001,
+          "sharpe": -11.624624197177262,
+          "sortino": -15.477246342313947,
+          "total_trades": 8969,
+          "winrate": 0.38867209276396475
+        },
+        "trades": 8969,
+        "trades_sha256": "sha256_61689326309a3c7b84a99da4813b393acd82841f7f900d8627456aa02445aea8"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": false,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.01,
+        "trailing_stop_positive_offset": 0.02946
+      },
+      "implementation_id": "ClucHAwerk:57f7650eee2e",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "ClucHAwerk",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/ClucHAwerk-2026-08-31_13-55-30.zip",
+        "archive_sha256": "sha256_541f9ed2129ef494339aedfdd7d30c3db3483c68756a02e7890207d3f0151c8b",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 2670.8,
+        "long_trades": 9753,
+        "metrics": {
+          "cagr": -0.05654259033721287,
+          "max_drawdown_account": 0.45705364453315456,
+          "profit_total": -0.31395459390999997,
+          "profit_total_abs": -313.95459390999997,
+          "sharpe": -1.1153331785465097,
+          "sortino": -3.171275230857702,
+          "total_trades": 9753,
+          "winrate": 0.5299907720701322
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 9753,
+        "trades_sha256": "sha256_8f38360d9629dcff0c5550add7bfa80b3a4e6402c114cb22ed5dc432bbd131e2"
+      }
+    },
+    "CombinedBinHAndClucV3": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": 0.19805678603983456,
+          "max_drawdown_account": 0.26322375169684137,
+          "profit_total": 2.2215179810899994,
+          "profit_total_abs": 2221.5179810899995,
+          "sharpe": 1.7088810424236571,
+          "sortino": 0.8882253687641408,
+          "total_trades": 2051,
+          "winrate": 0.8473915163334959
+        },
+        "trades": 2051,
+        "trades_sha256": "sha256_08ea4d2d019ea1f54391248a040947b4bd10b0aa858db019a5677e7d08df5f89"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.01,
+        "trailing_stop_positive_offset": 0.03
+      },
+      "implementation_id": "CombinedBinHAndClucV3:6b6967456446",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "CombinedBinHAndClucV3",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/CombinedBinHAndClucV3-2026-08-31_13-57-20.zip",
+        "archive_sha256": "sha256_49c2c1401425f4a8b5618b00b7a44d90412c12fd5c0c196f0cf76454bca54c9d",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 94.0,
+        "long_trades": 2030,
+        "metrics": {
+          "cagr": 0.2541583022011764,
+          "max_drawdown_account": 0.2330000168673731,
+          "profit_total": 3.33241915496,
+          "profit_total_abs": 3332.41915496,
+          "sharpe": 2.102430931447345,
+          "sortino": 1.020834990743814,
+          "total_trades": 2030,
+          "winrate": 0.8866995073891626
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 2030,
+        "trades_sha256": "sha256_200b83e9012b6103e6440087f8c52ce0fc6af2c9068915c24b69930b3e5d0a29"
+      }
+    },
+    "CombinedBinHAndClucV6": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": 0.060489488639657196,
+          "max_drawdown_account": 0.1097478361139558,
+          "profit_total": 0.462606601,
+          "profit_total_abs": 462.606601,
+          "sharpe": 0.7799533839920132,
+          "sortino": 1.042857818794915,
+          "total_trades": 1412,
+          "winrate": 0.5502832861189801
+        },
+        "trades": 1412,
+        "trades_sha256": "sha256_ec2efea0d27eaa081fa37d9a9d839834d26259de899267b84bb553695820de1c"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.01,
+        "trailing_stop_positive_offset": 0.025
+      },
+      "implementation_id": "CombinedBinHAndClucV6:7ee4bea1ad00",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "CombinedBinHAndClucV6",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/CombinedBinHAndClucV6-2026-08-31_13-58-53.zip",
+        "archive_sha256": "sha256_42aa65afb6321bafbba84dac442fe9e453e04cdd2de9266063ade6a6c612894d",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 93.2,
+        "long_trades": 1388,
+        "metrics": {
+          "cagr": 0.0684857512012198,
+          "max_drawdown_account": 0.11232506124841134,
+          "profit_total": 0.53549357027,
+          "profit_total_abs": 535.49357027,
+          "sharpe": 0.8436019378283024,
+          "sortino": 1.1598209643461548,
+          "total_trades": 1388,
+          "winrate": 0.537463976945245
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 1388,
+        "trades_sha256": "sha256_6066d52d5a11ebc85c4783ab4998665bff7e214728b2aca64dc6fe04e4af8c85"
+      }
+    },
+    "CombinedBinHAndClucV7": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": 0.0760035266298138,
+          "max_drawdown_account": 0.033667241642549924,
+          "profit_total": 0.60679691107,
+          "profit_total_abs": 606.79691107,
+          "sharpe": 1.195237290899647,
+          "sortino": 1.2255665425265696,
+          "total_trades": 718,
+          "winrate": 0.7186629526462396
+        },
+        "trades": 718,
+        "trades_sha256": "sha256_8f5dfdce634695c7b02e05e98467c63d8922e3d3a162555e34072588c4136ddf"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.01,
+        "trailing_stop_positive_offset": 0.03
+      },
+      "implementation_id": "CombinedBinHAndClucV7:d16ea1c3384e",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "CombinedBinHAndClucV7",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/CombinedBinHAndClucV7-2026-08-31_14-00-11.zip",
+        "archive_sha256": "sha256_9388b5e9c20140a91244de70432d27611e295a032f679f2ae63a385212a6a641",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 77.8,
+        "long_trades": 714,
+        "metrics": {
+          "cagr": 0.09677053999911256,
+          "max_drawdown_account": 0.025965781796506732,
+          "profit_total": 0.81847961895,
+          "profit_total_abs": 818.47961895,
+          "sharpe": 1.3898444826390692,
+          "sortino": 1.516513054511685,
+          "total_trades": 714,
+          "winrate": 0.7366946778711485
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 714,
+        "trades_sha256": "sha256_7caa67aeb2de22fc739ea340a41bcabcfc00094ce228d599e13ca779b6bff359"
+      }
+    },
+    "ElliotV2": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": 0.11973406529800679,
+          "max_drawdown_account": 0.1499256057729074,
+          "profit_total": 1.07954564554,
+          "profit_total_abs": 1079.5456455400001,
+          "sharpe": 0.7151968013088879,
+          "sortino": 0.6945417565116309,
+          "total_trades": 379,
+          "winrate": 0.899736147757256
+        },
+        "trades": 379,
+        "trades_sha256": "sha256_3fbabf4980b38c20d6e0b2229d508263c5022b7a15f9c759602f17225fd62570"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.01,
+        "trailing_stop_positive_offset": 0.049
+      },
+      "implementation_id": "ElliotV2:64c0944eecd0",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "ElliotV2",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/ElliotV2-2026-08-31_14-01-22.zip",
+        "archive_sha256": "sha256_6306402277755d48888935eb429a470380d9b45158f7fd3c7170ecee094f9c2e",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 70.4,
+        "long_trades": 333,
+        "metrics": {
+          "cagr": 0.13653798272457163,
+          "max_drawdown_account": 0.13417956248236565,
+          "profit_total": 1.2900712637400003,
+          "profit_total_abs": 1290.0712637400002,
+          "sharpe": 0.7033963546467923,
+          "sortino": 0.7128361764682221,
+          "total_trades": 333,
+          "winrate": 0.8948948948948949
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 333,
+        "trades_sha256": "sha256_ea6a3b1110783b1af171eb0e73de153bef1212bcb3f09f2ce14de1cbb57fde15"
+      }
+    },
+    "ElliotV5_SMA": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": 0.16207194761863453,
+          "max_drawdown_account": 0.034240421342037156,
+          "profit_total": 1.64433679328,
+          "profit_total_abs": 1644.33679328,
+          "sharpe": 1.4736286224606026,
+          "sortino": 1.021204060556121,
+          "total_trades": 657,
+          "winrate": 0.8112633181126332
+        },
+        "trades": 657,
+        "trades_sha256": "sha256_83ab22cd7caf5cce096c5fe297628bd86e6def39a3bf5ee143155091f3554869"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.005,
+        "trailing_stop_positive_offset": 0.03
+      },
+      "implementation_id": "ElliotV5_SMA:95998392fb5d",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "ElliotV5_SMA",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/ElliotV5_SMA-2026-08-31_14-02-33.zip",
+        "archive_sha256": "sha256_088de22a28eceba495e4a9c52e4ed93673dcb20822f8ac8e85ae7a9197448775",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 71.0,
+        "long_trades": 610,
+        "metrics": {
+          "cagr": 0.21520546550070963,
+          "max_drawdown_account": 0.03876559673389432,
+          "profit_total": 2.5319937805999997,
+          "profit_total_abs": 2531.9937806,
+          "sharpe": 1.4533180568230006,
+          "sortino": 1.2270653749955824,
+          "total_trades": 610,
+          "winrate": 0.7754098360655738
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 610,
+        "trades_sha256": "sha256_2945a1bf9d115f0951c90e7723f59ba04af44edd248f54da64467902240d86fd"
+      }
+    },
+    "FSupertrendStrategy": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": -0.1356773810686085,
+          "max_drawdown_account": 0.7429707474303416,
+          "profit_total": -0.61091779188,
+          "profit_total_abs": -610.91779188,
+          "sharpe": -1.175773566941949,
+          "sortino": -1.2864922704454207,
+          "total_trades": 7082,
+          "winrate": 0.5919231855408077
+        },
+        "trades": 7082,
+        "trades_sha256": "sha256_9a2130a1436f98503308021186b94c30c4dc6ced503632e741dc22e52c837bec"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": false,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.05,
+        "trailing_stop_positive_offset": 0.1
+      },
+      "implementation_id": "FSupertrendStrategy:6d4760637514",
+      "run_profile": "futures_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "FSupertrendStrategy",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/FSupertrendStrategy-2026-08-31_14-03-54.zip",
+        "archive_sha256": "sha256_08aea15cd8eac62f9f24ce96e008e07f66b520fcca067e17b70d060f7acc28e0",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 80.2,
+        "long_trades": 7077,
+        "metrics": {
+          "cagr": -0.1391371446169778,
+          "max_drawdown_account": 0.744185320778826,
+          "profit_total": -0.62089082124,
+          "profit_total_abs": -620.8908212399999,
+          "sharpe": -1.2074291000579207,
+          "sortino": -1.3091087486958481,
+          "total_trades": 7077,
+          "winrate": 0.5920587819697612
+        },
+        "mode": "futures",
+        "run_profile": "futures_long",
+        "runtime_config_sha256": "sha256_57bdc2d692d585b474ffb71f475b1ef9ec74b6425ee4dadf5ae5e4c8a79d221c",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 7077,
+        "trades_sha256": "sha256_8110319d4b18b65aa85a25daaedff04eac4af1c3e6f5add8727f9205984c6059"
+      }
+    },
+    "KAMACCIRSI": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": -0.3164055262003228,
+          "max_drawdown_account": 0.9608975284951514,
+          "profit_total": -0.9147900530700004,
+          "profit_total_abs": -914.7900530700003,
+          "sharpe": -1.1760007802188759,
+          "sortino": -0.6916080812920443,
+          "total_trades": 8675,
+          "winrate": 0.6879538904899135
+        },
+        "trades": 8675,
+        "trades_sha256": "sha256_61eb076859ee5a1041ea6aecc8c47433c44fc0510c2aaf4b7d207f0478a9b404"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.28596,
+        "trailing_stop_positive_offset": 0.29771
+      },
+      "implementation_id": "KAMACCIRSI:85f30514549c",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "KAMACCIRSI",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/KAMACCIRSI-2026-08-31_14-06-58.zip",
+        "archive_sha256": "sha256_d76a6505ac069c277321e16127a78d6c3f0715dc31d102adf79b62b06498c41c",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 188.4,
+        "long_trades": 8675,
+        "metrics": {
+          "cagr": -0.3164055262003228,
+          "max_drawdown_account": 0.9608975284951514,
+          "profit_total": -0.9147900530700004,
+          "profit_total_abs": -914.7900530700003,
+          "sharpe": -1.1760007802188759,
+          "sortino": -0.6916080812920443,
+          "total_trades": 8675,
+          "winrate": 0.6879538904899135
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 8675,
+        "trades_sha256": "sha256_652864265089b2eb20fe76732508b551bc7d6b4d67bdcce56c85ae73034f36a8"
+      }
+    },
+    "MACD_TRIPLE_MA": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": -0.4068292545317994,
+          "max_drawdown_account": 0.9660795568215916,
+          "profit_total": -0.96599273175,
+          "profit_total_abs": -965.99273175,
+          "sharpe": -10.530719487208046,
+          "sortino": -10.053325697947603,
+          "total_trades": 10762,
+          "winrate": 0.526203307935328
+        },
+        "trades": 10762,
+        "trades_sha256": "sha256_776d3e8d132771eb726fdd25f291e659c7bd3021ebd5836f6137cede9c03697c"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.1455,
+        "trailing_stop_positive_offset": 0.15434
+      },
+      "implementation_id": "MACD_TRIPLE_MA:8d5f191c4d92",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "MACD_TRIPLE_MA",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/MACD_TRIPLE_MA-2026-08-31_14-08-33.zip",
+        "archive_sha256": "sha256_e487b86f9e1a59865c60aeb95ed6c0f16d77c8eea35222b5a2a5d97d2c3f6155",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 91.7,
+        "long_trades": 10762,
+        "metrics": {
+          "cagr": -0.4068292545317994,
+          "max_drawdown_account": 0.9660795568215916,
+          "profit_total": -0.96599273175,
+          "profit_total_abs": -965.99273175,
+          "sharpe": -10.530719487208046,
+          "sortino": -10.053325697947603,
+          "total_trades": 10762,
+          "winrate": 0.526203307935328
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 10762,
+        "trades_sha256": "sha256_776d3e8d132771eb726fdd25f291e659c7bd3021ebd5836f6137cede9c03697c"
+      }
+    },
+    "MADisplaceV3": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": 0.05573144332702129,
+          "max_drawdown_account": 0.07646931958600066,
+          "profit_total": 0.42064128776000004,
+          "profit_total_abs": 420.64128776,
+          "sharpe": 0.7016379128427638,
+          "sortino": 0.5820543077299193,
+          "total_trades": 580,
+          "winrate": 0.6862068965517242
+        },
+        "trades": 580,
+        "trades_sha256": "sha256_dba87d48a3b9fed87204923b2e7a773f4c05fc6f12a52fcb24221e5b4cd09448"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.01,
+        "trailing_stop_positive_offset": 0.025
+      },
+      "implementation_id": "MADisplaceV3:421a02c82cad",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "MADisplaceV3",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/MADisplaceV3-2026-08-31_14-09-45.zip",
+        "archive_sha256": "sha256_569870d067c47f6c655a6d3bdf8ed68fe9bcad29383f57e1146553bcb1dd44f4",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 71.4,
+        "long_trades": 536,
+        "metrics": {
+          "cagr": 0.13375005784456673,
+          "max_drawdown_account": 0.07303997885130648,
+          "profit_total": 1.2539467445,
+          "profit_total_abs": 1253.9467445,
+          "sharpe": 1.1812573764944596,
+          "sortino": 1.1043705815947145,
+          "total_trades": 536,
+          "winrate": 0.7406716417910447
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 536,
+        "trades_sha256": "sha256_011aab0577a7ec10c28b3d2bddb408ebfe45dd08a57e55e5c736baf4275c7a16"
+      }
+    },
+    "MarketChyperHyperStrategy": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": -0.17985068920875713,
+          "max_drawdown_account": 0.7711285365455947,
+          "profit_total": -0.7229582953100001,
+          "profit_total_abs": -722.9582953100002,
+          "sharpe": -1.0634729193345365,
+          "sortino": -1.0680369721792762,
+          "total_trades": 3193,
+          "winrate": 0.5953648606326339
+        },
+        "trades": 3193,
+        "trades_sha256": "sha256_c02158fa1d5a7a84254830f248f53a29495f091eee9e167946583a2cd1b65340"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.01658,
+        "trailing_stop_positive_offset": 0.10224
+      },
+      "implementation_id": "MarketChyperHyperStrategy:29bc8e0e7645",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "MarketChyperHyperStrategy",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/MarketChyperHyperStrategy-2026-08-31_14-10-22.zip",
+        "archive_sha256": "sha256_842adcaff34451a4f517e2db039cc143a9cdae9d2db35696428b8b00410d4a01",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 35.3,
+        "long_trades": 3186,
+        "metrics": {
+          "cagr": -0.18420253394132613,
+          "max_drawdown_account": 0.7757276792726423,
+          "profit_total": -0.7323380920300001,
+          "profit_total_abs": -732.3380920300001,
+          "sharpe": -1.0802307545686465,
+          "sortino": -1.1029418467396317,
+          "total_trades": 3186,
+          "winrate": 0.5932203389830508
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 3186,
+        "trades_sha256": "sha256_f07796d14db4e78d74947045eab70f5ce7856f539daf442efccd790aa999df56"
+      }
+    },
+    "NostalgiaForInfinityV1": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": 0.16976416030730457,
+          "max_drawdown_account": 0.13307769614643503,
+          "profit_total": 1.7597300381199998,
+          "profit_total_abs": 1759.7300381199998,
+          "sharpe": 1.760070218138112,
+          "sortino": 2.0000902932089546,
+          "total_trades": 2909,
+          "winrate": 0.5826744585768305
+        },
+        "trades": 2909,
+        "trades_sha256": "sha256_a06938645e518016310cc8afb61931b2b3e4c05a9ae25721610e8b879bbc4e67"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.02,
+        "trailing_stop_positive_offset": 0.3
+      },
+      "implementation_id": "NostalgiaForInfinityV1:73271ad1c5f2",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "NostalgiaForInfinityV1",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/NostalgiaForInfinityV1-2026-08-31_14-11-42.zip",
+        "archive_sha256": "sha256_38a9653274cf452425894973a51419db7265191f2da13efdec256ba5a4a34de3",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 81.4,
+        "long_trades": 2909,
+        "metrics": {
+          "cagr": 0.16976416030730457,
+          "max_drawdown_account": 0.13307769614643503,
+          "profit_total": 1.7597300381199998,
+          "profit_total_abs": 1759.7300381199998,
+          "sharpe": 1.760070218138112,
+          "sortino": 2.0000902932089546,
+          "total_trades": 2909,
+          "winrate": 0.5826744585768305
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 2909,
+        "trades_sha256": "sha256_a06938645e518016310cc8afb61931b2b3e4c05a9ae25721610e8b879bbc4e67"
+      }
+    },
+    "SMAIP3": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": 0.05719795169776831,
+          "max_drawdown_account": 0.0674909290750677,
+          "profit_total": 0.43346571021,
+          "profit_total_abs": 433.46571021,
+          "sharpe": 0.3540848974012302,
+          "sortino": 0.19701275800535895,
+          "total_trades": 308,
+          "winrate": 0.7792207792207793
+        },
+        "trades": 308,
+        "trades_sha256": "sha256_b0b64c988fbd26b4f23fea1470feca5cb41a49e2a9e5f18b3f1779719287d70e"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.098,
+        "trailing_stop_positive_offset": 0.159
+      },
+      "implementation_id": "SMAIP3:34e0c7bf0672",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "SMAIP3",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/SMAIP3-2026-08-31_14-12-53.zip",
+        "archive_sha256": "sha256_2e6302988267bc444691bea5e92cca920e60fcf7d89e2bc0da9ea1c3a9ab1bfc",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 70.9,
+        "long_trades": 308,
+        "metrics": {
+          "cagr": 0.05719795169776831,
+          "max_drawdown_account": 0.0674909290750677,
+          "profit_total": 0.43346571021,
+          "profit_total_abs": 433.46571021,
+          "sharpe": 0.3540848974012302,
+          "sortino": 0.19701275800535895,
+          "total_trades": 308,
+          "winrate": 0.7792207792207793
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 308,
+        "trades_sha256": "sha256_b0b64c988fbd26b4f23fea1470feca5cb41a49e2a9e5f18b3f1779719287d70e"
+      }
+    },
+    "SMAOG": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": 0.051611788537611725,
+          "max_drawdown_account": 0.028577913433659743,
+          "profit_total": 0.3851332605800001,
+          "profit_total_abs": 385.13326058000007,
+          "sharpe": 1.0784498106960618,
+          "sortino": 0.7939479772879132,
+          "total_trades": 455,
+          "winrate": 0.778021978021978
+        },
+        "trades": 455,
+        "trades_sha256": "sha256_7484c2146aa41085c3c8bfe58b39fb74f9ab9a8c8a8f372b38d295c7811ce7a2"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.005,
+        "trailing_stop_positive_offset": 0.02
+      },
+      "implementation_id": "SMAOG:5909c02736a7",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "SMAOG",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/SMAOG-2026-08-31_14-14-03.zip",
+        "archive_sha256": "sha256_f2c33dd1a8c5a6961363119d3000c784e39a88d80df6785f01d5daff7fb514e0",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 69.8,
+        "long_trades": 421,
+        "metrics": {
+          "cagr": 0.048172342720896655,
+          "max_drawdown_account": 0.028572865827289712,
+          "profit_total": 0.35606564954000003,
+          "profit_total_abs": 356.06564954000004,
+          "sharpe": 0.9105414764185985,
+          "sortino": 0.7509973076077839,
+          "total_trades": 421,
+          "winrate": 0.7482185273159145
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 421,
+        "trades_sha256": "sha256_579d6f053bad1a432848998c5afe3c367e6d457777075aef8a727d77606d13bf"
+      }
+    },
+    "SampleStrategyV2": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": -0.21711546926180136,
+          "max_drawdown_account": 0.8495256804255187,
+          "profit_total": -0.79497732363,
+          "profit_total_abs": -794.97732363,
+          "sharpe": -1.5771030147174236,
+          "sortino": -0.7005563705007767,
+          "total_trades": 4983,
+          "winrate": 0.9211318482841662
+        },
+        "trades": 4983,
+        "trades_sha256": "sha256_64cd01da644b179efdb2579a37f8876f10bfb11f49a164856271ec34be18eeaa"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.005,
+        "trailing_stop_positive_offset": 0.01
+      },
+      "implementation_id": "SampleStrategyV2:c0fc5e4af5d3",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "SampleStrategyV2",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/SampleStrategyV2-2026-08-31_14-24-09.zip",
+        "archive_sha256": "sha256_f4db0a925591b7d9705bbdda7ed748cf00102d8d645257034a2b4f4590712ca6",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 608.3,
+        "long_trades": 4919,
+        "metrics": {
+          "cagr": -0.19368496468381025,
+          "max_drawdown_account": 0.8338699078033734,
+          "profit_total": -0.7518499507499999,
+          "profit_total_abs": -751.84995075,
+          "sharpe": -1.319746564919917,
+          "sortino": -0.6158384105241562,
+          "total_trades": 4919,
+          "winrate": 0.9178694856678187
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 4919,
+        "trades_sha256": "sha256_e067f227d7cf7963599091c884368af273b81a651431ba41d4369da2879f3a6a"
+      }
+    },
+    "StochRSITEMA": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": -0.18902930168437293,
+          "max_drawdown_account": 0.7444977044427679,
+          "profit_total": -0.74242606279,
+          "profit_total_abs": -742.4260627900001,
+          "sharpe": -7.560427256440495,
+          "sortino": -7.260289336102781,
+          "total_trades": 3906,
+          "winrate": 0.5189452124935996
+        },
+        "trades": 3906,
+        "trades_sha256": "sha256_3833faff47521ce42c17ebacd5b3a4db59b7de96a41500d8c391ada0ea817a83"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": false,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.17251,
+        "trailing_stop_positive_offset": 0.2516
+      },
+      "implementation_id": "StochRSITEMA:fe2b7dde3da3",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "StochRSITEMA",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/StochRSITEMA-2026-08-31_14-25-37.zip",
+        "archive_sha256": "sha256_1479cf07071bbe121f26978f6d6520c555d384303e57cf6f1fa7e1e5380882dc",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 85.5,
+        "long_trades": 3897,
+        "metrics": {
+          "cagr": -0.17275201472441903,
+          "max_drawdown_account": 0.7112835846558483,
+          "profit_total": -0.70706187617,
+          "profit_total_abs": -707.06187617,
+          "sharpe": -6.253341521967262,
+          "sortino": -5.89014272146817,
+          "total_trades": 3897,
+          "winrate": 0.5409289196818066
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 3897,
+        "trades_sha256": "sha256_c8c3cee63ccaf4fe4e3f62567924544cf7e8180ac1ac0dfa3bf42ea45acc076b"
+      }
+    },
+    "TenderEnter": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": 0.01736503796186395,
+          "max_drawdown_account": 0.6318254647514101,
+          "profit_total": 0.1179043754300001,
+          "profit_total_abs": 117.9043754300001,
+          "sharpe": 0.0903258899335335,
+          "sortino": 0.0582609228694187,
+          "total_trades": 3437,
+          "winrate": 0.7201047425080012
+        },
+        "trades": 3437,
+        "trades_sha256": "sha256_1f85128c10f727f3d679b7cc92fb6517990eb1e4301720cde15e9896290a86d7"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.25571,
+        "trailing_stop_positive_offset": 0.35142
+      },
+      "implementation_id": "TenderEnter:bca514ac405a",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "TenderEnter",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/TenderEnter-2026-08-31_14-26-31.zip",
+        "archive_sha256": "sha256_dd8fc4487d134d82d788c024ba53b662b0fba35fa7fedf3c74f70ffafda17c89",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 53.6,
+        "long_trades": 3437,
+        "metrics": {
+          "cagr": 0.01986962248961377,
+          "max_drawdown_account": 0.6318254647514101,
+          "profit_total": 0.13584186068000006,
+          "profit_total_abs": 135.84186068000005,
+          "sharpe": 0.10381782867892068,
+          "sortino": 0.06703288532653107,
+          "total_trades": 3437,
+          "winrate": 0.7201047425080012
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 3437,
+        "trades_sha256": "sha256_7c56ba9a65e5aec19d7250d38f3c8c28c09463c7f04cc4554ee40437d639e632"
+      }
+    },
+    "bestV2": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": 0.08900125806646808,
+          "max_drawdown_account": 0.0547194393569782,
+          "profit_total": 0.7366836961600001,
+          "profit_total_abs": 736.6836961600001,
+          "sharpe": 0.7370317936590303,
+          "sortino": 0.6017366390766631,
+          "total_trades": 323,
+          "winrate": 0.7801857585139319
+        },
+        "trades": 323,
+        "trades_sha256": "sha256_a3ebf2a39f976aa7dc551c05d0df939142b29b7fc669d2b583793cb62de6185b"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.01,
+        "trailing_stop_positive_offset": 0.049
+      },
+      "implementation_id": "bestV2:3ae96b72ac7a",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "bestV2",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/bestV2-2026-08-31_14-27-38.zip",
+        "archive_sha256": "sha256_3c9792dfc28dd5329a6a604e5c6cdea22cb9ae653a151a2b9e795012f4284aeb",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 67.3,
+        "long_trades": 294,
+        "metrics": {
+          "cagr": 0.1182249507011186,
+          "max_drawdown_account": 0.05473135045832381,
+          "profit_total": 1.0614678736,
+          "profit_total_abs": 1061.4678736,
+          "sharpe": 0.7153152991318906,
+          "sortino": 0.8531153582790336,
+          "total_trades": 294,
+          "winrate": 0.7653061224489796
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 294,
+        "trades_sha256": "sha256_dec62f185123df6cf01e892045f74e9ab83b6692cd5c2ffb7de8ca916d1845f9"
+      }
+    },
+    "cryptotank": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": -0.34962419394149646,
+          "max_drawdown_account": 0.9382792355399983,
+          "profit_total": -0.9382792355399999,
+          "profit_total_abs": -938.27923554,
+          "sharpe": -1.1984758538202258,
+          "sortino": -0.6876370522626276,
+          "total_trades": 1945,
+          "winrate": 0.7634961439588689
+        },
+        "trades": 1945,
+        "trades_sha256": "sha256_8b6bc3416dff0ecd4e759c7842915a9fce70b62b4050da0004cea71baba6f372"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_stop": true
+      },
+      "implementation_id": "cryptotank:41383d412b01",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "cryptotank",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/cryptotank-2026-08-31_14-28-25.zip",
+        "archive_sha256": "sha256_1e708ad17d2a597695ad2ffbfef1cbd84d50eeb0390cdc3bb54a5be332e505e6",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 45.8,
+        "long_trades": 1945,
+        "metrics": {
+          "cagr": -0.34962419394149646,
+          "max_drawdown_account": 0.9382792355399983,
+          "profit_total": -0.9382792355399999,
+          "profit_total_abs": -938.27923554,
+          "sharpe": -1.1984758538202258,
+          "sortino": -0.6876370522626276,
+          "total_trades": 1945,
+          "winrate": 0.7634961439588689
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 1945,
+        "trades_sha256": "sha256_8b6bc3416dff0ecd4e759c7842915a9fce70b62b4050da0004cea71baba6f372"
+      }
+    },
+    "cryptotankV5": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": -0.2596643937959625,
+          "max_drawdown_account": 0.926970759665793,
+          "profit_total": -0.8572143463100002,
+          "profit_total_abs": -857.2143463100001,
+          "sharpe": -0.9446370863510007,
+          "sortino": -0.4718487280376321,
+          "total_trades": 4251,
+          "winrate": 0.8746177370030581
+        },
+        "trades": 4251,
+        "trades_sha256": "sha256_723800b28c4b1c25826c3deef2cb0b5d2ed2d0caad055667c5d015efffa39da5"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_stop": true
+      },
+      "implementation_id": "cryptotankV5:4b4c5a0ba78c",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "cryptotankV5",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/cryptotankV5-2026-08-31_14-32-36.zip",
+        "archive_sha256": "sha256_c0e0aaee336ee7e6fd4fdde233158d083a453ec1d3fc6533de6644aa3fac7552",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 252.1,
+        "long_trades": 4251,
+        "metrics": {
+          "cagr": -0.2596643937959625,
+          "max_drawdown_account": 0.926970759665793,
+          "profit_total": -0.8572143463100002,
+          "profit_total_abs": -857.2143463100001,
+          "sharpe": -0.9446370863510007,
+          "sortino": -0.4718487280376321,
+          "total_trades": 4251,
+          "winrate": 0.8746177370030581
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 4251,
+        "trades_sha256": "sha256_723800b28c4b1c25826c3deef2cb0b5d2ed2d0caad055667c5d015efffa39da5"
+      }
     }
   },
   "schema_version": 1,
