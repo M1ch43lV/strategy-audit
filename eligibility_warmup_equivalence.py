@@ -64,11 +64,148 @@ def equivalent(original, override):
             all(original.get(key) == override.get(key) for key in keys))
 
 
+# A run killed by the kernel, stopped by the timeout, or unable to reach the
+# exchange never evaluated the strategy, so its message describes the machine
+# rather than the tested code.
+RESOURCE_MARKERS = (
+    "process exit -9",
+    "timeout after",
+    "Could not load markets",
+)
+
+# The protocol allows one standard attempt plus one documented single-worker
+# recovery attempt; a second inconclusive result is terminal.
+MAX_ATTEMPTS = 2
+
+
+def resource_inconclusive(result):
+    """True when a run produced no verdict about the strategy itself."""
+    if result.get("status") == "measured":
+        return False
+    if result.get("status") == "timeout":
+        return True
+    why = result.get("why") or ""
+    return any(marker in why for marker in RESOURCE_MARKERS)
+
+
+def outcome(original, override):
+    """Classify one paired attempt without collapsing distinct causes.
+
+    `equivalent` and `not_equivalent` are statements about the strategy and are
+    only reachable when both sides actually produced trades. A resource kill is
+    never reported as a failed equivalence.
+    """
+    if resource_inconclusive(original) or resource_inconclusive(override):
+        return "resource_inconclusive"
+    if original.get("status") != "measured" or override.get("status") != "measured":
+        return "technical_failure"
+    return "equivalent" if equivalent(original, override) else "not_equivalent"
+
+
+def attempts_of(record):
+    """Normalize a stored record into its retained attempt list.
+
+    Records written before attempts were retained hold a single attempt inline;
+    reading them through this function keeps that evidence as attempt one.
+    """
+    if not record:
+        return []
+    stored = record.get("attempts")
+    if stored:
+        return [dict(attempt) for attempt in stored]
+    original = record.get("original") or {}
+    override = record.get("override") or {}
+    return [{"original": original, "override": override,
+             "outcome": record.get("outcome") or outcome(original, override),
+             "runtime_id": record.get("runtime_id", "")}]
+
+
+def terminal_state(attempts):
+    """Resolve the protocol state implied by the attempts recorded so far."""
+    if not attempts:
+        return "not_attempted"
+    last = attempts[-1]["outcome"]
+    if last != "resource_inconclusive":
+        return last
+    if len(attempts) >= MAX_ATTEMPTS:
+        return "pending_diagnostics"
+    return "recovery_available"
+
+
+def recoverable(record):
+    """True while the single permitted recovery attempt is still unused."""
+    return terminal_state(attempts_of(record)) == "recovery_available"
+
+
+def build_record(previous, row, startup, diagnostic, original, override,
+                 runtime_id):
+    """Append one attempt to a row, never discarding the attempts it follows."""
+    attempts = attempts_of(previous)
+    attempts.append({"original": original, "override": override,
+                     "outcome": outcome(original, override),
+                     "runtime_id": runtime_id})
+    latest = attempts[-1]
+    return {
+        "strategy_id": row["strategy_id"],
+        "implementation_id": row["implementation_id"],
+        "startup_candle_count": startup,
+        "diagnostic_output_sha256": diagnostic.get("output_sha256", ""),
+        "original": latest["original"],
+        "override": latest["override"],
+        "exact_semantic_trade_equivalence": latest["outcome"] == "equivalent",
+        "outcome": latest["outcome"],
+        "attempts": attempts,
+        "terminal_state": terminal_state(attempts),
+        "admission_effect": "none_equivalence_only",
+    }
+
+
 def selftest():
     one = {"status": "measured", "trades": 1, "long_trades": 1,
            "short_trades": 0, "trades_sha256": "sha256_x"}
     assert equivalent(one, dict(one))
     assert not equivalent(one, dict(one, trades_sha256="sha256_y"))
+
+    killed = {"status": "failed",
+              "why": "process exit -9 without a readable backtest archive"}
+    markets = {"status": "failed",
+               "why": "Could not load markets, therefore cannot start."}
+    broken = {"status": "failed",
+              "why": "Impossible to load Strategy 'X'. This class does not exist."}
+    assert resource_inconclusive(killed)
+    assert resource_inconclusive(markets)
+    assert resource_inconclusive({"status": "timeout"})
+    assert not resource_inconclusive(broken)
+    assert not resource_inconclusive(one)
+
+    # A resource kill must never be reported as a strategy-level verdict.
+    assert outcome(one, dict(one)) == "equivalent"
+    assert outcome(one, dict(one, trades_sha256="sha256_y")) == "not_equivalent"
+    assert outcome(killed, killed) == "resource_inconclusive"
+    assert outcome(one, markets) == "resource_inconclusive"
+    assert outcome(one, broken) == "technical_failure"
+
+    # A legacy inline record is read as attempt one and keeps its recovery.
+    legacy = {"original": killed, "override": killed,
+              "exact_semantic_trade_equivalence": False}
+    assert len(attempts_of(legacy)) == 1
+    assert terminal_state(attempts_of(legacy)) == "recovery_available"
+    assert recoverable(legacy)
+
+    row = {"strategy_id": "X", "implementation_id": "impl"}
+    recovered = build_record(legacy, row, 40, {}, one, dict(one), "docker:test")
+    assert len(recovered["attempts"]) == 2, "the replaced attempt must survive"
+    assert recovered["attempts"][0]["outcome"] == "resource_inconclusive"
+    assert recovered["outcome"] == "equivalent"
+    assert recovered["exact_semantic_trade_equivalence"] is True
+    assert recovered["terminal_state"] == "equivalent"
+    assert not recoverable(recovered)
+
+    # A second inconclusive result exhausts the budget and is terminal.
+    exhausted = build_record(legacy, row, 40, {}, killed, killed, "docker:test")
+    assert len(exhausted["attempts"]) == MAX_ATTEMPTS
+    assert exhausted["terminal_state"] == "pending_diagnostics"
+    assert not recoverable(exhausted)
     print("eligibility_warmup_equivalence selftest: PASS")
 
 
@@ -78,6 +215,9 @@ def main(argv=None):
     parser.add_argument("--startup-candle-count", type=int)
     parser.add_argument("--timeout", type=int, default=3600)
     parser.add_argument("--force", action="store_true")
+    parser.add_argument("--recover", action="store_true",
+                        help="spend the single permitted recovery attempt on a "
+                             "stored resource-inconclusive row")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:
@@ -88,8 +228,10 @@ def main(argv=None):
     row, diagnostic = select(args.strategy, args.startup_candle_count)
     data = _load(OUTPUT)
     key = "%s|startup=%d" % (args.strategy, args.startup_candle_count)
-    if key in data["results"] and not args.force:
-        print("equivalence result already stored: %s" % key)
+    previous = data["results"].get(key)
+    if previous and not (args.force or (args.recover and recoverable(previous))):
+        print("equivalence result already stored: %s (%s)" %
+              (key, terminal_state(attempts_of(previous))))
         return 0
     print("%s: canonical pooled full window" % args.strategy, flush=True)
     original = profile_smoke.run_one(
@@ -103,20 +245,14 @@ def main(argv=None):
         config_overrides={"startup_candle_count": args.startup_candle_count})
     print("  %s trades=%s" % (override["status"], override.get("trades", "")),
           flush=True)
-    is_equivalent = equivalent(original, override)
-    data["runtime_id"] = os.environ.get("PROFILE_RUNTIME_ID", "native_unversioned")
-    data["results"][key] = {
-        "strategy_id": args.strategy,
-        "implementation_id": row["implementation_id"],
-        "startup_candle_count": args.startup_candle_count,
-        "diagnostic_output_sha256": diagnostic.get("output_sha256", ""),
-        "original": original,
-        "override": override,
-        "exact_semantic_trade_equivalence": is_equivalent,
-        "admission_effect": "none_equivalence_only",
-    }
+    runtime_id = os.environ.get("PROFILE_RUNTIME_ID", "native_unversioned")
+    data["runtime_id"] = runtime_id
+    record = build_record(previous, row, args.startup_candle_count, diagnostic,
+                          original, override, runtime_id)
+    data["results"][key] = record
     _write(OUTPUT, data)
-    print("exact semantic trade equivalence: %s" % str(is_equivalent).lower())
+    print("outcome: %s (attempt %d, %s)" %
+          (record["outcome"], len(record["attempts"]), record["terminal_state"]))
     return 0
 
 

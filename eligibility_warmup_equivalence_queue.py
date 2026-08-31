@@ -42,10 +42,27 @@ def candidates():
     return selected
 
 
-def run(limit, timeout):
+def pending_rows(data, recover):
+    """Select the rows this pass is allowed to run.
+
+    The default pass measures rows that have no record yet. The recovery pass
+    only revisits rows whose single permitted recovery attempt is still unused,
+    so it can never overwrite a row that already reached a terminal state.
+    """
+    rows = []
+    for strategy, startup in candidates():
+        stored = data["results"].get("%s|startup=%d" % (strategy, startup))
+        if recover:
+            if stored and equivalence.recoverable(stored):
+                rows.append((strategy, startup))
+        elif not stored:
+            rows.append((strategy, startup))
+    return rows
+
+
+def run(limit, timeout, recover=False):
     data = equivalence._load(equivalence.OUTPUT)
-    pending = [(strategy, startup) for strategy, startup in candidates()
-               if "%s|startup=%d" % (strategy, startup) not in data["results"]]
+    pending = pending_rows(data, recover)
     if limit:
         pending = pending[:limit]
     for number, (strategy, startup) in enumerate(pending, 1):
@@ -61,21 +78,17 @@ def run(limit, timeout):
             config_overrides={"startup_candle_count": startup})
         print("  override %s trades=%s" %
               (override["status"], override.get("trades", "")), flush=True)
-        same = equivalence.equivalent(original, override)
         key = "%s|startup=%d" % (strategy, startup)
-        data["runtime_id"] = os.environ.get("PROFILE_RUNTIME_ID", "native_unversioned")
-        data["results"][key] = {
-            "strategy_id": strategy,
-            "implementation_id": row["implementation_id"],
-            "startup_candle_count": startup,
-            "diagnostic_output_sha256": diagnostic.get("output_sha256", ""),
-            "original": original,
-            "override": override,
-            "exact_semantic_trade_equivalence": same,
-            "admission_effect": "none_equivalence_only",
-        }
+        runtime_id = os.environ.get("PROFILE_RUNTIME_ID", "native_unversioned")
+        data["runtime_id"] = runtime_id
+        record = equivalence.build_record(data["results"].get(key), row, startup,
+                                          diagnostic, original, override,
+                                          runtime_id)
+        data["results"][key] = record
         equivalence._write(equivalence.OUTPUT, data)
-        print("  exact semantic trade equivalence: %s" % str(same).lower(), flush=True)
+        print("  outcome: %s (attempt %d, %s)" %
+              (record["outcome"], len(record["attempts"]),
+               record["terminal_state"]), flush=True)
     print("equivalence records: %d" % len(data["results"]))
 
 
@@ -84,19 +97,33 @@ def selftest():
     assert len(selected) == 26
     assert len({strategy for strategy, _startup in selected}) == 26
     assert ("SlowPotato", 1440) in selected
-    print("eligibility_warmup_equivalence_queue selftest: PASS")
+
+    stored = equivalence._load(equivalence.OUTPUT)
+    measured = pending_rows(stored, recover=False)
+    recovery = pending_rows(stored, recover=True)
+    # The two passes are disjoint: a row is either unmeasured or stored, and a
+    # stored row is only revisited while its one recovery attempt is unused.
+    assert not set(measured) & set(recovery)
+    assert len(measured) + len(stored["results"]) == 26
+    for strategy, _startup in recovery:
+        assert strategy in {"BinHV45", "BinHV45_kanaxe"}, strategy
+    print("eligibility_warmup_equivalence_queue selftest: PASS "
+          "(%d to measure, %d recoverable)" % (len(measured), len(recovery)))
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=1)
     parser.add_argument("--timeout", type=int, default=3600)
+    parser.add_argument("--recover", action="store_true",
+                        help="revisit only stored resource-inconclusive rows "
+                             "that still have their single recovery attempt")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:
         selftest()
         return 0
-    run(args.limit, args.timeout)
+    run(args.limit, args.timeout, args.recover)
     return 0
 
 
