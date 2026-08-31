@@ -1,5 +1,15 @@
 # Zwischenstand zur technischen Strategienutzbarkeit
 
+> **Ueberholt.** Dieser Zwischenstand beschreibt den Repository-Stand `c5f1ec1`
+> vom 2026-08-30. Seither sind die Erweiterungswellen A, B und C abgearbeitet:
+> acht Profile wurden nach E1 zugelassen, `Fakebuy` besteht beide Bias-Tore, und
+> Welle C ist vollstaendig vermessen. Die Zahlen unten sind als historischer
+> Schnappschuss korrekt, aber nicht mehr der aktuelle Stand.
+>
+> Aktuell sind `EXPANSION_WAVE_A_RESULTS.md`, `EXPANSION_WAVE_C_RESULTS.md`,
+> `EXPANSION_STATIC_PROOF_FINDINGS.md` und `ELIGIBILITY_EXPANSION_ADJUDICATION.md`
+> im Wurzelverzeichnis des Audits.
+
 **Stand:** 2026-08-30
 
 **Repository-Stand:** `c5f1ec1` (`Record Stage 9 decision stop`)

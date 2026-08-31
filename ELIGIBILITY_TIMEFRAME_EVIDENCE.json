@@ -1,0 +1,99 @@
+{
+  "arm": "wave_c_evidenced_timeframe",
+  "results": {
+    "ADX_15M_USDT": {
+      "archive": "user_data/profile_smoke/ADX_15M_USDT-2026-08-31_18-54-21.zip",
+      "archive_sha256": "sha256_6008931093410821ee2abb988aa955019cd5206d009ec961f22698b1c116becc",
+      "canonical_sha256": "sha256_1cf6c1e674baf8352d60a80fbdea156cdefe4639900ba8160568d07b7cff03a7",
+      "class1_rules": [],
+      "config_overrides": {
+        "timeframe": "15m"
+      },
+      "elapsed_s": 34.1,
+      "long_trades": 165,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timeframe": "15m",
+      "timeframe_evidence": "author_class_name",
+      "timeframe_evidence_source": "the author's own name states 15M",
+      "timerange": "20200301-20200401",
+      "trades": 165,
+      "trades_sha256": "sha256_d3c351964125a8e0e43dafb1667b15d18b81cb6263ef18990a8ca9aa5adfe678"
+    },
+    "ADX_15M_USDT2": {
+      "archive": "user_data/profile_smoke/ADX_15M_USDT2-2026-08-31_18-54-56.zip",
+      "archive_sha256": "sha256_73c11c00595d2fd387818114811addb9bcd4625c61cda0b8323d441e71f41da1",
+      "canonical_sha256": "sha256_0d171b1a50538b7ec79996d348c533c5cbc0fa2fb6e61daf1e4b25a09630510b",
+      "class1_rules": [],
+      "config_overrides": {
+        "timeframe": "15m"
+      },
+      "elapsed_s": 35.1,
+      "long_trades": 178,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timeframe": "15m",
+      "timeframe_evidence": "author_class_name",
+      "timeframe_evidence_source": "the author's own name states 15M",
+      "timerange": "20200301-20200401",
+      "trades": 178,
+      "trades_sha256": "sha256_3140a50990cc8f0a24819aa0b8232481f446c7f983a414bcc94ce894971e4f33"
+    },
+    "FixedRiskRewardLoss": {
+      "archive": "user_data/profile_smoke/FixedRiskRewardLoss-2026-08-31_18-58-08.zip",
+      "archive_sha256": "sha256_24469521de33eb1972c4552fbf5896ae2c5c29bc4d16178ce956a281a4405de2",
+      "canonical_sha256": "sha256_642f5a83d4c1f8eef58feccf75b38e02c81c06497c7fe9b0091498dcb277a97a",
+      "class1_rules": [],
+      "config_overrides": {
+        "timeframe": "5m"
+      },
+      "elapsed_s": 192.0,
+      "long_trades": 8,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timeframe": "5m",
+      "timeframe_evidence": "corpus_twin",
+      "timeframe_evidence_source": "repos/davidzr_freqtrade-strategies/strategies/FixedRiskRewardLoss/FixedRiskRewardLoss.py, similarity 1.00",
+      "timerange": "20200301-20200401",
+      "trades": 8,
+      "trades_sha256": "sha256_32f60e66b658a5bd6ebd3e7af479dd5d0b504114dfaedd7cb0c7a7392c14b13e"
+    },
+    "JustROCR5": {
+      "archive": "user_data/profile_smoke/JustROCR5-2026-08-31_18-58-47.zip",
+      "archive_sha256": "sha256_2d70af5c86e9339cc0903c2eb10174cfb984527b33868b47238afc31dc06f6e1",
+      "canonical_sha256": "sha256_39c4be6a37f5c2a8e105dc71f2bfb768736f55cede6be6c2757fef5666050dcc",
+      "class1_rules": [],
+      "config_overrides": {
+        "timeframe": "1m"
+      },
+      "elapsed_s": 38.7,
+      "long_trades": 43,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timeframe": "1m",
+      "timeframe_evidence": "corpus_twin",
+      "timeframe_evidence_source": "three independent twins declare 1m, similarity 0.98",
+      "timerange": "20200301-20200401",
+      "trades": 43,
+      "trades_sha256": "sha256_c6913d61d569c06e7b40e8251ff6702ecfe5dcdbd3b44f15efea49d5bfe4a190"
+    }
+  },
+  "schema_version": 1,
+  "timerange": "20200301-20200401"
+}

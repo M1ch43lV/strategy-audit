@@ -30,6 +30,13 @@ that row remains `pending_diagnostics` rather than being called eligible.
 At the current checkpoint, 67 rows pass all gates including coverage; 0 pass
 every other gate and wait only for coverage.
 
+This table is E0, the frozen baseline, and it is deliberately not regenerated
+as the expansion waves complete. Regenerating it today would report 68,
+because `Fakebuy` has since cleared both bias gates. Profiles admitted after
+the freeze are recorded beside this table in
+`ELIGIBILITY_EXPANSION_ADJUDICATION.md`, never by rewriting the count above.
+Read both together before quoting a number of usable strategies.
+
 The coverage input schema is `strategy_id,run_profile,coverage_status,coverage_evidence`.
 `coverage_status` is `PASS`, `FAIL`, or `PENDING`; evidence should identify the
 pair/timerange completeness check that produced the status.

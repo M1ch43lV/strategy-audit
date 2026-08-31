@@ -288,6 +288,13 @@ that row remains `pending_diagnostics` rather than being called eligible.
 At the current checkpoint, %d rows pass all gates including coverage; %d pass
 every other gate and wait only for coverage.
 
+The committed report reflects E0, the frozen baseline, which is deliberately
+not regenerated as the expansion waves complete; a fresh run of this generator
+can therefore report a higher count than the committed table. Profiles admitted
+after the freeze are recorded beside it in
+`ELIGIBILITY_EXPANSION_ADJUDICATION.md`, never by rewriting the count above.
+Read both together before quoting a number of usable strategies.
+
 The coverage input schema is `strategy_id,run_profile,coverage_status,coverage_evidence`.
 `coverage_status` is `PASS`, `FAIL`, or `PENDING`; evidence should identify the
 pair/timerange completeness check that produced the status.
