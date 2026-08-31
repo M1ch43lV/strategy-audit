@@ -388,6 +388,94 @@
       "strategy_id": "BuyOrDie",
       "terminal_state": "not_equivalent"
     },
+    "CCI_BB|startup=20": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "archive": "user_data/profile_smoke/CCI_BB-2026-08-31_06-29-41.zip",
+            "archive_sha256": "sha256_13f5c24ab5ade43a3d66958d912d4e0d0b3f26f1fda95fdf2e4edc4057b4be5a",
+            "class1_rules": [],
+            "config_overrides": {},
+            "elapsed_s": 248.1,
+            "long_trades": 942,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 942,
+            "trades_sha256": "sha256_04aece1f1af3043fef0e9e0b4c1ef50a35fc06b665cbe54e9dc2c3f0dcc2b2db"
+          },
+          "outcome": "equivalent",
+          "override": {
+            "archive": "user_data/profile_smoke/CCI_BB-2026-08-31_06-33-53.zip",
+            "archive_sha256": "sha256_fa633f177edc3533db3324e0577ce10d2824032afa4c5d371488ad57f7317df2",
+            "class1_rules": [],
+            "config_overrides": {
+              "startup_candle_count": 20
+            },
+            "elapsed_s": 251.8,
+            "long_trades": 942,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_45a22ed57ce5d174ec65476d43b60853414d91dafa39c98bd6d6328869242db0",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 942,
+            "trades_sha256": "sha256_04aece1f1af3043fef0e9e0b4c1ef50a35fc06b665cbe54e9dc2c3f0dcc2b2db"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_6c8b030bb05745e333b98a9d9b4d204c1b69b682ceac4a8faf30ccb4fa2f3a87",
+      "exact_semantic_trade_equivalence": true,
+      "implementation_id": "CCI_BB:6368aeed4ade",
+      "original": {
+        "archive": "user_data/profile_smoke/CCI_BB-2026-08-31_06-29-41.zip",
+        "archive_sha256": "sha256_13f5c24ab5ade43a3d66958d912d4e0d0b3f26f1fda95fdf2e4edc4057b4be5a",
+        "class1_rules": [],
+        "config_overrides": {},
+        "elapsed_s": 248.1,
+        "long_trades": 942,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 942,
+        "trades_sha256": "sha256_04aece1f1af3043fef0e9e0b4c1ef50a35fc06b665cbe54e9dc2c3f0dcc2b2db"
+      },
+      "outcome": "equivalent",
+      "override": {
+        "archive": "user_data/profile_smoke/CCI_BB-2026-08-31_06-33-53.zip",
+        "archive_sha256": "sha256_fa633f177edc3533db3324e0577ce10d2824032afa4c5d371488ad57f7317df2",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 20
+        },
+        "elapsed_s": 251.8,
+        "long_trades": 942,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_45a22ed57ce5d174ec65476d43b60853414d91dafa39c98bd6d6328869242db0",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 942,
+        "trades_sha256": "sha256_04aece1f1af3043fef0e9e0b4c1ef50a35fc06b665cbe54e9dc2c3f0dcc2b2db"
+      },
+      "startup_candle_count": 20,
+      "strategy_id": "CCI_BB",
+      "terminal_state": "equivalent"
+    },
     "Candle2|startup=6": {
       "admission_effect": "none_equivalence_only",
       "attempts": [
