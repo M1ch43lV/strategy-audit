@@ -19,6 +19,114 @@
         "why_admissible": "the override is diagnostic-only; current native recursive analysis passes and original versus adapted full-window pooled trades are exactly identical"
       }
     },
+    "BinHV45": {
+      "admission_status": "provisional_E1_pass_pending_consumer_regeneration",
+      "canonical_sha256": "sha256_dad74375f7b6746a8003d047f6bebee2929f1d0258651cb71295aae3abe0ad2e",
+      "equivalence_evidence": "ELIGIBILITY_EXPANSION_EQUIVALENCE.json#BinHV45|startup=40",
+      "implementation_id": "BinHV45:dad74375f7b6",
+      "lookahead_evidence": "ELIGIBILITY_EXPANSION_LOOKAHEAD.json#BinHV45",
+      "recursive_evidence": "ELIGIBILITY_EXPANSION_WARMUP.json#BinHV45/attempts/40",
+      "run_profile": "spot_long",
+      "static_proof": {
+        "entry_history_dependency": "bounded; compares close against lower.shift(), one row below the 40-candle band",
+        "exit_history_dependency": "none; no exit signal is produced",
+        "indicator_history_dependency": "bounded; rolling mean/std over a 40-candle window, no other indicator",
+        "max_history_lookback_candles": 40,
+        "reviewed_file": "repos/Foxel05_freqtrade-stuff/strategies/BinHV45.py",
+        "startup_override_changes_strategy_config": true,
+        "why_admissible": "the only lookback is a 40-candle rolling window plus a one-row shift, so the first decision inside the trimmed window already sees a complete band; the override reproduces the original pooled trade list byte for byte"
+      }
+    },
+    "BinHV45_kanaxe": {
+      "admission_status": "provisional_E1_pass_pending_consumer_regeneration",
+      "canonical_sha256": "sha256_3de55f927af3e2ead320718bc308a4a20caaecee5255169cf7f9a173cb9ebeb3",
+      "equivalence_evidence": "ELIGIBILITY_EXPANSION_EQUIVALENCE.json#BinHV45_kanaxe|startup=40",
+      "implementation_id": "BinHV45_kanaxe:3de55f927af3",
+      "lookahead_evidence": "ELIGIBILITY_EXPANSION_LOOKAHEAD.json#BinHV45_kanaxe",
+      "recursive_evidence": "ELIGIBILITY_EXPANSION_WARMUP.json#BinHV45_kanaxe/attempts/40",
+      "run_profile": "spot_long",
+      "static_proof": {
+        "entry_history_dependency": "bounded; compares close against lower.shift(), one row below the 40-candle band",
+        "exit_history_dependency": "none; no exit signal is produced",
+        "indicator_history_dependency": "bounded; rolling mean/std over a 40-candle window, no other indicator",
+        "max_history_lookback_candles": 40,
+        "reviewed_file": "repos/TheoBrigitte_freqtrade/strategies/BinHV45/BinHV45_kanaxe.py",
+        "startup_override_changes_strategy_config": true,
+        "why_admissible": "the only lookback is a 40-candle rolling window plus a one-row shift, so the first decision inside the trimmed window already sees a complete band; the override reproduces the original pooled trade list byte for byte"
+      }
+    },
+    "BinHV45_stash": {
+      "admission_status": "provisional_E1_pass_pending_consumer_regeneration",
+      "canonical_sha256": "sha256_37a6a89a6302a13818680edd27ee1494d4758aa8110abd90f348e11ba20d7feb",
+      "equivalence_evidence": "ELIGIBILITY_EXPANSION_EQUIVALENCE.json#BinHV45_stash|startup=40",
+      "implementation_id": "BinHV45_stash:37a6a89a6302",
+      "lookahead_evidence": "ELIGIBILITY_EXPANSION_LOOKAHEAD.json#BinHV45_stash",
+      "recursive_evidence": "ELIGIBILITY_EXPANSION_WARMUP.json#BinHV45_stash/attempts/40",
+      "run_profile": "spot_long",
+      "static_proof": {
+        "entry_history_dependency": "bounded; compares close against lower.shift(), one row below the 40-candle band",
+        "exit_history_dependency": "none; no exit signal is produced",
+        "indicator_history_dependency": "bounded; rolling mean/std over a 40-candle window, no other indicator",
+        "max_history_lookback_candles": 40,
+        "reviewed_file": "repos/TheoBrigitte_freqtrade/strategies/BinHV45/BinHV45_stash.py",
+        "startup_override_changes_strategy_config": true,
+        "why_admissible": "the only lookback is a 40-candle rolling window plus a one-row shift, so the first decision inside the trimmed window already sees a complete band; the override reproduces the original pooled trade list byte for byte"
+      }
+    },
+    "BinHV45_werkkrew": {
+      "admission_status": "provisional_E1_pass_pending_consumer_regeneration",
+      "canonical_sha256": "sha256_379b5bd8faf969db26b0f2b424ed0cffb10cbc4b19c752da79412dbf72bff62b",
+      "equivalence_evidence": "ELIGIBILITY_EXPANSION_EQUIVALENCE.json#BinHV45_werkkrew|startup=40",
+      "implementation_id": "BinHV45_werkkrew:379b5bd8faf9",
+      "lookahead_evidence": "ELIGIBILITY_EXPANSION_LOOKAHEAD.json#BinHV45_werkkrew",
+      "recursive_evidence": "ELIGIBILITY_EXPANSION_WARMUP.json#BinHV45_werkkrew/attempts/40",
+      "run_profile": "spot_long",
+      "static_proof": {
+        "entry_history_dependency": "bounded; compares close against lower.shift(), one row below the 40-candle band",
+        "exit_history_dependency": "none; no exit signal is produced",
+        "indicator_history_dependency": "bounded; rolling mean/std over a 40-candle window, no other indicator",
+        "max_history_lookback_candles": 40,
+        "reviewed_file": "repos/TheoBrigitte_freqtrade/strategies/BinHV45/BinHV45_werkkrew.py",
+        "startup_override_changes_strategy_config": true,
+        "why_admissible": "same 40-candle bound as the family; nan_to_num plus the lower.shift().gt(0) guard additionally suppresses any entry while the band is still filling"
+      }
+    },
+    "BollingerBandStrategy": {
+      "admission_status": "provisional_E1_pass_pending_consumer_regeneration",
+      "canonical_sha256": "sha256_3e8442e9e3ec032cb6813435451dd5a2602c56b77d5a02302685c37bfbbdbcfd",
+      "equivalence_evidence": "ELIGIBILITY_EXPANSION_EQUIVALENCE.json#BollingerBandStrategy|startup=21",
+      "implementation_id": "BollingerBandStrategy:3e8442e9e3ec",
+      "lookahead_evidence": "ELIGIBILITY_EXPANSION_LOOKAHEAD.json#BollingerBandStrategy",
+      "recursive_evidence": "ELIGIBILITY_EXPANSION_WARMUP.json#BollingerBandStrategy/attempts/21",
+      "run_profile": "spot_long",
+      "static_proof": {
+        "entry_history_dependency": "bounded; every entry term reads the current row only, no shift is used",
+        "exit_history_dependency": "bounded; every exit term reads the current row only, no shift is used",
+        "indicator_history_dependency": "bounded; BBANDS timeperiod 20 and two 21-candle rolling sums; the intraday intensity index is computed row-locally from that row's OHLCV only",
+        "max_history_lookback_candles": 21,
+        "reviewed_file": "repos/flaviosiotto_freqtrade-strategy/user_data/strategies/bollingerbands-strategy.py",
+        "startup_override_changes_strategy_config": true,
+        "why_admissible": "the longest lookback is the 21-candle rolling sum, which the 21-candle warm-up covers; no decision term reaches further back"
+      }
+    },
+    "CCI_BB": {
+      "admission_status": "provisional_E1_pass_pending_consumer_regeneration",
+      "canonical_sha256": "sha256_6368aeed4ade63a6facb257a1adc2fb20a3452762761e6b0d05edfb1ec71986b",
+      "equivalence_evidence": "ELIGIBILITY_EXPANSION_EQUIVALENCE.json#CCI_BB|startup=20",
+      "implementation_id": "CCI_BB:6368aeed4ade",
+      "lookahead_evidence": "ELIGIBILITY_EXPANSION_LOOKAHEAD.json#CCI_BB",
+      "recursive_evidence": "ELIGIBILITY_EXPANSION_WARMUP.json#CCI_BB/attempts/20",
+      "run_profile": "spot_long",
+      "static_proof": {
+        "entry_history_dependency": "bounded; entry reads cci and bb_lowerband1 on the current row only",
+        "exit_history_dependency": "none; populate_sell_trend returns the frame unchanged",
+        "indicator_history_dependency": "bounded; CCI at its TA-Lib default period 14 and a 20-candle Bollinger band on typical price, both finite windows",
+        "max_history_lookback_candles": 20,
+        "reviewed_file": "repos/mikedigriz_freqtrade-strategy-mikedigriz/strategies/CCI_BB.py",
+        "startup_override_changes_strategy_config": true,
+        "why_admissible": "the longest lookback is the 20-candle band, matched exactly by the warm-up; CCI's 14-candle window is strictly shorter"
+      }
+    },
     "HourBasedStrategy_5m": {
       "admission_status": "provisional_E1_pass_pending_consumer_regeneration",
       "canonical_sha256": "sha256_20e040454b100d156d19ce35b633d36c8e7a554713e961d8e6aaeaaf72f014ae",

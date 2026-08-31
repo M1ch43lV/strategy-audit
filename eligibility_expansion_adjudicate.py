@@ -51,6 +51,27 @@ def _integer(value):
         return 0
 
 
+def _static_proof_ok(static, startup):
+    """Accept a proof only when no decision reaches below the adapter boundary.
+
+    Plan 5.1 condition 6 requires independence from history *below* the adapter
+    boundary, which is not the same as having no history at all. A strategy
+    whose longest finite lookback fits inside its startup value satisfies the
+    condition; an unbounded, stateful or recursively smoothed dependency never
+    does, because no finite warm-up makes it exact.
+    """
+    fields = ("entry_history_dependency", "exit_history_dependency",
+              "indicator_history_dependency")
+    values = [str(static.get(key, "")) for key in fields]
+    if all(value.startswith("none;") for value in values):
+        return True
+    if not all(value.startswith(("none;", "bounded;")) for value in values):
+        return False
+    bound = static.get("max_history_lookback_candles")
+    return (isinstance(bound, int) and bound > 0 and
+            _integer(startup) > 0 and bound <= _integer(startup))
+
+
 def adjudicate():
     registry = _json(PROOFS)
     eligibility = {row["strategy_id"]: row for row in _csv(ELIGIBILITY)}
@@ -89,9 +110,7 @@ def adjudicate():
                 paired.get("implementation_id") == proof.get("implementation_id") and
                 (paired.get("original") or {}).get("trades_sha256") ==
                 (paired.get("override") or {}).get("trades_sha256"),
-            "static_proof": all(str(static.get(key, "")).startswith("none;") for key in (
-                "entry_history_dependency", "exit_history_dependency",
-                "indicator_history_dependency")),
+            "static_proof": _static_proof_ok(static, startup),
             "coverage_pass": baseline.get("coverage_status") == "PASS",
             "trap_free": _integer(baseline.get("traps_n")) == 0,
             "not_behavior_changed": profile.get("equivalence_status") != "behavior_changed",
@@ -164,6 +183,23 @@ def _write(path, content):
 def selftest():
     assert _integer("3") == 3
     assert _integer("") == 0
+    none_proof = {"entry_history_dependency": "none; constant",
+                  "exit_history_dependency": "none; constant",
+                  "indicator_history_dependency": "none; constant"}
+    assert _static_proof_ok(none_proof, "1")
+    bounded = {"entry_history_dependency": "bounded; one-row shift",
+               "exit_history_dependency": "none; no exit signal",
+               "indicator_history_dependency": "bounded; rolling window 40",
+               "max_history_lookback_candles": 40}
+    assert _static_proof_ok(bounded, "40")
+    # A bound wider than the warm-up reaches below the boundary.
+    assert not _static_proof_ok(dict(bounded, max_history_lookback_candles=41), "40")
+    # An unbounded or recursive dependency is never provable this way.
+    assert not _static_proof_ok(
+        dict(bounded, indicator_history_dependency="unbounded; EMA is recursive"), "40")
+    # A bounded claim without a stated numeric bound is not a proof.
+    assert not _static_proof_ok(
+        {k: v for k, v in bounded.items() if k != "max_history_lookback_candles"}, "40")
     print("eligibility_expansion_adjudicate selftest: PASS")
 
 
