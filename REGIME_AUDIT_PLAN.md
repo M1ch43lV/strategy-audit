@@ -2,8 +2,8 @@
 
 **Working title:** Regime-Aware Audit and Strategy Selection for Public Freqtrade Strategies
 **Status:** Stage 7 complete / Stage 9 awaiting preregistration decisions
-**Version:** 0.19
-**Date:** 2026-08-30
+**Version:** 0.20
+**Date:** 2026-08-31
 **Primary target:** Codex / other AI coding sessions working on `Apex-prim/strategy-audit`
 **Repository:** https://github.com/Apex-prim/strategy-audit
 
@@ -16,7 +16,7 @@
 Before changing code or methodology:
 
 1. Read this document in full.
-2. Inspect the current repository, especially `README.md`, `BASELINE.md`, `CORPUS_PLAN.md`, `PREREGISTRATION.md`, `LEDGER.md`, `LEDGER.csv`, `CORRECTIONS.md`, `DECISION_INVARIANCE.md`, and the existing audit scripts.
+2. Read `DOCUMENT_MAP.md` first. It sorts every Markdown file in the repository by what it contributes to the regime benchmark, names the ones to skip, and states which document actually binds. Then inspect the repository, especially `REGIME_PREREGISTRATION.md`, `BASELINE.md`, `LEDGER.md`, `LEDGER.csv`, `CORRECTIONS.md`, `DECISION_INVARIANCE.md`, and the existing audit scripts.
 3. Verify that the repository has not materially changed since this document was written.
 4. Separate **frozen primary design**, **secondary robustness design**, and **open discussion items**.
 5. Do not silently modify primary thresholds or eligibility rules after seeing strategy-performance results.
@@ -1932,6 +1932,20 @@ verified strategy-to-archive mapping.
 **Reason:** close Stage 7 with all preregistered profiles, preserve genuinely
 unavailable local state rather than fabricating coverage, and keep BTC-only,
 BTC x coin, and episode evidence distinct before any Stage 9 selection.
+
+## Decision 0.20-01 - Reading order for cold sessions
+
+**Status:** reporting-only; no rule, threshold, population, or measurement changed
+**Timing:** before Stage 9 selection and before any ranking was inspected
+**Class:** reporting-only
+**Decision:** add `DOCUMENT_MAP.md` and make it the first item of section 0.
+**Reason:** the repository now holds 31 active Markdown files, and a session
+starting without prior chat context had no way to tell a frozen rule from a
+proposal. Two concrete failures motivated this: reading this plan's proposals
+as binding rules, and quoting the frozen 67 eligible profiles when the current
+figure is 75 because the expansion adjudication is recorded in a second file.
+The map is descriptive only. Where it and a governing document disagree, the
+governing document wins and the map is the error.
 
 ---
 
