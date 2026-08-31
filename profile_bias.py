@@ -172,6 +172,21 @@ def _recursive(output, returncode):
     return "PASS", "no recursive deviations found"
 
 
+def _window_too_small(status, why):
+    """True when a diagnostic failed only because this window is too short.
+
+    Freqtrade reports the shortfall as "too few trades", while an indicator that
+    needs a minimum series length reports it as "Insufficient data points".
+    Both describe the same situation from different layers, so both continue the
+    fixed cascade. The cascade windows are frozen in advance and identical for
+    every candidate; nothing here selects a window from trade or regime results.
+    """
+    if status != "NA":
+        return False
+    return (why.startswith("too few trades") or
+            "Insufficient data points" in why)
+
+
 def run_diagnostic(row, diagnostic, timeout, fallback_timeout):
     strategy = row["strategy_id"]
     canonical = os.path.join(ROOT, row["canonical_file"].replace("/", os.sep))
@@ -198,8 +213,7 @@ def run_diagnostic(row, diagnostic, timeout, fallback_timeout):
             parser = _lookahead if diagnostic == "lookahead" else _recursive
             status, why = parser(output, process.returncode)
             attempted.append(timerange)
-            if status == "NA" and why.startswith("too few trades") and \
-                    timerange != timeranges[-1]:
+            if _window_too_small(status, why) and timerange != timeranges[-1]:
                 continue
             result = {
                 "status": status, "why": why, "timerange": timerange,
@@ -251,6 +265,13 @@ def selftest():
     passed = "%s No %s 4 %s 0 %s 0 %s  %s" % (
         border, border, border, border, border, border)
     assert _lookahead(passed, 0) == ("PASS", "no bias detected")
+    # Both messages mean the same thing: this window is too short for the
+    # analyzer. Only these continue the frozen cascade.
+    assert _window_too_small("NA", "too few trades (0/10)")
+    assert _window_too_small("NA", "Insufficient data points for FFT: 102. Need 120.")
+    assert not _window_too_small("NA", "TIMEOUT")
+    assert not _window_too_small("NA", "process exit -9 or unparsed output")
+    assert not _window_too_small("PASS", "too few trades (0/10)")
     assert _lookahead("too few trades caught (2/20)", 0) == (
         "NA", "too few trades (2/20)")
     print("profile_bias selftest: PASS")

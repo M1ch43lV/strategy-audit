@@ -1639,10 +1639,12 @@
           "20190101-20190401",
           "20200101-20220101"
         ],
-        "elapsed_s": 934.8,
-        "status": "NA",
+        "elapsed_s": 966.3,
+        "output_sha256": "sha256_fb417dfdf8719a2f396b09bbcfbc59e3525911f3efab30a1b15caaf26ec63a66",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
         "timerange": "20200101-20220101",
-        "why": "TIMEOUT"
+        "why": "no bias detected"
       },
       "mode": "spot",
       "recursive": {
@@ -2053,15 +2055,15 @@
       "lookahead": {
         "attempted_timeranges": [
           "20190101-20190401",
-          "20200301-20260820"
+          "20200101-20220101"
         ],
         "debug_log": "user_data/profile_bias_logs/HyperStra_GSN_SMAOnly-lookahead.log",
-        "elapsed_s": 127.6,
-        "output_sha256": "sha256_fda2325d611c8a3fa84b763e3db8f9b3a90b33536a6825ecb079f0cba620ecb2",
+        "elapsed_s": 69.3,
+        "output_sha256": "sha256_3b0066360b69bb1cbe9199cf83691b137650a74d044f3321082ffd73a53cecc9",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "NA",
-        "timerange": "20200301-20260820",
-        "why": "process exit -9 or unparsed output"
+        "status": "FOUND",
+        "timerange": "20200101-20220101",
+        "why": "bias: entries 10, exits 10 of 13 signals; indicators enter_long"
       },
       "mode": "spot",
       "recursive": {
