@@ -1,0 +1,64 @@
+{
+  "arm": "E3_exploratory_trailing_disabled",
+  "results": {
+    "BigTrader": {
+      "admission_effect": "none_exploratory_E3",
+      "canonical": {
+        "metrics": {
+          "cagr": 0.09239272709894952,
+          "max_drawdown_account": 0.0,
+          "profit_total": 0.7719982963600001,
+          "profit_total_abs": 771.99829636,
+          "sharpe": 3.3885425438257424,
+          "sortino": -100.0,
+          "total_trades": 154,
+          "winrate": 1.0
+        },
+        "trades": 154,
+        "trades_sha256": "sha256_1eab1aee8a84c62a4a6576006e6a56d6fe654390e6eb794322cd4b331f6d1a85"
+      },
+      "canonical_comparable": true,
+      "declared_trailing": {
+        "trailing_only_offset_is_reached": true,
+        "trailing_stop": true,
+        "trailing_stop_positive": 0.005,
+        "trailing_stop_positive_offset": 0.029
+      },
+      "implementation_id": "BigTrader:7b6f6aae6208",
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "strategy_id": "BigTrader",
+      "trailing_disabled": {
+        "archive": "user_data/profile_smoke/BigTrader-2026-08-31_13-06-16.zip",
+        "archive_sha256": "sha256_4bfc55870b9b3f202d9e6a020bba846d3f95923c1907127c39aa2524b3f5e448",
+        "class1_rules": [],
+        "config_overrides": {
+          "trailing_stop": false
+        },
+        "elapsed_s": 71.1,
+        "long_trades": 124,
+        "metrics": {
+          "cagr": 0.14446485029388945,
+          "max_drawdown_account": 0.055102329715160096,
+          "profit_total": 1.3954698708199997,
+          "profit_total_abs": 1395.4698708199996,
+          "sharpe": 0.9257642042199031,
+          "sortino": -100.0,
+          "total_trades": 124,
+          "winrate": 0.9919354838709677
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_303f02e1178021372ba06c081ddaf3a4e0f10ba3e7179fd0fd0f8d1764635661",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 124,
+        "trades_sha256": "sha256_9cd8f435430380c43b55a43654b2fc04d273752db06f23248c0508941cbf7cb4"
+      }
+    }
+  },
+  "schema_version": 1,
+  "timerange": "20200301-20260821"
+}
