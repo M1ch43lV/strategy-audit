@@ -212,6 +212,94 @@
       "startup_candle_count": 40,
       "strategy_id": "BinHV45"
     },
+    "BollingerBandStrategy|startup=21": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "archive": "user_data/profile_smoke/BollingerBandStrategy-2026-08-31_06-05-13.zip",
+            "archive_sha256": "sha256_f69bcf17ba3b40fecd285f8e6f5516d9228d68a0e26e7dad637605abcd031096",
+            "class1_rules": [],
+            "config_overrides": {},
+            "elapsed_s": 176.2,
+            "long_trades": 12383,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 12383,
+            "trades_sha256": "sha256_61786b2a8d958b0a532160fcbdecc1527688a9978141a3dfd51e7fccfb82687e"
+          },
+          "outcome": "equivalent",
+          "override": {
+            "archive": "user_data/profile_smoke/BollingerBandStrategy-2026-08-31_06-08-14.zip",
+            "archive_sha256": "sha256_8de3abbf11106610e37b71262f332a160a9a2193c6c02c325de03d007cdd4e55",
+            "class1_rules": [],
+            "config_overrides": {
+              "startup_candle_count": 21
+            },
+            "elapsed_s": 180.6,
+            "long_trades": 12383,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_d7ce69dcaa72fdce22df472bb57eb76f6b8df5cd99afd355a124d9d4e71f1e0c",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 12383,
+            "trades_sha256": "sha256_61786b2a8d958b0a532160fcbdecc1527688a9978141a3dfd51e7fccfb82687e"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_26ae819e8f8dd74a477708a44c9f01cc49b0bd6dba96a8c9d74e169ad2953cfd",
+      "exact_semantic_trade_equivalence": true,
+      "implementation_id": "BollingerBandStrategy:3e8442e9e3ec",
+      "original": {
+        "archive": "user_data/profile_smoke/BollingerBandStrategy-2026-08-31_06-05-13.zip",
+        "archive_sha256": "sha256_f69bcf17ba3b40fecd285f8e6f5516d9228d68a0e26e7dad637605abcd031096",
+        "class1_rules": [],
+        "config_overrides": {},
+        "elapsed_s": 176.2,
+        "long_trades": 12383,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 12383,
+        "trades_sha256": "sha256_61786b2a8d958b0a532160fcbdecc1527688a9978141a3dfd51e7fccfb82687e"
+      },
+      "outcome": "equivalent",
+      "override": {
+        "archive": "user_data/profile_smoke/BollingerBandStrategy-2026-08-31_06-08-14.zip",
+        "archive_sha256": "sha256_8de3abbf11106610e37b71262f332a160a9a2193c6c02c325de03d007cdd4e55",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 21
+        },
+        "elapsed_s": 180.6,
+        "long_trades": 12383,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_d7ce69dcaa72fdce22df472bb57eb76f6b8df5cd99afd355a124d9d4e71f1e0c",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 12383,
+        "trades_sha256": "sha256_61786b2a8d958b0a532160fcbdecc1527688a9978141a3dfd51e7fccfb82687e"
+      },
+      "startup_candle_count": 21,
+      "strategy_id": "BollingerBandStrategy",
+      "terminal_state": "equivalent"
+    },
     "Cluc4|startup=168": {
       "admission_effect": "none_equivalence_only",
       "attempts": [
@@ -644,6 +732,94 @@
       "strategy_id": "JuicyTrend",
       "terminal_state": "not_equivalent"
     },
+    "MabStra|startup=28": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "archive": "user_data/profile_smoke/MabStra-2026-08-31_06-01-52.zip",
+            "archive_sha256": "sha256_7fadb124fbd93d4fbdf1efd2310f6a89c1a90c3496b57ef22ba8a457df5dbb22",
+            "class1_rules": [],
+            "config_overrides": {},
+            "elapsed_s": 29.9,
+            "long_trades": 3689,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 3689,
+            "trades_sha256": "sha256_31fc2eb92ce5df3d7c5e77eb7b4fbca0c48a7390e0bc234bde6449f9fb293bf8"
+          },
+          "outcome": "not_equivalent",
+          "override": {
+            "archive": "user_data/profile_smoke/MabStra-2026-08-31_06-02-22.zip",
+            "archive_sha256": "sha256_94e7136a20730a4e728b83b148ef343533f7c764994f8d3579f9c9f941a8454a",
+            "class1_rules": [],
+            "config_overrides": {
+              "startup_candle_count": 28
+            },
+            "elapsed_s": 30.1,
+            "long_trades": 3697,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_149b7fe9a76982967fc680705a31175a14ec237679dd72f877d08e6f1f79779f",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 3697,
+            "trades_sha256": "sha256_3d8da53bf30a31a981d133dc660d7ccc665c5f95d4976dfe2577c39151c3f77c"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_1168c05a7da543d95f6e13a02c99b2ea2ef9b4db70dcfdcd542c649042d526c4",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "MabStra:63fcdd4567ba",
+      "original": {
+        "archive": "user_data/profile_smoke/MabStra-2026-08-31_06-01-52.zip",
+        "archive_sha256": "sha256_7fadb124fbd93d4fbdf1efd2310f6a89c1a90c3496b57ef22ba8a457df5dbb22",
+        "class1_rules": [],
+        "config_overrides": {},
+        "elapsed_s": 29.9,
+        "long_trades": 3689,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 3689,
+        "trades_sha256": "sha256_31fc2eb92ce5df3d7c5e77eb7b4fbca0c48a7390e0bc234bde6449f9fb293bf8"
+      },
+      "outcome": "not_equivalent",
+      "override": {
+        "archive": "user_data/profile_smoke/MabStra-2026-08-31_06-02-22.zip",
+        "archive_sha256": "sha256_94e7136a20730a4e728b83b148ef343533f7c764994f8d3579f9c9f941a8454a",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 28
+        },
+        "elapsed_s": 30.1,
+        "long_trades": 3697,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_149b7fe9a76982967fc680705a31175a14ec237679dd72f877d08e6f1f79779f",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 3697,
+        "trades_sha256": "sha256_3d8da53bf30a31a981d133dc660d7ccc665c5f95d4976dfe2577c39151c3f77c"
+      },
+      "startup_candle_count": 28,
+      "strategy_id": "MabStra",
+      "terminal_state": "not_equivalent"
+    },
     "Macd|startup=816": {
       "admission_effect": "none_equivalence_only",
       "diagnostic_output_sha256": "sha256_d5289c7e59b33fc6ec9307a59b9c091cc6f57488034f1b9470c1cb657c85a54c",
@@ -1038,6 +1214,94 @@
       },
       "startup_candle_count": 5,
       "strategy_id": "Strategy004",
+      "terminal_state": "equivalent"
+    },
+    "TouchEmaStrategy|startup=60": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "archive": "user_data/profile_smoke/TouchEmaStrategy-2026-08-31_06-10-30.zip",
+            "archive_sha256": "sha256_6d94fa2769b05103430373539114cf89aa170cd4a6997df4707062ef5d465155",
+            "class1_rules": [],
+            "config_overrides": {},
+            "elapsed_s": 132.4,
+            "long_trades": 1207,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 1207,
+            "trades_sha256": "sha256_b57194241293d35f316b24ad5e1ee0dc9bb9508c0ac87f117cb2e565cd1a5c92"
+          },
+          "outcome": "equivalent",
+          "override": {
+            "archive": "user_data/profile_smoke/TouchEmaStrategy-2026-08-31_06-12-39.zip",
+            "archive_sha256": "sha256_25e406f64bcd0e4df94b99d3d9ed246d5c200ac36a54f5f1076f65ab82708619",
+            "class1_rules": [],
+            "config_overrides": {
+              "startup_candle_count": 60
+            },
+            "elapsed_s": 129.2,
+            "long_trades": 1207,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_abdcf3ddf1ad796580b3f5c6164b0ac0037e83acf4fa70ed3022213aa4ceeb13",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 1207,
+            "trades_sha256": "sha256_b57194241293d35f316b24ad5e1ee0dc9bb9508c0ac87f117cb2e565cd1a5c92"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_46a25b9052c2be05b2a39f07bb08be844384c20ff445c0d4b5ebca182fdf9d97",
+      "exact_semantic_trade_equivalence": true,
+      "implementation_id": "TouchEmaStrategy:92446d7b27c0",
+      "original": {
+        "archive": "user_data/profile_smoke/TouchEmaStrategy-2026-08-31_06-10-30.zip",
+        "archive_sha256": "sha256_6d94fa2769b05103430373539114cf89aa170cd4a6997df4707062ef5d465155",
+        "class1_rules": [],
+        "config_overrides": {},
+        "elapsed_s": 132.4,
+        "long_trades": 1207,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 1207,
+        "trades_sha256": "sha256_b57194241293d35f316b24ad5e1ee0dc9bb9508c0ac87f117cb2e565cd1a5c92"
+      },
+      "outcome": "equivalent",
+      "override": {
+        "archive": "user_data/profile_smoke/TouchEmaStrategy-2026-08-31_06-12-39.zip",
+        "archive_sha256": "sha256_25e406f64bcd0e4df94b99d3d9ed246d5c200ac36a54f5f1076f65ab82708619",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 60
+        },
+        "elapsed_s": 129.2,
+        "long_trades": 1207,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_abdcf3ddf1ad796580b3f5c6164b0ac0037e83acf4fa70ed3022213aa4ceeb13",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 1207,
+        "trades_sha256": "sha256_b57194241293d35f316b24ad5e1ee0dc9bb9508c0ac87f117cb2e565cd1a5c92"
+      },
+      "startup_candle_count": 60,
+      "strategy_id": "TouchEmaStrategy",
       "terminal_state": "equivalent"
     }
   },
