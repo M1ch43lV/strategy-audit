@@ -300,6 +300,182 @@
       "strategy_id": "BollingerBandStrategy",
       "terminal_state": "equivalent"
     },
+    "BuyOrDie|startup=20": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "archive": "user_data/profile_smoke/BuyOrDie-2026-08-31_06-21-00.zip",
+            "archive_sha256": "sha256_26ffa24f63a281e69e3ac46539fbb09275380651eaaae3c96a4a2c95e22a61de",
+            "class1_rules": [],
+            "config_overrides": {},
+            "elapsed_s": 219.5,
+            "long_trades": 2512,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 2512,
+            "trades_sha256": "sha256_d8d2efbb324484e24d0ccde077c9b092f34aca65f78638190728bdcdfdb0b4e8"
+          },
+          "outcome": "not_equivalent",
+          "override": {
+            "archive": "user_data/profile_smoke/BuyOrDie-2026-08-31_06-24-41.zip",
+            "archive_sha256": "sha256_0d1c563d532770bf0dfea5efb29f7922860d8de9c71cae46f70c5198267ca5a0",
+            "class1_rules": [],
+            "config_overrides": {
+              "startup_candle_count": 20
+            },
+            "elapsed_s": 221.1,
+            "long_trades": 2513,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_45a22ed57ce5d174ec65476d43b60853414d91dafa39c98bd6d6328869242db0",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 2513,
+            "trades_sha256": "sha256_4decdb51a02703e03133d73ce05a19fe6b7f044604029bd67f3c18a331ad2899"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_1a040ba383fe651d951026a12d361202d2550f7a0a0e12c7765f75b946748cc5",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "BuyOrDie:aa771c3bd658",
+      "original": {
+        "archive": "user_data/profile_smoke/BuyOrDie-2026-08-31_06-21-00.zip",
+        "archive_sha256": "sha256_26ffa24f63a281e69e3ac46539fbb09275380651eaaae3c96a4a2c95e22a61de",
+        "class1_rules": [],
+        "config_overrides": {},
+        "elapsed_s": 219.5,
+        "long_trades": 2512,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 2512,
+        "trades_sha256": "sha256_d8d2efbb324484e24d0ccde077c9b092f34aca65f78638190728bdcdfdb0b4e8"
+      },
+      "outcome": "not_equivalent",
+      "override": {
+        "archive": "user_data/profile_smoke/BuyOrDie-2026-08-31_06-24-41.zip",
+        "archive_sha256": "sha256_0d1c563d532770bf0dfea5efb29f7922860d8de9c71cae46f70c5198267ca5a0",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 20
+        },
+        "elapsed_s": 221.1,
+        "long_trades": 2513,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_45a22ed57ce5d174ec65476d43b60853414d91dafa39c98bd6d6328869242db0",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 2513,
+        "trades_sha256": "sha256_4decdb51a02703e03133d73ce05a19fe6b7f044604029bd67f3c18a331ad2899"
+      },
+      "startup_candle_count": 20,
+      "strategy_id": "BuyOrDie",
+      "terminal_state": "not_equivalent"
+    },
+    "Candle2|startup=6": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "archive": "user_data/profile_smoke/Candle2-2026-08-31_06-14-09.zip",
+            "archive_sha256": "sha256_9d6b008cbf02ae95fab11c1f8a7adf55b92a1dfccde47f60a8b33e1122c6562b",
+            "class1_rules": [],
+            "config_overrides": {},
+            "elapsed_s": 41.7,
+            "long_trades": 6147,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 6147,
+            "trades_sha256": "sha256_f6b07f42cfbd5fb748c895ca4209fa511bf2a3a29065befd0fa92cec2de95e02"
+          },
+          "outcome": "not_equivalent",
+          "override": {
+            "archive": "user_data/profile_smoke/Candle2-2026-08-31_06-14-51.zip",
+            "archive_sha256": "sha256_b0bcff9db99c1e592036688388693445f9b8a56855d52701078b1c177548a0e9",
+            "class1_rules": [],
+            "config_overrides": {
+              "startup_candle_count": 6
+            },
+            "elapsed_s": 42.1,
+            "long_trades": 6155,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_4fe88fee3df46144efd7b0bc6b49846eaf8e62f2fbf80ebb22342f9d4e31eda6",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 6155,
+            "trades_sha256": "sha256_48ac94b2cefed85046fc4d439c3c54ee9e2ebfb47ed43bad68c373dc388e0bb3"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_a02f2bcfd9965a82216b67c0bdd545cdf9b57b7bea1e6dcbd14eb173c237fa82",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "Candle2:34ea4c0954a2",
+      "original": {
+        "archive": "user_data/profile_smoke/Candle2-2026-08-31_06-14-09.zip",
+        "archive_sha256": "sha256_9d6b008cbf02ae95fab11c1f8a7adf55b92a1dfccde47f60a8b33e1122c6562b",
+        "class1_rules": [],
+        "config_overrides": {},
+        "elapsed_s": 41.7,
+        "long_trades": 6147,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 6147,
+        "trades_sha256": "sha256_f6b07f42cfbd5fb748c895ca4209fa511bf2a3a29065befd0fa92cec2de95e02"
+      },
+      "outcome": "not_equivalent",
+      "override": {
+        "archive": "user_data/profile_smoke/Candle2-2026-08-31_06-14-51.zip",
+        "archive_sha256": "sha256_b0bcff9db99c1e592036688388693445f9b8a56855d52701078b1c177548a0e9",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 6
+        },
+        "elapsed_s": 42.1,
+        "long_trades": 6155,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_4fe88fee3df46144efd7b0bc6b49846eaf8e62f2fbf80ebb22342f9d4e31eda6",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 6155,
+        "trades_sha256": "sha256_48ac94b2cefed85046fc4d439c3c54ee9e2ebfb47ed43bad68c373dc388e0bb3"
+      },
+      "startup_candle_count": 6,
+      "strategy_id": "Candle2",
+      "terminal_state": "not_equivalent"
+    },
     "Cluc4|startup=168": {
       "admission_effect": "none_equivalence_only",
       "attempts": [
@@ -1303,6 +1479,94 @@
       "startup_candle_count": 60,
       "strategy_id": "TouchEmaStrategy",
       "terminal_state": "equivalent"
+    },
+    "TwoCandle|startup=80": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "archive": "user_data/profile_smoke/TwoCandle-2026-08-31_06-16-08.zip",
+            "archive_sha256": "sha256_d1d220020923b6f0f14e50bab60d02415bc28c34d28973152c47e5cbdf6eeea3",
+            "class1_rules": [],
+            "config_overrides": {},
+            "elapsed_s": 76.8,
+            "long_trades": 10751,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 10751,
+            "trades_sha256": "sha256_075458a42cefdf6fb54ac07569d99441ea54898d533e3f1a583e3e92be9ac498"
+          },
+          "outcome": "not_equivalent",
+          "override": {
+            "archive": "user_data/profile_smoke/TwoCandle-2026-08-31_06-17-25.zip",
+            "archive_sha256": "sha256_cdc9a7471f3c8cd481bc09693d1d3e5bd4958a5f2d286fa28de060895f949911",
+            "class1_rules": [],
+            "config_overrides": {
+              "startup_candle_count": 80
+            },
+            "elapsed_s": 76.9,
+            "long_trades": 10757,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_5d88d191f6e1b2c6e3e0c2885a62ae9946748cb5108bbf4551092615a8f93352",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 10757,
+            "trades_sha256": "sha256_d5f206b59c92e7b7b6841117606a2229661ae9fdeea5db567f6c2dd5f0546487"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_f6fcc2ac17b828cbc006492d74f5b0162e0bbf45d9e1d3fde2f643949e39a773",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "TwoCandle:461de9e30dbf",
+      "original": {
+        "archive": "user_data/profile_smoke/TwoCandle-2026-08-31_06-16-08.zip",
+        "archive_sha256": "sha256_d1d220020923b6f0f14e50bab60d02415bc28c34d28973152c47e5cbdf6eeea3",
+        "class1_rules": [],
+        "config_overrides": {},
+        "elapsed_s": 76.8,
+        "long_trades": 10751,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 10751,
+        "trades_sha256": "sha256_075458a42cefdf6fb54ac07569d99441ea54898d533e3f1a583e3e92be9ac498"
+      },
+      "outcome": "not_equivalent",
+      "override": {
+        "archive": "user_data/profile_smoke/TwoCandle-2026-08-31_06-17-25.zip",
+        "archive_sha256": "sha256_cdc9a7471f3c8cd481bc09693d1d3e5bd4958a5f2d286fa28de060895f949911",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 80
+        },
+        "elapsed_s": 76.9,
+        "long_trades": 10757,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_5d88d191f6e1b2c6e3e0c2885a62ae9946748cb5108bbf4551092615a8f93352",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 10757,
+        "trades_sha256": "sha256_d5f206b59c92e7b7b6841117606a2229661ae9fdeea5db567f6c2dd5f0546487"
+      },
+      "startup_candle_count": 80,
+      "strategy_id": "TwoCandle",
+      "terminal_state": "not_equivalent"
     }
   },
   "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
