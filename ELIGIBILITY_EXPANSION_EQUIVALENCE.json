@@ -212,6 +212,118 @@
       "startup_candle_count": 40,
       "strategy_id": "BinHV45"
     },
+    "Cluc4|startup=168": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "class1_rules": [],
+            "debug_log": "user_data/profile_smoke_logs/Cluc4.log",
+            "elapsed_s": 173.3,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "status": "failed",
+            "timerange": "20200301-20260821",
+            "why": "process exit -9 without a readable backtest archive"
+          },
+          "outcome": "resource_inconclusive",
+          "override": {
+            "class1_rules": [],
+            "debug_log": "user_data/profile_smoke_logs/Cluc4.log",
+            "elapsed_s": 185.8,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "status": "failed",
+            "timerange": "20200301-20260821",
+            "why": "process exit -9 without a readable backtest archive"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_2547c0fac79713cc00cd5a53e6f1f754bdc27209850fe2c9d32ffc2056de8030",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "Cluc4:b1c9929b686d",
+      "original": {
+        "class1_rules": [],
+        "debug_log": "user_data/profile_smoke_logs/Cluc4.log",
+        "elapsed_s": 173.3,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "status": "failed",
+        "timerange": "20200301-20260821",
+        "why": "process exit -9 without a readable backtest archive"
+      },
+      "outcome": "resource_inconclusive",
+      "override": {
+        "class1_rules": [],
+        "debug_log": "user_data/profile_smoke_logs/Cluc4.log",
+        "elapsed_s": 185.8,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "status": "failed",
+        "timerange": "20200301-20260821",
+        "why": "process exit -9 without a readable backtest archive"
+      },
+      "startup_candle_count": 168,
+      "strategy_id": "Cluc4",
+      "terminal_state": "recovery_available"
+    },
+    "CombinedBinHAndClucHyperV0|startup=91": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "class1_rules": [],
+            "debug_log": "user_data/profile_smoke_logs/CombinedBinHAndClucHyperV0.log",
+            "elapsed_s": 185.2,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "status": "failed",
+            "timerange": "20200301-20260821",
+            "why": "process exit -9 without a readable backtest archive"
+          },
+          "outcome": "resource_inconclusive",
+          "override": {
+            "class1_rules": [],
+            "debug_log": "user_data/profile_smoke_logs/CombinedBinHAndClucHyperV0.log",
+            "elapsed_s": 190.4,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "status": "failed",
+            "timerange": "20200301-20260821",
+            "why": "process exit -9 without a readable backtest archive"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_1397611965d620abe6fcaa89aeea3c3e3c2b6e1afc17672f9618efdaa2d4894d",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "CombinedBinHAndClucHyperV0:1f9bfbc3e5ea",
+      "original": {
+        "class1_rules": [],
+        "debug_log": "user_data/profile_smoke_logs/CombinedBinHAndClucHyperV0.log",
+        "elapsed_s": 185.2,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "status": "failed",
+        "timerange": "20200301-20260821",
+        "why": "process exit -9 without a readable backtest archive"
+      },
+      "outcome": "resource_inconclusive",
+      "override": {
+        "class1_rules": [],
+        "debug_log": "user_data/profile_smoke_logs/CombinedBinHAndClucHyperV0.log",
+        "elapsed_s": 190.4,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "status": "failed",
+        "timerange": "20200301-20260821",
+        "why": "process exit -9 without a readable backtest archive"
+      },
+      "startup_candle_count": 91,
+      "strategy_id": "CombinedBinHAndClucHyperV0",
+      "terminal_state": "recovery_available"
+    },
     "Diamond|startup=11": {
       "admission_effect": "none_equivalence_only",
       "diagnostic_output_sha256": "sha256_4e5781b8464f057d52349f5934410b19fcf16a01b1046b4477c1177fc2e6e1c7",
@@ -387,6 +499,94 @@
       },
       "startup_candle_count": 1,
       "strategy_id": "HourBasedStrategy_5m"
+    },
+    "JuicyTrend|startup=200": {
+      "admission_effect": "none_equivalence_only",
+      "attempts": [
+        {
+          "original": {
+            "archive": "user_data/profile_smoke/JuicyTrend-2026-08-31_05-28-03.zip",
+            "archive_sha256": "sha256_eeee6d14b4b29808dcceb14d7531b6f5d645728bbf23ab5315be629d901b1f16",
+            "class1_rules": [],
+            "config_overrides": {},
+            "elapsed_s": 90.1,
+            "long_trades": 13698,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 13698,
+            "trades_sha256": "sha256_78a744fc69dd2358f71dd061abd857b0a945cd4ebc7b2dc624a7679cc1aa4d16"
+          },
+          "outcome": "not_equivalent",
+          "override": {
+            "archive": "user_data/profile_smoke/JuicyTrend-2026-08-31_05-29-29.zip",
+            "archive_sha256": "sha256_cd6bdf81d4674d1fe67955a7e77362fc0902adacee5d929288dcbfdb0db79322",
+            "class1_rules": [],
+            "config_overrides": {
+              "startup_candle_count": 200
+            },
+            "elapsed_s": 86.0,
+            "long_trades": 13607,
+            "mode": "spot",
+            "run_profile": "spot_long",
+            "runtime_config_sha256": "sha256_2822415027850d122cc025c72cb776e4374c226d69e98ada63b9ae7babc96fba",
+            "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+            "short_trades": 0,
+            "status": "measured",
+            "timerange": "20200301-20260821",
+            "trades": 13607,
+            "trades_sha256": "sha256_03aac8212036d87a9be1771857e83e6114f9a9f5d7c27b11d96ee4fd044c4a19"
+          },
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b"
+        }
+      ],
+      "diagnostic_output_sha256": "sha256_04cf93656723086750f837f9e02c9165807c0694ac9fb56a000c9a32b8667581",
+      "exact_semantic_trade_equivalence": false,
+      "implementation_id": "JuicyTrend:cd665b8c4972",
+      "original": {
+        "archive": "user_data/profile_smoke/JuicyTrend-2026-08-31_05-28-03.zip",
+        "archive_sha256": "sha256_eeee6d14b4b29808dcceb14d7531b6f5d645728bbf23ab5315be629d901b1f16",
+        "class1_rules": [],
+        "config_overrides": {},
+        "elapsed_s": 90.1,
+        "long_trades": 13698,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 13698,
+        "trades_sha256": "sha256_78a744fc69dd2358f71dd061abd857b0a945cd4ebc7b2dc624a7679cc1aa4d16"
+      },
+      "outcome": "not_equivalent",
+      "override": {
+        "archive": "user_data/profile_smoke/JuicyTrend-2026-08-31_05-29-29.zip",
+        "archive_sha256": "sha256_cd6bdf81d4674d1fe67955a7e77362fc0902adacee5d929288dcbfdb0db79322",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 200
+        },
+        "elapsed_s": 86.0,
+        "long_trades": 13607,
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_2822415027850d122cc025c72cb776e4374c226d69e98ada63b9ae7babc96fba",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "short_trades": 0,
+        "status": "measured",
+        "timerange": "20200301-20260821",
+        "trades": 13607,
+        "trades_sha256": "sha256_03aac8212036d87a9be1771857e83e6114f9a9f5d7c27b11d96ee4fd044c4a19"
+      },
+      "startup_candle_count": 200,
+      "strategy_id": "JuicyTrend",
+      "terminal_state": "not_equivalent"
     },
     "Macd|startup=816": {
       "admission_effect": "none_equivalence_only",
