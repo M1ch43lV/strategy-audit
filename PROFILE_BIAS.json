@@ -4318,15 +4318,17 @@
       "class1_rules": [],
       "lookahead": {
         "attempted_timeranges": [
-          "20200301-20200401"
+          "20200301-20200401",
+          "20200101-20220101",
+          "20200301-20260820"
         ],
         "debug_log": "user_data/profile_bias_logs/haGradient-lookahead.log",
-        "elapsed_s": 70.6,
-        "output_sha256": "sha256_33c27eafd7c024b4035fcb74a0b739d0241d18f8bee22c8f866452433d0c3187",
+        "elapsed_s": 2772.5,
+        "output_sha256": "sha256_a3c2fe75f5456142db2781ac0314bd4849924820b282baa3ba9f900980b518de",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "NA",
-        "timerange": "20200301-20200401",
-        "why": "Insufficient data points for FFT: 102. Need at least 120 data points."
+        "timerange": "20200301-20260820",
+        "why": "Insufficient data points for FFT: 101. Need at least 120 data points."
       },
       "mode": "futures",
       "recursive": {
@@ -4334,8 +4336,8 @@
           "20200301-20200401"
         ],
         "debug_log": "user_data/profile_bias_logs/haGradient-recursive.log",
-        "elapsed_s": 27.0,
-        "output_sha256": "sha256_071b49c09e960611f93d0efcf8f6168a03e1a38bc266665f932a2b935372d0b4",
+        "elapsed_s": 24.0,
+        "output_sha256": "sha256_bde7fef0f963b496e524ec6061d306eac8274969151e73d1178710f52fc73bab",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "NA",
         "timerange": "20200301-20200401",
@@ -4415,15 +4417,16 @@
       ],
       "lookahead": {
         "attempted_timeranges": [
-          "20190101-20190401"
+          "20190101-20190401",
+          "20200101-20220101"
         ],
         "debug_log": "user_data/profile_bias_logs/kalthetank-lookahead.log",
-        "elapsed_s": 52.1,
-        "output_sha256": "sha256_751a61182ddf705a75a91f32a5a452edaf8de972c2ce71643614ab37d122812b",
+        "elapsed_s": 424.9,
+        "output_sha256": "sha256_f7f2c968e1aab9cac2eeb4856c040eef86be1cee7a045d55cf2dfb6897d2ee3d",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "NA",
-        "timerange": "20190101-20190401",
-        "why": "Insufficient data points for FFT: 93. Need at least 282 data points."
+        "status": "FOUND",
+        "timerange": "20200101-20220101",
+        "why": "bias: entries 13, exits 10 of 20 signals; indicators dc_EWM, dc_1/2, dc_1/3, dc_1/4, cycle_move, h0_move, h1_move, h2_move, cycle_move_mean,"
       },
       "mode": "spot",
       "recursive": {
@@ -4431,8 +4434,8 @@
           "20190101-20190401"
         ],
         "debug_log": "user_data/profile_bias_logs/kalthetank-recursive.log",
-        "elapsed_s": 32.4,
-        "output_sha256": "sha256_3164b22e060b659985831eacd40024671ab75b5d2e0077c1d7c75f8b6a3a4de0",
+        "elapsed_s": 23.2,
+        "output_sha256": "sha256_eb6eda233905ca6f3c460e23a398aeeb929a70292d14b6ec31fe6d168663355d",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "NA",
         "timerange": "20190101-20190401",
