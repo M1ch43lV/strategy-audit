@@ -297,7 +297,12 @@ def main(argv=None):
     wanted = set(filter(None, args.diagnostics.split(",")))
     if not wanted <= {"lookahead", "recursive"}:
         raise SystemExit("diagnostics must be lookahead and/or recursive")
-    if args.force and args.only:
+    if args.only:
+        # An explicit row name selects from the whole profile manifest. Reaching
+        # a row must not require --force, which additionally overwrites a stored
+        # PASS/FOUND verdict; selecting a row and re-deciding one are different
+        # acts. Expansion-wave rows are ineligible in the frozen E0 table by
+        # construction, so the pending-diagnostics filter can never reach them.
         rows = _csv(args.profiles)
     else:
         rows = candidates(args.profiles, args.eligibility)
