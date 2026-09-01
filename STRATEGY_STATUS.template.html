@@ -190,6 +190,20 @@
   .v-repair_attempted{background:var(--cand-soft); color:var(--cand)}
   .v-repair_withdrawn{background:var(--fail-soft); color:var(--fail)}
 
+  .legend{display:flex; flex-direction:column; gap:26px}
+  .legend h3{font-family:"IBM Plex Sans",system-ui,sans-serif; font-size:12px;
+    font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--faint); margin:0 0 3px}
+  .legend .lead{font-size:13px; color:var(--muted); margin:0 0 11px; max-width:74ch}
+  .legend table{width:100%; border-collapse:collapse}
+  .legend td{border-top:1px solid var(--line); padding:9px 12px 9px 0;
+    vertical-align:top; font-size:13px; color:var(--muted)}
+  .legend tr:first-child td{border-top:none}
+  .legend td.key{width:1%; white-space:nowrap; padding-right:16px}
+  .legend td.n{width:1%; text-align:right; padding-right:18px;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-variant-numeric:tabular-nums; color:var(--ink); font-weight:600}
+
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
@@ -208,6 +222,12 @@
     <div class="distkey" id="distkey"></div>
     <p class="note"><strong>78 strategies are usable today</strong> — the 67 of the frozen baseline plus 11 admitted since. Convergence candidates have a warm-up at which no indicator drifts any more; that is not admission, because the paired full-window run still has to show an identical trade list.</p>
     <p class="note"><strong>Nothing here is untested, and nothing here is cleared by the original sweep.</strong> The audit's first pass ran in an environment that did not establish the preconditions this one requires, so its verdicts are provenance and hints, never evidence. Rows marked <span class="flag">inherited</span> are admitted on a look-ahead verdict from that sweep and are queued for native re-measurement.</p>
+  </section>
+
+  <section>
+    <h2>What the labels mean</h2>
+    <p class="note">Every count here is taken from the same 900 rows the table below renders, so the legend cannot drift away from what it describes.</p>
+    <div class="legend" id="legend"></div>
   </section>
 
   <section>
@@ -455,6 +475,86 @@
     }
     return bound(r.r, r.rs);
   }
+
+  /* The legend is generated from the same rows the table renders. A hand-kept
+     legend is the first thing to go stale, and a stale legend is worse than
+     none: it explains a vocabulary the page has stopped using. */
+  var GROUPS = [
+    {title:"Status", field:"c",
+     lead:"Where a row stands. Only the first two are usable today, and "+
+          "excluded is a verdict \u2014 never issued on somebody else's "+
+          "measurement or on the absence of one.",
+     render:function(k){ var o = COHORT[k]||{label:k,cls:"k-none"};
+       return '<span class="pill '+o.cls+'">'+o.label+'</span>'; },
+     text:{
+       E0_strict67:"The 67 of the frozen baseline. Never regenerated; the difference between it and this table is the expansion.",
+       E1_expanded:"Admitted since the freeze, on gates measured here.",
+       convergence_candidate:"A warm-up exists at which no indicator drifts any more. Not admission: the paired full-window run still has to produce an identical trade list.",
+       exclusion_unconfirmed:"Would have been excluded on an inherited verdict or on no verdict at all. Held here until a measurement of ours settles it either way.",
+       pending:"No hard failure and no verdict yet.",
+       not_tested_in_current_runtime:"No run under this pipeline. The original sweep attempted every row, but in an environment that did not establish this audit's preconditions.",
+       excluded:"Either a disqualifying result measured here, or a strategy that never ran at all."
+     }},
+    {title:"Why an exclusion stands, or does not", field:"xb",
+     lead:"The decisive reason names the gate that stopped a row. It says "+
+          "nothing about whether that gate produced evidence, and that is "+
+          "what decides whether the row is finished with or waiting on us.",
+     render:function(k){ return '<span class="basis b-'+k+'">'+
+       (BASIS_LABEL[k]||k.replace(/_/g," "))+'</span>'; },
+     text:{
+       own_measurement:"A disqualifying result measured here, from this implementation. The only closed case.",
+       inherited:BASIS.inherited,
+       no_finding:BASIS.no_finding,
+       blocked:BASIS.blocked
+     }},
+    {title:"What became of a row that would not start", field:"rv",
+     lead:"For these the question is not whether the strategy is sound "+
+          "\u2014 no gate has ever seen them \u2014 but whether a repair "+
+          "would restore what the author wrote or supply what they did not.",
+     render:function(k){ return '<span class="basis v-'+k+'">'+
+       k.replace(/_/g," ")+'</span>'; },
+     text:REPAIR},
+    {title:"Gates", field:null,
+     lead:"Look-ahead asks whether a strategy reads data it could not have "+
+          "had at the time. Recursion asks whether an indicator's value still "+
+          "depends on how far back the calculation started.",
+     rows:[
+       ['<span class="gate g-PASS">PASS</span>', "No bias found, measured from this implementation."],
+       ['<span class="gate g-FOUND">FOUND</span>', "Bias found. For recursion this counts as confirmed only where the warm-up ladder ran every rung and the drift stayed."],
+       ['<span class="gate g-PASS">PASS <small>@ 14d</small></span>', "No indicator drifts once fourteen days of warm-up are supplied. The earlier exclusion was a measurement question, not a property of the strategy."],
+       ['<span class="gate g-BAND">PASS*</span>', "Inside the widened 1 percent band but not the original 0.01 percent."],
+       ['<span class="gate g-WARM">warm-up</span>', "The analyzer declined the row because the strategy declares no warm-up. It never compared anything: a missing precondition, not detected bias."],
+       ['<span class="gate g-NA">superseded</span>', "Measured here at a supplied warm-up, but under the reader that took the wrong column of the drift table. That run kept no log and cannot be re-read."],
+       ['<span class="gate g-NA">&#8211;</span>', "No verdict bound to this implementation \u2014 either not measured, or the only verdict available comes from the original sweep."]
+     ]}
+  ];
+
+  document.getElementById("legend").innerHTML = GROUPS.map(function(group){
+    var out;
+    if(group.rows){
+      out = group.rows.map(function(pair){
+        return '<tr><td class="key">'+pair[0]+'</td><td class="n"></td><td>'+
+               pair[1]+'</td></tr>';
+      });
+    } else {
+      var tally = {};
+      rows.forEach(function(r){
+        var value = r[group.field];
+        if(value) tally[value] = (tally[value]||0) + 1;
+      });
+      var keys = Object.keys(group.text).filter(function(k){ return tally[k]; });
+      Object.keys(tally).forEach(function(k){
+        if(keys.indexOf(k) < 0) keys.push(k);
+      });
+      out = keys.map(function(k){
+        return '<tr><td class="key">'+group.render(k)+'</td>'+
+               '<td class="n">'+(tally[k]||0)+'</td><td>'+
+               esc(group.text[k]||"")+'</td></tr>';
+      });
+    }
+    return '<div><h3>'+group.title+'</h3><p class="lead">'+group.lead+
+           '</p><table>'+out.join("")+'</table></div>';
+  }).join("");
 
   var body = document.getElementById("body"), empty = document.getElementById("empty");
   function render(){

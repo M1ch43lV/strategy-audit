@@ -5532,6 +5532,54 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "SqueezeMomentumStrategy"
+    },
+    "StarRise": {
+      "canonical_sha256": "sha256_3318e8714e28c07017b62ed8631f6084685eba3fae3bf668c5cd065110f909a8",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "StarRise:3318e8714e28",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101"
+        ],
+        "elapsed_s": 124.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy StarRise --strategy-path user_data/profile_bias_strategies/StarRise --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_9b548f5c4029f2f6c3f72e8fd873e9a4721407a5d6e7afecdc4db51279fc24f5",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "StarRise"
+    },
+    "StarRise_strat": {
+      "canonical_sha256": "sha256_dcb6b2744fc06b6521cdbf11a8d1c046a47041716ffe4ed5e71e824938be91cc",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "StarRise_strat:dcb6b2744fc0",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101"
+        ],
+        "elapsed_s": 117.4,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy StarRise_strat --strategy-path user_data/profile_bias_strategies/StarRise_strat --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_a9c42e868e09a32c390222a5083237aba475946592685904e6f3c2b9da955425",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "StarRise_strat"
     }
   },
   "schema_version": 1,
