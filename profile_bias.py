@@ -365,10 +365,28 @@ def _window_too_small(status, why):
             "Insufficient data points" in why)
 
 
-def run_diagnostic(row, diagnostic, timeout, fallback_timeout):
+def run_diagnostic(row, diagnostic, timeout, fallback_timeout,
+                   config_overrides=None):
+    """Run one bias gate. `config_overrides` writes a per-strategy config.
+
+    The spot gate config is one shared file, which is fine while every runner
+    wants the same content and not fine the moment one of them needs a key of
+    its own - a recovered timeframe, say. An override therefore never touches
+    the shared file: it is copied, amended and written under the strategy's own
+    name, which also keeps two runners out of each other's way.
+    """
     strategy = row["strategy_id"]
     canonical = os.path.join(ROOT, row["canonical_file"].replace("/", os.sep))
     mode, config, env, repair, extra = _runtime(row)
+    if config_overrides:
+        data = json.load(io.open(config, encoding="utf-8"))
+        data.update(config_overrides)
+        os.makedirs(CONFIG_DIR, exist_ok=True)
+        config = os.path.join(CONFIG_DIR, "%s_gate.json"
+                              % profile_smoke._safe(strategy))
+        with io.open(config, "w", encoding="utf-8", newline="\n") as handle:
+            json.dump(data, handle, ensure_ascii=False, indent=2, sort_keys=True)
+            handle.write("\n")
     strategy_path = _isolated_strategy(row, canonical)
     original_directory = os.path.dirname(canonical)
     existing_imports = env.get("PROFILE_STRATEGY_IMPORT_PATH", "")
@@ -407,6 +425,8 @@ def run_diagnostic(row, diagnostic, timeout, fallback_timeout):
                 "output_sha256": "sha256_" + hashlib.sha256(
                     output.encode("utf-8")).hexdigest(),
             }
+            if config_overrides:
+                result["config_overrides"] = dict(config_overrides)
             if diagnostic == "recursive":
                 # The verdict is a threshold decision and throws the numbers
                 # away. Keeping them lets a later reader see how far a row was
