@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 22:50:49 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 23:01:16 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -15,7 +15,7 @@ the state at the freeze, and the difference is the expansion.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 237 of 900 rows
+file's time and is labelled `log_mtime` for that reason. 234 of 900 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
@@ -25,7 +25,7 @@ have neither and are left empty rather than given an invented time.
 | in the manifest | 900 |
 | measured at all | 741 |
 | produced trades | 711 |
-| carrying a run time | 663 |
+| carrying a run time | 666 |
 
 ## Cohort
 
@@ -46,7 +46,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 345 of 2102 commands are recorded so far, and every new run
+recording. 357 of 2102 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -1288,15 +1288,15 @@ Wave `not_scheduled` - 1:
 | `recursive_ladder_pending` | 145 |
 | `lookahead_remeasure_pending` | 141 |
 | `first_measurement_in_current_runtime` | 60 |
-| `needs_a_look` | 59 |
-| `lookahead_verdict` | 42 |
+| `needs_a_look` | 58 |
+| `lookahead_verdict` | 38 |
 | `convergence_inconclusive` | 34 |
 | `convergence_not_converged_within_ladder` | 28 |
-| `refuse_repair` | 15 |
-| `repair_attempted` | 13 |
-| `to_be_fixed` | 8 |
+| `refuse_repair` | 19 |
+| `repair_attempted` | 16 |
 | `full_window_measurement_pending` | 5 |
 | `repair_withdrawn` | 4 |
+| `to_be_fixed` | 2 |
 
 Per-row detail, including every evidence path, is in
 `STRATEGY_STATUS.csv`.

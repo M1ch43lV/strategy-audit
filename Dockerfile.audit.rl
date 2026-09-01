@@ -14,5 +14,13 @@ RUN python -m pip install --user --no-cache-dir \
     && python -c "import torch, gymnasium, stable_baselines3, sb3_contrib; \
 print('torch', torch.__version__, '| sb3', stable_baselines3.__version__)"
 
+# CatBoost is not in freqtrade's own requirements - it is an optional gradient
+# booster freqtrade supports and does not pin - so it is named here and its
+# resolved version printed into the build log, which is the only pin this one
+# gets. Three corpus strategies ask for CatboostClassifier by name; without it
+# freqtrade reports "Impossible to load FreqaiModel", which says nothing about
+# the strategy.
+RUN python -m pip install --user --no-cache-dir catboost     && python -c "import catboost; print('catboost', catboost.__version__)"
+
 LABEL org.opencontainers.image.title="strategy-audit RL runtime" \
-      org.opencontainers.image.description="Pinned Linux runtime plus freqai-rl extras"
+      org.opencontainers.image.description="Pinned Linux runtime plus freqai-rl extras and catboost"

@@ -51,6 +51,12 @@ BLOCKED_TRIAGE = os.path.join(ROOT, "BLOCKED_TRIAGE.json")
 TIMEFRAME_REPAIR = os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json")
 MODULE_REPAIR = os.path.join(ROOT, "ELIGIBILITY_MODULE_REPAIR.json")
 SIGNATURE_REPAIR = os.path.join(ROOT, "ELIGIBILITY_SIGNATURE_REPAIR.json")
+FREQAI_REPAIR = os.path.join(ROOT, "ELIGIBILITY_FREQAI_REPAIR.json")
+# A separate arm with its own runtime and its own configs, completed before
+# this table existed. Its records are per-strategy files rather than one store,
+# and nothing has ever read them here - which is how a strategy that PASSED a
+# FreqAI measurement came to be listed as excluded.
+FREQAI_ARM = os.path.join(ROOT, "repair", "results_freqai")
 LOCAL_MODULES = os.path.join(ROOT, "REPAIR_LOCAL_MODULES.json")
 # A route that has run and found nothing has still run. Leaving such a row on
 # "to be fixed" says the work is ahead of us when it is behind us and failed.
@@ -341,6 +347,36 @@ def exclusion_basis(reason, lookahead_evidence, trade_evidence):
     return "no_finding"
 
 
+def freqai_arm():
+    """What the FreqAI arm measured, keyed by strategy.
+
+    These runs are not comparable with the ordinary spot audit - a different
+    runtime, the authors' own freqai configs, a different question - so they
+    are surfaced as their own evidence and never merged into a cohort. What
+    they can do is stop the table asserting things the arm has disproved.
+    """
+    out = {}
+    if not os.path.isdir(FREQAI_ARM):
+        return out
+    for name in sorted(os.listdir(FREQAI_ARM)):
+        if not name.endswith(".json"):
+            continue
+        try:
+            record = json.load(io.open(os.path.join(FREQAI_ARM, name),
+                                       encoding="utf-8"))
+        except ValueError:
+            continue
+        runs = record.get("runs") or {}
+        sample = runs.get("in_sample") or {}
+        out[record.get("strategy", name[:-5])] = {
+            "level": sample.get("level", ""),
+            "why": (sample.get("why") or "").strip(),
+            "trades": (sample.get("summary") or {}).get("trades", ""),
+            "config": record.get("config", ""),
+        }
+    return out
+
+
 def rows():
     baseline = {r["strategy_id"]: r for r in _csv(ELIGIBILITY)}
     profiles = {r["strategy_id"]: r for r in _csv(PROFILES)}
@@ -353,6 +389,7 @@ def rows():
     convergence = _json(CONVERGENCE)
     wave_b = _json(WAVE_B_WARMUP)
     triage = _json(BLOCKED_TRIAGE)
+    freqai = freqai_arm()
     # Which runner repaired a row is part of what happened to it.
     repair_source = {name: "timeframe_missing"
                      for name in _json(TIMEFRAME_REPAIR)}
@@ -360,9 +397,16 @@ def rows():
         repair_source.setdefault(name, "local_module_off_path")
     for name in _json(SIGNATURE_REPAIR):
         repair_source.setdefault(name, "framework_compat_shim")
+    for name in _json(FREQAI_REPAIR):
+        repair_source.setdefault(name, "freqai_model")
     # A route that has declined a row, with a reason, has decided it. Leaving
     # such a row on "to be fixed" promises work that will never be done.
     refused_timeframe = _json(TIMEFRAME_REPAIR, "refused")
+    # A route that ran and concluded the row cannot be repaired without
+    # inventing something. Recorded where the runners already look.
+    refused_repair = {name: entry.get("note", "")
+                      for name, entry in (_json(CLASS1, "strategies") or {}).items()
+                      if entry.get("status") == "refused"}
     withdrawn = {name for name, entry
                  in (_json(CLASS1, "strategies") or {}).items()
                  if entry.get("status") == "withdrawn"}
@@ -375,6 +419,8 @@ def rows():
     for name, record in _json(MODULE_REPAIR).items():
         repaired.setdefault(name, record)
     for name, record in _json(SIGNATURE_REPAIR).items():
+        repaired.setdefault(name, record)
+    for name, record in _json(FREQAI_REPAIR).items():
         repaired.setdefault(name, record)
     # A native re-measurement outranks whatever PROFILE_BIAS or the baseline
     # holds: it is the same gate, measured later, from this implementation.
@@ -632,6 +678,31 @@ def rows():
             repair["verdict"] = "refuse_repair"
             repair["family"] = "timeframe_not_recoverable"
             repair["note"] = refused_timeframe[strategy].get("why", "")
+        arm = freqai.get(strategy)
+        if arm:
+            # The arm ran. Whatever the ordinary runner says about freqAI not
+            # being enabled describes the ordinary config, not this strategy.
+            repair["family"] = "freqai_arm"
+            if arm["level"] == "PASSED":
+                repair["verdict"] = "repaired"
+                repair["note"] = ("measured by the FreqAI arm under the "
+                                  "author's own config: %s trades. That run is "
+                                  "not comparable with the spot audit and does "
+                                  "not admit the row." % arm["trades"])
+            elif "DI_cutoff" in arm["why"]:
+                repair["verdict"] = "refuse_repair"
+                repair["note"] = ("expects a custom model return freqtrade "
+                                  "2026.7 does not emit (DI_cutoff) and its "
+                                  "repository holds no matching model. "
+                                  "Initialising the placeholder would change "
+                                  "the decision logic, so it is not done.")
+            else:
+                repair["verdict"] = "repair_attempted"
+                repair["note"] = ("the FreqAI arm ran it and it did not "
+                                  "produce a summary: %s" % arm["why"][:120])
+        if strategy in refused_repair:
+            repair["verdict"] = "refuse_repair"
+            repair["note"] = refused_repair[strategy]
         if strategy in withdrawn:
             repair["verdict"] = "repair_withdrawn"
             repair["family"] = "local_module_off_path"

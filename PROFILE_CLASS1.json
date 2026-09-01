@@ -213,11 +213,11 @@
       ],
       "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/config_examples/config_freqai.example.json",
       "freqaimodel": "CatboostClassifier",
-      "note": "Author config and documented model name restored; the benchmark environment lacks a loadable CatboostClassifier model.",
+      "note": "catboost 1.2.10 is now in the RL image, and it is not the obstacle: freqtrade 2026.7 no longer ships a CatboostClassifier wrapper at all (prediction_models holds LightGBM, XGBoost, PyTorch, SKLearn and the RL learners). Writing our own wrapper would measure our model under the author's name, so it is not written.",
       "rules": [
         "restore_author_config"
       ],
-      "status": "partial"
+      "status": "refused"
     },
     "KMM": {
       "note": "Not executed: source embeds an API credential and requires a networked OpenAI client.",
@@ -276,12 +276,12 @@
       "freqtrade_paths": [
         "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"
       ],
-      "note": "Author package, config, and model path restored; the historical custom model does not load with the current dependency stack.",
+      "note": "with the author's package attached, freqtrade.litmus imports and the model still does not: the deprecated model calls get_rfecv_feature_importance from freqtrade.litmus.model_helpers, which the author's own current helper module no longer defines. The repository is internally inconsistent at this revision; supplying the missing function would be our code deciding their features.",
       "rules": [
         "restore_author_package_extension",
         "restore_author_config"
       ],
-      "status": "partial"
+      "status": "refused"
     },
     "LitmusMinMaxBroadClassificationStrategy": {
       "config_keys": [
@@ -424,7 +424,7 @@
       "config_source": "repos/jerome-benoit_freqai-strategies/ReforceXY/user_data/config-template.json",
       "freqaimodel": "ReforceXY",
       "freqaimodel_path": "repos/jerome-benoit_freqai-strategies/ReforceXY/user_data/freqaimodels",
-      "note": "Author config and custom model path restored; the custom ReforceXY model dependencies do not load in the benchmark environment.",
+      "note": "the ReforceXY model imports optunahub, which resolves samplers over the network at run time. Installing it would put a network dependency inside a sealed audit runtime, which is a decision about the runtime rather than a per-row repair, so it is named here and not taken.",
       "rules": [
         "restore_author_config"
       ],

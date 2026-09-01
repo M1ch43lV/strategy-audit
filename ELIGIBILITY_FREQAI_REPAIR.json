@@ -1,0 +1,56 @@
+{
+  "config": "profile_futures_config.json",
+  "results": {
+    "FreqaiExampleHybridStrategy": {
+      "canonical_sha256": "sha256_d73c506d5d962e8f12479496b48f7e48d50dfa528cfc597246554ab3cea64a43",
+      "class1_rules": [
+        "restore_author_config"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/FreqaiExampleHybridStrategy.log",
+      "elapsed_s": 35.4,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/FreqaiExampleHybridStrategy.json --strategy FreqaiExampleHybridStrategy --strategy-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/templates --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FreqaiExampleHybridStrategy --cache none --freqaimodel CatboostClassifier",
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_b57d9dd17e0299ef40b88dc7ccd741380cd01600275c2b02b7ef2dc953904096",
+      "runtime_id": "docker:sha256:b171decafc62817023673b62eefb1ad393601b0b942add2b9ff9f978dc26646e",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "Impossible to load FreqaiModel 'CatboostClassifier'. This class does not exist or contains Python code errors."
+    },
+    "LitmusMetaStrategy": {
+      "canonical_sha256": "sha256_0358c58a4bd8e2ab63ae565dc4581b4312822fc4ce7684c16399c4e1e3dc0e50",
+      "class1_rules": [
+        "restore_author_package_extension",
+        "restore_author_config"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/LitmusMetaStrategy.log",
+      "elapsed_s": 37.8,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/LitmusMetaStrategy.json --strategy LitmusMetaStrategy --strategy-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/LitmusMetaStrategy --cache none --freqaimodel LitmusMultiTargetClassifier --freqaimodel-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_690a290b88c88bd8669a352c63fe257048f65944d56d5e18729bf01f42c47e70",
+      "runtime_id": "docker:sha256:b171decafc62817023673b62eefb1ad393601b0b942add2b9ff9f978dc26646e",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "Impossible to load FreqaiModel 'LitmusMultiTargetClassifier'. This class does not exist or contains Python code errors."
+    },
+    "RLAgentStrategy": {
+      "canonical_sha256": "sha256_174aea157e754c56c5995030a9f8c4db89610551533bba321001c66bec9c8c1c",
+      "class1_rules": [
+        "restore_author_config"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/RLAgentStrategy.log",
+      "elapsed_s": 38.2,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/RLAgentStrategy.json --strategy RLAgentStrategy --strategy-path repos/jerome-benoit_freqai-strategies/ReforceXY/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/RLAgentStrategy --cache none --freqaimodel ReforceXY --freqaimodel-path repos/jerome-benoit_freqai-strategies/ReforceXY/user_data/freqaimodels",
+      "mode": "futures",
+      "run_profile": "futures_long",
+      "runtime_config_sha256": "sha256_cb0ca32b452b2f98b47026c4a4396c812f6129811d0673752d86505b5f981229",
+      "runtime_id": "docker:sha256:b171decafc62817023673b62eefb1ad393601b0b942add2b9ff9f978dc26646e",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "Impossible to load FreqaiModel 'ReforceXY'. This class does not exist or contains Python code errors."
+    }
+  },
+  "schema_version": 1,
+  "timerange": "20200301-20200401"
+}
