@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 16:33:47 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 17:20:13 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -45,8 +45,16 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 0 of 900 rows are recorded so far, and every new run adds
-one.
+recording. 0 of 2102 commands are recorded so far, and every new run
+adds one.
+
+There is one column per gate, not one per row. A row can carry three
+calls and they differ in more than their subcommand, so a single
+column could only ever show one of them and drop the rest silently.
+The full-window backtest is eight calls, one per pair; the table
+leaves the pair as a placeholder and states the count, while every
+individual call with its own console output is in
+`user_data/freqtrade_runs.log`.
 
 The gates differ in more than their subcommand, which is the reason
 this is worth publishing at all. A backtest runs with
@@ -144,199 +152,407 @@ coverage, no published trap.
 | `ObeliskIM_v1_1` | `spot_long` | `E1_expanded` | 64 | `native` | 2026-08-31 15:20:09 | [archive](user_data/profile_smoke/ObeliskIM_v1_1-2026-08-31_15-20-09.zip) |
 | `simple_patterns` | `spot_long` | `E1_expanded` | 1845 | `native` | 2026-08-31 15:55:52 | [archive](user_data/profile_smoke/simple_patterns-2026-08-31_15-55-52.zip) |
 
-The call for each, `recorded` unless marked otherwise:
+The calls behind each, one per gate:
 
-- `BigTrader` *(reconstructed)*
+- `BBRSIv2`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BigTrader --strategy-path repos/TheoBrigitte_freqtrade/strategies/profiters --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BBRSIv2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/BBRSIv2 --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BBRSIv2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/BBRSIv2 --timerange 20190101-20190401 --no-color
   ```
-- `BigZ04_TSL3` *(reconstructed)*
+- `BigTrader`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ04_TSL3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BigTrader --strategy-path repos/TheoBrigitte_freqtrade/strategies/profiters --timerange 20200301-20260820 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BigTrader --strategy-path repos/TheoBrigitte_freqtrade/strategies/profiters --timerange 20190101-20190401 --no-color
   ```
-- `BuyRegions` *(reconstructed)*
+- `BigZ03`
   ```
-  freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BuyRegions --strategy-path repos/nateemma_strategies/TSPredict --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ03 --strategy-path repos/davidzr_freqtrade-strategies/strategies/BigZ03 --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ03 --strategy-path repos/davidzr_freqtrade-strategies/strategies/BigZ03 --timerange 20190101-20190401 --no-color
   ```
-- `Cluc7werk` *(reconstructed)*
+- `BigZ03HO`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Cluc7werk --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ03HO --strategy-path repos/davidzr_freqtrade-strategies/strategies/BigZ03HO --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ03HO --strategy-path repos/davidzr_freqtrade-strategies/strategies/BigZ03HO --timerange 20190101-20190401 --no-color
   ```
-- `ClucHAnix_5m` *(reconstructed)*
+- `BigZ04_TSL3`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5m --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ04_TSL3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ04_TSL3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `ClucHAnix_5m1` *(reconstructed)*
+- `BigZ04_TSL4`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5m1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ04_TSL4 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ04_TSL4 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20190101-20190401 --no-color
   ```
-- `ClucHAwerk` *(reconstructed)*
+- `BinClucMad`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAwerk --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinClucMad --strategy-path repos/davidzr_freqtrade-strategies/strategies/BinClucMad --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinClucMad --strategy-path repos/davidzr_freqtrade-strategies/strategies/BinClucMad --timerange 20190101-20190401 --no-color
   ```
-- `CombinedBinHAndClucV6` *(reconstructed)*
+- `BuyRegions`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BuyRegions --strategy-path repos/nateemma_strategies/TSPredict --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BuyRegions --strategy-path repos/nateemma_strategies/TSPredict --timerange 20190101-20190401 --no-color
   ```
-- `CombinedBinHAndClucV7` *(reconstructed)*
+- `Cluc7werk`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV7 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Cluc7werk --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Cluc7werk --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `CombinedBinHClucAndMADV3` *(reconstructed)*
+- `ClucHAnix_5M_E0V1E`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5M_E0V1E --strategy-path repos/phuchust_freqtrade_strategy --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5M_E0V1E --strategy-path repos/phuchust_freqtrade_strategy --timerange 20190101-20190401 --no-color
   ```
-- `CombinedBinHClucAndMADV6` *(reconstructed)*
+- `ClucHAnix_5m`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5m --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5m --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `CombinedBinHClucAndMADV9` *(reconstructed)*
+- `ClucHAnix_5m1`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV9 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5m1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5m1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `ElliotV2` *(reconstructed)*
+- `ClucHAnix_5m_old`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ElliotV2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/ElliotV2 --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5m_old --strategy-path repos/TheoBrigitte_freqtrade/strategies/cluc --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5m_old --strategy-path repos/TheoBrigitte_freqtrade/strategies/cluc --timerange 20190101-20190401 --no-color
   ```
-- `ElliotV5_SMA` *(reconstructed)*
+- `ClucHAwerk`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ElliotV5_SMA --strategy-path repos/TheoBrigitte_freqtrade/strategies/ElliotV5_SMA --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAwerk --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAwerk --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `FAdxSmaStrategy` *(reconstructed)*
+- `CombinedBinHAndClucV3`
   ```
-  freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy FAdxSmaStrategy --strategy-path repos/freqtrade_freqtrade-strategies/user_data/strategies/futures --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FAdxSmaStrategy --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/CombinedBinHAndClucV3 --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/CombinedBinHAndClucV3 --timerange 20190101-20190401 --no-color
   ```
-- `FSupertrendStrategy` *(reconstructed)*
+- `CombinedBinHAndClucV6`
   ```
-  freqtrade backtesting --config user_data/profile_configs/futures_futures_long.json --strategy FSupertrendStrategy --strategy-path repos/freqtrade_freqtrade-strategies/user_data/strategies/futures --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FSupertrendStrategy --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `FastSupertrend_ts_origstop_fix` *(reconstructed)*
+- `CombinedBinHAndClucV7`
   ```
-  freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy FastSupertrend_ts_origstop_fix --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FastSupertrend_ts_origstop_fix --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV7 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV7 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `Gumbo1` *(reconstructed)*
+- `CombinedBinHClucAndMADV3`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Gumbo1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `Ichimoku_v31` *(reconstructed)*
+- `CombinedBinHClucAndMADV5`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v31 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV5 --strategy-path repos/davidzr_freqtrade-strategies/strategies/CombinedBinHClucAndMADV5 --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV5 --strategy-path repos/davidzr_freqtrade-strategies/strategies/CombinedBinHClucAndMADV5 --timerange 20190101-20190401 --no-color
   ```
-- `Ichimoku_v37` *(reconstructed)*
+- `CombinedBinHClucAndMADV6`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v37 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `KAMACCIRSI` *(reconstructed)*
+- `CombinedBinHClucAndMADV9`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy KAMACCIRSI --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV9 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV9 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `MACD_TRIPLE_MA` *(reconstructed)*
+- `EMA_CROSSOVER_STRATEGY`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MACD_TRIPLE_MA --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy EMA_CROSSOVER_STRATEGY --strategy-path repos/davidzr_freqtrade-strategies/strategies/EMA_CROSSOVER_STRATEGY --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy EMA_CROSSOVER_STRATEGY --strategy-path repos/davidzr_freqtrade-strategies/strategies/EMA_CROSSOVER_STRATEGY --timerange 20190101-20190401 --no-color
   ```
-- `MADisplaceV3` *(reconstructed)*
+- `ElliotV2`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MADisplaceV3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ElliotV2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/ElliotV2 --timerange 20200301-20260820 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ElliotV2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/ElliotV2 --timerange 20190101-20190401 --no-color
   ```
-- `MacdStrategy` *(reconstructed)*
+- `ElliotV5_SMA`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MacdStrategy --strategy-path repos/DutchCryptoDad_FreqtradeBotStrategyDevelopmentForBeginners --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ElliotV5_SMA --strategy-path repos/TheoBrigitte_freqtrade/strategies/ElliotV5_SMA --timerange 20200101-20220101 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ElliotV5_SMA --strategy-path repos/TheoBrigitte_freqtrade/strategies/ElliotV5_SMA --timerange 20190101-20190401 --no-color
   ```
-- `MarketChyperHyperStrategy` *(reconstructed)*
+- `FAdxSmaStrategy`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MarketChyperHyperStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  backtest   [reconstructed] freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy FAdxSmaStrategy --strategy-path repos/freqtrade_freqtrade-strategies/user_data/strategies/futures --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FAdxSmaStrategy --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy FAdxSmaStrategy --strategy-path repos/freqtrade_freqtrade-strategies/user_data/strategies/futures --timerange 20200301-20200401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy FAdxSmaStrategy --strategy-path repos/freqtrade_freqtrade-strategies/user_data/strategies/futures --timerange 20200301-20200401 --no-color
   ```
-- `NostalgiaForInfinityV1` *(reconstructed)*
+- `FSupertrendStrategy`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NostalgiaForInfinityV1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  backtest   [reconstructed] freqtrade backtesting --config user_data/profile_configs/futures_futures_long.json --strategy FSupertrendStrategy --strategy-path repos/freqtrade_freqtrade-strategies/user_data/strategies/futures --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FSupertrendStrategy --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/futures_futures_long.json --strategy FSupertrendStrategy --strategy-path repos/freqtrade_freqtrade-strategies/user_data/strategies/futures --timerange 20200301-20200401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/futures_futures_long.json --strategy FSupertrendStrategy --strategy-path repos/freqtrade_freqtrade-strategies/user_data/strategies/futures --timerange 20200301-20200401 --no-color
   ```
-- `NostalgiaForInfinityV2` *(reconstructed)*
+- `FastSupertrend_ts_origstop_fix`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NostalgiaForInfinityV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  backtest   [reconstructed] freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy FastSupertrend_ts_origstop_fix --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FastSupertrend_ts_origstop_fix --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy FastSupertrend_ts_origstop_fix --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy FastSupertrend_ts_origstop_fix --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --no-color
   ```
-- `RegimeFilterStrategy` *(reconstructed)*
+- `FlawlessVictory`
   ```
-  freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy RegimeFilterStrategy --strategy-path repos/Bananajoexxc_RegimeFilterStrategy-Freqtrade/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/RegimeFilterStrategy --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy FlawlessVictory --strategy-path repos/seannowotny_FlawlessVictoryPort/user_data/strategies --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy FlawlessVictory --strategy-path repos/seannowotny_FlawlessVictoryPort/user_data/strategies --timerange 20190101-20190401 --no-color
   ```
-- `SMAIP3` *(reconstructed)*
+- `ForexSignal`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAIP3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/SMAIP3 --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ForexSignal --strategy-path repos/davidzr_freqtrade-strategies/strategies/ForexSignal --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ForexSignal --strategy-path repos/davidzr_freqtrade-strategies/strategies/ForexSignal --timerange 20190101-20190401 --no-color
   ```
-- `SMAOG` *(reconstructed)*
+- `Gumbo1`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOG --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Gumbo1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Gumbo1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `SMAOffsetV2` *(reconstructed)*
+- `Ichimoku_v31`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOffsetV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v31 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v31 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `SampleStrategyV2` *(reconstructed)*
+- `Ichimoku_v37`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SampleStrategyV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v37 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20260820 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v37 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `Slowbro` *(reconstructed)*
+- `KAMACCIRSI`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Slowbro --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy KAMACCIRSI --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy KAMACCIRSI --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `StochRSITEMA` *(reconstructed)*
+- `MACD_TRIPLE_MA`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy StochRSITEMA --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MACD_TRIPLE_MA --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MACD_TRIPLE_MA --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `TDSequentialStrategy` *(reconstructed)*
+- `MADisplaceV3`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TDSequentialStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MADisplaceV3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MADisplaceV3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `TheRealPullbackV2` *(reconstructed)*
+- `MacdStrategy`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TheRealPullbackV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MacdStrategy --strategy-path repos/DutchCryptoDad_FreqtradeBotStrategyDevelopmentForBeginners --timerange 20200301-20260820 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MacdStrategy --strategy-path repos/DutchCryptoDad_FreqtradeBotStrategyDevelopmentForBeginners --timerange 20190101-20190401 --no-color
   ```
-- `TrixStrategy` *(reconstructed)*
+- `MarketChyperHyperStrategy`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TrixStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MarketChyperHyperStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MarketChyperHyperStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `TrixV15Strategy` *(reconstructed)*
+- `NWEv6_new`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TrixV15Strategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NWEv6_new --strategy-path repos/anakein_beastbotXB/working --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NWEv6_new --strategy-path repos/anakein_beastbotXB/working --timerange 20190101-20190401 --no-color
   ```
-- `UltimateMomentumIndicator` *(reconstructed)*
+- `NostalgiaForInfinityV1`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy UltimateMomentumIndicator --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NostalgiaForInfinityV1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NostalgiaForInfinityV1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `XtraThicc` *(reconstructed)*
+- `NostalgiaForInfinityV2`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy XtraThicc --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NostalgiaForInfinityV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NostalgiaForInfinityV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `adaptive_trend` *(reconstructed)*
+- `PowerTower`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy adaptive_trend --strategy-path repos/mlsys-io_PortfolioBench/strategy/adaptive_trend --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy PowerTower --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy PowerTower --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20190101-20190401 --no-color
   ```
-- `bestV2` *(reconstructed)*
+- `RegimeFilterStrategy`
   ```
-  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy bestV2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/bestV2 --timerange 20190101-20190401 --no-color
+  backtest   [reconstructed] freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy RegimeFilterStrategy --strategy-path repos/Bananajoexxc_RegimeFilterStrategy-Freqtrade/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/RegimeFilterStrategy --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy RegimeFilterStrategy --strategy-path repos/Bananajoexxc_RegimeFilterStrategy-Freqtrade/strategies --timerange 20200301-20200401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy RegimeFilterStrategy --strategy-path repos/Bananajoexxc_RegimeFilterStrategy-Freqtrade/strategies --timerange 20200301-20200401 --no-color
   ```
-- `momentum` *(reconstructed)*
+- `RobotradingBody`
   ```
-  freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy momentum --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/momentum --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy RobotradingBody --strategy-path repos/davidzr_freqtrade-strategies/strategies/RobotradingBody --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy RobotradingBody --strategy-path repos/davidzr_freqtrade-strategies/strategies/RobotradingBody --timerange 20190101-20190401 --no-color
   ```
-- `momentum_rsi` *(reconstructed)*
+- `SMAIP3`
   ```
-  freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy momentum_rsi --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/momentum_rsi --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAIP3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/SMAIP3 --timerange 20200301-20260820 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAIP3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/SMAIP3 --timerange 20190101-20190401 --no-color
   ```
-- `momentum_wick` *(reconstructed)*
+- `SMAOG`
   ```
-  freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy momentum_wick --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/momentum_wick --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOG --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200301-20260820 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOG --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20190101-20190401 --no-color
   ```
-- `NowoIchimoku5mV2` *(reconstructed)*
+- `SMAOffsetV2`
   ```
-  freqtrade backtesting --config user_data/config.json --strategy NowoIchimoku5mV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NowoIchimoku5mV2 --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOffsetV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOffsetV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `ObeliskIM_v1_1` *(reconstructed)*
+- `SampleStrategyV2`
   ```
-  freqtrade backtesting --config user_data/config.json --strategy ObeliskIM_v1_1 --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ObeliskIM_v1_1 --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SampleStrategyV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SampleStrategyV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
   ```
-- `simple_patterns` *(reconstructed)*
+- `Slowbro`
   ```
-  freqtrade backtesting --config user_data/config.json --strategy simple_patterns --strategy-path repos/TheoBrigitte_freqtrade/strategies/yodo --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/simple_patterns --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Slowbro --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20260820 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Slowbro --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `StochRSITEMA`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy StochRSITEMA --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy StochRSITEMA --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `StochasticCciStrategy`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy StochasticCciStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy StochasticCciStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20190101-20190401 --no-color
+  ```
+- `TDSequentialStrategy`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TDSequentialStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TDSequentialStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `TenderEnter`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TenderEnter --strategy-path repos/davidzr_freqtrade-strategies/strategies/TenderEnter --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TenderEnter --strategy-path repos/davidzr_freqtrade-strategies/strategies/TenderEnter --timerange 20190101-20190401 --no-color
+  ```
+- `TheRealPullbackV2`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TheRealPullbackV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TheRealPullbackV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `TrixStrategy`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TrixStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TrixStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `TrixV15Strategy`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TrixV15Strategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TrixV15Strategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `UltimateMomentumIndicator`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy UltimateMomentumIndicator --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy UltimateMomentumIndicator --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `XtraThicc`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy XtraThicc --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy XtraThicc --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `adaptive_trend`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy adaptive_trend --strategy-path repos/mlsys-io_PortfolioBench/strategy/adaptive_trend --timerange 20200301-20260820 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy adaptive_trend --strategy-path repos/mlsys-io_PortfolioBench/strategy/adaptive_trend --timerange 20190101-20190401 --no-color
+  ```
+- `bestV2`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy bestV2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/bestV2 --timerange 20200301-20260820 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy bestV2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/bestV2 --timerange 20190101-20190401 --no-color
+  ```
+- `botbaby`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy botbaby --strategy-path repos/davidzr_freqtrade-strategies/strategies/botbaby --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy botbaby --strategy-path repos/davidzr_freqtrade-strategies/strategies/botbaby --timerange 20190101-20190401 --no-color
+  ```
+- `cryptotank`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy cryptotank --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy cryptotank --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20190101-20190401 --no-color
+  ```
+- `cryptotankV5`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy cryptotankV5 --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy cryptotankV5 --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20190101-20190401 --no-color
+  ```
+- `fahmibah`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy fahmibah --strategy-path repos/davidzr_freqtrade-strategies/strategies/fahmibah --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy fahmibah --strategy-path repos/davidzr_freqtrade-strategies/strategies/fahmibah --timerange 20190101-20190401 --no-color
+  ```
+- `momentum`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy momentum --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/momentum --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy momentum --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20200301-20200401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy momentum --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20200301-20200401 --no-color
+  ```
+- `momentum_long`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy momentum_long --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy momentum_long --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20190101-20190401 --no-color
+  ```
+- `momentum_rsi`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy momentum_rsi --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/momentum_rsi --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy momentum_rsi --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20200301-20200401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy momentum_rsi --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20200301-20200401 --no-color
+  ```
+- `momentum_wick`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy momentum_wick --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/momentum_wick --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy momentum_wick --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20200301-20200401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy momentum_wick --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20200301-20200401 --no-color
+  ```
+- `AlwaysBuy`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy AlwaysBuy --strategy-path repos/davidzr_freqtrade-strategies/strategies/AlwaysBuy --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy AlwaysBuy --strategy-path repos/davidzr_freqtrade-strategies/strategies/AlwaysBuy --timerange 20190101-20190401 --no-color
+  ```
+- `BinHV45`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20190101-20190401 --no-color
+  ```
+- `BinHV45_kanaxe`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_kanaxe --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_kanaxe --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20190101-20190401 --no-color
+  ```
+- `BinHV45_stash`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_stash --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_stash --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20190101-20190401 --no-color
+  ```
+- `BinHV45_werkkrew`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_werkkrew --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_werkkrew --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20190101-20190401 --no-color
+  ```
+- `BollingerBandStrategy`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BollingerBandStrategy --strategy-path repos/flaviosiotto_freqtrade-strategy/user_data/strategies --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BollingerBandStrategy --strategy-path repos/flaviosiotto_freqtrade-strategy/user_data/strategies --timerange 20190101-20190401 --no-color
+  ```
+- `CCI_BB`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CCI_BB --strategy-path repos/mikedigriz_freqtrade-strategy-mikedigriz/strategies --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CCI_BB --strategy-path repos/mikedigriz_freqtrade-strategy-mikedigriz/strategies --timerange 20190101-20190401 --no-color
+  ```
+- `HourBasedStrategy_5m`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy HourBasedStrategy_5m --strategy-path repos/eovie_freqtrade_strs/binance/Archive --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy HourBasedStrategy_5m --strategy-path repos/eovie_freqtrade_strs/binance/Archive --timerange 20190101-20190401 --no-color
+  ```
+- `NowoIchimoku5mV2`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy NowoIchimoku5mV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NowoIchimoku5mV2 --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NowoIchimoku5mV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NowoIchimoku5mV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `ObeliskIM_v1_1`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy ObeliskIM_v1_1 --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ObeliskIM_v1_1 --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ObeliskIM_v1_1 --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ObeliskIM_v1_1 --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `simple_patterns`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy simple_patterns --strategy-path repos/TheoBrigitte_freqtrade/strategies/yodo --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/simple_patterns --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy simple_patterns --strategy-path repos/TheoBrigitte_freqtrade/strategies/yodo --timerange 20190101-20190401 --no-color
+  recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy simple_patterns --strategy-path repos/TheoBrigitte_freqtrade/strategies/yodo --timerange 20190101-20190401 --no-color
   ```
 
 ## Convergence candidates - 361 strategies

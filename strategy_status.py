@@ -47,7 +47,7 @@ FIELDS = [
     "baseline_status", "primary_reason", "runtime_failure", "evidence_gap",
     "last_tested_at",
     "last_tested_source", "settled_startup", "settled_days", "settled_drift_pct",
-    "needed_no_override", "invocation", "invocation_source",
+    "needed_no_override", "cmd_backtest", "cmd_lookahead", "cmd_recursive",
     "evidence_paths", "open_work",
 ]
 
@@ -98,7 +98,7 @@ _CARD_ERROR = re.compile(r"## Could not be measured\s*\n+```\s*\n(.+?)\n", re.S)
 # per run profile - but a reconstruction is not the same claim as a recording,
 # and the two are never shown as if they were.
 _RECONSTRUCTED = {
-    "smoke": ("freqtrade backtesting --config {config} --strategy {strategy} "
+    "backtest": ("freqtrade backtesting --config {config} --strategy {strategy} "
               "--strategy-path {path} --timerange {timerange} --fee 0.001 "
               "--export trades --backtest-directory user_data/profile_smoke/"
               "{strategy} --cache none"),
@@ -111,27 +111,49 @@ _RECONSTRUCTED = {
 }
 
 
-def invocation(records, profile, timerange, kind):
-    """The freqtrade call, recorded where possible and reconstructed otherwise.
+def profile_bias_window(run_profile):
+    """The frozen diagnostic window for a run profile."""
+    return ("20200301-20200401" if (run_profile or "").startswith("futures_")
+            else "20190101-20190401")
 
-    Returns `(command, source)`. A recorded line is the argv that actually ran;
-    a reconstructed one is derived from the run profile and window and is
-    labelled so nobody treats it as evidence of what was executed.
+
+def _config_for(kind, profile):
+    mode = "futures" if (profile or "").startswith("futures_") else "spot"
+    if mode == "futures":
+        return "user_data/profile_configs/futures_%s.json" % profile
+    # The bias gates run against a config that forces price_side=other:
+    # look-ahead analysis forces market orders and freqtrade will not evaluate
+    # a signal without it. A backtest uses the plain config. Showing one
+    # invocation for both gates hid exactly this difference.
+    return ("user_data/config.json" if kind == "backtest"
+            else "user_data/profile_configs/bias_spot.json")
+
+
+def invocation(record, kind, profile, timerange, strategy, source_file,
+               pairs=0):
+    """The freqtrade call for ONE gate, labelled by where it comes from.
+
+    A row can have three: a backtest, a look-ahead run and a recursion run. They
+    differ in subcommand, in config and in flags, so a single column per row
+    could only ever show one of them and silently drop the rest.
+
+    The full-window backtest is eight calls, one per pair. Rendering eight
+    command lines into a table cell is unreadable, so the pair is left as a
+    placeholder and the count is stated; every individual call, with its own
+    console output, is in `user_data/freqtrade_runs.log`.
     """
-    for record in records:
-        stored = record.get("invocation")
-        if stored:
-            return stored, "recorded"
+    stored = (record or {}).get("invocation")
+    if stored:
+        return "[recorded] " + stored
     template = _RECONSTRUCTED.get(kind)
     if not template or not timerange:
-        return "", ""
-    mode = "futures" if (profile or "").startswith("futures_") else "spot"
-    config = ("user_data/profile_configs/futures_%s.json" % profile
-              if mode == "futures" else
-              ("user_data/config.json" if kind == "smoke"
-               else "user_data/profile_configs/bias_spot.json"))
-    return template.format(config=config, strategy="{strategy}",
-                           path="{strategy-path}", timerange=timerange),         "reconstructed"
+        return ""
+    line = template.format(config=_config_for(kind, profile), strategy=strategy,
+                           path=os.path.dirname(source_file) or ".",
+                           timerange=timerange)
+    if kind == "backtest" and pairs > 1:
+        line += " --pairs {pair}   # %d pairs, one call each" % pairs
+    return "[reconstructed] " + line
 
 
 def provenance(canonical_file):
@@ -404,20 +426,28 @@ def rows():
         stamp, stamp_source = tested_at(records)
 
         repo, source_file = provenance(profile.get("canonical_file"))
-        kind = ("smoke" if measurement else
-                ("recursive" if settled or diagnostics.get("recursive")
-                 else "lookahead"))
-        call, call_source = invocation(
-            [measurement, settled, diagnostics.get("recursive") or {},
-             diagnostics.get("lookahead") or {}],
-            profile.get("run_profile"),
-            (measurement.get("timerange") or settled.get("timerange")
+        run_profile = profile.get("run_profile")
+        pairs = len((window.get("pair_results") or {}))
+        # The full-window record is the better source for the backtest command
+        # when it exists, because that run is the one measured over the whole
+        # window; the smoke run is the shorter probe.
+        backtest_record = window or measurement
+        cmd_backtest = invocation(
+            backtest_record, "backtest", run_profile,
+            backtest_record.get("timerange") or measurement.get("timerange"),
+            strategy, source_file, pairs)
+        cmd_lookahead = invocation(
+            diagnostics.get("lookahead") or {}, "lookahead", run_profile,
+            (diagnostics.get("lookahead") or {}).get("timerange")
+            or profile_bias_window(run_profile),
+            strategy, source_file)
+        cmd_recursive = invocation(
+            settled or (diagnostics.get("recursive") or {}), "recursive",
+            run_profile,
+            (settled.get("timerange")
              or (diagnostics.get("recursive") or {}).get("timerange")
-             or (diagnostics.get("lookahead") or {}).get("timerange")),
-            kind)
-        if call_source == "reconstructed":
-            call = call.replace("{strategy}", strategy).replace(
-                "{strategy-path}", os.path.dirname(source_file) or ".")
+             or profile_bias_window(run_profile)),
+            strategy, source_file)
         archive = next((p for p in evidence_paths(records) if p.endswith(".zip")), "")
 
         out.append({
@@ -451,8 +481,9 @@ def rows():
             "settled_startup": settled.get("chosen_startup_candle_count", ""),
             "settled_days": settled.get("chosen_ladder_days", ""),
             "settled_drift_pct": settled.get("max_drift_pct", ""),
-            "invocation": call,
-            "invocation_source": call_source,
+            "cmd_backtest": cmd_backtest,
+            "cmd_lookahead": cmd_lookahead,
+            "cmd_recursive": cmd_recursive,
             "needed_no_override": ("true" if settled.get("needed_no_override")
                                    else ("false" if settled.get("state") == "converged"
                                          else "")),
@@ -547,7 +578,10 @@ def _report(data):
     ]
     lines += _table(cohorts, "## Cohort", "Cohort")
 
-    recorded = sum(1 for row in data if row["invocation_source"] == "recorded")
+    gates = ("cmd_backtest", "cmd_lookahead", "cmd_recursive")
+    recorded = sum(1 for row in data for gate in gates
+                   if row[gate].startswith("[recorded]"))
+    total_cmds = sum(1 for row in data for gate in gates if row[gate])
     lines += [
         "## How freqtrade was called", "",
         "A result is not reproducible from its verdict alone, so each row",
@@ -555,9 +589,16 @@ def _report(data):
         "actually ran. **`reconstructed`** is derived from the run profile and",
         "the window, because nothing stored the call before 2026-09-01; it is",
         "labelled because a reconstruction is a different claim from a",
-        "recording. %d of %d rows are recorded so far, and every new run adds"
-        % (recorded, len(data)),
-        "one.", "",
+        "recording. %d of %d commands are recorded so far, and every new run"
+        % (recorded, total_cmds),
+        "adds one.", "",
+        "There is one column per gate, not one per row. A row can carry three",
+        "calls and they differ in more than their subcommand, so a single",
+        "column could only ever show one of them and drop the rest silently.",
+        "The full-window backtest is eight calls, one per pair; the table",
+        "leaves the pair as a placeholder and states the count, while every",
+        "individual call with its own console output is in",
+        "`user_data/freqtrade_runs.log`.", "",
         "The gates differ in more than their subcommand, which is the reason",
         "this is worth publishing at all. A backtest runs with",
         "`--fee 0.001 --export trades --cache none`. The bias gates add",
@@ -579,14 +620,17 @@ def _report(data):
             row["observed_trades"], row["recursive_evidence"],
             row["last_tested_at"] or "-", _links(row)))
     lines.append("")
-    lines += ["The call for each, `recorded` unless marked otherwise:", ""]
+    lines += ["The calls behind each, one per gate:", ""]
     for row in sorted(passing, key=lambda r: (r["cohort"], r["strategy_id"])):
-        if not row["invocation"]:
+        calls = [(gate.replace("cmd_", ""), row[gate]) for gate in gates
+                 if row[gate]]
+        if not calls:
             continue
-        lines += ["- `%s`%s" % (row["strategy_id"],
-                                "" if row["invocation_source"] == "recorded"
-                                else " *(reconstructed)*"),
-                  "  ```", "  " + row["invocation"], "  ```"]
+        lines.append("- `%s`" % row["strategy_id"])
+        lines.append("  ```")
+        for gate, call in calls:
+            lines.append("  %-10s %s" % (gate, call))
+        lines.append("  ```")
     lines.append("")
 
     if candidates:
