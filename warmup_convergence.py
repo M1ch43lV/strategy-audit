@@ -76,6 +76,10 @@ MAX_STARTUP_CANDLES = 4999
 
 # Freqtrade refuses a strategy declaring no warm-up before it evaluates
 # anything, and the refusal takes the whole ladder run with it.
+_REFUSED = re.compile(
+    r"This strategy requires (\d+) candles to start, "
+    r"which is more than 5x \((\d+) candles\)")
+
 ZERO_WARMUP_REFUSAL = "invalid startup candle count of 0"
 
 # Wave B rows whose exact trade match was refused a static proof because the
@@ -211,7 +215,7 @@ def recursion_only_rows():
     return rows
 
 
-def warmup_refused_rows():
+def unsettled_rows():
     """Rows whose recursion verdict was a refusal, not a measurement.
 
     Two things land here. A row whose inherited verdict reads FOUND because
@@ -224,8 +228,24 @@ def warmup_refused_rows():
     Selection reads `open_work`, which the status table sets from provenance
     alone, so no outcome decides who is measured.
     """
-    return [row["strategy_id"] for row in _csv(STATUS)
-            if "recursive_ladder_pending" in (row["open_work"] or "")]
+    # Recursion has to be the thing that decides the row. A strategy that reads
+    # future candles, carries a published trap, or will not start at all stays
+    # out whatever its warm-up does, so measuring it spends half a minute to
+    # change nothing. That is the same restraint `recursion_only_rows` applies,
+    # expressed against the current table rather than the frozen reasons.
+    blocking = ("lookahead_found", "behavior_changed_primary_exclusion",
+                "technical_trap_found", "strategy_does_not_run")
+    wanted = []
+    for row in _csv(STATUS):
+        work = row["open_work"] or ""
+        if "recursive_ladder_pending" not in work                 and "convergence_inconclusive" not in work:
+            continue
+        if row["primary_reason"] in blocking or row["lookahead"] == "FOUND":
+            continue
+        if row["cohort"] == "not_tested_in_current_runtime":
+            continue
+        wanted.append(row["strategy_id"])
+    return wanted
 
 
 def cohort(name):
@@ -236,8 +256,8 @@ def cohort(name):
     elif name == "wave_c_refusals":
         wanted = [row["strategy_id"]
                   for row in eligibility_warmup.refusal_candidates()]
-    elif name == "warmup_refused":
-        wanted = warmup_refused_rows()
+    elif name == "recursive_unsettled":
+        wanted = unsettled_rows()
     elif name == "wave_b_static_rejected":
         wanted = list(WAVE_B_STATIC_REJECTED)
     elif name == "wave_d":
@@ -357,23 +377,84 @@ def resolve(row, timeout):
                          else "available history is shorter than the first rung")
         return record
 
-    output, meta = run_ladder(row, timeout,
-                              [candles for _days, candles in rungs])
+    candles = [candles for _days, candles in rungs]
+    output, meta = run_ladder(row, timeout, candles)
     record.update(meta)
     if output is None:
         record["state"] = "inconclusive"
         record["why"] = meta.get("why", "TIMEOUT")
         return record
 
-    refused = re.search(r"This strategy requires (\d+) candles to start", output)
-    if refused:
+    # A single rung the strategy cannot compute aborts the whole run, and the
+    # analyzer's exception then reaches the record as "no drift table", which
+    # names neither the cause nor the cure. The cure is usually to start
+    # higher: nine of the ten failures here are an indicator refusing a series
+    # shorter than it needs. So the bottom rung is dropped and the ladder tried
+    # again, up to twice, and whatever survives is reported as the error it is.
+    dropped = []
+    while meta.get("returncode") and len(candles) > 1 and len(dropped) < 2:
+        dropped.append(candles[0])
+        candles = candles[1:]
+        rungs = rungs[1:]
+        output, meta = run_ladder(row, timeout, candles)
+        record.update(meta)
+        if output is None:
+            record["state"] = "inconclusive"
+            record["why"] = meta.get("why", "TIMEOUT")
+            return record
+    if dropped:
+        record["ladder_rungs_dropped_as_uncomputable"] = dropped
+        record["ladder_candles"] = candles
+        record["ladder_days"] = [days for days, _value in rungs]
+    if meta.get("returncode"):
         record["state"] = "inconclusive"
-        record["why"] = ("freqtrade refused startup %s as above the exchange "
-                         "limit" % refused.group(1))
+        record["why"] = profile_bias._error(output, meta["returncode"])
         return record
+
+    # One rung above what the exchange serves refuses the WHOLE run, and the
+    # rungs below it - which are the ones likely to settle the row - are lost
+    # with it. The refusal states the limit, so the ladder is trimmed to it and
+    # re-run once. Twenty-one rows were recorded as inconclusive for no better
+    # reason than asking for a top rung nobody could have answered.
+    refused = _REFUSED.search(output)
+    if refused:
+        limit = int(refused.group(2))
+        trimmed = [value for value in candles if value <= limit]
+        record["exchange_startup_limit"] = limit
+        if not trimmed:
+            record["state"] = "inconclusive"
+            record["why"] = ("even the smallest rung of %d candles is above the "
+                             "exchange limit of %d" % (candles[0], limit))
+            return record
+        record["ladder_trimmed_to_exchange_limit"] = trimmed
+        record["ladder_candles"] = trimmed
+        record["ladder_days"] = [days for days, value in rungs if value <= limit]
+        output, meta = run_ladder(row, timeout, trimmed)
+        record.update(meta)
+        if output is None or _REFUSED.search(output):
+            record["state"] = "inconclusive"
+            record["why"] = (meta.get("why") or "refused again after trimming "
+                             "the ladder to the exchange limit")
+            return record
+        rungs = [(days, value) for days, value in rungs if value <= limit]
 
     columns, rows = profile_bias.recursive_table(output)
     if not columns or not rows:
+        # No table and the analyzer saying it found no variance are not the
+        # same outcome. The second is freqtrade reporting that the smallest
+        # rung already matches the full-history run exactly, which is why it
+        # printed nothing: it stopped there. That is a pass at the first rung.
+        if profile_bias.NO_VARIANCE in output:
+            record["state"] = "converged"
+            record["chosen_startup_candle_count"] = rungs[0][1]
+            record["chosen_ladder_days"] = rungs[0][0]
+            record["max_drift_pct"] = 0.0
+            record["max_drift_indicator"] = None
+            record["needed_no_override"] = (
+                record.get("declared_warmup_override") is None)
+            record["why"] = ("analyzer reports no variance at the smallest "
+                             "rung; it compared and stopped there")
+            return record
         record["state"] = "inconclusive"
         record["why"] = "analyzer produced no drift table"
         return record

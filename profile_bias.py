@@ -306,6 +306,14 @@ def recursive_drifts(output):
 
 UNDEFINED = "indicators undefined at this warm-up"
 
+# freqtrade's own words for "the two runs agree exactly". In
+# `RecursiveAnalysis.analyze_indicators` the rungs are walked in ascending
+# order and the first one whose last row is identical to the full-history run
+# logs this and breaks - so no table is printed at all when the smallest rung
+# already agrees. That is the strongest possible pass, and reading it as "no
+# measurement" turned 17 clean rows into non-verdicts.
+NO_VARIANCE = "No variance on indicator(s) found due to recursive formula."
+
 
 def _recursive(output, returncode, threshold=DEFAULT_DRIFT_THRESHOLD):
     if "invalid startup candle count of 0" in output:
@@ -326,10 +334,14 @@ def _recursive(output, returncode, threshold=DEFAULT_DRIFT_THRESHOLD):
     if undefined:
         return "NA", "%s: %s" % (UNDEFINED, ", ".join(sorted(undefined)[:5]))
     if not drifts:
-        # Whether an empty table means "nothing deviated" or "nothing was
-        # compared" cannot be told from the output, and this audit does not
-        # fold "could not be checked" into "clean". Three separate false passes
-        # on 2026-09-01 all had this shape, so the ambiguous case is NA.
+        # An empty table has two causes and they are opposite. Either nothing
+        # was compared - the earlier false passes all had this shape and stay
+        # NA - or every indicator matched the full-history run exactly, which
+        # the analyzer states in as many words before it stops. Only that
+        # sentence distinguishes them, so only that sentence may pass a row.
+        if NO_VARIANCE in output:
+            return "PASS", ("analyzer reports no variance at the smallest "
+                            "warm-up tested")
         return "NA", "analyzer produced no drift table"
     bad = [(key, value) for key, value in drifts if abs(value) >= threshold]
     if bad:

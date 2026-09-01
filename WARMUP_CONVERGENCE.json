@@ -8823,6 +8823,8 @@
     },
     "COPY_HL": {
       "available_prefix_candles": 616,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 24,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/COPY_HL-ladder.log",
       "declared_warmup_override": 24,
@@ -8842,15 +8844,19 @@
         7,
         14
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_d75496fe5b205b43436601ecfb9ea69b26728ff1682f244f1df4ecf12d570962",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "futures_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "COPY_HL",
       "timeframe": "1h",
       "timerange": "20200301-20200401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "CTIBS": {
       "available_prefix_candles": 32408,
@@ -14226,6 +14232,8 @@
     },
     "CustomStoplossWithPSAR": {
       "available_prefix_candles": 8104,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 24,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/CustomStoplossWithPSAR-ladder.log",
       "declared_warmup_override": 24,
@@ -14249,15 +14257,19 @@
         30,
         90
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_181a916aa89a9e5a5aabdd46ae262fa205b27e92880da99af1861eac0a12e8b4",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "CustomStoplossWithPSAR",
       "timeframe": "1h",
       "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "DCBBBounce": {
       "available_prefix_candles": 97222,
@@ -14684,6 +14696,8 @@
     },
     "DevilStra": {
       "available_prefix_candles": 2029,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 6,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/DevilStra-ladder.log",
       "declared_warmup_override": 6,
@@ -14707,18 +14721,24 @@
         30,
         90
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_567fdd4e9c54635418ab1ff7afaeac228e7cbbc28a95bc1d3f72dfddf2481b71",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "DevilStra",
       "timeframe": "4h",
       "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "Diamond": {
       "available_prefix_candles": 97222,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/Diamond-ladder.log",
       "declared_warmup_override": 288,
@@ -14738,18 +14758,24 @@
         7,
         14
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_f12dc4ec31e83a295307e073896250b29dbd488602d4d9df571fa982aa84d166",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "Diamond",
       "timeframe": "5m",
       "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "Dimond": {
       "available_prefix_candles": 97222,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/Dimond-ladder.log",
       "declared_warmup_override": 288,
@@ -14769,15 +14795,19 @@
         7,
         14
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_35f88486d434eee35807b02651a7b447475fb241670a471bda21826cfb441160",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "Dimond",
       "timeframe": "5m",
       "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "Divergences": {
       "available_prefix_candles": 8104,
@@ -16466,6 +16496,8 @@
     },
     "EasyInEasyOut": {
       "available_prefix_candles": 486102,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 1440,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/EasyInEasyOut-ladder.log",
       "declared_warmup_override": 1440,
@@ -16481,15 +16513,19 @@
         1,
         2
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_9c8d2b95b121582bf7f8fc772d19eb98e44e7fc672a250f2e620d4ec9471a654",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "EasyInEasyOut",
       "timeframe": "1m",
       "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "ElliotV4": {
       "available_prefix_candles": 97222,
@@ -18179,6 +18215,8 @@
     },
     "FiveMinCrossAbove": {
       "available_prefix_candles": 97222,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/FiveMinCrossAbove-ladder.log",
       "declared_warmup_override": 288,
@@ -18198,15 +18236,19 @@
         7,
         14
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_06b45b3c247bc421bc0d593cdc34b73f7935feff8b4beaa6fd02a443c1d8872a",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "FiveMinCrossAbove",
       "timeframe": "5m",
       "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "ForexRobootSuperScalper": {
       "available_prefix_candles": 97222,
@@ -20570,6 +20612,8 @@
     },
     "GodStraNew": {
       "available_prefix_candles": 2029,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 6,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/GodStraNew-ladder.log",
       "declared_warmup_override": 6,
@@ -20593,18 +20637,24 @@
         30,
         90
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_7f5eb86877a6d6c2cba2f94d1c83676a92fb332c3c3a74f22e78c4c0ac3e0e97",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "GodStraNew",
       "timeframe": "4h",
       "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "GodStraNew40": {
       "available_prefix_candles": 2029,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 6,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/GodStraNew40-ladder.log",
       "declared_warmup_override": 6,
@@ -20628,18 +20678,24 @@
         30,
         90
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_629f848dc68eb487dd5058269eccbe4af3cf5791641c74abbd61c761c41b5731",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "GodStraNew40",
       "timeframe": "4h",
       "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "GodStraNew_SMAonly": {
       "available_prefix_candles": 97222,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/GodStraNew_SMAonly-ladder.log",
       "declared_warmup_override": 288,
@@ -20659,15 +20715,19 @@
         7,
         14
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_a764f6ca13ca9b93fd9d9d738b720b4ef116ca383a99efde359424cd80249401",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "GodStraNew_SMAonly",
       "timeframe": "5m",
       "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "GoldHedgeZeroMACD": {
       "available_prefix_candles": 26,
@@ -21579,6 +21639,8 @@
     },
     "HourBasedStrategy": {
       "available_prefix_candles": 8104,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 24,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/HourBasedStrategy-ladder.log",
       "declared_warmup_override": 24,
@@ -21602,15 +21664,19 @@
         30,
         90
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_41cd56b83fd6db666a2b4a995710046ebe083f07a38af5f64b505bf85f2d116a",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "HourBasedStrategy",
       "timeframe": "1h",
       "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "HurstCycle3": {
       "available_prefix_candles": 2464,
@@ -21970,6 +22036,8 @@
     },
     "Ichimoku": {
       "available_prefix_candles": 97222,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/Ichimoku-ladder.log",
       "declared_warmup_override": 288,
@@ -21989,15 +22057,19 @@
         7,
         14
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_851283a2e4fc47f6e24737753fad9b957083bc648562791d8b81c5a8af309d80",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "Ichimoku",
       "timeframe": "5m",
       "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "IchimokuSimpleStrategy": {
       "available_prefix_candles": 97222,
@@ -25119,6 +25191,8 @@
     },
     "Minmax": {
       "available_prefix_candles": 8104,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 24,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/Minmax-ladder.log",
       "declared_warmup_override": 24,
@@ -25142,15 +25216,19 @@
         30,
         90
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_88a2439508e6cb1b33405f26a990edc89a408e28b9d233f1e05dc6473973ca9d",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "Minmax",
       "timeframe": "1h",
       "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "MomStrategy": {
       "available_prefix_candles": 8104,
@@ -40001,6 +40079,8 @@
     },
     "PatternRecognition": {
       "available_prefix_candles": 339,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 1,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/PatternRecognition-ladder.log",
       "declared_warmup_override": 1,
@@ -40024,15 +40104,19 @@
         30,
         90
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_4cdd9ab96ffed3db528770fc88ed0414e218e11ed9ef92ea44d980efa5c9f2b6",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "PatternRecognition",
       "timeframe": "1d",
       "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "PolymarketPortfolio": {
       "available_prefix_candles": 2029,
@@ -44787,6 +44871,8 @@
     },
     "SlowPotato": {
       "available_prefix_candles": 97222,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/SlowPotato-ladder.log",
       "declared_warmup_override": 288,
@@ -44806,15 +44892,19 @@
         7,
         14
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_25cc7b5e2568f623073c1bdbf2dbcf2a34195d84d585bca412c89b55bc7c07b7",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "SlowPotato",
       "timeframe": "5m",
       "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "SmaRsiStrategy": {
       "available_prefix_candles": 339,
@@ -48535,6 +48625,8 @@
     },
     "ToTheMoon": {
       "available_prefix_candles": 616,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 24,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/ToTheMoon-ladder.log",
       "declared_warmup_override": 24,
@@ -48554,15 +48646,19 @@
         7,
         14
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_52492b44e64f01b476ff59d7a168b89e73ac2f198c88af954bc0572e98f2b48c",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "futures_long_short",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "ToTheMoon",
       "timeframe": "1h",
       "timerange": "20200301-20200401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "TouchEmaDelayStrategy": {
       "available_prefix_candles": 162035,
@@ -55533,6 +55629,8 @@
     },
     "moonhouse": {
       "available_prefix_candles": 339,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 1,
       "cohort": "recursion_only",
       "debug_log": "user_data/convergence_logs/moonhouse-ladder.log",
       "declared_warmup_override": 1,
@@ -55556,15 +55654,19 @@
         30,
         90
       ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
       "output_sha256": "sha256_891515203c3dd9acc5abb1d1ba390774f98a54644c5592ac3413ff861ce3cfed",
+      "reparsed_from_log": "no_variance_is_a_pass_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "moonhouse",
       "timeframe": "1d",
       "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "pcb20": {
       "available_prefix_candles": 1355,

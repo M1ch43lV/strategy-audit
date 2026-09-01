@@ -469,7 +469,11 @@ def rows():
         elif cohort == "excluded" and settled.get("state") in (
                 "not_converged_within_ladder", "inconclusive"):
             open_work.append("convergence_" + settled["state"])
-        if recursive == "WARMUP_NEEDED" or recursive_evidence.startswith("wave_b:"):
+        if recursive == "WARMUP_NEEDED" or recursive_evidence.startswith("wave_b:")                 or (recursive == "FOUND" and not settled
+                    and recursive_evidence in ("native", "baseline")):
+            # A recursion FOUND that no ladder has re-measured rests on the
+            # parser that read the wrong column. It is queued rather than
+            # believed, whether it came from our own run or from the baseline.
             open_work.append("recursive_ladder_pending")
 
         records = [measurement, diagnostics, window, settled,
