@@ -5015,6 +5015,174 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "SMAOffsetProtectOptV0"
+    },
+    "SMAOffsetProtectOptV1": {
+      "canonical_sha256": "sha256_7c32c9693d4439d64678b73603c2e1644419e74d4a120c70eff715505ae610d1",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "SMAOffsetProtectOptV1:7c32c9693d44",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101"
+        ],
+        "elapsed_s": 124.6,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOffsetProtectOptV1 --strategy-path user_data/profile_bias_strategies/SMAOffsetProtectOptV1 --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_a21862f63e0f817afe08edd13f017f21d80d3a20cca200d0c8507fa94ab922c1",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "SMAOffsetProtectOptV1"
+    },
+    "SMAOffsetProtectOptV1HO1": {
+      "canonical_sha256": "sha256_6a0ad15e1c2d79ed5b51ac9efd9725dfa07d39523ba274d7131631f162cbb51a",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "SMAOffsetProtectOptV1HO1:6a0ad15e1c2d",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101"
+        ],
+        "elapsed_s": 103.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOffsetProtectOptV1HO1 --strategy-path user_data/profile_bias_strategies/SMAOffsetProtectOptV1HO1 --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_4391c83a995c01dd58ebea4cd4d44503b0c4241f7bacc1f5d9cc67db25bc64ef",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "SMAOffsetProtectOptV1HO1"
+    },
+    "SMAOffsetProtectOptV1Mod": {
+      "canonical_sha256": "sha256_f874a4f36d921b07b9b24e326808b2add04d0a2214dae0f10dd3da4facd45361",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "SMAOffsetProtectOptV1Mod:f874a4f36d92",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101"
+        ],
+        "elapsed_s": 113.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOffsetProtectOptV1Mod --strategy-path user_data/profile_bias_strategies/SMAOffsetProtectOptV1Mod --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_e693d51b4a02fd8483dc4cf013e892122ae8e9bdaa55ac2a44a56f33b1dbeb75",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "SMAOffsetProtectOptV1Mod"
+    },
+    "SMAOffsetProtectOptV1Mod2": {
+      "canonical_sha256": "sha256_d6cf62f3753e1b1ab1aaea6b4ddb1efe9632d5e6f2cdf2b5bf8faa95dfd2c0ab",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "SMAOffsetProtectOptV1Mod2:d6cf62f3753e",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101"
+        ],
+        "elapsed_s": 107.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOffsetProtectOptV1Mod2 --strategy-path user_data/profile_bias_strategies/SMAOffsetProtectOptV1Mod2 --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_2009cd4c94dc371798e742d225fa53991495d9b1b07c64e87c9640863e90cdc2",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "SMAOffsetProtectOptV1Mod2"
+    },
+    "SMAOffsetProtectOptV1_kkeue_20210619": {
+      "canonical_sha256": "sha256_c249346c21dc7f25a54c06fd79a8d3088f910d893c88baddb6a87ef80ddd6e3d",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "SMAOffsetProtectOptV1_kkeue_20210619:c249346c21dc",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101"
+        ],
+        "elapsed_s": 108.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOffsetProtectOptV1_kkeue_20210619 --strategy-path user_data/profile_bias_strategies/SMAOffsetProtectOptV1_kkeue_20210619 --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_8bbfc52e213cdb3057d526694382ffee00da6b04c896692bbc881605ce0ce5c5",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "SMAOffsetProtectOptV1_kkeue_20210619"
+    },
+    "SMAOffset_Hippocritical_dca": {
+      "canonical_sha256": "sha256_0c723f4afe6d294bee2c4d22fa5c279bf8614ed850103878594caf646b397b1f",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "SMAOffset_Hippocritical_dca:0c723f4afe6d",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101"
+        ],
+        "elapsed_s": 102.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOffset_Hippocritical_dca --strategy-path user_data/profile_bias_strategies/SMAOffset_Hippocritical_dca --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_429be4b436f27ed83f390e9012b0b633665846d59ab64fa6898247334889c60d",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "SMAOffset_Hippocritical_dca"
+    },
+    "SMAOffset_Hippocritical_dca_old": {
+      "canonical_sha256": "sha256_2cfd00c566a2ddbab4f3a8356065cd6558796303781d3ce4104720db2eca65a6",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "SMAOffset_Hippocritical_dca_old:2cfd00c566a2",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101"
+        ],
+        "elapsed_s": 103.1,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOffset_Hippocritical_dca_old --strategy-path user_data/profile_bias_strategies/SMAOffset_Hippocritical_dca_old --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_e527bba5fd4794bffa4d4a89325013cc92f554f50a5ff66b4dbd9994ee1bbe9c",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "SMAOffset_Hippocritical_dca_old"
     }
   },
   "schema_version": 1,

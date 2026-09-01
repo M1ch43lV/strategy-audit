@@ -49,6 +49,7 @@ BLOCKED_TRIAGE = os.path.join(ROOT, "BLOCKED_TRIAGE.json")
 # removed, and outranks it - the same precedence a native gate has over an
 # inherited one, applied to the measurement instead of the verdict.
 TIMEFRAME_REPAIR = os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json")
+MODULE_REPAIR = os.path.join(ROOT, "ELIGIBILITY_MODULE_REPAIR.json")
 # Two later stores hold look-ahead measured natively for rows whose verdict was
 # inherited or missing. They are separate files because they are separate
 # cohorts, and forgetting to read one is how the newest evidence stops reaching
@@ -330,7 +331,11 @@ def rows():
     convergence = _json(CONVERGENCE)
     wave_b = _json(WAVE_B_WARMUP)
     triage = _json(BLOCKED_TRIAGE)
-    repaired = _json(TIMEFRAME_REPAIR)
+    repaired = dict(_json(TIMEFRAME_REPAIR))
+    # Two repair runners, one precedence: whichever of them last produced a
+    # measurement for a row replaces the failure the smoke store holds.
+    for name, record in _json(MODULE_REPAIR).items():
+        repaired.setdefault(name, record)
     # A native re-measurement outranks whatever PROFILE_BIAS or the baseline
     # holds: it is the same gate, measured later, from this implementation.
     remeasured = {}
@@ -347,7 +352,7 @@ def rows():
         wave = waves.get(strategy, {}).get("expansion_wave", "")
         measurement = smoke.get(strategy) or {}
         repair_run = repaired.get(strategy) or {}
-        if repair_run.get("status") == "measured":
+        if repair_run.get("status") in ("measured", "failed"):
             # The obstacle is gone and the row produced trades. Continuing to
             # report the old failure would say the strategy does not run while
             # a run of it sits on disk.

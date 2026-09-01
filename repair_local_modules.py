@@ -103,6 +103,22 @@ def registered_paths():
     return out
 
 
+# A directory that also contains one of these shadows the real package the
+# moment it goes on sys.path, and the failure it causes looks nothing like its
+# cause: `cannot import name '__version__' from 'freqtrade' (unknown
+# location)`. Four rows were repaired into exactly that before this existed.
+SHADOWS = ("freqtrade", "numpy", "pandas", "talib", "technical", "scipy",
+           "sklearn", "ccxt", "arrow", "rich")
+
+
+def shadows_a_package(directory):
+    """The installed package this directory would hide, or ""."""
+    for name in SHADOWS:
+        if os.path.isdir(os.path.join(directory, name))                 or os.path.isfile(os.path.join(directory, name + ".py")):
+            return name
+    return ""
+
+
 def _digest(path):
     return hashlib.sha256(io.open(path, "rb").read()).hexdigest()[:16]
 
@@ -146,6 +162,13 @@ def resolve(record):
     working = []
     for directory, file_path in candidates(module):
         relative = os.path.relpath(directory, ROOT).replace(os.sep, "/")
+        shadowed = shadows_a_package(directory)
+        if shadowed:
+            tried.append({"path": relative, "imports": False,
+                          "sha256_16": _digest(file_path),
+                          "why": ("would shadow the installed %s package"
+                                  % shadowed)})
+            continue
         why = try_import(source, directory)
         tried.append({"path": relative, "imports": not why,
                       "sha256_16": _digest(file_path), "why": why})
@@ -234,6 +257,48 @@ def apply_to_class1(results):
     return applied
 
 
+MEASURED = os.path.join(ROOT, "ELIGIBILITY_MODULE_REPAIR.json")
+
+
+def verify():
+    """What the repaired rows actually did when they were run.
+
+    A path that satisfies the import is not yet a repair. `Solipsis6` imports
+    with werkkrew's `custom_indicators` and then asks it for `bollinger_bands`,
+    which that copy does not define - and no copy in the corpus does. The
+    import test cannot see that, and only the run can, so the run's verdict is
+    written back beside the resolution.
+    """
+    if not os.path.exists(MEASURED):
+        print("no measurements yet: %s" % os.path.basename(MEASURED))
+        return 0
+    measured = _json(MEASURED).get("results", {})
+    data = _json(OUTPUT)
+    for strategy, record in data["results"].items():
+        run = measured.get(strategy)
+        if not run:
+            continue
+        why = (run.get("why") or "")
+        record["verified_status"] = run.get("status")
+        record["verified_why"] = why[:200]
+        if run.get("status") == "measured":
+            record["verification"] = "repaired"
+        elif record["missing_module"].split(".")[0] in why:
+            # Still about the same module: the copy is on the path but is not
+            # the one the author had.
+            record["verification"] = "path_insufficient"
+        else:
+            # Past the module and failing on something else. The repair did
+            # its job; what remains is a different question.
+            record["verification"] = "past_the_module"
+    _write(OUTPUT, data)
+    counts = collections.Counter(r.get("verification", "not_run")
+                                 for r in data["results"].values())
+    for key, count in counts.most_common():
+        print("   %-20s %d" % (key, count))
+    return 0
+
+
 def selftest():
     triage = _json(TRIAGE)["results"]
     rows = [r for r in triage.values()
@@ -264,8 +329,12 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--apply", action="store_true",
                         help="write the resolved paths into PROFILE_CLASS1.json")
+    parser.add_argument("--verify", action="store_true",
+                        help="write back what the repaired rows did when run")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
+    if args.verify:
+        return verify()
     if args.selftest:
         selftest()
         return 0

@@ -1,0 +1,209 @@
+{
+  "config": "profile_futures_config.json",
+  "results": {
+    "AdvancedRiskFilterStrategy": {
+      "canonical_sha256": "sha256_bcb660284ad4c60c18008f6019034cfa452b51415222de7f6a2376b8f3848015",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/AdvancedRiskFilterStrategy.log",
+      "elapsed_s": 37.7,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy AdvancedRiskFilterStrategy --strategy-path repos/DonaldSimpson_remora-freqtrade/examples --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AdvancedRiskFilterStrategy --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "Remora API key missing. Set REMORA_API_KEY env var."
+    },
+    "DWT": {
+      "canonical_sha256": "sha256_ac98506b588e4bbd7f82e6dea9d0de7691dea9470c896cfd6cd3b95839c5dc8e",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/DWT.log",
+      "elapsed_s": 37.3,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy DWT --strategy-path repos/TheoBrigitte_freqtrade/strategies/dwt --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DWT --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "buffer source array is read-only"
+    },
+    "DWT_Leveraged": {
+      "archive": "user_data/profile_smoke/DWT_Leveraged-2026-09-01_20-02-20.zip",
+      "archive_sha256": "sha256_9e57aa1315f67a9f1af062cc5fac3ffaa366a5c17d0c5155ce015d9a8c353519",
+      "canonical_sha256": "sha256_256b76fadd095ef3045b7c8bbfc8fbff7eff569c1844a68506249287932324ab",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 36.3,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy DWT_Leveraged --strategy-path repos/TheoBrigitte_freqtrade/strategies/dwt --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DWT_Leveraged --cache none",
+      "long_trades": 0,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 0,
+      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "DualModelPolymarketPortfolio": {
+      "canonical_sha256": "sha256_b5657298b51bf2b989c6948a32c90d20f47f53f549277d1dd9062d93b94d6f67",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/DualModelPolymarketPortfolio.log",
+      "elapsed_s": 1.1,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy DualModelPolymarketPortfolio --strategy-path repos/mlsys-io_PortfolioBench/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DualModelPolymarketPortfolio --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "cannot import name '__version__' from 'freqtrade' (unknown location)"
+    },
+    "Dyna_opti": {
+      "canonical_sha256": "sha256_b04a36f48cec5fd4a2149895857953f8e22bc6c59cecca48ebbbf9e37268f60d",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/Dyna_opti.log",
+      "elapsed_s": 40.9,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Dyna_opti --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Dyna_opti --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'"
+    },
+    "EmaCrossStrategy": {
+      "canonical_sha256": "sha256_d0fbe1247f197cb33bbaee4501b578b2e1822fb256ed5f769f70688030f9fb62",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/EmaCrossStrategy.log",
+      "elapsed_s": 1.0,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy EmaCrossStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/EmaCrossStrategy --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "cannot import name '__version__' from 'freqtrade' (unknown location)"
+    },
+    "PolymarketMeanReversionStrategy": {
+      "canonical_sha256": "sha256_6d6e2dbac397771da11626e702d9c0c48c5870d4ee053c1325544004ee43263c",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/PolymarketMeanReversionStrategy.log",
+      "elapsed_s": 1.1,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy PolymarketMeanReversionStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/PolymarketMeanReversionStrategy --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "cannot import name '__version__' from 'freqtrade' (unknown location)"
+    },
+    "PolymarketMomentumStrategy": {
+      "canonical_sha256": "sha256_2575d1935f956ed00f57338bc1f7c8abbbfa014ef6783f5a0c8899de076b74e9",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/PolymarketMomentumStrategy.log",
+      "elapsed_s": 1.1,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy PolymarketMomentumStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/PolymarketMomentumStrategy --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "cannot import name '__version__' from 'freqtrade' (unknown location)"
+    },
+    "Solipsis": {
+      "archive": "user_data/profile_smoke/Solipsis-2026-09-01_19-59-05.zip",
+      "archive_sha256": "sha256_745492946a635216dbc78a148fbf5f9470d0543c69435bd47b8e40c70d44a2ff",
+      "canonical_sha256": "sha256_c995fcc9ccee23df67ffb775b16391f0f9ce0759160d40d67fbd44dca83df3eb",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 218.2,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Solipsis --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis --cache none",
+      "long_trades": 587,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 587,
+      "trades_sha256": "sha256_9ba8b9f6ae035951f039405d480b5fdbf93a8b4ab67e8611ee783b87f06f8987"
+    },
+    "Solipsis4": {
+      "canonical_sha256": "sha256_f483e328f49a1f55415de3f1e0b020da9277686a4233dc127d3b8b732b115233",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/Solipsis4.log",
+      "elapsed_s": 40.7,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Solipsis4 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis4 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'"
+    },
+    "Solipsis6": {
+      "canonical_sha256": "sha256_10d3307231ad4c1c3189d1aaf69a303a98daeefc5f739e7321f2739d3f806899",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/Solipsis6.log",
+      "elapsed_s": 40.1,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Solipsis6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis6 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "module 'custom_indicators' has no attribute 'bollinger_bands'"
+    },
+    "SolipsisMM": {
+      "canonical_sha256": "sha256_32e2d5db21f4f692902babb0ed2803e5494dd921b8a7032900d63d57313bbddf",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/SolipsisMM.log",
+      "elapsed_s": 40.2,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy SolipsisMM --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SolipsisMM --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "module 'custom_indicators' has no attribute 'fib_ret'"
+    }
+  },
+  "schema_version": 1,
+  "timerange": "20200301-20200401"
+}

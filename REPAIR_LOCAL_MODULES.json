@@ -18,6 +18,9 @@
       "source_file": "repos/DonaldSimpson_remora-freqtrade/examples/advanced_risk_filter_strategy.py",
       "status": "resolved",
       "strategy_id": "AdvancedRiskFilterStrategy",
+      "verification": "past_the_module",
+      "verified_status": "failed",
+      "verified_why": "Remora API key missing. Set REMORA_API_KEY env var.",
       "why": "1 copies satisfy the import and all are the same file, so the choice carries no risk"
     },
     "BB_RPB_3c": {
@@ -26,7 +29,7 @@
           "imports": false,
           "path": "repos/mlsys-io_PortfolioBench",
           "sha256_16": "e3b0c44298fc1c14",
-          "why": "ModuleNotFoundError: No module named 'user_data.freqtrade3cw'"
+          "why": "would shadow the installed freqtrade package"
         },
         {
           "imports": false,
@@ -60,13 +63,13 @@
           "imports": false,
           "path": "repos/mlsys-io_PortfolioBench",
           "sha256_16": "e3b0c44298fc1c14",
-          "why": "ModuleNotFoundError: No module named 'utils.DataframePopulator'"
+          "why": "would shadow the installed freqtrade package"
         },
         {
           "imports": false,
           "path": "repos/nateemma_strategies",
           "sha256_16": "e3b0c44298fc1c14",
-          "why": "ModuleNotFoundError: No module named 'utils.DataframePopulator'"
+          "why": "would shadow the installed sklearn package"
         }
       ],
       "missing_module": "utils",
@@ -124,6 +127,9 @@
       "source_file": "repos/TheoBrigitte_freqtrade/strategies/dwt/DWT.py",
       "status": "resolved",
       "strategy_id": "DWT",
+      "verification": "past_the_module",
+      "verified_status": "failed",
+      "verified_why": "buffer source array is read-only",
       "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
     },
     "DWT_Leveraged": {
@@ -158,27 +164,29 @@
       "source_file": "repos/TheoBrigitte_freqtrade/strategies/dwt/DWT_Leveraged.py",
       "status": "resolved",
       "strategy_id": "DWT_Leveraged",
+      "verification": "repaired",
+      "verified_status": "measured",
+      "verified_why": "",
       "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
     },
     "DualModelPolymarketPortfolio": {
       "candidates": [
         {
-          "imports": true,
+          "imports": false,
           "path": "repos/mlsys-io_PortfolioBench",
           "sha256_16": "e3b0c44298fc1c14",
-          "why": ""
+          "why": "would shadow the installed freqtrade package"
         }
       ],
-      "copies_that_work": [
-        "repos/mlsys-io_PortfolioBench"
-      ],
       "missing_module": "alpha",
-      "python_path": "repos/mlsys-io_PortfolioBench",
       "rule": "restore_copied_local_module",
       "source_file": "repos/mlsys-io_PortfolioBench/user_data/strategies/DualModelPolymarketPortfolio.py",
-      "status": "resolved",
+      "status": "unresolved",
       "strategy_id": "DualModelPolymarketPortfolio",
-      "why": "1 copies satisfy the import and all are the same file, so the choice carries no risk"
+      "verification": "past_the_module",
+      "verified_status": "failed",
+      "verified_why": "cannot import name '__version__' from 'freqtrade' (unknown location)",
+      "why": "no copy of alpha in the corpus makes DualModelPolymarketPortfolio import; the import failure is not only this module"
     },
     "Dyna_opti": {
       "candidates": [
@@ -212,27 +220,29 @@
       "source_file": "repos/PeetCrypto_freqtrade-stuff/Dyna_opti.py",
       "status": "resolved",
       "strategy_id": "Dyna_opti",
+      "verification": "past_the_module",
+      "verified_status": "failed",
+      "verified_why": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
       "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
     },
     "EmaCrossStrategy": {
       "candidates": [
         {
-          "imports": true,
+          "imports": false,
           "path": "repos/mlsys-io_PortfolioBench",
           "sha256_16": "e3b0c44298fc1c14",
-          "why": ""
+          "why": "would shadow the installed freqtrade package"
         }
       ],
-      "copies_that_work": [
-        "repos/mlsys-io_PortfolioBench"
-      ],
       "missing_module": "alpha",
-      "python_path": "repos/mlsys-io_PortfolioBench",
       "rule": "restore_copied_local_module",
       "source_file": "repos/mlsys-io_PortfolioBench/strategy/EmaCrossStrategy.py",
-      "status": "resolved",
+      "status": "unresolved",
       "strategy_id": "EmaCrossStrategy",
-      "why": "1 copies satisfy the import and all are the same file, so the choice carries no risk"
+      "verification": "past_the_module",
+      "verified_status": "failed",
+      "verified_why": "cannot import name '__version__' from 'freqtrade' (unknown location)",
+      "why": "no copy of alpha in the corpus makes EmaCrossStrategy import; the import failure is not only this module"
     },
     "FileLoadingStrategy": {
       "candidates": [
@@ -274,7 +284,7 @@
           "imports": false,
           "path": "repos/mlsys-io_PortfolioBench",
           "sha256_16": "a963345f66259624",
-          "why": "ModuleNotFoundError: No module named 'strategy.mlp_speculative_model'"
+          "why": "would shadow the installed freqtrade package"
         },
         {
           "imports": false,
@@ -299,42 +309,40 @@
     "PolymarketMeanReversionStrategy": {
       "candidates": [
         {
-          "imports": true,
+          "imports": false,
           "path": "repos/mlsys-io_PortfolioBench",
           "sha256_16": "e3b0c44298fc1c14",
-          "why": ""
+          "why": "would shadow the installed freqtrade package"
         }
       ],
-      "copies_that_work": [
-        "repos/mlsys-io_PortfolioBench"
-      ],
       "missing_module": "alpha",
-      "python_path": "repos/mlsys-io_PortfolioBench",
       "rule": "restore_copied_local_module",
       "source_file": "repos/mlsys-io_PortfolioBench/strategy/PolymarketMeanReversionStrategy.py",
-      "status": "resolved",
+      "status": "unresolved",
       "strategy_id": "PolymarketMeanReversionStrategy",
-      "why": "1 copies satisfy the import and all are the same file, so the choice carries no risk"
+      "verification": "past_the_module",
+      "verified_status": "failed",
+      "verified_why": "cannot import name '__version__' from 'freqtrade' (unknown location)",
+      "why": "no copy of alpha in the corpus makes PolymarketMeanReversionStrategy import; the import failure is not only this module"
     },
     "PolymarketMomentumStrategy": {
       "candidates": [
         {
-          "imports": true,
+          "imports": false,
           "path": "repos/mlsys-io_PortfolioBench",
           "sha256_16": "e3b0c44298fc1c14",
-          "why": ""
+          "why": "would shadow the installed freqtrade package"
         }
       ],
-      "copies_that_work": [
-        "repos/mlsys-io_PortfolioBench"
-      ],
       "missing_module": "alpha",
-      "python_path": "repos/mlsys-io_PortfolioBench",
       "rule": "restore_copied_local_module",
       "source_file": "repos/mlsys-io_PortfolioBench/strategy/PolymarketMomentumStrategy.py",
-      "status": "resolved",
+      "status": "unresolved",
       "strategy_id": "PolymarketMomentumStrategy",
-      "why": "1 copies satisfy the import and all are the same file, so the choice carries no risk"
+      "verification": "past_the_module",
+      "verified_status": "failed",
+      "verified_why": "cannot import name '__version__' from 'freqtrade' (unknown location)",
+      "why": "no copy of alpha in the corpus makes PolymarketMomentumStrategy import; the import failure is not only this module"
     },
     "Solipsis": {
       "candidates": [
@@ -368,6 +376,9 @@
       "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-tradedbexp.py",
       "status": "resolved",
       "strategy_id": "Solipsis",
+      "verification": "repaired",
+      "verified_status": "measured",
+      "verified_why": "",
       "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
     },
     "Solipsis4": {
@@ -402,6 +413,9 @@
       "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis_v4.py",
       "status": "resolved",
       "strategy_id": "Solipsis4",
+      "verification": "past_the_module",
+      "verified_status": "failed",
+      "verified_why": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
       "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
     },
     "Solipsis6": {
@@ -436,6 +450,9 @@
       "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-v2.6.py",
       "status": "resolved",
       "strategy_id": "Solipsis6",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "module 'custom_indicators' has no attribute 'bollinger_bands'",
       "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
     },
     "SolipsisMM": {
@@ -470,6 +487,9 @@
       "source_file": "repos/PeetCrypto_freqtrade-stuff/SolipsisMM.py",
       "status": "resolved",
       "strategy_id": "SolipsisMM",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "module 'custom_indicators' has no attribute 'fib_ret'",
       "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
     }
   },

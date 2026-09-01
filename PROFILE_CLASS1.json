@@ -96,30 +96,10 @@
       ],
       "status": "applied"
     },
-    "DualModelPolymarketPortfolio": {
-      "note": "1 copies satisfy the import and all are the same file, so the choice carries no risk",
-      "python_paths": [
-        "repos/mlsys-io_PortfolioBench"
-      ],
-      "rules": [
-        "restore_copied_local_module"
-      ],
-      "status": "applied"
-    },
     "Dyna_opti": {
       "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
       "python_paths": [
         "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
-      ],
-      "rules": [
-        "restore_copied_local_module"
-      ],
-      "status": "applied"
-    },
-    "EmaCrossStrategy": {
-      "note": "1 copies satisfy the import and all are the same file, so the choice carries no risk",
-      "python_paths": [
-        "repos/mlsys-io_PortfolioBench"
       ],
       "rules": [
         "restore_copied_local_module"
@@ -321,26 +301,6 @@
         "restore_author_package_extension"
       ],
       "status": "blocked_missing_dependency"
-    },
-    "PolymarketMeanReversionStrategy": {
-      "note": "1 copies satisfy the import and all are the same file, so the choice carries no risk",
-      "python_paths": [
-        "repos/mlsys-io_PortfolioBench"
-      ],
-      "rules": [
-        "restore_copied_local_module"
-      ],
-      "status": "applied"
-    },
-    "PolymarketMomentumStrategy": {
-      "note": "1 copies satisfy the import and all are the same file, so the choice carries no risk",
-      "python_paths": [
-        "repos/mlsys-io_PortfolioBench"
-      ],
-      "rules": [
-        "restore_copied_local_module"
-      ],
-      "status": "applied"
     },
     "Proton": {
       "note": "Source requires proton_parameters but the repository config does not provide them.",

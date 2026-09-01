@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 21:44:10 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 22:05:30 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -23,8 +23,8 @@ have neither and are left empty rather than given an invented time.
 | | Strategies |
 |---|---:|
 | in the manifest | 900 |
-| measured at all | 705 |
-| produced trades | 678 |
+| measured at all | 728 |
+| produced trades | 698 |
 | carrying a run time | 663 |
 
 ## Cohort
@@ -32,8 +32,8 @@ have neither and are left empty rather than given an invented time.
 | Cohort | Strategies |
 |---|---:|
 | `convergence_candidate` | 378 |
-| `excluded` | 245 |
-| `exclusion_unconfirmed` | 132 |
+| `excluded` | 222 |
+| `exclusion_unconfirmed` | 155 |
 | `E0_strict67` | 67 |
 | `not_tested_in_current_runtime` | 60 |
 | `E1_expanded` | 11 |
@@ -46,7 +46,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 243 of 2102 commands are recorded so far, and every new run
+recording. 288 of 2102 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -1023,7 +1023,7 @@ verdict. Where such a hint exists it is shown in brackets.
 | `tacos1` | `not_scheduled` | `no run under the current runtime (historical hint: No data found. Terminating.)` |
 | `turbov8` | `not_scheduled` | `no run under the current runtime (historical hint: engine exited with code 0 but produced no summary (no trades at all, or output not parsed))` |
 
-## Exclusion unconfirmed - 132 strategies
+## Exclusion unconfirmed - 155 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -1035,19 +1035,19 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
+| `no_verdict_on_lookahead_and_recursive` | `no_finding` | 53 |
 | `recursive_bias_unverified` | `no_finding` | 43 |
 | `lookahead_found` | `inherited` | 38 |
-| `no_verdict_on_lookahead_and_recursive` | `no_finding` | 32 |
 | `no_verdict_on_recursive` | `no_finding` | 10 |
+| `no_verdict_on_lookahead` | `no_finding` | 6 |
 | `no_trades_in_full_measurement` | `inherited` | 5 |
-| `no_verdict_on_lookahead` | `no_finding` | 4 |
 
 This is not a softening. A row here may well end up excluded - the
 38 held on an inherited look-ahead finding probably will, because a
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 245 strategies, by decisive reason
+## Not passing - 222 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -1096,7 +1096,7 @@ whether the row is finished with or waiting on us.
 | Basis | Meaning | Strategies |
 |---|---|---:|
 | `own_measurement` | a disqualifying result measured here, from this implementation | 110 |
-| `blocked` | the strategy did not run, so nothing about it was judged | 135 |
+| `blocked` | the strategy did not run, so nothing about it was judged | 112 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -1106,7 +1106,7 @@ one of them carries none.
 |---|---|---:|
 | `lookahead_found` | reads data it could not have had at the time | 31 |
 | `technical_trap_found` | carries a published backtesting trap | 40 |
-| `strategy_does_not_run` | fails before it can be measured; the message is in runtime_failure | 135 |
+| `strategy_does_not_run` | fails before it can be measured; the message is in runtime_failure | 112 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 28 |
 | `no_trades_in_full_measurement` | never trades over the full window | 11 |
 
@@ -1117,7 +1117,7 @@ one of them carries none.
 |---|---|---|---|---|
 | `lookahead_found` | 0 | 15 | 0 | 16 |
 | `technical_trap_found` | 0 | 0 | 0 | 40 |
-| `strategy_does_not_run` | 0 | 135 | 0 | 0 |
+| `strategy_does_not_run` | 0 | 112 | 0 | 0 |
 | `recursive_bias_found` | 3 | 0 | 14 | 11 |
 | `no_trades_in_full_measurement` | 0 | 10 | 0 | 1 |
 
@@ -1156,20 +1156,21 @@ Wave `not_scheduled` - 40:
 `SimpleHopt1Along`, `SimpleHopt1Ashort`, `SimpleHoptS`, `WTX3`
 `XebTradeStrat`, `ichi`, `tesla4`, `tesla7`
 
-### `strategy_does_not_run` - 135
+### `strategy_does_not_run` - 112
 
 Fails before it can be measured; the message is in runtime_failure.
 
 | Failure | Strategies | Which |
 |---|---:|---|
-| Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m` | 31 | `Chained`, `EnsembleStrategy`, `EnsembleStrategyV1`, `EnsembleStrategyV2`, `FreqaiExampleStrategy`, `Ichimoku_v35`, `JustROCR`, `JustROCR2`, `JustROCR3`, `JustROCR4`, `JustROCR5`, `JustROCR6`, `LitmusGoodMinMaxClassificationStrategy`, `MACDCCI`, `MACDRSI200`, `MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`, `QuickAdapterV3`, `RSIBB02`, `ScalpingCCI`, `Stavix2`, `SwingHigh`, `adx_opt_strat`, `bb_rsi_opt_new`, `bbema`, `chispei`, `cryptohassle`, `macd_recovery`, `mark_strat`, `quantumfirst`, `redditMA` |
-| IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time' | 9 | `CryptoFrog`, `CryptoFrogHO`, `CryptoFrogHO2`, `CryptoFrogHO2A`, `CryptoFrogHO3A1`, `CryptoFrogHO3A2`, `CryptoFrogHO3A3`, `CryptoFrogHO3A4`, `CryptoFrog_nateema` |
+| IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time' | 11 | `CryptoFrog`, `CryptoFrogHO`, `CryptoFrogHO2`, `CryptoFrogHO2A`, `CryptoFrogHO3A1`, `CryptoFrogHO3A2`, `CryptoFrogHO3A3`, `CryptoFrogHO3A4`, `CryptoFrog_nateema`, `Dyna_opti`, `Solipsis4` |
+| Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m` | 10 | `Chained`, `EnsembleStrategy`, `EnsembleStrategyV1`, `EnsembleStrategyV2`, `FreqaiExampleStrategy`, `LitmusGoodMinMaxClassificationStrategy`, `MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`, `QuickAdapterV3`, `ScalpingCCI` |
 | The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given | 7 | `Danke`, `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `FastSupertrend`, `FastSupertrendOpt`, `SuperTrendPure`, `Supertrend` |
 | freqAI is not enabled. Please enable it in your config to use this strategy. | 5 | `RLStrategy`, `TankAi`, `TankAiRevival`, `WTAI`, `WTRSIAI` |
+| cannot import name '__version__' from 'freqtrade' (unknown location) | 4 | `DualModelPolymarketPortfolio`, `EmaCrossStrategy`, `PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy` |
 | Configuration error: 'stoploss' is a required property | 3 | `AdaptiveRenkoStrategy`, `ClucCrypROI`, `ClucCrypSlow` |
 | `populate_exit_trend` or `populate_sell_trend` must be implemented. | 2 | `ClucHAnix_BB_RPB_TraNz`, `SimpleRiskFilterStrategy` |
 | Invalid value 'False' for dtype 'float64' | 2 | `new_turtle`, `new_turtle_roi` |
-| Impossible to load Strategy 'AdvancedRiskFilterStrategy'. This class does not exist or contains Python code errors. | 1 | `AdvancedRiskFilterStrategy` |
+| Remora API key missing. Set REMORA_API_KEY env var. | 1 | `AdvancedRiskFilterStrategy` |
 | Length of values (180) does not match length of index (82) | 1 | `Astro` |
 | Impossible to load Strategy 'AutoArimaTripleV1'. This class does not exist or contains Python code errors. | 1 | `AutoArimaTripleV1` |
 | Impossible to load Strategy 'BBRSI'. This class does not exist or contains Python code errors. | 1 | `BBRSI` |
@@ -1185,11 +1186,7 @@ Fails before it can be measured; the message is in runtime_failure.
 | Impossible to load Strategy 'CopyLitmusMinMaxBroadClassificationStrategy'. This class does not exist or contains Python code errors. | 1 | `CopyLitmusMinMaxBroadClassificationStrategy` |
 | 'CryptoFrogNFI2' object has no attribute 'buy_pump_threshold_7'. Did you mean: 'buy_pump_threshold_1'? | 1 | `CryptoFrogNFI2` |
 | Impossible to load Strategy 'CryptoPredictionTraining'. This class does not exist or contains Python code errors. | 1 | `CryptoPredictionTraining` |
-| Impossible to load Strategy 'DWT'. This class does not exist or contains Python code errors. | 1 | `DWT` |
-| Impossible to load Strategy 'DWT_Leveraged'. This class does not exist or contains Python code errors. | 1 | `DWT_Leveraged` |
-| Impossible to load Strategy 'DualModelPolymarketPortfolio'. This class does not exist or contains Python code errors. | 1 | `DualModelPolymarketPortfolio` |
-| Impossible to load Strategy 'Dyna_opti'. This class does not exist or contains Python code errors. | 1 | `Dyna_opti` |
-| Impossible to load Strategy 'EmaCrossStrategy'. This class does not exist or contains Python code errors. | 1 | `EmaCrossStrategy` |
+| buffer source array is read-only | 1 | `DWT` |
 | Impossible to load Strategy 'Enchilada'. This class does not exist or contains Python code errors. | 1 | `Enchilada` |
 | Impossible to load Strategy 'FileLoadingStrategy'. This class does not exist or contains Python code errors. | 1 | `FileLoadingStrategy` |
 | Impossible to load FreqaiModel 'CatboostClassifier'. This class does not exist or contains Python code errors. | 1 | `FreqaiExampleHybridStrategy` |
@@ -1222,18 +1219,14 @@ Fails before it can be measured; the message is in runtime_failure.
 | PMAX() got an unexpected keyword argument 'atrperiod'. Did you mean 'period'? | 1 | `Pmax` |
 | Invalid value '1' for dtype 'str'. Value should be a string or missing value, got 'int' instead. | 1 | `PnF` |
 | Could not find pair source at './strategy/PolymarketLogicalArb/freqtrade_pair_mapping.csv'. Update PAIR_SOURCE_PATH in the strategy. | 1 | `PolymarketLogicalArbStrategy` |
-| Impossible to load Strategy 'PolymarketMeanReversionStrategy'. This class does not exist or contains Python code errors. | 1 | `PolymarketMeanReversionStrategy` |
-| Impossible to load Strategy 'PolymarketMomentumStrategy'. This class does not exist or contains Python code errors. | 1 | `PolymarketMomentumStrategy` |
 | Impossible to load Strategy 'Prediction_Strategy'. This class does not exist or contains Python code errors. | 1 | `Prediction_Strategy` |
 | 'proton_parameters' | 1 | `Proton` |
 | invalid literal for int() with base 10: '1h' | 1 | `QuickBuyStrategy` |
 | Impossible to load FreqaiModel 'ReforceXY'. This class does not exist or contains Python code errors. | 1 | `RLAgentStrategy` |
 | 'adx' | 1 | `RenkoYolo` |
 | Cannot determine parameter space for ttf_length. | 1 | `SMAOPv1_TTF` |
-| Impossible to load Strategy 'Solipsis'. This class does not exist or contains Python code errors. | 1 | `Solipsis` |
-| Impossible to load Strategy 'Solipsis4'. This class does not exist or contains Python code errors. | 1 | `Solipsis4` |
-| Impossible to load Strategy 'Solipsis6'. This class does not exist or contains Python code errors. | 1 | `Solipsis6` |
-| Impossible to load Strategy 'SolipsisMM'. This class does not exist or contains Python code errors. | 1 | `SolipsisMM` |
+| module 'custom_indicators' has no attribute 'bollinger_bands' | 1 | `Solipsis6` |
+| module 'custom_indicators' has no attribute 'fib_ret' | 1 | `SolipsisMM` |
 | SuperHV27.min_roi_reached_entry() takes 2 positional arguments but 4 were given | 1 | `SuperHV27` |
 | cannot reindex on an axis with duplicate labels | 1 | `Test_MAMA4` |
 | Impossible to load Strategy 'TrainCatBoostStrategy'. This class does not exist or contains Python code errors. | 1 | `TrainCatBoostStrategy` |
@@ -1298,11 +1291,11 @@ Wave `not_scheduled` - 1:
 |---|---:|
 | `paired_full_window_equivalence` | 378 |
 | `recursive_ladder_pending` | 145 |
-| `lookahead_remeasure_pending` | 105 |
-| `to_be_fixed` | 71 |
-| `lookahead_verdict` | 65 |
+| `lookahead_remeasure_pending` | 128 |
+| `needs_a_look` | 67 |
 | `first_measurement_in_current_runtime` | 60 |
-| `needs_a_look` | 59 |
+| `lookahead_verdict` | 53 |
+| `to_be_fixed` | 40 |
 | `convergence_inconclusive` | 34 |
 | `convergence_not_converged_within_ladder` | 28 |
 | `refuse_repair` | 5 |

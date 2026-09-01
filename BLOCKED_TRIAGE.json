@@ -1,22 +1,6 @@
 {
   "probed": true,
   "results": {
-    "ADX_15M_USDT": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/ADX_15M_USDT.py",
-      "strategy_id": "ADX_15M_USDT",
-      "verdict": "to_be_fixed"
-    },
-    "ADX_15M_USDT2": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/ADX_15M_USDT2/ADX_15M_USDT2.py",
-      "strategy_id": "ADX_15M_USDT2",
-      "verdict": "to_be_fixed"
-    },
     "AdaptiveRenkoStrategy": {
       "family": "no_stoploss",
       "note": "The strategy declares no stoploss. Supplying one does not restore anything the author wrote; it invents the risk management and then measures the invention.",
@@ -26,24 +10,12 @@
       "verdict": "refuse_repair"
     },
     "AdvancedRiskFilterStrategy": {
-      "family": "local_module_off_path",
-      "missing_module": "remora",
-      "module_found_at": "repos/DonaldSimpson_remora-freqtrade/remora",
-      "note": "The module the author imports is in the corpus at repos/DonaldSimpson_remora-freqtrade/remora. Nothing is wrong with the strategy; our import path does not include it.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'remora' at advanced_risk_filter_strategy.py:17",
-      "runtime_failure": "Impossible to load Strategy 'AdvancedRiskFilterStrategy'. This class does not exist or contains Python code errors.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "Remora API key missing. Set REMORA_API_KEY env var.",
       "source_file": "repos/DonaldSimpson_remora-freqtrade/examples/advanced_risk_filter_strategy.py",
       "strategy_id": "AdvancedRiskFilterStrategy",
-      "verdict": "to_be_fixed"
-    },
-    "AlligatorStrat": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/AlligatorStrat.py",
-      "strategy_id": "AlligatorStrat",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "Astro": {
       "family": "individual",
@@ -75,22 +47,6 @@
       "strategy_id": "BBRSI",
       "verdict": "needs_a_look"
     },
-    "BBRSIS": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repair/patched/repos/davidzr_freqtrade-strategies/strategies/BBRSIS/BBRSIS.py",
-      "strategy_id": "BBRSIS",
-      "verdict": "to_be_fixed"
-    },
-    "BBRSIoriginal": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/BBRSIoriginal/BBRSIoriginal.py",
-      "strategy_id": "BBRSIoriginal",
-      "verdict": "to_be_fixed"
-    },
     "BB_RPB_3c": {
       "family": "local_module_off_path",
       "missing_module": "user_data.freqtrade3cw",
@@ -103,22 +59,6 @@
       "strategy_id": "BB_RPB_3c",
       "verdict": "to_be_fixed"
     },
-    "BB_RSI": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/BB_RSI.py",
-      "strategy_id": "BB_RSI",
-      "verdict": "to_be_fixed"
-    },
-    "BB_Strategy04": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/BB_Strategy04.py",
-      "strategy_id": "BB_Strategy04",
-      "verdict": "to_be_fixed"
-    },
     "BaseStrategy": {
       "family": "local_module_off_path",
       "missing_module": "utils",
@@ -129,14 +69,6 @@
       "runtime_failure": "Impossible to load Strategy 'BaseStrategy'. This class does not exist or contains Python code errors.",
       "source_file": "repos/nateemma_strategies/Framework/BaseStrategy.py",
       "strategy_id": "BaseStrategy",
-      "verdict": "to_be_fixed"
-    },
-    "BbRoi": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/BbRoi.py",
-      "strategy_id": "BbRoi",
       "verdict": "to_be_fixed"
     },
     "BestSingleAssetPortfolio": {
@@ -195,14 +127,6 @@
       "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/Chained.py",
       "strategy_id": "Chained",
-      "verdict": "to_be_fixed"
-    },
-    "Chispei": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/Chispei.py",
-      "strategy_id": "Chispei",
       "verdict": "to_be_fixed"
     },
     "ClucCrypROI": {
@@ -352,28 +276,12 @@
       "verdict": "needs_a_look"
     },
     "DWT": {
-      "family": "local_module_off_path",
-      "missing_module": "custom_indicators",
-      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
-      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at DWT.py:35",
-      "runtime_failure": "Impossible to load Strategy 'DWT'. This class does not exist or contains Python code errors.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "buffer source array is read-only",
       "source_file": "repos/TheoBrigitte_freqtrade/strategies/dwt/DWT.py",
       "strategy_id": "DWT",
-      "verdict": "to_be_fixed"
-    },
-    "DWT_Leveraged": {
-      "family": "local_module_off_path",
-      "missing_module": "custom_indicators",
-      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
-      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at DWT_Leveraged.py:31",
-      "runtime_failure": "Impossible to load Strategy 'DWT_Leveraged'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/TheoBrigitte_freqtrade/strategies/dwt/DWT_Leveraged.py",
-      "strategy_id": "DWT_Leveraged",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "Danke": {
       "family": "dtype_drift",
@@ -384,64 +292,28 @@
       "verdict": "needs_a_look"
     },
     "DualModelPolymarketPortfolio": {
-      "family": "local_module_off_path",
-      "missing_module": "alpha",
-      "module_found_at": "repos/mlsys-io_PortfolioBench/alpha",
-      "note": "The module the author imports is in the corpus at repos/mlsys-io_PortfolioBench/alpha. Nothing is wrong with the strategy; our import path does not include it.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'alpha' at DualModelPolymarketPortfolio.py:50",
-      "runtime_failure": "Impossible to load Strategy 'DualModelPolymarketPortfolio'. This class does not exist or contains Python code errors.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "cannot import name '__version__' from 'freqtrade' (unknown location)",
       "source_file": "repos/mlsys-io_PortfolioBench/user_data/strategies/DualModelPolymarketPortfolio.py",
       "strategy_id": "DualModelPolymarketPortfolio",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "Dyna_opti": {
-      "family": "local_module_off_path",
-      "missing_module": "custom_indicators",
-      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
-      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at Dyna_opti.py:23",
-      "runtime_failure": "Impossible to load Strategy 'Dyna_opti'. This class does not exist or contains Python code errors.",
+      "family": "old_hook_signature",
+      "note": "The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.",
+      "runtime_failure": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/Dyna_opti.py",
       "strategy_id": "Dyna_opti",
       "verdict": "to_be_fixed"
     },
-    "EMABBRSI": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/EMABBRSI/EMABBRSI.py",
-      "strategy_id": "EMABBRSI",
-      "verdict": "to_be_fixed"
-    },
-    "EMAVolume": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/EMAVolume.py",
-      "strategy_id": "EMAVolume",
-      "verdict": "to_be_fixed"
-    },
-    "EXPERIMENTAL_STRATEGY": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/EXPERIMENTAL_STRATEGY/EXPERIMENTAL_STRATEGY.py",
-      "strategy_id": "EXPERIMENTAL_STRATEGY",
-      "verdict": "to_be_fixed"
-    },
     "EmaCrossStrategy": {
-      "family": "local_module_off_path",
-      "missing_module": "alpha",
-      "module_found_at": "repos/mlsys-io_PortfolioBench/alpha",
-      "note": "The module the author imports is in the corpus at repos/mlsys-io_PortfolioBench/alpha. Nothing is wrong with the strategy; our import path does not include it.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'alpha' at EmaCrossStrategy.py:10",
-      "runtime_failure": "Impossible to load Strategy 'EmaCrossStrategy'. This class does not exist or contains Python code errors.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "cannot import name '__version__' from 'freqtrade' (unknown location)",
       "source_file": "repos/mlsys-io_PortfolioBench/strategy/EmaCrossStrategy.py",
       "strategy_id": "EmaCrossStrategy",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "Enchilada": {
       "family": "third_party_package",
@@ -523,14 +395,6 @@
       "strategy_id": "FileLoadingStrategy",
       "verdict": "to_be_fixed"
     },
-    "FixedRiskRewardLoss": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/FixedRiskRewardLoss.py",
-      "strategy_id": "FixedRiskRewardLoss",
-      "verdict": "to_be_fixed"
-    },
     "FreqaiExampleHybridStrategy": {
       "family": "freqai_model_missing",
       "note": "Same arm: the model class ships with the FreqAI extras.",
@@ -602,94 +466,6 @@
       "source_file": "repos/PeetCrypto_freqtrade-stuff/Ichimoku_SenkouSpanCross.py",
       "strategy_id": "Ichimoku_SenkouSpanCross",
       "verdict": "needs_a_look"
-    },
-    "Ichimoku_v12": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/Ichimoku_v12.py",
-      "strategy_id": "Ichimoku_v12",
-      "verdict": "to_be_fixed"
-    },
-    "Ichimoku_v30": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/Ichimoku_v30_DojiStar.py",
-      "strategy_id": "Ichimoku_v30",
-      "verdict": "to_be_fixed"
-    },
-    "Ichimoku_v32": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/Ichimoku_v32_HeikinAshi.py",
-      "strategy_id": "Ichimoku_v32",
-      "verdict": "to_be_fixed"
-    },
-    "Ichimoku_v33": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/Ichimoku_v33_SAR.py",
-      "strategy_id": "Ichimoku_v33",
-      "verdict": "to_be_fixed"
-    },
-    "Ichimoku_v35": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/Ichimoku_v35_SAR_1d.py",
-      "strategy_id": "Ichimoku_v35",
-      "verdict": "to_be_fixed"
-    },
-    "JustROCR": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/JustROCR.py",
-      "strategy_id": "JustROCR",
-      "verdict": "to_be_fixed"
-    },
-    "JustROCR2": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/JustROCR2.py",
-      "strategy_id": "JustROCR2",
-      "verdict": "to_be_fixed"
-    },
-    "JustROCR3": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/JustROCR3.py",
-      "strategy_id": "JustROCR3",
-      "verdict": "to_be_fixed"
-    },
-    "JustROCR4": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/JustROCR4.py",
-      "strategy_id": "JustROCR4",
-      "verdict": "to_be_fixed"
-    },
-    "JustROCR5": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/JustROCR5.py",
-      "strategy_id": "JustROCR5",
-      "verdict": "to_be_fixed"
-    },
-    "JustROCR6": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/JustROCR6.py",
-      "strategy_id": "JustROCR6",
-      "verdict": "to_be_fixed"
     },
     "KMM": {
       "family": "third_party_package",
@@ -835,22 +611,6 @@
       "strategy_id": "LongShortRangeTradingMachetesV1",
       "verdict": "needs_a_look"
     },
-    "MACDCCI": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/MACDCCI.py",
-      "strategy_id": "MACDCCI",
-      "verdict": "to_be_fixed"
-    },
-    "MACDRSI200": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/MACDRSI200.py",
-      "strategy_id": "MACDRSI200",
-      "verdict": "to_be_fixed"
-    },
     "MKR": {
       "family": "third_party_package",
       "missing_module": "tslearn",
@@ -970,28 +730,20 @@
       "verdict": "needs_a_look"
     },
     "PolymarketMeanReversionStrategy": {
-      "family": "local_module_off_path",
-      "missing_module": "alpha",
-      "module_found_at": "repos/mlsys-io_PortfolioBench/alpha",
-      "note": "The module the author imports is in the corpus at repos/mlsys-io_PortfolioBench/alpha. Nothing is wrong with the strategy; our import path does not include it.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'alpha' at PolymarketMeanReversionStrategy.py:16",
-      "runtime_failure": "Impossible to load Strategy 'PolymarketMeanReversionStrategy'. This class does not exist or contains Python code errors.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "cannot import name '__version__' from 'freqtrade' (unknown location)",
       "source_file": "repos/mlsys-io_PortfolioBench/strategy/PolymarketMeanReversionStrategy.py",
       "strategy_id": "PolymarketMeanReversionStrategy",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "PolymarketMomentumStrategy": {
-      "family": "local_module_off_path",
-      "missing_module": "alpha",
-      "module_found_at": "repos/mlsys-io_PortfolioBench/alpha",
-      "note": "The module the author imports is in the corpus at repos/mlsys-io_PortfolioBench/alpha. Nothing is wrong with the strategy; our import path does not include it.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'alpha' at PolymarketMomentumStrategy.py:16",
-      "runtime_failure": "Impossible to load Strategy 'PolymarketMomentumStrategy'. This class does not exist or contains Python code errors.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "cannot import name '__version__' from 'freqtrade' (unknown location)",
       "source_file": "repos/mlsys-io_PortfolioBench/strategy/PolymarketMomentumStrategy.py",
       "strategy_id": "PolymarketMomentumStrategy",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "Prediction_Strategy": {
       "family": "third_party_package",
@@ -1045,14 +797,6 @@
       "strategy_id": "RLStrategy",
       "verdict": "to_be_fixed"
     },
-    "RSIBB02": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/RSIBB02/RSIBB02.py",
-      "strategy_id": "RSIBB02",
-      "verdict": "to_be_fixed"
-    },
     "RenkoYolo": {
       "family": "individual",
       "note": "one of a kind; read the message",
@@ -1085,61 +829,29 @@
       "strategy_id": "SimpleRiskFilterStrategy",
       "verdict": "refuse_repair"
     },
-    "Solipsis": {
-      "family": "local_module_off_path",
-      "missing_module": "custom_indicators",
-      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
-      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at Solipsis-tradedbexp.py:26",
-      "runtime_failure": "Impossible to load Strategy 'Solipsis'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-tradedbexp.py",
-      "strategy_id": "Solipsis",
-      "verdict": "to_be_fixed"
-    },
     "Solipsis4": {
-      "family": "local_module_off_path",
-      "missing_module": "custom_indicators",
-      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
-      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at Solipsis_v4.py:23",
-      "runtime_failure": "Impossible to load Strategy 'Solipsis4'. This class does not exist or contains Python code errors.",
+      "family": "old_hook_signature",
+      "note": "The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.",
+      "runtime_failure": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis_v4.py",
       "strategy_id": "Solipsis4",
       "verdict": "to_be_fixed"
     },
     "Solipsis6": {
-      "family": "local_module_off_path",
-      "missing_module": "custom_indicators",
-      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
-      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at Solipsis-v2.6.py:24",
-      "runtime_failure": "Impossible to load Strategy 'Solipsis6'. This class does not exist or contains Python code errors.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "module 'custom_indicators' has no attribute 'bollinger_bands'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-v2.6.py",
       "strategy_id": "Solipsis6",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "SolipsisMM": {
-      "family": "local_module_off_path",
-      "missing_module": "custom_indicators",
-      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
-      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at SolipsisMM.py:26",
-      "runtime_failure": "Impossible to load Strategy 'SolipsisMM'. This class does not exist or contains Python code errors.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "module 'custom_indicators' has no attribute 'fib_ret'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/SolipsisMM.py",
       "strategy_id": "SolipsisMM",
-      "verdict": "to_be_fixed"
-    },
-    "Stavix2": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/Stavix2/Stavix2.py",
-      "strategy_id": "Stavix2",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "SuperHV27": {
       "family": "individual",
@@ -1164,14 +876,6 @@
       "source_file": "repos/PeetCrypto_freqtrade-stuff/Supertrend.py",
       "strategy_id": "Supertrend",
       "verdict": "needs_a_look"
-    },
-    "SwingHigh": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/SwingHigh.py",
-      "strategy_id": "SwingHigh",
-      "verdict": "to_be_fixed"
     },
     "TankAi": {
       "family": "freqai_not_enabled",
@@ -1261,30 +965,6 @@
       "strategy_id": "WTRSIAI",
       "verdict": "to_be_fixed"
     },
-    "adx_opt_strat": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/adx_opt_strat/adx_opt_strat.py",
-      "strategy_id": "adx_opt_strat",
-      "verdict": "to_be_fixed"
-    },
-    "bb_rsi_opt_new": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/bb_rsi_opt_new/bb_rsi_opt_new.py",
-      "strategy_id": "bb_rsi_opt_new",
-      "verdict": "to_be_fixed"
-    },
-    "bbema": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/bbema/bbema.py",
-      "strategy_id": "bbema",
-      "verdict": "to_be_fixed"
-    },
     "bbrsi1_strategy": {
       "family": "class_not_loaded",
       "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
@@ -1293,38 +973,6 @@
       "runtime_failure": "Impossible to load Strategy 'bbrsi1_strategy'. This class does not exist or contains Python code errors.",
       "source_file": "repos/davidzr_freqtrade-strategies/strategies/bbrsi1_strategy/bbrsi1_strategy.py",
       "strategy_id": "bbrsi1_strategy",
-      "verdict": "to_be_fixed"
-    },
-    "chispei": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/botenesp_freqtrade_strategies/chispei.py",
-      "strategy_id": "chispei",
-      "verdict": "to_be_fixed"
-    },
-    "cryptohassle": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/cryptohassle/cryptohassle.py",
-      "strategy_id": "cryptohassle",
-      "verdict": "to_be_fixed"
-    },
-    "macd_recovery": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/macd_recovery/macd_recovery.py",
-      "strategy_id": "macd_recovery",
-      "verdict": "to_be_fixed"
-    },
-    "mark_strat": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/mark_strat/mark_strat.py",
-      "strategy_id": "mark_strat",
       "verdict": "to_be_fixed"
     },
     "mark_strat_opt": {
@@ -1362,22 +1010,6 @@
       "source_file": "repos/TheoBrigitte_freqtrade/strategies/turtle/new_turtle_roi.py",
       "strategy_id": "new_turtle_roi",
       "verdict": "needs_a_look"
-    },
-    "quantumfirst": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/quantumfirst/quantumfirst.py",
-      "strategy_id": "quantumfirst",
-      "verdict": "to_be_fixed"
-    },
-    "redditMA": {
-      "family": "timeframe_missing",
-      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
-      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/redditMA/redditMA.py",
-      "strategy_id": "redditMA",
-      "verdict": "to_be_fixed"
     },
     "thetank2": {
       "family": "individual",
