@@ -83,8 +83,34 @@ python eligibility_warmup_equivalence_queue.py --selftest
 git log --oneline -5 && git status --short
 ```
 
-If `docker ps` prints a container, a measurement is already running. Do not
-start a second one: runners share manifests and have no lock.
+If `docker ps` prints a container, a measurement is already running. Whether a
+second one may join it is a question with a definite answer, not a matter of
+nerve. Two runners may overlap when all three hold:
+
+1. **Different output stores.** Each runner owns the JSON it writes. Two
+   writers on one store lose entries, because each rewrites the whole file.
+2. **Disjoint strategies.** The per-strategy scratch directories
+   (`user_data/expansion_configs/`, `user_data/profile_bias_strategies/`) are
+   named by strategy, so different strategies never collide - the same
+   strategy in two runners would.
+3. **Nobody regenerates `STRATEGY_STATUS.csv` mid-flight.** A runner reads its
+   cohort once at start, so a regeneration cannot move it; but only one process
+   should be writing that file at a time.
+
+Check 1 and 2 before starting, in as many lines as it takes:
+
+```bash
+python -c "import warmup_convergence as w; print(len(w.cohort('recursive_unsettled')))"
+```
+
+`user_data/freqtrade_runs.log` is the one file every runner shares. It is safe
+for concurrent writers as of 2026-09-01: each entry is written under a claim
+(`runlog._claim`) so no two entries interleave. `python runlog.py --selftest`
+proves it with two writers and eighty entries. Before that change, eighty
+entries from two writers left seventy-three on disk.
+
+Resources are not the constraint: a run holds about 670 MiB and saturates one
+core, against 14 GB and four processors in WSL.
 
 Also useful: `python eligibility_expansion_wave_c_bias.py --selftest` prints
 `(53 candidates, N pending)`.
