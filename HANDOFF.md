@@ -3,37 +3,36 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-08-31T22:05:00+02:00
-- Stopped because: a Windows restart killed the full-window job mid-run
-- Next agent should: read `DOCUMENT_MAP.md`, then resume the job below and run
-  the Wave C bias gates
+- Last update: 2026-09-01T03:45:00+02:00
+- Stopped because: the Wave C bias queue finished; all 53 rows carry a verdict
+- Next agent should: give the adjudicator a Wave C ruleset (step 1 below)
 
-## Interrupted job - resume it
+## No job running
 
-`profile_full_window.py` was measuring the nine Wave C zero-trade rows in the
-pinned runtime, `--workers 1`, sequential by strategy and by pair:
-
-    Matrix Miku_PP_v3 MostOfAll MyStrategyTemplate Obelisk_3EMA_StochRSI_ATR
-    ViN ep3mas2 zorkv7_0_0   (then HarmonicDivergence alone, see below)
-
-Log: `user_data/wavec-zero-fullwindow.log`. Not one pair shard finished. Writes
-are atomic and resumable, so the same command is simply rerun and skips any
-finished shard.
+Both jobs finished. The nine zero-trade full-window rows and the 53-row bias
+queue are complete, and nothing holds the writer position.
 
 ## Objective
 
 Maximize trustworthy regime coverage under the frozen expansion protocol, then
 complete Stages 9-12. Rankings remain unread and blocked.
 
-## Read this before anything else
+## Cold-session checklist - mandatory
 
-`DOCUMENT_MAP.md` says which of the 31 Markdown files bind, which are
-background, and which to skip. A cold session that skips it will either read
-1,982 lines of design proposals as if they were frozen rules, or quote 67
-eligible strategies when the current number is 75. Both mistakes have happened.
+`DOCUMENT_MAP.md` says which of the 31 Markdown files bind, are background, or
+should be skipped. Without it, the 1,982-line discussion plan has been mistaken
+for frozen rules and the current 75 eligible strategies misquoted as 67.
 
-Its single most important line: **`REGIME_PREREGISTRATION.md` binds;
-`REGIME_AUDIT_PLAN.md` is reference.**
+1. Read this file, `DOCUMENT_MAP.md`, and `REGIME_PREREGISTRATION.md` in full.
+   The preregistration binds; `REGIME_AUDIT_PLAN.md` is reference only.
+2. Read the `ELIGIBILITY_EXPANSION_PLAN.md` sections named under Plan pointer.
+   Read it in full when new to the expansion, when the wave changes, or before
+   interpreting/changing admission, repair, resource, or stop rules.
+3. Read applicable `AGENTS.md` files, if any. None existed at the last check.
+4. Run every Machine state command, inspect `git status` and relevant diffs,
+   and trust active processes plus atomic artifacts over prose counts.
+5. Reconstruct completed, active, and remaining work; obey `Do not redo`.
+   Never rerun a measurement merely because a prior session did not witness it.
 
 ## Plan pointer
 
@@ -54,8 +53,11 @@ git log --oneline -5 && git status --short
 If `docker ps` prints a container, a measurement is already running. Do not
 start a second one: runners share manifests and have no lock.
 
-Last observed (2026-08-31 22:05): HEAD `7c5f03a`, working tree clean except
-`_sabotage/`; queue `0 to measure, 0 recoverable`.
+Also useful: `python eligibility_expansion_wave_c_bias.py --selftest` prints
+`(53 candidates, N pending)`.
+
+Last observed (2026-09-01 03:45): HEAD `03bb527`; no container running; Wave C
+bias queue 53 candidates, 0 pending.
 
 ## Current checkpoint
 
@@ -66,9 +68,17 @@ Last observed (2026-08-31 22:05): HEAD `7c5f03a`, working tree clean except
 - Wave A: COMPLETE. `Fakebuy` admissible, two excluded on `FOUND` lookahead,
   four terminal pending for reasons that cannot be removed without changing
   what is tested.
-- Wave C: measurement COMPLETE, 218 of 218 rows terminal - 53 with trades,
-  13 zero-trade, 152 failed. **Zero of the 53 have a bias record yet.** That is
-  the largest single piece of open work.
+- Wave C: measurement AND both bias gates COMPLETE; see
+  `EXPANSION_WAVE_C_BIAS_RESULTS.md`. Of the 53 rows that produced trades,
+  **3 passed both gates** - `NowoIchimoku5mV2`, `ObeliskIM_v1_1`,
+  `simple_patterns`, all `spot_long`, coverage `PASS`, zero traps. 37 are
+  excluded on demonstrated bias, 7 were REFUSED by the recursive analyzer
+  rather than judged, and 6 still hold an `NA`.
+- The 13 Wave C zero-trade rows are settled. Six genuinely never trade over the
+  full window; two are defective in a way a one-month window hid (`Matrix`
+  never builds the `coef` column its entry rule reads; `zorkv7_0_0` asks for
+  100,000 quantiles from 10,000 samples); four were already measured. None adds
+  a usable strategy.
 - Wave D: not started. Rows look into the future; the owner has ruled out any
   admission that rests on that, so Wave D can only ever reach E2 or exclusion.
 - E0 immutable at 67. E1 currently 67 + 8 = 75, not yet frozen.
@@ -96,9 +106,11 @@ Last observed (2026-08-31 22:05): HEAD `7c5f03a`, working tree clean except
   record, so the row stays unclassified and consumes no recovery attempt.
   Never classify a row from the second signature. The small swap exists to keep
   failures in the first, recordable category; do not set `swap=0`.
-- `HarmonicDivergence` reached 18.5 GiB on a SINGLE pair shard of the full
-  window and never finished one. Treat it as resource-terminal rather than
-  raising limits for it: run the other rows first, then attempt it alone.
+- `HarmonicDivergence` has spent its first attempt: 1800 s on ONE of eight
+  pairs without finishing, after reaching 18.5 GiB under the old ceiling. Its
+  single recovery attempt is deliberately UNUSED. Spend it only when nothing
+  better is queued; the cost is hours for one row that must still clear two
+  gates. Do not raise the memory ceiling for it.
 - Concurrency is limited by MEMORY, not by a file rule. The plan forbids two
   benchmark writers (section 6); a large image build alongside a benchmark has
   also caused OOM on this 31.5 GB host. Run heavy work strictly one at a time.
@@ -107,10 +119,21 @@ Last observed (2026-08-31 22:05): HEAD `7c5f03a`, working tree clean except
 
 ## Next concrete steps
 
-1. Finish the full-window job for the nine Wave C zero-trade rows. Run the
-   eight cheap rows first and `HarmonicDivergence` alone at the end.
-2. Run both bias gates over the 53 Wave C rows that produced trades. This is
-   the step that converts measurement into eligibility.
+1. Give `eligibility_expansion_adjudicate.py` a Wave C ruleset so the three
+   survivors can be admitted. It is driven by
+   `ELIGIBILITY_EXPANSION_PROOFS.json` and checks `trade_equivalence` and
+   `static_proof`; both exist only because a Wave B row needs an adapter to
+   obtain a recursive verdict at all. A Wave C row needs no adapter - it passed
+   the original gates natively. The Wave C ruleset asserts identity, native
+   measurement with trades, both gates `PASS`, coverage `PASS`, trap-free and
+   not `behavior_changed`: the original Stage 6 rule, unrelaxed. Rewriting the
+   frozen `REGIME_ELIGIBILITY.csv` is not an alternative.
+2. Decide the 7 refused rows with the EXISTING Wave B warm-up procedure. Six of
+   them (`BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB_RPB_TSL_BI`, `BB_RPB_TSL_BIV1`,
+   `MultiRSI`, `pmaxTest`) already hold a look-ahead `PASS`; `epretrace` is
+   `NA`. Applying a frozen rule to newly matching rows is what section 6
+   requires when an analyzer limit is overcome. A second, softer route is not.
+   Note that four of the six are variants of one strategy.
 3. Rebuild `strategy-audit-runtime-rl:2026.7` with torch and retest the five
    freqAI rows. Their common blocker is `No module named 'datasieve'`.
 4. Decide the 48 timeframe-less rows. Four now have author evidence; the other
@@ -125,6 +148,8 @@ Last observed (2026-08-31 22:05): HEAD `7c5f03a`, working tree clean except
 - Any Wave B equivalence measurement; all 26 rows are terminal and committed.
 - All Wave B recursive/recovery runs and all 26 lookahead runs.
 - The Wave C smoke queue: all 218 rows have a terminal result.
+- The Wave C bias queue: all 53 rows carry a verdict. The queue refuses to
+  re-decide a stored PASS/FOUND and that is correct.
 - Rows without a second attempt keep their legacy inline shape on purpose; read
   every record through `attempts_of`/`terminal_state`.
 - No new E1 profiles in Stage 7 until membership is frozen.
