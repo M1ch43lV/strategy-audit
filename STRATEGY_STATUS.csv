@@ -6,29 +6,29 @@ ADX_15M_USDT2,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,P
 ARIMASTR,spot_long,C_measurement_recovery,excluded,true,38,smoke,NA,NA,native,PASS,0,strategy,ineligible,no_verdict_on_lookahead_and_recursive,2026-08-31 15:47:49,run_archive,user_data/profile_smoke/ARIMASTR-2026-08-31_15-47-49.zip;user_data/profile_bias_logs/ARIMASTR-recursive.log,
 ARIMA_15,spot_long,C_measurement_recovery,excluded,true,12,smoke,FOUND,FOUND,native,PASS,0,strategy,ineligible,lookahead_found,2026-08-31 15:42:31,run_archive,user_data/profile_smoke/ARIMA_15-2026-08-31_15-42-31.zip;user_data/profile_bias_logs/ARIMA_15-lookahead.log;user_data/profile_bias_logs/ARIMA_15-recursive.log,
 ASDTSRockwellTrading,spot_long,B_warmup_refusal,excluded,true,29952,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-ActionZone,spot_long,not_scheduled,excluded,true,561,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+ActionZone,spot_long,not_scheduled,convergence_candidate,true,561,baseline,NA,FOUND,convergence:90,PASS,0,strategy,ineligible,,2026-09-01 12:59:33,log_mtime,user_data/convergence_logs/ActionZone-ladder.log,paired_full_window_equivalence;lookahead_verdict
 AdaptiveMAStrategy,spot_long,D_recursive_drift,convergence_candidate,true,3195,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:07:18,log_mtime,user_data/convergence_logs/AdaptiveMAStrategy-ladder.log,paired_full_window_equivalence
 AdaptiveRenkoStrategy,futures_long_short,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,,,,
 AdvancedRiskFilterStrategy,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:46:22,log_mtime,user_data/profile_smoke_logs/AdvancedRiskFilterStrategy.log,
-AdxSmas,spot_long,not_scheduled,excluded,true,7004,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:05:26,log_mtime,user_data/profile_bias_logs/AdxSmas-recursive.log,
-AdxSmasS,futures_short,not_scheduled,excluded,true,74,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+AdxSmas,spot_long,not_scheduled,excluded,true,7004,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 12:59:56,log_mtime,user_data/convergence_logs/AdxSmas-ladder.log;user_data/profile_bias_logs/AdxSmas-recursive.log,convergence_inconclusive
+AdxSmasS,futures_short,not_scheduled,excluded,true,74,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:00:19,log_mtime,user_data/convergence_logs/AdxSmasS-ladder.log,convergence_inconclusive
 AdxStrengthStrategy,spot_long,D_recursive_drift,convergence_candidate,true,16952,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:07:43,log_mtime,user_data/convergence_logs/AdxStrengthStrategy-ladder.log,paired_full_window_equivalence
 AlexBTK_CT,futures_long,not_scheduled,excluded,true,48,smoke,FOUND,FOUND,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
 AlexBattleTankKiller,futures_long,not_scheduled,excluded,true,48,smoke,FOUND,FOUND,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
 AlexBattleTankKillerV3,futures_long,not_scheduled,excluded,true,169,smoke,FOUND,FOUND,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
 AlexBattleTankKillerV40H,futures_long,not_scheduled,excluded,true,0,smoke,FOUND,NA,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
 AlligatorStrat,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:51:06,log_mtime,user_data/profile_smoke_logs/AlligatorStrat.log,
-AlligatorStrategy,spot_long,not_scheduled,excluded,true,1839,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-AlmgrenChrissStrategy,futures_long_short,not_scheduled,excluded,true,818,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-28 20:30:06,log_mtime,user_data/profile_bias_logs/AlmgrenChrissStrategy-recursive.log,
+AlligatorStrategy,spot_long,not_scheduled,convergence_candidate,true,1839,baseline,NA,FOUND,convergence:720,PASS,0,strategy,ineligible,,2026-09-01 13:00:43,log_mtime,user_data/convergence_logs/AlligatorStrategy-ladder.log,paired_full_window_equivalence;lookahead_verdict
+AlmgrenChrissStrategy,futures_long_short,not_scheduled,convergence_candidate,true,818,smoke,PASS,FOUND,convergence:192,PASS,0,strategy,ineligible,,2026-09-01 13:01:08,log_mtime,user_data/convergence_logs/AlmgrenChrissStrategy-ladder.log;user_data/profile_bias_logs/AlmgrenChrissStrategy-recursive.log,paired_full_window_equivalence
 AlwaysBuy,spot_long,B_warmup_refusal,E1_expanded,true,32359,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,,,,,
-Apollo11,spot_long,not_scheduled,excluded,true,6378,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+Apollo11,spot_long,not_scheduled,convergence_candidate,true,6378,baseline,NA,FOUND,convergence:1344,PASS,0,strategy,ineligible,,2026-09-01 13:01:32,log_mtime,user_data/convergence_logs/Apollo11-ladder.log,paired_full_window_equivalence;lookahead_verdict
 AroonTrendStrategy,spot_long,D_recursive_drift,convergence_candidate,true,24271,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:08:07,log_mtime,user_data/convergence_logs/AroonTrendStrategy-ladder.log,paired_full_window_equivalence
 Astro,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:17:01,log_mtime,user_data/profile_smoke_logs/Astro.log,
 AstroQAV4,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,freqAI is not enabled. Please enable it in your config to use this strategy.,,,,retry_under_current_runtime
 AtrTrailingStopStrategy,spot_long,D_recursive_drift,convergence_candidate,true,24938,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:08:31,log_mtime,user_data/convergence_logs/AtrTrailingStopStrategy-ladder.log,paired_full_window_equivalence
 AutoArimaTripleV1,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:51:28,log_mtime,user_data/profile_smoke_logs/AutoArimaTripleV1.log,
 Auto_EI_t4c0s,spot_long,not_scheduled,excluded,true,388,baseline,FOUND,FOUND,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
-AverageStrategy,spot_long,not_scheduled,excluded,true,2875,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:01:11,log_mtime,user_data/profile_bias_logs/AverageStrategy-recursive.log,
+AverageStrategy,spot_long,not_scheduled,excluded,true,2875,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:01:55,log_mtime,user_data/convergence_logs/AverageStrategy-ladder.log;user_data/profile_bias_logs/AverageStrategy-recursive.log,convergence_inconclusive
 AwesomeMacd,spot_long,B_warmup_refusal,excluded,true,3989,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 AwesomeMacdS,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FOUND,baseline,PASS,0,strategy,ineligible,"движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)",,,,retry_under_current_runtime
 BBBreakoutStrategy,spot_long,not_scheduled,excluded,true,33005,baseline,FOUND,FOUND,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
@@ -42,10 +42,10 @@ BBRSI4cust,spot_long,D_recursive_drift,convergence_candidate,true,22886,baseline
 BBRSINaiveStrategy,spot_long,D_recursive_drift,convergence_candidate,true,20022,baseline,PASS,FOUND,convergence:192,PASS,0,strategy,ineligible,,2026-09-01 12:09:19,log_mtime,user_data/convergence_logs/BBRSINaiveStrategy-ladder.log,paired_full_window_equivalence
 BBRSIOptim2020Strategy,spot_long,D_recursive_drift,convergence_candidate,true,34955,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:09:44,log_mtime,user_data/convergence_logs/BBRSIOptim2020Strategy-ladder.log,paired_full_window_equivalence
 BBRSIOptimStrategy,spot_long,D_recursive_drift,convergence_candidate,true,10697,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:10:08,log_mtime,user_data/convergence_logs/BBRSIOptimStrategy-ladder.log,paired_full_window_equivalence
-BBRSIOptimizedStrategy,spot_long,not_scheduled,excluded,true,33132,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+BBRSIOptimizedStrategy,spot_long,not_scheduled,convergence_candidate,true,33132,baseline,NA,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 13:02:19,log_mtime,user_data/convergence_logs/BBRSIOptimizedStrategy-ladder.log,paired_full_window_equivalence;lookahead_verdict
 BBRSIS,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:57:51,log_mtime,user_data/profile_smoke_logs/BBRSIS.log,
 BBRSIStrategy,spot_long,D_recursive_drift,convergence_candidate,true,12330,baseline,PASS,FOUND,convergence:192,PASS,0,strategy,ineligible,,2026-09-01 12:10:32,log_mtime,user_data/convergence_logs/BBRSIStrategy-ladder.log,paired_full_window_equivalence
-BBRSITV,spot_long,not_scheduled,excluded,true,420,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+BBRSITV,spot_long,not_scheduled,convergence_candidate,true,420,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:02:44,log_mtime,user_data/convergence_logs/BBRSITV-ladder.log,paired_full_window_equivalence;lookahead_verdict
 BBRSIoriginal,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:58:12,log_mtime,user_data/profile_smoke_logs/BBRSIoriginal.log,
 BBRSIv2,spot_long,E0_strict67,E0_strict67,true,584,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
 BB_RPB_3c,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:51:53,log_mtime,user_data/profile_smoke_logs/BB_RPB_3c.log,
@@ -53,10 +53,10 @@ BB_RPB_TSL,spot_long,C_measurement_recovery,excluded,true,80,smoke,PASS,FOUND,na
 BB_RPB_TSL_2,spot_long,C_measurement_recovery,excluded,true,92,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-31 15:58:56,run_archive,user_data/profile_smoke/BB_RPB_TSL_2-2026-08-31_15-58-56.zip;user_data/profile_bias_logs/BB_RPB_TSL_2-recursive.log,
 BB_RPB_TSL_BI,spot_long,C_measurement_recovery,excluded,true,77,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-31 14:53:46,run_archive,user_data/profile_smoke/BB_RPB_TSL_BI-2026-08-31_14-53-46.zip;user_data/profile_bias_logs/BB_RPB_TSL_BI-recursive.log,
 BB_RPB_TSL_BIV1,spot_long,C_measurement_recovery,excluded,true,95,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-31 14:53:15,run_archive,user_data/profile_smoke/BB_RPB_TSL_BIV1-2026-08-31_14-53-15.zip;user_data/profile_bias_logs/BB_RPB_TSL_BIV1-recursive.log,
-BB_RPB_TSL_RNG,spot_long,not_scheduled,excluded,true,778,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 06:59:26,log_mtime,user_data/profile_bias_logs/BB_RPB_TSL_RNG-recursive.log,
+BB_RPB_TSL_RNG,spot_long,not_scheduled,excluded,true,778,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:03:07,log_mtime,user_data/convergence_logs/BB_RPB_TSL_RNG-ladder.log;user_data/profile_bias_logs/BB_RPB_TSL_RNG-recursive.log,convergence_inconclusive
 BB_RPB_TSL_RNG_2,spot_long,B_warmup_refusal,excluded,true,776,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-BB_RPB_TSL_RNG_TBS,spot_long,not_scheduled,excluded,true,778,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:06:45,log_mtime,user_data/profile_bias_logs/BB_RPB_TSL_RNG_TBS-recursive.log,
-BB_RPB_TSL_RNG_TBS_GOLD,spot_long,not_scheduled,excluded,true,969,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:02:32,log_mtime,user_data/profile_bias_logs/BB_RPB_TSL_RNG_TBS_GOLD-recursive.log,
+BB_RPB_TSL_RNG_TBS,spot_long,not_scheduled,excluded,true,778,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:03:30,log_mtime,user_data/convergence_logs/BB_RPB_TSL_RNG_TBS-ladder.log;user_data/profile_bias_logs/BB_RPB_TSL_RNG_TBS-recursive.log,convergence_inconclusive
+BB_RPB_TSL_RNG_TBS_GOLD,spot_long,not_scheduled,excluded,true,969,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:03:54,log_mtime,user_data/convergence_logs/BB_RPB_TSL_RNG_TBS_GOLD-ladder.log;user_data/profile_bias_logs/BB_RPB_TSL_RNG_TBS_GOLD-recursive.log,convergence_inconclusive
 BB_RPB_TSL_RNG_VWAP,spot_long,D_recursive_drift,convergence_candidate,true,1289,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:10:58,log_mtime,user_data/convergence_logs/BB_RPB_TSL_RNG_VWAP-ladder.log,paired_full_window_equivalence
 BB_RPB_TSL_SMA_Tranz,spot_long,C_measurement_recovery,excluded,true,105,smoke,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-31 14:54:25,run_archive,user_data/profile_smoke/BB_RPB_TSL_SMA_Tranz-2026-08-31_14-54-25.zip;user_data/profile_bias_logs/BB_RPB_TSL_SMA_Tranz-recursive.log,
 BB_RPB_TSL_SMA_Tranz_TB_1_1_1,spot_long,C_measurement_recovery,excluded,true,630,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-31 16:00:24,run_archive,user_data/profile_smoke/BB_RPB_TSL_SMA_Tranz_TB_1_1_1-2026-08-31_16-00-24.zip;user_data/profile_bias_logs/BB_RPB_TSL_SMA_Tranz_TB_1_1_1-recursive.log,
@@ -67,28 +67,28 @@ BB_RPB_TSLmeneguzzo,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,
 BB_RSI,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:54:47,log_mtime,user_data/profile_smoke_logs/BB_RSI.log,
 BB_RTR,spot_long,D_recursive_drift,convergence_candidate,true,987,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:11:28,log_mtime,user_data/convergence_logs/BB_RTR-ladder.log,paired_full_window_equivalence
 BB_Strategy04,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:55:08,log_mtime,user_data/profile_smoke_logs/BB_Strategy04.log,
-BBands,spot_long,not_scheduled,excluded,true,7063,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-BBandsRSI,spot_long,not_scheduled,excluded,true,24684,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+BBands,spot_long,not_scheduled,convergence_candidate,true,7063,baseline,NA,FOUND,convergence:1440,PASS,0,strategy,ineligible,,2026-09-01 13:04:20,log_mtime,user_data/convergence_logs/BBands-ladder.log,paired_full_window_equivalence;lookahead_verdict
+BBandsRSI,spot_long,not_scheduled,convergence_candidate,true,24684,baseline,NA,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 13:04:45,log_mtime,user_data/convergence_logs/BBandsRSI-ladder.log,paired_full_window_equivalence;lookahead_verdict
 BBlower,spot_long,B_warmup_refusal,excluded,true,1790,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-Babico_SMA5xBBmid,spot_long,not_scheduled,excluded,true,79,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+Babico_SMA5xBBmid,spot_long,not_scheduled,excluded,true,79,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:05:08,log_mtime,user_data/convergence_logs/Babico_SMA5xBBmid-ladder.log,convergence_inconclusive
 Bandtastic,spot_long,B_warmup_refusal,excluded,true,28745,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 BaseStrategy,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:31:01,log_mtime,user_data/profile_smoke_logs/BaseStrategy.log,
 BasketStrategy,spot_long,C_measurement_recovery,excluded,true,0,full_window,NA,PASS,baseline,PASS,0,strategy,ineligible,no_trades_in_full_measurement,2026-08-31 16:30:12,run_archive,user_data/profile_smoke/BasketStrategy-2026-08-31_16-30-12.zip,
 BbRoi,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:55:30,log_mtime,user_data/profile_smoke_logs/BbRoi.log,
 BbWidthExpansionStrategy,spot_long,D_recursive_drift,convergence_candidate,true,21692,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:11:52,log_mtime,user_data/convergence_logs/BbWidthExpansionStrategy-ladder.log,paired_full_window_equivalence
-BbandRsi,spot_long,not_scheduled,excluded,true,16106,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:01:17,log_mtime,user_data/profile_bias_logs/BbandRsi-recursive.log,
-BbandRsiRolling,spot_long,not_scheduled,excluded,true,17916,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:07:59,log_mtime,user_data/profile_bias_logs/BbandRsiRolling-recursive.log,
+BbandRsi,spot_long,not_scheduled,excluded,true,16106,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:05:32,log_mtime,user_data/convergence_logs/BbandRsi-ladder.log;user_data/profile_bias_logs/BbandRsi-recursive.log,convergence_inconclusive
+BbandRsiRolling,spot_long,not_scheduled,excluded,true,17916,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:05:55,log_mtime,user_data/convergence_logs/BbandRsiRolling-ladder.log;user_data/profile_bias_logs/BbandRsiRolling-recursive.log,convergence_inconclusive
 BcmbigzDevelop,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FOUND,baseline,PASS,0,strategy,ineligible,TypeError: Invalid value '1' for dtype 'bool',,,,retry_under_current_runtime
-BcmbigzV1,spot_long,not_scheduled,excluded,true,1453,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-BeastBotXBLR6,spot_long,not_scheduled,excluded,true,635,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-BeastBotXBLR7,spot_long,not_scheduled,excluded,true,569,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+BcmbigzV1,spot_long,not_scheduled,excluded,true,1453,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:06:20,log_mtime,user_data/convergence_logs/BcmbigzV1-ladder.log,convergence_not_converged_within_ladder
+BeastBotXBLR6,spot_long,not_scheduled,excluded,true,635,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:06:45,log_mtime,user_data/convergence_logs/BeastBotXBLR6-ladder.log,convergence_not_converged_within_ladder
+BeastBotXBLR7,spot_long,not_scheduled,excluded,true,569,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:07:11,log_mtime,user_data/convergence_logs/BeastBotXBLR7-ladder.log,convergence_not_converged_within_ladder
 BestSingleAssetPortfolio,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:27:04,log_mtime,user_data/profile_smoke_logs/BestSingleAssetPortfolio.log,
 BigPete,spot_long,not_scheduled,excluded,true,17675,baseline,PASS,PASS,baseline,PASS,1,strategy,ineligible,technical_trap_found,,,,
 BigTrader,spot_long,E0_strict67,E0_strict67,true,166,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 BigZ03,spot_long,E0_strict67,E0_strict67,true,925,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
 BigZ0307HO,spot_long,D_recursive_drift,excluded,true,10653,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 12:12:17,log_mtime,user_data/convergence_logs/BigZ0307HO-ladder.log,convergence_not_converged_within_ladder
 BigZ03HO,spot_long,E0_strict67,E0_strict67,true,7275,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
-BigZ04,spot_long,not_scheduled,excluded,true,1313,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+BigZ04,spot_long,not_scheduled,excluded,true,1313,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:07:36,log_mtime,user_data/convergence_logs/BigZ04-ladder.log,convergence_not_converged_within_ladder
 BigZ0407,spot_long,D_recursive_drift,excluded,true,1287,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 12:12:44,log_mtime,user_data/convergence_logs/BigZ0407-ladder.log,convergence_not_converged_within_ladder
 BigZ0407HO,spot_long,D_recursive_drift,excluded,true,1122,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 12:13:09,log_mtime,user_data/convergence_logs/BigZ0407HO-ladder.log,convergence_not_converged_within_ladder
 BigZ04HO,spot_long,D_recursive_drift,excluded,true,1641,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 12:13:34,log_mtime,user_data/convergence_logs/BigZ04HO-ladder.log,convergence_not_converged_within_ladder
@@ -103,16 +103,16 @@ BinClucMad,spot_long,E0_strict67,E0_strict67,true,2517,baseline,PASS,PASS,baseli
 BinClucMadDevelop,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FOUND,baseline,PASS,0,strategy,ineligible,TypeError: Invalid value '1' for dtype 'bool',,,,retry_under_current_runtime
 BinClucMadSMADevelop,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FOUND,baseline,PASS,0,strategy,ineligible,TypeError: Invalid value '1' for dtype 'bool',,,,retry_under_current_runtime
 BinClucMadV1,spot_long,D_recursive_drift,convergence_candidate,true,1164,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:16:09,log_mtime,user_data/convergence_logs/BinClucMadV1-ladder.log,paired_full_window_equivalence
-BinHV27,spot_long,not_scheduled,excluded,true,11503,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:04:00,log_mtime,user_data/profile_bias_logs/BinHV27-recursive.log,
-BinHV27F,futures_long,not_scheduled,excluded,true,154,smoke,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-BinHV27_short,futures_long_short,not_scheduled,excluded,true,5,smoke,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-28 20:26:03,log_mtime,user_data/profile_bias_logs/BinHV27_short-lookahead.log;user_data/profile_bias_logs/BinHV27_short-recursive.log,
+BinHV27,spot_long,not_scheduled,excluded,true,11503,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:07:59,log_mtime,user_data/convergence_logs/BinHV27-ladder.log;user_data/profile_bias_logs/BinHV27-recursive.log,convergence_inconclusive
+BinHV27F,futures_long,not_scheduled,excluded,true,154,smoke,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:08:24,log_mtime,user_data/convergence_logs/BinHV27F-ladder.log,convergence_inconclusive
+BinHV27_short,futures_long_short,not_scheduled,excluded,true,5,smoke,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:08:48,log_mtime,user_data/convergence_logs/BinHV27_short-ladder.log;user_data/profile_bias_logs/BinHV27_short-lookahead.log;user_data/profile_bias_logs/BinHV27_short-recursive.log,convergence_inconclusive
 BinHV27_werkkrew,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FOUND,baseline,PASS,0,strategy,ineligible,TypeError: BinHV27_werkkrew.min_roi_reached_entry() takes 2 positional arguments but 4 were given,,,,retry_under_current_runtime
 BinHV45,spot_long,B_warmup_refusal,E1_expanded,true,749,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,,,,,
-BinHV45HO,spot_long,not_scheduled,excluded,true,389,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+BinHV45HO,spot_long,not_scheduled,excluded,true,389,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:09:13,log_mtime,user_data/convergence_logs/BinHV45HO-ladder.log,convergence_inconclusive
 BinHV45_kanaxe,spot_long,B_warmup_refusal,E1_expanded,true,1798,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,,,,,
 BinHV45_stash,spot_long,B_warmup_refusal,E1_expanded,true,1700,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,,,,,
 BinHV45_werkkrew,spot_long,B_warmup_refusal,E1_expanded,true,760,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,,,,,
-BinMfiBTCv5003,spot_long,not_scheduled,excluded,true,171,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+BinMfiBTCv5003,spot_long,not_scheduled,convergence_candidate,true,171,baseline,NA,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 13:09:38,log_mtime,user_data/convergence_logs/BinMfiBTCv5003-ladder.log,paired_full_window_equivalence;lookahead_verdict
 BinanceStream,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PENDING,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:56:15,log_mtime,user_data/profile_smoke_logs/BinanceStream.log,
 BlueEyes_MPP_v1,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:55:55,log_mtime,user_data/profile_smoke_logs/BlueEyes_MPP_v1.log,
 BollingerBandStrategy,spot_long,B_warmup_refusal,E1_expanded,true,16302,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,,,,,
@@ -128,8 +128,8 @@ BuyRegions,spot_long,E0_strict67,E0_strict67,true,4672,baseline,PASS,PASS,baseli
 CBPete9,spot_long,not_scheduled,excluded,true,2882,baseline,PASS,PASS,baseline,PASS,1,strategy,ineligible,technical_trap_found,,,,
 CCIStrategy,spot_long,not_scheduled,excluded,true,12348,baseline,FOUND,PASS,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
 CCI_BB,spot_long,B_warmup_refusal,E1_expanded,true,926,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,,,,,
-CMCWinner,spot_long,not_scheduled,excluded,true,6632,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:02:25,log_mtime,user_data/profile_bias_logs/CMCWinner-recursive.log,
-COPY_HL,futures_long,not_scheduled,excluded,true,0,smoke,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+CMCWinner,spot_long,not_scheduled,excluded,true,6632,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:10:01,log_mtime,user_data/convergence_logs/CMCWinner-ladder.log;user_data/profile_bias_logs/CMCWinner-recursive.log,convergence_inconclusive
+COPY_HL,futures_long,not_scheduled,excluded,true,0,smoke,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:10:25,log_mtime,user_data/convergence_logs/COPY_HL-ladder.log,convergence_inconclusive
 CTIBS,spot_long,D_recursive_drift,convergence_candidate,true,5553,baseline,PASS,FOUND,convergence:672,PASS,0,strategy,ineligible,,2026-09-01 12:18:16,log_mtime,user_data/convergence_logs/CTIBS-ladder.log,paired_full_window_equivalence
 Candle2,spot_long,B_warmup_refusal,excluded,true,7626,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 Cci,spot_long,not_scheduled,excluded,true,24831,baseline,FOUND,FOUND,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
@@ -142,14 +142,14 @@ Chandem,spot_long,B_warmup_refusal,excluded,true,16308,baseline,PASS,FOUND,basel
 Chandemtwo,spot_long,B_warmup_refusal,excluded,true,18812,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 Chispei,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:56:36,log_mtime,user_data/profile_smoke_logs/Chispei.log,
 Cluc4,spot_long,B_warmup_refusal,excluded,true,4881,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-Cluc4werk,spot_long,not_scheduled,excluded,true,3269,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:10:54,log_mtime,user_data/profile_bias_logs/Cluc4werk-recursive.log,
-Cluc5werk,spot_long,not_scheduled,excluded,true,2210,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:07:05,log_mtime,user_data/profile_bias_logs/Cluc5werk-recursive.log,
+Cluc4werk,spot_long,not_scheduled,excluded,true,3269,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:10:49,log_mtime,user_data/convergence_logs/Cluc4werk-ladder.log;user_data/profile_bias_logs/Cluc4werk-recursive.log,convergence_inconclusive
+Cluc5werk,spot_long,not_scheduled,excluded,true,2210,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:11:14,log_mtime,user_data/convergence_logs/Cluc5werk-ladder.log;user_data/profile_bias_logs/Cluc5werk-recursive.log,convergence_inconclusive
 Cluc7werk,spot_long,E0_strict67,E0_strict67,true,1719,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 ClucCrypROI,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PENDING,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:57:23,log_mtime,user_data/profile_smoke_logs/ClucCrypROI.log,
 ClucCrypSlow,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PENDING,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:57:44,log_mtime,user_data/profile_smoke_logs/ClucCrypSlow.log,
-ClucFiatROI,spot_long,not_scheduled,excluded,true,6026,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-ClucFiatSlow,spot_long,not_scheduled,excluded,true,6026,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-ClucHAnix,spot_long,not_scheduled,excluded,true,480,baseline,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:14:38,log_mtime,user_data/profile_bias_logs/ClucHAnix-lookahead.log;user_data/profile_bias_logs/ClucHAnix-recursive.log,
+ClucFiatROI,spot_long,not_scheduled,convergence_candidate,true,6026,baseline,NA,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 13:11:38,log_mtime,user_data/convergence_logs/ClucFiatROI-ladder.log,paired_full_window_equivalence;lookahead_verdict
+ClucFiatSlow,spot_long,not_scheduled,convergence_candidate,true,6026,baseline,NA,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 13:12:03,log_mtime,user_data/convergence_logs/ClucFiatSlow-ladder.log,paired_full_window_equivalence;lookahead_verdict
+ClucHAnix,spot_long,not_scheduled,excluded,true,480,baseline,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:12:27,log_mtime,user_data/convergence_logs/ClucHAnix-ladder.log;user_data/profile_bias_logs/ClucHAnix-lookahead.log;user_data/profile_bias_logs/ClucHAnix-recursive.log,convergence_inconclusive
 ClucHAnix5m,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FOUND,baseline,PASS,0,strategy,ineligible,"движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)",,,,retry_under_current_runtime
 ClucHAnix_5M_E0V1E,spot_long,E0_strict67,E0_strict67,true,5459,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
 ClucHAnix_5m,spot_long,E0_strict67,E0_strict67,true,2834,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
@@ -163,44 +163,44 @@ ClucHAnix_BB_RPB_MOD_CTT,spot_long,D_recursive_drift,excluded,true,6496,baseline
 ClucHAnix_BB_RPB_MOD_E0V1E_ROI,spot_long,D_recursive_drift,excluded,true,7336,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 12:20:44,log_mtime,user_data/convergence_logs/ClucHAnix_BB_RPB_MOD_E0V1E_ROI-ladder.log,convergence_not_converged_within_ladder
 ClucHAnix_BB_RPB_MOD_trailing_buy,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:58:09,log_mtime,user_data/profile_smoke_logs/ClucHAnix_BB_RPB_MOD_trailing_buy.log,
 ClucHAnix_BB_RPB_TraNz,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:34:02,log_mtime,user_data/profile_smoke_logs/ClucHAnix_BB_RPB_TraNz.log,
-ClucHAnix_hhll,spot_long,not_scheduled,excluded,true,2278,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+ClucHAnix_hhll,spot_long,not_scheduled,convergence_candidate,true,2278,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:12:56,log_mtime,user_data/convergence_logs/ClucHAnix_hhll-ladder.log,paired_full_window_equivalence;lookahead_verdict
 ClucHAwerk,spot_long,E0_strict67,E0_strict67,true,2183,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
-ClucMay72018,spot_long,not_scheduled,excluded,true,2507,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:10:36,log_mtime,user_data/profile_bias_logs/ClucMay72018-recursive.log,
+ClucMay72018,spot_long,not_scheduled,excluded,true,2507,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:13:19,log_mtime,user_data/convergence_logs/ClucMay72018-ladder.log;user_data/profile_bias_logs/ClucMay72018-recursive.log,convergence_inconclusive
 Cluckie,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FOUND,baseline,PASS,0,strategy,ineligible,"движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)",,,,retry_under_current_runtime
-CofiBitStrategy,spot_long,not_scheduled,excluded,true,27444,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:20:20,log_mtime,user_data/profile_bias_logs/CofiBitStrategy-recursive.log,
-CombinedBinHAndCluc,spot_long,not_scheduled,excluded,true,3540,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:11:46,log_mtime,user_data/profile_bias_logs/CombinedBinHAndCluc-recursive.log,
-CombinedBinHAndCluc2021,spot_long,not_scheduled,excluded,true,3297,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:08:00,log_mtime,user_data/profile_bias_logs/CombinedBinHAndCluc2021-recursive.log,
-CombinedBinHAndCluc2021Bull,spot_long,not_scheduled,excluded,true,3876,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:21:27,log_mtime,user_data/profile_bias_logs/CombinedBinHAndCluc2021Bull-recursive.log,
+CofiBitStrategy,spot_long,not_scheduled,excluded,true,27444,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:13:43,log_mtime,user_data/convergence_logs/CofiBitStrategy-ladder.log;user_data/profile_bias_logs/CofiBitStrategy-recursive.log,convergence_inconclusive
+CombinedBinHAndCluc,spot_long,not_scheduled,excluded,true,3540,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:14:07,log_mtime,user_data/convergence_logs/CombinedBinHAndCluc-ladder.log;user_data/profile_bias_logs/CombinedBinHAndCluc-recursive.log,convergence_inconclusive
+CombinedBinHAndCluc2021,spot_long,not_scheduled,excluded,true,3297,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:14:31,log_mtime,user_data/convergence_logs/CombinedBinHAndCluc2021-ladder.log;user_data/profile_bias_logs/CombinedBinHAndCluc2021-recursive.log,convergence_inconclusive
+CombinedBinHAndCluc2021Bull,spot_long,not_scheduled,excluded,true,3876,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:14:54,log_mtime,user_data/convergence_logs/CombinedBinHAndCluc2021Bull-ladder.log;user_data/profile_bias_logs/CombinedBinHAndCluc2021Bull-recursive.log,convergence_inconclusive
 CombinedBinHAndClucHyper,spot_long,not_scheduled,excluded,true,3817,baseline,PASS,PASS,baseline,PASS,1,strategy,ineligible,technical_trap_found,,,,
 CombinedBinHAndClucHyperV0,spot_long,B_warmup_refusal,excluded,true,4252,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 CombinedBinHAndClucHyperV3,spot_long,B_warmup_refusal,excluded,true,1810,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-CombinedBinHAndClucV2,spot_long,not_scheduled,excluded,true,728,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+CombinedBinHAndClucV2,spot_long,not_scheduled,convergence_candidate,true,728,baseline,NA,FOUND,convergence:576,PASS,0,strategy,ineligible,,2026-09-01 13:15:19,log_mtime,user_data/convergence_logs/CombinedBinHAndClucV2-ladder.log,paired_full_window_equivalence;lookahead_verdict
 CombinedBinHAndClucV3,spot_long,E0_strict67,E0_strict67,true,2589,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
-CombinedBinHAndClucV4,spot_long,not_scheduled,excluded,true,2965,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-CombinedBinHAndClucV5,spot_long,not_scheduled,excluded,true,2985,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+CombinedBinHAndClucV4,spot_long,not_scheduled,convergence_candidate,true,2965,baseline,NA,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 13:15:44,log_mtime,user_data/convergence_logs/CombinedBinHAndClucV4-ladder.log,paired_full_window_equivalence;lookahead_verdict
+CombinedBinHAndClucV5,spot_long,not_scheduled,convergence_candidate,true,2985,baseline,NA,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 13:16:09,log_mtime,user_data/convergence_logs/CombinedBinHAndClucV5-ladder.log,paired_full_window_equivalence;lookahead_verdict
 CombinedBinHAndClucV5Hyperoptable,spot_long,D_recursive_drift,convergence_candidate,true,2705,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:21:09,log_mtime,user_data/convergence_logs/CombinedBinHAndClucV5Hyperoptable-ladder.log,paired_full_window_equivalence
 CombinedBinHAndClucV6,spot_long,E0_strict67,E0_strict67,true,1724,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 CombinedBinHAndClucV6H,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:58:31,log_mtime,user_data/profile_smoke_logs/CombinedBinHAndClucV6H.log,
 CombinedBinHAndClucV7,spot_long,E0_strict67,E0_strict67,true,889,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
-CombinedBinHAndClucV8,spot_long,not_scheduled,excluded,true,884,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-CombinedBinHAndClucV8Hyper,spot_long,not_scheduled,excluded,true,1243,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-CombinedBinHAndClucV8XH,spot_long,not_scheduled,excluded,true,642,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+CombinedBinHAndClucV8,spot_long,not_scheduled,convergence_candidate,true,884,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:16:34,log_mtime,user_data/convergence_logs/CombinedBinHAndClucV8-ladder.log,paired_full_window_equivalence;lookahead_verdict
+CombinedBinHAndClucV8Hyper,spot_long,not_scheduled,convergence_candidate,true,1243,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:16:59,log_mtime,user_data/convergence_logs/CombinedBinHAndClucV8Hyper-ladder.log,paired_full_window_equivalence;lookahead_verdict
+CombinedBinHAndClucV8XH,spot_long,not_scheduled,convergence_candidate,true,642,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:17:23,log_mtime,user_data/convergence_logs/CombinedBinHAndClucV8XH-ladder.log,paired_full_window_equivalence;lookahead_verdict
 CombinedBinHAndClucV8XHO,spot_long,D_recursive_drift,convergence_candidate,true,851,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:21:34,log_mtime,user_data/convergence_logs/CombinedBinHAndClucV8XHO-ladder.log,paired_full_window_equivalence
 CombinedBinHClucAndMADV3,spot_long,E0_strict67,E0_strict67,true,1717,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 CombinedBinHClucAndMADV5,spot_long,E0_strict67,E0_strict67,true,1644,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
 CombinedBinHClucAndMADV6,spot_long,E0_strict67,E0_strict67,true,1616,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 CombinedBinHClucAndMADV9,spot_long,E0_strict67,E0_strict67,true,2842,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 Combined_Indicators,spot_long,B_warmup_refusal,excluded,true,2969,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-Combined_NFIv6_SMA,spot_long,not_scheduled,excluded,true,951,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+Combined_NFIv6_SMA,spot_long,not_scheduled,convergence_candidate,true,951,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:17:48,log_mtime,user_data/convergence_logs/Combined_NFIv6_SMA-ladder.log,paired_full_window_equivalence;lookahead_verdict
 Combined_NFIv7_SMA,spot_long,D_recursive_drift,convergence_candidate,true,927,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:22:00,log_mtime,user_data/convergence_logs/Combined_NFIv7_SMA-ladder.log,paired_full_window_equivalence
 Combined_NFIv7_SMA_Rallipanos_20210707,spot_long,D_recursive_drift,convergence_candidate,true,927,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:22:25,log_mtime,user_data/convergence_logs/Combined_NFIv7_SMA_Rallipanos_20210707-ladder.log,paired_full_window_equivalence
 Combined_NFIv7_SMA_bAdBoY_20211204,spot_long,D_recursive_drift,convergence_candidate,true,927,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:22:51,log_mtime,user_data/convergence_logs/Combined_NFIv7_SMA_bAdBoY_20211204-ladder.log,paired_full_window_equivalence
 CompositeScoreStrategy,spot_long,D_recursive_drift,convergence_candidate,true,28771,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:23:15,log_mtime,user_data/convergence_logs/CompositeScoreStrategy-ladder.log,paired_full_window_equivalence
-ConsensusShort,futures_long_short,not_scheduled,excluded,true,414,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-28 20:27:42,log_mtime,user_data/profile_bias_logs/ConsensusShort-recursive.log,
+ConsensusShort,futures_long_short,not_scheduled,excluded,true,414,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:18:12,log_mtime,user_data/convergence_logs/ConsensusShort-ladder.log;user_data/profile_bias_logs/ConsensusShort-recursive.log,convergence_inconclusive
 CoppockCurveStrategy,spot_long,D_recursive_drift,convergence_candidate,true,22332,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:23:39,log_mtime,user_data/convergence_logs/CoppockCurveStrategy-ladder.log,paired_full_window_equivalence
 CopyLitmusMinMaxBroadClassificationStrategy,futures_long_short,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,,,,
 CoreStrategy,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FOUND,baseline,PASS,0,strategy,ineligible,TypeError: Invalid value '1' for dtype 'bool',,,,retry_under_current_runtime
-CrossEMAStrategy,spot_long,not_scheduled,excluded,true,4063,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+CrossEMAStrategy,spot_long,not_scheduled,convergence_candidate,true,4063,baseline,NA,FOUND,convergence:168,PASS,0,strategy,ineligible,,2026-09-01 13:18:36,log_mtime,user_data/convergence_logs/CrossEMAStrategy-ladder.log,paired_full_window_equivalence;lookahead_verdict
 CryptoFrog,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:58:55,log_mtime,user_data/profile_smoke_logs/CryptoFrog.log,
 CryptoFrogHO,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:59:19,log_mtime,user_data/profile_smoke_logs/CryptoFrogHO.log,
 CryptoFrogHO2,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:59:42,log_mtime,user_data/profile_smoke_logs/CryptoFrogHO2.log,
@@ -215,56 +215,56 @@ CryptoFrogNFIHO1A,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FO
 CryptoFrogOffset,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FOUND,baseline,PASS,0,strategy,ineligible,TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time',,,,retry_under_current_runtime
 CryptoFrog_nateema,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:48:55,log_mtime,user_data/profile_smoke_logs/CryptoFrog_nateema.log,
 CryptoPredictionTraining,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PENDING,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:34:24,log_mtime,user_data/profile_smoke_logs/CryptoPredictionTraining.log,
-CustomStoplossWithPSAR,spot_long,not_scheduled,excluded,true,140,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:53:13,log_mtime,user_data/profile_bias_logs/CustomStoplossWithPSAR-recursive.log,
-DCBBBounce,spot_long,not_scheduled,excluded,true,136,baseline,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:54:07,log_mtime,user_data/profile_bias_logs/DCBBBounce-lookahead.log;user_data/profile_bias_logs/DCBBBounce-recursive.log,
+CustomStoplossWithPSAR,spot_long,not_scheduled,excluded,true,140,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:18:59,log_mtime,user_data/convergence_logs/CustomStoplossWithPSAR-ladder.log;user_data/profile_bias_logs/CustomStoplossWithPSAR-recursive.log,convergence_inconclusive
+DCBBBounce,spot_long,not_scheduled,convergence_candidate,true,136,baseline,NA,FOUND,convergence:576,PASS,0,strategy,ineligible,,2026-09-01 13:19:24,log_mtime,user_data/convergence_logs/DCBBBounce-ladder.log;user_data/profile_bias_logs/DCBBBounce-lookahead.log;user_data/profile_bias_logs/DCBBBounce-recursive.log,paired_full_window_equivalence;lookahead_verdict
 DD,spot_long,B_warmup_refusal,excluded,true,32051,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 DIV_v1,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,NA,baseline,PASS,1,strategy,ineligible,TypeError: NDFrame.fillna() got an unexpected keyword argument 'method',,,,retry_under_current_runtime
 DWT,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:49:40,log_mtime,user_data/profile_smoke_logs/DWT.log,
 DWT_Leveraged,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:50:01,log_mtime,user_data/profile_smoke_logs/DWT_Leveraged.log,
-DWT_LongShort,futures_long_short,not_scheduled,excluded,true,859,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-DWT_short,futures_long_short,not_scheduled,excluded,true,362,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+DWT_LongShort,futures_long_short,not_scheduled,excluded,true,859,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:19:50,log_mtime,user_data/convergence_logs/DWT_LongShort-ladder.log,convergence_inconclusive
+DWT_short,futures_long_short,not_scheduled,excluded,true,362,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:20:16,log_mtime,user_data/convergence_logs/DWT_short-ladder.log,convergence_inconclusive
 Danke,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:49:19,log_mtime,user_data/profile_smoke_logs/Danke.log,
 DemaCrossStrategy,spot_long,D_recursive_drift,convergence_candidate,true,21528,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:24:04,log_mtime,user_data/convergence_logs/DemaCrossStrategy-ladder.log,paired_full_window_equivalence
-DevilStra,spot_long,not_scheduled,excluded,true,689,baseline,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:11:42,log_mtime,user_data/profile_bias_logs/DevilStra-lookahead.log;user_data/profile_bias_logs/DevilStra-recursive.log,
+DevilStra,spot_long,not_scheduled,excluded,true,689,baseline,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:20:39,log_mtime,user_data/convergence_logs/DevilStra-ladder.log;user_data/profile_bias_logs/DevilStra-lookahead.log;user_data/profile_bias_logs/DevilStra-recursive.log,convergence_inconclusive
 Diamond,spot_long,B_warmup_refusal,excluded,true,4603,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-Dimond,spot_long,not_scheduled,excluded,true,3,baseline,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:01:09,log_mtime,user_data/profile_bias_logs/Dimond-lookahead.log;user_data/profile_bias_logs/Dimond-recursive.log,
-Divergences,spot_long,not_scheduled,excluded,true,9981,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+Dimond,spot_long,not_scheduled,excluded,true,3,baseline,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:21:02,log_mtime,user_data/convergence_logs/Dimond-ladder.log;user_data/profile_bias_logs/Dimond-lookahead.log;user_data/profile_bias_logs/Dimond-recursive.log,convergence_inconclusive
+Divergences,spot_long,not_scheduled,convergence_candidate,true,9981,baseline,NA,FOUND,convergence:2160,PASS,0,strategy,ineligible,,2026-09-01 13:21:26,log_mtime,user_data/convergence_logs/Divergences-ladder.log,paired_full_window_equivalence;lookahead_verdict
 DoesNothingStrategy,spot_long,C_measurement_recovery,excluded,true,0,full_window,NA,PASS,baseline,PASS,0,strategy,ineligible,no_trades_in_full_measurement,2026-08-31 15:02:28,run_archive,user_data/profile_smoke/DoesNothingStrategy-2026-08-31_15-02-28.zip,
 DonchianBreakoutStrategy,spot_long,D_recursive_drift,convergence_candidate,true,21512,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:24:28,log_mtime,user_data/convergence_logs/DonchianBreakoutStrategy-ladder.log,paired_full_window_equivalence
 DoubleEMACrossoverWithTrend,spot_long,not_scheduled,excluded,true,0,baseline,NA,NA,baseline,PASS,0,strategy,ineligible,no_trades_in_full_measurement,,,,
-Dracula,spot_long,not_scheduled,excluded,true,15,baseline,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:16:13,log_mtime,user_data/profile_bias_logs/Dracula-lookahead.log;user_data/profile_bias_logs/Dracula-recursive.log,
+Dracula,spot_long,not_scheduled,excluded,true,15,baseline,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:21:51,log_mtime,user_data/convergence_logs/Dracula-ladder.log;user_data/profile_bias_logs/Dracula-lookahead.log;user_data/profile_bias_logs/Dracula-recursive.log,convergence_inconclusive
 DualModelPolymarketPortfolio,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:26:42,log_mtime,user_data/profile_smoke_logs/DualModelPolymarketPortfolio.log,
 Dyna_opti,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:02:55,log_mtime,user_data/profile_smoke_logs/Dyna_opti.log,
-E0V1E,spot_long,not_scheduled,excluded,true,329,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-E0V1E2,spot_long,not_scheduled,excluded,true,330,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+E0V1E,spot_long,not_scheduled,convergence_candidate,true,329,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:22:16,log_mtime,user_data/convergence_logs/E0V1E-ladder.log,paired_full_window_equivalence;lookahead_verdict
+E0V1E2,spot_long,not_scheduled,convergence_candidate,true,330,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:22:41,log_mtime,user_data/convergence_logs/E0V1E2-ladder.log,paired_full_window_equivalence;lookahead_verdict
 E0V1EN,spot_long,not_scheduled,excluded,true,509,baseline,NA,FOUND,baseline,PASS,1,strategy,ineligible,technical_trap_found,,,,
 E0V1E_DCA3,spot_long,D_recursive_drift,convergence_candidate,true,2152,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:24:54,log_mtime,user_data/convergence_logs/E0V1E_DCA3-ladder.log,paired_full_window_equivalence
-E0V1E_ewo,spot_long,not_scheduled,excluded,true,309,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-E0V1E_protections,spot_long,not_scheduled,excluded,true,329,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-E0V1E_strs,spot_long,not_scheduled,excluded,true,134,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+E0V1E_ewo,spot_long,not_scheduled,convergence_candidate,true,309,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:23:07,log_mtime,user_data/convergence_logs/E0V1E_ewo-ladder.log,paired_full_window_equivalence;lookahead_verdict
+E0V1E_protections,spot_long,not_scheduled,convergence_candidate,true,329,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:23:31,log_mtime,user_data/convergence_logs/E0V1E_protections-ladder.log,paired_full_window_equivalence;lookahead_verdict
+E0V1E_strs,spot_long,not_scheduled,convergence_candidate,true,134,baseline,NA,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 13:23:57,log_mtime,user_data/convergence_logs/E0V1E_strs-ladder.log,paired_full_window_equivalence;lookahead_verdict
 EI1_t4c0s_V4,spot_long,not_scheduled,excluded,true,721,baseline,FOUND,FOUND,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
 EI3v2_tag_cofi_green,spot_long,not_scheduled,excluded,true,3366,baseline,PASS,FOUND,baseline,PASS,1,strategy,ineligible,technical_trap_found,,,,
 EI4_t4c0s_V2,spot_long,not_scheduled,excluded,true,4368,baseline,FOUND,FOUND,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
 EI4_t4c0s_V2_2,spot_long,not_scheduled,excluded,true,4368,baseline,FOUND,FOUND,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
-EMA50,spot_long,not_scheduled,excluded,true,5751,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:49:19,log_mtime,user_data/profile_bias_logs/EMA50-recursive.log,
+EMA50,spot_long,not_scheduled,convergence_candidate,true,5751,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 13:24:21,log_mtime,user_data/convergence_logs/EMA50-ladder.log;user_data/profile_bias_logs/EMA50-recursive.log,paired_full_window_equivalence
 EMA520015_V17,spot_long,B_warmup_refusal,excluded,true,8265,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 EMABBRSI,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:01:27,log_mtime,user_data/profile_smoke_logs/EMABBRSI.log,
-EMABreakout,spot_long,not_scheduled,excluded,true,5734,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:55:37,log_mtime,user_data/profile_bias_logs/EMABreakout-recursive.log,
+EMABreakout,spot_long,not_scheduled,convergence_candidate,true,5734,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 13:24:46,log_mtime,user_data/convergence_logs/EMABreakout-ladder.log;user_data/profile_bias_logs/EMABreakout-recursive.log,paired_full_window_equivalence
 EMAPriceCrossoverWithThreshold,spot_long,not_scheduled,excluded,true,0,baseline,NA,NA,baseline,PASS,0,strategy,ineligible,no_trades_in_full_measurement,,,,
-EMASkipPump,spot_long,not_scheduled,excluded,true,34322,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:17:24,log_mtime,user_data/profile_bias_logs/EMASkipPump-recursive.log,
+EMASkipPump,spot_long,not_scheduled,excluded,true,34322,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:25:10,log_mtime,user_data/convergence_logs/EMASkipPump-ladder.log;user_data/profile_bias_logs/EMASkipPump-recursive.log,convergence_inconclusive
 EMAVolume,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:03:17,log_mtime,user_data/profile_smoke_logs/EMAVolume.log,
 EMA_CROSSOVER_STRATEGY,spot_long,E0_strict67,E0_strict67,true,26980,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
 EXPERIMENTAL_STRATEGY,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:01:48,log_mtime,user_data/profile_smoke_logs/EXPERIMENTAL_STRATEGY.log,
 EasyInEasyOut,spot_long,B_warmup_refusal,excluded,true,17,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 ElliotV2,spot_long,E0_strict67,E0_strict67,true,402,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
-ElliotV4,spot_long,not_scheduled,excluded,true,915,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-ElliotV531,spot_long,not_scheduled,excluded,true,887,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-ElliotV5HO,spot_long,not_scheduled,excluded,true,810,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-ElliotV5HOMod2,spot_long,not_scheduled,excluded,true,494,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-ElliotV5HOMod3,spot_long,not_scheduled,excluded,true,547,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+ElliotV4,spot_long,not_scheduled,convergence_candidate,true,915,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:25:34,log_mtime,user_data/convergence_logs/ElliotV4-ladder.log,paired_full_window_equivalence;lookahead_verdict
+ElliotV531,spot_long,not_scheduled,convergence_candidate,true,887,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:25:59,log_mtime,user_data/convergence_logs/ElliotV531-ladder.log,paired_full_window_equivalence;lookahead_verdict
+ElliotV5HO,spot_long,not_scheduled,convergence_candidate,true,810,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:26:23,log_mtime,user_data/convergence_logs/ElliotV5HO-ladder.log,paired_full_window_equivalence;lookahead_verdict
+ElliotV5HOMod2,spot_long,not_scheduled,convergence_candidate,true,494,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:26:48,log_mtime,user_data/convergence_logs/ElliotV5HOMod2-ladder.log,paired_full_window_equivalence;lookahead_verdict
+ElliotV5HOMod3,spot_long,not_scheduled,convergence_candidate,true,547,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:27:12,log_mtime,user_data/convergence_logs/ElliotV5HOMod3-ladder.log,paired_full_window_equivalence;lookahead_verdict
 ElliotV5_SMA,spot_long,E0_strict67,E0_strict67,true,723,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
-ElliotV7,spot_long,not_scheduled,excluded,true,554,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-ElliotV8HO,spot_long,not_scheduled,excluded,true,386,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+ElliotV7,spot_long,not_scheduled,convergence_candidate,true,554,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:27:41,log_mtime,user_data/convergence_logs/ElliotV7-ladder.log,paired_full_window_equivalence;lookahead_verdict
+ElliotV8HO,spot_long,not_scheduled,convergence_candidate,true,386,baseline,NA,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 13:28:05,log_mtime,user_data/convergence_logs/ElliotV8HO-ladder.log,paired_full_window_equivalence;lookahead_verdict
 ElliotV8_original,spot_long,not_scheduled,excluded,true,596,baseline,NA,FOUND,baseline,PASS,1,strategy,ineligible,technical_trap_found,,,,
 ElliotV8_original_ichiv2,spot_long,not_scheduled,excluded,true,1315,baseline,NA,FOUND,baseline,PASS,1,strategy,ineligible,technical_trap_found,,,,
 ElliotV8_original_ichiv2OH,spot_long,not_scheduled,excluded,true,515,baseline,NA,FOUND,baseline,PASS,1,strategy,ineligible,technical_trap_found,,,,
@@ -279,14 +279,14 @@ EnsembleStrategyV1,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,basel
 EnsembleStrategyV2,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PENDING,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:04:23,log_mtime,user_data/profile_smoke_logs/EnsembleStrategyV2.log,
 ExponentialGradientPortfolio,spot_long,C_measurement_recovery,excluded,true,8,smoke,NA,PASS,native,PASS,0,strategy,ineligible,no_verdict_on_lookahead,2026-08-31 16:29:49,run_archive,user_data/profile_smoke/ExponentialGradientPortfolio-2026-08-31_16-29-49.zip,
 FAdxSmaStrategy,futures_long_short,E0_strict67,E0_strict67,true,15,smoke,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
-FOttStrategy,futures_long_short,not_scheduled,excluded,true,6447,full_window,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-28 23:02:20,log_mtime,user_data/profile_bias_logs/FOttStrategy-recursive.log,
-FRAYSTRAT,spot_long,not_scheduled,excluded,true,12446,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-FReinforcedStrategy,futures_long_short,not_scheduled,excluded,true,80,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-28 20:34:40,log_mtime,user_data/profile_bias_logs/FReinforcedStrategy-recursive.log,
-FSampleStrategy,futures_long_short,not_scheduled,excluded,true,40,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-28 20:35:32,log_mtime,user_data/profile_bias_logs/FSampleStrategy-recursive.log,
+FOttStrategy,futures_long_short,not_scheduled,convergence_candidate,true,6447,full_window,PASS,FOUND,convergence:672,PASS,0,strategy,ineligible,,2026-09-01 13:28:30,log_mtime,user_data/convergence_logs/FOttStrategy-ladder.log;user_data/profile_bias_logs/FOttStrategy-recursive.log,paired_full_window_equivalence
+FRAYSTRAT,spot_long,not_scheduled,convergence_candidate,true,12446,baseline,NA,FOUND,convergence:672,PASS,0,strategy,ineligible,,2026-09-01 13:28:54,log_mtime,user_data/convergence_logs/FRAYSTRAT-ladder.log,paired_full_window_equivalence;lookahead_verdict
+FReinforcedStrategy,futures_long_short,not_scheduled,excluded,true,80,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:29:19,log_mtime,user_data/convergence_logs/FReinforcedStrategy-ladder.log;user_data/profile_bias_logs/FReinforcedStrategy-recursive.log,convergence_inconclusive
+FSampleStrategy,futures_long_short,not_scheduled,convergence_candidate,true,40,smoke,PASS,FOUND,convergence:336,PASS,0,strategy,ineligible,,2026-09-01 13:29:43,log_mtime,user_data/convergence_logs/FSampleStrategy-ladder.log;user_data/profile_bias_logs/FSampleStrategy-recursive.log,paired_full_window_equivalence
 FSupertrendStrategy,futures_long,E0_strict67,E0_strict67,true,83,smoke,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 FSupertrendStrategyBTC,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:49:03,log_mtime,user_data/profile_smoke_logs/FSupertrendStrategyBTC.log,
 FSupertrendStrategyETH,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:49:25,log_mtime,user_data/profile_smoke_logs/FSupertrendStrategyETH.log,
-FTT_DWT_FBB_FUTURES,futures_long_short,not_scheduled,excluded,true,941,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+FTT_DWT_FBB_FUTURES,futures_long_short,not_scheduled,excluded,true,941,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:30:11,log_mtime,user_data/convergence_logs/FTT_DWT_FBB_FUTURES-ladder.log,convergence_inconclusive
 FVGAdvancedStrategy_V2,futures_long,not_scheduled,excluded,true,20,smoke,FOUND,FOUND,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
 FVGChannel,spot_long,B_warmup_refusal,excluded,true,16599,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 Fakebuy,spot_long,A_pending_diagnostics,pending,true,339,baseline,PASS,PASS,native,PASS,0,strategy,pending_diagnostics,pending_diagnostics,,,,
@@ -309,9 +309,9 @@ FastSupertrend_optim_quick4,futures_long_short,not_scheduled,excluded,true,1245,
 FastSupertrend_optim_quick5,futures_long_short,not_scheduled,excluded,true,1166,smoke,NA,NA,baseline,PASS,1,strategy,ineligible,technical_trap_found,,,,
 FastSupertrend_ts_origstop_fix,futures_long_short,E0_strict67,E0_strict67,true,53,smoke,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 FileLoadingStrategy,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PENDING,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:23:18,log_mtime,user_data/profile_smoke_logs/FileLoadingStrategy.log,
-FisherHull,spot_long,not_scheduled,excluded,true,34,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+FisherHull,spot_long,not_scheduled,excluded,true,34,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:30:37,log_mtime,user_data/convergence_logs/FisherHull-ladder.log,convergence_inconclusive
 FisherTransformStrategy,spot_long,D_recursive_drift,convergence_candidate,true,22576,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:25:45,log_mtime,user_data/convergence_logs/FisherTransformStrategy-ladder.log,paired_full_window_equivalence
-FiveMinCrossAbove,spot_long,not_scheduled,excluded,true,1851,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:23:56,log_mtime,user_data/profile_bias_logs/FiveMinCrossAbove-recursive.log,
+FiveMinCrossAbove,spot_long,not_scheduled,excluded,true,1851,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 13:31:01,log_mtime,user_data/convergence_logs/FiveMinCrossAbove-ladder.log;user_data/profile_bias_logs/FiveMinCrossAbove-recursive.log,convergence_inconclusive
 FixedRiskRewardLoss,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PENDING,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:04:45,log_mtime,user_data/profile_smoke_logs/FixedRiskRewardLoss.log,
 FlawlessVictory,spot_long,E0_strict67,E0_strict67,true,12240,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
 ForexRobootSuperScalper,spot_long,B_warmup_refusal,excluded,true,26623,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
@@ -517,11 +517,11 @@ NFI5MOHO_WIP,spot_long,not_scheduled,excluded,true,951,baseline,NA,FOUND,baselin
 NFI5MOHO_WIP_1,spot_long,D_recursive_drift,convergence_candidate,true,976,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:34:16,log_mtime,user_data/convergence_logs/NFI5MOHO_WIP_1-ladder.log,paired_full_window_equivalence
 NFI5MOHO_WIP_2,spot_long,D_recursive_drift,convergence_candidate,true,988,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:34:44,log_mtime,user_data/convergence_logs/NFI5MOHO_WIP_2-ladder.log,paired_full_window_equivalence
 NFI731_BUSD,spot_long,C_measurement_recovery,excluded,true,19,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-31 15:14:23,run_archive,user_data/profile_smoke/NFI731_BUSD-2026-08-31_15-14-23.zip;user_data/profile_bias_logs/NFI731_BUSD-recursive.log,
-NFI7MOHO,spot_long,D_recursive_drift,excluded,true,1966,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-NFINextMOHO,spot_long,D_recursive_drift,excluded,true,1442,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-NFINextMOHO2,spot_long,D_recursive_drift,excluded,true,1784,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-NFINextMultiOffsetAndHO,spot_long,D_recursive_drift,excluded,true,1094,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-NFINextMultiOffsetAndHO2,spot_long,D_recursive_drift,excluded,true,705,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+NFI7MOHO,spot_long,D_recursive_drift,convergence_candidate,true,1966,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:35:13,log_mtime,user_data/convergence_logs/NFI7MOHO-ladder.log,paired_full_window_equivalence
+NFINextMOHO,spot_long,D_recursive_drift,convergence_candidate,true,1442,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:35:41,log_mtime,user_data/convergence_logs/NFINextMOHO-ladder.log,paired_full_window_equivalence
+NFINextMOHO2,spot_long,D_recursive_drift,convergence_candidate,true,1784,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:36:07,log_mtime,user_data/convergence_logs/NFINextMOHO2-ladder.log,paired_full_window_equivalence
+NFINextMultiOffsetAndHO,spot_long,D_recursive_drift,convergence_candidate,true,1094,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:36:33,log_mtime,user_data/convergence_logs/NFINextMultiOffsetAndHO-ladder.log,paired_full_window_equivalence
+NFINextMultiOffsetAndHO2,spot_long,D_recursive_drift,convergence_candidate,true,705,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:37:00,log_mtime,user_data/convergence_logs/NFINextMultiOffsetAndHO2-ladder.log,paired_full_window_equivalence
 NFIX_BB_RPB,spot_long,C_measurement_recovery,excluded,true,34,smoke,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-31 15:14:55,run_archive,user_data/profile_smoke/NFIX_BB_RPB-2026-08-31_15-14-55.zip;user_data/profile_bias_logs/NFIX_BB_RPB-recursive.log,
 NFIX_BB_RPB_c7c477d_20211030,spot_long,C_measurement_recovery,excluded,true,16,smoke,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-31 16:04:36,run_archive,user_data/profile_smoke/NFIX_BB_RPB_c7c477d_20211030-2026-08-31_16-04-36.zip;user_data/profile_bias_logs/NFIX_BB_RPB_c7c477d_20211030-recursive.log,
 NOTankAi_15,futures_long,not_scheduled,excluded,true,139,smoke,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
@@ -534,9 +534,9 @@ NWEv6_new,spot_long,E0_strict67,E0_strict67,true,8108,baseline,PASS,PASS,baselin
 NeuroV1,spot_long,not_scheduled,excluded,true,9371,baseline,FOUND,PASS,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
 NfiNextModded,spot_long,C_measurement_recovery,excluded,true,106,smoke,FOUND,FOUND,native,PASS,0,strategy,ineligible,lookahead_found,2026-08-31 15:15:48,run_archive,user_data/profile_smoke/NfiNextModded-2026-08-31_15-15-48.zip;user_data/profile_bias_logs/NfiNextModded-lookahead.log;user_data/profile_bias_logs/NfiNextModded-recursive.log,
 NoLost,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:16:11,log_mtime,user_data/profile_smoke_logs/NoLost.log,
-NormalizerStrategy,spot_long,D_recursive_drift,excluded,true,3747,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+NormalizerStrategy,spot_long,D_recursive_drift,convergence_candidate,true,3747,baseline,PASS,FOUND,convergence:610,PASS,0,strategy,ineligible,,2026-09-01 12:37:23,log_mtime,user_data/convergence_logs/NormalizerStrategy-ladder.log,paired_full_window_equivalence
 NormalizerStrategyHO2,spot_long,not_scheduled,excluded,true,3149,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-Nostalgia,spot_long,D_recursive_drift,excluded,true,834,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+Nostalgia,spot_long,D_recursive_drift,convergence_candidate,true,834,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:37:49,log_mtime,user_data/convergence_logs/Nostalgia-ladder.log,paired_full_window_equivalence
 NostalgiaForInfinity772martinsk3,spot_long,C_measurement_recovery,excluded,true,21,smoke,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-31 15:54:00,run_archive,user_data/profile_smoke/NostalgiaForInfinity772martinsk3-2026-08-31_15-54-00.zip;user_data/profile_bias_logs/NostalgiaForInfinity772martinsk3-recursive.log,
 NostalgiaForInfinityNext,spot_long,C_measurement_recovery,excluded,true,24,smoke,FOUND,FOUND,native,PASS,0,strategy,ineligible,lookahead_found,2026-08-31 14:47:57,run_archive,user_data/profile_smoke/NostalgiaForInfinityNext-2026-08-31_14-47-57.zip;user_data/profile_bias_logs/NostalgiaForInfinityNext-lookahead.log;user_data/profile_bias_logs/NostalgiaForInfinityNext-recursive.log,
 NostalgiaForInfinityNext772,spot_long,C_measurement_recovery,excluded,true,38,smoke,FOUND,FOUND,native,PASS,0,strategy,ineligible,lookahead_found,2026-08-31 15:35:53,run_archive,user_data/profile_smoke/NostalgiaForInfinityNext772-2026-08-31_15-35-53.zip;user_data/profile_bias_logs/NostalgiaForInfinityNext772-lookahead.log;user_data/profile_bias_logs/NostalgiaForInfinityNext772-recursive.log,
@@ -553,10 +553,10 @@ NostalgiaForInfinityV3,spot_long,not_scheduled,excluded,true,1015,baseline,NA,FO
 NostalgiaForInfinityV4,spot_long,not_scheduled,excluded,true,401,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 NostalgiaForInfinityV4HO,spot_long,not_scheduled,excluded,true,379,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 NostalgiaForInfinityV5,spot_long,not_scheduled,excluded,true,618,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-NostalgiaForInfinityV5MultiOffsetAndHO,spot_long,D_recursive_drift,excluded,true,1766,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+NostalgiaForInfinityV5MultiOffsetAndHO,spot_long,D_recursive_drift,convergence_candidate,true,1766,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:38:14,log_mtime,user_data/convergence_logs/NostalgiaForInfinityV5MultiOffsetAndHO-ladder.log,paired_full_window_equivalence
 NostalgiaForInfinityV5MultiOffsetAndHO2,spot_long,not_scheduled,excluded,true,1381,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 NostalgiaForInfinityV6,spot_long,not_scheduled,excluded,true,712,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-NostalgiaForInfinityV6HO,spot_long,D_recursive_drift,excluded,true,712,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+NostalgiaForInfinityV6HO,spot_long,D_recursive_drift,convergence_candidate,true,712,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:38:41,log_mtime,user_data/convergence_logs/NostalgiaForInfinityV6HO-ladder.log,paired_full_window_equivalence
 NostalgiaForInfinityV7,spot_long,not_scheduled,excluded,true,684,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 NostalgiaForInfinityV7_7_2,spot_long,C_measurement_recovery,excluded,true,40,smoke,FOUND,FOUND,native,PASS,0,strategy,ineligible,lookahead_found,2026-08-31 16:05:55,run_archive,user_data/profile_smoke/NostalgiaForInfinityV7_7_2-2026-08-31_16-05-55.zip;user_data/profile_bias_logs/NostalgiaForInfinityV7_7_2-lookahead.log;user_data/profile_bias_logs/NostalgiaForInfinityV7_7_2-recursive.log,
 NostalgiaForInfinityV7_SMA,spot_long,not_scheduled,excluded,true,927,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
@@ -574,7 +574,7 @@ NotAnotherSMAOffSetStrategy_V2,spot_long,not_scheduled,excluded,true,3,baseline,
 NotAnotherSMAOffsetStrategy,spot_long,not_scheduled,excluded,true,898,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 NotAnotherSMAOffsetStrategyHO,spot_long,not_scheduled,excluded,true,905,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 NotAnotherSMAOffsetStrategyHOv3,spot_long,not_scheduled,excluded,true,752,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-NotAnotherSMAOffsetStrategyLite,spot_long,D_recursive_drift,excluded,true,1415,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+NotAnotherSMAOffsetStrategyLite,spot_long,D_recursive_drift,convergence_candidate,true,1415,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:39:05,log_mtime,user_data/convergence_logs/NotAnotherSMAOffsetStrategyLite-ladder.log,paired_full_window_equivalence
 NotAnotherSMAOffsetStrategyModHO,spot_long,not_scheduled,excluded,true,1144,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 NotAnotherSMAOffsetStrategyModHO_LamineDz_20210901,spot_long,not_scheduled,excluded,true,1143,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 NotAnotherSMAOffsetStrategyX1,spot_long,not_scheduled,excluded,true,597,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
@@ -592,12 +592,12 @@ Obelisk_Ichimoku_Slow_v1_3,spot_long,C_measurement_recovery,excluded,true,57,smo
 Obelisk_Ichimoku_ZEMA_v1,spot_long,C_measurement_recovery,excluded,true,38,smoke,FOUND,PASS,native,PASS,0,strategy,ineligible,lookahead_found,2026-08-31 14:48:19,run_archive,user_data/profile_smoke/Obelisk_Ichimoku_ZEMA_v1-2026-08-31_14-48-19.zip;user_data/profile_bias_logs/Obelisk_Ichimoku_ZEMA_v1-lookahead.log,
 Obelisk_TradePro_Ichi_v1_1,spot_long,not_scheduled,excluded,true,5059,baseline,FOUND,PASS,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
 Obelisk_TradePro_Ichi_v2_1,spot_long,not_scheduled,excluded,true,6419,baseline,FOUND,PASS,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
-ObvTrendStrategy,spot_long,D_recursive_drift,excluded,true,26508,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+ObvTrendStrategy,spot_long,D_recursive_drift,excluded,true,26508,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 12:39:30,log_mtime,user_data/convergence_logs/ObvTrendStrategy-ladder.log,convergence_not_converged_within_ladder
 OmaGann,spot_long,B_warmup_refusal,excluded,true,11035,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 PRICEFOLLOWING,spot_long,not_scheduled,excluded,true,272,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 PRICEFOLLOWING2,spot_long,not_scheduled,excluded,true,2,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 PRICEFOLLOWINGX,spot_long,not_scheduled,excluded,true,1172,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-ParabolicSarStrategy,spot_long,D_recursive_drift,excluded,true,24042,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+ParabolicSarStrategy,spot_long,D_recursive_drift,convergence_candidate,true,24042,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:39:54,log_mtime,user_data/convergence_logs/ParabolicSarStrategy-ladder.log,paired_full_window_equivalence
 PatternRecognition,spot_long,not_scheduled,excluded,true,654,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 Persia,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:21:43,log_mtime,user_data/profile_smoke_logs/Persia.log,
 Pmax,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:22:06,log_mtime,user_data/profile_smoke_logs/Pmax.log,
@@ -607,14 +607,14 @@ PolymarketMeanReversionStrategy,spot_long,C_measurement_recovery,excluded,false,
 PolymarketMomentumStrategy,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PENDING,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:25:57,log_mtime,user_data/profile_smoke_logs/PolymarketMomentumStrategy.log,
 PolymarketPortfolio,spot_long,not_scheduled,excluded,true,405,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 PowerTower,spot_long,E0_strict67,E0_strict67,true,5001,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
-PpoMomentumStrategy,spot_long,D_recursive_drift,excluded,true,20537,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+PpoMomentumStrategy,spot_long,D_recursive_drift,convergence_candidate,true,20537,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:40:19,log_mtime,user_data/convergence_logs/PpoMomentumStrategy-ladder.log,paired_full_window_equivalence
 PrawnstarOBV,spot_long,not_scheduled,excluded,true,7066,baseline,NA,FOUND,baseline,PASS,1,strategy,ineligible,technical_trap_found,,,,
 Precognition,spot_long,not_scheduled,excluded,true,5849,baseline,FOUND,FOUND,native,PASS,0,strategy,ineligible,lookahead_found,2026-08-29 07:48:56,log_mtime,user_data/profile_bias_logs/Precognition-lookahead.log;user_data/profile_bias_logs/Precognition-recursive.log,
 Prediction_Strategy,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:22:32,log_mtime,user_data/profile_smoke_logs/Prediction_Strategy.log,
-PriceActionCandleStrategy,spot_long,D_recursive_drift,excluded,true,24545,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-PriceChannelStrategy,spot_long,D_recursive_drift,excluded,true,17105,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+PriceActionCandleStrategy,spot_long,D_recursive_drift,convergence_candidate,true,24545,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:40:43,log_mtime,user_data/convergence_logs/PriceActionCandleStrategy-ladder.log,paired_full_window_equivalence
+PriceChannelStrategy,spot_long,D_recursive_drift,convergence_candidate,true,17105,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:41:07,log_mtime,user_data/convergence_logs/PriceChannelStrategy-ladder.log,paired_full_window_equivalence
 Proton,futures_long_short,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,,,,
-PumpDetector,spot_long,D_recursive_drift,excluded,true,32258,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+PumpDetector,spot_long,D_recursive_drift,convergence_candidate,true,32258,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:41:32,log_mtime,user_data/convergence_logs/PumpDetector-ladder.log,paired_full_window_equivalence
 QuickAdapterV3,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PENDING,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:54:22,log_mtime,user_data/profile_smoke_logs/QuickAdapterV3.log,
 QuickBuyStrategy,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:22:54,log_mtime,user_data/profile_smoke_logs/QuickBuyStrategy.log,
 Quickie,spot_long,not_scheduled,excluded,true,7676,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:32:25,log_mtime,user_data/profile_bias_logs/Quickie-recursive.log,
@@ -627,7 +627,7 @@ RSIDirectionalWithTrendSlow,spot_long,not_scheduled,excluded,true,0,baseline,NA,
 RSIDivTirail,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,PASS,baseline,PASS,1,strategy,ineligible,OSError: Cannot save file into a non-existent directory: 'user_data\csvs',,,,retry_under_current_runtime
 RSI_BB,spot_long,B_warmup_refusal,excluded,true,14931,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 RSI_EMA_strategy,spot_long,B_warmup_refusal,excluded,true,5240,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-RSIv2,spot_long,D_recursive_drift,excluded,true,5908,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+RSIv2,spot_long,D_recursive_drift,convergence_candidate,true,5908,baseline,PASS,FOUND,convergence:192,PASS,0,strategy,ineligible,,2026-09-01 12:41:55,log_mtime,user_data/convergence_logs/RSIv2-ladder.log,paired_full_window_equivalence
 RalliV1,spot_long,not_scheduled,excluded,true,657,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 RalliV1_disable56,spot_long,not_scheduled,excluded,true,651,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 RaposaDivergenceV1,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FOUND,baseline,PASS,0,strategy,ineligible,"движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)",,,,retry_under_current_runtime
@@ -640,10 +640,10 @@ Renko,spot_long,not_scheduled,excluded,true,124,baseline,FOUND,PASS,baseline,PAS
 RenkoYolo,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:23:17,log_mtime,user_data/profile_smoke_logs/RenkoYolo.log,
 RiskParityPortfolio,spot_long,A_pending_diagnostics,pending,true,23,baseline,NA,PASS,native,PASS,0,strategy,pending_diagnostics,pending_diagnostics,2026-08-29 08:05:03,log_mtime,user_data/profile_bias_logs/RiskParityPortfolio-lookahead.log,
 RobotradingBody,spot_long,E0_strict67,E0_strict67,true,2895,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
-RocMomentumStrategy,spot_long,D_recursive_drift,excluded,true,26606,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+RocMomentumStrategy,spot_long,D_recursive_drift,convergence_candidate,true,26606,baseline,PASS,FOUND,convergence:576,PASS,0,strategy,ineligible,,2026-09-01 12:42:20,log_mtime,user_data/convergence_logs/RocMomentumStrategy-ladder.log,paired_full_window_equivalence
 Roth01,spot_long,B_warmup_refusal,excluded,true,12346,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 Roth03,spot_long,B_warmup_refusal,excluded,true,3509,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-RsiBollingerStrategy,spot_long,D_recursive_drift,excluded,true,2885,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+RsiBollingerStrategy,spot_long,D_recursive_drift,convergence_candidate,true,2885,baseline,PASS,FOUND,convergence:168,PASS,0,strategy,ineligible,,2026-09-01 12:42:44,log_mtime,user_data/convergence_logs/RsiBollingerStrategy-ladder.log,paired_full_window_equivalence
 RsiDivergenceStrategy,spot_long,not_scheduled,excluded,true,474,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 Rsiqui,spot_long,not_scheduled,excluded,true,28778,baseline,FOUND,FOUND,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
 RsiquiV2,futures_long_short,not_scheduled,excluded,true,9326,smoke,FOUND,FOUND,native,PASS,0,strategy,ineligible,lookahead_found,2026-08-28 20:18:13,log_mtime,user_data/profile_bias_logs/RsiquiV2-lookahead.log,
@@ -668,10 +668,10 @@ SMAOffset_Hippocritical_dca_leverage,futures_long,not_scheduled,excluded,true,18
 SMAOffset_Hippocritical_dca_old,spot_long,not_scheduled,excluded,true,218,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 SMAOffset_Hippocritical_dca_protections,spot_long,not_scheduled,excluded,true,218,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 SMA_BBRSI,spot_long,not_scheduled,excluded,true,706,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-SRsi,spot_long,D_recursive_drift,excluded,true,23768,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-STRATEGY_RSI_BB_BOUNDS_CROSS,spot_long,D_recursive_drift,excluded,true,7197,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-STRATEGY_RSI_BB_CROSS,spot_long,D_recursive_drift,excluded,true,16827,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-SampleStrategy,spot_long,D_recursive_drift,excluded,true,12724,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+SRsi,spot_long,D_recursive_drift,convergence_candidate,true,23768,baseline,PASS,FOUND,convergence:1440,PASS,0,strategy,ineligible,,2026-09-01 12:43:10,log_mtime,user_data/convergence_logs/SRsi-ladder.log,paired_full_window_equivalence
+STRATEGY_RSI_BB_BOUNDS_CROSS,spot_long,D_recursive_drift,convergence_candidate,true,7197,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:43:35,log_mtime,user_data/convergence_logs/STRATEGY_RSI_BB_BOUNDS_CROSS-ladder.log,paired_full_window_equivalence
+STRATEGY_RSI_BB_CROSS,spot_long,D_recursive_drift,convergence_candidate,true,16827,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:44:00,log_mtime,user_data/convergence_logs/STRATEGY_RSI_BB_CROSS-ladder.log,paired_full_window_equivalence
+SampleStrategy,spot_long,D_recursive_drift,convergence_candidate,true,12724,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:44:24,log_mtime,user_data/convergence_logs/SampleStrategy-ladder.log,paired_full_window_equivalence
 SampleStrategyV2,spot_long,E0_strict67,E0_strict67,true,5882,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 Sar,spot_long,not_scheduled,excluded,true,12724,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 Saturn5,spot_long,not_scheduled,excluded,true,3356,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
@@ -693,7 +693,7 @@ SimpleHoptS,futures_short,not_scheduled,excluded,true,0,smoke,NA,NA,baseline,PAS
 SimpleRiskFilterStrategy,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 16:46:42,log_mtime,user_data/profile_smoke_logs/SimpleRiskFilterStrategy.log,
 SlowPotato,spot_long,B_warmup_refusal,excluded,true,638,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 Slowbro,spot_long,E0_strict67,E0_strict67,true,95,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
-SmaRsiStrategy,spot_long,D_recursive_drift,excluded,true,575,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+SmaRsiStrategy,spot_long,D_recursive_drift,convergence_candidate,true,575,baseline,PASS,FOUND,convergence:90,PASS,0,strategy,ineligible,,2026-09-01 12:44:48,log_mtime,user_data/convergence_logs/SmaRsiStrategy-ladder.log,paired_full_window_equivalence
 SmartMoneyStrategy,spot_long,B_warmup_refusal,excluded,true,285,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 SmartMoneyStrategyHyperopt,spot_long,not_scheduled,attempted_no_measurement,false,,,PASS,FOUND,baseline,PASS,0,strategy,ineligible,"ПРЕДМЕТ НЕ ТОТ: стратегия объявила 30m, движок считал на 1h",,,,retry_under_current_runtime
 SmoothOperator,spot_long,not_scheduled,excluded,true,17127,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:36:42,log_mtime,user_data/profile_bias_logs/SmoothOperator-recursive.log,
@@ -706,7 +706,7 @@ Solipsis6,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,
 SolipsisCon,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FOUND,baseline,PASS,0,strategy,ineligible,"attempted, no measurement recorded",,,,retry_under_current_runtime
 SolipsisMM,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:25:16,log_mtime,user_data/profile_smoke_logs/SolipsisMM.log,
 SqueezeMomentum,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FOUND,baseline,PASS,0,strategy,ineligible,OSError: Cannot save file into a non-existent directory: 'user_data\csvs',,,,retry_under_current_runtime
-SqueezeMomentumStrategy,spot_long,D_recursive_drift,excluded,true,23183,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+SqueezeMomentumStrategy,spot_long,D_recursive_drift,convergence_candidate,true,23183,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:45:12,log_mtime,user_data/convergence_logs/SqueezeMomentumStrategy-ladder.log,paired_full_window_equivalence
 StarRise,spot_long,not_scheduled,excluded,true,220,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 StarRise_strat,spot_long,not_scheduled,excluded,true,255,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 StarRise_strat3,spot_long,not_scheduled,excluded,true,1261,baseline,FOUND,FOUND,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
@@ -714,8 +714,8 @@ Stavix2,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,
 Stinkfist,spot_long,C_measurement_recovery,excluded,true,203,smoke,FOUND,PASS,native,PASS,0,strategy,ineligible,lookahead_found,2026-08-31 15:27:07,run_archive,user_data/profile_smoke/Stinkfist-2026-08-31_15-27-07.zip;user_data/profile_bias_logs/Stinkfist-lookahead.log,
 StochRSITEMA,spot_long,E0_strict67,E0_strict67,true,4542,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 StochasticCciStrategy,spot_long,E0_strict67,E0_strict67,true,1325,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
-StochasticOversoldStrategy,spot_long,D_recursive_drift,excluded,true,23710,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-StochasticRsiStrategy,spot_long,D_recursive_drift,excluded,true,24673,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+StochasticOversoldStrategy,spot_long,D_recursive_drift,convergence_candidate,true,23710,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:45:36,log_mtime,user_data/convergence_logs/StochasticOversoldStrategy-ladder.log,paired_full_window_equivalence
+StochasticRsiStrategy,spot_long,D_recursive_drift,convergence_candidate,true,24673,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:46:00,log_mtime,user_data/convergence_logs/StochasticRsiStrategy-ladder.log,paired_full_window_equivalence
 Strategy,spot_long,C_measurement_recovery,attempted_no_measurement,false,,,NA,NA,baseline,PENDING,0,test_candidate,ineligible,'stoploss' is a required property,,,,retry_under_current_runtime
 Strategy001,spot_long,B_warmup_refusal,excluded,true,13947,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 Strategy001_custom_exit,spot_long,B_warmup_refusal,excluded,true,2581,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
@@ -725,7 +725,7 @@ Strategy003,spot_long,B_warmup_refusal,excluded,true,3498,baseline,PASS,FOUND,ba
 Strategy004,spot_long,B_warmup_refusal,excluded,true,6076,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 Strategy005,spot_long,B_warmup_refusal,excluded,true,5597,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 StrategyAnalysis,spot_long,C_measurement_recovery,attempted_no_measurement,false,,,NA,NA,baseline,PENDING,0,template_candidate,ineligible,TypeError: Can't instantiate abstract class StrategyAnalysis without an implementation for abstract method 'populate_indicators',,,,retry_under_current_runtime
-StrategyScalpingFast,spot_long,D_recursive_drift,excluded,true,4830,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+StrategyScalpingFast,spot_long,D_recursive_drift,convergence_candidate,true,4830,baseline,PASS,FOUND,convergence:1440,PASS,0,strategy,ineligible,,2026-09-01 12:46:27,log_mtime,user_data/convergence_logs/StrategyScalpingFast-ladder.log,paired_full_window_equivalence
 StrategyScalpingFast2,spot_long,B_warmup_refusal,excluded,true,1468,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 StrategyTestV2,spot_long,not_scheduled,excluded,true,26070,baseline,PASS,FOUND,baseline,PASS,0,test_candidate,ineligible,recursive_bias_found,,,,
 StrategyTestV3,futures_long,not_scheduled,excluded,true,818,smoke,NA,FOUND,baseline,PASS,0,test_candidate,ineligible,recursive_bias_found,,,,
@@ -740,7 +740,7 @@ TD,spot_long,not_scheduled,excluded,true,6164,baseline,NA,FOUND,baseline,PASS,0,
 TDSequentialStrategy,spot_long,E0_strict67,E0_strict67,true,4587,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 TEMA,spot_long,not_scheduled,excluded,true,25158,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 TGMA,spot_long,A_pending_diagnostics,pending,true,8673,baseline,NA,PASS,native,PASS,0,strategy,pending_diagnostics,pending_diagnostics,2026-08-29 07:52:28,log_mtime,user_data/profile_bias_logs/TGMA-lookahead.log,
-TRIWAVE,spot_long,D_recursive_drift,excluded,true,3624,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+TRIWAVE,spot_long,D_recursive_drift,convergence_candidate,true,3624,baseline,PASS,FOUND,convergence:672,PASS,0,strategy,ineligible,,2026-09-01 12:46:51,log_mtime,user_data/convergence_logs/TRIWAVE-ladder.log,paired_full_window_equivalence
 TSPredict,futures_long,not_scheduled,excluded,true,17958,full_window,FOUND,PASS,native,PASS,0,strategy,ineligible,lookahead_found,2026-08-29 06:50:25,log_mtime,user_data/profile_bias_logs/TSPredict-lookahead.log,
 TWAPStrategy,futures_long_short,not_scheduled,excluded,true,671,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-28 20:32:57,log_mtime,user_data/profile_bias_logs/TWAPStrategy-recursive.log,
 Tank1Modulus,spot_long,not_scheduled,excluded,true,600,baseline,FOUND,FOUND,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
@@ -754,7 +754,7 @@ TemaMaster3,spot_long,B_warmup_refusal,excluded,true,6058,baseline,PASS,FOUND,ba
 TemaPure,spot_long,B_warmup_refusal,excluded,true,9651,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 TemaPureNeat,spot_long,B_warmup_refusal,excluded,true,12402,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 TemaPureTwo,spot_long,B_warmup_refusal,excluded,true,12383,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-TemaStrategy,spot_long,D_recursive_drift,excluded,true,18093,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+TemaStrategy,spot_long,D_recursive_drift,convergence_candidate,true,18093,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:47:16,log_mtime,user_data/convergence_logs/TemaStrategy-ladder.log,paired_full_window_equivalence
 TenderEnter,spot_long,E0_strict67,E0_strict67,true,4027,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
 TestStrategyLegacyV1,spot_long,C_measurement_recovery,attempted_no_measurement,false,,,NA,NA,baseline,PASS,0,test_candidate,ineligible,"Strategy Interface v1 is no longer supported. Please update your strategy to implement `populate_indicators`, `populate_entry_trend` and",,,,retry_under_current_runtime
 TestStrategyNoImplements,unknown,C_measurement_recovery,attempted_no_measurement,false,,,NA,NA,baseline,PENDING,0,test_candidate,ineligible,`populate_entry_trend` or `populate_buy_trend` must be implemented.,,,,retry_under_current_runtime
@@ -766,12 +766,12 @@ ToTheMoon,futures_long_short,not_scheduled,excluded,true,16,smoke,PASS,FOUND,nat
 TouchEmaDelayStrategy,spot_long,B_warmup_refusal,excluded,true,2331,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 TouchEmaStrategy,spot_long,B_warmup_refusal,excluded,true,5193,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 TrainCatBoostStrategy,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PENDING,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:29:34,log_mtime,user_data/profile_smoke_logs/TrainCatBoostStrategy.log,
-TrendAtrStrategy,spot_long,D_recursive_drift,excluded,true,3067,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+TrendAtrStrategy,spot_long,D_recursive_drift,convergence_candidate,true,3067,baseline,PASS,FOUND,convergence:540,PASS,0,strategy,ineligible,,2026-09-01 12:47:40,log_mtime,user_data/convergence_logs/TrendAtrStrategy-ladder.log,paired_full_window_equivalence
 TrendFollowingStrategy,futures_long_short,not_scheduled,excluded,true,1029,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 TrendRiderStrategy,futures_long,not_scheduled,excluded,true,37,smoke,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 Trend_Strength_Directional,spot_long,B_warmup_refusal,excluded,true,7684,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-TripleEmaStrategy,spot_long,D_recursive_drift,excluded,true,17670,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-TrixSignalStrategy,spot_long,D_recursive_drift,excluded,true,17885,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+TripleEmaStrategy,spot_long,D_recursive_drift,convergence_candidate,true,17670,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:48:03,log_mtime,user_data/convergence_logs/TripleEmaStrategy-ladder.log,paired_full_window_equivalence
+TrixSignalStrategy,spot_long,D_recursive_drift,convergence_candidate,true,17885,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:48:28,log_mtime,user_data/convergence_logs/TrixSignalStrategy-ladder.log,paired_full_window_equivalence
 TrixStrategy,spot_long,E0_strict67,E0_strict67,true,13554,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 TrixV15Strategy,spot_long,E0_strict67,E0_strict67,true,1444,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 TrixV21Strategy,spot_long,not_scheduled,excluded,true,1152,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
@@ -780,7 +780,7 @@ TuplaBollinger,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baselin
 TwoCandle,spot_long,B_warmup_refusal,excluded,true,18935,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 TwoCandleTheory,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:21:03,log_mtime,user_data/profile_smoke_logs/TwoCandleTheory.log,
 UltimateMomentumIndicator,spot_long,E0_strict67,E0_strict67,true,8147,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
-UniversalMACD,spot_long,D_recursive_drift,excluded,true,2090,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+UniversalMACD,spot_long,D_recursive_drift,convergence_candidate,true,2090,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:48:53,log_mtime,user_data/convergence_logs/UniversalMACD-ladder.log,paired_full_window_equivalence
 UpSliceStrategy,spot_long,C_measurement_recovery,excluded,false,,,NA,PASS,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:30:21,log_mtime,user_data/profile_smoke_logs/UpSliceStrategy.log,
 Uptrend,spot_long,not_scheduled,excluded,true,471,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 UziChan,spot_long,not_scheduled,excluded,true,25039,baseline,FOUND,PASS,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
@@ -789,15 +789,15 @@ VWAP,spot_long,not_scheduled,excluded,true,986,baseline,PASS,FOUND,native,PASS,0
 ViN,spot_long,C_measurement_recovery,excluded,true,0,full_window,NA,PASS,baseline,PASS,0,strategy,ineligible,no_trades_in_full_measurement,2026-08-31 15:33:40,run_archive,user_data/profile_smoke/ViN-2026-08-31_15-33-40.zip,
 VolatilitySystem,futures_long,not_scheduled,excluded,true,9,smoke,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 VolatilitySystemV2,futures_long_short,not_scheduled,excluded,true,24,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-VolumeBreakoutStrategy,spot_long,D_recursive_drift,excluded,true,16564,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-VortexStrategy,spot_long,D_recursive_drift,excluded,true,29787,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-VwapReversionStrategy,spot_long,D_recursive_drift,excluded,true,22316,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+VolumeBreakoutStrategy,spot_long,D_recursive_drift,convergence_candidate,true,16564,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:49:17,log_mtime,user_data/convergence_logs/VolumeBreakoutStrategy-ladder.log,paired_full_window_equivalence
+VortexStrategy,spot_long,D_recursive_drift,convergence_candidate,true,29787,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:49:42,log_mtime,user_data/convergence_logs/VortexStrategy-ladder.log,paired_full_window_equivalence
+VwapReversionStrategy,spot_long,D_recursive_drift,convergence_candidate,true,22316,baseline,PASS,FOUND,convergence:576,PASS,0,strategy,ineligible,,2026-09-01 12:50:07,log_mtime,user_data/convergence_logs/VwapReversionStrategy-ladder.log,paired_full_window_equivalence
 WTAI,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 21:00:42,log_mtime,user_data/profile_smoke_logs/WTAI.log,
 WTHO,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:21:57,log_mtime,user_data/profile_smoke_logs/WTHO.log,
 WTRSIAI,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 21:01:21,log_mtime,user_data/profile_smoke_logs/WTRSIAI.log,
 WTX3,futures_long_short,not_scheduled,excluded,true,740,smoke,NA,NA,baseline,PASS,1,strategy,ineligible,technical_trap_found,,,,
 WaveTrendStra,spot_long,not_scheduled,excluded,true,9256,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:38:57,log_mtime,user_data/profile_bias_logs/WaveTrendStra-recursive.log,
-WilliamsRStrategy,spot_long,D_recursive_drift,excluded,true,26924,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+WilliamsRStrategy,spot_long,D_recursive_drift,convergence_candidate,true,26924,baseline,PASS,FOUND,convergence:2016,PASS,0,strategy,ineligible,,2026-09-01 12:50:33,log_mtime,user_data/convergence_logs/WilliamsRStrategy-ladder.log,paired_full_window_equivalence
 XebTradeStrat,spot_long,not_scheduled,excluded,true,25932,baseline,NA,PASS,baseline,PASS,1,strategy,ineligible,technical_trap_found,,,,
 XtraThicc,spot_long,E0_strict67,E0_strict67,true,9167,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 YOLO,spot_long,not_scheduled,excluded,true,560,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:46:26,log_mtime,user_data/profile_bias_logs/YOLO-recursive.log,
@@ -810,52 +810,52 @@ Zeus,spot_long,not_scheduled,excluded,true,2766,baseline,FOUND,FOUND,native,PASS
 adaptive,spot_long,not_scheduled,excluded,true,647,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 adaptive_trend,spot_long,E0_strict67,E0_strict67,true,322,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 adx_opt_strat,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:07:17,log_mtime,user_data/profile_smoke_logs/adx_opt_strat.log,
-adxbbrsi2,spot_long,D_recursive_drift,excluded,true,741,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+adxbbrsi2,spot_long,D_recursive_drift,convergence_candidate,true,741,baseline,PASS,FOUND,convergence:336,PASS,0,strategy,ineligible,,2026-09-01 12:50:58,log_mtime,user_data/convergence_logs/adxbbrsi2-ladder.log,paired_full_window_equivalence
 bb_rsi_opt_new,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:07:44,log_mtime,user_data/profile_smoke_logs/bb_rsi_opt_new.log,
 bbandrsi,spot_long,B_warmup_refusal,excluded,true,6758,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 bbema,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:08:11,log_mtime,user_data/profile_smoke_logs/bbema.log,
-bbrsi,spot_long,D_recursive_drift,excluded,true,5507,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+bbrsi,spot_long,D_recursive_drift,convergence_candidate,true,5507,baseline,PASS,FOUND,convergence:180,PASS,0,strategy,ineligible,,2026-09-01 12:51:22,log_mtime,user_data/convergence_logs/bbrsi-ladder.log,paired_full_window_equivalence
 bbrsi1_strategy,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:08:39,log_mtime,user_data/profile_smoke_logs/bbrsi1_strategy.log,
-bbrsi4Freq,spot_long,D_recursive_drift,excluded,true,4791,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+bbrsi4Freq,spot_long,D_recursive_drift,convergence_candidate,true,4791,baseline,PASS,FOUND,convergence:168,PASS,0,strategy,ineligible,,2026-09-01 12:51:45,log_mtime,user_data/convergence_logs/bbrsi4Freq-ladder.log,paired_full_window_equivalence
 bestV2,spot_long,E0_strict67,E0_strict67,true,345,baseline,PASS,PASS,native,PASS,0,strategy,eligible,,,,,
 beta_factors_model,spot_long,C_measurement_recovery,excluded,true,3,smoke,NA,NA,native,PENDING,0,strategy,ineligible,no_verdict_on_lookahead_and_recursive,2026-08-31 16:26:19,run_archive,user_data/profile_smoke/beta_factors_model-2026-08-31_16-26-19.zip;user_data/profile_bias_logs/beta_factors_model-lookahead.log;user_data/profile_bias_logs/beta_factors_model-recursive.log,
 botbaby,spot_long,E0_strict67,E0_strict67,true,12338,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
 chispei,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 17:56:36,log_mtime,user_data/profile_smoke_logs/chispei.log,
-conny,spot_long,D_recursive_drift,excluded,true,5825,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+conny,spot_long,D_recursive_drift,convergence_candidate,true,5825,baseline,PASS,FOUND,convergence:96,PASS,0,strategy,ineligible,,2026-09-01 12:52:10,log_mtime,user_data/convergence_logs/conny-ladder.log,paired_full_window_equivalence
 cryptohassle,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:09:07,log_mtime,user_data/profile_smoke_logs/cryptohassle.log,
 cryptotank,spot_long,E0_strict67,E0_strict67,true,2312,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
-cryptotankV2,spot_long,D_recursive_drift,excluded,true,770,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+cryptotankV2,spot_long,D_recursive_drift,convergence_candidate,true,770,baseline,PASS,FOUND,convergence:576,PASS,0,strategy,ineligible,,2026-09-01 12:52:35,log_mtime,user_data/convergence_logs/cryptotankV2-ladder.log,paired_full_window_equivalence
 cryptotankV5,spot_long,E0_strict67,E0_strict67,true,4782,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
 custom,spot_long,not_scheduled,excluded,true,20,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 custom_sell,spot_long,C_measurement_recovery,excluded,true,327,smoke,NA,PASS,native,PASS,0,strategy,ineligible,no_verdict_on_lookahead,2026-08-31 16:13:12,run_archive,user_data/profile_smoke/custom_sell-2026-08-31_16-13-12.zip;user_data/profile_bias_logs/custom_sell-lookahead.log,
 dualwave,spot_long,not_scheduled,excluded,true,1767,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:47:54,log_mtime,user_data/profile_bias_logs/dualwave-recursive.log,
 e6v34,spot_long,B_warmup_refusal,excluded,true,19447,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-eltoro,spot_long,D_recursive_drift,excluded,true,3704,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-eltoro1_4,spot_long,D_recursive_drift,excluded,true,2393,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-eltoro1_4_simple,spot_long,D_recursive_drift,excluded,true,2417,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+eltoro,spot_long,D_recursive_drift,convergence_candidate,true,3704,baseline,PASS,FOUND,convergence:1344,PASS,0,strategy,ineligible,,2026-09-01 12:53:00,log_mtime,user_data/convergence_logs/eltoro-ladder.log,paired_full_window_equivalence
+eltoro1_4,spot_long,D_recursive_drift,convergence_candidate,true,2393,baseline,PASS,FOUND,convergence:2160,PASS,0,strategy,ineligible,,2026-09-01 12:53:24,log_mtime,user_data/convergence_logs/eltoro1_4-ladder.log,paired_full_window_equivalence
+eltoro1_4_simple,spot_long,D_recursive_drift,convergence_candidate,true,2417,baseline,PASS,FOUND,convergence:672,PASS,0,strategy,ineligible,,2026-09-01 12:53:49,log_mtime,user_data/convergence_logs/eltoro1_4_simple-ladder.log,paired_full_window_equivalence
 ema,spot_long,B_warmup_refusal,excluded,true,30806,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 ep3mas2,spot_long,C_measurement_recovery,excluded,true,0,full_window,NA,PASS,baseline,PASS,0,strategy,ineligible,no_trades_in_full_measurement,2026-08-31 15:30:45,run_archive,user_data/profile_smoke/ep3mas2-2026-08-31_15-30-45.zip,
 epretrace,spot_long,C_measurement_recovery,excluded,true,14,smoke,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-31 15:31:50,run_archive,user_data/profile_smoke/epretrace-2026-08-31_15-31-50.zip;user_data/profile_bias_logs/epretrace-recursive.log,
 fahmibah,spot_long,E0_strict67,E0_strict67,true,20943,baseline,PASS,PASS,baseline,PASS,0,strategy,eligible,,,,,
 falconTrader,spot_long,C_measurement_recovery,excluded,true,43,smoke,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-31 15:50:33,run_archive,user_data/profile_smoke/falconTrader-2026-08-31_15-50-33.zip;user_data/profile_bias_logs/falconTrader-recursive.log,
-flawless_lambo,spot_long,D_recursive_drift,excluded,true,4489,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+flawless_lambo,spot_long,D_recursive_drift,excluded,true,4489,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 12:54:13,log_mtime,user_data/convergence_logs/flawless_lambo-ladder.log,convergence_not_converged_within_ladder
 freqai_rl_test_strat,spot_long,C_measurement_recovery,attempted_no_measurement,false,,,NA,NA,baseline,PENDING,0,test_candidate,ineligible,Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`,,,,retry_under_current_runtime
 freqai_test_classifier,spot_long,C_measurement_recovery,attempted_no_measurement,false,,,NA,NA,baseline,PENDING,0,test_candidate,ineligible,Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`,,,,retry_under_current_runtime
 freqai_test_multimodel_classifier_strat,spot_long,C_measurement_recovery,attempted_no_measurement,false,,,NA,NA,baseline,PENDING,0,test_candidate,ineligible,Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`,,,,retry_under_current_runtime
 freqai_test_multimodel_strat,spot_long,C_measurement_recovery,attempted_no_measurement,false,,,NA,NA,baseline,PENDING,0,test_candidate,ineligible,Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`,,,,retry_under_current_runtime
 freqai_test_strat,spot_long,C_measurement_recovery,attempted_no_measurement,false,,,NA,NA,baseline,PENDING,0,test_candidate,ineligible,Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`,,,,retry_under_current_runtime
-gettinMoist,spot_long,D_recursive_drift,excluded,true,20036,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+gettinMoist,spot_long,D_recursive_drift,convergence_candidate,true,20036,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:54:38,log_mtime,user_data/convergence_logs/gettinMoist-ladder.log,paired_full_window_equivalence
 grad,spot_long,not_scheduled,excluded,true,27088,baseline,FOUND,PASS,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
 haGradient,futures_long,A_pending_diagnostics,pending,true,38,smoke,NA,NA,native,PASS,0,strategy,pending_diagnostics,pending_diagnostics,2026-08-31 14:53:10,log_mtime,user_data/profile_bias_logs/haGradient-lookahead.log;user_data/profile_bias_logs/haGradient-recursive.log,
 hansencandlepatternV1,spot_long,not_scheduled,excluded,true,17165,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:47:42,log_mtime,user_data/profile_bias_logs/hansencandlepatternV1-recursive.log,
 heikin,spot_long,not_scheduled,excluded,true,21053,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:54:24,log_mtime,user_data/profile_bias_logs/heikin-recursive.log,
-hlhb,spot_long,D_recursive_drift,excluded,true,861,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+hlhb,spot_long,D_recursive_drift,convergence_candidate,true,861,baseline,PASS,FOUND,convergence:540,PASS,0,strategy,ineligible,,2026-09-01 12:55:01,log_mtime,user_data/convergence_logs/hlhb-ladder.log,paired_full_window_equivalence
 ichi,spot_long,not_scheduled,excluded,true,5925,baseline,PASS,FOUND,baseline,PASS,1,strategy,ineligible,technical_trap_found,,,,
 ichiV1,spot_long,not_scheduled,excluded,true,13449,baseline,FOUND,FOUND,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
 ichiV1_Marius,spot_long,C_measurement_recovery,excluded,true,63,smoke,FOUND,FOUND,native,PASS,0,strategy,ineligible,lookahead_found,2026-08-31 16:13:54,run_archive,user_data/profile_smoke/ichiV1_Marius-2026-08-31_16-13-54.zip;user_data/profile_bias_logs/ichiV1_Marius-lookahead.log;user_data/profile_bias_logs/ichiV1_Marius-recursive.log,
 kalthetank,spot_long,A_pending_diagnostics,pending,true,172,baseline,FOUND,NA,native,PASS,0,strategy,pending_diagnostics,lookahead_found,2026-08-31 15:00:39,log_mtime,user_data/profile_bias_logs/kalthetank-lookahead.log;user_data/profile_bias_logs/kalthetank-recursive.log,
 keltnerchannel,spot_long,not_scheduled,excluded,true,1131,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-lambotest,spot_long,D_recursive_drift,excluded,true,20114,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+lambotest,spot_long,D_recursive_drift,excluded,true,20114,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 12:55:25,log_mtime,user_data/convergence_logs/lambotest-ladder.log,convergence_not_converged_within_ladder
 mabStra,spot_long,not_scheduled,excluded,true,1174,baseline,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:25:51,log_mtime,user_data/profile_bias_logs/mabStra-recursive.log,
 macd_recovery,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:14:21,log_mtime,user_data/profile_smoke_logs/macd_recovery.log,
 mark_strat,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:14:47,log_mtime,user_data/profile_smoke_logs/mark_strat.log,
@@ -876,26 +876,26 @@ qrsi,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FOUND,baseline,
 quantumfirst,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:15:41,log_mtime,user_data/profile_smoke_logs/quantumfirst.log,
 redditMA,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:16:07,log_mtime,user_data/profile_smoke_logs/redditMA.log,
 simple_patterns,spot_long,C_measurement_recovery,E1_expanded,true,1845,smoke,PASS,PASS,native,PASS,0,strategy,ineligible,,2026-08-31 15:55:52,run_archive,user_data/profile_smoke/simple_patterns-2026-08-31_15-55-52.zip,
-slope_is_dopeCT,spot_long,D_recursive_drift,excluded,true,821,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+slope_is_dopeCT,spot_long,D_recursive_drift,convergence_candidate,true,821,baseline,PASS,FOUND,convergence:672,PASS,0,strategy,ineligible,,2026-09-01 12:55:49,log_mtime,user_data/convergence_logs/slope_is_dopeCT-ladder.log,paired_full_window_equivalence
 slownsteady,spot_long,C_measurement_recovery,excluded,true,35,smoke,PASS,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-31 15:54:44,run_archive,user_data/profile_smoke/slownsteady-2026-08-31_15-54-44.zip;user_data/profile_bias_logs/slownsteady-recursive.log,
-stoploss,spot_long,D_recursive_drift,excluded,true,12724,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+stoploss,spot_long,D_recursive_drift,convergence_candidate,true,12724,baseline,PASS,FOUND,convergence:288,PASS,0,strategy,ineligible,,2026-09-01 12:56:13,log_mtime,user_data/convergence_logs/stoploss-ladder.log,paired_full_window_equivalence
 stratfib,spot_long,not_scheduled,excluded,true,10,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-strato,spot_long,D_recursive_drift,excluded,true,24409,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-tacos,spot_long,D_recursive_drift,excluded,true,881,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+strato,spot_long,D_recursive_drift,convergence_candidate,true,24409,baseline,PASS,FOUND,convergence:1440,PASS,0,strategy,ineligible,,2026-09-01 12:56:41,log_mtime,user_data/convergence_logs/strato-ladder.log,paired_full_window_equivalence
+tacos,spot_long,D_recursive_drift,excluded,true,881,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,2026-09-01 12:57:04,log_mtime,user_data/convergence_logs/tacos-ladder.log,convergence_not_converged_within_ladder
 tacos1,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FOUND,baseline,PASS,0,strategy,ineligible,No data found. Terminating.,,,,retry_under_current_runtime
 tbtest,spot_long,not_scheduled,excluded,true,4884,baseline,NA,FOUND,native,PASS,0,strategy,ineligible,recursive_bias_found,2026-08-29 07:42:56,log_mtime,user_data/profile_bias_logs/tbtest-lookahead.log;user_data/profile_bias_logs/tbtest-recursive.log,
 tesla4,spot_long,not_scheduled,excluded,true,3,baseline,NA,FOUND,baseline,PASS,1,strategy,ineligible,technical_trap_found,,,,
 tesla7,spot_long,not_scheduled,excluded,true,4,baseline,NA,FOUND,baseline,PASS,1,strategy,ineligible,technical_trap_found,,,,
 thetank2,spot_long,C_measurement_recovery,excluded,false,,,NA,NA,baseline,PASS,0,strategy,ineligible,canonical_implementation_not_measured,2026-08-31 18:22:50,log_mtime,user_data/profile_smoke_logs/thetank2.log,
-thetank3,spot_long,D_recursive_drift,excluded,true,8620,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-thetank4TV,spot_long,D_recursive_drift,excluded,true,3023,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+thetank3,spot_long,D_recursive_drift,convergence_candidate,true,8620,baseline,PASS,FOUND,convergence:672,PASS,0,strategy,ineligible,,2026-09-01 12:57:28,log_mtime,user_data/convergence_logs/thetank3-ladder.log,paired_full_window_equivalence
+thetank4TV,spot_long,D_recursive_drift,convergence_candidate,true,3023,baseline,PASS,FOUND,convergence:672,PASS,0,strategy,ineligible,,2026-09-01 12:57:53,log_mtime,user_data/convergence_logs/thetank4TV-ladder.log,paired_full_window_equivalence
 true_lambo,spot_long,not_scheduled,excluded,true,1194,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 tsp0chicken,futures_long,not_scheduled,excluded,true,3675,full_window,FOUND,NA,native,PASS,0,strategy,ineligible,lookahead_found,2026-08-29 06:51:45,log_mtime,user_data/profile_bias_logs/tsp0chicken-lookahead.log;user_data/profile_bias_logs/tsp0chicken-recursive.log,
 turbov8,spot_long,not_scheduled,attempted_no_measurement,false,,,NA,FOUND,baseline,PASS,0,strategy,ineligible,"движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)",,,,retry_under_current_runtime
 twinturboV8,spot_long,not_scheduled,excluded,true,131,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
 twinturboV8_2,spot_long,not_scheduled,excluded,true,119,baseline,NA,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-ultratank,spot_long,D_recursive_drift,excluded,true,3076,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-wavetrend,spot_long,D_recursive_drift,excluded,true,4691,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
-wavetrend_rsi,spot_long,D_recursive_drift,excluded,true,5240,baseline,PASS,FOUND,baseline,PASS,0,strategy,ineligible,recursive_bias_found,,,,
+ultratank,spot_long,D_recursive_drift,convergence_candidate,true,3076,baseline,PASS,FOUND,convergence:336,PASS,0,strategy,ineligible,,2026-09-01 12:58:17,log_mtime,user_data/convergence_logs/ultratank-ladder.log,paired_full_window_equivalence
+wavetrend,spot_long,D_recursive_drift,convergence_candidate,true,4691,baseline,PASS,FOUND,convergence:336,PASS,0,strategy,ineligible,,2026-09-01 12:58:45,log_mtime,user_data/convergence_logs/wavetrend-ladder.log,paired_full_window_equivalence
+wavetrend_rsi,spot_long,D_recursive_drift,convergence_candidate,true,5240,baseline,PASS,FOUND,convergence:336,PASS,0,strategy,ineligible,,2026-09-01 12:59:09,log_mtime,user_data/convergence_logs/wavetrend_rsi-ladder.log,paired_full_window_equivalence
 wtc,spot_long,not_scheduled,excluded,true,2240,baseline,FOUND,FOUND,baseline,PASS,0,strategy,ineligible,lookahead_found,,,,
 zorkv7_0_0,spot_long,C_measurement_recovery,excluded,true,0,smoke,NA,NA,baseline,PASS,0,strategy,ineligible,no_verdict_on_lookahead_and_recursive,2026-08-31 15:36:40,run_archive,user_data/profile_smoke/zorkv7_0_0-2026-08-31_15-36-40.zip,
