@@ -38,6 +38,7 @@ import time
 import eligibility_warmup
 import profile_bias
 import profile_smoke
+import runlog
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -289,6 +290,11 @@ def run_ladder(row, timeout, startups):
                       "invocation": invocation[0],
                       "elapsed_s": round(time.time() - started, 1)}
     output = (process.stdout + process.stderr).decode("utf-8", "replace")
+    runlog.append("recursive-analysis/ladder", strategy, invocation[0], output,
+                  {"startups": ",".join(str(v) for v in startups),
+                   "returncode": process.returncode,
+                   "warmup_supplied": override,
+                   "elapsed_s": round(time.time() - started, 1)})
     os.makedirs(LOG_DIR, exist_ok=True)
     log_path = os.path.join(LOG_DIR, "%s-ladder.log"
                             % profile_smoke._safe(strategy))

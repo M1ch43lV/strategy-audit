@@ -20,6 +20,7 @@ import time
 
 import profile_bias
 import profile_smoke
+import runlog
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -193,6 +194,11 @@ def run_one(row, timeout, startup_candle_count):
         process = subprocess.run(command, capture_output=True, timeout=timeout,
                                  env=env, cwd=ROOT)
         output = (process.stdout + process.stderr).decode("utf-8", "replace")
+        runlog.append("recursive-analysis/warmup", strategy,
+                      profile_smoke._invocation(command), output,
+                      {"startup_candle_count": startup_candle_count,
+                       "timerange": timerange,
+                       "returncode": process.returncode})
         status, why = profile_bias._recursive(output, process.returncode)
         result = identity(row, config, mode, repair, startup_candle_count)
         result.update({

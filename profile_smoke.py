@@ -21,6 +21,9 @@ import time
 import zipfile
 
 
+import runlog
+
+
 ROOT = os.path.dirname(os.path.abspath(__file__))
 MANIFEST = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
 OUTPUT = os.path.join(ROOT, "PROFILE_SMOKE.json")
@@ -296,7 +299,14 @@ def run_one(row, timerange, timeout, pair=None, extra_env=None,
         proc = subprocess.run(cmd, cwd=ROOT, env=env, stdout=subprocess.PIPE,
                               stderr=subprocess.STDOUT, timeout=timeout)
         output = proc.stdout.decode("utf-8", "replace")
+        runlog.append("backtesting", strategy, invocation, output,
+                      {"run_profile": profile, "timerange": timerange,
+                       "returncode": proc.returncode,
+                       "elapsed_s": round(time.time() - started, 1)})
     except subprocess.TimeoutExpired:
+        runlog.append("backtesting", strategy, invocation, "",
+                      {"run_profile": profile, "timerange": timerange,
+                       "outcome": "timeout after %d seconds" % timeout})
         return {"status": "timeout", "mode": mode, "run_profile": profile,
                 "timerange": timerange, "elapsed_s": round(time.time() - started, 1),
                 "class1_rules": class1.get("rules", []),

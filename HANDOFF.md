@@ -47,6 +47,15 @@ python strategy_status.py --check    # is the row data current?
 python strategy_status.py --selftest
 ```
 
+Anchoring the newest results in `STRATEGY_STATUS.md` is the AI session's job,
+every time. The published artifact is not: the owner refreshes that manually,
+so do not treat a stale page as a reason to skip the regeneration here.
+
+Every freqtrade call is also appended to `user_data/freqtrade_runs.log` with
+its full console output - `python runlog.py` reports its size. It rotates at
+32 MiB across five generations, so it is bounded; older calls fall off the end
+and the per-run logs under `user_data/*_logs/` remain the durable copy.
+
 This is not housekeeping. The canonical manifest silently listed 66 measured
 strategies as unmeasured for two days, and that stale field nearly caused three
 admissible rows to be refused. A table nobody regenerates becomes a table that

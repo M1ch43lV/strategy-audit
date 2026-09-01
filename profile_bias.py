@@ -20,6 +20,7 @@ import sys
 import time
 
 import profile_smoke
+import runlog
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -375,6 +376,11 @@ def run_diagnostic(row, diagnostic, timeout, fallback_timeout):
                                      timeout=fallback_timeout if attempt else timeout,
                                      env=env, cwd=ROOT)
             output = (process.stdout + process.stderr).decode("utf-8", "replace")
+            runlog.append(diagnostic + "-analysis", strategy,
+                          profile_smoke._invocation(command), output,
+                          {"timerange": timerange,
+                           "returncode": process.returncode,
+                           "attempt": len(attempted) + 1})
             parser = _lookahead if diagnostic == "lookahead" else _recursive
             status, why = parser(output, process.returncode)
             attempted.append(timerange)
@@ -405,6 +411,9 @@ def run_diagnostic(row, diagnostic, timeout, fallback_timeout):
                 result["debug_log"] = os.path.relpath(log_path, ROOT).replace(os.sep, "/")
             return result
         except subprocess.TimeoutExpired:
+            runlog.append(diagnostic + "-analysis", strategy,
+                          profile_smoke._invocation(command), "",
+                          {"timerange": timerange, "outcome": "timeout"})
             attempted.append(timerange)
             return {"status": "NA", "why": "TIMEOUT", "timerange": timerange,
                     "invocation": profile_smoke._invocation(command),
