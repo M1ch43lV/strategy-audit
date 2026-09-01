@@ -1,175 +1,424 @@
 {
-  "schema_version": 1,
   "description": "Reproducible environment and author-configuration restorations; no strategy source is modified.",
+  "schema_version": 1,
   "strategies": {
     "AdaptiveRenkoStrategy": {
-      "rules": ["restore_declared_pypi_dependency"],
-      "packages": [{"name": "pyrenko", "version": "0.1", "install_mode": "no-deps"}],
-      "status": "partial",
-      "note": "pyrenko imports with benchmark numpy when installed without its obsolete numpy 1.18.5 pin, but the author supplied no required stoploss and explicitly lists a sample config as unfinished."
+      "note": "pyrenko imports with benchmark numpy when installed without its obsolete numpy 1.18.5 pin, but the author supplied no required stoploss and explicitly lists a sample config as unfinished.",
+      "packages": [
+        {
+          "install_mode": "no-deps",
+          "name": "pyrenko",
+          "version": "0.1"
+        }
+      ],
+      "rules": [
+        "restore_declared_pypi_dependency"
+      ],
+      "status": "partial"
     },
-    "DWT_LongShort": {
-      "rules": ["restore_copied_local_module", "datetime_safe_rmi_fillna"],
-      "python_paths": ["repair/compat_helpers", "repos/werkkrew_freqtrade-strategies/strategies/solipsis"],
-      "status": "applied"
-    },
-    "DWT_short": {
-      "rules": ["restore_copied_local_module", "datetime_safe_rmi_fillna"],
-      "python_paths": ["repair/compat_helpers", "repos/werkkrew_freqtrade-strategies/strategies/solipsis"],
-      "status": "applied"
-    },
-    "FTT_DWT_FBB_FUTURES": {
-      "rules": ["restore_copied_local_module", "datetime_safe_rmi_fillna"],
-      "python_paths": ["repair/compat_helpers", "repos/werkkrew_freqtrade-strategies/strategies/solipsis"],
-      "status": "applied"
-    },
-    "TSPredict": {
-      "rules": ["restore_copied_local_module"],
-      "python_paths": ["repos/nateemma_strategies"],
-      "status": "applied"
-    },
-    "tsp0chicken": {
-      "rules": ["restore_copied_local_module"],
-      "python_paths": ["repos/nateemma_strategies"],
+    "AdvancedRiskFilterStrategy": {
+      "note": "1 copies satisfy the import and all are the same file, so the choice carries no risk",
+      "python_paths": [
+        "repos/DonaldSimpson_remora-freqtrade"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
       "status": "applied"
     },
     "BuyRegions": {
-      "rules": ["restore_copied_local_module"],
-      "python_paths": ["repos/nateemma_strategies"],
-      "status": "applied",
-      "note": "The strategy imports the author's adjacent utils package; analyzer isolation must retain the repository package root."
-    },
-    "FreqaiExampleHybridStrategy": {
-      "rules": ["restore_author_config"],
-      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/config_examples/config_freqai.example.json",
-      "config_keys": ["timeframe", "freqai"],
-      "freqaimodel": "CatboostClassifier",
-      "status": "partial",
-      "note": "Author config and documented model name restored; the benchmark environment lacks a loadable CatboostClassifier model."
-    },
-    "RLAgentStrategy": {
-      "rules": ["restore_author_config"],
-      "config_source": "repos/jerome-benoit_freqai-strategies/ReforceXY/user_data/config-template.json",
-      "config_keys": ["timeframe", "stoploss", "freqai"],
-      "freqaimodel": "ReforceXY",
-      "freqaimodel_path": "repos/jerome-benoit_freqai-strategies/ReforceXY/user_data/freqaimodels",
-      "status": "partial",
-      "note": "Author config and custom model path restored; the custom ReforceXY model dependencies do not load in the benchmark environment."
-    },
-    "LitmusMLDPStrategy": {
-      "rules": ["restore_author_package_extension", "restore_author_config"],
-      "freqtrade_paths": ["repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"],
-      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/config.LitmusMLDP.json",
-      "config_keys": ["timeframe", "freqai"],
-      "freqaimodel": "LitmusMultiTargetClassifier",
-      "freqaimodel_path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
-      "status": "partial",
-      "note": "The declared zigzag dependency cannot be built in the current Python environment."
-    },
-    "LitmusMinMaxBroadClassificationStrategy": {
-      "rules": ["restore_author_package_extension", "restore_author_config"],
-      "freqtrade_paths": ["repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"],
-      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/config.LitmusMinMaxBroadClassification.json",
-      "config_keys": ["timeframe", "freqai"],
-      "freqaimodel": "LitmusMultiTargetClassifier",
-      "freqaimodel_path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
-      "status": "partial",
-      "note": "The declared zigzag dependency cannot be built in the current Python environment."
-    },
-    "LitmusEntryRollClassificationStrategy": {
-      "rules": ["restore_author_package_extension", "restore_author_config"],
-      "freqtrade_paths": ["repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"],
-      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated/config.LitmusEntryRollClassification.json",
-      "config_keys": ["timeframe", "freqai"],
-      "freqaimodel": "LitmusMultiTargetClassifier",
-      "freqaimodel_path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
-      "status": "partial",
-      "note": "The declared zigzag dependency cannot be built in the current Python environment."
-    },
-    "LitmusMetaStrategy": {
-      "rules": ["restore_author_package_extension", "restore_author_config"],
-      "freqtrade_paths": ["repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"],
-      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated/config.LitmusMeta.json",
-      "config_keys": ["timeframe", "freqai"],
-      "freqaimodel": "LitmusMultiTargetClassifier",
-      "freqaimodel_path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
-      "status": "partial",
-      "note": "Author package, config, and model path restored; the historical custom model does not load with the current dependency stack."
-    },
-    "LitmusMinMaxClassificationStrategy": {
-      "rules": ["restore_author_package_extension", "restore_author_config"],
-      "freqtrade_paths": ["repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"],
-      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated/config.LitmusMinMaxClassification.json",
-      "config_keys": ["timeframe", "freqai"],
-      "freqaimodel": "LitmusMultiTargetClassifier",
-      "freqaimodel_path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
-      "status": "partial",
-      "note": "The declared zigzag dependency cannot be built in the current Python environment."
-    },
-    "LitmusMinMaxRegretClassificationStrategy": {
-      "rules": ["restore_author_package_extension", "restore_author_config"],
-      "freqtrade_paths": ["repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"],
-      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated/config.LitmusMinMaxRegretClassification.json",
-      "config_keys": ["timeframe", "freqai"],
-      "freqaimodel": "LitmusMultiTargetClassifier",
-      "freqaimodel_path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
-      "status": "partial",
-      "note": "The declared zigzag dependency cannot be built in the current Python environment."
-    },
-    "LitmusMinMaxSegmentClassificationStrategy": {
-      "rules": ["restore_author_package_extension", "restore_author_config"],
-      "freqtrade_paths": ["repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"],
-      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated/config.LitmusMinMaxSegmentClassification.json",
-      "config_keys": ["timeframe", "freqai"],
-      "freqaimodel": "LitmusMultiTargetClassifier",
-      "freqaimodel_path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
-      "status": "partial",
-      "note": "The declared zigzag dependency cannot be built in the current Python environment."
-    },
-    "LitmusMinMaxStrategy": {
-      "rules": ["restore_author_package_extension", "restore_author_config"],
-      "freqtrade_paths": ["repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"],
-      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated/config.LitmusMinMax.json",
-      "config_keys": ["timeframe", "freqai"],
-      "status": "partial",
-      "note": "The declared zigzag dependency cannot be built in the current Python environment."
+      "note": "The strategy imports the author's adjacent utils package; analyzer isolation must retain the repository package root.",
+      "python_paths": [
+        "repos/nateemma_strategies"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
     },
     "CopyLitmusMinMaxBroadClassificationStrategy": {
-      "rules": ["restore_author_package_extension", "restore_author_config"],
-      "freqtrade_paths": ["repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"],
+      "config_keys": [
+        "timeframe",
+        "freqai"
+      ],
       "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/config.LitmusMinMaxBroadClassification.json",
-      "config_keys": ["timeframe", "freqai"],
       "freqaimodel": "LitmusMultiTargetClassifier",
       "freqaimodel_path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
-      "status": "partial",
-      "note": "Copied strategy has no dedicated config and the declared zigzag dependency cannot be built in the current Python environment."
+      "freqtrade_paths": [
+        "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"
+      ],
+      "note": "Copied strategy has no dedicated config and the declared zigzag dependency cannot be built in the current Python environment.",
+      "rules": [
+        "restore_author_package_extension",
+        "restore_author_config"
+      ],
+      "status": "partial"
     },
-    "LitmusGoodMinMaxClassificationStrategy": {
-      "rules": [],
-      "status": "blocked_missing_author_config",
-      "note": "No config tied to this deprecated strategy was found; choosing a timeframe or FreqAI setup would be an investigator assumption."
+    "DWT": {
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
+      "python_paths": [
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
     },
-    "LitmusMinMaxTrendStrategy": {
-      "rules": ["restore_author_package_extension"],
-      "freqtrade_paths": ["repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"],
-      "status": "partial",
-      "note": "Author documents LitmusMLDPClassifier, but no strategy-specific config was found and zigzag cannot be built in the current Python environment."
+    "DWT_Leveraged": {
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
+      "python_paths": [
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
     },
-    "LitmusSimpleStrategy": {
-      "rules": ["restore_author_package_extension"],
-      "freqtrade_paths": ["repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"],
-      "status": "blocked_missing_dependency",
-      "note": "The author requirement cointanalysis has no installable distribution in the current environment and no strategy-specific config was found."
+    "DWT_LongShort": {
+      "python_paths": [
+        "repair/compat_helpers",
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "rules": [
+        "restore_copied_local_module",
+        "datetime_safe_rmi_fillna"
+      ],
+      "status": "applied"
+    },
+    "DWT_short": {
+      "python_paths": [
+        "repair/compat_helpers",
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "rules": [
+        "restore_copied_local_module",
+        "datetime_safe_rmi_fillna"
+      ],
+      "status": "applied"
+    },
+    "DualModelPolymarketPortfolio": {
+      "note": "1 copies satisfy the import and all are the same file, so the choice carries no risk",
+      "python_paths": [
+        "repos/mlsys-io_PortfolioBench"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
+    },
+    "Dyna_opti": {
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
+      "python_paths": [
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
+    },
+    "EmaCrossStrategy": {
+      "note": "1 copies satisfy the import and all are the same file, so the choice carries no risk",
+      "python_paths": [
+        "repos/mlsys-io_PortfolioBench"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
+    },
+    "FTT_DWT_FBB_FUTURES": {
+      "python_paths": [
+        "repair/compat_helpers",
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "rules": [
+        "restore_copied_local_module",
+        "datetime_safe_rmi_fillna"
+      ],
+      "status": "applied"
+    },
+    "FreqaiExampleHybridStrategy": {
+      "config_keys": [
+        "timeframe",
+        "freqai"
+      ],
+      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/config_examples/config_freqai.example.json",
+      "freqaimodel": "CatboostClassifier",
+      "note": "Author config and documented model name restored; the benchmark environment lacks a loadable CatboostClassifier model.",
+      "rules": [
+        "restore_author_config"
+      ],
+      "status": "partial"
     },
     "KMM": {
+      "note": "Not executed: source embeds an API credential and requires a networked OpenAI client.",
       "rules": [],
-      "status": "blocked_security",
-      "note": "Not executed: source embeds an API credential and requires a networked OpenAI client."
+      "status": "blocked_security"
+    },
+    "LitmusEntryRollClassificationStrategy": {
+      "config_keys": [
+        "timeframe",
+        "freqai"
+      ],
+      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated/config.LitmusEntryRollClassification.json",
+      "freqaimodel": "LitmusMultiTargetClassifier",
+      "freqaimodel_path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
+      "freqtrade_paths": [
+        "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"
+      ],
+      "note": "The declared zigzag dependency cannot be built in the current Python environment.",
+      "rules": [
+        "restore_author_package_extension",
+        "restore_author_config"
+      ],
+      "status": "partial"
+    },
+    "LitmusGoodMinMaxClassificationStrategy": {
+      "note": "No config tied to this deprecated strategy was found; choosing a timeframe or FreqAI setup would be an investigator assumption.",
+      "rules": [],
+      "status": "blocked_missing_author_config"
+    },
+    "LitmusMLDPStrategy": {
+      "config_keys": [
+        "timeframe",
+        "freqai"
+      ],
+      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/config.LitmusMLDP.json",
+      "freqaimodel": "LitmusMultiTargetClassifier",
+      "freqaimodel_path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
+      "freqtrade_paths": [
+        "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"
+      ],
+      "note": "The declared zigzag dependency cannot be built in the current Python environment.",
+      "rules": [
+        "restore_author_package_extension",
+        "restore_author_config"
+      ],
+      "status": "partial"
+    },
+    "LitmusMetaStrategy": {
+      "config_keys": [
+        "timeframe",
+        "freqai"
+      ],
+      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated/config.LitmusMeta.json",
+      "freqaimodel": "LitmusMultiTargetClassifier",
+      "freqaimodel_path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
+      "freqtrade_paths": [
+        "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"
+      ],
+      "note": "Author package, config, and model path restored; the historical custom model does not load with the current dependency stack.",
+      "rules": [
+        "restore_author_package_extension",
+        "restore_author_config"
+      ],
+      "status": "partial"
+    },
+    "LitmusMinMaxBroadClassificationStrategy": {
+      "config_keys": [
+        "timeframe",
+        "freqai"
+      ],
+      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/config.LitmusMinMaxBroadClassification.json",
+      "freqaimodel": "LitmusMultiTargetClassifier",
+      "freqaimodel_path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
+      "freqtrade_paths": [
+        "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"
+      ],
+      "note": "The declared zigzag dependency cannot be built in the current Python environment.",
+      "rules": [
+        "restore_author_package_extension",
+        "restore_author_config"
+      ],
+      "status": "partial"
+    },
+    "LitmusMinMaxClassificationStrategy": {
+      "config_keys": [
+        "timeframe",
+        "freqai"
+      ],
+      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated/config.LitmusMinMaxClassification.json",
+      "freqaimodel": "LitmusMultiTargetClassifier",
+      "freqaimodel_path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
+      "freqtrade_paths": [
+        "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"
+      ],
+      "note": "The declared zigzag dependency cannot be built in the current Python environment.",
+      "rules": [
+        "restore_author_package_extension",
+        "restore_author_config"
+      ],
+      "status": "partial"
+    },
+    "LitmusMinMaxRegretClassificationStrategy": {
+      "config_keys": [
+        "timeframe",
+        "freqai"
+      ],
+      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated/config.LitmusMinMaxRegretClassification.json",
+      "freqaimodel": "LitmusMultiTargetClassifier",
+      "freqaimodel_path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
+      "freqtrade_paths": [
+        "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"
+      ],
+      "note": "The declared zigzag dependency cannot be built in the current Python environment.",
+      "rules": [
+        "restore_author_package_extension",
+        "restore_author_config"
+      ],
+      "status": "partial"
+    },
+    "LitmusMinMaxSegmentClassificationStrategy": {
+      "config_keys": [
+        "timeframe",
+        "freqai"
+      ],
+      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated/config.LitmusMinMaxSegmentClassification.json",
+      "freqaimodel": "LitmusMultiTargetClassifier",
+      "freqaimodel_path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
+      "freqtrade_paths": [
+        "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"
+      ],
+      "note": "The declared zigzag dependency cannot be built in the current Python environment.",
+      "rules": [
+        "restore_author_package_extension",
+        "restore_author_config"
+      ],
+      "status": "partial"
+    },
+    "LitmusMinMaxStrategy": {
+      "config_keys": [
+        "timeframe",
+        "freqai"
+      ],
+      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated/config.LitmusMinMax.json",
+      "freqtrade_paths": [
+        "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"
+      ],
+      "note": "The declared zigzag dependency cannot be built in the current Python environment.",
+      "rules": [
+        "restore_author_package_extension",
+        "restore_author_config"
+      ],
+      "status": "partial"
+    },
+    "LitmusMinMaxTrendStrategy": {
+      "freqtrade_paths": [
+        "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"
+      ],
+      "note": "Author documents LitmusMLDPClassifier, but no strategy-specific config was found and zigzag cannot be built in the current Python environment.",
+      "rules": [
+        "restore_author_package_extension"
+      ],
+      "status": "partial"
+    },
+    "LitmusSimpleStrategy": {
+      "freqtrade_paths": [
+        "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado"
+      ],
+      "note": "The author requirement cointanalysis has no installable distribution in the current environment and no strategy-specific config was found.",
+      "rules": [
+        "restore_author_package_extension"
+      ],
+      "status": "blocked_missing_dependency"
+    },
+    "PolymarketMeanReversionStrategy": {
+      "note": "1 copies satisfy the import and all are the same file, so the choice carries no risk",
+      "python_paths": [
+        "repos/mlsys-io_PortfolioBench"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
+    },
+    "PolymarketMomentumStrategy": {
+      "note": "1 copies satisfy the import and all are the same file, so the choice carries no risk",
+      "python_paths": [
+        "repos/mlsys-io_PortfolioBench"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
     },
     "Proton": {
+      "note": "Source requires proton_parameters but the repository config does not provide them.",
       "rules": [],
-      "status": "blocked_missing_author_config",
-      "note": "Source requires proton_parameters but the repository config does not provide them."
+      "status": "blocked_missing_author_config"
+    },
+    "RLAgentStrategy": {
+      "config_keys": [
+        "timeframe",
+        "stoploss",
+        "freqai"
+      ],
+      "config_source": "repos/jerome-benoit_freqai-strategies/ReforceXY/user_data/config-template.json",
+      "freqaimodel": "ReforceXY",
+      "freqaimodel_path": "repos/jerome-benoit_freqai-strategies/ReforceXY/user_data/freqaimodels",
+      "note": "Author config and custom model path restored; the custom ReforceXY model dependencies do not load in the benchmark environment.",
+      "rules": [
+        "restore_author_config"
+      ],
+      "status": "partial"
+    },
+    "Solipsis": {
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
+      "python_paths": [
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
+    },
+    "Solipsis4": {
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
+      "python_paths": [
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
+    },
+    "Solipsis6": {
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
+      "python_paths": [
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
+    },
+    "SolipsisMM": {
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
+      "python_paths": [
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
+    },
+    "TSPredict": {
+      "python_paths": [
+        "repos/nateemma_strategies"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
+    },
+    "tsp0chicken": {
+      "python_paths": [
+        "repos/nateemma_strategies"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
     }
   }
 }

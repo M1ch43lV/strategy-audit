@@ -1,0 +1,478 @@
+{
+  "results": {
+    "AdvancedRiskFilterStrategy": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/DonaldSimpson_remora-freqtrade",
+          "sha256_16": "fd9cae2dd1915ae7",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/DonaldSimpson_remora-freqtrade"
+      ],
+      "missing_module": "remora",
+      "python_path": "repos/DonaldSimpson_remora-freqtrade",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/DonaldSimpson_remora-freqtrade/examples/advanced_risk_filter_strategy.py",
+      "status": "resolved",
+      "strategy_id": "AdvancedRiskFilterStrategy",
+      "why": "1 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "BB_RPB_3c": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'user_data.freqtrade3cw'"
+        },
+        {
+          "imports": false,
+          "path": "repos/Rikj000_MoniGoMani",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'user_data.freqtrade3cw'"
+        }
+      ],
+      "missing_module": "user_data.freqtrade3cw",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/BB_RPB_3c.py",
+      "status": "unresolved",
+      "strategy_id": "BB_RPB_3c",
+      "why": "no copy of user_data.freqtrade3cw in the corpus makes BB_RPB_3c import; the import failure is not only this module"
+    },
+    "BaseStrategy": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframePopulator'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframePopulator'"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframePopulator'"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframePopulator'"
+        }
+      ],
+      "missing_module": "utils",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/nateemma_strategies/Framework/BaseStrategy.py",
+      "status": "unresolved",
+      "strategy_id": "BaseStrategy",
+      "why": "no copy of utils in the corpus makes BaseStrategy import; the import failure is not only this module"
+    },
+    "BinanceStream": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/exchange",
+          "sha256_16": "e0e9b762fe7789d0",
+          "why": "ModuleNotFoundError: No module named 'freqtrade.exchange.types'"
+        }
+      ],
+      "missing_module": "binance",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/TomtomEh_freqtrade-websocket/user_data/strategies/BinanceStream.py",
+      "status": "unresolved",
+      "strategy_id": "BinanceStream",
+      "why": "no copy of binance in the corpus makes BinanceStream import; the import failure is not only this module"
+    },
+    "DWT": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/froggleston_cryptofrog-strategies",
+        "repos/nateemma_strategies/utils",
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "missing_module": "custom_indicators",
+      "python_path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/TheoBrigitte_freqtrade/strategies/dwt/DWT.py",
+      "status": "resolved",
+      "strategy_id": "DWT",
+      "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
+    },
+    "DWT_Leveraged": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/froggleston_cryptofrog-strategies",
+        "repos/nateemma_strategies/utils",
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "missing_module": "custom_indicators",
+      "python_path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/TheoBrigitte_freqtrade/strategies/dwt/DWT_Leveraged.py",
+      "status": "resolved",
+      "strategy_id": "DWT_Leveraged",
+      "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
+    },
+    "DualModelPolymarketPortfolio": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/mlsys-io_PortfolioBench"
+      ],
+      "missing_module": "alpha",
+      "python_path": "repos/mlsys-io_PortfolioBench",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/mlsys-io_PortfolioBench/user_data/strategies/DualModelPolymarketPortfolio.py",
+      "status": "resolved",
+      "strategy_id": "DualModelPolymarketPortfolio",
+      "why": "1 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "Dyna_opti": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/froggleston_cryptofrog-strategies",
+        "repos/nateemma_strategies/utils",
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "missing_module": "custom_indicators",
+      "python_path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Dyna_opti.py",
+      "status": "resolved",
+      "strategy_id": "Dyna_opti",
+      "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
+    },
+    "EmaCrossStrategy": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/mlsys-io_PortfolioBench"
+      ],
+      "missing_module": "alpha",
+      "python_path": "repos/mlsys-io_PortfolioBench",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/mlsys-io_PortfolioBench/strategy/EmaCrossStrategy.py",
+      "status": "resolved",
+      "strategy_id": "EmaCrossStrategy",
+      "why": "1 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "FileLoadingStrategy": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/keithorange_FreqTradeCustomOrders",
+          "sha256_16": "2e56ca7479701964",
+          "why": "ModuleNotFoundError: No module named 'portalocker'"
+        }
+      ],
+      "missing_module": "custom_order_form_handler",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/keithorange_FreqTradeCustomOrders/file_loading_strategy.py",
+      "status": "unresolved",
+      "strategy_id": "FileLoadingStrategy",
+      "why": "no copy of custom_order_form_handler in the corpus makes FileLoadingStrategy import; the import failure is not only this module"
+    },
+    "MlpSpeculativeStrategy": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'strategy.mlp_speculative_model'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade",
+          "sha256_16": "b18b9117daae725e",
+          "why": "ModuleNotFoundError: No module named 'strategy.mlp_speculative_model'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'strategy.mlp_speculative_model'"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "a963345f66259624",
+          "why": "ModuleNotFoundError: No module named 'strategy.mlp_speculative_model'"
+        },
+        {
+          "imports": false,
+          "path": "repos/raphant_lazyft/lazyft",
+          "sha256_16": "9eb1eb20d7f45cda",
+          "why": "ModuleNotFoundError: No module named 'strategy.mlp_speculative_model'"
+        },
+        {
+          "imports": false,
+          "path": "repos/raphant_lazyft/lazyft/models",
+          "sha256_16": "ba4c370a4b21bf8a",
+          "why": "ModuleNotFoundError: No module named 'strategy.mlp_speculative_model'"
+        }
+      ],
+      "missing_module": "strategy",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/mlsys-io_PortfolioBench/strategy/MlpSpeculativeStrategy.py",
+      "status": "unresolved",
+      "strategy_id": "MlpSpeculativeStrategy",
+      "why": "no copy of strategy in the corpus makes MlpSpeculativeStrategy import; the import failure is not only this module"
+    },
+    "PolymarketMeanReversionStrategy": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/mlsys-io_PortfolioBench"
+      ],
+      "missing_module": "alpha",
+      "python_path": "repos/mlsys-io_PortfolioBench",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/mlsys-io_PortfolioBench/strategy/PolymarketMeanReversionStrategy.py",
+      "status": "resolved",
+      "strategy_id": "PolymarketMeanReversionStrategy",
+      "why": "1 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "PolymarketMomentumStrategy": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/mlsys-io_PortfolioBench"
+      ],
+      "missing_module": "alpha",
+      "python_path": "repos/mlsys-io_PortfolioBench",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/mlsys-io_PortfolioBench/strategy/PolymarketMomentumStrategy.py",
+      "status": "resolved",
+      "strategy_id": "PolymarketMomentumStrategy",
+      "why": "1 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "Solipsis": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/froggleston_cryptofrog-strategies",
+        "repos/nateemma_strategies/utils",
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "missing_module": "custom_indicators",
+      "python_path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-tradedbexp.py",
+      "status": "resolved",
+      "strategy_id": "Solipsis",
+      "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
+    },
+    "Solipsis4": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/froggleston_cryptofrog-strategies",
+        "repos/nateemma_strategies/utils",
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "missing_module": "custom_indicators",
+      "python_path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis_v4.py",
+      "status": "resolved",
+      "strategy_id": "Solipsis4",
+      "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
+    },
+    "Solipsis6": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/froggleston_cryptofrog-strategies",
+        "repos/nateemma_strategies/utils",
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "missing_module": "custom_indicators",
+      "python_path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-v2.6.py",
+      "status": "resolved",
+      "strategy_id": "Solipsis6",
+      "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
+    },
+    "SolipsisMM": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/froggleston_cryptofrog-strategies",
+        "repos/nateemma_strategies/utils",
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "missing_module": "custom_indicators",
+      "python_path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/SolipsisMM.py",
+      "status": "resolved",
+      "strategy_id": "SolipsisMM",
+      "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
+    }
+  },
+  "rule": "restore_copied_local_module",
+  "schema_version": 1
+}
