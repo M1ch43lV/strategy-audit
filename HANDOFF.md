@@ -141,9 +141,38 @@ bias queue 53 candidates, 0 pending.
 - Untracked `_sabotage/BrokenOnPurpose.py` is a negative-control fixture. The
   `loadscan`, `anatman` and `sync_repo` selftests fail independently of this work.
 
+## The original sweep is reference, not evidence
+
+The owner's ruling, 2026-09-01: results from the original author's environment
+cannot be carried over, because that environment did not establish the
+preconditions this audit requires. That is the reason the pre-checks are being
+redone at all. `LEDGER.csv`, `LEDGER.md`, `README.md` and `corpus/` are
+historical reference. Read them for provenance and for hints; never let one
+clear a row.
+
+They cannot simply be moved to `old/`: 15 scripts read `LEDGER.csv` and 35 read
+`corpus/`, including `execution_profiles.py` and `regime_eligibility.py`. The
+separation that matters is of role, not of directory, and it is done in
+`strategy_status.py`, which now attaches an old card's exception as a
+"historical hint" and never as a reason.
+
+**The contamination is real and measured.** `regime_eligibility.classify`
+promotes a historical spot PASS to a current one when no native verdict exists:
+
+    lookahead = native if native in ("PASS", "FOUND") else historical_lookahead
+
+Futures were handled carefully - a historical PASS is explicitly not inherited
+across execution modes - but the same caution was never applied across
+environments. Twenty-two of the frozen 67 and eight of the eleven admitted
+since carry a look-ahead verdict from the original sweep.
+
 ## Next concrete steps
 
-1. Give `eligibility_expansion_adjudicate.py` a Wave C ruleset so the three
+1. **After the convergence run finishes**, re-measure the 30 inherited gates:
+   `.\eligibility_evidence_gap_docker.ps1 --limit 30 --timeout 1800`. A FOUND
+   there is a real outcome and is reported as one; re-measuring only until the
+   answer is convenient would be worse than not re-measuring at all.
+2. Give `eligibility_expansion_adjudicate.py` a Wave C ruleset so the three
    survivors can be admitted. It is driven by
    `ELIGIBILITY_EXPANSION_PROOFS.json` and checks `trade_equivalence` and
    `static_proof`; both exist only because a Wave B row needs an adapter to
