@@ -58,7 +58,9 @@ REASON_ORDER = (
     ("behavior_changed_primary_exclusion", "repaired in a way that changed behaviour"),
     ("technical_trap_found", "carries a published backtesting trap"),
     ("recursive_bias_found",
-     "indicator value depends on how much history was loaded"),
+     "indicator value still drifts at every warm-up the ladder can reach"),
+    ("recursive_bias_unverified",
+     "recorded under a parser defect and not re-measured; not a finding"),
     ("no_trades_in_full_measurement", "never trades over the full window"),
     ("canonical_implementation_not_measured", "never ran"),
     ("no_verdict_on_lookahead_and_recursive", "measured; neither gate returned a verdict"),
@@ -218,6 +220,16 @@ def rows():
                 reasons.add("recursive_bias_found")
             if measurement.get("status") == "measured":
                 reasons.discard("canonical_implementation_not_measured")
+            # A recursion label is only as good as the measurement behind it,
+            # and the measurement behind most of them is known to be defective:
+            # the parser read the drift at 199 candles instead of at the
+            # strategy's own warm-up, which flipped the verdict for 47 of 302
+            # logs, every one of them from excluded to clean. A row is only
+            # confirmed once the convergence ladder has failed to settle it.
+            if "recursive_bias_found" in reasons \
+                    and settled.get("state") != "not_converged_within_ladder":
+                reasons.discard("recursive_bias_found")
+                reasons.add("recursive_bias_unverified")
             for key, _text in REASON_ORDER:
                 if key in reasons:
                     reason = key
@@ -424,6 +436,15 @@ def _report(data):
         "A row usually fails several gates. It is grouped by the most final",
         "one: a strategy that reads future candles is out however clean its",
         "warm-up is.", "",
+        "**`recursive_bias_unverified` is not a finding.** The parser that",
+        "produced most recursion verdicts read the drift at 199 candles rather",
+        "than at the strategy's own warm-up, because the analyzer sorts its",
+        "columns by value and the strategy's column moves. Across 302 retained",
+        "logs the correction flipped 47 verdicts, every one of them from",
+        "excluded to clean. A recursion label therefore counts as confirmed",
+        "only where the convergence ladder has since failed to settle the row;",
+        "everywhere else it says what it is - a record made under a known",
+        "defect, awaiting re-measurement.", "",
         "| Reason | Meaning | Strategies |", "|---|---|---:|",
     ]
     ordered = [key for key, _t in REASON_ORDER if key in grouped]
