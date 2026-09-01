@@ -116,20 +116,37 @@ confirmation: `pmaxTest` with warm-up 112 still drifts 4.5 percent on `rsi_112`.
    twice.
 2. Acceptance: freqtrade `recursive-analysis` reports no indicator whose
    absolute drift reaches **1.0 percent**.
-3. The FIRST ladder value that satisfies the acceptance is the chosen value.
-   Not the best-looking one, and no per-row search beyond the ladder.
+3. The chosen value is the smallest rung at which that rung AND every larger
+   rung in the table stay inside the band. Not the first crossing: a drift
+   curve does not fall monotonically. `SmaRsiStrategy` reports 0.588 percent
+   for `rsi` at 14 candles, then 4.262 at 25 and 1.718 at 30 before settling
+   near zero at 90. Taking the first value under the band would pick 14, where
+   the indicator is plainly not settled; convergence means it stays settled.
+   There is no per-row search beyond the ladder.
+3a. The whole ladder is measured in ONE analyzer run. `recursive-analysis`
+   accepts the startup values to test and prints one column per value, plus a
+   column for the strategy's own declared warm-up. The declared value is
+   therefore never overridden: it is read as its own column, which is what
+   makes requirement 6 below decidable.
 4. A row where no ladder value satisfies acceptance is terminal for this route.
 5. Acceptance is not admission. A chosen value must additionally survive the
    paired full-window run: identical trade list, identical `trades_sha256`,
    against the strategy as declared. Coverage `PASS`, trap-free,
    `artifact_role=strategy` and not `behavior_changed` continue to apply.
-6. A row that converges but whose trade list changes is **E3 exploratory**, not
+6. A row whose settled value is at or below the author's own declared warm-up
+   needs no override at all. It was excluded by a defect in this audit's
+   parser, which read the wrong table column, and admitting it requires neither
+   a changed warm-up nor the wider band. Such a row is recorded as
+   `needed_no_override` and is reported separately, because it is a correction
+   rather than a relaxation.
+7. A row that converges but whose trade list changes is **E3 exploratory**, not
    E1. The fix altered behaviour, which is a finding, not an admission.
-7. Rows admitted through this route carry the label `convergence_warmup_v1` so
+8. Rows admitted through this route carry the label `convergence_warmup_v1` so
    every result can be reported with and without them.
-8. Every admitted row records its chosen warm-up, the ladder step it came from,
-   the largest remaining drift and the indicator carrying it, and the trade
-   count the equality was established over. The trade count is required because
+9. Every admitted row records its chosen warm-up, the ladder step it came from,
+   the complete drift table it was decided on, the drift at the author's own
+   declared warm-up, the largest remaining drift and the indicator carrying it,
+   and the trade count the equality was established over. The trade count is required because
    equality over eight trades and equality over 1,845 are not comparable
    evidence, and a reader must be able to see which one a row rests on.
 

@@ -173,13 +173,97 @@ _FROM_STRATEGY = re.compile(r"\(from strategy\)")
 
 def _strategy_column(output):
     """Index of the strategy's own column among the table's value columns."""
+    columns, _rows = recursive_table(output)
+    for index, (_startup, from_strategy) in enumerate(columns):
+        if from_strategy:
+            return index
+    return None
+
+
+def _cell(value):
+    """One table cell: a number, zero for a dash, or None when undefined.
+
+    A dash is the analyzer having nothing worth printing at that startup, which
+    is zero. "nan" is the indicator being undefined there - too little history
+    for it to have a value at all - which is the absence of a measurement, not
+    a small one, and must never be read as agreement.
+    """
+    value = value.strip()
+    if value == "-":
+        return 0.0
+    if value.lower().startswith("nan"):
+        return None
+    match = re.fullmatch(r"(-?[\d.]+)%", value)
+    return float(match.group(1)) if match else None
+
+
+def recursive_table(output):
+    """The full drift table: (columns, rows).
+
+    `columns` is a list of `(startup_candles, is_from_strategy)` in the order
+    the analyzer printed them, which is ascending by startup value. `rows` maps
+    each indicator to a list of values aligned to those columns.
+
+    Reading every column matters because one analyzer run already reports every
+    startup that was asked for. A ladder does not need one run per rung, and
+    the shape of a row across the columns is what shows whether an indicator
+    has actually settled or merely crosses the threshold once.
+    """
     header = _HEADER.search(output)
     if not header:
+        return [], {}
+    columns = []
+    for cell in header.group(1).split("┃"):
+        cell = cell.strip()
+        match = re.match(r"(\d+)", cell)
+        if not match:
+            continue
+        columns.append((int(match.group(1)), bool(_FROM_STRATEGY.search(cell))))
+    rows = {}
+    for line in output.splitlines():
+        if not line.startswith("│"):
+            continue
+        cells = [part.strip() for part in line.strip("│").split("│")]
+        if len(cells) != len(columns) + 1:
+            continue
+        name = cells[0]
+        if not re.fullmatch(r"[a-zA-Z_0-9]+", name):
+            continue
+        rows[name] = [_cell(part) for part in cells[1:]]
+    return columns, rows
+
+
+def settled_startup(output, threshold):
+    """Smallest startup from which every indicator stays inside the band.
+
+    Convergence is not the first crossing. A drift curve need not fall
+    monotonically: `SmaRsiStrategy` reports 0.588 percent for `rsi` at 14
+    candles, 4.262 at 25 and 1.718 at 30 before settling near zero at 90.
+    Taking the first value under the band would pick 14, where the indicator is
+    plainly not settled. So a startup qualifies only when it and every larger
+    startup in the table are defined and inside the band.
+
+    Returns `(startup, worst_indicator, worst_value)` or None.
+    """
+    columns, rows = recursive_table(output)
+    if not columns or not rows:
         return None
-    columns = [cell.strip() for cell in header.group(1).split("┃")]
-    for index, cell in enumerate(columns):
-        if _FROM_STRATEGY.search(cell):
-            return index
+    for index, (startup, _from_strategy) in enumerate(columns):
+        worst = None
+        ok = True
+        for later in range(index, len(columns)):
+            for name, values in rows.items():
+                value = values[later]
+                if value is None or abs(value) >= threshold:
+                    ok = False
+                    break
+                if worst is None or abs(value) > abs(worst[1]):
+                    worst = (name, value)
+            if not ok:
+                break
+        if ok:
+            return (startup, worst[0] if worst else None,
+                    worst[1] if worst else 0.0)
     return None
 
 
@@ -193,33 +277,15 @@ def recursive_drifts(output):
     Cells reading "-" mean the analyzer found no deviation worth printing at
     that startup and are treated as zero, which is what they are.
     """
-    index = _strategy_column(output)
+    columns, rows = recursive_table(output)
+    index = None
+    for position, (_startup, from_strategy) in enumerate(columns):
+        if from_strategy:
+            index = position
+            break
     if index is None:
         return []
-    drifts = []
-    for line in output.splitlines():
-        if not line.startswith("│"):
-            continue
-        cells = [cell.strip() for cell in line.strip("│").split("│")]
-        if len(cells) < index + 2:
-            continue
-        name = cells[0]
-        if not re.fullmatch(r"[a-zA-Z_0-9]+", name):
-            continue
-        value = cells[index + 1]
-        if value == "-":
-            drifts.append((name, 0.0))
-            continue
-        if value.lower().startswith("nan"):
-            # The indicator is undefined at this warm-up, so the comparison has
-            # no result. That is not a small drift and not a clean one; it is
-            # the absence of a measurement, and it is reported as such.
-            drifts.append((name, None))
-            continue
-        match = re.fullmatch(r"(-?[\d.]+)%", value)
-        if match:
-            drifts.append((name, float(match.group(1))))
-    return drifts
+    return [(name, values[index]) for name, values in rows.items()]
 
 
 UNDEFINED = "indicators undefined at this warm-up"

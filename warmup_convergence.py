@@ -26,11 +26,14 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import io
 import json
 import os
 import re
+import subprocess
 import sys
+import time
 
 import eligibility_warmup
 import profile_bias
@@ -41,6 +44,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 CANDIDATES = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_CANDIDATES.csv")
 PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
 OUTPUT = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
+LOG_DIR = os.path.join(ROOT, "user_data", "convergence_logs")
 
 # Frozen by the amendment. The ladder is expressed in CALENDAR DAYS and
 # converted to candles through the strategy's own timeframe.
@@ -226,8 +230,54 @@ def derived_value(strategy):
     return recovery._audited_period(strategy)
 
 
+def run_ladder(row, timeout, startups):
+    """Ask the analyzer for every ladder rung in a single run.
+
+    `recursive-analysis` accepts the startup values to test and prints one
+    column per value, plus the strategy's own. So the whole ladder is one run
+    of about half a minute rather than one run per rung, and the strategy's
+    declared warm-up is left untouched: it appears as its own column instead of
+    being overridden.
+    """
+    strategy = row["strategy_id"]
+    canonical = os.path.join(ROOT, row["canonical_file"].replace("/", os.sep))
+    mode, config, env, repair, extra = profile_bias._runtime(row)
+    strategy_path = profile_bias._isolated_strategy(row, canonical)
+    existing = env.get("PROFILE_STRATEGY_IMPORT_PATH", "")
+    env["PROFILE_STRATEGY_IMPORT_PATH"] = os.pathsep.join(
+        [os.path.dirname(canonical)] + ([existing] if existing else []))
+    command = [profile_bias.PYTHON, profile_bias.FT_WRAPPER,
+               "recursive-analysis", "--config", config,
+               "--strategy", strategy, "--strategy-path", strategy_path,
+               "--timerange", profile_bias.WINDOWS[mode], "--no-color",
+               "--startup-candle"] + [str(value) for value in startups] + extra
+    started = time.time()
+    try:
+        process = subprocess.run(command, capture_output=True, timeout=timeout,
+                                 env=env, cwd=ROOT)
+    except subprocess.TimeoutExpired:
+        return None, {"status": "NA", "why": "TIMEOUT",
+                      "elapsed_s": round(time.time() - started, 1)}
+    output = (process.stdout + process.stderr).decode("utf-8", "replace")
+    os.makedirs(LOG_DIR, exist_ok=True)
+    log_path = os.path.join(LOG_DIR, "%s-ladder.log"
+                            % profile_smoke._safe(strategy))
+    with io.open(log_path, "w", encoding="utf-8") as handle:
+        handle.write(output)
+    meta = {
+        "elapsed_s": round(time.time() - started, 1),
+        "returncode": process.returncode,
+        "timerange": profile_bias.WINDOWS[mode],
+        "runtime_id": os.environ.get("PROFILE_RUNTIME_ID", "native_unversioned"),
+        "debug_log": os.path.relpath(log_path, ROOT).replace(os.sep, "/"),
+        "output_sha256": "sha256_" + hashlib.sha256(
+            output.encode("utf-8")).hexdigest(),
+    }
+    return output, meta
+
+
 def resolve(row, timeout):
-    """Walk the day ladder for one row and stop at the first qualifying rung."""
+    """Find the smallest warm-up from which this row stays inside the band."""
     strategy = row["strategy_id"]
     timeframe = row.get("execution_timeframe") or row.get("declared_timeframe")
     cap = available_prefix_candles(row["run_profile"], timeframe)
@@ -237,106 +287,69 @@ def resolve(row, timeout):
         "implementation_id": row["implementation_id"],
         "run_profile": row["run_profile"],
         "timeframe": timeframe,
-        # Kept for context only. The ladder no longer depends on it, which is
-        # the point: this value is the one that has been wrong before.
         "file_derived_period": derived_value(strategy),
         "available_prefix_candles": cap,
         "ladder_days": [days for days, _candles in rungs],
         "ladder_candles": [candles for _days, candles in rungs],
         "drift_threshold_pct": DRIFT_THRESHOLD_PCT,
-        "attempts": [],
     }
-    # Rung zero: the strategy exactly as its author declared it, with no
-    # override at all. It is tested first because the frozen gate misread the
-    # analyzer table - it took the first numeric column, which is the drift at
-    # 199 candles whenever the strategy declares more than that - and a row
-    # that clears the band here was excluded by a parsing error alone. Such a
-    # row needs neither a changed warm-up nor the wider band, and saying so is
-    # a stronger result than admitting it under the amendment.
-    declared = profile_bias.run_diagnostic(row, "recursive", timeout, timeout)
-    declared_drifts = [item for item in (declared.get("drifts") or [])
-                       if item[1] is not None]
-    worst_declared = (max(declared_drifts, key=lambda item: abs(item[1]))
-                      if declared_drifts else None)
-    record["attempts"].append({
-        "ladder_days": None,
-        "startup_candle_count": "as_declared",
-        "status": declared.get("status"),
-        "why": declared.get("why"),
-        "max_drift_pct": abs(worst_declared[1]) if worst_declared else None,
-        "max_drift_indicator": worst_declared[0] if worst_declared else None,
-        "elapsed_s": declared.get("elapsed_s"),
-    })
-    print("  as declared: %s max drift %s%% on %s"
-          % (declared.get("status"),
-             abs(worst_declared[1]) if worst_declared else None,
-             worst_declared[0] if worst_declared else None), flush=True)
-    if declared.get("status") in ("PASS", "FOUND"):
-        settled = (worst_declared is None
-                   or abs(worst_declared[1]) < DRIFT_THRESHOLD_PCT)
-        if settled:
-            record["state"] = "converged"
-            record["chosen_startup_candle_count"] = "as_declared"
-            record["chosen_ladder_days"] = None
-            record["max_drift_pct"] = (abs(worst_declared[1])
-                                       if worst_declared else 0.0)
-            record["max_drift_indicator"] = (worst_declared[0]
-                                             if worst_declared else None)
-            record["needed_no_override"] = True
-            return record
-
     if not rungs:
         record["state"] = "no_usable_ladder"
         record["why"] = ("no declared timeframe" if not timeframe_minutes(timeframe)
                          else "available history is shorter than the first rung")
         return record
-    for days, startup in rungs:
-        print("  rung %dd -> startup=%d candles" % (days, startup), flush=True)
-        result = eligibility_warmup.run_one(row, timeout, startup)
-        drifts = [item for item in (result.get("drifts") or [])
-                  if item[1] is not None]
-        worst = max(drifts, key=lambda item: abs(item[1])) if drifts else None
-        attempt = {
-            "ladder_days": days,
-            "startup_candle_count": startup,
-            "status": result.get("status"),
-            "why": result.get("why"),
-            "max_drift_pct": abs(worst[1]) if worst else None,
-            "max_drift_indicator": worst[0] if worst else None,
-            "elapsed_s": result.get("elapsed_s"),
-            "runtime_id": result.get("runtime_id"),
-        }
-        record["attempts"].append(attempt)
-        print("    %s max drift %s%% on %s" %
-              (attempt["status"], attempt["max_drift_pct"],
-               attempt["max_drift_indicator"]), flush=True)
-        if result.get("status") == "NA":
-            # An indicator that is undefined at this warm-up has not failed;
-            # it has not been measured. A longer warm-up is exactly the remedy,
-            # so the ladder keeps climbing. Any other NA is a real dead end.
-            if profile_bias.UNDEFINED in (result.get("why") or ""):
-                continue
-            record["state"] = "inconclusive"
-            record["why"] = result.get("why")
-            return record
-        if worst is None or abs(worst[1]) < DRIFT_THRESHOLD_PCT:
-            record["state"] = "converged"
-            record["chosen_startup_candle_count"] = startup
-            record["chosen_ladder_days"] = days
-            record["max_drift_pct"] = attempt["max_drift_pct"]
-            record["max_drift_indicator"] = attempt["max_drift_indicator"]
-            return record
-    last = record["attempts"][-1]
-    if all(attempt.get("status") == "NA" for attempt in record["attempts"]):
+
+    output, meta = run_ladder(row, timeout,
+                              [candles for _days, candles in rungs])
+    record.update(meta)
+    if output is None:
         record["state"] = "inconclusive"
-        record["why"] = ("no rung produced a verdict; last: %s"
-                         % (last.get("why") or "")[:120])
+        record["why"] = meta.get("why", "TIMEOUT")
         return record
-    record["state"] = "not_converged_within_ladder"
-    record["why"] = ("no rung reached the band; largest remaining drift %s%% "
-                     "on %s after %d days of warm-up"
-                     % (last["max_drift_pct"], last["max_drift_indicator"],
-                        last["ladder_days"]))
+
+    refused = re.search(r"This strategy requires (\d+) candles to start", output)
+    if refused:
+        record["state"] = "inconclusive"
+        record["why"] = ("freqtrade refused startup %s as above the exchange "
+                         "limit" % refused.group(1))
+        return record
+
+    columns, rows = profile_bias.recursive_table(output)
+    if not columns or not rows:
+        record["state"] = "inconclusive"
+        record["why"] = "analyzer produced no drift table"
+        return record
+
+    record["columns"] = [{"startup_candle_count": startup,
+                          "from_strategy": from_strategy}
+                         for startup, from_strategy in columns]
+    record["drifts"] = {name: values for name, values in sorted(rows.items())}
+    declared = next((index for index, (_s, from_strategy)
+                     in enumerate(columns) if from_strategy), None)
+    if declared is not None:
+        worst = [abs(values[declared]) for values in rows.values()
+                 if values[declared] is not None]
+        record["declared_startup_candle_count"] = columns[declared][0]
+        record["declared_max_drift_pct"] = max(worst) if worst else None
+
+    settled = profile_bias.settled_startup(output, DRIFT_THRESHOLD_PCT)
+    if settled is None:
+        record["state"] = "not_converged_within_ladder"
+        largest = columns[-1][0]
+        record["why"] = ("no startup up to %d candles keeps every indicator "
+                         "inside %s%%" % (largest, DRIFT_THRESHOLD_PCT))
+        return record
+    startup, indicator, value = settled
+    record["state"] = "converged"
+    record["chosen_startup_candle_count"] = startup
+    record["chosen_ladder_days"] = next(
+        (days for days, candles in rungs if candles == startup), None)
+    record["max_drift_pct"] = abs(value)
+    record["max_drift_indicator"] = indicator
+    # A row settled at its own declared warm-up needs no override at all: it
+    # was excluded by the parser reading the wrong column, not by its code.
+    record["needed_no_override"] = (
+        declared is not None and startup <= columns[declared][0])
     return record
 
 
