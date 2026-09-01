@@ -10,6 +10,477 @@
     90,
     365
   ],
-  "results": {},
+  "results": {
+    "AdaptiveMAStrategy": {
+      "attempts": [
+        {
+          "elapsed_s": 29.8,
+          "ladder_days": null,
+          "max_drift_indicator": "adx",
+          "max_drift_pct": 1.964,
+          "startup_candle_count": "as_declared",
+          "status": "FOUND",
+          "why": "recursive drift: kama_slow -0.028%, kama_slow_prev -0.028%, rsi 0.765%, adx -1.964%"
+        },
+        {
+          "elapsed_s": 28.9,
+          "ladder_days": 1,
+          "max_drift_indicator": "kama_fast",
+          "max_drift_pct": 0.0,
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 288,
+          "status": "PASS",
+          "why": "no recursive deviations found"
+        }
+      ],
+      "available_prefix_candles": 97222,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
+      "cohort": "recursion_only",
+      "drift_threshold_pct": 1.0,
+      "file_derived_period": null,
+      "implementation_id": "AdaptiveMAStrategy:e433e47eecf9",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "kama_fast",
+      "max_drift_pct": 0.0,
+      "run_profile": "spot_long",
+      "state": "converged",
+      "strategy_id": "AdaptiveMAStrategy",
+      "timeframe": "5m"
+    },
+    "AdxStrengthStrategy": {
+      "attempts": [
+        {
+          "elapsed_s": 23.7,
+          "ladder_days": null,
+          "max_drift_indicator": "plus_di",
+          "max_drift_pct": 3.015,
+          "startup_candle_count": "as_declared",
+          "status": "NA",
+          "why": "indicators undefined at this warm-up: adx, adx_prev, ema50"
+        },
+        {
+          "elapsed_s": 24.0,
+          "ladder_days": 1,
+          "max_drift_indicator": "adx",
+          "max_drift_pct": 0.0,
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 288,
+          "status": "PASS",
+          "why": "no recursive deviations found"
+        }
+      ],
+      "available_prefix_candles": 97222,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
+      "cohort": "recursion_only",
+      "drift_threshold_pct": 1.0,
+      "file_derived_period": null,
+      "implementation_id": "AdxStrengthStrategy:05dcdcd84ce3",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "adx",
+      "max_drift_pct": 0.0,
+      "run_profile": "spot_long",
+      "state": "converged",
+      "strategy_id": "AdxStrengthStrategy",
+      "timeframe": "5m"
+    },
+    "AroonTrendStrategy": {
+      "attempts": [
+        {
+          "elapsed_s": 24.0,
+          "ladder_days": null,
+          "max_drift_indicator": "rsi",
+          "max_drift_pct": 0.935,
+          "startup_candle_count": "as_declared",
+          "status": "NA",
+          "why": "indicators undefined at this warm-up: ema50"
+        },
+        {
+          "elapsed_s": 24.1,
+          "ladder_days": 1,
+          "max_drift_indicator": "rsi",
+          "max_drift_pct": 0.0,
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 288,
+          "status": "PASS",
+          "why": "no recursive deviations found"
+        }
+      ],
+      "available_prefix_candles": 97222,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
+      "cohort": "recursion_only",
+      "drift_threshold_pct": 1.0,
+      "file_derived_period": null,
+      "implementation_id": "AroonTrendStrategy:bd7f1648080c",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "rsi",
+      "max_drift_pct": 0.0,
+      "run_profile": "spot_long",
+      "state": "converged",
+      "strategy_id": "AroonTrendStrategy",
+      "timeframe": "5m"
+    },
+    "AtrTrailingStopStrategy": {
+      "attempts": [
+        {
+          "elapsed_s": 24.7,
+          "ladder_days": null,
+          "max_drift_indicator": "rsi",
+          "max_drift_pct": 2.684,
+          "startup_candle_count": "as_declared",
+          "status": "NA",
+          "why": "indicators undefined at this warm-up: adx, ema50"
+        },
+        {
+          "elapsed_s": 24.8,
+          "ladder_days": 1,
+          "max_drift_indicator": "atr",
+          "max_drift_pct": 0.0,
+          "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+          "startup_candle_count": 288,
+          "status": "PASS",
+          "why": "no recursive deviations found"
+        }
+      ],
+      "available_prefix_candles": 97222,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
+      "cohort": "recursion_only",
+      "drift_threshold_pct": 1.0,
+      "file_derived_period": null,
+      "implementation_id": "AtrTrailingStopStrategy:06dbc5df260c",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "atr",
+      "max_drift_pct": 0.0,
+      "run_profile": "spot_long",
+      "state": "converged",
+      "strategy_id": "AtrTrailingStopStrategy",
+      "timeframe": "5m"
+    },
+    "BBRSI4cust": {
+      "available_prefix_candles": 32408,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 96,
+      "cohort": "recursion_only",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 30
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 96
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 192
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 672
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 1344
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2880
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/BBRSI4cust-ladder.log",
+      "declared_max_drift_pct": 2.181,
+      "declared_startup_candle_count": 30,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "bb_lowerband": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0,
+          -0.0
+        ],
+        "bb_lowerband1": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0,
+          -0.0
+        ],
+        "bb_upperband": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "bb_upperband1": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "plus_di": [
+          2.181,
+          -0.029,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          -0.375,
+          -0.092,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 24.0,
+      "file_derived_period": 20,
+      "implementation_id": "BBRSI4cust:1ad9367b43fb",
+      "ladder_candles": [
+        96,
+        192,
+        672,
+        1344,
+        2880
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30
+      ],
+      "max_drift_indicator": "rsi",
+      "max_drift_pct": 0.092,
+      "needed_no_override": false,
+      "output_sha256": "sha256_bcd9070c790c14149e77c4ed3a79e58a71274c930789d271036cb348316e1fbc",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "converged",
+      "strategy_id": "BBRSI4cust",
+      "timeframe": "15m",
+      "timerange": "20190101-20190401"
+    },
+    "BBRSINaiveStrategy": {
+      "available_prefix_candles": 32408,
+      "chosen_ladder_days": null,
+      "chosen_startup_candle_count": 30,
+      "cohort": "recursion_only",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 30
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 96
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 192
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 672
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 1344
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2880
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/BBRSINaiveStrategy-ladder.log",
+      "declared_max_drift_pct": 0.375,
+      "declared_startup_candle_count": 30,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "bb_lowerband": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0,
+          -0.0
+        ],
+        "bb_upperband": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "rsi": [
+          -0.375,
+          -0.092,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 24.7,
+      "file_derived_period": 20,
+      "implementation_id": "BBRSINaiveStrategy:8898c71db5cc",
+      "ladder_candles": [
+        96,
+        192,
+        672,
+        1344,
+        2880
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30
+      ],
+      "max_drift_indicator": "rsi",
+      "max_drift_pct": 0.375,
+      "needed_no_override": true,
+      "output_sha256": "sha256_2b6169e03bef29d2a7fa2afcffb83a9ce3f67fe72d58610fa83192e9ab3a1845",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "converged",
+      "strategy_id": "BBRSINaiveStrategy",
+      "timeframe": "15m",
+      "timerange": "20190101-20190401"
+    },
+    "BBRSIOptim2020Strategy": {
+      "available_prefix_candles": 97222,
+      "chosen_ladder_days": null,
+      "chosen_startup_candle_count": 30,
+      "cohort": "recursion_only",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 30
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/BBRSIOptim2020Strategy-ladder.log",
+      "declared_max_drift_pct": 0.935,
+      "declared_startup_candle_count": 30,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "bb_lowerband_3sd": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "rsi": [
+          0.935,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 24.1,
+      "file_derived_period": 20,
+      "implementation_id": "BBRSIOptim2020Strategy:81bc9ab8f74d",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "rsi",
+      "max_drift_pct": 0.935,
+      "needed_no_override": true,
+      "output_sha256": "sha256_c06f7b9ba547b864e306d53edb5891ce7f505c1f6bd15a6ac8908a03c336be72",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "converged",
+      "strategy_id": "BBRSIOptim2020Strategy",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401"
+    }
+  },
   "schema_version": 1
 }

@@ -122,6 +122,13 @@ confirmation: `pmaxTest` with warm-up 112 still drifts 4.5 percent on `rsi_112`.
    for `rsi` at 14 candles, then 4.262 at 25 and 1.718 at 30 before settling
    near zero at 90. Taking the first value under the band would pick 14, where
    the indicator is plainly not settled; convergence means it stays settled.
+   Among the rungs that qualify, the one with the smallest worst-case drift is
+   taken, and an exact tie keeps the smaller warm-up. Every candidate has
+   already cleared the band at its own value and at every larger one, so this
+   choice cannot pass or fail a row; it only selects the warm-up at which the
+   indicators are most settled. Choosing the smallest drift across ALL rungs,
+   qualifying or not, is inadmissible: it would pick the value that flatters
+   the test statistic, and on a non-monotone curve it lands on a crossing.
    There is no per-row search beyond the ladder.
 3a. The whole ladder is measured in ONE analyzer run. `recursive-analysis`
    accepts the startup values to test and prints one column per value, plus a

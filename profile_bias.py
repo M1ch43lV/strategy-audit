@@ -243,11 +243,21 @@ def settled_startup(output, threshold):
     plainly not settled. So a startup qualifies only when it and every larger
     startup in the table are defined and inside the band.
 
+    Among the columns that qualify, the one with the SMALLEST worst-case drift
+    is returned. Every candidate has already cleared the band at its own value
+    and at every larger one, so choosing between them adds no freedom to pass
+    or fail a row; it only picks the warm-up at which the indicators are most
+    settled. Selecting the smallest drift across all columns, qualifying or
+    not, would be a different and inadmissible thing: it would pick the value
+    that flatters the test statistic, and for a non-monotone curve it lands on
+    a crossing rather than on settlement.
+
     Returns `(startup, worst_indicator, worst_value)` or None.
     """
     columns, rows = recursive_table(output)
     if not columns or not rows:
         return None
+    qualifying = []
     for index, (startup, _from_strategy) in enumerate(columns):
         worst = None
         ok = True
@@ -257,14 +267,19 @@ def settled_startup(output, threshold):
                 if value is None or abs(value) >= threshold:
                     ok = False
                     break
-                if worst is None or abs(value) > abs(worst[1]):
+                if later == index and (worst is None
+                                       or abs(value) > abs(worst[1])):
                     worst = (name, value)
             if not ok:
                 break
         if ok:
-            return (startup, worst[0] if worst else None,
-                    worst[1] if worst else 0.0)
-    return None
+            qualifying.append((startup, worst[0] if worst else None,
+                               worst[1] if worst else 0.0))
+    if not qualifying:
+        return None
+    # Ties keep the smaller warm-up: it consumes less history, and a difference
+    # the analyzer reports as identical is not a reason to demand more.
+    return min(qualifying, key=lambda item: (abs(item[2]), item[0]))
 
 
 def recursive_drifts(output):
@@ -468,6 +483,30 @@ def selftest():
     status, why = _recursive(undefined, 0)
     assert status == "NA" and UNDEFINED in why, (status, why)
     assert _recursive(undefined, 0, threshold=1.0)[0] == "NA"
+
+    # Settling, not crossing, and then the calmest of the settled columns.
+    nl = chr(10)
+    curve = nl.join([
+        "┃ Indicators ┃     14 ┃ 25 (from strategy) ┃     30 ┃     90 ┃     365 ┃",
+        "│ rsi │ 0.588% │ 4.262% │ 1.718% │ 0.041% │ -0.052% │",
+        ran])
+    # 14 is under 1% but 25 and 30 are not, so 14 is a crossing, not a floor.
+    assert settled_startup(curve, 1.0) == (90, "rsi", 0.041)
+    # Widen the band so 25 and 30 qualify too: the choice among qualifying
+    # columns is the smallest drift, which is still 90.
+    assert settled_startup(curve, 5.0) == (90, "rsi", 0.041)
+    # An exact tie keeps the smaller warm-up rather than demanding more history.
+    flat = nl.join([
+        "┃ Indicators ┃ 30 (from strategy) ┃ 90 ┃ 365 ┃",
+        "│ ema │ 0.000% │ 0.000% │ -0.000% │",
+        ran])
+    assert settled_startup(flat, 1.0)[0] == 30
+    # An undefined cell disqualifies its own column and every smaller one.
+    holed = nl.join([
+        "┃ Indicators ┃ 30 (from strategy) ┃ 90 ┃ 365 ┃",
+        "│ ema │ 0.000% │ nan% │ 0.000% │",
+        ran])
+    assert settled_startup(holed, 1.0) == (365, "ema", 0.0)
     # Without the label there is no column to read, so there is no verdict.
     assert recursive_drifts("│ ema_200 │ 0.018% │" + ran) == []
 
