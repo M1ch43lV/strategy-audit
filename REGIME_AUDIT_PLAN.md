@@ -2,8 +2,8 @@
 
 **Working title:** Regime-Aware Audit and Strategy Selection for Public Freqtrade Strategies
 **Status:** Stage 7 complete / Stage 9 awaiting preregistration decisions
-**Version:** 0.20
-**Date:** 2026-08-31
+**Version:** 0.21
+**Date:** 2026-09-01
 **Primary target:** Codex / other AI coding sessions working on `Apex-prim/strategy-audit`
 **Repository:** https://github.com/Apex-prim/strategy-audit
 
@@ -1946,6 +1946,39 @@ as binding rules, and quoting the frozen 67 eligible profiles when the current
 figure is 75 because the expansion adjudication is recorded in a second file.
 The map is descriptive only. Where it and a governing document disagree, the
 governing document wins and the map is the error.
+
+## Decision 0.21-01 - Warm-up chosen by convergence, accepted at 1 percent
+
+**Status:** methodological; owner-authorized
+**Timing:** before any strategy-by-regime ranking was generated or inspected
+**Class:** methodological
+**Decision:** choose a strategy's diagnostic warm-up from a fixed ladder of
+calendar days - 1, 2, 7, 14, 30, 90, 365, converted through the strategy's own
+timeframe - until freqtrade's recursive-analysis reports no indicator drifting
+by 1.0 percent or more, then require an identical full-window trade list before
+admitting the row. Applied to all 440 rows whose sole hard exclusion reason is
+recursive drift, not only to Wave D. The complete rule is frozen in `REGIME_PREREGISTRATION.md` under "Frozen
+warm-up convergence amendment".
+**Reason:** the previous warm-up value was the longest literal indicator period
+in the source, and that heuristic failed three separate ways in recorded cases:
+a minimum read as a maximum, a period carried across timeframes without
+conversion, and the fact that a recursively smoothed indicator never forgets
+its seed. Warm-up equal to the period leaves about 13.5 percent of the seed for
+a standard EMA and 36.8 percent under Wilder smoothing; `pmaxTest` at warm-up
+112 still drifts 4.5 percent on `rsi_112`. Convergence is the concept the gate
+was always reaching for.
+**Bias introduced:** the acceptance band widens from 0.01 to 1.0 percent, and
+545 of 900 rows were excluded by the narrower band, so this can materially
+enlarge E1. Three safeguards: the ladder and threshold are fixed before any run
+and identical for every row, the first qualifying value is taken rather than
+the best-looking one, and admission still requires an identical trade list.
+That third safeguard is complementary, not superior: drift and trade equality
+are not ordered, and Wave B contains a row that matched trades exactly and was
+still refused on recursion grounds. Both are required because each misses what
+the other catches. Rows
+admitted this way carry `convergence_warmup_v1` and every result is reportable
+with and without them. E0 is never regenerated.
+**Must be decided before the next result run:** yes, and it was.
 
 ---
 

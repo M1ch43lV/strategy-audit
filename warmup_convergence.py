@@ -1,0 +1,371 @@
+# -*- coding: utf-8 -*-
+"""Choose a diagnostic warm-up by convergence instead of by literal period.
+
+The frozen rule is in `REGIME_PREREGISTRATION.md` under "Frozen warm-up
+convergence amendment". In short: walk a fixed ladder of warm-up values and
+take the FIRST one at which freqtrade's `recursive-analysis` reports no
+indicator drifting by 1.0 percent or more.
+
+Why this replaces the old value. The previous warm-up was the longest literal
+indicator period found in the source, and that heuristic failed three recorded
+ways: it read a minimum as a maximum (`Strategy004`), it carried a period
+across timeframes without converting it (`Cluc4`, `BB_RPB_TSL`, whose
+`ema_100_1h` needs 1200 five-minute candles rather than 100), and it ignores
+that a recursively smoothed indicator never forgets its seed. Warm-up equal to
+the period leaves about `e**-2` of the seed for a standard EMA and `e**-1`
+under Wilder smoothing. Measured here: `pmaxTest` at warm-up 112 still drifts
+4.5 percent on `rsi_112`.
+
+What this script does NOT do. Acceptance is not admission. A converged row
+still owes a look-ahead PASS and a paired full-window run with an identical
+trade list, and a row that converges but trades differently is E3 exploratory,
+never E1. Nothing here reads profit, regime, or ranking output, and the ladder
+and threshold are fixed before any run rather than searched per row.
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import io
+import json
+import os
+import re
+import sys
+
+import eligibility_warmup
+import profile_bias
+import profile_smoke
+
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
+CANDIDATES = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_CANDIDATES.csv")
+PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
+OUTPUT = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
+
+# Frozen by the amendment. The ladder is expressed in CALENDAR DAYS and
+# converted to candles through the strategy's own timeframe.
+#
+# Days rather than multiples of the file-derived period, because that derived
+# period is the thing that keeps being wrong: it read a minimum as a maximum in
+# `Strategy004`, and it carried an hourly period onto a five-minute frame in
+# `Cluc4` and `BB_RPB_TSL`. A ladder anchored to it inherits its errors. A day
+# is independent of the source audit, is the same span of market history for
+# every strategy, and converts exactly: 30 days is 8,640 five-minute candles,
+# 720 hourly candles, or 30 daily ones.
+#
+# The rungs reach 365 days because a slow strategy needs them. At a one-day
+# timeframe, 30 days is 30 candles, which cannot settle an EMA200; a year can.
+LADDER_DAYS = (1, 2, 7, 14, 30, 90, 365)
+DRIFT_THRESHOLD_PCT = 1.0
+WINDOW_START = "2020-03-01"
+
+# Wave B rows whose exact trade match was refused a static proof because the
+# decision rests on a recursively smoothed series. They are the rows the
+# amendment was written for, so they are revisited under it by name.
+WAVE_B_STATIC_REJECTED = (
+    "Cluc4",
+    "Combined_Indicators",
+    "CombinedBinHAndClucHyperV0",
+    "Strategy004",
+    "TouchEmaStrategy",
+)
+
+_MINUTES = {"m": 1, "h": 60, "d": 1440, "w": 10080}
+
+
+def _csv(path):
+    with io.open(path, newline="", encoding="utf-8-sig") as handle:
+        return list(csv.DictReader(handle))
+
+
+def _load(path):
+    if not os.path.exists(path):
+        return {"schema_version": 1,
+                "drift_threshold_pct": DRIFT_THRESHOLD_PCT,
+                "ladder_days": list(LADDER_DAYS),
+                "results": {}}
+    return json.load(io.open(path, encoding="utf-8"))
+
+
+def _write(path, data):
+    tmp = path + ".tmp"
+    with io.open(tmp, "w", encoding="utf-8", newline="\n") as handle:
+        json.dump(data, handle, ensure_ascii=False, indent=2, sort_keys=True)
+        handle.write("\n")
+    os.replace(tmp, path)
+
+
+def timeframe_minutes(timeframe):
+    match = re.fullmatch(r"(\d+)([mhdw])", (timeframe or "").strip())
+    if not match:
+        return None
+    return int(match.group(1)) * _MINUTES[match.group(2)]
+
+
+def available_prefix_candles(run_profile, timeframe):
+    """Candles that actually exist before the frozen window starts.
+
+    A warm-up larger than the available history does not fail loudly; freqtrade
+    simply starts later, which silently measures a different window than every
+    other row. The ladder is capped here so that cannot happen.
+    """
+    minutes = timeframe_minutes(timeframe)
+    if not minutes:
+        return None
+    mode = "futures" if run_profile.startswith("futures_") else "spot"
+    config = profile_smoke._read_jsonc(
+        profile_smoke.FUTURES_CONFIG if mode == "futures"
+        else profile_smoke.SPOT_CONFIG)
+    directory = os.path.join(ROOT, "user_data", "data", "binance")
+    if mode == "futures":
+        directory = os.path.join(directory, "futures")
+    try:
+        import pandas
+    except ImportError:
+        return None
+    smallest = None
+    for pair in config["exchange"]["pair_whitelist"]:
+        stem = pair.replace("/", "_").replace(":", "_")
+        suffix = "-futures" if mode == "futures" else ""
+        path = os.path.join(directory, "%s-%s%s.feather" % (stem, timeframe, suffix))
+        if not os.path.exists(path):
+            continue
+        frame = pandas.read_feather(path, columns=["date"])
+        count = int((frame["date"] < WINDOW_START).sum())
+        smallest = count if smallest is None else min(smallest, count)
+    return smallest
+
+
+def ladder(timeframe, cap=None):
+    """The frozen day ladder in candles for one timeframe, capped at history.
+
+    Returns (days, candles) pairs so a record can state the rung in the unit
+    the rule is written in. A rung that repeats the previous candle count is
+    dropped; at a one-week timeframe several day rungs collapse onto one.
+    """
+    minutes = timeframe_minutes(timeframe)
+    if not minutes:
+        return []
+    rungs = []
+    for days in LADDER_DAYS:
+        candles = max(1, -(-days * 1440 // minutes))
+        if cap is not None and candles > cap:
+            break
+        if rungs and rungs[-1][1] == candles:
+            continue
+        rungs.append((days, candles))
+    return rungs
+
+
+# Rows already admitted to E1 are not revisited: their verdict stands and the
+# route exists to decide rows that have none.
+def _admitted():
+    path = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_PROOFS.json")
+    if not os.path.exists(path):
+        return set()
+    return set(json.load(io.open(path, encoding="utf-8")).get("strategies", {}))
+
+
+# The processing order is fixed here, not chosen from results. Wave D first
+# because recursion is its sole barrier and nothing else is outstanding; then
+# the unscheduled rows in the same condition; then the Wave B remainder, which
+# has already been through the older route.
+_WAVE_ORDER = ("D_recursive_drift", "not_scheduled", "B_warmup_refusal")
+
+
+def recursion_only_rows():
+    """Every row whose only hard exclusion reason is recursive drift.
+
+    This is the cohort the amendment exists for. A row carrying a second hard
+    reason - a look-ahead finding, a technical trap, no measurement at all -
+    stays excluded whatever its warm-up does, so running it would spend hours
+    to change nothing.
+    """
+    rows = [row for row in _csv(CANDIDATES)
+            if (row["baseline_exclusion_reasons"] or "") == "recursive_bias_found"]
+    admitted = _admitted()
+    rows = [row for row in rows if row["strategy_id"] not in admitted]
+    order = {wave: index for index, wave in enumerate(_WAVE_ORDER)}
+    rows.sort(key=lambda row: (order.get(row["expansion_wave"], len(order)),
+                               row["strategy_id"]))
+    return rows
+
+
+def cohort(name):
+    """Rows this route may consider. Selection never reads an outcome."""
+    profiles = {row["strategy_id"]: row for row in _csv(PROFILES)}
+    if name == "recursion_only":
+        wanted = [row["strategy_id"] for row in recursion_only_rows()]
+    elif name == "wave_c_refusals":
+        wanted = [row["strategy_id"]
+                  for row in eligibility_warmup.refusal_candidates()]
+    elif name == "wave_b_static_rejected":
+        wanted = list(WAVE_B_STATIC_REJECTED)
+    elif name == "wave_d":
+        wanted = [row["strategy_id"] for row in _csv(CANDIDATES)
+                  if row["expansion_wave"] == "D_recursive_drift"]
+    else:
+        raise SystemExit("unknown cohort: %s" % name)
+    return [profiles[strategy] for strategy in wanted if strategy in profiles]
+
+
+def derived_value(strategy):
+    import eligibility_warmup_recovery as recovery
+    if strategy in recovery.OVERRIDES:
+        return recovery.OVERRIDES[strategy][0]
+    return recovery._audited_period(strategy)
+
+
+def resolve(row, timeout):
+    """Walk the day ladder for one row and stop at the first qualifying rung."""
+    strategy = row["strategy_id"]
+    timeframe = row.get("execution_timeframe") or row.get("declared_timeframe")
+    cap = available_prefix_candles(row["run_profile"], timeframe)
+    rungs = ladder(timeframe, cap)
+    record = {
+        "strategy_id": strategy,
+        "implementation_id": row["implementation_id"],
+        "run_profile": row["run_profile"],
+        "timeframe": timeframe,
+        # Kept for context only. The ladder no longer depends on it, which is
+        # the point: this value is the one that has been wrong before.
+        "file_derived_period": derived_value(strategy),
+        "available_prefix_candles": cap,
+        "ladder_days": [days for days, _candles in rungs],
+        "ladder_candles": [candles for _days, candles in rungs],
+        "drift_threshold_pct": DRIFT_THRESHOLD_PCT,
+        "attempts": [],
+    }
+    if not rungs:
+        record["state"] = "no_usable_ladder"
+        record["why"] = ("no declared timeframe" if not timeframe_minutes(timeframe)
+                         else "available history is shorter than the first rung")
+        return record
+    for days, startup in rungs:
+        print("  rung %dd -> startup=%d candles" % (days, startup), flush=True)
+        result = eligibility_warmup.run_one(row, timeout, startup)
+        drifts = result.get("drifts") or []
+        worst = max(drifts, key=lambda item: abs(item[1])) if drifts else None
+        attempt = {
+            "ladder_days": days,
+            "startup_candle_count": startup,
+            "status": result.get("status"),
+            "why": result.get("why"),
+            "max_drift_pct": abs(worst[1]) if worst else None,
+            "max_drift_indicator": worst[0] if worst else None,
+            "elapsed_s": result.get("elapsed_s"),
+            "runtime_id": result.get("runtime_id"),
+        }
+        record["attempts"].append(attempt)
+        print("    %s max drift %s%% on %s" %
+              (attempt["status"], attempt["max_drift_pct"],
+               attempt["max_drift_indicator"]), flush=True)
+        if result.get("status") == "NA":
+            record["state"] = "inconclusive"
+            record["why"] = result.get("why")
+            return record
+        if worst is None or abs(worst[1]) < DRIFT_THRESHOLD_PCT:
+            record["state"] = "converged"
+            record["chosen_startup_candle_count"] = startup
+            record["chosen_ladder_days"] = days
+            record["max_drift_pct"] = attempt["max_drift_pct"]
+            record["max_drift_indicator"] = attempt["max_drift_indicator"]
+            return record
+    last = record["attempts"][-1]
+    record["state"] = "not_converged_within_ladder"
+    record["why"] = ("no rung reached the band; largest remaining drift %s%% "
+                     "on %s after %d days of warm-up"
+                     % (last["max_drift_pct"], last["max_drift_indicator"],
+                        last["ladder_days"]))
+    return record
+
+
+def run(cohort_name, limit, timeout):
+    rows = cohort(cohort_name)
+    data = _load(OUTPUT)
+    pending = [row for row in rows if row["strategy_id"] not in data["results"]]
+    if limit:
+        pending = pending[:limit]
+    print("convergence cohort %s: %d rows, %d pending, running %d" %
+          (cohort_name, len(rows), len([r for r in rows
+                                        if r["strategy_id"] not in data["results"]]),
+           len(pending)), flush=True)
+    for number, row in enumerate(pending, 1):
+        print("=== [%d/%d] %s ===" % (number, len(pending), row["strategy_id"]),
+              flush=True)
+        record = resolve(row, timeout)
+        record["cohort"] = cohort_name
+        data["results"][row["strategy_id"]] = record
+        _write(OUTPUT, data)
+        print("  state: %s" % record["state"], flush=True)
+    converged = [key for key, value in data["results"].items()
+                 if value.get("state") == "converged"]
+    print("converged so far: %d of %d recorded" %
+          (len(converged), len(data["results"])), flush=True)
+    return 0
+
+
+def selftest():
+    assert timeframe_minutes("5m") == 5
+    assert timeframe_minutes("1h") == 60
+    assert timeframe_minutes("1d") == 1440
+    assert timeframe_minutes("") is None
+
+    # A day is the same span of history whatever the timeframe, which is the
+    # whole reason the ladder is written in days.
+    assert ladder("1d") == [(1, 1), (2, 2), (7, 7), (14, 14), (30, 30),
+                            (90, 90), (365, 365)]
+    assert ladder("1h") == [(1, 24), (2, 48), (7, 168), (14, 336), (30, 720),
+                            (90, 2160), (365, 8760)]
+    assert ladder("5m") == [(1, 288), (2, 576), (7, 2016), (14, 4032),
+                            (30, 8640), (90, 25920), (365, 105120)]
+    # 30 daily candles cannot settle an EMA200; 365 can. That is why the ladder
+    # does not stop at a month.
+    assert ladder("1d")[-1][1] == 365
+    # History that does not exist is never requested.
+    assert ladder("1h", cap=200) == [(1, 24), (2, 48), (7, 168)]
+    assert ladder("1d", cap=0) == []
+    assert ladder("") == []
+    # Rungs that collapse onto the same candle count are not run twice.
+    assert [candles for _days, candles in ladder("1w")] == [1, 2, 5, 13, 53]
+
+    rows = cohort("recursion_only")
+    assert 400 <= len(rows) <= 448, len(rows)
+    # A row with a second hard reason cannot be rescued by any warm-up, so it
+    # must not be in the cohort.
+    hard = {row["strategy_id"]: row["baseline_exclusion_reasons"]
+            for row in _csv(CANDIDATES)}
+    for row in rows:
+        assert hard[row["strategy_id"]] == "recursive_bias_found"
+    # Nothing already admitted to E1 is revisited.
+    assert not {row["strategy_id"] for row in rows} & _admitted()
+    # Wave D leads the fixed processing order.
+    waves = {row["strategy_id"]: row["expansion_wave"] for row in _csv(CANDIDATES)}
+    first = [waves[row["strategy_id"]] for row in rows[:124]]
+    assert set(first) == {"D_recursive_drift"}, sorted(set(first))
+
+    assert len(cohort("wave_c_refusals")) == len(eligibility_warmup.WAVE_C_REFUSALS)
+    assert len(cohort("wave_b_static_rejected")) == len(WAVE_B_STATIC_REJECTED)
+    assert len(cohort("wave_d")) == 124
+    print("warmup_convergence selftest: PASS "
+          "(%d recursion-only rows, %d of them Wave D)"
+          % (len(rows), len(cohort("wave_d"))))
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cohort", default="recursion_only",
+                        choices=("recursion_only", "wave_d", "wave_c_refusals",
+                                 "wave_b_static_rejected"))
+    parser.add_argument("--limit", type=int, default=1)
+    parser.add_argument("--timeout", type=int, default=1800)
+    parser.add_argument("--selftest", action="store_true")
+    args = parser.parse_args(argv)
+    if args.selftest:
+        selftest()
+        return 0
+    return run(args.cohort, args.limit, args.timeout)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

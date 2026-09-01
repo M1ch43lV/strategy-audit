@@ -86,6 +86,91 @@ primary treatment.
   `EXPLORATORY`.
 - Phase-A attribution is descriptive and is never called gated performance.
 
+## Frozen warm-up convergence amendment
+
+Authorized by the owner on 2026-09-01, before any strategy-by-regime ranking
+was generated or inspected. It governs a new admission route and changes
+nothing about E0.
+
+**The problem it solves.** The recursive gate asks whether an indicator's value
+depends on how much history was loaded. Answering it requires a warm-up, and
+the warm-up value used so far was the longest literal indicator period found in
+the source. That heuristic is demonstrably wrong in three ways already
+recorded: it read a minimum instead of a maximum (`Strategy004`), it carried a
+period across timeframes without conversion (`Cluc4`, `BB_RPB_TSL`), and it
+ignores that a recursively smoothed indicator never forgets its seed. Setting
+the warm-up equal to the period leaves roughly `e^-2` of the seed for a
+standard EMA and `e^-1` for Wilder smoothing - 13.5 and 36.8 percent. Measured
+confirmation: `pmaxTest` with warm-up 112 still drifts 4.5 percent on `rsi_112`.
+
+**The rule, fixed here before it is run.**
+
+1. Ladder, in calendar days: 1, 2, 7, 14, 30, 90, 365, converted to candles
+   through the strategy's own timeframe and capped at the candles actually
+   available before the frozen window start for that pair basket. Days rather
+   than multiples of the file-derived period, because that period is the thing
+   that keeps being wrong; a ladder anchored to it inherits its errors, while a
+   day is the same span of market history for every strategy. The ladder
+   reaches a year because 30 days is 30 candles at a daily timeframe and cannot
+   settle an EMA200. Rungs that collapse onto the same candle count are not run
+   twice.
+2. Acceptance: freqtrade `recursive-analysis` reports no indicator whose
+   absolute drift reaches **1.0 percent**.
+3. The FIRST ladder value that satisfies the acceptance is the chosen value.
+   Not the best-looking one, and no per-row search beyond the ladder.
+4. A row where no ladder value satisfies acceptance is terminal for this route.
+5. Acceptance is not admission. A chosen value must additionally survive the
+   paired full-window run: identical trade list, identical `trades_sha256`,
+   against the strategy as declared. Coverage `PASS`, trap-free,
+   `artifact_role=strategy` and not `behavior_changed` continue to apply.
+6. A row that converges but whose trade list changes is **E3 exploratory**, not
+   E1. The fix altered behaviour, which is a finding, not an admission.
+7. Rows admitted through this route carry the label `convergence_warmup_v1` so
+   every result can be reported with and without them.
+8. Every admitted row records its chosen warm-up, the ladder step it came from,
+   the largest remaining drift and the indicator carrying it, and the trade
+   count the equality was established over. The trade count is required because
+   equality over eight trades and equality over 1,845 are not comparable
+   evidence, and a reader must be able to see which one a row rests on.
+
+**What this relaxes, stated plainly.** The frozen Stage 6 gate treats any drift
+above 0.01 percent as recursive bias. This route accepts up to 1.0 percent, a
+hundredfold wider band, and 545 of the 900 rows were excluded by that gate. The
+preregistration's own sentence that eligibility thresholds are not relaxed no
+longer holds without qualification, and this paragraph is that qualification.
+The justification is that 0.01 percent is unreachable in principle for any
+recursively smoothed indicator, so the old gate did not separate careful
+strategies from careless ones; it separated strategies that use an EMA from
+strategies that do not. Requirement 5 partly offsets the wider band, and its strength must not be
+overstated. An identical trade list constrains decisions rather than
+intermediate values, and decisions are what this study measures. It is not,
+however, a stricter criterion than a drift bound, and the two are not ordered.
+A five percent drift can leave every trade unchanged when no signal sits near a
+decision threshold, and a hundredth of a percent can flip one when a signal
+does. It is evidence about this timerange and this pair basket, not a property
+of the computation. It is weakest exactly where evidence is already thinnest: a
+row with eight trades has almost no opportunity to differ, while one with 1,845
+has many.
+
+This audit already contains the decisive counterexample. In Wave B,
+`Combined_Indicators` and `CombinedBinHAndClucHyperV0` matched the original
+trade list exactly and were still refused, because their decisions rest on
+`ta.EMA`, which never fully forgets its seed. Exact trade equality admitted
+precisely what the recursion reasoning caught. Each requirement therefore
+covers a failure the other misses, which is why both are required and neither
+is described as the guarantee.
+
+**Scope.** Every row whose sole hard exclusion reason is `recursive_bias_found`
+- 440 rows once the profiles already admitted to E1 are removed, of which 124
+are Wave D, 242 were never scheduled and 74 are the Wave B remainder. Rows
+carrying a second hard reason are deliberately excluded: 35 also record
+`lookahead_found`, 17 a technical trap and 43 no canonical measurement, and no
+warm-up changes any of those. Processing order is fixed here, not chosen from
+results: Wave D, then the unscheduled rows, then the Wave B remainder.
+
+**E0 is untouched.** It remains the frozen 67 and is reported beside every
+result derived under this amendment.
+
 ## OPEN before Stage 9 ranking
 
 The following choices are intentionally not inferred from strategy outcomes:

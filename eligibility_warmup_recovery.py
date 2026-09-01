@@ -16,6 +16,10 @@ import eligibility_warmup
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUTPUT = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_WARMUP_RECOVERY.csv")
+# The Wave C refusals get their own manifest. The Wave B file is frozen
+# evidence for a completed wave and is never rewritten to hold a second cohort.
+OUTPUT_WAVE_C = os.path.join(
+    ROOT, "ELIGIBILITY_EXPANSION_WARMUP_RECOVERY_WAVE_C.csv")
 
 # Values not represented by the original literal timeperiod/window audit.
 # Each basis names the finite dependency visible in the canonical source.
@@ -75,9 +79,9 @@ def _audited_period(strategy):
     return int(match.group(1)) if match else None
 
 
-def rows():
+def rows(cohort="wave_b"):
     result = []
-    for profile in eligibility_warmup.candidates():
+    for profile in eligibility_warmup.COHORTS[cohort]():
         strategy = profile["strategy_id"]
         canonical = os.path.join(ROOT, profile["canonical_file"].replace("/", os.sep))
         if strategy in UNBOUNDED:
@@ -104,8 +108,8 @@ def rows():
     return result
 
 
-def write_manifest(path=OUTPUT):
-    data = rows()
+def write_manifest(path=OUTPUT, cohort="wave_b"):
+    data = rows(cohort)
     fields = list(data[0])
     with io.open(path, "w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
@@ -114,10 +118,12 @@ def write_manifest(path=OUTPUT):
     print("warmup recovery manifest: %d rows" % len(data))
 
 
-def run(timeout):
-    profiles = {row["strategy_id"]: row for row in eligibility_warmup.candidates()}
+def run(timeout, cohort="wave_b"):
+    profiles = {row["strategy_id"]: row
+                for row in eligibility_warmup.COHORTS[cohort]()}
     data = eligibility_warmup._load(eligibility_warmup.OUTPUT)
-    queued = [row for row in rows() if row["recovery_state"] == "recovery_frozen"]
+    queued = [row for row in rows(cohort)
+              if row["recovery_state"] == "recovery_frozen"]
     for number, item in enumerate(queued, 1):
         strategy = item["strategy_id"]
         startup = int(item["recovery_startup_candle_count"])
@@ -146,7 +152,16 @@ def selftest():
         "recovery_startup_candle_count"] == 1440
     assert next(row for row in inventory if row["strategy_id"] == "HSI")[
         "recovery_state"] == "terminal_unbounded_prefix_dependency"
-    print("eligibility_warmup_recovery selftest: PASS")
+
+    # The second cohort derives its values through the same code path, so a
+    # value here is as file-derived as a Wave B value and no more trusted.
+    refusals = rows("wave_c_refusals")
+    assert len(refusals) == len(eligibility_warmup.WAVE_C_REFUSALS)
+    assert all(row["recovery_startup_candle_count"] for row in refusals)
+    assert next(row for row in refusals if row["strategy_id"] == "pmaxTest")[
+        "recovery_startup_candle_count"] == 112
+    print("eligibility_warmup_recovery selftest: PASS "
+          "(%d Wave B, %d Wave C refusals)" % (len(inventory), len(refusals)))
 
 
 def main(argv=None):
@@ -154,15 +169,18 @@ def main(argv=None):
     parser.add_argument("--write-manifest", action="store_true")
     parser.add_argument("--run", action="store_true")
     parser.add_argument("--timeout", type=int, default=1200)
+    parser.add_argument("--cohort", default="wave_b",
+                        choices=sorted(eligibility_warmup.COHORTS))
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:
         selftest()
         return 0
+    path = OUTPUT if args.cohort == "wave_b" else OUTPUT_WAVE_C
     if args.write_manifest:
-        write_manifest()
+        write_manifest(path, args.cohort)
     if args.run:
-        run(args.timeout)
+        run(args.timeout, args.cohort)
     if not args.write_manifest and not args.run:
         parser.error("choose --write-manifest and/or --run")
     return 0

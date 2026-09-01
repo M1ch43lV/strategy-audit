@@ -159,16 +159,32 @@ def _lookahead(output, returncode):
     return "NA", errors[-1].strip()[:300] if errors else "lookahead output not parsed"
 
 
-def _recursive(output, returncode):
+# The frozen Stage 6 gate. The convergence amendment runs the same analyzer at
+# a wider band; the default here is never changed so E0 stays reproducible.
+DEFAULT_DRIFT_THRESHOLD = 0.01
+
+
+def recursive_drifts(output):
+    """Every indicator drift the analyzer reported, as (name, percent) pairs.
+
+    The verdict alone discards the numbers, and the convergence route needs
+    them: it has to know how far a row still is from its band, and which
+    indicator carries the remainder.
+    """
+    return [(key, float(value)) for key, value in
+            re.findall(r"│\s*([a-zA-Z_0-9]+)\s*│\s*(-?[\d.]+)%", output)]
+
+
+def _recursive(output, returncode, threshold=DEFAULT_DRIFT_THRESHOLD):
     if "invalid startup candle count of 0" in output:
         return "FOUND", "startup_candle_count=0 refused by recursive-analysis"
     if returncode != 0:
         return "NA", _error(output, returncode)
-    rows = re.findall(r"│\s*([a-zA-Z_0-9]+)\s*│\s*(-?[\d.]+)%", output)
-    bad = [(key, value) for key, value in rows if abs(float(value)) > 0.01]
+    drifts = recursive_drifts(output)
+    bad = [(key, value) for key, value in drifts if abs(value) >= threshold]
     if bad:
         return "FOUND", "recursive drift: " + ", ".join(
-            "%s %s%%" % item for item in bad[:5])
+            "%s %s%%" % (key, value) for key, value in bad[:5])
     return "PASS", "no recursive deviations found"
 
 
@@ -274,6 +290,23 @@ def selftest():
     assert not _window_too_small("PASS", "too few trades (0/10)")
     assert _lookahead("too few trades caught (2/20)", 0) == (
         "NA", "too few trades (2/20)")
+
+    # The analyzer prints one box-drawing row per indicator. Line breaks are
+    # irrelevant to the parser, so the fixture keeps them out of the literal.
+    small = "│ ema_200 │ 0.018% │"
+    large = "│ rsi_112 │ -4.547% │"
+    assert recursive_drifts(small + large) == [("ema_200", 0.018),
+                                               ("rsi_112", -4.547)]
+    # The frozen gate is unchanged, and the wider band is not a free pass:
+    # 0.018% is drift at 0.01 and clean at 1.0, while 4.547% fails both.
+    assert _recursive(small + large, 0)[0] == "FOUND"
+    assert _recursive(small + large, 0, threshold=1.0)[0] == "FOUND"
+    assert _recursive(small, 0)[0] == "FOUND"
+    assert _recursive(small, 0, threshold=1.0) == (
+        "PASS", "no recursive deviations found")
+    # A refusal outranks any threshold; it is not a measurement at all.
+    assert _recursive("invalid startup candle count of 0", 0,
+                      threshold=1.0)[0] == "FOUND"
     print("profile_bias selftest: PASS")
 
 

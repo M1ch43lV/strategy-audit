@@ -29,8 +29,31 @@ MANIFEST = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_MANIFEST.json")
 OUTPUT = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_WARMUP.json")
 CONFIG_DIR = os.path.join(ROOT, "user_data", "expansion_configs")
 LOG_DIR = os.path.join(ROOT, "user_data", "expansion_logs")
+BIAS = os.path.join(ROOT, "PROFILE_BIAS.json")
 DEFAULT_OVERRIDE = 1
 RULE = "diagnostic_startup_override_v1"
+
+# Wave C rows the recursive analyzer refused rather than judged. They record
+# `recursive = FOUND` with this marker, which is not a bias finding: the
+# analyzer declined to run and made no statement about the strategy. That is
+# precisely the condition Wave B exists for, and these rows landed in Wave C
+# only because at freeze time their sole known defect was that nobody had
+# measured them. Applying the frozen adapter to newly matching rows is what
+# plan section 6 requires; inventing a softer second route is not.
+#
+# The set is frozen here, and refusal_candidates() re-derives it from the
+# stored evidence and refuses to run if the two have drifted apart. Four of the
+# seven are variants of one strategy and are not independent observations.
+REFUSAL_MARKER = "refused by recursive-analysis"
+WAVE_C_REFUSALS = (
+    "BB_RPB_TSL",
+    "BB_RPB_TSL_2",
+    "BB_RPB_TSL_BI",
+    "BB_RPB_TSL_BIV1",
+    "MultiRSI",
+    "epretrace",
+    "pmaxTest",
+)
 
 
 def _csv(path):
@@ -95,6 +118,33 @@ def candidates(candidate_path=CANDIDATES, profile_path=PROFILES,
     return selected
 
 
+def refusal_candidates(candidate_path=CANDIDATES, profile_path=PROFILES,
+                       bias_path=BIAS):
+    """Wave C rows whose recursive verdict is a refusal, not a finding.
+
+    The frozen list is authoritative, but it is checked against the evidence on
+    every call. A row that has since obtained a real verdict, or a new row that
+    has since started refusing, changes the cohort, and a cohort that changed
+    silently would make the resulting admissions unauditable.
+    """
+    bias = json.load(io.open(bias_path, encoding="utf-8")).get("results", {})
+    wave_c = {row["strategy_id"] for row in _csv(candidate_path)
+              if row["expansion_wave"] == "C_measurement_recovery"}
+    derived = {strategy for strategy in wave_c
+               if REFUSAL_MARKER in
+               (((bias.get(strategy) or {}).get("recursive") or {}).get("why") or "")}
+    frozen = set(WAVE_C_REFUSALS)
+    if derived != frozen:
+        raise ValueError(
+            "Wave C refusal cohort drifted; frozen %s, evidence %s"
+            % (sorted(frozen), sorted(derived)))
+    profiles = {row["strategy_id"]: row for row in _csv(profile_path)}
+    return [profiles[strategy] for strategy in WAVE_C_REFUSALS]
+
+
+COHORTS = {"wave_b": candidates, "wave_c_refusals": refusal_candidates}
+
+
 def _runtime(row, startup_candle_count):
     mode, base_config, env, repair, extra = profile_bias._runtime(row)
     config = json.load(io.open(base_config, encoding="utf-8"))
@@ -148,6 +198,11 @@ def run_one(row, timeout, startup_candle_count):
         result.update({
             "status": status,
             "why": why,
+            # The verdict is a threshold decision and discards the numbers
+            # behind it. The convergence route needs them to see how far a row
+            # still is from its band, so they are retained alongside, without
+            # changing what the frozen gate itself decides.
+            "drifts": profile_bias.recursive_drifts(output),
             "timerange": timerange,
             "elapsed_s": round(time.time() - started, 1),
             "runtime_id": os.environ.get("PROFILE_RUNTIME_ID", "native_unversioned"),
@@ -181,7 +236,21 @@ def selftest():
                            row["implementation_id"]) in \
         set(manifest["candidate_members"]["B_warmup_refusal"])
     assert _safe("A B/C") == "A_B_C"
-    print("eligibility_warmup selftest: PASS")
+
+    # The Wave C refusal cohort must still match the stored evidence exactly.
+    refusals = refusal_candidates()
+    assert [row["strategy_id"] for row in refusals] == list(WAVE_C_REFUSALS)
+    assert len(WAVE_C_REFUSALS) == 7
+    # A refusal is not a bias finding, so none of these rows may already carry
+    # a real recursive verdict.
+    bias = json.load(io.open(BIAS, encoding="utf-8"))["results"]
+    for strategy in WAVE_C_REFUSALS:
+        assert REFUSAL_MARKER in bias[strategy]["recursive"]["why"]
+    # Wave B is untouched by the second cohort.
+    assert len(candidates()) == 82
+    assert not set(WAVE_C_REFUSALS) & {row["strategy_id"] for row in candidates()}
+    print("eligibility_warmup selftest: PASS (%d Wave B, %d Wave C refusals)"
+          % (len(candidates()), len(refusals)))
 
 
 def main(argv=None):
@@ -193,6 +262,10 @@ def main(argv=None):
     parser.add_argument("--startup-candle-count", type=int,
                         default=DEFAULT_OVERRIDE)
     parser.add_argument("--force", action="store_true")
+    parser.add_argument("--cohort", default="wave_b", choices=sorted(COHORTS),
+                        help="wave_b is the frozen 82-row refusal wave; "
+                             "wave_c_refusals is the 7 Wave C rows the "
+                             "analyzer refused rather than judged")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:
@@ -200,7 +273,7 @@ def main(argv=None):
         return 0
     if args.startup_candle_count < 1:
         raise SystemExit("startup-candle-count must be positive")
-    rows = candidates()
+    rows = COHORTS[args.cohort]()
     if args.only:
         wanted = set(args.only)
         rows = [row for row in rows if row["strategy_id"] in wanted]
