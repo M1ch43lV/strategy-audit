@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 16:27:56 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 16:33:47 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -15,7 +15,7 @@ the state at the freeze, and the difference is the expansion.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 244 of 900 rows
+file's time and is labelled `log_mtime` for that reason. 237 of 900 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
@@ -25,14 +25,14 @@ have neither and are left empty rather than given an invented time.
 | in the manifest | 900 |
 | measured at all | 688 |
 | produced trades | 661 |
-| carrying a run time | 656 |
+| carrying a run time | 663 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
-| `excluded` | 401 |
-| `convergence_candidate` | 354 |
+| `excluded` | 394 |
+| `convergence_candidate` | 361 |
 | `E0_strict67` | 67 |
 | `not_tested_in_current_runtime` | 60 |
 | `E1_expanded` | 11 |
@@ -339,7 +339,7 @@ The call for each, `recorded` unless marked otherwise:
   freqtrade backtesting --config user_data/config.json --strategy simple_patterns --strategy-path repos/TheoBrigitte_freqtrade/strategies/yodo --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/simple_patterns --cache none
   ```
 
-## Convergence candidates - 354 strategies
+## Convergence candidates - 361 strategies
 
 A warm-up exists at which every indicator stays inside the band.
 That is not admission: the paired full-window run must still show
@@ -381,7 +381,7 @@ an identical trade list.
 | `Babico_SMA5xBBmid` | `spot_long` | 30 candles | 0.0% on `bb_low` | 2026-09-01 13:38:15 | `user_data/convergence_logs/Babico_SMA5xBBmid-ladder.log` |
 | `Bandtastic` | `spot_long` | 1344 candles | 0.0% on `rsi` | 2026-09-01 15:38:10 | `user_data/convergence_logs/Bandtastic-ladder.log` |
 | `BbWidthExpansionStrategy` | `spot_long` | 288 candles | 0.0% on `bb_upper` | 2026-09-01 12:11:52 | `user_data/convergence_logs/BbWidthExpansionStrategy-ladder.log` |
-| `BbandRsi` | `spot_long` | 1440 candles | 0.0% on `bb_lowerband` | 2026-09-01 13:39:05 | `user_data/convergence_logs/BbandRsi-ladder.log` |
+| `BbandRsi` | `spot_long` | 1440 candles | 0.0% on `bb_lowerband` | 2026-09-01 16:31:44 | `user_data/convergence_logs/BbandRsi-ladder.log` |
 | `BbandRsiRolling` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 13:39:54 | `user_data/convergence_logs/BbandRsiRolling-ladder.log` |
 | `BigZ07Next` | `spot_long` | 2016 candles | 0.0% on `btc_rsi_5m` | 2026-09-01 12:15:15 | `user_data/convergence_logs/BigZ07Next-ladder.log` |
 | `BigZ07Next2` | `spot_long` | 2016 candles | 0.0% on `btc_rsi_5m` | 2026-09-01 12:15:43 | `user_data/convergence_logs/BigZ07Next2-ladder.log` |
@@ -655,11 +655,15 @@ an identical trade list.
 | `TemaPureTwo` | `spot_long` | 2016 candles | 0.0% on `CMO` | 2026-09-01 16:27:31 | `user_data/convergence_logs/TemaPureTwo-ladder.log` |
 | `TemaStrategy` | `spot_long` | 288 candles | 0.0% on `tema20` | 2026-09-01 12:47:16 | `user_data/convergence_logs/TemaStrategy-ladder.log` |
 | `TheForce` | `spot_long` | 672 candles | 0.0% on `fastd` | 2026-09-01 15:13:10 | `user_data/convergence_logs/TheForce-ladder.log` |
+| `TouchEmaDelayStrategy` | `spot_long` | 480 candles | 0.0% on `ema_long_50` | 2026-09-01 16:28:24 | `user_data/convergence_logs/TouchEmaDelayStrategy-ladder.log` |
+| `TouchEmaStrategy` | `spot_long` | 288 candles | 0.0% on `ema_long_60` | 2026-09-01 16:29:16 | `user_data/convergence_logs/TouchEmaStrategy-ladder.log` |
 | `TrendAtrStrategy` | `spot_long` | 540 candles | 0.0% on `ema_fast` | 2026-09-01 12:47:40 | `user_data/convergence_logs/TrendAtrStrategy-ladder.log` |
+| `Trend_Strength_Directional` | `spot_long` | 192 candles | 0.0% on `rsi` | 2026-09-01 16:30:06 | `user_data/convergence_logs/Trend_Strength_Directional-ladder.log` |
 | `TripleEmaStrategy` | `spot_long` | 288 candles | 0.0% on `ema8` | 2026-09-01 12:48:03 | `user_data/convergence_logs/TripleEmaStrategy-ladder.log` |
 | `TrixSignalStrategy` | `spot_long` | 288 candles | 0.0% on `trix` | 2026-09-01 12:48:28 | `user_data/convergence_logs/TrixSignalStrategy-ladder.log` |
 | `TrixV21Strategy` | `spot_long` | 2160 candles | 0.0% on `stoch_rsi` | 2026-09-01 15:15:37 | `user_data/convergence_logs/TrixV21Strategy-ladder.log` |
 | `TrixV23Strategy` | `spot_long` | 2160 candles | 0.0% on `btc_usdt_ema_184_1h` | 2026-09-01 15:16:03 | `user_data/convergence_logs/TrixV23Strategy-ladder.log` |
+| `TwoCandle` | `spot_long` | 168 candles | 0.0% on `ha_open` | 2026-09-01 16:30:56 | `user_data/convergence_logs/TwoCandle-ladder.log` |
 | `UniversalMACD` | `spot_long` | 288 candles | 0.0% on `ma12` | 2026-09-01 12:48:53 | `user_data/convergence_logs/UniversalMACD-ladder.log` |
 | `Uptrend` | `spot_long` | 2016 candles | 0.0% on `mama` | 2026-09-01 15:16:28 | `user_data/convergence_logs/Uptrend-ladder.log` |
 | `VWAP` | `spot_long` | 2016 candles | 0.0% on `vwap_low` | 2026-09-01 15:17:16 | `user_data/convergence_logs/VWAP-ladder.log` |
@@ -674,15 +678,18 @@ an identical trade list.
 | `ZScoreMeanReversionStrategy` | `spot_long` | 540 candles | 0.038% on `ema_trend` | 2026-09-01 15:21:04 | `user_data/convergence_logs/ZScoreMeanReversionStrategy-ladder.log` |
 | `adaptive` | `spot_long` | 2016 candles | 0.0% on `mama` | 2026-09-01 15:23:35 | `user_data/convergence_logs/adaptive-ladder.log` |
 | `adxbbrsi2` | `spot_long` | 336 candles | 0.0% on `adx` | 2026-09-01 12:50:58 | `user_data/convergence_logs/adxbbrsi2-ladder.log` |
+| `bbandrsi` | `spot_long` | 192 candles | 0.0% on `rsi` | 2026-09-01 16:31:44 | `user_data/convergence_logs/bbandrsi-ladder.log` |
 | `bbrsi` | `spot_long` | 180 candles | 0.0% on `rsi` | 2026-09-01 12:51:22 | `user_data/convergence_logs/bbrsi-ladder.log` |
 | `bbrsi4Freq` | `spot_long` | 168 candles | 0.0% on `rsi` | 2026-09-01 12:51:45 | `user_data/convergence_logs/bbrsi4Freq-ladder.log` |
 | `conny` | `spot_long` | 96 candles | 0.0% on `consensus_sell` | 2026-09-01 12:52:10 | `user_data/convergence_logs/conny-ladder.log` |
 | `cryptotankV2` | `spot_long` | 576 candles | 0.0% on `pivot` | 2026-09-01 12:52:35 | `user_data/convergence_logs/cryptotankV2-ladder.log` |
 | `custom` | `spot_long` | 2016 candles | 0.0% on `osc` | 2026-09-01 15:24:00 | `user_data/convergence_logs/custom-ladder.log` |
 | `dualwave` | `spot_long` | 672 candles | 0.0% on `rsi_2h` | 2026-09-01 15:24:26 | `user_data/convergence_logs/dualwave-ladder.log` |
+| `e6v34` | `spot_long` | 672 candles | 0.0% on `hma15` | 2026-09-01 16:32:32 | `user_data/convergence_logs/e6v34-ladder.log` |
 | `eltoro` | `spot_long` | 1344 candles | 0.0% on `BTC_EWO_Fast_1h` | 2026-09-01 12:53:00 | `user_data/convergence_logs/eltoro-ladder.log` |
 | `eltoro1_4` | `spot_long` | 2160 candles | 0.0% on `INFEWO_4h` | 2026-09-01 12:53:24 | `user_data/convergence_logs/eltoro1_4-ladder.log` |
 | `eltoro1_4_simple` | `spot_long` | 672 candles | 0.0% on `INFEWO_4h` | 2026-09-01 12:53:49 | `user_data/convergence_logs/eltoro1_4_simple-ladder.log` |
+| `ema` | `spot_long` | 2016 candles | 0.0% on `ema11` | 2026-09-01 16:33:20 | `user_data/convergence_logs/ema-ladder.log` |
 | `gettinMoist` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 12:54:38 | `user_data/convergence_logs/gettinMoist-ladder.log` |
 | `hansencandlepatternV1` | `spot_long` | 24 candles | 0.0% on `emac` | 2026-09-01 15:25:15 | `user_data/convergence_logs/hansencandlepatternV1-ladder.log` |
 | `heikin` | `spot_long` | 24 candles | 0.0% on `emac` | 2026-09-01 15:26:03 | `user_data/convergence_logs/heikin-ladder.log` |
@@ -782,7 +789,7 @@ verdict. Where such a hint exists it is shown in brackets.
 | `tacos1` | `not_scheduled` | `no run under the current runtime (historical hint: No data found. Terminating.)` |
 | `turbov8` | `not_scheduled` | `no run under the current runtime (historical hint: engine exited with code 0 but produced no summary (no trades at all, or output not parsed))` |
 
-## Not passing - 401 strategies, by decisive reason
+## Not passing - 394 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -804,7 +811,7 @@ defect, awaiting re-measurement.
 | `technical_trap_found` | carries a published backtesting trap | 40 |
 | `strategy_does_not_run` | fails before it can be measured; the message is in runtime_failure | 152 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 28 |
-| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 87 |
+| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 80 |
 | `no_trades_in_full_measurement` | never trades over the full window | 16 |
 | `no_verdict_on_lookahead_and_recursive` | measured; neither gate returned a verdict | 5 |
 | `no_verdict_on_lookahead` | measured and recursion clean; look-ahead has no verdict | 4 |
@@ -818,7 +825,7 @@ defect, awaiting re-measurement.
 | `technical_trap_found` | 0 | 0 | 0 | 40 |
 | `strategy_does_not_run` | 0 | 152 | 0 | 0 |
 | `recursive_bias_found` | 3 | 0 | 14 | 11 |
-| `recursive_bias_unverified` | 12 | 29 | 0 | 46 |
+| `recursive_bias_unverified` | 5 | 29 | 0 | 46 |
 | `no_trades_in_full_measurement` | 0 | 10 | 0 | 6 |
 | `no_verdict_on_lookahead_and_recursive` | 0 | 5 | 0 | 0 |
 | `no_verdict_on_lookahead` | 0 | 4 | 0 | 0 |
@@ -979,15 +986,14 @@ Wave `not_scheduled` - 11:
 `GoldHedgeZeroMACD`, `NOTankAi_15`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`
 `NotAnotherSMAOffSetStrategy_V2`, `TrendRiderStrategy`, `pcb20`
 
-### `recursive_bias_unverified` - 87
+### `recursive_bias_unverified` - 80
 
 Recorded under a parser defect and not re-measured; not a finding.
 
-Wave `B_warmup_refusal` - 12:
+Wave `B_warmup_refusal` - 5:
 
 `AwesomeMacd`, `Diamond`, `EasyInEasyOut`, `MabStra`
-`SlowPotato`, `TouchEmaDelayStrategy`, `TouchEmaStrategy`, `Trend_Strength_Directional`
-`TwoCandle`, `bbandrsi`, `e6v34`, `ema`
+`SlowPotato`
 
 Wave `C_measurement_recovery` - 29:
 
@@ -1062,7 +1068,7 @@ Wave `C_measurement_recovery` - 4:
 
 | Item | Strategies |
 |---|---:|
-| `paired_full_window_equivalence` | 354 |
+| `paired_full_window_equivalence` | 361 |
 | `lookahead_verdict` | 136 |
 | `first_measurement_in_current_runtime` | 60 |
 | `convergence_inconclusive` | 51 |
