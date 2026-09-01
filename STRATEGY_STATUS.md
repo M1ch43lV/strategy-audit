@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 15:05:25 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 15:17:50 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -15,7 +15,7 @@ the state at the freeze, and the difference is the expansion.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 339 of 900 rows
+file's time and is labelled `log_mtime` for that reason. 324 of 900 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
@@ -25,14 +25,14 @@ have neither and are left empty rather than given an invented time.
 | in the manifest | 900 |
 | measured at all | 688 |
 | produced trades | 661 |
-| carrying a run time | 561 |
+| carrying a run time | 576 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
-| `excluded` | 491 |
-| `convergence_candidate` | 264 |
+| `excluded` | 476 |
+| `convergence_candidate` | 279 |
 | `E0_strict67` | 67 |
 | `not_tested_in_current_runtime` | 60 |
 | `E1_expanded` | 11 |
@@ -125,7 +125,7 @@ coverage, no published trap.
 | `ObeliskIM_v1_1` | `spot_long` | `E1_expanded` | 64 | `native` | 2026-08-31 15:20:09 | `user_data/profile_smoke/ObeliskIM_v1_1-2026-08-31_15-20-09.zip` |
 | `simple_patterns` | `spot_long` | `E1_expanded` | 1845 | `native` | 2026-08-31 15:55:52 | `user_data/profile_smoke/simple_patterns-2026-08-31_15-55-52.zip` |
 
-## Convergence candidates - 264 strategies
+## Convergence candidates - 279 strategies
 
 A warm-up exists at which every indicator stays inside the band.
 That is not admission: the paired full-window run must still show
@@ -365,16 +365,31 @@ an identical trade list.
 | `Seb` | `spot_long` | 576 candles | 0.0% on `ema20` | 2026-09-01 15:04:02 | `user_data/convergence_logs/Seb-ladder.log` |
 | `Simple` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 15:04:56 | `user_data/convergence_logs/Simple-ladder.log` |
 | `SmaRsiStrategy` | `spot_long` | 90 candles | 0.041% on `rsi` | 2026-09-01 12:44:48 | `user_data/convergence_logs/SmaRsiStrategy-ladder.log` |
+| `SmoothOperator` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 15:05:49 | `user_data/convergence_logs/SmoothOperator-ladder.log` |
+| `SmoothScalp` | `spot_long` | 1440 candles | 0.0% on `fastd` | 2026-09-01 15:06:43 | `user_data/convergence_logs/SmoothScalp-ladder.log` |
 | `SqueezeMomentumStrategy` | `spot_long` | 288 candles | 0.0% on `bb_upper` | 2026-09-01 12:45:12 | `user_data/convergence_logs/SqueezeMomentumStrategy-ladder.log` |
+| `StarRise` | `spot_long` | 2016 candles | 0.0% on `r_480_1h` | 2026-09-01 15:07:11 | `user_data/convergence_logs/StarRise-ladder.log` |
+| `StarRise_strat` | `spot_long` | 2016 candles | 0.0% on `r_480_1h` | 2026-09-01 15:07:38 | `user_data/convergence_logs/StarRise_strat-ladder.log` |
 | `StochasticOversoldStrategy` | `spot_long` | 288 candles | 0.0% on `stoch_k` | 2026-09-01 12:45:36 | `user_data/convergence_logs/StochasticOversoldStrategy-ladder.log` |
 | `StochasticRsiStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:46:00 | `user_data/convergence_logs/StochasticRsiStrategy-ladder.log` |
 | `StrategyScalpingFast` | `spot_long` | 1440 candles | 0.0% on `ema_high` | 2026-09-01 12:46:27 | `user_data/convergence_logs/StrategyScalpingFast-ladder.log` |
+| `StrategyTestV2` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-01 15:08:04 | `user_data/convergence_logs/StrategyTestV2-ladder.log` |
+| `SuperTrend` | `spot_long` | 1440 candles | 0.0% on `tema` | 2026-09-01 15:09:01 | `user_data/convergence_logs/SuperTrend-ladder.log` |
+| `TD` | `spot_long` | 12 candles | 0.0% on `ha_open` | 2026-09-01 15:11:03 | `user_data/convergence_logs/TD-ladder.log` |
+| `TEMA` | `spot_long` | 1440 candles | 0.0% on `adx` | 2026-09-01 15:11:31 | `user_data/convergence_logs/TEMA-ladder.log` |
 | `TRIWAVE` | `spot_long` | 672 candles | 0.0% on `rsi_med_2h` | 2026-09-01 12:46:51 | `user_data/convergence_logs/TRIWAVE-ladder.log` |
+| `TWAPStrategy` | `futures_long_short` | 192 candles | 0.0% on `rsi` | 2026-09-01 15:11:56 | `user_data/convergence_logs/TWAPStrategy-ladder.log` |
+| `TechnicalExampleStrategy` | `spot_long` | 288 candles | 0.0% on `cmf` | 2026-09-01 15:12:44 | `user_data/convergence_logs/TechnicalExampleStrategy-ladder.log` |
 | `TemaStrategy` | `spot_long` | 288 candles | 0.0% on `tema20` | 2026-09-01 12:47:16 | `user_data/convergence_logs/TemaStrategy-ladder.log` |
+| `TheForce` | `spot_long` | 672 candles | 0.0% on `fastd` | 2026-09-01 15:13:10 | `user_data/convergence_logs/TheForce-ladder.log` |
 | `TrendAtrStrategy` | `spot_long` | 540 candles | 0.0% on `ema_fast` | 2026-09-01 12:47:40 | `user_data/convergence_logs/TrendAtrStrategy-ladder.log` |
 | `TripleEmaStrategy` | `spot_long` | 288 candles | 0.0% on `ema8` | 2026-09-01 12:48:03 | `user_data/convergence_logs/TripleEmaStrategy-ladder.log` |
 | `TrixSignalStrategy` | `spot_long` | 288 candles | 0.0% on `trix` | 2026-09-01 12:48:28 | `user_data/convergence_logs/TrixSignalStrategy-ladder.log` |
+| `TrixV21Strategy` | `spot_long` | 2160 candles | 0.0% on `stoch_rsi` | 2026-09-01 15:15:37 | `user_data/convergence_logs/TrixV21Strategy-ladder.log` |
+| `TrixV23Strategy` | `spot_long` | 2160 candles | 0.0% on `btc_usdt_ema_184_1h` | 2026-09-01 15:16:03 | `user_data/convergence_logs/TrixV23Strategy-ladder.log` |
 | `UniversalMACD` | `spot_long` | 288 candles | 0.0% on `ma12` | 2026-09-01 12:48:53 | `user_data/convergence_logs/UniversalMACD-ladder.log` |
+| `Uptrend` | `spot_long` | 2016 candles | 0.0% on `mama` | 2026-09-01 15:16:28 | `user_data/convergence_logs/Uptrend-ladder.log` |
+| `VWAP` | `spot_long` | 2016 candles | 0.0% on `vwap_low` | 2026-09-01 15:17:16 | `user_data/convergence_logs/VWAP-ladder.log` |
 | `VolumeBreakoutStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:49:17 | `user_data/convergence_logs/VolumeBreakoutStrategy-ladder.log` |
 | `VortexStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:49:42 | `user_data/convergence_logs/VortexStrategy-ladder.log` |
 | `VwapReversionStrategy` | `spot_long` | 576 candles | 0.0% on `vwap` | 2026-09-01 12:50:07 | `user_data/convergence_logs/VwapReversionStrategy-ladder.log` |
@@ -478,7 +493,7 @@ verdict. Where such a hint exists it is shown in brackets.
 | `tacos1` | `not_scheduled` | `no run under the current runtime (historical hint: No data found. Terminating.)` |
 | `turbov8` | `not_scheduled` | `no run under the current runtime (historical hint: engine exited with code 0 but produced no summary (no trades at all, or output not parsed))` |
 
-## Not passing - 491 strategies, by decisive reason
+## Not passing - 476 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -499,8 +514,8 @@ defect, awaiting re-measurement.
 | `lookahead_found` | reads data it could not have had at the time | 69 |
 | `technical_trap_found` | carries a published backtesting trap | 40 |
 | `strategy_does_not_run` | fails before it can be measured; the message is in runtime_failure | 152 |
-| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 23 |
-| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 182 |
+| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 24 |
+| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 166 |
 | `no_trades_in_full_measurement` | never trades over the full window | 16 |
 | `no_verdict_on_lookahead_and_recursive` | measured; neither gate returned a verdict | 5 |
 | `no_verdict_on_lookahead` | measured and recursion clean; look-ahead has no verdict | 4 |
@@ -513,8 +528,8 @@ defect, awaiting re-measurement.
 | `lookahead_found` | 0 | 15 | 0 | 54 |
 | `technical_trap_found` | 0 | 0 | 0 | 40 |
 | `strategy_does_not_run` | 0 | 152 | 0 | 0 |
-| `recursive_bias_found` | 0 | 0 | 14 | 9 |
-| `recursive_bias_unverified` | 74 | 29 | 0 | 79 |
+| `recursive_bias_found` | 0 | 0 | 14 | 10 |
+| `recursive_bias_unverified` | 74 | 29 | 0 | 63 |
 | `no_trades_in_full_measurement` | 0 | 10 | 0 | 6 |
 | `no_verdict_on_lookahead_and_recursive` | 0 | 5 | 0 | 0 |
 | `no_verdict_on_lookahead` | 0 | 4 | 0 | 0 |
@@ -568,48 +583,93 @@ Wave `not_scheduled` - 40:
 
 Fails before it can be measured; the message is in runtime_failure.
 
-Wave `C_measurement_recovery` - 152:
+| Failure | Strategies | Which |
+|---|---:|---|
+| Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m` | 48 | `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `BBRSIS`, `BBRSIoriginal`, `BB_RSI`, `BB_Strategy04`, `BbRoi`, `Chained`, `Chispei`, `EMABBRSI`, `EMAVolume`, `EXPERIMENTAL_STRATEGY`, `EnsembleStrategy`, `EnsembleStrategyV1`, `EnsembleStrategyV2`, `FixedRiskRewardLoss`, `FreqaiExampleStrategy`, `Ichimoku_v12`, `Ichimoku_v30`, `Ichimoku_v32`, `Ichimoku_v33`, `Ichimoku_v35`, `JustROCR`, `JustROCR2`, `JustROCR3`, `JustROCR4`, `JustROCR5`, `JustROCR6`, `LitmusGoodMinMaxClassificationStrategy`, `MACDCCI`, `MACDRSI200`, `MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`, `QuickAdapterV3`, `RSIBB02`, `ScalpingCCI`, `Stavix2`, `SwingHigh`, `adx_opt_strat`, `bb_rsi_opt_new`, `bbema`, `chispei`, `cryptohassle`, `macd_recovery`, `mark_strat`, `quantumfirst`, `redditMA` |
+| IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time' | 9 | `CryptoFrog`, `CryptoFrogHO`, `CryptoFrogHO2`, `CryptoFrogHO2A`, `CryptoFrogHO3A1`, `CryptoFrogHO3A2`, `CryptoFrogHO3A3`, `CryptoFrogHO3A4`, `CryptoFrog_nateema` |
+| The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given | 7 | `Danke`, `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `FastSupertrend`, `FastSupertrendOpt`, `SuperTrendPure`, `Supertrend` |
+| freqAI is not enabled. Please enable it in your config to use this strategy. | 5 | `RLStrategy`, `TankAi`, `TankAiRevival`, `WTAI`, `WTRSIAI` |
+| Configuration error: 'stoploss' is a required property | 3 | `AdaptiveRenkoStrategy`, `ClucCrypROI`, `ClucCrypSlow` |
+| `populate_exit_trend` or `populate_sell_trend` must be implemented. | 2 | `ClucHAnix_BB_RPB_TraNz`, `SimpleRiskFilterStrategy` |
+| Invalid value 'False' for dtype 'float64' | 2 | `new_turtle`, `new_turtle_roi` |
+| Impossible to load Strategy 'AdvancedRiskFilterStrategy'. This class does not exist or contains Python code errors. | 1 | `AdvancedRiskFilterStrategy` |
+| Length of values (180) does not match length of index (82) | 1 | `Astro` |
+| Impossible to load Strategy 'AutoArimaTripleV1'. This class does not exist or contains Python code errors. | 1 | `AutoArimaTripleV1` |
+| Impossible to load Strategy 'BBRSI'. This class does not exist or contains Python code errors. | 1 | `BBRSI` |
+| Impossible to load Strategy 'BB_RPB_3c'. This class does not exist or contains Python code errors. | 1 | `BB_RPB_3c` |
+| Impossible to load Strategy 'BaseStrategy'. This class does not exist or contains Python code errors. | 1 | `BaseStrategy` |
+| Encountered all NA values | 1 | `BestSingleAssetPortfolio` |
+| Impossible to load Strategy 'BinanceStream'. This class does not exist or contains Python code errors. | 1 | `BinanceStream` |
+| Impossible to load Strategy 'BlueEyes_MPP_v1'. This class does not exist or contains Python code errors. | 1 | `BlueEyes_MPP_v1` |
+| Impossible to load Strategy 'Cenderawasih_30m'. This class does not exist or contains Python code errors. | 1 | `Cenderawasih_30m` |
+| Impossible to load Strategy 'Cenderawasih_3_kucoin'. This class does not exist or contains Python code errors. | 1 | `Cenderawasih_3_kucoin` |
+| Impossible to load Strategy 'ClucHAnix_BB_RPB_MOD_trailing_buy'. This class does not exist or contains Python code errors. | 1 | `ClucHAnix_BB_RPB_MOD_trailing_buy` |
+| Invalid value '1' for dtype 'bool' | 1 | `CombinedBinHAndClucV6H` |
+| Impossible to load Strategy 'CopyLitmusMinMaxBroadClassificationStrategy'. This class does not exist or contains Python code errors. | 1 | `CopyLitmusMinMaxBroadClassificationStrategy` |
+| 'CryptoFrogNFI2' object has no attribute 'buy_pump_threshold_7'. Did you mean: 'buy_pump_threshold_1'? | 1 | `CryptoFrogNFI2` |
+| Impossible to load Strategy 'CryptoPredictionTraining'. This class does not exist or contains Python code errors. | 1 | `CryptoPredictionTraining` |
+| Impossible to load Strategy 'DWT'. This class does not exist or contains Python code errors. | 1 | `DWT` |
+| Impossible to load Strategy 'DWT_Leveraged'. This class does not exist or contains Python code errors. | 1 | `DWT_Leveraged` |
+| Impossible to load Strategy 'DualModelPolymarketPortfolio'. This class does not exist or contains Python code errors. | 1 | `DualModelPolymarketPortfolio` |
+| Impossible to load Strategy 'Dyna_opti'. This class does not exist or contains Python code errors. | 1 | `Dyna_opti` |
+| Impossible to load Strategy 'EmaCrossStrategy'. This class does not exist or contains Python code errors. | 1 | `EmaCrossStrategy` |
+| Impossible to load Strategy 'Enchilada'. This class does not exist or contains Python code errors. | 1 | `Enchilada` |
+| Impossible to load Strategy 'FileLoadingStrategy'. This class does not exist or contains Python code errors. | 1 | `FileLoadingStrategy` |
+| Impossible to load FreqaiModel 'CatboostClassifier'. This class does not exist or contains Python code errors. | 1 | `FreqaiExampleHybridStrategy` |
+| Invalid value '114.31926513711869' for dtype 'int64' | 1 | `GPR` |
+| index 14 is out of bounds for axis 0 with size 2 | 1 | `GodStra` |
+| Impossible to load Strategy 'GymStrategy'. This class does not exist or contains Python code errors. | 1 | `GymStrategy` |
+| 'tuple' object has no attribute 'items' | 1 | `HLHB` |
+| Impossible to load Strategy 'IchimokuStrategy'. This class does not exist or contains Python code errors. | 1 | `IchimokuStrategy` |
+| Impossible to load Strategy 'Ichimoku_SenkouSpanCross'. This class does not exist or contains Python code errors. | 1 | `Ichimoku_SenkouSpanCross` |
+| Impossible to load Strategy 'KMM'. This class does not exist or contains Python code errors. | 1 | `KMM` |
+| Impossible to load Strategy 'LitmusEntryRollClassificationStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusEntryRollClassificationStrategy` |
+| Impossible to load Strategy 'LitmusMLDPStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusMLDPStrategy` |
+| Impossible to load FreqaiModel 'LitmusMultiTargetClassifier'. This class does not exist or contains Python code errors. | 1 | `LitmusMetaStrategy` |
+| Impossible to load Strategy 'LitmusMinMaxBroadClassificationStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusMinMaxBroadClassificationStrategy` |
+| Impossible to load Strategy 'LitmusMinMaxClassificationStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusMinMaxClassificationStrategy` |
+| Impossible to load Strategy 'LitmusMinMaxRegretClassificationStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusMinMaxRegretClassificationStrategy` |
+| Impossible to load Strategy 'LitmusMinMaxSegmentClassificationStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusMinMaxSegmentClassificationStrategy` |
+| Impossible to load Strategy 'LitmusMinMaxStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusMinMaxStrategy` |
+| Impossible to load Strategy 'LitmusMinMaxTrendStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusMinMaxTrendStrategy` |
+| Impossible to load Strategy 'LitmusSimpleStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusSimpleStrategy` |
+| NDFrame.replace() got an unexpected keyword argument 'method' | 1 | `LongShortRangeTradingMachetesV1` |
+| Impossible to load Strategy 'MKR'. This class does not exist or contains Python code errors. | 1 | `MKR` |
+| process exit 0 without a readable backtest archive | 1 | `MasterMoniGoManiHyperStrategy` |
+| Impossible to load Strategy 'MlpSpeculativeStrategy'. This class does not exist or contains Python code errors. | 1 | `MlpSpeculativeStrategy` |
+| Cannot compare dtypes int64 and datetime64[ms, UTC] | 1 | `MomentumRegimeBasket15m` |
+| Impossible to load Strategy 'MultiMA_TSL5'. This class does not exist or contains Python code errors. | 1 | `MultiMA_TSL5` |
+| 'buy-ma-10' | 1 | `MultiMa` |
+| Configuration error: The config stoploss needs to be different from 0 to avoid problems with sell orders. | 1 | `NoLost` |
+| Impossible to load Strategy 'Persia'. This class does not exist or contains Python code errors. | 1 | `Persia` |
+| PMAX() got an unexpected keyword argument 'atrperiod'. Did you mean 'period'? | 1 | `Pmax` |
+| Invalid value '1' for dtype 'str'. Value should be a string or missing value, got 'int' instead. | 1 | `PnF` |
+| Could not find pair source at './strategy/PolymarketLogicalArb/freqtrade_pair_mapping.csv'. Update PAIR_SOURCE_PATH in the strategy. | 1 | `PolymarketLogicalArbStrategy` |
+| Impossible to load Strategy 'PolymarketMeanReversionStrategy'. This class does not exist or contains Python code errors. | 1 | `PolymarketMeanReversionStrategy` |
+| Impossible to load Strategy 'PolymarketMomentumStrategy'. This class does not exist or contains Python code errors. | 1 | `PolymarketMomentumStrategy` |
+| Impossible to load Strategy 'Prediction_Strategy'. This class does not exist or contains Python code errors. | 1 | `Prediction_Strategy` |
+| 'proton_parameters' | 1 | `Proton` |
+| invalid literal for int() with base 10: '1h' | 1 | `QuickBuyStrategy` |
+| Impossible to load FreqaiModel 'ReforceXY'. This class does not exist or contains Python code errors. | 1 | `RLAgentStrategy` |
+| 'adx' | 1 | `RenkoYolo` |
+| Cannot determine parameter space for ttf_length. | 1 | `SMAOPv1_TTF` |
+| Impossible to load Strategy 'Solipsis'. This class does not exist or contains Python code errors. | 1 | `Solipsis` |
+| Impossible to load Strategy 'Solipsis4'. This class does not exist or contains Python code errors. | 1 | `Solipsis4` |
+| Impossible to load Strategy 'Solipsis6'. This class does not exist or contains Python code errors. | 1 | `Solipsis6` |
+| Impossible to load Strategy 'SolipsisMM'. This class does not exist or contains Python code errors. | 1 | `SolipsisMM` |
+| SuperHV27.min_roi_reached_entry() takes 2 positional arguments but 4 were given | 1 | `SuperHV27` |
+| cannot reindex on an axis with duplicate labels | 1 | `Test_MAMA4` |
+| Impossible to load Strategy 'TrainCatBoostStrategy'. This class does not exist or contains Python code errors. | 1 | `TrainCatBoostStrategy` |
+| No data found. Terminating. | 1 | `TuplaBollinger` |
+| Impossible to load Strategy 'TwoCandleTheory'. This class does not exist or contains Python code errors. | 1 | `TwoCandleTheory` |
+| '<' not supported between instances of 'float' and 'method' | 1 | `UpSliceStrategy` |
+| Cannot determine parameter space for mfi_length. | 1 | `WTHO` |
+| Impossible to load Strategy 'bbrsi1_strategy'. This class does not exist or contains Python code errors. | 1 | `bbrsi1_strategy` |
+| Impossible to load Strategy 'mark_strat_opt'. This class does not exist or contains Python code errors. | 1 | `mark_strat_opt` |
+| Impossible to load Strategy 'multi_tf'. This class does not exist or contains Python code errors. | 1 | `multi_tf` |
+| Can't instantiate abstract class thetank2 without an implementation for abstract method 'populate_indicators' | 1 | `thetank2` |
 
-`ADX_15M_USDT`, `ADX_15M_USDT2`, `AdaptiveRenkoStrategy`, `AdvancedRiskFilterStrategy`
-`AlligatorStrat`, `Astro`, `AutoArimaTripleV1`, `BBRSI`
-`BBRSIS`, `BBRSIoriginal`, `BB_RPB_3c`, `BB_RSI`
-`BB_Strategy04`, `BaseStrategy`, `BbRoi`, `BestSingleAssetPortfolio`
-`BinanceStream`, `BlueEyes_MPP_v1`, `Cenderawasih_30m`, `Cenderawasih_3_kucoin`
-`Chained`, `Chispei`, `ClucCrypROI`, `ClucCrypSlow`
-`ClucHAnix_BB_RPB_MOD_trailing_buy`, `ClucHAnix_BB_RPB_TraNz`, `CombinedBinHAndClucV6H`, `CopyLitmusMinMaxBroadClassificationStrategy`
-`CryptoFrog`, `CryptoFrogHO`, `CryptoFrogHO2`, `CryptoFrogHO2A`
-`CryptoFrogHO3A1`, `CryptoFrogHO3A2`, `CryptoFrogHO3A3`, `CryptoFrogHO3A4`
-`CryptoFrogNFI2`, `CryptoFrog_nateema`, `CryptoPredictionTraining`, `DWT`
-`DWT_Leveraged`, `Danke`, `DualModelPolymarketPortfolio`, `Dyna_opti`
-`EMABBRSI`, `EMAVolume`, `EXPERIMENTAL_STRATEGY`, `EmaCrossStrategy`
-`Enchilada`, `EnsembleStrategy`, `EnsembleStrategyV1`, `EnsembleStrategyV2`
-`FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `FastSupertrend`, `FastSupertrendOpt`
-`FileLoadingStrategy`, `FixedRiskRewardLoss`, `FreqaiExampleHybridStrategy`, `FreqaiExampleStrategy`
-`GPR`, `GodStra`, `GymStrategy`, `HLHB`
-`IchimokuStrategy`, `Ichimoku_SenkouSpanCross`, `Ichimoku_v12`, `Ichimoku_v30`
-`Ichimoku_v32`, `Ichimoku_v33`, `Ichimoku_v35`, `JustROCR`
-`JustROCR2`, `JustROCR3`, `JustROCR4`, `JustROCR5`
-`JustROCR6`, `KMM`, `LitmusEntryRollClassificationStrategy`, `LitmusGoodMinMaxClassificationStrategy`
-`LitmusMLDPStrategy`, `LitmusMetaStrategy`, `LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`
-`LitmusMinMaxRegretClassificationStrategy`, `LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`
-`LitmusSimpleStrategy`, `LongShortRangeTradingMachetesV1`, `MACDCCI`, `MACDRSI200`
-`MKR`, `MasterMoniGoManiHyperStrategy`, `MlpSpeculativeStrategy`, `MomentumRegimeBasket15m`
-`MultiMA_TSL5`, `MultiMa`, `MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`
-`NoLost`, `Persia`, `Pmax`, `PnF`
-`PolymarketLogicalArbStrategy`, `PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy`, `Prediction_Strategy`
-`Proton`, `QuickAdapterV3`, `QuickBuyStrategy`, `RLAgentStrategy`
-`RLStrategy`, `RSIBB02`, `RenkoYolo`, `SMAOPv1_TTF`
-`ScalpingCCI`, `SimpleRiskFilterStrategy`, `Solipsis`, `Solipsis4`
-`Solipsis6`, `SolipsisMM`, `Stavix2`, `SuperHV27`
-`SuperTrendPure`, `Supertrend`, `SwingHigh`, `TankAi`
-`TankAiRevival`, `Test_MAMA4`, `TrainCatBoostStrategy`, `TuplaBollinger`
-`TwoCandleTheory`, `UpSliceStrategy`, `WTAI`, `WTHO`
-`WTRSIAI`, `adx_opt_strat`, `bb_rsi_opt_new`, `bbema`
-`bbrsi1_strategy`, `chispei`, `cryptohassle`, `macd_recovery`
-`mark_strat`, `mark_strat_opt`, `multi_tf`, `new_turtle`
-`new_turtle_roi`, `quantumfirst`, `redditMA`, `thetank2`
-
-### `recursive_bias_found` - 23
+### `recursive_bias_found` - 24
 
 Indicator value still drifts at every warm-up the ladder can reach.
 
@@ -620,13 +680,13 @@ Wave `D_recursive_drift` - 14:
 `ClucHAnix_BB_RPB_MOD_CTT`, `ClucHAnix_BB_RPB_MOD_E0V1E_ROI`, `ObvTrendStrategy`, `flawless_lambo`
 `lambotest`, `tacos`
 
-Wave `not_scheduled` - 9:
+Wave `not_scheduled` - 10:
 
 `BcmbigzV1`, `BeastBotXBLR6`, `BeastBotXBLR7`, `BigZ04`
 `GoldHedgeZeroMACD`, `NOTankAi_15`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`
-`NotAnotherSMAOffSetStrategy_V2`
+`NotAnotherSMAOffSetStrategy_V2`, `TrendRiderStrategy`
 
-### `recursive_bias_unverified` - 182
+### `recursive_bias_unverified` - 166
 
 Recorded under a parser defect and not re-measured; not a finding.
 
@@ -663,7 +723,7 @@ Wave `C_measurement_recovery` - 29:
 `falconTrader`, `newstrategy53`, `newstrategy53_22`, `pmaxTest`
 `slownsteady`
 
-Wave `not_scheduled` - 79:
+Wave `not_scheduled` - 63:
 
 `BinHV27F`, `BinHV27_short`, `COPY_HL`, `ConsensusShort`
 `CustomStoplossWithPSAR`, `DWT_LongShort`, `DWT_short`, `DevilStra`
@@ -674,12 +734,8 @@ Wave `not_scheduled` - 79:
 `Ichimoku`, `MACDRL`, `MACDRS`, `Minmax`
 `NostalgiaForInfinityX2`, `NostalgiaForInfinityX3`, `NostalgiaForInfinityX4`, `NostalgiaForInfinityX5`
 `NostalgiaForInfinityX6`, `NostalgiaForInfinityX7`, `PatternRecognition`, `SMAOffset_Hippocritical_dca_leverage`
-`SmoothOperator`, `SmoothScalp`, `StarRise`, `StarRise_strat`
-`StrategyTestV2`, `StrategyTestV3`, `SuperTrend`, `SupertrendStrategy`
-`SwingHighToSky`, `TD`, `TEMA`, `TWAPStrategy`
-`TechnicalExampleStrategy`, `TheForce`, `ToTheMoon`, `TrendFollowingStrategy`
-`TrendRiderStrategy`, `TrixV21Strategy`, `TrixV23Strategy`, `Uptrend`
-`VWAP`, `VolatilitySystem`, `VolatilitySystemV2`, `WaveTrendStra`
+`StrategyTestV3`, `SupertrendStrategy`, `SwingHighToSky`, `ToTheMoon`
+`TrendFollowingStrategy`, `VolatilitySystem`, `VolatilitySystemV2`, `WaveTrendStra`
 `YOLO`, `ZScoreMeanReversionStrategy`, `ZaratustraDCA2_06`, `ZaratustraDCA2_07`
 `ZaratustraDCA5`, `adaptive`, `custom`, `dualwave`
 `hansencandlepatternV1`, `heikin`, `keltnerchannel`, `mabStra`
@@ -733,12 +789,12 @@ Wave `C_measurement_recovery` - 4:
 
 | Item | Strategies |
 |---|---:|
-| `paired_full_window_equivalence` | 264 |
-| `lookahead_verdict` | 117 |
+| `paired_full_window_equivalence` | 279 |
+| `lookahead_verdict` | 126 |
 | `first_measurement_in_current_runtime` | 60 |
-| `convergence_inconclusive` | 36 |
+| `convergence_inconclusive` | 41 |
 | `re-measure_gates_in_current_runtime` | 30 |
-| `convergence_not_converged_within_ladder` | 23 |
+| `convergence_not_converged_within_ladder` | 24 |
 
 Per-row detail, including every evidence path, is in
 `STRATEGY_STATUS.csv`.

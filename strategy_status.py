@@ -559,6 +559,24 @@ def _report(data):
         lines += ["### `%s` - %d" % (key, len(grouped[key])), ""]
         if key in texts:
             lines += [texts[key].capitalize() + ".", ""]
+        if key == "strategy_does_not_run":
+            # The message is the whole content of this group. Grouping these
+            # rows by name alone would repeat the useless label the frozen
+            # baseline gave them; grouped by message it says which failures are
+            # one shared fix and which are one-offs.
+            by_message = collections.defaultdict(list)
+            for row in failing:
+                if row["primary_reason"] == key:
+                    by_message[row["runtime_failure"]].append(row["strategy_id"])
+            lines += ["| Failure | Strategies | Which |", "|---|---:|---|"]
+            for message, names in sorted(by_message.items(),
+                                         key=lambda item: -len(item[1])):
+                lines.append("| %s | %d | %s |" % (
+                    (message or "(no message recorded)").replace("|", "\\|"),
+                    len(names),
+                    ", ".join("`%s`" % n for n in sorted(names))))
+            lines.append("")
+            continue
         by_wave = collections.defaultdict(list)
         for row in failing:
             if row["primary_reason"] == key:
