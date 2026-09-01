@@ -205,70 +205,6 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
-    "AdxSmas": {
-      "available_prefix_candles": 8104,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/AdxSmas-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 22.9,
-      "file_derived_period": 14,
-      "implementation_id": "AdxSmas:21c5d2067b68",
-      "ladder_candles": [
-        24,
-        48,
-        168,
-        336,
-        720,
-        2160
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14,
-        30,
-        90
-      ],
-      "output_sha256": "sha256_82db08bf1685cefe31085e0c902b192d5cfcb44fcf6a9960d8a381341d6a8d5a",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "AdxSmas",
-      "timeframe": "1h",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
-    "AdxSmasS": {
-      "available_prefix_candles": 616,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/AdxSmasS-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 23.0,
-      "file_derived_period": 14,
-      "implementation_id": "AdxSmasS:c6ec923fd109",
-      "ladder_candles": [
-        24,
-        48,
-        168,
-        336
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14
-      ],
-      "output_sha256": "sha256_8ac49bac47d668a4acf26ec36899f29a780a89bce4fc06ef9d4d4f768c80bca2",
-      "returncode": 0,
-      "run_profile": "futures_short",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "AdxSmasS",
-      "timeframe": "1h",
-      "timerange": "20200301-20200401",
-      "why": "analyzer produced no drift table"
-    },
     "AdxStrengthStrategy": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 1,
@@ -942,40 +878,6 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
-    "AverageStrategy": {
-      "available_prefix_candles": 2029,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/AverageStrategy-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 22.8,
-      "file_derived_period": 21,
-      "implementation_id": "AverageStrategy:de84f5e8ddc6",
-      "ladder_candles": [
-        6,
-        12,
-        42,
-        84,
-        180,
-        540
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14,
-        30,
-        90
-      ],
-      "output_sha256": "sha256_312863150bcdacd6ab04424ba30726c4029b92198f37842124739dc17ff89c6a",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "AverageStrategy",
-      "timeframe": "4h",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
     "BBRSI4cust": {
       "available_prefix_candles": 32408,
       "chosen_ladder_days": 2,
@@ -1615,96 +1517,6 @@
       "strategy_id": "BBRSITV",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
-    },
-    "BB_RPB_TSL_RNG": {
-      "available_prefix_candles": 97222,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/BB_RPB_TSL_RNG-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 22.9,
-      "file_derived_period": 100,
-      "implementation_id": "BB_RPB_TSL_RNG:841148b7f976",
-      "ladder_candles": [
-        288,
-        576,
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14
-      ],
-      "output_sha256": "sha256_7194bb9fb56e659c0e1e52654908a77d37f1836978d8b830ff99b4ed18b9d127",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "BB_RPB_TSL_RNG",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
-    "BB_RPB_TSL_RNG_TBS": {
-      "available_prefix_candles": 97222,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/BB_RPB_TSL_RNG_TBS-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 22.9,
-      "file_derived_period": 100,
-      "implementation_id": "BB_RPB_TSL_RNG_TBS:9b4f2bf2615e",
-      "ladder_candles": [
-        288,
-        576,
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14
-      ],
-      "output_sha256": "sha256_8f40deb06573be110f1d6b1dce353a7b04c1e4da2b94185c10b075cab155eda3",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "BB_RPB_TSL_RNG_TBS",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
-    "BB_RPB_TSL_RNG_TBS_GOLD": {
-      "available_prefix_candles": 97222,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/BB_RPB_TSL_RNG_TBS_GOLD-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 23.1,
-      "file_derived_period": 100,
-      "implementation_id": "BB_RPB_TSL_RNG_TBS_GOLD:2618c192ea74",
-      "ladder_candles": [
-        288,
-        576,
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14
-      ],
-      "output_sha256": "sha256_a3d4fed95d8a8c73e289cda47dd69d5295e399f04009b378523e1ed33577a94e",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "BB_RPB_TSL_RNG_TBS_GOLD",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
     },
     "BB_RPB_TSL_RNG_VWAP": {
       "available_prefix_candles": 97222,
@@ -2656,40 +2468,6 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
-    "Babico_SMA5xBBmid": {
-      "available_prefix_candles": 339,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/Babico_SMA5xBBmid-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 22.6,
-      "file_derived_period": 20,
-      "implementation_id": "Babico_SMA5xBBmid:64846c265b53",
-      "ladder_candles": [
-        1,
-        2,
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14,
-        30,
-        90
-      ],
-      "output_sha256": "sha256_76c4d0c59535f7dc00ebdf7438e35d42df0daebddac9bf8869b8237c72fc2756",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "Babico_SMA5xBBmid",
-      "timeframe": "1d",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
     "BbWidthExpansionStrategy": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 1,
@@ -2805,62 +2583,6 @@
       "strategy_id": "BbWidthExpansionStrategy",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
-    },
-    "BbandRsi": {
-      "available_prefix_candles": 486102,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/BbandRsi-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 22.8,
-      "file_derived_period": null,
-      "implementation_id": "BbandRsi:90324695a35b",
-      "ladder_candles": [
-        1440,
-        2880
-      ],
-      "ladder_days": [
-        1,
-        2
-      ],
-      "output_sha256": "sha256_ff252ec5b697054ae1714585f5f3218a4e13883009d3c8308b949e30fd6bb963",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "BbandRsi",
-      "timeframe": "1m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
-    "BbandRsiRolling": {
-      "available_prefix_candles": 97222,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/BbandRsiRolling-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 22.7,
-      "file_derived_period": 20,
-      "implementation_id": "BbandRsiRolling:5e85e7186701",
-      "ladder_candles": [
-        288,
-        576,
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14
-      ],
-      "output_sha256": "sha256_6118a6a75e87e549a5149f176e2cfc74c5c285f04bf93a0118888fbf624c00bf",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "BbandRsiRolling",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
     },
     "BcmbigzV1": {
       "available_prefix_candles": 97222,
@@ -6276,36 +5998,6 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
-    "BinHV27": {
-      "available_prefix_candles": 97222,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/BinHV27-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 23.1,
-      "file_derived_period": 240,
-      "implementation_id": "BinHV27:62b8250f065c",
-      "ladder_candles": [
-        288,
-        576,
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14
-      ],
-      "output_sha256": "sha256_61201c2e593b3c6cfa655340ab6e2499243a2fb9b77d63285d58e3bf43bf9cb7",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "BinHV27",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
     "BinHV27F": {
       "available_prefix_candles": 7391,
       "cohort": "recursion_only",
@@ -6365,32 +6057,6 @@
       "timeframe": "5m",
       "timerange": "20200301-20200401",
       "why": "freqtrade refused startup 4032 as above the exchange limit"
-    },
-    "BinHV45HO": {
-      "available_prefix_candles": 486102,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/BinHV45HO-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 22.8,
-      "file_derived_period": null,
-      "implementation_id": "BinHV45HO:137f88a12a9d",
-      "ladder_candles": [
-        1440,
-        2880
-      ],
-      "ladder_days": [
-        1,
-        2
-      ],
-      "output_sha256": "sha256_41ebd91bb4bca005ec75adbcd69c0cf44a6c9d47fee9833eb30d076eac6400b2",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "BinHV45HO",
-      "timeframe": "1m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
     },
     "BinMfiBTCv5003": {
       "available_prefix_candles": 97222,
@@ -6896,68 +6562,6 @@
       "timeframe": "15m",
       "timerange": "20190101-20190401"
     },
-    "CMCWinner": {
-      "available_prefix_candles": 32408,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/CMCWinner-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 23.4,
-      "file_derived_period": null,
-      "implementation_id": "CMCWinner:3cf873558c07",
-      "ladder_candles": [
-        96,
-        192,
-        672,
-        1344,
-        2880
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14,
-        30
-      ],
-      "output_sha256": "sha256_40c5bbe03f59360e82620653f480c2afe54c2a783e02c5d458a246b45fb72275",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "CMCWinner",
-      "timeframe": "15m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
-    "COPY_HL": {
-      "available_prefix_candles": 616,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/COPY_HL-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 23.4,
-      "file_derived_period": null,
-      "implementation_id": "COPY_HL:d0bd7e88717f",
-      "ladder_candles": [
-        24,
-        48,
-        168,
-        336
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14
-      ],
-      "output_sha256": "sha256_623cfe37bdab01ba138275b19e0741ab5a67b6017a2f657a8669323a3018760a",
-      "returncode": 0,
-      "run_profile": "futures_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "COPY_HL",
-      "timeframe": "1h",
-      "timerange": "20200301-20200401",
-      "why": "analyzer produced no drift table"
-    },
     "CTIBS": {
       "available_prefix_candles": 32408,
       "chosen_ladder_days": 7,
@@ -7335,58 +6939,6 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
-    "Cluc4werk": {
-      "available_prefix_candles": 486102,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/Cluc4werk-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 23.2,
-      "file_derived_period": 168,
-      "implementation_id": "Cluc4werk:9f4e7aaa4084",
-      "ladder_candles": [
-        1440,
-        2880
-      ],
-      "ladder_days": [
-        1,
-        2
-      ],
-      "output_sha256": "sha256_1ac87d838652efce2ca816072ea62a30feaba7ef26eb2ef2ce5dec28818e9201",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "Cluc4werk",
-      "timeframe": "1m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
-    "Cluc5werk": {
-      "available_prefix_candles": 486102,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/Cluc5werk-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 23.0,
-      "file_derived_period": 168,
-      "implementation_id": "Cluc5werk:177d8129f421",
-      "ladder_candles": [
-        1440,
-        2880
-      ],
-      "ladder_days": [
-        1,
-        2
-      ],
-      "output_sha256": "sha256_d175cc339b8a61bf8cf5ee796c7a99c14943352a364d671942d5bc124ec5b425",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "Cluc5werk",
-      "timeframe": "1m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
     "ClucFiatROI": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 1,
@@ -7562,32 +7114,6 @@
       "strategy_id": "ClucFiatSlow",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
-    },
-    "ClucHAnix": {
-      "available_prefix_candles": 486102,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/ClucHAnix-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 23.0,
-      "file_derived_period": 168,
-      "implementation_id": "ClucHAnix:acdf6026a23b",
-      "ladder_candles": [
-        1440,
-        2880
-      ],
-      "ladder_days": [
-        1,
-        2
-      ],
-      "output_sha256": "sha256_f81fccb8c812b68cc02a6784781bf17d001cde52e7d2508edf41730f5e3b5f0b",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "ClucHAnix",
-      "timeframe": "1m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
     },
     "ClucHAnix_BB_RPB_MOD2_ROI": {
       "available_prefix_candles": 97222,
@@ -8425,156 +7951,6 @@
       "strategy_id": "ClucHAnix_hhll",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
-    },
-    "ClucMay72018": {
-      "available_prefix_candles": 97222,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/ClucMay72018-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 23.1,
-      "file_derived_period": 50,
-      "implementation_id": "ClucMay72018:8318baa109a4",
-      "ladder_candles": [
-        288,
-        576,
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14
-      ],
-      "output_sha256": "sha256_f6fd408faf7dd977c31ea5e2872c57f817535fbc574056dbe4477c366db43a92",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "ClucMay72018",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
-    "CofiBitStrategy": {
-      "available_prefix_candles": 97222,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/CofiBitStrategy-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 23.6,
-      "file_derived_period": 5,
-      "implementation_id": "CofiBitStrategy:22bda2594f7f",
-      "ladder_candles": [
-        288,
-        576,
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14
-      ],
-      "output_sha256": "sha256_0a73724e431d6fd8c866838bed6511d80832f4c5804cb369d31dc3ebcbbfb149",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "CofiBitStrategy",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
-    "CombinedBinHAndCluc": {
-      "available_prefix_candles": 97222,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/CombinedBinHAndCluc-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 23.4,
-      "file_derived_period": 50,
-      "implementation_id": "CombinedBinHAndCluc:ac3ab1a70862",
-      "ladder_candles": [
-        288,
-        576,
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14
-      ],
-      "output_sha256": "sha256_3237dff23ff5b345de3d44ae141b12c76576fc66576b628c58a940c6f0eda3f5",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "CombinedBinHAndCluc",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
-    "CombinedBinHAndCluc2021": {
-      "available_prefix_candles": 97222,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/CombinedBinHAndCluc2021-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 23.6,
-      "file_derived_period": 50,
-      "implementation_id": "CombinedBinHAndCluc2021:f3fed45418a9",
-      "ladder_candles": [
-        288,
-        576,
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14
-      ],
-      "output_sha256": "sha256_b0fc0a0c3acb24b7d8572b8e847528ae72d357252d70522e91452ae859535b8e",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "CombinedBinHAndCluc2021",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
-    "CombinedBinHAndCluc2021Bull": {
-      "available_prefix_candles": 97222,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/CombinedBinHAndCluc2021Bull-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 23.0,
-      "file_derived_period": 50,
-      "implementation_id": "CombinedBinHAndCluc2021Bull:1e9664a5c649",
-      "ladder_candles": [
-        288,
-        576,
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14
-      ],
-      "output_sha256": "sha256_fd60d702a1d63f049f580417e2d0c180885bd2eb85ea4fb38ce764abac36cb20",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "CombinedBinHAndCluc2021Bull",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
     },
     "CombinedBinHAndClucV2": {
       "available_prefix_candles": 97222,
@@ -11379,40 +10755,6 @@
       "timeframe": "1h",
       "timerange": "20190101-20190401"
     },
-    "CustomStoplossWithPSAR": {
-      "available_prefix_candles": 8104,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/CustomStoplossWithPSAR-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 22.8,
-      "file_derived_period": null,
-      "implementation_id": "CustomStoplossWithPSAR:b36b8c686259",
-      "ladder_candles": [
-        24,
-        48,
-        168,
-        336,
-        720,
-        2160
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14,
-        30,
-        90
-      ],
-      "output_sha256": "sha256_872875491d3e73a9d467c9872a95ae71ffb3f5f8a18bf7d12e23ca4dd48897cc",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "CustomStoplossWithPSAR",
-      "timeframe": "1h",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
     "DCBBBounce": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 2,
@@ -11760,70 +11102,6 @@
       "strategy_id": "DemaCrossStrategy",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
-    },
-    "DevilStra": {
-      "available_prefix_candles": 2029,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/DevilStra-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 22.9,
-      "file_derived_period": null,
-      "implementation_id": "DevilStra:3fd994557200",
-      "ladder_candles": [
-        6,
-        12,
-        42,
-        84,
-        180,
-        540
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14,
-        30,
-        90
-      ],
-      "output_sha256": "sha256_edac3549bbf04f432fbdfb762c4a82a72499fbaa21e928cdacb4a8d2b264eae3",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "DevilStra",
-      "timeframe": "4h",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
-    "Dimond": {
-      "available_prefix_candles": 97222,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/Dimond-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 22.7,
-      "file_derived_period": null,
-      "implementation_id": "Dimond:4376ba0fb9f4",
-      "ladder_candles": [
-        288,
-        576,
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14
-      ],
-      "output_sha256": "sha256_85fb8ebf4e43ee4719fc2beb2d4cc26740afe998e7a48027666f73d531367c56",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "Dimond",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
     },
     "Divergences": {
       "available_prefix_candles": 8104,
@@ -12213,32 +11491,6 @@
       "strategy_id": "DonchianBreakoutStrategy",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
-    },
-    "Dracula": {
-      "available_prefix_candles": 486102,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/Dracula-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 23.3,
-      "file_derived_period": 150,
-      "implementation_id": "Dracula:afbc20276d68",
-      "ladder_candles": [
-        1440,
-        2880
-      ],
-      "ladder_days": [
-        1,
-        2
-      ],
-      "output_sha256": "sha256_40166e640b5da728f847d9180a6323e89410299cda8155b2d68ffc623481e8ef",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "Dracula",
-      "timeframe": "1m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
     },
     "E0V1E": {
       "available_prefix_candles": 97222,
@@ -13286,36 +12538,6 @@
       "strategy_id": "EMABreakout",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
-    },
-    "EMASkipPump": {
-      "available_prefix_candles": 97222,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/EMASkipPump-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 23.5,
-      "file_derived_period": 30,
-      "implementation_id": "EMASkipPump:1874b03c9de1",
-      "ladder_candles": [
-        288,
-        576,
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14
-      ],
-      "output_sha256": "sha256_f9f410517d33ac2952d1d5b3395689c12d4b4fa610f4a0e0f800743733a67116",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "EMASkipPump",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
     },
     "ElliotV4": {
       "available_prefix_candles": 97222,
@@ -14691,32 +13913,6 @@
       "timerange": "20200301-20200401",
       "why": "freqtrade refused startup 4032 as above the exchange limit"
     },
-    "FisherHull": {
-      "available_prefix_candles": 486102,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/FisherHull-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 24.0,
-      "file_derived_period": 14,
-      "implementation_id": "FisherHull:39caa9bd4f6d",
-      "ladder_candles": [
-        1440,
-        2880
-      ],
-      "ladder_days": [
-        1,
-        2
-      ],
-      "output_sha256": "sha256_618144408b8a45e33e330cc9ab1d3d66f573beeadcb63d4dde6c49ddc97afefe",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "FisherHull",
-      "timeframe": "1m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
     "FisherTransformStrategy": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 1,
@@ -14790,36 +13986,6 @@
       "strategy_id": "FisherTransformStrategy",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
-    },
-    "FiveMinCrossAbove": {
-      "available_prefix_candles": 97222,
-      "cohort": "recursion_only",
-      "debug_log": "user_data/convergence_logs/FiveMinCrossAbove-ladder.log",
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 24.0,
-      "file_derived_period": 20,
-      "implementation_id": "FiveMinCrossAbove:64f31d591444",
-      "ladder_candles": [
-        288,
-        576,
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14
-      ],
-      "output_sha256": "sha256_7baed13e20a40042865be60983a957eed8122600c8da9b7e69042b97f84367fd",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "FiveMinCrossAbove",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
     },
     "GoldenCrossStrategy": {
       "available_prefix_candles": 97222,

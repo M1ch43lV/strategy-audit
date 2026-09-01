@@ -72,6 +72,10 @@ WINDOW_START = "2020-03-01"
 # allows about 17 days, so the 30, 90 and 365 day rungs do not exist there.
 MAX_STARTUP_CANDLES = 4999
 
+# Freqtrade refuses a strategy declaring no warm-up before it evaluates
+# anything, and the refusal takes the whole ladder run with it.
+ZERO_WARMUP_REFUSAL = "invalid startup candle count of 0"
+
 # Wave B rows whose exact trade match was refused a static proof because the
 # decision rests on a recursively smoothed series. They are the rows the
 # amendment was written for, so they are revisited under it by name.
@@ -246,15 +250,35 @@ def run_ladder(row, timeout, startups):
     existing = env.get("PROFILE_STRATEGY_IMPORT_PATH", "")
     env["PROFILE_STRATEGY_IMPORT_PATH"] = os.pathsep.join(
         [os.path.dirname(canonical)] + ([existing] if existing else []))
-    command = [profile_bias.PYTHON, profile_bias.FT_WRAPPER,
-               "recursive-analysis", "--config", config,
-               "--strategy", strategy, "--strategy-path", strategy_path,
-               "--timerange", profile_bias.WINDOWS[mode], "--no-color",
-               "--startup-candle"] + [str(value) for value in startups] + extra
+
+    def attempt(config_path):
+        command = [profile_bias.PYTHON, profile_bias.FT_WRAPPER,
+                   "recursive-analysis", "--config", config_path,
+                   "--strategy", strategy, "--strategy-path", strategy_path,
+                   "--timerange", profile_bias.WINDOWS[mode], "--no-color",
+                   "--startup-candle"] + [str(v) for v in startups] + extra
+        return subprocess.run(command, capture_output=True, timeout=timeout,
+                              env=env, cwd=ROOT)
+
     started = time.time()
+    override = None
     try:
-        process = subprocess.run(command, capture_output=True, timeout=timeout,
-                                 env=env, cwd=ROOT)
+        process = attempt(config)
+        output = (process.stdout + process.stderr).decode("utf-8", "replace")
+        if ZERO_WARMUP_REFUSAL in output:
+            # A strategy that declares no warm-up is refused outright, and the
+            # refusal takes the whole run with it - including the ladder columns
+            # the analyzer would otherwise have printed. This is the Wave B
+            # condition, and the answer is the Wave B one: supply the smallest
+            # rung so the analyzer will run at all. The declared column then
+            # reports that supplied value rather than the author's, so the row
+            # can never be recorded as having needed no override.
+            override = min(startups)
+            _mode, config, env, _repair, _extra = eligibility_warmup._runtime(
+                row, override)
+            env["PROFILE_STRATEGY_IMPORT_PATH"] = os.pathsep.join(
+                [os.path.dirname(canonical)] + ([existing] if existing else []))
+            process = attempt(config)
     except subprocess.TimeoutExpired:
         return None, {"status": "NA", "why": "TIMEOUT",
                       "elapsed_s": round(time.time() - started, 1)}
@@ -267,6 +291,7 @@ def run_ladder(row, timeout, startups):
     meta = {
         "elapsed_s": round(time.time() - started, 1),
         "returncode": process.returncode,
+        "declared_warmup_override": override,
         "timerange": profile_bias.WINDOWS[mode],
         "runtime_id": os.environ.get("PROFILE_RUNTIME_ID", "native_unversioned"),
         "debug_log": os.path.relpath(log_path, ROOT).replace(os.sep, "/"),
@@ -348,8 +373,11 @@ def resolve(row, timeout):
     record["max_drift_indicator"] = indicator
     # A row settled at its own declared warm-up needs no override at all: it
     # was excluded by the parser reading the wrong column, not by its code.
+    # A row that had to be given a warm-up before the analyzer would run has
+    # by definition not been left alone, whatever column it settled in.
     record["needed_no_override"] = (
-        declared is not None and startup <= columns[declared][0])
+        record.get("declared_warmup_override") is None
+        and declared is not None and startup <= columns[declared][0])
     return record
 
 
