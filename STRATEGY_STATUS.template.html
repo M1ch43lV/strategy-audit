@@ -233,7 +233,8 @@
       <div class="empty" id="empty" hidden>No row matches these filters.</div>
     </div>
     <p class="note">Click a column header to sort. A gate reads <code>–</code> when there is <em>no verdict bound to this implementation</em>: either it has not been re-measured, or the only verdict available comes from the original sweep. Hover any cell for the detail.</p>
-    <p class="note"><strong>Not every exclusion is a finding.</strong> Of the 377 excluded rows, <b>110</b> rest on a disqualifying result measured here from that implementation — those are closed. <b>43</b> rest on a verdict inherited from the original sweep, <b>72</b> on no disqualifying result at all (a gate returned nothing, or returned it under a reader defect since corrected), and <b>152</b> never ran, so nothing about them was judged. The last three carry the work that would settle them, and the table's selftest fails if one of them carries none. The badge on the reason says which.</p>
+    <p class="note"><strong>Excluded is a verdict, and it is not issued on somebody else's measurement or on the absence of one.</strong> Going through all 377 rows that carried it: <b>110</b> rest on a disqualifying result measured here from that implementation, and <b>152</b> never ran at all, so nothing about them was judged. The other <b>115</b> — <b>43</b> on a verdict inherited from the original sweep, <b>72</b> on no disqualifying result whatever — have been moved to <b>exclusion unconfirmed</b> and are held there until a measurement of ours settles them. Nothing is hidden by the change of name: the decisive reason and the badge stay on the row, and the work that would settle it is queued. The selftest now fails if anything reaches <code>excluded</code> on borrowed or absent evidence.</p>
+    <p class="note">This is not a softening. Many held rows will end up excluded — the 38 on an inherited look-ahead finding probably will, since a limited environment does not invent bias. They will end up there on our own evidence or not at all.</p>
     <p class="note"><strong>Three things the reader got wrong, and what each cost.</strong> The analyzer prints one column per warm-up and sorts them by value, so the strategy's own column moves; reading the first numeric column instead measured drift at somebody else's warm-up. It printed <code>nan</code> where an indicator was not yet defined, and those cells were skipped, which turned "nothing could be compared" into "nothing deviated". And when every indicator matches the full-history run exactly it prints no table at all, just a sentence saying so — which was read as a missing measurement rather than as the strongest available pass. Each was found by re-reading stored logs, and each is now a rule with a test behind it.</p>
     <p class="note"><strong>Where a log survived, it has been read again.</strong> Of 124 recursion records with their log, 55 said something other than what this table showed: 40 have no verdict at all, one is clean, and 14 keep their verdict with corrected numbers. Seventeen ladder runs recorded as inconclusive were in fact clean at the first rung. What each replaced is kept on the record. The 76 records that kept no log cannot be checked and stay queued.</p>
     <p class="note"><strong>Recursion shows the current state, not the original one.</strong> <code>PASS @ 14d</code> means no indicator drifts once fourteen days of warm-up are supplied, so the earlier exclusion was a measurement question rather than a property of the strategy. <code>PASS*</code> marks the few rows that only meet the 1 % band and not the original 0.01 %.</p>
@@ -274,11 +275,13 @@
     E0_strict67:      {label:"frozen baseline", cls:"k-pass"},
     E1_expanded:      {label:"admitted since", cls:"k-pass"},
     convergence_candidate:{label:"convergence candidate", cls:"k-cand"},
+    exclusion_unconfirmed:{label:"exclusion unconfirmed", cls:"k-hold"},
     pending:          {label:"open", cls:"k-hold"},
     not_tested_in_current_runtime:{label:"not run here yet", cls:"k-none"},
     excluded:         {label:"excluded", cls:"k-fail"}
   };
-  var ORDER = ["E0_strict67","E1_expanded","convergence_candidate","pending",
+  var ORDER = ["E0_strict67","E1_expanded","convergence_candidate",
+               "exclusion_unconfirmed","pending",
                "not_tested_in_current_runtime","excluded"];
   var VAR = {"k-pass":"--pass","k-cand":"--cand","k-hold":"--hold",
              "k-none":"--none","k-fail":"--fail"};
@@ -318,7 +321,7 @@
     ["convergence candidates", count("convergence_candidate"), "is-cand"],
     ["will not start", rows.filter(function(r){return r.n==="strategy_does_not_run";}).length, "is-fail"],
     ["look-ahead measured here", rows.filter(function(r){return r.ls==="native";}).length, ""],
-    ["queued for the ladder", rows.filter(function(r){return (r.o||"").indexOf("recursive_ladder_pending")>=0;}).length, "is-hold"],
+    ["exclusion unconfirmed", count("exclusion_unconfirmed"), "is-hold"],
     ["inherited verdicts", inherited, ""]
   ].map(function(s){
     return '<div class="stat '+s[2]+'"><b>'+s[1]+'</b><span>'+s[0]+'</span></div>';
@@ -481,7 +484,8 @@
 
   var tally = {};
   rows.forEach(function(r){
-    if(["E0_strict67","E1_expanded","convergence_candidate"].indexOf(r.c) >= 0) return;
+    if(["E0_strict67","E1_expanded","convergence_candidate",
+        "exclusion_unconfirmed"].indexOf(r.c) >= 0) return;
     if(!r.n) return;
     tally[r.n] = (tally[r.n]||0) + 1;
   });

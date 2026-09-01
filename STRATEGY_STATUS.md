@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 21:11:29 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 21:20:41 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -32,7 +32,8 @@ have neither and are left empty rather than given an invented time.
 | Cohort | Strategies |
 |---|---:|
 | `convergence_candidate` | 378 |
-| `excluded` | 377 |
+| `excluded` | 262 |
+| `exclusion_unconfirmed` | 115 |
 | `E0_strict67` | 67 |
 | `not_tested_in_current_runtime` | 60 |
 | `E1_expanded` | 11 |
@@ -45,7 +46,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 202 of 2102 commands are recorded so far, and every new run
+recording. 207 of 2102 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -1022,7 +1023,31 @@ verdict. Where such a hint exists it is shown in brackets.
 | `tacos1` | `not_scheduled` | `no run under the current runtime (historical hint: No data found. Terminating.)` |
 | `turbov8` | `not_scheduled` | `no run under the current runtime (historical hint: engine exited with code 0 but produced no summary (no trades at all, or output not parsed))` |
 
-## Not passing - 377 strategies, by decisive reason
+## Exclusion unconfirmed - 115 strategies
+
+`excluded` is a verdict, and this audit does not issue one on
+somebody else's measurement or on the absence of one. These rows
+would have been excluded on exactly that, so they are held here
+until a measurement of ours settles them either way. Nothing about
+them is hidden by the change of name: the decisive reason and the
+basis stay on the row, and the work that would settle it is in
+`open_work`.
+
+| Held on | Basis | Strategies |
+|---|---|---:|
+| `recursive_bias_unverified` | `no_finding` | 43 |
+| `lookahead_found` | `inherited` | 38 |
+| `no_verdict_on_lookahead_and_recursive` | `no_finding` | 15 |
+| `no_verdict_on_recursive` | `no_finding` | 10 |
+| `no_trades_in_full_measurement` | `inherited` | 5 |
+| `no_verdict_on_lookahead` | `no_finding` | 4 |
+
+This is not a softening. A row here may well end up excluded - the
+38 held on an inherited look-ahead finding probably will, because a
+limited environment does not invent bias. It ends up there on our
+own evidence or not at all.
+
+## Not passing - 262 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -1071,8 +1096,6 @@ whether the row is finished with or waiting on us.
 | Basis | Meaning | Strategies |
 |---|---|---:|
 | `own_measurement` | a disqualifying result measured here, from this implementation | 110 |
-| `inherited` | the disqualifying result comes from the original sweep, not from a measurement of this implementation | 43 |
-| `no_finding` | no disqualifying result at all - a gate returned nothing, or returned it under a known reader defect | 72 |
 | `blocked` | the strategy did not run, so nothing about it was judged | 152 |
 
 Only `own_measurement` is a closed case. The other three carry the
@@ -1081,32 +1104,24 @@ one of them carries none.
 
 | Reason | Meaning | Strategies |
 |---|---|---:|
-| `lookahead_found` | reads data it could not have had at the time | 69 |
+| `lookahead_found` | reads data it could not have had at the time | 31 |
 | `technical_trap_found` | carries a published backtesting trap | 40 |
 | `strategy_does_not_run` | fails before it can be measured; the message is in runtime_failure | 152 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 28 |
-| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 43 |
-| `no_trades_in_full_measurement` | never trades over the full window | 16 |
-| `no_verdict_on_lookahead_and_recursive` | measured; neither gate returned a verdict | 15 |
-| `no_verdict_on_lookahead` | measured and recursion clean; look-ahead has no verdict | 4 |
-| `no_verdict_on_recursive` | measured and look-ahead clean; recursion has no verdict | 10 |
+| `no_trades_in_full_measurement` | never trades over the full window | 11 |
 
 
 ### Reason by wave
 
 | Reason | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `not_scheduled` |
 |---|---|---|---|---|
-| `lookahead_found` | 0 | 15 | 0 | 54 |
+| `lookahead_found` | 0 | 15 | 0 | 16 |
 | `technical_trap_found` | 0 | 0 | 0 | 40 |
 | `strategy_does_not_run` | 0 | 152 | 0 | 0 |
 | `recursive_bias_found` | 3 | 0 | 14 | 11 |
-| `recursive_bias_unverified` | 2 | 9 | 0 | 32 |
-| `no_trades_in_full_measurement` | 0 | 10 | 0 | 6 |
-| `no_verdict_on_lookahead_and_recursive` | 0 | 15 | 0 | 0 |
-| `no_verdict_on_lookahead` | 0 | 4 | 0 | 0 |
-| `no_verdict_on_recursive` | 0 | 10 | 0 | 0 |
+| `no_trades_in_full_measurement` | 0 | 10 | 0 | 1 |
 
-### `lookahead_found` - 69
+### `lookahead_found` - 31
 
 Reads data it could not have had at the time.
 
@@ -1117,22 +1132,12 @@ Wave `C_measurement_recovery` - 15:
 `NostalgiaForInfinityNext_maximizer`, `NostalgiaForInfinityV7_7_2`, `NostalgiaForInfinityXw`, `Obelisk_Ichimoku_Slow_v1_3`
 `Obelisk_Ichimoku_ZEMA_v1`, `Stinkfist`, `ichiV1_Marius`
 
-Wave `not_scheduled` - 54:
+Wave `not_scheduled` - 16:
 
-`AlexBTK_CT`, `AlexBattleTankKiller`, `AlexBattleTankKillerV3`, `AlexBattleTankKillerV40H`
-`Auto_EI_t4c0s`, `BBBreakoutStrategy`, `BB_RPB_TSL_c7c477d_20211030`, `BreakoutStrategy`
-`BuyAllSellAllStrategy`, `CCIStrategy`, `Cci`, `EI1_t4c0s_V4`
-`EI4_t4c0s_V2`, `EI4_t4c0s_V2_2`, `ElliotWave`, `FVGAdvancedStrategy_V2`
-`FakeoutStrategy`, `FrayLIVEBTC15m`, `FrostAuraRandomStrategy`, `Heracles`
-`HyperStra_SMAOnly`, `Ichi`, `IchiVwapAdx`, `IchimokuCloudStrategy`
-`Leveraged`, `LookaheadStrategy`, `LorentzianClassification`, `MSO`
-`MaxSharpePortfolio`, `MinimumVariancePortfolio`, `MomentumRegimeBasket`, `NOTankAi_17`
-`NOTankAi_19`, `NWEv6`, `NeuroV1`, `Obelisk_TradePro_Ichi_v1_1`
-`Obelisk_TradePro_Ichi_v2_1`, `Precognition`, `ReinforcedQuickie`, `Renko`
-`Rsiqui`, `RsiquiV2`, `RsiquiV5`, `RsiquiV5_long_only`
-`StarRise_strat3`, `TSPredict`, `Tank1Modulus`, `UziChan`
-`UziChan2`, `Zeus`, `grad`, `ichiV1`
-`tsp0chicken`, `wtc`
+`BreakoutStrategy`, `FakeoutStrategy`, `Heracles`, `HyperStra_SMAOnly`
+`IchiVwapAdx`, `MaxSharpePortfolio`, `MinimumVariancePortfolio`, `MomentumRegimeBasket`
+`NOTankAi_17`, `NOTankAi_19`, `Precognition`, `RsiquiV2`
+`RsiquiV5`, `TSPredict`, `Zeus`, `tsp0chicken`
 
 ### `technical_trap_found` - 40
 
@@ -1262,32 +1267,7 @@ Wave `not_scheduled` - 11:
 `GoldHedgeZeroMACD`, `NOTankAi_15`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`
 `NotAnotherSMAOffSetStrategy_V2`, `TrendRiderStrategy`, `pcb20`
 
-### `recursive_bias_unverified` - 43
-
-Recorded under a parser defect and not re-measured; not a finding.
-
-Wave `B_warmup_refusal` - 2:
-
-`AwesomeMacd`, `MabStra`
-
-Wave `C_measurement_recovery` - 9:
-
-`BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB_RPB_TSL_BI`, `BB_RPB_TSL_BIV1`
-`MultiMA_TSL3`, `MultiRSI`, `ObeliskRSI_v6_1`, `epretrace`
-`pmaxTest`
-
-Wave `not_scheduled` - 32:
-
-`BinHV27F`, `BinHV27_short`, `ConsensusShort`, `DWT_LongShort`
-`DWT_short`, `FReinforcedStrategy`, `FTT_DWT_FBB_FUTURES`, `GKD_CT`
-`HEW`, `HurstCycle3`, `HurstCycle7`, `HurstCycleV4`
-`HurstCycleV5`, `HurstCycleV5RSI`, `HurstCycleV6`, `MACDRL`
-`MACDRS`, `NostalgiaForInfinityX2`, `NostalgiaForInfinityX3`, `NostalgiaForInfinityX4`
-`NostalgiaForInfinityX5`, `NostalgiaForInfinityX6`, `NostalgiaForInfinityX7`, `SMAOffset_Hippocritical_dca_leverage`
-`StrategyTestV3`, `SupertrendStrategy`, `SwingHighToSky`, `TrendFollowingStrategy`
-`ZaratustraDCA2_06`, `ZaratustraDCA2_07`, `ZaratustraDCA5`, `mabStra`
-
-### `no_trades_in_full_measurement` - 16
+### `no_trades_in_full_measurement` - 11
 
 Never trades over the full window.
 
@@ -1297,39 +1277,9 @@ Wave `C_measurement_recovery` - 10:
 `Miku_PP_v3`, `MostOfAll`, `MyStrategyTemplate`, `Obelisk_3EMA_StochRSI_ATR`
 `ViN`, `ep3mas2`
 
-Wave `not_scheduled` - 6:
+Wave `not_scheduled` - 1:
 
-`DoubleEMACrossoverWithTrend`, `EMAPriceCrossoverWithThreshold`, `Insomnia_short`, `MACDCrossoverWithTrend`
-`RSIDirectionalWithTrend`, `RSIDirectionalWithTrendSlow`
-
-### `no_verdict_on_lookahead_and_recursive` - 15
-
-Measured; neither gate returned a verdict.
-
-Wave `C_measurement_recovery` - 15:
-
-`ARIMASTR`, `BB_RPB_TSL_SMA_Tranz`, `HarmonicDivergence`, `HarmonicDivergence_fix`
-`KitchenSink`, `NASOSRv6_private_Reinuvader_20211121`, `NFIX_BB_RPB`, `NFIX_BB_RPB_c7c477d_20211030`
-`NostalgiaForInfinity772martinsk3`, `NostalgiaForInfinityX`, `beta_factors_model`, `falconTrader`
-`newstrategy53`, `newstrategy53_22`, `zorkv7_0_0`
-
-### `no_verdict_on_lookahead` - 4
-
-Measured and recursion clean; look-ahead has no verdict.
-
-Wave `C_measurement_recovery` - 4:
-
-`ExponentialGradientPortfolio`, `Hacklemore`, `Matrix`, `custom_sell`
-
-### `no_verdict_on_recursive` - 10
-
-Measured and look-ahead clean; recursion has no verdict.
-
-Wave `C_measurement_recovery` - 10:
-
-`BBMod1`, `BB_RPB_TSL_SMA_Tranz_TB_1_1_1`, `BB_RPB_TSL_SMA_Tranz_TB_MOD`, `GeneStrategy`
-`GeneStrategy_v2`, `GeneTrader_gen10_1734895087_6007`, `GeneTrader_gen5_1735014093_4541`, `MultiMA_TSL3_Mod`
-`NFI731_BUSD`, `slownsteady`
+`Insomnia_short`
 
 ## Expansion wave
 
@@ -1350,7 +1300,7 @@ Wave `C_measurement_recovery` - 10:
 | `runtime_repair_pending` | 152 |
 | `recursive_ladder_pending` | 145 |
 | `lookahead_remeasure_pending` | 88 |
-| `lookahead_verdict` | 73 |
+| `lookahead_verdict` | 70 |
 | `first_measurement_in_current_runtime` | 60 |
 | `convergence_inconclusive` | 34 |
 | `convergence_not_converged_within_ladder` | 28 |

@@ -539,6 +539,14 @@ def rows():
         # in the table would say so.
         basis = exclusion_basis(reason, lookahead_evidence, source) \
             if cohort in ("excluded", "pending") else ""
+        # `excluded` is a verdict, and this audit does not issue a verdict on
+        # somebody else's measurement or on the absence of one. A row whose
+        # exclusion rests on an inherited result, or on no result at all, is
+        # not excluded yet - it is unfinished, and says so until a measurement
+        # of ours settles it. The decisive reason and the basis stay on the
+        # row, so nothing is hidden by the change of name.
+        if cohort == "excluded" and basis in ("inherited", "no_finding"):
+            cohort = "exclusion_unconfirmed"
         if basis == "blocked":
             open_work.append("runtime_repair_pending")
         elif basis in ("inherited", "no_finding"):
@@ -682,6 +690,7 @@ def _report(data):
     pending = [r for r in data if r["cohort"] == "pending"]
     untested = [r for r in data if r["cohort"] == "not_tested_in_current_runtime"]
     failing = [r for r in data if r["cohort"] == "excluded"]
+    unconfirmed = [r for r in data if r["cohort"] == "exclusion_unconfirmed"]
     now = datetime.datetime.now().replace(microsecond=0).isoformat(sep=" ")
 
     lines = [
@@ -816,6 +825,30 @@ def _report(data):
         lines.append("")
 
     texts = dict(REASON_ORDER)
+    if unconfirmed:
+        held = collections.Counter(row["primary_reason"] for row in unconfirmed)
+        lines += [
+            "## Exclusion unconfirmed - %d strategies" % len(unconfirmed), "",
+            "`excluded` is a verdict, and this audit does not issue one on",
+            "somebody else's measurement or on the absence of one. These rows",
+            "would have been excluded on exactly that, so they are held here",
+            "until a measurement of ours settles them either way. Nothing about",
+            "them is hidden by the change of name: the decisive reason and the",
+            "basis stay on the row, and the work that would settle it is in",
+            "`open_work`.", "",
+            "| Held on | Basis | Strategies |", "|---|---|---:|",
+        ]
+        for key, count in held.most_common():
+            example = next(r for r in unconfirmed if r["primary_reason"] == key)
+            lines.append("| `%s` | `%s` | %d |"
+                         % (key, example["exclusion_basis"], count))
+        lines += [
+            "",
+            "This is not a softening. A row here may well end up excluded - the",
+            "38 held on an inherited look-ahead finding probably will, because a",
+            "limited environment does not invent bias. It ends up there on our",
+            "own evidence or not at all.", "",
+        ]
     grouped = collections.defaultdict(list)
     for row in failing:
         grouped[row["primary_reason"]].append(row["strategy_id"])
@@ -965,7 +998,8 @@ def selftest():
     # were passing on 1 of 900 rows. A test that reports PASS while covering
     # almost nothing is worse than no test.
     for row in data:
-        if row["cohort"] in ("excluded", "pending", "not_tested_in_current_runtime"):
+        if row["cohort"] in ("excluded", "exclusion_unconfirmed", "pending",
+                             "not_tested_in_current_runtime"):
             assert row["primary_reason"], row["strategy_id"]
         else:
             assert not row["primary_reason"], row["strategy_id"]
@@ -991,7 +1025,15 @@ def selftest():
         assert not i18n.has_cyrillic(row["primary_reason"]), row["strategy_id"]
         # An exclusion is either a finding of ours or an open question, and an
         # open question must name the work that would close it.
-        if row["cohort"] == "excluded" \
+        if row["cohort"] == "exclusion_unconfirmed":
+            assert row["exclusion_basis"] in ("inherited", "no_finding"), \
+                (row["strategy_id"], row["exclusion_basis"])
+        # An exclusion this audit has not confirmed is a verdict it has not
+        # earned. Nothing may sit in `excluded` on borrowed or absent evidence.
+        if row["cohort"] == "excluded":
+            assert row["exclusion_basis"] in ("own_measurement", "blocked"), \
+                (row["strategy_id"], row["exclusion_basis"])
+        if row["cohort"] in ("excluded", "exclusion_unconfirmed") \
                 and row["exclusion_basis"] != "own_measurement":
             assert row["open_work"], \
                 "%s: excluded on %s with no work queued" % (
