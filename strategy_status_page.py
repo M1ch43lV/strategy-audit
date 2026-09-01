@@ -51,6 +51,7 @@ FIELDS = {
     "xb": "exclusion_basis",
     "rv": "repair_verdict",
     "rf": "repair_family",
+    "rs2": "repair_settings",
 }
 
 

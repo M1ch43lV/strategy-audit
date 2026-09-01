@@ -267,6 +267,7 @@
     <p class="note"><strong>Where a log survived, it has been read again.</strong> Of 124 recursion records with their log, 55 said something other than what this table showed: 40 have no verdict at all, one is clean, and 14 keep their verdict with corrected numbers. Seventeen ladder runs recorded as inconclusive were in fact clean at the first rung. What each replaced is kept on the record. The 76 records that kept no log cannot be checked and stay queued.</p>
     <p class="note"><strong>Recursion shows the current state, not the original one.</strong> <code>PASS @ 14d</code> means no indicator drifts once fourteen days of warm-up are supplied, so the earlier exclusion was a measurement question rather than a property of the strategy. <code>PASS*</code> marks the few rows that only meet the 1 % band and not the original 0.01 %.</p>
     <p class="note"><strong>Every row carries the commands it was produced by — one per gate.</strong> <code>bt</code> is the backtest, <code>la</code> the look-ahead analysis, <code>rec</code> the recursion analysis. They are listed separately because they differ in more than their subcommand: the bias gates run against a config that forces <code>price_side=other</code>, since look-ahead analysis forces market orders and freqtrade will not evaluate a signal without it, while a backtest uses the plain config and adds <code>--fee 0.001 --export trades --cache none</code>. A single column could only ever have shown one of the three. Hover any line for the full command.</p>
+    <p class="note"><strong>A repaired row carries what a later run has to reproduce.</strong> Its <code>settings</code> line names the rules, the config, the model and the environment the repair needs — the parts that cannot appear on a command line, such as <code>PYTHONPATH</code> additions or <code>PROFILE_COMPAT_SIGNATURES</code>, and the recovered timeframe that lives in a generated config nobody could guess. The reconstructed gate commands are built from those same facts and point at <code>user_data/profile_bias_strategies/&lt;strategy&gt;</code>, the directory holding that strategy alone: freqtrade's resolver imports every file beside the one it wants, and a neighbour that raises at import time takes the run with it. The table's selftest fails if a repaired row states neither its settings nor a recorded call.</p>
     <p class="note">A plain line was recorded as it ran; one with an amber rule is <em>reconstructed</em> from the run profile and window, because nothing stored the call before 2026-09-01 — a reconstruction is a different claim from a recording. The full-window backtest is eight calls, one per pair; the cell leaves the pair as a placeholder and states the count, while every individual call with its own console output is appended to <code>user_data/freqtrade_runs.log</code>.</p>
     <p class="note"><strong>A row that failed here is not a row that never ran.</strong> 152 strategies were attempted in this runtime, on the date shown, and stopped with an error; the message is under the reason. Forty-eight of them are blocked on nothing but a missing timeframe declaration.</p>
   </section>
@@ -587,6 +588,10 @@
     body.innerHTML = list.map(function(r){
       var co = COHORT[r.c] || {label:r.c, cls:"k-none"};
       var reason = REASON_TEXT[r.n] || r.n || "–";
+      if(r.rs2){
+        reason += '<span class="msg" style="white-space:normal" title="'+
+          esc(r.rs2)+'">settings &middot; '+esc(r.rs2)+'</span>';
+      }
       if(r.rv){
         reason = '<span class="basis v-'+r.rv+'" title="'+REPAIR[r.rv]+'">'+
           r.rv.replace(/_/g," ")+'</span>' + reason +

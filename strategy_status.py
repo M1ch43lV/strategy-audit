@@ -28,6 +28,7 @@ import sys
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+BS_SEP = chr(92)
 ELIGIBILITY = os.path.join(ROOT, "REGIME_ELIGIBILITY.csv")
 PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
 CANDIDATES = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_CANDIDATES.csv")
@@ -96,7 +97,7 @@ FIELDS = [
     "observed_trades", "trade_evidence", "lookahead", "lookahead_evidence",
     "recursive", "recursive_evidence", "coverage_status", "traps_n", "artifact_role",
     "baseline_status", "primary_reason", "exclusion_basis",
-    "repair_family", "repair_verdict",
+    "repair_family", "repair_verdict", "repair_settings",
     "runtime_failure", "evidence_gap",
     "last_tested_at",
     "last_tested_source", "settled_startup", "settled_days", "settled_drift_pct",
@@ -172,6 +173,70 @@ def profile_bias_window(run_profile):
             else "20190101-20190401")
 
 
+def repair_settings(entry, run=None):
+    """What a repair consists of, as one line a person can act on.
+
+    A repaired row's gate commands are reconstructed, and a reconstruction that
+    silently drops the repair is worse than none: following it reproduces the
+    original failure and looks like the strategy's fault. So the repair is
+    stated here in full, and the reconstructions are built from the same facts
+    rather than from the generic template.
+    """
+    parts = []
+    # A timeframe recovered at run time lives in the repair record, not in the
+    # class-1 registry: it is written into a generated override config whose
+    # name nobody can guess. Stated here as the flag that reproduces it.
+    overrides = (run or {}).get("config_overrides") or {}
+    for key, value in sorted(overrides.items()):
+        parts.append("%s=%s (recovered)" % (key, value))
+    if (run or {}).get("timeframe_evidence"):
+        parts.append("timeframe_evidence=" + run["timeframe_evidence"])
+    entry = entry or {}
+    rules = entry.get("rules") or []
+    if rules:
+        parts.append("rules=" + ",".join(rules))
+    if entry.get("config_source"):
+        parts.append("config=" + entry["config_source"])
+    if entry.get("config_keys"):
+        parts.append("config_keys=" + ",".join(entry["config_keys"]))
+    if entry.get("freqaimodel"):
+        parts.append("freqaimodel=" + entry["freqaimodel"])
+    if entry.get("freqaimodel_path"):
+        parts.append("freqaimodel_path=" + entry["freqaimodel_path"])
+    for key, name in (("python_paths", "PYTHONPATH"),
+                      ("freqtrade_paths", "PROFILE_FREQTRADE_PATH")):
+        if entry.get(key):
+            parts.append("%s+=%s" % (name, ":".join(entry[key])))
+    signatures = [rule for rule in rules
+                  if rule in ("legacy_min_roi_reached_entry_signature",
+                              "whitespace_tolerant_class_scan")]
+    if signatures:
+        parts.append("PROFILE_COMPAT_SIGNATURES=" + ",".join(signatures))
+    if entry.get("packages"):
+        parts.append("packages=" + ",".join(
+            "%s==%s" % (p.get("name"), p.get("version"))
+            for p in entry["packages"]))
+    if entry.get("status"):
+        parts.append("status=" + entry["status"])
+    return "; ".join(parts)
+
+
+def repair_flags(entry, run=None):
+    """The extra freqtrade arguments a repaired row needs."""
+    extra = []
+    timeframe = ((run or {}).get("config_overrides") or {}).get("timeframe")
+    if timeframe:
+        # The gate configs are shared, so the recovered value is passed on the
+        # command line rather than by pointing at the generated override.
+        extra.append("--timeframe " + timeframe)
+    entry = entry or {}
+    if entry.get("freqaimodel"):
+        extra.append("--freqaimodel " + entry["freqaimodel"])
+    if entry.get("freqaimodel_path"):
+        extra.append("--freqaimodel-path " + entry["freqaimodel_path"])
+    return (" " + " ".join(extra)) if extra else ""
+
+
 def _config_for(kind, profile):
     mode = "futures" if (profile or "").startswith("futures_") else "spot"
     if mode == "futures":
@@ -185,7 +250,7 @@ def _config_for(kind, profile):
 
 
 def invocation(record, kind, profile, timerange, strategy, source_file,
-               pairs=0):
+               pairs=0, repair=None, run=None):
     """The freqtrade call for ONE gate, labelled by where it comes from.
 
     A row can have three: a backtest, a look-ahead run and a recursion run. They
@@ -203,9 +268,22 @@ def invocation(record, kind, profile, timerange, strategy, source_file,
     template = _RECONSTRUCTED.get(kind)
     if not template or not timerange:
         return ""
-    line = template.format(config=_config_for(kind, profile), strategy=strategy,
-                           path=os.path.dirname(source_file) or ".",
+    # A repaired row runs against the config the repair produced, not the
+    # generic one, and needs whatever flags the repair registered.
+    config = _config_for(kind, profile)
+    if repair and repair.get("config_source"):
+        config = repair["config_source"]
+    # The gates run against an isolated directory holding this strategy alone,
+    # because freqtrade's resolver imports every .py beside it and a neighbour
+    # that raises at import time takes the run with it - one file in
+    # PeetCrypto_freqtrade-stuff opens a log at module level and kills any gate
+    # pointed at that directory. Naming the repo path here would print a
+    # command that fails for a reason that has nothing to do with the row.
+    path = (os.path.dirname(source_file) or "." if kind == "backtest"
+            else "user_data/profile_bias_strategies/%s" % strategy)
+    line = template.format(config=config, strategy=strategy, path=path,
                            timerange=timerange)
+    line += repair_flags(repair, run)
     if kind == "backtest" and pairs > 1:
         line += " --pairs {pair}   # %d pairs, one call each" % pairs
     return "[reconstructed] " + line
@@ -407,6 +485,7 @@ def rows():
     refused_timeframe = _json(TIMEFRAME_REPAIR, "refused")
     # A route that ran and concluded the row cannot be repaired without
     # inventing something. Recorded where the runners already look.
+    class1 = _json(CLASS1, "strategies") or {}
     refused_repair = {name: entry.get("note", "")
                       for name, entry in (_json(CLASS1, "strategies") or {}).items()
                       if entry.get("status") == "refused"}
@@ -684,6 +763,11 @@ def rows():
             repair["family"] = "timeframe_not_recoverable"
             repair["note"] = refused_timeframe[strategy].get("why", "")
         arm = freqai.get(strategy)
+        if arm and arm.get("config"):
+            arm_config = arm["config"].replace(BS_SEP, "/")
+            repair.setdefault("settings_extra",
+                              "freqai_config=" + arm_config +
+                              "; freqaimodel=LightGBMRegressor")
         if arm:
             # The arm ran. Whatever the ordinary runner says about freqAI not
             # being enabled describes the ordinary config, not this strategy.
@@ -738,15 +822,18 @@ def rows():
         # when it exists, because that run is the one measured over the whole
         # window; the smoke run is the shorter probe.
         backtest_record = window or measurement
+        class1_entry = class1.get(strategy) or {}
         cmd_backtest = invocation(
             backtest_record, "backtest", run_profile,
             backtest_record.get("timerange") or measurement.get("timerange"),
-            strategy, source_file, pairs)
+            strategy, source_file, pairs, repair=class1_entry,
+            run=repair_run)
         cmd_lookahead = invocation(
             fresh or diagnostics.get("lookahead") or {}, "lookahead", run_profile,
             (fresh or diagnostics.get("lookahead") or {}).get("timerange")
             or profile_bias_window(run_profile),
-            strategy, source_file)
+            strategy, source_file, repair=class1_entry,
+            run=repair_run)
         cmd_recursive = invocation(
             settled or (diagnostics.get("recursive") or {}) or attempt,
             "recursive",
@@ -754,7 +841,8 @@ def rows():
             (settled.get("timerange")
              or (diagnostics.get("recursive") or {}).get("timerange")
              or attempt.get("timerange") or profile_bias_window(run_profile)),
-            strategy, source_file)
+            strategy, source_file, repair=class1_entry,
+            run=repair_run)
         archive = next((p for p in evidence_paths(records) if p.endswith(".zip")), "")
 
         out.append({
@@ -781,6 +869,9 @@ def rows():
             "exclusion_basis": basis,
             "repair_family": repair.get("family", ""),
             "repair_verdict": repair.get("verdict", ""),
+            "repair_settings": "; ".join(
+                part for part in (repair_settings(class1_entry, repair_run),
+                                  repair.get("settings_extra", "")) if part),
             "primary_reason": reason,
             "runtime_failure": (i18n.translate(measurement.get("why") or "")[:160]
                                 if measurement.get("status") not in (None, "measured")
@@ -1191,6 +1282,13 @@ def selftest():
         # but this audit's own verdicts: a timeout, an empty summary, and a
         # timeframe mismatch.
         assert not i18n.has_cyrillic(row["primary_reason"]), row["strategy_id"]
+        # A repaired row must be runnable again by somebody reading this table
+        # alone: either the calls were recorded, or the settings that
+        # reproduce them are stated. A repair nobody can repeat is a claim,
+        # not a result.
+        if row["repair_verdict"] == "repaired":
+            assert row["repair_settings"] or \
+                row["cmd_backtest"].startswith("[recorded]"), row["strategy_id"]
         # An exclusion is either a finding of ours or an open question, and an
         # open question must name the work that would close it.
         if row["cohort"] == "exclusion_unconfirmed":
