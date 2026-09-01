@@ -254,7 +254,8 @@ def resolve(row, timeout):
     # row needs neither a changed warm-up nor the wider band, and saying so is
     # a stronger result than admitting it under the amendment.
     declared = profile_bias.run_diagnostic(row, "recursive", timeout, timeout)
-    declared_drifts = declared.get("drifts") or []
+    declared_drifts = [item for item in (declared.get("drifts") or [])
+                       if item[1] is not None]
     worst_declared = (max(declared_drifts, key=lambda item: abs(item[1]))
                       if declared_drifts else None)
     record["attempts"].append({
@@ -292,7 +293,8 @@ def resolve(row, timeout):
     for days, startup in rungs:
         print("  rung %dd -> startup=%d candles" % (days, startup), flush=True)
         result = eligibility_warmup.run_one(row, timeout, startup)
-        drifts = result.get("drifts") or []
+        drifts = [item for item in (result.get("drifts") or [])
+                  if item[1] is not None]
         worst = max(drifts, key=lambda item: abs(item[1])) if drifts else None
         attempt = {
             "ladder_days": days,
@@ -309,6 +311,11 @@ def resolve(row, timeout):
               (attempt["status"], attempt["max_drift_pct"],
                attempt["max_drift_indicator"]), flush=True)
         if result.get("status") == "NA":
+            # An indicator that is undefined at this warm-up has not failed;
+            # it has not been measured. A longer warm-up is exactly the remedy,
+            # so the ladder keeps climbing. Any other NA is a real dead end.
+            if profile_bias.UNDEFINED in (result.get("why") or ""):
+                continue
             record["state"] = "inconclusive"
             record["why"] = result.get("why")
             return record
@@ -320,6 +327,11 @@ def resolve(row, timeout):
             record["max_drift_indicator"] = attempt["max_drift_indicator"]
             return record
     last = record["attempts"][-1]
+    if all(attempt.get("status") == "NA" for attempt in record["attempts"]):
+        record["state"] = "inconclusive"
+        record["why"] = ("no rung produced a verdict; last: %s"
+                         % (last.get("why") or "")[:120])
+        return record
     record["state"] = "not_converged_within_ladder"
     record["why"] = ("no rung reached the band; largest remaining drift %s%% "
                      "on %s after %d days of warm-up"

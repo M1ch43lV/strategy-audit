@@ -1,6 +1,6 @@
 {
   "drift_threshold_pct": 1.0,
-  "invalidated": "All records before 2026-09-01 measured the drift at 199 candles rather than at the chosen warm-up, because the analyzer table's strategy column moves with its value and the parser took the first numeric column.",
+  "invalidated": "Records before 2026-09-01 12:00 are void: the parser read the wrong table column, and 'nan%' cells - the indicator undefined at that warm-up - were read as an empty table and then as a clean pass.",
   "ladder_days": [
     1,
     2,

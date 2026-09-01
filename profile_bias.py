@@ -210,10 +210,19 @@ def recursive_drifts(output):
         if value == "-":
             drifts.append((name, 0.0))
             continue
+        if value.lower().startswith("nan"):
+            # The indicator is undefined at this warm-up, so the comparison has
+            # no result. That is not a small drift and not a clean one; it is
+            # the absence of a measurement, and it is reported as such.
+            drifts.append((name, None))
+            continue
         match = re.fullmatch(r"(-?[\d.]+)%", value)
         if match:
             drifts.append((name, float(match.group(1))))
     return drifts
+
+
+UNDEFINED = "indicators undefined at this warm-up"
 
 
 def _recursive(output, returncode, threshold=DEFAULT_DRIFT_THRESHOLD):
@@ -230,14 +239,15 @@ def _recursive(output, returncode, threshold=DEFAULT_DRIFT_THRESHOLD):
     if refused:
         return "NA", ("startup_candle_count %s exceeds the exchange limit of %s "
                       "candles; the analyzer never ran" % refused.groups())
-    completed = "Start checking for recursive bias" in output
     drifts = recursive_drifts(output)
+    undefined = [key for key, value in drifts if value is None]
+    if undefined:
+        return "NA", "%s: %s" % (UNDEFINED, ", ".join(sorted(undefined)[:5]))
     if not drifts:
-        # An analyzer that ran and listed nothing found nothing: that is the
-        # cleanest result it can report. An analyzer that never got that far
-        # produced no verdict at all, and absence of evidence is not a pass.
-        if completed:
-            return "PASS", "no recursive deviations found"
+        # Whether an empty table means "nothing deviated" or "nothing was
+        # compared" cannot be told from the output, and this audit does not
+        # fold "could not be checked" into "clean". Three separate false passes
+        # on 2026-09-01 all had this shape, so the ambiguous case is NA.
         return "NA", "analyzer produced no drift table"
     bad = [(key, value) for key, value in drifts if abs(value) >= threshold]
     if bad:
@@ -381,6 +391,17 @@ def selftest():
         "│ macdhist │ - │ 0.000% │",
         ran])
     assert recursive_drifts(dashed) == [("macdhist", 0.0)]
+    # "nan%" is the indicator being undefined at that warm-up: no comparison
+    # happened, so there is no verdict and certainly no pass.
+    undefined = "\n".join([
+        "┃ Indicators ┃ 1 (from strategy) ┃ 199 ┃",
+        "│ rsi │ nan% │ -0.093% │",
+        "│ sma21 │ nan% │ 0.000% │",
+        ran])
+    assert recursive_drifts(undefined) == [("rsi", None), ("sma21", None)]
+    status, why = _recursive(undefined, 0)
+    assert status == "NA" and UNDEFINED in why, (status, why)
+    assert _recursive(undefined, 0, threshold=1.0)[0] == "NA"
     # Without the label there is no column to read, so there is no verdict.
     assert recursive_drifts("│ ema_200 │ 0.018% │" + ran) == []
 
@@ -389,9 +410,9 @@ def selftest():
     assert _recursive(first, 0)[0] == "FOUND"
     assert _recursive(last, 0, threshold=1.0) == (
         "PASS", "no recursive deviations found")
-    # An analyzer that ran and listed nothing found nothing.
-    assert _recursive(ran, 0) == ("PASS", "no recursive deviations found")
-    # One that never got that far produced no verdict at all.
+    # An empty table is ambiguous between "nothing deviated" and "nothing was
+    # compared", so it is never a pass.
+    assert _recursive(ran, 0) == ("NA", "analyzer produced no drift table")
     assert _recursive("", 0) == ("NA", "analyzer produced no drift table")
     refusal = ("Configuration error: This strategy requires 8640 candles to "
                "start, which is more than 5x (4999 candles) the amount of "
