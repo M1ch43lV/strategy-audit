@@ -36,6 +36,14 @@ SMOKE = os.path.join(ROOT, "PROFILE_SMOKE.json")
 BIAS = os.path.join(ROOT, "PROFILE_BIAS.json")
 FULL_WINDOW = os.path.join(ROOT, "PROFILE_FULL_WINDOW.json")
 CONVERGENCE = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
+# Two later stores hold look-ahead measured natively for rows whose verdict was
+# inherited or missing. They are separate files because they are separate
+# cohorts, and forgetting to read one is how the newest evidence stops reaching
+# this table while the table still claims to be current.
+LOOKAHEAD_STORES = (
+    os.path.join(ROOT, "ELIGIBILITY_LOOKAHEAD_BACKFILL.json"),
+    os.path.join(ROOT, "ELIGIBILITY_EVIDENCE_GAP.json"),
+)
 OUTPUT = os.path.join(ROOT, "STRATEGY_STATUS.csv")
 REPORT = os.path.join(ROOT, "STRATEGY_STATUS.md")
 
@@ -259,6 +267,14 @@ def rows():
     bias = _json(BIAS)
     full = _json(FULL_WINDOW)
     convergence = _json(CONVERGENCE)
+    # A native re-measurement outranks whatever PROFILE_BIAS or the baseline
+    # holds: it is the same gate, measured later, from this implementation.
+    remeasured = {}
+    for store in LOOKAHEAD_STORES:
+        for name, record in _json(store).items():
+            gate = record.get("lookahead") or {}
+            if gate.get("status") in ("PASS", "FOUND"):
+                remeasured[name] = gate
 
     out = []
     for strategy in sorted(profiles):
@@ -278,9 +294,9 @@ def rows():
         elif base.get("canonical_measured") == "true":
             trades, source = base.get("canonical_observed_trades", ""), "baseline"
 
-        lookahead = ((diagnostics.get("lookahead") or {}).get("status")
-                     or base.get("lookahead") or "")
-        lookahead_evidence = ("native" if diagnostics.get("lookahead")
+        fresh = remeasured.get(strategy)
+        lookahead = (fresh or diagnostics.get("lookahead") or {}).get("status")             or base.get("lookahead") or ""
+        lookahead_evidence = ("native" if (fresh or diagnostics.get("lookahead"))
                               else (base.get("lookahead_evidence_source") or "missing"))
         recursive = ((diagnostics.get("recursive") or {}).get("status")
                      or base.get("recursive") or "")
@@ -421,7 +437,7 @@ def rows():
             open_work.append("convergence_" + settled["state"])
 
         records = [measurement, diagnostics, window, settled,
-                   (diagnostics.get("lookahead") or {}),
+                   fresh or {}, (diagnostics.get("lookahead") or {}),
                    (diagnostics.get("recursive") or {})]
         stamp, stamp_source = tested_at(records)
 
@@ -437,8 +453,8 @@ def rows():
             backtest_record.get("timerange") or measurement.get("timerange"),
             strategy, source_file, pairs)
         cmd_lookahead = invocation(
-            diagnostics.get("lookahead") or {}, "lookahead", run_profile,
-            (diagnostics.get("lookahead") or {}).get("timerange")
+            fresh or diagnostics.get("lookahead") or {}, "lookahead", run_profile,
+            (fresh or diagnostics.get("lookahead") or {}).get("timerange")
             or profile_bias_window(run_profile),
             strategy, source_file)
         cmd_recursive = invocation(
@@ -800,7 +816,21 @@ def selftest():
         if row["cohort"] == "not_tested_in_current_runtime":
             assert row["measured"] == "false", row["strategy_id"]
             assert not row["evidence_paths"], row["strategy_id"]
-        # A row the ladder settled must not still carry the superseded verdict.
+        # Every native re-measurement must be visible in the table. A verdict that
+    # exists in a store this generator does not read is worse than no verdict:
+    # the table looks current and is not.
+    fresh_store = {}
+    for store in LOOKAHEAD_STORES:
+        for name, record in _json(store).items():
+            gate = record.get("lookahead") or {}
+            if gate.get("status") in ("PASS", "FOUND"):
+                fresh_store[name] = gate["status"]
+    by_id = {r["strategy_id"]: r for r in data}
+    for name, status in fresh_store.items():
+        assert by_id[name]["lookahead"] == status, (name, status)
+        assert by_id[name]["lookahead_evidence"] == "native", name
+
+    # A row the ladder settled must not still carry the superseded verdict.
         if row["cohort"] == "convergence_candidate":
             assert row["recursive"] in ("PASS", "PASS_1PCT"),                 (row["strategy_id"], row["recursive"])
             assert row["settled_startup"] != "", row["strategy_id"]

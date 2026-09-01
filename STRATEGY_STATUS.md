@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 17:20:13 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 17:24:00 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -45,7 +45,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 0 of 2102 commands are recorded so far, and every new run
+recording. 50 of 2102 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -156,7 +156,7 @@ The calls behind each, one per gate:
 
 - `BBRSIv2`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BBRSIv2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/BBRSIv2 --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BBRSIv2 --strategy-path user_data/profile_bias_strategies/BBRSIv2 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BBRSIv2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/BBRSIv2 --timerange 20190101-20190401 --no-color
   ```
 - `BigTrader`
@@ -166,12 +166,12 @@ The calls behind each, one per gate:
   ```
 - `BigZ03`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ03 --strategy-path repos/davidzr_freqtrade-strategies/strategies/BigZ03 --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ03 --strategy-path user_data/profile_bias_strategies/BigZ03 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ03 --strategy-path repos/davidzr_freqtrade-strategies/strategies/BigZ03 --timerange 20190101-20190401 --no-color
   ```
 - `BigZ03HO`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ03HO --strategy-path repos/davidzr_freqtrade-strategies/strategies/BigZ03HO --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ03HO --strategy-path user_data/profile_bias_strategies/BigZ03HO --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ03HO --strategy-path repos/davidzr_freqtrade-strategies/strategies/BigZ03HO --timerange 20190101-20190401 --no-color
   ```
 - `BigZ04_TSL3`
@@ -181,12 +181,12 @@ The calls behind each, one per gate:
   ```
 - `BigZ04_TSL4`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ04_TSL4 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ04_TSL4 --strategy-path user_data/profile_bias_strategies/BigZ04_TSL4 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ04_TSL4 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20190101-20190401 --no-color
   ```
 - `BinClucMad`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinClucMad --strategy-path repos/davidzr_freqtrade-strategies/strategies/BinClucMad --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinClucMad --strategy-path user_data/profile_bias_strategies/BinClucMad --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinClucMad --strategy-path repos/davidzr_freqtrade-strategies/strategies/BinClucMad --timerange 20190101-20190401 --no-color
   ```
 - `BuyRegions`
@@ -201,7 +201,7 @@ The calls behind each, one per gate:
   ```
 - `ClucHAnix_5M_E0V1E`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5M_E0V1E --strategy-path repos/phuchust_freqtrade_strategy --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5M_E0V1E --strategy-path user_data/profile_bias_strategies/ClucHAnix_5M_E0V1E --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5M_E0V1E --strategy-path repos/phuchust_freqtrade_strategy --timerange 20190101-20190401 --no-color
   ```
 - `ClucHAnix_5m`
@@ -216,7 +216,7 @@ The calls behind each, one per gate:
   ```
 - `ClucHAnix_5m_old`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5m_old --strategy-path repos/TheoBrigitte_freqtrade/strategies/cluc --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5m_old --strategy-path user_data/profile_bias_strategies/ClucHAnix_5m_old --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5m_old --strategy-path repos/TheoBrigitte_freqtrade/strategies/cluc --timerange 20190101-20190401 --no-color
   ```
 - `ClucHAwerk`
@@ -226,7 +226,7 @@ The calls behind each, one per gate:
   ```
 - `CombinedBinHAndClucV3`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/CombinedBinHAndClucV3 --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV3 --strategy-path user_data/profile_bias_strategies/CombinedBinHAndClucV3 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/CombinedBinHAndClucV3 --timerange 20190101-20190401 --no-color
   ```
 - `CombinedBinHAndClucV6`
@@ -246,7 +246,7 @@ The calls behind each, one per gate:
   ```
 - `CombinedBinHClucAndMADV5`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV5 --strategy-path repos/davidzr_freqtrade-strategies/strategies/CombinedBinHClucAndMADV5 --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV5 --strategy-path user_data/profile_bias_strategies/CombinedBinHClucAndMADV5 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV5 --strategy-path repos/davidzr_freqtrade-strategies/strategies/CombinedBinHClucAndMADV5 --timerange 20190101-20190401 --no-color
   ```
 - `CombinedBinHClucAndMADV6`
@@ -261,7 +261,7 @@ The calls behind each, one per gate:
   ```
 - `EMA_CROSSOVER_STRATEGY`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy EMA_CROSSOVER_STRATEGY --strategy-path repos/davidzr_freqtrade-strategies/strategies/EMA_CROSSOVER_STRATEGY --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy EMA_CROSSOVER_STRATEGY --strategy-path user_data/profile_bias_strategies/EMA_CROSSOVER_STRATEGY --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy EMA_CROSSOVER_STRATEGY --strategy-path repos/davidzr_freqtrade-strategies/strategies/EMA_CROSSOVER_STRATEGY --timerange 20190101-20190401 --no-color
   ```
 - `ElliotV2`
@@ -294,12 +294,12 @@ The calls behind each, one per gate:
   ```
 - `FlawlessVictory`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy FlawlessVictory --strategy-path repos/seannowotny_FlawlessVictoryPort/user_data/strategies --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy FlawlessVictory --strategy-path user_data/profile_bias_strategies/FlawlessVictory --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy FlawlessVictory --strategy-path repos/seannowotny_FlawlessVictoryPort/user_data/strategies --timerange 20190101-20190401 --no-color
   ```
 - `ForexSignal`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ForexSignal --strategy-path repos/davidzr_freqtrade-strategies/strategies/ForexSignal --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ForexSignal --strategy-path user_data/profile_bias_strategies/ForexSignal --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ForexSignal --strategy-path repos/davidzr_freqtrade-strategies/strategies/ForexSignal --timerange 20190101-20190401 --no-color
   ```
 - `Gumbo1`
@@ -344,7 +344,7 @@ The calls behind each, one per gate:
   ```
 - `NWEv6_new`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NWEv6_new --strategy-path repos/anakein_beastbotXB/working --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NWEv6_new --strategy-path user_data/profile_bias_strategies/NWEv6_new --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NWEv6_new --strategy-path repos/anakein_beastbotXB/working --timerange 20190101-20190401 --no-color
   ```
 - `NostalgiaForInfinityV1`
@@ -359,7 +359,7 @@ The calls behind each, one per gate:
   ```
 - `PowerTower`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy PowerTower --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy PowerTower --strategy-path user_data/profile_bias_strategies/PowerTower --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy PowerTower --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20190101-20190401 --no-color
   ```
 - `RegimeFilterStrategy`
@@ -370,7 +370,7 @@ The calls behind each, one per gate:
   ```
 - `RobotradingBody`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy RobotradingBody --strategy-path repos/davidzr_freqtrade-strategies/strategies/RobotradingBody --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy RobotradingBody --strategy-path user_data/profile_bias_strategies/RobotradingBody --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy RobotradingBody --strategy-path repos/davidzr_freqtrade-strategies/strategies/RobotradingBody --timerange 20190101-20190401 --no-color
   ```
 - `SMAIP3`
@@ -405,7 +405,7 @@ The calls behind each, one per gate:
   ```
 - `StochasticCciStrategy`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy StochasticCciStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy StochasticCciStrategy --strategy-path user_data/profile_bias_strategies/StochasticCciStrategy --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy StochasticCciStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20190101-20190401 --no-color
   ```
 - `TDSequentialStrategy`
@@ -415,7 +415,7 @@ The calls behind each, one per gate:
   ```
 - `TenderEnter`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TenderEnter --strategy-path repos/davidzr_freqtrade-strategies/strategies/TenderEnter --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TenderEnter --strategy-path user_data/profile_bias_strategies/TenderEnter --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TenderEnter --strategy-path repos/davidzr_freqtrade-strategies/strategies/TenderEnter --timerange 20190101-20190401 --no-color
   ```
 - `TheRealPullbackV2`
@@ -455,22 +455,22 @@ The calls behind each, one per gate:
   ```
 - `botbaby`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy botbaby --strategy-path repos/davidzr_freqtrade-strategies/strategies/botbaby --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy botbaby --strategy-path user_data/profile_bias_strategies/botbaby --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy botbaby --strategy-path repos/davidzr_freqtrade-strategies/strategies/botbaby --timerange 20190101-20190401 --no-color
   ```
 - `cryptotank`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy cryptotank --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy cryptotank --strategy-path user_data/profile_bias_strategies/cryptotank --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy cryptotank --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20190101-20190401 --no-color
   ```
 - `cryptotankV5`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy cryptotankV5 --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy cryptotankV5 --strategy-path user_data/profile_bias_strategies/cryptotankV5 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy cryptotankV5 --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20190101-20190401 --no-color
   ```
 - `fahmibah`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy fahmibah --strategy-path repos/davidzr_freqtrade-strategies/strategies/fahmibah --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy fahmibah --strategy-path user_data/profile_bias_strategies/fahmibah --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy fahmibah --strategy-path repos/davidzr_freqtrade-strategies/strategies/fahmibah --timerange 20190101-20190401 --no-color
   ```
 - `momentum`
@@ -481,7 +481,7 @@ The calls behind each, one per gate:
   ```
 - `momentum_long`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy momentum_long --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy momentum_long --strategy-path user_data/profile_bias_strategies/momentum_long --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy momentum_long --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20190101-20190401 --no-color
   ```
 - `momentum_rsi`
@@ -498,42 +498,42 @@ The calls behind each, one per gate:
   ```
 - `AlwaysBuy`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy AlwaysBuy --strategy-path repos/davidzr_freqtrade-strategies/strategies/AlwaysBuy --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy AlwaysBuy --strategy-path user_data/profile_bias_strategies/AlwaysBuy --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy AlwaysBuy --strategy-path repos/davidzr_freqtrade-strategies/strategies/AlwaysBuy --timerange 20190101-20190401 --no-color
   ```
 - `BinHV45`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45 --strategy-path user_data/profile_bias_strategies/BinHV45 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20190101-20190401 --no-color
   ```
 - `BinHV45_kanaxe`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_kanaxe --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_kanaxe --strategy-path user_data/profile_bias_strategies/BinHV45_kanaxe --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_kanaxe --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20190101-20190401 --no-color
   ```
 - `BinHV45_stash`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_stash --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_stash --strategy-path user_data/profile_bias_strategies/BinHV45_stash --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_stash --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20190101-20190401 --no-color
   ```
 - `BinHV45_werkkrew`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_werkkrew --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_werkkrew --strategy-path user_data/profile_bias_strategies/BinHV45_werkkrew --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_werkkrew --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20190101-20190401 --no-color
   ```
 - `BollingerBandStrategy`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BollingerBandStrategy --strategy-path repos/flaviosiotto_freqtrade-strategy/user_data/strategies --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BollingerBandStrategy --strategy-path user_data/profile_bias_strategies/BollingerBandStrategy --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BollingerBandStrategy --strategy-path repos/flaviosiotto_freqtrade-strategy/user_data/strategies --timerange 20190101-20190401 --no-color
   ```
 - `CCI_BB`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CCI_BB --strategy-path repos/mikedigriz_freqtrade-strategy-mikedigriz/strategies --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CCI_BB --strategy-path user_data/profile_bias_strategies/CCI_BB --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CCI_BB --strategy-path repos/mikedigriz_freqtrade-strategy-mikedigriz/strategies --timerange 20190101-20190401 --no-color
   ```
 - `HourBasedStrategy_5m`
   ```
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy HourBasedStrategy_5m --strategy-path repos/eovie_freqtrade_strs/binance/Archive --timerange 20190101-20190401 --no-color
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy HourBasedStrategy_5m --strategy-path user_data/profile_bias_strategies/HourBasedStrategy_5m --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy HourBasedStrategy_5m --strategy-path repos/eovie_freqtrade_strs/binance/Archive --timerange 20190101-20190401 --no-color
   ```
 - `NowoIchimoku5mV2`
@@ -1285,10 +1285,9 @@ Wave `C_measurement_recovery` - 4:
 | Item | Strategies |
 |---|---:|
 | `paired_full_window_equivalence` | 361 |
-| `lookahead_verdict` | 136 |
+| `lookahead_verdict` | 132 |
 | `first_measurement_in_current_runtime` | 60 |
 | `convergence_inconclusive` | 51 |
-| `re-measure_gates_in_current_runtime` | 30 |
 | `convergence_not_converged_within_ladder` | 28 |
 
 Per-row detail, including every evidence path, is in
