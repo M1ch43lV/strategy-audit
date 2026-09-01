@@ -46,7 +46,9 @@ import profile_bias
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 CONVERGENCE = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
+BIAS = os.path.join(ROOT, "PROFILE_BIAS.json")
 RULE = "no_variance_is_a_pass_v1"
+BIAS_RULE = "current_reader_v1"
 
 
 def _load(path):
@@ -114,6 +116,47 @@ def apply(store, dry_run):
     return changed
 
 
+def bias_candidates(store):
+    """Recursion records whose log the current reader disagrees with.
+
+    The convergence store was re-read when the column bug was found; this one
+    never was, so the table still shows verdicts produced by the reader that
+    took the first numeric column instead of the strategy's own. Where the log
+    survives it can simply be read again. Where it does not, the old verdict
+    stands and is marked, because an unverifiable record is not the same thing
+    as a checked one.
+    """
+    found = []
+    for strategy, record in sorted(store.items()):
+        gate = record.get("recursive") or {}
+        if not gate.get("status"):
+            continue
+        path = gate.get("debug_log")
+        full = (path if path and os.path.isabs(path)
+                else os.path.join(ROOT, path) if path else None)
+        if not full or not os.path.exists(full):
+            continue
+        output = io.open(full, encoding="utf-8", errors="replace").read()
+        status, why = profile_bias._recursive(output, gate.get("returncode", 0) or 0)
+        if status != gate["status"] or why != gate.get("why"):
+            found.append((strategy, gate, status, why))
+    return found
+
+
+def apply_bias(store, dry_run):
+    changed = []
+    for strategy, gate, status, why in bias_candidates(store):
+        changed.append((strategy, gate["status"], status, why))
+        if dry_run:
+            continue
+        gate["superseded_status"] = gate["status"]
+        gate["superseded_why"] = gate.get("why")
+        gate["status"] = status
+        gate["why"] = why
+        gate["reparsed_from_log"] = BIAS_RULE
+    return changed
+
+
 def selftest():
     store = _load(CONVERGENCE)["results"]
     # Nothing may be re-parsed into a pass without the analyzer's own sentence
@@ -129,18 +172,48 @@ def selftest():
     reparsed = sum(1 for r in store.values()
                    if r.get("reparsed_from_log") == RULE)
     remaining = len(candidates(store))
-    print("warmup_reparse selftest: PASS (%d re-parsed, %d still to read)"
-          % (reparsed, remaining))
+    # Every re-parsed bias verdict must be exactly what the log now says, and
+    # what it replaced must still be on the record.
+    bias = _load(BIAS)["results"]
+    for strategy, gate, status, _why in bias_candidates(bias):
+        assert gate.get("reparsed_from_log") != BIAS_RULE,             "%s: re-parsed record still disagrees with its log (%s)" % (
+                strategy, status)
+    for strategy, record in bias.items():
+        gate = record.get("recursive") or {}
+        if gate.get("reparsed_from_log") == BIAS_RULE:
+            assert "superseded_status" in gate, strategy
+    bias_done = sum(1 for r in bias.values()
+                    if (r.get("recursive") or {}).get("reparsed_from_log")
+                    == BIAS_RULE)
+    print("warmup_reparse selftest: PASS (%d ladder re-parsed, %d still to "
+          "read; %d bias re-parsed, %d still to read)"
+          % (reparsed, remaining, bias_done, len(bias_candidates(bias))))
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--apply", action="store_true",
                         help="write the corrected verdicts back")
+    parser.add_argument("--store", default="ladder",
+                        choices=("ladder", "bias"))
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:
         selftest()
+        return 0
+    if args.store == "bias":
+        data = _load(BIAS)
+        changed = apply_bias(data["results"], not args.apply)
+        counts = collections.Counter((before, after)
+                                     for _s, before, after, _w in changed)
+        print("%s %d recursion verdicts read again: %s"
+              % ("rewrote" if args.apply else "would rewrite", len(changed),
+                 ", ".join("%s->%s=%d" % (b, a, n)
+                           for (b, a), n in counts.most_common()) or "-"))
+        for strategy, before, after, why in changed:
+            print("   %-34s %-6s -> %-6s %s" % (strategy, before, after, why[:60]))
+        if args.apply and changed:
+            _write(BIAS, data)
         return 0
     data = _load(CONVERGENCE)
     changed = apply(data["results"], not args.apply)

@@ -469,11 +469,13 @@ def rows():
         elif cohort == "excluded" and settled.get("state") in (
                 "not_converged_within_ladder", "inconclusive"):
             open_work.append("convergence_" + settled["state"])
-        if recursive == "WARMUP_NEEDED" or recursive_evidence.startswith("wave_b:")                 or (recursive == "FOUND" and not settled
+        if recursive == "WARMUP_NEEDED" or recursive_evidence.startswith("wave_b:")                 or (recursive in ("FOUND", "NA") and not settled
                     and recursive_evidence in ("native", "baseline")):
             # A recursion FOUND that no ladder has re-measured rests on the
-            # parser that read the wrong column. It is queued rather than
-            # believed, whether it came from our own run or from the baseline.
+            # parser that read the wrong column; an NA means the gate ran and
+            # produced nothing to judge, usually because the indicators are
+            # still undefined at the warm-up the strategy declares. Both are
+            # questions for the ladder, not verdicts, so both are queued.
             open_work.append("recursive_ladder_pending")
 
         records = [measurement, diagnostics, window, settled,
@@ -756,6 +758,14 @@ def _report(data):
         "only where the convergence ladder has since failed to settle the row;",
         "everywhere else it says what it is - a record made under a known",
         "defect, awaiting re-measurement.", "",
+        "**Those logs have now been read again.** Of the 124 recursion",
+        "records that still have their log, 55 said something other than what",
+        "the table showed: 40 turn out to have no verdict at all, because at",
+        "the warm-up the strategy declares the indicators are still undefined;",
+        "one is clean; and 14 keep their verdict but had the wrong numbers",
+        "attached, read off a column belonging to a different warm-up. The",
+        "remaining 76 records kept no log and cannot be checked at all, so",
+        "they keep what they were given and stay queued for the ladder.", "",
         "**`WARMUP_NEEDED` is not a finding either.** 134 rows in the frozen",
         "baseline carry `recursive_kind=refused_no_warmup`: the analyzer",
         "declined them because the strategy declares no warm-up, so it never",

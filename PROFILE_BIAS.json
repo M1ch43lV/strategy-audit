@@ -22,10 +22,13 @@
         "debug_log": "user_data/profile_bias_logs/ARIMASTR-recursive.log",
         "elapsed_s": 113.4,
         "output_sha256": "sha256_20109dbcd76f4bde0dfa88a9afa69e7b82e4447f9075c44d2ece42cb71dd3a42",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "NA",
+        "superseded_status": "NA",
+        "superseded_why": "The 'train_size' parameter of train_test_split must be a float in the range (0.0, 1.0), an int in the range [1, inf) or None. Got -87 instead.",
         "timerange": "20190101-20190401",
-        "why": "The 'train_size' parameter of train_test_split must be a float in the range (0.0, 1.0), an int in the range [1, inf) or None. Got -87 instead."
+        "why": "analyzer produced no drift table"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -55,10 +58,13 @@
         "debug_log": "user_data/profile_bias_logs/ARIMA_15-recursive.log",
         "elapsed_s": 94.6,
         "output_sha256": "sha256_ce3d6a80fc0dc68464bc62403f13a5c14c0c06c6baafb2c37e082a64685ad69f",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "FOUND",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: rmse 4.308%, reward -17.036%, move_mean -37.536%, move_mean_x -37.536%, ma_buy_184 0.100%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: rmse 4.308%, reward -17.036%, move_mean -37.536%, move_mean_x -37.536%, ma_buy_184 0.100%"
+        "why": "recursive drift: rmse 1.673%, reward -6.065%, move_mean -33.558%, move_mean_x -33.558%"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -144,10 +150,13 @@
         "debug_log": "user_data/profile_bias_logs/AlmgrenChrissStrategy-recursive.log",
         "elapsed_s": 22.6,
         "output_sha256": "sha256_9e796d109dbf827b212859d0d62c09ea161b04676935cc400f4c76040f03d44c",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
         "status": "FOUND",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: rsi -2.110%, kappa -18.089%",
         "timerange": "20200301-20200401",
-        "why": "recursive drift: rsi -2.110%, kappa -18.089%"
+        "why": "recursive drift: rsi -2.11%, kappa -18.089%"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -208,10 +217,13 @@
         "debug_log": "user_data/profile_bias_logs/BBMod1-recursive.log",
         "elapsed_s": 29.1,
         "output_sha256": "sha256_5a0e9b1b8f27e237a81bf6f6c6926fff48da94dca902fceeeea08bc7bacea0ab",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.066%, roc_1h -97.768%, srsi_fk 0.167%, srsi_fd 0.077%, ema_100 0.011%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.066%, roc_1h -97.768%, srsi_fk 0.167%, srsi_fd 0.077%, ema_100 0.011%"
+        "why": "indicators undefined at this warm-up: EWO, EWO_1h, cci_long, ema_200, ema_200_1h"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -463,10 +475,13 @@
         "debug_log": "user_data/profile_bias_logs/BB_RPB_TSL_SMA_Tranz-recursive.log",
         "elapsed_s": 37.5,
         "output_sha256": "sha256_e3c315c92c1af009a197e0f86e5e6e13cd7510c1a7c6a0386bc89e2b19a2ba98",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_15m 0.019%, ema_100_1h -0.014%, roc_1h -97.768%, EWO2 -12.317%, rsi_slow2 0.021%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_15m 0.019%, ema_100_1h -0.014%, roc_1h -97.768%, EWO2 -12.317%, rsi_slow2 0.021%"
+        "why": "indicators undefined at this warm-up: btc_1d, btc_5m_1d_diff, moderi_96, pair_1d, pair_5m_1d_diff"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -495,10 +510,13 @@
         "debug_log": "user_data/profile_bias_logs/BB_RPB_TSL_SMA_Tranz_TB_1_1_1-recursive.log",
         "elapsed_s": 29.7,
         "output_sha256": "sha256_e83fce6f9a8b42d8b3907fb422b8e41de5d1598a25f8f9cf7038e5d8120bbfb1",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, roc_1h -97.768%, EWO -12.317%, ema_100_15m 0.019%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, roc_1h -97.768%, EWO -12.317%, ema_100_15m 0.019%"
+        "why": "indicators undefined at this warm-up: r_480, r_480_1h"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -527,10 +545,13 @@
         "debug_log": "user_data/profile_bias_logs/BB_RPB_TSL_SMA_Tranz_TB_MOD-recursive.log",
         "elapsed_s": 32.7,
         "output_sha256": "sha256_09cba1d40a08bb080cac50f202796477ff799fca21df6df310fe29245e3b7b20",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, roc_1h -97.768%, EWO2 -12.317%, rsi_slow2 0.021%, EWO -12.317%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, roc_1h -97.768%, EWO2 -12.317%, rsi_slow2 0.021%, EWO -12.317%"
+        "why": "indicators undefined at this warm-up: r_480, r_480_1h"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -718,10 +739,13 @@
         "debug_log": "user_data/profile_bias_logs/BinHV27_short-recursive.log",
         "elapsed_s": 27.1,
         "output_sha256": "sha256_683fe1ae241361bcda7f9a196b7e81e23915a6c22055b72fd6bed20067f391dc",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
-        "status": "FOUND",
+        "status": "PASS",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: trend 63370.607%",
         "timerange": "20200301-20200401",
-        "why": "recursive drift: trend 63370.607%"
+        "why": "no recursive deviations found"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -1368,10 +1392,13 @@
         "debug_log": "user_data/profile_bias_logs/ConsensusShort-recursive.log",
         "elapsed_s": 24.0,
         "output_sha256": "sha256_bcae3b20ba7f8cf005cbb794be20651e3d078f0440b38fc51841dbba6df7003d",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: consensus_buy -40.000%, rmi 14.272%",
         "timerange": "20200301-20200401",
-        "why": "recursive drift: consensus_buy -40.000%, rmi 14.272%"
+        "why": "indicators undefined at this warm-up: sroc"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -1435,10 +1462,13 @@
         "debug_log": "user_data/profile_bias_logs/DCBBBounce-recursive.log",
         "elapsed_s": 32.9,
         "output_sha256": "sha256_e0a0d8d2be738a29de4141783b8540c5eeb65e219160e8459b94a69ed6b8e62e",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: dcbb_diff_upper -0.225%, dcbb_diff_lower 0.421%, adx 2.757%, dm_plus -1.611%, dm_minus -0.650%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: dcbb_diff_upper -0.225%, dcbb_diff_lower 0.421%, adx 2.757%, dm_plus -1.611%, dm_minus -0.650%"
+        "why": "indicators undefined at this warm-up: ema100, sma"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -1631,10 +1661,13 @@
         "debug_log": "user_data/profile_bias_logs/EMA50-recursive.log",
         "elapsed_s": 35.8,
         "output_sha256": "sha256_12a0556a0980ee7a00d7594f853fb0432dc0d8789b9e6f484051f2900bf40b55",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: rsi 0.935%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: rsi 0.935%"
+        "why": "indicators undefined at this warm-up: ema50, macd, macdhist, macdsignal"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -1663,10 +1696,13 @@
         "debug_log": "user_data/profile_bias_logs/EMABreakout-recursive.log",
         "elapsed_s": 28.5,
         "output_sha256": "sha256_0895914dda2462780aeed1f8686ff9d2dc923a543e8e1d40ed87032ef5f104b3",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: rsi 0.935%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: rsi 0.935%"
+        "why": "indicators undefined at this warm-up: ema, macd, macdhist, macdsignal, sma"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -1848,10 +1884,13 @@
         "debug_log": "user_data/profile_bias_logs/FOttStrategy-recursive.log",
         "elapsed_s": 26.2,
         "output_sha256": "sha256_ffc378d6a9175eade9ee2d6a50b93589ec651a3eaf5b55458e5c0783a47f52d5",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ott -12.616%, var -4.950%",
         "timerange": "20200301-20200401",
-        "why": "recursive drift: ott -12.616%, var -4.950%"
+        "why": "indicators undefined at this warm-up: adx"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -1878,10 +1917,13 @@
         "debug_log": "user_data/profile_bias_logs/FReinforcedStrategy-recursive.log",
         "elapsed_s": 24.0,
         "output_sha256": "sha256_f42c3ee306623e80cf2a6d9bb7a78915639dece9ed67ab6c3aa2bc226f8584ae",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: bb_lowerband -0.043%, bb_middleband -0.025%",
         "timerange": "20200301-20200401",
-        "why": "recursive drift: bb_lowerband -0.043%, bb_middleband -0.025%"
+        "why": "indicators undefined at this warm-up: adx_14, ema_long_21, resample_60_sma"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -1908,10 +1950,13 @@
         "debug_log": "user_data/profile_bias_logs/FSampleStrategy-recursive.log",
         "elapsed_s": 22.2,
         "output_sha256": "sha256_8ad3fd546e72ea5af328055c44acbe69304f1e8f788c4d52560a502db4e95e69",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: adx -9.753%, rsi 1.239%, sar -0.092%, tema 0.022%",
         "timerange": "20200301-20200401",
-        "why": "recursive drift: adx -9.753%, rsi 1.239%, sar -0.092%, tema 0.022%"
+        "why": "indicators undefined at this warm-up: htleadsine, htsine, macd, macdhist, macdsignal"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -2157,10 +2202,13 @@
         "debug_log": "user_data/profile_bias_logs/GeneStrategy-recursive.log",
         "elapsed_s": 28.9,
         "output_sha256": "sha256_172fa7a85adf5b44b8a9591fff08739db1e9cde12e4aa48e7807c5e58e5c0683",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: rsi_slow 0.011%, rsi_84 1.930%, rsi_112 1.913%, srsi_fk -0.017%, ema_vwap_diff_50 0.605%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: rsi_slow 0.011%, rsi_84 1.930%, rsi_112 1.913%, srsi_fk -0.017%, ema_vwap_diff_50 0.605%"
+        "why": "indicators undefined at this warm-up: EWO, ema_200, ewo, r_480_1h, rocr_1h"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -2189,10 +2237,13 @@
         "debug_log": "user_data/profile_bias_logs/GeneStrategy_v2-recursive.log",
         "elapsed_s": 29.0,
         "output_sha256": "sha256_7fd57eea2095d756ad641669bfa4012fd4e4fe249634b9683b8525d7aad4cdaf",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: rsi_slow 0.011%, rsi_84 1.930%, rsi_112 1.913%, srsi_fk -0.017%, ema_vwap_diff_50 0.605%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: rsi_slow 0.011%, rsi_84 1.930%, rsi_112 1.913%, srsi_fk -0.017%, ema_vwap_diff_50 0.605%"
+        "why": "indicators undefined at this warm-up: EWO, ema_200, ewo, r_480_1h, rocr_1h"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -2221,10 +2272,13 @@
         "debug_log": "user_data/profile_bias_logs/GeneTrader_gen10_1734895087_6007-recursive.log",
         "elapsed_s": 27.9,
         "output_sha256": "sha256_fbad3d06ab5c5dbfe2c29549e44443694971fef8152792f59f792453c04b2f2b",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: rsi_slow 0.011%, rsi_84 1.930%, rsi_112 1.913%, srsi_fk -0.017%, ema_vwap_diff_50 0.605%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: rsi_slow 0.011%, rsi_84 1.930%, rsi_112 1.913%, srsi_fk -0.017%, ema_vwap_diff_50 0.605%"
+        "why": "indicators undefined at this warm-up: EWO, ema_200, ewo, r_480_1h, rocr_1h"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -2253,10 +2307,13 @@
         "debug_log": "user_data/profile_bias_logs/GeneTrader_gen5_1735014093_4541-recursive.log",
         "elapsed_s": 27.9,
         "output_sha256": "sha256_727eab1fc71a419f1aaa3dd6c95e4d07234122ef20e0899f5f7284662033d647",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: rsi_slow 0.011%, rsi_84 1.930%, rsi_112 1.913%, srsi_fk -0.017%, ema_vwap_diff_50 0.605%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: rsi_slow 0.011%, rsi_84 1.930%, rsi_112 1.913%, srsi_fk -0.017%, ema_vwap_diff_50 0.605%"
+        "why": "indicators undefined at this warm-up: EWO, ema_200, ewo, r_480_1h, rocr_1h"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -2481,10 +2538,13 @@
         "debug_log": "user_data/profile_bias_logs/HarmonicDivergence_fix-recursive.log",
         "elapsed_s": 33.9,
         "output_sha256": "sha256_ff065975e77448004533ee970f6f37750a959cca513a88b12ce786d7b79e7592",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "NA",
+        "superseded_status": "NA",
+        "superseded_why": "list index out of range",
         "timerange": "20190101-20190401",
-        "why": "list index out of range"
+        "why": "analyzer produced no drift table"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -2707,10 +2767,13 @@
         "debug_log": "user_data/profile_bias_logs/IchiVwapAdx-recursive.log",
         "elapsed_s": 25.2,
         "output_sha256": "sha256_aa43fdf78b3d4d0cff02efe5b28f63c9d2f5332f449139de7145df33f6bc9ef5",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
         "status": "FOUND",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: atr_50 -0.063%, volatility_ratio 0.063%",
         "timerange": "20200301-20200401",
-        "why": "recursive drift: atr_50 -0.063%, volatility_ratio 0.063%"
+        "why": "recursive drift: atr_50 0.014%, volatility_ratio -0.014%"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -2931,10 +2994,13 @@
         "debug_log": "user_data/profile_bias_logs/KitchenSink-recursive.log",
         "elapsed_s": 52.9,
         "output_sha256": "sha256_23b383572f9562487dde91b98c4b2ae87ef120ccaaf7a4e8f255cfc390138c8d",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: cp -0.151%, h0 -0.073%, h1 -0.033%, h2 -0.023%, cycle_move 10.755%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: cp -0.151%, h0 -0.073%, h1 -0.033%, h2 -0.023%, cycle_move 10.755%"
+        "why": "indicators undefined at this warm-up: hurst_exit_long_condition, long_decision, overall_decision, vtl_dn_slope, vtl_trend"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3472,10 +3538,13 @@
         "debug_log": "user_data/profile_bias_logs/MultiMA_TSL3-recursive.log",
         "elapsed_s": 28.6,
         "output_sha256": "sha256_6ef1aac2fbf963bea942ebae05824cf6c45a908aae445bf95e6cb46204c4fa87",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "FOUND",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ewo -12.317%, rsi_84 2.859%, rsi_112 3.913%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ewo -12.317%, rsi_84 2.859%, rsi_112 3.913%"
+        "why": "recursive drift: ewo 11.414%, rsi_84 0.124%, rsi_112 0.38%"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3505,10 +3574,13 @@
         "debug_log": "user_data/profile_bias_logs/MultiMA_TSL3_Mod-recursive.log",
         "elapsed_s": 28.6,
         "output_sha256": "sha256_f0aa4e966cb288d5ed3fc20568a365cb1f9b5bce4faed90f6ad40f870140c0ee",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ewo -0.283%, rsi_84 2.859%, rsi_112 3.913%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ewo -0.283%, rsi_84 2.859%, rsi_112 3.913%"
+        "why": "indicators undefined at this warm-up: smooth_volume_pct"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3570,10 +3642,13 @@
         "debug_log": "user_data/profile_bias_logs/NASOSRv6_private_Reinuvader_20211121-recursive.log",
         "elapsed_s": 28.7,
         "output_sha256": "sha256_bdc3a7bc3fddcd1c949c7e07eee81471a5887b4de6a133ce391c9bc524c41c66",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: rsi_36 0.185%, rsi_72 2.138%, rsi_84 2.859%, rsi_112 3.913%, macd 94.493%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: rsi_36 0.185%, rsi_72 2.138%, rsi_84 2.859%, rsi_112 3.913%, macd 94.493%"
+        "why": "indicators undefined at this warm-up: r_480"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3602,10 +3677,13 @@
         "debug_log": "user_data/profile_bias_logs/NFI731_BUSD-recursive.log",
         "elapsed_s": 27.6,
         "output_sha256": "sha256_462c436a3cb7a39485f0cd0118bc507b34a13fe609ea794f0c73e8b45a8db794",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%"
+        "why": "indicators undefined at this warm-up: bt_agefilter_ok"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3633,10 +3711,13 @@
         "debug_log": "user_data/profile_bias_logs/NFIX_BB_RPB-recursive.log",
         "elapsed_s": 33.5,
         "output_sha256": "sha256_362465cba645e78b2aee56597c68ced5ff0e2435aa72952158d5dc48b2f914f2",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, ema_100_15m 0.019%, ema_vwma_osc_32 -11.624%, ema_vwma_osc_64 8410.479%, ema_vwma_osc_96 417331.614%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, ema_100_15m 0.019%, ema_vwma_osc_32 -11.624%, ema_vwma_osc_64 8410.479%, ema_vwma_osc_96 417331.614%"
+        "why": "indicators undefined at this warm-up: bt_agefilter_ok"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3664,10 +3745,13 @@
         "debug_log": "user_data/profile_bias_logs/NFIX_BB_RPB_c7c477d_20211030-recursive.log",
         "elapsed_s": 30.5,
         "output_sha256": "sha256_7bd2f12c860d74caba6bd4bc7d0a0ccc94686f798e9115f1dfa8d0c6bb8820ec",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, ema_vwma_osc_32 -11.624%, ema_vwma_osc_64 8410.479%, ema_vwma_osc_96 417331.614%, ewo -12.317%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, ema_vwma_osc_32 -11.624%, ema_vwma_osc_64 8410.479%, ema_vwma_osc_96 417331.614%, ewo -12.317%"
+        "why": "indicators undefined at this warm-up: bt_agefilter_ok"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3695,10 +3779,13 @@
         "debug_log": "user_data/profile_bias_logs/NOTankAi_17-recursive.log",
         "elapsed_s": 27.0,
         "output_sha256": "sha256_7285ebc8b3eeb8584ed2db834f5aeb5d14b90d979dc7eb33864f09aabf48a97f",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
         "status": "FOUND",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: mmlextreme_oscillator -277.329%, min_threshold_mean -9.513%, max_threshold_mean -10.017%",
         "timerange": "20200301-20200401",
-        "why": "recursive drift: mmlextreme_oscillator -277.329%, min_threshold_mean -9.513%, max_threshold_mean -10.017%"
+        "why": "recursive drift: mmlextreme_oscillator -277.329%, min_threshold_mean -9.544%, max_threshold_mean -10.05%"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -3726,10 +3813,13 @@
         "debug_log": "user_data/profile_bias_logs/NOTankAi_19-recursive.log",
         "elapsed_s": 27.6,
         "output_sha256": "sha256_038323524454452003708763d781cef639d48ff627b83cab387ec16c4360e330",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
         "status": "FOUND",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: mmlextreme_oscillator -277.329%, min_threshold_mean -9.513%, max_threshold_mean -10.017%",
         "timerange": "20200301-20200401",
-        "why": "recursive drift: mmlextreme_oscillator -277.329%, min_threshold_mean -9.513%, max_threshold_mean -10.017%"
+        "why": "recursive drift: mmlextreme_oscillator -277.329%, min_threshold_mean -9.544%, max_threshold_mean -10.05%"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -3759,10 +3849,13 @@
         "debug_log": "user_data/profile_bias_logs/NfiNextModded-recursive.log",
         "elapsed_s": 28.4,
         "output_sha256": "sha256_67d0725de3554fb3f17320f11e263bec8b7d1bbac638e439a6e88bc4b8e00336",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, stochrsi_fastd_96 -0.557%, ema_vwma_osc_32 -0.022%, ema_vwma_osc_64 -8.733%, ema_vwma_osc_96 -563.987%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, stochrsi_fastd_96 -0.557%, ema_vwma_osc_32 -0.022%, ema_vwma_osc_64 -8.733%, ema_vwma_osc_96 -563.987%"
+        "why": "indicators undefined at this warm-up: bt_agefilter_ok, cci_36_osc"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3790,10 +3883,13 @@
         "debug_log": "user_data/profile_bias_logs/NostalgiaForInfinity772martinsk3-recursive.log",
         "elapsed_s": 32.1,
         "output_sha256": "sha256_5dd9f1c4c0e50a08ff77e8b86fc3a16a6c0efcbac7111184acb129d4d09aec1f",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, pump_strength -25.279%, ewo -12.317%, stochrsi_fastd_96 -0.557%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, pump_strength -25.279%, ewo -12.317%, stochrsi_fastd_96 -0.557%"
+        "why": "indicators undefined at this warm-up: bt_agefilter_ok"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3823,10 +3919,13 @@
         "debug_log": "user_data/profile_bias_logs/NostalgiaForInfinityNext-recursive.log",
         "elapsed_s": 29.4,
         "output_sha256": "sha256_d4d51c72bdfb2ff447aea5fc2b94b4606365a19eb7a7c2a3ea47df2aa2383b6b",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%"
+        "why": "indicators undefined at this warm-up: bt_agefilter_ok"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3856,10 +3955,13 @@
         "debug_log": "user_data/profile_bias_logs/NostalgiaForInfinityNext772-recursive.log",
         "elapsed_s": 28.2,
         "output_sha256": "sha256_c3f23cc96d2b88168ab6764d87f425549b8cc3feb6f04c20a1bed5d5e70d9f40",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%"
+        "why": "indicators undefined at this warm-up: bt_agefilter_ok"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3889,10 +3991,13 @@
         "debug_log": "user_data/profile_bias_logs/NostalgiaForInfinityNextV7155-recursive.log",
         "elapsed_s": 27.5,
         "output_sha256": "sha256_aa68a4bfa22d671ab889ceeb94b4882596d1677c68ffb59a8becba8aaf4ac007",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, stochrsi_fastd_96 -0.557%, ema_vwma_osc_32 -0.022%, ema_vwma_osc_64 -8.733%, ema_vwma_osc_96 -563.987%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, stochrsi_fastd_96 -0.557%, ema_vwma_osc_32 -0.022%, ema_vwma_osc_64 -8.733%, ema_vwma_osc_96 -563.987%"
+        "why": "indicators undefined at this warm-up: bt_agefilter_ok, cci_36_osc"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3922,10 +4027,13 @@
         "debug_log": "user_data/profile_bias_logs/NostalgiaForInfinityNext_ChangeToTower_V5_2-recursive.log",
         "elapsed_s": 28.2,
         "output_sha256": "sha256_caba9856a11ccad354d91662bb3e17685995123bedb003744642e2a0db9b5a6b",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%"
+        "why": "indicators undefined at this warm-up: bt_agefilter_ok"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3955,10 +4063,13 @@
         "debug_log": "user_data/profile_bias_logs/NostalgiaForInfinityNext_ChangeToTower_V5_3-recursive.log",
         "elapsed_s": 28.3,
         "output_sha256": "sha256_41f8c5d41242823f4e8a5db9e172e543d26af49d8334ff59fb4cc1b3917c4e92",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%"
+        "why": "indicators undefined at this warm-up: bt_agefilter_ok"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3988,10 +4099,13 @@
         "debug_log": "user_data/profile_bias_logs/NostalgiaForInfinityNext_ChangeToTower_V6-recursive.log",
         "elapsed_s": 30.1,
         "output_sha256": "sha256_9962cb456cb80ceae04cfda3e140837b6b7ccd5f08a9717abcd56482d613231f",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%"
+        "why": "indicators undefined at this warm-up: bt_agefilter_ok"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -4021,10 +4135,13 @@
         "debug_log": "user_data/profile_bias_logs/NostalgiaForInfinityNext_maximizer-recursive.log",
         "elapsed_s": 28.8,
         "output_sha256": "sha256_e7069d86c72eb3d625992d03623f1f059a9f7ab96fe9acdd721dd21123f52ac0",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%"
+        "why": "indicators undefined at this warm-up: bt_agefilter_ok"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -4116,10 +4233,13 @@
         "debug_log": "user_data/profile_bias_logs/NostalgiaForInfinityV7_7_2-recursive.log",
         "elapsed_s": 28.0,
         "output_sha256": "sha256_4baed5a3295683859e560b00e11c757335ef9821534a247fcde8690e56731b50",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, ewo -12.317%, stochrsi_fastd_96 -0.557%"
+        "why": "indicators undefined at this warm-up: bt_agefilter_ok"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -4147,10 +4267,13 @@
         "debug_log": "user_data/profile_bias_logs/NostalgiaForInfinityX-recursive.log",
         "elapsed_s": 33.7,
         "output_sha256": "sha256_7eb9fc0bcdf7e12afda389ad5e2c73ecb842c41c901c6bd0cfc3c781e83792d7",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: ema_100_1h -0.014%, ema_100_15m 0.019%, ema_vwma_osc_32 -11.624%, ema_vwma_osc_64 8410.479%, ema_vwma_osc_96 417331.614%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: ema_100_1h -0.014%, ema_100_15m 0.019%, ema_vwma_osc_32 -11.624%, ema_vwma_osc_64 8410.479%, ema_vwma_osc_96 417331.614%"
+        "why": "indicators undefined at this warm-up: bt_agefilter_ok"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -4180,10 +4303,13 @@
         "debug_log": "user_data/profile_bias_logs/NostalgiaForInfinityXw-recursive.log",
         "elapsed_s": 31.0,
         "output_sha256": "sha256_76f9b9dd7483d4a91261955fee224ec0f8f8755405b8420411e1172621d2c9a6",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: rmi_length_17_1h -34.513%, cci_length_25_1h -74.535%, ema_100_1h -0.014%, ema_100_15m 0.019%, trend_ichimoku_base -19.851%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: rmi_length_17_1h -34.513%, cci_length_25_1h -74.535%, ema_100_1h -0.014%, ema_100_15m 0.019%, trend_ichimoku_base -19.851%"
+        "why": "indicators undefined at this warm-up: bt_agefilter_ok"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -4274,10 +4400,13 @@
         "debug_log": "user_data/profile_bias_logs/ObeliskRSI_v6_1-recursive.log",
         "elapsed_s": 23.6,
         "output_sha256": "sha256_0b72c73a49bcff271c0c6bb06d80ab3a33d4c9a604e383c70c6748d999643f12",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "FOUND",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: resample_60_rsi 13.387%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: resample_60_rsi 13.387%"
+        "why": "recursive drift: resample_60_rsi 0.816%"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -5094,10 +5223,13 @@
         "debug_log": "user_data/profile_bias_logs/TWAPStrategy-recursive.log",
         "elapsed_s": 23.1,
         "output_sha256": "sha256_2f4f2776255059c9846f9cb0012718ba84493964c7f75eb9ed83758ff6297443",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
         "status": "FOUND",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: rsi -2.110%",
         "timerange": "20200301-20200401",
-        "why": "recursive drift: rsi -2.110%"
+        "why": "recursive drift: rsi -2.11%"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -5684,10 +5816,13 @@
         "debug_log": "user_data/profile_bias_logs/beta_factors_model-recursive.log",
         "elapsed_s": 22.0,
         "output_sha256": "sha256_ea71b687e8376c64e17a4a2ed40478ed7826be99d0fc2ceacf2cdfce0ee43119",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "NA",
+        "superseded_status": "NA",
+        "superseded_why": "[Errno 2] No such file or directory: '/audit/user_data/profile_bias_strategies/beta_factors_model/Bitcoin_marketcap.csv'",
         "timerange": "20190101-20190401",
-        "why": "[Errno 2] No such file or directory: '/audit/user_data/profile_bias_strategies/beta_factors_model/Bitcoin_marketcap.csv'"
+        "why": "analyzer produced no drift table"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -5748,10 +5883,13 @@
         "debug_log": "user_data/profile_bias_logs/dualwave-recursive.log",
         "elapsed_s": 34.9,
         "output_sha256": "sha256_d1dce3e365eacc20d0e1206db72bd38186deb9bde3a4610bb1a7c437e1dcd29e",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: rsi_2h -6.713%, rsi_ma_2h -8.339%, rsi_ma_pcnt_2h -972.673%, wave_t1_2h -48.902%, wave_t2_2h -55.776%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: rsi_2h -6.713%, rsi_ma_2h -8.339%, rsi_ma_pcnt_2h -972.673%, wave_t1_2h -48.902%, wave_t2_2h -55.776%"
+        "why": "indicators undefined at this warm-up: 200SMA_weight, 200SMA_weight_2h, 200SMA_weight_sell, 200_SMA, 200_SMAPC"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -5810,10 +5948,13 @@
         "debug_log": "user_data/profile_bias_logs/falconTrader-recursive.log",
         "elapsed_s": 31.6,
         "output_sha256": "sha256_62a0d0c8e052a545b6315e687aa198aa442feb5f0fa04b8d10f10a02f46dd862",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: rsi_slow 0.011%, rsi_84 1.930%, rsi_112 1.913%, srsi_fk -0.017%, ema_vwap_diff_50 0.605%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: rsi_slow 0.011%, rsi_84 1.930%, rsi_112 1.913%, srsi_fk -0.017%, ema_vwap_diff_50 0.605%"
+        "why": "indicators undefined at this warm-up: EWO, ema_200, ewo, r_480_1h, rocr_1h"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -5843,10 +5984,13 @@
         "debug_log": "user_data/profile_bias_logs/haGradient-recursive.log",
         "elapsed_s": 24.0,
         "output_sha256": "sha256_bde7fef0f963b496e524ec6061d306eac8274969151e73d1178710f52fc73bab",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "NA",
+        "superseded_status": "NA",
+        "superseded_why": "Insufficient data points for FFT: 31. Need at least 120 data points.",
         "timerange": "20200301-20200401",
-        "why": "Insufficient data points for FFT: 31. Need at least 120 data points."
+        "why": "analyzer produced no drift table"
       },
       "run_profile": "futures_long",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -5941,10 +6085,13 @@
         "debug_log": "user_data/profile_bias_logs/ichiV1_Marius-recursive.log",
         "elapsed_s": 30.3,
         "output_sha256": "sha256_dcd882f13b886f853c36b425eba3f0ea8a4f3565f2579aedd25e5b14c7dfe74e",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: pump_strength_2 -12.317%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: pump_strength_2 -12.317%"
+        "why": "indicators undefined at this warm-up: max_flow_price_15m"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -5975,10 +6122,13 @@
         "debug_log": "user_data/profile_bias_logs/kalthetank-recursive.log",
         "elapsed_s": 23.2,
         "output_sha256": "sha256_eb6eda233905ca6f3c460e23a398aeeb929a70292d14b6ec31fe6d168663355d",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
         "status": "NA",
+        "superseded_status": "NA",
+        "superseded_why": "Insufficient data points for FFT: 211. Need at least 282 data points.",
         "timerange": "20190101-20190401",
-        "why": "Insufficient data points for FFT: 211. Need at least 282 data points."
+        "why": "analyzer produced no drift table"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -6125,10 +6275,13 @@
         "debug_log": "user_data/profile_bias_logs/newstrategy53-recursive.log",
         "elapsed_s": 32.1,
         "output_sha256": "sha256_cb1e74fa5c94bb9a1d5ebfc6e547dcf4d7ff085e8cb553952ea1f7e5daa51d94",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: rsi_slow 0.011%, rsi_84 1.930%, rsi_112 1.913%, srsi_fk -0.017%, ema_vwap_diff_50 0.605%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: rsi_slow 0.011%, rsi_84 1.930%, rsi_112 1.913%, srsi_fk -0.017%, ema_vwap_diff_50 0.605%"
+        "why": "indicators undefined at this warm-up: EWO, ema_200, ewo, r_480_1h, rocr_1h"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -6156,10 +6309,13 @@
         "debug_log": "user_data/profile_bias_logs/newstrategy53_22-recursive.log",
         "elapsed_s": 31.8,
         "output_sha256": "sha256_56a1245ffe65af0891c336852dd18b479c97f9ee4472db59b786d54e87b26d2d",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: rsi_slow 0.011%, rsi_84 1.930%, rsi_112 1.913%, srsi_fk -0.017%, ema_vwap_diff_50 0.605%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: rsi_slow 0.011%, rsi_84 1.930%, rsi_112 1.913%, srsi_fk -0.017%, ema_vwap_diff_50 0.605%"
+        "why": "indicators undefined at this warm-up: EWO, ema_200, ewo, r_480_1h, rocr_1h"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -6188,10 +6344,13 @@
         "debug_log": "user_data/profile_bias_logs/pcb20-recursive.log",
         "elapsed_s": 27.0,
         "output_sha256": "sha256_873921a648f8b7214791e147e5d3e4fb5e565315d8fd4cd7dd930233f5f446cb",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: wave_ci -0.241%, OBV -179.123%, rsi -0.786%, rsi_slope 3.108%, rsi_ma -1.041%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: wave_ci -0.241%, OBV -179.123%, rsi -0.786%, rsi_slope 3.108%, rsi_ma -1.041%"
+        "why": "indicators undefined at this warm-up: wave_t1, wave_t1_pc, wave_t2"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -6285,10 +6444,13 @@
         "debug_log": "user_data/profile_bias_logs/slownsteady-recursive.log",
         "elapsed_s": 25.1,
         "output_sha256": "sha256_3b4e9406d1fc4acb7907c0c74070af7679d30af77231d5281c31b9453226ce97",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "NA",
+        "superseded_status": "FOUND",
+        "superseded_why": "recursive drift: resample_60_bbg_lowerband 0.035%, resample_60_bbg_middleband -0.018%, resample_60_bbg_upperband -0.070%, resample_60_bb_spread -27.972%, rsi -0.033%",
         "timerange": "20190101-20190401",
-        "why": "recursive drift: resample_60_bbg_lowerband 0.035%, resample_60_bbg_middleband -0.018%, resample_60_bbg_upperband -0.070%, resample_60_bb_spread -27.972%, rsi -0.033%"
+        "why": "indicators undefined at this warm-up: resample_60_ATR, resample_60_bb_spread_ma, resample_60_rsi"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -6351,10 +6513,13 @@
         "debug_log": "user_data/profile_bias_logs/tsp0chicken-recursive.log",
         "elapsed_s": 8.2,
         "output_sha256": "sha256_310b54bd48ffc32251860caf5b2eca54680b68fc788f1b155786e04bc71581f1",
+        "reparsed_from_log": "current_reader_v1",
         "runtime_id": "windows-ftenv:freqtrade-2026.7-py3.13-tf2.21-xgb3.4.1",
         "status": "NA",
+        "superseded_status": "NA",
+        "superseded_why": "Insufficient data points for FFT: 139. Need at least None data points.",
         "timerange": "20200301-20200401",
-        "why": "Insufficient data points for FFT: 139. Need at least None data points."
+        "why": "analyzer produced no drift table"
       },
       "run_profile": "futures_long",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"

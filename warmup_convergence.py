@@ -234,7 +234,8 @@ def unsettled_rows():
     # change nothing. That is the same restraint `recursion_only_rows` applies,
     # expressed against the current table rather than the frozen reasons.
     blocking = ("lookahead_found", "behavior_changed_primary_exclusion",
-                "technical_trap_found", "strategy_does_not_run")
+                "technical_trap_found", "strategy_does_not_run",
+                "no_trades_in_full_measurement")
     wanted = []
     for row in _csv(STATUS):
         work = row["open_work"] or ""

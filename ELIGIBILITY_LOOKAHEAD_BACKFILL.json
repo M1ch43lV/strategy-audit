@@ -2825,6 +2825,191 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "LuxOSC"
+    },
+    "MAC": {
+      "canonical_sha256": "sha256_2af777a511a984a6c4a15c52e2361297ebbe45c5070af9d9f61f45ce524e2c4e",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "MAC:2af777a511a9",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101"
+        ],
+        "elapsed_s": 70.2,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MAC --strategy-path user_data/profile_bias_strategies/MAC --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_4e4832a1931634e724a62a089b6f1cb9eea7bcced536aba37c0c863f02147b8a",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MAC"
+    },
+    "MACDStrategyADA": {
+      "canonical_sha256": "sha256_10fe039bf4c0b26084e180ae8c6895a56c5286283f1cc5c733fb9f0d457cd493",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "MACDStrategyADA:10fe039bf4c0",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 41.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MACDStrategyADA --strategy-path user_data/profile_bias_strategies/MACDStrategyADA --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_2205627140bb479ab69474c1f7f76acb8996de27ed7cc209c418287367cefb59",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MACDStrategyADA"
+    },
+    "MACDStrategyAVAX": {
+      "canonical_sha256": "sha256_99caf98ab9bd8ba5ea0fb1ed676f284b736526d0a1c6fadd6062bd06b9120e29",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "MACDStrategyAVAX:99caf98ab9bd",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 42.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MACDStrategyAVAX --strategy-path user_data/profile_bias_strategies/MACDStrategyAVAX --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_d766886e58d6ff60451299a51ab3548b2080475d0e6c1ccb5ac6e7a2536a0807",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MACDStrategyAVAX"
+    },
+    "MACDStrategyBTC": {
+      "canonical_sha256": "sha256_0f82e3251478757520ad3736e1d2fc81b14f24e48bc5369611b4c164b98d0237",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "MACDStrategyBTC:0f82e3251478",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 42.6,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MACDStrategyBTC --strategy-path user_data/profile_bias_strategies/MACDStrategyBTC --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_5a69cc4c0b8ef89f42c5ccac6aa1db594169aa7f34fc32fff1a50a5d0a7c79a9",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MACDStrategyBTC"
+    },
+    "MACDStrategyENJ": {
+      "canonical_sha256": "sha256_f81a4ca780d73aca17377ff07d699c5d680a6ddb49e38352b928fc1fad8dfa7d",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "MACDStrategyENJ:f81a4ca780d7",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 41.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MACDStrategyENJ --strategy-path user_data/profile_bias_strategies/MACDStrategyENJ --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_530c30a59fb12d4657c3fba429bf730318990294b49d8de40cd46fcdf1fec61a",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MACDStrategyENJ"
+    },
+    "MACDStrategyETC": {
+      "canonical_sha256": "sha256_0a33db88c825b23a53bb2224922011ea9e7ae71aff29d7a07d5a6b85119bb50c",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "MACDStrategyETC:0a33db88c825",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 41.1,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MACDStrategyETC --strategy-path user_data/profile_bias_strategies/MACDStrategyETC --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_027c85d3be861b36a8fc596c7d1a6e053110e54e70181d2e7de5cf3112b46bba",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MACDStrategyETC"
+    },
+    "MACDStrategySOL": {
+      "canonical_sha256": "sha256_72005a2d344a587ba56576576664bef32c8eb7c4d76bd7f20b487849c7c6a8a2",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "MACDStrategySOL:72005a2d344a",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 44.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MACDStrategySOL --strategy-path user_data/profile_bias_strategies/MACDStrategySOL --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_c8d2dbbd2eb317e74ecdcbdea7d72c6dac69bb31a947d3a64fd53ead195c0689",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MACDStrategySOL"
+    },
+    "MACDStrategyXRP": {
+      "canonical_sha256": "sha256_1d2e080ab020a0d66ba0db880d48c026a61711772effbdf600bae1d3e0c09f0c",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "MACDStrategyXRP:1d2e080ab020",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 44.1,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MACDStrategyXRP --strategy-path user_data/profile_bias_strategies/MACDStrategyXRP --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_1f7bb2ea81bfe3c2b7d3b3672fd4f17b5819d361b7ff220dfd822989ad091daa",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MACDStrategyXRP"
     }
   },
   "schema_version": 1,

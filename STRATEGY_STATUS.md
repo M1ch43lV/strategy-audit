@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 20:13:45 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 20:19:21 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -45,7 +45,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 144 of 2102 commands are recorded so far, and every new run
+recording. 152 of 2102 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -1038,6 +1038,15 @@ only where the convergence ladder has since failed to settle the row;
 everywhere else it says what it is - a record made under a known
 defect, awaiting re-measurement.
 
+**Those logs have now been read again.** Of the 124 recursion
+records that still have their log, 55 said something other than what
+the table showed: 40 turn out to have no verdict at all, because at
+the warm-up the strategy declares the indicators are still undefined;
+one is clean; and 14 keep their verdict but had the wrong numbers
+attached, read off a column belonging to a different warm-up. The
+remaining 76 records kept no log and cannot be checked at all, so
+they keep what they were given and stay queued for the ladder.
+
 **`WARMUP_NEEDED` is not a finding either.** 134 rows in the frozen
 baseline carry `recursive_kind=refused_no_warmup`: the analyzer
 declined them because the strategy declares no warm-up, so it never
@@ -1059,11 +1068,12 @@ and they are queued for the ladder as `recursive_ladder_pending`.
 | `technical_trap_found` | carries a published backtesting trap | 40 |
 | `strategy_does_not_run` | fails before it can be measured; the message is in runtime_failure | 152 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 24 |
-| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 54 |
+| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 34 |
 | `recursive_warmup_refused` | the analyzer refused for want of a declared warm-up; nothing was measured | 13 |
 | `no_trades_in_full_measurement` | never trades over the full window | 16 |
-| `no_verdict_on_lookahead_and_recursive` | measured; neither gate returned a verdict | 5 |
+| `no_verdict_on_lookahead_and_recursive` | measured; neither gate returned a verdict | 15 |
 | `no_verdict_on_lookahead` | measured and recursion clean; look-ahead has no verdict | 4 |
+| `no_verdict_on_recursive` | measured and look-ahead clean; recursion has no verdict | 10 |
 
 
 ### Reason by wave
@@ -1074,11 +1084,12 @@ and they are queued for the ladder as `recursive_ladder_pending`.
 | `technical_trap_found` | 0 | 0 | 0 | 40 |
 | `strategy_does_not_run` | 0 | 152 | 0 | 0 |
 | `recursive_bias_found` | 0 | 0 | 14 | 10 |
-| `recursive_bias_unverified` | 0 | 29 | 0 | 25 |
+| `recursive_bias_unverified` | 0 | 9 | 0 | 25 |
 | `recursive_warmup_refused` | 5 | 0 | 0 | 8 |
 | `no_trades_in_full_measurement` | 0 | 10 | 0 | 6 |
-| `no_verdict_on_lookahead_and_recursive` | 0 | 5 | 0 | 0 |
+| `no_verdict_on_lookahead_and_recursive` | 0 | 15 | 0 | 0 |
 | `no_verdict_on_lookahead` | 0 | 4 | 0 | 0 |
+| `no_verdict_on_recursive` | 0 | 10 | 0 | 0 |
 
 ### `lookahead_found` - 69
 
@@ -1232,20 +1243,15 @@ Wave `not_scheduled` - 10:
 `GoldHedgeZeroMACD`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`, `NotAnotherSMAOffSetStrategy_V2`
 `TrendRiderStrategy`, `pcb20`
 
-### `recursive_bias_unverified` - 54
+### `recursive_bias_unverified` - 34
 
 Recorded under a parser defect and not re-measured; not a finding.
 
-Wave `C_measurement_recovery` - 29:
+Wave `C_measurement_recovery` - 9:
 
-`BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB_RPB_TSL_BI`
-`BB_RPB_TSL_BIV1`, `BB_RPB_TSL_SMA_Tranz`, `BB_RPB_TSL_SMA_Tranz_TB_1_1_1`, `BB_RPB_TSL_SMA_Tranz_TB_MOD`
-`GeneStrategy`, `GeneStrategy_v2`, `GeneTrader_gen10_1734895087_6007`, `GeneTrader_gen5_1735014093_4541`
-`KitchenSink`, `MultiMA_TSL3`, `MultiMA_TSL3_Mod`, `MultiRSI`
-`NASOSRv6_private_Reinuvader_20211121`, `NFI731_BUSD`, `NFIX_BB_RPB`, `NFIX_BB_RPB_c7c477d_20211030`
-`NostalgiaForInfinity772martinsk3`, `NostalgiaForInfinityX`, `ObeliskRSI_v6_1`, `epretrace`
-`falconTrader`, `newstrategy53`, `newstrategy53_22`, `pmaxTest`
-`slownsteady`
+`BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB_RPB_TSL_BI`, `BB_RPB_TSL_BIV1`
+`MultiMA_TSL3`, `MultiRSI`, `ObeliskRSI_v6_1`, `epretrace`
+`pmaxTest`
 
 Wave `not_scheduled` - 25:
 
@@ -1286,14 +1292,16 @@ Wave `not_scheduled` - 6:
 `DoubleEMACrossoverWithTrend`, `EMAPriceCrossoverWithThreshold`, `Insomnia_short`, `MACDCrossoverWithTrend`
 `RSIDirectionalWithTrend`, `RSIDirectionalWithTrendSlow`
 
-### `no_verdict_on_lookahead_and_recursive` - 5
+### `no_verdict_on_lookahead_and_recursive` - 15
 
 Measured; neither gate returned a verdict.
 
-Wave `C_measurement_recovery` - 5:
+Wave `C_measurement_recovery` - 15:
 
-`ARIMASTR`, `HarmonicDivergence`, `HarmonicDivergence_fix`, `beta_factors_model`
-`zorkv7_0_0`
+`ARIMASTR`, `BB_RPB_TSL_SMA_Tranz`, `HarmonicDivergence`, `HarmonicDivergence_fix`
+`KitchenSink`, `NASOSRv6_private_Reinuvader_20211121`, `NFIX_BB_RPB`, `NFIX_BB_RPB_c7c477d_20211030`
+`NostalgiaForInfinity772martinsk3`, `NostalgiaForInfinityX`, `beta_factors_model`, `falconTrader`
+`newstrategy53`, `newstrategy53_22`, `zorkv7_0_0`
 
 ### `no_verdict_on_lookahead` - 4
 
@@ -1302,6 +1310,16 @@ Measured and recursion clean; look-ahead has no verdict.
 Wave `C_measurement_recovery` - 4:
 
 `ExponentialGradientPortfolio`, `Hacklemore`, `Matrix`, `custom_sell`
+
+### `no_verdict_on_recursive` - 10
+
+Measured and look-ahead clean; recursion has no verdict.
+
+Wave `C_measurement_recovery` - 10:
+
+`BBMod1`, `BB_RPB_TSL_SMA_Tranz_TB_1_1_1`, `BB_RPB_TSL_SMA_Tranz_TB_MOD`, `GeneStrategy`
+`GeneStrategy_v2`, `GeneTrader_gen10_1734895087_6007`, `GeneTrader_gen5_1735014093_4541`, `MultiMA_TSL3_Mod`
+`NFI731_BUSD`, `slownsteady`
 
 ## Expansion wave
 
@@ -1319,8 +1337,8 @@ Wave `C_measurement_recovery` - 4:
 | Item | Strategies |
 |---|---:|
 | `paired_full_window_equivalence` | 378 |
-| `recursive_ladder_pending` | 125 |
-| `lookahead_verdict` | 101 |
+| `recursive_ladder_pending` | 156 |
+| `lookahead_verdict` | 100 |
 | `first_measurement_in_current_runtime` | 60 |
 | `convergence_inconclusive` | 34 |
 | `convergence_not_converged_within_ladder` | 28 |
