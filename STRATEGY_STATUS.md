@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 12:28:47 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 12:35:04 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -15,7 +15,7 @@ the state at the freeze, and the difference is the expansion.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 557 of 900 rows
+file's time and is labelled `log_mtime` for that reason. 543 of 900 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
@@ -25,16 +25,16 @@ have neither and are left empty rather than given an invented time.
 | in the manifest | 900 |
 | measured at all | 688 |
 | produced trades | 661 |
-| carrying a run time | 343 |
+| carrying a run time | 357 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
-| `excluded` | 714 |
+| `excluded` | 700 |
 | `E0_strict67` | 67 |
-| `not_yet_tested` | 60 |
-| `convergence_candidate` | 41 |
+| `attempted_no_measurement` | 60 |
+| `convergence_candidate` | 55 |
 | `E1_expanded` | 11 |
 | `pending` | 7 |
 
@@ -125,7 +125,7 @@ coverage, no published trap.
 | `ObeliskIM_v1_1` | `spot_long` | `E1_expanded` | 64 | `native` | 2026-08-31 15:20:09 | `user_data/profile_smoke/ObeliskIM_v1_1-2026-08-31_15-20-09.zip` |
 | `simple_patterns` | `spot_long` | `E1_expanded` | 1845 | `native` | 2026-08-31 15:55:52 | `user_data/profile_smoke/simple_patterns-2026-08-31_15-55-52.zip` |
 
-## Convergence candidates - 41 strategies
+## Convergence candidates - 55 strategies
 
 A warm-up exists at which every indicator stays inside the band.
 That is not admission: the paired full-window run must still show
@@ -174,6 +174,20 @@ an identical trade list.
 | `ImpulseV1` | `spot_long` | 288 candles | 0.0% on `200_SMA` | 2026-09-01 12:27:51 | `user_data/convergence_logs/ImpulseV1-ladder.log` |
 | `Inverse` | `spot_long` | 720 candles | 0.007% on `ema_200_4h` | 2026-09-01 12:28:16 | `user_data/convergence_logs/Inverse-ladder.log` |
 | `InverseV2` | `spot_long` | 720 candles | 0.007% on `ema_200_4h` | 2026-09-01 12:28:42 | `user_data/convergence_logs/InverseV2-ladder.log` |
+| `KAMACCIRSI_new` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:29:09 | `user_data/convergence_logs/KAMACCIRSI_new-ladder.log` |
+| `KeltnerChannelStrategy` | `spot_long` | 288 candles | 0.0% on `ema20` | 2026-09-01 12:29:34 | `user_data/convergence_logs/KeltnerChannelStrategy-ladder.log` |
+| `LinearRegressionStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:29:59 | `user_data/convergence_logs/LinearRegressionStrategy-ladder.log` |
+| `MacdAdxStrategy` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 12:30:24 | `user_data/convergence_logs/MacdAdxStrategy-ladder.log` |
+| `MacdZeroCrossStrategy` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 12:30:48 | `user_data/convergence_logs/MacdZeroCrossStrategy-ladder.log` |
+| `MomentumScoreStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:31:13 | `user_data/convergence_logs/MomentumScoreStrategy-ladder.log` |
+| `Momentumv2` | `spot_long` | 540 candles | 0.0% on `macd` | 2026-09-01 12:31:37 | `user_data/convergence_logs/Momentumv2-ladder.log` |
+| `MoneyFlowStrategy` | `spot_long` | 576 candles | 0.0% on `mfi` | 2026-09-01 12:32:02 | `user_data/convergence_logs/MoneyFlowStrategy-ladder.log` |
+| `MultiFactorConfluenceStrategy` | `spot_long` | 540 candles | 0.0% on `macd` | 2026-09-01 12:32:26 | `user_data/convergence_logs/MultiFactorConfluenceStrategy-ladder.log` |
+| `MyStratV1` | `spot_long` | 2016 candles | 0.0% on `ema_20_1h` | 2026-09-01 12:32:52 | `user_data/convergence_logs/MyStratV1-ladder.log` |
+| `NFI47V2` | `spot_long` | 2016 candles | 0.0% on `ema_20_1h` | 2026-09-01 12:33:20 | `user_data/convergence_logs/NFI47V2-ladder.log` |
+| `NFI5MOHO2` | `spot_long` | 2016 candles | 0.0% on `ema_50_1h` | 2026-09-01 12:33:48 | `user_data/convergence_logs/NFI5MOHO2-ladder.log` |
+| `NFI5MOHO_WIP_1` | `spot_long` | 2016 candles | 0.0% on `ema_50_1h` | 2026-09-01 12:34:16 | `user_data/convergence_logs/NFI5MOHO_WIP_1-ladder.log` |
+| `NFI5MOHO_WIP_2` | `spot_long` | 2016 candles | 0.0% on `ema_50_1h` | 2026-09-01 12:34:44 | `user_data/convergence_logs/NFI5MOHO_WIP_2-ladder.log` |
 
 ## Pending - 7 strategies
 
@@ -183,35 +197,79 @@ neither a pass nor a fail.
 `Fakebuy`, `HyperStra_GSN_SMAOnly`, `InverseVolatilityPortfolio`, `RiskParityPortfolio`
 `TGMA`, `haGradient`, `kalthetank`
 
-## Not yet tested - 60 strategies
+## Attempted, no measurement - 60 strategies
 
-No run of any kind is recorded for these. They are not failures
-and not candidates; nobody has looked. They are listed so the
-corpus is not quietly reduced to the part that happened to be
-convenient to measure.
+Nothing in this corpus is untested. Every one of the 900 rows was
+attempted in the corpus sweep, and these are the ones that never
+produced a usable measurement - mostly because the file would not
+load at all. Each carries the exception its card recorded, so the
+failure is a fact about the strategy rather than a gap in the
+audit. They stay listed because a runtime change can revive one.
 
-| Wave | Strategies |
-|---|---:|
-| `not_scheduled` | 48 |
-| `C_measurement_recovery` | 12 |
+| Strategy | Wave | Recorded failure |
+|---|---|---|
+| `InformativeDecoratorTest` | `C_measurement_recovery` | `ValueError: Informative dataframe for (NEO/USDT, 30m, spot) is empty. Can't populate informative indicators.` |
+| `Strategy` | `C_measurement_recovery` | `'stoploss' is a required property` |
+| `StrategyAnalysis` | `C_measurement_recovery` | `TypeError: Can't instantiate abstract class StrategyAnalysis without an implementation for abstract method 'populate_indicators'` |
+| `TestStrategyLegacyV1` | `C_measurement_recovery` | `Strategy Interface v1 is no longer supported. Please update your strategy to implement `populate_indicators`, `populate_entry_trend` and` |
+| `TestStrategyNoImplements` | `C_measurement_recovery` | ``populate_entry_trend` or `populate_buy_trend` must be implemented.` |
+| `ThreeCommasStrategy` | `C_measurement_recovery` | `Impossible to load Strategy 'ThreeCommasStrategy'. This class does not exist or contains Python code errors.` |
+| `YourStrat` | `C_measurement_recovery` | `TypeError: Can't instantiate abstract class YourStrat without an implementation for abstract method 'populate_indicators'` |
+| `freqai_rl_test_strat` | `C_measurement_recovery` | `Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`` |
+| `freqai_test_classifier` | `C_measurement_recovery` | `Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`` |
+| `freqai_test_multimodel_classifier_strat` | `C_measurement_recovery` | `Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`` |
+| `freqai_test_multimodel_strat` | `C_measurement_recovery` | `Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`` |
+| `freqai_test_strat` | `C_measurement_recovery` | `Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`` |
+| `A9AV` | `not_scheduled` | `AttributeError: 'Rolling' object has no attribute 'any'` |
+| `AstroQAV4` | `not_scheduled` | `freqAI is not enabled. Please enable it in your config to use this strategy.` |
+| `AwesomeMacdS` | `not_scheduled` | `движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)` |
+| `BBMod` | `not_scheduled` | `TypeError: Invalid value '0' for dtype 'datetime64[ms, UTC]'` |
+| `BB_RPB_TSL_Tranz` | `not_scheduled` | `numpy.exceptions.DTypePromotionError: The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that n` |
+| `BB_RPB_TSLmeneguzzo` | `not_scheduled` | `numpy.exceptions.DTypePromotionError: The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that n` |
+| `BcmbigzDevelop` | `not_scheduled` | `TypeError: Invalid value '1' for dtype 'bool'` |
+| `BinClucMadDevelop` | `not_scheduled` | `TypeError: Invalid value '1' for dtype 'bool'` |
+| `BinClucMadSMADevelop` | `not_scheduled` | `TypeError: Invalid value '1' for dtype 'bool'` |
+| `BinHV27_werkkrew` | `not_scheduled` | `TypeError: BinHV27_werkkrew.min_roi_reached_entry() takes 2 positional arguments but 4 were given` |
+| `ClucHAnix5m` | `not_scheduled` | `движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)` |
+| `ClucHAnix_BB_RPB` | `not_scheduled` | `attempted, no measurement recorded` |
+| `ClucHAnix_BB_RPB_HO2` | `not_scheduled` | `numpy._core._exceptions._ArrayMemoryError: Unable to allocate 337. MiB for an array with shape (48, 920831) and data type float64` |
+| `ClucHAnix_BB_RPB_MOD` | `not_scheduled` | `attempted, no measurement recorded` |
+| `Cluckie` | `not_scheduled` | `движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)` |
+| `CoreStrategy` | `not_scheduled` | `TypeError: Invalid value '1' for dtype 'bool'` |
+| `CryptoFrogNFI` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
+| `CryptoFrogNFIHO1A` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
+| `CryptoFrogOffset` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
+| `DIV_v1` | `not_scheduled` | `TypeError: NDFrame.fillna() got an unexpected keyword argument 'method'` |
+| `Guacamole` | `not_scheduled` | `ПРЕВЫШЕНО ВРЕМЯ` |
+| `Kamaflage` | `not_scheduled` | `ПРЕВЫШЕНО ВРЕМЯ` |
+| `MacheteV8b` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
+| `MacheteV8bRallimod` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
+| `MacheteV8bRallimod2` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
+| `MultiMA_TSL` | `not_scheduled` | `ValueError: cannot reindex on an axis with duplicate labels` |
+| `MyStrategyNew10` | `not_scheduled` | `TypeError: attribute name must be string, not 'NoneType'` |
+| `NFI46Frog` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
+| `NFI4Frog` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
+| `NowoIchimoku1hV1` | `not_scheduled` | `KeyError: 'buy'` |
+| `ONS_Portfolio` | `not_scheduled` | `ПРЕВЫШЕНО ВРЕМЯ` |
+| `RSIDivTirail` | `not_scheduled` | `OSError: Cannot save file into a non-existent directory: 'user_data\csvs'` |
+| `RaposaDivergenceV1` | `not_scheduled` | `движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)` |
+| `ReinforcedSmoothScalpS` | `not_scheduled` | `движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)` |
+| `Schism` | `not_scheduled` | `Unexpected error KeyError('price_side') calling <bound method Schism.confirm_trade_entry of <Schism-0318.Schism object at` |
+| `Schism2` | `not_scheduled` | `Unexpected error KeyError('price_side') calling <bound method Schism2.confirm_trade_entry of <Schism-v2.Schism2 object at` |
+| `Schism5` | `not_scheduled` | `ПРЕВЫШЕНО ВРЕМЯ` |
+| `Schism6` | `not_scheduled` | `KeyError: 'inf-rsi'` |
+| `SmartMoneyStrategyHyperopt` | `not_scheduled` | `ПРЕДМЕТ НЕ ТОТ: стратегия объявила 30m, движок считал на 1h` |
+| `Solipsis3` | `not_scheduled` | `Unexpected error KeyError('price_side') calling <bound method Solipsis3.confirm_trade_entry of <Solipsis-v3-fuck (1).Solipsis3` |
+| `Solipsis5` | `not_scheduled` | `Unexpected error KeyError('price_side') calling <bound method Solipsis5.confirm_trade_entry of <Solipsis-v2.5.Solipsis5 object` |
+| `SolipsisCon` | `not_scheduled` | `attempted, no measurement recorded` |
+| `SqueezeMomentum` | `not_scheduled` | `OSError: Cannot save file into a non-existent directory: 'user_data\csvs'` |
+| `Tank5ModulusDCA` | `not_scheduled` | `ПРЕВЫШЕНО ВРЕМЯ` |
+| `Tank5ModulusDCAV3` | `not_scheduled` | `numpy._core._exceptions._ArrayMemoryError: Unable to allocate 1.61 MiB for an array with shape (210529,) and data type float64` |
+| `qrsi` | `not_scheduled` | `ValueError: Invalid frequency: 15m. Failed to parse with error message: ValueError("'m' is no longer supported for offsets. Please use 'ME' instead.")` |
+| `tacos1` | `not_scheduled` | `No data found. Terminating.` |
+| `turbov8` | `not_scheduled` | `движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)` |
 
-`A9AV`, `AstroQAV4`, `AwesomeMacdS`, `BBMod`
-`BB_RPB_TSL_Tranz`, `BB_RPB_TSLmeneguzzo`, `BcmbigzDevelop`, `BinClucMadDevelop`
-`BinClucMadSMADevelop`, `BinHV27_werkkrew`, `ClucHAnix5m`, `ClucHAnix_BB_RPB`
-`ClucHAnix_BB_RPB_HO2`, `ClucHAnix_BB_RPB_MOD`, `Cluckie`, `CoreStrategy`
-`CryptoFrogNFI`, `CryptoFrogNFIHO1A`, `CryptoFrogOffset`, `DIV_v1`
-`Guacamole`, `InformativeDecoratorTest`, `Kamaflage`, `MacheteV8b`
-`MacheteV8bRallimod`, `MacheteV8bRallimod2`, `MultiMA_TSL`, `MyStrategyNew10`
-`NFI46Frog`, `NFI4Frog`, `NowoIchimoku1hV1`, `ONS_Portfolio`
-`RSIDivTirail`, `RaposaDivergenceV1`, `ReinforcedSmoothScalpS`, `Schism`
-`Schism2`, `Schism5`, `Schism6`, `SmartMoneyStrategyHyperopt`
-`Solipsis3`, `Solipsis5`, `SolipsisCon`, `SqueezeMomentum`
-`Strategy`, `StrategyAnalysis`, `Tank5ModulusDCA`, `Tank5ModulusDCAV3`
-`TestStrategyLegacyV1`, `TestStrategyNoImplements`, `ThreeCommasStrategy`, `YourStrat`
-`freqai_rl_test_strat`, `freqai_test_classifier`, `freqai_test_multimodel_classifier_strat`, `freqai_test_multimodel_strat`
-`freqai_test_strat`, `qrsi`, `tacos1`, `turbov8`
-
-## Not passing - 714 strategies, by decisive reason
+## Not passing - 700 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -221,37 +279,58 @@ warm-up is.
 |---|---|---:|
 | `lookahead_found` | reads data it could not have had at the time | 69 |
 | `technical_trap_found` | carries a published backtesting trap | 40 |
-| `recursive_bias_found` | indicator value depends on how much history was loaded | 428 |
-| `no_trades_in_full_measurement` | never trades over the full window | 6 |
+| `recursive_bias_found` | indicator value depends on how much history was loaded | 414 |
+| `no_trades_in_full_measurement` | never trades over the full window | 16 |
 | `canonical_implementation_not_measured` | never ran | 152 |
-| `unclassified` | - | 19 |
+| `no_verdict_on_lookahead_and_recursive` | measured; neither gate returned a verdict | 5 |
+| `no_verdict_on_lookahead` | measured and recursion clean; look-ahead has no verdict | 4 |
+
+
+### Reason by wave
+
+| Reason | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `not_scheduled` |
+|---|---|---|---|---|
+| `lookahead_found` | 0 | 15 | 0 | 54 |
+| `technical_trap_found` | 0 | 0 | 0 | 40 |
+| `recursive_bias_found` | 74 | 29 | 69 | 242 |
+| `no_trades_in_full_measurement` | 0 | 10 | 0 | 6 |
+| `canonical_implementation_not_measured` | 0 | 152 | 0 | 0 |
+| `no_verdict_on_lookahead_and_recursive` | 0 | 5 | 0 | 0 |
+| `no_verdict_on_lookahead` | 0 | 4 | 0 | 0 |
 
 ### `lookahead_found` - 69
 
 Reads data it could not have had at the time.
 
-`ARIMA_15`, `AlexBTK_CT`, `AlexBattleTankKiller`, `AlexBattleTankKillerV3`
-`AlexBattleTankKillerV40H`, `Auto_EI_t4c0s`, `BBBreakoutStrategy`, `BB_RPB_TSL_c7c477d_20211030`
-`BreakoutStrategy`, `BuyAllSellAllStrategy`, `CCIStrategy`, `Cci`
-`EI1_t4c0s_V4`, `EI4_t4c0s_V2`, `EI4_t4c0s_V2_2`, `ElliotWave`
-`FVGAdvancedStrategy_V2`, `FakeoutStrategy`, `FrayLIVEBTC15m`, `FrostAuraRandomStrategy`
-`Heracles`, `HyperStra_SMAOnly`, `Ichi`, `IchiVwapAdx`
-`IchimokuCloudStrategy`, `Leveraged`, `LookaheadStrategy`, `LorentzianClassification`
-`MSO`, `MaxSharpePortfolio`, `MinimumVariancePortfolio`, `MomentumRegimeBasket`
-`NOTankAi_17`, `NOTankAi_19`, `NWEv6`, `NeuroV1`
-`NfiNextModded`, `NostalgiaForInfinityNext`, `NostalgiaForInfinityNext772`, `NostalgiaForInfinityNextV7155`
-`NostalgiaForInfinityNext_ChangeToTower_V5_2`, `NostalgiaForInfinityNext_ChangeToTower_V5_3`, `NostalgiaForInfinityNext_ChangeToTower_V6`, `NostalgiaForInfinityNext_maximizer`
-`NostalgiaForInfinityV7_7_2`, `NostalgiaForInfinityXw`, `Obelisk_Ichimoku_Slow_v1_3`, `Obelisk_Ichimoku_ZEMA_v1`
-`Obelisk_TradePro_Ichi_v1_1`, `Obelisk_TradePro_Ichi_v2_1`, `Precognition`, `ReinforcedQuickie`
-`Renko`, `Rsiqui`, `RsiquiV2`, `RsiquiV5`
-`RsiquiV5_long_only`, `StarRise_strat3`, `Stinkfist`, `TSPredict`
-`Tank1Modulus`, `UziChan`, `UziChan2`, `Zeus`
-`grad`, `ichiV1`, `ichiV1_Marius`, `tsp0chicken`
-`wtc`
+Wave `C_measurement_recovery` - 15:
+
+`ARIMA_15`, `NfiNextModded`, `NostalgiaForInfinityNext`, `NostalgiaForInfinityNext772`
+`NostalgiaForInfinityNextV7155`, `NostalgiaForInfinityNext_ChangeToTower_V5_2`, `NostalgiaForInfinityNext_ChangeToTower_V5_3`, `NostalgiaForInfinityNext_ChangeToTower_V6`
+`NostalgiaForInfinityNext_maximizer`, `NostalgiaForInfinityV7_7_2`, `NostalgiaForInfinityXw`, `Obelisk_Ichimoku_Slow_v1_3`
+`Obelisk_Ichimoku_ZEMA_v1`, `Stinkfist`, `ichiV1_Marius`
+
+Wave `not_scheduled` - 54:
+
+`AlexBTK_CT`, `AlexBattleTankKiller`, `AlexBattleTankKillerV3`, `AlexBattleTankKillerV40H`
+`Auto_EI_t4c0s`, `BBBreakoutStrategy`, `BB_RPB_TSL_c7c477d_20211030`, `BreakoutStrategy`
+`BuyAllSellAllStrategy`, `CCIStrategy`, `Cci`, `EI1_t4c0s_V4`
+`EI4_t4c0s_V2`, `EI4_t4c0s_V2_2`, `ElliotWave`, `FVGAdvancedStrategy_V2`
+`FakeoutStrategy`, `FrayLIVEBTC15m`, `FrostAuraRandomStrategy`, `Heracles`
+`HyperStra_SMAOnly`, `Ichi`, `IchiVwapAdx`, `IchimokuCloudStrategy`
+`Leveraged`, `LookaheadStrategy`, `LorentzianClassification`, `MSO`
+`MaxSharpePortfolio`, `MinimumVariancePortfolio`, `MomentumRegimeBasket`, `NOTankAi_17`
+`NOTankAi_19`, `NWEv6`, `NeuroV1`, `Obelisk_TradePro_Ichi_v1_1`
+`Obelisk_TradePro_Ichi_v2_1`, `Precognition`, `ReinforcedQuickie`, `Renko`
+`Rsiqui`, `RsiquiV2`, `RsiquiV5`, `RsiquiV5_long_only`
+`StarRise_strat3`, `TSPredict`, `Tank1Modulus`, `UziChan`
+`UziChan2`, `Zeus`, `grad`, `ichiV1`
+`tsp0chicken`, `wtc`
 
 ### `technical_trap_found` - 40
 
 Carries a published backtesting trap.
+
+Wave `not_scheduled` - 40:
 
 `ADXMomentum`, `BigPete`, `CBPete9`, `CombinedBinHAndClucHyper`
 `E0V1EN`, `EI3v2_tag_cofi_green`, `ElliotV8_original`, `ElliotV8_original_ichiv2`
@@ -264,121 +343,139 @@ Carries a published backtesting trap.
 `SimpleHopt1Along`, `SimpleHopt1Ashort`, `SimpleHoptS`, `WTX3`
 `XebTradeStrat`, `ichi`, `tesla4`, `tesla7`
 
-### `recursive_bias_found` - 428
+### `recursive_bias_found` - 414
 
 Indicator value depends on how much history was loaded.
 
-`ASDTSRockwellTrading`, `ActionZone`, `AdxSmas`, `AdxSmasS`
-`AlligatorStrategy`, `AlmgrenChrissStrategy`, `Apollo11`, `AverageStrategy`
-`AwesomeMacd`, `BBMod1`, `BBRSI2`, `BBRSI21`
-`BBRSI3366`, `BBRSIOptimizedStrategy`, `BBRSITV`, `BB_RPB_TSL`
-`BB_RPB_TSL_2`, `BB_RPB_TSL_BI`, `BB_RPB_TSL_BIV1`, `BB_RPB_TSL_RNG`
-`BB_RPB_TSL_RNG_2`, `BB_RPB_TSL_RNG_TBS`, `BB_RPB_TSL_RNG_TBS_GOLD`, `BB_RPB_TSL_SMA_Tranz`
-`BB_RPB_TSL_SMA_Tranz_TB_1_1_1`, `BB_RPB_TSL_SMA_Tranz_TB_MOD`, `BBands`, `BBandsRSI`
-`BBlower`, `Babico_SMA5xBBmid`, `Bandtastic`, `BbandRsi`
+Wave `B_warmup_refusal` - 74:
+
+`ASDTSRockwellTrading`, `AwesomeMacd`, `BBRSI2`, `BBRSI21`
+`BBRSI3366`, `BB_RPB_TSL_RNG_2`, `BBlower`, `Bandtastic`
+`BuyOrDie`, `Candle2`, `Chandem`, `Chandemtwo`
+`Cluc4`, `CombinedBinHAndClucHyperV0`, `CombinedBinHAndClucHyperV3`, `Combined_Indicators`
+`DD`, `Diamond`, `EMA520015_V17`, `EasyInEasyOut`
+`FVGChannel`, `ForexRobootSuperScalper`, `Freqtrade_backtest_validation_freqtrade1`, `GKD_Baseline`
+`GKD_BaselineAllMAs`, `GKD_HurstExponent`, `GKD_PFE`, `GodCard`
+`HSI`, `HilbertSineWave`, `JuicyTrend`, `KC_BB`
+`MACDStrategyADA`, `MACDStrategyAVAX`, `MACDStrategyBTC`, `MACDStrategyENJ`
+`MACDStrategyETC`, `MACDStrategySOL`, `MACDStrategyXRP`, `MabStra`
+`Macd`, `Maro4hMacdSd`, `MomStrategy`, `ONUR`
+`OmaGann`, `RSI`, `RSI_BB`, `RSI_EMA_strategy`
+`ReinforcedSmoothScalp`, `Roth01`, `Roth03`, `SimpleHopt`
+`SlowPotato`, `SmartMoneyStrategy`, `Strategy001`, `Strategy001_custom_exit`
+`Strategy001_custom_sell`, `Strategy002`, `Strategy003`, `Strategy004`
+`Strategy005`, `StrategyScalpingFast2`, `TemaMaster`, `TemaMaster3`
+`TemaPure`, `TemaPureNeat`, `TemaPureTwo`, `TouchEmaDelayStrategy`
+`TouchEmaStrategy`, `Trend_Strength_Directional`, `TwoCandle`, `bbandrsi`
+`e6v34`, `ema`
+
+Wave `C_measurement_recovery` - 29:
+
+`BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB_RPB_TSL_BI`
+`BB_RPB_TSL_BIV1`, `BB_RPB_TSL_SMA_Tranz`, `BB_RPB_TSL_SMA_Tranz_TB_1_1_1`, `BB_RPB_TSL_SMA_Tranz_TB_MOD`
+`GeneStrategy`, `GeneStrategy_v2`, `GeneTrader_gen10_1734895087_6007`, `GeneTrader_gen5_1735014093_4541`
+`KitchenSink`, `MultiMA_TSL3`, `MultiMA_TSL3_Mod`, `MultiRSI`
+`NASOSRv6_private_Reinuvader_20211121`, `NFI731_BUSD`, `NFIX_BB_RPB`, `NFIX_BB_RPB_c7c477d_20211030`
+`NostalgiaForInfinity772martinsk3`, `NostalgiaForInfinityX`, `ObeliskRSI_v6_1`, `epretrace`
+`falconTrader`, `newstrategy53`, `newstrategy53_22`, `pmaxTest`
+`slownsteady`
+
+Wave `D_recursive_drift` - 69:
+
+`BigZ0307HO`, `BigZ0407`, `BigZ0407HO`, `BigZ04HO`
+`BigZ04HO2`, `BigZ06`, `BigZ07`, `ClucHAnix_BB_RPB_MOD2_ROI`
+`ClucHAnix_BB_RPB_MOD_CTT`, `ClucHAnix_BB_RPB_MOD_E0V1E_ROI`, `NFI7MOHO`, `NFINextMOHO`
+`NFINextMOHO2`, `NFINextMultiOffsetAndHO`, `NFINextMultiOffsetAndHO2`, `NormalizerStrategy`
+`Nostalgia`, `NostalgiaForInfinityV5MultiOffsetAndHO`, `NostalgiaForInfinityV6HO`, `NotAnotherSMAOffsetStrategyLite`
+`ObvTrendStrategy`, `ParabolicSarStrategy`, `PpoMomentumStrategy`, `PriceActionCandleStrategy`
+`PriceChannelStrategy`, `PumpDetector`, `RSIv2`, `RocMomentumStrategy`
+`RsiBollingerStrategy`, `SRsi`, `STRATEGY_RSI_BB_BOUNDS_CROSS`, `STRATEGY_RSI_BB_CROSS`
+`SampleStrategy`, `SmaRsiStrategy`, `SqueezeMomentumStrategy`, `StochasticOversoldStrategy`
+`StochasticRsiStrategy`, `StrategyScalpingFast`, `TRIWAVE`, `TemaStrategy`
+`TrendAtrStrategy`, `TripleEmaStrategy`, `TrixSignalStrategy`, `UniversalMACD`
+`VolumeBreakoutStrategy`, `VortexStrategy`, `VwapReversionStrategy`, `WilliamsRStrategy`
+`adxbbrsi2`, `bbrsi`, `bbrsi4Freq`, `conny`
+`cryptotankV2`, `eltoro`, `eltoro1_4`, `eltoro1_4_simple`
+`flawless_lambo`, `gettinMoist`, `hlhb`, `lambotest`
+`slope_is_dopeCT`, `stoploss`, `strato`, `tacos`
+`thetank3`, `thetank4TV`, `ultratank`, `wavetrend`
+`wavetrend_rsi`
+
+Wave `not_scheduled` - 242:
+
+`ActionZone`, `AdxSmas`, `AdxSmasS`, `AlligatorStrategy`
+`AlmgrenChrissStrategy`, `Apollo11`, `AverageStrategy`, `BBRSIOptimizedStrategy`
+`BBRSITV`, `BB_RPB_TSL_RNG`, `BB_RPB_TSL_RNG_TBS`, `BB_RPB_TSL_RNG_TBS_GOLD`
+`BBands`, `BBandsRSI`, `Babico_SMA5xBBmid`, `BbandRsi`
 `BbandRsiRolling`, `BcmbigzV1`, `BeastBotXBLR6`, `BeastBotXBLR7`
-`BigZ0307HO`, `BigZ04`, `BigZ0407`, `BigZ0407HO`
-`BigZ04HO`, `BigZ04HO2`, `BigZ06`, `BigZ07`
-`BinHV27`, `BinHV27F`, `BinHV27_short`, `BinHV45HO`
-`BinMfiBTCv5003`, `BuyOrDie`, `CMCWinner`, `COPY_HL`
-`Candle2`, `Chandem`, `Chandemtwo`, `Cluc4`
+`BigZ04`, `BinHV27`, `BinHV27F`, `BinHV27_short`
+`BinHV45HO`, `BinMfiBTCv5003`, `CMCWinner`, `COPY_HL`
 `Cluc4werk`, `Cluc5werk`, `ClucFiatROI`, `ClucFiatSlow`
-`ClucHAnix`, `ClucHAnix_BB_RPB_MOD2_ROI`, `ClucHAnix_BB_RPB_MOD_CTT`, `ClucHAnix_BB_RPB_MOD_E0V1E_ROI`
-`ClucHAnix_hhll`, `ClucMay72018`, `CofiBitStrategy`, `CombinedBinHAndCluc`
-`CombinedBinHAndCluc2021`, `CombinedBinHAndCluc2021Bull`, `CombinedBinHAndClucHyperV0`, `CombinedBinHAndClucHyperV3`
-`CombinedBinHAndClucV2`, `CombinedBinHAndClucV4`, `CombinedBinHAndClucV5`, `CombinedBinHAndClucV8`
-`CombinedBinHAndClucV8Hyper`, `CombinedBinHAndClucV8XH`, `Combined_Indicators`, `Combined_NFIv6_SMA`
-`ConsensusShort`, `CrossEMAStrategy`, `CustomStoplossWithPSAR`, `DCBBBounce`
-`DD`, `DWT_LongShort`, `DWT_short`, `DevilStra`
-`Diamond`, `Dimond`, `Divergences`, `Dracula`
+`ClucHAnix`, `ClucHAnix_hhll`, `ClucMay72018`, `CofiBitStrategy`
+`CombinedBinHAndCluc`, `CombinedBinHAndCluc2021`, `CombinedBinHAndCluc2021Bull`, `CombinedBinHAndClucV2`
+`CombinedBinHAndClucV4`, `CombinedBinHAndClucV5`, `CombinedBinHAndClucV8`, `CombinedBinHAndClucV8Hyper`
+`CombinedBinHAndClucV8XH`, `Combined_NFIv6_SMA`, `ConsensusShort`, `CrossEMAStrategy`
+`CustomStoplossWithPSAR`, `DCBBBounce`, `DWT_LongShort`, `DWT_short`
+`DevilStra`, `Dimond`, `Divergences`, `Dracula`
 `E0V1E`, `E0V1E2`, `E0V1E_ewo`, `E0V1E_protections`
-`E0V1E_strs`, `EMA50`, `EMA520015_V17`, `EMABreakout`
-`EMASkipPump`, `EasyInEasyOut`, `ElliotV4`, `ElliotV531`
-`ElliotV5HO`, `ElliotV5HOMod2`, `ElliotV5HOMod3`, `ElliotV7`
-`ElliotV8HO`, `FOttStrategy`, `FRAYSTRAT`, `FReinforcedStrategy`
-`FSampleStrategy`, `FTT_DWT_FBB_FUTURES`, `FVGChannel`, `FisherHull`
-`FiveMinCrossAbove`, `ForexRobootSuperScalper`, `FrayStratBTC`, `Freqtrade_backtest_validation_freqtrade1`
-`FrostAuraM115mStrategy`, `FrostAuraM11hStrategy`, `FrostAuraM21hStrategy`, `FrostAuraM315mStrategy`
-`FrostAuraM31hStrategy`, `GKD_Baseline`, `GKD_BaselineAllMAs`, `GKD_C`
-`GKD_CT`, `GKD_FisherTransform`, `GKD_FisherTransformMTF`, `GKD_HurstExponent`
-`GKD_PFE`, `GPTREV`, `GeneStrategy`, `GeneStrategy_v2`
-`GeneTrader_gen10_1734895087_6007`, `GeneTrader_gen5_1735014093_4541`, `GodCard`, `GodStraNew`
-`GodStraNew40`, `GodStraNew_SMAonly`, `GoldHedgeZeroMACD`, `HEW`
-`HSI`, `Hacklemore2`, `Hacklemore3`, `Hacklemost`
-`HansenSmaOffsetV1`, `HilbertSineWave`, `HourBasedStrategy`, `HurstCycle3`
+`E0V1E_strs`, `EMA50`, `EMABreakout`, `EMASkipPump`
+`ElliotV4`, `ElliotV531`, `ElliotV5HO`, `ElliotV5HOMod2`
+`ElliotV5HOMod3`, `ElliotV7`, `ElliotV8HO`, `FOttStrategy`
+`FRAYSTRAT`, `FReinforcedStrategy`, `FSampleStrategy`, `FTT_DWT_FBB_FUTURES`
+`FisherHull`, `FiveMinCrossAbove`, `FrayStratBTC`, `FrostAuraM115mStrategy`
+`FrostAuraM11hStrategy`, `FrostAuraM21hStrategy`, `FrostAuraM315mStrategy`, `FrostAuraM31hStrategy`
+`GKD_C`, `GKD_CT`, `GKD_FisherTransform`, `GKD_FisherTransformMTF`
+`GPTREV`, `GodStraNew`, `GodStraNew40`, `GodStraNew_SMAonly`
+`GoldHedgeZeroMACD`, `HEW`, `Hacklemore2`, `Hacklemore3`
+`Hacklemost`, `HansenSmaOffsetV1`, `HourBasedStrategy`, `HurstCycle3`
 `HurstCycle7`, `HurstCycleV4`, `HurstCycleV5`, `HurstCycleV5RSI`
 `HurstCycleV6`, `INSIDEUP`, `Ichess`, `Ichimoku`
-`InformativeSample`, `JuicyTrend`, `KAMACCIRSI_new`, `KC_BB`
-`KeltnerChannelStrategy`, `KitchenSink`, `Lateralus`, `LinearRegressionStrategy`
-`Low_BB`, `LuxOSC`, `MAC`, `MACDRL`
-`MACDRS`, `MACDStrategy`, `MACDStrategyADA`, `MACDStrategyAVAX`
-`MACDStrategyBTC`, `MACDStrategyENJ`, `MACDStrategyETC`, `MACDStrategySOL`
-`MACDStrategyXRP`, `MACDStrategy_crossed`, `MACDZeroCrossStrategy`, `MACD_EMA`
-`MACD_TRI_EMA`, `MFI`, `MabStra`, `Macd`
-`MacdAdxStrategy`, `MacdZeroCrossStrategy`, `Maro4hMacdSd`, `Martin`
-`MiniLambo`, `Minmax`, `MomStrategy`, `MomentumScoreStrategy`
-`Momentumv2`, `MoneyFlowStrategy`, `MontrealStrategy`, `MultiFactorConfluenceStrategy`
-`MultiMA_TSL3`, `MultiMA_TSL3_Mod`, `MultiOffsetLamboV0`, `MultiRSI`
-`MyStratV1`, `NASOSRv6_private_Reinuvader_20211121`, `NASOSv5`, `NEWTEST15m`
+`InformativeSample`, `Lateralus`, `Low_BB`, `LuxOSC`
+`MAC`, `MACDRL`, `MACDRS`, `MACDStrategy`
+`MACDStrategy_crossed`, `MACDZeroCrossStrategy`, `MACD_EMA`, `MACD_TRI_EMA`
+`MFI`, `Martin`, `MiniLambo`, `Minmax`
+`MontrealStrategy`, `MultiOffsetLamboV0`, `NASOSv5`, `NEWTEST15m`
 `NFI46`, `NFI46FrogZ`, `NFI46Offset`, `NFI46OffsetHOA1`
-`NFI46Z`, `NFI47V2`, `NFI5MOHO`, `NFI5MOHO2`
-`NFI5MOHO_WIP`, `NFI5MOHO_WIP_1`, `NFI5MOHO_WIP_2`, `NFI731_BUSD`
-`NFI7MOHO`, `NFINextMOHO`, `NFINextMOHO2`, `NFINextMultiOffsetAndHO`
-`NFINextMultiOffsetAndHO2`, `NFIX_BB_RPB`, `NFIX_BB_RPB_c7c477d_20211030`, `NOTankAi_15`
-`NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`, `NormalizerStrategy`, `NormalizerStrategyHO2`
-`Nostalgia`, `NostalgiaForInfinity772martinsk3`, `NostalgiaForInfinityNextGen`, `NostalgiaForInfinityNextGen_TSL`
-`NostalgiaForInfinityV3`, `NostalgiaForInfinityV4`, `NostalgiaForInfinityV4HO`, `NostalgiaForInfinityV5`
-`NostalgiaForInfinityV5MultiOffsetAndHO`, `NostalgiaForInfinityV5MultiOffsetAndHO2`, `NostalgiaForInfinityV6`, `NostalgiaForInfinityV6HO`
-`NostalgiaForInfinityV7`, `NostalgiaForInfinityV7_SMA`, `NostalgiaForInfinityV7_SMAv2`, `NostalgiaForInfinityV7_SMAv2_1`
-`NostalgiaForInfinityX`, `NostalgiaForInfinityX2`, `NostalgiaForInfinityX3`, `NostalgiaForInfinityX4`
-`NostalgiaForInfinityX5`, `NostalgiaForInfinityX6`, `NostalgiaForInfinityX7`, `NotAnotherSMAOffSetStrategy_V2`
-`NotAnotherSMAOffsetStrategy`, `NotAnotherSMAOffsetStrategyHO`, `NotAnotherSMAOffsetStrategyHOv3`, `NotAnotherSMAOffsetStrategyLite`
-`NotAnotherSMAOffsetStrategyModHO`, `NotAnotherSMAOffsetStrategyModHO_LamineDz_20210901`, `NotAnotherSMAOffsetStrategyX1`, `NotAnotherSMAOffsetStrategy_uzi`
-`NotAnotherSMAOffsetStrategy_uzi3`, `NowoIchimoku1hV2`, `ONUR`, `ObeliskRSI_v6_1`
-`ObvTrendStrategy`, `OmaGann`, `PRICEFOLLOWING`, `PRICEFOLLOWING2`
-`PRICEFOLLOWINGX`, `ParabolicSarStrategy`, `PatternRecognition`, `PolymarketPortfolio`
-`PpoMomentumStrategy`, `PriceActionCandleStrategy`, `PriceChannelStrategy`, `PumpDetector`
-`Quickie`, `RSI`, `RSI_BB`, `RSI_EMA_strategy`
-`RSIv2`, `RalliV1`, `RalliV1_disable56`, `ReinforcedAverageStrategy`
-`ReinforcedSmoothScalp`, `RocMomentumStrategy`, `Roth01`, `Roth03`
-`RsiBollingerStrategy`, `RsiDivergenceStrategy`, `SAR`, `SMAOffset`
-`SMAOffsetProtectOpt`, `SMAOffsetProtectOptV0`, `SMAOffsetProtectOptV1`, `SMAOffsetProtectOptV1HO1`
-`SMAOffsetProtectOptV1Mod`, `SMAOffsetProtectOptV1Mod2`, `SMAOffsetProtectOptV1_kkeue_20210619`, `SMAOffset_Hippocritical_dca`
-`SMAOffset_Hippocritical_dca_leverage`, `SMAOffset_Hippocritical_dca_old`, `SMAOffset_Hippocritical_dca_protections`, `SMA_BBRSI`
-`SRsi`, `STRATEGY_RSI_BB_BOUNDS_CROSS`, `STRATEGY_RSI_BB_CROSS`, `SampleStrategy`
-`Sar`, `Saturn5`, `Scalp`, `Schism2MM`
-`Schism3`, `Schism4`, `Seb`, `Simple`
-`SimpleHopt`, `SlowPotato`, `SmaRsiStrategy`, `SmartMoneyStrategy`
-`SmoothOperator`, `SmoothScalp`, `SqueezeMomentumStrategy`, `StarRise`
-`StarRise_strat`, `StochasticOversoldStrategy`, `StochasticRsiStrategy`, `Strategy001`
-`Strategy001_custom_exit`, `Strategy001_custom_sell`, `Strategy002`, `Strategy003`
-`Strategy004`, `Strategy005`, `StrategyScalpingFast`, `StrategyScalpingFast2`
-`StrategyTestV2`, `StrategyTestV3`, `SuperTrend`, `SupertrendStrategy`
-`SwingHighToSky`, `TD`, `TEMA`, `TRIWAVE`
-`TWAPStrategy`, `TechnicalExampleStrategy`, `TemaMaster`, `TemaMaster3`
-`TemaPure`, `TemaPureNeat`, `TemaPureTwo`, `TemaStrategy`
-`TheForce`, `ToTheMoon`, `TouchEmaDelayStrategy`, `TouchEmaStrategy`
-`TrendAtrStrategy`, `TrendFollowingStrategy`, `TrendRiderStrategy`, `Trend_Strength_Directional`
-`TripleEmaStrategy`, `TrixSignalStrategy`, `TrixV21Strategy`, `TrixV23Strategy`
-`TwoCandle`, `UniversalMACD`, `Uptrend`, `VWAP`
-`VolatilitySystem`, `VolatilitySystemV2`, `VolumeBreakoutStrategy`, `VortexStrategy`
-`VwapReversionStrategy`, `WaveTrendStra`, `WilliamsRStrategy`, `YOLO`
+`NFI46Z`, `NFI5MOHO`, `NFI5MOHO_WIP`, `NOTankAi_15`
+`NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`, `NormalizerStrategyHO2`, `NostalgiaForInfinityNextGen`
+`NostalgiaForInfinityNextGen_TSL`, `NostalgiaForInfinityV3`, `NostalgiaForInfinityV4`, `NostalgiaForInfinityV4HO`
+`NostalgiaForInfinityV5`, `NostalgiaForInfinityV5MultiOffsetAndHO2`, `NostalgiaForInfinityV6`, `NostalgiaForInfinityV7`
+`NostalgiaForInfinityV7_SMA`, `NostalgiaForInfinityV7_SMAv2`, `NostalgiaForInfinityV7_SMAv2_1`, `NostalgiaForInfinityX2`
+`NostalgiaForInfinityX3`, `NostalgiaForInfinityX4`, `NostalgiaForInfinityX5`, `NostalgiaForInfinityX6`
+`NostalgiaForInfinityX7`, `NotAnotherSMAOffSetStrategy_V2`, `NotAnotherSMAOffsetStrategy`, `NotAnotherSMAOffsetStrategyHO`
+`NotAnotherSMAOffsetStrategyHOv3`, `NotAnotherSMAOffsetStrategyModHO`, `NotAnotherSMAOffsetStrategyModHO_LamineDz_20210901`, `NotAnotherSMAOffsetStrategyX1`
+`NotAnotherSMAOffsetStrategy_uzi`, `NotAnotherSMAOffsetStrategy_uzi3`, `NowoIchimoku1hV2`, `PRICEFOLLOWING`
+`PRICEFOLLOWING2`, `PRICEFOLLOWINGX`, `PatternRecognition`, `PolymarketPortfolio`
+`Quickie`, `RalliV1`, `RalliV1_disable56`, `ReinforcedAverageStrategy`
+`RsiDivergenceStrategy`, `SAR`, `SMAOffset`, `SMAOffsetProtectOpt`
+`SMAOffsetProtectOptV0`, `SMAOffsetProtectOptV1`, `SMAOffsetProtectOptV1HO1`, `SMAOffsetProtectOptV1Mod`
+`SMAOffsetProtectOptV1Mod2`, `SMAOffsetProtectOptV1_kkeue_20210619`, `SMAOffset_Hippocritical_dca`, `SMAOffset_Hippocritical_dca_leverage`
+`SMAOffset_Hippocritical_dca_old`, `SMAOffset_Hippocritical_dca_protections`, `SMA_BBRSI`, `Sar`
+`Saturn5`, `Scalp`, `Schism2MM`, `Schism3`
+`Schism4`, `Seb`, `Simple`, `SmoothOperator`
+`SmoothScalp`, `StarRise`, `StarRise_strat`, `StrategyTestV2`
+`StrategyTestV3`, `SuperTrend`, `SupertrendStrategy`, `SwingHighToSky`
+`TD`, `TEMA`, `TWAPStrategy`, `TechnicalExampleStrategy`
+`TheForce`, `ToTheMoon`, `TrendFollowingStrategy`, `TrendRiderStrategy`
+`TrixV21Strategy`, `TrixV23Strategy`, `Uptrend`, `VWAP`
+`VolatilitySystem`, `VolatilitySystemV2`, `WaveTrendStra`, `YOLO`
 `ZScoreMeanReversionStrategy`, `ZaratustraDCA2_06`, `ZaratustraDCA2_07`, `ZaratustraDCA5`
-`adaptive`, `adxbbrsi2`, `bbandrsi`, `bbrsi`
-`bbrsi4Freq`, `conny`, `cryptotankV2`, `custom`
-`dualwave`, `e6v34`, `eltoro`, `eltoro1_4`
-`eltoro1_4_simple`, `ema`, `epretrace`, `falconTrader`
-`flawless_lambo`, `gettinMoist`, `hansencandlepatternV1`, `heikin`
-`hlhb`, `keltnerchannel`, `lambotest`, `mabStra`
-`moonhouse`, `newstrategy53`, `newstrategy53_22`, `pcb20`
-`pmaxTest`, `slope_is_dopeCT`, `slownsteady`, `stoploss`
-`stratfib`, `strato`, `tacos`, `tbtest`
-`thetank3`, `thetank4TV`, `true_lambo`, `twinturboV8`
-`twinturboV8_2`, `ultratank`, `wavetrend`, `wavetrend_rsi`
+`adaptive`, `custom`, `dualwave`, `hansencandlepatternV1`
+`heikin`, `keltnerchannel`, `mabStra`, `moonhouse`
+`pcb20`, `stratfib`, `tbtest`, `true_lambo`
+`twinturboV8`, `twinturboV8_2`
 
-### `no_trades_in_full_measurement` - 6
+### `no_trades_in_full_measurement` - 16
 
 Never trades over the full window.
+
+Wave `C_measurement_recovery` - 10:
+
+`BasketStrategy`, `BreakEven`, `DoesNothingStrategy`, `FundingCarry`
+`Miku_PP_v3`, `MostOfAll`, `MyStrategyTemplate`, `Obelisk_3EMA_StochRSI_ATR`
+`ViN`, `ep3mas2`
+
+Wave `not_scheduled` - 6:
 
 `DoubleEMACrossoverWithTrend`, `EMAPriceCrossoverWithThreshold`, `Insomnia_short`, `MACDCrossoverWithTrend`
 `RSIDirectionalWithTrend`, `RSIDirectionalWithTrendSlow`
@@ -386,6 +483,8 @@ Never trades over the full window.
 ### `canonical_implementation_not_measured` - 152
 
 Never ran.
+
+Wave `C_measurement_recovery` - 152:
 
 `ADX_15M_USDT`, `ADX_15M_USDT2`, `AdaptiveRenkoStrategy`, `AdvancedRiskFilterStrategy`
 `AlligatorStrat`, `Astro`, `AutoArimaTripleV1`, `BBRSI`
@@ -426,13 +525,22 @@ Never ran.
 `mark_strat`, `mark_strat_opt`, `multi_tf`, `new_turtle`
 `new_turtle_roi`, `quantumfirst`, `redditMA`, `thetank2`
 
-### `unclassified` - 19
+### `no_verdict_on_lookahead_and_recursive` - 5
 
-`ARIMASTR`, `BasketStrategy`, `BreakEven`, `DoesNothingStrategy`
-`ExponentialGradientPortfolio`, `FundingCarry`, `Hacklemore`, `HarmonicDivergence`
-`HarmonicDivergence_fix`, `Matrix`, `Miku_PP_v3`, `MostOfAll`
-`MyStrategyTemplate`, `Obelisk_3EMA_StochRSI_ATR`, `ViN`, `beta_factors_model`
-`custom_sell`, `ep3mas2`, `zorkv7_0_0`
+Measured; neither gate returned a verdict.
+
+Wave `C_measurement_recovery` - 5:
+
+`ARIMASTR`, `HarmonicDivergence`, `HarmonicDivergence_fix`, `beta_factors_model`
+`zorkv7_0_0`
+
+### `no_verdict_on_lookahead` - 4
+
+Measured and recursion clean; look-ahead has no verdict.
+
+Wave `C_measurement_recovery` - 4:
+
+`ExponentialGradientPortfolio`, `Hacklemore`, `Matrix`, `custom_sell`
 
 ## Expansion wave
 
@@ -449,8 +557,8 @@ Never ran.
 
 | Item | Strategies |
 |---|---:|
-| `first_measurement` | 60 |
-| `paired_full_window_equivalence` | 41 |
+| `retry_under_current_runtime` | 60 |
+| `paired_full_window_equivalence` | 55 |
 | `convergence_not_converged_within_ladder` | 10 |
 
 Per-row detail, including every evidence path, is in

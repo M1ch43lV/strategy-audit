@@ -61,6 +61,9 @@ REASON_ORDER = (
      "indicator value depends on how much history was loaded"),
     ("no_trades_in_full_measurement", "never trades over the full window"),
     ("canonical_implementation_not_measured", "never ran"),
+    ("no_verdict_on_lookahead_and_recursive", "measured; neither gate returned a verdict"),
+    ("no_verdict_on_lookahead", "measured and recursion clean; look-ahead has no verdict"),
+    ("no_verdict_on_recursive", "measured and look-ahead clean; recursion has no verdict"),
 )
 
 # The runners do not stamp a time into their records, so it is recovered from
@@ -68,6 +71,26 @@ REASON_ORDER = (
 # log file's modification time is close but is the file's time, not the run's.
 # Where neither exists the field stays empty rather than being invented.
 _ARCHIVE_TIME = re.compile(r"-(\d{4}-\d{2}-\d{2})_(\d{2})-(\d{2})-(\d{2})\.zip$")
+
+CORPUS = os.path.join(ROOT, "corpus")
+LEDGER = os.path.join(ROOT, "LEDGER.csv")
+_CARD_ERROR = re.compile(r"## Could not be measured\s*\n+```\s*\n(.+?)\n", re.S)
+
+
+def card_error(strategy):
+    """The error the corpus sweep recorded for a strategy it could not run.
+
+    Every one of the 900 rows was attempted at least once, in the corpus sweep
+    if nowhere else, and each failure named its exception on the strategy's
+    card. Reporting a row as untested because this audit's newer stores hold no
+    record for it would discard evidence that exists.
+    """
+    path = os.path.join(CORPUS, strategy + ".md")
+    if not os.path.isfile(path):
+        return ""
+    match = _CARD_ERROR.search(
+        io.open(path, encoding="utf-8", errors="replace").read())
+    return match.group(1).strip()[:160] if match else ""
 
 
 def _csv(path):
@@ -176,7 +199,11 @@ def rows():
         elif base.get("eligibility_status") == "pending_diagnostics":
             cohort = "pending"
         elif not ran_here and base.get("canonical_measured") != "true":
-            cohort = "not_yet_tested"
+            # Not "untested". Every row was attempted in the corpus sweep, and
+            # these are the ones that never produced a usable measurement -
+            # mostly because the file would not load at all. The card holds the
+            # exception. Calling them untested would throw that evidence away.
+            cohort = "attempted_no_measurement"
         else:
             cohort = "excluded"
 
@@ -197,18 +224,30 @@ def rows():
                     break
             if not reason and cohort == "pending":
                 reason = "pending_diagnostics"
+            if not reason and window.get("status") == "measured" \
+                    and _integer(window.get("trades")) == 0:
+                # Measured over the whole window and it never traded. The
+                # frozen reason cannot say this: at the freeze it had not run.
+                reason = "no_trades_in_full_measurement"
+            if not reason and "NA" in (lookahead, recursive):
+                # Measured, but at least one gate produced no verdict. That is
+                # not a finding against the strategy and must not read as one.
+                missing = [name for name, value in
+                           (("lookahead", lookahead), ("recursive", recursive))
+                           if value == "NA"]
+                reason = "no_verdict_on_" + "_and_".join(missing)
             if not reason:
                 reason = "; ".join(sorted(reasons)) or "unclassified"
-        elif cohort == "not_yet_tested":
-            reason = "no_run_recorded"
+        elif cohort == "attempted_no_measurement":
+            reason = card_error(strategy) or "attempted, no measurement recorded"
 
         open_work = []
         if cohort == "convergence_candidate":
             open_work.append("paired_full_window_equivalence")
             if lookahead not in ("PASS", "FOUND"):
                 open_work.append("lookahead_verdict")
-        elif cohort == "not_yet_tested":
-            open_work.append("first_measurement")
+        elif cohort == "attempted_no_measurement":
+            open_work.append("retry_under_current_runtime")
         elif cohort == "excluded" and settled.get("state") in (
                 "not_converged_within_ladder", "inconclusive"):
             open_work.append("convergence_" + settled["state"])
@@ -279,7 +318,7 @@ def _report(data):
     passing = [r for r in data if r["cohort"] in ("E0_strict67", "E1_expanded")]
     candidates = [r for r in data if r["cohort"] == "convergence_candidate"]
     pending = [r for r in data if r["cohort"] == "pending"]
-    untested = [r for r in data if r["cohort"] == "not_yet_tested"]
+    untested = [r for r in data if r["cohort"] == "attempted_no_measurement"]
     failing = [r for r in data if r["cohort"] == "excluded"]
     now = datetime.datetime.now().replace(microsecond=0).isoformat(sep=" ")
 
@@ -360,18 +399,20 @@ def _report(data):
 
     if untested:
         lines += [
-            "## Not yet tested - %d strategies" % len(untested), "",
-            "No run of any kind is recorded for these. They are not failures",
-            "and not candidates; nobody has looked. They are listed so the",
-            "corpus is not quietly reduced to the part that happened to be",
-            "convenient to measure.", "",
-            "| Wave | Strategies |", "|---|---:|",
+            "## Attempted, no measurement - %d strategies" % len(untested), "",
+            "Nothing in this corpus is untested. Every one of the 900 rows was",
+            "attempted in the corpus sweep, and these are the ones that never",
+            "produced a usable measurement - mostly because the file would not",
+            "load at all. Each carries the exception its card recorded, so the",
+            "failure is a fact about the strategy rather than a gap in the",
+            "audit. They stay listed because a runtime change can revive one.", "",
+            "| Strategy | Wave | Recorded failure |", "|---|---|---|",
         ]
-        for wave, count in collections.Counter(
-                row["expansion_wave"] for row in untested).most_common():
-            lines.append("| `%s` | %d |" % (wave or "(none)", count))
-        lines.append("")
-        lines += _names([row["strategy_id"] for row in untested])
+        for row in sorted(untested, key=lambda r: (r["expansion_wave"],
+                                                   r["strategy_id"])):
+            lines.append("| `%s` | `%s` | `%s` |" % (
+                row["strategy_id"], row["expansion_wave"] or "-",
+                row["primary_reason"].replace("|", "\\|")))
         lines.append("")
 
     texts = dict(REASON_ORDER)
@@ -391,12 +432,35 @@ def _report(data):
         lines.append("| `%s` | %s | %d |"
                      % (key, texts.get(key, "-"), len(grouped[key])))
     lines.append("")
+    # Reason against wave. The waves are the units the expansion protocol works
+    # in, so this is the table that says which wave is worth another pass and
+    # which is exhausted.
+    wave_names = sorted({row["expansion_wave"] for row in failing})
+    lines += [
+        "", "### Reason by wave", "",
+        "| Reason | " + " | ".join("`%s`" % (w or "-") for w in wave_names) + " |",
+        "|---" * (len(wave_names) + 1) + "|",
+    ]
+    for key in ordered:
+        counts = collections.Counter(
+            row["expansion_wave"] for row in failing
+            if row["primary_reason"] == key)
+        lines.append("| `%s` | %s |" % (key, " | ".join(
+            str(counts.get(w, 0)) for w in wave_names)))
+    lines.append("")
+
     for key in ordered:
         lines += ["### `%s` - %d" % (key, len(grouped[key])), ""]
         if key in texts:
             lines += [texts[key].capitalize() + ".", ""]
-        lines += _names(grouped[key])
-        lines.append("")
+        by_wave = collections.defaultdict(list)
+        for row in failing:
+            if row["primary_reason"] == key:
+                by_wave[row["expansion_wave"]].append(row["strategy_id"])
+        for wave in sorted(by_wave):
+            lines += ["Wave `%s` - %d:" % (wave or "-", len(by_wave[wave])), ""]
+            lines += _names(by_wave[wave])
+            lines.append("")
 
     lines += _table(waves, "## Expansion wave", "Wave")
     if work:
@@ -431,7 +495,7 @@ def selftest():
             if row["cohort"] == "E1_expanded"} == admitted
 
     for row in data:
-        if row["cohort"] in ("excluded", "pending", "not_yet_tested"):
+        if row["cohort"] in ("excluded", "pending", "attempted_no_measurement"):
             assert row["primary_reason"], row["strategy_id"]
         else:
             assert not row["primary_reason"], row["strategy_id"]
@@ -439,18 +503,26 @@ def selftest():
         if row["measured"] == "true":
             assert row["primary_reason"] != "canonical_implementation_not_measured", \
                 row["strategy_id"]
-        # "Not yet tested" must mean exactly that: no evidence, no verdict.
-        if row["cohort"] == "not_yet_tested":
+        # This cohort means "attempted and produced nothing", never "untested".
+        if row["cohort"] == "attempted_no_measurement":
             assert row["measured"] == "false", row["strategy_id"]
             assert not row["evidence_paths"], row["strategy_id"]
         # A recovered timestamp always names where it came from.
         assert bool(row["last_tested_at"]) == bool(row["last_tested_source"]), \
             row["strategy_id"]
 
-    print("strategy_status selftest: PASS (%d rows, %d E0, %d E1, %d untested, "
+    ledger = {r["strategy"] for r in _csv(LEDGER)}
+    # The corpus sweep attempted everything, so nothing may be reported as
+    # never looked at. 895 of the 900 are in that ledger; the five that are not
+    # are the hand-picked case studies under results/.
+    assert len(ledger) == 895, len(ledger)
+    for row in data:
+        if row["cohort"] == "attempted_no_measurement":
+            assert row["strategy_id"] in ledger, row["strategy_id"]
+    print("strategy_status selftest: PASS (%d rows, %d E0, %d E1, %d unmeasured, "
           "%d timestamped)"
           % (len(data), len(listed), len(admitted),
-             sum(1 for r in data if r["cohort"] == "not_yet_tested"),
+             sum(1 for r in data if r["cohort"] == "attempted_no_measurement"),
              sum(1 for r in data if r["last_tested_at"])))
 
 

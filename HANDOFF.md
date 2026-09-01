@@ -34,6 +34,30 @@ for frozen rules and the current 75 eligible strategies misquoted as 67.
 5. Reconstruct completed, active, and remaining work; obey `Do not redo`.
    Never rerun a measurement merely because a prior session did not witness it.
 
+## STRATEGY_STATUS must be kept current - standing obligation
+
+`STRATEGY_STATUS.md` and `.csv` are the reference for what is known about every
+strategy: which passed, which did not and why, when each was tested and where
+its results are. **Regenerate them after any measurement, adjudication or
+convergence run**, and never edit them by hand:
+
+```bash
+python strategy_status.py            # rewrite
+python strategy_status.py --check    # is the row data current?
+python strategy_status.py --selftest
+```
+
+This is not housekeeping. The canonical manifest silently listed 66 measured
+strategies as unmeasured for two days, and that stale field nearly caused three
+admissible rows to be refused. A table nobody regenerates becomes a table that
+lies, and this one is the first thing a cold session reads.
+
+Two things it must never be allowed to say. It must not report a row as
+untested: every one of the 900 was attempted in the corpus sweep, and rows with
+no measurement carry the exception their card recorded. And it must not fold a
+missing verdict into a failure - `no_verdict_on_*` is a statement about this
+audit, not about the strategy.
+
 ## Plan pointer
 
 - File: `strategy-audit/ELIGIBILITY_EXPANSION_PLAN.md`
