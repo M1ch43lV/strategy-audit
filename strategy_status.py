@@ -328,7 +328,12 @@ def rows():
         # already corrected for the convergence candidates, still on the
         # inherited path for 47 rows. Naming it as what it is keeps the reader
         # from reading a missing precondition as detected bias.
+        # Only where no ladder has run. Once it has, what it measured is
+        # the answer, and "nothing was ever compared" would be false:
+        # four rows said that while the ladder had in fact compared
+        # every rung and found drift at all of them.
         if recursive == "FOUND" and not diagnostics.get("recursive") \
+                and not settled \
                 and base.get("recursive_kind") == "refused_no_warmup":
             recursive = "WARMUP_NEEDED"
             recursive_evidence += ":refused_no_warmup"
@@ -345,6 +350,10 @@ def rows():
                 settled.get("chosen_startup_candle_count"),
                 "" if settled.get("needed_no_override") else ":warmup_supplied")
         elif settled.get("state") == "not_converged_within_ladder":
+            # The ladder supplied warm-up after warm-up and the indicator kept
+            # drifting. This is the one shape in which a recursion finding is
+            # confirmed rather than inherited.
+            recursive = "FOUND"
             recursive_evidence = "convergence:not_settled"
         elif attempt:
             # Measured here, at a supplied warm-up, but under the parser that

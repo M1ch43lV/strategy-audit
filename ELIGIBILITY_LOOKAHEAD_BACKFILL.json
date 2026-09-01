@@ -3126,6 +3126,167 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "Martin"
+    },
+    "MiniLambo": {
+      "canonical_sha256": "sha256_3201257fa75c6c33a5a357b932b22aa46c9e9711201658a070a8adad8b1fb190",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "MiniLambo:3201257fa75c",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 82.2,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MiniLambo --strategy-path user_data/profile_bias_strategies/MiniLambo --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_09336f9fbcacdb954c9b339a6f038559f54abe282b5c1ecac59e3d502d0cde80",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MiniLambo"
+    },
+    "MomStrategy": {
+      "canonical_sha256": "sha256_2da571c15eaccef45d6e365ba6b44e23f2e66a769a958b24dfb5ea8400ca40ec",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "MomStrategy:2da571c15eac",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 37.2,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MomStrategy --strategy-path user_data/profile_bias_strategies/MomStrategy --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_1328060b2f6ae1d1f80faddcd8ae9192c3cd0564f64bc75b97e0b9d98f9fe89a",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MomStrategy"
+    },
+    "MomentumScoreStrategy": {
+      "canonical_sha256": "sha256_d21460ba0e97ae15d3586856c342ab6d1838f010d66220df4feddacf8a5272ef",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "MomentumScoreStrategy:d21460ba0e97",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 43.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MomentumScoreStrategy --strategy-path user_data/profile_bias_strategies/MomentumScoreStrategy --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_17faf80b240b20b54bf97e62318c6e01cc042475e0031c33522e7c50b7869554",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MomentumScoreStrategy"
+    },
+    "Momentumv2": {
+      "canonical_sha256": "sha256_4dc364758715e0cd8f734dc849924c4f142a2d01f79ce6fd519bdde92938204d",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "Momentumv2:4dc364758715",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 35.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Momentumv2 --strategy-path user_data/profile_bias_strategies/Momentumv2 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_1d84a780a1a46569cc2e8df71f20260189c2e7950045ec04670be6a12bfb66f0",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Momentumv2"
+    },
+    "MoneyFlowStrategy": {
+      "canonical_sha256": "sha256_d38048d3a85c92f48e88d7ecb9dbaf13c591c8425b1af53bd83f4fa86957653e",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "MoneyFlowStrategy:d38048d3a85c",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 41.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MoneyFlowStrategy --strategy-path user_data/profile_bias_strategies/MoneyFlowStrategy --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_48e3d75c11f01cda297147f01d9d0d9022b122ecd3cf15b911faed59d65d7770",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MoneyFlowStrategy"
+    },
+    "MontrealStrategy": {
+      "canonical_sha256": "sha256_00d7b1be6b3ace916f876a375e07351c896005ef276e21936a83e27a94a7e009",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "MontrealStrategy:00d7b1be6b3a",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 36.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MontrealStrategy --strategy-path user_data/profile_bias_strategies/MontrealStrategy --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_f18e32863636e746a1118d1bff39bf04b1abebdb5a800e6db7b2e1cee44f1d5d",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MontrealStrategy"
+    },
+    "MultiFactorConfluenceStrategy": {
+      "canonical_sha256": "sha256_676380749bed301c9ce130d776853f78ce4ed711fef7e4e60d053ecef4044542",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "MultiFactorConfluenceStrategy:676380749bed",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 35.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MultiFactorConfluenceStrategy --strategy-path user_data/profile_bias_strategies/MultiFactorConfluenceStrategy --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_77d7c1084cd26ff619005a27d3cf7e13747b6af6319f8e62ed9e2e6b12941e51",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MultiFactorConfluenceStrategy"
     }
   },
   "schema_version": 1,

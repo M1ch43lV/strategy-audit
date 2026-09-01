@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 20:19:21 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 20:28:00 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -45,7 +45,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 152 of 2102 commands are recorded so far, and every new run
+recording. 164 of 2102 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -1067,9 +1067,8 @@ and they are queued for the ladder as `recursive_ladder_pending`.
 | `lookahead_found` | reads data it could not have had at the time | 69 |
 | `technical_trap_found` | carries a published backtesting trap | 40 |
 | `strategy_does_not_run` | fails before it can be measured; the message is in runtime_failure | 152 |
-| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 24 |
-| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 34 |
-| `recursive_warmup_refused` | the analyzer refused for want of a declared warm-up; nothing was measured | 13 |
+| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 28 |
+| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 43 |
 | `no_trades_in_full_measurement` | never trades over the full window | 16 |
 | `no_verdict_on_lookahead_and_recursive` | measured; neither gate returned a verdict | 15 |
 | `no_verdict_on_lookahead` | measured and recursion clean; look-ahead has no verdict | 4 |
@@ -1083,9 +1082,8 @@ and they are queued for the ladder as `recursive_ladder_pending`.
 | `lookahead_found` | 0 | 15 | 0 | 54 |
 | `technical_trap_found` | 0 | 0 | 0 | 40 |
 | `strategy_does_not_run` | 0 | 152 | 0 | 0 |
-| `recursive_bias_found` | 0 | 0 | 14 | 10 |
-| `recursive_bias_unverified` | 0 | 9 | 0 | 25 |
-| `recursive_warmup_refused` | 5 | 0 | 0 | 8 |
+| `recursive_bias_found` | 3 | 0 | 14 | 11 |
+| `recursive_bias_unverified` | 2 | 9 | 0 | 32 |
 | `no_trades_in_full_measurement` | 0 | 10 | 0 | 6 |
 | `no_verdict_on_lookahead_and_recursive` | 0 | 15 | 0 | 0 |
 | `no_verdict_on_lookahead` | 0 | 4 | 0 | 0 |
@@ -1226,9 +1224,13 @@ Fails before it can be measured; the message is in runtime_failure.
 | Impossible to load Strategy 'multi_tf'. This class does not exist or contains Python code errors. | 1 | `multi_tf` |
 | Can't instantiate abstract class thetank2 without an implementation for abstract method 'populate_indicators' | 1 | `thetank2` |
 
-### `recursive_bias_found` - 24
+### `recursive_bias_found` - 28
 
 Indicator value still drifts at every warm-up the ladder can reach.
+
+Wave `B_warmup_refusal` - 3:
+
+`ForexRobootSuperScalper`, `HSI`, `Macd`
 
 Wave `D_recursive_drift` - 14:
 
@@ -1237,15 +1239,19 @@ Wave `D_recursive_drift` - 14:
 `ClucHAnix_BB_RPB_MOD_CTT`, `ClucHAnix_BB_RPB_MOD_E0V1E_ROI`, `ObvTrendStrategy`, `flawless_lambo`
 `lambotest`, `tacos`
 
-Wave `not_scheduled` - 10:
+Wave `not_scheduled` - 11:
 
 `BcmbigzV1`, `BeastBotXBLR6`, `BeastBotXBLR7`, `BigZ04`
-`GoldHedgeZeroMACD`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`, `NotAnotherSMAOffSetStrategy_V2`
-`TrendRiderStrategy`, `pcb20`
+`GoldHedgeZeroMACD`, `NOTankAi_15`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`
+`NotAnotherSMAOffSetStrategy_V2`, `TrendRiderStrategy`, `pcb20`
 
-### `recursive_bias_unverified` - 34
+### `recursive_bias_unverified` - 43
 
 Recorded under a parser defect and not re-measured; not a finding.
+
+Wave `B_warmup_refusal` - 2:
+
+`AwesomeMacd`, `MabStra`
 
 Wave `C_measurement_recovery` - 9:
 
@@ -1253,29 +1259,16 @@ Wave `C_measurement_recovery` - 9:
 `MultiMA_TSL3`, `MultiRSI`, `ObeliskRSI_v6_1`, `epretrace`
 `pmaxTest`
 
-Wave `not_scheduled` - 25:
+Wave `not_scheduled` - 32:
 
 `BinHV27F`, `BinHV27_short`, `ConsensusShort`, `DWT_LongShort`
-`DWT_short`, `FReinforcedStrategy`, `FTT_DWT_FBB_FUTURES`, `HurstCycleV5`
-`MACDRL`, `MACDRS`, `NostalgiaForInfinityX2`, `NostalgiaForInfinityX3`
-`NostalgiaForInfinityX4`, `NostalgiaForInfinityX5`, `NostalgiaForInfinityX6`, `NostalgiaForInfinityX7`
-`SMAOffset_Hippocritical_dca_leverage`, `StrategyTestV3`, `SupertrendStrategy`, `SwingHighToSky`
-`TrendFollowingStrategy`, `ZaratustraDCA2_06`, `ZaratustraDCA2_07`, `ZaratustraDCA5`
-`mabStra`
-
-### `recursive_warmup_refused` - 13
-
-The analyzer refused for want of a declared warm-up; nothing was measured.
-
-Wave `B_warmup_refusal` - 5:
-
-`AwesomeMacd`, `ForexRobootSuperScalper`, `HSI`, `MabStra`
-`Macd`
-
-Wave `not_scheduled` - 8:
-
-`GKD_CT`, `HEW`, `HurstCycle3`, `HurstCycle7`
-`HurstCycleV4`, `HurstCycleV5RSI`, `HurstCycleV6`, `NOTankAi_15`
+`DWT_short`, `FReinforcedStrategy`, `FTT_DWT_FBB_FUTURES`, `GKD_CT`
+`HEW`, `HurstCycle3`, `HurstCycle7`, `HurstCycleV4`
+`HurstCycleV5`, `HurstCycleV5RSI`, `HurstCycleV6`, `MACDRL`
+`MACDRS`, `NostalgiaForInfinityX2`, `NostalgiaForInfinityX3`, `NostalgiaForInfinityX4`
+`NostalgiaForInfinityX5`, `NostalgiaForInfinityX6`, `NostalgiaForInfinityX7`, `SMAOffset_Hippocritical_dca_leverage`
+`StrategyTestV3`, `SupertrendStrategy`, `SwingHighToSky`, `TrendFollowingStrategy`
+`ZaratustraDCA2_06`, `ZaratustraDCA2_07`, `ZaratustraDCA5`, `mabStra`
 
 ### `no_trades_in_full_measurement` - 16
 
@@ -1337,8 +1330,8 @@ Wave `C_measurement_recovery` - 10:
 | Item | Strategies |
 |---|---:|
 | `paired_full_window_equivalence` | 378 |
-| `recursive_ladder_pending` | 156 |
-| `lookahead_verdict` | 100 |
+| `recursive_ladder_pending` | 145 |
+| `lookahead_verdict` | 96 |
 | `first_measurement_in_current_runtime` | 60 |
 | `convergence_inconclusive` | 34 |
 | `convergence_not_converged_within_ladder` | 28 |
