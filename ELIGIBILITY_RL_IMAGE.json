@@ -1,0 +1,117 @@
+{
+  "config": "profile_futures_config.json",
+  "results": {
+    "CopyLitmusMinMaxBroadClassificationStrategy": {
+      "canonical_sha256": "sha256_871c27882e0c92b6ba1f249e0409768b245bd4297384b9ea28a345dee8c4480c",
+      "class1_rules": [
+        "restore_author_package_extension",
+        "restore_author_config"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/CopyLitmusMinMaxBroadClassificationStrategy.log",
+      "elapsed_s": 31.6,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/CopyLitmusMinMaxBroadClassificationStrategy.json --strategy CopyLitmusMinMaxBroadClassificationStrategy --strategy-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CopyLitmusMinMaxBroadClassificationStrategy --cache none --freqaimodel LitmusMultiTargetClassifier --freqaimodel-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_50234ca298bab7c6be534b383bdea6ebf59746391ee4ae18e42e528ae3ac2297",
+      "runtime_id": "docker:sha256:b171decafc62817023673b62eefb1ad393601b0b942add2b9ff9f978dc26646e",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "Impossible to load Strategy 'CopyLitmusMinMaxBroadClassificationStrategy'. This class does not exist or contains Python code errors."
+    },
+    "GymStrategy": {
+      "canonical_sha256": "sha256_be099be3c57db7490351a539cb73824bace16c6cc0e062ff160223d7bcc6972a",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/GymStrategy.log",
+      "elapsed_s": 39.5,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy GymStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/GymStrategy --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:b171decafc62817023673b62eefb1ad393601b0b942add2b9ff9f978dc26646e",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+    },
+    "LitmusEntryRollClassificationStrategy": {
+      "canonical_sha256": "sha256_eed405eff84b0d1b5f16159ca79e7d131c3a2ea07cfaaf61936c8e44208d3d3e",
+      "class1_rules": [
+        "restore_author_package_extension",
+        "restore_author_config"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/LitmusEntryRollClassificationStrategy.log",
+      "elapsed_s": 37.1,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/LitmusEntryRollClassificationStrategy.json --strategy LitmusEntryRollClassificationStrategy --strategy-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/LitmusEntryRollClassificationStrategy --cache none --freqaimodel LitmusMultiTargetClassifier --freqaimodel-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_477a3e95044cfe7bc3bd7f4305c9a48004778b368154f456dce812c9c9f08383",
+      "runtime_id": "docker:sha256:b171decafc62817023673b62eefb1ad393601b0b942add2b9ff9f978dc26646e",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "Impossible to load Strategy 'LitmusEntryRollClassificationStrategy'. This class does not exist or contains Python code errors."
+    },
+    "LitmusMLDPStrategy": {
+      "canonical_sha256": "sha256_53e3331fc06d39864fb9e17b47b20f864d87d66506bca3003852baecaaee64a3",
+      "class1_rules": [
+        "restore_author_package_extension",
+        "restore_author_config"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/LitmusMLDPStrategy.log",
+      "elapsed_s": 37.7,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/LitmusMLDPStrategy.json --strategy LitmusMLDPStrategy --strategy-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/LitmusMLDPStrategy --cache none --freqaimodel LitmusMultiTargetClassifier --freqaimodel-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_0fb1d99addbd193ef7ec4fc6006654abf062e3031e4d9a7b486fc236e15d31bc",
+      "runtime_id": "docker:sha256:b171decafc62817023673b62eefb1ad393601b0b942add2b9ff9f978dc26646e",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "Impossible to load Strategy 'LitmusMLDPStrategy'. This class does not exist or contains Python code errors."
+    },
+    "LitmusMinMaxBroadClassificationStrategy": {
+      "canonical_sha256": "sha256_5f4d906d5e5a15ab584855c255c14d4947ffebeea616754c6a5f7c376482aec0",
+      "class1_rules": [
+        "restore_author_package_extension",
+        "restore_author_config"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/LitmusMinMaxBroadClassificationStrategy.log",
+      "elapsed_s": 34.4,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/LitmusMinMaxBroadClassificationStrategy.json --strategy LitmusMinMaxBroadClassificationStrategy --strategy-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/LitmusMinMaxBroadClassificationStrategy --cache none --freqaimodel LitmusMultiTargetClassifier --freqaimodel-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/freqaimodels/deprecated",
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_50234ca298bab7c6be534b383bdea6ebf59746391ee4ae18e42e528ae3ac2297",
+      "runtime_id": "docker:sha256:b171decafc62817023673b62eefb1ad393601b0b942add2b9ff9f978dc26646e",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "Impossible to load Strategy 'LitmusMinMaxBroadClassificationStrategy'. This class does not exist or contains Python code errors."
+    },
+    "Prediction_Strategy": {
+      "canonical_sha256": "sha256_cb4c9523b5b38a9bc87112156d573affc87b23cdeadc328bbd33071c10d2d55b",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/Prediction_Strategy.log",
+      "elapsed_s": 42.2,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Prediction_Strategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Prediction_Strategy --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:b171decafc62817023673b62eefb1ad393601b0b942add2b9ff9f978dc26646e",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "Impossible to load Strategy 'Prediction_Strategy'. This class does not exist or contains Python code errors."
+    },
+    "TrainCatBoostStrategy": {
+      "canonical_sha256": "sha256_5ff5c13b62e37bf9371f3cd84fc671bbd8c417ed757a8462ffd750987b133176",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/TrainCatBoostStrategy.log",
+      "elapsed_s": 42.7,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy TrainCatBoostStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrainCatBoostStrategy --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:b171decafc62817023673b62eefb1ad393601b0b942add2b9ff9f978dc26646e",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "Configuration error: 'stoploss' is a required property"
+    }
+  },
+  "schema_version": 1,
+  "timerange": "20200301-20200401"
+}

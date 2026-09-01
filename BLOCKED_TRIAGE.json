@@ -173,11 +173,11 @@
     },
     "CryptoPredictionTraining": {
       "family": "third_party_package",
-      "missing_module": "matplotlib",
+      "missing_module": "keras",
       "module_found_at": "",
-      "note": "Imports matplotlib, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "note": "Imports keras, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'matplotlib' at CryptoPrediction.py:4",
+      "probe_detail": "ModuleNotFoundError: No module named 'keras' at CryptoPrediction.py:6",
       "runtime_failure": "Impossible to load Strategy 'CryptoPredictionTraining'. This class does not exist or contains Python code errors.",
       "source_file": "repos/ShahAnuj2610_my-freqtrade/user_data/strategies/CryptoPrediction.py",
       "strategy_id": "CryptoPredictionTraining",
@@ -336,16 +336,14 @@
       "verdict": "needs_a_look"
     },
     "GymStrategy": {
-      "family": "third_party_package",
-      "missing_module": "stable_baselines3",
-      "module_found_at": "",
-      "note": "Imports stable_baselines3, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'stable_baselines3' at GymStrategy.py:8",
+      "family": "class_not_loaded",
+      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
+      "probe": "imports_fine",
+      "probe_detail": "class GymStrategy is present",
       "runtime_failure": "Impossible to load Strategy 'GymStrategy'. This class does not exist or contains Python code errors.",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/GymStrategy.py",
       "strategy_id": "GymStrategy",
-      "verdict": "needs_a_look"
+      "verdict": "to_be_fixed"
     },
     "HLHB": {
       "family": "individual",
@@ -653,11 +651,11 @@
     },
     "Prediction_Strategy": {
       "family": "third_party_package",
-      "missing_module": "catboost",
+      "missing_module": "numba",
       "module_found_at": "",
-      "note": "Imports catboost, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "note": "Imports numba, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'catboost' at Prediction_Strategy.py:8",
+      "probe_detail": "ModuleNotFoundError: No module named 'numba' at Prediction_Strategy.py:11",
       "runtime_failure": "Impossible to load Strategy 'Prediction_Strategy'. This class does not exist or contains Python code errors.",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/Prediction_Strategy.py",
       "strategy_id": "Prediction_Strategy",
@@ -808,16 +806,14 @@
       "verdict": "needs_a_look"
     },
     "TrainCatBoostStrategy": {
-      "family": "third_party_package",
-      "missing_module": "catboost",
-      "module_found_at": "",
-      "note": "Imports catboost, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'catboost' at TrainCatBoostStrategy.py:7",
+      "family": "class_not_loaded",
+      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
+      "probe": "imports_fine",
+      "probe_detail": "class TrainCatBoostStrategy is present",
       "runtime_failure": "Impossible to load Strategy 'TrainCatBoostStrategy'. This class does not exist or contains Python code errors.",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/TrainCatBoostStrategy.py",
       "strategy_id": "TrainCatBoostStrategy",
-      "verdict": "needs_a_look"
+      "verdict": "to_be_fixed"
     },
     "TuplaBollinger": {
       "family": "individual",
@@ -848,12 +844,12 @@
       "verdict": "needs_a_look"
     },
     "WTAI": {
-      "family": "freqai_not_enabled",
-      "note": "A runtime matter, not a strategy defect: the image needs torch and the config needs a freqai block. Already queued as the FreqAI arm.",
-      "runtime_failure": "freqAI is not enabled. Please enable it in your config to use this strategy.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "You are using the `populate_any_indicators()` function which was deprecated on March 1, 2023. Please refer to the strategy migration guide to use the new",
       "source_file": "repos/jaredrsommer_freqtradestrategies/WTAI.py",
       "strategy_id": "WTAI",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "WTHO": {
       "family": "individual",
@@ -864,12 +860,12 @@
       "verdict": "needs_a_look"
     },
     "WTRSIAI": {
-      "family": "freqai_not_enabled",
-      "note": "A runtime matter, not a strategy defect: the image needs torch and the config needs a freqai block. Already queued as the FreqAI arm.",
-      "runtime_failure": "freqAI is not enabled. Please enable it in your config to use this strategy.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "You are using the `populate_any_indicators()` function which was deprecated on March 1, 2023. Please refer to the strategy migration guide to use the new",
       "source_file": "repos/jaredrsommer_freqtradestrategies/WTRSIAI.py",
       "strategy_id": "WTRSIAI",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "multi_tf": {
       "family": "individual",

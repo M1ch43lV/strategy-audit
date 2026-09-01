@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 23:01:16 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 23:13:53 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -46,7 +46,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 357 of 2102 commands are recorded so far, and every new run
+recording. 372 of 2102 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -916,7 +916,7 @@ an identical trade list.
 | `bbrsi4Freq` | `spot_long` | 168 candles | 0.0% on `rsi` | 2026-09-01 12:51:45 | `user_data/convergence_logs/bbrsi4Freq-ladder.log` |
 | `conny` | `spot_long` | 96 candles | 0.0% on `consensus_sell` | 2026-09-01 12:52:10 | `user_data/convergence_logs/conny-ladder.log` |
 | `cryptotankV2` | `spot_long` | 576 candles | 0.0% on `pivot` | 2026-09-01 12:52:35 | `user_data/convergence_logs/cryptotankV2-ladder.log` |
-| `custom` | `spot_long` | 2016 candles | 0.0% on `osc` | 2026-09-01 15:24:00 | `user_data/convergence_logs/custom-ladder.log` |
+| `custom` | `spot_long` | 2016 candles | 0.0% on `osc` | 2026-09-01 23:13:05 | `user_data/convergence_logs/custom-ladder.log` |
 | `dualwave` | `spot_long` | 672 candles | 0.0% on `rsi_2h` | 2026-09-01 15:24:26 | `user_data/convergence_logs/dualwave-ladder.log` |
 | `e6v34` | `spot_long` | 672 candles | 0.0% on `hma15` | 2026-09-01 16:32:32 | `user_data/convergence_logs/e6v34-ladder.log` |
 | `eltoro` | `spot_long` | 1344 candles | 0.0% on `BTC_EWO_Fast_1h` | 2026-09-01 12:53:00 | `user_data/convergence_logs/eltoro-ladder.log` |
@@ -1164,11 +1164,12 @@ Fails before it can be measured; the message is in runtime_failure.
 |---|---:|---|
 | Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m` | 10 | `Chained`, `EnsembleStrategy`, `EnsembleStrategyV1`, `EnsembleStrategyV2`, `FreqaiExampleStrategy`, `LitmusGoodMinMaxClassificationStrategy`, `MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`, `QuickAdapterV3`, `ScalpingCCI` |
 | The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given | 8 | `Danke`, `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `FastSupertrend`, `FastSupertrendOpt`, `MultiMA_TSL5`, `SuperTrendPure`, `Supertrend` |
-| freqAI is not enabled. Please enable it in your config to use this strategy. | 5 | `RLStrategy`, `TankAi`, `TankAiRevival`, `WTAI`, `WTRSIAI` |
 | cannot import name '__version__' from 'freqtrade' (unknown location) | 4 | `DualModelPolymarketPortfolio`, `EmaCrossStrategy`, `PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy` |
 | Configuration error: 'stoploss' is a required property | 3 | `AdaptiveRenkoStrategy`, `ClucCrypROI`, `ClucCrypSlow` |
+| freqAI is not enabled. Please enable it in your config to use this strategy. | 3 | `RLStrategy`, `TankAi`, `TankAiRevival` |
 | `populate_exit_trend` or `populate_sell_trend` must be implemented. | 2 | `ClucHAnix_BB_RPB_TraNz`, `SimpleRiskFilterStrategy` |
 | IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time' | 2 | `Dyna_opti`, `Solipsis4` |
+| You are using the `populate_any_indicators()` function which was deprecated on March 1, 2023. Please refer to the strategy migration guide to use the new | 2 | `WTAI`, `WTRSIAI` |
 | Invalid value 'False' for dtype 'float64' | 2 | `new_turtle`, `new_turtle_roi` |
 | Remora API key missing. Set REMORA_API_KEY env var. | 1 | `AdvancedRiskFilterStrategy` |
 | Length of values (180) does not match length of index (82) | 1 | `Astro` |
@@ -1288,11 +1289,11 @@ Wave `not_scheduled` - 1:
 | `recursive_ladder_pending` | 145 |
 | `lookahead_remeasure_pending` | 141 |
 | `first_measurement_in_current_runtime` | 60 |
-| `needs_a_look` | 58 |
-| `lookahead_verdict` | 38 |
+| `needs_a_look` | 56 |
+| `lookahead_verdict` | 35 |
 | `convergence_inconclusive` | 34 |
 | `convergence_not_converged_within_ladder` | 28 |
-| `refuse_repair` | 19 |
+| `refuse_repair` | 21 |
 | `repair_attempted` | 16 |
 | `full_window_measurement_pending` | 5 |
 | `repair_withdrawn` | 4 |

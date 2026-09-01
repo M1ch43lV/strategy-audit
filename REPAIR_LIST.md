@@ -39,18 +39,6 @@ The module the author imports is in the corpus at repos/mlsys-io_PortfolioBench/
 | `FileLoadingStrategy` | repos/keithorange_FreqTradeCustomOrders/custom_order_form_handler.py |
 | `MlpSpeculativeStrategy` | repos/mlsys-io_PortfolioBench/strategy |
 
-### `freqai_not_enabled` - 5
-
-A runtime matter, not a strategy defect: the image needs torch and the config needs a freqai block. Already queued as the FreqAI arm.
-
-| Strategy | Detail |
-|---|---|
-| `RLStrategy` | freqAI is not enabled. Please enable it in your config to use this strategy. |
-| `TankAi` | freqAI is not enabled. Please enable it in your config to use this strategy. |
-| `TankAiRevival` | freqAI is not enabled. Please enable it in your config to use this strategy. |
-| `WTAI` | freqAI is not enabled. Please enable it in your config to use this strategy. |
-| `WTRSIAI` | freqAI is not enabled. Please enable it in your config to use this strategy. |
-
 ### `freqai_model_missing` - 3
 
 Same arm: the model class ships with the FreqAI extras.
@@ -61,6 +49,16 @@ Same arm: the model class ships with the FreqAI extras.
 | `LitmusMetaStrategy` | Impossible to load FreqaiModel 'LitmusMultiTargetClassifier'. This class does not exist or contains Python code errors. |
 | `RLAgentStrategy` | Impossible to load FreqaiModel 'ReforceXY'. This class does not exist or contains Python code errors. |
 
+### `freqai_not_enabled` - 3
+
+A runtime matter, not a strategy defect: the image needs torch and the config needs a freqai block. Already queued as the FreqAI arm.
+
+| Strategy | Detail |
+|---|---|
+| `RLStrategy` | freqAI is not enabled. Please enable it in your config to use this strategy. |
+| `TankAi` | freqAI is not enabled. Please enable it in your config to use this strategy. |
+| `TankAiRevival` | freqAI is not enabled. Please enable it in your config to use this strategy. |
+
 ### `old_hook_signature` - 2
 
 The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.
@@ -70,11 +68,20 @@ The strategy overrides a freqtrade hook whose signature gained two parameters. A
 | `Dyna_opti` | IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time' |
 | `Solipsis4` | IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time' |
 
+### `class_not_loaded` - 2
+
+The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.
+
+| Strategy | Detail |
+|---|---|
+| `GymStrategy` | class GymStrategy is present |
+| `TrainCatBoostStrategy` | class TrainCatBoostStrategy is present |
+
 ## `needs_a_look` - 69 strategies
 
 Repairable in principle, but not by a rule that can be written now - the decision differs row by row, or costs something outside this row.
 
-### `individual` - 30
+### `individual` - 32
 
 one of a kind; read the message
 
@@ -107,11 +114,13 @@ one of a kind; read the message
 | `Test_MAMA4` | cannot reindex on an axis with duplicate labels |
 | `TuplaBollinger` | No data found. Terminating. |
 | `UpSliceStrategy` | '<' not supported between instances of 'float' and 'method' |
+| `WTAI` | You are using the `populate_any_indicators()` function which was deprecated on March 1, 2023. Please refer to the strategy migration guide t |
 | `WTHO` | Cannot determine parameter space for mfi_length. |
+| `WTRSIAI` | You are using the `populate_any_indicators()` function which was deprecated on March 1, 2023. Please refer to the strategy migration guide t |
 | `multi_tf` | Informative dataframe for (ETH/BTC, 1h, spot) is empty. Can't populate informative indicators. |
 | `thetank2` | Can't instantiate abstract class thetank2 without an implementation for abstract method 'populate_indicators' |
 
-### `third_party_package` - 20
+### `third_party_package` - 18
 
 Imports freqtrade.indicator_helpers, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.
 
@@ -119,9 +128,8 @@ Imports freqtrade.indicator_helpers, which is not in the corpus and not in the i
 |---|---|
 | `BBRSI` | ModuleNotFoundError: No module named 'freqtrade.indicator_helpers' at BBRSI.py:7 |
 | `CopyLitmusMinMaxBroadClassificationStrategy` | ModuleNotFoundError: No module named 'freqtrade.litmus' at CopyLitmusMinMaxBroadClassificationStrategy.py:8 |
-| `CryptoPredictionTraining` | ModuleNotFoundError: No module named 'matplotlib' at CryptoPrediction.py:4 |
+| `CryptoPredictionTraining` | ModuleNotFoundError: No module named 'keras' at CryptoPrediction.py:6 |
 | `Enchilada` | ModuleNotFoundError: No module named 'technical.tradingview' at Enchilada.py:3 |
-| `GymStrategy` | ModuleNotFoundError: No module named 'stable_baselines3' at GymStrategy.py:8 |
 | `KMM` | ModuleNotFoundError: No module named 'openai' at KMM.py:3 |
 | `LitmusEntryRollClassificationStrategy` | ModuleNotFoundError: No module named 'freqtrade.litmus' at LitmusEntryRollClassificationStrategy.py:7 |
 | `LitmusMLDPStrategy` | ModuleNotFoundError: No module named 'freqtrade.litmus' at LitmusMLDPStrategy.py:12 |
@@ -134,8 +142,7 @@ Imports freqtrade.indicator_helpers, which is not in the corpus and not in the i
 | `LitmusSimpleStrategy` | ModuleNotFoundError: No module named 'cointanalysis' at LitmusSimpleStrategy.py:7 |
 | `MKR` | ModuleNotFoundError: No module named 'tslearn' at MKR (3).py:7 |
 | `Persia` | ModuleNotFoundError: No module named 'numpy.lib.function_base' at Persia.py:8 |
-| `Prediction_Strategy` | ModuleNotFoundError: No module named 'catboost' at Prediction_Strategy.py:8 |
-| `TrainCatBoostStrategy` | ModuleNotFoundError: No module named 'catboost' at TrainCatBoostStrategy.py:7 |
+| `Prediction_Strategy` | ModuleNotFoundError: No module named 'numba' at Prediction_Strategy.py:11 |
 | `TwoCandleTheory` | ModuleNotFoundError: No module named 'pykalman' at TwoCandleTheory (2).py:14 |
 
 ### `dtype_drift` - 14

@@ -52,6 +52,7 @@ TIMEFRAME_REPAIR = os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json")
 MODULE_REPAIR = os.path.join(ROOT, "ELIGIBILITY_MODULE_REPAIR.json")
 SIGNATURE_REPAIR = os.path.join(ROOT, "ELIGIBILITY_SIGNATURE_REPAIR.json")
 FREQAI_REPAIR = os.path.join(ROOT, "ELIGIBILITY_FREQAI_REPAIR.json")
+FREQAI_WTAI = os.path.join(ROOT, "ELIGIBILITY_FREQAI_WTAI.json")
 # A separate arm with its own runtime and its own configs, completed before
 # this table existed. Its records are per-strategy files rather than one store,
 # and nothing has ever read them here - which is how a strategy that PASSED a
@@ -399,6 +400,8 @@ def rows():
         repair_source.setdefault(name, "framework_compat_shim")
     for name in _json(FREQAI_REPAIR):
         repair_source.setdefault(name, "freqai_model")
+    for name in _json(FREQAI_WTAI):
+        repair_source.setdefault(name, "freqai_config_built")
     # A route that has declined a row, with a reason, has decided it. Leaving
     # such a row on "to be fixed" promises work that will never be done.
     refused_timeframe = _json(TIMEFRAME_REPAIR, "refused")
@@ -421,6 +424,8 @@ def rows():
     for name, record in _json(SIGNATURE_REPAIR).items():
         repaired.setdefault(name, record)
     for name, record in _json(FREQAI_REPAIR).items():
+        repaired.setdefault(name, record)
+    for name, record in _json(FREQAI_WTAI).items():
         repaired.setdefault(name, record)
     # A native re-measurement outranks whatever PROFILE_BIAS or the baseline
     # holds: it is the same gate, measured later, from this implementation.

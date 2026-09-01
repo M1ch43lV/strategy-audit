@@ -1,0 +1,39 @@
+{
+  "config": "profile_futures_config.json",
+  "results": {
+    "WTAI": {
+      "canonical_sha256": "sha256_6d04438de623af13615b5e349debb6d46468eb197cf98ee159d5d4f4b916025c",
+      "class1_rules": [
+        "freqai_config_from_author_block"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/WTAI.log",
+      "elapsed_s": 42.2,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/WTAI.json --strategy WTAI --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/WTAI --cache none --freqaimodel LightGBMRegressor",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_141d2439479f30ff569b35a5f7871f945e1b59004c95e1f62a996117c2bf57c9",
+      "runtime_id": "docker:sha256:b171decafc62817023673b62eefb1ad393601b0b942add2b9ff9f978dc26646e",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "You are using the `populate_any_indicators()` function which was deprecated on March 1, 2023. Please refer to the strategy migration guide to use the new"
+    },
+    "WTRSIAI": {
+      "canonical_sha256": "sha256_071d8b0b26eb640f42eefe142e561adf5c0357eeb483423fb804c7117d3a7e45",
+      "class1_rules": [
+        "freqai_config_from_author_block"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/WTRSIAI.log",
+      "elapsed_s": 39.1,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/WTRSIAI.json --strategy WTRSIAI --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/WTRSIAI --cache none --freqaimodel LightGBMRegressor",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_0a802177d741c1594bcfe4293ce257dc3e63b102bca298c9857985b87c3fc1f7",
+      "runtime_id": "docker:sha256:b171decafc62817023673b62eefb1ad393601b0b942add2b9ff9f978dc26646e",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "You are using the `populate_any_indicators()` function which was deprecated on March 1, 2023. Please refer to the strategy migration guide to use the new"
+    }
+  },
+  "schema_version": 1,
+  "timerange": "20200301-20200401"
+}

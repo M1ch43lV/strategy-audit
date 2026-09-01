@@ -479,6 +479,32 @@
       ],
       "status": "applied"
     },
+    "WTAI": {
+      "config_keys": [
+        "timeframe",
+        "freqai"
+      ],
+      "config_source": "user_data/freqai_configs/WTAI.json",
+      "freqaimodel": "LightGBMRegressor",
+      "note": "freqAI config built by repair/freqai_config_wtai.py from the author's own commented freqai block in config_blank.json. Every parameter is theirs; include_timeframes starts at this strategy's own declared timeframe rather than the author's 1h/4h list, the correlated pairs are intersected with the eight we hold, and test_size is 0.33 because freqtrade rejects the author's 0 for a backtest. The model is LightGBMRegressor, the one the FreqAI arm used for all eight of its targets; the author names none, and picking a different one here would make this row incomparable with the arm it belongs to. With that config freqtrade starts the strategy and rejects it for using populate_any_indicators(), the feature-engineering entry point deprecated in March 2023 and since removed. Migrating it means writing the feature engineering into feature_engineering_expand_all and friends, which is authoring, not repairing. The config was still worth building: it moved these two from a gap of ours to a decided row.",
+      "rules": [
+        "freqai_config_from_author_block"
+      ],
+      "status": "refused"
+    },
+    "WTRSIAI": {
+      "config_keys": [
+        "timeframe",
+        "freqai"
+      ],
+      "config_source": "user_data/freqai_configs/WTRSIAI.json",
+      "freqaimodel": "LightGBMRegressor",
+      "note": "freqAI config built by repair/freqai_config_wtai.py from the author's own commented freqai block in config_blank.json. Every parameter is theirs; include_timeframes starts at this strategy's own declared timeframe rather than the author's 1h/4h list, the correlated pairs are intersected with the eight we hold, and test_size is 0.33 because freqtrade rejects the author's 0 for a backtest. The model is LightGBMRegressor, the one the FreqAI arm used for all eight of its targets; the author names none, and picking a different one here would make this row incomparable with the arm it belongs to. With that config freqtrade starts the strategy and rejects it for using populate_any_indicators(), the feature-engineering entry point deprecated in March 2023 and since removed. Migrating it means writing the feature engineering into feature_engineering_expand_all and friends, which is authoring, not repairing. The config was still worth building: it moved these two from a gap of ours to a decided row.",
+      "rules": [
+        "freqai_config_from_author_block"
+      ],
+      "status": "refused"
+    },
     "bbrsi1_strategy": {
       "note": "declares `class <Name> (IStrategy):` with a space. Freqtrade's resolver skips a file unless its text contains the literal `class <Name>(`, so it never imports the file at all and reports \"This class does not exist or contains Python code errors\", which is true of neither. The shim makes that pre-import scan tolerant of whitespace; every file it admits still has to pass the four real conditions. No strategy source is touched.",
       "rules": [
