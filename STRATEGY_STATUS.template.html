@@ -206,7 +206,7 @@
   <section>
     <h2>All 900 strategies</h2>
     <div class="controls">
-      <input type="search" id="q" placeholder="Search strategy, reason or error message…" aria-label="Search">
+      <input type="search" id="q" placeholder="Search anything shown: name, status, reason, error, gate…" aria-label="Search">
       <div class="chips" id="cohortChips"></div>
       <select id="wave" aria-label="Wave">
         <option value="">all waves</option>
@@ -444,8 +444,17 @@
       if(active && r.c !== active) return false;
       if(waveSel && r.w !== waveSel) return false;
       if(query){
-        var hay = (r.s+" "+r.n+" "+(r.f||"")+" "+r.c+" "+r.w).toLowerCase();
-        if(hay.indexOf(query) < 0) return false;
+        /* Search what the reader can see. The old haystack held the raw keys
+           only, so "blocked" and "reads data it could not have had" - both
+           printed on screen - matched nothing, while "strategy_does_not_run",
+           which is printed nowhere, matched. Built once per row and kept. */
+        if(r._hay === undefined){
+          r._hay = [r.s, r.w, r.c, (COHORT[r.c]||{}).label, r.n,
+                    REASON_TEXT[r.n], r.f, r.xb, BASIS_LABEL[r.xb],
+                    r.l, r.r, r.ls, r.rs, r.o]
+                   .filter(Boolean).join(" ").toLowerCase();
+        }
+        if(r._hay.indexOf(query) < 0) return false;
       }
       return true;
     });
