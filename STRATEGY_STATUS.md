@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 21:20:41 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 21:40:34 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -46,7 +46,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 207 of 2102 commands are recorded so far, and every new run
+recording. 221 of 2102 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -809,7 +809,7 @@ an identical trade list.
 | `PRICEFOLLOWINGX` | `spot_long` | 672 candles | 0.0% on `adx` | 2026-09-01 14:49:28 | `user_data/convergence_logs/PRICEFOLLOWINGX-ladder.log` |
 | `ParabolicSarStrategy` | `spot_long` | 288 candles | 0.0% on `ema50` | 2026-09-01 12:39:54 | `user_data/convergence_logs/ParabolicSarStrategy-ladder.log` |
 | `PatternRecognition` | `spot_long` | 1 candles | 0.0% on `None` | 2026-09-01 14:50:17 | `user_data/convergence_logs/PatternRecognition-ladder.log` |
-| `PolymarketPortfolio` | `spot_long` | 180 candles | 0.0% on `prob_ema_fast` | 2026-09-01 14:51:07 | `user_data/convergence_logs/PolymarketPortfolio-ladder.log` |
+| `PolymarketPortfolio` | `spot_long` | 180 candles | 0.0% on `prob_ema_fast` | 2026-09-01 21:30:47 | `user_data/convergence_logs/PolymarketPortfolio-ladder.log` |
 | `PpoMomentumStrategy` | `spot_long` | 288 candles | 0.0% on `ppo` | 2026-09-01 12:40:19 | `user_data/convergence_logs/PpoMomentumStrategy-ladder.log` |
 | `PriceActionCandleStrategy` | `spot_long` | 288 candles | 0.0% on `ema50` | 2026-09-01 12:40:43 | `user_data/convergence_logs/PriceActionCandleStrategy-ladder.log` |
 | `PriceChannelStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:41:07 | `user_data/convergence_logs/PriceChannelStrategy-ladder.log` |
@@ -1297,13 +1297,15 @@ Wave `not_scheduled` - 1:
 | Item | Strategies |
 |---|---:|
 | `paired_full_window_equivalence` | 378 |
-| `runtime_repair_pending` | 152 |
 | `recursive_ladder_pending` | 145 |
+| `to_be_fixed` | 88 |
 | `lookahead_remeasure_pending` | 88 |
-| `lookahead_verdict` | 70 |
+| `lookahead_verdict` | 65 |
 | `first_measurement_in_current_runtime` | 60 |
+| `needs_a_look` | 59 |
 | `convergence_inconclusive` | 34 |
 | `convergence_not_converged_within_ladder` | 28 |
+| `refuse_repair` | 5 |
 | `full_window_measurement_pending` | 5 |
 
 Per-row detail, including every evidence path, is in

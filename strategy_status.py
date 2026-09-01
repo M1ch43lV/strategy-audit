@@ -41,6 +41,9 @@ CONVERGENCE = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
 # read correctly, so they are carried as provenance - a date, a log, a
 # command - and never as a current verdict.
 WAVE_B_WARMUP = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_WARMUP.json")
+# What stops each row that never ran, and whether repairing it would restore
+# what the author wrote or invent something they did not.
+BLOCKED_TRIAGE = os.path.join(ROOT, "BLOCKED_TRIAGE.json")
 # Two later stores hold look-ahead measured natively for rows whose verdict was
 # inherited or missing. They are separate files because they are separate
 # cohorts, and forgetting to read one is how the newest evidence stops reaching
@@ -58,6 +61,7 @@ FIELDS = [
     "observed_trades", "trade_evidence", "lookahead", "lookahead_evidence",
     "recursive", "recursive_evidence", "coverage_status", "traps_n", "artifact_role",
     "baseline_status", "primary_reason", "exclusion_basis",
+    "repair_family", "repair_verdict",
     "runtime_failure", "evidence_gap",
     "last_tested_at",
     "last_tested_source", "settled_startup", "settled_days", "settled_drift_pct",
@@ -320,6 +324,7 @@ def rows():
     full = _json(FULL_WINDOW)
     convergence = _json(CONVERGENCE)
     wave_b = _json(WAVE_B_WARMUP)
+    triage = _json(BLOCKED_TRIAGE)
     # A native re-measurement outranks whatever PROFILE_BIAS or the baseline
     # holds: it is the same gate, measured later, from this implementation.
     remeasured = {}
@@ -547,8 +552,11 @@ def rows():
         # row, so nothing is hidden by the change of name.
         if cohort == "excluded" and basis in ("inherited", "no_finding"):
             cohort = "exclusion_unconfirmed"
+        repair = triage.get(strategy) or {}
         if basis == "blocked":
-            open_work.append("runtime_repair_pending")
+            # A blocked row that has been triaged says what would fix it. One
+            # that has not says only that nobody has looked.
+            open_work.append(repair.get("verdict") or "runtime_repair_pending")
         elif basis in ("inherited", "no_finding"):
             # Not only a borrowed verdict. A gate of ours that ran and
             # returned nothing - a timeout, an exception - has produced
@@ -613,6 +621,8 @@ def rows():
             "artifact_role": profile.get("artifact_role", ""),
             "baseline_status": base.get("eligibility_status", ""),
             "exclusion_basis": basis,
+            "repair_family": repair.get("family", ""),
+            "repair_verdict": repair.get("verdict", ""),
             "primary_reason": reason,
             "runtime_failure": (i18n.translate(measurement.get("why") or "")[:160]
                                 if measurement.get("status") not in (None, "measured")

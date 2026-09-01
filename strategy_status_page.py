@@ -49,6 +49,8 @@ FIELDS = {
     "kr": "cmd_recursive",
     "o": "open_work",
     "xb": "exclusion_basis",
+    "rv": "repair_verdict",
+    "rf": "repair_family",
 }
 
 

@@ -183,6 +183,10 @@
   .b-no_finding{background:var(--cand-soft); color:var(--cand)}
   .b-blocked{background:var(--none-soft); color:var(--faint)}
 
+  .v-to_be_fixed{background:var(--pass-soft); color:var(--pass)}
+  .v-needs_a_look{background:var(--hold-soft); color:var(--hold)}
+  .v-refuse_repair{background:var(--fail-soft); color:var(--fail)}
+
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
@@ -233,6 +237,7 @@
       <div class="empty" id="empty" hidden>No row matches these filters.</div>
     </div>
     <p class="note">Click a column header to sort. A gate reads <code>–</code> when there is <em>no verdict bound to this implementation</em>: either it has not been re-measured, or the only verdict available comes from the original sweep. Hover any cell for the detail.</p>
+    <p class="note"><strong>The 152 rows that never ran, sorted by what stops them.</strong> Freqtrade reports most load failures as <code>Impossible to load Strategy 'X'</code>, which names none of the three things it could be, so each file was imported directly in the pinned runtime and the real exception recorded. <b>88</b> are <b>to be fixed</b>: 48 declare their timeframe under freqtrade's pre-2021.4 name, 17 import a module that is in the corpus but not on our path, 9 override a hook whose signature gained two parameters, 8 are the FreqAI arm, and 6 import cleanly with the class present — which makes those ours, not theirs. <b>59</b> need a look, chiefly 20 that import a third-party package absent from the pinned image. <b>5</b> are refused: they declare no stoploss or no exit logic, and supplying either would measure our invention under the author's name. The full list is <code>REPAIR_LIST.md</code>.</p>
     <p class="note"><strong>Excluded is a verdict, and it is not issued on somebody else's measurement or on the absence of one.</strong> Going through all 377 rows that carried it: <b>110</b> rest on a disqualifying result measured here from that implementation, and <b>152</b> never ran at all, so nothing about them was judged. The other <b>115</b> — <b>43</b> on a verdict inherited from the original sweep, <b>72</b> on no disqualifying result whatever — have been moved to <b>exclusion unconfirmed</b> and are held there until a measurement of ours settles them. Nothing is hidden by the change of name: the decisive reason and the badge stay on the row, and the work that would settle it is queued. The selftest now fails if anything reaches <code>excluded</code> on borrowed or absent evidence.</p>
     <p class="note">This is not a softening. Many held rows will end up excluded — the 38 on an inherited look-ahead finding probably will, since a limited environment does not invent bias. They will end up there on our own evidence or not at all.</p>
     <p class="note"><strong>Three things the reader got wrong, and what each cost.</strong> The analyzer prints one column per warm-up and sorts them by value, so the strategy's own column moves; reading the first numeric column instead measured drift at somebody else's warm-up. It printed <code>nan</code> where an indicator was not yet defined, and those cells were skipped, which turned "nothing could be compared" into "nothing deviated". And when every indicator matches the full-history run exactly it prints no table at all, just a sentence saying so — which was read as a missing measurement rather than as the strongest available pass. Each was found by re-reading stored logs, and each is now a rule with a test behind it.</p>
@@ -310,6 +315,13 @@
     blocked:"The strategy did not run, so nothing about it was judged. Queued for repair."
   };
   var BASIS_LABEL = {inherited:"inherited", no_finding:"no finding", blocked:"blocked"};
+  /* For a row that never ran, the question is not whether the strategy is
+     sound but whether a repair would restore what the author wrote. */
+  var REPAIR = {
+    to_be_fixed:"What stops it is ours, or is the author's own words under a name the framework has since changed. Repairing it restores what they wrote.",
+    needs_a_look:"Repairable in principle, but not by a rule that can be written now — the decision differs row by row, or costs something outside this row.",
+    refuse_repair:"The strategy does not declare what freqtrade requires. Supplying it would measure our invention under the author's name."
+  };
 
   function count(k){ return rows.filter(function(r){return r.c===k;}).length; }
   var passing = count("E0_strict67") + count("E1_expanded");
@@ -469,6 +481,12 @@
     body.innerHTML = list.map(function(r){
       var co = COHORT[r.c] || {label:r.c, cls:"k-none"};
       var reason = REASON_TEXT[r.n] || r.n || "–";
+      if(r.rv){
+        reason = '<span class="basis v-'+r.rv+'" title="'+REPAIR[r.rv]+'">'+
+          r.rv.replace(/_/g," ")+'</span>' + reason +
+          ' <span class="msg" style="white-space:normal">family <code>'+
+          esc(r.rf)+'</code></span>';
+      }
       if(r.xb && r.xb !== "own_measurement"){
         reason = '<span class="basis b-'+r.xb+'" title="'+BASIS[r.xb]+'">'+
           BASIS_LABEL[r.xb]+'</span>' + reason;
