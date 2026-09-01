@@ -50,7 +50,10 @@ BLOCKED_TRIAGE = os.path.join(ROOT, "BLOCKED_TRIAGE.json")
 # inherited one, applied to the measurement instead of the verdict.
 TIMEFRAME_REPAIR = os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json")
 MODULE_REPAIR = os.path.join(ROOT, "ELIGIBILITY_MODULE_REPAIR.json")
+SIGNATURE_REPAIR = os.path.join(ROOT, "ELIGIBILITY_SIGNATURE_REPAIR.json")
 LOCAL_MODULES = os.path.join(ROOT, "REPAIR_LOCAL_MODULES.json")
+# A route that has run and found nothing has still run. Leaving such a row on
+# "to be fixed" says the work is ahead of us when it is behind us and failed.
 CLASS1 = os.path.join(ROOT, "PROFILE_CLASS1.json")
 
 # What has actually become of a row that could not start. The triage says what
@@ -58,8 +61,8 @@ CLASS1 = os.path.join(ROOT, "PROFILE_CLASS1.json")
 # different question and the one a reader asks second.
 REPAIR_STATE = {
     "repaired": "a repair was applied and the row now produces a measurement",
-    "repair_attempted": "a repair was applied; the row still fails, but on "
-                        "something else - the original obstacle is gone",
+    "repair_attempted": "a repair route has run on this row and it still does "
+                        "not start; what remains is the reason on the row",
     "repair_withdrawn": "a repair was applied and taken back, because it made "
                         "the row fail in a new way",
     "to_be_fixed": "what stops the row is ours, or is the author's own words "
@@ -355,16 +358,23 @@ def rows():
                      for name in _json(TIMEFRAME_REPAIR)}
     for name in _json(MODULE_REPAIR):
         repair_source.setdefault(name, "local_module_off_path")
+    for name in _json(SIGNATURE_REPAIR):
+        repair_source.setdefault(name, "framework_compat_shim")
     # A route that has declined a row, with a reason, has decided it. Leaving
     # such a row on "to be fixed" promises work that will never be done.
     refused_timeframe = _json(TIMEFRAME_REPAIR, "refused")
     withdrawn = {name for name, entry
                  in (_json(CLASS1, "strategies") or {}).items()
                  if entry.get("status") == "withdrawn"}
+    attempted = {name: record.get("why", "")
+                 for name, record in _json(LOCAL_MODULES).items()
+                 if record.get("status") != "resolved"}
     repaired = dict(_json(TIMEFRAME_REPAIR))
     # Two repair runners, one precedence: whichever of them last produced a
     # measurement for a row replaces the failure the smoke store holds.
     for name, record in _json(MODULE_REPAIR).items():
+        repaired.setdefault(name, record)
+    for name, record in _json(SIGNATURE_REPAIR).items():
         repaired.setdefault(name, record)
     # A native re-measurement outranks whatever PROFILE_BIAS or the baseline
     # holds: it is the same gate, measured later, from this implementation.
@@ -614,6 +624,10 @@ def rows():
                 repair["verdict"] = "repaired"
             elif repair_run.get("status") == "failed":
                 repair["verdict"] = "repair_attempted"
+        if strategy in attempted:
+            repair["verdict"] = "repair_attempted"
+            repair["family"] = "local_module_off_path"
+            repair["note"] = attempted[strategy]
         if strategy in refused_timeframe and strategy not in repair_source:
             repair["verdict"] = "refuse_repair"
             repair["family"] = "timeframe_not_recoverable"

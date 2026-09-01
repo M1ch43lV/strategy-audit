@@ -5580,6 +5580,650 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "StarRise_strat"
+    },
+    "StochasticOversoldStrategy": {
+      "canonical_sha256": "sha256_68599ded4c365ca92cf2b235c680c56cc4af845ca2248ec943f1c029dbe4f4dd",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "StochasticOversoldStrategy:68599ded4c36",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 43.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy StochasticOversoldStrategy --strategy-path user_data/profile_bias_strategies/StochasticOversoldStrategy --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_1430757bfe56300b585659328bad54d2ad77c862f10d9d46ca57e8261ff8a73a",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "StochasticOversoldStrategy"
+    },
+    "StochasticRsiStrategy": {
+      "canonical_sha256": "sha256_f4292b3f521ced35fada34bf500a7638d8efbf5153ddd5f23696ae9f1207300b",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "StochasticRsiStrategy:f4292b3f521c",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 40.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy StochasticRsiStrategy --strategy-path user_data/profile_bias_strategies/StochasticRsiStrategy --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_685745910dadf82822fc014a8ee8307e00c40723381a320a83d5b7f5e2dd2ea0",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "StochasticRsiStrategy"
+    },
+    "Strategy001": {
+      "canonical_sha256": "sha256_2357996e6594458e8db45b5f757918462afa3c998de9d06e2af0c009ddc4b80d",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "Strategy001:2357996e6594",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 59.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Strategy001 --strategy-path user_data/profile_bias_strategies/Strategy001 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_57f56d61e80747c5d4383f8d3ecb841664439844b145ca079b965a97426f0a9a",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Strategy001"
+    },
+    "Strategy001_custom_exit": {
+      "canonical_sha256": "sha256_d53ac16d0e81b755a19ea83c535f50a6dd0629c76087b822ae399fabeaa5e841",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "Strategy001_custom_exit:d53ac16d0e81",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 87.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Strategy001_custom_exit --strategy-path user_data/profile_bias_strategies/Strategy001_custom_exit --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_2ed8049e9173ee0e7605b34de8be153a167bc045900754cb20b253e5f7743701",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Strategy001_custom_exit"
+    },
+    "Strategy001_custom_sell": {
+      "canonical_sha256": "sha256_a826f21cc567c5e11ef75aca97a4f186028051a0c8fd57c9ad2b0215239a77bd",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "Strategy001_custom_sell:a826f21cc567",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 77.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Strategy001_custom_sell --strategy-path user_data/profile_bias_strategies/Strategy001_custom_sell --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_4fd1343d1021a15625569b48adcc2dbd2e095fdeefeced493300f74345128003",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Strategy001_custom_sell"
+    },
+    "Strategy002": {
+      "canonical_sha256": "sha256_d1ca86a4ceb68ef828b35490ce1112330dad209cc3bb1e1b6c303c21ab3d8a90",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "Strategy002:d1ca86a4ceb6",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 45.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Strategy002 --strategy-path user_data/profile_bias_strategies/Strategy002 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_e1cae7a954a675e55f4345cc3d7107e8e76b2008087f4015643c0a37839551b0",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Strategy002"
+    },
+    "Strategy003": {
+      "canonical_sha256": "sha256_055984b4672779b36a2391f790ccbcd320e408eb0634e34718d7182acaeef9c9",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "Strategy003:055984b46727",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 43.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Strategy003 --strategy-path user_data/profile_bias_strategies/Strategy003 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_3fe9e79f82073cbdbeb7fd754941f64abed21893d7c7d8116309e161603f720a",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Strategy003"
+    },
+    "Strategy004": {
+      "canonical_sha256": "sha256_1b4c001e80b077aaf3ec227577c78d3283be549c7d25ce9279ea03f1db5de64a",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "Strategy004:1b4c001e80b0",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 43.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Strategy004 --strategy-path user_data/profile_bias_strategies/Strategy004 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_d086dcd0a681dabc88d29920b09df8e3b913eb77fbd669ca39799ae5b168dd9f",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Strategy004"
+    },
+    "Strategy005": {
+      "canonical_sha256": "sha256_797b293f5acd809f8c77f26b38c004c87b75d8847be4cde4d0224040cc591030",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "Strategy005:797b293f5acd",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 41.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Strategy005 --strategy-path user_data/profile_bias_strategies/Strategy005 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_b7ffdfd10a3b954af30541af32db3d1fcfd114577ff1ff3c8d7775dd1e386f27",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Strategy005"
+    },
+    "StrategyScalpingFast": {
+      "canonical_sha256": "sha256_9cedf6bf96ca582c6bf7d35541f96b05bed481b97bb62ab0f4eb62a6a64e05a3",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "StrategyScalpingFast:9cedf6bf96ca",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 68.1,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy StrategyScalpingFast --strategy-path user_data/profile_bias_strategies/StrategyScalpingFast --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_fced81f55ba7bd5e6f183acbab095106de87f914ab1749c3c8e9d74a164bbcd5",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "StrategyScalpingFast"
+    },
+    "StrategyScalpingFast2": {
+      "canonical_sha256": "sha256_2db927e231f91ec7a6c8b3286319b75f8ab40fe26487bd189711cc4dfe94456d",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "StrategyScalpingFast2:2db927e231f9",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 71.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy StrategyScalpingFast2 --strategy-path user_data/profile_bias_strategies/StrategyScalpingFast2 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_5310aa7b3d26ee658991d82007e3f6253256d2409b3064550f5f7bc853697ab0",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "StrategyScalpingFast2"
+    },
+    "StrategyTestV2": {
+      "canonical_sha256": "sha256_af19a0888d23c1a6cdf1c91a6e943c377d00e5dcf9eebe0252894a7e028b99f8",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "StrategyTestV2:af19a0888d23",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 42.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy StrategyTestV2 --strategy-path user_data/profile_bias_strategies/StrategyTestV2 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_439c5fa744aa60944ba97e2efad0e1e5c00767a93040879216e7f8326d66a98c",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "StrategyTestV2"
+    },
+    "SuperTrend": {
+      "canonical_sha256": "sha256_8906a5d26582e786bffdff1c24256d6ad6c953180686275ef240c4778ee04dc6",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "SuperTrend:8906a5d26582",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 110.6,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SuperTrend --strategy-path user_data/profile_bias_strategies/SuperTrend --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_39e7cc3c03199a6d29f8b24bb5964799b4f448281852768c6eed64193023a57e",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "SuperTrend"
+    },
+    "TD": {
+      "canonical_sha256": "sha256_aa5f353feb7619e29c7effd98d104acd002b9774391cb48f60ae6d28a0f78771",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "TD:aa5f353feb76",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 42.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TD --strategy-path user_data/profile_bias_strategies/TD --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_21277fd22c2cec62eddd000d0b928d7d44a1844d1259e4d1892e3d272c901b7a",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "TD"
+    },
+    "TEMA": {
+      "canonical_sha256": "sha256_59e0f6c50d86dbaabee59573d940d2005aa2e59a7198cd48dc95cea9d558a7b8",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "TEMA:59e0f6c50d86",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 92.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TEMA --strategy-path user_data/profile_bias_strategies/TEMA --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_1158e16943aaa00b94896dc7d1b6798ad741bb432763c2d6206c745decea3d88",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "TEMA"
+    },
+    "TRIWAVE": {
+      "canonical_sha256": "sha256_3f1564192308545e4a9b6bc0ffb305337596561b055b0cad8497170e5cb9cb1b",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "TRIWAVE:3f1564192308",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 63.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TRIWAVE --strategy-path user_data/profile_bias_strategies/TRIWAVE --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_a2db80943aca2c09de42d8bfb526e85f8cee57de9fb82226cd160296f052965d",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "TRIWAVE"
+    },
+    "TemaMaster": {
+      "canonical_sha256": "sha256_14b43e368f1f886524492c57186899d70da7c99259f4a35047d711c9ec6ee0b8",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "TemaMaster:14b43e368f1f",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 50.2,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TemaMaster --strategy-path user_data/profile_bias_strategies/TemaMaster --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_d4e3b96e5e275b8281841cf0a16be25e929d74e5ef7b306e7cac2d635cdc7a81",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "TemaMaster"
+    },
+    "TemaMaster3": {
+      "canonical_sha256": "sha256_1381bf162ddf6528df085ac697af8fe48034c173ad7a9a9a0bf10ed31989dc99",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "TemaMaster3:1381bf162ddf",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 108.4,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TemaMaster3 --strategy-path user_data/profile_bias_strategies/TemaMaster3 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_c1258fec25fc4cf1517b848d53488f78e20c9b0cf0619c4c97e1b9c8c97624fe",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "TemaMaster3"
+    },
+    "TemaPure": {
+      "canonical_sha256": "sha256_266bf1f3434cfaabc886bdb11833306b9a340224d008d925213522ca2fcf18d1",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "TemaPure:266bf1f3434c",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 60.2,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TemaPure --strategy-path user_data/profile_bias_strategies/TemaPure --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_a305e5025753cc365c561035b4476ef06c75bfcf002f6691be12b84dbffce76a",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "TemaPure"
+    },
+    "TemaPureNeat": {
+      "canonical_sha256": "sha256_c76e6d10166b7c7002c01daae3b842602d8c5302aee287fb0dbbc0c25f62eb04",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "TemaPureNeat:c76e6d10166b",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 48.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TemaPureNeat --strategy-path user_data/profile_bias_strategies/TemaPureNeat --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_9ad6647df642a01737edefe9ed872c4d41b10765a37c84c436cc02e92b9f52a4",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "TemaPureNeat"
+    },
+    "TemaPureTwo": {
+      "canonical_sha256": "sha256_ba20c955f30b6a78b86079c0d25da12f177ec065be94e406373682f24f64b7ee",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "TemaPureTwo:ba20c955f30b",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 48.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TemaPureTwo --strategy-path user_data/profile_bias_strategies/TemaPureTwo --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_a94c76fe00947e2f940e90421b7cde332c587229a3b0dc411906834a51b7d425",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "TemaPureTwo"
+    },
+    "TemaStrategy": {
+      "canonical_sha256": "sha256_5e34ef95ca12b5c538122ef770eb16b326c0f4796b406e4b764afaabfe2b26c2",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "TemaStrategy:5e34ef95ca12",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 43.1,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TemaStrategy --strategy-path user_data/profile_bias_strategies/TemaStrategy --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_624dd655a0293e47c424e7c77fea96c197a69364813f863c61e0dc2330b9a97d",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "TemaStrategy"
+    },
+    "TheForce": {
+      "canonical_sha256": "sha256_dc3537c5cbe9d1d80e0db442a4ceef2fcd0ba7ccf40bd637515ec20a3f661485",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "TheForce:dc3537c5cbe9",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 44.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TheForce --strategy-path user_data/profile_bias_strategies/TheForce --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_03c69a51b4c85ee13d37c6e74874a963e9d16aae90eac50f70705aa054f564b6",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "TheForce"
+    },
+    "TouchEmaDelayStrategy": {
+      "canonical_sha256": "sha256_0aced2ab943202ac70f496f22f37da9ea258a164c0e0a62f45d6db023b716665",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "TouchEmaDelayStrategy:0aced2ab9432",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 61.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TouchEmaDelayStrategy --strategy-path user_data/profile_bias_strategies/TouchEmaDelayStrategy --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_28173678390548c0e87fc232442261584ae55fbaec3dc09599474eaec2a37d34",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "TouchEmaDelayStrategy"
+    },
+    "TouchEmaStrategy": {
+      "canonical_sha256": "sha256_92446d7b27c0aaaf848f987d73f5d2d322b8db0157f88e58f29cddfdfbbf076d",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "TouchEmaStrategy:92446d7b27c0",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 49.1,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TouchEmaStrategy --strategy-path user_data/profile_bias_strategies/TouchEmaStrategy --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_f6c8817926f27057fa134ca2395e60fcbfd67a69c4cd03e02c13d6a71ab8d14c",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "TouchEmaStrategy"
+    },
+    "TrendAtrStrategy": {
+      "canonical_sha256": "sha256_951bd002344d4d6b54d592856acc943d1c87e2e2ad42e5c1e6e498e59a21e2f9",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "TrendAtrStrategy:951bd002344d",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 40.1,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TrendAtrStrategy --strategy-path user_data/profile_bias_strategies/TrendAtrStrategy --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_e29aef5ff4f6d2ef930816c36443c5683585b70ab596f10fdbf685b47a2cee10",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "TrendAtrStrategy"
+    },
+    "Trend_Strength_Directional": {
+      "canonical_sha256": "sha256_cc01382c741063baf476a2ebebca015ab457d105d4285855a497101c3e48a153",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "Trend_Strength_Directional:cc01382c7410",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 44.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Trend_Strength_Directional --strategy-path user_data/profile_bias_strategies/Trend_Strength_Directional --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_0e4f2e6b3dac598f392d51b9a518e70ba8615149e58e30101f093ba1abddcf8d",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Trend_Strength_Directional"
+    },
+    "TripleEmaStrategy": {
+      "canonical_sha256": "sha256_9e11c65ddcfbc581ae1b6fa5cc07f24ddf13d2c5b894c01369f942a9ae356664",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "TripleEmaStrategy:9e11c65ddcfb",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 43.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TripleEmaStrategy --strategy-path user_data/profile_bias_strategies/TripleEmaStrategy --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_3c438859aa1d46a2f9acaf32c7a37e536dda1065c9e2b0e099ba97e798185d96",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "TripleEmaStrategy"
     }
   },
   "schema_version": 1,

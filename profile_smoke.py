@@ -158,6 +158,11 @@ def _runtime(strategy, mode="futures"):
     if python_paths:
         previous = env.get("PYTHONPATH")
         env["PYTHONPATH"] = os.pathsep.join(python_paths + ([previous] if previous else []))
+    # A rule that names a signature adapter is passed to the wrapper, which
+    # installs it inside the freqtrade process before the strategy is loaded.
+    adapters = list(repair.get("rules", []))
+    if adapters:
+        env["PROFILE_COMPAT_SIGNATURES"] = ",".join(adapters)
     extension_paths = [os.path.join(ROOT, value.replace("/", os.sep))
                        for value in repair.get("freqtrade_paths", [])]
     if extension_paths:
@@ -391,6 +396,29 @@ def main(argv=None):
         return 0
 
     rows = select(read_manifest(args.manifest), args.strategy, set(args.profiles), args.limit)
+    # A second runner on the same store loses whatever the first wrote after it
+    # started: each holds the whole file in memory and rewrites it. That
+    # happened on 2026-09-01 and cost three measurements. The claim is taken
+    # for the life of the run, not per write, because the harm is two runs
+    # overlapping at all rather than two writes colliding.
+    claim = args.output + ".running"
+    try:
+        os.mkdir(claim)
+    except OSError:
+        raise SystemExit(
+            "another runner already holds %s (%s exists). Give this run its "
+            "own --output, or wait for that one to finish."
+            % (os.path.basename(args.output), os.path.basename(claim)))
+    try:
+        return _run(args, rows, claim)
+    finally:
+        try:
+            os.rmdir(claim)
+        except OSError:
+            pass
+
+
+def _run(args, rows, claim):
     data = read_results(args.output)
     data["timerange"] = args.timerange
     data["config"] = os.path.basename(FUTURES_CONFIG)

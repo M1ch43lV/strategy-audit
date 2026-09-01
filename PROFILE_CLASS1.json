@@ -36,6 +36,20 @@
       ],
       "status": "applied"
     },
+    "Cenderawasih_30m": {
+      "note": "declares `class <Name> (IStrategy):` with a space. Freqtrade's resolver skips a file unless its text contains the literal `class <Name>(`, so it never imports the file at all and reports \"This class does not exist or contains Python code errors\", which is true of neither. The shim makes that pre-import scan tolerant of whitespace; every file it admits still has to pass the four real conditions. No strategy source is touched.",
+      "rules": [
+        "whitespace_tolerant_class_scan"
+      ],
+      "status": "applied"
+    },
+    "Cenderawasih_3_kucoin": {
+      "note": "declares `class <Name> (IStrategy):` with a space. Freqtrade's resolver skips a file unless its text contains the literal `class <Name>(`, so it never imports the file at all and reports \"This class does not exist or contains Python code errors\", which is true of neither. The shim makes that pre-import scan tolerant of whitespace; every file it admits still has to pass the four real conditions. No strategy source is touched.",
+      "rules": [
+        "whitespace_tolerant_class_scan"
+      ],
+      "status": "applied"
+    },
     "CopyLitmusMinMaxBroadClassificationStrategy": {
       "config_keys": [
         "timeframe",
@@ -53,6 +67,69 @@
         "restore_author_config"
       ],
       "status": "partial"
+    },
+    "CryptoFrog": {
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "status": "applied"
+    },
+    "CryptoFrogHO": {
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "status": "applied"
+    },
+    "CryptoFrogHO2": {
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "status": "applied"
+    },
+    "CryptoFrogHO2A": {
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "status": "applied"
+    },
+    "CryptoFrogHO3A1": {
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "status": "applied"
+    },
+    "CryptoFrogHO3A2": {
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "status": "applied"
+    },
+    "CryptoFrogHO3A3": {
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "status": "applied"
+    },
+    "CryptoFrogHO3A4": {
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "status": "applied"
+    },
+    "CryptoFrog_nateema": {
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "status": "applied"
     },
     "DWT": {
       "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
@@ -314,6 +391,13 @@
       ],
       "status": "blocked_missing_dependency"
     },
+    "MultiMA_TSL5": {
+      "note": "declares `class <Name> (IStrategy):` with a space. Freqtrade's resolver skips a file unless its text contains the literal `class <Name>(`, so it never imports the file at all and reports \"This class does not exist or contains Python code errors\", which is true of neither. The shim makes that pre-import scan tolerant of whitespace; every file it admits still has to pass the four real conditions. No strategy source is touched.",
+      "rules": [
+        "whitespace_tolerant_class_scan"
+      ],
+      "status": "applied"
+    },
     "PolymarketMeanReversionStrategy": {
       "note": "repair withdrawn 2026-09-01: the only corpus copy of `alpha` is in repos/mlsys-io_PortfolioBench, which carries its own freqtrade/ and shadows the installed package the moment it goes on sys.path. The run then fails with \"cannot import name '__version__' from 'freqtrade' (unknown location)\", which names neither the path nor the cause. Deleting the entry would have deleted the finding too.",
       "rules": [],
@@ -392,6 +476,27 @@
       ],
       "rules": [
         "restore_copied_local_module"
+      ],
+      "status": "applied"
+    },
+    "bbrsi1_strategy": {
+      "note": "declares `class <Name> (IStrategy):` with a space. Freqtrade's resolver skips a file unless its text contains the literal `class <Name>(`, so it never imports the file at all and reports \"This class does not exist or contains Python code errors\", which is true of neither. The shim makes that pre-import scan tolerant of whitespace; every file it admits still has to pass the four real conditions. No strategy source is touched.",
+      "rules": [
+        "whitespace_tolerant_class_scan"
+      ],
+      "status": "applied"
+    },
+    "mark_strat_opt": {
+      "note": "declares `class <Name> (IStrategy):` with a space. Freqtrade's resolver skips a file unless its text contains the literal `class <Name>(`, so it never imports the file at all and reports \"This class does not exist or contains Python code errors\", which is true of neither. The shim makes that pre-import scan tolerant of whitespace; every file it admits still has to pass the four real conditions. No strategy source is touched.",
+      "rules": [
+        "whitespace_tolerant_class_scan"
+      ],
+      "status": "applied"
+    },
+    "multi_tf": {
+      "note": "declares `class <Name> (IStrategy):` with a space. Freqtrade's resolver skips a file unless its text contains the literal `class <Name>(`, so it never imports the file at all and reports \"This class does not exist or contains Python code errors\", which is true of neither. The shim makes that pre-import scan tolerant of whitespace; every file it admits still has to pass the four real conditions. No strategy source is touched.",
+      "rules": [
+        "whitespace_tolerant_class_scan"
       ],
       "status": "applied"
     },

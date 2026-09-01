@@ -943,6 +943,33 @@
       "trades": 942,
       "trades_sha256": "sha256_6af33a74dece923f637d255b47c45be4c36ca7c2d64294f36d3961d5c2d71b15"
     },
+    "mark_strat_opt": {
+      "archive": "user_data/profile_smoke/mark_strat_opt-2026-09-01_20-50-12.zip",
+      "archive_sha256": "sha256_2af1f5c20e270e9af5ea21d0d7d8a48f33b3d7f94377572b25b4aa60216d3c69",
+      "canonical_sha256": "sha256_d5eaebf770b814dbb6c8a7e8cd0d27a8b9aef6d641caad471546d71b91fa2221",
+      "class1_rules": [
+        "whitespace_tolerant_class_scan"
+      ],
+      "config_overrides": {
+        "timeframe": "1m"
+      },
+      "elapsed_s": 43.5,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/mark_strat_opt-override-93c76024faa3.json --strategy mark_strat_opt --strategy-path repos/davidzr_freqtrade-strategies/strategies/mark_strat_opt --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/mark_strat_opt --cache none",
+      "long_trades": 11,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "mark_strat_opt",
+      "timeframe": "1m",
+      "timeframe_evidence": "author_ticker_interval",
+      "timeframe_evidence_source": "repos/davidzr_freqtrade-strategies/strategies/mark_strat_opt/mark_strat_opt.py:56 declares ticker_interval = '1m'; freqtrade renamed the attribute to timeframe in 2021.4 and no longer reads the old name",
+      "timerange": "20200301-20200401",
+      "trades": 11,
+      "trades_sha256": "sha256_94d56035decd0ecc981ba61fc30773ff9b03e4066486742b7057b7f716901bf9"
+    },
     "quantumfirst": {
       "archive": "user_data/profile_smoke/quantumfirst-2026-09-01_19-57-53.zip",
       "archive_sha256": "sha256_c41b03edaceb94a1ebc0f882056d6f15857e323f04663d8b8f2b3c3af9e2371d",

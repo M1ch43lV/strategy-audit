@@ -1,0 +1,307 @@
+{
+  "config": "profile_futures_config.json",
+  "results": {
+    "Cenderawasih_30m": {
+      "archive": "user_data/profile_smoke/Cenderawasih_30m-2026-09-01_20-43-33.zip",
+      "archive_sha256": "sha256_57fdc8c4de559b84b093c52aad3fefa30a7893fcc711792f5534862c1056416c",
+      "canonical_sha256": "sha256_f61eab1af02a0b861b142b7f7c637239367681ff101a57587954054aae11d925",
+      "class1_rules": [
+        "whitespace_tolerant_class_scan"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 51.6,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Cenderawasih_30m --strategy-path repos/TheoBrigitte_freqtrade/strategies/cenderawasih --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Cenderawasih_30m --cache none",
+      "long_trades": 1,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 1,
+      "trades_sha256": "sha256_6d7d505e250d3ba12244ca1f0639e790a636d1d7a78d97b206f596e0d4db0826"
+    },
+    "Cenderawasih_3_kucoin": {
+      "archive": "user_data/profile_smoke/Cenderawasih_3_kucoin-2026-09-01_20-42-41.zip",
+      "archive_sha256": "sha256_2c181496d9753db49988ea0b639d658616baae644e60e6e9af631848778efb85",
+      "canonical_sha256": "sha256_fa5fb7a91a2b4fdc241df3295c1b09665b6377c7c6aad43f58ac0e9b12b27918",
+      "class1_rules": [
+        "whitespace_tolerant_class_scan"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 54.9,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Cenderawasih_3_kucoin --strategy-path repos/TheoBrigitte_freqtrade/strategies/cenderawasih3 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Cenderawasih_3_kucoin --cache none",
+      "long_trades": 59,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 59,
+      "trades_sha256": "sha256_21f01fbd94b9e291d8f260ef31abe965eb0ebaac27664a325a49aaaf447b6ac4"
+    },
+    "CryptoFrog": {
+      "archive": "user_data/profile_smoke/CryptoFrog-2026-09-01_20-36-48.zip",
+      "archive_sha256": "sha256_6bfb1aca80591513074b8b22f0790177b4635841f3e3871389ab40f70e442a4c",
+      "canonical_sha256": "sha256_9df6d7dfa478dae1194d2c04558ab9a1685ce0ed82b010b87f9e95350bbca7dd",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 46.7,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrog --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrog --cache none",
+      "long_trades": 217,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 217,
+      "trades_sha256": "sha256_f33958f64854874114051d50ab9010b2ae9394037417057bf1ebda1758f35698"
+    },
+    "CryptoFrogHO": {
+      "archive": "user_data/profile_smoke/CryptoFrogHO-2026-09-01_20-37-32.zip",
+      "archive_sha256": "sha256_d6e73fb24c990ef555dd582ab44d681c1cb0fee47c2418723dcabc556ca12900",
+      "canonical_sha256": "sha256_84156f3c5c36f0ace63781fed1a82e25b96cd25a1be21d915df2102169063240",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 44.2,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogHO --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO --cache none",
+      "long_trades": 613,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 613,
+      "trades_sha256": "sha256_8ac1e1ec2bd5c15d66dc63c7708f505b2e6d46813145ee35001cd051511f5e38"
+    },
+    "CryptoFrogHO2": {
+      "archive": "user_data/profile_smoke/CryptoFrogHO2-2026-09-01_20-38-16.zip",
+      "archive_sha256": "sha256_13bbeb3e7d38faebc0bf3bc65dd893b2035db85a6e13b0ddb4f20168ff2a65c9",
+      "canonical_sha256": "sha256_1fa719dcd8ceb0de0adde62e29cf4d642c4c8da4566b470996d19bcb9511cc14",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 44.0,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogHO2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO2 --cache none",
+      "long_trades": 672,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 672,
+      "trades_sha256": "sha256_58aa2b568bdb758c31322c4c0c0585b86bd0a97a848cd03fa7f69c9e3306ccd1"
+    },
+    "CryptoFrogHO2A": {
+      "archive": "user_data/profile_smoke/CryptoFrogHO2A-2026-09-01_20-39-01.zip",
+      "archive_sha256": "sha256_ee149c12e79149b8eb36cbce911b4850f8a15136009591032ac1f1b8d27561ad",
+      "canonical_sha256": "sha256_847539efa0839b35086ab5183a1c0f236523d31147e9786014855968ee370393",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 44.9,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogHO2A --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO2A --cache none",
+      "long_trades": 672,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 672,
+      "trades_sha256": "sha256_58aa2b568bdb758c31322c4c0c0585b86bd0a97a848cd03fa7f69c9e3306ccd1"
+    },
+    "CryptoFrogHO3A1": {
+      "archive": "user_data/profile_smoke/CryptoFrogHO3A1-2026-09-01_20-39-46.zip",
+      "archive_sha256": "sha256_b96f7bdb733e446440f20102b1c5e9466e9610b69f9d2510c76cc7fc62638298",
+      "canonical_sha256": "sha256_0797316a9dd6bfc80a99378258074403cbe73477a64e374d8c01812a8db7288d",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 45.5,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogHO3A1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO3A1 --cache none",
+      "long_trades": 929,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 929,
+      "trades_sha256": "sha256_9ea78f1056fc719f3944014779013153dd11ea918b040059fb0371e330ba9dc6"
+    },
+    "CryptoFrogHO3A2": {
+      "archive": "user_data/profile_smoke/CryptoFrogHO3A2-2026-09-01_20-40-29.zip",
+      "archive_sha256": "sha256_8a4cda4eddbf5d839551ed411c3d7b4536238519e6aea7cdffbac0d0e5b0b393",
+      "canonical_sha256": "sha256_534aa9e9bbc16cb595efaa4cf79e4b7308ead005669badf99cb4fc95f13faac7",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 42.6,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogHO3A2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO3A2 --cache none",
+      "long_trades": 964,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 964,
+      "trades_sha256": "sha256_a8232071b9c0380f6e434dd7e346e688eb23e54d7e9f61583a9f305f2c479be3"
+    },
+    "CryptoFrogHO3A3": {
+      "archive": "user_data/profile_smoke/CryptoFrogHO3A3-2026-09-01_20-46-38.zip",
+      "archive_sha256": "sha256_4c81945f4b28fb5aaf072b60fd25d6f8cc4e3b5d1a3174b07fc8451afb018260",
+      "canonical_sha256": "sha256_2a4d958d77b85caa3c2b599d872f34347764c5ea9051ecc8b7e92940edb57a62",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 43.4,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogHO3A3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO3A3 --cache none",
+      "long_trades": 960,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 960,
+      "trades_sha256": "sha256_c0ead1667559728ee878344a1143c684ad1c8bc1d95342663208b7238fa1b3c4"
+    },
+    "CryptoFrogHO3A4": {
+      "archive": "user_data/profile_smoke/CryptoFrogHO3A4-2026-09-01_20-47-21.zip",
+      "archive_sha256": "sha256_e8e84f4f900d5bd96128fbac6745806ae687a067e9e98d5684d28de8a8d1e098",
+      "canonical_sha256": "sha256_d1ef173efa7df7fa05d3f341c1552bea75c7693d9e49b484f769dd1d7295e628",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 43.6,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogHO3A4 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO3A4 --cache none",
+      "long_trades": 564,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 564,
+      "trades_sha256": "sha256_f3287d49ea4c24dbea6d034505315ae47cce19b12f502674393b14fb4267d2ad"
+    },
+    "CryptoFrog_nateema": {
+      "archive": "user_data/profile_smoke/CryptoFrog_nateema-2026-09-01_20-48-07.zip",
+      "archive_sha256": "sha256_c2f88c6539e2047b2486130dfdd24d7f40e7f9839fe04e78d0254cbcfbb1cb65",
+      "canonical_sha256": "sha256_ba28d48d8d6712689ac1e81b5154003abeb831073f6caa15d67feaa16c30180f",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 45.6,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrog_nateema --strategy-path repos/TheoBrigitte_freqtrade/strategies/cryptofrog-strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrog_nateema --cache none",
+      "long_trades": 478,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 478,
+      "trades_sha256": "sha256_f780233aa680d55e41b46188475a41aef127f5aa06a8ae9fd99facd0fa7e443b"
+    },
+    "MultiMA_TSL5": {
+      "canonical_sha256": "sha256_389505ebb118a055b54c3c4aa46aba9146b24e9d3f1e0f3ac399f2023f53afb6",
+      "class1_rules": [
+        "whitespace_tolerant_class_scan"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/MultiMA_TSL5.log",
+      "elapsed_s": 40.8,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy MultiMA_TSL5 --strategy-path repos/MMR-19_freqtrade-strategies/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiMA_TSL5 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given"
+    },
+    "bbrsi1_strategy": {
+      "archive": "user_data/profile_smoke/bbrsi1_strategy-2026-09-01_20-44-53.zip",
+      "archive_sha256": "sha256_27c6950481cfea2e0155194521d01abc0a4cfb9b0972a467a74692c5589b584c",
+      "canonical_sha256": "sha256_f3811f9c3f5fcf0b1df8c59c6866a726489a6dd9dd925dabb8c3fea08ce92de2",
+      "class1_rules": [
+        "whitespace_tolerant_class_scan"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 39.2,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy bbrsi1_strategy --strategy-path repos/davidzr_freqtrade-strategies/strategies/bbrsi1_strategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/bbrsi1_strategy --cache none",
+      "long_trades": 432,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 432,
+      "trades_sha256": "sha256_e6dab2225efcef3a1fdc6762f79ae31821421b8fee91e317a3174a29dae62d0f"
+    },
+    "mark_strat_opt": {
+      "canonical_sha256": "sha256_d5eaebf770b814dbb6c8a7e8cd0d27a8b9aef6d641caad471546d71b91fa2221",
+      "class1_rules": [
+        "whitespace_tolerant_class_scan"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/mark_strat_opt.log",
+      "elapsed_s": 38.3,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy mark_strat_opt --strategy-path repos/davidzr_freqtrade-strategies/strategies/mark_strat_opt --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/mark_strat_opt --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+    },
+    "multi_tf": {
+      "canonical_sha256": "sha256_eb182eaecb785864496023f26be7932857b1e495805c37bddd562d6b1100683b",
+      "class1_rules": [
+        "whitespace_tolerant_class_scan"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/multi_tf.log",
+      "elapsed_s": 41.4,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy multi_tf --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/multi_tf --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "Informative dataframe for (ETH/BTC, 1h, spot) is empty. Can't populate informative indicators."
+    }
+  },
+  "schema_version": 1,
+  "timerange": "20200301-20200401"
+}

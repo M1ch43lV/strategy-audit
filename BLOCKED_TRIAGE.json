@@ -101,26 +101,6 @@
       "strategy_id": "BlueEyes_MPP_v1",
       "verdict": "needs_a_look"
     },
-    "Cenderawasih_30m": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class Cenderawasih_30m is present",
-      "runtime_failure": "Impossible to load Strategy 'Cenderawasih_30m'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/TheoBrigitte_freqtrade/strategies/cenderawasih/Cenderawasih_30m.py",
-      "strategy_id": "Cenderawasih_30m",
-      "verdict": "to_be_fixed"
-    },
-    "Cenderawasih_3_kucoin": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class Cenderawasih_3_kucoin is present",
-      "runtime_failure": "Impossible to load Strategy 'Cenderawasih_3_kucoin'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/TheoBrigitte_freqtrade/strategies/cenderawasih3/Cenderawasih_3_kucoin.py",
-      "strategy_id": "Cenderawasih_3_kucoin",
-      "verdict": "to_be_fixed"
-    },
     "Chained": {
       "family": "timeframe_missing",
       "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
@@ -183,70 +163,6 @@
       "strategy_id": "CopyLitmusMinMaxBroadClassificationStrategy",
       "verdict": "needs_a_look"
     },
-    "CryptoFrog": {
-      "family": "old_hook_signature",
-      "note": "The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.",
-      "runtime_failure": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/CryptoFrog.py",
-      "strategy_id": "CryptoFrog",
-      "verdict": "to_be_fixed"
-    },
-    "CryptoFrogHO": {
-      "family": "old_hook_signature",
-      "note": "The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.",
-      "runtime_failure": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/CryptoFrogHO.py",
-      "strategy_id": "CryptoFrogHO",
-      "verdict": "to_be_fixed"
-    },
-    "CryptoFrogHO2": {
-      "family": "old_hook_signature",
-      "note": "The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.",
-      "runtime_failure": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/CryptoFrogHO2.py",
-      "strategy_id": "CryptoFrogHO2",
-      "verdict": "to_be_fixed"
-    },
-    "CryptoFrogHO2A": {
-      "family": "old_hook_signature",
-      "note": "The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.",
-      "runtime_failure": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/CryptoFrogHO2A.py",
-      "strategy_id": "CryptoFrogHO2A",
-      "verdict": "to_be_fixed"
-    },
-    "CryptoFrogHO3A1": {
-      "family": "old_hook_signature",
-      "note": "The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.",
-      "runtime_failure": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/CryptoFrogHO3A1.py",
-      "strategy_id": "CryptoFrogHO3A1",
-      "verdict": "to_be_fixed"
-    },
-    "CryptoFrogHO3A2": {
-      "family": "old_hook_signature",
-      "note": "The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.",
-      "runtime_failure": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/CryptoFrogHO3A2.py",
-      "strategy_id": "CryptoFrogHO3A2",
-      "verdict": "to_be_fixed"
-    },
-    "CryptoFrogHO3A3": {
-      "family": "old_hook_signature",
-      "note": "The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.",
-      "runtime_failure": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/CryptoFrogHO3A3.py",
-      "strategy_id": "CryptoFrogHO3A3",
-      "verdict": "to_be_fixed"
-    },
-    "CryptoFrogHO3A4": {
-      "family": "old_hook_signature",
-      "note": "The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.",
-      "runtime_failure": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/CryptoFrogHO3A4.py",
-      "strategy_id": "CryptoFrogHO3A4",
-      "verdict": "to_be_fixed"
-    },
     "CryptoFrogNFI2": {
       "family": "individual",
       "note": "one of a kind; read the message",
@@ -254,14 +170,6 @@
       "source_file": "repos/PeetCrypto_freqtrade-stuff/CryptoFrogNFI2.py",
       "strategy_id": "CryptoFrogNFI2",
       "verdict": "needs_a_look"
-    },
-    "CryptoFrog_nateema": {
-      "family": "old_hook_signature",
-      "note": "The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.",
-      "runtime_failure": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
-      "source_file": "repos/TheoBrigitte_freqtrade/strategies/cryptofrog-strategies/CryptoFrog_nateema.py",
-      "strategy_id": "CryptoFrog_nateema",
-      "verdict": "to_be_fixed"
     },
     "CryptoPredictionTraining": {
       "family": "third_party_package",
@@ -652,14 +560,12 @@
       "verdict": "needs_a_look"
     },
     "MultiMA_TSL5": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class MultiMA_TSL5 is present",
-      "runtime_failure": "Impossible to load Strategy 'MultiMA_TSL5'. This class does not exist or contains Python code errors.",
+      "family": "dtype_drift",
+      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
+      "runtime_failure": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given",
       "source_file": "repos/MMR-19_freqtrade-strategies/strategies/MultiMA_TSL5.py",
       "strategy_id": "MultiMA_TSL5",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "MultiMa": {
       "family": "individual",
@@ -965,35 +871,13 @@
       "strategy_id": "WTRSIAI",
       "verdict": "to_be_fixed"
     },
-    "bbrsi1_strategy": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class bbrsi1_strategy is present",
-      "runtime_failure": "Impossible to load Strategy 'bbrsi1_strategy'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/bbrsi1_strategy/bbrsi1_strategy.py",
-      "strategy_id": "bbrsi1_strategy",
-      "verdict": "to_be_fixed"
-    },
-    "mark_strat_opt": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class mark_strat_opt is present",
-      "runtime_failure": "Impossible to load Strategy 'mark_strat_opt'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/davidzr_freqtrade-strategies/strategies/mark_strat_opt/mark_strat_opt.py",
-      "strategy_id": "mark_strat_opt",
-      "verdict": "to_be_fixed"
-    },
     "multi_tf": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class multi_tf is present",
-      "runtime_failure": "Impossible to load Strategy 'multi_tf'. This class does not exist or contains Python code errors.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "Informative dataframe for (ETH/BTC, 1h, spot) is empty. Can't populate informative indicators.",
       "source_file": "repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies/multi_tf.py",
       "strategy_id": "multi_tf",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "new_turtle": {
       "family": "dtype_drift",

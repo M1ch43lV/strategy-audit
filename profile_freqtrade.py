@@ -26,6 +26,12 @@ def main() -> int:
     from regime.gate_adapter import install_from_environment
     install_from_environment()
 
+    # Signature adapters for framework renames. Named by the runner, never
+    # applied by default: with no environment variable this launcher is
+    # byte-for-byte equivalent to the old path.
+    from repair.compat_signature import install_from_environment as install_compat
+    install_compat()
+
     from freqtrade.main import main as freqtrade_main
 
     return int(freqtrade_main() or 0)
