@@ -59,6 +59,15 @@ LADDER_DAYS = (1, 2, 7, 14, 30, 90, 365)
 DRIFT_THRESHOLD_PCT = 1.0
 WINDOW_START = "2020-03-01"
 
+# Freqtrade refuses any startup_candle_count above five times what the exchange
+# serves per request - "more than 5x (4999 candles)" for Binance - and exits
+# with code 0 while refusing, so the refusal reads as a silent clean run unless
+# it is caught. It is caught in profile_bias._recursive now, and the ladder is
+# capped here so the rung is never requested in the first place. The cap binds
+# hardest exactly where the warm-up matters most: at a five-minute timeframe it
+# allows about 17 days, so the 30, 90 and 365 day rungs do not exist there.
+MAX_STARTUP_CANDLES = 4999
+
 # Wave B rows whose exact trade match was refused a static proof because the
 # decision rests on a recursively smoothed series. They are the rows the
 # amendment was written for, so they are revisited under it by name.
@@ -146,10 +155,11 @@ def ladder(timeframe, cap=None):
     minutes = timeframe_minutes(timeframe)
     if not minutes:
         return []
+    ceiling = MAX_STARTUP_CANDLES if cap is None else min(cap, MAX_STARTUP_CANDLES)
     rungs = []
     for days in LADDER_DAYS:
         candles = max(1, -(-days * 1440 // minutes))
-        if cap is not None and candles > cap:
+        if candles > ceiling:
             break
         if rungs and rungs[-1][1] == candles:
             continue
@@ -316,13 +326,15 @@ def selftest():
     assert ladder("1d") == [(1, 1), (2, 2), (7, 7), (14, 14), (30, 30),
                             (90, 90), (365, 365)]
     assert ladder("1h") == [(1, 24), (2, 48), (7, 168), (14, 336), (30, 720),
-                            (90, 2160), (365, 8760)]
-    assert ladder("5m") == [(1, 288), (2, 576), (7, 2016), (14, 4032),
-                            (30, 8640), (90, 25920), (365, 105120)]
-    # 30 daily candles cannot settle an EMA200; 365 can. That is why the ladder
-    # does not stop at a month.
+                            (90, 2160)]
+    # Freqtrade's own ceiling truncates the fast timeframes. At five minutes a
+    # month of warm-up is 8,640 candles, which it refuses outright.
+    assert ladder("5m") == [(1, 288), (2, 576), (7, 2016), (14, 4032)]
+    assert all(candles <= MAX_STARTUP_CANDLES for _d, candles in ladder("1m"))
+    # 30 daily candles cannot settle an EMA200; 365 can, and 365 is under the
+    # ceiling, so the slow timeframes keep the full ladder.
     assert ladder("1d")[-1][1] == 365
-    # History that does not exist is never requested.
+    # History that does not exist is never requested either.
     assert ladder("1h", cap=200) == [(1, 24), (2, 48), (7, 168)]
     assert ladder("1d", cap=0) == []
     assert ladder("") == []

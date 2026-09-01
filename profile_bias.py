@@ -180,7 +180,21 @@ def _recursive(output, returncode, threshold=DEFAULT_DRIFT_THRESHOLD):
         return "FOUND", "startup_candle_count=0 refused by recursive-analysis"
     if returncode != 0:
         return "NA", _error(output, returncode)
+    # Freqtrade refuses a warm-up larger than five times what the exchange
+    # serves per request and exits with code 0 while doing so. Without this
+    # check the run looks like a clean pass with nothing to report, which is
+    # the most dangerous shape a false negative can take.
+    refused = re.search(r"This strategy requires (\d+) candles to start, "
+                        r"which is more than 5x \((\d+) candles\)", output)
+    if refused:
+        return "NA", ("startup_candle_count %s exceeds the exchange limit of %s "
+                      "candles; the analyzer never ran" % refused.groups())
     drifts = recursive_drifts(output)
+    if not drifts:
+        # A clean comparison still prints one row per indicator, with values
+        # near zero. An empty table means no comparison happened, and absence
+        # of evidence is not a pass.
+        return "NA", "analyzer produced no drift table"
     bad = [(key, value) for key, value in drifts if abs(value) >= threshold]
     if bad:
         return "FOUND", "recursive drift: " + ", ".join(
@@ -304,6 +318,16 @@ def selftest():
     assert _recursive(small, 0)[0] == "FOUND"
     assert _recursive(small, 0, threshold=1.0) == (
         "PASS", "no recursive deviations found")
+    # An empty table is no verdict. Reading it as a pass turned nine refused
+    # runs into "converged" rows on 2026-09-01.
+    assert _recursive("", 0) == ("NA", "analyzer produced no drift table")
+    refusal = ("Configuration error: This strategy requires 8640 candles to "
+               "start, which is more than 5x (4999 candles) the amount of "
+               "candles Binance provides for .")
+    status, why = _recursive(refusal, 0)
+    assert status == "NA" and "exceeds the exchange limit" in why, why
+    # The refusal outranks a table, if one somehow appears alongside it.
+    assert _recursive(refusal + small, 0)[0] == "NA"
     # A refusal outranks any threshold; it is not a measurement at all.
     assert _recursive("invalid startup candle count of 0", 0,
                       threshold=1.0)[0] == "FOUND"

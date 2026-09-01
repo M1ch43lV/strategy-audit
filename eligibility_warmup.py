@@ -210,13 +210,17 @@ def run_one(row, timeout, startup_candle_count):
                 output.encode("utf-8")).hexdigest(),
             "admission_effect": "none_pilot_only",
         })
-        if status != "PASS":
-            os.makedirs(LOG_DIR, exist_ok=True)
-            log_path = os.path.join(LOG_DIR, "%s-recursive-startup-%d.log" % (
-                _safe(strategy), startup_candle_count))
-            with io.open(log_path, "w", encoding="utf-8") as handle:
-                handle.write(output)
-            result["debug_log"] = os.path.relpath(log_path, ROOT).replace(os.sep, "/")
+        # The analyzer output is retained for every outcome, not only for a
+        # failure. On 2026-09-01 nine rows were recorded as converged because
+        # freqtrade had refused the run and exited 0; those passes carried no
+        # log, so the mistake could only be found by reproducing a run by hand.
+        # A pass is exactly the outcome whose evidence you later want to check.
+        os.makedirs(LOG_DIR, exist_ok=True)
+        log_path = os.path.join(LOG_DIR, "%s-recursive-startup-%d.log" % (
+            _safe(strategy), startup_candle_count))
+        with io.open(log_path, "w", encoding="utf-8") as handle:
+            handle.write(output)
+        result["debug_log"] = os.path.relpath(log_path, ROOT).replace(os.sep, "/")
         return result
     except subprocess.TimeoutExpired:
         result = identity(row, config, mode, repair, startup_candle_count)
