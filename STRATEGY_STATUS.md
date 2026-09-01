@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 14:45:15 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 14:49:05 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -15,7 +15,7 @@ the state at the freeze, and the difference is the expansion.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 373 of 900 rows
+file's time and is labelled `log_mtime` for that reason. 364 of 900 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
@@ -25,14 +25,14 @@ have neither and are left empty rather than given an invented time.
 | in the manifest | 900 |
 | measured at all | 688 |
 | produced trades | 661 |
-| carrying a run time | 527 |
+| carrying a run time | 536 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
-| `excluded` | 528 |
-| `convergence_candidate` | 227 |
+| `excluded` | 519 |
+| `convergence_candidate` | 236 |
 | `E0_strict67` | 67 |
 | `attempted_no_measurement` | 60 |
 | `E1_expanded` | 11 |
@@ -125,7 +125,7 @@ coverage, no published trap.
 | `ObeliskIM_v1_1` | `spot_long` | `E1_expanded` | 64 | `native` | 2026-08-31 15:20:09 | `user_data/profile_smoke/ObeliskIM_v1_1-2026-08-31_15-20-09.zip` |
 | `simple_patterns` | `spot_long` | `E1_expanded` | 1845 | `native` | 2026-08-31 15:55:52 | `user_data/profile_smoke/simple_patterns-2026-08-31_15-55-52.zip` |
 
-## Convergence candidates - 227 strategies
+## Convergence candidates - 236 strategies
 
 A warm-up exists at which every indicator stays inside the band.
 That is not admission: the paired full-window run must still show
@@ -314,7 +314,16 @@ an identical trade list.
 | `NostalgiaForInfinityV7_SMAv2_1` | `spot_long` | 2016 candles | 0.0% on `ema_fast_1h` | 2026-09-01 14:40:17 | `user_data/convergence_logs/NostalgiaForInfinityV7_SMAv2_1-ladder.log` |
 | `NotAnotherSMAOffsetStrategy` | `spot_long` | 2016 candles | 0.0% on `ma_buy_14` | 2026-09-01 14:44:33 | `user_data/convergence_logs/NotAnotherSMAOffsetStrategy-ladder.log` |
 | `NotAnotherSMAOffsetStrategyHO` | `spot_long` | 2016 candles | 0.0% on `ma_buy_16` | 2026-09-01 14:44:59 | `user_data/convergence_logs/NotAnotherSMAOffsetStrategyHO-ladder.log` |
+| `NotAnotherSMAOffsetStrategyHOv3` | `spot_long` | 2016 candles | 0.0% on `ma_sell_16` | 2026-09-01 14:45:25 | `user_data/convergence_logs/NotAnotherSMAOffsetStrategyHOv3-ladder.log` |
 | `NotAnotherSMAOffsetStrategyLite` | `spot_long` | 2016 candles | 0.0% on `ema_24` | 2026-09-01 12:39:05 | `user_data/convergence_logs/NotAnotherSMAOffsetStrategyLite-ladder.log` |
+| `NotAnotherSMAOffsetStrategyModHO` | `spot_long` | 2016 candles | 0.0% on `hma_50` | 2026-09-01 14:45:51 | `user_data/convergence_logs/NotAnotherSMAOffsetStrategyModHO-ladder.log` |
+| `NotAnotherSMAOffsetStrategyModHO_LamineDz_20210901` | `spot_long` | 2016 candles | 0.0% on `hma_50` | 2026-09-01 14:46:17 | `user_data/convergence_logs/NotAnotherSMAOffsetStrategyModHO_LamineDz_20210901-ladder.log` |
+| `NotAnotherSMAOffsetStrategyX1` | `spot_long` | 2016 candles | 0.0% on `ma_sell_24` | 2026-09-01 14:46:44 | `user_data/convergence_logs/NotAnotherSMAOffsetStrategyX1-ladder.log` |
+| `NotAnotherSMAOffsetStrategy_uzi` | `spot_long` | 2016 candles | 0.0% on `ma_buy_14` | 2026-09-01 14:47:10 | `user_data/convergence_logs/NotAnotherSMAOffsetStrategy_uzi-ladder.log` |
+| `NotAnotherSMAOffsetStrategy_uzi3` | `spot_long` | 2016 candles | 0.0% on `hma_50` | 2026-09-01 14:47:36 | `user_data/convergence_logs/NotAnotherSMAOffsetStrategy_uzi3-ladder.log` |
+| `NowoIchimoku1hV2` | `spot_long` | 168 candles | 0.0% on `upper` | 2026-09-01 14:48:01 | `user_data/convergence_logs/NowoIchimoku1hV2-ladder.log` |
+| `PRICEFOLLOWING` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-01 14:48:31 | `user_data/convergence_logs/PRICEFOLLOWING-ladder.log` |
+| `PRICEFOLLOWING2` | `spot_long` | 672 candles | 0.0% on `adx` | 2026-09-01 14:48:59 | `user_data/convergence_logs/PRICEFOLLOWING2-ladder.log` |
 | `ParabolicSarStrategy` | `spot_long` | 288 candles | 0.0% on `ema50` | 2026-09-01 12:39:54 | `user_data/convergence_logs/ParabolicSarStrategy-ladder.log` |
 | `PpoMomentumStrategy` | `spot_long` | 288 candles | 0.0% on `ppo` | 2026-09-01 12:40:19 | `user_data/convergence_logs/PpoMomentumStrategy-ladder.log` |
 | `PriceActionCandleStrategy` | `spot_long` | 288 candles | 0.0% on `ema50` | 2026-09-01 12:40:43 | `user_data/convergence_logs/PriceActionCandleStrategy-ladder.log` |
@@ -394,7 +403,7 @@ audit. They stay listed because a runtime change can revive one.
 | `freqai_test_strat` | `C_measurement_recovery` | `Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`` |
 | `A9AV` | `not_scheduled` | `AttributeError: 'Rolling' object has no attribute 'any'` |
 | `AstroQAV4` | `not_scheduled` | `freqAI is not enabled. Please enable it in your config to use this strategy.` |
-| `AwesomeMacdS` | `not_scheduled` | `движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)` |
+| `AwesomeMacdS` | `not_scheduled` | `engine exited with code 0 but produced no summary (no trades at all, or output not parsed)` |
 | `BBMod` | `not_scheduled` | `TypeError: Invalid value '0' for dtype 'datetime64[ms, UTC]'` |
 | `BB_RPB_TSL_Tranz` | `not_scheduled` | `numpy.exceptions.DTypePromotionError: The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that n` |
 | `BB_RPB_TSLmeneguzzo` | `not_scheduled` | `numpy.exceptions.DTypePromotionError: The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that n` |
@@ -402,18 +411,18 @@ audit. They stay listed because a runtime change can revive one.
 | `BinClucMadDevelop` | `not_scheduled` | `TypeError: Invalid value '1' for dtype 'bool'` |
 | `BinClucMadSMADevelop` | `not_scheduled` | `TypeError: Invalid value '1' for dtype 'bool'` |
 | `BinHV27_werkkrew` | `not_scheduled` | `TypeError: BinHV27_werkkrew.min_roi_reached_entry() takes 2 positional arguments but 4 were given` |
-| `ClucHAnix5m` | `not_scheduled` | `движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)` |
+| `ClucHAnix5m` | `not_scheduled` | `engine exited with code 0 but produced no summary (no trades at all, or output not parsed)` |
 | `ClucHAnix_BB_RPB` | `not_scheduled` | `attempted, no measurement recorded` |
 | `ClucHAnix_BB_RPB_HO2` | `not_scheduled` | `numpy._core._exceptions._ArrayMemoryError: Unable to allocate 337. MiB for an array with shape (48, 920831) and data type float64` |
 | `ClucHAnix_BB_RPB_MOD` | `not_scheduled` | `attempted, no measurement recorded` |
-| `Cluckie` | `not_scheduled` | `движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)` |
+| `Cluckie` | `not_scheduled` | `engine exited with code 0 but produced no summary (no trades at all, or output not parsed)` |
 | `CoreStrategy` | `not_scheduled` | `TypeError: Invalid value '1' for dtype 'bool'` |
 | `CryptoFrogNFI` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
 | `CryptoFrogNFIHO1A` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
 | `CryptoFrogOffset` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
 | `DIV_v1` | `not_scheduled` | `TypeError: NDFrame.fillna() got an unexpected keyword argument 'method'` |
-| `Guacamole` | `not_scheduled` | `ПРЕВЫШЕНО ВРЕМЯ` |
-| `Kamaflage` | `not_scheduled` | `ПРЕВЫШЕНО ВРЕМЯ` |
+| `Guacamole` | `not_scheduled` | `TIMED OUT` |
+| `Kamaflage` | `not_scheduled` | `TIMED OUT` |
 | `MacheteV8b` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
 | `MacheteV8bRallimod` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
 | `MacheteV8bRallimod2` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
@@ -422,26 +431,26 @@ audit. They stay listed because a runtime change can revive one.
 | `NFI46Frog` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
 | `NFI4Frog` | `not_scheduled` | `TypeError: IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'` |
 | `NowoIchimoku1hV1` | `not_scheduled` | `KeyError: 'buy'` |
-| `ONS_Portfolio` | `not_scheduled` | `ПРЕВЫШЕНО ВРЕМЯ` |
+| `ONS_Portfolio` | `not_scheduled` | `TIMED OUT` |
 | `RSIDivTirail` | `not_scheduled` | `OSError: Cannot save file into a non-existent directory: 'user_data\csvs'` |
-| `RaposaDivergenceV1` | `not_scheduled` | `движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)` |
-| `ReinforcedSmoothScalpS` | `not_scheduled` | `движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)` |
+| `RaposaDivergenceV1` | `not_scheduled` | `engine exited with code 0 but produced no summary (no trades at all, or output not parsed)` |
+| `ReinforcedSmoothScalpS` | `not_scheduled` | `engine exited with code 0 but produced no summary (no trades at all, or output not parsed)` |
 | `Schism` | `not_scheduled` | `Unexpected error KeyError('price_side') calling <bound method Schism.confirm_trade_entry of <Schism-0318.Schism object at` |
 | `Schism2` | `not_scheduled` | `Unexpected error KeyError('price_side') calling <bound method Schism2.confirm_trade_entry of <Schism-v2.Schism2 object at` |
-| `Schism5` | `not_scheduled` | `ПРЕВЫШЕНО ВРЕМЯ` |
+| `Schism5` | `not_scheduled` | `TIMED OUT` |
 | `Schism6` | `not_scheduled` | `KeyError: 'inf-rsi'` |
-| `SmartMoneyStrategyHyperopt` | `not_scheduled` | `ПРЕДМЕТ НЕ ТОТ: стратегия объявила 30m, движок считал на 1h` |
+| `SmartMoneyStrategyHyperopt` | `not_scheduled` | `WRONG SUBJECT: strategy declared 30m, engine computed on 1h` |
 | `Solipsis3` | `not_scheduled` | `Unexpected error KeyError('price_side') calling <bound method Solipsis3.confirm_trade_entry of <Solipsis-v3-fuck (1).Solipsis3` |
 | `Solipsis5` | `not_scheduled` | `Unexpected error KeyError('price_side') calling <bound method Solipsis5.confirm_trade_entry of <Solipsis-v2.5.Solipsis5 object` |
 | `SolipsisCon` | `not_scheduled` | `attempted, no measurement recorded` |
 | `SqueezeMomentum` | `not_scheduled` | `OSError: Cannot save file into a non-existent directory: 'user_data\csvs'` |
-| `Tank5ModulusDCA` | `not_scheduled` | `ПРЕВЫШЕНО ВРЕМЯ` |
+| `Tank5ModulusDCA` | `not_scheduled` | `TIMED OUT` |
 | `Tank5ModulusDCAV3` | `not_scheduled` | `numpy._core._exceptions._ArrayMemoryError: Unable to allocate 1.61 MiB for an array with shape (210529,) and data type float64` |
 | `qrsi` | `not_scheduled` | `ValueError: Invalid frequency: 15m. Failed to parse with error message: ValueError("'m' is no longer supported for offsets. Please use 'ME' instead.")` |
 | `tacos1` | `not_scheduled` | `No data found. Terminating.` |
-| `turbov8` | `not_scheduled` | `движок вышел с кодом 0, но сводки нет (ни одной сделки либо вывод не разобран)` |
+| `turbov8` | `not_scheduled` | `engine exited with code 0 but produced no summary (no trades at all, or output not parsed)` |
 
-## Not passing - 528 strategies, by decisive reason
+## Not passing - 519 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -462,7 +471,7 @@ defect, awaiting re-measurement.
 | `lookahead_found` | reads data it could not have had at the time | 69 |
 | `technical_trap_found` | carries a published backtesting trap | 40 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 23 |
-| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 219 |
+| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 210 |
 | `no_trades_in_full_measurement` | never trades over the full window | 16 |
 | `canonical_implementation_not_measured` | never ran | 152 |
 | `no_verdict_on_lookahead_and_recursive` | measured; neither gate returned a verdict | 5 |
@@ -476,7 +485,7 @@ defect, awaiting re-measurement.
 | `lookahead_found` | 0 | 15 | 0 | 54 |
 | `technical_trap_found` | 0 | 0 | 0 | 40 |
 | `recursive_bias_found` | 0 | 0 | 14 | 9 |
-| `recursive_bias_unverified` | 74 | 29 | 0 | 116 |
+| `recursive_bias_unverified` | 74 | 29 | 0 | 107 |
 | `no_trades_in_full_measurement` | 0 | 10 | 0 | 6 |
 | `canonical_implementation_not_measured` | 0 | 152 | 0 | 0 |
 | `no_verdict_on_lookahead_and_recursive` | 0 | 5 | 0 | 0 |
@@ -544,7 +553,7 @@ Wave `not_scheduled` - 9:
 `GoldHedgeZeroMACD`, `NOTankAi_15`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`
 `NotAnotherSMAOffSetStrategy_V2`
 
-### `recursive_bias_unverified` - 219
+### `recursive_bias_unverified` - 210
 
 Recorded under a parser defect and not re-measured; not a finding.
 
@@ -581,7 +590,7 @@ Wave `C_measurement_recovery` - 29:
 `falconTrader`, `newstrategy53`, `newstrategy53_22`, `pmaxTest`
 `slownsteady`
 
-Wave `not_scheduled` - 116:
+Wave `not_scheduled` - 107:
 
 `BinHV27F`, `BinHV27_short`, `COPY_HL`, `ConsensusShort`
 `CustomStoplossWithPSAR`, `DWT_LongShort`, `DWT_short`, `DevilStra`
@@ -591,27 +600,25 @@ Wave `not_scheduled` - 116:
 `HurstCycleV4`, `HurstCycleV5`, `HurstCycleV5RSI`, `HurstCycleV6`
 `Ichimoku`, `MACDRL`, `MACDRS`, `Minmax`
 `NostalgiaForInfinityX2`, `NostalgiaForInfinityX3`, `NostalgiaForInfinityX4`, `NostalgiaForInfinityX5`
-`NostalgiaForInfinityX6`, `NostalgiaForInfinityX7`, `NotAnotherSMAOffsetStrategyHOv3`, `NotAnotherSMAOffsetStrategyModHO`
-`NotAnotherSMAOffsetStrategyModHO_LamineDz_20210901`, `NotAnotherSMAOffsetStrategyX1`, `NotAnotherSMAOffsetStrategy_uzi`, `NotAnotherSMAOffsetStrategy_uzi3`
-`NowoIchimoku1hV2`, `PRICEFOLLOWING`, `PRICEFOLLOWING2`, `PRICEFOLLOWINGX`
-`PatternRecognition`, `PolymarketPortfolio`, `Quickie`, `RalliV1`
-`RalliV1_disable56`, `ReinforcedAverageStrategy`, `RsiDivergenceStrategy`, `SAR`
-`SMAOffset`, `SMAOffsetProtectOpt`, `SMAOffsetProtectOptV0`, `SMAOffsetProtectOptV1`
-`SMAOffsetProtectOptV1HO1`, `SMAOffsetProtectOptV1Mod`, `SMAOffsetProtectOptV1Mod2`, `SMAOffsetProtectOptV1_kkeue_20210619`
-`SMAOffset_Hippocritical_dca`, `SMAOffset_Hippocritical_dca_leverage`, `SMAOffset_Hippocritical_dca_old`, `SMAOffset_Hippocritical_dca_protections`
-`SMA_BBRSI`, `Sar`, `Saturn5`, `Scalp`
-`Schism2MM`, `Schism3`, `Schism4`, `Seb`
-`Simple`, `SmoothOperator`, `SmoothScalp`, `StarRise`
-`StarRise_strat`, `StrategyTestV2`, `StrategyTestV3`, `SuperTrend`
-`SupertrendStrategy`, `SwingHighToSky`, `TD`, `TEMA`
-`TWAPStrategy`, `TechnicalExampleStrategy`, `TheForce`, `ToTheMoon`
-`TrendFollowingStrategy`, `TrendRiderStrategy`, `TrixV21Strategy`, `TrixV23Strategy`
-`Uptrend`, `VWAP`, `VolatilitySystem`, `VolatilitySystemV2`
-`WaveTrendStra`, `YOLO`, `ZScoreMeanReversionStrategy`, `ZaratustraDCA2_06`
-`ZaratustraDCA2_07`, `ZaratustraDCA5`, `adaptive`, `custom`
-`dualwave`, `hansencandlepatternV1`, `heikin`, `keltnerchannel`
-`mabStra`, `moonhouse`, `pcb20`, `stratfib`
-`tbtest`, `true_lambo`, `twinturboV8`, `twinturboV8_2`
+`NostalgiaForInfinityX6`, `NostalgiaForInfinityX7`, `PRICEFOLLOWINGX`, `PatternRecognition`
+`PolymarketPortfolio`, `Quickie`, `RalliV1`, `RalliV1_disable56`
+`ReinforcedAverageStrategy`, `RsiDivergenceStrategy`, `SAR`, `SMAOffset`
+`SMAOffsetProtectOpt`, `SMAOffsetProtectOptV0`, `SMAOffsetProtectOptV1`, `SMAOffsetProtectOptV1HO1`
+`SMAOffsetProtectOptV1Mod`, `SMAOffsetProtectOptV1Mod2`, `SMAOffsetProtectOptV1_kkeue_20210619`, `SMAOffset_Hippocritical_dca`
+`SMAOffset_Hippocritical_dca_leverage`, `SMAOffset_Hippocritical_dca_old`, `SMAOffset_Hippocritical_dca_protections`, `SMA_BBRSI`
+`Sar`, `Saturn5`, `Scalp`, `Schism2MM`
+`Schism3`, `Schism4`, `Seb`, `Simple`
+`SmoothOperator`, `SmoothScalp`, `StarRise`, `StarRise_strat`
+`StrategyTestV2`, `StrategyTestV3`, `SuperTrend`, `SupertrendStrategy`
+`SwingHighToSky`, `TD`, `TEMA`, `TWAPStrategy`
+`TechnicalExampleStrategy`, `TheForce`, `ToTheMoon`, `TrendFollowingStrategy`
+`TrendRiderStrategy`, `TrixV21Strategy`, `TrixV23Strategy`, `Uptrend`
+`VWAP`, `VolatilitySystem`, `VolatilitySystemV2`, `WaveTrendStra`
+`YOLO`, `ZScoreMeanReversionStrategy`, `ZaratustraDCA2_06`, `ZaratustraDCA2_07`
+`ZaratustraDCA5`, `adaptive`, `custom`, `dualwave`
+`hansencandlepatternV1`, `heikin`, `keltnerchannel`, `mabStra`
+`moonhouse`, `pcb20`, `stratfib`, `tbtest`
+`true_lambo`, `twinturboV8`, `twinturboV8_2`
 
 ### `no_trades_in_full_measurement` - 16
 
@@ -705,8 +712,8 @@ Wave `C_measurement_recovery` - 4:
 
 | Item | Strategies |
 |---|---:|
-| `paired_full_window_equivalence` | 227 |
-| `lookahead_verdict` | 85 |
+| `paired_full_window_equivalence` | 236 |
+| `lookahead_verdict` | 94 |
 | `retry_under_current_runtime` | 60 |
 | `convergence_inconclusive` | 34 |
 | `convergence_not_converged_within_ladder` | 23 |

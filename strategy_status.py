@@ -75,6 +75,14 @@ REASON_ORDER = (
 # Where neither exists the field stays empty rather than being invented.
 _ARCHIVE_TIME = re.compile(r"-(\d{4}-\d{2}-\d{2})_(\d{2})-(\d{2})-(\d{2})\.zip$")
 
+# The audit harness is written in Russian and stores Russian text in every
+# result card. `repair/i18n.py` exists to render that as English and keeps the
+# original beside it; reusing it is better than inventing a second, unverified
+# mapping here. The card generator itself does not yet use it, which is why 872
+# of the 896 cards still carry Cyrillic.
+sys.path.insert(0, os.path.join(ROOT, "repair"))
+import i18n
+
 CORPUS = os.path.join(ROOT, "corpus")
 LEDGER = os.path.join(ROOT, "LEDGER.csv")
 _CARD_ERROR = re.compile(r"## Could not be measured\s*\n+```\s*\n(.+?)\n", re.S)
@@ -93,7 +101,9 @@ def card_error(strategy):
         return ""
     match = _CARD_ERROR.search(
         io.open(path, encoding="utf-8", errors="replace").read())
-    return match.group(1).strip()[:160] if match else ""
+    if not match:
+        return ""
+    return i18n.translate(match.group(1).strip())[:160]
 
 
 def _csv(path):
@@ -563,6 +573,11 @@ def selftest():
         if row["cohort"] == "convergence_candidate":
             assert row["recursive"] in ("PASS", "PASS_1PCT"),                 (row["strategy_id"], row["recursive"])
             assert row["settled_startup"] != "", row["strategy_id"]
+        # Nothing reaches a reader in the harness's own language. The three
+        # messages that used to leak through were not strategy errors at all,
+        # but this audit's own verdicts: a timeout, an empty summary, and a
+        # timeframe mismatch.
+        assert not i18n.has_cyrillic(row["primary_reason"]), row["strategy_id"]
         # A recovered timestamp always names where it came from.
         assert bool(row["last_tested_at"]) == bool(row["last_tested_source"]), \
             row["strategy_id"]
