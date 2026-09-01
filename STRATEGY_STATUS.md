@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 15:17:50 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 16:18:36 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -15,7 +15,7 @@ the state at the freeze, and the difference is the expansion.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 324 of 900 rows
+file's time and is labelled `log_mtime` for that reason. 255 of 900 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
@@ -25,14 +25,14 @@ have neither and are left empty rather than given an invented time.
 | in the manifest | 900 |
 | measured at all | 688 |
 | produced trades | 661 |
-| carrying a run time | 576 |
+| carrying a run time | 645 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
-| `excluded` | 476 |
-| `convergence_candidate` | 279 |
+| `excluded` | 412 |
+| `convergence_candidate` | 343 |
 | `E0_strict67` | 67 |
 | `not_tested_in_current_runtime` | 60 |
 | `E1_expanded` | 11 |
@@ -121,11 +121,11 @@ coverage, no published trap.
 | `BollingerBandStrategy` | `spot_long` | `E1_expanded` | 16302 | `baseline` | - | - |
 | `CCI_BB` | `spot_long` | `E1_expanded` | 926 | `baseline` | - | - |
 | `HourBasedStrategy_5m` | `spot_long` | `E1_expanded` | 11784 | `baseline` | - | - |
-| `NowoIchimoku5mV2` | `spot_long` | `E1_expanded` | 49 | `native` | 2026-08-31 15:19:45 | `user_data/profile_smoke/NowoIchimoku5mV2-2026-08-31_15-19-45.zip` |
-| `ObeliskIM_v1_1` | `spot_long` | `E1_expanded` | 64 | `native` | 2026-08-31 15:20:09 | `user_data/profile_smoke/ObeliskIM_v1_1-2026-08-31_15-20-09.zip` |
-| `simple_patterns` | `spot_long` | `E1_expanded` | 1845 | `native` | 2026-08-31 15:55:52 | `user_data/profile_smoke/simple_patterns-2026-08-31_15-55-52.zip` |
+| `NowoIchimoku5mV2` | `spot_long` | `E1_expanded` | 49 | `native` | 2026-08-31 15:19:45 | [archive](user_data/profile_smoke/NowoIchimoku5mV2-2026-08-31_15-19-45.zip) |
+| `ObeliskIM_v1_1` | `spot_long` | `E1_expanded` | 64 | `native` | 2026-08-31 15:20:09 | [archive](user_data/profile_smoke/ObeliskIM_v1_1-2026-08-31_15-20-09.zip) |
+| `simple_patterns` | `spot_long` | `E1_expanded` | 1845 | `native` | 2026-08-31 15:55:52 | [archive](user_data/profile_smoke/simple_patterns-2026-08-31_15-55-52.zip) |
 
-## Convergence candidates - 279 strategies
+## Convergence candidates - 343 strategies
 
 A warm-up exists at which every indicator stays inside the band.
 That is not admission: the paired full-window run must still show
@@ -133,6 +133,7 @@ an identical trade list.
 
 | Strategy | Profile | Chosen warm-up | Worst drift | Tested | Results |
 |---|---|---|---|---|---|
+| `ASDTSRockwellTrading` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 15:32:20 | `user_data/convergence_logs/ASDTSRockwellTrading-ladder.log` |
 | `ActionZone` | `spot_long` | 90 candles | 0.008% on `slowMA` | 2026-09-01 12:59:33 | `user_data/convergence_logs/ActionZone-ladder.log` |
 | `AdaptiveMAStrategy` | `spot_long` | 288 candles | 0.0% on `kama_fast` | 2026-09-01 12:07:18 | `user_data/convergence_logs/AdaptiveMAStrategy-ladder.log` |
 | `AdxSmas` | `spot_long` | 336 candles | 0.0% on `adx` | 2026-09-01 13:33:11 | `user_data/convergence_logs/AdxSmas-ladder.log` |
@@ -144,6 +145,9 @@ an identical trade list.
 | `AroonTrendStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:08:07 | `user_data/convergence_logs/AroonTrendStrategy-ladder.log` |
 | `AtrTrailingStopStrategy` | `spot_long` | 288 candles | 0.0% on `atr` | 2026-09-01 12:08:31 | `user_data/convergence_logs/AtrTrailingStopStrategy-ladder.log` |
 | `AverageStrategy` | `spot_long` | 84 candles | 0.0% on `maShort` | 2026-09-01 13:34:48 | `user_data/convergence_logs/AverageStrategy-ladder.log` |
+| `BBRSI2` | `spot_long` | 1440 candles | 0.0% on `bb_lowerband` | 2026-09-01 15:33:59 | `user_data/convergence_logs/BBRSI2-ladder.log` |
+| `BBRSI21` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 15:34:51 | `user_data/convergence_logs/BBRSI21-ladder.log` |
+| `BBRSI3366` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 15:35:41 | `user_data/convergence_logs/BBRSI3366-ladder.log` |
 | `BBRSI4cust` | `spot_long` | 192 candles | 0.0% on `plus_di` | 2026-09-01 12:08:55 | `user_data/convergence_logs/BBRSI4cust-ladder.log` |
 | `BBRSINaiveStrategy` | `spot_long` | 192 candles | 0.0% on `rsi` | 2026-09-01 12:09:19 | `user_data/convergence_logs/BBRSINaiveStrategy-ladder.log` |
 | `BBRSIOptim2020Strategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:09:44 | `user_data/convergence_logs/BBRSIOptim2020Strategy-ladder.log` |
@@ -152,13 +156,16 @@ an identical trade list.
 | `BBRSIStrategy` | `spot_long` | 192 candles | 0.0% on `rsi` | 2026-09-01 12:10:32 | `user_data/convergence_logs/BBRSIStrategy-ladder.log` |
 | `BBRSITV` | `spot_long` | 2016 candles | 0.0% on `rsi` | 2026-09-01 13:02:44 | `user_data/convergence_logs/BBRSITV-ladder.log` |
 | `BB_RPB_TSL_RNG` | `spot_long` | 2016 candles | 0.0% on `bb_lowerband2` | 2026-09-01 13:35:37 | `user_data/convergence_logs/BB_RPB_TSL_RNG-ladder.log` |
+| `BB_RPB_TSL_RNG_2` | `spot_long` | 2016 candles | 0.0% on `bb_lowerband2` | 2026-09-01 15:36:32 | `user_data/convergence_logs/BB_RPB_TSL_RNG_2-ladder.log` |
 | `BB_RPB_TSL_RNG_TBS` | `spot_long` | 2016 candles | 0.0% on `bb_lowerband2` | 2026-09-01 13:36:25 | `user_data/convergence_logs/BB_RPB_TSL_RNG_TBS-ladder.log` |
 | `BB_RPB_TSL_RNG_TBS_GOLD` | `spot_long` | 2016 candles | 0.0% on `bb_lowerband2` | 2026-09-01 13:37:28 | `user_data/convergence_logs/BB_RPB_TSL_RNG_TBS_GOLD-ladder.log` |
 | `BB_RPB_TSL_RNG_VWAP` | `spot_long` | 2016 candles | 0.0% on `bb_lowerband2` | 2026-09-01 12:10:58 | `user_data/convergence_logs/BB_RPB_TSL_RNG_VWAP-ladder.log` |
 | `BB_RTR` | `spot_long` | 2016 candles | 0.0% on `bb_lowerband2` | 2026-09-01 12:11:28 | `user_data/convergence_logs/BB_RTR-ladder.log` |
 | `BBands` | `spot_long` | 1440 candles | 0.0% on `adx` | 2026-09-01 13:04:20 | `user_data/convergence_logs/BBands-ladder.log` |
 | `BBandsRSI` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 13:04:45 | `user_data/convergence_logs/BBandsRSI-ladder.log` |
+| `BBlower` | `spot_long` | 576 candles | 0.0% on `CMO` | 2026-09-01 15:37:20 | `user_data/convergence_logs/BBlower-ladder.log` |
 | `Babico_SMA5xBBmid` | `spot_long` | 30 candles | 0.0% on `bb_low` | 2026-09-01 13:38:15 | `user_data/convergence_logs/Babico_SMA5xBBmid-ladder.log` |
+| `Bandtastic` | `spot_long` | 1344 candles | 0.0% on `rsi` | 2026-09-01 15:38:10 | `user_data/convergence_logs/Bandtastic-ladder.log` |
 | `BbWidthExpansionStrategy` | `spot_long` | 288 candles | 0.0% on `bb_upper` | 2026-09-01 12:11:52 | `user_data/convergence_logs/BbWidthExpansionStrategy-ladder.log` |
 | `BbandRsi` | `spot_long` | 1440 candles | 0.0% on `bb_lowerband` | 2026-09-01 13:39:05 | `user_data/convergence_logs/BbandRsi-ladder.log` |
 | `BbandRsiRolling` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 13:39:54 | `user_data/convergence_logs/BbandRsiRolling-ladder.log` |
@@ -172,10 +179,15 @@ an identical trade list.
 | `BopTrendStrategy` | `spot_long` | 288 candles | 0.0% on `bop_ma` | 2026-09-01 12:17:01 | `user_data/convergence_logs/BopTrendStrategy-ladder.log` |
 | `BullishEngulfingStrategy` | `spot_long` | 576 candles | 0.0% on `ema50` | 2026-09-01 12:17:26 | `user_data/convergence_logs/BullishEngulfingStrategy-ladder.log` |
 | `BuyOnly` | `spot_long` | 672 candles | 0.0% on `rsi` | 2026-09-01 12:17:52 | `user_data/convergence_logs/BuyOnly-ladder.log` |
+| `BuyOrDie` | `spot_long` | 288 candles | 0.0% on `hma_20` | 2026-09-01 15:38:59 | `user_data/convergence_logs/BuyOrDie-ladder.log` |
 | `CMCWinner` | `spot_long` | 672 candles | 0.0% on `mfi` | 2026-09-01 13:42:18 | `user_data/convergence_logs/CMCWinner-ladder.log` |
 | `CTIBS` | `spot_long` | 672 candles | 0.0% on `ema_135` | 2026-09-01 12:18:16 | `user_data/convergence_logs/CTIBS-ladder.log` |
+| `Candle2` | `spot_long` | 168 candles | 0.0% on `range_4h` | 2026-09-01 15:39:47 | `user_data/convergence_logs/Candle2-ladder.log` |
 | `CciMeanReversionStrategy` | `spot_long` | 576 candles | 0.0% on `cci` | 2026-09-01 12:18:42 | `user_data/convergence_logs/CciMeanReversionStrategy-ladder.log` |
 | `ChaikinMoneyFlowStrategy` | `spot_long` | 288 candles | 0.0% on `cmf` | 2026-09-01 12:19:08 | `user_data/convergence_logs/ChaikinMoneyFlowStrategy-ladder.log` |
+| `Chandem` | `spot_long` | 2016 candles | 0.0% on `CMO` | 2026-09-01 15:40:37 | `user_data/convergence_logs/Chandem-ladder.log` |
+| `Chandemtwo` | `spot_long` | 2016 candles | 0.0% on `CMO` | 2026-09-01 15:41:25 | `user_data/convergence_logs/Chandemtwo-ladder.log` |
+| `Cluc4` | `spot_long` | 1440 candles | 0.0% on `lower` | 2026-09-01 15:42:17 | `user_data/convergence_logs/Cluc4-ladder.log` |
 | `Cluc4werk` | `spot_long` | 1440 candles | 0.0% on `lower` | 2026-09-01 13:43:54 | `user_data/convergence_logs/Cluc4werk-ladder.log` |
 | `Cluc5werk` | `spot_long` | 1440 candles | 0.0% on `lower` | 2026-09-01 13:44:44 | `user_data/convergence_logs/Cluc5werk-ladder.log` |
 | `ClucFiatROI` | `spot_long` | 288 candles | 0.0% on `ema_fast` | 2026-09-01 13:11:38 | `user_data/convergence_logs/ClucFiatROI-ladder.log` |
@@ -187,6 +199,8 @@ an identical trade list.
 | `CombinedBinHAndCluc` | `spot_long` | 288 candles | 0.0% on `lower` | 2026-09-01 13:48:09 | `user_data/convergence_logs/CombinedBinHAndCluc-ladder.log` |
 | `CombinedBinHAndCluc2021` | `spot_long` | 288 candles | 0.0% on `lower` | 2026-09-01 13:48:57 | `user_data/convergence_logs/CombinedBinHAndCluc2021-ladder.log` |
 | `CombinedBinHAndCluc2021Bull` | `spot_long` | 288 candles | 0.0% on `lower` | 2026-09-01 13:49:45 | `user_data/convergence_logs/CombinedBinHAndCluc2021Bull-ladder.log` |
+| `CombinedBinHAndClucHyperV0` | `spot_long` | 1440 candles | 0.0% on `lower_21` | 2026-09-01 15:43:08 | `user_data/convergence_logs/CombinedBinHAndClucHyperV0-ladder.log` |
+| `CombinedBinHAndClucHyperV3` | `spot_long` | 1440 candles | 0.0% on `lower_21` | 2026-09-01 15:43:59 | `user_data/convergence_logs/CombinedBinHAndClucHyperV3-ladder.log` |
 | `CombinedBinHAndClucV2` | `spot_long` | 576 candles | 0.0% on `ssl_down` | 2026-09-01 13:15:19 | `user_data/convergence_logs/CombinedBinHAndClucV2-ladder.log` |
 | `CombinedBinHAndClucV4` | `spot_long` | 288 candles | 0.0% on `lower` | 2026-09-01 13:15:44 | `user_data/convergence_logs/CombinedBinHAndClucV4-ladder.log` |
 | `CombinedBinHAndClucV5` | `spot_long` | 288 candles | 0.0% on `lower` | 2026-09-01 13:16:09 | `user_data/convergence_logs/CombinedBinHAndClucV5-ladder.log` |
@@ -195,6 +209,7 @@ an identical trade list.
 | `CombinedBinHAndClucV8Hyper` | `spot_long` | 2016 candles | 0.0% on `ema_50_1h` | 2026-09-01 13:16:59 | `user_data/convergence_logs/CombinedBinHAndClucV8Hyper-ladder.log` |
 | `CombinedBinHAndClucV8XH` | `spot_long` | 2016 candles | 0.0% on `ema_50_1h` | 2026-09-01 13:17:23 | `user_data/convergence_logs/CombinedBinHAndClucV8XH-ladder.log` |
 | `CombinedBinHAndClucV8XHO` | `spot_long` | 2016 candles | 0.0% on `ema_50_1h` | 2026-09-01 12:21:34 | `user_data/convergence_logs/CombinedBinHAndClucV8XHO-ladder.log` |
+| `Combined_Indicators` | `spot_long` | 1440 candles | 0.0% on `lower` | 2026-09-01 15:44:51 | `user_data/convergence_logs/Combined_Indicators-ladder.log` |
 | `Combined_NFIv6_SMA` | `spot_long` | 2016 candles | 0.0% on `ema_fast_1h` | 2026-09-01 13:17:48 | `user_data/convergence_logs/Combined_NFIv6_SMA-ladder.log` |
 | `Combined_NFIv7_SMA` | `spot_long` | 2016 candles | 0.0% on `ema_fast_1h` | 2026-09-01 12:22:00 | `user_data/convergence_logs/Combined_NFIv7_SMA-ladder.log` |
 | `Combined_NFIv7_SMA_Rallipanos_20210707` | `spot_long` | 2016 candles | 0.0% on `ema_fast_1h` | 2026-09-01 12:22:25 | `user_data/convergence_logs/Combined_NFIv7_SMA_Rallipanos_20210707-ladder.log` |
@@ -203,6 +218,7 @@ an identical trade list.
 | `CoppockCurveStrategy` | `spot_long` | 288 candles | 0.0% on `coppock` | 2026-09-01 12:23:39 | `user_data/convergence_logs/CoppockCurveStrategy-ladder.log` |
 | `CrossEMAStrategy` | `spot_long` | 168 candles | 0.0% on `stoch_rsi` | 2026-09-01 13:18:36 | `user_data/convergence_logs/CrossEMAStrategy-ladder.log` |
 | `DCBBBounce` | `spot_long` | 576 candles | 0.0% on `bb_upperband` | 2026-09-01 13:19:24 | `user_data/convergence_logs/DCBBBounce-ladder.log` |
+| `DD` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 15:45:44 | `user_data/convergence_logs/DD-ladder.log` |
 | `DemaCrossStrategy` | `spot_long` | 288 candles | 0.0% on `dema20` | 2026-09-01 12:24:04 | `user_data/convergence_logs/DemaCrossStrategy-ladder.log` |
 | `Divergences` | `spot_long` | 2160 candles | 0.0% on `mean68close` | 2026-09-01 13:21:26 | `user_data/convergence_logs/Divergences-ladder.log` |
 | `DonchianBreakoutStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:24:28 | `user_data/convergence_logs/DonchianBreakoutStrategy-ladder.log` |
@@ -214,6 +230,7 @@ an identical trade list.
 | `E0V1E_protections` | `spot_long` | 2016 candles | 0.0% on `sma_15` | 2026-09-01 13:23:31 | `user_data/convergence_logs/E0V1E_protections-ladder.log` |
 | `E0V1E_strs` | `spot_long` | 288 candles | 0.0% on `sma_15` | 2026-09-01 13:23:57 | `user_data/convergence_logs/E0V1E_strs-ladder.log` |
 | `EMA50` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 13:24:21 | `user_data/convergence_logs/EMA50-ladder.log` |
+| `EMA520015_V17` | `spot_long` | 540 candles | 0.028% on `ema350` | 2026-09-01 15:47:21 | `user_data/convergence_logs/EMA520015_V17-ladder.log` |
 | `EMABreakout` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 13:24:46 | `user_data/convergence_logs/EMABreakout-ladder.log` |
 | `EMASkipPump` | `spot_long` | 288 candles | 0.0% on `ema_21` | 2026-09-01 13:53:49 | `user_data/convergence_logs/EMASkipPump-ladder.log` |
 | `ElliotV4` | `spot_long` | 2016 candles | 0.0% on `ma_buy_14` | 2026-09-01 13:25:34 | `user_data/convergence_logs/ElliotV4-ladder.log` |
@@ -227,18 +244,25 @@ an identical trade list.
 | `FOttStrategy` | `futures_long_short` | 672 candles | 0.0% on `ott` | 2026-09-01 13:28:30 | `user_data/convergence_logs/FOttStrategy-ladder.log` |
 | `FRAYSTRAT` | `spot_long` | 672 candles | 0.0% on `adx` | 2026-09-01 13:28:54 | `user_data/convergence_logs/FRAYSTRAT-ladder.log` |
 | `FSampleStrategy` | `futures_long_short` | 336 candles | 0.0% on `adx` | 2026-09-01 13:29:43 | `user_data/convergence_logs/FSampleStrategy-ladder.log` |
+| `FVGChannel` | `spot_long` | 2160 candles | 0.0% on `ha_open` | 2026-09-01 15:49:04 | `user_data/convergence_logs/FVGChannel-ladder.log` |
 | `FisherHull` | `spot_long` | 1440 candles | 0.0% on `cci` | 2026-09-01 13:54:39 | `user_data/convergence_logs/FisherHull-ladder.log` |
 | `FisherTransformStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:25:45 | `user_data/convergence_logs/FisherTransformStrategy-ladder.log` |
 | `FrayStratBTC` | `spot_long` | 672 candles | 0.0% on `adx` | 2026-09-01 13:55:52 | `user_data/convergence_logs/FrayStratBTC-ladder.log` |
+| `Freqtrade_backtest_validation_freqtrade1` | `spot_long` | 48 candles | 0.0% on `fastMA` | 2026-09-01 15:50:45 | `user_data/convergence_logs/Freqtrade_backtest_validation_freqtrade1-ladder.log` |
 | `FrostAuraM115mStrategy` | `spot_long` | 192 candles | 0.0% on `rsi` | 2026-09-01 13:56:17 | `user_data/convergence_logs/FrostAuraM115mStrategy-ladder.log` |
 | `FrostAuraM11hStrategy` | `spot_long` | 168 candles | 0.0% on `rsi` | 2026-09-01 13:56:41 | `user_data/convergence_logs/FrostAuraM11hStrategy-ladder.log` |
 | `FrostAuraM21hStrategy` | `spot_long` | 192 candles | 0.0% on `rsi` | 2026-09-01 13:57:05 | `user_data/convergence_logs/FrostAuraM21hStrategy-ladder.log` |
 | `FrostAuraM315mStrategy` | `spot_long` | 192 candles | 0.0% on `rsi` | 2026-09-01 13:57:30 | `user_data/convergence_logs/FrostAuraM315mStrategy-ladder.log` |
 | `FrostAuraM31hStrategy` | `spot_long` | 168 candles | 0.0% on `rsi` | 2026-09-01 13:57:55 | `user_data/convergence_logs/FrostAuraM31hStrategy-ladder.log` |
+| `GKD_Baseline` | `spot_long` | 168 candles | 0.0% on `baseline` | 2026-09-01 15:51:35 | `user_data/convergence_logs/GKD_Baseline-ladder.log` |
+| `GKD_BaselineAllMAs` | `spot_long` | 168 candles | 0.0% on `baseline` | 2026-09-01 15:52:23 | `user_data/convergence_logs/GKD_BaselineAllMAs-ladder.log` |
 | `GKD_C` | `spot_long` | 2160 candles | 0.633% on `baseline` | 2026-09-01 13:58:45 | `user_data/convergence_logs/GKD_C-ladder.log` |
 | `GKD_FisherTransform` | `spot_long` | 168 candles | 0.0% on `fisher_smooth_6h` | 2026-09-01 14:00:27 | `user_data/convergence_logs/GKD_FisherTransform-ladder.log` |
 | `GKD_FisherTransformMTF` | `spot_long` | 168 candles | 0.0% on `fisher_smooth_4h` | 2026-09-01 14:01:15 | `user_data/convergence_logs/GKD_FisherTransformMTF-ladder.log` |
+| `GKD_HurstExponent` | `spot_long` | 168 candles | 0.0% on `hurst` | 2026-09-01 15:53:13 | `user_data/convergence_logs/GKD_HurstExponent-ladder.log` |
+| `GKD_PFE` | `spot_long` | 168 candles | 0.0% on `pfe_smooth` | 2026-09-01 15:54:03 | `user_data/convergence_logs/GKD_PFE-ladder.log` |
 | `GPTREV` | `spot_long` | 1440 candles | 0.0% on `rsi_15m` | 2026-09-01 14:01:43 | `user_data/convergence_logs/GPTREV-ladder.log` |
+| `GodCard` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 15:54:53 | `user_data/convergence_logs/GodCard-ladder.log` |
 | `GoldenCrossStrategy` | `spot_long` | 2016 candles | 0.0% on `ema50` | 2026-09-01 12:26:10 | `user_data/convergence_logs/GoldenCrossStrategy-ladder.log` |
 | `Hacklemore2` | `spot_long` | 192 candles | 0.0% on `volume_mean_slow` | 2026-09-01 14:06:05 | `user_data/convergence_logs/Hacklemore2-ladder.log` |
 | `Hacklemore3` | `spot_long` | 288 candles | 0.0% on `volume_mean_slow` | 2026-09-01 14:06:53 | `user_data/convergence_logs/Hacklemore3-ladder.log` |
@@ -246,6 +270,7 @@ an identical trade list.
 | `HansenSmaOffsetV1` | `spot_long` | 96 candles | 0.0% on `emac` | 2026-09-01 14:08:31 | `user_data/convergence_logs/HansenSmaOffsetV1-ladder.log` |
 | `HeikinAshiStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:26:36 | `user_data/convergence_logs/HeikinAshiStrategy-ladder.log` |
 | `HigherHighStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:27:00 | `user_data/convergence_logs/HigherHighStrategy-ladder.log` |
+| `HilbertSineWave` | `spot_long` | 336 candles | 0.0% on `cycle` | 2026-09-01 15:56:37 | `user_data/convergence_logs/HilbertSineWave-ladder.log` |
 | `INSIDEUP` | `spot_long` | 90 candles | 0.0% on `rsi_14` | 2026-09-01 14:14:51 | `user_data/convergence_logs/INSIDEUP-ladder.log` |
 | `Ichess` | `spot_long` | 90 candles | 0.0% on `Ichimoku_Score` | 2026-09-01 14:15:39 | `user_data/convergence_logs/Ichess-ladder.log` |
 | `IchimokuSimpleStrategy` | `spot_long` | 288 candles | 0.0% on `senkou_b` | 2026-09-01 12:27:25 | `user_data/convergence_logs/IchimokuSimpleStrategy-ladder.log` |
@@ -253,7 +278,9 @@ an identical trade list.
 | `InformativeSample` | `spot_long` | 576 candles | 0.0% on `ema20` | 2026-09-01 14:17:18 | `user_data/convergence_logs/InformativeSample-ladder.log` |
 | `Inverse` | `spot_long` | 720 candles | 0.007% on `ema_200_4h` | 2026-09-01 12:28:16 | `user_data/convergence_logs/Inverse-ladder.log` |
 | `InverseV2` | `spot_long` | 720 candles | 0.007% on `ema_200_4h` | 2026-09-01 12:28:42 | `user_data/convergence_logs/InverseV2-ladder.log` |
+| `JuicyTrend` | `spot_long` | 1344 candles | 0.0% on `ma1` | 2026-09-01 15:57:25 | `user_data/convergence_logs/JuicyTrend-ladder.log` |
 | `KAMACCIRSI_new` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:29:09 | `user_data/convergence_logs/KAMACCIRSI_new-ladder.log` |
+| `KC_BB` | `spot_long` | 288 candles | 0.0% on `sma_20` | 2026-09-01 15:58:17 | `user_data/convergence_logs/KC_BB-ladder.log` |
 | `KeltnerChannelStrategy` | `spot_long` | 288 candles | 0.0% on `ema20` | 2026-09-01 12:29:34 | `user_data/convergence_logs/KeltnerChannelStrategy-ladder.log` |
 | `Lateralus` | `spot_long` | 288 candles | 0.0% on `macd_1h` | 2026-09-01 14:18:09 | `user_data/convergence_logs/Lateralus-ladder.log` |
 | `LinearRegressionStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:29:59 | `user_data/convergence_logs/LinearRegressionStrategy-ladder.log` |
@@ -261,6 +288,13 @@ an identical trade list.
 | `LuxOSC` | `spot_long` | 576 candles | 0.0% on `osc` | 2026-09-01 14:19:26 | `user_data/convergence_logs/LuxOSC-ladder.log` |
 | `MAC` | `spot_long` | 90 candles | 0.858% on `macdhist` | 2026-09-01 14:19:51 | `user_data/convergence_logs/MAC-ladder.log` |
 | `MACDStrategy` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 14:22:14 | `user_data/convergence_logs/MACDStrategy-ladder.log` |
+| `MACDStrategyADA` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 15:59:06 | `user_data/convergence_logs/MACDStrategyADA-ladder.log` |
+| `MACDStrategyAVAX` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 15:59:57 | `user_data/convergence_logs/MACDStrategyAVAX-ladder.log` |
+| `MACDStrategyBTC` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 16:00:47 | `user_data/convergence_logs/MACDStrategyBTC-ladder.log` |
+| `MACDStrategyENJ` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 16:01:36 | `user_data/convergence_logs/MACDStrategyENJ-ladder.log` |
+| `MACDStrategyETC` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 16:02:24 | `user_data/convergence_logs/MACDStrategyETC-ladder.log` |
+| `MACDStrategySOL` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 16:03:11 | `user_data/convergence_logs/MACDStrategySOL-ladder.log` |
+| `MACDStrategyXRP` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 16:04:01 | `user_data/convergence_logs/MACDStrategyXRP-ladder.log` |
 | `MACDStrategy_crossed` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 14:23:01 | `user_data/convergence_logs/MACDStrategy_crossed-ladder.log` |
 | `MACDZeroCrossStrategy` | `spot_long` | 90 candles | 0.0% on `macd` | 2026-09-01 14:23:48 | `user_data/convergence_logs/MACDZeroCrossStrategy-ladder.log` |
 | `MACD_EMA` | `spot_long` | 2016 candles | 0.0% on `macd` | 2026-09-01 14:24:36 | `user_data/convergence_logs/MACD_EMA-ladder.log` |
@@ -268,8 +302,10 @@ an identical trade list.
 | `MFI` | `spot_long` | 288 candles | 0.0% on `MFI` | 2026-09-01 14:26:13 | `user_data/convergence_logs/MFI-ladder.log` |
 | `MacdAdxStrategy` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 12:30:24 | `user_data/convergence_logs/MacdAdxStrategy-ladder.log` |
 | `MacdZeroCrossStrategy` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 14:23:48 | `user_data/convergence_logs/MacdZeroCrossStrategy-ladder.log` |
+| `Maro4hMacdSd` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 16:06:29 | `user_data/convergence_logs/Maro4hMacdSd-ladder.log` |
 | `Martin` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 14:26:38 | `user_data/convergence_logs/Martin-ladder.log` |
 | `MiniLambo` | `spot_long` | 2880 candles | 0.0% on `ema_14` | 2026-09-01 14:27:06 | `user_data/convergence_logs/MiniLambo-ladder.log` |
+| `MomStrategy` | `spot_long` | 336 candles | 0.0% on `adx` | 2026-09-01 16:07:18 | `user_data/convergence_logs/MomStrategy-ladder.log` |
 | `MomentumScoreStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:31:13 | `user_data/convergence_logs/MomentumScoreStrategy-ladder.log` |
 | `Momentumv2` | `spot_long` | 540 candles | 0.0% on `macd` | 2026-09-01 12:31:37 | `user_data/convergence_logs/Momentumv2-ladder.log` |
 | `MoneyFlowStrategy` | `spot_long` | 576 candles | 0.0% on `mfi` | 2026-09-01 12:32:02 | `user_data/convergence_logs/MoneyFlowStrategy-ladder.log` |
@@ -322,6 +358,8 @@ an identical trade list.
 | `NotAnotherSMAOffsetStrategy_uzi` | `spot_long` | 2016 candles | 0.0% on `ma_buy_14` | 2026-09-01 14:47:10 | `user_data/convergence_logs/NotAnotherSMAOffsetStrategy_uzi-ladder.log` |
 | `NotAnotherSMAOffsetStrategy_uzi3` | `spot_long` | 2016 candles | 0.0% on `hma_50` | 2026-09-01 14:47:36 | `user_data/convergence_logs/NotAnotherSMAOffsetStrategy_uzi3-ladder.log` |
 | `NowoIchimoku1hV2` | `spot_long` | 168 candles | 0.0% on `upper` | 2026-09-01 14:48:01 | `user_data/convergence_logs/NowoIchimoku1hV2-ladder.log` |
+| `ONUR` | `spot_long` | 192 candles | 0.0% on `rsi` | 2026-09-01 16:08:06 | `user_data/convergence_logs/ONUR-ladder.log` |
+| `OmaGann` | `spot_long` | 168 candles | 0.0% on `high_ma` | 2026-09-01 16:08:55 | `user_data/convergence_logs/OmaGann-ladder.log` |
 | `PRICEFOLLOWING` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-01 14:48:31 | `user_data/convergence_logs/PRICEFOLLOWING-ladder.log` |
 | `PRICEFOLLOWING2` | `spot_long` | 672 candles | 0.0% on `adx` | 2026-09-01 14:48:59 | `user_data/convergence_logs/PRICEFOLLOWING2-ladder.log` |
 | `PRICEFOLLOWINGX` | `spot_long` | 672 candles | 0.0% on `adx` | 2026-09-01 14:49:28 | `user_data/convergence_logs/PRICEFOLLOWINGX-ladder.log` |
@@ -332,11 +370,17 @@ an identical trade list.
 | `PriceChannelStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:41:07 | `user_data/convergence_logs/PriceChannelStrategy-ladder.log` |
 | `PumpDetector` | `spot_long` | 2016 candles | 0.0% on `var2_test` | 2026-09-01 12:41:32 | `user_data/convergence_logs/PumpDetector-ladder.log` |
 | `Quickie` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 14:51:56 | `user_data/convergence_logs/Quickie-ladder.log` |
+| `RSI` | `spot_long` | 192 candles | 0.0% on `rsi_30m` | 2026-09-01 16:09:44 | `user_data/convergence_logs/RSI-ladder.log` |
+| `RSI_BB` | `spot_long` | 192 candles | 0.0% on `rsi` | 2026-09-01 16:10:33 | `user_data/convergence_logs/RSI_BB-ladder.log` |
+| `RSI_EMA_strategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 16:11:22 | `user_data/convergence_logs/RSI_EMA_strategy-ladder.log` |
 | `RSIv2` | `spot_long` | 192 candles | 0.0% on `rsi_30m` | 2026-09-01 12:41:55 | `user_data/convergence_logs/RSIv2-ladder.log` |
 | `RalliV1` | `spot_long` | 2016 candles | 0.0% on `ma_buy_14` | 2026-09-01 14:52:21 | `user_data/convergence_logs/RalliV1-ladder.log` |
 | `RalliV1_disable56` | `spot_long` | 2016 candles | 0.0% on `ma_buy_14` | 2026-09-01 14:52:46 | `user_data/convergence_logs/RalliV1_disable56-ladder.log` |
 | `ReinforcedAverageStrategy` | `spot_long` | 84 candles | 0.0% on `maShort` | 2026-09-01 14:53:35 | `user_data/convergence_logs/ReinforcedAverageStrategy-ladder.log` |
+| `ReinforcedSmoothScalp` | `spot_long` | 2880 candles | 0.0% on `resample_75_date` | 2026-09-01 16:12:10 | `user_data/convergence_logs/ReinforcedSmoothScalp-ladder.log` |
 | `RocMomentumStrategy` | `spot_long` | 576 candles | 0.0% on `rsi` | 2026-09-01 12:42:20 | `user_data/convergence_logs/RocMomentumStrategy-ladder.log` |
+| `Roth01` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 16:13:01 | `user_data/convergence_logs/Roth01-ladder.log` |
+| `Roth03` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 16:13:52 | `user_data/convergence_logs/Roth03-ladder.log` |
 | `RsiBollingerStrategy` | `spot_long` | 168 candles | 0.0% on `rsi` | 2026-09-01 12:42:44 | `user_data/convergence_logs/RsiBollingerStrategy-ladder.log` |
 | `RsiDivergenceStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 14:54:00 | `user_data/convergence_logs/RsiDivergenceStrategy-ladder.log` |
 | `SAR` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-01 15:00:35 | `user_data/convergence_logs/SAR-ladder.log` |
@@ -364,7 +408,9 @@ an identical trade list.
 | `Schism4` | `spot_long` | 288 candles | 0.0% on `mp` | 2026-09-01 15:03:10 | `user_data/convergence_logs/Schism4-ladder.log` |
 | `Seb` | `spot_long` | 576 candles | 0.0% on `ema20` | 2026-09-01 15:04:02 | `user_data/convergence_logs/Seb-ladder.log` |
 | `Simple` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 15:04:56 | `user_data/convergence_logs/Simple-ladder.log` |
+| `SimpleHopt` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 16:14:42 | `user_data/convergence_logs/SimpleHopt-ladder.log` |
 | `SmaRsiStrategy` | `spot_long` | 90 candles | 0.041% on `rsi` | 2026-09-01 12:44:48 | `user_data/convergence_logs/SmaRsiStrategy-ladder.log` |
+| `SmartMoneyStrategy` | `spot_long` | 1440 candles | 0.0% on `cmf` | 2026-09-01 16:16:19 | `user_data/convergence_logs/SmartMoneyStrategy-ladder.log` |
 | `SmoothOperator` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 15:05:49 | `user_data/convergence_logs/SmoothOperator-ladder.log` |
 | `SmoothScalp` | `spot_long` | 1440 candles | 0.0% on `fastd` | 2026-09-01 15:06:43 | `user_data/convergence_logs/SmoothScalp-ladder.log` |
 | `SqueezeMomentumStrategy` | `spot_long` | 288 candles | 0.0% on `bb_upper` | 2026-09-01 12:45:12 | `user_data/convergence_logs/SqueezeMomentumStrategy-ladder.log` |
@@ -372,6 +418,8 @@ an identical trade list.
 | `StarRise_strat` | `spot_long` | 2016 candles | 0.0% on `r_480_1h` | 2026-09-01 15:07:38 | `user_data/convergence_logs/StarRise_strat-ladder.log` |
 | `StochasticOversoldStrategy` | `spot_long` | 288 candles | 0.0% on `stoch_k` | 2026-09-01 12:45:36 | `user_data/convergence_logs/StochasticOversoldStrategy-ladder.log` |
 | `StochasticRsiStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:46:00 | `user_data/convergence_logs/StochasticRsiStrategy-ladder.log` |
+| `Strategy001` | `spot_long` | 576 candles | 0.0% on `ema20` | 2026-09-01 16:17:10 | `user_data/convergence_logs/Strategy001-ladder.log` |
+| `Strategy001_custom_exit` | `spot_long` | 576 candles | 0.0% on `ema20` | 2026-09-01 16:18:03 | `user_data/convergence_logs/Strategy001_custom_exit-ladder.log` |
 | `StrategyScalpingFast` | `spot_long` | 1440 candles | 0.0% on `ema_high` | 2026-09-01 12:46:27 | `user_data/convergence_logs/StrategyScalpingFast-ladder.log` |
 | `StrategyTestV2` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-01 15:08:04 | `user_data/convergence_logs/StrategyTestV2-ladder.log` |
 | `SuperTrend` | `spot_long` | 1440 candles | 0.0% on `tema` | 2026-09-01 15:09:01 | `user_data/convergence_logs/SuperTrend-ladder.log` |
@@ -390,25 +438,41 @@ an identical trade list.
 | `UniversalMACD` | `spot_long` | 288 candles | 0.0% on `ma12` | 2026-09-01 12:48:53 | `user_data/convergence_logs/UniversalMACD-ladder.log` |
 | `Uptrend` | `spot_long` | 2016 candles | 0.0% on `mama` | 2026-09-01 15:16:28 | `user_data/convergence_logs/Uptrend-ladder.log` |
 | `VWAP` | `spot_long` | 2016 candles | 0.0% on `vwap_low` | 2026-09-01 15:17:16 | `user_data/convergence_logs/VWAP-ladder.log` |
+| `VolatilitySystem` | `futures_long` | 336 candles | 0.016% on `resample_180_atr` | 2026-09-01 15:18:07 | `user_data/convergence_logs/VolatilitySystem-ladder.log` |
+| `VolatilitySystemV2` | `futures_long_short` | 336 candles | 0.016% on `resample_180_atr` | 2026-09-01 15:18:57 | `user_data/convergence_logs/VolatilitySystemV2-ladder.log` |
 | `VolumeBreakoutStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:49:17 | `user_data/convergence_logs/VolumeBreakoutStrategy-ladder.log` |
 | `VortexStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:49:42 | `user_data/convergence_logs/VortexStrategy-ladder.log` |
 | `VwapReversionStrategy` | `spot_long` | 576 candles | 0.0% on `vwap` | 2026-09-01 12:50:07 | `user_data/convergence_logs/VwapReversionStrategy-ladder.log` |
+| `WaveTrendStra` | `spot_long` | 180 candles | 0.0% on `wt1` | 2026-09-01 15:19:48 | `user_data/convergence_logs/WaveTrendStra-ladder.log` |
 | `WilliamsRStrategy` | `spot_long` | 2016 candles | 0.0% on `ema50` | 2026-09-01 12:50:33 | `user_data/convergence_logs/WilliamsRStrategy-ladder.log` |
+| `YOLO` | `spot_long` | 1440 candles | 0.0% on `adx` | 2026-09-01 15:20:39 | `user_data/convergence_logs/YOLO-ladder.log` |
+| `ZScoreMeanReversionStrategy` | `spot_long` | 540 candles | 0.038% on `ema_trend` | 2026-09-01 15:21:04 | `user_data/convergence_logs/ZScoreMeanReversionStrategy-ladder.log` |
+| `adaptive` | `spot_long` | 2016 candles | 0.0% on `mama` | 2026-09-01 15:23:35 | `user_data/convergence_logs/adaptive-ladder.log` |
 | `adxbbrsi2` | `spot_long` | 336 candles | 0.0% on `adx` | 2026-09-01 12:50:58 | `user_data/convergence_logs/adxbbrsi2-ladder.log` |
 | `bbrsi` | `spot_long` | 180 candles | 0.0% on `rsi` | 2026-09-01 12:51:22 | `user_data/convergence_logs/bbrsi-ladder.log` |
 | `bbrsi4Freq` | `spot_long` | 168 candles | 0.0% on `rsi` | 2026-09-01 12:51:45 | `user_data/convergence_logs/bbrsi4Freq-ladder.log` |
 | `conny` | `spot_long` | 96 candles | 0.0% on `consensus_sell` | 2026-09-01 12:52:10 | `user_data/convergence_logs/conny-ladder.log` |
 | `cryptotankV2` | `spot_long` | 576 candles | 0.0% on `pivot` | 2026-09-01 12:52:35 | `user_data/convergence_logs/cryptotankV2-ladder.log` |
+| `custom` | `spot_long` | 2016 candles | 0.0% on `osc` | 2026-09-01 15:24:00 | `user_data/convergence_logs/custom-ladder.log` |
+| `dualwave` | `spot_long` | 672 candles | 0.0% on `rsi_2h` | 2026-09-01 15:24:26 | `user_data/convergence_logs/dualwave-ladder.log` |
 | `eltoro` | `spot_long` | 1344 candles | 0.0% on `BTC_EWO_Fast_1h` | 2026-09-01 12:53:00 | `user_data/convergence_logs/eltoro-ladder.log` |
 | `eltoro1_4` | `spot_long` | 2160 candles | 0.0% on `INFEWO_4h` | 2026-09-01 12:53:24 | `user_data/convergence_logs/eltoro1_4-ladder.log` |
 | `eltoro1_4_simple` | `spot_long` | 672 candles | 0.0% on `INFEWO_4h` | 2026-09-01 12:53:49 | `user_data/convergence_logs/eltoro1_4_simple-ladder.log` |
 | `gettinMoist` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 12:54:38 | `user_data/convergence_logs/gettinMoist-ladder.log` |
+| `hansencandlepatternV1` | `spot_long` | 24 candles | 0.0% on `emac` | 2026-09-01 15:25:15 | `user_data/convergence_logs/hansencandlepatternV1-ladder.log` |
+| `heikin` | `spot_long` | 24 candles | 0.0% on `emac` | 2026-09-01 15:26:03 | `user_data/convergence_logs/heikin-ladder.log` |
 | `hlhb` | `spot_long` | 540 candles | 0.0% on `rsi` | 2026-09-01 12:55:01 | `user_data/convergence_logs/hlhb-ladder.log` |
+| `keltnerchannel` | `spot_long` | 360 candles | 0.0% on `kc_upperband` | 2026-09-01 15:26:51 | `user_data/convergence_logs/keltnerchannel-ladder.log` |
 | `slope_is_dopeCT` | `spot_long` | 672 candles | 0.0% on `rsi` | 2026-09-01 12:55:49 | `user_data/convergence_logs/slope_is_dopeCT-ladder.log` |
 | `stoploss` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-01 12:56:13 | `user_data/convergence_logs/stoploss-ladder.log` |
+| `stratfib` | `spot_long` | 720 candles | 0.0% on `dema3` | 2026-09-01 15:29:19 | `user_data/convergence_logs/stratfib-ladder.log` |
 | `strato` | `spot_long` | 1440 candles | 0.0% on `rsi` | 2026-09-01 12:56:41 | `user_data/convergence_logs/strato-ladder.log` |
+| `tbtest` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 15:30:07 | `user_data/convergence_logs/tbtest-ladder.log` |
 | `thetank3` | `spot_long` | 672 candles | 0.0% on `ema_125` | 2026-09-01 12:57:28 | `user_data/convergence_logs/thetank3-ladder.log` |
 | `thetank4TV` | `spot_long` | 672 candles | 0.0% on `ema_125` | 2026-09-01 12:57:53 | `user_data/convergence_logs/thetank4TV-ladder.log` |
+| `true_lambo` | `spot_long` | 2016 candles | 0.0% on `bb_lowerband2` | 2026-09-01 15:30:39 | `user_data/convergence_logs/true_lambo-ladder.log` |
+| `twinturboV8` | `spot_long` | 2016 candles | 0.0% on `BTC_EWO_Fast_1h` | 2026-09-01 15:31:06 | `user_data/convergence_logs/twinturboV8-ladder.log` |
+| `twinturboV8_2` | `spot_long` | 2016 candles | 0.0% on `BTC_EWO_Fast_1h` | 2026-09-01 15:31:32 | `user_data/convergence_logs/twinturboV8_2-ladder.log` |
 | `ultratank` | `spot_long` | 336 candles | 0.0% on `pivot` | 2026-09-01 12:58:17 | `user_data/convergence_logs/ultratank-ladder.log` |
 | `wavetrend` | `spot_long` | 336 candles | 0.0% on `rsi` | 2026-09-01 12:58:45 | `user_data/convergence_logs/wavetrend-ladder.log` |
 | `wavetrend_rsi` | `spot_long` | 336 candles | 0.0% on `rsi` | 2026-09-01 12:59:09 | `user_data/convergence_logs/wavetrend_rsi-ladder.log` |
@@ -493,7 +557,7 @@ verdict. Where such a hint exists it is shown in brackets.
 | `tacos1` | `not_scheduled` | `no run under the current runtime (historical hint: No data found. Terminating.)` |
 | `turbov8` | `not_scheduled` | `no run under the current runtime (historical hint: engine exited with code 0 but produced no summary (no trades at all, or output not parsed))` |
 
-## Not passing - 476 strategies, by decisive reason
+## Not passing - 412 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -514,8 +578,8 @@ defect, awaiting re-measurement.
 | `lookahead_found` | reads data it could not have had at the time | 69 |
 | `technical_trap_found` | carries a published backtesting trap | 40 |
 | `strategy_does_not_run` | fails before it can be measured; the message is in runtime_failure | 152 |
-| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 24 |
-| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 166 |
+| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 28 |
+| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 98 |
 | `no_trades_in_full_measurement` | never trades over the full window | 16 |
 | `no_verdict_on_lookahead_and_recursive` | measured; neither gate returned a verdict | 5 |
 | `no_verdict_on_lookahead` | measured and recursion clean; look-ahead has no verdict | 4 |
@@ -528,8 +592,8 @@ defect, awaiting re-measurement.
 | `lookahead_found` | 0 | 15 | 0 | 54 |
 | `technical_trap_found` | 0 | 0 | 0 | 40 |
 | `strategy_does_not_run` | 0 | 152 | 0 | 0 |
-| `recursive_bias_found` | 0 | 0 | 14 | 10 |
-| `recursive_bias_unverified` | 74 | 29 | 0 | 63 |
+| `recursive_bias_found` | 3 | 0 | 14 | 11 |
+| `recursive_bias_unverified` | 23 | 29 | 0 | 46 |
 | `no_trades_in_full_measurement` | 0 | 10 | 0 | 6 |
 | `no_verdict_on_lookahead_and_recursive` | 0 | 5 | 0 | 0 |
 | `no_verdict_on_lookahead` | 0 | 4 | 0 | 0 |
@@ -669,9 +733,13 @@ Fails before it can be measured; the message is in runtime_failure.
 | Impossible to load Strategy 'multi_tf'. This class does not exist or contains Python code errors. | 1 | `multi_tf` |
 | Can't instantiate abstract class thetank2 without an implementation for abstract method 'populate_indicators' | 1 | `thetank2` |
 
-### `recursive_bias_found` - 24
+### `recursive_bias_found` - 28
 
 Indicator value still drifts at every warm-up the ladder can reach.
+
+Wave `B_warmup_refusal` - 3:
+
+`ForexRobootSuperScalper`, `HSI`, `Macd`
 
 Wave `D_recursive_drift` - 14:
 
@@ -680,37 +748,24 @@ Wave `D_recursive_drift` - 14:
 `ClucHAnix_BB_RPB_MOD_CTT`, `ClucHAnix_BB_RPB_MOD_E0V1E_ROI`, `ObvTrendStrategy`, `flawless_lambo`
 `lambotest`, `tacos`
 
-Wave `not_scheduled` - 10:
+Wave `not_scheduled` - 11:
 
 `BcmbigzV1`, `BeastBotXBLR6`, `BeastBotXBLR7`, `BigZ04`
 `GoldHedgeZeroMACD`, `NOTankAi_15`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`
-`NotAnotherSMAOffSetStrategy_V2`, `TrendRiderStrategy`
+`NotAnotherSMAOffSetStrategy_V2`, `TrendRiderStrategy`, `pcb20`
 
-### `recursive_bias_unverified` - 166
+### `recursive_bias_unverified` - 98
 
 Recorded under a parser defect and not re-measured; not a finding.
 
-Wave `B_warmup_refusal` - 74:
+Wave `B_warmup_refusal` - 23:
 
-`ASDTSRockwellTrading`, `AwesomeMacd`, `BBRSI2`, `BBRSI21`
-`BBRSI3366`, `BB_RPB_TSL_RNG_2`, `BBlower`, `Bandtastic`
-`BuyOrDie`, `Candle2`, `Chandem`, `Chandemtwo`
-`Cluc4`, `CombinedBinHAndClucHyperV0`, `CombinedBinHAndClucHyperV3`, `Combined_Indicators`
-`DD`, `Diamond`, `EMA520015_V17`, `EasyInEasyOut`
-`FVGChannel`, `ForexRobootSuperScalper`, `Freqtrade_backtest_validation_freqtrade1`, `GKD_Baseline`
-`GKD_BaselineAllMAs`, `GKD_HurstExponent`, `GKD_PFE`, `GodCard`
-`HSI`, `HilbertSineWave`, `JuicyTrend`, `KC_BB`
-`MACDStrategyADA`, `MACDStrategyAVAX`, `MACDStrategyBTC`, `MACDStrategyENJ`
-`MACDStrategyETC`, `MACDStrategySOL`, `MACDStrategyXRP`, `MabStra`
-`Macd`, `Maro4hMacdSd`, `MomStrategy`, `ONUR`
-`OmaGann`, `RSI`, `RSI_BB`, `RSI_EMA_strategy`
-`ReinforcedSmoothScalp`, `Roth01`, `Roth03`, `SimpleHopt`
-`SlowPotato`, `SmartMoneyStrategy`, `Strategy001`, `Strategy001_custom_exit`
-`Strategy001_custom_sell`, `Strategy002`, `Strategy003`, `Strategy004`
-`Strategy005`, `StrategyScalpingFast2`, `TemaMaster`, `TemaMaster3`
-`TemaPure`, `TemaPureNeat`, `TemaPureTwo`, `TouchEmaDelayStrategy`
-`TouchEmaStrategy`, `Trend_Strength_Directional`, `TwoCandle`, `bbandrsi`
-`e6v34`, `ema`
+`AwesomeMacd`, `Diamond`, `EasyInEasyOut`, `MabStra`
+`SlowPotato`, `Strategy001_custom_sell`, `Strategy002`, `Strategy003`
+`Strategy004`, `Strategy005`, `StrategyScalpingFast2`, `TemaMaster`
+`TemaMaster3`, `TemaPure`, `TemaPureNeat`, `TemaPureTwo`
+`TouchEmaDelayStrategy`, `TouchEmaStrategy`, `Trend_Strength_Directional`, `TwoCandle`
+`bbandrsi`, `e6v34`, `ema`
 
 Wave `C_measurement_recovery` - 29:
 
@@ -723,7 +778,7 @@ Wave `C_measurement_recovery` - 29:
 `falconTrader`, `newstrategy53`, `newstrategy53_22`, `pmaxTest`
 `slownsteady`
 
-Wave `not_scheduled` - 63:
+Wave `not_scheduled` - 46:
 
 `BinHV27F`, `BinHV27_short`, `COPY_HL`, `ConsensusShort`
 `CustomStoplossWithPSAR`, `DWT_LongShort`, `DWT_short`, `DevilStra`
@@ -735,12 +790,8 @@ Wave `not_scheduled` - 63:
 `NostalgiaForInfinityX2`, `NostalgiaForInfinityX3`, `NostalgiaForInfinityX4`, `NostalgiaForInfinityX5`
 `NostalgiaForInfinityX6`, `NostalgiaForInfinityX7`, `PatternRecognition`, `SMAOffset_Hippocritical_dca_leverage`
 `StrategyTestV3`, `SupertrendStrategy`, `SwingHighToSky`, `ToTheMoon`
-`TrendFollowingStrategy`, `VolatilitySystem`, `VolatilitySystemV2`, `WaveTrendStra`
-`YOLO`, `ZScoreMeanReversionStrategy`, `ZaratustraDCA2_06`, `ZaratustraDCA2_07`
-`ZaratustraDCA5`, `adaptive`, `custom`, `dualwave`
-`hansencandlepatternV1`, `heikin`, `keltnerchannel`, `mabStra`
-`moonhouse`, `pcb20`, `stratfib`, `tbtest`
-`true_lambo`, `twinturboV8`, `twinturboV8_2`
+`TrendFollowingStrategy`, `ZaratustraDCA2_06`, `ZaratustraDCA2_07`, `ZaratustraDCA5`
+`mabStra`, `moonhouse`
 
 ### `no_trades_in_full_measurement` - 16
 
@@ -789,12 +840,12 @@ Wave `C_measurement_recovery` - 4:
 
 | Item | Strategies |
 |---|---:|
-| `paired_full_window_equivalence` | 279 |
-| `lookahead_verdict` | 126 |
+| `paired_full_window_equivalence` | 343 |
+| `lookahead_verdict` | 136 |
 | `first_measurement_in_current_runtime` | 60 |
-| `convergence_inconclusive` | 41 |
+| `convergence_inconclusive` | 51 |
 | `re-measure_gates_in_current_runtime` | 30 |
-| `convergence_not_converged_within_ladder` | 24 |
+| `convergence_not_converged_within_ladder` | 28 |
 
 Per-row detail, including every evidence path, is in
 `STRATEGY_STATUS.csv`.

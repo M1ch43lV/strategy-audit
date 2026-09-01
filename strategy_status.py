@@ -40,7 +40,8 @@ OUTPUT = os.path.join(ROOT, "STRATEGY_STATUS.csv")
 REPORT = os.path.join(ROOT, "STRATEGY_STATUS.md")
 
 FIELDS = [
-    "strategy_id", "run_profile", "expansion_wave", "cohort", "measured",
+    "strategy_id", "repo", "source_file", "result_archive",
+    "run_profile", "expansion_wave", "cohort", "measured",
     "observed_trades", "trade_evidence", "lookahead", "lookahead_evidence",
     "recursive", "recursive_evidence", "coverage_status", "traps_n", "artifact_role",
     "baseline_status", "primary_reason", "runtime_failure", "evidence_gap",
@@ -89,6 +90,23 @@ import i18n
 CORPUS = os.path.join(ROOT, "corpus")
 LEDGER = os.path.join(ROOT, "LEDGER.csv")
 _CARD_ERROR = re.compile(r"## Could not be measured\s*\n+```\s*\n(.+?)\n", re.S)
+
+
+def provenance(canonical_file):
+    """Owner/repository and source path, read off the canonical file itself.
+
+    Deliberately not taken from the old ledger, which has a `repo` column: this
+    is derivable from the manifest the current pipeline maintains, so the table
+    gains provenance without gaining a dependency on the first study.
+    """
+    path = (canonical_file or "").replace("\\", "/")
+    marker = "repos/"
+    index = path.find(marker)
+    if index < 0:
+        return "", path
+    stem = path[index + len(marker):].split("/")[0]
+    owner, _sep, name = stem.partition("_")
+    return ("%s/%s" % (owner, name) if name else stem), path
 
 
 def card_error(strategy):
@@ -343,8 +361,14 @@ def rows():
                    (diagnostics.get("recursive") or {})]
         stamp, stamp_source = tested_at(records)
 
+        repo, source_file = provenance(profile.get("canonical_file"))
+        archive = next((p for p in evidence_paths(records) if p.endswith(".zip")), "")
+
         out.append({
             "strategy_id": strategy,
+            "repo": repo,
+            "source_file": source_file,
+            "result_archive": archive,
             "run_profile": profile.get("run_profile", ""),
             "expansion_wave": wave,
             "cohort": cohort,
@@ -393,6 +417,24 @@ def _table(counter, title, key_name):
     for key, count in counter.most_common():
         lines.append("| `%s` | %d |" % (key or "(none)", count))
     return [title, ""] + lines + [""]
+
+
+def _links(row):
+    """Relative links to what the run left behind.
+
+    This file sits beside the paths it points at, so an editor or a repository
+    view opens them directly. The freqtrade result archive comes first when one
+    exists, because it is the run's actual output; the log is the fallback and
+    is all that a failed run leaves.
+    """
+    parts = []
+    if row["result_archive"]:
+        parts.append("[archive](%s)" % row["result_archive"])
+    for path in row["evidence_paths"].split(";"):
+        if path and not path.endswith(".zip"):
+            parts.append("[log](%s)" % path)
+            break
+    return " ".join(parts) or "-"
 
 
 def _names(strategies, per_line=4):
@@ -456,12 +498,10 @@ def _report(data):
         "|---|---|---|---:|---|---|---|",
     ]
     for row in sorted(passing, key=lambda r: (r["cohort"], r["strategy_id"])):
-        paths = [p for p in row["evidence_paths"].split(";") if p]
         lines.append("| `%s` | `%s` | `%s` | %s | `%s` | %s | %s |" % (
             row["strategy_id"], row["run_profile"], row["cohort"],
             row["observed_trades"], row["recursive_evidence"],
-            row["last_tested_at"] or "-",
-            "`%s`" % paths[0] if paths else "-"))
+            row["last_tested_at"] or "-", _links(row)))
     lines.append("")
 
     if candidates:
