@@ -44,6 +44,11 @@ WAVE_B_WARMUP = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_WARMUP.json")
 # What stops each row that never ran, and whether repairing it would restore
 # what the author wrote or invent something they did not.
 BLOCKED_TRIAGE = os.path.join(ROOT, "BLOCKED_TRIAGE.json")
+# A repaired row is measured by its own runner, into its own store. The smoke
+# store holds the failure; this holds what happened once the obstacle was
+# removed, and outranks it - the same precedence a native gate has over an
+# inherited one, applied to the measurement instead of the verdict.
+TIMEFRAME_REPAIR = os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json")
 # Two later stores hold look-ahead measured natively for rows whose verdict was
 # inherited or missing. They are separate files because they are separate
 # cohorts, and forgetting to read one is how the newest evidence stops reaching
@@ -325,6 +330,7 @@ def rows():
     convergence = _json(CONVERGENCE)
     wave_b = _json(WAVE_B_WARMUP)
     triage = _json(BLOCKED_TRIAGE)
+    repaired = _json(TIMEFRAME_REPAIR)
     # A native re-measurement outranks whatever PROFILE_BIAS or the baseline
     # holds: it is the same gate, measured later, from this implementation.
     remeasured = {}
@@ -340,6 +346,12 @@ def rows():
         base = baseline.get(strategy, {})
         wave = waves.get(strategy, {}).get("expansion_wave", "")
         measurement = smoke.get(strategy) or {}
+        repair_run = repaired.get(strategy) or {}
+        if repair_run.get("status") == "measured":
+            # The obstacle is gone and the row produced trades. Continuing to
+            # report the old failure would say the strategy does not run while
+            # a run of it sits on disk.
+            measurement = repair_run
         window = full.get(strategy) or {}
         diagnostics = bias.get(strategy) or {}
         settled = convergence.get(strategy) or {}
@@ -355,6 +367,10 @@ def rows():
         elif base.get("canonical_measured") == "true":
             trades, source = base.get("canonical_observed_trades", ""), "baseline"
 
+        for gate in ("lookahead", "recursive"):
+            if (repair_run.get(gate) or {}).get("status") in ("PASS", "FOUND"):
+                diagnostics = dict(diagnostics)
+                diagnostics[gate] = repair_run[gate]
         fresh = remeasured.get(strategy)
         lookahead = (fresh or diagnostics.get("lookahead") or {}).get("status")             or base.get("lookahead") or ""
         lookahead_evidence = ("native" if (fresh or diagnostics.get("lookahead"))
