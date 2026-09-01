@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 17:24:00 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 20:04:54 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -45,7 +45,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 50 of 2102 commands are recorded so far, and every new run
+recording. 142 of 2102 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -140,14 +140,14 @@ coverage, no published trap.
 | `momentum_long` | `spot_long` | `E0_strict67` | 15967 | `baseline` | - | - |
 | `momentum_rsi` | `futures_long_short` | `E0_strict67` | 551 | `native` | - | - |
 | `momentum_wick` | `futures_long_short` | `E0_strict67` | 361 | `native` | - | - |
-| `AlwaysBuy` | `spot_long` | `E1_expanded` | 32359 | `baseline` | - | - |
-| `BinHV45` | `spot_long` | `E1_expanded` | 749 | `baseline` | - | - |
-| `BinHV45_kanaxe` | `spot_long` | `E1_expanded` | 1798 | `baseline` | - | - |
-| `BinHV45_stash` | `spot_long` | `E1_expanded` | 1700 | `baseline` | - | - |
-| `BinHV45_werkkrew` | `spot_long` | `E1_expanded` | 760 | `baseline` | - | - |
-| `BollingerBandStrategy` | `spot_long` | `E1_expanded` | 16302 | `baseline` | - | - |
-| `CCI_BB` | `spot_long` | `E1_expanded` | 926 | `baseline` | - | - |
-| `HourBasedStrategy_5m` | `spot_long` | `E1_expanded` | 11784 | `baseline` | - | - |
+| `AlwaysBuy` | `spot_long` | `E1_expanded` | 32359 | `wave_b:1:superseded` | - | - |
+| `BinHV45` | `spot_long` | `E1_expanded` | 749 | `wave_b:40:superseded` | - | - |
+| `BinHV45_kanaxe` | `spot_long` | `E1_expanded` | 1798 | `wave_b:40:superseded` | - | - |
+| `BinHV45_stash` | `spot_long` | `E1_expanded` | 1700 | `wave_b:40:superseded` | - | - |
+| `BinHV45_werkkrew` | `spot_long` | `E1_expanded` | 760 | `wave_b:40:superseded` | - | - |
+| `BollingerBandStrategy` | `spot_long` | `E1_expanded` | 16302 | `wave_b:21:superseded` | - | - |
+| `CCI_BB` | `spot_long` | `E1_expanded` | 926 | `wave_b:20:superseded` | - | - |
+| `HourBasedStrategy_5m` | `spot_long` | `E1_expanded` | 11784 | `wave_b:1:superseded` | - | - |
 | `NowoIchimoku5mV2` | `spot_long` | `E1_expanded` | 49 | `native` | 2026-08-31 15:19:45 | [archive](user_data/profile_smoke/NowoIchimoku5mV2-2026-08-31_15-19-45.zip) |
 | `ObeliskIM_v1_1` | `spot_long` | `E1_expanded` | 64 | `native` | 2026-08-31 15:20:09 | [archive](user_data/profile_smoke/ObeliskIM_v1_1-2026-08-31_15-20-09.zip) |
 | `simple_patterns` | `spot_long` | `E1_expanded` | 1845 | `native` | 2026-08-31 15:55:52 | [archive](user_data/profile_smoke/simple_patterns-2026-08-31_15-55-52.zip) |
@@ -1021,13 +1021,29 @@ only where the convergence ladder has since failed to settle the row;
 everywhere else it says what it is - a record made under a known
 defect, awaiting re-measurement.
 
+**`WARMUP_NEEDED` is not a finding either.** 134 rows in the frozen
+baseline carry `recursive_kind=refused_no_warmup`: the analyzer
+declined them because the strategy declares no warm-up, so it never
+compared anything. That was being shown as recursion `FOUND` for 47
+rows. It now reads `WARMUP_NEEDED`, which is what the record says.
+
+**`wave_b:<n>:superseded` is a run of ours we do not yet trust.**
+Wave B supplied a warm-up to those refused rows and re-ran the gate,
+but under the parser described above. Re-parsing the 106 wave B logs
+that survive overturns 58 of them, every one from FOUND to no
+verdict; the runs behind the PASS verdicts kept no log and cannot be
+re-parsed at all. Eight admitted rows rest on such a verdict. They
+stay admitted - E0 and E1 are frozen and this table decides nothing -
+and they are queued for the ladder as `recursive_ladder_pending`.
+
 | Reason | Meaning | Strategies |
 |---|---|---:|
 | `lookahead_found` | reads data it could not have had at the time | 69 |
 | `technical_trap_found` | carries a published backtesting trap | 40 |
 | `strategy_does_not_run` | fails before it can be measured; the message is in runtime_failure | 152 |
-| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 28 |
-| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 80 |
+| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 24 |
+| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 65 |
+| `recursive_warmup_refused` | the analyzer refused for want of a declared warm-up; nothing was measured | 19 |
 | `no_trades_in_full_measurement` | never trades over the full window | 16 |
 | `no_verdict_on_lookahead_and_recursive` | measured; neither gate returned a verdict | 5 |
 | `no_verdict_on_lookahead` | measured and recursion clean; look-ahead has no verdict | 4 |
@@ -1040,8 +1056,9 @@ defect, awaiting re-measurement.
 | `lookahead_found` | 0 | 15 | 0 | 54 |
 | `technical_trap_found` | 0 | 0 | 0 | 40 |
 | `strategy_does_not_run` | 0 | 152 | 0 | 0 |
-| `recursive_bias_found` | 3 | 0 | 14 | 11 |
-| `recursive_bias_unverified` | 5 | 29 | 0 | 46 |
+| `recursive_bias_found` | 0 | 0 | 14 | 10 |
+| `recursive_bias_unverified` | 0 | 29 | 0 | 36 |
+| `recursive_warmup_refused` | 8 | 0 | 0 | 11 |
 | `no_trades_in_full_measurement` | 0 | 10 | 0 | 6 |
 | `no_verdict_on_lookahead_and_recursive` | 0 | 5 | 0 | 0 |
 | `no_verdict_on_lookahead` | 0 | 4 | 0 | 0 |
@@ -1181,13 +1198,9 @@ Fails before it can be measured; the message is in runtime_failure.
 | Impossible to load Strategy 'multi_tf'. This class does not exist or contains Python code errors. | 1 | `multi_tf` |
 | Can't instantiate abstract class thetank2 without an implementation for abstract method 'populate_indicators' | 1 | `thetank2` |
 
-### `recursive_bias_found` - 28
+### `recursive_bias_found` - 24
 
 Indicator value still drifts at every warm-up the ladder can reach.
-
-Wave `B_warmup_refusal` - 3:
-
-`ForexRobootSuperScalper`, `HSI`, `Macd`
 
 Wave `D_recursive_drift` - 14:
 
@@ -1196,20 +1209,15 @@ Wave `D_recursive_drift` - 14:
 `ClucHAnix_BB_RPB_MOD_CTT`, `ClucHAnix_BB_RPB_MOD_E0V1E_ROI`, `ObvTrendStrategy`, `flawless_lambo`
 `lambotest`, `tacos`
 
-Wave `not_scheduled` - 11:
+Wave `not_scheduled` - 10:
 
 `BcmbigzV1`, `BeastBotXBLR6`, `BeastBotXBLR7`, `BigZ04`
-`GoldHedgeZeroMACD`, `NOTankAi_15`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`
-`NotAnotherSMAOffSetStrategy_V2`, `TrendRiderStrategy`, `pcb20`
+`GoldHedgeZeroMACD`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`, `NotAnotherSMAOffSetStrategy_V2`
+`TrendRiderStrategy`, `pcb20`
 
-### `recursive_bias_unverified` - 80
+### `recursive_bias_unverified` - 65
 
 Recorded under a parser defect and not re-measured; not a finding.
-
-Wave `B_warmup_refusal` - 5:
-
-`AwesomeMacd`, `Diamond`, `EasyInEasyOut`, `MabStra`
-`SlowPotato`
 
 Wave `C_measurement_recovery` - 29:
 
@@ -1222,20 +1230,32 @@ Wave `C_measurement_recovery` - 29:
 `falconTrader`, `newstrategy53`, `newstrategy53_22`, `pmaxTest`
 `slownsteady`
 
-Wave `not_scheduled` - 46:
+Wave `not_scheduled` - 36:
 
-`BinHV27F`, `BinHV27_short`, `COPY_HL`, `ConsensusShort`
-`CustomStoplossWithPSAR`, `DWT_LongShort`, `DWT_short`, `DevilStra`
-`Dimond`, `FReinforcedStrategy`, `FTT_DWT_FBB_FUTURES`, `FiveMinCrossAbove`
-`GKD_CT`, `GodStraNew`, `GodStraNew40`, `GodStraNew_SMAonly`
-`HEW`, `HourBasedStrategy`, `HurstCycle3`, `HurstCycle7`
-`HurstCycleV4`, `HurstCycleV5`, `HurstCycleV5RSI`, `HurstCycleV6`
+`BinHV27F`, `BinHV27_short`, `ConsensusShort`, `CustomStoplossWithPSAR`
+`DWT_LongShort`, `DWT_short`, `DevilStra`, `Dimond`
+`FReinforcedStrategy`, `FTT_DWT_FBB_FUTURES`, `FiveMinCrossAbove`, `GodStraNew`
+`GodStraNew40`, `GodStraNew_SMAonly`, `HourBasedStrategy`, `HurstCycleV5`
 `Ichimoku`, `MACDRL`, `MACDRS`, `Minmax`
 `NostalgiaForInfinityX2`, `NostalgiaForInfinityX3`, `NostalgiaForInfinityX4`, `NostalgiaForInfinityX5`
-`NostalgiaForInfinityX6`, `NostalgiaForInfinityX7`, `PatternRecognition`, `SMAOffset_Hippocritical_dca_leverage`
-`StrategyTestV3`, `SupertrendStrategy`, `SwingHighToSky`, `ToTheMoon`
-`TrendFollowingStrategy`, `ZaratustraDCA2_06`, `ZaratustraDCA2_07`, `ZaratustraDCA5`
-`mabStra`, `moonhouse`
+`NostalgiaForInfinityX6`, `NostalgiaForInfinityX7`, `SMAOffset_Hippocritical_dca_leverage`, `StrategyTestV3`
+`SupertrendStrategy`, `SwingHighToSky`, `ToTheMoon`, `TrendFollowingStrategy`
+`ZaratustraDCA2_06`, `ZaratustraDCA2_07`, `ZaratustraDCA5`, `mabStra`
+
+### `recursive_warmup_refused` - 19
+
+The analyzer refused for want of a declared warm-up; nothing was measured.
+
+Wave `B_warmup_refusal` - 8:
+
+`AwesomeMacd`, `Diamond`, `EasyInEasyOut`, `ForexRobootSuperScalper`
+`HSI`, `MabStra`, `Macd`, `SlowPotato`
+
+Wave `not_scheduled` - 11:
+
+`COPY_HL`, `GKD_CT`, `HEW`, `HurstCycle3`
+`HurstCycle7`, `HurstCycleV4`, `HurstCycleV5RSI`, `HurstCycleV6`
+`NOTankAi_15`, `PatternRecognition`, `moonhouse`
 
 ### `no_trades_in_full_measurement` - 16
 
@@ -1285,8 +1305,9 @@ Wave `C_measurement_recovery` - 4:
 | Item | Strategies |
 |---|---:|
 | `paired_full_window_equivalence` | 361 |
-| `lookahead_verdict` | 132 |
+| `lookahead_verdict` | 94 |
 | `first_measurement_in_current_runtime` | 60 |
+| `recursive_ladder_pending` | 58 |
 | `convergence_inconclusive` | 51 |
 | `convergence_not_converged_within_ladder` | 28 |
 

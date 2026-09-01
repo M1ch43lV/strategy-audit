@@ -45,6 +45,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 CANDIDATES = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_CANDIDATES.csv")
 PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
 OUTPUT = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
+STATUS = os.path.join(ROOT, "STRATEGY_STATUS.csv")
 LOG_DIR = os.path.join(ROOT, "user_data", "convergence_logs")
 
 # Frozen by the amendment. The ladder is expressed in CALENDAR DAYS and
@@ -210,6 +211,23 @@ def recursion_only_rows():
     return rows
 
 
+def warmup_refused_rows():
+    """Rows whose recursion verdict was a refusal, not a measurement.
+
+    Two things land here. A row whose inherited verdict reads FOUND because
+    the analyzer declined it for want of a declared warm-up - it never got as
+    far as comparing anything. And a Wave B row re-run under the old parser,
+    which read the wrong column of the drift table and took an undefined cell
+    for a clean one; those verdicts are recorded as superseded rather than
+    trusted, and eight of them carry an admission.
+
+    Selection reads `open_work`, which the status table sets from provenance
+    alone, so no outcome decides who is measured.
+    """
+    return [row["strategy_id"] for row in _csv(STATUS)
+            if "recursive_ladder_pending" in (row["open_work"] or "")]
+
+
 def cohort(name):
     """Rows this route may consider. Selection never reads an outcome."""
     profiles = {row["strategy_id"]: row for row in _csv(PROFILES)}
@@ -218,6 +236,8 @@ def cohort(name):
     elif name == "wave_c_refusals":
         wanted = [row["strategy_id"]
                   for row in eligibility_warmup.refusal_candidates()]
+    elif name == "warmup_refused":
+        wanted = warmup_refused_rows()
     elif name == "wave_b_static_rejected":
         wanted = list(WAVE_B_STATIC_REJECTED)
     elif name == "wave_d":

@@ -36,6 +36,11 @@ SMOKE = os.path.join(ROOT, "PROFILE_SMOKE.json")
 BIAS = os.path.join(ROOT, "PROFILE_BIAS.json")
 FULL_WINDOW = os.path.join(ROOT, "PROFILE_FULL_WINDOW.json")
 CONVERGENCE = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
+# Wave B supplied a warm-up to strategies the analyzer had refused and
+# re-ran the gate. Those verdicts were produced before the drift table was
+# read correctly, so they are carried as provenance - a date, a log, a
+# command - and never as a current verdict.
+WAVE_B_WARMUP = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_WARMUP.json")
 # Two later stores hold look-ahead measured natively for rows whose verdict was
 # inherited or missing. They are separate files because they are separate
 # cohorts, and forgetting to read one is how the newest evidence stops reaching
@@ -75,6 +80,8 @@ REASON_ORDER = (
      "indicator value still drifts at every warm-up the ladder can reach"),
     ("recursive_bias_unverified",
      "recorded under a parser defect and not re-measured; not a finding"),
+    ("recursive_warmup_refused",
+     "the analyzer refused for want of a declared warm-up; nothing was measured"),
     ("no_trades_in_full_measurement", "never trades over the full window"),
     ("canonical_implementation_not_measured", "never ran"),
     ("no_verdict_on_lookahead_and_recursive", "measured; neither gate returned a verdict"),
@@ -267,6 +274,7 @@ def rows():
     bias = _json(BIAS)
     full = _json(FULL_WINDOW)
     convergence = _json(CONVERGENCE)
+    wave_b = _json(WAVE_B_WARMUP)
     # A native re-measurement outranks whatever PROFILE_BIAS or the baseline
     # holds: it is the same gate, measured later, from this implementation.
     remeasured = {}
@@ -285,6 +293,9 @@ def rows():
         window = full.get(strategy) or {}
         diagnostics = bias.get(strategy) or {}
         settled = convergence.get(strategy) or {}
+        warmup = wave_b.get(strategy) or {}
+        attempt = (warmup.get("attempts") or {}).get(
+            str(warmup.get("latest_startup_candle_count"))) or {}
 
         trades, source = "", ""
         if window.get("status") == "measured":
@@ -311,6 +322,16 @@ def rows():
             recursive_evidence = "baseline"
         else:
             recursive_evidence = base.get("recursive_evidence_source") or "missing"
+        # A FOUND inherited from a run that never got as far as measuring is
+        # not a finding. `refused_no_warmup` records that the analyzer declined
+        # the strategy because it declared no warm-up - the same non-finding
+        # already corrected for the convergence candidates, still on the
+        # inherited path for 47 rows. Naming it as what it is keeps the reader
+        # from reading a missing precondition as detected bias.
+        if recursive == "FOUND" and not diagnostics.get("recursive") \
+                and base.get("recursive_kind") == "refused_no_warmup":
+            recursive = "WARMUP_NEEDED"
+            recursive_evidence += ":refused_no_warmup"
         if settled.get("state") == "converged":
             # The ladder has re-measured this row, so the stored FOUND is the
             # superseded verdict and must not be shown as the current one. Two
@@ -325,6 +346,16 @@ def rows():
                 "" if settled.get("needed_no_override") else ":warmup_supplied")
         elif settled.get("state") == "not_converged_within_ladder":
             recursive_evidence = "convergence:not_settled"
+        elif attempt:
+            # Measured here, at a supplied warm-up, but under the parser that
+            # read the wrong table column and treated an undefined cell as a
+            # clean one. Re-parsing the 106 wave B logs that survive overturns
+            # 58 of them, every one from FOUND to "no verdict"; the runs that
+            # produced the PASS verdicts kept no log at all and cannot be
+            # re-parsed. So the attempt is shown as superseded and the row is
+            # queued for the ladder rather than credited with its old result.
+            recursive_evidence = "wave_b:%s:superseded" % (
+                attempt.get("startup_candle_count"))
 
         ran_here = bool(measurement or diagnostics or window or settled)
         if strategy in admitted:
@@ -356,6 +387,9 @@ def rows():
                 reasons.add("lookahead_found")
             if recursive == "FOUND":
                 reasons.add("recursive_bias_found")
+            if recursive == "WARMUP_NEEDED":
+                reasons.discard("recursive_bias_found")
+                reasons.add("recursive_warmup_refused")
             if measurement.get("status") == "measured":
                 reasons.discard("canonical_implementation_not_measured")
             if measurement and measurement.get("status") != "measured":
@@ -435,10 +469,12 @@ def rows():
         elif cohort == "excluded" and settled.get("state") in (
                 "not_converged_within_ladder", "inconclusive"):
             open_work.append("convergence_" + settled["state"])
+        if recursive == "WARMUP_NEEDED" or recursive_evidence.startswith("wave_b:"):
+            open_work.append("recursive_ladder_pending")
 
         records = [measurement, diagnostics, window, settled,
                    fresh or {}, (diagnostics.get("lookahead") or {}),
-                   (diagnostics.get("recursive") or {})]
+                   (diagnostics.get("recursive") or {}), attempt]
         stamp, stamp_source = tested_at(records)
 
         repo, source_file = provenance(profile.get("canonical_file"))
@@ -458,11 +494,12 @@ def rows():
             or profile_bias_window(run_profile),
             strategy, source_file)
         cmd_recursive = invocation(
-            settled or (diagnostics.get("recursive") or {}), "recursive",
+            settled or (diagnostics.get("recursive") or {}) or attempt,
+            "recursive",
             run_profile,
             (settled.get("timerange")
              or (diagnostics.get("recursive") or {}).get("timerange")
-             or profile_bias_window(run_profile)),
+             or attempt.get("timerange") or profile_bias_window(run_profile)),
             strategy, source_file)
         archive = next((p for p in evidence_paths(records) if p.endswith(".zip")), "")
 
@@ -715,6 +752,19 @@ def _report(data):
         "only where the convergence ladder has since failed to settle the row;",
         "everywhere else it says what it is - a record made under a known",
         "defect, awaiting re-measurement.", "",
+        "**`WARMUP_NEEDED` is not a finding either.** 134 rows in the frozen",
+        "baseline carry `recursive_kind=refused_no_warmup`: the analyzer",
+        "declined them because the strategy declares no warm-up, so it never",
+        "compared anything. That was being shown as recursion `FOUND` for 47",
+        "rows. It now reads `WARMUP_NEEDED`, which is what the record says.", "",
+        "**`wave_b:<n>:superseded` is a run of ours we do not yet trust.**",
+        "Wave B supplied a warm-up to those refused rows and re-ran the gate,",
+        "but under the parser described above. Re-parsing the 106 wave B logs",
+        "that survive overturns 58 of them, every one from FOUND to no",
+        "verdict; the runs behind the PASS verdicts kept no log and cannot be",
+        "re-parsed at all. Eight admitted rows rest on such a verdict. They",
+        "stay admitted - E0 and E1 are frozen and this table decides nothing -",
+        "and they are queued for the ladder as `recursive_ladder_pending`.", "",
         "| Reason | Meaning | Strategies |", "|---|---|---:|",
     ]
     ordered = [key for key, _t in REASON_ORDER if key in grouped]
