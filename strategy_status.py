@@ -41,10 +41,11 @@ REPORT = os.path.join(ROOT, "STRATEGY_STATUS.md")
 
 FIELDS = [
     "strategy_id", "run_profile", "expansion_wave", "cohort", "measured",
-    "observed_trades", "trade_evidence", "lookahead", "recursive",
-    "recursive_evidence", "coverage_status", "traps_n", "artifact_role",
+    "observed_trades", "trade_evidence", "lookahead", "lookahead_evidence",
+    "recursive", "recursive_evidence", "coverage_status", "traps_n", "artifact_role",
     "baseline_status", "primary_reason", "last_tested_at",
-    "last_tested_source", "evidence_paths", "open_work",
+    "last_tested_source", "settled_startup", "settled_days", "settled_drift_pct",
+    "needed_no_override", "evidence_paths", "open_work",
 ]
 
 # Why a row does not pass, in decreasing order of finality. A row usually
@@ -184,12 +185,35 @@ def rows():
 
         lookahead = ((diagnostics.get("lookahead") or {}).get("status")
                      or base.get("lookahead") or "")
+        lookahead_evidence = ("native" if diagnostics.get("lookahead")
+                              else (base.get("lookahead_evidence_source") or "missing"))
         recursive = ((diagnostics.get("recursive") or {}).get("status")
                      or base.get("recursive") or "")
-        recursive_evidence = "native" if diagnostics.get("recursive") else "baseline"
+        # Where a verdict comes from decides whether it may be shown as one.
+        # The baseline can carry a PASS from the original corpus sweep for a
+        # canonical implementation that was never measured: real evidence, but
+        # about a different run and a different file selection. It is recorded
+        # with its provenance rather than presented as this row's verdict.
+        if diagnostics.get("recursive"):
+            recursive_evidence = "native"
+        elif base.get("canonical_measured") == "true":
+            recursive_evidence = "baseline"
+        else:
+            recursive_evidence = base.get("recursive_evidence_source") or "missing"
         if settled.get("state") == "converged":
-            recursive_evidence = "convergence:%s" % settled.get(
-                "chosen_startup_candle_count")
+            # The ladder has re-measured this row, so the stored FOUND is the
+            # superseded verdict and must not be shown as the current one. Two
+            # different passes are possible and the difference is the whole
+            # point of the amendment: a row inside the frozen 0.01 percent band
+            # needed no relaxation at all, while one inside 1.0 percent is
+            # admitted only under the wider band.
+            drift = settled.get("max_drift_pct")
+            recursive = ("PASS" if (drift or 0) < 0.01 else "PASS_1PCT")
+            recursive_evidence = "convergence:%s%s" % (
+                settled.get("chosen_startup_candle_count"),
+                "" if settled.get("needed_no_override") else ":warmup_supplied")
+        elif settled.get("state") == "not_converged_within_ladder":
+            recursive_evidence = "convergence:not_settled"
 
         ran_here = bool(measurement or diagnostics or window or settled)
         if strategy in admitted:
@@ -280,6 +304,7 @@ def rows():
             "observed_trades": trades,
             "trade_evidence": source,
             "lookahead": lookahead,
+            "lookahead_evidence": lookahead_evidence,
             "recursive": recursive,
             "recursive_evidence": recursive_evidence,
             "coverage_status": base.get("coverage_status", ""),
@@ -289,6 +314,12 @@ def rows():
             "primary_reason": reason,
             "last_tested_at": stamp,
             "last_tested_source": stamp_source,
+            "settled_startup": settled.get("chosen_startup_candle_count", ""),
+            "settled_days": settled.get("chosen_ladder_days", ""),
+            "settled_drift_pct": settled.get("max_drift_pct", ""),
+            "needed_no_override": ("true" if settled.get("needed_no_override")
+                                   else ("false" if settled.get("state") == "converged"
+                                         else "")),
             "evidence_paths": ";".join(evidence_paths(records)),
             "open_work": ";".join(open_work),
         })
@@ -528,6 +559,10 @@ def selftest():
         if row["cohort"] == "attempted_no_measurement":
             assert row["measured"] == "false", row["strategy_id"]
             assert not row["evidence_paths"], row["strategy_id"]
+        # A row the ladder settled must not still carry the superseded verdict.
+        if row["cohort"] == "convergence_candidate":
+            assert row["recursive"] in ("PASS", "PASS_1PCT"),                 (row["strategy_id"], row["recursive"])
+            assert row["settled_startup"] != "", row["strategy_id"]
         # A recovered timestamp always names where it came from.
         assert bool(row["last_tested_at"]) == bool(row["last_tested_source"]), \
             row["strategy_id"]
