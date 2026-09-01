@@ -43,7 +43,7 @@ FIELDS = [
     "strategy_id", "run_profile", "expansion_wave", "cohort", "measured",
     "observed_trades", "trade_evidence", "lookahead", "lookahead_evidence",
     "recursive", "recursive_evidence", "coverage_status", "traps_n", "artifact_role",
-    "baseline_status", "primary_reason", "last_tested_at",
+    "baseline_status", "primary_reason", "evidence_gap", "last_tested_at",
     "last_tested_source", "settled_startup", "settled_days", "settled_drift_pct",
     "needed_no_override", "evidence_paths", "open_work",
 ]
@@ -235,11 +235,14 @@ def rows():
         elif base.get("eligibility_status") == "pending_diagnostics":
             cohort = "pending"
         elif not ran_here and base.get("canonical_measured") != "true":
-            # Not "untested". Every row was attempted in the corpus sweep, and
-            # these are the ones that never produced a usable measurement -
-            # mostly because the file would not load at all. The card holds the
-            # exception. Calling them untested would throw that evidence away.
-            cohort = "attempted_no_measurement"
+            # Untested under THIS pipeline, which is the only claim this table
+            # is entitled to make. The original corpus sweep did attempt every
+            # row, but it ran in an environment that did not establish the
+            # preconditions this audit requires, so its outcome says nothing
+            # about whether the strategy works here. Treating its verdict as
+            # evidence would import exactly the assumption the re-measurement
+            # exists to avoid.
+            cohort = "not_tested_in_current_runtime"
         else:
             cohort = "excluded"
 
@@ -284,16 +287,35 @@ def rows():
                 reason = "no_verdict_on_" + "_and_".join(missing)
             if not reason:
                 reason = "; ".join(sorted(reasons)) or "unclassified"
-        elif cohort == "attempted_no_measurement":
-            reason = card_error(strategy) or "attempted, no measurement recorded"
+        elif cohort == "not_tested_in_current_runtime":
+            # The old card's exception is kept as a hint about what to expect,
+            # never as a verdict: it was produced under different preconditions.
+            hint = card_error(strategy)
+            reason = ("no run under the current runtime"
+                      + (" (historical hint: %s)" % hint if hint else ""))
+
+        # An admitted row can still rest on the original author's sweep.
+        # regime_eligibility.classify promotes a historical spot PASS to a
+        # current one when no native verdict exists, and that sweep ran in an
+        # environment which did not establish this audit's preconditions. The
+        # row stays admitted - E0 is frozen and this table decides nothing -
+        # but the gap is named where anyone reading the row will see it.
+        gaps = []
+        if cohort in ("E0_strict67", "E1_expanded"):
+            if lookahead_evidence.startswith("historical"):
+                gaps.append("lookahead_from_original_sweep")
+            if recursive_evidence.startswith("historical"):
+                gaps.append("recursive_from_original_sweep")
 
         open_work = []
+        if gaps:
+            open_work.append("re-measure_gates_in_current_runtime")
         if cohort == "convergence_candidate":
             open_work.append("paired_full_window_equivalence")
             if lookahead not in ("PASS", "FOUND"):
                 open_work.append("lookahead_verdict")
-        elif cohort == "attempted_no_measurement":
-            open_work.append("retry_under_current_runtime")
+        elif cohort == "not_tested_in_current_runtime":
+            open_work.append("first_measurement_in_current_runtime")
         elif cohort == "excluded" and settled.get("state") in (
                 "not_converged_within_ladder", "inconclusive"):
             open_work.append("convergence_" + settled["state"])
@@ -322,6 +344,7 @@ def rows():
             "artifact_role": profile.get("artifact_role", ""),
             "baseline_status": base.get("eligibility_status", ""),
             "primary_reason": reason,
+            "evidence_gap": ";".join(gaps),
             "last_tested_at": stamp,
             "last_tested_source": stamp_source,
             "settled_startup": settled.get("chosen_startup_candle_count", ""),
@@ -371,7 +394,7 @@ def _report(data):
     passing = [r for r in data if r["cohort"] in ("E0_strict67", "E1_expanded")]
     candidates = [r for r in data if r["cohort"] == "convergence_candidate"]
     pending = [r for r in data if r["cohort"] == "pending"]
-    untested = [r for r in data if r["cohort"] == "attempted_no_measurement"]
+    untested = [r for r in data if r["cohort"] == "not_tested_in_current_runtime"]
     failing = [r for r in data if r["cohort"] == "excluded"]
     now = datetime.datetime.now().replace(microsecond=0).isoformat(sep=" ")
 
@@ -453,13 +476,13 @@ def _report(data):
     if untested:
         lines += [
             "## Attempted, no measurement - %d strategies" % len(untested), "",
-            "Nothing in this corpus is untested. Every one of the 900 rows was",
-            "attempted in the corpus sweep, and these are the ones that never",
-            "produced a usable measurement - mostly because the file would not",
-            "load at all. Each carries the exception its card recorded, so the",
-            "failure is a fact about the strategy rather than a gap in the",
-            "audit. They stay listed because a runtime change can revive one.", "",
-            "| Strategy | Wave | Recorded failure |", "|---|---|---|",
+            "No run under the current pipeline is recorded for these. The",
+            "original corpus sweep did attempt every row, but it ran in an",
+            "environment that did not establish the preconditions this audit",
+            "requires - which is the whole reason the pre-checks are being",
+            "redone - so its outcome is a hint about what to expect and never a",
+            "verdict. Where such a hint exists it is shown in brackets.", "",
+            "| Strategy | Wave | Status |", "|---|---|---|",
         ]
         for row in sorted(untested, key=lambda r: (r["expansion_wave"],
                                                    r["strategy_id"])):
@@ -557,7 +580,7 @@ def selftest():
             if row["cohort"] == "E1_expanded"} == admitted
 
     for row in data:
-        if row["cohort"] in ("excluded", "pending", "attempted_no_measurement"):
+        if row["cohort"] in ("excluded", "pending", "not_tested_in_current_runtime"):
             assert row["primary_reason"], row["strategy_id"]
         else:
             assert not row["primary_reason"], row["strategy_id"]
@@ -565,8 +588,8 @@ def selftest():
         if row["measured"] == "true":
             assert row["primary_reason"] != "canonical_implementation_not_measured", \
                 row["strategy_id"]
-        # This cohort means "attempted and produced nothing", never "untested".
-        if row["cohort"] == "attempted_no_measurement":
+        # This cohort means "no run under the current pipeline".
+        if row["cohort"] == "not_tested_in_current_runtime":
             assert row["measured"] == "false", row["strategy_id"]
             assert not row["evidence_paths"], row["strategy_id"]
         # A row the ladder settled must not still carry the superseded verdict.
@@ -582,18 +605,20 @@ def selftest():
         assert bool(row["last_tested_at"]) == bool(row["last_tested_source"]), \
             row["strategy_id"]
 
-    ledger = {r["strategy"] for r in _csv(LEDGER)}
-    # The corpus sweep attempted everything, so nothing may be reported as
-    # never looked at. 895 of the 900 are in that ledger; the five that are not
-    # are the hand-picked case studies under results/.
-    assert len(ledger) == 895, len(ledger)
+    # The old ledger is reference material, not evidence. It records what the
+    # original author's sweep did in an environment that did not establish this
+    # audit's preconditions, so a row appearing there proves nothing about
+    # whether it works under the current runtime. It is read only to attach a
+    # historical hint, never to decide a cohort or to clear a row.
+    assert len({r["strategy"] for r in _csv(LEDGER)}) == 895
     for row in data:
-        if row["cohort"] == "attempted_no_measurement":
-            assert row["strategy_id"] in ledger, row["strategy_id"]
+        if row["cohort"] == "not_tested_in_current_runtime":
+            assert "no run under the current runtime" in row["primary_reason"], \
+                row["strategy_id"]
     print("strategy_status selftest: PASS (%d rows, %d E0, %d E1, %d unmeasured, "
           "%d timestamped)"
           % (len(data), len(listed), len(admitted),
-             sum(1 for r in data if r["cohort"] == "attempted_no_measurement"),
+             sum(1 for r in data if r["cohort"] == "not_tested_in_current_runtime"),
              sum(1 for r in data if r["last_tested_at"])))
 
 
