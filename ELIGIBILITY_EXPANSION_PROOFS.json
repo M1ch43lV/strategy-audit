@@ -143,6 +143,48 @@
         "startup_override_changes_strategy_config": true,
         "why_admissible": "the override is diagnostic-only; current native recursive analysis passes and original versus adapted full-window pooled trades are exactly identical"
       }
+    },
+    "NowoIchimoku5mV2": {
+      "admission_status": "provisional_E1_pass_pending_consumer_regeneration",
+      "canonical_sha256": "sha256_c116db4ee5a1690d8ce7be2b99d2b87f538515889b91816daee557cfc593ca4e",
+      "expansion_wave": "C_measurement_recovery",
+      "implementation_id": "NowoIchimoku5mV2:c116db4ee5a1",
+      "lookahead_evidence": "PROFILE_BIAS.json#NowoIchimoku5mV2/lookahead",
+      "measurement_evidence": "PROFILE_SMOKE.json#NowoIchimoku5mV2",
+      "no_adapter_used": "No startup_candle_count was supplied and no source was changed for the diagnostics. Both gates were passed natively, so neither trade equivalence nor a static warm-up proof applies here.",
+      "recursive_evidence": "PROFILE_BIAS.json#NowoIchimoku5mV2/recursive",
+      "reviewed_file": "repos/PeetCrypto_freqtrade-stuff/NowoIchimoku5mV2 (1).py",
+      "ruleset": "native_gate_pass_v1",
+      "run_profile": "spot_long",
+      "why_admissible": "Ichimoku implementation that passed both gates unaided, unlike two other Ichimoku rows in the same run which fail on chikou_span. The verdict is a property of this file, not of the indicator family."
+    },
+    "ObeliskIM_v1_1": {
+      "admission_status": "provisional_E1_pass_pending_consumer_regeneration",
+      "canonical_sha256": "sha256_3465de64a9dcc82e89499f11cd2176f9ae54681bad4db36ddfeb00b72131200f",
+      "expansion_wave": "C_measurement_recovery",
+      "implementation_id": "ObeliskIM_v1_1:3465de64a9dc",
+      "lookahead_evidence": "PROFILE_BIAS.json#ObeliskIM_v1_1/lookahead",
+      "measurement_evidence": "PROFILE_SMOKE.json#ObeliskIM_v1_1",
+      "no_adapter_used": "No startup_candle_count was supplied and no source was changed for the diagnostics. Both gates were passed natively, so neither trade equivalence nor a static warm-up proof applies here.",
+      "recursive_evidence": "PROFILE_BIAS.json#ObeliskIM_v1_1/recursive",
+      "reviewed_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/ObeliskIM_v1_1.py",
+      "ruleset": "native_gate_pass_v1",
+      "run_profile": "spot_long",
+      "why_admissible": "Class 2 strict-equivalent overlay; the canonical file under repair/patched carries the diagnostics, and strict_equivalent is not behavior_changed, so it is admissible under the original rule."
+    },
+    "simple_patterns": {
+      "admission_status": "provisional_E1_pass_pending_consumer_regeneration",
+      "canonical_sha256": "sha256_9ee9bae231b2ab2cbab9237a75ca95a8f19b23dddaee1fc0955478ac23e2c850",
+      "expansion_wave": "C_measurement_recovery",
+      "implementation_id": "simple_patterns:9ee9bae231b2",
+      "lookahead_evidence": "PROFILE_BIAS.json#simple_patterns/lookahead",
+      "measurement_evidence": "PROFILE_SMOKE.json#simple_patterns",
+      "no_adapter_used": "No startup_candle_count was supplied and no source was changed for the diagnostics. Both gates were passed natively, so neither trade equivalence nor a static warm-up proof applies here.",
+      "recursive_evidence": "PROFILE_BIAS.json#simple_patterns/recursive",
+      "reviewed_file": "repos/TheoBrigitte_freqtrade/strategies/yodo/simple_patterns.py",
+      "ruleset": "native_gate_pass_v1",
+      "run_profile": "spot_long",
+      "why_admissible": "1,845 trades in the smoke window, both gates clean, no repair involved. The only prior defect was that nobody had measured it."
     }
   }
 }
