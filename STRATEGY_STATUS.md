@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 15:00:36 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 15:05:25 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -15,7 +15,7 @@ the state at the freeze, and the difference is the expansion.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 343 of 900 rows
+file's time and is labelled `log_mtime` for that reason. 339 of 900 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
@@ -25,14 +25,14 @@ have neither and are left empty rather than given an invented time.
 | in the manifest | 900 |
 | measured at all | 688 |
 | produced trades | 661 |
-| carrying a run time | 557 |
+| carrying a run time | 561 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
-| `excluded` | 498 |
-| `convergence_candidate` | 257 |
+| `excluded` | 491 |
+| `convergence_candidate` | 264 |
 | `E0_strict67` | 67 |
 | `not_tested_in_current_runtime` | 60 |
 | `E1_expanded` | 11 |
@@ -125,7 +125,7 @@ coverage, no published trap.
 | `ObeliskIM_v1_1` | `spot_long` | `E1_expanded` | 64 | `native` | 2026-08-31 15:20:09 | `user_data/profile_smoke/ObeliskIM_v1_1-2026-08-31_15-20-09.zip` |
 | `simple_patterns` | `spot_long` | `E1_expanded` | 1845 | `native` | 2026-08-31 15:55:52 | `user_data/profile_smoke/simple_patterns-2026-08-31_15-55-52.zip` |
 
-## Convergence candidates - 257 strategies
+## Convergence candidates - 264 strategies
 
 A warm-up exists at which every indicator stays inside the band.
 That is not admission: the paired full-window run must still show
@@ -357,6 +357,13 @@ an identical trade list.
 | `STRATEGY_RSI_BB_CROSS` | `spot_long` | 288 candles | 0.0% on `bb_lowerband` | 2026-09-01 12:44:00 | `user_data/convergence_logs/STRATEGY_RSI_BB_CROSS-ladder.log` |
 | `SampleStrategy` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-01 12:44:24 | `user_data/convergence_logs/SampleStrategy-ladder.log` |
 | `Sar` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-01 15:00:35 | `user_data/convergence_logs/Sar-ladder.log` |
+| `Saturn5` | `spot_long` | 1344 candles | 0.0% on `s1_ema_md` | 2026-09-01 15:01:02 | `user_data/convergence_logs/Saturn5-ladder.log` |
+| `Scalp` | `spot_long` | 1440 candles | 0.0% on `fastd` | 2026-09-01 15:01:53 | `user_data/convergence_logs/Scalp-ladder.log` |
+| `Schism2MM` | `spot_long` | 288 candles | 0.0% on `mp` | 2026-09-01 15:02:19 | `user_data/convergence_logs/Schism2MM-ladder.log` |
+| `Schism3` | `spot_long` | 288 candles | 0.0% on `mp` | 2026-09-01 15:02:45 | `user_data/convergence_logs/Schism3-ladder.log` |
+| `Schism4` | `spot_long` | 288 candles | 0.0% on `mp` | 2026-09-01 15:03:10 | `user_data/convergence_logs/Schism4-ladder.log` |
+| `Seb` | `spot_long` | 576 candles | 0.0% on `ema20` | 2026-09-01 15:04:02 | `user_data/convergence_logs/Seb-ladder.log` |
+| `Simple` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 15:04:56 | `user_data/convergence_logs/Simple-ladder.log` |
 | `SmaRsiStrategy` | `spot_long` | 90 candles | 0.041% on `rsi` | 2026-09-01 12:44:48 | `user_data/convergence_logs/SmaRsiStrategy-ladder.log` |
 | `SqueezeMomentumStrategy` | `spot_long` | 288 candles | 0.0% on `bb_upper` | 2026-09-01 12:45:12 | `user_data/convergence_logs/SqueezeMomentumStrategy-ladder.log` |
 | `StochasticOversoldStrategy` | `spot_long` | 288 candles | 0.0% on `stoch_k` | 2026-09-01 12:45:36 | `user_data/convergence_logs/StochasticOversoldStrategy-ladder.log` |
@@ -471,7 +478,7 @@ verdict. Where such a hint exists it is shown in brackets.
 | `tacos1` | `not_scheduled` | `no run under the current runtime (historical hint: No data found. Terminating.)` |
 | `turbov8` | `not_scheduled` | `no run under the current runtime (historical hint: engine exited with code 0 but produced no summary (no trades at all, or output not parsed))` |
 
-## Not passing - 498 strategies, by decisive reason
+## Not passing - 491 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -491,10 +498,10 @@ defect, awaiting re-measurement.
 |---|---|---:|
 | `lookahead_found` | reads data it could not have had at the time | 69 |
 | `technical_trap_found` | carries a published backtesting trap | 40 |
+| `strategy_does_not_run` | fails before it can be measured; the message is in runtime_failure | 152 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 23 |
-| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 189 |
+| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 182 |
 | `no_trades_in_full_measurement` | never trades over the full window | 16 |
-| `canonical_implementation_not_measured` | never ran | 152 |
 | `no_verdict_on_lookahead_and_recursive` | measured; neither gate returned a verdict | 5 |
 | `no_verdict_on_lookahead` | measured and recursion clean; look-ahead has no verdict | 4 |
 
@@ -505,10 +512,10 @@ defect, awaiting re-measurement.
 |---|---|---|---|---|
 | `lookahead_found` | 0 | 15 | 0 | 54 |
 | `technical_trap_found` | 0 | 0 | 0 | 40 |
+| `strategy_does_not_run` | 0 | 152 | 0 | 0 |
 | `recursive_bias_found` | 0 | 0 | 14 | 9 |
-| `recursive_bias_unverified` | 74 | 29 | 0 | 86 |
+| `recursive_bias_unverified` | 74 | 29 | 0 | 79 |
 | `no_trades_in_full_measurement` | 0 | 10 | 0 | 6 |
-| `canonical_implementation_not_measured` | 0 | 152 | 0 | 0 |
 | `no_verdict_on_lookahead_and_recursive` | 0 | 5 | 0 | 0 |
 | `no_verdict_on_lookahead` | 0 | 4 | 0 | 0 |
 
@@ -557,103 +564,9 @@ Wave `not_scheduled` - 40:
 `SimpleHopt1Along`, `SimpleHopt1Ashort`, `SimpleHoptS`, `WTX3`
 `XebTradeStrat`, `ichi`, `tesla4`, `tesla7`
 
-### `recursive_bias_found` - 23
+### `strategy_does_not_run` - 152
 
-Indicator value still drifts at every warm-up the ladder can reach.
-
-Wave `D_recursive_drift` - 14:
-
-`BigZ0307HO`, `BigZ0407`, `BigZ0407HO`, `BigZ04HO`
-`BigZ04HO2`, `BigZ06`, `BigZ07`, `ClucHAnix_BB_RPB_MOD2_ROI`
-`ClucHAnix_BB_RPB_MOD_CTT`, `ClucHAnix_BB_RPB_MOD_E0V1E_ROI`, `ObvTrendStrategy`, `flawless_lambo`
-`lambotest`, `tacos`
-
-Wave `not_scheduled` - 9:
-
-`BcmbigzV1`, `BeastBotXBLR6`, `BeastBotXBLR7`, `BigZ04`
-`GoldHedgeZeroMACD`, `NOTankAi_15`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`
-`NotAnotherSMAOffSetStrategy_V2`
-
-### `recursive_bias_unverified` - 189
-
-Recorded under a parser defect and not re-measured; not a finding.
-
-Wave `B_warmup_refusal` - 74:
-
-`ASDTSRockwellTrading`, `AwesomeMacd`, `BBRSI2`, `BBRSI21`
-`BBRSI3366`, `BB_RPB_TSL_RNG_2`, `BBlower`, `Bandtastic`
-`BuyOrDie`, `Candle2`, `Chandem`, `Chandemtwo`
-`Cluc4`, `CombinedBinHAndClucHyperV0`, `CombinedBinHAndClucHyperV3`, `Combined_Indicators`
-`DD`, `Diamond`, `EMA520015_V17`, `EasyInEasyOut`
-`FVGChannel`, `ForexRobootSuperScalper`, `Freqtrade_backtest_validation_freqtrade1`, `GKD_Baseline`
-`GKD_BaselineAllMAs`, `GKD_HurstExponent`, `GKD_PFE`, `GodCard`
-`HSI`, `HilbertSineWave`, `JuicyTrend`, `KC_BB`
-`MACDStrategyADA`, `MACDStrategyAVAX`, `MACDStrategyBTC`, `MACDStrategyENJ`
-`MACDStrategyETC`, `MACDStrategySOL`, `MACDStrategyXRP`, `MabStra`
-`Macd`, `Maro4hMacdSd`, `MomStrategy`, `ONUR`
-`OmaGann`, `RSI`, `RSI_BB`, `RSI_EMA_strategy`
-`ReinforcedSmoothScalp`, `Roth01`, `Roth03`, `SimpleHopt`
-`SlowPotato`, `SmartMoneyStrategy`, `Strategy001`, `Strategy001_custom_exit`
-`Strategy001_custom_sell`, `Strategy002`, `Strategy003`, `Strategy004`
-`Strategy005`, `StrategyScalpingFast2`, `TemaMaster`, `TemaMaster3`
-`TemaPure`, `TemaPureNeat`, `TemaPureTwo`, `TouchEmaDelayStrategy`
-`TouchEmaStrategy`, `Trend_Strength_Directional`, `TwoCandle`, `bbandrsi`
-`e6v34`, `ema`
-
-Wave `C_measurement_recovery` - 29:
-
-`BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB_RPB_TSL_BI`
-`BB_RPB_TSL_BIV1`, `BB_RPB_TSL_SMA_Tranz`, `BB_RPB_TSL_SMA_Tranz_TB_1_1_1`, `BB_RPB_TSL_SMA_Tranz_TB_MOD`
-`GeneStrategy`, `GeneStrategy_v2`, `GeneTrader_gen10_1734895087_6007`, `GeneTrader_gen5_1735014093_4541`
-`KitchenSink`, `MultiMA_TSL3`, `MultiMA_TSL3_Mod`, `MultiRSI`
-`NASOSRv6_private_Reinuvader_20211121`, `NFI731_BUSD`, `NFIX_BB_RPB`, `NFIX_BB_RPB_c7c477d_20211030`
-`NostalgiaForInfinity772martinsk3`, `NostalgiaForInfinityX`, `ObeliskRSI_v6_1`, `epretrace`
-`falconTrader`, `newstrategy53`, `newstrategy53_22`, `pmaxTest`
-`slownsteady`
-
-Wave `not_scheduled` - 86:
-
-`BinHV27F`, `BinHV27_short`, `COPY_HL`, `ConsensusShort`
-`CustomStoplossWithPSAR`, `DWT_LongShort`, `DWT_short`, `DevilStra`
-`Dimond`, `FReinforcedStrategy`, `FTT_DWT_FBB_FUTURES`, `FiveMinCrossAbove`
-`GKD_CT`, `GodStraNew`, `GodStraNew40`, `GodStraNew_SMAonly`
-`HEW`, `HourBasedStrategy`, `HurstCycle3`, `HurstCycle7`
-`HurstCycleV4`, `HurstCycleV5`, `HurstCycleV5RSI`, `HurstCycleV6`
-`Ichimoku`, `MACDRL`, `MACDRS`, `Minmax`
-`NostalgiaForInfinityX2`, `NostalgiaForInfinityX3`, `NostalgiaForInfinityX4`, `NostalgiaForInfinityX5`
-`NostalgiaForInfinityX6`, `NostalgiaForInfinityX7`, `PatternRecognition`, `SMAOffset_Hippocritical_dca_leverage`
-`Saturn5`, `Scalp`, `Schism2MM`, `Schism3`
-`Schism4`, `Seb`, `Simple`, `SmoothOperator`
-`SmoothScalp`, `StarRise`, `StarRise_strat`, `StrategyTestV2`
-`StrategyTestV3`, `SuperTrend`, `SupertrendStrategy`, `SwingHighToSky`
-`TD`, `TEMA`, `TWAPStrategy`, `TechnicalExampleStrategy`
-`TheForce`, `ToTheMoon`, `TrendFollowingStrategy`, `TrendRiderStrategy`
-`TrixV21Strategy`, `TrixV23Strategy`, `Uptrend`, `VWAP`
-`VolatilitySystem`, `VolatilitySystemV2`, `WaveTrendStra`, `YOLO`
-`ZScoreMeanReversionStrategy`, `ZaratustraDCA2_06`, `ZaratustraDCA2_07`, `ZaratustraDCA5`
-`adaptive`, `custom`, `dualwave`, `hansencandlepatternV1`
-`heikin`, `keltnerchannel`, `mabStra`, `moonhouse`
-`pcb20`, `stratfib`, `tbtest`, `true_lambo`
-`twinturboV8`, `twinturboV8_2`
-
-### `no_trades_in_full_measurement` - 16
-
-Never trades over the full window.
-
-Wave `C_measurement_recovery` - 10:
-
-`BasketStrategy`, `BreakEven`, `DoesNothingStrategy`, `FundingCarry`
-`Miku_PP_v3`, `MostOfAll`, `MyStrategyTemplate`, `Obelisk_3EMA_StochRSI_ATR`
-`ViN`, `ep3mas2`
-
-Wave `not_scheduled` - 6:
-
-`DoubleEMACrossoverWithTrend`, `EMAPriceCrossoverWithThreshold`, `Insomnia_short`, `MACDCrossoverWithTrend`
-`RSIDirectionalWithTrend`, `RSIDirectionalWithTrendSlow`
-
-### `canonical_implementation_not_measured` - 152
-
-Never ran.
+Fails before it can be measured; the message is in runtime_failure.
 
 Wave `C_measurement_recovery` - 152:
 
@@ -696,6 +609,98 @@ Wave `C_measurement_recovery` - 152:
 `mark_strat`, `mark_strat_opt`, `multi_tf`, `new_turtle`
 `new_turtle_roi`, `quantumfirst`, `redditMA`, `thetank2`
 
+### `recursive_bias_found` - 23
+
+Indicator value still drifts at every warm-up the ladder can reach.
+
+Wave `D_recursive_drift` - 14:
+
+`BigZ0307HO`, `BigZ0407`, `BigZ0407HO`, `BigZ04HO`
+`BigZ04HO2`, `BigZ06`, `BigZ07`, `ClucHAnix_BB_RPB_MOD2_ROI`
+`ClucHAnix_BB_RPB_MOD_CTT`, `ClucHAnix_BB_RPB_MOD_E0V1E_ROI`, `ObvTrendStrategy`, `flawless_lambo`
+`lambotest`, `tacos`
+
+Wave `not_scheduled` - 9:
+
+`BcmbigzV1`, `BeastBotXBLR6`, `BeastBotXBLR7`, `BigZ04`
+`GoldHedgeZeroMACD`, `NOTankAi_15`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`
+`NotAnotherSMAOffSetStrategy_V2`
+
+### `recursive_bias_unverified` - 182
+
+Recorded under a parser defect and not re-measured; not a finding.
+
+Wave `B_warmup_refusal` - 74:
+
+`ASDTSRockwellTrading`, `AwesomeMacd`, `BBRSI2`, `BBRSI21`
+`BBRSI3366`, `BB_RPB_TSL_RNG_2`, `BBlower`, `Bandtastic`
+`BuyOrDie`, `Candle2`, `Chandem`, `Chandemtwo`
+`Cluc4`, `CombinedBinHAndClucHyperV0`, `CombinedBinHAndClucHyperV3`, `Combined_Indicators`
+`DD`, `Diamond`, `EMA520015_V17`, `EasyInEasyOut`
+`FVGChannel`, `ForexRobootSuperScalper`, `Freqtrade_backtest_validation_freqtrade1`, `GKD_Baseline`
+`GKD_BaselineAllMAs`, `GKD_HurstExponent`, `GKD_PFE`, `GodCard`
+`HSI`, `HilbertSineWave`, `JuicyTrend`, `KC_BB`
+`MACDStrategyADA`, `MACDStrategyAVAX`, `MACDStrategyBTC`, `MACDStrategyENJ`
+`MACDStrategyETC`, `MACDStrategySOL`, `MACDStrategyXRP`, `MabStra`
+`Macd`, `Maro4hMacdSd`, `MomStrategy`, `ONUR`
+`OmaGann`, `RSI`, `RSI_BB`, `RSI_EMA_strategy`
+`ReinforcedSmoothScalp`, `Roth01`, `Roth03`, `SimpleHopt`
+`SlowPotato`, `SmartMoneyStrategy`, `Strategy001`, `Strategy001_custom_exit`
+`Strategy001_custom_sell`, `Strategy002`, `Strategy003`, `Strategy004`
+`Strategy005`, `StrategyScalpingFast2`, `TemaMaster`, `TemaMaster3`
+`TemaPure`, `TemaPureNeat`, `TemaPureTwo`, `TouchEmaDelayStrategy`
+`TouchEmaStrategy`, `Trend_Strength_Directional`, `TwoCandle`, `bbandrsi`
+`e6v34`, `ema`
+
+Wave `C_measurement_recovery` - 29:
+
+`BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB_RPB_TSL_BI`
+`BB_RPB_TSL_BIV1`, `BB_RPB_TSL_SMA_Tranz`, `BB_RPB_TSL_SMA_Tranz_TB_1_1_1`, `BB_RPB_TSL_SMA_Tranz_TB_MOD`
+`GeneStrategy`, `GeneStrategy_v2`, `GeneTrader_gen10_1734895087_6007`, `GeneTrader_gen5_1735014093_4541`
+`KitchenSink`, `MultiMA_TSL3`, `MultiMA_TSL3_Mod`, `MultiRSI`
+`NASOSRv6_private_Reinuvader_20211121`, `NFI731_BUSD`, `NFIX_BB_RPB`, `NFIX_BB_RPB_c7c477d_20211030`
+`NostalgiaForInfinity772martinsk3`, `NostalgiaForInfinityX`, `ObeliskRSI_v6_1`, `epretrace`
+`falconTrader`, `newstrategy53`, `newstrategy53_22`, `pmaxTest`
+`slownsteady`
+
+Wave `not_scheduled` - 79:
+
+`BinHV27F`, `BinHV27_short`, `COPY_HL`, `ConsensusShort`
+`CustomStoplossWithPSAR`, `DWT_LongShort`, `DWT_short`, `DevilStra`
+`Dimond`, `FReinforcedStrategy`, `FTT_DWT_FBB_FUTURES`, `FiveMinCrossAbove`
+`GKD_CT`, `GodStraNew`, `GodStraNew40`, `GodStraNew_SMAonly`
+`HEW`, `HourBasedStrategy`, `HurstCycle3`, `HurstCycle7`
+`HurstCycleV4`, `HurstCycleV5`, `HurstCycleV5RSI`, `HurstCycleV6`
+`Ichimoku`, `MACDRL`, `MACDRS`, `Minmax`
+`NostalgiaForInfinityX2`, `NostalgiaForInfinityX3`, `NostalgiaForInfinityX4`, `NostalgiaForInfinityX5`
+`NostalgiaForInfinityX6`, `NostalgiaForInfinityX7`, `PatternRecognition`, `SMAOffset_Hippocritical_dca_leverage`
+`SmoothOperator`, `SmoothScalp`, `StarRise`, `StarRise_strat`
+`StrategyTestV2`, `StrategyTestV3`, `SuperTrend`, `SupertrendStrategy`
+`SwingHighToSky`, `TD`, `TEMA`, `TWAPStrategy`
+`TechnicalExampleStrategy`, `TheForce`, `ToTheMoon`, `TrendFollowingStrategy`
+`TrendRiderStrategy`, `TrixV21Strategy`, `TrixV23Strategy`, `Uptrend`
+`VWAP`, `VolatilitySystem`, `VolatilitySystemV2`, `WaveTrendStra`
+`YOLO`, `ZScoreMeanReversionStrategy`, `ZaratustraDCA2_06`, `ZaratustraDCA2_07`
+`ZaratustraDCA5`, `adaptive`, `custom`, `dualwave`
+`hansencandlepatternV1`, `heikin`, `keltnerchannel`, `mabStra`
+`moonhouse`, `pcb20`, `stratfib`, `tbtest`
+`true_lambo`, `twinturboV8`, `twinturboV8_2`
+
+### `no_trades_in_full_measurement` - 16
+
+Never trades over the full window.
+
+Wave `C_measurement_recovery` - 10:
+
+`BasketStrategy`, `BreakEven`, `DoesNothingStrategy`, `FundingCarry`
+`Miku_PP_v3`, `MostOfAll`, `MyStrategyTemplate`, `Obelisk_3EMA_StochRSI_ATR`
+`ViN`, `ep3mas2`
+
+Wave `not_scheduled` - 6:
+
+`DoubleEMACrossoverWithTrend`, `EMAPriceCrossoverWithThreshold`, `Insomnia_short`, `MACDCrossoverWithTrend`
+`RSIDirectionalWithTrend`, `RSIDirectionalWithTrendSlow`
+
 ### `no_verdict_on_lookahead_and_recursive` - 5
 
 Measured; neither gate returned a verdict.
@@ -728,8 +733,8 @@ Wave `C_measurement_recovery` - 4:
 
 | Item | Strategies |
 |---|---:|
-| `paired_full_window_equivalence` | 257 |
-| `lookahead_verdict` | 113 |
+| `paired_full_window_equivalence` | 264 |
+| `lookahead_verdict` | 117 |
 | `first_measurement_in_current_runtime` | 60 |
 | `convergence_inconclusive` | 36 |
 | `re-measure_gates_in_current_runtime` | 30 |

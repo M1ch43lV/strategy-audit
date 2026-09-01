@@ -43,7 +43,8 @@ FIELDS = [
     "strategy_id", "run_profile", "expansion_wave", "cohort", "measured",
     "observed_trades", "trade_evidence", "lookahead", "lookahead_evidence",
     "recursive", "recursive_evidence", "coverage_status", "traps_n", "artifact_role",
-    "baseline_status", "primary_reason", "evidence_gap", "last_tested_at",
+    "baseline_status", "primary_reason", "runtime_failure", "evidence_gap",
+    "last_tested_at",
     "last_tested_source", "settled_startup", "settled_days", "settled_drift_pct",
     "needed_no_override", "evidence_paths", "open_work",
 ]
@@ -58,6 +59,8 @@ REASON_ORDER = (
     ("lookahead_found", "reads data it could not have had at the time"),
     ("behavior_changed_primary_exclusion", "repaired in a way that changed behaviour"),
     ("technical_trap_found", "carries a published backtesting trap"),
+    ("strategy_does_not_run",
+     "fails before it can be measured; the message is in runtime_failure"),
     ("recursive_bias_found",
      "indicator value still drifts at every warm-up the ladder can reach"),
     ("recursive_bias_unverified",
@@ -257,6 +260,21 @@ def rows():
                 reasons.add("recursive_bias_found")
             if measurement.get("status") == "measured":
                 reasons.discard("canonical_implementation_not_measured")
+            if measurement and measurement.get("status") != "measured":
+                # A strategy that will not run cannot be judged on anything
+                # else, so this outranks every gate label - and in particular
+                # outranks recursive_bias_unverified, which is a statement
+                # about our own measurement rather than about the strategy.
+                # The frozen baseline predates these runs, so it says only that
+                # no measurement exists. It reads as "never ran", which is
+                # wrong: the row did run here, on the date this table shows,
+                # and it failed with a message nobody was reading. Saying what
+                # actually happened is both truer and actionable - 48 of these
+                # turn out to be blocked on nothing but a missing timeframe.
+                reasons.discard("canonical_implementation_not_measured")
+                failure = i18n.translate(measurement.get("why") or "").strip()
+                if failure:
+                    reasons.add("strategy_does_not_run")
             # A recursion label is only as good as the measurement behind it,
             # and the measurement behind most of them is known to be defective:
             # the parser read the drift at 199 candles instead of at the
@@ -344,6 +362,9 @@ def rows():
             "artifact_role": profile.get("artifact_role", ""),
             "baseline_status": base.get("eligibility_status", ""),
             "primary_reason": reason,
+            "runtime_failure": (i18n.translate(measurement.get("why") or "")[:160]
+                                if measurement.get("status") not in (None, "measured")
+                                else ""),
             "evidence_gap": ";".join(gaps),
             "last_tested_at": stamp,
             "last_tested_source": stamp_source,
