@@ -1,5 +1,47 @@
 {
   "arm": "timeframe_recovered_from_author_declaration",
+  "refused": {
+    "Chained": {
+      "route": "timeframe_repair",
+      "why": "declares only informative_timeframe, which is the higher timeframe pulled in alongside the base one; the base timeframe is not stated"
+    },
+    "EnsembleStrategy": {
+      "route": "timeframe_repair",
+      "why": "declares only informative_timeframe, which is the higher timeframe pulled in alongside the base one; the base timeframe is not stated"
+    },
+    "EnsembleStrategyV1": {
+      "route": "timeframe_repair",
+      "why": "declares only informative_timeframe, which is the higher timeframe pulled in alongside the base one; the base timeframe is not stated"
+    },
+    "EnsembleStrategyV2": {
+      "route": "timeframe_repair",
+      "why": "declares only informative_timeframe, which is the higher timeframe pulled in alongside the base one; the base timeframe is not stated"
+    },
+    "FreqaiExampleStrategy": {
+      "route": "timeframe_repair",
+      "why": "a FreqAI strategy: the timeframe comes from the freqai block of the config, not from the strategy"
+    },
+    "LitmusGoodMinMaxClassificationStrategy": {
+      "route": "timeframe_repair",
+      "why": "a FreqAI strategy: the timeframe comes from the freqai block of the config, not from the strategy"
+    },
+    "MultiTargetClassifierTestStrategy": {
+      "route": "timeframe_repair",
+      "why": "a FreqAI strategy: the timeframe comes from the freqai block of the config, not from the strategy"
+    },
+    "MultiTargetRegressorTestStrategy": {
+      "route": "timeframe_repair",
+      "why": "a FreqAI strategy: the timeframe comes from the freqai block of the config, not from the strategy"
+    },
+    "QuickAdapterV3": {
+      "route": "timeframe_repair",
+      "why": "a FreqAI strategy: the timeframe comes from the freqai block of the config, not from the strategy"
+    },
+    "ScalpingCCI": {
+      "route": "timeframe_repair",
+      "why": "declares ticker_interval = '15', which carries no unit and cannot be read as a timeframe"
+    }
+  },
   "results": {
     "ADX_15M_USDT": {
       "archive": "user_data/profile_smoke/ADX_15M_USDT-2026-09-01_19-31-10.zip",

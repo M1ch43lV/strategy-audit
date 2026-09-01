@@ -176,7 +176,26 @@ def _record(row, timeframe, kind, source):
     return record
 
 
+def record_refusals():
+    """Persist why a blocked row was not repaired, next to the repairs.
+
+    A refusal that lives only in a function is invisible to every reader of
+    the table: those rows kept reading "to be fixed" while this route had
+    already declined them, with a reason, for good.
+    """
+    data = _load()
+    refused = {}
+    for row, timeframe, kind, why in cohort():
+        if timeframe:
+            continue
+        refused[row["strategy_id"]] = {"why": why, "route": "timeframe_repair"}
+    data["refused"] = refused
+    _write(data)
+    return refused
+
+
 def run_smoke(limit, timeout):
+    record_refusals()
     data = _load()
     queue = [(row, tf, kind, why) for row, tf, kind, why in cohort()
              if tf and row["strategy_id"] not in data["results"]]
@@ -280,6 +299,8 @@ def main(argv=None):
         selftest()
         return 0
     if args.stage == "report":
+        refused = record_refusals()
+        print("recorded %d refusals" % len(refused))
         return report()
     if args.stage == "gates":
         return run_gates(args.limit, args.timeout, args.fallback_timeout)

@@ -50,6 +50,25 @@ BLOCKED_TRIAGE = os.path.join(ROOT, "BLOCKED_TRIAGE.json")
 # inherited one, applied to the measurement instead of the verdict.
 TIMEFRAME_REPAIR = os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json")
 MODULE_REPAIR = os.path.join(ROOT, "ELIGIBILITY_MODULE_REPAIR.json")
+LOCAL_MODULES = os.path.join(ROOT, "REPAIR_LOCAL_MODULES.json")
+CLASS1 = os.path.join(ROOT, "PROFILE_CLASS1.json")
+
+# What has actually become of a row that could not start. The triage says what
+# ought to be done; these say what was done and what it achieved, which is a
+# different question and the one a reader asks second.
+REPAIR_STATE = {
+    "repaired": "a repair was applied and the row now produces a measurement",
+    "repair_attempted": "a repair was applied; the row still fails, but on "
+                        "something else - the original obstacle is gone",
+    "repair_withdrawn": "a repair was applied and taken back, because it made "
+                        "the row fail in a new way",
+    "to_be_fixed": "what stops the row is ours, or is the author's own words "
+                   "under a name the framework has since changed",
+    "needs_a_look": "repairable in principle, but not by a rule that can be "
+                    "written now",
+    "refuse_repair": "the strategy does not declare what freqtrade requires; "
+                     "supplying it would measure our invention",
+}
 # Two later stores hold look-ahead measured natively for rows whose verdict was
 # inherited or missing. They are separate files because they are separate
 # cohorts, and forgetting to read one is how the newest evidence stops reaching
@@ -331,6 +350,17 @@ def rows():
     convergence = _json(CONVERGENCE)
     wave_b = _json(WAVE_B_WARMUP)
     triage = _json(BLOCKED_TRIAGE)
+    # Which runner repaired a row is part of what happened to it.
+    repair_source = {name: "timeframe_missing"
+                     for name in _json(TIMEFRAME_REPAIR)}
+    for name in _json(MODULE_REPAIR):
+        repair_source.setdefault(name, "local_module_off_path")
+    # A route that has declined a row, with a reason, has decided it. Leaving
+    # such a row on "to be fixed" promises work that will never be done.
+    refused_timeframe = _json(TIMEFRAME_REPAIR, "refused")
+    withdrawn = {name for name, entry
+                 in (_json(CLASS1, "strategies") or {}).items()
+                 if entry.get("status") == "withdrawn"}
     repaired = dict(_json(TIMEFRAME_REPAIR))
     # Two repair runners, one precedence: whichever of them last produced a
     # measurement for a row replaces the failure the smoke store holds.
@@ -573,7 +603,24 @@ def rows():
         # row, so nothing is hidden by the change of name.
         if cohort == "excluded" and basis in ("inherited", "no_finding"):
             cohort = "exclusion_unconfirmed"
-        repair = triage.get(strategy) or {}
+        repair = dict(triage.get(strategy) or {})
+        # A row that was repaired has left the blocked set, and with it the
+        # triage - so the label saying what ought to be done disappeared at
+        # exactly the moment it became worth reading. What was done to it is
+        # recovered from the repair runners instead.
+        if strategy in repair_source:
+            repair["family"] = repair_source[strategy]
+            if repair_run.get("status") == "measured":
+                repair["verdict"] = "repaired"
+            elif repair_run.get("status") == "failed":
+                repair["verdict"] = "repair_attempted"
+        if strategy in refused_timeframe and strategy not in repair_source:
+            repair["verdict"] = "refuse_repair"
+            repair["family"] = "timeframe_not_recoverable"
+            repair["note"] = refused_timeframe[strategy].get("why", "")
+        if strategy in withdrawn:
+            repair["verdict"] = "repair_withdrawn"
+            repair["family"] = "local_module_off_path"
         if basis == "blocked":
             # A blocked row that has been triaged says what would fix it. One
             # that has not says only that nobody has looked.

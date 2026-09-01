@@ -96,6 +96,12 @@
       ],
       "status": "applied"
     },
+    "DualModelPolymarketPortfolio": {
+      "note": "repair withdrawn 2026-09-01: the only corpus copy of `alpha` is in repos/mlsys-io_PortfolioBench, which carries its own freqtrade/ and shadows the installed package the moment it goes on sys.path. The run then fails with \"cannot import name '__version__' from 'freqtrade' (unknown location)\", which names neither the path nor the cause. Deleting the entry would have deleted the finding too.",
+      "rules": [],
+      "status": "withdrawn",
+      "withdrawn_path": "repos/mlsys-io_PortfolioBench"
+    },
     "Dyna_opti": {
       "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
       "python_paths": [
@@ -105,6 +111,12 @@
         "restore_copied_local_module"
       ],
       "status": "applied"
+    },
+    "EmaCrossStrategy": {
+      "note": "repair withdrawn 2026-09-01: the only corpus copy of `alpha` is in repos/mlsys-io_PortfolioBench, which carries its own freqtrade/ and shadows the installed package the moment it goes on sys.path. The run then fails with \"cannot import name '__version__' from 'freqtrade' (unknown location)\", which names neither the path nor the cause. Deleting the entry would have deleted the finding too.",
+      "rules": [],
+      "status": "withdrawn",
+      "withdrawn_path": "repos/mlsys-io_PortfolioBench"
     },
     "FTT_DWT_FBB_FUTURES": {
       "python_paths": [
@@ -301,6 +313,18 @@
         "restore_author_package_extension"
       ],
       "status": "blocked_missing_dependency"
+    },
+    "PolymarketMeanReversionStrategy": {
+      "note": "repair withdrawn 2026-09-01: the only corpus copy of `alpha` is in repos/mlsys-io_PortfolioBench, which carries its own freqtrade/ and shadows the installed package the moment it goes on sys.path. The run then fails with \"cannot import name '__version__' from 'freqtrade' (unknown location)\", which names neither the path nor the cause. Deleting the entry would have deleted the finding too.",
+      "rules": [],
+      "status": "withdrawn",
+      "withdrawn_path": "repos/mlsys-io_PortfolioBench"
+    },
+    "PolymarketMomentumStrategy": {
+      "note": "repair withdrawn 2026-09-01: the only corpus copy of `alpha` is in repos/mlsys-io_PortfolioBench, which carries its own freqtrade/ and shadows the installed package the moment it goes on sys.path. The run then fails with \"cannot import name '__version__' from 'freqtrade' (unknown location)\", which names neither the path nor the cause. Deleting the entry would have deleted the finding too.",
+      "rules": [],
+      "status": "withdrawn",
+      "withdrawn_path": "repos/mlsys-io_PortfolioBench"
     },
     "Proton": {
       "note": "Source requires proton_parameters but the repository config does not provide them.",
