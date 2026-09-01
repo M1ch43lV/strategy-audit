@@ -542,7 +542,11 @@ def rows():
         if basis == "blocked":
             open_work.append("runtime_repair_pending")
         elif basis in ("inherited", "no_finding"):
-            if lookahead_evidence != "native":
+            # Not only a borrowed verdict. A gate of ours that ran and
+            # returned nothing - a timeout, an exception - has produced
+            # no verdict either, and the row cannot rest on it.
+            if lookahead_evidence != "native" \
+                    or lookahead not in ("PASS", "FOUND"):
                 open_work.append("lookahead_remeasure_pending")
             if reason == "no_trades_in_full_measurement" \
                     and source != "full_window":
@@ -955,6 +959,11 @@ def selftest():
     assert {row["strategy_id"] for row in data
             if row["cohort"] == "E1_expanded"} == admitted
 
+    # Every row invariant belongs in one loop. This block was split in two by
+    # a bad patch on 2026-09-01: half of it ended up inside the store
+    # cross-check below and ran against a single leftover row, so four checks
+    # were passing on 1 of 900 rows. A test that reports PASS while covering
+    # almost nothing is worse than no test.
     for row in data:
         if row["cohort"] in ("excluded", "pending", "not_tested_in_current_runtime"):
             assert row["primary_reason"], row["strategy_id"]
@@ -968,7 +977,30 @@ def selftest():
         if row["cohort"] == "not_tested_in_current_runtime":
             assert row["measured"] == "false", row["strategy_id"]
             assert not row["evidence_paths"], row["strategy_id"]
-        # Every native re-measurement must be visible in the table. A verdict that
+            assert "no run under the current runtime" in row["primary_reason"], \
+                row["strategy_id"]
+        # A row the ladder settled must not still carry the superseded verdict.
+        if row["cohort"] == "convergence_candidate":
+            assert row["recursive"] in ("PASS", "PASS_1PCT"), \
+                (row["strategy_id"], row["recursive"])
+            assert row["settled_startup"] != "", row["strategy_id"]
+        # Nothing reaches a reader in the harness's own language. The three
+        # messages that used to leak through were not strategy errors at all,
+        # but this audit's own verdicts: a timeout, an empty summary, and a
+        # timeframe mismatch.
+        assert not i18n.has_cyrillic(row["primary_reason"]), row["strategy_id"]
+        # An exclusion is either a finding of ours or an open question, and an
+        # open question must name the work that would close it.
+        if row["cohort"] == "excluded" \
+                and row["exclusion_basis"] != "own_measurement":
+            assert row["open_work"], \
+                "%s: excluded on %s with no work queued" % (
+                    row["strategy_id"], row["exclusion_basis"])
+        # A recovered timestamp always names where it came from.
+        assert bool(row["last_tested_at"]) == bool(row["last_tested_source"]), \
+            row["strategy_id"]
+
+    # Every native re-measurement must be visible in the table. A verdict that
     # exists in a store this generator does not read is worse than no verdict:
     # the table looks current and is not.
     fresh_store = {}
@@ -982,34 +1014,12 @@ def selftest():
         assert by_id[name]["lookahead"] == status, (name, status)
         assert by_id[name]["lookahead_evidence"] == "native", name
 
-    # A row the ladder settled must not still carry the superseded verdict.
-        if row["cohort"] == "convergence_candidate":
-            assert row["recursive"] in ("PASS", "PASS_1PCT"),                 (row["strategy_id"], row["recursive"])
-            assert row["settled_startup"] != "", row["strategy_id"]
-        # Nothing reaches a reader in the harness's own language. The three
-        # messages that used to leak through were not strategy errors at all,
-        # but this audit's own verdicts: a timeout, an empty summary, and a
-        # timeframe mismatch.
-        assert not i18n.has_cyrillic(row["primary_reason"]), row["strategy_id"]
-        # A recovered timestamp always names where it came from.
-        # An exclusion is either a finding of ours or an open question, and
-        # an open question must name the work that would close it.
-        if row["cohort"] == "excluded" and row["exclusion_basis"] != "own_measurement":
-            assert row["open_work"],                 "%s: excluded on %s with no work queued" % (
-                    row["strategy_id"], row["exclusion_basis"])
-        assert bool(row["last_tested_at"]) == bool(row["last_tested_source"]), \
-            row["strategy_id"]
-
     # The old ledger is reference material, not evidence. It records what the
     # original author's sweep did in an environment that did not establish this
     # audit's preconditions, so a row appearing there proves nothing about
     # whether it works under the current runtime. It is read only to attach a
     # historical hint, never to decide a cohort or to clear a row.
     assert len({r["strategy"] for r in _csv(LEDGER)}) == 895
-    for row in data:
-        if row["cohort"] == "not_tested_in_current_runtime":
-            assert "no run under the current runtime" in row["primary_reason"], \
-                row["strategy_id"]
     print("strategy_status selftest: PASS (%d rows, %d E0, %d E1, %d unmeasured, "
           "%d timestamped)"
           % (len(data), len(listed), len(admitted),

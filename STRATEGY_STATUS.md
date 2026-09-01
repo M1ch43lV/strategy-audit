@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 20:35:31 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 21:11:29 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -45,7 +45,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 169 of 2102 commands are recorded so far, and every new run
+recording. 202 of 2102 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -1349,8 +1349,8 @@ Wave `C_measurement_recovery` - 10:
 | `paired_full_window_equivalence` | 378 |
 | `runtime_repair_pending` | 152 |
 | `recursive_ladder_pending` | 145 |
-| `lookahead_verdict` | 92 |
-| `lookahead_remeasure_pending` | 65 |
+| `lookahead_remeasure_pending` | 88 |
+| `lookahead_verdict` | 73 |
 | `first_measurement_in_current_runtime` | 60 |
 | `convergence_inconclusive` | 34 |
 | `convergence_not_converged_within_ladder` | 28 |
