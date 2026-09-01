@@ -1,0 +1,491 @@
+<title>Strategy Test Bench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  :root{
+    --ground:#F5F7FA; --surface:#FFFFFF; --sunk:#EDF0F5; --raised:#FBFCFD;
+    --ink:#131A22; --muted:#5A6673; --faint:#8894A3;
+    --line:#DDE2EA; --line-soft:#EAEEF3;
+    --accent:#39508F; --accent-soft:#39508F14;
+    --pass:#26694C; --pass-soft:#26694C16;
+    --fail:#9E4632; --fail-soft:#9E463214;
+    --hold:#84631F; --hold-soft:#84631F16;
+    --cand:#4557A0; --cand-soft:#4557A016;
+    --none:#6D7885; --none-soft:#6D788514;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0D1218; --surface:#151C25; --sunk:#111820; --raised:#1A222C;
+      --ink:#E3E9F0; --muted:#8B98A8; --faint:#65717F;
+      --line:#242E3A; --line-soft:#1C242E;
+      --accent:#8098E0; --accent-soft:#8098E022;
+      --pass:#5FAB83; --pass-soft:#5FAB8322;
+      --fail:#D68065; --fail-soft:#D6806522;
+      --hold:#C7A257; --hold-soft:#C7A25722;
+      --cand:#8A9CE2; --cand-soft:#8A9CE222;
+      --none:#8894A3; --none-soft:#8894A322;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0D1218; --surface:#151C25; --sunk:#111820; --raised:#1A222C;
+    --ink:#E3E9F0; --muted:#8B98A8; --faint:#65717F;
+    --line:#242E3A; --line-soft:#1C242E;
+    --accent:#8098E0; --accent-soft:#8098E022;
+    --pass:#5FAB83; --pass-soft:#5FAB8322;
+    --fail:#D68065; --fail-soft:#D6806522;
+    --hold:#C7A257; --hold-soft:#C7A25722;
+    --cand:#8A9CE2; --cand-soft:#8A9CE222;
+    --none:#8894A3; --none-soft:#8894A322;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:"IBM Plex Sans","Segoe UI",Arial,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1280px; margin:0 auto; padding:40px 24px 80px;
+        display:flex; flex-direction:column; gap:34px}
+
+  header{display:flex; flex-direction:column; gap:12px}
+  .eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11.5px;
+    font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
+  h1{font-size:clamp(27px,3.6vw,38px); font-weight:700; letter-spacing:-.02em;
+     line-height:1.08; margin:0; text-wrap:balance}
+  .lede{font-family:"IBM Plex Serif",Georgia,serif; font-size:16.5px;
+        color:var(--muted); max-width:66ch; margin:0}
+
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr));
+    gap:1px; background:var(--line); border:1px solid var(--line);
+    border-radius:4px; overflow:hidden}
+  .stat{background:var(--surface); padding:16px 18px; display:flex;
+        flex-direction:column; gap:4px}
+  .stat b{font-family:"IBM Plex Mono",ui-monospace,monospace; font-weight:600;
+    font-size:26px; letter-spacing:-.02em; font-variant-numeric:tabular-nums;
+    line-height:1.05}
+  .stat span{font-size:11.5px; font-weight:600; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--muted)}
+  .stat.is-pass b{color:var(--pass)}
+  .stat.is-cand b{color:var(--cand)}
+  .stat.is-fail b{color:var(--fail)}
+  .stat.is-hold b{color:var(--hold)}
+
+  section{display:flex; flex-direction:column; gap:14px}
+  h2{font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+     color:var(--muted); margin:0; padding-bottom:9px; border-bottom:1px solid var(--line)}
+  p{margin:0; max-width:72ch}
+  .note{color:var(--muted); font-size:14px}
+  .note strong{color:var(--ink); font-weight:600}
+  code{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.86em;
+    background:var(--sunk); padding:1px 5px; border-radius:2px}
+
+  .dist{display:flex; height:34px; border-radius:3px; overflow:hidden;
+        border:1px solid var(--line)}
+  .dist span{display:block}
+  .distkey{display:flex; flex-wrap:wrap; gap:14px 22px}
+  .distkey div{display:flex; align-items:center; gap:7px; font-size:12.5px;
+               color:var(--muted)}
+  .swatch{width:11px; height:11px; border-radius:2px; flex:none}
+  .distkey b{font-family:"IBM Plex Mono",ui-monospace,monospace; color:var(--ink);
+    font-variant-numeric:tabular-nums; font-weight:600}
+
+  .controls{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+  input[type=search],select{
+    font-family:inherit; font-size:14px; color:var(--ink);
+    background:var(--surface); border:1px solid var(--line);
+    border-radius:3px; padding:7px 11px;
+  }
+  input[type=search]{min-width:250px; flex:1 1 250px}
+  input[type=search]:focus-visible,select:focus-visible,.chip:focus-visible{
+    outline:2px solid var(--accent); outline-offset:1px}
+  .chips{display:flex; flex-wrap:wrap; gap:6px}
+  .chip{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px;
+    border:1px solid var(--line); background:var(--surface); color:var(--muted);
+    border-radius:3px; padding:5px 10px; cursor:pointer}
+  .chip[aria-pressed="true"]{background:var(--accent-soft); border-color:var(--accent);
+    color:var(--accent); font-weight:600}
+  .count{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12.5px;
+         color:var(--faint); margin-left:auto; font-variant-numeric:tabular-nums}
+
+  .scroller{overflow-x:auto; border:1px solid var(--line); border-radius:4px;
+            background:var(--surface); max-height:70vh; overflow-y:auto}
+  table{border-collapse:collapse; width:100%; min-width:1020px}
+  thead th{position:sticky; top:0; z-index:1; background:var(--raised);
+    font-size:10.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
+    color:var(--muted); text-align:left; padding:10px 12px; white-space:nowrap;
+    border-bottom:1px solid var(--line); cursor:pointer; user-select:none}
+  thead th.n{text-align:right}
+  thead th:hover{color:var(--ink)}
+  tbody tr{border-bottom:1px solid var(--line-soft)}
+  tbody tr:last-child{border-bottom:0}
+  td{padding:8px 12px; vertical-align:middle; font-size:13.5px}
+  td.name{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12.5px;
+    white-space:nowrap; font-weight:500}
+  td.num{text-align:right; font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-variant-numeric:tabular-nums; color:var(--muted)}
+  td.small{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11.5px;
+    color:var(--muted); white-space:nowrap}
+  td.reason{color:var(--muted); font-size:12.5px; max-width:400px}
+  td.cmd{max-width:340px}
+  code.cmd b{font-weight:600; color:var(--accent); margin-right:4px;
+    font-style:normal}
+  code.cmd + code.cmd{margin-top:2px}
+  code.cmd{display:block; font-size:10.5px; line-height:1.35; white-space:nowrap;
+    overflow:hidden; text-overflow:ellipsis; background:var(--sunk);
+    padding:3px 6px; border-radius:2px; color:var(--muted); cursor:help}
+  code.cmd.approx{border-left:2px solid var(--hold); font-style:italic}
+  td.reason .msg{display:block; font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11px; color:var(--fail); margin-top:2px;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:390px}
+
+  .pill{display:inline-block; font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11px; font-weight:600; padding:2px 8px; border-radius:10px;
+    white-space:nowrap}
+  .k-pass{background:var(--pass-soft); color:var(--pass)}
+  .k-cand{background:var(--cand-soft); color:var(--cand)}
+  .k-hold{background:var(--hold-soft); color:var(--hold)}
+  .k-fail{background:var(--fail-soft); color:var(--fail)}
+  .k-none{background:var(--none-soft); color:var(--none)}
+  .flag{display:inline-block; margin-left:5px; font-family:"IBM Plex Mono",monospace;
+    font-size:10px; font-weight:600; color:var(--hold); border:1px solid var(--hold);
+    border-radius:3px; padding:0 4px}
+  .gate{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11.5px;
+        font-weight:600}
+  .g-PASS{color:var(--pass)} .g-FOUND{color:var(--fail)} .g-NA{color:var(--faint)}
+  .g-BAND{color:var(--cand)}
+  .gate small{font-family:inherit; font-size:10.5px; font-weight:500; opacity:.72}
+
+  .empty{padding:30px; text-align:center; color:var(--faint); font-size:14px}
+
+  .reasons{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:1px; background:var(--line); border:1px solid var(--line);
+    border-radius:4px; overflow:hidden}
+  .reason-card{background:var(--surface); padding:15px 17px; display:flex;
+    flex-direction:column; gap:5px}
+  .reason-card b{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:21px;
+    font-variant-numeric:tabular-nums; font-weight:600}
+  .reason-card .rname{font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12px; color:var(--ink); font-weight:500}
+  .reason-card .rtext{font-size:12.5px; color:var(--muted)}
+
+  footer{border-top:1px solid var(--line); padding-top:16px; color:var(--faint);
+         font-size:13px; display:flex; flex-direction:column; gap:6px}
+
+  .gate.g-WARM{color:var(--hold); border-color:color-mix(in srgb,var(--hold) 40%,transparent);
+    background:color-mix(in srgb,var(--hold) 12%,transparent)}
+  .gate.g-WARM, .gate.g-NA{font-family:"IBM Plex Sans",system-ui,sans-serif; letter-spacing:0}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Strategy Audit &middot; snapshot __GEN__</div>
+    <h1>Strategy Test Bench</h1>
+    <p class="lede">What is known today about each of the 900 Freqtrade strategies: which cleared every gate, which did not, and exactly where each one stopped.</p>
+  </header>
+
+  <div class="stats" id="stats"></div>
+
+  <section>
+    <h2>Distribution</h2>
+    <div class="dist" id="dist"></div>
+    <div class="distkey" id="distkey"></div>
+    <p class="note"><strong>78 strategies are usable today</strong> — the 67 of the frozen baseline plus 11 admitted since. Convergence candidates have a warm-up at which no indicator drifts any more; that is not admission, because the paired full-window run still has to show an identical trade list.</p>
+    <p class="note"><strong>Nothing here is untested, and nothing here is cleared by the original sweep.</strong> The audit's first pass ran in an environment that did not establish the preconditions this one requires, so its verdicts are provenance and hints, never evidence. Rows marked <span class="flag">inherited</span> are admitted on a look-ahead verdict from that sweep and are queued for native re-measurement.</p>
+  </section>
+
+  <section>
+    <h2>All 900 strategies</h2>
+    <div class="controls">
+      <input type="search" id="q" placeholder="Search strategy, reason or error message…" aria-label="Search">
+      <div class="chips" id="cohortChips"></div>
+      <select id="wave" aria-label="Wave">
+        <option value="">all waves</option>
+      </select>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr>
+            <th data-k="s">Strategy</th>
+            <th data-k="c">Status</th>
+            <th data-k="w">Wave</th>
+            <th data-k="t" class="n">Trades</th>
+            <th data-k="l">Look-ahead</th>
+            <th data-k="r">Recursion</th>
+            <th data-k="n">Decisive reason</th>
+            <th data-k="d">Last run</th>
+            <th>Invocations</th>
+          </tr>
+        </thead>
+        <tbody id="body"></tbody>
+      </table>
+      <div class="empty" id="empty" hidden>No row matches these filters.</div>
+    </div>
+    <p class="note">Click a column header to sort. A gate reads <code>–</code> when there is <em>no verdict bound to this implementation</em>: either it has not been re-measured, or the only verdict available comes from the original sweep. Hover any cell for the detail.</p>
+    <p class="note"><strong>Three things the reader got wrong, and what each cost.</strong> The analyzer prints one column per warm-up and sorts them by value, so the strategy's own column moves; reading the first numeric column instead measured drift at somebody else's warm-up. It printed <code>nan</code> where an indicator was not yet defined, and those cells were skipped, which turned "nothing could be compared" into "nothing deviated". And when every indicator matches the full-history run exactly it prints no table at all, just a sentence saying so — which was read as a missing measurement rather than as the strongest available pass. Each was found by re-reading stored logs, and each is now a rule with a test behind it.</p>
+    <p class="note"><strong>Where a log survived, it has been read again.</strong> Of 124 recursion records with their log, 55 said something other than what this table showed: 40 have no verdict at all, one is clean, and 14 keep their verdict with corrected numbers. Seventeen ladder runs recorded as inconclusive were in fact clean at the first rung. What each replaced is kept on the record. The 76 records that kept no log cannot be checked and stay queued.</p>
+    <p class="note"><strong>Recursion shows the current state, not the original one.</strong> <code>PASS @ 14d</code> means no indicator drifts once fourteen days of warm-up are supplied, so the earlier exclusion was a measurement question rather than a property of the strategy. <code>PASS*</code> marks the few rows that only meet the 1 % band and not the original 0.01 %.</p>
+    <p class="note"><strong>Every row carries the commands it was produced by — one per gate.</strong> <code>bt</code> is the backtest, <code>la</code> the look-ahead analysis, <code>rec</code> the recursion analysis. They are listed separately because they differ in more than their subcommand: the bias gates run against a config that forces <code>price_side=other</code>, since look-ahead analysis forces market orders and freqtrade will not evaluate a signal without it, while a backtest uses the plain config and adds <code>--fee 0.001 --export trades --cache none</code>. A single column could only ever have shown one of the three. Hover any line for the full command.</p>
+    <p class="note">A plain line was recorded as it ran; one with an amber rule is <em>reconstructed</em> from the run profile and window, because nothing stored the call before 2026-09-01 — a reconstruction is a different claim from a recording. The full-window backtest is eight calls, one per pair; the cell leaves the pair as a placeholder and states the count, while every individual call with its own console output is appended to <code>user_data/freqtrade_runs.log</code>.</p>
+    <p class="note"><strong>A row that failed here is not a row that never ran.</strong> 152 strategies were attempted in this runtime, on the date shown, and stopped with an error; the message is under the reason. Forty-eight of them are blocked on nothing but a missing timeframe declaration.</p>
+  </section>
+
+  <section>
+    <h2>Where strategies stop</h2>
+    <div class="reasons" id="reasons"></div>
+  </section>
+
+  <section>
+    <h2>Runtime failures, grouped by message</h2>
+    <p class="note">One shared message usually means one shared fix. This is the list to read before deciding what to repair.</p>
+    <div class="scroller" style="max-height:none">
+      <table style="min-width:640px">
+        <thead><tr><th>Failure</th><th class="n">Strategies</th></tr></thead>
+        <tbody id="failures"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <div>Generated from <code>STRATEGY_STATUS.csv</code> by <code>strategy_status.py</code>. The frozen baseline <code>REGIME_ELIGIBILITY.csv</code> is never regenerated; the difference between it and this table is the expansion.</div>
+    <div>Snapshot — the look-ahead backfill was still running when this was generated, so the native look-ahead count is still rising.</div>
+  </footer>
+</div>
+
+<script type="application/json" id="data">__DATA__</script>
+<script>
+(function(){
+  var payload = JSON.parse(document.getElementById("data").textContent);
+  var rows = payload.rows;
+
+  var COHORT = {
+    E0_strict67:      {label:"frozen baseline", cls:"k-pass"},
+    E1_expanded:      {label:"admitted since", cls:"k-pass"},
+    convergence_candidate:{label:"convergence candidate", cls:"k-cand"},
+    pending:          {label:"open", cls:"k-hold"},
+    not_tested_in_current_runtime:{label:"not run here yet", cls:"k-none"},
+    excluded:         {label:"excluded", cls:"k-fail"}
+  };
+  var ORDER = ["E0_strict67","E1_expanded","convergence_candidate","pending",
+               "not_tested_in_current_runtime","excluded"];
+  var VAR = {"k-pass":"--pass","k-cand":"--cand","k-hold":"--hold",
+             "k-none":"--none","k-fail":"--fail"};
+
+  var REASON_TEXT = {
+    lookahead_found:"Reads data it could not have had at the time.",
+    recursive_bias_found:"Still drifts at every warm-up the ladder can reach — confirmed.",
+    recursive_bias_unverified:"Recorded under a parser defect. Where the log survived it has been read again; where it did not, the old verdict stands unchecked. Not a finding either way.",
+    recursive_warmup_refused:"The analyzer refused it for want of a declared warm-up — nothing was ever compared.",
+    technical_trap_found:"Carries a documented backtesting trap.",
+    strategy_does_not_run:"Fails before it can be measured:",
+    no_trades_in_full_measurement:"Never trades over the full window.",
+    behavior_changed_primary_exclusion:"A repair changed its behaviour.",
+    no_verdict_on_lookahead:"Measured, recursion clean — look-ahead has no verdict.",
+    no_verdict_on_recursive:"Measured, look-ahead clean — recursion has no verdict.",
+    no_verdict_on_lookahead_and_recursive:"Measured, but neither gate returned a verdict.",
+    pending_diagnostics:"No hard failure and no verdict."
+  };
+
+  function count(k){ return rows.filter(function(r){return r.c===k;}).length; }
+  var passing = count("E0_strict67") + count("E1_expanded");
+  var inherited = rows.filter(function(r){return r.g;}).length;
+
+  document.getElementById("stats").innerHTML = [
+    ["in the manifest", rows.length, ""],
+    ["usable today", passing, "is-pass"],
+    ["convergence candidates", count("convergence_candidate"), "is-cand"],
+    ["will not start", rows.filter(function(r){return r.n==="strategy_does_not_run";}).length, "is-fail"],
+    ["look-ahead measured here", rows.filter(function(r){return r.ls==="native";}).length, ""],
+    ["queued for the ladder", rows.filter(function(r){return (r.o||"").indexOf("recursive_ladder_pending")>=0;}).length, "is-hold"],
+    ["inherited verdicts", inherited, ""]
+  ].map(function(s){
+    return '<div class="stat '+s[2]+'"><b>'+s[1]+'</b><span>'+s[0]+'</span></div>';
+  }).join("");
+
+  document.getElementById("dist").innerHTML = ORDER.map(function(c){
+    var n = count(c); if(!n) return "";
+    return '<span style="flex:'+n+';background:var('+VAR[COHORT[c].cls]+')" title="'+
+           COHORT[c].label+': '+n+'"></span>';
+  }).join("");
+  document.getElementById("distkey").innerHTML = ORDER.map(function(c){
+    var n = count(c); if(!n) return "";
+    return '<div><i class="swatch" style="background:var('+VAR[COHORT[c].cls]+')"></i>'+
+           COHORT[c].label+' <b>'+n+'</b></div>';
+  }).join("");
+
+  var active = null, waveSel = "", query = "", sortKey = "s", sortDir = 1;
+  var chips = document.getElementById("cohortChips");
+  chips.innerHTML = ORDER.map(function(c){
+    return '<button class="chip" data-c="'+c+'" aria-pressed="false">'+
+           COHORT[c].label+'</button>';
+  }).join("");
+  chips.addEventListener("click", function(ev){
+    var b = ev.target.closest(".chip"); if(!b) return;
+    active = (active === b.dataset.c) ? null : b.dataset.c;
+    Array.prototype.forEach.call(chips.children, function(el){
+      el.setAttribute("aria-pressed", String(el.dataset.c === active));
+    });
+    render();
+  });
+
+  var waves = [];
+  rows.forEach(function(r){ if(r.w && waves.indexOf(r.w)<0) waves.push(r.w); });
+  var sel = document.getElementById("wave");
+  waves.sort().forEach(function(w){
+    var o = document.createElement("option"); o.value = w; o.textContent = w;
+    sel.appendChild(o);
+  });
+  sel.addEventListener("change", function(){ waveSel = sel.value; render(); });
+  document.getElementById("q").addEventListener("input", function(e){
+    query = e.target.value.toLowerCase().trim(); render();
+  });
+  document.querySelectorAll("thead th[data-k]").forEach(function(th){
+    th.addEventListener("click", function(){
+      var k = th.dataset.k;
+      if(sortKey === k){ sortDir = -sortDir; } else { sortKey = k; sortDir = 1; }
+      render();
+    });
+  });
+
+  function esc(s){
+    return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+  function gate(v){
+    if(!v) return '<span class="gate g-NA">–</span>';
+    return '<span class="gate g-'+v+'">'+v+'</span>';
+  }
+  /* A verdict only counts as this row's when it was produced from this row's
+     canonical implementation. Anything else reads as no verdict, with the
+     origin kept in the tooltip. */
+  function bound(value, source){
+    if(!source || source === "missing") return gate("");
+    if(source.indexOf("historical") === 0){
+      return '<span class="gate g-NA" title="'+esc(value)+' comes from the '+
+        'original corpus sweep, not from a measurement of this implementation.'+
+        '">–</span>';
+    }
+    return gate(value);
+  }
+  /* The command is what makes a row reproducible. A recorded line is the argv
+     that ran; a reconstructed one is derived and says so, because the two are
+     not the same claim. */
+  var GATE_LABEL = {kb:"bt", kl:"la", kr:"rec"};
+  function call(r){
+    var out = [];
+    ["kb","kl","kr"].forEach(function(key){
+      var value = r[key];
+      if(!value) return;
+      var recorded = value.indexOf("[recorded]") === 0;
+      var line = value.replace(/^\[(recorded|reconstructed)\] /, "");
+      out.push('<code class="cmd'+(recorded ? "" : " approx")+'" title="'+
+        esc(line)+(recorded ? "" :
+        "&#10;&#10;Reconstructed from the run profile and window: nothing "+
+        "stored the call before 2026-09-01.")+'">'+
+        '<b>'+GATE_LABEL[key]+'</b> '+esc(line)+'</code>');
+    });
+    return out.length ? out.join("") : '<span class="gate g-NA">–</span>';
+  }
+  function recursion(r){
+    if(r.cs){
+      var band = (r.r === "PASS_1PCT");
+      var rung = r.cd ? r.cd + "d" : "declared value";
+      return '<span class="gate '+(band ? "g-BAND" : "g-PASS")+'" title="'+
+        'settles at '+r.cs+' candles, residual drift '+(r.md||0)+' %'+
+        (r.no === "true" ? " — no warm-up supplied" : " — warm-up supplied")+
+        '">'+(band ? "PASS*" : "PASS")+' <small>@ '+rung+'</small></span>';
+    }
+    if(r.r === "WARMUP_NEEDED"){
+      return '<span class="gate g-WARM" title="The analyzer declined this row '+
+        'because the strategy declares no warm-up. It never compared anything, '+
+        'so this is a missing precondition, not detected bias.">warm-up</span>';
+    }
+    if(r.rs && r.rs.indexOf("wave_b:") === 0){
+      return '<span class="gate g-NA" title="Measured here at a supplied '+
+        'warm-up, but under the reader that took the wrong table column. That '+
+        'run kept no log and cannot be re-read, so its verdict is superseded '+
+        'rather than trusted.">superseded</span>';
+    }
+    if(r.n === "recursive_bias_unverified"){
+      return '<span class="gate g-NA" title="Recorded under the defective '+
+        'parser — no valid verdict.">–</span>';
+    }
+    return bound(r.r, r.rs);
+  }
+
+  var body = document.getElementById("body"), empty = document.getElementById("empty");
+  function render(){
+    var list = rows.filter(function(r){
+      if(active && r.c !== active) return false;
+      if(waveSel && r.w !== waveSel) return false;
+      if(query){
+        var hay = (r.s+" "+r.n+" "+(r.f||"")+" "+r.c+" "+r.w).toLowerCase();
+        if(hay.indexOf(query) < 0) return false;
+      }
+      return true;
+    });
+    list.sort(function(a,b){
+      var x = a[sortKey], y = b[sortKey];
+      if(sortKey === "t"){ x = +x||0; y = +y||0; }
+      if(x === y) return a.s < b.s ? -1 : 1;
+      return (x > y ? 1 : -1) * sortDir;
+    });
+    document.getElementById("count").textContent = list.length + " of " + rows.length;
+    empty.hidden = list.length > 0;
+    body.innerHTML = list.map(function(r){
+      var co = COHORT[r.c] || {label:r.c, cls:"k-none"};
+      var reason = REASON_TEXT[r.n] || r.n || "–";
+      if(r.f) reason += '<span class="msg" title="'+esc(r.f)+'">'+esc(r.f)+'</span>';
+      var flag = r.g ? '<span class="flag" title="Admitted on a verdict from '+
+        'the original sweep; queued for native re-measurement.">inherited</span>' : "";
+      return '<tr>'+
+        '<td class="name">'+esc(r.s)+'</td>'+
+        '<td><span class="pill '+co.cls+'">'+co.label+'</span>'+flag+'</td>'+
+        '<td class="small">'+esc(r.w||"–")+'</td>'+
+        '<td class="num">'+(r.t||"–")+'</td>'+
+        '<td>'+bound(r.l, r.ls)+'</td>'+
+        '<td>'+recursion(r)+'</td>'+
+        '<td class="reason">'+reason+'</td>'+
+        '<td class="small" title="'+esc(r.ds||"")+'">'+(r.d ? r.d.slice(0,16) : "–")+'</td>'+
+        '<td class="cmd">'+call(r)+'</td>'+
+      '</tr>';
+    }).join("");
+  }
+  render();
+
+  var tally = {};
+  rows.forEach(function(r){
+    if(["E0_strict67","E1_expanded","convergence_candidate"].indexOf(r.c) >= 0) return;
+    if(!r.n) return;
+    tally[r.n] = (tally[r.n]||0) + 1;
+  });
+  document.getElementById("reasons").innerHTML = Object.keys(tally)
+    .sort(function(a,b){ return tally[b]-tally[a]; })
+    .map(function(k){
+      return '<div class="reason-card"><b>'+tally[k]+'</b>'+
+        '<div class="rname">'+esc(k)+'</div>'+
+        '<div class="rtext">'+(REASON_TEXT[k]||"")+'</div></div>';
+    }).join("");
+
+  var byMessage = {};
+  rows.forEach(function(r){
+    if(r.n !== "strategy_does_not_run") return;
+    var m = r.f || "(no message recorded)";
+    (byMessage[m] = byMessage[m] || []).push(r.s);
+  });
+  document.getElementById("failures").innerHTML = Object.keys(byMessage)
+    .sort(function(a,b){ return byMessage[b].length - byMessage[a].length; })
+    .map(function(m){
+      return '<tr><td class="reason" style="max-width:none">'+esc(m)+
+        '<span class="msg" style="color:var(--faint); white-space:normal" title="'+
+        esc(byMessage[m].sort().join(", "))+'">'+
+        esc(byMessage[m].sort().slice(0,6).join(", "))+
+        (byMessage[m].length > 6 ? " …" : "")+'</span></td>'+
+        '<td class="num">'+byMessage[m].length+'</td></tr>';
+    }).join("");
+})();
+</script>
