@@ -251,12 +251,17 @@ def run_ladder(row, timeout, startups):
     env["PROFILE_STRATEGY_IMPORT_PATH"] = os.pathsep.join(
         [os.path.dirname(canonical)] + ([existing] if existing else []))
 
+    invocation = [None]
+
     def attempt(config_path):
         command = [profile_bias.PYTHON, profile_bias.FT_WRAPPER,
                    "recursive-analysis", "--config", config_path,
                    "--strategy", strategy, "--strategy-path", strategy_path,
                    "--timerange", profile_bias.WINDOWS[mode], "--no-color",
                    "--startup-candle"] + [str(v) for v in startups] + extra
+        # The second attempt supplies a warm-up, so the two calls differ. The
+        # one kept is the one whose output was read.
+        invocation[0] = profile_smoke._invocation(command)
         return subprocess.run(command, capture_output=True, timeout=timeout,
                               env=env, cwd=ROOT)
 
@@ -281,6 +286,7 @@ def run_ladder(row, timeout, startups):
             process = attempt(config)
     except subprocess.TimeoutExpired:
         return None, {"status": "NA", "why": "TIMEOUT",
+                      "invocation": invocation[0],
                       "elapsed_s": round(time.time() - started, 1)}
     output = (process.stdout + process.stderr).decode("utf-8", "replace")
     os.makedirs(LOG_DIR, exist_ok=True)
@@ -289,6 +295,7 @@ def run_ladder(row, timeout, startups):
     with io.open(log_path, "w", encoding="utf-8") as handle:
         handle.write(output)
     meta = {
+        "invocation": invocation[0],
         "elapsed_s": round(time.time() - started, 1),
         "returncode": process.returncode,
         "declared_warmup_override": override,

@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 16:18:36 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 16:27:56 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -15,7 +15,7 @@ the state at the freeze, and the difference is the expansion.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 255 of 900 rows
+file's time and is labelled `log_mtime` for that reason. 244 of 900 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
@@ -25,18 +25,37 @@ have neither and are left empty rather than given an invented time.
 | in the manifest | 900 |
 | measured at all | 688 |
 | produced trades | 661 |
-| carrying a run time | 645 |
+| carrying a run time | 656 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
-| `excluded` | 412 |
-| `convergence_candidate` | 343 |
+| `excluded` | 401 |
+| `convergence_candidate` | 354 |
 | `E0_strict67` | 67 |
 | `not_tested_in_current_runtime` | 60 |
 | `E1_expanded` | 11 |
 | `pending` | 7 |
+
+## How freqtrade was called
+
+A result is not reproducible from its verdict alone, so each row
+carries the command it was produced by. **`recorded`** is the argv that
+actually ran. **`reconstructed`** is derived from the run profile and
+the window, because nothing stored the call before 2026-09-01; it is
+labelled because a reconstruction is a different claim from a
+recording. 0 of 900 rows are recorded so far, and every new run adds
+one.
+
+The gates differ in more than their subcommand, which is the reason
+this is worth publishing at all. A backtest runs with
+`--fee 0.001 --export trades --cache none`. The bias gates add
+`--no-color` and use a config that forces `price_side=other`, because
+look-ahead analysis forces market orders and freqtrade will not
+evaluate a single signal without it. The warm-up ladder passes
+`--startup-candle` with every rung at once, which is why one run
+reports the whole ladder.
 
 ## Passing - 78 strategies
 
@@ -125,7 +144,202 @@ coverage, no published trap.
 | `ObeliskIM_v1_1` | `spot_long` | `E1_expanded` | 64 | `native` | 2026-08-31 15:20:09 | [archive](user_data/profile_smoke/ObeliskIM_v1_1-2026-08-31_15-20-09.zip) |
 | `simple_patterns` | `spot_long` | `E1_expanded` | 1845 | `native` | 2026-08-31 15:55:52 | [archive](user_data/profile_smoke/simple_patterns-2026-08-31_15-55-52.zip) |
 
-## Convergence candidates - 343 strategies
+The call for each, `recorded` unless marked otherwise:
+
+- `BigTrader` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BigTrader --strategy-path repos/TheoBrigitte_freqtrade/strategies/profiters --timerange 20190101-20190401 --no-color
+  ```
+- `BigZ04_TSL3` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BigZ04_TSL3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `BuyRegions` *(reconstructed)*
+  ```
+  freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BuyRegions --strategy-path repos/nateemma_strategies/TSPredict --timerange 20190101-20190401 --no-color
+  ```
+- `Cluc7werk` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Cluc7werk --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `ClucHAnix_5m` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5m --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `ClucHAnix_5m1` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix_5m1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `ClucHAwerk` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAwerk --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `CombinedBinHAndClucV6` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `CombinedBinHAndClucV7` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV7 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `CombinedBinHClucAndMADV3` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `CombinedBinHClucAndMADV6` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `CombinedBinHClucAndMADV9` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV9 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `ElliotV2` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ElliotV2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/ElliotV2 --timerange 20190101-20190401 --no-color
+  ```
+- `ElliotV5_SMA` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ElliotV5_SMA --strategy-path repos/TheoBrigitte_freqtrade/strategies/ElliotV5_SMA --timerange 20190101-20190401 --no-color
+  ```
+- `FAdxSmaStrategy` *(reconstructed)*
+  ```
+  freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy FAdxSmaStrategy --strategy-path repos/freqtrade_freqtrade-strategies/user_data/strategies/futures --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FAdxSmaStrategy --cache none
+  ```
+- `FSupertrendStrategy` *(reconstructed)*
+  ```
+  freqtrade backtesting --config user_data/profile_configs/futures_futures_long.json --strategy FSupertrendStrategy --strategy-path repos/freqtrade_freqtrade-strategies/user_data/strategies/futures --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FSupertrendStrategy --cache none
+  ```
+- `FastSupertrend_ts_origstop_fix` *(reconstructed)*
+  ```
+  freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy FastSupertrend_ts_origstop_fix --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FastSupertrend_ts_origstop_fix --cache none
+  ```
+- `Gumbo1` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Gumbo1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `Ichimoku_v31` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v31 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `Ichimoku_v37` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v37 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `KAMACCIRSI` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy KAMACCIRSI --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `MACD_TRIPLE_MA` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MACD_TRIPLE_MA --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `MADisplaceV3` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MADisplaceV3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `MacdStrategy` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MacdStrategy --strategy-path repos/DutchCryptoDad_FreqtradeBotStrategyDevelopmentForBeginners --timerange 20190101-20190401 --no-color
+  ```
+- `MarketChyperHyperStrategy` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MarketChyperHyperStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `NostalgiaForInfinityV1` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NostalgiaForInfinityV1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `NostalgiaForInfinityV2` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NostalgiaForInfinityV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `RegimeFilterStrategy` *(reconstructed)*
+  ```
+  freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy RegimeFilterStrategy --strategy-path repos/Bananajoexxc_RegimeFilterStrategy-Freqtrade/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/RegimeFilterStrategy --cache none
+  ```
+- `SMAIP3` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAIP3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/SMAIP3 --timerange 20190101-20190401 --no-color
+  ```
+- `SMAOG` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOG --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20190101-20190401 --no-color
+  ```
+- `SMAOffsetV2` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOffsetV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `SampleStrategyV2` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SampleStrategyV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `Slowbro` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Slowbro --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `StochRSITEMA` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy StochRSITEMA --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `TDSequentialStrategy` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TDSequentialStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `TheRealPullbackV2` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TheRealPullbackV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `TrixStrategy` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TrixStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `TrixV15Strategy` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TrixV15Strategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `UltimateMomentumIndicator` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy UltimateMomentumIndicator --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `XtraThicc` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy XtraThicc --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20190101-20190401 --no-color
+  ```
+- `adaptive_trend` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy adaptive_trend --strategy-path repos/mlsys-io_PortfolioBench/strategy/adaptive_trend --timerange 20190101-20190401 --no-color
+  ```
+- `bestV2` *(reconstructed)*
+  ```
+  freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy bestV2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/bestV2 --timerange 20190101-20190401 --no-color
+  ```
+- `momentum` *(reconstructed)*
+  ```
+  freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy momentum --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/momentum --cache none
+  ```
+- `momentum_rsi` *(reconstructed)*
+  ```
+  freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy momentum_rsi --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/momentum_rsi --cache none
+  ```
+- `momentum_wick` *(reconstructed)*
+  ```
+  freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy momentum_wick --strategy-path repos/TheoBrigitte_freqtrade/strategies/momentum --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/momentum_wick --cache none
+  ```
+- `NowoIchimoku5mV2` *(reconstructed)*
+  ```
+  freqtrade backtesting --config user_data/config.json --strategy NowoIchimoku5mV2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NowoIchimoku5mV2 --cache none
+  ```
+- `ObeliskIM_v1_1` *(reconstructed)*
+  ```
+  freqtrade backtesting --config user_data/config.json --strategy ObeliskIM_v1_1 --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ObeliskIM_v1_1 --cache none
+  ```
+- `simple_patterns` *(reconstructed)*
+  ```
+  freqtrade backtesting --config user_data/config.json --strategy simple_patterns --strategy-path repos/TheoBrigitte_freqtrade/strategies/yodo --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/simple_patterns --cache none
+  ```
+
+## Convergence candidates - 354 strategies
 
 A warm-up exists at which every indicator stays inside the band.
 That is not admission: the paired full-window run must still show
@@ -420,7 +634,13 @@ an identical trade list.
 | `StochasticRsiStrategy` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-01 12:46:00 | `user_data/convergence_logs/StochasticRsiStrategy-ladder.log` |
 | `Strategy001` | `spot_long` | 576 candles | 0.0% on `ema20` | 2026-09-01 16:17:10 | `user_data/convergence_logs/Strategy001-ladder.log` |
 | `Strategy001_custom_exit` | `spot_long` | 576 candles | 0.0% on `ema20` | 2026-09-01 16:18:03 | `user_data/convergence_logs/Strategy001_custom_exit-ladder.log` |
+| `Strategy001_custom_sell` | `spot_long` | 576 candles | 0.0% on `ema20` | 2026-09-01 16:18:58 | `user_data/convergence_logs/Strategy001_custom_sell-ladder.log` |
+| `Strategy002` | `spot_long` | 288 candles | 0.0% on `slowk` | 2026-09-01 16:19:49 | `user_data/convergence_logs/Strategy002-ladder.log` |
+| `Strategy003` | `spot_long` | 576 candles | 0.0% on `mfi` | 2026-09-01 16:20:40 | `user_data/convergence_logs/Strategy003-ladder.log` |
+| `Strategy004` | `spot_long` | 576 candles | 0.0% on `adx` | 2026-09-01 16:21:32 | `user_data/convergence_logs/Strategy004-ladder.log` |
+| `Strategy005` | `spot_long` | 288 candles | 0.0% on `macd` | 2026-09-01 16:22:21 | `user_data/convergence_logs/Strategy005-ladder.log` |
 | `StrategyScalpingFast` | `spot_long` | 1440 candles | 0.0% on `ema_high` | 2026-09-01 12:46:27 | `user_data/convergence_logs/StrategyScalpingFast-ladder.log` |
+| `StrategyScalpingFast2` | `spot_long` | 1440 candles | 0.0% on `resample_5_sma` | 2026-09-01 16:23:18 | `user_data/convergence_logs/StrategyScalpingFast2-ladder.log` |
 | `StrategyTestV2` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-01 15:08:04 | `user_data/convergence_logs/StrategyTestV2-ladder.log` |
 | `SuperTrend` | `spot_long` | 1440 candles | 0.0% on `tema` | 2026-09-01 15:09:01 | `user_data/convergence_logs/SuperTrend-ladder.log` |
 | `TD` | `spot_long` | 12 candles | 0.0% on `ha_open` | 2026-09-01 15:11:03 | `user_data/convergence_logs/TD-ladder.log` |
@@ -428,6 +648,11 @@ an identical trade list.
 | `TRIWAVE` | `spot_long` | 672 candles | 0.0% on `rsi_med_2h` | 2026-09-01 12:46:51 | `user_data/convergence_logs/TRIWAVE-ladder.log` |
 | `TWAPStrategy` | `futures_long_short` | 192 candles | 0.0% on `rsi` | 2026-09-01 15:11:56 | `user_data/convergence_logs/TWAPStrategy-ladder.log` |
 | `TechnicalExampleStrategy` | `spot_long` | 288 candles | 0.0% on `cmf` | 2026-09-01 15:12:44 | `user_data/convergence_logs/TechnicalExampleStrategy-ladder.log` |
+| `TemaMaster` | `spot_long` | 288 candles | 0.0% on `CMO` | 2026-09-01 16:24:07 | `user_data/convergence_logs/TemaMaster-ladder.log` |
+| `TemaMaster3` | `spot_long` | 2880 candles | 0.0% on `CMO` | 2026-09-01 16:24:59 | `user_data/convergence_logs/TemaMaster3-ladder.log` |
+| `TemaPure` | `spot_long` | 2016 candles | 0.0% on `CMO` | 2026-09-01 16:25:50 | `user_data/convergence_logs/TemaPure-ladder.log` |
+| `TemaPureNeat` | `spot_long` | 288 candles | 0.0% on `CMO` | 2026-09-01 16:26:40 | `user_data/convergence_logs/TemaPureNeat-ladder.log` |
+| `TemaPureTwo` | `spot_long` | 2016 candles | 0.0% on `CMO` | 2026-09-01 16:27:31 | `user_data/convergence_logs/TemaPureTwo-ladder.log` |
 | `TemaStrategy` | `spot_long` | 288 candles | 0.0% on `tema20` | 2026-09-01 12:47:16 | `user_data/convergence_logs/TemaStrategy-ladder.log` |
 | `TheForce` | `spot_long` | 672 candles | 0.0% on `fastd` | 2026-09-01 15:13:10 | `user_data/convergence_logs/TheForce-ladder.log` |
 | `TrendAtrStrategy` | `spot_long` | 540 candles | 0.0% on `ema_fast` | 2026-09-01 12:47:40 | `user_data/convergence_logs/TrendAtrStrategy-ladder.log` |
@@ -557,7 +782,7 @@ verdict. Where such a hint exists it is shown in brackets.
 | `tacos1` | `not_scheduled` | `no run under the current runtime (historical hint: No data found. Terminating.)` |
 | `turbov8` | `not_scheduled` | `no run under the current runtime (historical hint: engine exited with code 0 but produced no summary (no trades at all, or output not parsed))` |
 
-## Not passing - 412 strategies, by decisive reason
+## Not passing - 401 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -579,7 +804,7 @@ defect, awaiting re-measurement.
 | `technical_trap_found` | carries a published backtesting trap | 40 |
 | `strategy_does_not_run` | fails before it can be measured; the message is in runtime_failure | 152 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 28 |
-| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 98 |
+| `recursive_bias_unverified` | recorded under a parser defect and not re-measured; not a finding | 87 |
 | `no_trades_in_full_measurement` | never trades over the full window | 16 |
 | `no_verdict_on_lookahead_and_recursive` | measured; neither gate returned a verdict | 5 |
 | `no_verdict_on_lookahead` | measured and recursion clean; look-ahead has no verdict | 4 |
@@ -593,7 +818,7 @@ defect, awaiting re-measurement.
 | `technical_trap_found` | 0 | 0 | 0 | 40 |
 | `strategy_does_not_run` | 0 | 152 | 0 | 0 |
 | `recursive_bias_found` | 3 | 0 | 14 | 11 |
-| `recursive_bias_unverified` | 23 | 29 | 0 | 46 |
+| `recursive_bias_unverified` | 12 | 29 | 0 | 46 |
 | `no_trades_in_full_measurement` | 0 | 10 | 0 | 6 |
 | `no_verdict_on_lookahead_and_recursive` | 0 | 5 | 0 | 0 |
 | `no_verdict_on_lookahead` | 0 | 4 | 0 | 0 |
@@ -754,18 +979,15 @@ Wave `not_scheduled` - 11:
 `GoldHedgeZeroMACD`, `NOTankAi_15`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`
 `NotAnotherSMAOffSetStrategy_V2`, `TrendRiderStrategy`, `pcb20`
 
-### `recursive_bias_unverified` - 98
+### `recursive_bias_unverified` - 87
 
 Recorded under a parser defect and not re-measured; not a finding.
 
-Wave `B_warmup_refusal` - 23:
+Wave `B_warmup_refusal` - 12:
 
 `AwesomeMacd`, `Diamond`, `EasyInEasyOut`, `MabStra`
-`SlowPotato`, `Strategy001_custom_sell`, `Strategy002`, `Strategy003`
-`Strategy004`, `Strategy005`, `StrategyScalpingFast2`, `TemaMaster`
-`TemaMaster3`, `TemaPure`, `TemaPureNeat`, `TemaPureTwo`
-`TouchEmaDelayStrategy`, `TouchEmaStrategy`, `Trend_Strength_Directional`, `TwoCandle`
-`bbandrsi`, `e6v34`, `ema`
+`SlowPotato`, `TouchEmaDelayStrategy`, `TouchEmaStrategy`, `Trend_Strength_Directional`
+`TwoCandle`, `bbandrsi`, `e6v34`, `ema`
 
 Wave `C_measurement_recovery` - 29:
 
@@ -840,7 +1062,7 @@ Wave `C_measurement_recovery` - 4:
 
 | Item | Strategies |
 |---|---:|
-| `paired_full_window_equivalence` | 343 |
+| `paired_full_window_equivalence` | 354 |
 | `lookahead_verdict` | 136 |
 | `first_measurement_in_current_runtime` | 60 |
 | `convergence_inconclusive` | 51 |

@@ -382,6 +382,7 @@ def run_diagnostic(row, diagnostic, timeout, fallback_timeout):
                 continue
             result = {
                 "status": status, "why": why, "timerange": timerange,
+                "invocation": profile_smoke._invocation(command),
                 "attempted_timeranges": attempted,
                 "elapsed_s": round(time.time() - started, 1),
                 "runtime_id": os.environ.get("PROFILE_RUNTIME_ID", "native_unversioned"),
@@ -406,6 +407,7 @@ def run_diagnostic(row, diagnostic, timeout, fallback_timeout):
         except subprocess.TimeoutExpired:
             attempted.append(timerange)
             return {"status": "NA", "why": "TIMEOUT", "timerange": timerange,
+                    "invocation": profile_smoke._invocation(command),
                     "attempted_timeranges": attempted,
                     "elapsed_s": round(time.time() - started, 1)}
 

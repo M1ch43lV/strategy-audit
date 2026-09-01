@@ -243,6 +243,22 @@ def _trades(archive, strategy):
             "sha256_" + hashlib.sha256(semantic.encode("utf-8")).hexdigest())
 
 
+def _invocation(command):
+    """The freqtrade call, as a string a reader can paste, paths relative."""
+    root = os.path.normcase(os.path.abspath(ROOT))
+    parts = []
+    for item in command[1:]:          # the interpreter is an implementation detail
+        text = str(item)
+        # Paths are made relative so the line is the same on any machine, and
+        # comparing normcase means it works whichever separator built them.
+        if os.path.isabs(text) and os.path.normcase(text).startswith(root):
+            text = os.path.relpath(text, ROOT).replace(os.sep, "/")
+        parts.append('"%s"' % text if " " in text else text)
+    if parts and parts[0].endswith("profile_freqtrade.py"):
+        parts[0] = "freqtrade"
+    return " ".join(parts)
+
+
 def run_one(row, timerange, timeout, pair=None, extra_env=None,
             config_overrides=None):
     strategy = row["strategy_id"]
@@ -271,6 +287,10 @@ def run_one(row, timerange, timeout, pair=None, extra_env=None,
         "--timerange", timerange, "--fee", "0.001", "--export", "trades",
         "--backtest-directory", prefix, "--cache", "none",
     ] + (["--pairs", pair] if pair else []) + extra_args
+    # The invocation is part of the result. Without it a record says what came
+    # out but not what was asked, and a reader cannot reproduce the run without
+    # re-deriving the arguments from four other files.
+    invocation = _invocation(cmd)
     started = time.time()
     try:
         proc = subprocess.run(cmd, cwd=ROOT, env=env, stdout=subprocess.PIPE,
@@ -280,7 +300,8 @@ def run_one(row, timerange, timeout, pair=None, extra_env=None,
         return {"status": "timeout", "mode": mode, "run_profile": profile,
                 "timerange": timerange, "elapsed_s": round(time.time() - started, 1),
                 "class1_rules": class1.get("rules", []),
-                "why": "timeout after %d seconds" % timeout}
+                "why": "timeout after %d seconds" % timeout,
+                "invocation": invocation}
 
     archive = _archive(prefix, started)
     if not archive:
@@ -292,6 +313,7 @@ def run_one(row, timerange, timeout, pair=None, extra_env=None,
                 "timerange": timerange, "elapsed_s": round(time.time() - started, 1),
                 "class1_rules": class1.get("rules", []),
                 "why": _error(output, proc.returncode),
+                "invocation": invocation,
                 "debug_log": os.path.relpath(log_path, ROOT).replace(os.sep, "/")}
     try:
         longs, shorts, trades_sha256 = _trades(archive, strategy)
@@ -305,7 +327,7 @@ def run_one(row, timerange, timeout, pair=None, extra_env=None,
     runtime_config_sha256 = _sha256_file(config_path)
     return {"status": "measured", "mode": mode, "run_profile": profile,
             "timerange": timerange, "elapsed_s": round(time.time() - started, 1),
-            "class1_rules": class1.get("rules", []),
+            "class1_rules": class1.get("rules", []), "invocation": invocation,
             "long_trades": longs, "short_trades": shorts,
             "trades": longs + shorts, "trades_sha256": trades_sha256,
             "archive": os.path.relpath(archive, ROOT).replace(os.sep, "/"),

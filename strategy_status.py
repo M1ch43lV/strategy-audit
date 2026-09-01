@@ -47,7 +47,8 @@ FIELDS = [
     "baseline_status", "primary_reason", "runtime_failure", "evidence_gap",
     "last_tested_at",
     "last_tested_source", "settled_startup", "settled_days", "settled_drift_pct",
-    "needed_no_override", "evidence_paths", "open_work",
+    "needed_no_override", "invocation", "invocation_source",
+    "evidence_paths", "open_work",
 ]
 
 # Why a row does not pass, in decreasing order of finality. A row usually
@@ -90,6 +91,47 @@ import i18n
 CORPUS = os.path.join(ROOT, "corpus")
 LEDGER = os.path.join(ROOT, "LEDGER.csv")
 _CARD_ERROR = re.compile(r"## Could not be measured\s*\n+```\s*\n(.+?)\n", re.S)
+
+
+# Nothing recorded the freqtrade call until 2026-09-01, so most stored records
+# predate it. The arguments are still knowable - they are fixed per gate and
+# per run profile - but a reconstruction is not the same claim as a recording,
+# and the two are never shown as if they were.
+_RECONSTRUCTED = {
+    "smoke": ("freqtrade backtesting --config {config} --strategy {strategy} "
+              "--strategy-path {path} --timerange {timerange} --fee 0.001 "
+              "--export trades --backtest-directory user_data/profile_smoke/"
+              "{strategy} --cache none"),
+    "lookahead": ("freqtrade lookahead-analysis --config {config} --strategy "
+                  "{strategy} --strategy-path {path} --timerange {timerange} "
+                  "--no-color"),
+    "recursive": ("freqtrade recursive-analysis --config {config} --strategy "
+                  "{strategy} --strategy-path {path} --timerange {timerange} "
+                  "--no-color"),
+}
+
+
+def invocation(records, profile, timerange, kind):
+    """The freqtrade call, recorded where possible and reconstructed otherwise.
+
+    Returns `(command, source)`. A recorded line is the argv that actually ran;
+    a reconstructed one is derived from the run profile and window and is
+    labelled so nobody treats it as evidence of what was executed.
+    """
+    for record in records:
+        stored = record.get("invocation")
+        if stored:
+            return stored, "recorded"
+    template = _RECONSTRUCTED.get(kind)
+    if not template or not timerange:
+        return "", ""
+    mode = "futures" if (profile or "").startswith("futures_") else "spot"
+    config = ("user_data/profile_configs/futures_%s.json" % profile
+              if mode == "futures" else
+              ("user_data/config.json" if kind == "smoke"
+               else "user_data/profile_configs/bias_spot.json"))
+    return template.format(config=config, strategy="{strategy}",
+                           path="{strategy-path}", timerange=timerange),         "reconstructed"
 
 
 def provenance(canonical_file):
@@ -362,6 +404,20 @@ def rows():
         stamp, stamp_source = tested_at(records)
 
         repo, source_file = provenance(profile.get("canonical_file"))
+        kind = ("smoke" if measurement else
+                ("recursive" if settled or diagnostics.get("recursive")
+                 else "lookahead"))
+        call, call_source = invocation(
+            [measurement, settled, diagnostics.get("recursive") or {},
+             diagnostics.get("lookahead") or {}],
+            profile.get("run_profile"),
+            (measurement.get("timerange") or settled.get("timerange")
+             or (diagnostics.get("recursive") or {}).get("timerange")
+             or (diagnostics.get("lookahead") or {}).get("timerange")),
+            kind)
+        if call_source == "reconstructed":
+            call = call.replace("{strategy}", strategy).replace(
+                "{strategy-path}", os.path.dirname(source_file) or ".")
         archive = next((p for p in evidence_paths(records) if p.endswith(".zip")), "")
 
         out.append({
@@ -395,6 +451,8 @@ def rows():
             "settled_startup": settled.get("chosen_startup_candle_count", ""),
             "settled_days": settled.get("chosen_ladder_days", ""),
             "settled_drift_pct": settled.get("max_drift_pct", ""),
+            "invocation": call,
+            "invocation_source": call_source,
             "needed_no_override": ("true" if settled.get("needed_no_override")
                                    else ("false" if settled.get("state") == "converged"
                                          else "")),
@@ -489,7 +547,25 @@ def _report(data):
     ]
     lines += _table(cohorts, "## Cohort", "Cohort")
 
+    recorded = sum(1 for row in data if row["invocation_source"] == "recorded")
     lines += [
+        "## How freqtrade was called", "",
+        "A result is not reproducible from its verdict alone, so each row",
+        "carries the command it was produced by. **`recorded`** is the argv that",
+        "actually ran. **`reconstructed`** is derived from the run profile and",
+        "the window, because nothing stored the call before 2026-09-01; it is",
+        "labelled because a reconstruction is a different claim from a",
+        "recording. %d of %d rows are recorded so far, and every new run adds"
+        % (recorded, len(data)),
+        "one.", "",
+        "The gates differ in more than their subcommand, which is the reason",
+        "this is worth publishing at all. A backtest runs with",
+        "`--fee 0.001 --export trades --cache none`. The bias gates add",
+        "`--no-color` and use a config that forces `price_side=other`, because",
+        "look-ahead analysis forces market orders and freqtrade will not",
+        "evaluate a single signal without it. The warm-up ladder passes",
+        "`--startup-candle` with every rung at once, which is why one run",
+        "reports the whole ladder.", "",
         "## Passing - %d strategies" % len(passing), "",
         "Every original gate returned `PASS`: measured in its native mode,",
         "produced trades, clean look-ahead and recursion, complete candle",
@@ -502,6 +578,15 @@ def _report(data):
             row["strategy_id"], row["run_profile"], row["cohort"],
             row["observed_trades"], row["recursive_evidence"],
             row["last_tested_at"] or "-", _links(row)))
+    lines.append("")
+    lines += ["The call for each, `recorded` unless marked otherwise:", ""]
+    for row in sorted(passing, key=lambda r: (r["cohort"], r["strategy_id"])):
+        if not row["invocation"]:
+            continue
+        lines += ["- `%s`%s" % (row["strategy_id"],
+                                "" if row["invocation_source"] == "recorded"
+                                else " *(reconstructed)*"),
+                  "  ```", "  " + row["invocation"], "  ```"]
     lines.append("")
 
     if candidates:
