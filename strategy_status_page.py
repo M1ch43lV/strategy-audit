@@ -48,6 +48,7 @@ FIELDS = {
     "kl": "cmd_lookahead",
     "kr": "cmd_recursive",
     "o": "open_work",
+    "xb": "exclusion_basis",
 }
 
 

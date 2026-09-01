@@ -57,7 +57,8 @@ FIELDS = [
     "run_profile", "expansion_wave", "cohort", "measured",
     "observed_trades", "trade_evidence", "lookahead", "lookahead_evidence",
     "recursive", "recursive_evidence", "coverage_status", "traps_n", "artifact_role",
-    "baseline_status", "primary_reason", "runtime_failure", "evidence_gap",
+    "baseline_status", "primary_reason", "exclusion_basis",
+    "runtime_failure", "evidence_gap",
     "last_tested_at",
     "last_tested_source", "settled_startup", "settled_days", "settled_drift_pct",
     "needed_no_override", "cmd_backtest", "cmd_lookahead", "cmd_recursive",
@@ -262,6 +263,50 @@ def evidence_paths(records):
             if value and value not in paths:
                 paths.append(value)
     return paths
+
+
+EXCLUSION_BASIS = {
+    "own_measurement":
+        "a disqualifying result measured here, from this implementation",
+    "inherited":
+        "the disqualifying result comes from the original sweep, not from a "
+        "measurement of this implementation",
+    "no_finding":
+        "no disqualifying result at all - a gate returned nothing, or returned "
+        "it under a known reader defect",
+    "blocked":
+        "the strategy did not run, so nothing about it was judged",
+}
+
+
+def exclusion_basis(reason, lookahead_evidence, trade_evidence):
+    """What an exclusion actually rests on.
+
+    The decisive reason says which gate stopped the row. It does not say
+    whether that gate produced evidence, and those are different questions: a
+    row excluded on `no_verdict_on_recursive` is excluded for the absence of a
+    result, which is not the same standing as one excluded on a drift the
+    ladder measured at every rung. Keeping the two apart is the difference
+    between a finding and a gap in the work.
+    """
+    if not reason:
+        return ""
+    if reason.startswith("strategy_does_not_run") \
+            or reason.startswith("no run under the current runtime"):
+        return "blocked"
+    if reason == "lookahead_found":
+        return "own_measurement" if lookahead_evidence == "native" else "inherited"
+    if reason == "no_trades_in_full_measurement":
+        return "own_measurement" if trade_evidence == "full_window" else "inherited"
+    if reason in ("recursive_bias_found", "technical_trap_found",
+                  "behavior_changed_primary_exclusion"):
+        return "own_measurement"
+    if reason == "recursive_bias_unverified" \
+            or reason == "recursive_warmup_refused" \
+            or reason.startswith("no_verdict_on") \
+            or reason == "canonical_implementation_not_measured":
+        return "no_finding"
+    return "no_finding"
 
 
 def rows():
@@ -486,6 +531,22 @@ def rows():
             # still undefined at the warm-up the strategy declares. Both are
             # questions for the ladder, not verdicts, so both are queued.
             open_work.append("recursive_ladder_pending")
+        # An exclusion that does not rest on a measurement of this
+        # implementation is an open question, and has to carry the work
+        # that would settle it. Without this a row could sit in the
+        # excluded list for good on an absent verdict, a verdict
+        # borrowed from another environment, or a crash - and nothing
+        # in the table would say so.
+        basis = exclusion_basis(reason, lookahead_evidence, source) \
+            if cohort in ("excluded", "pending") else ""
+        if basis == "blocked":
+            open_work.append("runtime_repair_pending")
+        elif basis in ("inherited", "no_finding"):
+            if lookahead_evidence != "native":
+                open_work.append("lookahead_remeasure_pending")
+            if reason == "no_trades_in_full_measurement" \
+                    and source != "full_window":
+                open_work.append("full_window_measurement_pending")
 
         records = [measurement, diagnostics, window, settled,
                    fresh or {}, (diagnostics.get("lookahead") or {}),
@@ -539,6 +600,7 @@ def rows():
             "traps_n": base.get("traps_n", ""),
             "artifact_role": profile.get("artifact_role", ""),
             "baseline_status": base.get("eligibility_status", ""),
+            "exclusion_basis": basis,
             "primary_reason": reason,
             "runtime_failure": (i18n.translate(measurement.get("why") or "")[:160]
                                 if measurement.get("status") not in (None, "measured")
@@ -788,6 +850,23 @@ def _report(data):
         "re-parsed at all. Eight admitted rows rest on such a verdict. They",
         "stay admitted - E0 and E1 are frozen and this table decides nothing -",
         "and they are queued for the ladder as `recursive_ladder_pending`.", "",
+        "### What each exclusion rests on", "",
+        "The decisive reason names the gate that stopped a row. It does not",
+        "say whether that gate produced evidence, and the difference decides",
+        "whether the row is finished with or waiting on us.", "",
+        "| Basis | Meaning | Strategies |", "|---|---|---:|",
+    ]
+    basis = collections.Counter(row["exclusion_basis"] for row in failing
+                                if row["exclusion_basis"])
+    for key in ("own_measurement", "inherited", "no_finding", "blocked"):
+        if basis.get(key):
+            lines.append("| `%s` | %s | %d |"
+                         % (key, EXCLUSION_BASIS[key], basis[key]))
+    lines += [
+        "",
+        "Only `own_measurement` is a closed case. The other three carry the",
+        "work that would settle them in `open_work`, and the selftest fails if",
+        "one of them carries none.", "",
         "| Reason | Meaning | Strategies |", "|---|---|---:|",
     ]
     ordered = [key for key, _t in REASON_ORDER if key in grouped]
@@ -913,6 +992,11 @@ def selftest():
         # timeframe mismatch.
         assert not i18n.has_cyrillic(row["primary_reason"]), row["strategy_id"]
         # A recovered timestamp always names where it came from.
+        # An exclusion is either a finding of ours or an open question, and
+        # an open question must name the work that would close it.
+        if row["cohort"] == "excluded" and row["exclusion_basis"] != "own_measurement":
+            assert row["open_work"],                 "%s: excluded on %s with no work queued" % (
+                    row["strategy_id"], row["exclusion_basis"])
         assert bool(row["last_tested_at"]) == bool(row["last_tested_source"]), \
             row["strategy_id"]
 

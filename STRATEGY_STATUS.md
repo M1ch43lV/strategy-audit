@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-01 20:28:00 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-01 20:35:31 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -45,7 +45,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 164 of 2102 commands are recorded so far, and every new run
+recording. 169 of 2102 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -1062,6 +1062,23 @@ re-parsed at all. Eight admitted rows rest on such a verdict. They
 stay admitted - E0 and E1 are frozen and this table decides nothing -
 and they are queued for the ladder as `recursive_ladder_pending`.
 
+### What each exclusion rests on
+
+The decisive reason names the gate that stopped a row. It does not
+say whether that gate produced evidence, and the difference decides
+whether the row is finished with or waiting on us.
+
+| Basis | Meaning | Strategies |
+|---|---|---:|
+| `own_measurement` | a disqualifying result measured here, from this implementation | 110 |
+| `inherited` | the disqualifying result comes from the original sweep, not from a measurement of this implementation | 43 |
+| `no_finding` | no disqualifying result at all - a gate returned nothing, or returned it under a known reader defect | 72 |
+| `blocked` | the strategy did not run, so nothing about it was judged | 152 |
+
+Only `own_measurement` is a closed case. The other three carry the
+work that would settle them in `open_work`, and the selftest fails if
+one of them carries none.
+
 | Reason | Meaning | Strategies |
 |---|---|---:|
 | `lookahead_found` | reads data it could not have had at the time | 69 |
@@ -1330,11 +1347,14 @@ Wave `C_measurement_recovery` - 10:
 | Item | Strategies |
 |---|---:|
 | `paired_full_window_equivalence` | 378 |
+| `runtime_repair_pending` | 152 |
 | `recursive_ladder_pending` | 145 |
-| `lookahead_verdict` | 96 |
+| `lookahead_verdict` | 92 |
+| `lookahead_remeasure_pending` | 65 |
 | `first_measurement_in_current_runtime` | 60 |
 | `convergence_inconclusive` | 34 |
 | `convergence_not_converged_within_ladder` | 28 |
+| `full_window_measurement_pending` | 5 |
 
 Per-row detail, including every evidence path, is in
 `STRATEGY_STATUS.csv`.
