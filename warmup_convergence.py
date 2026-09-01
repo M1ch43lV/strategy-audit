@@ -574,7 +574,8 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--cohort", default="recursion_only",
                         choices=("recursion_only", "wave_d", "wave_c_refusals",
-                                 "wave_b_static_rejected"))
+                                 "wave_b_static_rejected",
+                                 "recursive_unsettled"))
     parser.add_argument("--limit", type=int, default=1)
     parser.add_argument("--timeout", type=int, default=1800)
     parser.add_argument("--selftest", action="store_true")
