@@ -246,6 +246,44 @@ def resolve(row, timeout):
         "drift_threshold_pct": DRIFT_THRESHOLD_PCT,
         "attempts": [],
     }
+    # Rung zero: the strategy exactly as its author declared it, with no
+    # override at all. It is tested first because the frozen gate misread the
+    # analyzer table - it took the first numeric column, which is the drift at
+    # 199 candles whenever the strategy declares more than that - and a row
+    # that clears the band here was excluded by a parsing error alone. Such a
+    # row needs neither a changed warm-up nor the wider band, and saying so is
+    # a stronger result than admitting it under the amendment.
+    declared = profile_bias.run_diagnostic(row, "recursive", timeout, timeout)
+    declared_drifts = declared.get("drifts") or []
+    worst_declared = (max(declared_drifts, key=lambda item: abs(item[1]))
+                      if declared_drifts else None)
+    record["attempts"].append({
+        "ladder_days": None,
+        "startup_candle_count": "as_declared",
+        "status": declared.get("status"),
+        "why": declared.get("why"),
+        "max_drift_pct": abs(worst_declared[1]) if worst_declared else None,
+        "max_drift_indicator": worst_declared[0] if worst_declared else None,
+        "elapsed_s": declared.get("elapsed_s"),
+    })
+    print("  as declared: %s max drift %s%% on %s"
+          % (declared.get("status"),
+             abs(worst_declared[1]) if worst_declared else None,
+             worst_declared[0] if worst_declared else None), flush=True)
+    if declared.get("status") in ("PASS", "FOUND"):
+        settled = (worst_declared is None
+                   or abs(worst_declared[1]) < DRIFT_THRESHOLD_PCT)
+        if settled:
+            record["state"] = "converged"
+            record["chosen_startup_candle_count"] = "as_declared"
+            record["chosen_ladder_days"] = None
+            record["max_drift_pct"] = (abs(worst_declared[1])
+                                       if worst_declared else 0.0)
+            record["max_drift_indicator"] = (worst_declared[0]
+                                             if worst_declared else None)
+            record["needed_no_override"] = True
+            return record
+
     if not rungs:
         record["state"] = "no_usable_ladder"
         record["why"] = ("no declared timeframe" if not timeframe_minutes(timeframe)

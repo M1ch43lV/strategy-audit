@@ -164,15 +164,56 @@ def _lookahead(output, returncode):
 DEFAULT_DRIFT_THRESHOLD = 0.01
 
 
+# The analyzer prints one column per tested startup value, numerically sorted,
+# and labels the strategy's own value "(from strategy)". Its position moves with
+# the value, so the column must be located by that label rather than by index.
+_HEADER = re.compile(r"┃\s*Indicators\s*┃(.+?)┃\s*$", re.M)
+_FROM_STRATEGY = re.compile(r"\(from strategy\)")
+
+
+def _strategy_column(output):
+    """Index of the strategy's own column among the table's value columns."""
+    header = _HEADER.search(output)
+    if not header:
+        return None
+    columns = [cell.strip() for cell in header.group(1).split("┃")]
+    for index, cell in enumerate(columns):
+        if _FROM_STRATEGY.search(cell):
+            return index
+    return None
+
+
 def recursive_drifts(output):
-    """Every indicator drift the analyzer reported, as (name, percent) pairs.
+    """Indicator drifts AT THE STRATEGY'S OWN WARM-UP, as (name, percent) pairs.
 
     The verdict alone discards the numbers, and the convergence route needs
     them: it has to know how far a row still is from its band, and which
     indicator carries the remainder.
+
+    Cells reading "-" mean the analyzer found no deviation worth printing at
+    that startup and are treated as zero, which is what they are.
     """
-    return [(key, float(value)) for key, value in
-            re.findall(r"│\s*([a-zA-Z_0-9]+)\s*│\s*(-?[\d.]+)%", output)]
+    index = _strategy_column(output)
+    if index is None:
+        return []
+    drifts = []
+    for line in output.splitlines():
+        if not line.startswith("│"):
+            continue
+        cells = [cell.strip() for cell in line.strip("│").split("│")]
+        if len(cells) < index + 2:
+            continue
+        name = cells[0]
+        if not re.fullmatch(r"[a-zA-Z_0-9]+", name):
+            continue
+        value = cells[index + 1]
+        if value == "-":
+            drifts.append((name, 0.0))
+            continue
+        match = re.fullmatch(r"(-?[\d.]+)%", value)
+        if match:
+            drifts.append((name, float(match.group(1))))
+    return drifts
 
 
 def _recursive(output, returncode, threshold=DEFAULT_DRIFT_THRESHOLD):
@@ -189,11 +230,14 @@ def _recursive(output, returncode, threshold=DEFAULT_DRIFT_THRESHOLD):
     if refused:
         return "NA", ("startup_candle_count %s exceeds the exchange limit of %s "
                       "candles; the analyzer never ran" % refused.groups())
+    completed = "Start checking for recursive bias" in output
     drifts = recursive_drifts(output)
     if not drifts:
-        # A clean comparison still prints one row per indicator, with values
-        # near zero. An empty table means no comparison happened, and absence
-        # of evidence is not a pass.
+        # An analyzer that ran and listed nothing found nothing: that is the
+        # cleanest result it can report. An analyzer that never got that far
+        # produced no verdict at all, and absence of evidence is not a pass.
+        if completed:
+            return "PASS", "no recursive deviations found"
         return "NA", "analyzer produced no drift table"
     bad = [(key, value) for key, value in drifts if abs(value) >= threshold]
     if bad:
@@ -253,6 +297,11 @@ def run_diagnostic(row, diagnostic, timeout, fallback_timeout):
                 "output_sha256": "sha256_" + hashlib.sha256(
                     output.encode("utf-8")).hexdigest(),
             }
+            if diagnostic == "recursive":
+                # The verdict is a threshold decision and throws the numbers
+                # away. Keeping them lets a later reader see how far a row was
+                # from the line without rerunning the analyzer.
+                result["drifts"] = recursive_drifts(output)
             # Preserve inconclusive and positive findings for auditability.
             # PASS logs are omitted because their output hash is sufficient.
             if status in ("NA", "FOUND"):
@@ -305,29 +354,52 @@ def selftest():
     assert _lookahead("too few trades caught (2/20)", 0) == (
         "NA", "too few trades (2/20)")
 
-    # The analyzer prints one box-drawing row per indicator. Line breaks are
-    # irrelevant to the parser, so the fixture keeps them out of the literal.
-    small = "│ ema_200 │ 0.018% │"
-    large = "│ rsi_112 │ -4.547% │"
-    assert recursive_drifts(small + large) == [("ema_200", 0.018),
-                                               ("rsi_112", -4.547)]
-    # The frozen gate is unchanged, and the wider band is not a free pass:
-    # 0.018% is drift at 0.01 and clean at 1.0, while 4.547% fails both.
-    assert _recursive(small + large, 0)[0] == "FOUND"
-    assert _recursive(small + large, 0, threshold=1.0)[0] == "FOUND"
-    assert _recursive(small, 0)[0] == "FOUND"
-    assert _recursive(small, 0, threshold=1.0) == (
+    ran = "Start checking for recursive bias"
+    # The strategy's own column moves with its value, because the analyzer
+    # sorts the tested startups numerically. Reading the first numeric column
+    # instead measured every warm-up above 199 at 199, which is how a ladder of
+    # seven rungs produced the same 12.317% seven times on 2026-09-01.
+    middle = "\n".join([
+        "┃ Indicators ┃ 199 ┃ 288 (from strategy) ┃ 1999 ┃",
+        "│ ema_200 │ -9.900% │ 0.018% │ -0.001% │",
+        "│ rsi_112 │ -1.000% │ -4.547% │ 0.000% │",
+        ran])
+    assert recursive_drifts(middle) == [("ema_200", 0.018), ("rsi_112", -4.547)]
+    first = "\n".join([
+        "┃ Indicators ┃ 34 (from strategy) ┃ 199 ┃",
+        "│ macd │ -189.560% │ -0.003% │",
+        ran])
+    assert recursive_drifts(first) == [("macd", -189.56)]
+    last = "\n".join([
+        "┃ Indicators ┃ 199 ┃ 999 ┃ 4032 (from strategy) ┃",
+        "│ ewo │ 12.317% │ 3.000% │ -0.004% │",
+        ran])
+    assert recursive_drifts(last) == [("ewo", -0.004)]
+    # A dash means the analyzer saw nothing worth printing at that startup.
+    dashed = "\n".join([
+        "┃ Indicators ┃ 34 (from strategy) ┃ 199 ┃",
+        "│ macdhist │ - │ 0.000% │",
+        ran])
+    assert recursive_drifts(dashed) == [("macdhist", 0.0)]
+    # Without the label there is no column to read, so there is no verdict.
+    assert recursive_drifts("│ ema_200 │ 0.018% │" + ran) == []
+
+    assert _recursive(middle, 0)[0] == "FOUND"
+    assert _recursive(middle, 0, threshold=1.0)[0] == "FOUND"   # rsi_112 remains
+    assert _recursive(first, 0)[0] == "FOUND"
+    assert _recursive(last, 0, threshold=1.0) == (
         "PASS", "no recursive deviations found")
-    # An empty table is no verdict. Reading it as a pass turned nine refused
-    # runs into "converged" rows on 2026-09-01.
+    # An analyzer that ran and listed nothing found nothing.
+    assert _recursive(ran, 0) == ("PASS", "no recursive deviations found")
+    # One that never got that far produced no verdict at all.
     assert _recursive("", 0) == ("NA", "analyzer produced no drift table")
     refusal = ("Configuration error: This strategy requires 8640 candles to "
                "start, which is more than 5x (4999 candles) the amount of "
                "candles Binance provides for .")
     status, why = _recursive(refusal, 0)
     assert status == "NA" and "exceeds the exchange limit" in why, why
-    # The refusal outranks a table, if one somehow appears alongside it.
-    assert _recursive(refusal + small, 0)[0] == "NA"
+    # The refusal outranks a completed-looking run, if both markers appear.
+    assert _recursive(refusal + ran, 0)[0] == "NA"
     # A refusal outranks any threshold; it is not a measurement at all.
     assert _recursive("invalid startup candle count of 0", 0,
                       threshold=1.0)[0] == "FOUND"
