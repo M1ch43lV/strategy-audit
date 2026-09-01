@@ -45,9 +45,32 @@ editing the sources, which changes behaviour, or pinning an older runtime, which
 breaks comparability with the frozen 67. Neither is available at the harness
 layer, so both remain terminal here.
 
-## Next step for the 13 zero-trade rows
+## The 13 zero-trade rows, settled
 
-`regime_eligibility.classify` already upgrades a zero-trade smoke result from
-`PROFILE_FULL_WINDOW.json`. Those 13 rows need the pooled full-window run before
-their trade count can be judged; a zero in a one-month window is not evidence of
-a strategy that never trades.
+All 13 have their pooled full-window run. None adds a usable strategy, and the
+run was still worth doing: it separated three different things a zero had been
+hiding.
+
+| Outcome | Rows |
+|---|---:|
+| genuinely never trades over the full window | 6 |
+| defective in a way the one-month window concealed | 2 |
+| already measured before this pass | 4 |
+| resource-terminal | 1 |
+
+The two defects are the reason a zero cannot be taken at face value.
+`Matrix` reads a `coef` column its own indicator step never creates, and
+`zorkv7_0_0` asks a quantile transform for 100,000 quantiles from 10,000
+samples. Both ran clean in the smoke window because neither reached the failing
+code there. A passed short test is not evidence that a strategy works.
+
+`HarmonicDivergence` spent 1800 seconds on one of eight pairs without
+finishing, after reaching 18.5 GiB under the old memory ceiling. Its single
+recovery attempt is deliberately unused.
+
+## Both bias gates
+
+See `EXPANSION_WAVE_C_BIAS_RESULTS.md`. Of the 53 rows that produced trades,
+three passed both gates and are admitted to E1; 37 are excluded on demonstrated
+bias; seven were refused rather than judged by the recursive analyzer and were
+routed to the warm-up procedure; six still hold an `NA`.

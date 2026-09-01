@@ -33,6 +33,10 @@ data/
 # refusals get their own manifest so the frozen Wave B file is never
 # rewritten to hold a second cohort.
 !ELIGIBILITY_EXPANSION_WARMUP_RECOVERY_WAVE_C.csv
+# The current-status overlay. Derived and regenerable, but published:
+# it is the only table that answers "what do we know about this
+# strategy today", which the frozen E0 baseline cannot.
+!STRATEGY_STATUS.csv
 !cluster/CLUSTERS.csv
 !results/regime/*.csv
 

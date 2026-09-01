@@ -70,18 +70,27 @@ independent observations.
 
 ## Open work
 
-1. **Admit the three.** `eligibility_expansion_adjudicate.py` cannot express
-   their case. It is driven by `ELIGIBILITY_EXPANSION_PROOFS.json` and checks
-   `trade_equivalence` and `static_proof`, both of which exist because a Wave B
-   row needs an adapter to obtain a recursive verdict at all. A Wave C row
-   needs no adapter: it passed the original gates natively. The adjudicator
-   needs a Wave C ruleset asserting identity, native measurement with trades,
-   both gates `PASS`, coverage `PASS`, trap-free, and not `behavior_changed` -
-   the original Stage 6 rule, unrelaxed. Rewriting the frozen
-   `REGIME_ELIGIBILITY.csv` is not an alternative.
-2. **Decide the seven refusals** by applying the existing Wave B procedure.
-   Applying a frozen rule to newly matching rows is what the plan requires when
-   an analyzer limit is overcome; inventing a second, softer route would not be.
+1. **Done: the three are admitted.** E1 stands at 78.
+
+   The adjudicator could not express their case as it stood. It is driven by
+   `ELIGIBILITY_EXPANSION_PROOFS.json` and checks `trade_equivalence` and
+   `static_proof`, and both exist only because a Wave B row declares no warm-up,
+   the analyzer refuses it, and a verdict is obtainable solely by supplying a
+   value the author never wrote. A Wave C row was supplied nothing: it was
+   never measured, and once measured it passed the original gates unaided.
+   Demanding an equivalence proof for an override that was never applied would
+   not have been strict but incoherent. It therefore gained a second ruleset,
+   `native_gate_pass_v1`, asserting the original Stage 6 rule and nothing
+   weaker: identity, native measurement with trades, both gates `PASS`,
+   coverage `PASS`, trap-free, artifact role strategy, not `behavior_changed`.
+   Rewriting the frozen `REGIME_ELIGIBILITY.csv` was never an alternative.
+
+2. **Done: the seven refusals were routed to the warm-up procedure.** Five
+   showed real drift at a one-candle warm-up and two passed outright. All seven
+   then joined the warm-up convergence cohort, where the drift is measured
+   across a fixed ladder rather than at a single value. `epretrace` is terminal
+   pending: its look-ahead run exceeded an hour twice, which exhausts the two
+   attempts the resource protocol allows.
 3. **Six rows still hold an `NA`.** Three are `NA/PASS` and could still become
    candidates if a look-ahead verdict can be obtained. `ARIMASTR` and
    `beta_factors_model` fail inside their own code; `HarmonicDivergence_fix`

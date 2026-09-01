@@ -38,9 +38,17 @@ rule is the most likely way to corrupt this study.
 
 ## Tier 2 - who is measured
 
+- **`STRATEGY_STATUS.md` / `.csv` - start here.** The current evidence for all
+  900 rows, regenerated from the smoke, bias, full-window, adjudication and
+  convergence stores. It is the only table that answers "what do we know about
+  this strategy today"; the frozen baseline cannot, by design. It decides
+  nothing - admission happens in the adjudicator alone.
 - `REGIME_ELIGIBILITY.md` - E0, the frozen 67. Deliberately not regenerated.
-- `ELIGIBILITY_EXPANSION_ADJUDICATION.md` - the 8 admitted since. **Read with
-  the file above or you will quote a wrong number: E1 is 75, not 67 and not 8.**
+  Where it and the status table disagree, E0 is not wrong: it is the state at
+  the freeze, and the difference is the expansion.
+- `ELIGIBILITY_EXPANSION_ADJUDICATION.md` - the profiles admitted since, by
+  route. **Read with the file above or you will quote a wrong number: E1 is
+  78, not 67 and not 11.**
 - `EXECUTION_PROFILES.md` - which implementation of a strategy is canonical, and
   whether it runs spot or futures. Relevant to the goal in a way the title
   hides: 832 of 900 strategies are long-only, so bear-phase evidence is
@@ -88,7 +96,7 @@ bull specialist.
 `HANDOFF.md` (the shared baton - always read first), `ELIGIBILITY_EXPANSION.md`,
 `EXPANSION_WAVE_A_RESULTS.md`, `EXPANSION_WAVE_C_PREFLIGHT.md`,
 `EXPANSION_WAVE_C_RESULTS.md`, `EXPANSION_STATIC_PROOF_FINDINGS.md`,
-`TRAILING_SENSITIVITY_FINDINGS.md`.
+`EXPANSION_WAVE_C_BIAS_RESULTS.md`, `TRAILING_SENSITIVITY_FINDINGS.md`.
 
 ## Do not read for this purpose
 
