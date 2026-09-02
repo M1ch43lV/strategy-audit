@@ -26,6 +26,13 @@
       ],
       "status": "applied"
     },
+    "Apollo11": {
+      "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
+    },
     "BuyRegions": {
       "note": "The strategy imports the author's adjacent utils package; analyzer isolation must retain the repository package root.",
       "python_paths": [
@@ -173,6 +180,13 @@
       ],
       "status": "applied"
     },
+    "Dracula": {
+      "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
+    },
     "DualModelPolymarketPortfolio": {
       "note": "repair withdrawn 2026-09-01: the only corpus copy of `alpha` is in repos/mlsys-io_PortfolioBench, which carries its own freqtrade/ and shadows the installed package the moment it goes on sys.path. The run then fails with \"cannot import name '__version__' from 'freqtrade' (unknown location)\", which names neither the path nor the cause. Deleting the entry would have deleted the finding too.",
       "rules": [],
@@ -218,6 +232,13 @@
         "restore_author_config"
       ],
       "status": "refused"
+    },
+    "INSIDEUP": {
+      "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
     },
     "KMM": {
       "note": "Not executed: source embeds an API credential and requires a networked OpenAI client.",
@@ -398,6 +419,62 @@
       ],
       "status": "applied"
     },
+    "NASOSRv6_private_Reinuvader_20211121": {
+      "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
+    },
+    "NASOSv5": {
+      "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
+    },
+    "NotAnotherSMAOffSetStrategy_V2": {
+      "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
+    },
+    "NotAnotherSMAOffsetStrategy": {
+      "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
+    },
+    "NotAnotherSMAOffsetStrategyHO": {
+      "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
+    },
+    "NotAnotherSMAOffsetStrategyHOv3": {
+      "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
+    },
+    "NotAnotherSMAOffsetStrategyX1": {
+      "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
+    },
+    "NotAnotherSMAOffsetStrategy_uzi3": {
+      "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
+    },
     "PolymarketMeanReversionStrategy": {
       "note": "repair withdrawn 2026-09-01: the only corpus copy of `alpha` is in repos/mlsys-io_PortfolioBench, which carries its own freqtrade/ and shadows the installed package the moment it goes on sys.path. The run then fails with \"cannot import name '__version__' from 'freqtrade' (unknown location)\", which names neither the path nor the cause. Deleting the entry would have deleted the finding too.",
       "rules": [],
@@ -429,6 +506,13 @@
         "restore_author_config"
       ],
       "status": "partial"
+    },
+    "Saturn5": {
+      "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
     },
     "Solipsis": {
       "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
@@ -512,6 +596,13 @@
       ],
       "status": "applied"
     },
+    "custom_sell": {
+      "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
+    },
     "mark_strat_opt": {
       "note": "declares `class <Name> (IStrategy):` with a space. Freqtrade's resolver skips a file unless its text contains the literal `class <Name>(`, so it never imports the file at all and reports \"This class does not exist or contains Python code errors\", which is true of neither. The shim makes that pre-import scan tolerant of whitespace; every file it admits still has to pass the four real conditions. No strategy source is touched.",
       "rules": [
@@ -523,6 +614,13 @@
       "note": "declares `class <Name> (IStrategy):` with a space. Freqtrade's resolver skips a file unless its text contains the literal `class <Name>(`, so it never imports the file at all and reports \"This class does not exist or contains Python code errors\", which is true of neither. The shim makes that pre-import scan tolerant of whitespace; every file it admits still has to pass the four real conditions. No strategy source is touched.",
       "rules": [
         "whitespace_tolerant_class_scan"
+      ],
+      "status": "applied"
+    },
+    "tbtest": {
+      "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
       ],
       "status": "applied"
     },

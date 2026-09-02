@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """Compatibility shims for framework changes the strategies predate.
 
-Two of them so far: a hook whose signature gained parameters, and a file scan
-that assumes a formatting convention. Neither is a defect in a strategy, and
-neither shim touches a strategy file - they are installed into freqtrade in the
+Three of them so far: a hook whose signature gained parameters, a file scan
+that assumes a formatting convention, and a column the framework duplicates
+when its own analyzer calls a hook twice. None is a defect in a strategy, and
+no shim touches a strategy file - they are installed into freqtrade in the
 runner process, only when PROFILE_COMPAT_SIGNATURES names them.
 
 --------------------------------------------------------------------------
@@ -142,8 +143,75 @@ def install_tolerant_class_scan():
     return True
 
 
+ADVISE_RULE = "idempotent_entry_tag_initialisation"
+
+
+def install_idempotent_advise_entry():
+    """Stop `advise_entry` duplicating `enter_tag` when it is called twice.
+
+    Freqtrade's `advise_entry` does two things in order:
+
+        dataframe.loc[:, "enter_tag"] = ""      # workaround for pandas #56503
+        df = self.populate_entry_trend(dataframe, metadata)
+        if "enter_long" not in df.columns:
+            df = df.rename({"buy": "enter_long", "buy_tag": "enter_tag"},
+                           axis="columns")
+
+    For a strategy that writes the legacy `buy_tag`, the rename RELABELS rather
+    than merges, so the frame comes back with TWO columns called `enter_tag`:
+    the empty initialiser and the strategy's real tags. An ordinary backtest
+    never notices, because it calls the hook once.
+
+    `lookahead-analysis` calls it twice on the same frame - once in
+    `prepare_data`, then again inside `backtest` through
+    `_get_ohlcv_as_lists`. The second pass has to align an assignment against a
+    columns axis that now has a duplicate label, and pandas refuses:
+
+        ValueError: cannot reindex on an axis with duplicate labels
+
+    Fourteen strategies are reported against that message. Not one of them is
+    at fault: they run and trade in an ordinary backtest, their recursion is
+    clean, and the duplicate is created by freqtrade's own workaround meeting
+    freqtrade's own rename. Measured directly, `NotAnotherSMAOffsetStrategy`,
+    `Apollo11` and `Saturn5` each hold two `enter_tag` columns after a single
+    pass, and each raises on the second. `BinHV27_werkkrew`, which writes `buy`
+    but no `buy_tag`, holds one and passes twice - which is the control.
+
+    The shim collapses that duplicate, keeping the LAST occurrence. Column
+    order is fixed by construction: the initialiser is written before
+    `populate_entry_trend` runs, and the renamed `buy_tag` is added by the
+    strategy after it. The last one therefore carries the strategy's own tags
+    and the first is the empty placeholder it was meant to replace - which is
+    what the single-pass path already uses.
+
+    It changes nothing else. A frame with one `enter_tag` is returned
+    untouched, so a v3 strategy never enters this code path at all.
+    """
+    from freqtrade.strategy.interface import IStrategy
+
+    if getattr(IStrategy, "_idempotent_entry_tag", False):
+        return True
+
+    original = IStrategy.advise_entry
+
+    def advise_entry(self, dataframe, metadata):
+        frame = original(self, dataframe, metadata)
+        columns = list(frame.columns)
+        if columns.count("enter_tag") < 2:
+            return frame
+        keep = len(columns) - 1 - columns[::-1].index("enter_tag")
+        wanted = [index for index, name in enumerate(columns)
+                  if name != "enter_tag" or index == keep]
+        return frame.iloc[:, wanted]
+
+    IStrategy.advise_entry = advise_entry
+    IStrategy._idempotent_entry_tag = True
+    return True
+
+
 INSTALLERS = {RULE: install_min_roi_reached_entry,
-              SCAN_RULE: install_tolerant_class_scan}
+              SCAN_RULE: install_tolerant_class_scan,
+              ADVISE_RULE: install_idempotent_advise_entry}
 
 
 def install_from_environment():
@@ -219,6 +287,51 @@ def selftest():
     assert not pattern.search("#class MultiMA_TSL5 (IStrategy):")
     assert not pattern.search("from x import MultiMA_TSL5")
     assert not pattern.search("    class MultiMA_TSL5(IStrategy):")
+    # The third shim: a duplicated enter_tag is collapsed onto the LAST
+    # occurrence - the strategy's own tags - and a frame that has only one is
+    # returned exactly as it came.
+    import sys
+    import pandas
+    frame = pandas.DataFrame({"close": [1.0, 2.0]})
+    frame["enter_tag"] = ""
+    frame["enter_long"] = [0, 1]
+    frame["buy_tag"] = ["", "ewo1"]
+    duplicated = frame.rename({"buy_tag": "enter_tag"}, axis="columns")
+    assert list(duplicated.columns).count("enter_tag") == 2
+
+    class FakeStrategy(object):
+        def advise_entry(self, dataframe, metadata):
+            return duplicated
+
+    import types
+    module = types.ModuleType("freqtrade.strategy.interface")
+    module.IStrategy = FakeStrategy
+    saved = sys.modules.get("freqtrade.strategy.interface")
+    sys.modules["freqtrade.strategy.interface"] = module
+    try:
+        assert install_idempotent_advise_entry()
+        collapsed = FakeStrategy().advise_entry(None, {})
+        assert list(collapsed.columns).count("enter_tag") == 1, collapsed.columns
+        # The one kept is the strategy's, not the empty placeholder.
+        assert list(collapsed["enter_tag"]) == ["", "ewo1"], collapsed["enter_tag"]
+        assert list(collapsed.columns) == ["close", "enter_long", "enter_tag"]
+        # A frame with one enter_tag is passed straight through.
+        single = frame.drop(columns=["buy_tag"])
+        FakeStrategy._idempotent_entry_tag = False
+        module.IStrategy = FakeStrategy
+
+        class Single(object):
+            def advise_entry(self, dataframe, metadata):
+                return single
+        module.IStrategy = Single
+        assert install_idempotent_advise_entry()
+        assert Single().advise_entry(None, {}) is single
+    finally:
+        if saved is not None:
+            sys.modules["freqtrade.strategy.interface"] = saved
+        else:
+            sys.modules.pop("freqtrade.strategy.interface", None)
+
     print("compat_signature selftest: PASS")
 
 

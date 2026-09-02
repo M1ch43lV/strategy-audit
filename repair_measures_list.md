@@ -331,6 +331,7 @@ For example: `Astro`, `BestSingleAssetPortfolio`, `CryptoFrogNFI2`, `GodStra`, `
 | Rule | Strategies |
 |---|---:|
 | `restore_copied_local_module` | 14 |
+| `idempotent_entry_tag_initialisation` | 14 |
 | `restore_author_package_extension` | 11 |
 | `restore_author_config` | 11 |
 | `legacy_min_roi_reached_entry_signature` | 9 |

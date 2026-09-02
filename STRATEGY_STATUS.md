@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-02 21:55:31 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-02 22:19:11 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -154,7 +154,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 825 of 2185 commands are recorded so far, and every new run
+recording. 832 of 2185 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -2960,13 +2960,13 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_verdict_on_lookahead` | `no_finding` | 76 |
+| `no_verdict_on_lookahead` | `no_finding` | 75 |
 | `no_verdict_on_recursive` | `no_finding` | 36 |
 | `recursive_bias_unverified` | `no_finding` | 26 |
 | `recursive_warmup_refused` | `no_finding` | 13 |
 | `no_trades_in_full_measurement` | `inherited` | 5 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 5 |
-| `unclassified` | `no_finding` | 3 |
+| `unclassified` | `no_finding` | 4 |
 | `lookahead_found` | `inherited` | 2 |
 
 This is not a softening. A row here may well end up excluded - the
@@ -3132,7 +3132,7 @@ Wave `C_measurement_recovery` - 7:
 
 | Item | Strategies |
 |---|---:|
-| `lookahead_remeasure_pending` | 126 |
+| `lookahead_remeasure_pending` | 119 |
 | `recursive_ladder_pending` | 112 |
 | `needs_a_look` | 56 |
 | `convergence_not_converged_within_ladder` | 54 |
