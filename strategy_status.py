@@ -624,7 +624,8 @@ def rows():
             cohort = "E1_expanded"
         elif base.get("regime_eligible") == "true":
             cohort = "E0_strict67"
-        elif settled.get("state") == "converged" and lookahead == "PASS":
+        elif settled.get("state") == "converged" and lookahead == "PASS" \
+                and lookahead_evidence == "native":
             # Convergence answers one question: is there a warm-up at which no
             # indicator drifts. It says nothing about whether the strategy
             # reads data it could not have had, and a look-ahead finding is
@@ -1325,8 +1326,12 @@ def selftest():
                 (row["strategy_id"], row["cohort"])
         # A candidate must have cleared both gates, not merely failed neither.
         if row["cohort"] == "convergence_candidate":
-            assert row["lookahead"] == "PASS", \
-                (row["strategy_id"], row["lookahead"])
+            # The same standard admission uses: a PASS borrowed from the
+            # original sweep is an absence claim from an environment that could
+            # not measure, and cannot carry a row towards admission.
+            assert row["lookahead"] == "PASS" \
+                and row["lookahead_evidence"] == "native", \
+                (row["strategy_id"], row["lookahead"], row["lookahead_evidence"])
         # A row the ladder settled must not still carry the superseded verdict.
         if row["cohort"] == "convergence_candidate":
             assert row["recursive"] in ("PASS", "PASS_1PCT"), \

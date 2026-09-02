@@ -71,9 +71,15 @@ def cohort():
     profiles = {row["strategy_id"]: row for row in _csv(PROFILES)}
     selected = []
     for row in _csv(STATUS):
-        if row["cohort"] != "convergence_candidate":
+        # Any row the ladder settled, whatever cohort it landed in. Tying this
+        # to `convergence_candidate` missed 21 rows that had settled and then
+        # left the cohort precisely because their look-ahead verdict was
+        # borrowed - the rows this route exists for.
+        if not row["recursive_evidence"].startswith("convergence:"):
             continue
         if row["lookahead_evidence"] == "native":
+            continue
+        if row["strategy_id"] not in profiles:
             continue
         selected.append(profiles[row["strategy_id"]])
     return selected
@@ -116,11 +122,11 @@ def selftest():
     status = {r["strategy_id"]: r for r in _csv(STATUS)}
     for row in rows:
         entry = status[row["strategy_id"]]
-        assert entry["cohort"] == "convergence_candidate", row["strategy_id"]
+        assert entry["recursive_evidence"].startswith("convergence:"),             row["strategy_id"]
         # A native verdict is never re-decided; only a gap is filled.
         assert entry["lookahead_evidence"] != "native", row["strategy_id"]
     native = sum(1 for r in status.values()
-                 if r["cohort"] == "convergence_candidate"
+                 if r["recursive_evidence"].startswith("convergence:")
                  and r["lookahead_evidence"] == "native")
     print("eligibility_lookahead_backfill selftest: PASS "
           "(%d to measure, %d already native)" % (len(rows), native))

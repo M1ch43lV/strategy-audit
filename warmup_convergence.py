@@ -501,7 +501,11 @@ def resolve(row, timeout):
 # bottom rung the strategy cannot compute is dropped - so a record carrying
 # either was made by code that could not have got the answer.
 DEFECTIVE = ("freqtrade refused startup",
-             "analyzer produced no drift table")
+             "analyzer produced no drift table",
+             # Not a defect of ours but of the moment: a run that could not
+             # reach the exchange never evaluated the strategy, so its message
+             # describes the machine. Nine rows carry it.
+             "Could not load markets")
 
 
 def redo_defective(cohort_name):

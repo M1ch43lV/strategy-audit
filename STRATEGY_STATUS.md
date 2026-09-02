@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-02 07:46:16 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-02 07:53:54 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -15,7 +15,7 @@ the state at the freeze, and the difference is the expansion.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 229 of 900 rows
+file's time and is labelled `log_mtime` for that reason. 226 of 900 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
@@ -25,19 +25,19 @@ have neither and are left empty rather than given an invented time.
 | in the manifest | 900 |
 | measured at all | 741 |
 | produced trades | 711 |
-| carrying a run time | 671 |
+| carrying a run time | 674 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
-| `E1_expanded` | 360 |
-| `excluded` | 236 |
+| `E1_expanded` | 365 |
+| `excluded` | 237 |
 | `exclusion_unconfirmed` | 163 |
 | `E0_strict67` | 67 |
 | `not_tested_in_current_runtime` | 60 |
-| `convergence_candidate` | 7 |
 | `pending` | 7 |
+| `convergence_candidate` | 1 |
 
 ## How freqtrade was called
 
@@ -46,7 +46,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 460 of 2102 commands are recorded so far, and every new run
+recording. 465 of 2102 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -66,7 +66,7 @@ evaluate a single signal without it. The warm-up ladder passes
 `--startup-candle` with every rung at once, which is why one run
 reports the whole ladder.
 
-## Passing - 427 strategies
+## Passing - 432 strategies
 
 Every original gate returned `PASS`: measured in its native mode,
 produced trades, clean look-ahead and recursion, complete candle
@@ -300,6 +300,8 @@ coverage, no published trap.
 | `LinearRegressionStrategy` | `spot_long` | `E1_expanded` | 24570 | `convergence:288:warmup_supplied` | 2026-09-01 12:29:59 | [log](user_data/convergence_logs/LinearRegressionStrategy-ladder.log) |
 | `LuxOSC` | `spot_long` | `E1_expanded` | 14577 | `convergence:576:warmup_supplied` | 2026-09-01 14:19:26 | [log](user_data/convergence_logs/LuxOSC-ladder.log) |
 | `MAC` | `spot_long` | `E1_expanded` | 52 | `convergence:90:warmup_supplied` | 2026-09-01 14:19:51 | [log](user_data/convergence_logs/MAC-ladder.log) |
+| `MACDRL` | `futures_long` | `E1_expanded` | 200 | `convergence:2016:warmup_supplied` | 2026-09-02 07:27:57 | [log](user_data/convergence_logs/MACDRL-ladder.log) |
+| `MACDRS` | `futures_long_short` | `E1_expanded` | 613 | `convergence:2016:warmup_supplied` | 2026-09-02 07:30:14 | [log](user_data/convergence_logs/MACDRS-ladder.log) |
 | `MACDStrategy` | `spot_long` | `E1_expanded` | 20565 | `convergence:288:warmup_supplied` | 2026-09-01 14:22:14 | [log](user_data/convergence_logs/MACDStrategy-ladder.log) |
 | `MACDStrategyADA` | `spot_long` | `E1_expanded` | 7456 | `convergence:288:warmup_supplied` | 2026-09-01 15:59:06 | [log](user_data/convergence_logs/MACDStrategyADA-ladder.log) |
 | `MACDStrategyAVAX` | `spot_long` | `E1_expanded` | 7456 | `convergence:288:warmup_supplied` | 2026-09-01 15:59:57 | [log](user_data/convergence_logs/MACDStrategyAVAX-ladder.log) |
@@ -469,6 +471,9 @@ coverage, no published trap.
 | `WilliamsRStrategy` | `spot_long` | `E1_expanded` | 26924 | `convergence:2016:warmup_supplied` | 2026-09-01 12:50:33 | [log](user_data/convergence_logs/WilliamsRStrategy-ladder.log) |
 | `YOLO` | `spot_long` | `E1_expanded` | 560 | `convergence:1440:warmup_supplied` | 2026-09-01 15:20:39 | [log](user_data/convergence_logs/YOLO-ladder.log) |
 | `ZScoreMeanReversionStrategy` | `spot_long` | `E1_expanded` | 37 | `convergence:540:warmup_supplied` | 2026-09-01 15:21:04 | [log](user_data/convergence_logs/ZScoreMeanReversionStrategy-ladder.log) |
+| `ZaratustraDCA2_06` | `futures_long_short` | `E1_expanded` | 241 | `convergence:288:warmup_supplied` | 2026-09-02 07:48:03 | [log](user_data/convergence_logs/ZaratustraDCA2_06-ladder.log) |
+| `ZaratustraDCA2_07` | `futures_long_short` | `E1_expanded` | 219 | `convergence:288:warmup_supplied` | 2026-09-02 07:49:13 | [log](user_data/convergence_logs/ZaratustraDCA2_07-ladder.log) |
+| `ZaratustraDCA5` | `futures_long_short` | `E1_expanded` | 233 | `convergence:288:warmup_supplied` | 2026-09-02 07:51:31 | [log](user_data/convergence_logs/ZaratustraDCA5-ladder.log) |
 | `adaptive` | `spot_long` | `E1_expanded` | 647 | `convergence:2016:warmup_supplied` | 2026-09-01 15:23:35 | [log](user_data/convergence_logs/adaptive-ladder.log) |
 | `adxbbrsi2` | `spot_long` | `E1_expanded` | 741 | `convergence:336:warmup_supplied` | 2026-09-01 12:50:58 | [log](user_data/convergence_logs/adxbbrsi2-ladder.log) |
 | `bbandrsi` | `spot_long` | `E1_expanded` | 6758 | `convergence:192:warmup_supplied` | 2026-09-01 16:31:44 | [log](user_data/convergence_logs/bbandrsi-ladder.log) |
@@ -1650,6 +1655,18 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MAC --strategy-path user_data/profile_bias_strategies/MAC --timerange 20200101-20220101 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MAC --strategy-path user_data/profile_bias_strategies/MAC --timerange 20190101-20190401 --no-color
   ```
+- `MACDRL`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/profile_configs/futures_futures_long.json --strategy MACDRL --strategy-path repos/MelvynClark_Freqtrade-Strategy/MACDR --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MACDRL --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/futures_futures_long.json --strategy MACDRL --strategy-path user_data/profile_bias_strategies/MACDRL --timerange 20200301-20200401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/MACDRL_startup_288.json --strategy MACDRL --strategy-path user_data/profile_bias_strategies/MACDRL --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016
+  ```
+- `MACDRS`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy MACDRS --strategy-path repos/MelvynClark_Freqtrade-Strategy/MACDR --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MACDRS --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy MACDRS --strategy-path user_data/profile_bias_strategies/MACDRS --timerange 20200301-20200401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/MACDRS_startup_288.json --strategy MACDRS --strategy-path user_data/profile_bias_strategies/MACDRS --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016
+  ```
 - `MACDStrategy`
   ```
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MACDStrategy --strategy-path user_data/profile_bias_strategies/MACDStrategy --timerange 20190101-20190401 --no-color
@@ -2502,6 +2519,24 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ZScoreMeanReversionStrategy --strategy-path user_data/profile_bias_strategies/ZScoreMeanReversionStrategy --timerange 20200101-20220101 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ZScoreMeanReversionStrategy --strategy-path user_data/profile_bias_strategies/ZScoreMeanReversionStrategy --timerange 20190101-20190401 --no-color
   ```
+- `ZaratustraDCA2_06`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy ZaratustraDCA2_06 --strategy-path repos/TheoBrigitte_freqtrade/strategies/Zaratustra --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ZaratustraDCA2_06 --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy ZaratustraDCA2_06 --strategy-path user_data/profile_bias_strategies/ZaratustraDCA2_06 --timerange 20200301-20200401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config profile_futures_config.json --strategy ZaratustraDCA2_06 --strategy-path user_data/profile_bias_strategies/ZaratustraDCA2_06 --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016
+  ```
+- `ZaratustraDCA2_07`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy ZaratustraDCA2_07 --strategy-path repos/bustillo_freqtrade-strategies/ZaratustraDCA --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ZaratustraDCA2_07 --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy ZaratustraDCA2_07 --strategy-path user_data/profile_bias_strategies/ZaratustraDCA2_07 --timerange 20200301-20200401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config profile_futures_config.json --strategy ZaratustraDCA2_07 --strategy-path user_data/profile_bias_strategies/ZaratustraDCA2_07 --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016
+  ```
+- `ZaratustraDCA5`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy ZaratustraDCA5 --strategy-path repos/bustillo_freqtrade-strategies/ZaratustraDCA --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ZaratustraDCA5 --cache none
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/futures_futures_long_short.json --strategy ZaratustraDCA5 --strategy-path user_data/profile_bias_strategies/ZaratustraDCA5 --timerange 20200301-20200401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/ZaratustraDCA5_startup_288.json --strategy ZaratustraDCA5 --strategy-path user_data/profile_bias_strategies/ZaratustraDCA5 --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016
+  ```
 - `adaptive`
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy adaptive --strategy-path user_data/profile_bias_strategies/adaptive --timerange 20200101-20220101 --no-color
@@ -2666,7 +2701,7 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Convergence candidates - 7 strategies
+## Convergence candidates - 1 strategies
 
 A warm-up exists at which every indicator stays inside the band.
 That is not admission: the paired full-window run must still show
@@ -2674,12 +2709,6 @@ an identical trade list.
 
 | Strategy | Profile | Chosen warm-up | Worst drift | Tested | Results |
 |---|---|---|---|---|---|
-| `AwesomeMacd` | `spot_long` | 336 candles | 0.0% on `adx` | 2026-09-02 06:51:58 | `user_data/convergence_logs/AwesomeMacd-ladder.log` |
-| `Diamond` | `spot_long` | 288 candles | 0.0% on `None` | 2026-09-01 15:46:33 | `user_data/convergence_logs/Diamond-ladder.log` |
-| `EasyInEasyOut` | `spot_long` | 1440 candles | 0.0% on `None` | 2026-09-01 15:48:12 | `user_data/convergence_logs/EasyInEasyOut-ladder.log` |
-| `MACDRL` | `futures_long` | 2016 candles | 0.0% on `ema200_200` | 2026-09-02 07:27:57 | `user_data/convergence_logs/MACDRL-ladder.log` |
-| `MACDRS` | `futures_long_short` | 2016 candles | 0.0% on `ema200_long_200` | 2026-09-02 07:30:14 | `user_data/convergence_logs/MACDRS-ladder.log` |
-| `SlowPotato` | `spot_long` | 288 candles | 0.0% on `None` | 2026-09-01 16:15:31 | `user_data/convergence_logs/SlowPotato-ladder.log` |
 | `StrategyTestV2` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-01 15:08:04 | `user_data/convergence_logs/StrategyTestV2-ladder.log` |
 
 ## Pending - 7 strategies
@@ -2777,8 +2806,9 @@ basis stay on the row, and the work that would settle it is in
 | `no_verdict_on_lookahead` | `no_finding` | 56 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 51 |
 | `lookahead_found` | `inherited` | 38 |
-| `recursive_bias_unverified` | `no_finding` | 12 |
+| `recursive_bias_unverified` | `no_finding` | 8 |
 | `no_trades_in_full_measurement` | `inherited` | 5 |
+| `unclassified` | `no_finding` | 4 |
 | `no_verdict_on_recursive` | `no_finding` | 1 |
 
 This is not a softening. A row here may well end up excluded - the
@@ -2786,7 +2816,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 236 strategies, by decisive reason
+## Not passing - 237 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -2834,7 +2864,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 137 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 138 |
 | `blocked` | the strategy did not run, so nothing about it was judged | 99 |
 
 Only `own_measurement` is a closed case. The other three carry the
@@ -2846,7 +2876,7 @@ one of them carries none.
 | `lookahead_found` | reads data it could not have had at the time | 33 |
 | `technical_trap_found` | carries a published backtesting trap | 40 |
 | `strategy_does_not_run` | fails before it can be measured; the message is in runtime_failure | 99 |
-| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 53 |
+| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 54 |
 | `no_trades_in_full_measurement` | never trades over the full window | 11 |
 
 
@@ -2857,7 +2887,7 @@ one of them carries none.
 | `lookahead_found` | 0 | 15 | 0 | 18 |
 | `technical_trap_found` | 0 | 0 | 0 | 40 |
 | `strategy_does_not_run` | 0 | 99 | 0 | 0 |
-| `recursive_bias_found` | 3 | 18 | 14 | 18 |
+| `recursive_bias_found` | 3 | 18 | 14 | 19 |
 | `no_trades_in_full_measurement` | 0 | 10 | 0 | 1 |
 
 ### `lookahead_found` - 33
@@ -2975,7 +3005,7 @@ Fails before it can be measured; the message is in runtime_failure.
 | Informative dataframe for (ETH/BTC, 1h, spot) is empty. Can't populate informative indicators. | 1 | `multi_tf` |
 | Can't instantiate abstract class thetank2 without an implementation for abstract method 'populate_indicators' | 1 | `thetank2` |
 
-### `recursive_bias_found` - 53
+### `recursive_bias_found` - 54
 
 Indicator value still drifts at every warm-up the ladder can reach.
 
@@ -2998,13 +3028,13 @@ Wave `D_recursive_drift` - 14:
 `ClucHAnix_BB_RPB_MOD_CTT`, `ClucHAnix_BB_RPB_MOD_E0V1E_ROI`, `ObvTrendStrategy`, `flawless_lambo`
 `lambotest`, `tacos`
 
-Wave `not_scheduled` - 18:
+Wave `not_scheduled` - 19:
 
 `BcmbigzV1`, `BeastBotXBLR6`, `BeastBotXBLR7`, `BigZ04`
 `GKD_CT`, `GoldHedgeZeroMACD`, `HurstCycle7`, `HurstCycleV5RSI`
 `HurstCycleV6`, `NOTankAi_15`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`
 `NostalgiaForInfinityX5`, `NostalgiaForInfinityX6`, `NostalgiaForInfinityX7`, `NotAnotherSMAOffSetStrategy_V2`
-`TrendRiderStrategy`, `pcb20`
+`TrendFollowingStrategy`, `TrendRiderStrategy`, `pcb20`
 
 ### `no_trades_in_full_measurement` - 11
 
@@ -3035,18 +3065,18 @@ Wave `not_scheduled` - 1:
 
 | Item | Strategies |
 |---|---:|
-| `lookahead_remeasure_pending` | 158 |
-| `recursive_ladder_pending` | 109 |
+| `lookahead_remeasure_pending` | 162 |
+| `recursive_ladder_pending` | 104 |
 | `first_measurement_in_current_runtime` | 60 |
 | `needs_a_look` | 56 |
-| `convergence_not_converged_within_ladder` | 53 |
+| `convergence_not_converged_within_ladder` | 54 |
 | `refuse_repair` | 21 |
 | `repair_attempted` | 16 |
-| `convergence_inconclusive` | 15 |
-| `paired_full_window_equivalence` | 7 |
+| `convergence_inconclusive` | 16 |
 | `full_window_measurement_pending` | 5 |
 | `repair_withdrawn` | 4 |
 | `to_be_fixed` | 2 |
+| `paired_full_window_equivalence` | 1 |
 
 Per-row detail, including every evidence path, is in
 `STRATEGY_STATUS.csv`.
