@@ -273,6 +273,46 @@
   </section>
 
   <section>
+    <h2>What excludes a strategy</h2>
+    <p class="note">Three things, and nothing else. Each is a result this
+    audit produced itself, on this data, in this runtime.</p>
+    <div class="legend">
+      <div>
+        <h3>C1 &middot; Look-ahead found</h3>
+        <p class="lead"><code>lookahead = FOUND</code> from a run of ours. The
+        strategy reads data it could not have had at the time, and no repair
+        undoes that without rewriting what the author wrote.</p>
+      </div>
+      <div>
+        <h3>C2 &middot; Recursion found</h3>
+        <p class="lead"><code>recursive_evidence = convergence:not_settled</code>.
+        The ladder supplied up to a year of warm-up and an indicator still
+        moved by 1&nbsp;% or more at every rung, so its value depends on where
+        the backtest starts.</p>
+      </div>
+      <div>
+        <h3>C3 &middot; Never trades</h3>
+        <p class="lead">Ran <code>20200301-20260821</code> over all eight
+        pairs and opened nothing. There is nothing to classify by market
+        phase. Only when nothing on our side stopped it &mdash; four of the
+        eleven turned out to be our setup, not the strategy.</p>
+      </div>
+    </div>
+    <p class="note"><strong>A strategy satisfying none of these is not
+    excluded.</strong> It is unfinished, and <code>open_work</code> says what
+    is missing. Five things have at one time or another excluded strategies
+    here and have been withdrawn: the source-code trap heuristic, a verdict
+    inherited from the original sweep, an <code>NA</code>, the analyzer
+    refusing for want of a warm-up, and a failed trial run. Three of them had
+    removed strategies from the work before anyone looked.</p>
+    <p class="note">The criteria live in <code>exclusion_criteria_list.md</code>
+    and the repair routes in <code>repair_measures_list.md</code>. Both are
+    generated with this page from the same rows, and the generator refuses a
+    row excluded for a reason not written down, or a repair route taken and
+    not recorded.</p>
+  </section>
+
+  <section>
     <h2>Windows and pairs</h2>
     <p class="note">A number cannot be read without knowing what it was measured
     over. The checks do not share a window, and two of them do not share the
@@ -407,7 +447,8 @@
     recursive_bias_found:"Still drifts at every warm-up the ladder can reach — confirmed.",
     recursive_bias_unverified:"Recorded under a parser defect. Where the log survived it has been read again; where it did not, the old verdict stands unchecked. Not a finding either way.",
     recursive_warmup_refused:"The analyzer refused it for want of a declared warm-up — nothing was ever compared.",
-    technical_trap_found:"Carries a documented backtesting trap.",
+    technical_trap_found:"Carried a documented backtesting trap. Withdrawn as a reason on 2 September 2026 — it is a source-code heuristic about fill realism, not a measurement of bias. The flag stays in the row.",
+    measured_outside_its_design:"Opened nothing over the full window because our setup stopped it, not because it is idle. Ours to fix, so the row is open.",
     strategy_does_not_run:"Fails before it can be measured:",
     no_trades_in_full_measurement:"Never trades over the full window.",
     behavior_changed_primary_exclusion:"A repair changed its behaviour.",

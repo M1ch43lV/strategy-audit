@@ -45,6 +45,7 @@ WAVE_B_WARMUP = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_WARMUP.json")
 # What stops each row that never ran, and whether repairing it would restore
 # what the author wrote or invent something they did not.
 BLOCKED_TRIAGE = os.path.join(ROOT, "BLOCKED_TRIAGE.json")
+ZERO_TRADE_TRIAGE = os.path.join(ROOT, "ZERO_TRADE_TRIAGE.json")
 # A repaired row is measured by its own runner, into its own store. The smoke
 # store holds the failure; this holds what happened once the obstacle was
 # removed, and outranks it - the same precedence a native gate has over an
@@ -122,6 +123,8 @@ REASON_ORDER = (
      "recorded under a parser defect and not re-measured; not a finding"),
     ("recursive_warmup_refused",
      "the analyzer refused for want of a declared warm-up; nothing was measured"),
+    ("measured_outside_its_design",
+     "opened nothing because our setup stopped it, not because it is idle"),
     ("no_trades_in_full_measurement", "never trades over the full window"),
     ("canonical_implementation_not_measured", "never ran"),
     ("no_verdict_on_lookahead_and_recursive", "measured; neither gate returned a verdict"),
@@ -413,6 +416,11 @@ def exclusion_basis(reason, lookahead_evidence, trade_evidence,
         return "blocked"
     if reason == "lookahead_found":
         return "own_measurement" if lookahead_evidence == "native" else "inherited"
+    # Our fault, not the strategy's. `blocked` is the basis that says exactly
+    # that: nothing about the strategy was judged, because the run never gave
+    # it the chance.
+    if reason == "measured_outside_its_design":
+        return "blocked"
     if reason == "no_trades_in_full_measurement":
         return "own_measurement" if trade_evidence == "full_window" else "inherited"
     # `recursive_bias_found` is our own only when our ladder produced it. A
@@ -476,6 +484,16 @@ def rows():
     convergence = _json(CONVERGENCE)
     wave_b = _json(WAVE_B_WARMUP)
     triage = _json(BLOCKED_TRIAGE)
+    # Zero trades over the full window is the strategy's own
+    # property only when nothing on our side stopped it trading.
+    # Four of the eleven turned out to be ours: a basket strategy
+    # measured one pair at a time, an indicator broken by pandas
+    # copy-on-write, and two run under a profile their entry
+    # logic cannot be satisfied in.
+    zero_trades = _json(ZERO_TRADE_TRIAGE, "results")
+    setup_faults = {name: record for name, record
+                    in zero_trades.items()
+                    if record.get("verdict") == "setup_fault"}
     freqai = freqai_arm()
     # Which runner repaired a row is part of what happened to it.
     repair_source = {name: "timeframe_missing"
@@ -673,6 +691,17 @@ def rows():
             # obstacle it is stays in `repair_verdict`, which is a different
             # question from whether the strategy is still in play.
             cohort = "pending"
+        elif strategy in setup_faults:
+            # It ran the whole window and opened nothing, but the reason is
+            # ours. `BasketStrategy` marks 8831 entries and sizes every one
+            # of them to zero, because a portfolio basket measured one pair
+            # at a time has no portfolio to take a weight of. `MostOfAll`
+            # loses its supertrend to pandas copy-on-write. `FundingCarry`
+            # needs funding rates it cannot have on spot, and
+            # `Insomnia_short` only ever raises short signals with
+            # `can_short` unset. None of that is a statement about the
+            # strategy, so none of it excludes one.
+            cohort = "pending"
         else:
             cohort = "excluded"
 
@@ -740,6 +769,11 @@ def rows():
                     break
             if not reason and cohort == "pending":
                 reason = "pending_diagnostics"
+            if strategy in setup_faults:
+                # Named before the zero-trade reason can claim the row, so
+                # the table says what actually happened rather than what it
+                # looks like from the trade count alone.
+                reason = "measured_outside_its_design"
             if not reason and window.get("status") == "measured" \
                     and _integer(window.get("trades")) == 0:
                 # Measured over the whole window and it never traded. The
@@ -869,6 +903,13 @@ def rows():
                 repair["verdict"] = "repair_attempted"
                 repair["note"] = ("the FreqAI arm ran it and it did not "
                                   "produce a summary: %s" % arm["why"][:120])
+        if strategy in setup_faults:
+            fault = setup_faults[strategy]
+            repair["family"] = (fault.get("family")
+                                or "measured_outside_its_design")
+            repair["verdict"] = "to_be_fixed"
+            repair["note"] = fault.get("why", "")
+            repair["settings_extra"] = "would fix it: " + fault.get("fix", "")
         if strategy in refused_repair:
             repair["verdict"] = "refuse_repair"
             repair["note"] = refused_repair[strategy]
@@ -1105,6 +1146,40 @@ def _report(data):
         "most expensive step by a wide margin, which is why it comes last and",
         "only for strategies whose numbers can be trusted. Admission follows",
         "from it, and the market-phase work is built on it.", "",
+        "## What excludes a strategy", "",
+        "Three things, and nothing else. Each is a result this audit produced",
+        "itself, on this data, in this runtime.", "",
+        "| | Criterion | Machine test |",
+        "|---|---|---|",
+        "| C1 | Look-ahead found | `lookahead == \"FOUND\"` and "
+        "`lookahead_evidence == \"native\"` |",
+        "| C2 | Recursion found | `recursive_evidence == "
+        "\"convergence:not_settled\"` |",
+        "| C3 | Never trades | `no_trades_in_full_measurement` with "
+        "`trade_evidence == \"full_window\"` |", "",
+        "**A strategy satisfying none of these is not excluded.** It is",
+        "unfinished, and `open_work` names what is missing. Five things have",
+        "at one time or another excluded strategies here and have been",
+        "withdrawn: the source-code trap heuristic, a verdict inherited from",
+        "the original sweep, an `NA`, the analyzer refusing for want of a",
+        "warm-up, and a failed trial run. Three of them had removed",
+        "strategies from the work before anyone looked at them.", "",
+        "C3 has one further condition, and four of the eleven rows failed it:",
+        "zero trades is the strategy's own property only when nothing on our",
+        "side stopped it trading. `BasketStrategy` marks 8831 entries and",
+        "sizes every one to zero, because a portfolio basket measured one",
+        "pair at a time has no portfolio to weight against. `MostOfAll` loses",
+        "its supertrend to pandas copy-on-write. `FundingCarry` needs funding",
+        "rates it cannot have on spot, and `Insomnia_short` raises only short",
+        "signals with `can_short` unset. Those four read `open`, not",
+        "`excluded`.", "",
+        "The criteria in full are in `exclusion_criteria_list.md`, and every",
+        "repair route taken - with the message freqtrade gave beforehand - in",
+        "`repair_measures_list.md`. Both are written by this same command,",
+        "from these same rows, and the generator refuses a row excluded for a",
+        "reason nobody has written down, or a repair route taken and not",
+        "recorded. So a new ground or a new repair reaches those lists by",
+        "being used, not by being remembered.", "",
         "## Windows and pairs each check uses", "",
         "A number cannot be read without knowing what it was measured over.",
         "The checks do not share a window, and two of them do not share the",
@@ -1553,6 +1628,19 @@ def main(argv=None):
         if current != rendered[OUTPUT]:
             print("stale: %s" % os.path.relpath(OUTPUT, ROOT))
             return 1
+        import exclusion_criteria
+        for path, build in ((exclusion_criteria.CRITERIA_OUT,
+                             exclusion_criteria.criteria_report),
+                            (exclusion_criteria.REPAIRS_OUT,
+                             exclusion_criteria.repair_report)):
+            before = (io.open(path, "rb").read()
+                      if os.path.exists(path) else b"")
+            build(data, path)
+            after = io.open(path, "rb").read()
+            if before != after:
+                print("stale: %s" % os.path.relpath(path, ROOT))
+                return 1
+        exclusion_criteria.selftest()
         print("strategy status: current")
         return 0
     for path, content in rendered.items():
@@ -1560,6 +1648,16 @@ def main(argv=None):
     counts = collections.Counter(row["cohort"] for row in data)
     for cohort, count in counts.most_common():
         print("%s: %d" % (cohort, count))
+    # The exclusion criteria and the repair routes describe these same rows,
+    # and a reference that lags the table it describes is worse than none:
+    # it reads as current. So they are written here rather than by a separate
+    # command somebody has to remember. exclusion_criteria.selftest is what
+    # refuses a row excluded for a reason nobody has written down, and a
+    # repair route taken and not recorded.
+    import exclusion_criteria
+    exclusion_criteria.criteria_report(data, exclusion_criteria.CRITERIA_OUT)
+    exclusion_criteria.repair_report(data, exclusion_criteria.REPAIRS_OUT)
+    exclusion_criteria.selftest()
     return 0
 
 

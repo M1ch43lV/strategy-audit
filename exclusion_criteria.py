@@ -467,6 +467,46 @@ REPAIRS = [
         "tool": "repair/freqai_config_wtai.py",
     },
     {
+        "family": "wrong_profile",
+        "name": "Run under a profile its entry logic cannot satisfy",
+        "error": "(no error - the run succeeds and opens nothing)",
+        "cause": "The strategy starts, runs the full window and never enters, "
+                 "because the profile withholds something its entry needs. "
+                 "`FundingCarry` builds `funding_z` from funding rates, which "
+                 "exist only in futures mode, and was run under `spot_long`. "
+                 "`Insomnia_short` sets `enter_long = 0` and raises only "
+                 "`enter_short`, with `can_short` unset, so freqtrade "
+                 "discards every signal it produces.",
+        "fix": "Re-run under the profile the strategy was written for. "
+               "Nothing about the strategy is changed; what changes is what "
+               "we asked it to run in.",
+        "limit": "This is the one shape of zero trades that is our fault "
+                 "rather than the strategy's, which is why criterion C3 "
+                 "requires it to be ruled out first. Recorded in "
+                 "`ZERO_TRADE_TRIAGE.json` with the reason, so the row reads "
+                 "`open` and `to be fixed` rather than `excluded`.",
+        "tool": "probe_zero.py, ZERO_TRADE_TRIAGE.json",
+    },
+    {
+        "family": "measured_outside_its_design",
+        "name": "Measured one pair at a time when it needs the whole basket",
+        "error": "(no error - the run succeeds and opens nothing)",
+        "cause": "`BasketStrategy` marks an entry on 8831 of 18570 candles, "
+                 "so it is not idle. It is a portfolio basket: "
+                 "`custom_stake_amount` sizes each entry as a target weight "
+                 "of the whole portfolio and returns 0.0 when that falls "
+                 "below the exchange minimum. The full-window measurement "
+                 "runs one pair at a time, so there is no portfolio to take "
+                 "a weight of and every entry is sized to nothing.",
+        "fix": "Measure it across all eight pairs in a single run, the way "
+               "its author intended.",
+        "limit": "Worth watching for beyond this one row: any strategy whose "
+                 "position sizing reads the portfolio rather than the pair "
+                 "will do the same thing, and it looks exactly like a "
+                 "strategy that never trades.",
+        "tool": "probe_zero.py, ZERO_TRADE_TRIAGE.json",
+    },
+    {
         "family": "no_stoploss",
         "name": "Refused: no stoploss declared",
         "error": "Configuration error: 'stoploss' is a required property",
@@ -794,7 +834,14 @@ def selftest():
     # The whole point of the list: nothing is excluded for a reason that is
     # not on it, and every criterion still describes real rows.
     for row in excluded:
-        assert classify(row), (row["strategy_id"], row["primary_reason"])
+        assert classify(row), (
+            "%s is excluded for `%s`, which is not one of the criteria in "
+            "this file. Either it belongs under an existing criterion and the "
+            "table is wrong, or a new ground has been established and belongs "
+            "in CRITERIA - with its machine test, what stands behind it, and "
+            "what it is not. Nothing is excluded for a reason that is not "
+            "written down here."
+            % (row["strategy_id"], row["primary_reason"]))
         assert row["exclusion_basis"] == "own_measurement", row["strategy_id"]
     for criterion in CRITERIA:
         matched = [r for r in excluded if criterion["test"](r)]
@@ -812,8 +859,17 @@ def selftest():
     # failure mode this file exists to prevent.
     named = {entry["family"] for entry in REPAIRS}
     present = {r["repair_family"] for r in rows if r["repair_family"]}
-    assert not (present - named), sorted(present - named)
-    assert not (named - present), sorted(named - present)
+    assert not (present - named), (
+        "these repair families are in the status table and not in this file: "
+        "%s. Add an entry to REPAIRS for each - the original message, what it "
+        "actually was, the repair, and where the repair stops - then re-run "
+        "`python exclusion_criteria.py`."
+        % ", ".join(sorted(present - named)))
+    assert not (named - present), (
+        "these repair families are described here and match no row any more: "
+        "%s. Either the route was withdrawn, in which case say so, or the "
+        "family was renamed and the entry should follow it."
+        % ", ".join(sorted(named - present)))
     print("exclusion_criteria selftest: PASS (%d excluded, %d criteria, "
           "%d repair families)" % (len(excluded), len(CRITERIA), len(named)))
 

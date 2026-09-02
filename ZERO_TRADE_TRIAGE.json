@@ -1,0 +1,67 @@
+{
+  "description": "Strategies that ran the full window and opened no position, examined one by one. Zero trades is only the strategy's own property when nothing on our side prevented it from trading. Where our setup did prevent it, the row is a setup fault and belongs under `open`, not `excluded` - see criterion C3's limit in exclusion_criteria_list.md.",
+  "method": "probe_zero.py loads the strategy the way freqtrade does, runs populate_indicators and the entry hook over real BTC/USDT data, and counts the rows the entry condition marks. That separates 'the condition is never true' from 'the indicator never got a value'.",
+  "probed_at": "2026-09-02",
+  "results": {
+    "BasketStrategy": {
+      "verdict": "setup_fault",
+      "family": "measured_outside_its_design",
+      "signals": 8831,
+      "why": "The entry condition fires on 8831 of 18570 four-hour candles, so the strategy is not idle. It is a portfolio basket: `custom_stake_amount` sizes each entry as a target weight of the whole portfolio and returns 0.0 when that falls below the exchange minimum. The full-window measurement runs one pair at a time, so there is no basket to take a weight of and every entry is sized to nothing.",
+      "fix": "Measure it across all eight pairs in one run, as its author intended, rather than pair by pair."
+    },
+    "MostOfAll": {
+      "verdict": "setup_fault",
+      "family": "dtype_drift",
+      "signals": 0,
+      "why": "`data['final_ub'].iat[i] = ...` raises ChainedAssignmentError under pandas Copy-on-Write: the assignment silently updates a copy, so the supertrend bands never leave their initial values and `most` never crosses `exma`. The author's pandas performed that assignment.",
+      "fix": "The same route as the other dtype_drift rows: an in-place assignment through `.loc`, or an older pandas. Not attempted yet."
+    },
+    "FundingCarry": {
+      "verdict": "setup_fault",
+      "family": "wrong_profile",
+      "signals": 0,
+      "why": "The entry needs `funding_z`, built from funding rates, which exist only in futures mode. The row was run under `spot_long`, where the feature can never be satisfied.",
+      "fix": "Run it under a futures profile with funding-rate data."
+    },
+    "Insomnia_short": {
+      "verdict": "setup_fault",
+      "family": "wrong_profile",
+      "signals": 0,
+      "why": "The strategy sets `enter_long = 0` and only ever raises `enter_short`. `can_short` is not set, so freqtrade discards every short signal and nothing is left.",
+      "fix": "Run it with `can_short` enabled under a futures profile."
+    },
+    "ep3mas2": {
+      "verdict": "never_trades",
+      "signals": 0,
+      "why": "The entry requires four rolling comparisons and a crossover to hold at once. Over 30000 five-minute candles the conjunction is never true, and the full-window run over eight pairs and six and a half years found the same. No error, no missing indicator - the condition is simply never met."
+    },
+    "DoesNothingStrategy": {
+      "verdict": "never_trades",
+      "why": "By design, and by name."
+    },
+    "BreakEven": {
+      "verdict": "never_trades",
+      "why": "`dataframe.loc[..., 'buy'] = 0`. The entry is hard-wired off; the file demonstrates stop-loss handling."
+    },
+    "MyStrategyTemplate": {
+      "verdict": "never_trades",
+      "why": "A template shipped with a beginners' tutorial, with no condition filled in."
+    },
+    "ViN": {
+      "verdict": "never_trades",
+      "why": "`df.loc[:, 'buy'] = False` in the last of five entry hooks overrides everything the earlier ones set."
+    },
+    "Miku_PP_v3": {
+      "verdict": "never_trades",
+      "signals": null,
+      "why": "The probe cannot evaluate it outside a backtest - `populate_indicators` calls `self.dp.get_pair_dataframe` for a daily timeframe, and there is no DataProvider outside freqtrade. Its own full-window run did have one and still opened nothing, so the measured result stands."
+    },
+    "Obelisk_3EMA_StochRSI_ATR": {
+      "verdict": "never_trades",
+      "signals": null,
+      "why": "Same as Miku_PP_v3: `if not self.dp:` at the top of `populate_indicators` puts it out of the probe's reach. The full-window run had a DataProvider and still opened nothing."
+    }
+  },
+  "schema_version": 1
+}

@@ -242,6 +242,25 @@
       "trades": 217,
       "trades_sha256": "sha256_18fa0f5e2f3e9af80064a2cfe05dd983e601f0d89927156410fcd0ff32056d25"
     },
+    "Cluckie": {
+      "archive": "user_data/profile_smoke/Cluckie-2026-09-02_16-21-11.zip",
+      "archive_sha256": "sha256_7fa5f5cce2a16d1344203e1cb77bdf1fbfbe43c2c2e026bf913fc01ecf69fc96",
+      "canonical_sha256": "sha256_6b9bfe8cf7b74a4b8e73d3f8509e18f588e5171c8212dab8c370325964f3289b",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 53.4,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Cluckie --strategy-path repos/werkkrew_freqtrade-strategies/strategies/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Cluckie --cache none",
+      "long_trades": 2,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 2,
+      "trades_sha256": "sha256_a303ee2760d4837ab24f68b8b11cc203dc794d48d1481d620a651a92bc124ed6"
+    },
     "CoreStrategy": {
       "canonical_sha256": "sha256_12335f6e4b6ddc332987ffd9f108f52b0c95e0f049b1b6b6524a8cedea8ab617",
       "class1_rules": [],
@@ -463,6 +482,25 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "why": "'buy'"
+    },
+    "ONS_Portfolio": {
+      "archive": "user_data/profile_smoke/ONS_Portfolio-2026-09-02_16-20-18.zip",
+      "archive_sha256": "sha256_bd98fc3761e642fdf760cd9ec73fcf63c69926e9d720f77be1df63c7791e513a",
+      "canonical_sha256": "sha256_3cba87a36373a72a291ddcfdd52b4d0eb979289d0dd53e88eecc0f0c765df2b9",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 390.2,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy ONS_Portfolio --strategy-path repos/mlsys-io_PortfolioBench/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ONS_Portfolio --cache none",
+      "long_trades": 8,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 8,
+      "trades_sha256": "sha256_b2defbfab44bd662f5e2627ffd63bddd1fad4864b935fb81cad3b4cdbf3eeb5c"
     },
     "RSIDivTirail": {
       "archive": "user_data/profile_smoke/RSIDivTirail-2026-09-02_15-06-55.zip",

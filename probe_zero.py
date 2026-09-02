@@ -29,6 +29,11 @@ for name, path in TARGETS.items():
         df = load_pair_history(pair="BTC/USDT", timeframe=tf,
                                datadir=config["datadir"],
                                candle_type=CandleType.SPOT)
+        # The whole history makes a Python-loop indicator take hours. The
+        # question here is whether the entry condition ever fires, and the
+        # last 30000 candles answer it as well as 700000 do.
+        if len(df) > 30000:
+            df = df.iloc[-30000:].reset_index(drop=True)
         entry["timeframe"] = tf
         entry["candles"] = len(df)
         if df.empty:

@@ -10,7 +10,7 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 |---|---:|---|
 | `repaired` | 54 | runs now, and the run is recorded |
 | `repair_attempted` | 18 | a route was applied and did not finish the job |
-| `to_be_fixed` | 2 | the route is known, the run has not happened yet |
+| `to_be_fixed` | 6 | the route is known, the run has not happened yet |
 | `needs_a_look` | 56 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 4 | the repair made things worse and was undone |
 | `refuse_repair` | 22 | repairing it would mean inventing the strategy |
@@ -141,6 +141,46 @@ Tool: `repair/freqai_config_wtai.py`.
 
 For example: `WTAI`, `WTRSIAI`.
 
+### Run under a profile its entry logic cannot satisfy
+
+`repair_family: wrong_profile` &mdash; 2 strategies (to_be_fixed 2)
+
+**The message.**
+
+```
+(no error - the run succeeds and opens nothing)
+```
+
+**What it actually was.** The strategy starts, runs the full window and never enters, because the profile withholds something its entry needs. `FundingCarry` builds `funding_z` from funding rates, which exist only in futures mode, and was run under `spot_long`. `Insomnia_short` sets `enter_long = 0` and raises only `enter_short`, with `can_short` unset, so freqtrade discards every signal it produces.
+
+**The repair.** Re-run under the profile the strategy was written for. Nothing about the strategy is changed; what changes is what we asked it to run in.
+
+**Where it stops.** This is the one shape of zero trades that is our fault rather than the strategy's, which is why criterion C3 requires it to be ruled out first. Recorded in `ZERO_TRADE_TRIAGE.json` with the reason, so the row reads `open` and `to be fixed` rather than `excluded`.
+
+Tool: `probe_zero.py, ZERO_TRADE_TRIAGE.json`.
+
+For example: `FundingCarry`, `Insomnia_short`.
+
+### Measured one pair at a time when it needs the whole basket
+
+`repair_family: measured_outside_its_design` &mdash; 1 strategies (to_be_fixed 1)
+
+**The message.**
+
+```
+(no error - the run succeeds and opens nothing)
+```
+
+**What it actually was.** `BasketStrategy` marks an entry on 8831 of 18570 candles, so it is not idle. It is a portfolio basket: `custom_stake_amount` sizes each entry as a target weight of the whole portfolio and returns 0.0 when that falls below the exchange minimum. The full-window measurement runs one pair at a time, so there is no portfolio to take a weight of and every entry is sized to nothing.
+
+**The repair.** Measure it across all eight pairs in a single run, the way its author intended.
+
+**Where it stops.** Worth watching for beyond this one row: any strategy whose position sizing reads the portfolio rather than the pair will do the same thing, and it looks exactly like a strategy that never trades.
+
+Tool: `probe_zero.py, ZERO_TRADE_TRIAGE.json`.
+
+For example: `BasketStrategy`.
+
 ### Refused: no stoploss declared
 
 `repair_family: no_stoploss` &mdash; 3 strategies (refuse_repair 3)
@@ -203,7 +243,7 @@ For example: `Chained`, `EnsembleStrategy`, `EnsembleStrategyV1`, `EnsembleStrat
 
 ### Open: pandas and numpy have moved under the strategy
 
-`repair_family: dtype_drift` &mdash; 13 strategies (needs_a_look 13)
+`repair_family: dtype_drift` &mdash; 14 strategies (to_be_fixed 1, needs_a_look 13)
 
 **The message.**
 

@@ -8,9 +8,9 @@ Currently 118 of 900 strategies are excluded. The criteria are not exclusive - 5
 
 | | Criterion | Strategies |
 |---|---|---:|
-| C1 | Look-ahead bias found | 60 |
+| C1 | Look-ahead bias found | 64 |
 | C2 | Recursion bias found by our own ladder | 52 |
-| C3 | Ran the whole window and never traded | 11 |
+| C3 | Ran the whole window and never traded | 7 |
 
 ## The criteria in full
 
@@ -26,7 +26,7 @@ Currently 118 of 900 strategies are excluded. The criteria are not exclusive - 5
 
 **What this is not.** `lookahead_evidence` must read `native`. A FOUND carried over from the original sweep is not this criterion but an inherited claim, and the check has to be run here.
 
-60 strategies, among them `ARIMA_15`, `AlexBTK_CT`, `AlexBattleTankKiller`, `AlexBattleTankKillerV3`, `AlexBattleTankKillerV40H`, `Auto_EI_t4c0s`.
+64 strategies, among them `ARIMA_15`, `AlexBTK_CT`, `AlexBattleTankKiller`, `AlexBattleTankKillerV3`, `AlexBattleTankKillerV40H`, `Auto_EI_t4c0s`.
 
 ### C2 &middot; Recursion bias found by our own ladder
 
@@ -54,7 +54,7 @@ Currently 118 of 900 strategies are excluded. The criteria are not exclusive - 5
 
 **What this is not.** `trade_evidence` must read `full_window`. Zero trades in the one-month trial run means nothing - the window is too short to expect any. And a strategy that trades nothing because it was given the wrong profile - a futures strategy run on spot, a short-only strategy with `can_short` unset - is a setup fault of ours, not this criterion.
 
-11 strategies, among them `BasketStrategy`, `BreakEven`, `DoesNothingStrategy`, `FundingCarry`, `Insomnia_short`, `Miku_PP_v3`.
+7 strategies, among them `BreakEven`, `DoesNothingStrategy`, `Miku_PP_v3`, `MyStrategyTemplate`, `Obelisk_3EMA_StochRSI_ATR`, `ViN`.
 
 ## What does not exclude a strategy
 

@@ -1349,6 +1349,42 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "Astro": {
+      "available_prefix_candles": 339,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/Astro-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 49.3,
+      "file_derived_period": 34,
+      "implementation_id": "Astro:dbf7de1182d4",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Astro --strategy-path user_data/profile_bias_strategies/Astro --timerange 20190101-20190401 --no-color --startup-candle 7 14 30 90",
+      "ladder_candles": [
+        7,
+        14,
+        30,
+        90
+      ],
+      "ladder_days": [
+        7,
+        14,
+        30,
+        90
+      ],
+      "ladder_rungs_dropped_as_uncomputable": [
+        1,
+        2
+      ],
+      "output_sha256": "sha256_07d6b7e3d7674761bed2f109111bfc65d381acbb116e48ab72595e3eea1cb9f7",
+      "returncode": 1,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "Astro",
+      "timeframe": "1d",
+      "timerange": "20190101-20190401",
+      "why": "Length of values (180) does not match length of index (141)"
+    },
     "AtrTrailingStopStrategy": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 1,
@@ -1450,6 +1486,38 @@
       "strategy_id": "AtrTrailingStopStrategy",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
+    },
+    "AutoArimaTripleV1": {
+      "available_prefix_candles": 97222,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/AutoArimaTripleV1-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 39.7,
+      "file_derived_period": null,
+      "implementation_id": "AutoArimaTripleV1:28658be5735d",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy AutoArimaTripleV1 --strategy-path user_data/profile_bias_strategies/AutoArimaTripleV1 --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
+      "ladder_candles": [
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        7,
+        14
+      ],
+      "ladder_rungs_dropped_as_uncomputable": [
+        288,
+        576
+      ],
+      "output_sha256": "sha256_2e8b3208a4480960305834c0963053ca982926a5277aafe66fe01a38a1aa1d61",
+      "returncode": 1,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "AutoArimaTripleV1",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401",
+      "why": "[Errno 2] No such file or directory: '/audit/user_data/profile_bias_strategies/AutoArimaTripleV1/../logs/strategy-log.log'"
     },
     "AverageStrategy": {
       "available_prefix_candles": 2029,
@@ -2214,6 +2282,42 @@
       "timerange": "20190101-20190401",
       "why": "no startup up to 4032 candles keeps every indicator inside 1.0%"
     },
+    "BBRSI": {
+      "available_prefix_candles": 8104,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/BBRSI-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 43.5,
+      "file_derived_period": null,
+      "implementation_id": "BBRSI:8a5058ea5a2e",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BBRSI --strategy-path user_data/profile_bias_strategies/BBRSI --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160",
+      "ladder_candles": [
+        24,
+        48,
+        168,
+        336,
+        720,
+        2160
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90
+      ],
+      "output_sha256": "sha256_55d2b444d27135b813f5e65a102dc8843a1b82bf6946e2defd4dd1fa5e58accc",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "BBRSI",
+      "timeframe": "1h",
+      "timerange": "20190101-20190401",
+      "why": "analyzer produced no drift table"
+    },
     "BBRSI2": {
       "available_prefix_candles": 486102,
       "chosen_ladder_days": 1,
@@ -2846,6 +2950,38 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "BBRSIS": {
+      "available_prefix_candles": 97222,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/BBRSIS-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 52.5,
+      "file_derived_period": 200,
+      "implementation_id": "BBRSIS:9cbc9ac5b110",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BBRSIS --strategy-path user_data/profile_bias_strategies/BBRSIS --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
+      "ladder_candles": [
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        7,
+        14
+      ],
+      "ladder_rungs_dropped_as_uncomputable": [
+        288,
+        576
+      ],
+      "output_sha256": "sha256_84603b3cb027ca1d877087d2bd29cc3f899705295d435fcfe6c0a12ce4156911",
+      "returncode": 2,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "BBRSIS",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401",
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+    },
     "BBRSIStrategy": {
       "available_prefix_candles": 32408,
       "chosen_ladder_days": 2,
@@ -3052,6 +3188,74 @@
       "strategy_id": "BBRSITV",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
+    },
+    "BBRSIoriginal": {
+      "available_prefix_candles": 8104,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/BBRSIoriginal-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 41.6,
+      "file_derived_period": 20,
+      "implementation_id": "BBRSIoriginal:0b7f8f86963f",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BBRSIoriginal --strategy-path user_data/profile_bias_strategies/BBRSIoriginal --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
+      "ladder_candles": [
+        168,
+        336,
+        720,
+        2160
+      ],
+      "ladder_days": [
+        7,
+        14,
+        30,
+        90
+      ],
+      "ladder_rungs_dropped_as_uncomputable": [
+        24,
+        48
+      ],
+      "output_sha256": "sha256_2822da00efcde2830b4f026807fe31b273834176d2fa24bb5cd169283c44ea80",
+      "returncode": 2,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "BBRSIoriginal",
+      "timeframe": "1h",
+      "timerange": "20190101-20190401",
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+    },
+    "BB_RPB_3c": {
+      "available_prefix_candles": 97222,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/BB_RPB_3c-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 37.8,
+      "file_derived_period": 200,
+      "implementation_id": "BB_RPB_3c:9fef5712313e",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BB_RPB_3c --strategy-path user_data/profile_bias_strategies/BB_RPB_3c --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "output_sha256": "sha256_df1c4750bb3529c432be2fda0ffd0e096a3b4da118cdf4ecd67e4a6595c46bde",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "BB_RPB_3c",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401",
+      "why": "analyzer produced no drift table"
     },
     "BB_RPB_TSL": {
       "available_prefix_candles": 97222,
@@ -8427,6 +8631,42 @@
       "timerange": "20190101-20190401",
       "why": "no startup up to 4032 candles keeps every indicator inside 1.0%"
     },
+    "BB_RSI": {
+      "available_prefix_candles": 8104,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/BB_RSI-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 33.6,
+      "file_derived_period": 20,
+      "implementation_id": "BB_RSI:8fc62c11510d",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BB_RSI --strategy-path user_data/profile_bias_strategies/BB_RSI --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
+      "ladder_candles": [
+        168,
+        336,
+        720,
+        2160
+      ],
+      "ladder_days": [
+        7,
+        14,
+        30,
+        90
+      ],
+      "ladder_rungs_dropped_as_uncomputable": [
+        24,
+        48
+      ],
+      "output_sha256": "sha256_f3aedba66b8f20cdbfb56355a08bf3b7c27439c9fed4784b973f9cee3a63eef5",
+      "returncode": 2,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "BB_RSI",
+      "timeframe": "1h",
+      "timerange": "20190101-20190401",
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+    },
     "BB_RTR": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 7,
@@ -8857,6 +9097,42 @@
       "strategy_id": "BB_RTR",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
+    },
+    "BB_Strategy04": {
+      "available_prefix_candles": 8104,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/BB_Strategy04-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 32.5,
+      "file_derived_period": 24,
+      "implementation_id": "BB_Strategy04:2a6015204750",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BB_Strategy04 --strategy-path user_data/profile_bias_strategies/BB_Strategy04 --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
+      "ladder_candles": [
+        168,
+        336,
+        720,
+        2160
+      ],
+      "ladder_days": [
+        7,
+        14,
+        30,
+        90
+      ],
+      "ladder_rungs_dropped_as_uncomputable": [
+        24,
+        48
+      ],
+      "output_sha256": "sha256_1103ae3cf8113c024babb4800f425411093d38896bae969e7753c546691661ee",
+      "returncode": 2,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "BB_Strategy04",
+      "timeframe": "1h",
+      "timerange": "20190101-20190401",
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "BBands": {
       "available_prefix_candles": 486102,
@@ -9487,6 +9763,74 @@
       "strategy_id": "Bandtastic",
       "timeframe": "15m",
       "timerange": "20190101-20190401"
+    },
+    "BaseStrategy": {
+      "available_prefix_candles": 32408,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/BaseStrategy-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 32.0,
+      "file_derived_period": null,
+      "implementation_id": "BaseStrategy:95853455a615",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BaseStrategy --strategy-path user_data/profile_bias_strategies/BaseStrategy --timerange 20190101-20190401 --no-color --startup-candle 96 192 672 1344 2880",
+      "ladder_candles": [
+        96,
+        192,
+        672,
+        1344,
+        2880
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30
+      ],
+      "output_sha256": "sha256_9388ec3c70bcb08cad2844545220ae9385ca803dea4b6dff8c099ab0c9b69cf5",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "BaseStrategy",
+      "timeframe": "15m",
+      "timerange": "20190101-20190401",
+      "why": "analyzer produced no drift table"
+    },
+    "BbRoi": {
+      "available_prefix_candles": 32408,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/BbRoi-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 33.7,
+      "file_derived_period": 200,
+      "implementation_id": "BbRoi:220417917186",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BbRoi --strategy-path user_data/profile_bias_strategies/BbRoi --timerange 20190101-20190401 --no-color --startup-candle 672 1344 2880",
+      "ladder_candles": [
+        672,
+        1344,
+        2880
+      ],
+      "ladder_days": [
+        7,
+        14,
+        30
+      ],
+      "ladder_rungs_dropped_as_uncomputable": [
+        96,
+        192
+      ],
+      "output_sha256": "sha256_d01c3eba8afa8e6b4318c94e8a4bd9d3ba14a6a7ae241f59343a24ad23c9868b",
+      "returncode": 2,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "BbRoi",
+      "timeframe": "15m",
+      "timerange": "20190101-20190401",
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "BbWidthExpansionStrategy": {
       "available_prefix_candles": 97222,
