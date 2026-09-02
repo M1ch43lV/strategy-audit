@@ -195,6 +195,56 @@ results: Wave D, then the unscheduled rows, then the Wave B remainder.
 **E0 is untouched.** It remains the frozen 67 and is reported beside every
 result derived under this amendment.
 
+## Amendment 2026-09-02: the settled warm-up is the measurement
+
+**Owner's decision, recorded before the rows it affects were admitted.**
+
+Requirement 7 above routed a converged row whose trade list changed under the
+supplied warm-up to E3 exploratory rather than E1, on the ground that the fix
+altered behaviour. **Requirement 7 is retired.** So is requirement 5's paired
+full-window run as an admission gate.
+
+The reasoning, in the owner's terms. This audit ranks working strategies by
+market phase; it is not an attempt to reproduce what an author once ran. Many
+of these strategies were written before indicator drift was widely understood,
+and their declared warm-ups do not let their own indicators settle - 226 of the
+354 candidates declare a value below the one at which their drift disappears,
+some by a factor of seventy. A result computed at such a warm-up was not
+correct when the author computed it either. What is wanted is the
+mathematically clean result: no recursive drift, no look-ahead, under the
+current freqtrade. That a clean warm-up yields fewer trades, or more, is the
+consequence of measuring properly and not a defect in the row.
+
+**What this costs, stated plainly.** The paired run was the only test that
+separated "repaired" from "reconfigured". Of the 26 rows it has already
+decided, 13 produced an identical trade list and 13 did not - `SlowPotato`
+1,835 against 1,899, `JuicyTrend` 13,698 against 13,607, and two rows with the
+same count and a different checksum. Under this amendment all 26 would be
+admitted alike. A reader of a market-phase result therefore cannot assume the
+number is what the author's own configuration would have produced, and for
+roughly half of them it is not.
+
+**What is kept so that cost stays visible.** Every admitted row records the
+warm-up it was measured at, the ladder step, the drift, and whether that value
+is at or below the author's own declaration (`needed_no_override`). Two of the
+354 need no supplied warm-up at all; 126 declare none, so freqtrade's recursion
+analyzer refuses them outright and a value had to be supplied before the gate
+could run at all; 226 declare a value that runs and was overridden by ours.
+Where the paired run has already produced a verdict it stays on the record as
+provenance. None of this decides admission any more; all of it decides how a
+number should be read.
+
+**What is unchanged.** The amendment is about warm-up and nothing else. A row
+still needs a look-ahead `PASS` measured from its own implementation - an `NA`
+is no verdict and admits nothing - recursion settled by the ladder, coverage
+`PASS`, `traps_n` zero, `artifact_role=strategy`, and not `behavior_changed`.
+Three rows that clear both bias gates are held by a documented backtesting
+trap, which is not a warm-up question.
+
+Implemented by `eligibility_admit_converged.py` under ruleset
+`converged_clean_gates_v1`; every row it admits carries that ruleset, so any
+result can still be reported with and without this amendment.
+
 ## OPEN before Stage 9 ranking
 
 The following choices are intentionally not inferred from strategy outcomes:

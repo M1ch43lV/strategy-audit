@@ -33077,6 +33077,177 @@
       "timeframe": "1d",
       "timerange": "20190101-20190401"
     },
+    "MACDRL": {
+      "available_prefix_candles": 7391,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
+      "cohort": "recursive_unsettled",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/MACDRL-ladder.log",
+      "declared_max_drift_pct": 0.091,
+      "declared_startup_candle_count": 288,
+      "declared_warmup_override": 288,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "ema200_200": [
+          0.091,
+          -0.015,
+          0.0
+        ],
+        "macd": [
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "macdhist": [
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "macdsignal": [
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 68.2,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": null,
+      "implementation_id": "MACDRL:bfe6537cf2a6",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/MACDRL_startup_288.json --strategy MACDRL --strategy-path user_data/profile_bias_strategies/MACDRL --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016",
+      "ladder_candles": [
+        288,
+        576,
+        2016
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        288,
+        576,
+        2016
+      ],
+      "max_drift_indicator": "ema200_200",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_22975d40f3ed744f6dbb805624414ea1f33f10872b5fd255cab03d55c8ebc2ac",
+      "returncode": 0,
+      "run_profile": "futures_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "converged",
+      "strategy_id": "MACDRL",
+      "timeframe": "5m",
+      "timerange": "20200301-20200401"
+    },
+    "MACDRS": {
+      "available_prefix_candles": 7391,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
+      "cohort": "recursive_unsettled",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/MACDRS-ladder.log",
+      "declared_max_drift_pct": 0.091,
+      "declared_startup_candle_count": 288,
+      "declared_warmup_override": 288,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "ema200_long_200": [
+          0.091,
+          -0.015,
+          0.0
+        ],
+        "ema200_short_200": [
+          0.091,
+          -0.015,
+          0.0
+        ],
+        "macd": [
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "macdhist": [
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "macdsignal": [
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 68.2,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": null,
+      "implementation_id": "MACDRS:9bfb781a26cb",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/MACDRS_startup_288.json --strategy MACDRS --strategy-path user_data/profile_bias_strategies/MACDRS --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016",
+      "ladder_candles": [
+        288,
+        576,
+        2016
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        288,
+        576,
+        2016
+      ],
+      "max_drift_indicator": "ema200_long_200",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_ea8e019edafb38a63c3acc43a24c1523e75109bbd332a3966d9428551d8895a2",
+      "returncode": 0,
+      "run_profile": "futures_long_short",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "converged",
+      "strategy_id": "MACDRS",
+      "timeframe": "5m",
+      "timerange": "20200301-20200401"
+    },
     "MACDStrategy": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 1,
@@ -34111,6 +34282,42 @@
       "strategy_id": "MFI",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
+    },
+    "MabStra": {
+      "available_prefix_candles": 2029,
+      "cohort": "recursive_unsettled",
+      "debug_log": "user_data/convergence_logs/MabStra-ladder.log",
+      "declared_warmup_override": 6,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 66.2,
+      "file_derived_period": 28,
+      "implementation_id": "MabStra:63fcdd4567ba",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/MabStra_startup_6.json --strategy MabStra --strategy-path user_data/profile_bias_strategies/MabStra --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540",
+      "ladder_candles": [
+        6,
+        12,
+        42,
+        84,
+        180,
+        540
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90
+      ],
+      "output_sha256": "sha256_da9b6053690070c0e5c3b6e71830c063b105b8fd626d16640c1db11895667dc6",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "inconclusive",
+      "strategy_id": "MabStra",
+      "timeframe": "4h",
+      "timerange": "20190101-20190401",
+      "why": "analyzer produced no drift table"
     },
     "Macd": {
       "available_prefix_candles": 8104,
@@ -47672,6 +47879,2604 @@
       "timerange": "20190101-20190401",
       "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
     },
+    "NostalgiaForInfinityX2": {
+      "available_prefix_candles": 7391,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
+      "cohort": "recursive_unsettled",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 800
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/NostalgiaForInfinityX2-ladder.log",
+      "declared_max_drift_pct": 0.666,
+      "declared_startup_candle_count": 800,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "bb20_2_low": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb20_2_low_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb20_2_mid": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb20_2_upp": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb20_2_upp_1h": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb20_2_width_1h": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb40_2_delta": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb40_2_low": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb40_2_mid": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "bb40_2_tail": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bt_agefilter_ok": [
+          null,
+          null,
+          null,
+          0.0
+        ],
+        "ema_100_1h": [
+          0.037,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ema_100_4h": [
+          0.082,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_200": [
+          0.091,
+          -0.015,
+          0.001,
+          0.0
+        ],
+        "ema_200_1h": [
+          0.034,
+          0.101,
+          -0.006,
+          -0.0
+        ],
+        "ema_200_4h": [
+          3.784,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_200_pct_change_144": [
+          null,
+          15.816,
+          -0.534,
+          -0.0
+        ],
+        "ema_200_pct_change_288": [
+          null,
+          19.758,
+          -0.666,
+          -0.0
+        ],
+        "ema_26": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_26_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_26_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_26_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_50": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "ema_50_1h": [
+          0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "ema_50_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "r_480": [
+          null,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "r_480_1h": [
+          null,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "r_480_4h": [
+          null,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_15m": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_max_6_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_100_1h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_12_1h": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "sma_12_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_200": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "sma_200_15m": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "sma_200_1h": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "sma_200_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_26_1h": [
+          0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "sma_26_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_50": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "sma_50_1h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_50_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 37.3,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": 200,
+      "implementation_id": "NostalgiaForInfinityX2:b2fffffa04e8",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy NostalgiaForInfinityX2 --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityX2 --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016",
+      "ladder_candles": [
+        288,
+        576,
+        2016
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        288,
+        576,
+        2016
+      ],
+      "max_drift_indicator": "rsi_14_15m",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_b4cc1eed7a1cfc8da226dad49650adfb44761a72b0ecb39673e2776e149052dd",
+      "returncode": 0,
+      "run_profile": "futures_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "converged",
+      "strategy_id": "NostalgiaForInfinityX2",
+      "timeframe": "5m",
+      "timerange": "20200301-20200401"
+    },
+    "NostalgiaForInfinityX3": {
+      "available_prefix_candles": 7391,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
+      "cohort": "recursive_unsettled",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 800
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/NostalgiaForInfinityX3-ladder.log",
+      "declared_max_drift_pct": 26.926,
+      "declared_startup_candle_count": 800,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "bb20_2_low": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb20_2_low_15m": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb20_2_low_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb20_2_mid": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb20_2_upp": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb20_2_upp_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb20_2_upp_1h": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb20_2_width_1h": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb40_2_delta": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb40_2_low": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb40_2_mid": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "bb40_2_tail": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bt_agefilter_ok": [
+          null,
+          null,
+          null,
+          0.0
+        ],
+        "btc_rsi_14_15m": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "btc_rsi_14_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "btc_rsi_14_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "btc_rsi_14_5m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "btc_sma_200_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "cci_20": [
+          0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "ema_100": [
+          0.003,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "ema_20": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_200": [
+          0.091,
+          -0.015,
+          0.001,
+          0.0
+        ],
+        "ema_200_15m": [
+          -0.553,
+          0.012,
+          0.002,
+          0.0
+        ],
+        "ema_200_1h": [
+          0.034,
+          0.101,
+          -0.006,
+          -0.0
+        ],
+        "ema_200_4h": [
+          3.784,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_200_pct_change_144": [
+          null,
+          15.816,
+          -0.534,
+          -0.0
+        ],
+        "ema_200_pct_change_288": [
+          null,
+          19.758,
+          -0.666,
+          -0.0
+        ],
+        "ema_26": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_26_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_26_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_26_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_50": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "ema_50_1h": [
+          0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "ema_50_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ewo_50_200": [
+          -4675.378,
+          796.601,
+          -26.926,
+          -0.0
+        ],
+        "ewo_50_200_15m": [
+          52.398,
+          -1.119,
+          -0.151,
+          -0.0
+        ],
+        "ewo_50_200_1h": [
+          -6.011,
+          -18.064,
+          1.097,
+          0.0
+        ],
+        "hma_55": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "hma_70": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "r_480": [
+          null,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "r_480_1h": [
+          39.164,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "r_480_4h": [
+          -16.303,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_15m": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_max_3_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_max_3_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_max_6_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_max_6_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_20": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_16": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "sma_200": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "sma_200_15m": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "sma_200_1h": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "sma_200_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_30": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_50_1h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_50_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_75": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "zlma_50": [
+          0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "zlma_50_15m": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "zlma_50_1h": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "zlma_50_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 45.7,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": 288,
+      "implementation_id": "NostalgiaForInfinityX3:4be2585f15ea",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy NostalgiaForInfinityX3 --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityX3 --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016",
+      "ladder_candles": [
+        288,
+        576,
+        2016
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        288,
+        576,
+        2016
+      ],
+      "max_drift_indicator": "btc_rsi_14_5m",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_eea5e35428b84cbd1f779d279c157860ce5bd068ca48c3d24725ac7492adee2e",
+      "returncode": 0,
+      "run_profile": "futures_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "converged",
+      "strategy_id": "NostalgiaForInfinityX3",
+      "timeframe": "5m",
+      "timerange": "20200301-20200401"
+    },
+    "NostalgiaForInfinityX4": {
+      "available_prefix_candles": 7391,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
+      "cohort": "recursive_unsettled",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 800
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/NostalgiaForInfinityX4-ladder.log",
+      "declared_max_drift_pct": 26.926,
+      "declared_startup_candle_count": 800,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "bb20_2_low": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb20_2_low_15m": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb20_2_low_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb20_2_mid": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb20_2_upp": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb20_2_upp_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb20_2_upp_1h": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb20_2_width_1h": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb40_2_delta": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb40_2_low": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb40_2_mid": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "bb40_2_tail": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bt_agefilter_ok": [
+          null,
+          null,
+          null,
+          0.0
+        ],
+        "btc_rsi_14_15m": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "btc_rsi_14_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "btc_rsi_14_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "btc_rsi_14_5m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "btc_sma_200_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "cci_20": [
+          0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "ema_100": [
+          0.003,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "ema_20": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_200": [
+          0.091,
+          -0.015,
+          0.001,
+          0.0
+        ],
+        "ema_200_15m": [
+          -0.553,
+          0.012,
+          0.002,
+          0.0
+        ],
+        "ema_200_1h": [
+          0.034,
+          0.101,
+          -0.006,
+          -0.0
+        ],
+        "ema_200_4h": [
+          3.784,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_200_pct_change_144": [
+          null,
+          15.816,
+          -0.534,
+          -0.0
+        ],
+        "ema_200_pct_change_288": [
+          null,
+          19.758,
+          -0.666,
+          -0.0
+        ],
+        "ema_26": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_26_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_26_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_26_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_50": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "ema_50_1h": [
+          0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "ema_50_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ewo_50_200": [
+          -4675.378,
+          796.601,
+          -26.926,
+          -0.0
+        ],
+        "ewo_50_200_15m": [
+          52.398,
+          -1.119,
+          -0.151,
+          -0.0
+        ],
+        "ewo_50_200_1h": [
+          -6.011,
+          -18.064,
+          1.097,
+          0.0
+        ],
+        "hma_55": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "hma_70": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "r_480": [
+          null,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "r_480_1h": [
+          null,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "r_480_4h": [
+          null,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_15m": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_max_3_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_max_3_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_max_6_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_14_max_6_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_20": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_16": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "sma_200": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "sma_200_15m": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "sma_200_1h": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "sma_200_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_30": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_50_1h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_50_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_75": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "zlma_50": [
+          0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "zlma_50_15m": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "zlma_50_1h": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "zlma_50_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 43.7,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": 288,
+      "implementation_id": "NostalgiaForInfinityX4:1e74882784ff",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy NostalgiaForInfinityX4 --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityX4 --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016",
+      "ladder_candles": [
+        288,
+        576,
+        2016
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        288,
+        576,
+        2016
+      ],
+      "max_drift_indicator": "btc_rsi_14_5m",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_617c297237053a49575e19d5c035c310c1cd44e3d11f63013bd0588f4b085ffa",
+      "returncode": 0,
+      "run_profile": "futures_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "converged",
+      "strategy_id": "NostalgiaForInfinityX4",
+      "timeframe": "5m",
+      "timerange": "20200301-20200401"
+    },
+    "NostalgiaForInfinityX5": {
+      "available_prefix_candles": 7391,
+      "cohort": "recursive_unsettled",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 800
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/NostalgiaForInfinityX5-ladder.log",
+      "declared_max_drift_pct": 1106.576,
+      "declared_startup_candle_count": 800,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "CCI_20_15m": [
+          -0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "CCI_20_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "CCI_20_change_pct_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "CCI_20_change_pct_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "CMF_20": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "CMF_20_15m": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "CMF_20_1h": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "CMF_20_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_20": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_200": [
+          0.091,
+          -0.015,
+          0.001,
+          0.0
+        ],
+        "EMA_200_1h": [
+          0.034,
+          0.101,
+          -0.006,
+          -0.0
+        ],
+        "EMA_200_4h": [
+          3.784,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_26": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_50": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "KST_10_15_20_30_10_10_10_15": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "KSTs_9": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "MFI_14": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "MFI_14_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "MFI_14_1h": [
+          -0.0,
+          -0.0,
+          0.0,
+          -0.0
+        ],
+        "MFI_14_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "OBV": [
+          -100.225,
+          -113.672,
+          -108.738,
+          -96.301
+        ],
+        "OBV_15m": [
+          -98.497,
+          -79.116,
+          -107.613,
+          -51.547
+        ],
+        "OBV_1h": [
+          -116.243,
+          -45.826,
+          -36.695,
+          9.601
+        ],
+        "OBV_4h": [
+          -98.237,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "OBV_change_pct": [
+          310343.042,
+          647.393,
+          1082.217,
+          2433.917
+        ],
+        "OBV_change_pct_15m": [
+          11196.346,
+          390.49,
+          1106.576,
+          107.77
+        ],
+        "OBV_change_pct_1h": [
+          439.082,
+          87.743,
+          59.805,
+          -8.918
+        ],
+        "OBV_change_pct_4h": [
+          2039.481,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_15m": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_change_pct": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_change_pct_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_change_pct_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_change_pct_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_diff_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_diff_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_20": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "SMA_16": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "SMA_30": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSId_14_14_3_3": [
+          -0.0,
+          0.0,
+          -0.0,
+          -0.0
+        ],
+        "STOCHRSId_14_14_3_3_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSId_14_14_3_3_1h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSId_14_14_3_3_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSIk_14_14_3_3": [
+          -0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "STOCHRSIk_14_14_3_3_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSIk_14_14_3_3_1h": [
+          -0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "STOCHRSIk_14_14_3_3_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSIk_14_14_3_3_change_pct_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHd_14_3_3_15m": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHd_14_3_3_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHd_14_3_3_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHk_14_3_3_15m": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "STOCHk_14_3_3_1h": [
+          -0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "STOCHk_14_3_3_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "UO_7_14_28_15m": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "UO_7_14_28_1h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "UO_7_14_28_change_pct_15m": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "UO_7_14_28_change_pct_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "WILLR_480": [
+          null,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bt_agefilter_ok": [
+          null,
+          null,
+          null,
+          0.0
+        ]
+      },
+      "elapsed_s": 43.1,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": 288,
+      "implementation_id": "NostalgiaForInfinityX5:7b845f469b09",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy NostalgiaForInfinityX5 --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityX5 --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016",
+      "ladder_candles": [
+        288,
+        576,
+        2016
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        288,
+        576,
+        2016
+      ],
+      "output_sha256": "sha256_a9263fd45f7708a0d2774586d085852a771d45093be3e1a68ac2b680d6e56c0c",
+      "returncode": 0,
+      "run_profile": "futures_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "not_converged_within_ladder",
+      "strategy_id": "NostalgiaForInfinityX5",
+      "timeframe": "5m",
+      "timerange": "20200301-20200401",
+      "why": "no startup up to 2016 candles keeps every indicator inside 1.0%"
+    },
+    "NostalgiaForInfinityX6": {
+      "available_prefix_candles": 7391,
+      "cohort": "recursive_unsettled",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 800
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/NostalgiaForInfinityX6-ladder.log",
+      "declared_max_drift_pct": 1106.576,
+      "declared_startup_candle_count": 800,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "CCI_20_15m": [
+          -0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "CCI_20_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "CCI_20_change_pct_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "CCI_20_change_pct_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "CMF_20": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "CMF_20_15m": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "CMF_20_1h": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "CMF_20_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_100": [
+          0.003,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "EMA_20": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_200": [
+          0.091,
+          -0.015,
+          0.001,
+          0.0
+        ],
+        "EMA_200_1h": [
+          0.034,
+          0.101,
+          -0.006,
+          -0.0
+        ],
+        "EMA_200_4h": [
+          3.784,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_20_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_26": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_26_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_50": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "KST_10_15_20_30_10_10_10_15": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "KSTs_9": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "MFI_14": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "MFI_14_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "MFI_14_1h": [
+          -0.0,
+          -0.0,
+          0.0,
+          -0.0
+        ],
+        "MFI_14_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "OBV": [
+          -100.225,
+          -113.672,
+          -108.738,
+          -96.301
+        ],
+        "OBV_15m": [
+          -98.497,
+          -79.116,
+          -107.613,
+          -51.547
+        ],
+        "OBV_1h": [
+          -116.243,
+          -45.826,
+          -36.695,
+          9.601
+        ],
+        "OBV_4h": [
+          -98.237,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "OBV_change_pct": [
+          310343.042,
+          647.393,
+          1082.217,
+          2433.917
+        ],
+        "OBV_change_pct_15m": [
+          11196.346,
+          390.49,
+          1106.576,
+          107.77
+        ],
+        "OBV_change_pct_1h": [
+          439.082,
+          87.743,
+          59.805,
+          -8.918
+        ],
+        "OBV_change_pct_4h": [
+          2039.481,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_15m": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_change_pct": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_change_pct_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_change_pct_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_change_pct_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_diff_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_diff_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_20": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "SMA_16": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "SMA_16_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "SMA_200": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "SMA_21": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "SMA_30": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "SMA_9": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSId_14_14_3_3": [
+          -0.0,
+          0.0,
+          -0.0,
+          -0.0
+        ],
+        "STOCHRSId_14_14_3_3_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSId_14_14_3_3_1h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSId_14_14_3_3_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSIk_14_14_3_3": [
+          -0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "STOCHRSIk_14_14_3_3_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSIk_14_14_3_3_1h": [
+          -0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "STOCHRSIk_14_14_3_3_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSIk_14_14_3_3_change_pct_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHd_14_3_3_15m": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHd_14_3_3_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHd_14_3_3_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHk_14_3_3_15m": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "STOCHk_14_3_3_1h": [
+          -0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "STOCHk_14_3_3_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "UO_7_14_28_15m": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "UO_7_14_28_1h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "UO_7_14_28_change_pct_15m": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "UO_7_14_28_change_pct_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "WILLR_480": [
+          null,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bt_agefilter_ok": [
+          null,
+          null,
+          null,
+          0.0
+        ]
+      },
+      "elapsed_s": 45.3,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": 288,
+      "implementation_id": "NostalgiaForInfinityX6:838603039f96",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy NostalgiaForInfinityX6 --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityX6 --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016",
+      "ladder_candles": [
+        288,
+        576,
+        2016
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        288,
+        576,
+        2016
+      ],
+      "output_sha256": "sha256_3cc28f6f8a937d8662813c5aec58d75708744a27526ab3a889f447c662a829d5",
+      "returncode": 0,
+      "run_profile": "futures_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "not_converged_within_ladder",
+      "strategy_id": "NostalgiaForInfinityX6",
+      "timeframe": "5m",
+      "timerange": "20200301-20200401",
+      "why": "no startup up to 2016 candles keeps every indicator inside 1.0%"
+    },
+    "NostalgiaForInfinityX7": {
+      "available_prefix_candles": 7391,
+      "cohort": "recursive_unsettled",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 800
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/NostalgiaForInfinityX7-ladder.log",
+      "declared_max_drift_pct": 1306.576,
+      "declared_startup_candle_count": 800,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "ADX_14_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "BTC_RSI_14_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "CCI_20_15m": [
+          -0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "CCI_20_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "CCI_20_change_pct_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "CCI_20_change_pct_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "CMF_20": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "CMF_20_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "CMF_20_1h": [
+          -0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "CMF_20_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "DC_HIGH_7D": [
+          null,
+          null,
+          null,
+          0.0
+        ],
+        "DC_LOW_7D": [
+          null,
+          null,
+          null,
+          0.0
+        ],
+        "EMA_100": [
+          0.003,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "EMA_100_4h": [
+          0.082,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_20": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_200": [
+          0.091,
+          -0.015,
+          0.001,
+          0.0
+        ],
+        "EMA_200_15m": [
+          -0.553,
+          0.012,
+          0.002,
+          0.0
+        ],
+        "EMA_200_1h": [
+          0.034,
+          0.101,
+          -0.006,
+          -0.0
+        ],
+        "EMA_200_4h": [
+          3.784,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_20_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_26": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_26_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_50": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_50_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA_50_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "KST_10_15_20_30_10_10_10_15": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "KST_10_15_20_30_10_10_10_15_1h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "KST_10_15_20_30_10_10_10_15_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "KSTs_9": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "KSTs_9_1h": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "KSTs_9_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "LARGE_BUBBLE_THR": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "MFI_14": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "MFI_14_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "MFI_14_1h": [
+          -0.0,
+          -0.0,
+          0.0,
+          -0.0
+        ],
+        "MFI_14_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "MINUS_DI_14_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "OBV_change_pct": [
+          310343.042,
+          -847.393,
+          -1282.217,
+          2433.917
+        ],
+        "OBV_change_pct_15m": [
+          11196.346,
+          390.49,
+          -1306.576,
+          107.77
+        ],
+        "PLUS_DI_14_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_15m": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_change_pct": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_change_pct_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_change_pct_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_14_change_pct_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "RSI_20": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "SMA_16": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "SMA_16_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "SMA_200": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "SMA_21": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "SMA_30": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "SMA_9": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSIk_14_14_3_3": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "STOCHRSIk_14_14_3_3_15m": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSIk_14_14_3_3_1h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSIk_14_14_3_3_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHRSIk_14_14_3_3_change_pct_4h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHk_14_3_3_15m": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHk_14_3_3_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "STOCHk_14_3_3_4h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "UO_7_14_28_15m": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "UO_7_14_28_1h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "UO_7_14_28_change_pct_15m": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "VOL_REL": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "WILLR_480": [
+          null,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bt_agefilter_ok": [
+          null,
+          null,
+          null,
+          0.0
+        ]
+      },
+      "elapsed_s": 43.7,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": 480,
+      "implementation_id": "NostalgiaForInfinityX7:12aeca2f8c57",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy NostalgiaForInfinityX7 --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityX7 --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016",
+      "ladder_candles": [
+        288,
+        576,
+        2016
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        288,
+        576,
+        2016
+      ],
+      "output_sha256": "sha256_98676795ec96ceec13f5fb3b741d57d7fb0db507843939506271c6acc3be1421",
+      "returncode": 0,
+      "run_profile": "futures_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "not_converged_within_ladder",
+      "strategy_id": "NostalgiaForInfinityX7",
+      "timeframe": "5m",
+      "timerange": "20200301-20200401",
+      "why": "no startup up to 2016 candles keeps every indicator inside 1.0%"
+    },
     "NotAnotherSMAOffSetStrategy_V2": {
       "available_prefix_candles": 97222,
       "cohort": "recursion_only",
@@ -52829,6 +55634,86 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "SMAOffset_Hippocritical_dca_leverage": {
+      "available_prefix_candles": 7391,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
+      "cohort": "recursive_unsettled",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 1000
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/SMAOffset_Hippocritical_dca_leverage-ladder.log",
+      "declared_max_drift_pct": 3.107,
+      "declared_startup_candle_count": 1000,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "EWO": [
+          -4675.378,
+          796.601,
+          3.107,
+          -0.0
+        ],
+        "missing_data": [
+          null,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 33.4,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": 14,
+      "implementation_id": "SMAOffset_Hippocritical_dca_leverage:3e0741aa6ef0",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy SMAOffset_Hippocritical_dca_leverage --strategy-path user_data/profile_bias_strategies/SMAOffset_Hippocritical_dca_leverage --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016",
+      "ladder_candles": [
+        288,
+        576,
+        2016
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        288,
+        576,
+        2016
+      ],
+      "max_drift_indicator": "EWO",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_3a7f4fb6fa201ef0a8861eb058506e29e6385daee07b2e93e79aaf5f41446b83",
+      "returncode": 0,
+      "run_profile": "futures_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "converged",
+      "strategy_id": "SMAOffset_Hippocritical_dca_leverage",
+      "timeframe": "5m",
+      "timerange": "20200301-20200401"
+    },
     "SMAOffset_Hippocritical_dca_old": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 7,
@@ -56706,6 +59591,140 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "StrategyTestV3": {
+      "available_prefix_candles": 7391,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
+      "cohort": "recursive_unsettled",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 20
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/StrategyTestV3-ladder.log",
+      "declared_max_drift_pct": 5.294,
+      "declared_startup_candle_count": 20,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "adx": [
+          null,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_lowerband": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_middleband": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_upperband": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema10": [
+          -0.002,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fastd": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macd": [
+          null,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "macdhist": [
+          null,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "macdsignal": [
+          null,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "minus_di": [
+          2.15,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "plus_di": [
+          -5.294,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          -4.276,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 33.7,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": 20,
+      "implementation_id": "StrategyTestV3:94fc2208a342",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy StrategyTestV3 --strategy-path user_data/profile_bias_strategies/StrategyTestV3 --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016",
+      "ladder_candles": [
+        288,
+        576,
+        2016
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        288,
+        576,
+        2016
+      ],
+      "max_drift_indicator": "adx",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_8ee728e019773dd33d4597a8fcd09b30cbe6bf5a92cb56683ba5031cacc7a8fc",
+      "returncode": 0,
+      "run_profile": "futures_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "converged",
+      "strategy_id": "StrategyTestV3",
+      "timeframe": "5m",
+      "timerange": "20200301-20200401"
+    },
     "SuperTrend": {
       "available_prefix_candles": 486102,
       "chosen_ladder_days": 1,
@@ -56819,6 +59838,143 @@
       "strategy_id": "SuperTrend",
       "timeframe": "1m",
       "timerange": "20190101-20190401"
+    },
+    "SupertrendStrategy": {
+      "available_prefix_candles": 8104,
+      "chosen_ladder_days": 14,
+      "chosen_startup_candle_count": 336,
+      "cohort": "recursive_unsettled",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 48
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 90
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 168
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 336
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 720
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2160
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/SupertrendStrategy-ladder.log",
+      "declared_max_drift_pct": 0.13,
+      "declared_startup_candle_count": 90,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "ema90": [
+          null,
+          0.13,
+          -0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "supertrend_1": [
+          -0.075,
+          0.045,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "supertrend_2": [
+          -0.035,
+          0.006,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "supertrend_3": [
+          -0.054,
+          0.065,
+          -0.01,
+          -0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 34.1,
+      "file_derived_period": null,
+      "implementation_id": "SupertrendStrategy:8b39ab2f2568",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SupertrendStrategy --strategy-path user_data/profile_bias_strategies/SupertrendStrategy --timerange 20190101-20190401 --no-color --startup-candle 48 168 336 720 2160",
+      "ladder_candles": [
+        48,
+        168,
+        336,
+        720,
+        2160
+      ],
+      "ladder_days": [
+        2,
+        7,
+        14,
+        30,
+        90
+      ],
+      "ladder_rungs_dropped_as_uncomputable": [
+        24
+      ],
+      "max_drift_indicator": "ema90",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_271738b2ce04c39036b8980a9697f6eb5aa7c83318783e811cd0ff546e4a82e0",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "converged",
+      "strategy_id": "SupertrendStrategy",
+      "timeframe": "1h",
+      "timerange": "20190101-20190401"
+    },
+    "SwingHighToSky": {
+      "available_prefix_candles": 32408,
+      "cohort": "recursive_unsettled",
+      "debug_log": "user_data/convergence_logs/SwingHighToSky-ladder.log",
+      "declared_warmup_override": 96,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 68.7,
+      "file_derived_period": null,
+      "implementation_id": "SwingHighToSky:73facc48a003",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/SwingHighToSky_startup_96.json --strategy SwingHighToSky --strategy-path user_data/profile_bias_strategies/SwingHighToSky --timerange 20190101-20190401 --no-color --startup-candle 96 192 672 1344 2880",
+      "ladder_candles": [
+        96,
+        192,
+        672,
+        1344,
+        2880
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30
+      ],
+      "output_sha256": "sha256_fb112d80c7e23ff2e2bdf883f0be6b5b1fdf3a27d3ad582e1c55d27ef15fc36f",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "inconclusive",
+      "strategy_id": "SwingHighToSky",
+      "timeframe": "15m",
+      "timerange": "20190101-20190401",
+      "why": "analyzer produced no drift table"
     },
     "TD": {
       "available_prefix_candles": 4054,
@@ -58590,6 +61746,70 @@
       "strategy_id": "TrendAtrStrategy",
       "timeframe": "4h",
       "timerange": "20190101-20190401"
+    },
+    "TrendFollowingStrategy": {
+      "available_prefix_candles": 7391,
+      "cohort": "recursive_unsettled",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/TrendFollowingStrategy-ladder.log",
+      "declared_max_drift_pct": 100.23,
+      "declared_startup_candle_count": 288,
+      "declared_warmup_override": 288,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "obv": [
+          -100.23,
+          -113.946,
+          -96.227
+        ],
+        "trend": [
+          -0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 66.7,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": null,
+      "implementation_id": "TrendFollowingStrategy:5b587371c871",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/TrendFollowingStrategy_startup_288.json --strategy TrendFollowingStrategy --strategy-path user_data/profile_bias_strategies/TrendFollowingStrategy --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016",
+      "ladder_candles": [
+        288,
+        576,
+        2016
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        288,
+        576,
+        2016
+      ],
+      "output_sha256": "sha256_d489ab4f3d07710906bf06da9f62793213fb7cf208390834772f5be861a1181b",
+      "returncode": 0,
+      "run_profile": "futures_long_short",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "not_converged_within_ladder",
+      "strategy_id": "TrendFollowingStrategy",
+      "timeframe": "5m",
+      "timerange": "20200301-20200401",
+      "why": "no startup up to 2016 candles keeps every indicator inside 1.0%"
     },
     "TrendRiderStrategy": {
       "available_prefix_candles": 616,

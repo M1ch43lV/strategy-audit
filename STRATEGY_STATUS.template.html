@@ -220,7 +220,8 @@
     <h2>Distribution</h2>
     <div class="dist" id="dist"></div>
     <div class="distkey" id="distkey"></div>
-    <p class="note"><strong>78 strategies are usable today</strong> — the 67 of the frozen baseline plus 11 admitted since. Convergence candidates have a warm-up at which no indicator drifts any more; that is not admission, because the paired full-window run still has to show an identical trade list. And convergence settles recursion only: a look-ahead finding disqualifies a row however settled its warm-up, so <code>PolymarketPortfolio</code> and <code>custom</code> left this cohort the moment the backfill measured them.</p>
+    <p class="note"><strong>427 strategies are usable today</strong> \u2014 the 67 of the frozen baseline plus 360 admitted since. As of 2026-09-02 a row is admitted when it clears both bias gates at a warm-up that settles its indicators: look-ahead <code>PASS</code> measured here, recursion settled by the ladder, coverage <code>PASS</code>, trap-free. The preregistration previously routed a settled row whose trade list changed under that warm-up to exploratory rather than admitted; that requirement is retired, because the aim is the mathematically clean result under the current freqtrade rather than a reproduction of what an author once ran. Fewer trades, or more, is the consequence of measuring properly.</p>
+    <p class="note"><strong>What that costs, stated plainly.</strong> The retired paired run was the only test separating a repaired row from a reconfigured one. Of the 26 it had already decided, 13 produced an identical trade list and 13 did not \u2014 <code>SlowPotato</code> 1,835 against 1,899, <code>JuicyTrend</code> 13,698 against 13,607. So a market-phase number here cannot be assumed to be what the author's own configuration would have produced. Every admitted row therefore records the warm-up it was measured at and whether that value is at or below the author's own: 2 needed no supplied warm-up, 126 declare none at all, and 226 declare one that runs and was overridden.</p>
     <p class="note"><strong>Nothing here is untested, and nothing here is cleared by the original sweep.</strong> The audit's first pass ran in an environment that did not establish the preconditions this one requires, so its verdicts are provenance and hints, never evidence. Rows marked <span class="flag">inherited</span> are admitted on a look-ahead verdict from that sweep and are queued for native re-measurement.</p>
   </section>
 
@@ -491,7 +492,7 @@
        return '<span class="pill '+o.cls+'">'+o.label+'</span>'; },
      text:{
        E0_strict67:"The 67 of the frozen baseline. Never regenerated; the difference between it and this table is the expansion.",
-       E1_expanded:"Admitted since the freeze, on gates measured here.",
+       E1_expanded:"Admitted since the freeze, on gates measured here: look-ahead PASS, recursion settled by the warm-up ladder, coverage PASS, trap-free. The warm-up each was measured at is on the row.",
        convergence_candidate:"A warm-up exists at which no indicator drifts any more AND look-ahead has returned a PASS measured here. Both are required: a candidate is a row on its way to admission, so it needs to have cleared each gate rather than merely failed neither. Still not admission \u2014 the paired full-window run has to produce an identical trade list first.",
        exclusion_unconfirmed:"Would have been excluded on an inherited verdict or on no verdict at all. Held here until a measurement of ours settles it either way.",
        pending:"No hard failure and no verdict yet.",
