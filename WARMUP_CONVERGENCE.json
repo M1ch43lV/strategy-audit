@@ -11,6 +11,74 @@
     365
   ],
   "results": {
+    "ADX_15M_USDT": {
+      "available_prefix_candles": 32408,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/ADX_15M_USDT-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 46.5,
+      "file_derived_period": 25,
+      "implementation_id": "ADX_15M_USDT:1cf6c1e674ba",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ADX_15M_USDT --strategy-path user_data/profile_bias_strategies/ADX_15M_USDT --timerange 20190101-20190401 --no-color --startup-candle 672 1344 2880",
+      "ladder_candles": [
+        672,
+        1344,
+        2880
+      ],
+      "ladder_days": [
+        7,
+        14,
+        30
+      ],
+      "ladder_rungs_dropped_as_uncomputable": [
+        96,
+        192
+      ],
+      "output_sha256": "sha256_6a61b19767dbd50d18541cd847104ccfa3c11b008011c54a6c55a446d7a76958",
+      "returncode": 2,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "ADX_15M_USDT",
+      "timeframe": "15m",
+      "timerange": "20190101-20190401",
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+    },
+    "ADX_15M_USDT2": {
+      "available_prefix_candles": 32408,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/ADX_15M_USDT2-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 47.0,
+      "file_derived_period": 25,
+      "implementation_id": "ADX_15M_USDT2:0d171b1a5053",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ADX_15M_USDT2 --strategy-path user_data/profile_bias_strategies/ADX_15M_USDT2 --timerange 20190101-20190401 --no-color --startup-candle 672 1344 2880",
+      "ladder_candles": [
+        672,
+        1344,
+        2880
+      ],
+      "ladder_days": [
+        7,
+        14,
+        30
+      ],
+      "ladder_rungs_dropped_as_uncomputable": [
+        96,
+        192
+      ],
+      "output_sha256": "sha256_170e56c722ead8dba66aa6d60f53965fbae85bfecc59a77a4fd2c61f0f3e994b",
+      "returncode": 2,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "ADX_15M_USDT2",
+      "timeframe": "15m",
+      "timerange": "20190101-20190401",
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+    },
     "ARIMASTR": {
       "available_prefix_candles": 97222,
       "cohort": "recursive_unsettled",
@@ -407,6 +475,68 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "AdaptiveRenkoStrategy": {
+      "available_prefix_candles": 12318,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/AdaptiveRenkoStrategy-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 44.9,
+      "file_derived_period": 10,
+      "implementation_id": "AdaptiveRenkoStrategy:b1efced546db",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy AdaptiveRenkoStrategy --strategy-path user_data/profile_bias_strategies/AdaptiveRenkoStrategy --timerange 20200301-20200401 --no-color --startup-candle 480 960 3360",
+      "ladder_candles": [
+        480,
+        960,
+        3360
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7
+      ],
+      "output_sha256": "sha256_0789e8dd104e4fe895ddec4615f7e688c071a7e68d252988f05fbe349e603f99",
+      "returncode": 0,
+      "run_profile": "futures_long_short",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "AdaptiveRenkoStrategy",
+      "timeframe": "3m",
+      "timerange": "20200301-20200401",
+      "why": "analyzer produced no drift table"
+    },
+    "AdvancedRiskFilterStrategy": {
+      "available_prefix_candles": 97222,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/AdvancedRiskFilterStrategy-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 42.9,
+      "file_derived_period": null,
+      "implementation_id": "AdvancedRiskFilterStrategy:bcb660284ad4",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy AdvancedRiskFilterStrategy --strategy-path user_data/profile_bias_strategies/AdvancedRiskFilterStrategy --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
+      "ladder_candles": [
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        7,
+        14
+      ],
+      "ladder_rungs_dropped_as_uncomputable": [
+        288,
+        576
+      ],
+      "output_sha256": "sha256_f90db4d4e44f829d2764ecc76ed0b4c64557b5aff765d2cda348bb9368b81db1",
+      "returncode": 1,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "AdvancedRiskFilterStrategy",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401",
+      "why": "Remora API key missing. Set REMORA_API_KEY env var."
+    },
     "AdxSmas": {
       "available_prefix_candles": 8104,
       "chosen_ladder_days": 14,
@@ -676,6 +806,42 @@
       "strategy_id": "AdxStrengthStrategy",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
+    },
+    "AlligatorStrat": {
+      "available_prefix_candles": 2029,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/AlligatorStrat-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 43.0,
+      "file_derived_period": 13,
+      "implementation_id": "AlligatorStrat:0f9f93fc281f",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy AlligatorStrat --strategy-path user_data/profile_bias_strategies/AlligatorStrat --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
+      "ladder_candles": [
+        42,
+        84,
+        180,
+        540
+      ],
+      "ladder_days": [
+        7,
+        14,
+        30,
+        90
+      ],
+      "ladder_rungs_dropped_as_uncomputable": [
+        6,
+        12
+      ],
+      "output_sha256": "sha256_2c74a8eba899d090bde8c3db308eea283566e06a7e9da7c14fe027e9eea5e8fd",
+      "returncode": 2,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "AlligatorStrat",
+      "timeframe": "4h",
+      "timerange": "20190101-20190401",
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "AlligatorStrategy": {
       "available_prefix_candles": 8104,
