@@ -39,6 +39,25 @@
       "trades": 89,
       "trades_sha256": "sha256_16b4800717578cece4fa5a91ce372942cc1dab94c2adbdf367eb0add948ceefa"
     },
+    "BB_RPB_TSLmeneguzzo": {
+      "archive": "user_data/profile_smoke/BB_RPB_TSLmeneguzzo-2026-09-02_15-32-41.zip",
+      "archive_sha256": "sha256_f88494e1c6fef4ea9a298fd1d09892444e6a9b3da1d1907894607b8a17dcc619",
+      "canonical_sha256": "sha256_316241193acc1ed477c7c3862d9b385d0d128d93840d874d0dcad47ab210acd8",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 46.1,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BB_RPB_TSLmeneguzzo --strategy-path repair/patched/repos/davidzr_freqtrade-strategies/strategies/BB_RPB_TSLmeneguzzo --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BB_RPB_TSLmeneguzzo --cache none",
+      "long_trades": 64,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 64,
+      "trades_sha256": "sha256_d1e66033a56a7f8b3ac02cc6435003df414a6ed97ded401884d9b1f67c836c1f"
+    },
     "BcmbigzDevelop": {
       "canonical_sha256": "sha256_b299be1e149dce3a081ae166e03e5c73cbeee93cf59a3f0569787b5fcdce73fe",
       "class1_rules": [],

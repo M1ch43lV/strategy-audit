@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-02 17:31:23 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-02 17:34:15 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -32,12 +32,46 @@ have neither and are left empty rather than given an invented time.
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 376 |
-| `excluded` | 252 |
+| `excluded` | 153 |
 | `exclusion_unconfirmed` | 136 |
+| `pending` | 106 |
 | `E0_strict67` | 67 |
 | `not_tested_in_current_runtime` | 60 |
-| `pending` | 7 |
 | `convergence_candidate` | 2 |
+
+## The order the checks run in
+
+The order is not arbitrary; each step needs what the one before it
+produces.
+
+**1. Trial run.** One month over eight pairs: does the strategy start,
+and does it trade. A strategy that fails here is `open`, never
+`excluded` - no check has seen it, so nothing about it has been
+judged. It is labelled `to_be_fixed` until the obstacle is either
+removed or shown to be the strategy's own; `repair_verdict` then says
+which it is, and that is a separate question from whether the strategy
+is still in play.
+
+**2. Recursion, on the warm-up ladder.** Second because it needs no
+trades - it compares indicator values, not signals - so it can judge a
+strategy the look-ahead check cannot yet touch. It produces the warm-up
+at which the indicators settle, which the next step needs.
+
+**3. Look-ahead, at that warm-up.** Freqtrade's `lookahead-analysis`
+builds a Backtesting object, and `Backtesting.__init__` takes
+`required_startup` from the strategy's declared `startup_candle_count`.
+So the check runs at whatever warm-up is in force - and 125 strategies
+declare none, which would have their signals compared on indicators
+still undefined at the start of the window. Running it after the ladder
+means running it at a value shown to settle them. This check needs ten
+trades and widens its window rather than failing when there are fewer.
+
+**4. Backtest over the full window.** Only for a strategy that has
+cleared both bias checks: `20200301-20260821`, six and a half years
+over all eight pairs, at the warm-up the ladder settled on. It is the
+most expensive step by a wide margin, which is why it comes last and
+only for strategies whose numbers can be trusted. Admission follows
+from it, and the market-phase work is built on it.
 
 ## Windows and pairs each check uses
 
@@ -2821,13 +2855,38 @@ an identical trade list.
 | `StrategyTestV2` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-01 15:08:04 | `user_data/convergence_logs/StrategyTestV2-ladder.log` |
 | `StrategyTestV3` | `futures_long` | 288 candles | 0.0% on `adx` | 2026-09-02 07:42:23 | `user_data/convergence_logs/StrategyTestV3-ladder.log` |
 
-## Pending - 7 strategies
+## Pending - 106 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
 
-`Fakebuy`, `HyperStra_GSN_SMAOnly`, `InverseVolatilityPortfolio`, `RiskParityPortfolio`
-`TGMA`, `haGradient`, `kalthetank`
+`AdaptiveRenkoStrategy`, `AdvancedRiskFilterStrategy`, `Astro`, `AutoArimaTripleV1`
+`BBRSI`, `BB_RPB_3c`, `BaseStrategy`, `BestSingleAssetPortfolio`
+`BinanceStream`, `BlueEyes_MPP_v1`, `Chained`, `ClucCrypROI`
+`ClucCrypSlow`, `ClucHAnix_BB_RPB_MOD_trailing_buy`, `ClucHAnix_BB_RPB_TraNz`, `CombinedBinHAndClucV6H`
+`CopyLitmusMinMaxBroadClassificationStrategy`, `CryptoFrogNFI2`, `CryptoPredictionTraining`, `DWT`
+`Danke`, `DualModelPolymarketPortfolio`, `Dyna_opti`, `EmaCrossStrategy`
+`Enchilada`, `EnsembleStrategy`, `EnsembleStrategyV1`, `EnsembleStrategyV2`
+`FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `Fakebuy`, `FastSupertrend`
+`FastSupertrendOpt`, `FileLoadingStrategy`, `FreqaiExampleHybridStrategy`, `FreqaiExampleStrategy`
+`GPR`, `GodStra`, `GymStrategy`, `HLHB`
+`HyperStra_GSN_SMAOnly`, `IchimokuStrategy`, `Ichimoku_SenkouSpanCross`, `InverseVolatilityPortfolio`
+`KMM`, `LitmusEntryRollClassificationStrategy`, `LitmusGoodMinMaxClassificationStrategy`, `LitmusMLDPStrategy`
+`LitmusMetaStrategy`, `LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`
+`LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`
+`LongShortRangeTradingMachetesV1`, `MKR`, `MasterMoniGoManiHyperStrategy`, `MlpSpeculativeStrategy`
+`MomentumRegimeBasket15m`, `MultiMA_TSL5`, `MultiMa`, `MultiTargetClassifierTestStrategy`
+`MultiTargetRegressorTestStrategy`, `NoLost`, `Persia`, `Pmax`
+`PnF`, `PolymarketLogicalArbStrategy`, `PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy`
+`Prediction_Strategy`, `Proton`, `QuickAdapterV3`, `QuickBuyStrategy`
+`RLAgentStrategy`, `RLStrategy`, `RenkoYolo`, `RiskParityPortfolio`
+`SMAOPv1_TTF`, `ScalpingCCI`, `SimpleRiskFilterStrategy`, `Solipsis4`
+`Solipsis6`, `SolipsisMM`, `SuperHV27`, `SuperTrendPure`
+`Supertrend`, `TGMA`, `TankAi`, `TankAiRevival`
+`Test_MAMA4`, `TrainCatBoostStrategy`, `TuplaBollinger`, `TwoCandleTheory`
+`UpSliceStrategy`, `WTAI`, `WTHO`, `WTRSIAI`
+`haGradient`, `kalthetank`, `multi_tf`, `new_turtle`
+`new_turtle_roi`, `thetank2`
 
 ## Attempted, no measurement - 60 strategies
 
@@ -2926,7 +2985,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 252 strategies, by decisive reason
+## Not passing - 153 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -2975,7 +3034,6 @@ whether the row is finished with or waiting on us.
 | Basis | Meaning | Strategies |
 |---|---|---:|
 | `own_measurement` | a disqualifying result measured here, from this implementation | 153 |
-| `blocked` | the strategy did not run, so nothing about it was judged | 99 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -2985,7 +3043,6 @@ one of them carries none.
 |---|---|---:|
 | `lookahead_found` | reads data it could not have had at the time | 53 |
 | `technical_trap_found` | carries a published backtesting trap | 40 |
-| `strategy_does_not_run` | fails before it can be measured; the message is in runtime_failure | 99 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 49 |
 | `no_trades_in_full_measurement` | never trades over the full window | 11 |
 
@@ -2996,7 +3053,6 @@ one of them carries none.
 |---|---|---|---|---|
 | `lookahead_found` | 0 | 15 | 0 | 38 |
 | `technical_trap_found` | 0 | 0 | 0 | 40 |
-| `strategy_does_not_run` | 0 | 99 | 0 | 0 |
 | `recursive_bias_found` | 3 | 18 | 14 | 14 |
 | `no_trades_in_full_measurement` | 0 | 10 | 0 | 1 |
 
@@ -3040,85 +3096,6 @@ Wave `not_scheduled` - 40:
 `NASOSv5_mod2`, `NASOSv5_mod3`, `PrawnstarOBV`, `SMAIP3v2`
 `SimpleHopt1Along`, `SimpleHopt1Ashort`, `SimpleHoptS`, `WTX3`
 `XebTradeStrat`, `ichi`, `tesla4`, `tesla7`
-
-### `strategy_does_not_run` - 99
-
-Fails before it can be measured; the message is in runtime_failure.
-
-| Failure | Strategies | Which |
-|---|---:|---|
-| Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m` | 10 | `Chained`, `EnsembleStrategy`, `EnsembleStrategyV1`, `EnsembleStrategyV2`, `FreqaiExampleStrategy`, `LitmusGoodMinMaxClassificationStrategy`, `MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`, `QuickAdapterV3`, `ScalpingCCI` |
-| The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given | 8 | `Danke`, `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `FastSupertrend`, `FastSupertrendOpt`, `MultiMA_TSL5`, `SuperTrendPure`, `Supertrend` |
-| cannot import name '__version__' from 'freqtrade' (unknown location) | 4 | `DualModelPolymarketPortfolio`, `EmaCrossStrategy`, `PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy` |
-| Configuration error: 'stoploss' is a required property | 3 | `AdaptiveRenkoStrategy`, `ClucCrypROI`, `ClucCrypSlow` |
-| freqAI is not enabled. Please enable it in your config to use this strategy. | 3 | `RLStrategy`, `TankAi`, `TankAiRevival` |
-| `populate_exit_trend` or `populate_sell_trend` must be implemented. | 2 | `ClucHAnix_BB_RPB_TraNz`, `SimpleRiskFilterStrategy` |
-| IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time' | 2 | `Dyna_opti`, `Solipsis4` |
-| You are using the `populate_any_indicators()` function which was deprecated on March 1, 2023. Please refer to the strategy migration guide to use the new | 2 | `WTAI`, `WTRSIAI` |
-| Invalid value 'False' for dtype 'float64' | 2 | `new_turtle`, `new_turtle_roi` |
-| Remora API key missing. Set REMORA_API_KEY env var. | 1 | `AdvancedRiskFilterStrategy` |
-| Length of values (180) does not match length of index (82) | 1 | `Astro` |
-| Impossible to load Strategy 'AutoArimaTripleV1'. This class does not exist or contains Python code errors. | 1 | `AutoArimaTripleV1` |
-| Impossible to load Strategy 'BBRSI'. This class does not exist or contains Python code errors. | 1 | `BBRSI` |
-| Impossible to load Strategy 'BB_RPB_3c'. This class does not exist or contains Python code errors. | 1 | `BB_RPB_3c` |
-| Impossible to load Strategy 'BaseStrategy'. This class does not exist or contains Python code errors. | 1 | `BaseStrategy` |
-| Encountered all NA values | 1 | `BestSingleAssetPortfolio` |
-| Impossible to load Strategy 'BinanceStream'. This class does not exist or contains Python code errors. | 1 | `BinanceStream` |
-| Impossible to load Strategy 'BlueEyes_MPP_v1'. This class does not exist or contains Python code errors. | 1 | `BlueEyes_MPP_v1` |
-| Impossible to load Strategy 'ClucHAnix_BB_RPB_MOD_trailing_buy'. This class does not exist or contains Python code errors. | 1 | `ClucHAnix_BB_RPB_MOD_trailing_buy` |
-| Invalid value '1' for dtype 'bool' | 1 | `CombinedBinHAndClucV6H` |
-| Impossible to load Strategy 'CopyLitmusMinMaxBroadClassificationStrategy'. This class does not exist or contains Python code errors. | 1 | `CopyLitmusMinMaxBroadClassificationStrategy` |
-| 'CryptoFrogNFI2' object has no attribute 'buy_pump_threshold_7'. Did you mean: 'buy_pump_threshold_1'? | 1 | `CryptoFrogNFI2` |
-| Impossible to load Strategy 'CryptoPredictionTraining'. This class does not exist or contains Python code errors. | 1 | `CryptoPredictionTraining` |
-| buffer source array is read-only | 1 | `DWT` |
-| Impossible to load Strategy 'Enchilada'. This class does not exist or contains Python code errors. | 1 | `Enchilada` |
-| Impossible to load Strategy 'FileLoadingStrategy'. This class does not exist or contains Python code errors. | 1 | `FileLoadingStrategy` |
-| Impossible to load FreqaiModel 'CatboostClassifier'. This class does not exist or contains Python code errors. | 1 | `FreqaiExampleHybridStrategy` |
-| Invalid value '114.31926513711869' for dtype 'int64' | 1 | `GPR` |
-| index 14 is out of bounds for axis 0 with size 2 | 1 | `GodStra` |
-| Impossible to load Strategy 'GymStrategy'. This class does not exist or contains Python code errors. | 1 | `GymStrategy` |
-| 'tuple' object has no attribute 'items' | 1 | `HLHB` |
-| Impossible to load Strategy 'IchimokuStrategy'. This class does not exist or contains Python code errors. | 1 | `IchimokuStrategy` |
-| Impossible to load Strategy 'Ichimoku_SenkouSpanCross'. This class does not exist or contains Python code errors. | 1 | `Ichimoku_SenkouSpanCross` |
-| Impossible to load Strategy 'KMM'. This class does not exist or contains Python code errors. | 1 | `KMM` |
-| Impossible to load Strategy 'LitmusEntryRollClassificationStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusEntryRollClassificationStrategy` |
-| Impossible to load Strategy 'LitmusMLDPStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusMLDPStrategy` |
-| Impossible to load FreqaiModel 'LitmusMultiTargetClassifier'. This class does not exist or contains Python code errors. | 1 | `LitmusMetaStrategy` |
-| Impossible to load Strategy 'LitmusMinMaxBroadClassificationStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusMinMaxBroadClassificationStrategy` |
-| Impossible to load Strategy 'LitmusMinMaxClassificationStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusMinMaxClassificationStrategy` |
-| Impossible to load Strategy 'LitmusMinMaxRegretClassificationStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusMinMaxRegretClassificationStrategy` |
-| Impossible to load Strategy 'LitmusMinMaxSegmentClassificationStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusMinMaxSegmentClassificationStrategy` |
-| Impossible to load Strategy 'LitmusMinMaxStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusMinMaxStrategy` |
-| Impossible to load Strategy 'LitmusMinMaxTrendStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusMinMaxTrendStrategy` |
-| Impossible to load Strategy 'LitmusSimpleStrategy'. This class does not exist or contains Python code errors. | 1 | `LitmusSimpleStrategy` |
-| NDFrame.replace() got an unexpected keyword argument 'method' | 1 | `LongShortRangeTradingMachetesV1` |
-| Impossible to load Strategy 'MKR'. This class does not exist or contains Python code errors. | 1 | `MKR` |
-| process exit 0 without a readable backtest archive | 1 | `MasterMoniGoManiHyperStrategy` |
-| Impossible to load Strategy 'MlpSpeculativeStrategy'. This class does not exist or contains Python code errors. | 1 | `MlpSpeculativeStrategy` |
-| Cannot compare dtypes int64 and datetime64[ms, UTC] | 1 | `MomentumRegimeBasket15m` |
-| 'buy-ma-10' | 1 | `MultiMa` |
-| Configuration error: The config stoploss needs to be different from 0 to avoid problems with sell orders. | 1 | `NoLost` |
-| Impossible to load Strategy 'Persia'. This class does not exist or contains Python code errors. | 1 | `Persia` |
-| PMAX() got an unexpected keyword argument 'atrperiod'. Did you mean 'period'? | 1 | `Pmax` |
-| Invalid value '1' for dtype 'str'. Value should be a string or missing value, got 'int' instead. | 1 | `PnF` |
-| Could not find pair source at './strategy/PolymarketLogicalArb/freqtrade_pair_mapping.csv'. Update PAIR_SOURCE_PATH in the strategy. | 1 | `PolymarketLogicalArbStrategy` |
-| Impossible to load Strategy 'Prediction_Strategy'. This class does not exist or contains Python code errors. | 1 | `Prediction_Strategy` |
-| 'proton_parameters' | 1 | `Proton` |
-| invalid literal for int() with base 10: '1h' | 1 | `QuickBuyStrategy` |
-| Impossible to load FreqaiModel 'ReforceXY'. This class does not exist or contains Python code errors. | 1 | `RLAgentStrategy` |
-| 'adx' | 1 | `RenkoYolo` |
-| Cannot determine parameter space for ttf_length. | 1 | `SMAOPv1_TTF` |
-| module 'custom_indicators' has no attribute 'bollinger_bands' | 1 | `Solipsis6` |
-| module 'custom_indicators' has no attribute 'fib_ret' | 1 | `SolipsisMM` |
-| SuperHV27.min_roi_reached_entry() takes 2 positional arguments but 4 were given | 1 | `SuperHV27` |
-| cannot reindex on an axis with duplicate labels | 1 | `Test_MAMA4` |
-| Impossible to load Strategy 'TrainCatBoostStrategy'. This class does not exist or contains Python code errors. | 1 | `TrainCatBoostStrategy` |
-| No data found. Terminating. | 1 | `TuplaBollinger` |
-| Impossible to load Strategy 'TwoCandleTheory'. This class does not exist or contains Python code errors. | 1 | `TwoCandleTheory` |
-| '<' not supported between instances of 'float' and 'method' | 1 | `UpSliceStrategy` |
-| Cannot determine parameter space for mfi_length. | 1 | `WTHO` |
-| Informative dataframe for (ETH/BTC, 1h, spot) is empty. Can't populate informative indicators. | 1 | `multi_tf` |
-| Can't instantiate abstract class thetank2 without an implementation for abstract method 'populate_indicators' | 1 | `thetank2` |
 
 ### `recursive_bias_found` - 49
 

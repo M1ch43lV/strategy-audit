@@ -226,6 +226,53 @@
   </section>
 
   <section>
+    <h2>The order the checks run in</h2>
+    <p class="note">The order is not arbitrary: each step needs what the one
+    before it produces.</p>
+    <div class="legend">
+      <div>
+        <h3>1 &middot; Trial run</h3>
+        <p class="lead">One month over eight pairs: does the strategy start, and
+        does it trade. <strong>A strategy that fails here is <span class="pill k-hold">open</span>,
+        never excluded</strong> &mdash; no check has seen it, so nothing about it
+        has been judged. It is labelled <span class="basis v-to_be_fixed">to be fixed</span>
+        until the obstacle is either removed or shown to be the strategy's own.
+        <code>repair_verdict</code> then says which it is, and that is a separate
+        question from whether the strategy is still in play.</p>
+      </div>
+      <div>
+        <h3>2 &middot; Recursion, on the warm-up ladder</h3>
+        <p class="lead">Second because it needs no trades &mdash; it compares
+        indicator values, not signals &mdash; so it can judge a strategy the
+        look-ahead check cannot yet touch. It produces the warm-up at which the
+        indicators settle, which the next step needs.</p>
+      </div>
+      <div>
+        <h3>3 &middot; Look-ahead, at that warm-up</h3>
+        <p class="lead">Freqtrade's <code>lookahead-analysis</code> builds a
+        Backtesting object, and <code>Backtesting.__init__</code> takes
+        <code>required_startup</code> from the strategy's declared
+        <code>startup_candle_count</code>. So the check runs at whatever warm-up
+        is in force &mdash; and 125 strategies declare none, which would have
+        their signals compared on indicators still undefined at the start of the
+        window. Running it after the ladder means running it at a value shown to
+        settle them. This check needs ten trades, and widens its window rather
+        than failing when there are fewer.</p>
+      </div>
+      <div>
+        <h3>4 &middot; Backtest over the full window</h3>
+        <p class="lead">Only for a strategy that has cleared both bias checks:
+        <code>20200301-20260821</code>, six and a half years over all eight
+        pairs, at the warm-up the ladder settled on. Two runs of about four
+        minutes each per strategy, so it is the most expensive step by a wide
+        margin &mdash; which is why it comes last and only for strategies whose
+        numbers can be trusted. Admission follows from it, and the market-phase
+        work is built on it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
     <h2>Windows and pairs</h2>
     <p class="note">A number cannot be read without knowing what it was measured
     over. The checks do not share a window, and two of them do not share the

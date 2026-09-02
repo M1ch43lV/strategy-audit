@@ -649,6 +649,14 @@ def rows():
             # evidence would import exactly the assumption the re-measurement
             # exists to avoid.
             cohort = "not_tested_in_current_runtime"
+        elif measurement and measurement.get("status") != "measured":
+            # The trial run is the first precondition, and a strategy that
+            # fails it has not been judged on anything else: no gate has seen
+            # it. It is therefore open, not excluded, until the obstacle is
+            # either removed or shown to be the strategy's own. What kind of
+            # obstacle it is stays in `repair_verdict`, which is a different
+            # question from whether the strategy is still in play.
+            cohort = "pending"
         else:
             cohort = "excluded"
 
@@ -826,6 +834,8 @@ def rows():
         if strategy in withdrawn:
             repair["verdict"] = "repair_withdrawn"
             repair["family"] = "local_module_off_path"
+        if basis == "blocked" and not repair.get("verdict"):
+            repair["verdict"] = "to_be_fixed"
         if basis == "blocked":
             # A blocked row that has been triaged says what would fix it. One
             # that has not says only that nobody has looked.
@@ -1025,6 +1035,35 @@ def _report(data):
                    if row[gate].startswith("[recorded]"))
     total_cmds = sum(1 for row in data for gate in gates if row[gate])
     lines += [
+        "## The order the checks run in", "",
+        "The order is not arbitrary; each step needs what the one before it",
+        "produces.", "",
+        "**1. Trial run.** One month over eight pairs: does the strategy start,",
+        "and does it trade. A strategy that fails here is `open`, never",
+        "`excluded` - no check has seen it, so nothing about it has been",
+        "judged. It is labelled `to_be_fixed` until the obstacle is either",
+        "removed or shown to be the strategy's own; `repair_verdict` then says",
+        "which it is, and that is a separate question from whether the strategy",
+        "is still in play.", "",
+        "**2. Recursion, on the warm-up ladder.** Second because it needs no",
+        "trades - it compares indicator values, not signals - so it can judge a",
+        "strategy the look-ahead check cannot yet touch. It produces the warm-up",
+        "at which the indicators settle, which the next step needs.", "",
+        "**3. Look-ahead, at that warm-up.** Freqtrade's `lookahead-analysis`",
+        "builds a Backtesting object, and `Backtesting.__init__` takes",
+        "`required_startup` from the strategy's declared `startup_candle_count`.",
+        "So the check runs at whatever warm-up is in force - and 125 strategies",
+        "declare none, which would have their signals compared on indicators",
+        "still undefined at the start of the window. Running it after the ladder",
+        "means running it at a value shown to settle them. This check needs ten",
+        "trades and widens its window rather than failing when there are fewer.",
+        "",
+        "**4. Backtest over the full window.** Only for a strategy that has",
+        "cleared both bias checks: `20200301-20260821`, six and a half years",
+        "over all eight pairs, at the warm-up the ladder settled on. It is the",
+        "most expensive step by a wide margin, which is why it comes last and",
+        "only for strategies whose numbers can be trusted. Admission follows",
+        "from it, and the market-phase work is built on it.", "",
         "## Windows and pairs each check uses", "",
         "A number cannot be read without knowing what it was measured over.",
         "The checks do not share a window, and two of them do not share the",
@@ -1359,6 +1398,12 @@ def selftest():
         if row["recursive_evidence"] == "convergence:not_settled":
             assert row["cohort"] in ("excluded", "exclusion_unconfirmed"), \
                 (row["strategy_id"], row["cohort"])
+        # A strategy that did not pass the trial run is open, never excluded:
+        # nothing has been judged about it.
+        if row["exclusion_basis"] == "blocked":
+            assert row["cohort"] == "pending", \
+                (row["strategy_id"], row["cohort"])
+            assert row["repair_verdict"], row["strategy_id"]
         # A candidate must have cleared both gates, not merely failed neither.
         if row["cohort"] == "convergence_candidate":
             # The same standard admission uses: a PASS borrowed from the
