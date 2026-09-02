@@ -496,6 +496,43 @@ def resolve(row, timeout):
     return record
 
 
+# Two record shapes that a defect of ours produced, not the analyzer. Both are
+# handled now - an over-large top rung is trimmed to the exchange limit, and a
+# bottom rung the strategy cannot compute is dropped - so a record carrying
+# either was made by code that could not have got the answer.
+DEFECTIVE = ("freqtrade refused startup",
+             "analyzer produced no drift table")
+
+
+def redo_defective(cohort_name):
+    """Drop records a known defect produced, so the row is measured again.
+
+    The record is not deleted: it moves under `superseded` with the reason, in
+    the same file. A measurement that was wrong is still evidence about what we
+    did, and three corrections this week were only findable because the old
+    reading was still there to compare against.
+    """
+    data = _load(OUTPUT)
+    wanted = {row["strategy_id"] for row in cohort(cohort_name)}
+    superseded = data.setdefault("superseded", {})
+    moved = []
+    for strategy in sorted(wanted):
+        record = data["results"].get(strategy)
+        if not record or record.get("state") != "inconclusive":
+            continue
+        why = record.get("why") or ""
+        if not any(marker in why for marker in DEFECTIVE):
+            continue
+        record["superseded_because"] = (
+            "recorded before the ladder trimmed an over-large top rung and "
+            "dropped an uncomputable bottom rung; re-run under the fix")
+        superseded.setdefault(strategy, []).append(record)
+        del data["results"][strategy]
+        moved.append((strategy, why[:60]))
+    _write(OUTPUT, data)
+    return moved
+
+
 def run(cohort_name, limit, timeout):
     rows = cohort(cohort_name)
     data = _load(OUTPUT)
@@ -578,10 +615,19 @@ def main(argv=None):
                                  "recursive_unsettled"))
     parser.add_argument("--limit", type=int, default=1)
     parser.add_argument("--timeout", type=int, default=1800)
+    parser.add_argument("--redo-defective", action="store_true",
+                        dest="redo",
+                        help="move records a known defect produced aside")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:
         selftest()
+        return 0
+    if args.redo:
+        moved = redo_defective(args.cohort)
+        print("moved %d defective records aside" % len(moved))
+        for strategy, why in moved:
+            print("   %-30s %s" % (strategy, why))
         return 0
     return run(args.cohort, args.limit, args.timeout)
 
