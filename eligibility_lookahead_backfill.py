@@ -50,6 +50,36 @@ REPAIR_STORES = (
 )
 
 
+CONVERGENCE = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
+
+
+def settled_warmups():
+    """The warm-up the ladder settled on, per strategy.
+
+    The look-ahead check runs at whatever `startup_candle_count` is in force:
+    freqtrade's own `Backtesting.__init__` sets `required_startup` from the
+    strategy's declared value, and `lookahead-analysis` builds a Backtesting
+    object to load its data. So a strategy that declares nothing - 125 of them -
+    has its signals compared on indicators that are still undefined at the
+    start of the window.
+
+    That is why the recursion ladder runs first: it produces a warm-up we know
+    is adequate, and the look-ahead check is then made at that value instead of
+    at one already known to be too short.
+    """
+    if not os.path.exists(CONVERGENCE):
+        return {}
+    results = json.load(io.open(CONVERGENCE, encoding="utf-8")).get("results", {})
+    out = {}
+    for strategy, record in results.items():
+        if record.get("state") != "converged":
+            continue
+        chosen = record.get("chosen_startup_candle_count")
+        if chosen:
+            out[strategy] = {"startup_candle_count": chosen}
+    return out
+
+
 def repair_overrides():
     """Config keys a repaired row must be gated with, keyed by strategy."""
     out = {}
@@ -125,6 +155,12 @@ def run(limit, timeout, fallback_timeout):
     rows = cohort()
     data = _load()
     overrides = repair_overrides()
+    # The repair keeps the strategy runnable; the settled warm-up decides what
+    # the check sees. Both, with the repair taking precedence on a shared key.
+    for strategy, warmup in settled_warmups().items():
+        merged = dict(warmup)
+        merged.update(overrides.get(strategy) or {})
+        overrides[strategy] = merged
     pending = [row for row in rows if row["strategy_id"] not in data["results"]]
     if limit:
         pending = pending[:limit]

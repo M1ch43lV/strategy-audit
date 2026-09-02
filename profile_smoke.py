@@ -32,6 +32,10 @@ SPOT_CONFIG = os.path.join(ROOT, "profile_spot_config.json")
 # Use the interpreter running this pipeline. PROFILE_PYTHON remains available
 # for an explicit isolated runtime, while Docker/WSL can use their own Python.
 PYTHON = os.environ.get("PROFILE_PYTHON", sys.executable)
+
+# A store claim older than this belongs to a runner that no longer exists.
+# Two hours is longer than any single run has ever taken.
+STALE_CLAIM_S = 2 * 60 * 60
 FT_WRAPPER = os.path.join(ROOT, "profile_freqtrade.py")
 CLASS1 = os.path.join(ROOT, "PROFILE_CLASS1.json")
 EXPORT_DIR = os.path.join(ROOT, "user_data", "profile_smoke")
@@ -405,10 +409,18 @@ def main(argv=None):
     try:
         os.mkdir(claim)
     except OSError:
-        raise SystemExit(
-            "another runner already holds %s (%s exists). Give this run its "
-            "own --output, or wait for that one to finish."
-            % (os.path.basename(args.output), os.path.basename(claim)))
+        # A killed container leaves the claim behind, and a claim nobody holds
+        # must not wedge the store for good. One that has not been touched for
+        # STALE_CLAIM_S is taken over, with a line saying so.
+        age = time.time() - os.path.getmtime(claim) if os.path.exists(claim) else 0
+        if age < STALE_CLAIM_S:
+            raise SystemExit(
+                "another runner already holds %s (%s exists, %d s old). Give "
+                "this run its own --output, or wait for that one to finish."
+                % (os.path.basename(args.output), os.path.basename(claim), age))
+        print("taking over a claim last touched %d s ago; the runner that made "
+              "it is gone" % age, flush=True)
+        os.utime(claim, None)
     try:
         return _run(args, rows, claim)
     finally:

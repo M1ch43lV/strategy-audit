@@ -317,7 +317,12 @@ NO_VARIANCE = "No variance on indicator(s) found due to recursive formula."
 
 def _recursive(output, returncode, threshold=DEFAULT_DRIFT_THRESHOLD):
     if "invalid startup candle count of 0" in output:
-        return "FOUND", "startup_candle_count=0 refused by recursive-analysis"
+        # The analyzer declined before comparing anything, because the strategy
+        # declares no warm-up. That is a missing precondition, not detected
+        # bias, and calling it FOUND put three strategies under a recursion
+        # finding they had never been measured for.
+        return "WARMUP_NEEDED", ("startup_candle_count=0 refused by "
+                                 "recursive-analysis; nothing was compared")
     if returncode != 0:
         return "NA", _error(output, returncode)
     # Freqtrade refuses a warm-up larger than five times what the exchange
@@ -570,8 +575,10 @@ def selftest():
     # The refusal outranks a completed-looking run, if both markers appear.
     assert _recursive(refusal + ran, 0)[0] == "NA"
     # A refusal outranks any threshold; it is not a measurement at all.
+    # A refusal for want of a declared warm-up is a missing precondition, not
+    # a finding: the analyzer never compared anything.
     assert _recursive("invalid startup candle count of 0", 0,
-                      threshold=1.0)[0] == "FOUND"
+                      threshold=1.0)[0] == "WARMUP_NEEDED"
     print("profile_bias selftest: PASS")
 
 

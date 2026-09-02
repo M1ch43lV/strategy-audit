@@ -750,13 +750,13 @@ def rows():
         elif cohort == "excluded" and settled.get("state") in (
                 "not_converged_within_ladder", "inconclusive"):
             open_work.append("convergence_" + settled["state"])
-        if recursive == "WARMUP_NEEDED" or recursive_evidence.startswith("wave_b:")                 or (recursive in ("FOUND", "NA") and not settled
-                    and recursive_evidence in ("native", "baseline")):
-            # A recursion FOUND that no ladder has re-measured rests on the
-            # parser that read the wrong column; an NA means the gate ran and
-            # produced nothing to judge, usually because the indicators are
-            # still undefined at the warm-up the strategy declares. Both are
-            # questions for the ladder, not verdicts, so both are queued.
+        if (measurement or window) and not settled \
+                and recursive not in ("PASS", "PASS_1PCT"):
+            # Anything that runs and has no settled recursion verdict is a
+            # question for the ladder: a FOUND no ladder has re-measured
+            # rests on the parser that read the wrong column, an NA means
+            # the check produced nothing to judge, WARMUP_NEEDED means it
+            # never started, and an empty value means nobody has looked.
             open_work.append("recursive_ladder_pending")
         # An exclusion that does not rest on a measurement of this
         # implementation is an open question, and has to carry the work

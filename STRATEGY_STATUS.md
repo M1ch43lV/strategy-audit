@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-02 16:38:01 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-02 17:08:28 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -15,7 +15,7 @@ the state at the freeze, and the difference is the expansion.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 226 of 900 rows
+file's time and is labelled `log_mtime` for that reason. 217 of 900 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
@@ -25,15 +25,15 @@ have neither and are left empty rather than given an invented time.
 | in the manifest | 900 |
 | measured at all | 741 |
 | produced trades | 711 |
-| carrying a run time | 674 |
+| carrying a run time | 683 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 376 |
-| `excluded` | 237 |
-| `exclusion_unconfirmed` | 151 |
+| `excluded` | 246 |
+| `exclusion_unconfirmed` | 142 |
 | `E0_strict67` | 67 |
 | `not_tested_in_current_runtime` | 60 |
 | `pending` | 7 |
@@ -46,7 +46,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 503 of 2102 commands are recorded so far, and every new run
+recording. 520 of 2102 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -2863,7 +2863,7 @@ verdict. Where such a hint exists it is shown in brackets.
 | `tacos1` | `not_scheduled` | `no run under the current runtime (historical hint: No data found. Terminating.)` |
 | `turbov8` | `not_scheduled` | `no run under the current runtime (historical hint: engine exited with code 0 but produced no summary (no trades at all, or output not parsed))` |
 
-## Exclusion unconfirmed - 151 strategies
+## Exclusion unconfirmed - 142 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -2876,17 +2876,19 @@ basis stay on the row, and the work that would settle it is in
 | Held on | Basis | Strategies |
 |---|---|---:|
 | `no_verdict_on_lookahead` | `no_finding` | 56 |
-| `no_verdict_on_lookahead_and_recursive` | `no_finding` | 46 |
-| `lookahead_found` | `inherited` | 38 |
-| `recursive_bias_unverified` | `no_finding` | 6 |
+| `no_verdict_on_lookahead_and_recursive` | `no_finding` | 38 |
+| `lookahead_found` | `inherited` | 29 |
+| `no_verdict_on_recursive` | `no_finding` | 8 |
 | `no_trades_in_full_measurement` | `inherited` | 5 |
+| `recursive_bias_unverified` | `no_finding` | 3 |
+| `recursive_warmup_refused` | `no_finding` | 3 |
 
 This is not a softening. A row here may well end up excluded - the
 38 held on an inherited look-ahead finding probably will, because a
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 237 strategies, by decisive reason
+## Not passing - 246 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -2934,7 +2936,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 138 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 147 |
 | `blocked` | the strategy did not run, so nothing about it was judged | 99 |
 
 Only `own_measurement` is a closed case. The other three carry the
@@ -2943,7 +2945,7 @@ one of them carries none.
 
 | Reason | Meaning | Strategies |
 |---|---|---:|
-| `lookahead_found` | reads data it could not have had at the time | 38 |
+| `lookahead_found` | reads data it could not have had at the time | 47 |
 | `technical_trap_found` | carries a published backtesting trap | 40 |
 | `strategy_does_not_run` | fails before it can be measured; the message is in runtime_failure | 99 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 49 |
@@ -2954,13 +2956,13 @@ one of them carries none.
 
 | Reason | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `not_scheduled` |
 |---|---|---|---|---|
-| `lookahead_found` | 0 | 15 | 0 | 23 |
+| `lookahead_found` | 0 | 15 | 0 | 32 |
 | `technical_trap_found` | 0 | 0 | 0 | 40 |
 | `strategy_does_not_run` | 0 | 99 | 0 | 0 |
 | `recursive_bias_found` | 3 | 18 | 14 | 14 |
 | `no_trades_in_full_measurement` | 0 | 10 | 0 | 1 |
 
-### `lookahead_found` - 38
+### `lookahead_found` - 47
 
 Reads data it could not have had at the time.
 
@@ -2971,14 +2973,16 @@ Wave `C_measurement_recovery` - 15:
 `NostalgiaForInfinityNext_maximizer`, `NostalgiaForInfinityV7_7_2`, `NostalgiaForInfinityXw`, `Obelisk_Ichimoku_Slow_v1_3`
 `Obelisk_Ichimoku_ZEMA_v1`, `Stinkfist`, `ichiV1_Marius`
 
-Wave `not_scheduled` - 23:
+Wave `not_scheduled` - 32:
 
-`BreakoutStrategy`, `FakeoutStrategy`, `Heracles`, `HyperStra_SMAOnly`
-`IchiVwapAdx`, `MaxSharpePortfolio`, `MinimumVariancePortfolio`, `MomentumRegimeBasket`
-`NOTankAi_15`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`, `NOTankAi_17`
-`NOTankAi_19`, `NostalgiaForInfinityX5`, `NostalgiaForInfinityX6`, `PolymarketPortfolio`
-`Precognition`, `RsiquiV2`, `RsiquiV5`, `TSPredict`
-`Zeus`, `custom`, `tsp0chicken`
+`AlexBTK_CT`, `AlexBattleTankKiller`, `AlexBattleTankKillerV3`, `AlexBattleTankKillerV40H`
+`Auto_EI_t4c0s`, `BBBreakoutStrategy`, `BB_RPB_TSL_c7c477d_20211030`, `BreakoutStrategy`
+`BuyAllSellAllStrategy`, `CCIStrategy`, `FakeoutStrategy`, `Heracles`
+`HyperStra_SMAOnly`, `IchiVwapAdx`, `MaxSharpePortfolio`, `MinimumVariancePortfolio`
+`MomentumRegimeBasket`, `NOTankAi_15`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`
+`NOTankAi_17`, `NOTankAi_19`, `NostalgiaForInfinityX5`, `NostalgiaForInfinityX6`
+`PolymarketPortfolio`, `Precognition`, `RsiquiV2`, `RsiquiV5`
+`TSPredict`, `Zeus`, `custom`, `tsp0chicken`
 
 ### `technical_trap_found` - 40
 
@@ -3135,8 +3139,8 @@ Wave `not_scheduled` - 1:
 
 | Item | Strategies |
 |---|---:|
-| `lookahead_remeasure_pending` | 153 |
-| `recursive_ladder_pending` | 103 |
+| `recursive_ladder_pending` | 143 |
+| `lookahead_remeasure_pending` | 136 |
 | `first_measurement_in_current_runtime` | 60 |
 | `needs_a_look` | 56 |
 | `convergence_not_converged_within_ladder` | 54 |

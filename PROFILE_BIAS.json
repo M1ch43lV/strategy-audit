@@ -93,10 +93,13 @@
         "debug_log": "user_data/profile_bias_logs/AdxSmas-recursive.log",
         "elapsed_s": 29.8,
         "output_sha256": "sha256_ef3abfa2658a7ac439eb50b1a44916f69257ac78958ce3fcb48a83b3da29b45b",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -121,9 +124,12 @@
         ],
         "elapsed_s": 4.6,
         "output_sha256": "sha256_0eb7d766306c68bfba9c86c052bf1035cc6b86e5f7470d79de84912b2c52854c",
-        "status": "FOUND",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20200301-20200401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "futures_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -185,10 +191,13 @@
         "debug_log": "user_data/profile_bias_logs/AverageStrategy-recursive.log",
         "elapsed_s": 34.7,
         "output_sha256": "sha256_e70d6c75d1a68a5b6ae41f2fb22248df283590a0d71a78839da4ebfa8b4ba1ac",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -252,10 +261,13 @@
         "debug_log": "user_data/profile_bias_logs/BB_RPB_TSL-recursive.log",
         "elapsed_s": 23.4,
         "output_sha256": "sha256_b2ceae260afade6e17795e02950b2429908bca9429c5222df25b9c3450357dd4",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -284,10 +296,13 @@
         "debug_log": "user_data/profile_bias_logs/BB_RPB_TSL_2-recursive.log",
         "elapsed_s": 24.0,
         "output_sha256": "sha256_251d012986f9d0145d9b7ca69022a773cac08f4b022194a3c98a1bd73e63417c",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -316,10 +331,13 @@
         "debug_log": "user_data/profile_bias_logs/BB_RPB_TSL_BI-recursive.log",
         "elapsed_s": 23.1,
         "output_sha256": "sha256_e490690a7c667a58e3076e40afba734af85ca5d6b6e74742cf6e4d5f10a71aed",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -348,10 +366,13 @@
         "debug_log": "user_data/profile_bias_logs/BB_RPB_TSL_BIV1-recursive.log",
         "elapsed_s": 23.4,
         "output_sha256": "sha256_244141b2dbd5fb78035b6a83ddf03ca96bea3b89a1ecbfc6d5a153302501876c",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -380,10 +401,13 @@
         "debug_log": "user_data/profile_bias_logs/BB_RPB_TSL_RNG-recursive.log",
         "elapsed_s": 31.3,
         "output_sha256": "sha256_42fd38741cc64be2fd60066bfe6c28d94795d25595ff7bdaa380ddb6b783df40",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -412,10 +436,13 @@
         "debug_log": "user_data/profile_bias_logs/BB_RPB_TSL_RNG_TBS-recursive.log",
         "elapsed_s": 31.1,
         "output_sha256": "sha256_3f2af4b6d7ffb7d65505f6416589c67c74d46bfebc383346b7acb23d1dfef905",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -444,10 +471,13 @@
         "debug_log": "user_data/profile_bias_logs/BB_RPB_TSL_RNG_TBS_GOLD-recursive.log",
         "elapsed_s": 28.2,
         "output_sha256": "sha256_724d5ee877aa5d47dd37cf4823af309b013a1b72f2cbc1736235a0b76ce2b2bc",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -580,10 +610,13 @@
         "debug_log": "user_data/profile_bias_logs/BbandRsi-recursive.log",
         "elapsed_s": 32.1,
         "output_sha256": "sha256_ed497767968801ce91146c3b8e689440a3782c696046bf6d36c2433c81a43648",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -612,10 +645,13 @@
         "debug_log": "user_data/profile_bias_logs/BbandRsiRolling-recursive.log",
         "elapsed_s": 28.8,
         "output_sha256": "sha256_66f46b8d4544f756d2f8a5e679e59467a3237c2410d31df102b1909bc9e0b2c0",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -707,10 +743,13 @@
         "debug_log": "user_data/profile_bias_logs/BinHV27-recursive.log",
         "elapsed_s": 33.9,
         "output_sha256": "sha256_1e69bd0c81ef6351deef1f11f3e87fb2af237936e843b9211b9bd6a746235680",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -773,10 +812,13 @@
         "debug_log": "user_data/profile_bias_logs/BreakoutStrategy-recursive.log",
         "elapsed_s": 21.8,
         "output_sha256": "sha256_3816a475e15136231fc14298d650db1b9236d53d85075b935e4e8ff57fafeb1c",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20200301-20200401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -826,10 +868,13 @@
         "debug_log": "user_data/profile_bias_logs/CMCWinner-recursive.log",
         "elapsed_s": 28.8,
         "output_sha256": "sha256_ac9cf842878c941f31aa63dc4567d93370404a3bcb8ff8936b0bfdb615225f4e",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -858,10 +903,13 @@
         "debug_log": "user_data/profile_bias_logs/Cluc4werk-recursive.log",
         "elapsed_s": 29.5,
         "output_sha256": "sha256_28490c8731fb38d3ce1fd7757f284b2da97622e8b6abc27b35cd331b3aa6b06c",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -890,10 +938,13 @@
         "debug_log": "user_data/profile_bias_logs/Cluc5werk-recursive.log",
         "elapsed_s": 31.0,
         "output_sha256": "sha256_c231257e4fa0407e3f46741f00ad05d34b2dbbb43d40330e3f6d501127c81d3e",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -954,10 +1005,13 @@
         "debug_log": "user_data/profile_bias_logs/ClucHAnix-recursive.log",
         "elapsed_s": 31.8,
         "output_sha256": "sha256_91d172df0e738a7e842804aac0ad2d355bb9fbb0adb0d372fbbcadd1f4bee213",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -1079,10 +1133,13 @@
         "debug_log": "user_data/profile_bias_logs/ClucMay72018-recursive.log",
         "elapsed_s": 33.1,
         "output_sha256": "sha256_6370bce1129810fa0685c96ef3f5b5581c33ebc5b7e703a95edf88e849fa8afd",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -1111,10 +1168,13 @@
         "debug_log": "user_data/profile_bias_logs/CofiBitStrategy-recursive.log",
         "elapsed_s": 29.0,
         "output_sha256": "sha256_d973fb5136877fa9fa3e52091e5009fd99846cca0e7311505c2ad7d997a65860",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -1143,10 +1203,13 @@
         "debug_log": "user_data/profile_bias_logs/CombinedBinHAndCluc-recursive.log",
         "elapsed_s": 30.4,
         "output_sha256": "sha256_a9689af70e2893dc38cc2ff18c2b320a60361e63df7b4826ef22db259ab2831f",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -1175,10 +1238,13 @@
         "debug_log": "user_data/profile_bias_logs/CombinedBinHAndCluc2021-recursive.log",
         "elapsed_s": 28.8,
         "output_sha256": "sha256_d69d3c26a88aa528c24b3d5644195e2baf0dcd6da9a33092ff24491880524461",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -1207,10 +1273,13 @@
         "debug_log": "user_data/profile_bias_logs/CombinedBinHAndCluc2021Bull-recursive.log",
         "elapsed_s": 27.1,
         "output_sha256": "sha256_3d3eee5e3863d71a261b6994174ae40ad0f4200cd0f062285801422a5e830477",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -1428,10 +1497,13 @@
         "debug_log": "user_data/profile_bias_logs/CustomStoplossWithPSAR-recursive.log",
         "elapsed_s": 28.2,
         "output_sha256": "sha256_7fae35a4b4fa6839d5fb9e364742d5471740608d4285820bf6dca6355c50ac6f",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -1562,10 +1634,13 @@
         "debug_log": "user_data/profile_bias_logs/DevilStra-recursive.log",
         "elapsed_s": 31.6,
         "output_sha256": "sha256_dc7e0eccf5db76b2a1ebb443dd2b1dac3e6d620e180fc363f7b7b38d91d0cf3a",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -1596,10 +1671,13 @@
         "debug_log": "user_data/profile_bias_logs/Dimond-recursive.log",
         "elapsed_s": 39.8,
         "output_sha256": "sha256_8ca8b227c104312f9ab8f615ef355316c32ef0011850bd8faaf85a2ca9a825d9",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -1629,10 +1707,13 @@
         "debug_log": "user_data/profile_bias_logs/Dracula-recursive.log",
         "elapsed_s": 25.3,
         "output_sha256": "sha256_73e70ab25903f7bdecb9b8db8c8ddefc88068c4c9121a00eb78672c701d45ddc",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -1731,10 +1812,13 @@
         "debug_log": "user_data/profile_bias_logs/EMASkipPump-recursive.log",
         "elapsed_s": 30.8,
         "output_sha256": "sha256_de185b2539884cc9825d41948ff8bf8820766d10fef74d4c7b7bc3a95db41b59",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -2077,10 +2161,13 @@
         "debug_log": "user_data/profile_bias_logs/FakeoutStrategy-recursive.log",
         "elapsed_s": 39.8,
         "output_sha256": "sha256_51557b1b87978eaacbd044a4e7ff3227cd54b5a26fd59e1f2b3992ad4503a417",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20200301-20200401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -2138,10 +2225,13 @@
         "debug_log": "user_data/profile_bias_logs/FiveMinCrossAbove-recursive.log",
         "elapsed_s": 29.5,
         "output_sha256": "sha256_7233476c505ca4728227bbdb4c13cbf3b9e6533bb66e369c711a2795fc779637",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -2344,10 +2434,13 @@
         "debug_log": "user_data/profile_bias_logs/GodStraNew-recursive.log",
         "elapsed_s": 28.6,
         "output_sha256": "sha256_2d6166c10856ca0e339b9703fb83c3459963738d39e4ae4fee9e7d0b69669c32",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -2378,10 +2471,13 @@
         "debug_log": "user_data/profile_bias_logs/GodStraNew40-recursive.log",
         "elapsed_s": 28.6,
         "output_sha256": "sha256_4594d6d5a41c8e7817200b13483f0f0d9988a01eaaf367d73d167f7d37ba5d82",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -2412,10 +2508,13 @@
         "debug_log": "user_data/profile_bias_logs/GodStraNew_SMAonly-recursive.log",
         "elapsed_s": 30.4,
         "output_sha256": "sha256_4e697b18f0868c8ad0f36b6578d30a81205dafcbdf6a223312f732a7c0aa53a9",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -2505,10 +2604,13 @@
         "debug_log": "user_data/profile_bias_logs/HansenSmaOffsetV1-recursive.log",
         "elapsed_s": 32.5,
         "output_sha256": "sha256_63b07b9e52b710d3d3fe356012b85eb11167a7428d0ee9b70b72e7efdc85c9d3",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -2574,10 +2676,13 @@
         "debug_log": "user_data/profile_bias_logs/Heracles-recursive.log",
         "elapsed_s": 29.5,
         "output_sha256": "sha256_65b0953c4625d397b4eae15709b802e515162fee9122fc0dd0f19b3806398504",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -2606,10 +2711,13 @@
         "debug_log": "user_data/profile_bias_logs/HourBasedStrategy-recursive.log",
         "elapsed_s": 28.4,
         "output_sha256": "sha256_d5927c0cd7e15441719d4b2e0de817f47440c43ad60803ce6b2f3969885881ed",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -2637,10 +2745,13 @@
         "debug_log": "user_data/profile_bias_logs/HurstCycleV5-recursive.log",
         "elapsed_s": 23.1,
         "output_sha256": "sha256_b4c6de437c2755315e7ab9a0119c4e86afa2982514db055bde420fc56ca9b285",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20200301-20200401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -2736,10 +2847,13 @@
         "debug_log": "user_data/profile_bias_logs/Ichess-recursive.log",
         "elapsed_s": 29.8,
         "output_sha256": "sha256_3ee1e05a8d8c7fdd3f9858c1a609539045f1029953905a164ddce2f042ef6e13",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -2802,10 +2916,13 @@
         "debug_log": "user_data/profile_bias_logs/Ichimoku-recursive.log",
         "elapsed_s": 35.2,
         "output_sha256": "sha256_17a6c7aae8583c229d3b4fe813c05f7871aee86527413cab5a97ea592e257300",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -2897,10 +3014,13 @@
         "debug_log": "user_data/profile_bias_logs/InformativeSample-recursive.log",
         "elapsed_s": 30.7,
         "output_sha256": "sha256_83147eeaf0ed81e561f5c7e9f64658c7cb7b136fd9d41a88af4f5d91c7ea3f61",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3031,10 +3151,13 @@
         "debug_log": "user_data/profile_bias_logs/Low_BB-recursive.log",
         "elapsed_s": 32.4,
         "output_sha256": "sha256_c4b7f1e67a88db82b8e5daeaeb5ab18ca3836d5c6a0393374a5603659c67cb34",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3060,10 +3183,13 @@
         ],
         "elapsed_s": 27.0,
         "output_sha256": "sha256_eddd5205377669291d2b2efb07a3c411d54a7322bfe45b848b3e179e5ec23590",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:0ec226373544bf433a0f3191f21c677ea40625613f4feed36d63aa030fda5d8b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20200301-20200401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "futures_long",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -3089,10 +3215,13 @@
         ],
         "elapsed_s": 33.4,
         "output_sha256": "sha256_0e24f8a2b6655a3e3e6ad5bad7ccedc3cbbcd0d598570e56acd966f116906f3b",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:0ec226373544bf433a0f3191f21c677ea40625613f4feed36d63aa030fda5d8b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20200301-20200401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -3121,10 +3250,13 @@
         "debug_log": "user_data/profile_bias_logs/MACDStrategy-recursive.log",
         "elapsed_s": 32.2,
         "output_sha256": "sha256_d3021e6ff37efe4653538d6c102b224fd9a87eb16b86f162bbd231350688b5d5",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3153,10 +3285,13 @@
         "debug_log": "user_data/profile_bias_logs/MACDStrategy_crossed-recursive.log",
         "elapsed_s": 31.8,
         "output_sha256": "sha256_6a648227ba6e4a80887b88e6d3ac42fe054d62be4ca32fd34958fb1095c6e2e3",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3185,10 +3320,13 @@
         "debug_log": "user_data/profile_bias_logs/MACD_EMA-recursive.log",
         "elapsed_s": 27.5,
         "output_sha256": "sha256_ec990728594ce4cd92e71d695fc00a3127cab79b9ad696f0cb2f66b9d8ec8a32",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3248,10 +3386,13 @@
         "debug_log": "user_data/profile_bias_logs/MACD_TRI_EMA-recursive.log",
         "elapsed_s": 30.1,
         "output_sha256": "sha256_ef7fadf09d33de271f23f66594021f85ab24755a0cd9447424c068c6659a8e91",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3311,10 +3452,13 @@
         "debug_log": "user_data/profile_bias_logs/MFI-recursive.log",
         "elapsed_s": 33.4,
         "output_sha256": "sha256_7946a4001751555cf0ba813e82d3de957cd25e8e9a6c7ef6d79aeab65b004065",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3472,10 +3616,13 @@
         "debug_log": "user_data/profile_bias_logs/Minmax-recursive.log",
         "elapsed_s": 35.2,
         "output_sha256": "sha256_204f233831f0b809c772dcf9742ccb3662fdeca42be0f70b27c3020a38722766",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -3609,10 +3756,13 @@
         "debug_log": "user_data/profile_bias_logs/MultiRSI-recursive.log",
         "elapsed_s": 23.4,
         "output_sha256": "sha256_4dcea585558aca22a9bf5175474d3bc131a6ac5fb1f424e2461e107ca015c3ac",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -4500,10 +4650,13 @@
         "debug_log": "user_data/profile_bias_logs/Precognition-recursive.log",
         "elapsed_s": 33.5,
         "output_sha256": "sha256_38f0966c45f0803f47c3bd38a9b6590f7a95eed6d7aef1aac21a84763b184f11",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -4532,10 +4685,13 @@
         "debug_log": "user_data/profile_bias_logs/Quickie-recursive.log",
         "elapsed_s": 29.0,
         "output_sha256": "sha256_9b19112507b36b6298c8126bf9a9c0b8b2c8c2e6238542bf6093cd9daf27ee42",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -4592,10 +4748,13 @@
         "debug_log": "user_data/profile_bias_logs/ReinforcedAverageStrategy-recursive.log",
         "elapsed_s": 35.2,
         "output_sha256": "sha256_dbafa0308531ee290288183133d965af6b109443e9f172807b5897eb31caba0e",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -4655,10 +4814,13 @@
         ],
         "elapsed_s": 27.7,
         "output_sha256": "sha256_ea96e799edac5f0beea70f93809b40b7126d77553b4028c4b8f02ba0892e9f86",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20200301-20200401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -4685,10 +4847,13 @@
         ],
         "elapsed_s": 26.9,
         "output_sha256": "sha256_6cfde8ad6b4ee04264eb9edfca5754e9db054b114a84ad13e367bef4ef0e2ab8",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20200301-20200401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -4843,10 +5008,13 @@
         "debug_log": "user_data/profile_bias_logs/Scalp-recursive.log",
         "elapsed_s": 33.4,
         "output_sha256": "sha256_2b4be2134374b0e42ca99c616efd331a2e4404c102f7e43a9266e833a8010203",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -4875,10 +5043,13 @@
         "debug_log": "user_data/profile_bias_logs/Seb-recursive.log",
         "elapsed_s": 29.9,
         "output_sha256": "sha256_a578569d49ff9b3c6741b4808b79fcd83ada0f2fd8007ad72f100a5ecf753cb1",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -4907,10 +5078,13 @@
         "debug_log": "user_data/profile_bias_logs/Simple-recursive.log",
         "elapsed_s": 30.0,
         "output_sha256": "sha256_df5ffadd55cc7f2ed9acb2db84cf4658a0de064a2b190b8ec160e3e679de6435",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -4971,10 +5145,13 @@
         "debug_log": "user_data/profile_bias_logs/SmoothOperator-recursive.log",
         "elapsed_s": 33.7,
         "output_sha256": "sha256_e3605d1a0086df9e6f5636df125e3d37fc681ae1c8b519112097940d05362172",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -5003,10 +5180,13 @@
         "debug_log": "user_data/profile_bias_logs/SmoothScalp-recursive.log",
         "elapsed_s": 31.5,
         "output_sha256": "sha256_1bdc32fbb113bee6c515ead137a6af4fa2feeebb8d84f765e50bb4c98ebe92a3",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -5098,10 +5278,13 @@
         "debug_log": "user_data/profile_bias_logs/SwingHighToSky-recursive.log",
         "elapsed_s": 31.4,
         "output_sha256": "sha256_33893e8e477191724a9f6fec4724682938dc420a1a36755f1f39495efeb13836",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -5258,10 +5441,13 @@
         "debug_log": "user_data/profile_bias_logs/TechnicalExampleStrategy-recursive.log",
         "elapsed_s": 35.4,
         "output_sha256": "sha256_22207222b318ca1b762f65d07e6702d927e9ca0694c754070100ab3e1294af4c",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -5319,10 +5505,13 @@
         ],
         "elapsed_s": 29.3,
         "output_sha256": "sha256_58d25ee80a9827cd1d9cb7fce064019d8c0fe800e0604cc9c60b100c54ab2384",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20200301-20200401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -5348,10 +5537,13 @@
         ],
         "elapsed_s": 28.4,
         "output_sha256": "sha256_4c66b91f7e2d202f147399a080dc48905325305c8af0459091a73055d7b87d09",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20200301-20200401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -5474,10 +5666,13 @@
         "debug_log": "user_data/profile_bias_logs/VWAP-recursive.log",
         "elapsed_s": 36.0,
         "output_sha256": "sha256_cc893437b037f96590be78d1409b3a4589387f9591f06ba8460f829da65d0ba2",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -5503,10 +5698,13 @@
         ],
         "elapsed_s": 26.2,
         "output_sha256": "sha256_e5e9c3a50217d3c4117d75a4f96a25d73eeeb934a4803d5a73af73b61bb303aa",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20200301-20200401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -5535,10 +5733,13 @@
         "debug_log": "user_data/profile_bias_logs/WaveTrendStra-recursive.log",
         "elapsed_s": 35.0,
         "output_sha256": "sha256_97ff8dae4b2e320532e6c0523f71a7aff6aaef8ce65ff347c49b24aaf8ab8a74",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -5598,10 +5799,13 @@
         "debug_log": "user_data/profile_bias_logs/YOLO-recursive.log",
         "elapsed_s": 35.1,
         "output_sha256": "sha256_e9c559248208c8c5d767b62584165cee959f47d372c4437bfa08ca799f35d2fe",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -5686,10 +5890,13 @@
         "debug_log": "user_data/profile_bias_logs/ZaratustraDCA5-recursive.log",
         "elapsed_s": 26.3,
         "output_sha256": "sha256_be97657ed5201e64127d02b436f1d78377d0d8be5269282cbc488fd75105bbe7",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20200301-20200401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -5719,10 +5926,13 @@
         "debug_log": "user_data/profile_bias_logs/Zeus-recursive.log",
         "elapsed_s": 39.1,
         "output_sha256": "sha256_9bef40157c438cd3ed34b2c4b340bcda79b4708d9adfd960134105884bde14f8",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -5917,10 +6127,13 @@
         "debug_log": "user_data/profile_bias_logs/epretrace-recursive.log",
         "elapsed_s": 22.3,
         "output_sha256": "sha256_37706c0c25ece2fbbcb27e62a1f4d1d8024afc67a39c5d930d8a3f0633618897",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -6019,10 +6232,13 @@
         "debug_log": "user_data/profile_bias_logs/hansencandlepatternV1-recursive.log",
         "elapsed_s": 35.1,
         "output_sha256": "sha256_d32a30e6835fe772aabb2f5f9d7c4e08c88ac3d07d464d57f84a2a7493f1079d",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -6051,10 +6267,13 @@
         "debug_log": "user_data/profile_bias_logs/heikin-recursive.log",
         "elapsed_s": 29.5,
         "output_sha256": "sha256_16f519136f7a3b0084d8e9fa4395878f39c56208dce90a3a2b729cbb6c4703d8",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -6157,10 +6376,13 @@
         "debug_log": "user_data/profile_bias_logs/mabStra-recursive.log",
         "elapsed_s": 31.4,
         "output_sha256": "sha256_f0ed54334bf46f2e92a379eb27af3c17d1c42621b62bbb985758d5b5f73e897d",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -6380,10 +6602,13 @@
         "debug_log": "user_data/profile_bias_logs/pmaxTest-recursive.log",
         "elapsed_s": 22.7,
         "output_sha256": "sha256_9f0b008a0494a097822f3fc6e3fd6a3bc5db552ab3f214dbe270899a51e9110f",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
@@ -6480,10 +6705,13 @@
         "debug_log": "user_data/profile_bias_logs/tbtest-recursive.log",
         "elapsed_s": 36.2,
         "output_sha256": "sha256_a73f09ee9cf34938ab2881ee0db3faa96e0d9db22c301207b57642832a18f1f7",
+        "reparsed_from_log": "zero_warmup_is_not_a_finding_v1",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "FOUND",
+        "status": "WARMUP_NEEDED",
+        "superseded_status": "FOUND",
+        "superseded_why": "startup_candle_count=0 refused by recursive-analysis",
         "timerange": "20190101-20190401",
-        "why": "startup_candle_count=0 refused by recursive-analysis"
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
