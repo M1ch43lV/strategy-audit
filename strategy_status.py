@@ -612,7 +612,12 @@ def rows():
             cohort = "E1_expanded"
         elif base.get("regime_eligible") == "true":
             cohort = "E0_strict67"
-        elif settled.get("state") == "converged":
+        elif settled.get("state") == "converged" and lookahead != "FOUND":
+            # Convergence answers one question: is there a warm-up at which no
+            # indicator drifts. It says nothing about whether the strategy
+            # reads data it could not have had, and a look-ahead finding is
+            # disqualifying however settled the warm-up is. Two rows reached
+            # this branch with a FOUND of ours and were listed as candidates.
             cohort = "convergence_candidate"
         elif base.get("eligibility_status") == "pending_diagnostics":
             cohort = "pending"
@@ -1272,6 +1277,12 @@ def selftest():
             assert not row["evidence_paths"], row["strategy_id"]
             assert "no run under the current runtime" in row["primary_reason"], \
                 row["strategy_id"]
+        # A look-ahead finding disqualifies a row whatever its warm-up does.
+        # Convergence is about recursion and answers a different question.
+        if row["lookahead"] == "FOUND":
+            assert row["cohort"] not in ("convergence_candidate",
+                                         "E0_strict67", "E1_expanded"), \
+                (row["strategy_id"], row["cohort"])
         # A row the ladder settled must not still carry the superseded verdict.
         if row["cohort"] == "convergence_candidate":
             assert row["recursive"] in ("PASS", "PASS_1PCT"), \

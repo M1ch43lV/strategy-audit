@@ -220,7 +220,7 @@
     <h2>Distribution</h2>
     <div class="dist" id="dist"></div>
     <div class="distkey" id="distkey"></div>
-    <p class="note"><strong>78 strategies are usable today</strong> — the 67 of the frozen baseline plus 11 admitted since. Convergence candidates have a warm-up at which no indicator drifts any more; that is not admission, because the paired full-window run still has to show an identical trade list.</p>
+    <p class="note"><strong>78 strategies are usable today</strong> — the 67 of the frozen baseline plus 11 admitted since. Convergence candidates have a warm-up at which no indicator drifts any more; that is not admission, because the paired full-window run still has to show an identical trade list. And convergence settles recursion only: a look-ahead finding disqualifies a row however settled its warm-up, so <code>PolymarketPortfolio</code> and <code>custom</code> left this cohort the moment the backfill measured them.</p>
     <p class="note"><strong>Nothing here is untested, and nothing here is cleared by the original sweep.</strong> The audit's first pass ran in an environment that did not establish the preconditions this one requires, so its verdicts are provenance and hints, never evidence. Rows marked <span class="flag">inherited</span> are admitted on a look-ahead verdict from that sweep and are queued for native re-measurement.</p>
   </section>
 
@@ -490,7 +490,7 @@
      text:{
        E0_strict67:"The 67 of the frozen baseline. Never regenerated; the difference between it and this table is the expansion.",
        E1_expanded:"Admitted since the freeze, on gates measured here.",
-       convergence_candidate:"A warm-up exists at which no indicator drifts any more. Not admission: the paired full-window run still has to produce an identical trade list.",
+       convergence_candidate:"A warm-up exists at which no indicator drifts any more. That is a statement about recursion only — a look-ahead finding disqualifies a row whatever its warm-up does, so no row here carries one. Nor is it admission: the paired full-window run still has to produce an identical trade list.",
        exclusion_unconfirmed:"Would have been excluded on an inherited verdict or on no verdict at all. Held here until a measurement of ours settles it either way.",
        pending:"No hard failure and no verdict yet.",
        not_tested_in_current_runtime:"No run under this pipeline. The original sweep attempted every row, but in an environment that did not establish this audit's preconditions.",
