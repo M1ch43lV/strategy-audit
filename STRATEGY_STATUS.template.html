@@ -434,11 +434,13 @@
     exclusion_unconfirmed:{label:"exclusion unconfirmed", cls:"k-hold"},
     pending:          {label:"open", cls:"k-hold"},
     not_tested_in_current_runtime:{label:"not run here yet", cls:"k-none"},
+    not_a_strategy:{label:"not a strategy", cls:"k-none"},
     excluded:         {label:"excluded", cls:"k-fail"}
   };
   var ORDER = ["E0_strict67","E1_expanded","convergence_candidate",
                "exclusion_unconfirmed","pending",
-               "not_tested_in_current_runtime","excluded"];
+               "not_tested_in_current_runtime","not_a_strategy",
+               "excluded"];
   var VAR = {"k-pass":"--pass","k-cand":"--cand","k-hold":"--hold",
              "k-none":"--none","k-fail":"--fail"};
 
@@ -651,6 +653,7 @@
        exclusion_unconfirmed:"Would have been excluded on an inherited verdict or on no verdict at all. Held here until a measurement of ours settles it either way.",
        pending:"No hard failure and no verdict yet.",
        not_tested_in_current_runtime:"No run under this pipeline. The original sweep attempted every row, but in an environment that did not establish this audit's preconditions.",
+       not_a_strategy:"Not a trading strategy at all: eleven fixtures that freqtrade and NostalgiaForInfinity ship to test their own code, and three templates with nothing filled in. No measurement can admit one, so none is asked for. StrategyTestV2 clears both bias checks with 26,070 trades behind it and is still a fixture. What happened when each ran is kept in its reason.",
        excluded:"Either a disqualifying result measured here, or a strategy that never ran at all."
      }},
     {title:"Why an exclusion stands, or does not", field:"xb",

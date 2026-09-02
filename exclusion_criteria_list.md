@@ -117,5 +117,5 @@ For a strategy under `open` or `exclusion unconfirmed`, read the three criteria 
 3. Did the full window run and produce no trades, with `trade_evidence` reading `full_window`? Then C3, and it is excluded.
 4. Otherwise it is not excluded. `open_work` names what is missing, and the checks run in the order the status page sets out: trial run, recursion, look-ahead, backtest.
 
-Of the 314 unfinished strategies, 0 currently satisfy a criterion.
+Of the 302 unfinished strategies, 0 currently satisfy a criterion.
 

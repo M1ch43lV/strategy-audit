@@ -117,6 +117,15 @@ FIELDS = [
 # reader nothing they can act on. Order matters: a strategy that reads future
 # candles is out regardless of how clean its warm-up is, so look-ahead outranks
 # recursion, and both outrank the absence of a measurement.
+# What an artifact is, when it is not a strategy. Kept apart from
+# REASON_ORDER because these are not failures: nothing went wrong, the file
+# was simply never a strategy to begin with.
+ROLE_REASON = {
+    "test_candidate": "a fixture from somebody's test suite",
+    "template_candidate": "a template with no strategy filled in",
+}
+
+
 REASON_ORDER = (
     ("lookahead_found", "reads data it could not have had at the time"),
     ("behavior_changed_primary_exclusion", "repaired in a way that changed behaviour"),
@@ -657,8 +666,19 @@ def rows():
             recursive_evidence = "wave_b:%s:superseded" % (
                 attempt.get("startup_candle_count"))
 
+        # Freqtrade ships its own fixtures under tests/strategy/strats, and
+        # eleven of them are in the corpus. They load, they trade, they clear
+        # both bias checks - and they are not strategies anyone wrote to
+        # trade, so no measurement can ever admit one.
+        role = profile.get("artifact_role", "")
         ran_here = bool(measurement or diagnostics or window or settled)
-        if strategy in admitted:
+        if role != "strategy":
+            # Decided before any measurement is consulted, because no
+            # measurement can change it. `StrategyTestV2` clears both bias
+            # checks with 26070 trades behind it and is still a fixture from
+            # freqtrade's own test suite.
+            cohort = "not_a_strategy"
+        elif strategy in admitted:
             cohort = "E1_expanded"
         elif base.get("regime_eligible") == "true":
             cohort = "E0_strict67"
@@ -800,6 +820,15 @@ def rows():
                 reason = "no_verdict_on_" + "_and_".join(missing)
             if not reason:
                 reason = "; ".join(sorted(reasons)) or "unclassified"
+        elif cohort == "not_a_strategy":
+            reason = ROLE_REASON.get(profile.get("artifact_role"),
+                                     "not_a_trading_strategy")
+            failure = i18n.translate(measurement.get("why") or "").strip()
+            if measurement and measurement.get("status") != "measured" \
+                    and failure:
+                # It would not have run either. Two separate facts, and
+                # dropping the second would lose a real observation.
+                reason += "; strategy_does_not_run"
         elif cohort == "not_tested_in_current_runtime":
             # The old card's exception is kept as a hint about what to expect,
             # never as a verdict: it was produced under different preconditions.
@@ -824,7 +853,12 @@ def rows():
         if gaps:
             open_work.append("re-measure_gates_in_current_runtime")
         if cohort == "convergence_candidate":
-            open_work.append("paired_full_window_equivalence")
+            # `paired_full_window_equivalence` used to be listed here. The
+            # preregistration retired it on 2026-09-02, together with
+            # requirement 7: the settled warm-up IS the measurement, and a
+            # trade list that changes under it is the consequence of measuring
+            # properly rather than a reason to hold the row back. Asking for a
+            # test that no longer exists promises work nobody will do.
             if lookahead not in ("PASS", "FOUND"):
                 open_work.append("lookahead_verdict")
         elif cohort == "not_tested_in_current_runtime":
@@ -858,6 +892,11 @@ def rows():
         # excluded list for good on an absent verdict, a verdict
         # borrowed from another environment, or a crash - and nothing
         # in the table would say so.
+        if cohort == "not_a_strategy":
+            # No work would change the answer, so none is listed. The reason
+            # and the repair family still say what the file is and what went
+            # wrong when it ran; only the promise of effort is dropped.
+            open_work = []
         basis = exclusion_basis(reason, lookahead_evidence, source,
                                 recursive_evidence) \
             if cohort in ("excluded", "pending") else ""
@@ -1517,10 +1556,19 @@ def selftest():
                 row["lookahead"], row["recursive_evidence"])
         # A trap is a fact about the source, never a verdict. It may sit on
         # any row, and it may decide none.
+        # A file that is not a strategy is neither admitted nor excluded:
+        # there is no verdict to reach about a test fixture. It says what it
+        # is, and it asks for nothing.
+        if row["artifact_role"] and row["artifact_role"] != "strategy":
+            assert row["cohort"] == "not_a_strategy",                 (row["strategy_id"], row["cohort"])
+            assert not row["open_work"], row["strategy_id"]
+        if row["cohort"] == "not_a_strategy":
+            assert row["artifact_role"] != "strategy", row["strategy_id"]
         if row["traps_n"] not in ("", "0"):
             assert "trap" not in row["primary_reason"], row["strategy_id"]
         if row["cohort"] in ("excluded", "exclusion_unconfirmed", "pending",
-                             "not_tested_in_current_runtime"):
+                             "not_tested_in_current_runtime",
+                             "not_a_strategy"):
             assert row["primary_reason"], row["strategy_id"]
         else:
             assert not row["primary_reason"], row["strategy_id"]

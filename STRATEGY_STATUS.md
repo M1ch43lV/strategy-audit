@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-02 21:40:11 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-02 21:45:32 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -33,10 +33,10 @@ have neither and are left empty rather than given an invented time.
 |---|---:|
 | `E1_expanded` | 380 |
 | `exclusion_unconfirmed` | 166 |
-| `pending` | 148 |
 | `excluded` | 137 |
+| `pending` | 136 |
 | `E0_strict67` | 67 |
-| `convergence_candidate` | 2 |
+| `not_a_strategy` | 14 |
 
 ## The order the checks run in
 
@@ -2908,18 +2908,7 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Convergence candidates - 2 strategies
-
-A warm-up exists at which every indicator stays inside the band.
-That is not admission: the paired full-window run must still show
-an identical trade list.
-
-| Strategy | Profile | Chosen warm-up | Worst drift | Tested | Results |
-|---|---|---|---|---|---|
-| `StrategyTestV2` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-01 15:08:04 | `user_data/convergence_logs/StrategyTestV2-ladder.log` |
-| `StrategyTestV3` | `futures_long` | 288 candles | 0.0% on `adx` | 2026-09-02 07:42:23 | `user_data/convergence_logs/StrategyTestV3-ladder.log` |
-
-## Pending - 148 strategies
+## Pending - 136 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
@@ -2937,29 +2926,26 @@ neither a pass nor a fail.
 `FSupertrendStrategyETH`, `Fakebuy`, `FastSupertrend`, `FastSupertrendOpt`
 `FileLoadingStrategy`, `FreqaiExampleHybridStrategy`, `FreqaiExampleStrategy`, `FundingCarry`
 `GPR`, `GodStra`, `Guacamole`, `GymStrategy`
-`HLHB`, `IchimokuStrategy`, `Ichimoku_SenkouSpanCross`, `InformativeDecoratorTest`
-`Insomnia_short`, `InverseVolatilityPortfolio`, `KMM`, `Kamaflage`
-`LitmusEntryRollClassificationStrategy`, `LitmusGoodMinMaxClassificationStrategy`, `LitmusMLDPStrategy`, `LitmusMetaStrategy`
-`LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`, `LitmusMinMaxSegmentClassificationStrategy`
-`LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`, `LongShortRangeTradingMachetesV1`
-`MKR`, `MacheteV8b`, `MacheteV8bRallimod`, `MacheteV8bRallimod2`
-`MasterMoniGoManiHyperStrategy`, `MlpSpeculativeStrategy`, `MomentumRegimeBasket15m`, `MostOfAll`
-`MultiMA_TSL`, `MultiMA_TSL5`, `MultiMa`, `MultiTargetClassifierTestStrategy`
-`MultiTargetRegressorTestStrategy`, `MyStrategyNew10`, `NFI46Frog`, `NFI4Frog`
-`NoLost`, `NowoIchimoku1hV1`, `Persia`, `Pmax`
-`PnF`, `PolymarketLogicalArbStrategy`, `PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy`
-`Prediction_Strategy`, `Proton`, `QuickAdapterV3`, `QuickBuyStrategy`
-`RLAgentStrategy`, `RLStrategy`, `RenkoYolo`, `RiskParityPortfolio`
-`SMAOPv1_TTF`, `ScalpingCCI`, `Schism`, `Schism2`
-`Schism6`, `SimpleRiskFilterStrategy`, `Solipsis3`, `Solipsis4`
-`Solipsis5`, `Solipsis6`, `SolipsisCon`, `SolipsisMM`
-`Strategy`, `StrategyAnalysis`, `SuperHV27`, `SuperTrendPure`
-`Supertrend`, `TGMA`, `TankAi`, `TankAiRevival`
-`TestStrategyLegacyV1`, `TestStrategyNoImplements`, `Test_MAMA4`, `ThreeCommasStrategy`
-`TrainCatBoostStrategy`, `TuplaBollinger`, `TwoCandleTheory`, `UpSliceStrategy`
-`WTAI`, `WTHO`, `WTRSIAI`, `YourStrat`
-`freqai_rl_test_strat`, `freqai_test_classifier`, `freqai_test_multimodel_classifier_strat`, `freqai_test_multimodel_strat`
-`freqai_test_strat`, `haGradient`, `multi_tf`, `new_turtle`
+`HLHB`, `IchimokuStrategy`, `Ichimoku_SenkouSpanCross`, `Insomnia_short`
+`InverseVolatilityPortfolio`, `KMM`, `Kamaflage`, `LitmusEntryRollClassificationStrategy`
+`LitmusGoodMinMaxClassificationStrategy`, `LitmusMLDPStrategy`, `LitmusMetaStrategy`, `LitmusMinMaxBroadClassificationStrategy`
+`LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`, `LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`
+`LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`, `LongShortRangeTradingMachetesV1`, `MKR`
+`MacheteV8b`, `MacheteV8bRallimod`, `MacheteV8bRallimod2`, `MasterMoniGoManiHyperStrategy`
+`MlpSpeculativeStrategy`, `MomentumRegimeBasket15m`, `MostOfAll`, `MultiMA_TSL`
+`MultiMA_TSL5`, `MultiMa`, `MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`
+`MyStrategyNew10`, `NFI46Frog`, `NFI4Frog`, `NoLost`
+`NowoIchimoku1hV1`, `Persia`, `Pmax`, `PnF`
+`PolymarketLogicalArbStrategy`, `PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy`, `Prediction_Strategy`
+`Proton`, `QuickAdapterV3`, `QuickBuyStrategy`, `RLAgentStrategy`
+`RLStrategy`, `RenkoYolo`, `RiskParityPortfolio`, `SMAOPv1_TTF`
+`ScalpingCCI`, `Schism`, `Schism2`, `Schism6`
+`SimpleRiskFilterStrategy`, `Solipsis3`, `Solipsis4`, `Solipsis5`
+`Solipsis6`, `SolipsisCon`, `SolipsisMM`, `SuperHV27`
+`SuperTrendPure`, `Supertrend`, `TGMA`, `TankAi`
+`TankAiRevival`, `Test_MAMA4`, `TrainCatBoostStrategy`, `TuplaBollinger`
+`TwoCandleTheory`, `UpSliceStrategy`, `WTAI`, `WTHO`
+`WTRSIAI`, `haGradient`, `multi_tf`, `new_turtle`
 `new_turtle_roi`, `qrsi`, `tacos1`, `thetank2`
 
 ## Exclusion unconfirmed - 166 strategies
@@ -3147,16 +3133,15 @@ Wave `C_measurement_recovery` - 7:
 | Item | Strategies |
 |---|---:|
 | `lookahead_remeasure_pending` | 126 |
-| `recursive_ladder_pending` | 124 |
+| `recursive_ladder_pending` | 112 |
 | `needs_a_look` | 56 |
 | `convergence_not_converged_within_ladder` | 54 |
 | `convergence_inconclusive` | 48 |
-| `to_be_fixed` | 45 |
+| `to_be_fixed` | 33 |
 | `refuse_repair` | 21 |
 | `repair_attempted` | 16 |
 | `full_window_measurement_pending` | 5 |
 | `repair_withdrawn` | 4 |
-| `paired_full_window_equivalence` | 2 |
 
 Per-row detail, including every evidence path, is in
 `STRATEGY_STATUS.csv`.
