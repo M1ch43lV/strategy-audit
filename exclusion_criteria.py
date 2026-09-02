@@ -220,6 +220,37 @@ NOT_CRITERIA = [
 ]
 
 
+# Before any criterion is read, one question is asked that no measurement can
+# answer: is this a strategy at all. Fourteen files in the corpus are not.
+PREFILTER = {
+    "cohort": "not_a_strategy",
+    "test": 'artifact_role != "strategy"',
+    "what": "Eleven fixtures that freqtrade and NostalgiaForInfinity ship to "
+            "test their own code, under `tests/strategy/strats/`, and three "
+            "templates with no strategy filled in.",
+    "why_first": "No measurement can change what a file is. `StrategyTestV2` "
+                 "clears look-ahead and recursion cleanly, with coverage "
+                 "`PASS`, no trap and 26,070 trades behind it, and is still a "
+                 "fixture from freqtrade's own test suite. Deciding this "
+                 "after the measurements is how it sat for a day as a "
+                 "`convergence candidate` - a label that means on its way to "
+                 "admission, which for a fixture is untrue and always will "
+                 "be.",
+    "not_excluded": "These files are not excluded, and saying so would be "
+                    "wrong: `excluded` is a verdict about a strategy, and no "
+                    "verdict about a strategy was reached. They carry their "
+                    "own cohort, and they ask for no work, because no work "
+                    "would change the answer. What happened when each ran is "
+                    "kept in its reason - a fixture that also would not start "
+                    "says both things.",
+}
+
+
+def prefiltered(row):
+    """True when the row is not a strategy, whatever its measurements say."""
+    return bool(row.get("artifact_role")) and row["artifact_role"] != "strategy"
+
+
 def classify(row):
     """Which criteria a row satisfies. Empty means it is not excluded."""
     return [c["id"] for c in CRITERIA if c["test"](row)]
@@ -282,6 +313,27 @@ def criteria_report(rows, path):
             % (len(sample), ", ".join("`%s`" % s for s in sample[:6])))
         add("")
 
+    fixtures = [r for r in rows if prefiltered(r)]
+    add("## Before the criteria: is it a strategy at all")
+    add("")
+    add("**Machine test.** `%s`. Cohort `%s`, decided before any measurement "
+        "is consulted." % (PREFILTER["test"], PREFILTER["cohort"]))
+    add("")
+    add("**What these are.** %s Currently %d of them."
+        % (PREFILTER["what"], len(fixtures)))
+    add("")
+    add("**Why it is asked first.** %s" % PREFILTER["why_first"])
+    add("")
+    add("**They are not excluded.** %s" % PREFILTER["not_excluded"])
+    add("")
+    if fixtures:
+        add("| Strategy | What it is |")
+        add("|---|---|")
+        for row in sorted(fixtures, key=lambda r: r["strategy_id"]):
+            add("| `%s` | %s |" % (row["strategy_id"],
+                                   row["primary_reason"] or "-"))
+        add("")
+
     add("## What does not exclude a strategy")
     add("")
     add("Each of these has at some point moved strategies into `excluded` and "
@@ -305,6 +357,9 @@ def criteria_report(rows, path):
     add("For a strategy under `open` or `exclusion unconfirmed`, read the "
         "three criteria in order and stop at the first that holds.")
     add("")
+    add("0. Is `artifact_role` anything but `strategy`? Then it is a fixture "
+        "or a template, it belongs in `not a strategy`, and none of the rest "
+        "applies. It is not excluded either.")
     add("1. Does `lookahead` read `FOUND` **and** `lookahead_evidence` read "
         "`native`? Then C1, and it is excluded.")
     add("2. Does `recursive_evidence` read `convergence:not_settled`? Then "
@@ -843,6 +898,21 @@ def selftest():
             "written down here."
             % (row["strategy_id"], row["primary_reason"]))
         assert row["exclusion_basis"] == "own_measurement", row["strategy_id"]
+    # The prefilter and the criteria may never disagree, in either
+    # direction: a file that is not a strategy is never excluded, and a row
+    # in the not_a_strategy cohort is never a strategy.
+    for row in rows:
+        if prefiltered(row):
+            assert row["cohort"] == "not_a_strategy", (
+                "%s is not a strategy (artifact_role %s) but sits in %s. "
+                "The prefilter runs before the criteria and no measurement "
+                "overrides it."
+                % (row["strategy_id"], row["artifact_role"], row["cohort"]))
+            assert not row["open_work"], (
+                "%s is not a strategy and is asking for work no measurement "
+                "could use." % row["strategy_id"])
+        if row["cohort"] == "not_a_strategy":
+            assert prefiltered(row), row["strategy_id"]
     for criterion in CRITERIA:
         matched = [r for r in excluded if criterion["test"](r)]
         assert matched, "criterion %s matches nothing" % criterion["id"]

@@ -56,6 +56,33 @@ Currently 137 of 900 strategies are excluded. The criteria are not exclusive - 5
 
 7 strategies, among them `BreakEven`, `DoesNothingStrategy`, `Miku_PP_v3`, `MyStrategyTemplate`, `Obelisk_3EMA_StochRSI_ATR`, `ViN`.
 
+## Before the criteria: is it a strategy at all
+
+**Machine test.** `artifact_role != "strategy"`. Cohort `not_a_strategy`, decided before any measurement is consulted.
+
+**What these are.** Eleven fixtures that freqtrade and NostalgiaForInfinity ship to test their own code, under `tests/strategy/strats/`, and three templates with no strategy filled in. Currently 14 of them.
+
+**Why it is asked first.** No measurement can change what a file is. `StrategyTestV2` clears look-ahead and recursion cleanly, with coverage `PASS`, no trap and 26,070 trades behind it, and is still a fixture from freqtrade's own test suite. Deciding this after the measurements is how it sat for a day as a `convergence candidate` - a label that means on its way to admission, which for a fixture is untrue and always will be.
+
+**They are not excluded.** These files are not excluded, and saying so would be wrong: `excluded` is a verdict about a strategy, and no verdict about a strategy was reached. They carry their own cohort, and they ask for no work, because no work would change the answer. What happened when each ran is kept in its reason - a fixture that also would not start says both things.
+
+| Strategy | What it is |
+|---|---|
+| `InformativeDecoratorTest` | a fixture from somebody's test suite; strategy_does_not_run |
+| `Strategy` | a fixture from somebody's test suite; strategy_does_not_run |
+| `StrategyAnalysis` | a template with no strategy filled in; strategy_does_not_run |
+| `StrategyTestV2` | a fixture from somebody's test suite |
+| `StrategyTestV3` | a fixture from somebody's test suite |
+| `TestStrategyLegacyV1` | a fixture from somebody's test suite; strategy_does_not_run |
+| `TestStrategyNoImplements` | a fixture from somebody's test suite; strategy_does_not_run |
+| `ThreeCommasStrategy` | a template with no strategy filled in; strategy_does_not_run |
+| `YourStrat` | a template with no strategy filled in; strategy_does_not_run |
+| `freqai_rl_test_strat` | a fixture from somebody's test suite; strategy_does_not_run |
+| `freqai_test_classifier` | a fixture from somebody's test suite; strategy_does_not_run |
+| `freqai_test_multimodel_classifier_strat` | a fixture from somebody's test suite; strategy_does_not_run |
+| `freqai_test_multimodel_strat` | a fixture from somebody's test suite; strategy_does_not_run |
+| `freqai_test_strat` | a fixture from somebody's test suite; strategy_does_not_run |
+
 ## What does not exclude a strategy
 
 Each of these has at some point moved strategies into `excluded` and has been withdrawn. They are listed so the mistake is not repeated.
@@ -112,6 +139,7 @@ Each of these has at some point moved strategies into `excluded` and has been wi
 
 For a strategy under `open` or `exclusion unconfirmed`, read the three criteria in order and stop at the first that holds.
 
+0. Is `artifact_role` anything but `strategy`? Then it is a fixture or a template, it belongs in `not a strategy`, and none of the rest applies. It is not excluded either.
 1. Does `lookahead` read `FOUND` **and** `lookahead_evidence` read `native`? Then C1, and it is excluded.
 2. Does `recursive_evidence` read `convergence:not_settled`? Then C2, and it is excluded.
 3. Did the full window run and produce no trades, with `trade_evidence` reading `full_window`? Then C3, and it is excluded.
