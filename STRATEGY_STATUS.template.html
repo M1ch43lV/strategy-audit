@@ -226,6 +226,43 @@
   </section>
 
   <section>
+    <h2>Windows and pairs</h2>
+    <p class="note">A number cannot be read without knowing what it was measured
+    over. The checks do not share a window, and two of them do not share the
+    pair set either.</p>
+    <div class="scroller" style="max-height:none">
+      <table style="min-width:640px">
+        <thead><tr><th>Check</th><th>Window</th><th>Pairs</th></tr></thead>
+        <tbody>
+          <tr><td>Trial run <code>profile_smoke</code></td><td><code>20200301-20200401</code><span class="msg">one month</span></td><td>all 8</td></tr>
+          <tr><td>Bias check, spot</td><td><code>20190101-20190401</code><span class="msg">three months</span></td><td><code>BTC/USDT</code> only</td></tr>
+          <tr><td>Bias check, futures</td><td><code>20200301-20200401</code><span class="msg">one month</span></td><td><code>BTC/USDT:USDT</code> only</td></tr>
+          <tr><td>Look-ahead, first fallback</td><td><code>20200101-20220101</code><span class="msg">used when the frozen window yields fewer than ten trades</span></td><td>BTC only</td></tr>
+          <tr><td>Look-ahead, second fallback</td><td><code>20200301-20260820</code></td><td>BTC only</td></tr>
+          <tr><td>Full run <code>profile_full_window</code></td><td><code>20200301-20260821</code><span class="msg">6.5 years</span></td><td>all 8</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">The eight pairs against USDT are BTC, ETH, LTC, XRP, ADA,
+    XLM, XMR and DASH, at a 0.1&nbsp;% fee with <code>max_open_trades=8</code>.</p>
+    <p class="note"><strong>One pair for the bias checks is freqtrade's own
+    doing</strong>, not a choice of this audit: <code>recursive-analysis</code>
+    logs <em>&ldquo;Using pair BTC/USDT only for recursive analysis. Replacing
+    whitelist.&rdquo;</em> and replaces whatever the config holds.</p>
+    <p class="note"><strong>The look-ahead check widens its window rather than
+    failing.</strong> It needs ten trades; when the frozen window yields fewer it
+    retries on the first fallback and then the second, and the record keeps every
+    window it tried. A verdict from a wider window is still that strategy's
+    verdict, but it was not reached over the same span as its neighbour's.</p>
+    <p class="note"><strong>The trial run answers one question:</strong> does the
+    strategy start and trade. One month over eight pairs is enough for that and
+    cheap. What it earns is measured later, over the full window.</p>
+    <p class="note">The warm-up ladder steps in days &mdash; 1, 2, 7, 14, 30, 90,
+    365 &mdash; converted to each strategy's own timeframe, and accepts a rung
+    once every indicator stays inside 1.0&nbsp;%.</p>
+  </section>
+
+  <section>
     <h2>What the labels mean</h2>
     <p class="note">Every count here is taken from the same 900 rows the table below renders, so the legend cannot drift away from what it describes.</p>
     <div class="legend" id="legend"></div>
