@@ -49,6 +49,7 @@ CONVERGENCE = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
 BIAS = os.path.join(ROOT, "PROFILE_BIAS.json")
 RULE = "no_variance_is_a_pass_v1"
 BIAS_RULE = "current_reader_v1"
+BLIND_RULE = "undefined_column_is_not_a_finding_v1"
 
 
 def _load(path):
@@ -116,6 +117,61 @@ def apply(store, dry_run):
     return changed
 
 
+def blind_candidates(store, threshold):
+    """Ladder records the current reader now settles, and why they did not.
+
+    The fourth reader correction. An indicator the analyzer could not put a
+    number on at ANY rung is not a strategy that fails to settle - more warm-up
+    was never going to give that column a value. Until now such a column made
+    convergence unreachable for its whole strategy, whatever every other
+    indicator did, and the record came out as a recursion finding.
+
+    Only records that flip are returned, and only where the log survives to be
+    read again. A record whose other indicators genuinely stay out of band
+    keeps its finding: setting the blind column aside changes nothing for it.
+    """
+    found = []
+    for strategy, record in sorted(store.items()):
+        if record.get("state") != "not_converged_within_ladder":
+            continue
+        output = _output(record)
+        if output is None:
+            continue
+        blind = profile_bias.undefined_throughout(output)
+        if not blind:
+            continue
+        settled = profile_bias.settled_startup(output, threshold)
+        if settled is None:
+            continue
+        found.append((strategy, record, blind, settled))
+    return found
+
+
+def apply_blind(store, threshold, dry_run):
+    changed = []
+    for strategy, record, blind, settled in blind_candidates(store, threshold):
+        startup, indicator, value = settled
+        before = record.get("state")
+        if not dry_run:
+            rung_days = record.get("ladder_days") or []
+            rung_candles = record.get("ladder_candles") or []
+            record["state"] = "converged"
+            record["chosen_startup_candle_count"] = startup
+            record["chosen_ladder_days"] = next(
+                (day for day, candles in zip(rung_days, rung_candles)
+                 if candles == startup), None)
+            record["max_drift_pct"] = abs(value)
+            record["max_drift_indicator"] = indicator
+            record["undefined_throughout"] = blind
+            record["why"] = (
+                "settles at %d candles once %s is set aside; the analyzer "
+                "reported nan%% for it at every rung, so no warm-up could ever "
+                "have given it a value" % (startup, ", ".join(blind)))
+            record["reparsed_from_log"] = BLIND_RULE
+        changed.append((strategy, before, startup, blind))
+    return changed
+
+
 def bias_candidates(store):
     """Recursion records whose log the current reader disagrees with.
 
@@ -172,6 +228,26 @@ def selftest():
     reparsed = sum(1 for r in store.values()
                    if r.get("reparsed_from_log") == RULE)
     remaining = len(candidates(store))
+    # A record re-parsed under the blind rule must name the column it set
+    # aside, and that column must really be unreadable at every rung in its
+    # own log. Otherwise the rule would be a way of ignoring inconvenient
+    # numbers rather than a way of ignoring absent ones.
+    threshold = _load(CONVERGENCE).get("drift_threshold_pct", 1.0)
+    for strategy, record in store.items():
+        if record.get("reparsed_from_log") != BLIND_RULE:
+            continue
+        output = _output(record)
+        assert output is not None, strategy
+        blind = profile_bias.undefined_throughout(output)
+        assert blind, strategy
+        assert record.get("undefined_throughout") == blind, strategy
+        assert record["state"] == "converged", strategy
+        settled = profile_bias.settled_startup(output, threshold)
+        assert settled is not None, strategy
+        assert record["chosen_startup_candle_count"] == settled[0], strategy
+    blind_done = sum(1 for r in store.values()
+                     if r.get("reparsed_from_log") == BLIND_RULE)
+    blind_left = len(blind_candidates(store, threshold))
     # Every re-parsed bias verdict must be exactly what the log now says, and
     # what it replaced must still be on the record.
     bias = _load(BIAS)["results"]
@@ -186,8 +262,10 @@ def selftest():
                     if (r.get("recursive") or {}).get("reparsed_from_log")
                     == BIAS_RULE)
     print("warmup_reparse selftest: PASS (%d ladder re-parsed, %d still to "
-          "read; %d bias re-parsed, %d still to read)"
-          % (reparsed, remaining, bias_done, len(bias_candidates(bias))))
+          "read; %d bias re-parsed, %d still to read; %d blind re-parsed, "
+          "%d still to read)"
+          % (reparsed, remaining, bias_done, len(bias_candidates(bias)),
+             blind_done, blind_left))
 
 
 def main(argv=None):
@@ -195,7 +273,7 @@ def main(argv=None):
     parser.add_argument("--apply", action="store_true",
                         help="write the corrected verdicts back")
     parser.add_argument("--store", default="ladder",
-                        choices=("ladder", "bias"))
+                        choices=("ladder", "bias", "blind"))
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:
@@ -214,6 +292,18 @@ def main(argv=None):
             print("   %-34s %-6s -> %-6s %s" % (strategy, before, after, why[:60]))
         if args.apply and changed:
             _write(BIAS, data)
+        return 0
+    if args.store == "blind":
+        data = _load(CONVERGENCE)
+        threshold = data.get("drift_threshold_pct", 1.0)
+        changed = apply_blind(data["results"], threshold, not args.apply)
+        print("%s %d records that only an unreadable column held back"
+              % ("rewrote" if args.apply else "would rewrite", len(changed)))
+        for strategy, before, startup, blind in changed:
+            print("   %-34s %-26s -> converged at %d candles, set aside %s"
+                  % (strategy, before, startup, ", ".join(blind)))
+        if args.apply and changed:
+            _write(CONVERGENCE, data)
         return 0
     data = _load(CONVERGENCE)
     changed = apply(data["results"], not args.apply)

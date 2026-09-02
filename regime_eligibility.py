@@ -37,7 +37,8 @@ FIELDS = [
     "lookahead_evidence_source", "recursive_evidence_source", "bias_evidence_mode",
     "recursive_kind", "traps_n", "coverage_status", "coverage_evidence",
     "regime_eligible", "eligibility_status",
-    "exclusion_reasons", "pending_reasons", "coverage_policy",
+    "exclusion_reasons", "pending_reasons", "advisory_flags",
+    "coverage_policy",
 ]
 
 
@@ -56,6 +57,9 @@ def _integer(value):
 def classify(profile, ledger, coverage=None, bias=None, full_measurement=None):
     hard = []
     pending = []
+    # Facts that qualify how a row should be read but do not
+    # decide its status. See the trap note below.
+    notes = []
     coverage = coverage or {}
     bias = bias or {}
     full_measurement = full_measurement or {}
@@ -130,8 +134,27 @@ def classify(profile, ledger, coverage=None, bias=None, full_measurement=None):
         hard.append("recursive_bias_found")
     elif recursive != "PASS":
         pending.append("recursive_bias_not_completed")
+    # 2026-09-02, by the owner's decision: a trap is no longer a hard fail.
+    #
+    # `traps.py` reads the source for the patterns the freqtrade community's
+    # "Backtesting Traps" article names - trailing tighter than a typical
+    # spread, ROI too tight for the timeframe. Those are real, and 21 of the
+    # 40 rows it caught do carry a trailing stop of 0.1% or less. But it is a
+    # source-code heuristic, not a measurement, and what it describes is a
+    # FILL-REALISM problem: the backtest assumes an intracandle path that
+    # would not fill that way in the market. That inflates how much a strategy
+    # appears to earn. It says nothing about whether the strategy read the
+    # future, which is what the two bias checks are for.
+    #
+    # Excluding on it meant 40 strategies that run and trade were dropped
+    # before either bias check ever saw them. They now go through the checks
+    # like everything else, and the realism problem is met where it lives: the
+    # runs use `--timeframe-detail 1m`, so freqtrade resolves the order of
+    # events inside a candle from real one-minute data instead of assuming it.
+    # The flag stays on the row as `traps_n`, so any later ranking can be read
+    # with it in view.
     if traps_n:
-        hard.append("technical_trap_found")
+        notes.append("technical_trap_flagged")
 
     coverage_status = (coverage.get("coverage_status") or "PENDING").upper()
     if coverage_status == "FAIL":
@@ -179,6 +202,7 @@ def classify(profile, ledger, coverage=None, bias=None, full_measurement=None):
         "eligibility_status": status,
         "exclusion_reasons": ";".join(hard),
         "pending_reasons": ";".join(pending),
+        "advisory_flags": ";".join(notes),
         "coverage_policy": "pair_available_history;verify_exact_regime_window_before_run",
     }
 
@@ -362,6 +386,17 @@ def selftest():
                          coverage, {}, {"status": "measured", "trades": 0})
     assert "no_trades_in_full_measurement" in full_zero["exclusion_reasons"]
     assert classify(base, {"lookahead": "PASS", "recursive": "PASS"})["eligibility_status"] == "pending_diagnostics"
+    # A trap is recorded, not decisive. A row that clears both bias checks
+    # stays eligible while carrying the flag; a row that fails one is
+    # ineligible for that failure and not for the trap.
+    trapped = classify(base, {"lookahead": "PASS", "recursive": "PASS",
+                              "traps_n": "1"}, coverage)
+    assert trapped["eligibility_status"] == "eligible", trapped
+    assert trapped["advisory_flags"] == "technical_trap_flagged", trapped
+    assert "technical_trap" not in trapped["exclusion_reasons"], trapped
+    trapped_biased = classify(base, {"lookahead": "FOUND", "recursive": "PASS",
+                                     "traps_n": "1"}, coverage)
+    assert trapped_biased["exclusion_reasons"] == "lookahead_found", trapped_biased
     print("regime_eligibility selftest: PASS")
 
 
@@ -375,10 +410,25 @@ def main(argv=None):
     parser.add_argument("--output", default=OUTPUT)
     parser.add_argument("--report", default=REPORT)
     parser.add_argument("--selftest", action="store_true")
+    parser.add_argument(
+        "--rewrite-frozen-baseline", action="store_true",
+        help="overwrite REGIME_ELIGIBILITY.csv, the frozen E0 baseline")
     args = parser.parse_args(argv)
     if args.selftest:
         selftest()
         return 0
+    # REGIME_ELIGIBILITY.csv is the frozen E0 baseline. Every later cohort is
+    # an overlay on it, and strategy_status asserts it still names exactly 67
+    # eligible rows. Re-running this file against it silently reclassifies the
+    # baseline under today's rules, which is how 67 became 123 the moment the
+    # trap stopped being a hard failure. The classifier stays runnable - that
+    # is what --output is for - but not over the baseline by accident.
+    if args.output == OUTPUT and not args.rewrite_frozen_baseline:
+        raise SystemExit(
+            "refusing to rewrite the frozen E0 baseline (%s). "
+            "Write elsewhere with --output, or pass "
+            "--rewrite-frozen-baseline if the freeze is being lifted "
+            "deliberately." % os.path.basename(OUTPUT))
     rows = build(args.profiles, args.ledger, args.coverage, args.bias,
                  args.full_measurement)
     _write_csv(rows, args.output)

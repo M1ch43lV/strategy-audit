@@ -1,6 +1,25 @@
 {
   "config": "profile_futures_config.json",
   "results": {
+    "A9AV": {
+      "archive": "user_data/profile_smoke/A9AV-2026-09-02_16-04-47.zip",
+      "archive_sha256": "sha256_dd4300cb699de28bc85f9100f4f8263c5bb6ebdcb4e36555a01ad0bbbe704fe2",
+      "canonical_sha256": "sha256_1cd374d749027eddc5cd9fe7ac457afd33d90c62854268afabf97c61da6b8c95",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 44.2,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy A9AV --strategy-path repair/patched/repos/jaredrsommer_freqtradestrategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/A9AV --cache none",
+      "long_trades": 4941,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 4941,
+      "trades_sha256": "sha256_456984d24fb73fc54fb9d39a2bad0115544180632a06586c64a2cf65b3c8d778"
+    },
     "AwesomeMacdS": {
       "archive": "user_data/profile_smoke/AwesomeMacdS-2026-09-02_14-53-19.zip",
       "archive_sha256": "sha256_f88e105182cc4894abae1cb0cc8e9c189e71032d5b99147531b34b84d77b2785",
@@ -19,6 +38,25 @@
       "timerange": "20200301-20200401",
       "trades": 0,
       "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "BBMod": {
+      "archive": "user_data/profile_smoke/BBMod-2026-09-02_16-03-30.zip",
+      "archive_sha256": "sha256_2c4b6c65e127a9a2a4ac955b6a9c75c0b41e0720e321d8abb395f7e2f715bbc8",
+      "canonical_sha256": "sha256_20884e32203032c71bc6ced64761a57d03844ede19f6e5d1e5fd16804ed96da5",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 49.2,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BBMod --strategy-path repos/eovie_freqtrade_strs/binance/Archive --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBMod --cache none",
+      "long_trades": 300,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 300,
+      "trades_sha256": "sha256_1dfe701e75465cb4044ac0973ec7064f953c479da10be8b74e7a3f78f017f4d0"
     },
     "BB_RPB_TSL_Tranz": {
       "archive": "user_data/profile_smoke/BB_RPB_TSL_Tranz-2026-09-02_15-31-54.zip",
@@ -259,6 +297,32 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "why": "Invalid value 'True' for dtype 'float64'"
+    },
+    "Guacamole": {
+      "canonical_sha256": "sha256_c81793986db6a2d1e2b72bc53f09b8e61e76a70808d8ef1281b9200bf9742052",
+      "class1_rules": [],
+      "elapsed_s": 900.1,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Guacamole --strategy-path repos/davidzr_freqtrade-strategies/strategies/Guacamole --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Guacamole --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "timeout",
+      "timerange": "20200301-20200401",
+      "why": "timeout after 900 seconds"
+    },
+    "Kamaflage": {
+      "canonical_sha256": "sha256_7bbb3db17a366343e89aac29cc3a879d6a7fc3e585555bd9f5c70e663e46be7b",
+      "class1_rules": [],
+      "elapsed_s": 900.1,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Kamaflage --strategy-path repos/davidzr_freqtrade-strategies/strategies/Kamaflage --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Kamaflage --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "timeout",
+      "timerange": "20200301-20200401",
+      "why": "timeout after 900 seconds"
     },
     "MacheteV8b": {
       "canonical_sha256": "sha256_03e93809d87757fc2c208847298e42d0cedd553abd0e600654a7a124a526d154",
@@ -550,6 +614,20 @@
       "timerange": "20200301-20200401",
       "trades": 277,
       "trades_sha256": "sha256_7da76e45cae0fde02042b5315de95e4bdcd8f4502342e0b9626bcc80faedf911"
+    },
+    "Strategy": {
+      "canonical_sha256": "sha256_5fdecf48d2e79668de637bfb66e23ca93dc80a2a275a3f292ad422c243eca932",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/Strategy.log",
+      "elapsed_s": 32.8,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Strategy --strategy-path repos/iterativv_NostalgiaForInfinity/tests/unit/test_data/input --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "why": "Configuration error: 'stoploss' is a required property"
     },
     "StrategyAnalysis": {
       "canonical_sha256": "sha256_52981d8467f1034152754d2626a85f853eddd2ca9180fbb5d819cad8606b21af",

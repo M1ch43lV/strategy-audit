@@ -35769,6 +35769,8 @@
     },
     "MultiMA_TSL3_Mod": {
       "available_prefix_candles": 97222,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
       "cohort": "recursive_unsettled",
       "columns": [
         {
@@ -35871,15 +35873,21 @@
         7,
         14
       ],
+      "max_drift_indicator": "ewo",
+      "max_drift_pct": 0.0,
       "output_sha256": "sha256_81ff59751aca2466d6cc80deb0349ed02d6592cbb28874b0322f150e2abd2561",
+      "reparsed_from_log": "undefined_column_is_not_a_finding_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "not_converged_within_ladder",
+      "state": "converged",
       "strategy_id": "MultiMA_TSL3_Mod",
       "timeframe": "5m",
       "timerange": "20190101-20190401",
-      "why": "no startup up to 4032 candles keeps every indicator inside 1.0%"
+      "undefined_throughout": [
+        "smooth_volume_pct"
+      ],
+      "why": "settles at 2016 candles once smooth_volume_pct is set aside; the analyzer reported nan% for it at every rung, so no warm-up could ever have given it a value"
     },
     "MultiOffsetLamboV0": {
       "available_prefix_candles": 97222,
@@ -53662,6 +53670,8 @@
     },
     "NotAnotherSMAOffSetStrategy_V2": {
       "available_prefix_candles": 97222,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
       "cohort": "recursion_only",
       "columns": [
         {
@@ -53784,15 +53794,21 @@
         7,
         14
       ],
+      "max_drift_indicator": "ma_buy_14",
+      "max_drift_pct": 0.0,
       "output_sha256": "sha256_7927859f8a0241713a3fa7b3e638ad9eaea92e28b37021d03fde3142b7f5fba0",
+      "reparsed_from_log": "undefined_column_is_not_a_finding_v1",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "not_converged_within_ladder",
+      "state": "converged",
       "strategy_id": "NotAnotherSMAOffSetStrategy_V2",
       "timeframe": "5m",
       "timerange": "20190101-20190401",
-      "why": "no startup up to 4032 candles keeps every indicator inside 1.0%"
+      "undefined_throughout": [
+        "vol_base"
+      ],
+      "why": "settles at 2016 candles once vol_base is set aside; the analyzer reported nan% for it at every rung, so no warm-up could ever have given it a value"
     },
     "NotAnotherSMAOffsetStrategy": {
       "available_prefix_candles": 97222,

@@ -234,6 +234,17 @@ def recursive_table(output):
     return columns, rows
 
 
+def undefined_throughout(output):
+    """Indicators the analyzer could not put a number on at any rung.
+
+    Named separately because setting them aside is a decision, and a decision
+    that is not written down is indistinguishable from a bug.
+    """
+    _columns, rows = recursive_table(output)
+    return sorted(name for name, values in rows.items()
+                  if values and all(value is None for value in values))
+
+
 def settled_startup(output, threshold):
     """Smallest startup from which every indicator stays inside the band.
 
@@ -257,6 +268,20 @@ def settled_startup(output, threshold):
     """
     columns, rows = recursive_table(output)
     if not columns or not rows:
+        return None
+    # An indicator undefined at EVERY rung is a different thing from one
+    # undefined at some of them. The second is too little history, and it
+    # rightly disqualifies the columns it covers. The first is the analyzer
+    # unable to express this column as a percentage at all - a reference value
+    # of zero, which volume-derived columns reach - and more warm-up will never
+    # change it. Left in, such a column makes convergence unreachable for its
+    # strategy no matter what every other indicator does, which is a verdict
+    # about our reading rather than about the strategy. It is set aside from
+    # the decision and named by `undefined_throughout` so the record can say
+    # so out loud.
+    rows = {name: values for name, values in rows.items()
+            if any(value is not None for value in values)}
+    if not rows:
         return None
     qualifying = []
     for index, (startup, _from_strategy) in enumerate(columns):
@@ -555,6 +580,28 @@ def selftest():
         "│ ema │ 0.000% │ nan% │ 0.000% │",
         ran])
     assert settled_startup(holed, 1.0) == (365, "ema", 0.0)
+    # An indicator undefined at EVERY rung is not too little history: more
+    # warm-up never gives it a number. `MultiMA_TSL3_Mod` reported nan% for
+    # `smooth_volume_pct` in all five columns while every other indicator sat
+    # at 0.000% from 2016 candles on, and was recorded as a recursion finding
+    # on that basis alone. It is set aside, and named.
+    blind = nl.join([
+        "┃ Indicators ┃ 288 (from strategy) ┃ 2016 ┃ 4032 ┃",
+        "│ ewo │ 5.386% │ -0.000% │ 0.000% │",
+        "│ smooth_volume_pct │ nan% │ nan% │ nan% │",
+        ran])
+    assert undefined_throughout(blind) == ["smooth_volume_pct"]
+    assert settled_startup(blind, 1.0) == (2016, "ewo", -0.0)
+    # Setting it aside must not turn a real finding into a pass: `ewo` still
+    # carries 5.386% at the first rung, so the first rung still fails.
+    assert settled_startup(blind, 1.0)[0] != 288
+    # And a table of nothing but undefined rows stays undefined.
+    allblind = nl.join([
+        "┃ Indicators ┃ 30 (from strategy) ┃ 90 ┃",
+        "│ vol_base │ nan% │ nan% │",
+        ran])
+    assert settled_startup(allblind, 1.0) is None
+    assert undefined_throughout(holed) == []
     # Without the label there is no column to read, so there is no verdict.
     assert recursive_drifts("│ ema_200 │ 0.018% │" + ran) == []
 

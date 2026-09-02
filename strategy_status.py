@@ -114,7 +114,6 @@ FIELDS = [
 REASON_ORDER = (
     ("lookahead_found", "reads data it could not have had at the time"),
     ("behavior_changed_primary_exclusion", "repaired in a way that changed behaviour"),
-    ("technical_trap_found", "carries a published backtesting trap"),
     ("strategy_does_not_run",
      "fails before it can be measured; the message is in runtime_failure"),
     ("recursive_bias_found",
@@ -396,7 +395,8 @@ EXCLUSION_BASIS = {
 }
 
 
-def exclusion_basis(reason, lookahead_evidence, trade_evidence):
+def exclusion_basis(reason, lookahead_evidence, trade_evidence,
+                    recursive_evidence=""):
     """What an exclusion actually rests on.
 
     The decisive reason says which gate stopped the row. It does not say
@@ -415,8 +415,16 @@ def exclusion_basis(reason, lookahead_evidence, trade_evidence):
         return "own_measurement" if lookahead_evidence == "native" else "inherited"
     if reason == "no_trades_in_full_measurement":
         return "own_measurement" if trade_evidence == "full_window" else "inherited"
-    if reason in ("recursive_bias_found", "technical_trap_found",
-                  "behavior_changed_primary_exclusion"):
+    # `recursive_bias_found` is our own only when our ladder produced it. A
+    # FOUND carried over from the baseline is inherited evidence and says so,
+    # whatever else the row carries: 15 rows sat under `own_measurement`
+    # solely because the trap reason forced that label, and not one of them
+    # had a ladder run of ours.
+    if reason == "recursive_bias_found":
+        return ("own_measurement"
+                if str(recursive_evidence).startswith("convergence")
+                else "inherited")
+    if reason == "behavior_changed_primary_exclusion":
         return "own_measurement"
     if reason == "recursive_bias_unverified" \
             or reason == "recursive_warmup_refused" \
@@ -638,6 +646,14 @@ def rows():
             # full-window run, hours of computation for a row that could not
             # be admitted whatever that run showed.
             cohort = "convergence_candidate"
+        elif lookahead == "FOUND" and lookahead_evidence == "native"                 or recursive_evidence == "convergence:not_settled":
+            # A finding of ours settles the row, and settles it whatever else
+            # is still outstanding. Without this the "diagnostics not
+            # completed" branch below outranked the finding: dropping the trap
+            # as a failure reason left 19 rows with a confirmed ladder failure
+            # reading as merely pending, because their look-ahead had not run
+            # yet. A missing second check is no reason to un-fail the first.
+            cohort = "excluded"
         elif base.get("eligibility_status") == "pending_diagnostics":
             cohort = "pending"
         elif not ran_here and base.get("canonical_measured") != "true":
@@ -674,6 +690,18 @@ def rows():
                 reasons.add("recursive_warmup_refused")
             if measurement.get("status") == "measured":
                 reasons.discard("canonical_implementation_not_measured")
+            # The frozen baseline still carries `technical_trap_found`, and
+            # it stays there: the baseline is not rewritten. It is no longer a
+            # reason a row fails, though. `traps.py` reads the source for the
+            # patterns the freqtrade community's "Backtesting Traps" article
+            # names, which is a heuristic rather than a measurement, and what
+            # it describes - a trailing stop tighter than a realistic spread -
+            # inflates how much a strategy appears to earn rather than showing
+            # it read the future. Excluding on it dropped 40 rows that run and
+            # trade before either bias check saw them. The flag stays visible
+            # in `traps_n`, and the realism problem is met in the run itself,
+            # with `--timeframe-detail 1m`.
+            reasons.discard("technical_trap_found")
             if measurement and measurement.get("status") != "measured":
                 # A strategy that will not run cannot be judged on anything
                 # else, so this outranks every gate label - and in particular
@@ -758,8 +786,20 @@ def rows():
         elif cohort == "excluded" and settled.get("state") in (
                 "not_converged_within_ladder", "inconclusive"):
             open_work.append("convergence_" + settled["state"])
+        # A recursion PASS that is not ours is as open a question as no
+        # verdict at all. 79 unfinished rows rest on a PASS from the original
+        # sweep or the frozen baseline - `BigPete` among them, which clears
+        # both checks on inherited evidence alone and would otherwise sit
+        # with nothing left to do and nothing of ours behind it. Admitted
+        # rows already carry `re-measure_gates_in_current_runtime` for this;
+        # the unfinished ones need the ladder itself.
+        inherited_recursive_pass = (
+            recursive in ("PASS", "PASS_1PCT")
+            and not recursive_evidence.startswith("convergence")
+            and cohort in ("excluded", "pending"))
         if (measurement or window) and not settled \
-                and recursive not in ("PASS", "PASS_1PCT"):
+                and (recursive not in ("PASS", "PASS_1PCT")
+                     or inherited_recursive_pass):
             # Anything that runs and has no settled recursion verdict is a
             # question for the ladder: a FOUND no ladder has re-measured
             # rests on the parser that read the wrong column, an NA means
@@ -772,7 +812,8 @@ def rows():
         # excluded list for good on an absent verdict, a verdict
         # borrowed from another environment, or a crash - and nothing
         # in the table would say so.
-        basis = exclusion_basis(reason, lookahead_evidence, source) \
+        basis = exclusion_basis(reason, lookahead_evidence, source,
+                                recursive_evidence) \
             if cohort in ("excluded", "pending") else ""
         # `excluded` is a verdict, and this audit does not issue a verdict on
         # somebody else's measurement or on the absence of one. A row whose
@@ -1371,6 +1412,26 @@ def selftest():
     # were passing on 1 of 900 rows. A test that reports PASS while covering
     # almost nothing is worse than no test.
     for row in data:
+        # Excluded means one of exactly three things, and every one of them
+        # is a result this audit produced itself: the look-ahead check found
+        # bias, our own ladder failed to settle the indicators, or the
+        # strategy ran the whole window and never traded. Nothing else may
+        # put a row here - in particular not the source-code trap heuristic,
+        # which excluded 40 running strategies before either bias check had
+        # seen them, and not a verdict inherited from the original sweep.
+        if row["cohort"] == "excluded":
+            assert row["exclusion_basis"] == "own_measurement",                 (row["strategy_id"], row["exclusion_basis"])
+            assert (
+                (row["lookahead"] == "FOUND"
+                 and row["lookahead_evidence"] == "native")
+                or row["recursive_evidence"] == "convergence:not_settled"
+                or row["primary_reason"] == "no_trades_in_full_measurement"
+            ), (row["strategy_id"], row["primary_reason"],
+                row["lookahead"], row["recursive_evidence"])
+        # A trap is a fact about the source, never a verdict. It may sit on
+        # any row, and it may decide none.
+        if row["traps_n"] not in ("", "0"):
+            assert "trap" not in row["primary_reason"], row["strategy_id"]
         if row["cohort"] in ("excluded", "exclusion_unconfirmed", "pending",
                              "not_tested_in_current_runtime"):
             assert row["primary_reason"], row["strategy_id"]

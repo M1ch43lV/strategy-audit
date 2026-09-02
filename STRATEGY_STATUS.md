@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-02 17:34:15 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-02 18:04:30 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -15,7 +15,7 @@ the state at the freeze, and the difference is the expansion.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 211 of 900 rows
+file's time and is labelled `log_mtime` for that reason. 207 of 900 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
@@ -25,19 +25,19 @@ have neither and are left empty rather than given an invented time.
 | in the manifest | 900 |
 | measured at all | 741 |
 | produced trades | 711 |
-| carrying a run time | 689 |
+| carrying a run time | 693 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 376 |
-| `excluded` | 153 |
-| `exclusion_unconfirmed` | 136 |
-| `pending` | 106 |
+| `exclusion_unconfirmed` | 172 |
+| `excluded` | 118 |
+| `pending` | 104 |
 | `E0_strict67` | 67 |
 | `not_tested_in_current_runtime` | 60 |
-| `convergence_candidate` | 2 |
+| `convergence_candidate` | 3 |
 
 ## The order the checks run in
 
@@ -118,7 +118,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 534 of 2102 commands are recorded so far, and every new run
+recording. 541 of 2102 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -2844,7 +2844,7 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Convergence candidates - 2 strategies
+## Convergence candidates - 3 strategies
 
 A warm-up exists at which every indicator stays inside the band.
 That is not admission: the paired full-window run must still show
@@ -2852,10 +2852,11 @@ an identical trade list.
 
 | Strategy | Profile | Chosen warm-up | Worst drift | Tested | Results |
 |---|---|---|---|---|---|
+| `MultiMA_TSL3_Mod` | `spot_long` | 2016 candles | 0.0% on `ewo` | 2026-08-31 16:03:58 | `user_data/convergence_logs/MultiMA_TSL3_Mod-ladder.log` |
 | `StrategyTestV2` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-01 15:08:04 | `user_data/convergence_logs/StrategyTestV2-ladder.log` |
 | `StrategyTestV3` | `futures_long` | 288 candles | 0.0% on `adx` | 2026-09-02 07:42:23 | `user_data/convergence_logs/StrategyTestV3-ladder.log` |
 
-## Pending - 106 strategies
+## Pending - 104 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
@@ -2870,23 +2871,22 @@ neither a pass nor a fail.
 `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `Fakebuy`, `FastSupertrend`
 `FastSupertrendOpt`, `FileLoadingStrategy`, `FreqaiExampleHybridStrategy`, `FreqaiExampleStrategy`
 `GPR`, `GodStra`, `GymStrategy`, `HLHB`
-`HyperStra_GSN_SMAOnly`, `IchimokuStrategy`, `Ichimoku_SenkouSpanCross`, `InverseVolatilityPortfolio`
-`KMM`, `LitmusEntryRollClassificationStrategy`, `LitmusGoodMinMaxClassificationStrategy`, `LitmusMLDPStrategy`
-`LitmusMetaStrategy`, `LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`
-`LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`
-`LongShortRangeTradingMachetesV1`, `MKR`, `MasterMoniGoManiHyperStrategy`, `MlpSpeculativeStrategy`
-`MomentumRegimeBasket15m`, `MultiMA_TSL5`, `MultiMa`, `MultiTargetClassifierTestStrategy`
-`MultiTargetRegressorTestStrategy`, `NoLost`, `Persia`, `Pmax`
-`PnF`, `PolymarketLogicalArbStrategy`, `PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy`
-`Prediction_Strategy`, `Proton`, `QuickAdapterV3`, `QuickBuyStrategy`
-`RLAgentStrategy`, `RLStrategy`, `RenkoYolo`, `RiskParityPortfolio`
-`SMAOPv1_TTF`, `ScalpingCCI`, `SimpleRiskFilterStrategy`, `Solipsis4`
-`Solipsis6`, `SolipsisMM`, `SuperHV27`, `SuperTrendPure`
-`Supertrend`, `TGMA`, `TankAi`, `TankAiRevival`
-`Test_MAMA4`, `TrainCatBoostStrategy`, `TuplaBollinger`, `TwoCandleTheory`
-`UpSliceStrategy`, `WTAI`, `WTHO`, `WTRSIAI`
-`haGradient`, `kalthetank`, `multi_tf`, `new_turtle`
-`new_turtle_roi`, `thetank2`
+`IchimokuStrategy`, `Ichimoku_SenkouSpanCross`, `InverseVolatilityPortfolio`, `KMM`
+`LitmusEntryRollClassificationStrategy`, `LitmusGoodMinMaxClassificationStrategy`, `LitmusMLDPStrategy`, `LitmusMetaStrategy`
+`LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`, `LitmusMinMaxSegmentClassificationStrategy`
+`LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`, `LongShortRangeTradingMachetesV1`
+`MKR`, `MasterMoniGoManiHyperStrategy`, `MlpSpeculativeStrategy`, `MomentumRegimeBasket15m`
+`MultiMA_TSL5`, `MultiMa`, `MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`
+`NoLost`, `Persia`, `Pmax`, `PnF`
+`PolymarketLogicalArbStrategy`, `PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy`, `Prediction_Strategy`
+`Proton`, `QuickAdapterV3`, `QuickBuyStrategy`, `RLAgentStrategy`
+`RLStrategy`, `RenkoYolo`, `RiskParityPortfolio`, `SMAOPv1_TTF`
+`ScalpingCCI`, `SimpleRiskFilterStrategy`, `Solipsis4`, `Solipsis6`
+`SolipsisMM`, `SuperHV27`, `SuperTrendPure`, `Supertrend`
+`TGMA`, `TankAi`, `TankAiRevival`, `Test_MAMA4`
+`TrainCatBoostStrategy`, `TuplaBollinger`, `TwoCandleTheory`, `UpSliceStrategy`
+`WTAI`, `WTHO`, `WTRSIAI`, `haGradient`
+`multi_tf`, `new_turtle`, `new_turtle_roi`, `thetank2`
 
 ## Attempted, no measurement - 60 strategies
 
@@ -2960,7 +2960,7 @@ verdict. Where such a hint exists it is shown in brackets.
 | `tacos1` | `not_scheduled` | `no run under the current runtime (historical hint: No data found. Terminating.)` |
 | `turbov8` | `not_scheduled` | `no run under the current runtime (historical hint: engine exited with code 0 but produced no summary (no trades at all, or output not parsed))` |
 
-## Exclusion unconfirmed - 136 strategies
+## Exclusion unconfirmed - 172 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -2972,20 +2972,21 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_verdict_on_lookahead` | `no_finding` | 56 |
-| `no_verdict_on_lookahead_and_recursive` | `no_finding` | 32 |
-| `lookahead_found` | `inherited` | 23 |
-| `no_verdict_on_recursive` | `no_finding` | 14 |
+| `no_verdict_on_lookahead` | `no_finding` | 60 |
+| `no_verdict_on_lookahead_and_recursive` | `no_finding` | 47 |
+| `lookahead_found` | `inherited` | 19 |
+| `recursive_bias_unverified` | `no_finding` | 17 |
+| `no_verdict_on_recursive` | `no_finding` | 16 |
 | `no_trades_in_full_measurement` | `inherited` | 5 |
-| `recursive_bias_unverified` | `no_finding` | 3 |
-| `recursive_warmup_refused` | `no_finding` | 3 |
+| `recursive_warmup_refused` | `no_finding` | 5 |
+| `unclassified` | `no_finding` | 3 |
 
 This is not a softening. A row here may well end up excluded - the
 38 held on an inherited look-ahead finding probably will, because a
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 153 strategies, by decisive reason
+## Not passing - 118 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -3033,7 +3034,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 153 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 118 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -3041,24 +3042,26 @@ one of them carries none.
 
 | Reason | Meaning | Strategies |
 |---|---|---:|
-| `lookahead_found` | reads data it could not have had at the time | 53 |
-| `technical_trap_found` | carries a published backtesting trap | 40 |
-| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 49 |
+| `lookahead_found` | reads data it could not have had at the time | 60 |
+| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 47 |
 | `no_trades_in_full_measurement` | never trades over the full window | 11 |
 
 
 ### Reason by wave
 
-| Reason | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `not_scheduled` |
-|---|---|---|---|---|
-| `lookahead_found` | 0 | 15 | 0 | 38 |
-| `technical_trap_found` | 0 | 0 | 0 | 40 |
-| `recursive_bias_found` | 3 | 18 | 14 | 14 |
-| `no_trades_in_full_measurement` | 0 | 10 | 0 | 1 |
+| Reason | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `not_scheduled` |
+|---|---|---|---|---|---|
+| `lookahead_found` | 2 | 0 | 15 | 0 | 43 |
+| `recursive_bias_found` | 0 | 3 | 17 | 14 | 13 |
+| `no_trades_in_full_measurement` | 0 | 0 | 10 | 0 | 1 |
 
-### `lookahead_found` - 53
+### `lookahead_found` - 60
 
 Reads data it could not have had at the time.
+
+Wave `A_pending_diagnostics` - 2:
+
+`HyperStra_GSN_SMAOnly`, `kalthetank`
 
 Wave `C_measurement_recovery` - 15:
 
@@ -3067,37 +3070,21 @@ Wave `C_measurement_recovery` - 15:
 `NostalgiaForInfinityNext_maximizer`, `NostalgiaForInfinityV7_7_2`, `NostalgiaForInfinityXw`, `Obelisk_Ichimoku_Slow_v1_3`
 `Obelisk_Ichimoku_ZEMA_v1`, `Stinkfist`, `ichiV1_Marius`
 
-Wave `not_scheduled` - 38:
+Wave `not_scheduled` - 43:
 
 `AlexBTK_CT`, `AlexBattleTankKiller`, `AlexBattleTankKillerV3`, `AlexBattleTankKillerV40H`
 `Auto_EI_t4c0s`, `BBBreakoutStrategy`, `BB_RPB_TSL_c7c477d_20211030`, `BreakoutStrategy`
 `BuyAllSellAllStrategy`, `CCIStrategy`, `Cci`, `EI1_t4c0s_V4`
 `EI4_t4c0s_V2`, `EI4_t4c0s_V2_2`, `ElliotWave`, `FVGAdvancedStrategy_V2`
-`FakeoutStrategy`, `Heracles`, `HyperStra_SMAOnly`, `IchiVwapAdx`
-`MaxSharpePortfolio`, `MinimumVariancePortfolio`, `MomentumRegimeBasket`, `NOTankAi_15`
-`NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`, `NOTankAi_17`, `NOTankAi_19`
-`NostalgiaForInfinityX5`, `NostalgiaForInfinityX6`, `PolymarketPortfolio`, `Precognition`
-`RsiquiV2`, `RsiquiV5`, `TSPredict`, `Zeus`
-`custom`, `tsp0chicken`
+`FakeoutStrategy`, `FrayLIVEBTC15m`, `FrostAuraRandomStrategy`, `HEW`
+`Heracles`, `HyperStra_SMAOnly`, `Ichi`, `IchiVwapAdx`
+`IchimokuCloudStrategy`, `MaxSharpePortfolio`, `MinimumVariancePortfolio`, `MomentumRegimeBasket`
+`NOTankAi_15`, `NOTankAi_15_Cleaned`, `NOTankAi_15_Cleaned_v2`, `NOTankAi_17`
+`NOTankAi_19`, `NostalgiaForInfinityX5`, `NostalgiaForInfinityX6`, `PolymarketPortfolio`
+`Precognition`, `RsiquiV2`, `RsiquiV5`, `TSPredict`
+`Zeus`, `custom`, `tsp0chicken`
 
-### `technical_trap_found` - 40
-
-Carries a published backtesting trap.
-
-Wave `not_scheduled` - 40:
-
-`ADXMomentum`, `BigPete`, `CBPete9`, `CombinedBinHAndClucHyper`
-`E0V1EN`, `EI3v2_tag_cofi_green`, `ElliotV8_original`, `ElliotV8_original_ichiv2`
-`ElliotV8_original_ichiv2OH`, `ElliotV8_original_ichiv3`, `Elliotv8`, `FastSupertrend_optim3`
-`FastSupertrend_optim3_rsi_70`, `FastSupertrend_optim3_rsi_75`, `FastSupertrend_optim3_rsi_752`, `FastSupertrend_optim3_rsi_75fix`
-`FastSupertrend_optim3_rsi_75fix_signal`, `FastSupertrend_optim3_rsi_75lev`, `FastSupertrend_optim3_rsi_75sell`, `FastSupertrend_optim3_rsi_80`
-`FastSupertrend_optim_quick`, `FastSupertrend_optim_quick2`, `FastSupertrend_optim_quick3`, `FastSupertrend_optim_quick4`
-`FastSupertrend_optim_quick5`, `NASOSv4`, `NASOSv5_mod1`, `NASOSv5_mod1_DanMod`
-`NASOSv5_mod2`, `NASOSv5_mod3`, `PrawnstarOBV`, `SMAIP3v2`
-`SimpleHopt1Along`, `SimpleHopt1Ashort`, `SimpleHoptS`, `WTX3`
-`XebTradeStrat`, `ichi`, `tesla4`, `tesla7`
-
-### `recursive_bias_found` - 49
+### `recursive_bias_found` - 47
 
 Indicator value still drifts at every warm-up the ladder can reach.
 
@@ -3105,13 +3092,13 @@ Wave `B_warmup_refusal` - 3:
 
 `ForexRobootSuperScalper`, `HSI`, `Macd`
 
-Wave `C_measurement_recovery` - 18:
+Wave `C_measurement_recovery` - 17:
 
 `ARIMASTR`, `BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`
 `BB_RPB_TSL_BI`, `BB_RPB_TSL_BIV1`, `BB_RPB_TSL_SMA_Tranz`, `BB_RPB_TSL_SMA_Tranz_TB_1_1_1`
 `BB_RPB_TSL_SMA_Tranz_TB_MOD`, `GeneStrategy`, `GeneStrategy_v2`, `GeneTrader_gen10_1734895087_6007`
-`GeneTrader_gen5_1735014093_4541`, `KitchenSink`, `MultiMA_TSL3_Mod`, `falconTrader`
-`newstrategy53`, `newstrategy53_22`
+`GeneTrader_gen5_1735014093_4541`, `KitchenSink`, `falconTrader`, `newstrategy53`
+`newstrategy53_22`
 
 Wave `D_recursive_drift` - 14:
 
@@ -3120,12 +3107,12 @@ Wave `D_recursive_drift` - 14:
 `ClucHAnix_BB_RPB_MOD_CTT`, `ClucHAnix_BB_RPB_MOD_E0V1E_ROI`, `ObvTrendStrategy`, `flawless_lambo`
 `lambotest`, `tacos`
 
-Wave `not_scheduled` - 14:
+Wave `not_scheduled` - 13:
 
 `BcmbigzV1`, `BeastBotXBLR6`, `BeastBotXBLR7`, `BigZ04`
 `GKD_CT`, `GoldHedgeZeroMACD`, `HurstCycle7`, `HurstCycleV5RSI`
-`HurstCycleV6`, `NostalgiaForInfinityX7`, `NotAnotherSMAOffSetStrategy_V2`, `TrendFollowingStrategy`
-`TrendRiderStrategy`, `pcb20`
+`HurstCycleV6`, `NostalgiaForInfinityX7`, `TrendFollowingStrategy`, `TrendRiderStrategy`
+`pcb20`
 
 ### `no_trades_in_full_measurement` - 11
 
@@ -3156,18 +3143,18 @@ Wave `not_scheduled` - 1:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 143 |
-| `lookahead_remeasure_pending` | 122 |
+| `recursive_ladder_pending` | 217 |
+| `lookahead_remeasure_pending` | 156 |
 | `first_measurement_in_current_runtime` | 60 |
 | `needs_a_look` | 56 |
-| `convergence_not_converged_within_ladder` | 54 |
+| `convergence_not_converged_within_ladder` | 52 |
 | `refuse_repair` | 21 |
 | `repair_attempted` | 16 |
 | `convergence_inconclusive` | 8 |
 | `full_window_measurement_pending` | 5 |
 | `repair_withdrawn` | 4 |
+| `paired_full_window_equivalence` | 3 |
 | `to_be_fixed` | 2 |
-| `paired_full_window_equivalence` | 2 |
 
 Per-row detail, including every evidence path, is in
 `STRATEGY_STATUS.csv`.

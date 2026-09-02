@@ -464,6 +464,12 @@ def resolve(row, timeout):
                           "from_strategy": from_strategy}
                          for startup, from_strategy in columns]
     record["drifts"] = {name: values for name, values in sorted(rows.items())}
+    # Columns the analyzer could not put a number on at any rung are set aside
+    # from the decision, and named here so the record says so rather than
+    # quietly dropping them. See profile_bias.settled_startup.
+    blind = profile_bias.undefined_throughout(output)
+    if blind:
+        record["undefined_throughout"] = blind
     declared = next((index for index, (_s, from_strategy)
                      in enumerate(columns) if from_strategy), None)
     if declared is not None:
@@ -478,6 +484,9 @@ def resolve(row, timeout):
         largest = columns[-1][0]
         record["why"] = ("no startup up to %d candles keeps every indicator "
                          "inside %s%%" % (largest, DRIFT_THRESHOLD_PCT))
+        if blind:
+            record["why"] += (" (%s set aside: unreadable at every rung)"
+                              % ", ".join(blind))
         return record
     startup, indicator, value = settled
     record["state"] = "converged"
