@@ -30582,6 +30582,38 @@
       "timerange": "20200301-20200401",
       "why": "Insufficient data points for FFT: 53."
     },
+    "HurstCycleV5": {
+      "available_prefix_candles": 616,
+      "cohort": "recursive_unsettled",
+      "debug_log": "user_data/convergence_logs/HurstCycleV5-ladder.log",
+      "declared_warmup_override": 168,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 68.0,
+      "file_derived_period": 150,
+      "implementation_id": "HurstCycleV5:07b26bff1c85",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/HurstCycleV5_startup_168.json --strategy HurstCycleV5 --strategy-path user_data/profile_bias_strategies/HurstCycleV5 --timerange 20200301-20200401 --no-color --startup-candle 168 336",
+      "ladder_candles": [
+        168,
+        336
+      ],
+      "ladder_days": [
+        7,
+        14
+      ],
+      "ladder_rungs_dropped_as_uncomputable": [
+        24,
+        48
+      ],
+      "output_sha256": "sha256_1c13b05a6a8f2ee8198695a63aff2e73657f3ba5f77213b9239b32dbd975c915",
+      "returncode": 1,
+      "run_profile": "futures_long_short",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "inconclusive",
+      "strategy_id": "HurstCycleV5",
+      "timeframe": "1h",
+      "timerange": "20200301-20200401",
+      "why": "Insufficient data points for FFT: 179. Need at least 250 data points."
+    },
     "INSIDEUP": {
       "available_prefix_candles": 339,
       "chosen_ladder_days": 90,

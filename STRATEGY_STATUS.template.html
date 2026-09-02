@@ -259,6 +259,7 @@
       </table>
       <div class="empty" id="empty" hidden>No row matches these filters.</div>
     </div>
+    <p class="note"><strong>A finding at either gate is disqualifying, and the table cannot say otherwise.</strong> The selftest refuses to let a row with a look-ahead or recursion <code>FOUND</code> sit among the admitted or the convergence candidates, and a recursion finding the ladder confirmed \u2014 every rung run, the drift still there \u2014 must be an excluded row, never an open one. <code>NA</code> is a different thing entirely: the gate ran and returned nothing, and the reason is printed under the row.</p>
     <p class="note">Click a column header to sort. A gate reads <code>–</code> when there is <em>no verdict bound to this implementation</em>: either it has not been re-measured, or the only verdict available comes from the original sweep. Hover any cell for the detail.</p>
     <p class="note"><strong>The 152 rows that never ran, and what has become of them.</strong> Freqtrade reports most load failures as <code>Impossible to load Strategy 'X'</code>, which names none of the three things it could be, so each file was imported directly in the pinned runtime and the real exception recorded. Two repair routes have run since. <b>40 are repaired</b> and now produce measurements — 38 declared their timeframe under freqtrade's pre-2021.4 name, 2 needed only their own helper module put back on the import path. <b>6</b> were repaired past their original obstacle and now fail on something else, which is its own message rather than a mask. <b>4</b> repairs were <b>withdrawn</b>: the only corpus copy of their helper sits in a directory carrying its own <code>freqtrade/</code>, which shadows the installed package. <b>28</b> remain to be fixed, <b>59</b> need a look — chiefly 20 importing a third-party package absent from the pinned image — and <b>15</b> are refused, either because the strategy declares no stoploss or no exit logic, or because no timeframe can be recovered without inventing one. The full list is <code>REPAIR_LIST.md</code>.</p>
     <p class="note"><strong>Excluded is a verdict, and it is not issued on somebody else's measurement or on the absence of one.</strong> Going through all 377 rows that carried it: <b>110</b> rest on a disqualifying result measured here from that implementation, and <b>152</b> never ran at all, so nothing about them was judged. The other <b>115</b> — <b>43</b> on a verdict inherited from the original sweep, <b>72</b> on no disqualifying result whatever — have been moved to <b>exclusion unconfirmed</b> and are held there until a measurement of ours settles them. Nothing is hidden by the change of name: the decisive reason and the badge stay on the row, and the work that would settle it is queued. The selftest now fails if anything reaches <code>excluded</code> on borrowed or absent evidence.</p>
@@ -526,6 +527,7 @@
        ['<span class="gate g-BAND">PASS*</span>', "Inside the widened 1 percent band but not the original 0.01 percent."],
        ['<span class="gate g-WARM">warm-up</span>', "The analyzer declined the row because the strategy declares no warm-up. It never compared anything: a missing precondition, not detected bias."],
        ['<span class="gate g-NA">superseded</span>', "Measured here at a supplied warm-up, but under the reader that took the wrong column of the drift table. That run kept no log and cannot be re-read."],
+       ['<span class="gate g-NA">NA</span>', "The gate ran here and produced no verdict \u2014 a timeout, an exception, or too few trades in the window. Not a finding, and not \u201cnever measured\u201d either: the reason is printed under the row."],
        ['<span class="gate g-NA">&#8211;</span>', "No verdict bound to this implementation \u2014 either not measured, or the only verdict available comes from the original sweep."]
      ]}
   ];
@@ -588,6 +590,10 @@
     body.innerHTML = list.map(function(r){
       var co = COHORT[r.c] || {label:r.c, cls:"k-none"};
       var reason = REASON_TEXT[r.n] || r.n || "–";
+      if(r.gn){
+        reason += '<span class="msg" style="white-space:normal" title="'+
+          esc(r.gn)+'">'+esc(r.gn)+'</span>';
+      }
       if(r.rs2){
         reason += '<span class="msg" style="white-space:normal" title="'+
           esc(r.rs2)+'">settings &middot; '+esc(r.rs2)+'</span>';

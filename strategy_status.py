@@ -97,7 +97,7 @@ FIELDS = [
     "observed_trades", "trade_evidence", "lookahead", "lookahead_evidence",
     "recursive", "recursive_evidence", "coverage_status", "traps_n", "artifact_role",
     "baseline_status", "primary_reason", "exclusion_basis",
-    "repair_family", "repair_verdict", "repair_settings",
+    "repair_family", "repair_verdict", "repair_settings", "gate_notes",
     "runtime_failure", "evidence_gap",
     "last_tested_at",
     "last_tested_source", "settled_startup", "settled_days", "settled_drift_pct",
@@ -509,11 +509,19 @@ def rows():
     # A native re-measurement outranks whatever PROFILE_BIAS or the baseline
     # holds: it is the same gate, measured later, from this implementation.
     remeasured = {}
+    # Separately: every row a gate of ours has been run against, verdict or
+    # not. An NA is not a verdict, but it is emphatically not "never measured
+    # here" either - the run happened, it produced nothing, and the reason is
+    # worth showing. Recording it as `missing` said the opposite of the truth
+    # for 22 convergence candidates.
+    attempted_gate = {}
     for store in LOOKAHEAD_STORES:
         for name, record in _json(store).items():
             gate = record.get("lookahead") or {}
             if gate.get("status") in ("PASS", "FOUND"):
                 remeasured[name] = gate
+            elif gate.get("status"):
+                attempted_gate.setdefault(name, gate)
 
     out = []
     for strategy in sorted(profiles):
@@ -548,8 +556,12 @@ def rows():
                 diagnostics[gate] = repair_run[gate]
         fresh = remeasured.get(strategy)
         lookahead = (fresh or diagnostics.get("lookahead") or {}).get("status")             or base.get("lookahead") or ""
-        lookahead_evidence = ("native" if (fresh or diagnostics.get("lookahead"))
-                              else (base.get("lookahead_evidence_source") or "missing"))
+        tried = attempted_gate.get(strategy)
+        lookahead_evidence = (
+            "native" if (fresh or diagnostics.get("lookahead") or tried)
+            else (base.get("lookahead_evidence_source") or "missing"))
+        if not lookahead and tried:
+            lookahead = tried.get("status") or ""
         recursive = ((diagnostics.get("recursive") or {}).get("status")
                      or base.get("recursive") or "")
         # Where a verdict comes from decides whether it may be shown as one.
@@ -874,6 +886,15 @@ def rows():
             "exclusion_basis": basis,
             "repair_family": repair.get("family", ""),
             "repair_verdict": repair.get("verdict", ""),
+            "gate_notes": "; ".join(part for part in (
+                ("lookahead NA: " + ((fresh or tried
+                                      or diagnostics.get("lookahead")
+                                      or {}).get("why") or "no record")[:110])
+                if lookahead == "NA" else "",
+                ("recursive NA: " + ((diagnostics.get("recursive")
+                                      or settled or {}).get("why")
+                                     or "no record")[:110])
+                if recursive == "NA" else "") if part),
             "repair_settings": "; ".join(
                 part for part in (repair_settings(class1_entry, repair_run),
                                   repair.get("settings_extra", "")) if part),
@@ -1279,9 +1300,15 @@ def selftest():
                 row["strategy_id"]
         # A look-ahead finding disqualifies a row whatever its warm-up does.
         # Convergence is about recursion and answers a different question.
-        if row["lookahead"] == "FOUND":
-            assert row["cohort"] not in ("convergence_candidate",
-                                         "E0_strict67", "E1_expanded"), \
+        for gate in ("lookahead", "recursive"):
+            if row[gate] == "FOUND":
+                assert row["cohort"] not in ("convergence_candidate",
+                                             "E0_strict67", "E1_expanded"), \
+                    (row["strategy_id"], gate, row["cohort"])
+        # A recursion finding the ladder confirmed - it ran every rung and the
+        # drift stayed - is a closed case, never an open question.
+        if row["recursive_evidence"] == "convergence:not_settled":
+            assert row["cohort"] in ("excluded", "exclusion_unconfirmed"), \
                 (row["strategy_id"], row["cohort"])
         # A row the ladder settled must not still carry the superseded verdict.
         if row["cohort"] == "convergence_candidate":

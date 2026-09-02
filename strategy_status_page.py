@@ -52,6 +52,7 @@ FIELDS = {
     "rv": "repair_verdict",
     "rf": "repair_family",
     "rs2": "repair_settings",
+    "gn": "gate_notes",
 }
 
 
