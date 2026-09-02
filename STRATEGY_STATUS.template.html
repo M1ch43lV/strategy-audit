@@ -220,7 +220,7 @@
     <h2>Distribution</h2>
     <div class="dist" id="dist"></div>
     <div class="distkey" id="distkey"></div>
-    <p class="note"><strong>427 strategies are usable today</strong> \u2014 the 67 of the frozen baseline plus 360 admitted since. As of 2026-09-02 a row is admitted when it clears both bias gates at a warm-up that settles its indicators: look-ahead <code>PASS</code> measured here, recursion settled by the ladder, coverage <code>PASS</code>, trap-free. The preregistration previously routed a settled row whose trade list changed under that warm-up to exploratory rather than admitted; that requirement is retired, because the aim is the mathematically clean result under the current freqtrade rather than a reproduction of what an author once ran. Fewer trades, or more, is the consequence of measuring properly.</p>
+    <p class="note"><strong>443 strategies are usable today</strong> \u2014 the 67 of the frozen baseline plus 376 admitted since. As of 2026-09-02 a row is admitted when it clears both bias gates at a warm-up that settles its indicators: look-ahead <code>PASS</code> measured here, recursion settled by the ladder, coverage <code>PASS</code>, trap-free. The preregistration previously routed a settled row whose trade list changed under that warm-up to exploratory rather than admitted; that requirement is retired, because the aim is the mathematically clean result under the current freqtrade rather than a reproduction of what an author once ran. Fewer trades, or more, is the consequence of measuring properly.</p>
     <p class="note"><strong>What that costs, stated plainly.</strong> The retired paired run was the only test separating a repaired row from a reconfigured one. Of the 26 it had already decided, 13 produced an identical trade list and 13 did not \u2014 <code>SlowPotato</code> 1,835 against 1,899, <code>JuicyTrend</code> 13,698 against 13,607. So a market-phase number here cannot be assumed to be what the author's own configuration would have produced. Every admitted row therefore records the warm-up it was measured at and whether that value is at or below the author's own: 2 needed no supplied warm-up, 126 declare none at all, and 226 declare one that runs and was overridden.</p>
     <p class="note"><strong>Nothing here is untested, and nothing here is cleared by the original sweep.</strong> The audit's first pass ran in an environment that did not establish the preconditions this one requires, so its verdicts are provenance and hints, never evidence. Rows marked <span class="flag">inherited</span> are admitted on a look-ahead verdict from that sweep and are queued for native re-measurement.</p>
   </section>
@@ -293,7 +293,7 @@
 
   <footer>
     <div>Generated from <code>STRATEGY_STATUS.csv</code> by <code>strategy_status.py</code>. The frozen baseline <code>REGIME_ELIGIBILITY.csv</code> is never regenerated; the difference between it and this table is the expansion.</div>
-    <div>Snapshot — the look-ahead backfill was still running when this was generated, so the native look-ahead count is still rising.</div>
+    <div>Snapshot of 2026-09-02. Look-ahead is measured natively on 588 rows, from 53 at the start of the session. The warm-up ladder has 481 records, 418 settled. What remains open is listed per row in <code>open_work</code>.</div>
   </footer>
 </div>
 
