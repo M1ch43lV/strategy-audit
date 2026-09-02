@@ -67,6 +67,51 @@ no measurement carry the exception their card recorded. And it must not fold a
 missing verdict into a failure - `no_verdict_on_*` is a statement about this
 audit, not about the strategy.
 
+### Every row carries the parameters it was run with - standing obligation
+
+**A verdict whose call cannot be shown is not a reproducible result.** Every
+row therefore carries the freqtrade invocation for each gate it has:
+`cmd_backtest`, `cmd_lookahead`, `cmd_recursive`. They are separate columns
+because the three calls differ in more than their subcommand - the bias gates
+run against a config forcing `price_side=other`, a backtest uses the plain one
+and adds `--fee 0.001 --export trades --cache none` - so a single column could
+only ever show one of them and silently drop the rest.
+
+Rules for anything that adds or changes a run:
+
+1. **A new runner records its argv.** Put the rendered command in the record it
+   writes (`profile_smoke._invocation(command)` does the rendering) and append
+   the call and its console output with `runlog.append`. A run that stores
+   neither cannot be repeated and does not count.
+2. **A new store gets read.** `strategy_status.py` must load it, or the verdicts
+   in it never reach the table. This failed five times in one session - each
+   time the table looked current and was not - so after adding a store, check
+   that its rows appear with the evidence you expect.
+3. **A reconstruction is labelled and must actually run.** `[recorded]` is the
+   argv that ran; `[reconstructed]` is derived and is a weaker claim. A
+   reconstruction must still be executable: it names
+   `user_data/profile_bias_strategies/<strategy>` for the gates, because
+   freqtrade's resolver imports every file beside the one it wants and a
+   neighbour that raises at import time takes the run with it.
+4. **A repaired row states what the repair needs.** `repair_settings` carries
+   the rules, config, model and environment - including what cannot go on a
+   command line, such as `PYTHONPATH` additions, `PROFILE_FREQTRADE_PATH` and
+   `PROFILE_COMPAT_SIGNATURES`, and a recovered timeframe that otherwise lives
+   only in a generated config nobody could guess. The selftest fails if a
+   repaired row states neither its settings nor a recorded call.
+
+Check it the same way every time - take a row's printed command, run it
+verbatim in the pinned image, and see that it completes:
+
+```bash
+python -c "import csv,io; rows={r['strategy_id']:r for r in csv.DictReader(io.open('STRATEGY_STATUS.csv',newline='',encoding='utf-8-sig'))}; print(rows['ADX_15M_USDT']['cmd_lookahead'])"
+```
+
+This obligation exists because the reconstructions were wrong twice in one
+evening: they dropped the repair, so following them reproduced the original
+failure and read as the strategy's fault; and they named the repository
+directory rather than the isolated one, so they failed on a neighbouring file.
+
 ## Plan pointer
 
 - File: `strategy-audit/ELIGIBILITY_EXPANSION_PLAN.md`
