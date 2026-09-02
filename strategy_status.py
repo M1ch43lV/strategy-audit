@@ -527,6 +527,26 @@ def rows():
         repair_source.setdefault(name, "freqai_model")
     for name in _json(FREQAI_WTAI):
         repair_source.setdefault(name, "freqai_config_built")
+    # A shim registered in PROFILE_CLASS1 but not carried by any
+    # measurement store is still a repair that was applied to that row.
+    # Without this the 14 rows the enter_tag shim answers showed their
+    # rule in `repair_settings` and nothing in `repair_family` - the
+    # settings said what was done and the family said nothing was.
+    SHIM_FAMILY = {
+        "legacy_min_roi_reached_entry_signature": "framework_compat_shim",
+        "whitespace_tolerant_class_scan": "framework_compat_shim",
+        "idempotent_entry_tag_initialisation": "framework_compat_shim",
+        "lookahead_runmode_reports_backtest": "framework_compat_shim",
+        "restore_copied_local_module": "local_module_off_path",
+        "datetime_safe_rmi_fillna": "dtype_drift",
+    }
+    for name, entry in (_json(CLASS1, "strategies") or {}).items():
+        if entry.get("status") not in ("applied", "partial"):
+            continue
+        for rule in entry.get("rules") or []:
+            if rule in SHIM_FAMILY:
+                repair_source.setdefault(name, SHIM_FAMILY[rule])
+                break
     # A route that has declined a row, with a reason, has decided it. Leaving
     # such a row on "to be fixed" promises work that will never be done.
     refused_timeframe = _json(TIMEFRAME_REPAIR, "refused")
@@ -961,6 +981,15 @@ def rows():
             repair["verdict"] = "to_be_fixed"
             repair["note"] = fault.get("why", "")
             repair["settings_extra"] = "would fix it: " + fault.get("fix", "")
+        # What a shim earned depends on whether the check it unblocks has
+        # since run. A native verdict means the repair did its job; no
+        # verdict yet means the route is known and the run is still owed.
+        if repair.get("family") == "framework_compat_shim" \
+                and not repair.get("verdict"):
+            repair["verdict"] = (
+                "repaired"
+                if lookahead_evidence == "native"
+                and lookahead in ("PASS", "FOUND") else "to_be_fixed")
         if strategy in refused_repair:
             repair["verdict"] = "refuse_repair"
             repair["note"] = refused_repair[strategy]

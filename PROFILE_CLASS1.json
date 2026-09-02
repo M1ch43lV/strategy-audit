@@ -76,65 +76,74 @@
       "status": "partial"
     },
     "CryptoFrog": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched. caches per-candle series in `custom_trade_info` inside `populate_indicators`, under the author's guard `if self.dp.runmode.value in ('backtest', 'hyperopt')`, and reads them back in `min_roi_reached_dynamic`. freqtrade registers the lookahead command as `setup_utils_configuration(args, RunMode.UTIL_NO_EXCHANGE)`, so under `lookahead-analysis` that guard is false, nothing is cached, and the strategy raises `KeyError: 'rmi-up-trend'` the moment its dynamic ROI is consulted. The analyzer does build a Backtesting object and run `backtest()` over real candles - it IS a backtest, and only its runmode label says otherwise. The shim rewrites UTIL_NO_EXCHANGE to BACKTEST on `DataProvider.runmode` alone, leaves `self.config['runmode']` untouched, and passes every other runmode through unchanged. No strategy source is touched.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
     "CryptoFrogHO": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched. caches per-candle series in `custom_trade_info` inside `populate_indicators`, under the author's guard `if self.dp.runmode.value in ('backtest', 'hyperopt')`, and reads them back in `min_roi_reached_dynamic`. freqtrade registers the lookahead command as `setup_utils_configuration(args, RunMode.UTIL_NO_EXCHANGE)`, so under `lookahead-analysis` that guard is false, nothing is cached, and the strategy raises `KeyError: 'rmi-up-trend'` the moment its dynamic ROI is consulted. The analyzer does build a Backtesting object and run `backtest()` over real candles - it IS a backtest, and only its runmode label says otherwise. The shim rewrites UTIL_NO_EXCHANGE to BACKTEST on `DataProvider.runmode` alone, leaves `self.config['runmode']` untouched, and passes every other runmode through unchanged. No strategy source is touched.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
     "CryptoFrogHO2": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched. caches per-candle series in `custom_trade_info` inside `populate_indicators`, under the author's guard `if self.dp.runmode.value in ('backtest', 'hyperopt')`, and reads them back in `min_roi_reached_dynamic`. freqtrade registers the lookahead command as `setup_utils_configuration(args, RunMode.UTIL_NO_EXCHANGE)`, so under `lookahead-analysis` that guard is false, nothing is cached, and the strategy raises `KeyError: 'rmi-up-trend'` the moment its dynamic ROI is consulted. The analyzer does build a Backtesting object and run `backtest()` over real candles - it IS a backtest, and only its runmode label says otherwise. The shim rewrites UTIL_NO_EXCHANGE to BACKTEST on `DataProvider.runmode` alone, leaves `self.config['runmode']` untouched, and passes every other runmode through unchanged. No strategy source is touched.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
     "CryptoFrogHO2A": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched. caches per-candle series in `custom_trade_info` inside `populate_indicators`, under the author's guard `if self.dp.runmode.value in ('backtest', 'hyperopt')`, and reads them back in `min_roi_reached_dynamic`. freqtrade registers the lookahead command as `setup_utils_configuration(args, RunMode.UTIL_NO_EXCHANGE)`, so under `lookahead-analysis` that guard is false, nothing is cached, and the strategy raises `KeyError: 'rmi-up-trend'` the moment its dynamic ROI is consulted. The analyzer does build a Backtesting object and run `backtest()` over real candles - it IS a backtest, and only its runmode label says otherwise. The shim rewrites UTIL_NO_EXCHANGE to BACKTEST on `DataProvider.runmode` alone, leaves `self.config['runmode']` untouched, and passes every other runmode through unchanged. No strategy source is touched.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
     "CryptoFrogHO3A1": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched. caches per-candle series in `custom_trade_info` inside `populate_indicators`, under the author's guard `if self.dp.runmode.value in ('backtest', 'hyperopt')`, and reads them back in `min_roi_reached_dynamic`. freqtrade registers the lookahead command as `setup_utils_configuration(args, RunMode.UTIL_NO_EXCHANGE)`, so under `lookahead-analysis` that guard is false, nothing is cached, and the strategy raises `KeyError: 'rmi-up-trend'` the moment its dynamic ROI is consulted. The analyzer does build a Backtesting object and run `backtest()` over real candles - it IS a backtest, and only its runmode label says otherwise. The shim rewrites UTIL_NO_EXCHANGE to BACKTEST on `DataProvider.runmode` alone, leaves `self.config['runmode']` untouched, and passes every other runmode through unchanged. No strategy source is touched.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
     "CryptoFrogHO3A2": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched. caches per-candle series in `custom_trade_info` inside `populate_indicators`, under the author's guard `if self.dp.runmode.value in ('backtest', 'hyperopt')`, and reads them back in `min_roi_reached_dynamic`. freqtrade registers the lookahead command as `setup_utils_configuration(args, RunMode.UTIL_NO_EXCHANGE)`, so under `lookahead-analysis` that guard is false, nothing is cached, and the strategy raises `KeyError: 'rmi-up-trend'` the moment its dynamic ROI is consulted. The analyzer does build a Backtesting object and run `backtest()` over real candles - it IS a backtest, and only its runmode label says otherwise. The shim rewrites UTIL_NO_EXCHANGE to BACKTEST on `DataProvider.runmode` alone, leaves `self.config['runmode']` untouched, and passes every other runmode through unchanged. No strategy source is touched.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
     "CryptoFrogHO3A3": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched. caches per-candle series in `custom_trade_info` inside `populate_indicators`, under the author's guard `if self.dp.runmode.value in ('backtest', 'hyperopt')`, and reads them back in `min_roi_reached_dynamic`. freqtrade registers the lookahead command as `setup_utils_configuration(args, RunMode.UTIL_NO_EXCHANGE)`, so under `lookahead-analysis` that guard is false, nothing is cached, and the strategy raises `KeyError: 'rmi-up-trend'` the moment its dynamic ROI is consulted. The analyzer does build a Backtesting object and run `backtest()` over real candles - it IS a backtest, and only its runmode label says otherwise. The shim rewrites UTIL_NO_EXCHANGE to BACKTEST on `DataProvider.runmode` alone, leaves `self.config['runmode']` untouched, and passes every other runmode through unchanged. No strategy source is touched.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
     "CryptoFrogHO3A4": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched. caches per-candle series in `custom_trade_info` inside `populate_indicators`, under the author's guard `if self.dp.runmode.value in ('backtest', 'hyperopt')`, and reads them back in `min_roi_reached_dynamic`. freqtrade registers the lookahead command as `setup_utils_configuration(args, RunMode.UTIL_NO_EXCHANGE)`, so under `lookahead-analysis` that guard is false, nothing is cached, and the strategy raises `KeyError: 'rmi-up-trend'` the moment its dynamic ROI is consulted. The analyzer does build a Backtesting object and run `backtest()` over real candles - it IS a backtest, and only its runmode label says otherwise. The shim rewrites UTIL_NO_EXCHANGE to BACKTEST on `DataProvider.runmode` alone, leaves `self.config['runmode']` untouched, and passes every other runmode through unchanged. No strategy source is touched.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
     "CryptoFrog_nateema": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. Those two are read only when use_custom_roi is set, which these predate, so the adapter fills them with None and the computed ROI is identical. The adapter raises rather than guessing if a caller does set use_custom_roi. No strategy source is touched. caches per-candle series in `custom_trade_info` inside `populate_indicators`, under the author's guard `if self.dp.runmode.value in ('backtest', 'hyperopt')`, and reads them back in `min_roi_reached_dynamic`. freqtrade registers the lookahead command as `setup_utils_configuration(args, RunMode.UTIL_NO_EXCHANGE)`, so under `lookahead-analysis` that guard is false, nothing is cached, and the strategy raises `KeyError: 'rmi-up-trend'` the moment its dynamic ROI is consulted. The analyzer does build a Backtesting object and run `backtest()` over real candles - it IS a backtest, and only its runmode label says otherwise. The shim rewrites UTIL_NO_EXCHANGE to BACKTEST on `DataProvider.runmode` alone, leaves `self.config['runmode']` untouched, and passes every other runmode through unchanged. No strategy source is touched.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },

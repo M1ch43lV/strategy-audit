@@ -10,10 +10,11 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 |---|---:|---|
 | `repaired` | 54 | runs now, and the run is recorded |
 | `repair_attempted` | 18 | a route was applied and did not finish the job |
-| `to_be_fixed` | 6 | the route is known, the run has not happened yet |
+| `to_be_fixed` | 20 | the route is known, the run has not happened yet |
 | `needs_a_look` | 56 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 4 | the repair made things worse and was undone |
 | `refuse_repair` | 22 | repairing it would mean inventing the strategy |
+| `-` | 6 |  |
 
 ## Routes taken
 
@@ -37,30 +38,50 @@ Tool: `eligibility_timeframe_repair.py`.
 
 For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `BBRSIS`, `BBRSIoriginal`, `BB_RSI`.
 
-### Two compatibility shims for freqtrade's own changes
+### Four compatibility shims for freqtrade's own behaviour
 
-`repair_family: framework_compat_shim` &mdash; 14 strategies (repaired 12, repair_attempted 2)
+`repair_family: framework_compat_shim` &mdash; 28 strategies (repaired 12, repair_attempted 2, to_be_fixed 14)
 
 **The message.**
 
 ```
 IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'
 Impossible to load Strategy '<Name>'. This class does not exist or contains Python code errors.
+ValueError: cannot reindex on an axis with duplicate labels
+KeyError: 'rmi-up-trend'
 ```
 
-**What it actually was.** Two unrelated changes inside freqtrade. The ROI hook gained two parameters, so a strategy calling the old one-argument form crashes. And `IResolver._search_object` decides whether to import a file by scanning its text for the literal `class <Name>(` - a single space before the bracket makes freqtrade skip the file entirely and report it as though the class were absent.
+**What it actually was.** Four unrelated things inside freqtrade, none of them a defect in a strategy.
 
-**The repair.** `repair/compat_signature.py` installs two shims into freqtrade inside the runner process, named per strategy by `PROFILE_COMPAT_SIGNATURES`. `legacy_min_roi_reached_entry_signature` accepts the one-argument call and raises if the strategy sets `use_custom_roi`, which is the only case where the extra arguments change the answer. `whitespace_tolerant_class_scan` replaces the literal text scan with a regular expression that tolerates the space.
+1. The ROI hook gained two parameters, so a strategy calling the old one-argument form crashes.
 
-**Where it stops.** The second shim only changes which files freqtrade agrees to look at. If the class then fails to import for a real reason, that reason surfaces unchanged.
+2. `IResolver._search_object` decides whether to import a file by scanning its text for the literal `class <Name>(`. A single space before the bracket makes freqtrade skip the file entirely and report it as though the class were absent.
+
+3. `advise_entry` initialises `enter_tag` to "" - its own workaround for a pandas bug - and then renames a legacy `buy_tag` onto that same name. Renaming relabels rather than merges, so the frame comes back with TWO `enter_tag` columns. An ordinary backtest calls the hook once and never notices; `lookahead-analysis` calls it twice on the same frame, and the second pass cannot align against a duplicate label.
+
+4. `start_lookahead_analysis` builds its config with `RunMode.UTIL_NO_EXCHANGE`, so a strategy that caches per-candle series under `if self.dp.runmode.value in ('backtest', 'hyperopt')` caches nothing and raises when it reads them back - even though the analyzer does build a Backtesting object and run `backtest()` over real candles.
+
+**The repair.** `repair/compat_signature.py` installs the shims into freqtrade inside the runner process, named per strategy by `PROFILE_COMPAT_SIGNATURES`.
+
+`legacy_min_roi_reached_entry_signature` accepts the one-argument call, and raises if the strategy sets `use_custom_roi` - the only case where the extra arguments change the answer.
+
+`whitespace_tolerant_class_scan` replaces the literal text scan with a regular expression that tolerates the space.
+
+`idempotent_entry_tag_initialisation` collapses the duplicate onto the last occurrence, which is the strategy's own tags rather than the empty placeholder, and returns a frame with one `enter_tag` untouched.
+
+`lookahead_runmode_reports_backtest` rewrites `UTIL_NO_EXCHANGE` to `BACKTEST` on `DataProvider.runmode` alone, leaving `self.config['runmode']` and every other runmode as they are.
+
+**Where it stops.** Each is scoped as narrowly as the defect it answers. The scan shim only widens which files freqtrade agrees to look at - a class that then fails to import for a real reason still fails. The runmode shim touches one property and cannot tell a live or dry run it is a backtest; the selftest checks every other runmode passes through.
+
+Neutrality of the `enter_tag` shim was measured rather than assumed. On `NotAnotherSMAOffsetStrategy`, `Apollo11`, `Saturn5`, `INSIDEUP`, `Dracula` and `tbtest` the entry signals and their tags are identical with and without it, on runs carrying 138, 147 and 1956 entries. `BinHV27_werkkrew`, which writes `buy` but no `buy_tag`, holds one `enter_tag` column and passes twice unshimmed - the control that identifies the rename as the cause.
 
 Tool: `repair/compat_signature.py`.
 
-For example: `Cenderawasih_30m`, `Cenderawasih_3_kucoin`, `CryptoFrog`, `CryptoFrogHO`, `CryptoFrogHO2`, `CryptoFrogHO2A`.
+For example: `Apollo11`, `Cenderawasih_30m`, `Cenderawasih_3_kucoin`, `CryptoFrog`, `CryptoFrogHO`, `CryptoFrogHO2`.
 
 ### The author's own module put back on the path
 
-`repair_family: local_module_off_path` &mdash; 17 strategies (repaired 2, repair_attempted 11, repair_withdrawn 4)
+`repair_family: local_module_off_path` &mdash; 23 strategies (repaired 2, repair_attempted 11, repair_withdrawn 4, - 6)
 
 **The message.**
 
@@ -76,7 +97,7 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `repair_local_modules.py`.
 
-For example: `AdvancedRiskFilterStrategy`, `BB_RPB_3c`, `BaseStrategy`, `BinanceStream`, `DWT`, `DWT_Leveraged`.
+For example: `AdvancedRiskFilterStrategy`, `BB_RPB_3c`, `BaseStrategy`, `BinanceStream`, `BuyRegions`, `DWT`.
 
 ### FreqAI strategies given the author's own configuration
 
@@ -335,6 +356,7 @@ For example: `Astro`, `BestSingleAssetPortfolio`, `CryptoFrogNFI2`, `GodStra`, `
 | `restore_author_package_extension` | 11 |
 | `restore_author_config` | 11 |
 | `legacy_min_roi_reached_entry_signature` | 9 |
+| `lookahead_runmode_reports_backtest` | 9 |
 | `whitespace_tolerant_class_scan` | 6 |
 | `datetime_safe_rmi_fillna` | 3 |
 | `freqai_config_from_author_block` | 2 |

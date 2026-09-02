@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 """Compatibility shims for framework changes the strategies predate.
 
-Three of them so far: a hook whose signature gained parameters, a file scan
-that assumes a formatting convention, and a column the framework duplicates
-when its own analyzer calls a hook twice. None is a defect in a strategy, and
-no shim touches a strategy file - they are installed into freqtrade in the
+Four of them so far. A hook whose signature gained parameters. A file scan
+that assumes a formatting convention. A column the framework duplicates when
+its own analyzer calls a hook twice. And an analyzer that announces itself as
+a utility while running a backtest. None is a defect in a strategy, and no
+shim touches a strategy file - they are installed into freqtrade in the
 runner process, only when PROFILE_COMPAT_SIGNATURES names them.
 
 --------------------------------------------------------------------------
@@ -209,9 +210,71 @@ def install_idempotent_advise_entry():
     return True
 
 
+RUNMODE_RULE = "lookahead_runmode_reports_backtest"
+
+
+def install_backtest_runmode_in_analysis():
+    """Report RunMode.BACKTEST to a strategy run by lookahead-analysis.
+
+    Nine strategies of the CryptoFrog family stop with
+
+        KeyError: 'rmi-up-trend'
+
+    raised from their own `min_roi_reached_dynamic`, which reads
+
+        self.custom_trade_info[trade.pair]['rmi-up-trend'].loc[current_time]
+
+    That cache is filled in `populate_indicators`, under the author's guard
+
+        if self.dp.runmode.value in ('backtest', 'hyperopt'):
+            self.custom_trade_info[pair]['rmi-up-trend'] = ...
+
+    and freqtrade builds the lookahead command with
+
+        config = setup_utils_configuration(args, RunMode.UTIL_NO_EXCHANGE)
+
+    (`commands/optimize_commands.py`, `start_lookahead_analysis`). So the guard
+    is false, nothing is cached, and the strategy raises the moment its dynamic
+    ROI is consulted. The author's code is correct; the analyzer simply
+    announces itself as something else.
+
+    THIS IS NOT A LIE TOLD TO THE STRATEGY. `lookahead-analysis` builds a
+    `Backtesting` object and runs `backtesting.backtest()` several times over
+    real candles. It IS a backtest; only the runmode label on the config says
+    otherwise, because the command was registered as a utility. The guard asks
+    "may I precompute a per-candle series for the whole run", and under this
+    analyzer the answer is yes.
+
+    Scope is deliberately narrow. Only `DataProvider.runmode` is affected, only
+    while `lookahead-analysis` is the entry point, and only for the strategies
+    PROFILE_COMPAT_SIGNATURES names. `self.config['runmode']` is left alone, so
+    a strategy reading the config directly sees the unchanged value and this
+    shim does nothing for it.
+    """
+    from freqtrade.data.dataprovider import DataProvider
+    from freqtrade.enums import RunMode
+
+    if getattr(DataProvider, "_lookahead_runmode_shim", False):
+        return True
+
+    original = DataProvider.runmode
+
+    @property
+    def runmode(self):
+        current = original.fget(self)
+        if current == RunMode.UTIL_NO_EXCHANGE:
+            return RunMode.BACKTEST
+        return current
+
+    DataProvider.runmode = runmode
+    DataProvider._lookahead_runmode_shim = True
+    return True
+
+
 INSTALLERS = {RULE: install_min_roi_reached_entry,
               SCAN_RULE: install_tolerant_class_scan,
-              ADVISE_RULE: install_idempotent_advise_entry}
+              ADVISE_RULE: install_idempotent_advise_entry,
+              RUNMODE_RULE: install_backtest_runmode_in_analysis}
 
 
 def install_from_environment():
@@ -331,6 +394,40 @@ def selftest():
             sys.modules["freqtrade.strategy.interface"] = saved
         else:
             sys.modules.pop("freqtrade.strategy.interface", None)
+
+    # The fourth shim: only UTIL_NO_EXCHANGE is rewritten, and only on the
+    # DataProvider. Every other runmode passes through untouched, so a live
+    # or dry run can never be told it is a backtest.
+    try:
+        from freqtrade.data.dataprovider import DataProvider
+        from freqtrade.enums import RunMode
+    except Exception as exc:
+        # Freqtrade is only importable inside the pinned runtime; on the host
+        # scipy's DLL is blocked. Say so rather than reporting a pass that
+        # skipped a check - run this selftest in the container to cover it.
+        print("compat_signature selftest: PASS "
+              "(runmode scope NOT checked here: %s)" % type(exc).__name__)
+        return
+    before = DataProvider.runmode
+    try:
+        assert install_backtest_runmode_in_analysis()
+
+        class FakeProvider(DataProvider):
+            def __init__(self, mode):
+                self._mode = mode
+
+        # `original.fget` reads self._config["runmode"]; drive it directly.
+        holder = DataProvider.__new__(DataProvider)
+        for mode, expected in ((RunMode.UTIL_NO_EXCHANGE, RunMode.BACKTEST),
+                               (RunMode.BACKTEST, RunMode.BACKTEST),
+                               (RunMode.DRY_RUN, RunMode.DRY_RUN),
+                               (RunMode.LIVE, RunMode.LIVE),
+                               (RunMode.HYPEROPT, RunMode.HYPEROPT)):
+            holder._config = {"runmode": mode}
+            assert holder.runmode == expected, (mode, holder.runmode)
+    finally:
+        DataProvider.runmode = before
+        DataProvider._lookahead_runmode_shim = False
 
     print("compat_signature selftest: PASS")
 
