@@ -30,12 +30,38 @@ import os
 import sys
 
 import profile_bias
+import profile_smoke
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 STATUS = os.path.join(ROOT, "STRATEGY_STATUS.csv")
 PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
 OUTPUT = os.path.join(ROOT, "ELIGIBILITY_LOOKAHEAD_BACKFILL.json")
+
+# Stores holding a repair run, so a repaired row is gated the way it was
+# measured. Without this the gate re-runs the row in its unrepaired state and
+# records the original failure as a look-ahead verdict - which it is not.
+REPAIR_STORES = (
+    os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json"),
+    os.path.join(ROOT, "ELIGIBILITY_MODULE_REPAIR.json"),
+    os.path.join(ROOT, "ELIGIBILITY_SIGNATURE_REPAIR.json"),
+    os.path.join(ROOT, "ELIGIBILITY_FREQAI_REPAIR.json"),
+    os.path.join(ROOT, "ELIGIBILITY_FREQAI_WTAI.json"),
+)
+
+
+def repair_overrides():
+    """Config keys a repaired row must be gated with, keyed by strategy."""
+    out = {}
+    for path in REPAIR_STORES:
+        if not os.path.exists(path):
+            continue
+        results = json.load(io.open(path, encoding="utf-8")).get("results", {})
+        for strategy, record in results.items():
+            overrides = record.get("config_overrides") or {}
+            if overrides:
+                out.setdefault(strategy, dict(overrides))
+    return out
 
 
 def _csv(path):
@@ -75,9 +101,19 @@ def cohort():
         # to `convergence_candidate` missed 21 rows that had settled and then
         # left the cohort precisely because their look-ahead verdict was
         # borrowed - the rows this route exists for.
-        if not row["recursive_evidence"].startswith("convergence:"):
+        # Two sources, one rule: a row that runs and has no look-ahead verdict
+        # of its own. Either the ladder settled it - the original arm - or the
+        # status table has queued it as `lookahead_remeasure_pending`, which is
+        # the same condition stated from the other end.
+        settled = row["recursive_evidence"].startswith("convergence:")
+        queued = "lookahead_remeasure_pending" in (row["open_work"] or "")
+        if not settled and not queued:
             continue
         if row["lookahead_evidence"] == "native":
+            continue
+        if row["measured"] != "true" or row["runtime_failure"]:
+            # A row that will not start cannot be gated; repairing it comes
+            # first and is tracked separately.
             continue
         if row["strategy_id"] not in profiles:
             continue
@@ -88,6 +124,7 @@ def cohort():
 def run(limit, timeout, fallback_timeout):
     rows = cohort()
     data = _load()
+    overrides = repair_overrides()
     pending = [row for row in rows if row["strategy_id"] not in data["results"]]
     if limit:
         pending = pending[:limit]
@@ -101,7 +138,10 @@ def run(limit, timeout, fallback_timeout):
                   "implementation_id": row["implementation_id"]}
         record.update(profile_bias.identity(row))
         record["lookahead"] = profile_bias.run_diagnostic(
-            row, "lookahead", timeout, fallback_timeout)
+            row, "lookahead", timeout, fallback_timeout,
+            config_overrides=overrides.get(strategy))
+        if overrides.get(strategy):
+            record["config_overrides"] = overrides[strategy]
         data["results"][strategy] = record
         _write(data)
         print("  %s — %s" % (record["lookahead"].get("status"),
@@ -122,7 +162,8 @@ def selftest():
     status = {r["strategy_id"]: r for r in _csv(STATUS)}
     for row in rows:
         entry = status[row["strategy_id"]]
-        assert entry["recursive_evidence"].startswith("convergence:"),             row["strategy_id"]
+        assert (entry["recursive_evidence"].startswith("convergence:")
+                or "lookahead_remeasure_pending" in (entry["open_work"] or "")),             row["strategy_id"]
         # A native verdict is never re-decided; only a gap is filled.
         assert entry["lookahead_evidence"] != "native", row["strategy_id"]
     native = sum(1 for r in status.values()
