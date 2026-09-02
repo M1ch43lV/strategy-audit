@@ -215,6 +215,25 @@ def recursion_only_rows():
     return rows
 
 
+def ladder_pending_rows():
+    """Every unfinished row the status table has queued for the ladder.
+
+    The older cohorts each name a specific historical shape. This one asks the
+    table itself what is still open, which is what makes it right for the 40
+    rows the trap heuristic used to exclude: they run and trade, they never
+    had a ladder run of ours, and nothing about their shape is historical -
+    they were simply never reached.
+    """
+    rows = []
+    for row in _csv(STATUS):
+        if row["cohort"] not in ("exclusion_unconfirmed", "pending"):
+            continue
+        if "recursive_ladder_pending" not in (row["open_work"] or ""):
+            continue
+        rows.append(row["strategy_id"])
+    return rows
+
+
 def unsettled_rows():
     """Rows whose recursion verdict was a refusal, not a measurement.
 
@@ -259,6 +278,8 @@ def cohort(name):
                   for row in eligibility_warmup.refusal_candidates()]
     elif name == "recursive_unsettled":
         wanted = unsettled_rows()
+    elif name == "ladder_pending":
+        wanted = ladder_pending_rows()
     elif name == "wave_b_static_rejected":
         wanted = list(WAVE_B_STATIC_REJECTED)
     elif name == "wave_d":
@@ -624,6 +645,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--cohort", default="recursion_only",
                         choices=("recursion_only", "wave_d", "wave_c_refusals",
+                                 "ladder_pending",
                                  "wave_b_static_rejected",
                                  "recursive_unsettled"))
     parser.add_argument("--limit", type=int, default=1)
