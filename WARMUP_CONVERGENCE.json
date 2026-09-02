@@ -30614,6 +30614,342 @@
       "timerange": "20200301-20200401",
       "why": "Insufficient data points for FFT: 179. Need at least 250 data points."
     },
+    "HurstCycleV5RSI": {
+      "available_prefix_candles": 616,
+      "cohort": "recursive_unsettled",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 168
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 336
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/HurstCycleV5RSI-ladder.log",
+      "declared_max_drift_pct": 613.516,
+      "declared_startup_candle_count": 168,
+      "declared_warmup_override": 168,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "cci": [
+          0.0,
+          0.0
+        ],
+        "cp": [
+          0.104,
+          0.046
+        ],
+        "crest": [
+          -0.33,
+          -0.33
+        ],
+        "cycle_move": [
+          -21.066,
+          -21.066
+        ],
+        "cycle_move_mean": [
+          -12.597,
+          -6.723
+        ],
+        "h0": [
+          0.453,
+          0.268
+        ],
+        "h0_move": [
+          -73.905,
+          -61.817
+        ],
+        "h0_move_mean": [
+          -35.029,
+          -18.542
+        ],
+        "h1": [
+          0.336,
+          0.224
+        ],
+        "h1_move": [
+          -23.597,
+          -17.503
+        ],
+        "h1_move_mean": [
+          -37.122,
+          -26.701
+        ],
+        "h2": [
+          0.183,
+          0.146
+        ],
+        "h2_move": [
+          -9.031,
+          -7.388
+        ],
+        "h2_move_mean": [
+          -38.102,
+          -33.538
+        ],
+        "lr_lower_rsi": [
+          -6.836,
+          -3.867
+        ],
+        "lr_mid_rsi": [
+          -3.436,
+          -2.418
+        ],
+        "lr_upper_rsi": [
+          -1.366,
+          -1.536
+        ],
+        "norm_cci": [
+          null,
+          -0.0
+        ],
+        "rsi": [
+          -0.017,
+          -0.0
+        ],
+        "trend_location": [
+          8.671,
+          -31.148
+        ],
+        "vtl_dn_slope": [
+          -69.641,
+          null
+        ],
+        "vtl_down": [
+          0.839,
+          6.077
+        ],
+        "vtl_trend": [
+          -613.516,
+          175.774
+        ],
+        "vtl_up": [
+          16.734,
+          -1.497
+        ],
+        "vtl_up_slope": [
+          -324.042,
+          28.995
+        ]
+      },
+      "elapsed_s": 67.8,
+      "file_derived_period": 160,
+      "implementation_id": "HurstCycleV5RSI:af49ef254bf6",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/HurstCycleV5RSI_startup_168.json --strategy HurstCycleV5RSI --strategy-path user_data/profile_bias_strategies/HurstCycleV5RSI --timerange 20200301-20200401 --no-color --startup-candle 168 336",
+      "ladder_candles": [
+        168,
+        336
+      ],
+      "ladder_days": [
+        7,
+        14
+      ],
+      "ladder_rungs_dropped_as_uncomputable": [
+        24,
+        48
+      ],
+      "output_sha256": "sha256_5ce760cd977d63a6528126356d4e2d6a51ad2ba399f02d114b5ae8dd7834ac4c",
+      "returncode": 0,
+      "run_profile": "futures_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "not_converged_within_ladder",
+      "strategy_id": "HurstCycleV5RSI",
+      "timeframe": "1h",
+      "timerange": "20200301-20200401",
+      "why": "no startup up to 336 candles keeps every indicator inside 1.0%"
+    },
+    "HurstCycleV6": {
+      "available_prefix_candles": 2464,
+      "cohort": "recursive_unsettled",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 672
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 1344
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/HurstCycleV6-ladder.log",
+      "declared_max_drift_pct": 192.031,
+      "declared_startup_candle_count": 672,
+      "declared_warmup_override": 672,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "cp": [
+          0.108,
+          0.08
+        ],
+        "crest_h2": [
+          -0.186,
+          -0.186
+        ],
+        "cycle_move_mean": [
+          -9.123,
+          -7.18
+        ],
+        "fld_long": [
+          0.374,
+          0.263
+        ],
+        "fld_long_slope": [
+          24.561,
+          16.24
+        ],
+        "fld_mid": [
+          0.144,
+          0.138
+        ],
+        "fld_mid_slope": [
+          -160.052,
+          -19.163
+        ],
+        "fld_short": [
+          -0.065,
+          -0.06
+        ],
+        "fld_short_slope": [
+          -4.631,
+          42.218
+        ],
+        "h0": [
+          0.131,
+          0.105
+        ],
+        "h0_move": [
+          -6.672,
+          -6.672
+        ],
+        "h0_move_mean": [
+          -1.795,
+          -1.685
+        ],
+        "h1": [
+          0.059,
+          0.043
+        ],
+        "h1_move_mean": [
+          -2.814,
+          -1.685
+        ],
+        "h2": [
+          0.018,
+          0.016
+        ],
+        "h2_move": [
+          -4.758,
+          -4.758
+        ],
+        "h2_move_mean": [
+          -1.58,
+          -2.145
+        ],
+        "trough_h0": [
+          0.357,
+          0.357
+        ],
+        "vtl_all_slopes_avg": [
+          -192.031,
+          128.412
+        ],
+        "vtl_down_cp": [
+          null,
+          -0.0
+        ],
+        "vtl_down_cp_slope": [
+          null,
+          0.0
+        ],
+        "vtl_down_h0_slope": [
+          0.0,
+          0.0
+        ],
+        "vtl_down_h1_slope": [
+          0.0,
+          0.0
+        ],
+        "vtl_down_h2_slope": [
+          0.0,
+          0.0
+        ],
+        "vtl_down_slopes_avg": [
+          -23.357,
+          0.0
+        ],
+        "vtl_down_slopes_sum": [
+          -23.357,
+          0.0
+        ],
+        "vtl_up_cp": [
+          null,
+          0.0
+        ],
+        "vtl_up_cp_slope": [
+          null,
+          0.0
+        ],
+        "vtl_up_h0": [
+          null,
+          -5.246
+        ],
+        "vtl_up_h0_slope": [
+          null,
+          -928.807
+        ],
+        "vtl_up_h1": [
+          null,
+          0.0
+        ],
+        "vtl_up_h1_slope": [
+          null,
+          0.0
+        ],
+        "vtl_up_h2": [
+          -0.0,
+          -0.0
+        ],
+        "vtl_up_h2_slope": [
+          -0.0,
+          -0.0
+        ],
+        "vtl_up_slopes_avg": [
+          119.389,
+          -108.673
+        ],
+        "vtl_up_slopes_sum": [
+          119.389,
+          -108.673
+        ]
+      },
+      "elapsed_s": 70.5,
+      "file_derived_period": null,
+      "implementation_id": "HurstCycleV6:fb2f5cd4c8be",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/HurstCycleV6_startup_672.json --strategy HurstCycleV6 --strategy-path user_data/profile_bias_strategies/HurstCycleV6 --timerange 20200301-20200401 --no-color --startup-candle 672 1344",
+      "ladder_candles": [
+        672,
+        1344
+      ],
+      "ladder_days": [
+        7,
+        14
+      ],
+      "ladder_rungs_dropped_as_uncomputable": [
+        96,
+        192
+      ],
+      "output_sha256": "sha256_18bde36c964655f9d6de63eac42efca39672cff9d6c33e293992d746ae6b7073",
+      "returncode": 0,
+      "run_profile": "futures_long",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "not_converged_within_ladder",
+      "strategy_id": "HurstCycleV6",
+      "timeframe": "15m",
+      "timerange": "20200301-20200401",
+      "why": "no startup up to 1344 candles keeps every indicator inside 1.0%"
+    },
     "INSIDEUP": {
       "available_prefix_candles": 339,
       "chosen_ladder_days": 90,

@@ -624,12 +624,18 @@ def rows():
             cohort = "E1_expanded"
         elif base.get("regime_eligible") == "true":
             cohort = "E0_strict67"
-        elif settled.get("state") == "converged" and lookahead != "FOUND":
+        elif settled.get("state") == "converged" and lookahead == "PASS":
             # Convergence answers one question: is there a warm-up at which no
             # indicator drifts. It says nothing about whether the strategy
             # reads data it could not have had, and a look-ahead finding is
-            # disqualifying however settled the warm-up is. Two rows reached
-            # this branch with a FOUND of ours and were listed as candidates.
+            # disqualifying however settled the warm-up is.
+            #
+            # A candidate is a row on its way to admission, so it needs a
+            # look-ahead PASS, not merely the absence of a FOUND. 35 rows were
+            # candidates on an NA - the gate ran and returned nothing, for
+            # eleven different reasons - and each was queued for the paired
+            # full-window run, hours of computation for a row that could not
+            # be admitted whatever that run showed.
             cohort = "convergence_candidate"
         elif base.get("eligibility_status") == "pending_diagnostics":
             cohort = "pending"
@@ -680,6 +686,13 @@ def rows():
             # strategy's own warm-up, which flipped the verdict for 47 of 302
             # logs, every one of them from excluded to clean. A row is only
             # confirmed once the convergence ladder has failed to settle it.
+            if settled.get("state") == "converged":
+                # The ladder answered the recursion question and the answer was
+                # PASS. Keeping the frozen reason would let a settled row be
+                # excluded for the very thing that was settled, and would hide
+                # the reason it is actually held on.
+                reasons.discard("recursive_bias_found")
+                reasons.discard("recursive_bias_unverified")
             if "recursive_bias_found" in reasons \
                     and settled.get("state") != "not_converged_within_ladder":
                 reasons.discard("recursive_bias_found")
@@ -1310,6 +1323,10 @@ def selftest():
         if row["recursive_evidence"] == "convergence:not_settled":
             assert row["cohort"] in ("excluded", "exclusion_unconfirmed"), \
                 (row["strategy_id"], row["cohort"])
+        # A candidate must have cleared both gates, not merely failed neither.
+        if row["cohort"] == "convergence_candidate":
+            assert row["lookahead"] == "PASS", \
+                (row["strategy_id"], row["lookahead"])
         # A row the ladder settled must not still carry the superseded verdict.
         if row["cohort"] == "convergence_candidate":
             assert row["recursive"] in ("PASS", "PASS_1PCT"), \
