@@ -34,6 +34,11 @@ PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
 CANDIDATES = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_CANDIDATES.csv")
 ADJUDICATION = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_ADJUDICATION.csv")
 SMOKE = os.path.join(ROOT, "PROFILE_SMOKE.json")
+# Later trial-run waves wrote their own stores, because two runners
+# may not share one. They are the same measurement, on rows the
+# original sweep never reached.
+NEVER_RUN_SMOKE = os.path.join(ROOT, "ELIGIBILITY_NEVER_RUN.json")
+TRAP_SMOKE = os.path.join(ROOT, "ELIGIBILITY_TRAP_SMOKE.json")
 BIAS = os.path.join(ROOT, "PROFILE_BIAS.json")
 FULL_WINDOW = os.path.join(ROOT, "PROFILE_FULL_WINDOW.json")
 CONVERGENCE = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
@@ -478,7 +483,14 @@ def rows():
     waves = {r["strategy_id"]: r for r in _csv(CANDIDATES)}
     admitted = {r["strategy_id"] for r in _csv(ADJUDICATION)
                 if r["adjudication_status"] == "admitted_E1"}
-    smoke = _json(SMOKE)
+    smoke = dict(_json(SMOKE))
+    # A row measured by a later wave was not measured before, so the
+    # earlier store has nothing to overwrite. Without this the 60
+    # never-run strategies stayed "not tested here" after being
+    # tested here, and the 23 trap rows had no trial run at all.
+    for store in (NEVER_RUN_SMOKE, TRAP_SMOKE):
+        for name, record in _json(store).items():
+            smoke.setdefault(name, record)
     bias = _json(BIAS)
     full = _json(FULL_WINDOW)
     convergence = _json(CONVERGENCE)
