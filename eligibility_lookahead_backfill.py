@@ -50,6 +50,14 @@ REPAIR_STORES = (
 )
 
 
+# Every store that can hold a look-ahead record, so `measured_rules` reads
+# the configuration each verdict was actually made under.
+LOOKAHEAD_STORES = (
+    OUTPUT,
+    os.path.join(ROOT, "ELIGIBILITY_EXPANSION_LOOKAHEAD.json"),
+    os.path.join(ROOT, "PROFILE_BIAS.json"),
+)
+
 CONVERGENCE = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
 
 
@@ -78,6 +86,50 @@ def settled_warmups():
         if chosen:
             out[strategy] = {"startup_candle_count": chosen}
     return out
+
+
+def registered_rules():
+    """Compatibility rules currently registered per strategy."""
+    path = os.path.join(ROOT, "PROFILE_CLASS1.json")
+    if not os.path.exists(path):
+        return {}
+    entries = json.load(io.open(path, encoding="utf-8")).get("strategies", {})
+    return {name: set(entry.get("rules") or [])
+            for name, entry in entries.items()
+            if entry.get("status") in ("applied", "partial")}
+
+
+def measured_rules():
+    """Compatibility rules each stored look-ahead record was made under."""
+    out = {}
+    for path in LOOKAHEAD_STORES:
+        if not os.path.exists(path):
+            continue
+        results = json.load(io.open(path, encoding="utf-8")).get("results", {})
+        for strategy, record in results.items():
+            if not (record.get("lookahead") or {}).get("status"):
+                continue
+            out[strategy] = set(record.get("class1_rules") or [])
+    return out
+
+
+# Added by the runner to every spot row, not registered against any strategy.
+# Left in the comparison it makes every row look reconfigured, because it is
+# always in the record and never in the registry.
+RUNTIME_RULES = frozenset(["bias_market_order_price_side_compatibility"])
+
+
+def reconfigured(strategy, now, then):
+    """True when the row is no longer configured as its record was made.
+
+    A stored NA is a statement about the configuration it was measured under.
+    Once a compatibility rule is added or withdrawn, it stops being a
+    statement about this row at all - so the check is owed again.
+    """
+    if strategy not in then:
+        return True
+    return ((now.get(strategy, set()) - RUNTIME_RULES)
+            != (then[strategy] - RUNTIME_RULES))
 
 
 def repair_overrides():
@@ -125,6 +177,7 @@ def cohort():
     gap, it does not re-decide anything.
     """
     profiles = {row["strategy_id"]: row for row in _csv(PROFILES)}
+    now, then = registered_rules(), measured_rules()
     selected = []
     for row in _csv(STATUS):
         # Any row the ladder settled, whatever cohort it landed in. Tying this
@@ -140,7 +193,25 @@ def cohort():
         if not settled and not queued:
             continue
         if row["lookahead_evidence"] == "native":
-            continue
+            # A native PASS or FOUND is a verdict and is never revisited. A
+            # native NA is not: the check ran and returned nothing, which is
+            # the very gap this route exists to fill. Re-running every NA
+            # would mostly reproduce it - "too few trades" stays "too few
+            # trades" - so the row is only taken back when a repair has since
+            # been registered against exactly that obstacle and has not yet
+            # been given a run. The table already computes that state:
+            # framework_compat_shim with the verdict still `to_be_fixed`.
+            #
+            # This matters concretely. Twenty-three rows returned NA on two
+            # defects in freqtrade - a duplicated `enter_tag` column and an
+            # analyzer that calls itself a utility - and the shims that answer
+            # both landed after those NAs were recorded. Without this they
+            # would have kept a non-verdict forever, next to a repair that
+            # says it was fixed.
+            if row["lookahead"] in ("PASS", "FOUND"):
+                continue
+            if not reconfigured(row["strategy_id"], now, then):
+                continue
         if row["measured"] != "true" or row["runtime_failure"]:
             # A row that will not start cannot be gated; repairing it comes
             # first and is tracked separately.
@@ -196,12 +267,22 @@ def selftest():
     ids = [row["strategy_id"] for row in rows]
     assert len(ids) == len(set(ids))
     status = {r["strategy_id"]: r for r in _csv(STATUS)}
+    now, then = registered_rules(), measured_rules()
     for row in rows:
         entry = status[row["strategy_id"]]
         assert (entry["recursive_evidence"].startswith("convergence:")
                 or "lookahead_remeasure_pending" in (entry["open_work"] or "")),             row["strategy_id"]
-        # A native verdict is never re-decided; only a gap is filled.
-        assert entry["lookahead_evidence"] != "native", row["strategy_id"]
+        # A native verdict is never re-decided; only a gap is filled. A
+        # native NA is a gap: the check ran and returned nothing. Such a
+        # row comes back only when a repair aimed at that obstacle is
+        # registered and has not yet had a run.
+        if entry["lookahead_evidence"] == "native":
+            assert entry["lookahead"] not in ("PASS", "FOUND"),                 row["strategy_id"]
+            # A native NA comes back only when the row is no longer
+            # configured the way its record was made - the stored verdict
+            # then describes a setup that no longer exists. Self-limiting:
+            # once measured under the current rules the two agree.
+            assert reconfigured(row["strategy_id"], now, then),                 row["strategy_id"]
     native = sum(1 for r in status.values()
                  if r["recursive_evidence"].startswith("convergence:")
                  and r["lookahead_evidence"] == "native")

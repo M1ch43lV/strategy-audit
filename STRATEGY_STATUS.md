@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-02 22:39:45 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-03 06:24:23 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -32,10 +32,11 @@ have neither and are left empty rather than given an invented time.
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 380 |
-| `exclusion_unconfirmed` | 166 |
-| `excluded` | 137 |
+| `exclusion_unconfirmed` | 148 |
+| `excluded` | 140 |
 | `pending` | 136 |
 | `E0_strict67` | 67 |
+| `convergence_candidate` | 15 |
 | `not_a_strategy` | 14 |
 
 ## The order the checks run in
@@ -154,7 +155,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 835 of 2185 commands are recorded so far, and every new run
+recording. 866 of 2185 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -2908,6 +2909,30 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
+## Convergence candidates - 15 strategies
+
+A warm-up exists at which every indicator stays inside the band.
+That is not admission: the paired full-window run must still show
+an identical trade list.
+
+| Strategy | Profile | Chosen warm-up | Worst drift | Tested | Results |
+|---|---|---|---|---|---|
+| `FastSupertrend_optim3` | `futures_long_short` | 168 candles | 0.0% on `supertrend_2_buy` | 2026-09-02 19:09:03 | `user_data/convergence_logs/FastSupertrend_optim3-ladder.log` |
+| `FastSupertrend_optim3_rsi_70` | `futures_long_short` | 168 candles | 0.0% on `supertrend_2_buy` | 2026-09-02 19:09:29 | `user_data/convergence_logs/FastSupertrend_optim3_rsi_70-ladder.log` |
+| `FastSupertrend_optim3_rsi_75` | `futures_long_short` | 168 candles | 0.0% on `supertrend_2_buy` | 2026-09-02 19:09:55 | `user_data/convergence_logs/FastSupertrend_optim3_rsi_75-ladder.log` |
+| `FastSupertrend_optim3_rsi_752` | `futures_long_short` | 168 candles | 0.0% on `supertrend_2_buy` | 2026-09-02 19:10:21 | `user_data/convergence_logs/FastSupertrend_optim3_rsi_752-ladder.log` |
+| `FastSupertrend_optim3_rsi_75fix` | `futures_long_short` | 168 candles | 0.0% on `supertrend_2_buy` | 2026-09-02 19:10:46 | `user_data/convergence_logs/FastSupertrend_optim3_rsi_75fix-ladder.log` |
+| `FastSupertrend_optim3_rsi_75fix_signal` | `futures_long_short` | 168 candles | 0.0% on `supertrend_2_buy` | 2026-09-02 19:11:12 | `user_data/convergence_logs/FastSupertrend_optim3_rsi_75fix_signal-ladder.log` |
+| `FastSupertrend_optim3_rsi_75lev` | `futures_long_short` | 168 candles | 0.0% on `supertrend_2_buy` | 2026-09-02 19:11:38 | `user_data/convergence_logs/FastSupertrend_optim3_rsi_75lev-ladder.log` |
+| `FastSupertrend_optim3_rsi_75sell` | `futures_long_short` | 168 candles | 0.0% on `supertrend_2_buy` | 2026-09-02 19:12:05 | `user_data/convergence_logs/FastSupertrend_optim3_rsi_75sell-ladder.log` |
+| `FastSupertrend_optim3_rsi_80` | `futures_long_short` | 168 candles | 0.0% on `supertrend_2_buy` | 2026-09-02 19:12:31 | `user_data/convergence_logs/FastSupertrend_optim3_rsi_80-ladder.log` |
+| `FastSupertrend_optim_quick` | `futures_long_short` | 168 candles | 0.0% on `supertrend_2_buy` | 2026-09-02 19:12:57 | `user_data/convergence_logs/FastSupertrend_optim_quick-ladder.log` |
+| `FastSupertrend_optim_quick2` | `futures_long_short` | 168 candles | 0.0% on `supertrend_2_buy` | 2026-09-02 19:13:23 | `user_data/convergence_logs/FastSupertrend_optim_quick2-ladder.log` |
+| `FastSupertrend_optim_quick3` | `futures_long_short` | 168 candles | 0.0% on `supertrend_2_buy` | 2026-09-02 19:13:49 | `user_data/convergence_logs/FastSupertrend_optim_quick3-ladder.log` |
+| `FastSupertrend_optim_quick4` | `futures_long_short` | 168 candles | 0.0% on `supertrend_2_buy` | 2026-09-02 19:14:15 | `user_data/convergence_logs/FastSupertrend_optim_quick4-ladder.log` |
+| `FastSupertrend_optim_quick5` | `futures_long_short` | 168 candles | 0.0% on `supertrend_2_buy` | 2026-09-02 19:14:43 | `user_data/convergence_logs/FastSupertrend_optim_quick5-ladder.log` |
+| `WTX3` | `futures_long_short` | 2016 candles | 0.0% on `tci` | 2026-09-02 20:34:20 | `user_data/convergence_logs/WTX3-ladder.log` |
+
 ## Pending - 136 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
@@ -2948,7 +2973,7 @@ neither a pass nor a fail.
 `WTRSIAI`, `haGradient`, `multi_tf`, `new_turtle`
 `new_turtle_roi`, `qrsi`, `tacos1`, `thetank2`
 
-## Exclusion unconfirmed - 166 strategies
+## Exclusion unconfirmed - 148 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -2960,21 +2985,20 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_verdict_on_lookahead` | `no_finding` | 75 |
+| `no_verdict_on_lookahead` | `no_finding` | 59 |
 | `no_verdict_on_recursive` | `no_finding` | 36 |
-| `recursive_bias_unverified` | `no_finding` | 26 |
+| `recursive_bias_unverified` | `no_finding` | 25 |
 | `recursive_warmup_refused` | `no_finding` | 13 |
+| `unclassified` | `no_finding` | 5 |
 | `no_trades_in_full_measurement` | `inherited` | 5 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 5 |
-| `unclassified` | `no_finding` | 4 |
-| `lookahead_found` | `inherited` | 2 |
 
 This is not a softening. A row here may well end up excluded - the
 38 held on an inherited look-ahead finding probably will, because a
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 137 strategies, by decisive reason
+## Not passing - 140 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -3022,7 +3046,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 137 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 140 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -3030,7 +3054,7 @@ one of them carries none.
 
 | Reason | Meaning | Strategies |
 |---|---|---:|
-| `lookahead_found` | reads data it could not have had at the time | 81 |
+| `lookahead_found` | reads data it could not have had at the time | 84 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 49 |
 | `no_trades_in_full_measurement` | never trades over the full window | 7 |
 
@@ -3039,11 +3063,11 @@ one of them carries none.
 
 | Reason | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `not_scheduled` |
 |---|---|---|---|---|---|
-| `lookahead_found` | 2 | 0 | 17 | 0 | 62 |
+| `lookahead_found` | 2 | 0 | 17 | 0 | 65 |
 | `recursive_bias_found` | 0 | 3 | 17 | 14 | 15 |
 | `no_trades_in_full_measurement` | 0 | 0 | 7 | 0 | 0 |
 
-### `lookahead_found` - 81
+### `lookahead_found` - 84
 
 Reads data it could not have had at the time.
 
@@ -3059,7 +3083,7 @@ Wave `C_measurement_recovery` - 17:
 `Obelisk_Ichimoku_ZEMA_v1`, `Stavix2`, `Stinkfist`, `bbema`
 `ichiV1_Marius`
 
-Wave `not_scheduled` - 62:
+Wave `not_scheduled` - 65:
 
 `AlexBTK_CT`, `AlexBattleTankKiller`, `AlexBattleTankKillerV3`, `AlexBattleTankKillerV40H`
 `Auto_EI_t4c0s`, `BBBreakoutStrategy`, `BB_RPB_TSL_c7c477d_20211030`, `BreakoutStrategy`
@@ -3074,9 +3098,10 @@ Wave `not_scheduled` - 62:
 `NostalgiaForInfinityX6`, `Obelisk_TradePro_Ichi_v1_1`, `Obelisk_TradePro_Ichi_v2_1`, `PolymarketPortfolio`
 `Precognition`, `ReinforcedQuickie`, `Renko`, `Rsiqui`
 `RsiquiV2`, `RsiquiV5`, `RsiquiV5_long_only`, `StarRise_strat3`
-`TSPredict`, `Tank1Modulus`, `UziChan`, `UziChan2`
-`Zeus`, `custom`, `grad`, `ichiV1`
-`tsp0chicken`, `wtc`
+`TSPredict`, `Tank1Modulus`, `Tank5ModulusDCA`, `Tank5ModulusDCAV3`
+`UziChan`, `UziChan2`, `Zeus`, `custom`
+`grad`, `ichiV1`, `tsp0chicken`, `turbov8`
+`wtc`
 
 ### `recursive_bias_found` - 49
 
@@ -3132,8 +3157,8 @@ Wave `C_measurement_recovery` - 7:
 
 | Item | Strategies |
 |---|---:|
-| `lookahead_remeasure_pending` | 116 |
 | `recursive_ladder_pending` | 112 |
+| `lookahead_remeasure_pending` | 85 |
 | `needs_a_look` | 56 |
 | `convergence_not_converged_within_ladder` | 54 |
 | `convergence_inconclusive` | 48 |
