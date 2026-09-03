@@ -815,7 +815,20 @@ def rows():
                     and settled.get("state") != "not_converged_within_ladder":
                 reasons.discard("recursive_bias_found")
                 reasons.add("recursive_bias_unverified")
+            # REASON_ORDER puts `strategy_does_not_run` above the recursion
+            # finding, which is right while a non-running row can only carry
+            # a borrowed one: nothing of ours has seen it, so nothing of ours
+            # may name it. A finding OUR ladder produced is the other case.
+            # The ladder ran, printed its drift table, and no rung held every
+            # indicator inside the band - a measurement of this strategy that
+            # a failed backtest downstream does not undo. The failure stays on
+            # the row in `repair_verdict` and `runtime_failure`; it just stops
+            # being what the row is called.
+            if recursive_evidence == "convergence:not_settled":
+                reason = "recursive_bias_found"
             for key, _text in REASON_ORDER:
+                if reason:
+                    break
                 if key in reasons:
                     reason = key
                     break
@@ -897,7 +910,12 @@ def rows():
             recursive in ("PASS", "PASS_1PCT")
             and not recursive_evidence.startswith("convergence")
             and cohort in ("excluded", "pending"))
-        if (measurement or window) and not settled \
+        # `diagnostics` counts as having run here too. A row whose look-ahead
+        # we measured natively has plainly started under this pipeline, even
+        # when the trial-run store holds nothing for it - `mabStra` carries a
+        # native WARMUP_NEEDED, a native look-ahead PASS, and was queued for
+        # nothing, because the condition asked only about the two run stores.
+        if (measurement or window or diagnostics) and not settled \
                 and (recursive not in ("PASS", "PASS_1PCT")
                      or inherited_recursive_pass):
             # Anything that runs and has no settled recursion verdict is a
