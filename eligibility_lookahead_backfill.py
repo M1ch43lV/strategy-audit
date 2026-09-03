@@ -232,12 +232,22 @@ def run(limit, timeout, fallback_timeout):
         merged = dict(warmup)
         merged.update(overrides.get(strategy) or {})
         overrides[strategy] = merged
-    pending = [row for row in rows if row["strategy_id"] not in data["results"]]
+    # A row is owed a run when it has no record, or when the record it has
+    # was made under a configuration that no longer applies. Asking only the
+    # first question was right while the cohort could hold nothing but
+    # never-measured rows; now that a re-parse or a new shim can reopen one,
+    # this has to ask the same question the cohort asked, or 19 of 23 rows
+    # are selected and then silently skipped.
+    now, then = registered_rules(), measured_rules()
+    pending = [row for row in rows
+               if row["strategy_id"] not in data["results"]
+               or reconfigured(row["strategy_id"], now, then)]
     if limit:
         pending = pending[:limit]
-    print("look-ahead backfill: %d candidates lack a native verdict, %d pending, "
-          "running %d" % (len(rows), len(rows) - len(data["results"]), len(pending)),
-          flush=True)
+    fresh = sum(1 for row in pending if row["strategy_id"] not in data["results"])
+    print("look-ahead backfill: %d candidates, %d never measured, %d to measure "
+          "again under changed rules, running %d"
+          % (len(rows), fresh, len(pending) - fresh, len(pending)), flush=True)
     for number, row in enumerate(pending, 1):
         strategy = row["strategy_id"]
         print("=== [%d/%d] %s ===" % (number, len(pending), strategy), flush=True)
