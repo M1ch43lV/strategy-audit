@@ -92727,6 +92727,42 @@
       "timerange": "20190101-20190401",
       "why": "no startup up to 4032 candles keeps every indicator inside 1.0%"
     },
+    "mabStra": {
+      "available_prefix_candles": 2029,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/mabStra-ladder.log",
+      "declared_warmup_override": 6,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 69.7,
+      "file_derived_period": null,
+      "implementation_id": "mabStra:a7796af206e8",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/mabStra_startup_6.json --strategy mabStra --strategy-path user_data/profile_bias_strategies/mabStra --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540",
+      "ladder_candles": [
+        6,
+        12,
+        42,
+        84,
+        180,
+        540
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90
+      ],
+      "output_sha256": "sha256_594f1bf9b54d4d15bd5513adde58cf24d7aae35a3c9cf1e55501729da539ba56",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "inconclusive",
+      "strategy_id": "mabStra",
+      "timeframe": "4h",
+      "timerange": "20190101-20190401",
+      "why": "analyzer produced no drift table"
+    },
     "moonhouse": {
       "available_prefix_candles": 339,
       "chosen_ladder_days": 1,

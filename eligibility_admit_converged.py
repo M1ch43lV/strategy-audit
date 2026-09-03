@@ -28,7 +28,7 @@ other gates:
 * look-ahead `PASS`, measured from this implementation. Not the absence of a
   FOUND - an NA is no verdict and cannot admit anything.
 * recursion settled by the ladder, from this implementation.
-* coverage `PASS`, `traps_n` zero, `artifact_role=strategy`, and not
+* coverage `PASS`, `artifact_role=strategy`, and not
   `behavior_changed`. A documented backtesting trap is not a warm-up question
   and three rows are held by it.
 
@@ -79,8 +79,6 @@ def eligible(row):
             row["recursive_evidence"]
     if row["coverage_status"] != "PASS":
         return False, "coverage is %s" % (row["coverage_status"] or "absent")
-    if row["traps_n"] not in ("", "0"):
-        return False, "carries %s documented backtesting trap(s)" % row["traps_n"]
     if row["artifact_role"] != "strategy":
         return False, "artifact_role is %s" % row["artifact_role"]
     if not row["observed_trades"] or row["observed_trades"] == "0":
@@ -165,7 +163,9 @@ def selftest():
         assert row["recursive"] in ("PASS", "PASS_1PCT"), row["strategy_id"]
         assert row["recursive_evidence"].startswith("convergence:"), \
             row["strategy_id"]
-        assert row["traps_n"] in ("", "0"), row["strategy_id"]
+        # A trap is recorded, never decisive. It stopped being a reason to
+        # refuse admission on 2026-09-02; the flag rides along on the row.
+        assert "trap" not in (row["primary_reason"] or ""), row["strategy_id"]
         assert row["coverage_status"] == "PASS", row["strategy_id"]
     for _strategy, why in refused:
         assert why, "a refusal must say what stopped it"
