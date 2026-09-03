@@ -484,7 +484,7 @@
   };
 
   function count(k){ return rows.filter(function(r){return r.c===k;}).length; }
-  var passing = count("E0_strict67") + count("E1_expanded");
+  var passing = count("E1_expanded");  // E0_strict67 retired 2026-09-03, always 0
   var inherited = rows.filter(function(r){return r.g;}).length;
 
   document.getElementById("stats").innerHTML = [
@@ -504,11 +504,11 @@
      day after the answer was 449, and called admitted rows trap-free for
      hours after the trap stopped deciding anything. */
   (function(){
-    var e0 = count("E0_strict67"), e1 = count("E1_expanded");
+    var e1 = count("E1_expanded");
     var cand = count("convergence_candidate");
     document.getElementById("usable-note").innerHTML =
-      "<strong>" + (e0 + e1 + cand) + " strategies are usable today</strong> \u2014 the " +
-      e0 + " of the frozen baseline, " + e1 + " admitted since, and " + cand +
+      "<strong>" + (e1 + cand) + " strategies are usable today</strong> \u2014 " +
+      e1 + " admitted, and " + cand +
       " convergence candidate" + (cand === 1 ? "" : "s") +
       ". A row is admitted when it clears both bias checks at a warm-up that " +
       "settles its indicators: look-ahead <code>PASS</code> measured here, " +
@@ -518,9 +518,14 @@
       "requirement was retired on 2 September 2026, because the aim is the " +
       "mathematically clean result under the current freqtrade rather than a " +
       "reproduction of what an author once ran. Fewer trades, or more, is the " +
-      "consequence of measuring properly.";
+      "consequence of measuring properly. The frozen 67 (E0) were retired as " +
+      "a separate cohort on 3 September 2026: their own recursion check had " +
+      "used freqtrade's hardcoded defaults rather than this ladder, and " +
+      "measured properly for the first time, 64 of 67 held up and one " +
+      "(<code>MacdStrategy</code>) did not. All 67 are now decided by the " +
+      "same criteria as every other row and counted in the total above.";
     var admitted = rows.filter(function(r){
-      return r.c === "E0_strict67" || r.c === "E1_expanded"; });
+      return r.c === "E1_expanded"; });
     var own = admitted.filter(function(r){ return r.no === "true"; }).length;
     var none = admitted.filter(function(r){ return !r.cs; }).length;
     document.getElementById("warmup-note").innerHTML =
@@ -650,7 +655,7 @@
      render:function(k){ var o = COHORT[k]||{label:k,cls:"k-none"};
        return '<span class="pill '+o.cls+'">'+o.label+'</span>'; },
      text:{
-       E0_strict67:"The 67 of the frozen baseline. Never regenerated; the difference between it and this table is the expansion.",
+       E0_strict67:"Retired 3 September 2026. The 67 of the original frozen baseline are no longer a separate cohort - each is now decided by the same criteria as every other row. This label is kept only so the count (always zero) is visibly accounted for, not silently dropped.",
        E1_expanded:"Admitted since the freeze, on gates measured here: look-ahead PASS, recursion settled by the warm-up ladder, coverage PASS, trap-free. The warm-up each was measured at is on the row.",
        convergence_candidate:"A warm-up exists at which no indicator drifts any more AND look-ahead has returned a PASS measured here. Both are required: a candidate is a row on its way to admission, so it needs to have cleared each gate rather than merely failed neither. Still not admission — the paired full-window run has to produce an identical trade list first.",
        exclusion_unconfirmed:"Would have been excluded on an inherited verdict or on no verdict at all. Held here until a measurement of ours settles it either way.",

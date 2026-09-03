@@ -291,6 +291,82 @@ span. The `recursive-analysis` and `lookahead-analysis` diagnostic windows
 affected - those checks are forced onto `BTC/USDT` alone by freqtrade itself,
 for which `DASH/USDT`'s listing date is irrelevant.
 
+## Amendment 2026-09-03: E0 is retired as a separate cohort
+
+**Owner's decision**, on a finding from re-measuring the frozen 67 for the
+first time in this audit's own runtime.
+
+E0 was frozen on 2026-08-30 as a reproducibility anchor: "E0 is untouched. It
+remains the frozen 67 and is reported beside every result." The intent was
+sound - keep one unmoving reference point while the eligibility expansion
+ran. The consequence, only visible once E0 was finally measured here, was
+not: E0's own recursion-bias standing had never rested on this audit's
+methodology at all.
+
+The Stage 6 sweep that produced the 67 ran `recursive-analysis` without
+`--startup-candle` (`harness.py`, commit `be77d12`, 20.08; the same command
+is item 1 of `CHECKLIST.md`, commit `4d5a937`, the same day). Freqtrade then
+falls back to its own hardcoded default - five fixed candle counts (199,
+399, 499, 999, 1999), the same five regardless of a strategy's timeframe,
+plus whatever the strategy's own `startup_candle_count` declares. A one-day
+strategy tests up to 1999 days of history that way; a five-minute strategy
+tests under seven. Whether the resulting table showed "near-zero variation"
+was never asked in calendar time, and never checked against a longer warm-up
+in case a false plateau was sitting in front of a real one - the exact
+failure this audit's own convergence ladder exists to catch (`BigZ04`'s
+`bb_lowerband_1h` sits at a flat 3.63% from 200 through 8640 candles, then
+jumps to -12.88% at 90 days).
+
+Measured under this audit's own ladder for the first time this week: 64 of
+67 hold up cleanly under both checks. One, `MacdStrategy`, does not - 1.07%
+residual drift at the largest warm-up the data supports (365 days, after the
+2026-09-03 window amendment), just outside the 1% band. Two, `BuyRegions`
+and `StochRSITEMA`, had been misread by a defect in our own table parser
+(see below) rather than measured at all.
+
+**E0_strict67 is retired as a cohort.** The 67 are no longer admitted by
+having been in the original Stage 6 corpus; each is decided by the same C1/
+C2/C3 criteria as every other strategy, using this audit's own measurements.
+Membership in the original frozen set is kept as provenance on the row
+(`gate_notes`), never as a reason to skip a check or override a finding.
+
+`MacdStrategy` moves to `excluded` under C2. The other 66 are evaluated
+through the ordinary admission pass exactly as any other converged row would
+be.
+
+## Amendment 2026-09-03: a second reader defect, corpus-wide
+
+While re-measuring E0's recursion drift, `StochRSITEMA` came back
+"inconclusive: no drift table" despite its stored log showing a complete,
+readable 76-row table. The cause: `recursive_table()`'s row-name filter
+required a bare Python identifier (`[a-zA-Z_0-9]+`) and silently dropped any
+row whose name did not match - `rsi(14)`, `stoch-slowk`, `BBB_20_2.0`,
+`1h-rsi`, `50 SMA`. 68 stored logs across the corpus carry at least one such
+row; some were misread as having no table at all, others as `converged` on
+an incomplete table that never showed the very indicator whose name could
+not be parsed.
+
+Fixed in `profile_bias.recursive_table()`; re-derived from stored logs via
+`warmup_reparse.py --store punctuated`, applied only where the reading grew
+richer (58 records) and never where it would have shrunk, which is the
+signature of a different defect entirely (below).
+
+**A related, independent defect surfaced during the same re-read.** Ten
+pairs of strategy IDs in the corpus differ only in case - `SuperTrend` and
+`Supertrend`, `BBRSI` and `bbrsi`, `mabStra` and `MabStra`, among others -
+genuinely different strategies from different source files. The path
+construction used for per-strategy logs and isolated source directories
+(`profile_smoke._safe`) preserved case but did not otherwise disambiguate,
+and this filesystem folds case, so both members of every such pair wrote to
+the identical path. Whichever ran later silently overwrote the earlier one's
+log. `_safe` now appends a short hash of the exact-cased name, so no two
+different strategy IDs can ever collide again; already-written `debug_log`
+paths are untouched, since nothing regenerates them to look a file up.
+Records whose log the punctuation fix would have shrunk (`SuperTrend`,
+`bbrsi`, `hlhb`, `MACDStrategy`, `MacdZeroCrossStrategy`) are queued for a
+fresh, collision-safe run rather than reparsed from a log that no longer
+describes them.
+
 ## OPEN before Stage 9 ranking
 
 The following choices are intentionally not inferred from strategy outcomes:

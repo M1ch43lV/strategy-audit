@@ -228,7 +228,18 @@ def recursive_table(output):
         if len(cells) != len(columns) + 1:
             continue
         name = cells[0]
-        if not re.fullmatch(r"[a-zA-Z_0-9]+", name):
+        # A real indicator name is whatever the author called their column -
+        # `rsi(14)`, `stoch-slowk`, `BBB_20_2.0`, `1h-rsi`, `50 SMA`. Demanding
+        # a bare Python identifier rejected 68 stored logs' worth of rows
+        # outright, which is not "no drift table" - a table was there, this
+        # reader refused to read it. `StochRSITEMA` shows the cost plainly: 76
+        # rows, all at or near 0.000%, thrown away as "inconclusive" because
+        # every name carried a paren or a hyphen. What still needs excluding
+        # is the box-drawing border rows and the header/separator lines -
+        # already handled above, since only genuine `│...│` data rows reach
+        # here at all. So the bar is simply: does this look like a name and
+        # not a blank cell.
+        if not name or not re.search(r"[A-Za-z0-9]", name):
             continue
         rows[name] = [_cell(part) for part in cells[1:]]
     return columns, rows
@@ -604,6 +615,18 @@ def selftest():
     assert undefined_throughout(holed) == []
     # Without the label there is no column to read, so there is no verdict.
     assert recursive_drifts("│ ema_200 │ 0.018% │" + ran) == []
+    # Names carrying punctuation the author, not us, chose. All four are real
+    # rows taken from strategies in this corpus that the old identifier-only
+    # filter discarded whole.
+    punctuated = nl.join([
+        "┃ Indicators ┃ 50 (from strategy) ┃ 288 ┃",
+        "│ rsi(14) │ 0.765% │ -0.000% │",
+        "│ stoch-slowk │ -0.000% │ -0.000% │",
+        "│ BBB_20_2.0 │ 0.012% │ 0.000% │",
+        "│ 50 SMA │ 0.001% │ 0.000% │",
+        ran])
+    assert set(recursive_table(punctuated)[1]) == {
+        "rsi(14)", "stoch-slowk", "BBB_20_2.0", "50 SMA"}
 
     assert _recursive(middle, 0)[0] == "FOUND"
     assert _recursive(middle, 0, threshold=1.0)[0] == "FOUND"   # rsi_112 remains

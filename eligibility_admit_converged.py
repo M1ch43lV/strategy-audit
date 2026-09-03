@@ -94,7 +94,9 @@ def candidates():
     for row in _csv(STATUS):
         if row["strategy_id"] in admitted:
             continue
-        if row["cohort"] in ("E0_strict67", "E1_expanded"):
+        # E0_strict67 retired 2026-09-03: a formerly-frozen row is now a
+        # candidate like any other, decided by this same rule.
+        if row["cohort"] == "E1_expanded":
             continue
         ok, why = eligible(row)
         settled = convergence.get(row["strategy_id"]) or {}

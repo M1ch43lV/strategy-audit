@@ -724,8 +724,6 @@ def rows():
             cohort = "not_a_strategy"
         elif strategy in admitted:
             cohort = "E1_expanded"
-        elif base.get("regime_eligible") == "true":
-            cohort = "E0_strict67"
         elif settled.get("state") == "converged" and lookahead == "PASS" \
                 and lookahead_evidence == "native":
             # Convergence answers one question: is there a warm-up at which no
@@ -921,7 +919,7 @@ def rows():
         # row stays admitted - E0 is frozen and this table decides nothing -
         # but the gap is named where anyone reading the row will see it.
         gaps = []
-        if cohort in ("E0_strict67", "E1_expanded"):
+        if cohort == "E1_expanded":
             if lookahead_evidence.startswith("historical"):
                 gaps.append("lookahead_from_original_sweep")
             if recursive_evidence.startswith("historical"):
@@ -960,7 +958,16 @@ def rows():
         # when the trial-run store holds nothing for it - `mabStra` carries a
         # native WARMUP_NEEDED, a native look-ahead PASS, and was queued for
         # nothing, because the condition asked only about the two run stores.
-        if (measurement or window or diagnostics) and not settled \
+        # Recursion evidence can exist under a store that keys
+        # differently than measurement/window/diagnostics do -
+        # `MabStra` carries a wave_b:28:superseded marker with none of
+        # the other three present, because that store and
+        # PROFILE_BIAS.json disagreed on which of two differently-cased,
+        # differently-authored strategies (`MabStra` from davidzr,
+        # `mabStra` from PeetCrypto) each entry belonged to. Any
+        # recorded recursive_evidence is itself proof the row has been
+        # touched before.
+        if (measurement or window or diagnostics or recursive_evidence) \
                 and (recursive not in ("PASS", "PASS_1PCT")
                      or inherited_recursive_pass):
             # Anything that runs and has no settled recursion verdict is a
@@ -1143,7 +1150,13 @@ def rows():
                 ("recursive NA: " + ((diagnostics.get("recursive")
                                       or settled or {}).get("why")
                                      or "no record")[:110])
-                if recursive == "NA" else "") if part),
+                if recursive == "NA" else "",
+                # Provenance kept, never decisive: this row was part of the
+                # original frozen 67 before the cohort was retired
+                # 2026-09-03. Its own C1/C2 measurement now decides it like
+                # every other row.
+                ("originally in the frozen E0 baseline, retired 2026-09-03"
+                 if base.get("regime_eligible") == "true" else "")) if part),
             "repair_settings": "; ".join(
                 part for part in (repair_settings(class1_entry, repair_run),
                                   repair.get("settings_extra", "")) if part),
@@ -1219,7 +1232,7 @@ def _report(data):
     measured = sum(1 for row in data if row["measured"] == "true")
     traded = sum(1 for row in data if _integer(row["observed_trades"]) > 0)
     stamped = sum(1 for row in data if row["last_tested_at"])
-    passing = [r for r in data if r["cohort"] in ("E0_strict67", "E1_expanded")]
+    passing = [r for r in data if r["cohort"] == "E1_expanded"]
     candidates = [r for r in data if r["cohort"] == "convergence_candidate"]
     pending = [r for r in data if r["cohort"] == "pending"]
     untested = [r for r in data if r["cohort"] == "not_tested_in_current_runtime"]
@@ -1235,9 +1248,17 @@ def _report(data):
         "`eligibility_expansion_adjudicate.py`; this is a reading of what has",
         "already been decided, collected from the smoke, bias, full-window,",
         "adjudication and convergence stores.", "",
-        "`REGIME_ELIGIBILITY.csv` remains the frozen E0 baseline and is never",
-        "regenerated. Where this table and E0 disagree, E0 is not wrong: it is",
-        "the state at the freeze, and the difference is the expansion.", "",
+        "`REGIME_ELIGIBILITY.csv` remains a frozen file and is never",
+        "regenerated - but as of 2026-09-03 this table no longer treats its",
+        "`regime_eligible=true` rows as automatically usable. The recursion",
+        "check that produced them used freqtrade's own hardcoded candle",
+        "counts, never converted to a strategy's timeframe, not the",
+        "calendar-day ladder every other row is held to; measured under this",
+        "audit's own ladder for the first time this week, 64 of the 67 held",
+        "up and 1 (`MacdStrategy`) did not. Each of the 67 is now decided by",
+        "the same C1/C2/C3 criteria as every other row. Original membership",
+        "is kept as provenance in `gate_notes`, never as a reason to skip a",
+        "check.", "",
         "**On the run times.** The runners do not stamp a time into their",
         "records, so `last_tested_at` is recovered from what they leave behind:",
         "a result archive's filename, which carries the run's own clock, or",
@@ -1517,7 +1538,7 @@ def _report(data):
         "that survive overturns 58 of them, every one from FOUND to no",
         "verdict; the runs behind the PASS verdicts kept no log and cannot be",
         "re-parsed at all. Eight admitted rows rest on such a verdict. They",
-        "stay admitted - E0 and E1 are frozen and this table decides nothing -",
+        "stay admitted - E1 is frozen and this table decides nothing -",
         "and they are queued for the ladder as `recursive_ladder_pending`.", "",
         "### What each exclusion rests on", "",
         "The decisive reason names the gate that stopped a row. It does not",
@@ -1613,14 +1634,21 @@ def selftest():
     data = rows()
     assert len(data) == 900, len(data)
     assert len({row["strategy_id"] for row in data}) == 900
+    # E0_strict67 was retired as a cohort on 2026-09-03: the recursion check
+    # that produced these 67 used freqtrade's own hardcoded defaults, never
+    # converted to the strategy's timeframe, not the calendar-day ladder
+    # every other row is held to. Its own name is kept as provenance in
+    # `gate_notes`, never as a shortcut past a row's own C1/C2 measurement.
     baseline = {r["strategy_id"]: r for r in _csv(ELIGIBILITY)}
     frozen = {s for s, r in baseline.items() if r["regime_eligible"] == "true"}
     assert len(frozen) == 67, len(frozen)
-    listed = {row["strategy_id"] for row in data if row["cohort"] == "E0_strict67"}
+    assert not {row["strategy_id"] for row in data
+               if row["cohort"] == "E0_strict67"},         "E0_strict67 must never be assigned again"
+    noted = {row["strategy_id"] for row in data
+            if "frozen E0 baseline" in row["gate_notes"]}
+    assert noted == frozen, sorted(noted ^ frozen)
     admitted = {r["strategy_id"] for r in _csv(ADJUDICATION)
                 if r["adjudication_status"] == "admitted_E1"}
-    # An admitted row leaves the baseline cohort rather than being counted twice.
-    assert listed == frozen - admitted, sorted(listed ^ (frozen - admitted))
     assert {row["strategy_id"] for row in data
             if row["cohort"] == "E1_expanded"} == admitted
 
@@ -1767,9 +1795,9 @@ def selftest():
     # whether it works under the current runtime. It is read only to attach a
     # historical hint, never to decide a cohort or to clear a row.
     assert len({r["strategy"] for r in _csv(LEDGER)}) == 895
-    print("strategy_status selftest: PASS (%d rows, %d E0, %d E1, %d unmeasured, "
+    print("strategy_status selftest: PASS (%d rows, %d ex-E0, %d E1, %d unmeasured, "
           "%d timestamped)"
-          % (len(data), len(listed), len(admitted),
+          % (len(data), len(noted), len(admitted),
              sum(1 for r in data if r["cohort"] == "not_tested_in_current_runtime"),
              sum(1 for r in data if r["last_tested_at"])))
 

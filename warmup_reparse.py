@@ -50,6 +50,7 @@ BIAS = os.path.join(ROOT, "PROFILE_BIAS.json")
 RULE = "no_variance_is_a_pass_v1"
 BIAS_RULE = "current_reader_v1"
 BLIND_RULE = "undefined_column_is_not_a_finding_v1"
+PUNCT_RULE = "punctuated_indicator_names_v1"
 
 
 def _load(path):
@@ -172,6 +173,90 @@ def apply_blind(store, threshold, dry_run):
     return changed
 
 
+def punctuated_candidates(store, threshold):
+    """Ladder records the widened indicator-name filter reads differently.
+
+    `recursive_table()` used to require a bare Python identifier for a row's
+    name and silently dropped every row that was not one - `rsi(14)`,
+    `stoch-slowk`, `BBB_20_2.0`, `1h-rsi`, `50 SMA`. 68 stored logs carry at
+    least one such row. This is not restricted to records that came out
+    `inconclusive`: a record that already looked `converged` before the fix
+    could have been resting on an incomplete table that simply never showed
+    the indicator whose name it could not parse - `StochRSITEMA` had 76 rows
+    on the page and zero of them survived the old filter, so its verdict
+    could not have been about drift at all. So every record with a surviving
+    log is re-read, and only those whose row count now differs from what is
+    stored move: a record the fix does not touch reads exactly as before.
+    """
+    found = []
+    for strategy, record in sorted(store.items()):
+        output = _output(record)
+        if output is None:
+            continue
+        columns, rows = profile_bias.recursive_table(output)
+        stored = record.get("drifts") or {}
+        # Only a GROWTH in row count is this rule's own signature - the wider
+        # filter can only reveal rows it used to drop, never remove ones it
+        # used to keep. A row count that SHRANK means the log on disk no
+        # longer describes this record at all, which on this filesystem
+        # means one thing: a same-cased path collision (`SuperTrend` /
+        # `Supertrend`, ten such pairs in the corpus) let a later run for the
+        # OTHER strategy overwrite this one's log file. That is a different
+        # defect with a different fix - re-running under a collision-safe
+        # path - and reparsing a contaminated log would silently launder it
+        # into a wrong verdict rather than surface it.
+        if len(rows) <= len(stored):
+            continue
+        found.append((strategy, record, columns, rows))
+    return found
+
+
+def apply_punctuated(store, threshold, dry_run):
+    changed = []
+    for strategy, record, columns, rows in punctuated_candidates(store, threshold):
+        before = record.get("state")
+        before_n = len(record.get("drifts") or {})
+        if dry_run:
+            changed.append((strategy, before, before_n, len(rows)))
+            continue
+        output = _output(record)
+        rungs = list(zip(record.get("ladder_days") or [],
+                         record.get("ladder_candles") or []))
+        record["columns"] = [{"startup_candle_count": s, "from_strategy": f}
+                             for s, f in columns]
+        record["drifts"] = {name: values for name, values in sorted(rows.items())}
+        blind = profile_bias.undefined_throughout(output)
+        if blind:
+            record["undefined_throughout"] = blind
+        declared = next((i for i, (_s, f) in enumerate(columns) if f), None)
+        if declared is not None:
+            worst = [abs(v[declared]) for v in rows.values()
+                     if v[declared] is not None]
+            record["declared_startup_candle_count"] = columns[declared][0]
+            record["declared_max_drift_pct"] = max(worst) if worst else None
+        settled = profile_bias.settled_startup(output, threshold)
+        if settled is None:
+            record["state"] = "not_converged_within_ladder"
+            largest = columns[-1][0] if columns else None
+            record["why"] = ("no startup up to %s candles keeps every "
+                             "indicator inside %s%%" % (largest, threshold))
+        else:
+            startup, indicator, value = settled
+            record["state"] = "converged"
+            record["chosen_startup_candle_count"] = startup
+            record["chosen_ladder_days"] = next(
+                (d for d, c in rungs if c == startup), None)
+            record["max_drift_pct"] = abs(value)
+            record["max_drift_indicator"] = indicator
+            record["needed_no_override"] = (
+                record.get("declared_warmup_override") is None
+                and declared is not None and startup <= columns[declared][0])
+            record.pop("why", None)
+        record["reparsed_from_log"] = PUNCT_RULE
+        changed.append((strategy, before, before_n, len(rows)))
+    return changed
+
+
 def bias_candidates(store):
     """Recursion records whose log the current reader disagrees with.
 
@@ -248,6 +333,19 @@ def selftest():
     blind_done = sum(1 for r in store.values()
                      if r.get("reparsed_from_log") == BLIND_RULE)
     blind_left = len(blind_candidates(store, threshold))
+    # A punctuated-name re-parse must always report MORE rows than the record
+    # it replaced - the whole point of the fix is that rows were being
+    # dropped, never invented, so the count can only grow.
+    for strategy, record in store.items():
+        if record.get("reparsed_from_log") != PUNCT_RULE:
+            continue
+        output = _output(record)
+        assert output is not None, strategy
+        _cols, rows = profile_bias.recursive_table(output)
+        assert len(rows) == len(record.get("drifts") or {}), strategy
+    punct_done = sum(1 for r in store.values()
+                     if r.get("reparsed_from_log") == PUNCT_RULE)
+    punct_left = len(punctuated_candidates(store, threshold))
     # Every re-parsed bias verdict must be exactly what the log now says, and
     # what it replaced must still be on the record.
     bias = _load(BIAS)["results"]
@@ -263,9 +361,9 @@ def selftest():
                     == BIAS_RULE)
     print("warmup_reparse selftest: PASS (%d ladder re-parsed, %d still to "
           "read; %d bias re-parsed, %d still to read; %d blind re-parsed, "
-          "%d still to read)"
+          "%d still to read; %d punctuated re-parsed, %d still to read)"
           % (reparsed, remaining, bias_done, len(bias_candidates(bias)),
-             blind_done, blind_left))
+             blind_done, blind_left, punct_done, punct_left))
 
 
 def main(argv=None):
@@ -273,7 +371,7 @@ def main(argv=None):
     parser.add_argument("--apply", action="store_true",
                         help="write the corrected verdicts back")
     parser.add_argument("--store", default="ladder",
-                        choices=("ladder", "bias", "blind"))
+                        choices=("ladder", "bias", "blind", "punctuated"))
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:
@@ -292,6 +390,18 @@ def main(argv=None):
             print("   %-34s %-6s -> %-6s %s" % (strategy, before, after, why[:60]))
         if args.apply and changed:
             _write(BIAS, data)
+        return 0
+    if args.store == "punctuated":
+        data = _load(CONVERGENCE)
+        threshold = data.get("drift_threshold_pct", 1.0)
+        changed = apply_punctuated(data["results"], threshold, not args.apply)
+        print("%s %d records whose row count the wider name filter changes"
+              % ("rewrote" if args.apply else "would rewrite", len(changed)))
+        for strategy, before, before_n, after_n in changed:
+            print("   %-34s %-26s rows %d -> %d"
+                  % (strategy, before, before_n, after_n))
+        if args.apply and changed:
+            _write(CONVERGENCE, data)
         return 0
     if args.store == "blind":
         data = _load(CONVERGENCE)

@@ -212,7 +212,28 @@ def _identity(row):
 
 
 def _safe(name):
-    return re.sub(r"[^A-Za-z0-9_.-]+", "_", name)
+    """A filesystem-safe name that never collides across strategies.
+
+    The corpus carries ten pairs of strategy IDs that differ only in case -
+    `SuperTrend` and `Supertrend`, `BBRSI` and `bbrsi`, `mabStra` and
+    `MabStra`, among others - genuinely different strategies from different
+    source files. Windows' default filesystem is case-INsensitive, so the old
+    version of this function, which only stripped illegal characters and left
+    case alone, sent both members of every such pair to the identical path.
+    Whichever one ran later silently overwrote the earlier one's log, and
+    for the isolated strategy directory (`profile_bias._isolated_strategy`)
+    put two different strategies' source files side by side in one directory
+    - already a documented hazard here (`AutoArimaTripleV1.py` opens a log at
+    import time and kills any gate pointed at its directory).
+
+    A short hash of the ORIGINAL, case-preserved name is appended, so two
+    names that fold to the same lowercase form still diverge. This changes
+    the path only for RUNS FROM NOW ON; every already-written `debug_log`
+    field in the stores still points at the file it was written to, and nothing
+    reads a path back through this function to find it again.
+    """
+    stem = re.sub(r"[^A-Za-z0-9_.-]+", "_", name)
+    return "%s-%s" % (stem, hashlib.sha256(name.encode("utf-8")).hexdigest()[:8])
 
 
 def _sha256_file(path):
@@ -373,7 +394,13 @@ def select(rows, strategies, profiles, limit):
 
 
 def selftest():
-    assert _safe("A/B C") == "A_B_C"
+    assert _safe("A/B C").startswith("A_B_C-")
+    # The whole point: two names differing only in case must never collide,
+    # because Windows' default filesystem folds case and ten such pairs are
+    # real, different strategies in this corpus.
+    assert _safe("SuperTrend") != _safe("Supertrend")
+    assert _safe("SuperTrend").lower() != _safe("Supertrend").lower()
+    assert _safe("SuperTrend") == _safe("SuperTrend")
     rows = [{"strategy_id": "A", "run_profile": "futures_long"},
             {"strategy_id": "B", "run_profile": "spot_long"}]
     assert [r["strategy_id"] for r in select(rows, [], {"futures_long"}, 0)] == ["A"]

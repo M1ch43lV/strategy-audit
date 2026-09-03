@@ -1464,10 +1464,10 @@
         "reparsed_from_log": "current_reader_v1",
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
         "status": "NA",
-        "superseded_status": "FOUND",
-        "superseded_why": "recursive drift: consensus_buy -40.000%, rmi 14.272%",
+        "superseded_status": "NA",
+        "superseded_why": "indicators undefined at this warm-up: sroc",
         "timerange": "20200301-20200401",
-        "why": "indicators undefined at this warm-up: sroc"
+        "why": "indicators undefined at this warm-up: sroc, ssl-dir"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -3933,9 +3933,9 @@
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
         "status": "FOUND",
         "superseded_status": "FOUND",
-        "superseded_why": "recursive drift: mmlextreme_oscillator -277.329%, min_threshold_mean -9.513%, max_threshold_mean -10.017%",
+        "superseded_why": "recursive drift: mmlextreme_oscillator -277.329%, min_threshold_mean -9.544%, max_threshold_mean -10.05%",
         "timerange": "20200301-20200401",
-        "why": "recursive drift: mmlextreme_oscillator -277.329%, min_threshold_mean -9.544%, max_threshold_mean -10.05%"
+        "why": "recursive drift: [-3/8]P 125.936%, [-2/8]P 84.734%, [-1/8]P 56.921%, [0/8]P 36.882%, [1/8]P 21.758%"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
@@ -3967,9 +3967,9 @@
         "runtime_id": "docker:sha256:5b174430cc39f964b9437704c5c68638b8ec4736a8ea825e241a7b2ed8c0de9f",
         "status": "FOUND",
         "superseded_status": "FOUND",
-        "superseded_why": "recursive drift: mmlextreme_oscillator -277.329%, min_threshold_mean -9.513%, max_threshold_mean -10.017%",
+        "superseded_why": "recursive drift: mmlextreme_oscillator -277.329%, min_threshold_mean -9.544%, max_threshold_mean -10.05%",
         "timerange": "20200301-20200401",
-        "why": "recursive drift: mmlextreme_oscillator -277.329%, min_threshold_mean -9.544%, max_threshold_mean -10.05%"
+        "why": "recursive drift: [-3/8]P 125.936%, [-2/8]P 84.734%, [-1/8]P 56.921%, [0/8]P 36.882%, [1/8]P 21.758%"
       },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
