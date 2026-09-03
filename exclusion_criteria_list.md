@@ -182,5 +182,5 @@ For a strategy under `open` or `exclusion unconfirmed`, read the three criteria 
 4. Did the look-ahead check turn it away for want of ten trades over the widest window? Then it is `too few trades` - not excluded, and not usable either.
 5. Otherwise it is not excluded. `open_work` names what is missing, and the checks run in the order the status page sets out: trial run, recursion, look-ahead, backtest.
 
-Of the 164 unfinished strategies, 0 currently satisfy a criterion.
+Of the 162 unfinished strategies, 0 currently satisfy a criterion.
 

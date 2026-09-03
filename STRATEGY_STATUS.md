@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-03 22:10:12 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-03 22:24:26 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -39,10 +39,10 @@ have neither and are left empty rather than given an invented time.
 
 | Cohort | Strategies |
 |---|---:|
-| `E1_expanded` | 549 |
+| `E1_expanded` | 551 |
 | `excluded` | 151 |
 | `pending` | 129 |
-| `exclusion_unconfirmed` | 35 |
+| `exclusion_unconfirmed` | 33 |
 | `too_few_trades` | 17 |
 | `not_a_strategy` | 14 |
 | `convergence_candidate` | 5 |
@@ -163,7 +163,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1081 of 2185 commands are recorded so far, and every new run
+recording. 1083 of 2185 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -183,7 +183,7 @@ evaluate a single signal without it. The warm-up ladder passes
 `--startup-candle` with every rung at once, which is why one run
 reports the whole ladder.
 
-## Passing - 549 strategies
+## Passing - 551 strategies
 
 Every original gate returned `PASS`: measured in its native mode,
 produced trades, clean look-ahead and recursion, complete candle
@@ -502,6 +502,7 @@ coverage, no published trap.
 | `NASOSv5_mod1` | `spot_long` | `E1_expanded` | 71 | `convergence:2016:warmup_supplied` | 2026-09-02 16:15:02 | [archive](user_data/profile_smoke/NASOSv5_mod1-2026-09-02_16-15-02.zip) [log](user_data/convergence_logs/NASOSv5_mod1-ladder.log) |
 | `NASOSv5_mod1_DanMod` | `spot_long` | `E1_expanded` | 65 | `convergence:2016:warmup_supplied` | 2026-09-02 16:26:06 | [archive](user_data/profile_smoke/NASOSv5_mod1_DanMod-2026-09-02_16-26-06.zip) [log](user_data/convergence_logs/NASOSv5_mod1_DanMod-ladder.log) |
 | `NASOSv5_mod2` | `spot_long` | `E1_expanded` | 62 | `convergence:2016:warmup_supplied` | 2026-09-02 16:15:51 | [archive](user_data/profile_smoke/NASOSv5_mod2-2026-09-02_16-15-51.zip) [log](user_data/convergence_logs/NASOSv5_mod2-ladder.log) |
+| `NASOSv5_mod3` | `spot_long` | `E1_expanded` | 74 | `convergence:2016:warmup_supplied` | 2026-09-02 16:16:36 | [archive](user_data/profile_smoke/NASOSv5_mod3-2026-09-02_16-16-36.zip) [log](user_data/convergence_logs/NASOSv5_mod3-ladder.log) |
 | `NEWTEST15m` | `spot_long` | `E1_expanded` | 2644 | `convergence:672:warmup_supplied` | 2026-09-01 14:29:37 | [log](user_data/convergence_logs/NEWTEST15m-ladder.log) |
 | `NFI46` | `spot_long` | `E1_expanded` | 77 | `convergence:2016:warmup_supplied` | 2026-09-01 14:30:04 | [log](user_data/convergence_logs/NFI46-ladder.log) |
 | `NFI46FrogZ` | `spot_long` | `E1_expanded` | 16273 | `convergence:2016:warmup_supplied` | 2026-09-01 14:30:31 | [log](user_data/convergence_logs/NFI46FrogZ-ladder.log) |
@@ -520,6 +521,7 @@ coverage, no published trap.
 | `NFINextMOHO2` | `spot_long` | `E1_expanded` | 1784 | `convergence:2016:warmup_supplied` | 2026-09-01 12:36:07 | [log](user_data/convergence_logs/NFINextMOHO2-ladder.log) |
 | `NFINextMultiOffsetAndHO` | `spot_long` | `E1_expanded` | 1094 | `convergence:2016:warmup_supplied` | 2026-09-01 12:36:33 | [log](user_data/convergence_logs/NFINextMultiOffsetAndHO-ladder.log) |
 | `NFINextMultiOffsetAndHO2` | `spot_long` | `E1_expanded` | 705 | `convergence:2016:warmup_supplied` | 2026-09-01 12:37:00 | [log](user_data/convergence_logs/NFINextMultiOffsetAndHO2-ladder.log) |
+| `NFIX_BB_RPB` | `spot_long` | `E1_expanded` | 34 | `convergence:2016:warmup_supplied` | 2026-08-31 15:14:55 | [archive](user_data/profile_smoke/NFIX_BB_RPB-2026-08-31_15-14-55.zip) [log](user_data/convergence_logs/NFIX_BB_RPB-ladder.log) |
 | `NWEv6_new` | `spot_long` | `E1_expanded` | 8108 | `convergence:480:warmup_supplied` | 2026-09-03 14:00:13 | [log](user_data/convergence_logs/NWEv6_new-ladder.log) |
 | `NormalizerStrategy` | `spot_long` | `E1_expanded` | 3747 | `convergence:610` | 2026-09-01 12:37:23 | [log](user_data/convergence_logs/NormalizerStrategy-ladder.log) |
 | `NormalizerStrategyHO2` | `spot_long` | `E1_expanded` | 3149 | `convergence:610` | 2026-09-01 14:34:54 | [log](user_data/convergence_logs/NormalizerStrategyHO2-ladder.log) |
@@ -2386,6 +2388,12 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/NASOSv5_mod2_gate.json --strategy NASOSv5_mod2 --strategy-path user_data/profile_bias_strategies/NASOSv5_mod2 --timerange 20200101-20220101 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NASOSv5_mod2 --strategy-path user_data/profile_bias_strategies/NASOSv5_mod2 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
+- `NASOSv5_mod3`
+  ```
+  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy NASOSv5_mod3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NASOSv5_mod3 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/NASOSv5_mod3_gate.json --strategy NASOSv5_mod3 --strategy-path user_data/profile_bias_strategies/NASOSv5_mod3 --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NASOSv5_mod3 --strategy-path user_data/profile_bias_strategies/NASOSv5_mod3 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
+  ```
 - `NEWTEST15m`
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NEWTEST15m --strategy-path user_data/profile_bias_strategies/NEWTEST15m --timerange 20190101-20190401 --no-color
@@ -2476,6 +2484,12 @@ The calls behind each, one per gate:
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NFINextMultiOffsetAndHO2 --strategy-path user_data/profile_bias_strategies/NFINextMultiOffsetAndHO2 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NFINextMultiOffsetAndHO2 --strategy-path user_data/profile_bias_strategies/NFINextMultiOffsetAndHO2 --timerange 20190101-20190401 --no-color
+  ```
+- `NFIX_BB_RPB`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy NFIX_BB_RPB --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NFIX_BB_RPB --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/NFIX_BB_RPB_gate.json --strategy NFIX_BB_RPB --strategy-path user_data/profile_bias_strategies/NFIX_BB_RPB --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NFIX_BB_RPB --strategy-path user_data/profile_bias_strategies/NFIX_BB_RPB --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `NWEv6_new`
   ```
@@ -3667,7 +3681,7 @@ neither a pass nor a fail.
 `new_turtle`, `new_turtle_roi`, `qrsi`, `tacos1`
 `thetank2`
 
-## Exclusion unconfirmed - 35 strategies
+## Exclusion unconfirmed - 33 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -3679,7 +3693,7 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_verdict_on_lookahead` | `no_finding` | 26 |
+| `no_verdict_on_lookahead` | `no_finding` | 24 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 5 |
 | `recursive_bias_unverified` | `no_finding` | 2 |
 | `unclassified` | `no_finding` | 1 |
@@ -3858,7 +3872,7 @@ Wave `C_measurement_recovery` - 7:
 | `recursive_ladder_pending` | 251 |
 | `convergence_not_converged_within_ladder` | 60 |
 | `needs_a_look` | 56 |
-| `lookahead_remeasure_pending` | 35 |
+| `lookahead_remeasure_pending` | 33 |
 | `to_be_fixed` | 29 |
 | `refuse_repair` | 21 |
 | `repair_attempted` | 16 |
