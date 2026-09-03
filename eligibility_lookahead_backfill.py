@@ -89,18 +89,37 @@ def settled_warmups():
 
 
 def registered_rules():
-    """Compatibility rules currently registered per strategy."""
+    """What each row would be run with today: its rules and its config.
+
+    The config is the same one `run` will pass - the repair overrides merged
+    with the settled warm-up - so the comparison is against what would
+    actually happen, not against an approximation of it.
+    """
     path = os.path.join(ROOT, "PROFILE_CLASS1.json")
-    if not os.path.exists(path):
-        return {}
-    entries = json.load(io.open(path, encoding="utf-8")).get("strategies", {})
-    return {name: set(entry.get("rules") or [])
-            for name, entry in entries.items()
-            if entry.get("status") in ("applied", "partial")}
+    entries = ({} if not os.path.exists(path)
+               else json.load(io.open(path, encoding="utf-8"))
+               .get("strategies", {}))
+    rules = {name: set(entry.get("rules") or [])
+             for name, entry in entries.items()
+             if entry.get("status") in ("applied", "partial")}
+    config = repair_overrides()
+    for strategy, warmup in settled_warmups().items():
+        merged = dict(warmup)
+        merged.update(config.get(strategy) or {})
+        config[strategy] = merged
+    names = set(rules) | set(config)
+    return {name: (rules.get(name, set()), config.get(name, {}))
+            for name in names}
 
 
 def measured_rules():
-    """Compatibility rules each stored look-ahead record was made under."""
+    """What each stored look-ahead record was made under.
+
+    Two things, because two things decide what the check sees: the
+    compatibility rules in force, and the config the row was run with - which
+    carries the warm-up, and `Backtesting.__init__` reads `required_startup`
+    from exactly that.
+    """
     out = {}
     for path in LOOKAHEAD_STORES:
         if not os.path.exists(path):
@@ -109,7 +128,8 @@ def measured_rules():
         for strategy, record in results.items():
             if not (record.get("lookahead") or {}).get("status"):
                 continue
-            out[strategy] = set(record.get("class1_rules") or [])
+            out[strategy] = (set(record.get("class1_rules") or []),
+                             dict(record.get("config_overrides") or {}))
     return out
 
 
@@ -128,8 +148,11 @@ def reconfigured(strategy, now, then):
     """
     if strategy not in then:
         return True
-    return ((now.get(strategy, set()) - RUNTIME_RULES)
-            != (then[strategy] - RUNTIME_RULES))
+    rules_then, config_then = then[strategy]
+    rules_now, config_now = now.get(strategy, (set(), {}))
+    if (rules_now - RUNTIME_RULES) != (rules_then - RUNTIME_RULES):
+        return True
+    return config_now != config_then
 
 
 def repair_overrides():

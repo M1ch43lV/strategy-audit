@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-03 07:51:40 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-03 09:34:18 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -31,10 +31,10 @@ have neither and are left empty rather than given an invented time.
 
 | Cohort | Strategies |
 |---|---:|
-| `E1_expanded` | 462 |
+| `E1_expanded` | 467 |
 | `excluded` | 149 |
 | `pending` | 135 |
-| `exclusion_unconfirmed` | 72 |
+| `exclusion_unconfirmed` | 67 |
 | `E0_strict67` | 67 |
 | `not_a_strategy` | 14 |
 | `convergence_candidate` | 1 |
@@ -155,7 +155,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 950 of 2185 commands are recorded so far, and every new run
+recording. 959 of 2185 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -175,7 +175,7 @@ evaluate a single signal without it. The warm-up ladder passes
 `--startup-candle` with every rung at once, which is why one run
 reports the whole ladder.
 
-## Passing - 529 strategies
+## Passing - 534 strategies
 
 Every original gate returned `PASS`: measured in its native mode,
 produced trades, clean look-ahead and recursion, complete candle
@@ -696,8 +696,13 @@ coverage, no published trap.
 | `heikin` | `spot_long` | `E1_expanded` | 21053 | `convergence:24:warmup_supplied` | 2026-09-01 15:26:03 | [log](user_data/convergence_logs/heikin-ladder.log) |
 | `hlhb` | `spot_long` | `E1_expanded` | 861 | `convergence:540:warmup_supplied` | 2026-09-02 19:21:28 | [log](user_data/convergence_logs/hlhb-ladder.log) |
 | `keltnerchannel` | `spot_long` | `E1_expanded` | 1131 | `convergence:360:warmup_supplied` | 2026-09-01 15:26:51 | [log](user_data/convergence_logs/keltnerchannel-ladder.log) |
+| `macd_recovery` | `spot_long` | `E1_expanded` | 202 | `convergence:2016:warmup_supplied` | 2026-09-01 19:56:22 | [archive](user_data/profile_smoke/macd_recovery-2026-09-01_19-56-22.zip) [log](user_data/convergence_logs/macd_recovery-ladder.log) |
+| `mark_strat` | `spot_long` | `E1_expanded` | 942 | `convergence:1440:warmup_supplied` | 2026-09-01 19:57:13 | [archive](user_data/profile_smoke/mark_strat-2026-09-01_19-57-13.zip) [log](user_data/convergence_logs/mark_strat-ladder.log) |
+| `mark_strat_opt` | `spot_long` | `E1_expanded` | 11 | `convergence:1440:warmup_supplied` | 2026-09-01 20:50:12 | [archive](user_data/profile_smoke/mark_strat_opt-2026-09-01_20-50-12.zip) [log](user_data/convergence_logs/mark_strat_opt-ladder.log) |
 | `moonhouse` | `spot_long` | `E1_expanded` | 96 | `convergence:1:warmup_supplied` | 2026-09-01 15:28:29 | [log](user_data/convergence_logs/moonhouse-ladder.log) |
 | `pmaxTest` | `spot_long` | `E1_expanded` | 23 | `convergence:2016:warmup_supplied` | 2026-08-31 15:33:16 | [archive](user_data/profile_smoke/pmaxTest-2026-08-31_15-33-16.zip) [log](user_data/convergence_logs/pmaxTest-ladder.log) |
+| `quantumfirst` | `spot_long` | `E1_expanded` | 227 | `convergence:288:warmup_supplied` | 2026-09-01 19:57:53 | [archive](user_data/profile_smoke/quantumfirst-2026-09-01_19-57-53.zip) [log](user_data/convergence_logs/quantumfirst-ladder.log) |
+| `redditMA` | `spot_long` | `E1_expanded` | 193 | `convergence:192:warmup_supplied` | 2026-09-01 19:58:32 | [archive](user_data/profile_smoke/redditMA-2026-09-01_19-58-32.zip) [log](user_data/convergence_logs/redditMA-ladder.log) |
 | `simple_patterns` | `spot_long` | `E1_expanded` | 1845 | `native` | 2026-08-31 15:55:52 | [archive](user_data/profile_smoke/simple_patterns-2026-08-31_15-55-52.zip) |
 | `slope_is_dopeCT` | `spot_long` | `E1_expanded` | 821 | `convergence:672:warmup_supplied` | 2026-09-01 12:55:49 | [log](user_data/convergence_logs/slope_is_dopeCT-ladder.log) |
 | `slownsteady` | `spot_long` | `E1_expanded` | 35 | `convergence:2016:warmup_supplied` | 2026-08-31 15:54:44 | [archive](user_data/profile_smoke/slownsteady-2026-08-31_15-54-44.zip) [log](user_data/convergence_logs/slownsteady-ladder.log) |
@@ -3390,6 +3395,24 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy keltnerchannel --strategy-path user_data/profile_bias_strategies/keltnerchannel --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy keltnerchannel --strategy-path user_data/profile_bias_strategies/keltnerchannel --timerange 20190101-20190401 --no-color
   ```
+- `macd_recovery`
+  ```
+  backtest   [recorded] freqtrade backtesting --config user_data/profile_configs/macd_recovery-override-2c7527d808c6.json --strategy macd_recovery --strategy-path repos/davidzr_freqtrade-strategies/strategies/macd_recovery --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/macd_recovery --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/macd_recovery_gate.json --strategy macd_recovery --strategy-path user_data/profile_bias_strategies/macd_recovery --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/macd_recovery_startup_288.json --strategy macd_recovery --strategy-path user_data/profile_bias_strategies/macd_recovery --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032 --timeframe 5m
+  ```
+- `mark_strat`
+  ```
+  backtest   [recorded] freqtrade backtesting --config user_data/profile_configs/mark_strat-override-93c76024faa3.json --strategy mark_strat --strategy-path repos/davidzr_freqtrade-strategies/strategies/mark_strat --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/mark_strat --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/mark_strat_gate.json --strategy mark_strat --strategy-path user_data/profile_bias_strategies/mark_strat --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy mark_strat --strategy-path user_data/profile_bias_strategies/mark_strat --timerange 20190101-20190401 --no-color --startup-candle 1440 2880 --timeframe 1m
+  ```
+- `mark_strat_opt`
+  ```
+  backtest   [recorded] freqtrade backtesting --config user_data/profile_configs/mark_strat_opt-override-93c76024faa3.json --strategy mark_strat_opt --strategy-path repos/davidzr_freqtrade-strategies/strategies/mark_strat_opt --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/mark_strat_opt --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/mark_strat_opt_gate.json --strategy mark_strat_opt --strategy-path user_data/profile_bias_strategies/mark_strat_opt --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy mark_strat_opt --strategy-path user_data/profile_bias_strategies/mark_strat_opt --timerange 20190101-20190401 --no-color --startup-candle 1440 2880 --timeframe 1m
+  ```
 - `moonhouse`
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy moonhouse --strategy-path user_data/profile_bias_strategies/moonhouse --timerange 20200101-20220101 --no-color
@@ -3400,6 +3423,18 @@ The calls behind each, one per gate:
   backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy pmaxTest --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/pmaxTest --cache none
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy pmaxTest --strategy-path user_data/profile_bias_strategies/pmaxTest --timerange 20200101-20220101 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/pmaxTest_startup_288.json --strategy pmaxTest --strategy-path user_data/profile_bias_strategies/pmaxTest --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
+  ```
+- `quantumfirst`
+  ```
+  backtest   [recorded] freqtrade backtesting --config user_data/profile_configs/quantumfirst-override-2c7527d808c6.json --strategy quantumfirst --strategy-path repos/davidzr_freqtrade-strategies/strategies/quantumfirst --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/quantumfirst --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/quantumfirst_gate.json --strategy quantumfirst --strategy-path user_data/profile_bias_strategies/quantumfirst --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/quantumfirst_startup_288.json --strategy quantumfirst --strategy-path user_data/profile_bias_strategies/quantumfirst --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032 --timeframe 5m
+  ```
+- `redditMA`
+  ```
+  backtest   [recorded] freqtrade backtesting --config user_data/profile_configs/redditMA-override-c517447bf6b2.json --strategy redditMA --strategy-path repos/davidzr_freqtrade-strategies/strategies/redditMA --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/redditMA --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/redditMA_gate.json --strategy redditMA --strategy-path user_data/profile_bias_strategies/redditMA --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy redditMA --strategy-path user_data/profile_bias_strategies/redditMA --timerange 20190101-20190401 --no-color --startup-candle 96 192 672 1344 2880 --timeframe 15m
   ```
 - `simple_patterns`
   ```
@@ -3524,7 +3559,7 @@ neither a pass nor a fail.
 `haGradient`, `multi_tf`, `new_turtle`, `new_turtle_roi`
 `qrsi`, `tacos1`, `thetank2`
 
-## Exclusion unconfirmed - 72 strategies
+## Exclusion unconfirmed - 67 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -3536,11 +3571,10 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_verdict_on_lookahead` | `no_finding` | 49 |
+| `no_verdict_on_lookahead` | `no_finding` | 51 |
 | `no_trades_in_full_measurement` | `inherited` | 5 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 5 |
-| `recursive_bias_unverified` | `no_finding` | 5 |
-| `no_verdict_on_recursive` | `no_finding` | 5 |
+| `recursive_bias_unverified` | `no_finding` | 3 |
 | `recursive_warmup_refused` | `no_finding` | 3 |
 
 This is not a softening. A row here may well end up excluded - the
@@ -3709,10 +3743,10 @@ Wave `C_measurement_recovery` - 7:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 62 |
 | `lookahead_remeasure_pending` | 62 |
 | `convergence_not_converged_within_ladder` | 61 |
 | `needs_a_look` | 56 |
+| `recursive_ladder_pending` | 53 |
 | `to_be_fixed` | 32 |
 | `refuse_repair` | 21 |
 | `repair_attempted` | 16 |
