@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-03 09:34:18 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-03 12:08:22 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -32,12 +32,13 @@ have neither and are left empty rather than given an invented time.
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 467 |
-| `excluded` | 149 |
-| `pending` | 135 |
-| `exclusion_unconfirmed` | 67 |
+| `excluded` | 150 |
+| `pending` | 133 |
 | `E0_strict67` | 67 |
+| `exclusion_unconfirmed` | 52 |
+| `too_few_trades` | 14 |
 | `not_a_strategy` | 14 |
-| `convergence_candidate` | 1 |
+| `convergence_candidate` | 3 |
 
 ## The order the checks run in
 
@@ -155,7 +156,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 959 of 2185 commands are recorded so far, and every new run
+recording. 962 of 2185 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -3509,7 +3510,7 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Convergence candidates - 1 strategies
+## Convergence candidates - 3 strategies
 
 A warm-up exists at which every indicator stays inside the band.
 That is not admission: the paired full-window run must still show
@@ -3517,9 +3518,11 @@ an identical trade list.
 
 | Strategy | Profile | Chosen warm-up | Worst drift | Tested | Results |
 |---|---|---|---|---|---|
+| `ClucHAnix` | `spot_long` | 1440 candles | 0.0% on `lower` | 2026-09-01 13:45:46 | `user_data/convergence_logs/ClucHAnix-ladder.log` |
+| `GKD_FisherTransformMTF` | `spot_long` | 168 candles | 0.0% on `fisher_smooth_4h` | 2026-09-01 14:01:15 | `user_data/convergence_logs/GKD_FisherTransformMTF-ladder.log` |
 | `JustROCR6` | `spot_long` | 1440 candles | 0.0% on `None` | 2026-09-01 19:48:20 | `user_data/convergence_logs/JustROCR6-ladder.log` |
 
-## Pending - 135 strategies
+## Pending - 133 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
@@ -3537,29 +3540,29 @@ neither a pass nor a fail.
 `Fakebuy`, `FastSupertrend`, `FastSupertrendOpt`, `FileLoadingStrategy`
 `FreqaiExampleHybridStrategy`, `FreqaiExampleStrategy`, `FundingCarry`, `GPR`
 `GodStra`, `Guacamole`, `GymStrategy`, `HLHB`
-`IchimokuStrategy`, `Ichimoku_SenkouSpanCross`, `Insomnia_short`, `InverseVolatilityPortfolio`
-`KMM`, `Kamaflage`, `LitmusEntryRollClassificationStrategy`, `LitmusGoodMinMaxClassificationStrategy`
-`LitmusMLDPStrategy`, `LitmusMetaStrategy`, `LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`
-`LitmusMinMaxRegretClassificationStrategy`, `LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`
-`LitmusSimpleStrategy`, `LongShortRangeTradingMachetesV1`, `MKR`, `MacheteV8b`
-`MacheteV8bRallimod`, `MacheteV8bRallimod2`, `MasterMoniGoManiHyperStrategy`, `MlpSpeculativeStrategy`
-`MomentumRegimeBasket15m`, `MostOfAll`, `MultiMA_TSL`, `MultiMA_TSL5`
-`MultiMa`, `MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`, `MyStrategyNew10`
-`NFI46Frog`, `NFI4Frog`, `NoLost`, `NowoIchimoku1hV1`
-`Persia`, `Pmax`, `PnF`, `PolymarketLogicalArbStrategy`
-`PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy`, `Prediction_Strategy`, `Proton`
-`QuickAdapterV3`, `QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`
-`RenkoYolo`, `RiskParityPortfolio`, `SMAOPv1_TTF`, `ScalpingCCI`
-`Schism`, `Schism2`, `Schism6`, `SimpleRiskFilterStrategy`
-`Solipsis3`, `Solipsis4`, `Solipsis5`, `Solipsis6`
-`SolipsisCon`, `SolipsisMM`, `SuperHV27`, `SuperTrendPure`
-`Supertrend`, `TGMA`, `TankAi`, `TankAiRevival`
-`Test_MAMA4`, `TrainCatBoostStrategy`, `TuplaBollinger`, `TwoCandleTheory`
-`UpSliceStrategy`, `WTAI`, `WTHO`, `WTRSIAI`
-`haGradient`, `multi_tf`, `new_turtle`, `new_turtle_roi`
-`qrsi`, `tacos1`, `thetank2`
+`IchimokuStrategy`, `Ichimoku_SenkouSpanCross`, `Insomnia_short`, `KMM`
+`Kamaflage`, `LitmusEntryRollClassificationStrategy`, `LitmusGoodMinMaxClassificationStrategy`, `LitmusMLDPStrategy`
+`LitmusMetaStrategy`, `LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`
+`LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`
+`LongShortRangeTradingMachetesV1`, `MKR`, `MacheteV8b`, `MacheteV8bRallimod`
+`MacheteV8bRallimod2`, `MasterMoniGoManiHyperStrategy`, `MlpSpeculativeStrategy`, `MomentumRegimeBasket15m`
+`MostOfAll`, `MultiMA_TSL`, `MultiMA_TSL5`, `MultiMa`
+`MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`, `MyStrategyNew10`, `NFI46Frog`
+`NFI4Frog`, `NoLost`, `NowoIchimoku1hV1`, `Persia`
+`Pmax`, `PnF`, `PolymarketLogicalArbStrategy`, `PolymarketMeanReversionStrategy`
+`PolymarketMomentumStrategy`, `Prediction_Strategy`, `Proton`, `QuickAdapterV3`
+`QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`, `RenkoYolo`
+`SMAOPv1_TTF`, `ScalpingCCI`, `Schism`, `Schism2`
+`Schism6`, `SimpleRiskFilterStrategy`, `Solipsis3`, `Solipsis4`
+`Solipsis5`, `Solipsis6`, `SolipsisCon`, `SolipsisMM`
+`SuperHV27`, `SuperTrendPure`, `Supertrend`, `TGMA`
+`TankAi`, `TankAiRevival`, `Test_MAMA4`, `TrainCatBoostStrategy`
+`TuplaBollinger`, `TwoCandleTheory`, `UpSliceStrategy`, `WTAI`
+`WTHO`, `WTRSIAI`, `haGradient`, `multi_tf`
+`new_turtle`, `new_turtle_roi`, `qrsi`, `tacos1`
+`thetank2`
 
-## Exclusion unconfirmed - 67 strategies
+## Exclusion unconfirmed - 52 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -3571,7 +3574,7 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_verdict_on_lookahead` | `no_finding` | 51 |
+| `no_verdict_on_lookahead` | `no_finding` | 36 |
 | `no_trades_in_full_measurement` | `inherited` | 5 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 5 |
 | `recursive_bias_unverified` | `no_finding` | 3 |
@@ -3582,7 +3585,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 149 strategies, by decisive reason
+## Not passing - 150 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -3630,7 +3633,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 149 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 150 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -3638,7 +3641,7 @@ one of them carries none.
 
 | Reason | Meaning | Strategies |
 |---|---|---:|
-| `lookahead_found` | reads data it could not have had at the time | 81 |
+| `lookahead_found` | reads data it could not have had at the time | 82 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 61 |
 | `no_trades_in_full_measurement` | never trades over the full window | 7 |
 
@@ -3647,11 +3650,11 @@ one of them carries none.
 
 | Reason | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `not_scheduled` |
 |---|---|---|---|---|---|
-| `lookahead_found` | 2 | 0 | 17 | 0 | 62 |
+| `lookahead_found` | 2 | 0 | 17 | 0 | 63 |
 | `recursive_bias_found` | 0 | 3 | 19 | 14 | 25 |
 | `no_trades_in_full_measurement` | 0 | 0 | 7 | 0 | 0 |
 
-### `lookahead_found` - 81
+### `lookahead_found` - 82
 
 Reads data it could not have had at the time.
 
@@ -3667,24 +3670,24 @@ Wave `C_measurement_recovery` - 17:
 `Obelisk_Ichimoku_ZEMA_v1`, `Stavix2`, `Stinkfist`, `bbema`
 `ichiV1_Marius`
 
-Wave `not_scheduled` - 62:
+Wave `not_scheduled` - 63:
 
 `AlexBTK_CT`, `AlexBattleTankKiller`, `AlexBattleTankKillerV3`, `AlexBattleTankKillerV40H`
 `Auto_EI_t4c0s`, `BBBreakoutStrategy`, `BB_RPB_TSL_c7c477d_20211030`, `BreakoutStrategy`
-`BuyAllSellAllStrategy`, `CCIStrategy`, `Cci`, `Dracula`
-`EI1_t4c0s_V4`, `EI4_t4c0s_V2`, `EI4_t4c0s_V2_2`, `ElliotWave`
-`FVGAdvancedStrategy_V2`, `FakeoutStrategy`, `FrayLIVEBTC15m`, `FrostAuraRandomStrategy`
-`HEW`, `Heracles`, `HyperStra_SMAOnly`, `Ichi`
-`IchiVwapAdx`, `IchimokuCloudStrategy`, `Leveraged`, `LookaheadStrategy`
-`LorentzianClassification`, `MSO`, `MaxSharpePortfolio`, `MinimumVariancePortfolio`
-`MomentumRegimeBasket`, `NOTankAi_17`, `NOTankAi_19`, `NWEv6`
-`NeuroV1`, `NotAnotherSMAOffsetStrategy_uzi3`, `Obelisk_TradePro_Ichi_v1_1`, `Obelisk_TradePro_Ichi_v2_1`
-`PolymarketPortfolio`, `Precognition`, `ReinforcedQuickie`, `Renko`
-`Rsiqui`, `RsiquiV2`, `RsiquiV5`, `RsiquiV5_long_only`
-`StarRise_strat3`, `TSPredict`, `Tank1Modulus`, `Tank5ModulusDCA`
-`Tank5ModulusDCAV3`, `UziChan`, `UziChan2`, `Zeus`
-`custom`, `grad`, `ichiV1`, `tsp0chicken`
-`turbov8`, `wtc`
+`BuyAllSellAllStrategy`, `CCIStrategy`, `Cci`, `DCBBBounce`
+`Dracula`, `EI1_t4c0s_V4`, `EI4_t4c0s_V2`, `EI4_t4c0s_V2_2`
+`ElliotWave`, `FVGAdvancedStrategy_V2`, `FakeoutStrategy`, `FrayLIVEBTC15m`
+`FrostAuraRandomStrategy`, `HEW`, `Heracles`, `HyperStra_SMAOnly`
+`Ichi`, `IchiVwapAdx`, `IchimokuCloudStrategy`, `Leveraged`
+`LookaheadStrategy`, `LorentzianClassification`, `MSO`, `MaxSharpePortfolio`
+`MinimumVariancePortfolio`, `MomentumRegimeBasket`, `NOTankAi_17`, `NOTankAi_19`
+`NWEv6`, `NeuroV1`, `NotAnotherSMAOffsetStrategy_uzi3`, `Obelisk_TradePro_Ichi_v1_1`
+`Obelisk_TradePro_Ichi_v2_1`, `PolymarketPortfolio`, `Precognition`, `ReinforcedQuickie`
+`Renko`, `Rsiqui`, `RsiquiV2`, `RsiquiV5`
+`RsiquiV5_long_only`, `StarRise_strat3`, `TSPredict`, `Tank1Modulus`
+`Tank5ModulusDCA`, `Tank5ModulusDCAV3`, `UziChan`, `UziChan2`
+`Zeus`, `custom`, `grad`, `ichiV1`
+`tsp0chicken`, `turbov8`, `wtc`
 
 ### `recursive_bias_found` - 61
 
@@ -3743,10 +3746,10 @@ Wave `C_measurement_recovery` - 7:
 
 | Item | Strategies |
 |---|---:|
-| `lookahead_remeasure_pending` | 62 |
 | `convergence_not_converged_within_ladder` | 61 |
 | `needs_a_look` | 56 |
-| `recursive_ladder_pending` | 53 |
+| `recursive_ladder_pending` | 51 |
+| `lookahead_remeasure_pending` | 45 |
 | `to_be_fixed` | 32 |
 | `refuse_repair` | 21 |
 | `repair_attempted` | 16 |

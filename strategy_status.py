@@ -139,6 +139,9 @@ REASON_ORDER = (
      "the analyzer refused for want of a declared warm-up; nothing was measured"),
     ("measured_outside_its_design",
      "opened nothing because our setup stopped it, not because it is idle"),
+    ("too_few_trades_to_measure",
+     "trades fewer than ten times over the full window and all eight pairs, "
+     "which is below what any check or ranking can work with"),
     ("no_trades_in_full_measurement", "never trades over the full window"),
     ("canonical_implementation_not_measured", "never ran"),
     ("no_verdict_on_lookahead_and_recursive", "measured; neither gate returned a verdict"),
@@ -347,6 +350,13 @@ def _csv(path):
         return list(csv.DictReader(handle))
 
 
+# The widest window `lookahead-analysis` falls back to: the full span over
+# all eight pairs. A "too few trades" reported against it is a statement
+# about the strategy, not about a window that was too short.
+FULL_FALLBACK = "20200301-20260820"
+TRADE_FLOOR = 10
+
+
 def _json(path, key="results"):
     if not os.path.exists(path):
         return {}
@@ -435,6 +445,8 @@ def exclusion_basis(reason, lookahead_evidence, trade_evidence,
     # it the chance.
     if reason == "measured_outside_its_design":
         return "blocked"
+    if reason == "too_few_trades_to_measure":
+        return "own_measurement"
     if reason == "no_trades_in_full_measurement":
         return "own_measurement" if trade_evidence == "full_window" else "inherited"
     # `recursive_bias_found` is our own only when our ladder produced it. A
@@ -691,6 +703,17 @@ def rows():
         # both bias checks - and they are not strategies anyone wrote to
         # trade, so no measurement can ever admit one.
         role = profile.get("artifact_role", "")
+        # Ten trades is what `lookahead-analysis` needs before it will judge
+        # anything, so a row it turned away for want of them cannot be given a
+        # verdict by any amount of re-running. Read from the widest window the
+        # check tried, which is the full 6.5 years over all eight pairs.
+        gate_record = (fresh or tried
+                       or (diagnostics.get("lookahead") or {}) or {})
+        too_few = (
+            gate_record.get("status") == "NA"
+            and "too few trades" in (gate_record.get("why") or "")
+            and FULL_FALLBACK in (gate_record.get("attempted_timeranges") or [])
+            and strategy not in setup_faults)
         ran_here = bool(measurement or diagnostics or window or settled)
         if role != "strategy":
             # Decided before any measurement is consulted, because no
@@ -724,6 +747,12 @@ def rows():
             # reading as merely pending, because their look-ahead had not run
             # yet. A missing second check is no reason to un-fail the first.
             cohort = "excluded"
+        elif too_few:
+            # Neither excluded nor usable. Nothing was found against it, so
+            # `excluded` would claim a verdict nobody reached; and it cannot
+            # be ranked by market phase, because three trades in six and a
+            # half years distribute across nothing.
+            cohort = "too_few_trades"
         elif base.get("eligibility_status") == "pending_diagnostics":
             cohort = "pending"
         elif not ran_here and base.get("canonical_measured") != "true":
@@ -758,7 +787,11 @@ def rows():
             cohort = "excluded"
 
         reason = ""
-        if cohort in ("excluded", "pending"):
+        if cohort in ("excluded", "pending", "too_few_trades"):
+            if cohort == "too_few_trades":
+                # Decided by the cohort, not by the frozen reason set: the
+                # baseline predates the run that established it.
+                reason = "too_few_trades_to_measure"
             reasons = set(filter(None,
                                  (base.get("exclusion_reasons") or "").split(";")))
             # Evidence gathered since the freeze outranks the frozen reason.
@@ -937,7 +970,7 @@ def rows():
             open_work = []
         basis = exclusion_basis(reason, lookahead_evidence, source,
                                 recursive_evidence) \
-            if cohort in ("excluded", "pending") else ""
+            if cohort in ("excluded", "pending", "too_few_trades") else ""
         # `excluded` is a verdict, and this audit does not issue a verdict on
         # somebody else's measurement or on the absence of one. A row whose
         # exclusion rests on an inherited result, or on no result at all, is
@@ -1603,6 +1636,13 @@ def selftest():
                 row["lookahead"], row["recursive_evidence"])
         # A trap is a fact about the source, never a verdict. It may sit on
         # any row, and it may decide none.
+        # Too rare to measure is not a verdict against the strategy, so it
+        # is never `excluded`, and it is never usable either. It rests on our
+        # own run over the full window, so it must say so.
+        if row["cohort"] == "too_few_trades":
+            assert row["primary_reason"] == "too_few_trades_to_measure",                 row["strategy_id"]
+            assert row["exclusion_basis"] == "own_measurement",                 row["strategy_id"]
+            assert row["lookahead"] == "NA", row["strategy_id"]
         # A file that is not a strategy is neither admitted nor excluded:
         # there is no verdict to reach about a test fixture. It says what it
         # is, and it asks for nothing.
@@ -1615,7 +1655,7 @@ def selftest():
             assert "trap" not in row["primary_reason"], row["strategy_id"]
         if row["cohort"] in ("excluded", "exclusion_unconfirmed", "pending",
                              "not_tested_in_current_runtime",
-                             "not_a_strategy"):
+                             "not_a_strategy", "too_few_trades"):
             assert row["primary_reason"], row["strategy_id"]
         else:
             assert not row["primary_reason"], row["strategy_id"]

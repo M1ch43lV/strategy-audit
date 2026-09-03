@@ -435,11 +435,13 @@
     pending:          {label:"open", cls:"k-hold"},
     not_tested_in_current_runtime:{label:"not run here yet", cls:"k-none"},
     not_a_strategy:{label:"not a strategy", cls:"k-none"},
+    too_few_trades:{label:"too few trades", cls:"k-none"},
     excluded:         {label:"excluded", cls:"k-fail"}
   };
   var ORDER = ["E0_strict67","E1_expanded","convergence_candidate",
                "exclusion_unconfirmed","pending",
-               "not_tested_in_current_runtime","not_a_strategy",
+               "not_tested_in_current_runtime","too_few_trades",
+               "not_a_strategy",
                "excluded"];
   var VAR = {"k-pass":"--pass","k-cand":"--cand","k-hold":"--hold",
              "k-none":"--none","k-fail":"--fail"};
@@ -453,6 +455,7 @@
     measured_outside_its_design:"Opened nothing over the full window because our setup stopped it, not because it is idle. Ours to fix, so the row is open.",
     strategy_does_not_run:"Fails before it can be measured:",
     no_trades_in_full_measurement:"Never trades over the full window.",
+    too_few_trades_to_measure:"Trades fewer than ten times over the full window and all eight pairs — below what any check or ranking can work with.",
     behavior_changed_primary_exclusion:"A repair changed its behaviour.",
     no_verdict_on_lookahead:"Measured, recursion clean — look-ahead has no verdict.",
     no_verdict_on_recursive:"Measured, look-ahead clean — recursion has no verdict.",
@@ -653,6 +656,7 @@
        exclusion_unconfirmed:"Would have been excluded on an inherited verdict or on no verdict at all. Held here until a measurement of ours settles it either way.",
        pending:"No hard failure and no verdict yet.",
        not_tested_in_current_runtime:"No run under this pipeline. The original sweep attempted every row, but in an environment that did not establish this audit's preconditions.",
+       too_few_trades:"Fewer than ten trades over 20200301-20260820 across all eight pairs. Neither excluded nor usable: nothing was found against these strategies, so calling them excluded would claim a verdict nobody reached — and they cannot be ranked either, because three trades in six and a half years distribute across no market phase. Ten is freqtrade's own floor for a look-ahead verdict, not a number of ours. A row that trades rarely because OUR setup stopped it is open instead, and ZERO_TRADE_TRIAGE.json says why.",
        not_a_strategy:"Not a trading strategy at all: eleven fixtures that freqtrade and NostalgiaForInfinity ship to test their own code, and three templates with nothing filled in. No measurement can admit one, so none is asked for. StrategyTestV2 clears both bias checks with 26,070 trades behind it and is still a fixture. What happened when each ran is kept in its reason.",
        excluded:"Either a disqualifying result measured here, or a strategy that never ran at all."
      }},

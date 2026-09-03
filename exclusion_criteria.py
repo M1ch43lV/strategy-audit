@@ -246,6 +246,44 @@ PREFILTER = {
 }
 
 
+# Decided by measurement, unlike the prefilter, but it is not an exclusion
+# either: nothing was found against these strategies. Owner's decision,
+# 2026-09-03.
+TOO_FEW = {
+    "cohort": "too_few_trades",
+    "test": 'lookahead NA reporting "too few trades" over the widest window',
+    "floor": 10,
+    "what": "The strategy trades fewer than ten times over "
+            "`20200301-20260820` across all eight pairs. "
+            "`lookahead-analysis` needs ten trades before it will judge "
+            "anything, so it turned the row away rather than ruling on too "
+            "little.",
+    "why_not_excluded": "Nothing was found against these strategies. Calling "
+                        "them excluded would claim a verdict nobody reached, "
+                        "which is the same error the trap heuristic made.",
+    "why_not_usable": "And they cannot be ranked either. Market-phase "
+                      "efficiency is a statement about how a strategy behaves "
+                      "in each phase, and three trades in six and a half "
+                      "years distribute across nothing.",
+    "threshold": "Ten is not our number. It is what freqtrade itself "
+                 "requires before `lookahead-analysis` reaches a verdict, "
+                 "which makes it the one threshold here that is not a choice "
+                 "of ours. Whether a market-phase ranking needs more than "
+                 "ten - per phase rather than in total - belongs to the "
+                 "benchmark's preregistration and is still open.",
+    "excluded_from_it": "A row that trades rarely because OUR setup stopped "
+                        "it does not belong here. `BasketStrategy` reports "
+                        "zero because a portfolio basket was measured one "
+                        "pair at a time; it is `open`, and "
+                        "`ZERO_TRADE_TRIAGE.json` says why.",
+}
+
+
+def too_few(row):
+    """True when the row is in the too-few-trades cohort."""
+    return row.get("cohort") == TOO_FEW["cohort"]
+
+
 def prefiltered(row):
     """True when the row is not a strategy, whatever its measurements say."""
     return bool(row.get("artifact_role")) and row["artifact_role"] != "strategy"
@@ -334,6 +372,32 @@ def criteria_report(rows, path):
                                    row["primary_reason"] or "-"))
         add("")
 
+    rare = [r for r in rows if too_few(r)]
+    add("## Neither excluded nor usable: too few trades to measure")
+    add("")
+    add("**Machine test.** %s. Cohort `%s`, floor %d trades."
+        % (TOO_FEW["test"], TOO_FEW["cohort"], TOO_FEW["floor"]))
+    add("")
+    add("**What it means.** %s Currently %d strategies."
+        % (TOO_FEW["what"], len(rare)))
+    add("")
+    add("**Why they are not excluded.** %s" % TOO_FEW["why_not_excluded"])
+    add("")
+    add("**Why they are not usable.** %s" % TOO_FEW["why_not_usable"])
+    add("")
+    add("**Where the number comes from.** %s" % TOO_FEW["threshold"])
+    add("")
+    add("**What does not belong here.** %s" % TOO_FEW["excluded_from_it"])
+    add("")
+    if rare:
+        add("| Strategy | Trades | Measured over |")
+        add("|---|---:|---|")
+        for row in sorted(rare, key=lambda r: r["strategy_id"]):
+            add("| `%s` | %s | %s |" % (row["strategy_id"],
+                                        row["observed_trades"] or "0",
+                                        row["trade_evidence"] or "-"))
+        add("")
+
     add("## What does not exclude a strategy")
     add("")
     add("Each of these has at some point moved strategies into `excluded` and "
@@ -367,7 +431,10 @@ def criteria_report(rows, path):
     add("3. Did the full window run and produce no trades, with "
         "`trade_evidence` reading `full_window`? Then C3, and it is "
         "excluded.")
-    add("4. Otherwise it is not excluded. `open_work` names what is missing, "
+    add("4. Did the look-ahead check turn it away for want of ten trades "
+        "over the widest window? Then it is `too few trades` - not excluded, "
+        "and not usable either.")
+    add("5. Otherwise it is not excluded. `open_work` names what is missing, "
         "and the checks run in the order the status page sets out: trial "
         "run, recursion, look-ahead, backtest.")
     add("")
@@ -950,6 +1017,16 @@ def selftest():
                 "could use." % row["strategy_id"])
         if row["cohort"] == "not_a_strategy":
             assert prefiltered(row), row["strategy_id"]
+    # Too rare to measure is never a verdict against a strategy, so no such
+    # row may be excluded, and none may be admitted either.
+    for row in rows:
+        if too_few(row):
+            assert row["lookahead"] == "NA", row["strategy_id"]
+            assert not classify(row), (
+                "%s is in the too-few-trades cohort and also satisfies %s"
+                % (row["strategy_id"], ", ".join(classify(row))))
+        if row["cohort"] in ("E0_strict67", "E1_expanded"):
+            assert not too_few(row), row["strategy_id"]
     for criterion in CRITERIA:
         matched = [r for r in excluded if criterion["test"](r)]
         assert matched, "criterion %s matches nothing" % criterion["id"]
