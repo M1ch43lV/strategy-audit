@@ -351,6 +351,7 @@ For example: `Astro`, `BestSingleAssetPortfolio`, `CryptoFrogNFI2`, `GodStra`, `
 
 | Rule | Strategies |
 |---|---:|
+| `startup_candles_not_limited_by_call_budget` | 62 |
 | `idempotent_entry_tag_initialisation` | 21 |
 | `restore_copied_local_module` | 14 |
 | `restore_author_package_extension` | 11 |

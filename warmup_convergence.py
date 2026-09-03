@@ -72,7 +72,38 @@ WINDOW_START = "2020-03-01"
 # capped here so the rung is never requested in the first place. The cap binds
 # hardest exactly where the warm-up matters most: at a five-minute timeframe it
 # allows about 17 days, so the 30, 90 and 365 day rungs do not exist there.
+# Freqtrade refuses a warm-up that would need more than five OHLCV calls per
+# pair - 4999 candles on Binance. Its own comment says the reason: a budget for
+# calls to the exchange, so a live bot does not hammer the API. A backtest
+# makes none of those calls; the candles are feather files on disk.
+#
+# Enforced, that budget capped the ladder at the fourth rung for every
+# five-minute strategy: 4999 candles is fourteen days, and the ladder is meant
+# to climb to 365. Sixty-two rows were recorded as never settling without ever
+# being offered the last three rungs. `startup_candles_not_limited_by_call_
+# budget` lifts it, and then the only ceiling left is the one that is real -
+# the history actually on disk, which `available_prefix_candles` already
+# applies.
 MAX_STARTUP_CANDLES = 4999
+STARTUP_SHIM = "startup_candles_not_limited_by_call_budget"
+
+
+def startup_ceiling(strategy=None):
+    """The largest warm-up worth asking for, given what is installed."""
+    if strategy and STARTUP_SHIM in class1_rules().get(strategy, ()):
+        return None
+    return MAX_STARTUP_CANDLES
+
+
+def class1_rules():
+    """Compatibility rules registered per strategy."""
+    path = os.path.join(ROOT, "PROFILE_CLASS1.json")
+    if not os.path.exists(path):
+        return {}
+    entries = json.load(io.open(path, encoding="utf-8")).get("strategies", {})
+    return {name: set(entry.get("rules") or [])
+            for name, entry in entries.items()
+            if entry.get("status") in ("applied", "partial")}
 
 # Freqtrade refuses a strategy declaring no warm-up before it evaluates
 # anything, and the refusal takes the whole ladder run with it.
@@ -159,7 +190,7 @@ def available_prefix_candles(run_profile, timeframe):
     return smallest
 
 
-def ladder(timeframe, cap=None):
+def ladder(timeframe, cap=None, budget=MAX_STARTUP_CANDLES):
     """The frozen day ladder in candles for one timeframe, capped at history.
 
     Returns (days, candles) pairs so a record can state the rung in the unit
@@ -169,7 +200,13 @@ def ladder(timeframe, cap=None):
     minutes = timeframe_minutes(timeframe)
     if not minutes:
         return []
-    ceiling = MAX_STARTUP_CANDLES if cap is None else min(cap, MAX_STARTUP_CANDLES)
+    # `budget=None` means the call-budget guard is lifted for this row, so the
+    # only ceiling left is the history actually on disk. It is not the same as
+    # "no argument given", which keeps the guard.
+    if budget is None:
+        ceiling = cap
+    else:
+        ceiling = budget if cap is None else min(cap, budget)
     rungs = []
     for days in LADDER_DAYS:
         candles = max(1, -(-days * 1440 // minutes))
@@ -444,7 +481,7 @@ def resolve(row, timeout, overrides=None):
     strategy = row["strategy_id"]
     timeframe = row.get("execution_timeframe") or row.get("declared_timeframe")
     cap = available_prefix_candles(row["run_profile"], timeframe)
-    rungs = ladder(timeframe, cap)
+    rungs = ladder(timeframe, cap, startup_ceiling(strategy))
     record = {
         "strategy_id": strategy,
         "implementation_id": row["implementation_id"],

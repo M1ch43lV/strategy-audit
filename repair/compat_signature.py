@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 """Compatibility shims for framework changes the strategies predate.
 
-Four of them so far. A hook whose signature gained parameters. A file scan
+Five of them so far. A hook whose signature gained parameters. A file scan
 that assumes a formatting convention. A column the framework duplicates when
-its own analyzer calls a hook twice. And an analyzer that announces itself as
-a utility while running a backtest. None is a defect in a strategy, and no
+its own analyzer calls a hook twice. An analyzer that announces itself as a
+utility while running a backtest. And a budget for calls to the exchange,
+enforced on a backtest that makes none. None is a defect in a strategy, and no
 shim touches a strategy file - they are installed into freqtrade in the
 runner process, only when PROFILE_COMPAT_SIGNATURES names them.
 
@@ -271,10 +272,81 @@ def install_backtest_runmode_in_analysis():
     return True
 
 
+STARTUP_RULE = "startup_candles_not_limited_by_call_budget"
+
+
+def install_unlimited_startup_candles():
+    """Let a warm-up exceed five exchange calls when the data is already here.
+
+    `Exchange.validate_required_startup_candles` refuses a warm-up that would
+    need more than five OHLCV calls per pair:
+
+        # Allow 5 calls to the exchange per pair
+        if required_candle_call_count > 5:
+            raise ConfigurationError(
+                f"This strategy requires {startup_candles} candles to start, "
+                f"which is more than 5x ({candle_limit * 5 - 1} candles) ...")
+
+    Its own comment says what it is for: "to somewhat limit the impact" - a
+    budget for calls to the exchange, so a live bot does not hammer the API on
+    every refresh. A backtest makes no such calls. The candles are feather
+    files on disk, loaded by `load_pair_history`, and the budget protects
+    nothing that happens here.
+
+    What it does instead is cap every warm-up at 4999 candles, which at five
+    minutes is fourteen days. The convergence ladder is meant to climb 1, 2, 7,
+    14, 30, 90 and 365 days; for a five-minute strategy it stopped at the
+    fourth rung. Sixty-two rows were recorded as "no startup settles the
+    indicators" without ever being offered the last three, and 97222 candles of
+    history - 337 days - were sitting on disk unused. Twenty-eight of those
+    rows are within 20 percent of the band at the rung they did reach, and
+    seventeen within 5 percent: `BeastBotXBLR6` at 2.64, `BBRSIS` at 2.82, ten
+    BigZ variants at 3.63. Fifty-six of the sixty-two are currently excluded.
+
+    So this shim removes a guard outside the context it was written for, and it
+    removes nothing else. `required_candle_call_count` is still computed and
+    still returned; the three places that read it (`refresh_latest_ohlcv`,
+    `get_historic_ohlcv`, and the pagination in `_async_get_historic_ohlcv`)
+    are live and dry-run data paths that a backtest over local files never
+    enters. The second branch - the one for exchanges without OHLCV history -
+    is left exactly as it is, because there the limit is real.
+
+    Where the requested warm-up exceeds the history actually on disk, nothing
+    here helps and nothing here pretends to: the ladder caps each rung at
+    `available_prefix_candles` before it asks for anything.
+    """
+    from freqtrade.exchange.exchange import Exchange
+
+    if getattr(Exchange, "_unlimited_startup_candles", False):
+        return True
+
+    original = Exchange.validate_required_startup_candles
+
+    def validate_required_startup_candles(self, startup_candles, timeframe):
+        try:
+            return original(self, startup_candles, timeframe)
+        except Exception as exc:
+            if "more than 5x" not in str(exc):
+                # Any other refusal is a real one and is left to stand - in
+                # particular the branch for an exchange that serves no
+                # history, where the limit is about data rather than politeness.
+                raise
+            candle_limit = self.ohlcv_candle_limit(
+                timeframe, self._config["candle_type_def"], None)
+            count = startup_candles + 1
+            return int((count / candle_limit)
+                       + (0 if count % candle_limit == 0 else 1))
+
+    Exchange.validate_required_startup_candles = validate_required_startup_candles
+    Exchange._unlimited_startup_candles = True
+    return True
+
+
 INSTALLERS = {RULE: install_min_roi_reached_entry,
               SCAN_RULE: install_tolerant_class_scan,
               ADVISE_RULE: install_idempotent_advise_entry,
-              RUNMODE_RULE: install_backtest_runmode_in_analysis}
+              RUNMODE_RULE: install_backtest_runmode_in_analysis,
+              STARTUP_RULE: install_unlimited_startup_candles}
 
 
 def install_from_environment():
@@ -428,6 +500,58 @@ def selftest():
     finally:
         DataProvider.runmode = before
         DataProvider._lookahead_runmode_shim = False
+
+    # The fifth shim: the call-budget refusal is lifted, every other refusal
+    # stands, and the returned count is unchanged.
+    class FakeExchange(object):
+        name = "Binance"
+        _config = {"candle_type_def": "spot"}
+        def ohlcv_candle_limit(self, timeframe, candle_type, since=None):
+            return 1000
+        def validate_required_startup_candles(self, startup_candles, timeframe):
+            count = startup_candles + 1
+            needed = int((count / 1000) + (0 if count % 1000 == 0 else 1))
+            if needed > 5:
+                raise ConfigurationError(
+                    "This strategy requires %d candles to start, which is "
+                    "more than 5x (4999 candles) the amount of candles "
+                    "Binance provides for %s." % (startup_candles, timeframe))
+            return needed
+
+    class ConfigurationError(Exception):
+        pass
+
+    import types as _types
+    module = _types.ModuleType("freqtrade.exchange.exchange")
+    module.Exchange = FakeExchange
+    saved = sys.modules.get("freqtrade.exchange.exchange")
+    sys.modules["freqtrade.exchange.exchange"] = module
+    try:
+        assert install_unlimited_startup_candles()
+        exchange = FakeExchange()
+        # Under the budget: unchanged.
+        assert exchange.validate_required_startup_candles(999, "5m") == 1
+        assert exchange.validate_required_startup_candles(4998, "5m") == 5
+        # Over it: no longer refused, and the count is what it always was.
+        assert exchange.validate_required_startup_candles(25920, "5m") == 26
+        assert exchange.validate_required_startup_candles(105120, "5m") == 106
+        # A refusal that is not the budget still stands.
+        class OtherRefusal(FakeExchange):
+            def validate_required_startup_candles(self, startup_candles, tf):
+                raise ConfigurationError("no history available at all")
+        module.Exchange = OtherRefusal
+        OtherRefusal._unlimited_startup_candles = False
+        assert install_unlimited_startup_candles()
+        try:
+            OtherRefusal().validate_required_startup_candles(10, "5m")
+            raise AssertionError("a non-budget refusal must not be swallowed")
+        except ConfigurationError as exc:
+            assert "no history" in str(exc)
+    finally:
+        if saved is not None:
+            sys.modules["freqtrade.exchange.exchange"] = saved
+        else:
+            sys.modules.pop("freqtrade.exchange.exchange", None)
 
     print("compat_signature selftest: PASS")
 
