@@ -9233,19 +9233,21 @@
       "implementation_id": "PRICEFOLLOWING2:ba1cbc29cfe5",
       "lookahead": {
         "attempted_timeranges": [
-          "20190101-20190401"
+          "20190101-20190401",
+          "20200101-20220101",
+          "20200301-20260820"
         ],
         "config_overrides": {
           "startup_candle_count": 672
         },
-        "debug_log": "user_data/profile_bias_logs/PRICEFOLLOWING2-lookahead.log",
-        "elapsed_s": 33.4,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/PRICEFOLLOWING2_gate.json --strategy PRICEFOLLOWING2 --strategy-path user_data/profile_bias_strategies/PRICEFOLLOWING2 --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_5dabdf71bc396c57da92558ee91edb39754529d92b34cf45aa10fc43a2cee665",
+        "debug_log": "user_data/profile_bias_logs/PRICEFOLLOWING2-273235de-lookahead.log",
+        "elapsed_s": 310.6,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/PRICEFOLLOWING2-273235de_gate.json --strategy PRICEFOLLOWING2 --strategy-path user_data/profile_bias_strategies/PRICEFOLLOWING2-273235de --timerange 20200301-20260820 --no-color",
+        "output_sha256": "sha256_4e0be1fc700e0606e4c497f931d65a1cfeaed19b06c90d78b226f7d5f98ebb15",
         "runtime_id": "native_unversioned",
         "status": "NA",
-        "timerange": "20190101-20190401",
-        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        "timerange": "20200301-20260820",
+        "why": "too few trades (0/10)"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -9314,14 +9316,14 @@
         "config_overrides": {
           "startup_candle_count": 1
         },
-        "debug_log": "user_data/profile_bias_logs/PatternRecognition-lookahead.log",
-        "elapsed_s": 34.2,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/PatternRecognition_gate.json --strategy PatternRecognition --strategy-path user_data/profile_bias_strategies/PatternRecognition --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_d1e9d8ed03f792ea72d8e2c8ce3b27c4a411b930f13d9859ce7d13794d63bd8b",
+        "debug_log": "user_data/profile_bias_logs/PatternRecognition-1dee08f2-lookahead.log",
+        "elapsed_s": 28.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/PatternRecognition-1dee08f2_gate.json --strategy PatternRecognition --strategy-path user_data/profile_bias_strategies/PatternRecognition-1dee08f2 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_56796b979d0c00d66188bf64695d7d6653793197c672aaeadfad2c2e2162dc72",
         "runtime_id": "native_unversioned",
         "status": "NA",
         "timerange": "20190101-20190401",
-        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        "why": "'[92] not in index'"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -9387,14 +9389,13 @@
         "attempted_timeranges": [
           "20190101-20190401"
         ],
-        "debug_log": "user_data/profile_bias_logs/PrawnstarOBV-lookahead.log",
-        "elapsed_s": 33.6,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy PrawnstarOBV --strategy-path user_data/profile_bias_strategies/PrawnstarOBV --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_35680c3991cb4988099568a6bb1d3bf34aa51b8c7804bb7b91604caa72a203b4",
+        "elapsed_s": 30.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy PrawnstarOBV --strategy-path user_data/profile_bias_strategies/PrawnstarOBV-4d2f3eac --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_e2b4acfe272063c809da9e86c0b6d1a8a914e7f220eca2bde153ed61eb58be56",
         "runtime_id": "native_unversioned",
-        "status": "NA",
+        "status": "PASS",
         "timerange": "20190101-20190401",
-        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        "why": "no bias detected"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -9584,14 +9585,14 @@
         "config_overrides": {
           "startup_candle_count": 2016
         },
-        "debug_log": "user_data/profile_bias_logs/RSIDivTirail-lookahead.log",
-        "elapsed_s": 35.8,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/RSIDivTirail_gate.json --strategy RSIDivTirail --strategy-path user_data/profile_bias_strategies/RSIDivTirail --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_7df82bae9f46616548549b0b60d211f24af88ce1182fac06f506f9a47050375d",
+        "debug_log": "user_data/profile_bias_logs/RSIDivTirail-93b2fcd0-lookahead.log",
+        "elapsed_s": 46.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/RSIDivTirail-93b2fcd0_gate.json --strategy RSIDivTirail --strategy-path user_data/profile_bias_strategies/RSIDivTirail-93b2fcd0 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_21b0a1bfa8a02b2d99ee05c55489d1b298974f19ff55d2e1ba632cdcd32e776d",
         "runtime_id": "native_unversioned",
-        "status": "NA",
+        "status": "FOUND",
         "timerange": "20190101-20190401",
-        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        "why": "bias: entries 0, exits 0 of 20 signals; indicators valuewhen_plFound_osc, valuewhen_plFound_low, priceLL, priceHL, valuewhen_phFound_osc,"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -9726,19 +9727,21 @@
       "implementation_id": "RaposaDivergenceV1:ee9a86daf635",
       "lookahead": {
         "attempted_timeranges": [
-          "20190101-20190401"
+          "20190101-20190401",
+          "20200101-20220101",
+          "20200301-20260820"
         ],
         "config_overrides": {
           "startup_candle_count": 288
         },
-        "debug_log": "user_data/profile_bias_logs/RaposaDivergenceV1-lookahead.log",
-        "elapsed_s": 34.7,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/RaposaDivergenceV1_gate.json --strategy RaposaDivergenceV1 --strategy-path user_data/profile_bias_strategies/RaposaDivergenceV1 --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_47ed6a3aa63783a84a940ebf13de2d878b699c4ab3363972c6a8ca38cb0e4e9f",
+        "debug_log": "user_data/profile_bias_logs/RaposaDivergenceV1-22a8a17b-lookahead.log",
+        "elapsed_s": 140.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/RaposaDivergenceV1-22a8a17b_gate.json --strategy RaposaDivergenceV1 --strategy-path user_data/profile_bias_strategies/RaposaDivergenceV1-22a8a17b --timerange 20200301-20260820 --no-color",
+        "output_sha256": "sha256_ac46138dd241d57d328790128c1a92750f562dd6d8d5c275d9c670c0f68f5a2e",
         "runtime_id": "native_unversioned",
         "status": "NA",
-        "timerange": "20190101-20190401",
-        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        "timerange": "20200301-20260820",
+        "why": "too few trades (0/10)"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -9803,19 +9806,21 @@
       "implementation_id": "ReinforcedSmoothScalpS:9de7fb8e74a2",
       "lookahead": {
         "attempted_timeranges": [
-          "20190101-20190401"
+          "20190101-20190401",
+          "20200101-20220101",
+          "20200301-20260820"
         ],
         "config_overrides": {
           "startup_candle_count": 2880
         },
-        "debug_log": "user_data/profile_bias_logs/ReinforcedSmoothScalpS-lookahead.log",
-        "elapsed_s": 32.4,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/ReinforcedSmoothScalpS_gate.json --strategy ReinforcedSmoothScalpS --strategy-path user_data/profile_bias_strategies/ReinforcedSmoothScalpS --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_da5be7407e3b4f6286911b9fdbb0d219bc17de28feca11dcc230f7894b1e213e",
+        "debug_log": "user_data/profile_bias_logs/ReinforcedSmoothScalpS-eff11d6b-lookahead.log",
+        "elapsed_s": 101.2,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/ReinforcedSmoothScalpS-eff11d6b_gate.json --strategy ReinforcedSmoothScalpS --strategy-path user_data/profile_bias_strategies/ReinforcedSmoothScalpS-eff11d6b --timerange 20200301-20260820 --no-color",
+        "output_sha256": "sha256_5c53bb3951e3744da996f9d11d922d7d2d5f3005698c703cb1bb42087088c447",
         "runtime_id": "native_unversioned",
         "status": "NA",
-        "timerange": "20190101-20190401",
-        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        "timerange": "20200301-20260820",
+        "why": "too few trades (0/10)"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -10042,19 +10047,19 @@
       "implementation_id": "SMAIP3v2:0817ed90c97b",
       "lookahead": {
         "attempted_timeranges": [
-          "20190101-20190401"
+          "20190101-20190401",
+          "20200101-20220101"
         ],
         "config_overrides": {
           "startup_candle_count": 2016
         },
-        "debug_log": "user_data/profile_bias_logs/SMAIP3v2-lookahead.log",
-        "elapsed_s": 30.4,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/SMAIP3v2_gate.json --strategy SMAIP3v2 --strategy-path user_data/profile_bias_strategies/SMAIP3v2 --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_00c35d44a5ac2429119434a7e3df2b4ca88b95a848caf3080fe622e1d29111c3",
+        "elapsed_s": 75.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/SMAIP3v2-e79dedd0_gate.json --strategy SMAIP3v2 --strategy-path user_data/profile_bias_strategies/SMAIP3v2-e79dedd0 --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_83e4dbfaf5a09a22294fe8e668b590a9f42f9976b889f86f45389036c4d13291",
         "runtime_id": "native_unversioned",
-        "status": "NA",
-        "timerange": "20190101-20190401",
-        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -10530,14 +10535,14 @@
         "config_overrides": {
           "startup_candle_count": 288
         },
-        "debug_log": "user_data/profile_bias_logs/Schism2MM-lookahead.log",
-        "elapsed_s": 35.6,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Schism2MM_gate.json --strategy Schism2MM --strategy-path user_data/profile_bias_strategies/Schism2MM --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_6304d522e27b38c129f9bd79aec54e6d012db0f4e6fc874dfab0ecc2795fac08",
+        "debug_log": "user_data/profile_bias_logs/Schism2MM-92b6d68d-lookahead.log",
+        "elapsed_s": 30.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Schism2MM-92b6d68d_gate.json --strategy Schism2MM --strategy-path user_data/profile_bias_strategies/Schism2MM-92b6d68d --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_45d72b7ce480eb5a2ae6721bc50a3ae0715b8aadd45be995a9865b226cc575df",
         "runtime_id": "native_unversioned",
         "status": "NA",
         "timerange": "20190101-20190401",
-        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        "why": "'buy_signal'"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -10603,17 +10608,11 @@
         "attempted_timeranges": [
           "20190101-20190401"
         ],
-        "config_overrides": {
-          "startup_candle_count": 288
-        },
-        "debug_log": "user_data/profile_bias_logs/Schism5-lookahead.log",
-        "elapsed_s": 32.6,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Schism5_gate.json --strategy Schism5 --strategy-path user_data/profile_bias_strategies/Schism5 --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_999ece56851babcace5450e29333d799aba9e772f18f51d4e17c8dcb19348e70",
-        "runtime_id": "native_unversioned",
+        "elapsed_s": 900.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Schism5-e648f3be_gate.json --strategy Schism5 --strategy-path user_data/profile_bias_strategies/Schism5-e648f3be --timerange 20190101-20190401 --no-color",
         "status": "NA",
         "timerange": "20190101-20190401",
-        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        "why": "TIMEOUT"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -10675,16 +10674,16 @@
       "implementation_id": "SimpleHopt1Ashort:6ac2dafe92e0",
       "lookahead": {
         "attempted_timeranges": [
-          "20200301-20200401"
+          "20200301-20200401",
+          "20200101-20220101"
         ],
-        "debug_log": "user_data/profile_bias_logs/SimpleHopt1Ashort-lookahead.log",
-        "elapsed_s": 35.5,
-        "invocation": "freqtrade lookahead-analysis --config profile_futures_config.json --strategy SimpleHopt1Ashort --strategy-path user_data/profile_bias_strategies/SimpleHopt1Ashort --timerange 20200301-20200401 --no-color",
-        "output_sha256": "sha256_38a4a19fa11aa313a05b566f4151ebfdf76bcd15ce9199e02becfe43aa1de555",
+        "elapsed_s": 60.0,
+        "invocation": "freqtrade lookahead-analysis --config profile_futures_config.json --strategy SimpleHopt1Ashort --strategy-path user_data/profile_bias_strategies/SimpleHopt1Ashort-abcb2b24 --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_2a80e52c7a57a4c89ab22fa8ca5bd294f30af0353bef6de6a2d1cfa20b493c09",
         "runtime_id": "native_unversioned",
-        "status": "NA",
-        "timerange": "20200301-20200401",
-        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
       },
       "mode": "futures",
       "run_profile": "futures_short",
@@ -10812,7 +10811,7 @@
         "bias_market_order_price_side_compatibility"
       ],
       "config_overrides": {
-        "startup_candle_count": 72
+        "startup_candle_count": 288
       },
       "implementation_id": "Solipsis:c995fcc9ccee",
       "lookahead": {
@@ -10820,16 +10819,16 @@
           "20190101-20190401"
         ],
         "config_overrides": {
-          "startup_candle_count": 72
+          "startup_candle_count": 288
         },
-        "debug_log": "user_data/profile_bias_logs/Solipsis-lookahead.log",
-        "elapsed_s": 36.3,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Solipsis_gate.json --strategy Solipsis --strategy-path user_data/profile_bias_strategies/Solipsis --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_7eba248fe2b3d512b8d2721e5a9b1f632d9b3e02987c603044ab935fbfa5a433",
+        "debug_log": "user_data/profile_bias_logs/Solipsis-3b750be6-lookahead.log",
+        "elapsed_s": 303.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Solipsis-3b750be6_gate.json --strategy Solipsis --strategy-path user_data/profile_bias_strategies/Solipsis-3b750be6 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_094a31e0af79276f8bb9e23586285375ae609b23242c9f19486b2c2c89efee98",
         "runtime_id": "native_unversioned",
         "status": "NA",
         "timerange": "20190101-20190401",
-        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        "why": "Can only compare identically-labeled (both index and columns) DataFrame objects"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12682,19 +12681,14 @@
       "implementation_id": "epretrace:bfb8ac548394",
       "lookahead": {
         "attempted_timeranges": [
-          "20190101-20190401"
+          "20190101-20190401",
+          "20200101-20220101"
         ],
-        "config_overrides": {
-          "startup_candle_count": 2016
-        },
-        "debug_log": "user_data/profile_bias_logs/epretrace-lookahead.log",
-        "elapsed_s": 35.1,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/epretrace_gate.json --strategy epretrace --strategy-path user_data/profile_bias_strategies/epretrace --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_1371167cb26539d07479260511722dc1868385351b0a6680d1eb0940f4868a1e",
-        "runtime_id": "native_unversioned",
+        "elapsed_s": 1040.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/epretrace-7f3a8522_gate.json --strategy epretrace --strategy-path user_data/profile_bias_strategies/epretrace-7f3a8522 --timerange 20200101-20220101 --no-color",
         "status": "NA",
-        "timerange": "20190101-20190401",
-        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        "timerange": "20200101-20220101",
+        "why": "TIMEOUT"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12710,16 +12704,16 @@
       "implementation_id": "falconTrader:7591585586da",
       "lookahead": {
         "attempted_timeranges": [
-          "20190101-20190401"
+          "20190101-20190401",
+          "20200101-20220101"
         ],
-        "debug_log": "user_data/profile_bias_logs/falconTrader-lookahead.log",
-        "elapsed_s": 34.1,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy falconTrader --strategy-path user_data/profile_bias_strategies/falconTrader --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_b9cef02e6a5e1486a947d8c580a5f0455503f7a3749e53bb216eaa11e2552ca6",
+        "elapsed_s": 350.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy falconTrader --strategy-path user_data/profile_bias_strategies/falconTrader-2e1eea43 --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_2edba6981b8671e6da02069f6e459cdb4f672725c7d4d7358d127a10348e1c19",
         "runtime_id": "native_unversioned",
-        "status": "NA",
-        "timerange": "20190101-20190401",
-        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
       },
       "mode": "spot",
       "run_profile": "spot_long",

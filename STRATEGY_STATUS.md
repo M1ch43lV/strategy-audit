@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-04 00:36:37 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-04 01:35:38 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -39,11 +39,11 @@ have neither and are left empty rather than given an invented time.
 
 | Cohort | Strategies |
 |---|---:|
-| `E1_expanded` | 556 |
-| `excluded` | 169 |
+| `E1_expanded` | 557 |
+| `excluded` | 170 |
 | `pending` | 98 |
-| `exclusion_unconfirmed` | 40 |
-| `too_few_trades` | 18 |
+| `exclusion_unconfirmed` | 35 |
+| `too_few_trades` | 21 |
 | `not_a_strategy` | 14 |
 | `convergence_candidate` | 5 |
 
@@ -163,7 +163,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1093 of 2185 commands are recorded so far, and every new run
+recording. 1098 of 2185 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -183,7 +183,7 @@ evaluate a single signal without it. The warm-up ladder passes
 `--startup-candle` with every rung at once, which is why one run
 reports the whole ladder.
 
-## Passing - 556 strategies
+## Passing - 557 strategies
 
 Every original gate returned `PASS`: measured in its native mode,
 produced trades, clean look-ahead and recursion, complete candle
@@ -587,6 +587,7 @@ coverage, no published trap.
 | `RsiDivergenceStrategy` | `spot_long` | `E1_expanded` | 474 | `convergence:288:warmup_supplied` | 2026-09-01 14:54:00 | [log](user_data/convergence_logs/RsiDivergenceStrategy-ladder.log) |
 | `SAR` | `spot_long` | `E1_expanded` | 30880 | `convergence:288:warmup_supplied` | 2026-09-03 19:50:11 | [log](user_data/convergence_logs/SAR-c00b2014-ladder.log) |
 | `SMAIP3` | `spot_long` | `E1_expanded` | 364 | `convergence:2016:warmup_supplied` | 2026-09-03 14:02:54 | [log](user_data/convergence_logs/SMAIP3-ladder.log) |
+| `SMAIP3v2` | `spot_long` | `E1_expanded` | 16 | `convergence:2016:warmup_supplied` | 2026-09-02 16:18:16 | [archive](user_data/profile_smoke/SMAIP3v2-2026-09-02_16-18-16.zip) [log](user_data/convergence_logs/SMAIP3v2-ladder.log) |
 | `SMAOG` | `spot_long` | `E1_expanded` | 538 | `convergence:2016:warmup_supplied` | 2026-09-03 14:03:21 | [log](user_data/convergence_logs/SMAOG-ladder.log) |
 | `SMAOffset` | `spot_long` | `E1_expanded` | 2108 | `convergence:288:warmup_supplied` | 2026-09-01 14:54:50 | [log](user_data/convergence_logs/SMAOffset-ladder.log) |
 | `SMAOffsetProtectOpt` | `spot_long` | `E1_expanded` | 181 | `convergence:2016:warmup_supplied` | 2026-09-01 14:55:15 | [log](user_data/convergence_logs/SMAOffsetProtectOpt-ladder.log) |
@@ -2830,6 +2831,12 @@ The calls behind each, one per gate:
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAIP3 --strategy-path user_data/profile_bias_strategies/SMAIP3 --timerange 20200301-20260820 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAIP3 --strategy-path user_data/profile_bias_strategies/SMAIP3 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
+- `SMAIP3v2`
+  ```
+  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy SMAIP3v2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SMAIP3v2 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/SMAIP3v2-e79dedd0_gate.json --strategy SMAIP3v2 --strategy-path user_data/profile_bias_strategies/SMAIP3v2-e79dedd0 --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAIP3v2 --strategy-path user_data/profile_bias_strategies/SMAIP3v2 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
+  ```
 - `SMAOG`
   ```
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SMAOG --strategy-path user_data/profile_bias_strategies/SMAOG --timerange 20200301-20260820 --no-color
@@ -3708,7 +3715,7 @@ neither a pass nor a fail.
 `multi_tf`, `new_turtle`, `new_turtle_roi`, `qrsi`
 `tacos1`, `thetank2`
 
-## Exclusion unconfirmed - 40 strategies
+## Exclusion unconfirmed - 35 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -3720,7 +3727,7 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_verdict_on_lookahead` | `no_finding` | 32 |
+| `no_verdict_on_lookahead` | `no_finding` | 27 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 5 |
 | `unclassified` | `no_finding` | 1 |
 | `recursive_bias_unverified` | `no_finding` | 1 |
@@ -3731,7 +3738,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 169 strategies, by decisive reason
+## Not passing - 170 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -3779,7 +3786,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 169 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 170 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -3787,7 +3794,7 @@ one of them carries none.
 
 | Reason | Meaning | Strategies |
 |---|---|---:|
-| `lookahead_found` | reads data it could not have had at the time | 85 |
+| `lookahead_found` | reads data it could not have had at the time | 86 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 60 |
 | `no_trades_in_full_measurement` | never trades over the full window | 7 |
 | `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 17 |
@@ -3797,12 +3804,12 @@ one of them carries none.
 
 | Reason | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `E0_strict67` | `not_scheduled` |
 |---|---|---|---|---|---|---|
-| `lookahead_found` | 2 | 0 | 19 | 0 | 0 | 64 |
+| `lookahead_found` | 2 | 0 | 19 | 0 | 0 | 65 |
 | `recursive_bias_found` | 0 | 3 | 17 | 14 | 1 | 25 |
 | `no_trades_in_full_measurement` | 0 | 0 | 7 | 0 | 0 | 0 |
 | `repair_refused_would_invent_strategy` | 0 | 0 | 17 | 0 | 0 | 0 |
 
-### `lookahead_found` - 85
+### `lookahead_found` - 86
 
 Reads data it could not have had at the time.
 
@@ -3818,7 +3825,7 @@ Wave `C_measurement_recovery` - 19:
 `NostalgiaForInfinityXw`, `Obelisk_Ichimoku_Slow_v1_3`, `Obelisk_Ichimoku_ZEMA_v1`, `Stavix2`
 `Stinkfist`, `bbema`, `ichiV1_Marius`
 
-Wave `not_scheduled` - 64:
+Wave `not_scheduled` - 65:
 
 `AlexBTK_CT`, `AlexBattleTankKiller`, `AlexBattleTankKillerV3`, `AlexBattleTankKillerV40H`
 `Auto_EI_t4c0s`, `BBBreakoutStrategy`, `BB_RPB_TSL_c7c477d_20211030`, `BreakoutStrategy`
@@ -3831,11 +3838,12 @@ Wave `not_scheduled` - 64:
 `MaxSharpePortfolio`, `MinimumVariancePortfolio`, `MomentumRegimeBasket`, `NOTankAi_17`
 `NOTankAi_19`, `NWEv6`, `NeuroV1`, `NotAnotherSMAOffsetStrategy_uzi3`
 `Obelisk_TradePro_Ichi_v1_1`, `Obelisk_TradePro_Ichi_v2_1`, `PolymarketPortfolio`, `Precognition`
-`ReinforcedQuickie`, `Renko`, `Rsiqui`, `RsiquiV2`
-`RsiquiV5`, `RsiquiV5_long_only`, `StarRise_strat3`, `TSPredict`
-`Tank1Modulus`, `Tank5ModulusDCA`, `Tank5ModulusDCAV3`, `UziChan`
-`UziChan2`, `Zeus`, `custom`, `grad`
-`ichiV1`, `tsp0chicken`, `turbov8`, `wtc`
+`RSIDivTirail`, `ReinforcedQuickie`, `Renko`, `Rsiqui`
+`RsiquiV2`, `RsiquiV5`, `RsiquiV5_long_only`, `StarRise_strat3`
+`TSPredict`, `Tank1Modulus`, `Tank5ModulusDCA`, `Tank5ModulusDCAV3`
+`UziChan`, `UziChan2`, `Zeus`, `custom`
+`grad`, `ichiV1`, `tsp0chicken`, `turbov8`
+`wtc`
 
 ### `recursive_bias_found` - 60
 
@@ -3913,7 +3921,7 @@ Wave `C_measurement_recovery` - 17:
 | `recursive_ladder_pending` | 231 |
 | `convergence_not_converged_within_ladder` | 60 |
 | `needs_a_look` | 53 |
-| `lookahead_remeasure_pending` | 41 |
+| `lookahead_remeasure_pending` | 36 |
 | `to_be_fixed` | 18 |
 | `repair_attempted` | 16 |
 | `convergence_inconclusive` | 10 |
