@@ -153,9 +153,17 @@ def _runtime(strategy, mode="futures"):
             config[key] = author[key]
         os.makedirs(CONFIG_DIR, exist_ok=True)
         config_path = os.path.join(CONFIG_DIR, _safe(strategy) + ".json")
-        with io.open(config_path, "w", encoding="utf-8", newline="\n") as handle:
+        # Same deterministic-path hazard as `_override_config`, one step
+        # worse: this wrote straight to the final name with no tmp file at
+        # all, so a second pair shard's writer could read the first's
+        # half-written JSON rather than merely losing a race on the rename.
+        # No admitted row uses `config_source` yet, but the benchmark run
+        # this is for adds workers and strategies, not fewer of either.
+        tmp = "%s.%d.%d.tmp" % (config_path, os.getpid(), threading.get_ident())
+        with io.open(tmp, "w", encoding="utf-8", newline="\n") as handle:
             json.dump(config, handle, ensure_ascii=False, indent=2, sort_keys=True)
             handle.write("\n")
+        os.replace(tmp, config_path)
 
     env = os.environ.copy()
     python_paths = [os.path.join(ROOT, value.replace("/", os.sep))
