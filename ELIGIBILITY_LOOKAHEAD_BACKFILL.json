@@ -5434,21 +5434,58 @@
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "HSI"
     },
+    "Hacklemore": {
+      "canonical_sha256": "sha256_59d29a14de566957d3e884612a4a412d4c33b874c06adcd3fc2cfb86c907788e",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
+      "implementation_id": "Hacklemore:59d29a14de56",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 288
+        },
+        "elapsed_s": 6014.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Hacklemore_gate.json --strategy Hacklemore --strategy-path user_data/profile_bias_strategies/Hacklemore --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_1eb9b3f548d1a3d36ed9456a07979ee4d35cbff2d630737ead6677e477942d0b",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Hacklemore"
+    },
     "Hacklemore2": {
       "canonical_sha256": "sha256_c3c19a00ec0c0b6a65ebafd7d21266f4ebecd286c82871d7445e31ada68d277f",
       "class1_rules": [
         "bias_market_order_price_side_compatibility"
       ],
+      "config_overrides": {
+        "startup_candle_count": 192
+      },
       "implementation_id": "Hacklemore2:c3c19a00ec0c",
       "lookahead": {
         "attempted_timeranges": [
           "20190101-20190401"
         ],
-        "elapsed_s": 1799.9,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Hacklemore2 --strategy-path user_data/profile_bias_strategies/Hacklemore2 --timerange 20190101-20190401 --no-color",
-        "status": "NA",
+        "config_overrides": {
+          "startup_candle_count": 192
+        },
+        "elapsed_s": 2167.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Hacklemore2_gate.json --strategy Hacklemore2 --strategy-path user_data/profile_bias_strategies/Hacklemore2 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_c4f789c11e78df329520d6c5afd8dd7720ce8b7291a64d1a78fdac2006b4fba8",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
         "timerange": "20190101-20190401",
-        "why": "TIMEOUT"
+        "why": "no bias detected"
       },
       "mode": "spot",
       "run_profile": "spot_long",

@@ -24,6 +24,69 @@ OUTPUT = os.path.join(ROOT, "PROFILE_FULL_WINDOW.json")
 TIMERANGE = "20200301-20260821"
 LOCK = threading.Lock()
 
+CONVERGENCE = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
+# Stores holding a repair run. A repaired row has to be measured the way it
+# was repaired, or the run reports on a configuration nobody intends to use.
+REPAIR_STORES = (
+    os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json"),
+    os.path.join(ROOT, "ELIGIBILITY_MODULE_REPAIR.json"),
+    os.path.join(ROOT, "ELIGIBILITY_SIGNATURE_REPAIR.json"),
+    os.path.join(ROOT, "ELIGIBILITY_FREQAI_REPAIR.json"),
+    os.path.join(ROOT, "ELIGIBILITY_FREQAI_WTAI.json"),
+)
+
+
+def settled_warmups():
+    """The warm-up each row settled at, as a config override.
+
+    `REGIME_PREREGISTRATION.md`, amendment of 2026-09-02: the settled warm-up
+    is the measurement. A full-window run at the author's declared value
+    measures exactly the drift the ladder exists to remove, so the number the
+    ranking is built on would carry it.
+    """
+    if not os.path.exists(CONVERGENCE):
+        return {}
+    results = json.load(io.open(CONVERGENCE, encoding="utf-8")).get("results", {})
+    out = {}
+    for strategy, record in results.items():
+        if record.get("state") != "converged":
+            continue
+        startup = record.get("chosen_startup_candle_count")
+        if startup:
+            out[strategy] = {"startup_candle_count": int(startup)}
+    return out
+
+
+def repair_overrides():
+    """Config keys a repaired row must be run with, keyed by strategy."""
+    out = {}
+    for path in REPAIR_STORES:
+        if not os.path.exists(path):
+            continue
+        results = json.load(io.open(path, encoding="utf-8")).get("results", {})
+        for strategy, record in results.items():
+            overrides = record.get("config_overrides") or {}
+            if overrides:
+                out.setdefault(strategy, dict(overrides))
+    return out
+
+
+def run_settings():
+    """Everything a row must be run with: its repair, then its warm-up.
+
+    The repair takes precedence on a shared key, because it is what makes the
+    strategy start at all. Same merge order as the look-ahead queue, so the
+    full window and the checks agree on what the row is.
+    """
+    merged = {}
+    warmups = settled_warmups()
+    repairs = repair_overrides()
+    for strategy in set(warmups) | set(repairs):
+        settings = dict(warmups.get(strategy) or {})
+        settings.update(repairs.get(strategy) or {})
+        merged[strategy] = settings
+    return merged
+
 
 def _write(data, path):
     tmp = path + ".tmp"
@@ -86,6 +149,10 @@ def main(argv=None):
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--pair", action="append", default=[])
     parser.add_argument("--force", action="store_true")
+    parser.add_argument(
+        "--settled-only", action="store_true",
+        help="run only rows whose warm-up the ladder settled, so every "
+             "number in the set rests on the same basis")
     args = parser.parse_args(argv)
     if args.timerange != TIMERANGE:
         raise SystemExit("full-window timerange must be %s" % TIMERANGE)
@@ -98,6 +165,24 @@ def main(argv=None):
                                     "futures": _pairs("futures")},
                  "runtime_id": os.environ.get(
                      "PROFILE_RUNTIME_ID", "native_unversioned")})
+
+    # Every row is run with what it was repaired and settled at. Loaded once,
+    # so a run cannot half-apply them.
+    overrides = run_settings()
+    settled = [name for name in args.strategy
+               if "startup_candle_count" in (overrides.get(name) or {})]
+    unsettled = [name for name in args.strategy if name not in set(settled)]
+    if unsettled and args.settled_only:
+        print("skipping %d row(s) with no settled warm-up: %s"
+              % (len(unsettled), ", ".join(sorted(unsettled)[:8])), flush=True)
+        args.strategy = [name for name in args.strategy
+                         if name in set(settled)]
+        unsettled = []
+    # A row without a settled warm-up runs at whatever its author declared.
+    # That is a different basis from its neighbour's, and the difference has
+    # to be visible before the numbers are compared, not discovered after.
+    print("full window: %d row(s) at a settled warm-up, %d at the author's "
+          "declared value" % (len(settled), len(unsettled)), flush=True)
 
     for strategy in args.strategy:
         row = rows[strategy]
@@ -120,8 +205,14 @@ def main(argv=None):
                 record["pair_results"].get(pair, {}).get("status") != "measured"]
         print("%s: %d pair shard(s)" % (strategy, len(todo)), flush=True)
 
+        settings = overrides.get(strategy) or None
+        if settings:
+            record["config_overrides"] = settings
+
         def run(pair):
-            return pair, profile_smoke.run_one(row, TIMERANGE, args.timeout, pair)
+            return pair, profile_smoke.run_one(
+                row, TIMERANGE, args.timeout, pair,
+                config_overrides=settings)
 
         with concurrent.futures.ThreadPoolExecutor(
                 max_workers=max(1, args.workers)) as pool:
