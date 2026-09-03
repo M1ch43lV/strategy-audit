@@ -991,64 +991,187 @@
         "startup_candle_count": 1440,
         "timeframe": "1m"
       },
-      "measurement_scope": "pair_shards",
+      "long_trades": 107,
+      "measurement_scope": "full_window_trade_presence",
       "mode": "spot",
       "pair_results": {
         "ADA/USDT": {
-          "elapsed_s": 0,
+          "archive": "user_data/profile_smoke/JustROCR6-f5b4e2ed-ADA_USDT-52bd0ad0-2026-09-03_18-09-08.zip",
+          "archive_sha256": "sha256_31dcf70873bd5de8e7caeb2f836316f91da7c9f74155f445f380fed9442eef0a",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 1440,
+            "timeframe": "1m"
+          },
+          "elapsed_s": 112.6,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json --strategy JustROCR6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/JustROCR6-f5b4e2ed-ADA_USDT-52bd0ad0 --cache none --pairs ADA/USDT",
+          "long_trades": 20,
           "mode": "spot",
           "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_cc5a8f6a143b709fae1837d46ab7d228761921ead6e02455afd7aae731a9d1d2",
           "runtime_id": "native_unversioned",
-          "status": "failed",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200401-20260821",
-          "why": "Class 1 runtime setup failed: [Errno 2] No such file or directory: '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json.tmp' -> '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json'"
+          "trades": 20,
+          "trades_sha256": "sha256_3614dedd07d319507c7145c942f6c367a46d6c9312a83a589d477e22ddf305fd"
+        },
+        "BTC/USDT": {
+          "archive": "user_data/profile_smoke/JustROCR6-f5b4e2ed-BTC_USDT-4d7eaaf1-2026-09-03_18-05-21.zip",
+          "archive_sha256": "sha256_7cf117f54901aef2a0f6e22a0c1e4aec9980c39369124dbb7cadbee3ba85346f",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 1440,
+            "timeframe": "1m"
+          },
+          "elapsed_s": 114.8,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json --strategy JustROCR6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/JustROCR6-f5b4e2ed-BTC_USDT-4d7eaaf1 --cache none --pairs BTC/USDT",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_cc5a8f6a143b709fae1837d46ab7d228761921ead6e02455afd7aae731a9d1d2",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "DASH/USDT": {
+          "archive": "user_data/profile_smoke/JustROCR6-f5b4e2ed-DASH_USDT-f7c87511-2026-09-03_18-10-56.zip",
+          "archive_sha256": "sha256_f317734d23f907d9a785c7f8471a9bfd904f367e10f35adeddf2e10ee0f1e02f",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 1440,
+            "timeframe": "1m"
+          },
+          "elapsed_s": 107.1,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json --strategy JustROCR6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/JustROCR6-f5b4e2ed-DASH_USDT-f7c87511 --cache none --pairs DASH/USDT",
+          "long_trades": 23,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_cc5a8f6a143b709fae1837d46ab7d228761921ead6e02455afd7aae731a9d1d2",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 23,
+          "trades_sha256": "sha256_e988a6707121ea8e7aa3f6c57ffa5ba7c93c2382570495761af0402a0e77aa8e"
         },
         "ETH/USDT": {
+          "archive": "user_data/profile_smoke/JustROCR6-f5b4e2ed-ETH_USDT-d632ace3-2026-09-03_18-05-20.zip",
+          "archive_sha256": "sha256_f9ab7e4c569faa3b0e203163faafd06fee36862dccd74d454081d99ebbfe8371",
           "class1_rules": [],
-          "debug_log": "user_data/profile_smoke_logs/JustROCR6-f5b4e2ed-ETH_USDT-d632ace3.log",
-          "elapsed_s": 108.1,
+          "config_overrides": {
+            "startup_candle_count": 1440,
+            "timeframe": "1m"
+          },
+          "elapsed_s": 113.9,
           "invocation": "freqtrade backtesting --config user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json --strategy JustROCR6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/JustROCR6-f5b4e2ed-ETH_USDT-d632ace3 --cache none --pairs ETH/USDT",
+          "long_trades": 0,
           "mode": "spot",
           "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_cc5a8f6a143b709fae1837d46ab7d228761921ead6e02455afd7aae731a9d1d2",
           "runtime_id": "native_unversioned",
-          "status": "failed",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200401-20260821",
-          "why": "process exit -9 without a readable backtest archive"
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
         },
         "LTC/USDT": {
-          "elapsed_s": 0,
+          "archive": "user_data/profile_smoke/JustROCR6-f5b4e2ed-LTC_USDT-9e46e6a4-2026-09-03_18-07-08.zip",
+          "archive_sha256": "sha256_1dd9d1f41d3c5e697ee5ae8b1f864601732599a4cdc12c2229d91b6e1f7f4045",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 1440,
+            "timeframe": "1m"
+          },
+          "elapsed_s": 113.9,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json --strategy JustROCR6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/JustROCR6-f5b4e2ed-LTC_USDT-9e46e6a4 --cache none --pairs LTC/USDT",
+          "long_trades": 6,
           "mode": "spot",
           "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_cc5a8f6a143b709fae1837d46ab7d228761921ead6e02455afd7aae731a9d1d2",
           "runtime_id": "native_unversioned",
-          "status": "failed",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200401-20260821",
-          "why": "Class 1 runtime setup failed: [Errno 2] No such file or directory: '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json.tmp' -> '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json'"
+          "trades": 6,
+          "trades_sha256": "sha256_b9db27d0115e306279331a1cd83e196eddc9c0a2a2e6fcba397e4305422b584d"
+        },
+        "XLM/USDT": {
+          "archive": "user_data/profile_smoke/JustROCR6-f5b4e2ed-XLM_USDT-f7c8a7b2-2026-09-03_18-09-07.zip",
+          "archive_sha256": "sha256_d8fa5278736a977b6ee5ae965e4976d6fdd3adcbdaae9ccc3e24b15c98c313cc",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 1440,
+            "timeframe": "1m"
+          },
+          "elapsed_s": 111.3,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json --strategy JustROCR6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/JustROCR6-f5b4e2ed-XLM_USDT-f7c8a7b2 --cache none --pairs XLM/USDT",
+          "long_trades": 29,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_cc5a8f6a143b709fae1837d46ab7d228761921ead6e02455afd7aae731a9d1d2",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 29,
+          "trades_sha256": "sha256_5cd375d967ef2a7b7a0469e5bf50e0651a60a96056ea6b086ce7fad9a4e1ab91"
         },
         "XMR/USDT": {
-          "elapsed_s": 0,
+          "archive": "user_data/profile_smoke/JustROCR6-f5b4e2ed-XMR_USDT-57b143c0-2026-09-03_18-10-32.zip",
+          "archive_sha256": "sha256_99ad7ac9860b041034c5277a98e6f321c4099d447682e232f8f743c605a9b115",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 1440,
+            "timeframe": "1m"
+          },
+          "elapsed_s": 81.0,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json --strategy JustROCR6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/JustROCR6-f5b4e2ed-XMR_USDT-57b143c0 --cache none --pairs XMR/USDT",
+          "long_trades": 0,
           "mode": "spot",
           "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_cc5a8f6a143b709fae1837d46ab7d228761921ead6e02455afd7aae731a9d1d2",
           "runtime_id": "native_unversioned",
-          "status": "failed",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200401-20260821",
-          "why": "Class 1 runtime setup failed: [Errno 2] No such file or directory: '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json.tmp' -> '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json'"
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
         },
         "XRP/USDT": {
-          "elapsed_s": 0,
+          "archive": "user_data/profile_smoke/JustROCR6-f5b4e2ed-XRP_USDT-8d33c27a-2026-09-03_18-07-09.zip",
+          "archive_sha256": "sha256_a762085e3cf6ecabbf417de8a636b3b8361b4eca65782014c9bd2ae41b3b357e",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 1440,
+            "timeframe": "1m"
+          },
+          "elapsed_s": 113.1,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json --strategy JustROCR6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/JustROCR6-f5b4e2ed-XRP_USDT-8d33c27a --cache none --pairs XRP/USDT",
+          "long_trades": 29,
           "mode": "spot",
           "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_cc5a8f6a143b709fae1837d46ab7d228761921ead6e02455afd7aae731a9d1d2",
           "runtime_id": "native_unversioned",
-          "status": "failed",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200401-20260821",
-          "why": "Class 1 runtime setup failed: [Errno 2] No such file or directory: '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json.tmp' -> '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json'"
+          "trades": 29,
+          "trades_sha256": "sha256_2cf0f62b10134eccc461a369ffcb4256c19c0676e77ef5e8a7800aaa54c2a333"
         }
       },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "status": "incomplete",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "0/8 pairs completed; no positive pair yet"
+      "trades": 107,
+      "why": "at least one pair produced trades over the full window"
     },
     "Matrix": {
       "canonical_sha256": "sha256_fab3506811621e45e82d9b96bef2cec98cc888e85f022deb96503d430861f73e",
