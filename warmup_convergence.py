@@ -252,6 +252,24 @@ def recursion_only_rows():
     return rows
 
 
+def budget_capped_rows():
+    """Rows whose ladder freqtrade's call budget cut short.
+
+    A record that says "no startup settles the indicators" is only worth that
+    much if the ladder was allowed to climb. For every five-minute strategy it
+    was not: 4999 candles is fourteen days, and the last three rungs were
+    never offered. These rows carry the shim that lifts the budget, so their
+    old record describes a ladder that no longer applies.
+    """
+    # Read from the registry, not from the results store: the old records
+    # are moved under `superseded` before this runs, so a cohort derived from
+    # `results` would come back empty exactly when it is needed.
+    rules = class1_rules()
+    known = {row["strategy_id"] for row in _csv(PROFILES)}
+    return [strategy for strategy in sorted(rules)
+            if STARTUP_SHIM in rules[strategy] and strategy in known]
+
+
 def frozen_baseline_rows():
     """The 67 rows of the frozen E0 baseline, which the ladder never saw.
 
@@ -348,6 +366,8 @@ def cohort(name):
         wanted = ladder_pending_rows()
     elif name == "frozen_baseline":
         wanted = frozen_baseline_rows()
+    elif name == "budget_capped":
+        wanted = budget_capped_rows()
     elif name == "wave_b_static_rejected":
         wanted = list(WAVE_B_STATIC_REJECTED)
     elif name == "wave_d":
@@ -754,6 +774,7 @@ def main(argv=None):
     parser.add_argument("--cohort", default="recursion_only",
                         choices=("recursion_only", "wave_d", "wave_c_refusals",
                                  "ladder_pending", "frozen_baseline",
+                                 "budget_capped",
                                  "wave_b_static_rejected",
                                  "recursive_unsettled"))
     parser.add_argument("--limit", type=int, default=1)
