@@ -5497,16 +5497,24 @@
       "class1_rules": [
         "bias_market_order_price_side_compatibility"
       ],
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
       "implementation_id": "Hacklemore3:212cb5019466",
       "lookahead": {
         "attempted_timeranges": [
           "20190101-20190401"
         ],
-        "elapsed_s": 1800.0,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Hacklemore3 --strategy-path user_data/profile_bias_strategies/Hacklemore3 --timerange 20190101-20190401 --no-color",
-        "status": "NA",
+        "config_overrides": {
+          "startup_candle_count": 288
+        },
+        "elapsed_s": 6934.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Hacklemore3_gate.json --strategy Hacklemore3 --strategy-path user_data/profile_bias_strategies/Hacklemore3 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_e84c3ef9720d20d76a66df5416b4ae75bb8c2246cf63beec274e386ffb37874d",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
         "timerange": "20190101-20190401",
-        "why": "TIMEOUT"
+        "why": "no bias detected"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -5631,19 +5639,25 @@
     "HurstCycle3": {
       "canonical_sha256": "sha256_c9d3caf5ce10f117c302c23cf91438c28d4ab793eeccd8294465d2e333c54ec3",
       "class1_rules": [],
+      "config_overrides": {
+        "startup_candle_count": 672
+      },
       "implementation_id": "HurstCycle3:c9d3caf5ce10",
       "lookahead": {
         "attempted_timeranges": [
           "20200301-20200401"
         ],
+        "config_overrides": {
+          "startup_candle_count": 672
+        },
         "debug_log": "user_data/profile_bias_logs/HurstCycle3-lookahead.log",
-        "elapsed_s": 27.5,
-        "invocation": "freqtrade lookahead-analysis --config profile_futures_config.json --strategy HurstCycle3 --strategy-path user_data/profile_bias_strategies/HurstCycle3 --timerange 20200301-20200401 --no-color",
-        "output_sha256": "sha256_d9fafa2c058f084f4169532a6e36ddf0ce99f314f3d5f38a28a0b1c9924cf6d7",
-        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "NA",
+        "elapsed_s": 33.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/HurstCycle3_gate.json --strategy HurstCycle3 --strategy-path user_data/profile_bias_strategies/HurstCycle3 --timerange 20200301-20200401 --no-color",
+        "output_sha256": "sha256_211a1cd7dbabe0458d037c5896aea510d538ef43b156e1e9c871e9bbf005cd59",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
         "timerange": "20200301-20200401",
-        "why": "Can only compare identically-labeled (both index and columns) DataFrame objects"
+        "why": "bias: entries 0, exits 0 of 20 signals; indicators vtl_up_slope, vtl_down_slope"
       },
       "mode": "futures",
       "run_profile": "futures_long",
@@ -6008,6 +6022,36 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "ImpulseV1"
+    },
+    "Insomnia_short": {
+      "canonical_sha256": "sha256_7125fe8db9f08f1b3cee2b0d4a73cd3f64f074e323de6bb7d914cb051a7ecbcb",
+      "class1_rules": [],
+      "config_overrides": {
+        "startup_candle_count": 336
+      },
+      "implementation_id": "Insomnia_short:7125fe8db9f0",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200401",
+          "20200101-20220101",
+          "20200301-20260820"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 336
+        },
+        "debug_log": "user_data/profile_bias_logs/Insomnia_short-lookahead.log",
+        "elapsed_s": 116.4,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Insomnia_short_gate.json --strategy Insomnia_short --strategy-path user_data/profile_bias_strategies/Insomnia_short --timerange 20200301-20260820 --no-color",
+        "output_sha256": "sha256_cf91d84302107d8942beef1736c6ead639b0abfc8a7a05fbc7e54f758123ff73",
+        "runtime_id": "native_unversioned",
+        "status": "NA",
+        "timerange": "20200301-20260820",
+        "why": "too few trades (0/10)"
+      },
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "strategy_id": "Insomnia_short"
     },
     "Inverse": {
       "canonical_sha256": "sha256_28baa0e828618ee262e2917b4812482c8dd66f9491d3220d39e308dc6900ae7f",

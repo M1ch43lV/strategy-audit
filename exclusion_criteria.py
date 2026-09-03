@@ -100,18 +100,36 @@ CRITERIA = [
         "name": "Recursion bias found by our own ladder",
         "test": _recursion_found,
         "columns": 'recursive_evidence == "convergence:not_settled"',
-        "what": "The warm-up ladder supplied 1, 2, 7, 14, 30, 90 and 365 days "
-                "of history in turn, and at every rung at least one indicator "
+        "what": "The warm-up ladder climbed every rung the data allows - 1, "
+                "2, 7, 14, 30, 90 and 365 days, converted to the strategy's "
+                "own timeframe - and at each of them at least one indicator "
                 "still moved by 1.0 % or more against the full-history run. "
                 "The indicator never settles, so its value depends on where "
                 "the backtest happens to start.",
         "why_final": "Nothing downstream can be trusted: the same strategy on "
                      "the same data gives different signals for a different "
-                     "start date. The ladder has already tried every warm-up "
-                     "worth trying, up to a full year of history.",
+                     "start date.\n\n"
+                     "**How high the ladder actually got, stated plainly.** "
+                     "Not one of these rows was offered a full year. The bias "
+                     "window leaves 97222 candles of prefix history, and a "
+                     "365-day warm-up at five minutes needs 105120, so the "
+                     "top rung is unreachable by data rather than by choice. "
+                     "Forty-five of the 59 reached 90 days; fourteen reached "
+                     "14, their timeframe being too coarse for more history "
+                     "to exist. Until 2026-09-03 the ceiling was lower still "
+                     "- freqtrade's OHLCV call budget capped every warm-up at "
+                     "4999 candles, fourteen days at five minutes - and "
+                     "lifting it (`startup_candles_not_limited_by_call_"
+                     "budget`) settled two rows outright and more than halved "
+                     "the residual drift on 24 others. Testing a full year "
+                     "would need a later bias window, which is frozen.",
         "evidence": "The record keeps the whole drift table - one column per "
                     "rung, one row per indicator - so the finding can be read "
-                    "rather than taken on faith.",
+                    "rather than taken on faith, along with the rungs the "
+                    "ladder was able to offer. A record made under a ceiling "
+                    "that has since been lifted is kept under `superseded` "
+                    "rather than deleted; 131 strategies carry such a "
+                    "history.",
         "watch": "`recursive_evidence` must start with `convergence:`. A "
                  "FOUND from the baseline, or from a Wave B run under the "
                  "parser that read the wrong column, is not this criterion. "
