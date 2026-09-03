@@ -445,7 +445,9 @@ def exclusion_basis(reason, lookahead_evidence, trade_evidence,
     # it the chance.
     if reason == "measured_outside_its_design":
         return "blocked"
-    if reason == "too_few_trades_to_measure":
+    if reason.startswith("too_few_trades_to_measure"):
+        # Ours either way: the count comes from our own run over the full
+        # window. A second clause naming our setup does not change that.
         return "own_measurement"
     if reason == "no_trades_in_full_measurement":
         return "own_measurement" if trade_evidence == "full_window" else "inherited"
@@ -712,8 +714,7 @@ def rows():
         too_few = (
             gate_record.get("status") == "NA"
             and "too few trades" in (gate_record.get("why") or "")
-            and FULL_FALLBACK in (gate_record.get("attempted_timeranges") or [])
-            and strategy not in setup_faults)
+            and FULL_FALLBACK in (gate_record.get("attempted_timeranges") or []))
         ran_here = bool(measurement or diagnostics or window or settled)
         if role != "strategy":
             # Decided before any measurement is consulted, because no
@@ -772,7 +773,7 @@ def rows():
             # obstacle it is stays in `repair_verdict`, which is a different
             # question from whether the strategy is still in play.
             cohort = "pending"
-        elif strategy in setup_faults:
+        elif strategy in setup_faults and not too_few:
             # It ran the whole window and opened nothing, but the reason is
             # ours. `BasketStrategy` marks 8831 entries and sizes every one
             # of them to zero, because a portfolio basket measured one pair
@@ -792,6 +793,15 @@ def rows():
                 # Decided by the cohort, not by the frozen reason set: the
                 # baseline predates the run that established it.
                 reason = "too_few_trades_to_measure"
+                if strategy in setup_faults:
+                    # Where our own setup is part of why it trades so
+                    # rarely, the row says so. `BasketStrategy` weights
+                    # every entry against a portfolio the measurement never
+                    # gave it; `FundingCarry` needs funding rates that only
+                    # exist in futures mode. The cohort states where the
+                    # strategy stands; this states what would have to change
+                    # before that is re-examined.
+                    reason += "; measured_outside_its_design"
             reasons = set(filter(None,
                                  (base.get("exclusion_reasons") or "").split(";")))
             # Evidence gathered since the freeze outranks the frozen reason.
@@ -867,10 +877,12 @@ def rows():
                     break
             if not reason and cohort == "pending":
                 reason = "pending_diagnostics"
-            if strategy in setup_faults:
+            if strategy in setup_faults and cohort != "too_few_trades":
                 # Named before the zero-trade reason can claim the row, so
                 # the table says what actually happened rather than what it
-                # looks like from the trade count alone.
+                # looks like from the trade count alone. A row already in
+                # the too-few-trades cohort keeps that as its first clause
+                # and carries this one after it.
                 reason = "measured_outside_its_design"
             if not reason and window.get("status") == "measured" \
                     and _integer(window.get("trades")) == 0:
@@ -1640,7 +1652,11 @@ def selftest():
         # is never `excluded`, and it is never usable either. It rests on our
         # own run over the full window, so it must say so.
         if row["cohort"] == "too_few_trades":
-            assert row["primary_reason"] == "too_few_trades_to_measure",                 row["strategy_id"]
+            # The reason may carry a second clause naming our own setup,
+            # which is a fact about the measurement rather than a second
+            # verdict. What may not happen is the first clause changing.
+            assert row["primary_reason"].startswith(
+                "too_few_trades_to_measure"), row["strategy_id"]
             assert row["exclusion_basis"] == "own_measurement",                 row["strategy_id"]
             assert row["lookahead"] == "NA", row["strategy_id"]
         # A file that is not a strategy is neither admitted nor excluded:

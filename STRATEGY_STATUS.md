@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-03 12:08:22 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-03 12:26:38 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -33,10 +33,10 @@ have neither and are left empty rather than given an invented time.
 |---|---:|
 | `E1_expanded` | 467 |
 | `excluded` | 150 |
-| `pending` | 133 |
+| `pending` | 131 |
 | `E0_strict67` | 67 |
 | `exclusion_unconfirmed` | 52 |
-| `too_few_trades` | 14 |
+| `too_few_trades` | 16 |
 | `not_a_strategy` | 14 |
 | `convergence_candidate` | 3 |
 
@@ -3522,45 +3522,44 @@ an identical trade list.
 | `GKD_FisherTransformMTF` | `spot_long` | 168 candles | 0.0% on `fisher_smooth_4h` | 2026-09-01 14:01:15 | `user_data/convergence_logs/GKD_FisherTransformMTF-ladder.log` |
 | `JustROCR6` | `spot_long` | 1440 candles | 0.0% on `None` | 2026-09-01 19:48:20 | `user_data/convergence_logs/JustROCR6-ladder.log` |
 
-## Pending - 133 strategies
+## Pending - 131 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
 
 `AdaptiveRenkoStrategy`, `AdvancedRiskFilterStrategy`, `Astro`, `AstroQAV4`
 `AutoArimaTripleV1`, `BBRSI`, `BB_RPB_3c`, `BaseStrategy`
-`BasketStrategy`, `BestSingleAssetPortfolio`, `BinClucMadDevelop`, `BinClucMadSMADevelop`
-`BinHV27_werkkrew`, `BinanceStream`, `BlueEyes_MPP_v1`, `Chained`
-`ClucCrypROI`, `ClucCrypSlow`, `ClucHAnix_BB_RPB_MOD_trailing_buy`, `ClucHAnix_BB_RPB_TraNz`
-`CombinedBinHAndClucV6H`, `CopyLitmusMinMaxBroadClassificationStrategy`, `CoreStrategy`, `CryptoFrogNFI`
-`CryptoFrogNFI2`, `CryptoFrogNFIHO1A`, `CryptoFrogOffset`, `CryptoPredictionTraining`
-`DIV_v1`, `DWT`, `Danke`, `DualModelPolymarketPortfolio`
-`Dyna_opti`, `EmaCrossStrategy`, `Enchilada`, `EnsembleStrategy`
-`EnsembleStrategyV1`, `EnsembleStrategyV2`, `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`
-`Fakebuy`, `FastSupertrend`, `FastSupertrendOpt`, `FileLoadingStrategy`
-`FreqaiExampleHybridStrategy`, `FreqaiExampleStrategy`, `FundingCarry`, `GPR`
-`GodStra`, `Guacamole`, `GymStrategy`, `HLHB`
-`IchimokuStrategy`, `Ichimoku_SenkouSpanCross`, `Insomnia_short`, `KMM`
-`Kamaflage`, `LitmusEntryRollClassificationStrategy`, `LitmusGoodMinMaxClassificationStrategy`, `LitmusMLDPStrategy`
-`LitmusMetaStrategy`, `LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`
-`LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`
-`LongShortRangeTradingMachetesV1`, `MKR`, `MacheteV8b`, `MacheteV8bRallimod`
-`MacheteV8bRallimod2`, `MasterMoniGoManiHyperStrategy`, `MlpSpeculativeStrategy`, `MomentumRegimeBasket15m`
-`MostOfAll`, `MultiMA_TSL`, `MultiMA_TSL5`, `MultiMa`
-`MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`, `MyStrategyNew10`, `NFI46Frog`
-`NFI4Frog`, `NoLost`, `NowoIchimoku1hV1`, `Persia`
-`Pmax`, `PnF`, `PolymarketLogicalArbStrategy`, `PolymarketMeanReversionStrategy`
-`PolymarketMomentumStrategy`, `Prediction_Strategy`, `Proton`, `QuickAdapterV3`
-`QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`, `RenkoYolo`
-`SMAOPv1_TTF`, `ScalpingCCI`, `Schism`, `Schism2`
-`Schism6`, `SimpleRiskFilterStrategy`, `Solipsis3`, `Solipsis4`
-`Solipsis5`, `Solipsis6`, `SolipsisCon`, `SolipsisMM`
-`SuperHV27`, `SuperTrendPure`, `Supertrend`, `TGMA`
-`TankAi`, `TankAiRevival`, `Test_MAMA4`, `TrainCatBoostStrategy`
-`TuplaBollinger`, `TwoCandleTheory`, `UpSliceStrategy`, `WTAI`
-`WTHO`, `WTRSIAI`, `haGradient`, `multi_tf`
-`new_turtle`, `new_turtle_roi`, `qrsi`, `tacos1`
-`thetank2`
+`BestSingleAssetPortfolio`, `BinClucMadDevelop`, `BinClucMadSMADevelop`, `BinHV27_werkkrew`
+`BinanceStream`, `BlueEyes_MPP_v1`, `Chained`, `ClucCrypROI`
+`ClucCrypSlow`, `ClucHAnix_BB_RPB_MOD_trailing_buy`, `ClucHAnix_BB_RPB_TraNz`, `CombinedBinHAndClucV6H`
+`CopyLitmusMinMaxBroadClassificationStrategy`, `CoreStrategy`, `CryptoFrogNFI`, `CryptoFrogNFI2`
+`CryptoFrogNFIHO1A`, `CryptoFrogOffset`, `CryptoPredictionTraining`, `DIV_v1`
+`DWT`, `Danke`, `DualModelPolymarketPortfolio`, `Dyna_opti`
+`EmaCrossStrategy`, `Enchilada`, `EnsembleStrategy`, `EnsembleStrategyV1`
+`EnsembleStrategyV2`, `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `Fakebuy`
+`FastSupertrend`, `FastSupertrendOpt`, `FileLoadingStrategy`, `FreqaiExampleHybridStrategy`
+`FreqaiExampleStrategy`, `GPR`, `GodStra`, `Guacamole`
+`GymStrategy`, `HLHB`, `IchimokuStrategy`, `Ichimoku_SenkouSpanCross`
+`Insomnia_short`, `KMM`, `Kamaflage`, `LitmusEntryRollClassificationStrategy`
+`LitmusGoodMinMaxClassificationStrategy`, `LitmusMLDPStrategy`, `LitmusMetaStrategy`, `LitmusMinMaxBroadClassificationStrategy`
+`LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`, `LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`
+`LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`, `LongShortRangeTradingMachetesV1`, `MKR`
+`MacheteV8b`, `MacheteV8bRallimod`, `MacheteV8bRallimod2`, `MasterMoniGoManiHyperStrategy`
+`MlpSpeculativeStrategy`, `MomentumRegimeBasket15m`, `MostOfAll`, `MultiMA_TSL`
+`MultiMA_TSL5`, `MultiMa`, `MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`
+`MyStrategyNew10`, `NFI46Frog`, `NFI4Frog`, `NoLost`
+`NowoIchimoku1hV1`, `Persia`, `Pmax`, `PnF`
+`PolymarketLogicalArbStrategy`, `PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy`, `Prediction_Strategy`
+`Proton`, `QuickAdapterV3`, `QuickBuyStrategy`, `RLAgentStrategy`
+`RLStrategy`, `RenkoYolo`, `SMAOPv1_TTF`, `ScalpingCCI`
+`Schism`, `Schism2`, `Schism6`, `SimpleRiskFilterStrategy`
+`Solipsis3`, `Solipsis4`, `Solipsis5`, `Solipsis6`
+`SolipsisCon`, `SolipsisMM`, `SuperHV27`, `SuperTrendPure`
+`Supertrend`, `TGMA`, `TankAi`, `TankAiRevival`
+`Test_MAMA4`, `TrainCatBoostStrategy`, `TuplaBollinger`, `TwoCandleTheory`
+`UpSliceStrategy`, `WTAI`, `WTHO`, `WTRSIAI`
+`haGradient`, `multi_tf`, `new_turtle`, `new_turtle_roi`
+`qrsi`, `tacos1`, `thetank2`
 
 ## Exclusion unconfirmed - 52 strategies
 
@@ -3750,7 +3749,7 @@ Wave `C_measurement_recovery` - 7:
 | `needs_a_look` | 56 |
 | `recursive_ladder_pending` | 51 |
 | `lookahead_remeasure_pending` | 45 |
-| `to_be_fixed` | 32 |
+| `to_be_fixed` | 30 |
 | `refuse_repair` | 21 |
 | `repair_attempted` | 16 |
 | `convergence_inconclusive` | 13 |

@@ -87,7 +87,7 @@ Currently 150 of 900 strategies are excluded. The criteria are not exclusive - 5
 
 **Machine test.** lookahead NA reporting "too few trades" over the widest window. Cohort `too_few_trades`, floor 10 trades.
 
-**What it means.** The strategy trades fewer than ten times over `20200301-20260820` across all eight pairs. `lookahead-analysis` needs ten trades before it will judge anything, so it turned the row away rather than ruling on too little. Currently 14 strategies.
+**What it means.** The strategy trades fewer than ten times over `20200301-20260820` across all eight pairs. `lookahead-analysis` needs ten trades before it will judge anything, so it turned the row away rather than ruling on too little. Currently 16 strategies.
 
 **Why they are not excluded.** Nothing was found against these strategies. Calling them excluded would claim a verdict nobody reached, which is the same error the trap heuristic made.
 
@@ -100,10 +100,12 @@ Currently 150 of 900 strategies are excluded. The criteria are not exclusive - 5
 | Strategy | Trades | Measured over |
 |---|---:|---|
 | `AwesomeMacdS` | 0 | smoke |
+| `BasketStrategy` | 0 | full_window |
 | `COPY_HL` | 0 | smoke |
 | `Cluckie` | 2 | smoke |
 | `DWT_Leveraged` | 0 | smoke |
 | `Dimond` | 3 | baseline |
+| `FundingCarry` | 0 | full_window |
 | `GKD_C` | 4 | baseline |
 | `GodStraNew` | 6 | baseline |
 | `GodStraNew40` | 6 | baseline |
@@ -177,5 +179,5 @@ For a strategy under `open` or `exclusion unconfirmed`, read the three criteria 
 4. Did the look-ahead check turn it away for want of ten trades over the widest window? Then it is `too few trades` - not excluded, and not usable either.
 5. Otherwise it is not excluded. `open_work` names what is missing, and the checks run in the order the status page sets out: trial run, recursion, look-ahead, backtest.
 
-Of the 185 unfinished strategies, 0 currently satisfy a criterion.
+Of the 183 unfinished strategies, 0 currently satisfy a criterion.
 
