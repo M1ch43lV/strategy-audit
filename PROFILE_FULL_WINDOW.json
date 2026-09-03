@@ -985,6 +985,71 @@
       "trades": 0,
       "why": "all configured pairs completed with zero trades"
     },
+    "JustROCR6": {
+      "canonical_sha256": "sha256_3beea9617b4ec2f7dde7172d8ab4e204e088a02f8c00148bcbbb5e258008dba5",
+      "config_overrides": {
+        "startup_candle_count": 1440,
+        "timeframe": "1m"
+      },
+      "measurement_scope": "pair_shards",
+      "mode": "spot",
+      "pair_results": {
+        "ADA/USDT": {
+          "elapsed_s": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_id": "native_unversioned",
+          "status": "failed",
+          "timerange": "20200401-20260821",
+          "why": "Class 1 runtime setup failed: [Errno 2] No such file or directory: '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json.tmp' -> '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json'"
+        },
+        "ETH/USDT": {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/JustROCR6-f5b4e2ed-ETH_USDT-d632ace3.log",
+          "elapsed_s": 108.1,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json --strategy JustROCR6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/JustROCR6-f5b4e2ed-ETH_USDT-d632ace3 --cache none --pairs ETH/USDT",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_id": "native_unversioned",
+          "status": "failed",
+          "timerange": "20200401-20260821",
+          "why": "process exit -9 without a readable backtest archive"
+        },
+        "LTC/USDT": {
+          "elapsed_s": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_id": "native_unversioned",
+          "status": "failed",
+          "timerange": "20200401-20260821",
+          "why": "Class 1 runtime setup failed: [Errno 2] No such file or directory: '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json.tmp' -> '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json'"
+        },
+        "XMR/USDT": {
+          "elapsed_s": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_id": "native_unversioned",
+          "status": "failed",
+          "timerange": "20200401-20260821",
+          "why": "Class 1 runtime setup failed: [Errno 2] No such file or directory: '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json.tmp' -> '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json'"
+        },
+        "XRP/USDT": {
+          "elapsed_s": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_id": "native_unversioned",
+          "status": "failed",
+          "timerange": "20200401-20260821",
+          "why": "Class 1 runtime setup failed: [Errno 2] No such file or directory: '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json.tmp' -> '/audit/user_data/profile_configs/JustROCR6-f5b4e2ed-override-529e72899149.json'"
+        }
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "status": "incomplete",
+      "timerange": "20200401-20260821",
+      "why": "0/8 pairs completed; no positive pair yet"
+    },
     "Matrix": {
       "canonical_sha256": "sha256_fab3506811621e45e82d9b96bef2cec98cc888e85f022deb96503d430861f73e",
       "measurement_scope": "pair_shards",
@@ -2364,7 +2429,10 @@
       "why": "0/8 pairs completed; no positive pair yet"
     }
   },
-  "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+  "runtime_id": "native_unversioned",
   "schema_version": 2,
-  "timerange": "20200301-20260821"
+  "timerange": {
+    "futures": "20200301-20260821",
+    "spot": "20200401-20260821"
+  }
 }

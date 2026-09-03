@@ -89,7 +89,14 @@ def eligible(row):
 def candidates():
     """Rows the new rule admits, with what each was measured at."""
     convergence = _json(CONVERGENCE)
-    admitted = {r["strategy_id"] for r in _csv(ADJUDICATION)}
+    # A row stays in this file after it is withdrawn - superseded, never
+    # deleted, so the reason a strategy was pulled is still on record. That
+    # means membership alone cannot stand for "already admitted": nine rows
+    # withdrawn as `withdrawn_collision_contaminated` were still in the file,
+    # so this used to skip them here too and left them with no path back to
+    # admission even after a genuine re-measurement cleared them.
+    admitted = {r["strategy_id"] for r in _csv(ADJUDICATION)
+               if r["adjudication_status"] == "admitted_E1"}
     out, refused = [], []
     for row in _csv(STATUS):
         if row["strategy_id"] in admitted:

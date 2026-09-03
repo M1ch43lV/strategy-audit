@@ -17,6 +17,7 @@ import os
 import re
 import subprocess
 import sys
+import threading
 import time
 import zipfile
 
@@ -181,7 +182,15 @@ def _runtime(strategy, mode="futures"):
 
 
 def _override_config(strategy, config_path, overrides):
-    """Write a deterministic top-level config overlay for controlled diagnostics."""
+    """Write a deterministic top-level config overlay for controlled diagnostics.
+
+    The target path is deterministic in the overrides, so two pair shards of
+    the same strategy - run concurrently by `profile_full_window`'s thread
+    pool - compute the same path and race to write it. Each writer gets its
+    own tmp name (pid + thread id) so the two never touch the same file; the
+    final `os.replace` is then a no-op race over identical content rather
+    than a "the other thread already deleted my tmp file" ENOENT.
+    """
     config = _read_jsonc(config_path)
     config.update(overrides)
     semantic = json.dumps(overrides, sort_keys=True, separators=(",", ":"))
@@ -189,7 +198,7 @@ def _override_config(strategy, config_path, overrides):
     os.makedirs(CONFIG_DIR, exist_ok=True)
     path = os.path.join(CONFIG_DIR, "%s-override-%s.json" %
                         (_safe(strategy), digest))
-    tmp = path + ".tmp"
+    tmp = "%s.%d.%d.tmp" % (path, os.getpid(), threading.get_ident())
     with io.open(tmp, "w", encoding="utf-8", newline="\n") as handle:
         json.dump(config, handle, ensure_ascii=False, indent=2, sort_keys=True)
         handle.write("\n")
