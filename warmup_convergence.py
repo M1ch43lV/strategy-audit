@@ -228,7 +228,13 @@ def ladder_pending_rows():
     for row in _csv(STATUS):
         if row["cohort"] not in ("exclusion_unconfirmed", "pending"):
             continue
-        if "recursive_ladder_pending" not in (row["open_work"] or ""):
+        work = row["open_work"] or ""
+        # Two shapes, one need. `recursive_ladder_pending` is a row the ladder
+        # has never seen. `convergence_inconclusive` is one it saw and could
+        # not judge - 39 of those because the ladder ran them without the
+        # repair that makes them start at all, so the record describes a
+        # configuration nobody intends to use.
+        if "recursive_ladder_pending" not in work                 and "convergence_inconclusive" not in work:
             continue
         rows.append(row["strategy_id"])
     return rows
@@ -297,7 +303,33 @@ def derived_value(strategy):
     return recovery._audited_period(strategy)
 
 
-def run_ladder(row, timeout, startups):
+# Stores holding a repair run. A repaired row has to be measured the way it
+# was repaired, or the ladder reports on a configuration nobody intends to
+# use. The look-ahead queue learned this in September; the ladder had not.
+REPAIR_STORES = (
+    os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json"),
+    os.path.join(ROOT, "ELIGIBILITY_MODULE_REPAIR.json"),
+    os.path.join(ROOT, "ELIGIBILITY_SIGNATURE_REPAIR.json"),
+    os.path.join(ROOT, "ELIGIBILITY_FREQAI_REPAIR.json"),
+    os.path.join(ROOT, "ELIGIBILITY_FREQAI_WTAI.json"),
+)
+
+
+def repair_overrides():
+    """Config keys a repaired row must be run with, keyed by strategy."""
+    out = {}
+    for path in REPAIR_STORES:
+        if not os.path.exists(path):
+            continue
+        results = json.load(io.open(path, encoding="utf-8")).get("results", {})
+        for strategy, record in results.items():
+            overrides = record.get("config_overrides") or {}
+            if overrides:
+                out.setdefault(strategy, dict(overrides))
+    return out
+
+
+def run_ladder(row, timeout, startups, overrides=None):
     """Ask the analyzer for every ladder rung in a single run.
 
     `recursive-analysis` accepts the startup values to test and prints one
@@ -309,6 +341,12 @@ def run_ladder(row, timeout, startups):
     strategy = row["strategy_id"]
     canonical = os.path.join(ROOT, row["canonical_file"].replace("/", os.sep))
     mode, config, env, repair, extra = profile_bias._runtime(row)
+    # A recovered timeframe is passed the way the repair runner passes it,
+    # on the command line, so the isolated source stays untouched.
+    for key, value in sorted((overrides or {}).items()):
+        flag = "--" + key.replace("_", "-")
+        if flag not in extra:
+            extra = list(extra) + [flag, str(value)]
     strategy_path = profile_bias._isolated_strategy(row, canonical)
     existing = env.get("PROFILE_STRATEGY_IMPORT_PATH", "")
     env["PROFILE_STRATEGY_IMPORT_PATH"] = os.pathsep.join(
@@ -376,7 +414,7 @@ def run_ladder(row, timeout, startups):
     return output, meta
 
 
-def resolve(row, timeout):
+def resolve(row, timeout, overrides=None):
     """Find the smallest warm-up from which this row stays inside the band."""
     strategy = row["strategy_id"]
     timeframe = row.get("execution_timeframe") or row.get("declared_timeframe")
@@ -400,7 +438,7 @@ def resolve(row, timeout):
         return record
 
     candles = [candles for _days, candles in rungs]
-    output, meta = run_ladder(row, timeout, candles)
+    output, meta = run_ladder(row, timeout, candles, overrides)
     record.update(meta)
     if output is None:
         record["state"] = "inconclusive"
@@ -418,7 +456,7 @@ def resolve(row, timeout):
         dropped.append(candles[0])
         candles = candles[1:]
         rungs = rungs[1:]
-        output, meta = run_ladder(row, timeout, candles)
+        output, meta = run_ladder(row, timeout, candles, overrides)
         record.update(meta)
         if output is None:
             record["state"] = "inconclusive"
@@ -451,7 +489,7 @@ def resolve(row, timeout):
         record["ladder_trimmed_to_exchange_limit"] = trimmed
         record["ladder_candles"] = trimmed
         record["ladder_days"] = [days for days, value in rungs if value <= limit]
-        output, meta = run_ladder(row, timeout, trimmed)
+        output, meta = run_ladder(row, timeout, trimmed, overrides)
         record.update(meta)
         if output is None or _REFUSED.search(output):
             record["state"] = "inconclusive"
@@ -535,7 +573,13 @@ DEFECTIVE = ("freqtrade refused startup",
              # Not a defect of ours but of the moment: a run that could not
              # reach the exchange never evaluated the strategy, so its message
              # describes the machine. Nine rows carry it.
-             "Could not load markets")
+             "Could not load markets",
+             # The ladder ran the row in its unrepaired state. Thirty-nine
+             # records carry freqtrade's refusal, and thirty-eight of them
+             # have the timeframe recovered from the author's own
+             # `ticker_interval` sitting in the repair store all along. The
+             # run measured a configuration nobody intends to use.
+             "Timeframe needs to be set")
 
 
 def redo_defective(cohort_name):
@@ -573,6 +617,8 @@ def run(cohort_name, limit, timeout):
     pending = [row for row in rows if row["strategy_id"] not in data["results"]]
     if limit:
         pending = pending[:limit]
+    overrides = repair_overrides()
+
     print("convergence cohort %s: %d rows, %d pending, running %d" %
           (cohort_name, len(rows), len([r for r in rows
                                         if r["strategy_id"] not in data["results"]]),
@@ -580,7 +626,7 @@ def run(cohort_name, limit, timeout):
     for number, row in enumerate(pending, 1):
         print("=== [%d/%d] %s ===" % (number, len(pending), row["strategy_id"]),
               flush=True)
-        record = resolve(row, timeout)
+        record = resolve(row, timeout, overrides.get(row["strategy_id"]))
         record["cohort"] = cohort_name
         data["results"][row["strategy_id"]] = record
         _write(OUTPUT, data)

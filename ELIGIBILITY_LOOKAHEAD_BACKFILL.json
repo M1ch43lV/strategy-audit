@@ -342,21 +342,27 @@
     "Apollo11": {
       "canonical_sha256": "sha256_94be9ac12c9e1004b38301dad4a84cf236700a81a7df96a0992c0262c943ba69",
       "class1_rules": [
+        "idempotent_entry_tag_initialisation",
         "bias_market_order_price_side_compatibility"
       ],
+      "config_overrides": {
+        "startup_candle_count": 1344
+      },
       "implementation_id": "Apollo11:94be9ac12c9e",
       "lookahead": {
         "attempted_timeranges": [
           "20190101-20190401"
         ],
-        "debug_log": "user_data/profile_bias_logs/Apollo11-lookahead.log",
-        "elapsed_s": 25.0,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Apollo11 --strategy-path user_data/profile_bias_strategies/Apollo11 --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_4f35c79012446bcfc0f56b5b243cc1d834c128c3b27d5e1b8ba65d425ce2928d",
-        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "NA",
+        "config_overrides": {
+          "startup_candle_count": 1344
+        },
+        "elapsed_s": 43.6,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Apollo11_gate.json --strategy Apollo11 --strategy-path user_data/profile_bias_strategies/Apollo11 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_21c38f061fb6e925f59cedc554648ceb35548fa39998f4f74d12a24d3e55bdf5",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
         "timerange": "20190101-20190401",
-        "why": "cannot reindex on an axis with duplicate labels"
+        "why": "no bias detected"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -2770,21 +2776,27 @@
       "canonical_sha256": "sha256_9df6d7dfa478dae1194d2c04558ab9a1685ce0ed82b010b87f9e95350bbca7dd",
       "class1_rules": [
         "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest",
         "bias_market_order_price_side_compatibility"
       ],
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
       "implementation_id": "CryptoFrog:9df6d7dfa478",
       "lookahead": {
         "attempted_timeranges": [
           "20190101-20190401"
         ],
-        "debug_log": "user_data/profile_bias_logs/CryptoFrog-lookahead.log",
-        "elapsed_s": 30.6,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CryptoFrog --strategy-path user_data/profile_bias_strategies/CryptoFrog --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_39ffa5cd23ee73c616f7a8d143b6a7477ca22890b4a9bccf0f12467b38baa46a",
-        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "NA",
+        "config_overrides": {
+          "startup_candle_count": 288
+        },
+        "elapsed_s": 54.6,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrog_gate.json --strategy CryptoFrog --strategy-path user_data/profile_bias_strategies/CryptoFrog --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_3bef6d8a8a89fd5303b2282f1c01ec09ca5328ffee11ae74943de840e5e37004",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
         "timerange": "20190101-20190401",
-        "why": "'rmi-up-trend'"
+        "why": "no bias detected"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -2795,21 +2807,27 @@
       "canonical_sha256": "sha256_84156f3c5c36f0ace63781fed1a82e25b96cd25a1be21d915df2102169063240",
       "class1_rules": [
         "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest",
         "bias_market_order_price_side_compatibility"
       ],
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
       "implementation_id": "CryptoFrogHO:84156f3c5c36",
       "lookahead": {
         "attempted_timeranges": [
           "20190101-20190401"
         ],
-        "debug_log": "user_data/profile_bias_logs/CryptoFrogHO-lookahead.log",
-        "elapsed_s": 31.0,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CryptoFrogHO --strategy-path user_data/profile_bias_strategies/CryptoFrogHO --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_0180bf4b085cf6fbb0b587c2e5f52eb4a7b26af078befb72b3d882f0eca5b797",
-        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "NA",
+        "config_overrides": {
+          "startup_candle_count": 288
+        },
+        "elapsed_s": 51.2,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrogHO_gate.json --strategy CryptoFrogHO --strategy-path user_data/profile_bias_strategies/CryptoFrogHO --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_95122d85993b1c0eb975a8ab562a7386e7c78f757412dfe9b940d9afa86abc4f",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
         "timerange": "20190101-20190401",
-        "why": "'rmi-up-trend'"
+        "why": "no bias detected"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -2820,21 +2838,27 @@
       "canonical_sha256": "sha256_1fa719dcd8ceb0de0adde62e29cf4d642c4c8da4566b470996d19bcb9511cc14",
       "class1_rules": [
         "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest",
         "bias_market_order_price_side_compatibility"
       ],
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
       "implementation_id": "CryptoFrogHO2:1fa719dcd8ce",
       "lookahead": {
         "attempted_timeranges": [
           "20190101-20190401"
         ],
-        "debug_log": "user_data/profile_bias_logs/CryptoFrogHO2-lookahead.log",
-        "elapsed_s": 35.9,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CryptoFrogHO2 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO2 --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_4f50d6332151564b1752e58b02d0b79f1cfcffa25ab85e3f30407e3080e0855a",
-        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "NA",
+        "config_overrides": {
+          "startup_candle_count": 288
+        },
+        "elapsed_s": 49.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrogHO2_gate.json --strategy CryptoFrogHO2 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO2 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_7f641011fe60c467546db203b8956f454d1762383603a6b8a317dd8058459667",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
         "timerange": "20190101-20190401",
-        "why": "'rmi-up-trend'"
+        "why": "no bias detected"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -2845,21 +2869,27 @@
       "canonical_sha256": "sha256_847539efa0839b35086ab5183a1c0f236523d31147e9786014855968ee370393",
       "class1_rules": [
         "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest",
         "bias_market_order_price_side_compatibility"
       ],
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
       "implementation_id": "CryptoFrogHO2A:847539efa083",
       "lookahead": {
         "attempted_timeranges": [
           "20190101-20190401"
         ],
-        "debug_log": "user_data/profile_bias_logs/CryptoFrogHO2A-lookahead.log",
-        "elapsed_s": 32.5,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CryptoFrogHO2A --strategy-path user_data/profile_bias_strategies/CryptoFrogHO2A --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_5255b0f4f7dae82d30ff3726d44f6f7cf17c94a6d9994fef349312bf9a2f0149",
-        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "NA",
+        "config_overrides": {
+          "startup_candle_count": 288
+        },
+        "elapsed_s": 51.2,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrogHO2A_gate.json --strategy CryptoFrogHO2A --strategy-path user_data/profile_bias_strategies/CryptoFrogHO2A --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_305cc628e904e6e351514e942c07d7a4e8f85f9d38448a10a004520ebeca09be",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
         "timerange": "20190101-20190401",
-        "why": "'rmi-up-trend'"
+        "why": "no bias detected"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -2870,21 +2900,27 @@
       "canonical_sha256": "sha256_0797316a9dd6bfc80a99378258074403cbe73477a64e374d8c01812a8db7288d",
       "class1_rules": [
         "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest",
         "bias_market_order_price_side_compatibility"
       ],
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
       "implementation_id": "CryptoFrogHO3A1:0797316a9dd6",
       "lookahead": {
         "attempted_timeranges": [
           "20190101-20190401"
         ],
-        "debug_log": "user_data/profile_bias_logs/CryptoFrogHO3A1-lookahead.log",
-        "elapsed_s": 35.7,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CryptoFrogHO3A1 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO3A1 --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_efe5ade1f63043975f448565e5cc6a1b1524d4ecd0f2fd64e90a70e80a5f24af",
-        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "NA",
+        "config_overrides": {
+          "startup_candle_count": 288
+        },
+        "elapsed_s": 51.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrogHO3A1_gate.json --strategy CryptoFrogHO3A1 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO3A1 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_37736cca4df1b6a49ad7ccbb00b9f1877023b63eb4c508b25a88e118343f9a67",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
         "timerange": "20190101-20190401",
-        "why": "'rmi-up-trend'"
+        "why": "no bias detected"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -2895,21 +2931,27 @@
       "canonical_sha256": "sha256_534aa9e9bbc16cb595efaa4cf79e4b7308ead005669badf99cb4fc95f13faac7",
       "class1_rules": [
         "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest",
         "bias_market_order_price_side_compatibility"
       ],
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
       "implementation_id": "CryptoFrogHO3A2:534aa9e9bbc1",
       "lookahead": {
         "attempted_timeranges": [
           "20190101-20190401"
         ],
-        "debug_log": "user_data/profile_bias_logs/CryptoFrogHO3A2-lookahead.log",
-        "elapsed_s": 37.4,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CryptoFrogHO3A2 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO3A2 --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_73bb951b48d292d0460dac9a314d969d3e1a58b0ad05c34955c916dbed43beb2",
-        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-        "status": "NA",
+        "config_overrides": {
+          "startup_candle_count": 288
+        },
+        "elapsed_s": 50.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrogHO3A2_gate.json --strategy CryptoFrogHO3A2 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO3A2 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_182bc46fd57a10980a5e803e83aae2c025f23709172f7c204341063640fb774f",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
         "timerange": "20190101-20190401",
-        "why": "'rmi-up-trend'"
+        "why": "no bias detected"
       },
       "mode": "spot",
       "run_profile": "spot_long",

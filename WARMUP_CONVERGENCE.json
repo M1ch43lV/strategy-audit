@@ -11,74 +11,6 @@
     365
   ],
   "results": {
-    "ADX_15M_USDT": {
-      "available_prefix_candles": 32408,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/ADX_15M_USDT-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 46.5,
-      "file_derived_period": 25,
-      "implementation_id": "ADX_15M_USDT:1cf6c1e674ba",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ADX_15M_USDT --strategy-path user_data/profile_bias_strategies/ADX_15M_USDT --timerange 20190101-20190401 --no-color --startup-candle 672 1344 2880",
-      "ladder_candles": [
-        672,
-        1344,
-        2880
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        96,
-        192
-      ],
-      "output_sha256": "sha256_6a61b19767dbd50d18541cd847104ccfa3c11b008011c54a6c55a446d7a76958",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "ADX_15M_USDT",
-      "timeframe": "15m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
-    "ADX_15M_USDT2": {
-      "available_prefix_candles": 32408,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/ADX_15M_USDT2-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 47.0,
-      "file_derived_period": 25,
-      "implementation_id": "ADX_15M_USDT2:0d171b1a5053",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ADX_15M_USDT2 --strategy-path user_data/profile_bias_strategies/ADX_15M_USDT2 --timerange 20190101-20190401 --no-color --startup-candle 672 1344 2880",
-      "ladder_candles": [
-        672,
-        1344,
-        2880
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        96,
-        192
-      ],
-      "output_sha256": "sha256_170e56c722ead8dba66aa6d60f53965fbae85bfecc59a77a4fd2c61f0f3e994b",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "ADX_15M_USDT2",
-      "timeframe": "15m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
     "ARIMASTR": {
       "available_prefix_candles": 97222,
       "cohort": "recursive_unsettled",
@@ -806,42 +738,6 @@
       "strategy_id": "AdxStrengthStrategy",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
-    },
-    "AlligatorStrat": {
-      "available_prefix_candles": 2029,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/AlligatorStrat-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 43.0,
-      "file_derived_period": 13,
-      "implementation_id": "AlligatorStrat:0f9f93fc281f",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy AlligatorStrat --strategy-path user_data/profile_bias_strategies/AlligatorStrat --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
-      "ladder_candles": [
-        42,
-        84,
-        180,
-        540
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        6,
-        12
-      ],
-      "output_sha256": "sha256_2c74a8eba899d090bde8c3db308eea283566e06a7e9da7c14fe027e9eea5e8fd",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "AlligatorStrat",
-      "timeframe": "4h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "AlligatorStrategy": {
       "available_prefix_candles": 8104,
@@ -2950,38 +2846,6 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
-    "BBRSIS": {
-      "available_prefix_candles": 97222,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/BBRSIS-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 52.5,
-      "file_derived_period": 200,
-      "implementation_id": "BBRSIS:9cbc9ac5b110",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BBRSIS --strategy-path user_data/profile_bias_strategies/BBRSIS --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
-      "ladder_candles": [
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        7,
-        14
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        288,
-        576
-      ],
-      "output_sha256": "sha256_84603b3cb027ca1d877087d2bd29cc3f899705295d435fcfe6c0a12ce4156911",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "BBRSIS",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
     "BBRSIStrategy": {
       "available_prefix_candles": 32408,
       "chosen_ladder_days": 2,
@@ -3188,42 +3052,6 @@
       "strategy_id": "BBRSITV",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
-    },
-    "BBRSIoriginal": {
-      "available_prefix_candles": 8104,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/BBRSIoriginal-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 41.6,
-      "file_derived_period": 20,
-      "implementation_id": "BBRSIoriginal:0b7f8f86963f",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BBRSIoriginal --strategy-path user_data/profile_bias_strategies/BBRSIoriginal --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
-      "ladder_candles": [
-        168,
-        336,
-        720,
-        2160
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        24,
-        48
-      ],
-      "output_sha256": "sha256_2822da00efcde2830b4f026807fe31b273834176d2fa24bb5cd169283c44ea80",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "BBRSIoriginal",
-      "timeframe": "1h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "BB_RPB_3c": {
       "available_prefix_candles": 97222,
@@ -8631,42 +8459,6 @@
       "timerange": "20190101-20190401",
       "why": "no startup up to 4032 candles keeps every indicator inside 1.0%"
     },
-    "BB_RSI": {
-      "available_prefix_candles": 8104,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/BB_RSI-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 33.6,
-      "file_derived_period": 20,
-      "implementation_id": "BB_RSI:8fc62c11510d",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BB_RSI --strategy-path user_data/profile_bias_strategies/BB_RSI --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
-      "ladder_candles": [
-        168,
-        336,
-        720,
-        2160
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        24,
-        48
-      ],
-      "output_sha256": "sha256_f3aedba66b8f20cdbfb56355a08bf3b7c27439c9fed4784b973f9cee3a63eef5",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "BB_RSI",
-      "timeframe": "1h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
     "BB_RTR": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 7,
@@ -9097,42 +8889,6 @@
       "strategy_id": "BB_RTR",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
-    },
-    "BB_Strategy04": {
-      "available_prefix_candles": 8104,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/BB_Strategy04-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 32.5,
-      "file_derived_period": 24,
-      "implementation_id": "BB_Strategy04:2a6015204750",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BB_Strategy04 --strategy-path user_data/profile_bias_strategies/BB_Strategy04 --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
-      "ladder_candles": [
-        168,
-        336,
-        720,
-        2160
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        24,
-        48
-      ],
-      "output_sha256": "sha256_1103ae3cf8113c024babb4800f425411093d38896bae969e7753c546691661ee",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "BB_Strategy04",
-      "timeframe": "1h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "BBands": {
       "available_prefix_candles": 486102,
@@ -9797,40 +9553,6 @@
       "timeframe": "15m",
       "timerange": "20190101-20190401",
       "why": "analyzer produced no drift table"
-    },
-    "BbRoi": {
-      "available_prefix_candles": 32408,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/BbRoi-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 33.7,
-      "file_derived_period": 200,
-      "implementation_id": "BbRoi:220417917186",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BbRoi --strategy-path user_data/profile_bias_strategies/BbRoi --timerange 20190101-20190401 --no-color --startup-candle 672 1344 2880",
-      "ladder_candles": [
-        672,
-        1344,
-        2880
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        96,
-        192
-      ],
-      "output_sha256": "sha256_d01c3eba8afa8e6b4318c94e8a4bd9d3ba14a6a7ae241f59343a24ad23c9868b",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "BbRoi",
-      "timeframe": "15m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "BbWidthExpansionStrategy": {
       "available_prefix_candles": 97222,
@@ -16080,42 +15802,6 @@
       "strategy_id": "Chandemtwo",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
-    },
-    "Chispei": {
-      "available_prefix_candles": 2029,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/Chispei-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 29.2,
-      "file_derived_period": null,
-      "implementation_id": "Chispei:f16650c34f6c",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Chispei --strategy-path user_data/profile_bias_strategies/Chispei --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
-      "ladder_candles": [
-        42,
-        84,
-        180,
-        540
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        6,
-        12
-      ],
-      "output_sha256": "sha256_4a7044f987d28cfb38755c3a1cf8b5fdd2505ecb17c4d28ecfda55763fae022b",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "Chispei",
-      "timeframe": "4h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "Cluc4": {
       "available_prefix_candles": 486102,
@@ -25018,42 +24704,6 @@
       "timeframe": "4h",
       "timerange": "20190101-20190401"
     },
-    "EMABBRSI": {
-      "available_prefix_candles": 8104,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/EMABBRSI-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 31.7,
-      "file_derived_period": 200,
-      "implementation_id": "EMABBRSI:ab6bed3c354e",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy EMABBRSI --strategy-path user_data/profile_bias_strategies/EMABBRSI --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
-      "ladder_candles": [
-        168,
-        336,
-        720,
-        2160
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        24,
-        48
-      ],
-      "output_sha256": "sha256_a788dbf27794bd0e6c1fb93f4f214502abc85b8761c590c6338c43f522432c0d",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "EMABBRSI",
-      "timeframe": "1h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
     "EMABreakout": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 1,
@@ -25258,72 +24908,6 @@
       "strategy_id": "EMASkipPump",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
-    },
-    "EMAVolume": {
-      "available_prefix_candles": 32408,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/EMAVolume-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 30.1,
-      "file_derived_period": 200,
-      "implementation_id": "EMAVolume:d1e8d261e1fe",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy EMAVolume --strategy-path user_data/profile_bias_strategies/EMAVolume --timerange 20190101-20190401 --no-color --startup-candle 672 1344 2880",
-      "ladder_candles": [
-        672,
-        1344,
-        2880
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        96,
-        192
-      ],
-      "output_sha256": "sha256_e240b9fde6cf1d44cff8020c6ed9e42bf2b104446034fa8b54072e929f9b1bae",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "EMAVolume",
-      "timeframe": "15m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
-    "EXPERIMENTAL_STRATEGY": {
-      "available_prefix_candles": 97222,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/EXPERIMENTAL_STRATEGY-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 31.0,
-      "file_derived_period": 40,
-      "implementation_id": "EXPERIMENTAL_STRATEGY:7f83965a528d",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy EXPERIMENTAL_STRATEGY --strategy-path user_data/profile_bias_strategies/EXPERIMENTAL_STRATEGY --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
-      "ladder_candles": [
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        7,
-        14
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        288,
-        576
-      ],
-      "output_sha256": "sha256_688d99bd87ca9514e56fdccda55d61fa4d86d5795308ee0646fbf1c72f9e485a",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "EXPERIMENTAL_STRATEGY",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "EasyInEasyOut": {
       "available_prefix_candles": 486102,
@@ -36331,186 +35915,6 @@
       "timerange": "20190101-20190401",
       "why": "analyzer produced no drift table"
     },
-    "Ichimoku_v12": {
-      "available_prefix_candles": 2029,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/Ichimoku_v12-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 25.0,
-      "file_derived_period": null,
-      "implementation_id": "Ichimoku_v12:239140e7a000",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v12 --strategy-path user_data/profile_bias_strategies/Ichimoku_v12 --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
-      "ladder_candles": [
-        42,
-        84,
-        180,
-        540
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        6,
-        12
-      ],
-      "output_sha256": "sha256_feec3c4caae484c01fd475e7300a5d103ceffbe53708b2450b1d21376ab3a56d",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "Ichimoku_v12",
-      "timeframe": "4h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
-    "Ichimoku_v30": {
-      "available_prefix_candles": 2029,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/Ichimoku_v30-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 24.7,
-      "file_derived_period": null,
-      "implementation_id": "Ichimoku_v30:cc125c04e31b",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v30 --strategy-path user_data/profile_bias_strategies/Ichimoku_v30 --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
-      "ladder_candles": [
-        42,
-        84,
-        180,
-        540
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        6,
-        12
-      ],
-      "output_sha256": "sha256_59652c0d4fab74bd7b80f4f5277a0d3863921e4b4dd59ad7cb84fd53ad6f5ad4",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "Ichimoku_v30",
-      "timeframe": "4h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
-    "Ichimoku_v32": {
-      "available_prefix_candles": 2029,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/Ichimoku_v32-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 24.3,
-      "file_derived_period": null,
-      "implementation_id": "Ichimoku_v32:e7de6f78d43f",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v32 --strategy-path user_data/profile_bias_strategies/Ichimoku_v32 --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
-      "ladder_candles": [
-        42,
-        84,
-        180,
-        540
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        6,
-        12
-      ],
-      "output_sha256": "sha256_19f207754bcba4617c1377360db3592ac6a6499cea939773b861080261b8fdc5",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "Ichimoku_v32",
-      "timeframe": "4h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
-    "Ichimoku_v33": {
-      "available_prefix_candles": 2029,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/Ichimoku_v33-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 26.0,
-      "file_derived_period": null,
-      "implementation_id": "Ichimoku_v33:8e39599c5f08",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v33 --strategy-path user_data/profile_bias_strategies/Ichimoku_v33 --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
-      "ladder_candles": [
-        42,
-        84,
-        180,
-        540
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        6,
-        12
-      ],
-      "output_sha256": "sha256_6a1c2f68406750e5d37d9dbcd22f4ef07af576b6d911a5fb7edb9d9882f84bc2",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "Ichimoku_v33",
-      "timeframe": "4h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
-    "Ichimoku_v35": {
-      "available_prefix_candles": 2029,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/Ichimoku_v35-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 24.7,
-      "file_derived_period": 14,
-      "implementation_id": "Ichimoku_v35:f640a73dd0d8",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v35 --strategy-path user_data/profile_bias_strategies/Ichimoku_v35 --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
-      "ladder_candles": [
-        42,
-        84,
-        180,
-        540
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        6,
-        12
-      ],
-      "output_sha256": "sha256_bffd3898f571bbf53836a95547e0305bcdcc282f5b4d16ca2d51b1a2a4997f48",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "Ichimoku_v35",
-      "timeframe": "4h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
     "ImpulseV1": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 1,
@@ -37131,196 +36535,6 @@
       "strategy_id": "JuicyTrend",
       "timeframe": "15m",
       "timerange": "20190101-20190401"
-    },
-    "JustROCR": {
-      "available_prefix_candles": 8104,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/JustROCR-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 24.5,
-      "file_derived_period": null,
-      "implementation_id": "JustROCR:0c056ac53867",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy JustROCR --strategy-path user_data/profile_bias_strategies/JustROCR --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
-      "ladder_candles": [
-        168,
-        336,
-        720,
-        2160
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        24,
-        48
-      ],
-      "output_sha256": "sha256_871c3a002bf983b3b6f82dfef14f5d232bc0da7c3266c78109f6df8d654c026e",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "JustROCR",
-      "timeframe": "1h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
-    "JustROCR2": {
-      "available_prefix_candles": 97222,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/JustROCR2-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 24.6,
-      "file_derived_period": null,
-      "implementation_id": "JustROCR2:499f71de285e",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy JustROCR2 --strategy-path user_data/profile_bias_strategies/JustROCR2 --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
-      "ladder_candles": [
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        7,
-        14
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        288,
-        576
-      ],
-      "output_sha256": "sha256_bc1fc85bdb3255bc10ade8ee22e929a66de400604c80d81821689997eefa6625",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "JustROCR2",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
-    "JustROCR3": {
-      "available_prefix_candles": 97222,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/JustROCR3-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 25.9,
-      "file_derived_period": null,
-      "implementation_id": "JustROCR3:fb482eb1d59f",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy JustROCR3 --strategy-path user_data/profile_bias_strategies/JustROCR3 --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
-      "ladder_candles": [
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        7,
-        14
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        288,
-        576
-      ],
-      "output_sha256": "sha256_cf0bde9525af872a2695b38d6538c86387a68f80ff95d8a2af6a12ccf09a6827",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "JustROCR3",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
-    "JustROCR4": {
-      "available_prefix_candles": 97222,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/JustROCR4-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 24.7,
-      "file_derived_period": null,
-      "implementation_id": "JustROCR4:9b483e0ff6ab",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy JustROCR4 --strategy-path user_data/profile_bias_strategies/JustROCR4 --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
-      "ladder_candles": [
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        7,
-        14
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        288,
-        576
-      ],
-      "output_sha256": "sha256_ae8db184296374c7ad1017a04248de09db14541139a2d0311c592bced770c505",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "JustROCR4",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
-    "JustROCR5": {
-      "available_prefix_candles": 486102,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/JustROCR5-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 27.1,
-      "file_derived_period": 5,
-      "implementation_id": "JustROCR5:39c4be6a37f5",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy JustROCR5 --strategy-path user_data/profile_bias_strategies/JustROCR5 --timerange 20190101-20190401 --no-color --startup-candle 2880",
-      "ladder_candles": [
-        2880
-      ],
-      "ladder_days": [
-        2
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        1440
-      ],
-      "output_sha256": "sha256_73e1e7b092b56276a75b297b34ef47337db239c7fcb88376e003b373eb0dfa9d",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "JustROCR5",
-      "timeframe": "1m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
-    "JustROCR6": {
-      "available_prefix_candles": 486102,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/JustROCR6-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 25.5,
-      "file_derived_period": 499,
-      "implementation_id": "JustROCR6:3beea9617b4e",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy JustROCR6 --strategy-path user_data/profile_bias_strategies/JustROCR6 --timerange 20190101-20190401 --no-color --startup-candle 2880",
-      "ladder_candles": [
-        2880
-      ],
-      "ladder_days": [
-        2
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        1440
-      ],
-      "output_sha256": "sha256_75a51769d462fecacfbae53e4dcdfb23ebafaafab507aefc53aa3b1b16baf676",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "JustROCR6",
-      "timeframe": "1m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "KAMACCIRSI_new": {
       "available_prefix_candles": 97222,
@@ -38892,42 +38106,6 @@
       "timeframe": "1d",
       "timerange": "20190101-20190401"
     },
-    "MACDCCI": {
-      "available_prefix_candles": 16206,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/MACDCCI-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 25.1,
-      "file_derived_period": 62,
-      "implementation_id": "MACDCCI:13131ed784a7",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MACDCCI --strategy-path user_data/profile_bias_strategies/MACDCCI --timerange 20190101-20190401 --no-color --startup-candle 336 672 1440 4320",
-      "ladder_candles": [
-        336,
-        672,
-        1440,
-        4320
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        48,
-        96
-      ],
-      "output_sha256": "sha256_c75d9b76a7975080b7e7b3372f9121d1e1f8802431163a82bf354240626ca9f8",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "MACDCCI",
-      "timeframe": "30m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
     "MACDRL": {
       "available_prefix_candles": 7391,
       "chosen_ladder_days": 7,
@@ -39098,38 +38276,6 @@
       "strategy_id": "MACDRS",
       "timeframe": "5m",
       "timerange": "20200301-20200401"
-    },
-    "MACDRSI200": {
-      "available_prefix_candles": 97222,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/MACDRSI200-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 25.6,
-      "file_derived_period": 200,
-      "implementation_id": "MACDRSI200:2a562c45320c",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MACDRSI200 --strategy-path user_data/profile_bias_strategies/MACDRSI200 --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
-      "ladder_candles": [
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        7,
-        14
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        288,
-        576
-      ],
-      "output_sha256": "sha256_3122edcd7ca135735d7a81a8c5d15346f0514356342256653cabf1df75e6ce9f",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "MACDRSI200",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "MACDStrategy": {
       "available_prefix_candles": 97222,
@@ -40199,42 +39345,6 @@
       "state": "inconclusive",
       "strategy_id": "MKR",
       "timeframe": "1h",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
-    "MabStra": {
-      "available_prefix_candles": 2029,
-      "cohort": "recursive_unsettled",
-      "debug_log": "user_data/convergence_logs/MabStra-ladder.log",
-      "declared_warmup_override": 6,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 59.1,
-      "file_derived_period": 28,
-      "implementation_id": "MabStra:63fcdd4567ba",
-      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/MabStra_startup_6.json --strategy MabStra --strategy-path user_data/profile_bias_strategies/MabStra --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540",
-      "ladder_candles": [
-        6,
-        12,
-        42,
-        84,
-        180,
-        540
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14,
-        30,
-        90
-      ],
-      "output_sha256": "sha256_9d5e1d8e02da6d4cd9bbdd2e6f40b1c61a9d517cedfa035611313da275c58f42",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "MabStra",
-      "timeframe": "4h",
       "timerange": "20190101-20190401",
       "why": "analyzer produced no drift table"
     },
@@ -63108,42 +62218,6 @@
       "timeframe": "15m",
       "timerange": "20190101-20190401"
     },
-    "RSIBB02": {
-      "available_prefix_candles": 8104,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/RSIBB02-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 24.9,
-      "file_derived_period": 20,
-      "implementation_id": "RSIBB02:e5b7372b0519",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy RSIBB02 --strategy-path user_data/profile_bias_strategies/RSIBB02 --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
-      "ladder_candles": [
-        168,
-        336,
-        720,
-        2160
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        24,
-        48
-      ],
-      "output_sha256": "sha256_06db81449d44223764a7152ec1c0c124df86af8889716ea28ba48bba3f78ffab",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "RSIBB02",
-      "timeframe": "1h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
     "RSI_BB": {
       "available_prefix_candles": 32408,
       "chosen_ladder_days": 2,
@@ -70550,76 +69624,6 @@
       "timeframe": "1h",
       "timerange": "20190101-20190401"
     },
-    "SwingHigh": {
-      "available_prefix_candles": 16206,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/SwingHigh-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 25.3,
-      "file_derived_period": 76,
-      "implementation_id": "SwingHigh:7a62b0ee70e7",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SwingHigh --strategy-path user_data/profile_bias_strategies/SwingHigh --timerange 20190101-20190401 --no-color --startup-candle 336 672 1440 4320",
-      "ladder_candles": [
-        336,
-        672,
-        1440,
-        4320
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        48,
-        96
-      ],
-      "output_sha256": "sha256_25a53c6ba7d80d47ee13ea0ffcd43ce8f9d020e3b331b85db2b448d63a47c5d2",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "SwingHigh",
-      "timeframe": "30m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
-    "SwingHighToSky": {
-      "available_prefix_candles": 32408,
-      "cohort": "recursive_unsettled",
-      "debug_log": "user_data/convergence_logs/SwingHighToSky-ladder.log",
-      "declared_warmup_override": 96,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 62.4,
-      "file_derived_period": null,
-      "implementation_id": "SwingHighToSky:73facc48a003",
-      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/SwingHighToSky_startup_96.json --strategy SwingHighToSky --strategy-path user_data/profile_bias_strategies/SwingHighToSky --timerange 20190101-20190401 --no-color --startup-candle 96 192 672 1344 2880",
-      "ladder_candles": [
-        96,
-        192,
-        672,
-        1344,
-        2880
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14,
-        30
-      ],
-      "output_sha256": "sha256_b8aaa62e397e8b8c1a85772940b690b1355286a95624954cc5758ea587830638",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "SwingHighToSky",
-      "timeframe": "15m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
     "TD": {
       "available_prefix_candles": 4054,
       "chosen_ladder_days": 1,
@@ -75596,35 +74600,6 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
-    "adx_opt_strat": {
-      "available_prefix_candles": 486102,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/adx_opt_strat-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 24.8,
-      "file_derived_period": 25,
-      "implementation_id": "adx_opt_strat:d6314b2a21f2",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy adx_opt_strat --strategy-path user_data/profile_bias_strategies/adx_opt_strat --timerange 20190101-20190401 --no-color --startup-candle 2880",
-      "ladder_candles": [
-        2880
-      ],
-      "ladder_days": [
-        2
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        1440
-      ],
-      "output_sha256": "sha256_7469e9dacc81130fb4ea238c2ea3c99e96469dea0afc40eacf679ed51864d56b",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "adx_opt_strat",
-      "timeframe": "1m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
     "adxbbrsi2": {
       "available_prefix_candles": 8104,
       "chosen_ladder_days": 14,
@@ -75759,42 +74734,6 @@
       "strategy_id": "adxbbrsi2",
       "timeframe": "1h",
       "timerange": "20190101-20190401"
-    },
-    "bb_rsi_opt_new": {
-      "available_prefix_candles": 8104,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/bb_rsi_opt_new-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 35.7,
-      "file_derived_period": 20,
-      "implementation_id": "bb_rsi_opt_new:852bf38b0b9b",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy bb_rsi_opt_new --strategy-path user_data/profile_bias_strategies/bb_rsi_opt_new --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
-      "ladder_candles": [
-        168,
-        336,
-        720,
-        2160
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        24,
-        48
-      ],
-      "output_sha256": "sha256_e28ae333ad31537cee86fa3077c3ed6e03b2b359bfe1d4fea634cbf6b57f5c38",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "bb_rsi_opt_new",
-      "timeframe": "1h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "bbandrsi": {
       "available_prefix_candles": 32408,
@@ -76284,42 +75223,6 @@
       "timerange": "20190101-20190401",
       "why": "[Errno 2] No such file or directory: '/audit/user_data/profile_bias_strategies/beta_factors_model/Bitcoin_marketcap.csv'"
     },
-    "chispei": {
-      "available_prefix_candles": 2029,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/chispei-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 49.7,
-      "file_derived_period": null,
-      "implementation_id": "chispei:6b4e2cdd6976",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy chispei --strategy-path user_data/profile_bias_strategies/chispei --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
-      "ladder_candles": [
-        42,
-        84,
-        180,
-        540
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        6,
-        12
-      ],
-      "output_sha256": "sha256_ef7dc53e6123f7a057fd07fa599c151259d354a3d3809901aeb54cebf204f339",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "chispei",
-      "timeframe": "4h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
     "conny": {
       "available_prefix_candles": 32408,
       "chosen_ladder_days": 1,
@@ -76393,42 +75296,6 @@
       "strategy_id": "conny",
       "timeframe": "15m",
       "timerange": "20190101-20190401"
-    },
-    "cryptohassle": {
-      "available_prefix_candles": 8104,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/cryptohassle-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 52.8,
-      "file_derived_period": 20,
-      "implementation_id": "cryptohassle:217abd28aa5b",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy cryptohassle --strategy-path user_data/profile_bias_strategies/cryptohassle --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
-      "ladder_candles": [
-        168,
-        336,
-        720,
-        2160
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30,
-        90
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        24,
-        48
-      ],
-      "output_sha256": "sha256_54ac690bf02f9c38b9cfe830e9890a529825994b954aedc62de04a84a7c56017",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "cryptohassle",
-      "timeframe": "1h",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "cryptotankV2": {
       "available_prefix_candles": 97222,
@@ -80595,132 +79462,6 @@
       "timerange": "20190101-20190401",
       "why": "no startup up to 4032 candles keeps every indicator inside 1.0%"
     },
-    "mabStra": {
-      "available_prefix_candles": 2029,
-      "cohort": "recursive_unsettled",
-      "debug_log": "user_data/convergence_logs/mabStra-ladder.log",
-      "declared_warmup_override": 6,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 59.6,
-      "file_derived_period": null,
-      "implementation_id": "mabStra:a7796af206e8",
-      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/mabStra_startup_6.json --strategy mabStra --strategy-path user_data/profile_bias_strategies/mabStra --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540",
-      "ladder_candles": [
-        6,
-        12,
-        42,
-        84,
-        180,
-        540
-      ],
-      "ladder_days": [
-        1,
-        2,
-        7,
-        14,
-        30,
-        90
-      ],
-      "output_sha256": "sha256_9ec3aa4d69334069d6b18b370eb090f5743d9a3aa0ef4d686b0363f91b49a2ab",
-      "returncode": 0,
-      "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
-      "strategy_id": "mabStra",
-      "timeframe": "4h",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
-    },
-    "macd_recovery": {
-      "available_prefix_candles": 97222,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/macd_recovery-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 39.4,
-      "file_derived_period": 200,
-      "implementation_id": "macd_recovery:54b38b6f58f1",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy macd_recovery --strategy-path user_data/profile_bias_strategies/macd_recovery --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
-      "ladder_candles": [
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        7,
-        14
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        288,
-        576
-      ],
-      "output_sha256": "sha256_a16bd879a59b28057c7df8b135fc2803f7a60ba935b92793643f81f224cd0022",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "macd_recovery",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
-    "mark_strat": {
-      "available_prefix_candles": 486102,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/mark_strat-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 37.4,
-      "file_derived_period": 20,
-      "implementation_id": "mark_strat:d6c7af041c6d",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy mark_strat --strategy-path user_data/profile_bias_strategies/mark_strat --timerange 20190101-20190401 --no-color --startup-candle 2880",
-      "ladder_candles": [
-        2880
-      ],
-      "ladder_days": [
-        2
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        1440
-      ],
-      "output_sha256": "sha256_b94bc9e693e7f56fa477e00d3f0ab8c0ffa81c6798affa140a1ccbf1909f24bf",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "mark_strat",
-      "timeframe": "1m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
-    "mark_strat_opt": {
-      "available_prefix_candles": 486102,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/mark_strat_opt-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 35.4,
-      "file_derived_period": 20,
-      "implementation_id": "mark_strat_opt:d5eaebf770b8",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy mark_strat_opt --strategy-path user_data/profile_bias_strategies/mark_strat_opt --timerange 20190101-20190401 --no-color --startup-candle 2880",
-      "ladder_candles": [
-        2880
-      ],
-      "ladder_days": [
-        2
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        1440
-      ],
-      "output_sha256": "sha256_faaf82874e38e6eb2ecc95153b35505ab489ca97c1209f5f73b8aad0bb100f68",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "mark_strat_opt",
-      "timeframe": "1m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
     "moonhouse": {
       "available_prefix_candles": 339,
       "chosen_ladder_days": 1,
@@ -82022,72 +80763,6 @@
       "strategy_id": "pmaxTest",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
-    },
-    "quantumfirst": {
-      "available_prefix_candles": 97222,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/quantumfirst-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 35.9,
-      "file_derived_period": 40,
-      "implementation_id": "quantumfirst:94dedeffe4cf",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy quantumfirst --strategy-path user_data/profile_bias_strategies/quantumfirst --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
-      "ladder_candles": [
-        2016,
-        4032
-      ],
-      "ladder_days": [
-        7,
-        14
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        288,
-        576
-      ],
-      "output_sha256": "sha256_0fc979780fadce9764ad52d5d1dfc120c73369672abf8aadbac08caeab2ffa13",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "quantumfirst",
-      "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
-    },
-    "redditMA": {
-      "available_prefix_candles": 32408,
-      "cohort": "ladder_pending",
-      "debug_log": "user_data/convergence_logs/redditMA-ladder.log",
-      "declared_warmup_override": null,
-      "drift_threshold_pct": 1.0,
-      "elapsed_s": 37.1,
-      "file_derived_period": null,
-      "implementation_id": "redditMA:44ccdf271d56",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy redditMA --strategy-path user_data/profile_bias_strategies/redditMA --timerange 20190101-20190401 --no-color --startup-candle 672 1344 2880",
-      "ladder_candles": [
-        672,
-        1344,
-        2880
-      ],
-      "ladder_days": [
-        7,
-        14,
-        30
-      ],
-      "ladder_rungs_dropped_as_uncomputable": [
-        96,
-        192
-      ],
-      "output_sha256": "sha256_832871673dd8563ec43a02c8abf73a6883d1fc3fbe82e64c5a600e525efbec7e",
-      "returncode": 2,
-      "run_profile": "spot_long",
-      "runtime_id": "native_unversioned",
-      "state": "inconclusive",
-      "strategy_id": "redditMA",
-      "timeframe": "15m",
-      "timerange": "20190101-20190401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "slope_is_dopeCT": {
       "available_prefix_candles": 32408,
@@ -84704,6 +83379,119 @@
   },
   "schema_version": 1,
   "superseded": {
+    "ADX_15M_USDT": [
+      {
+        "available_prefix_candles": 32408,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/ADX_15M_USDT-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 46.5,
+        "file_derived_period": 25,
+        "implementation_id": "ADX_15M_USDT:1cf6c1e674ba",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ADX_15M_USDT --strategy-path user_data/profile_bias_strategies/ADX_15M_USDT --timerange 20190101-20190401 --no-color --startup-candle 672 1344 2880",
+        "ladder_candles": [
+          672,
+          1344,
+          2880
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          96,
+          192
+        ],
+        "output_sha256": "sha256_6a61b19767dbd50d18541cd847104ccfa3c11b008011c54a6c55a446d7a76958",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "ADX_15M_USDT",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "15m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "ADX_15M_USDT2": [
+      {
+        "available_prefix_candles": 32408,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/ADX_15M_USDT2-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 47.0,
+        "file_derived_period": 25,
+        "implementation_id": "ADX_15M_USDT2:0d171b1a5053",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ADX_15M_USDT2 --strategy-path user_data/profile_bias_strategies/ADX_15M_USDT2 --timerange 20190101-20190401 --no-color --startup-candle 672 1344 2880",
+        "ladder_candles": [
+          672,
+          1344,
+          2880
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          96,
+          192
+        ],
+        "output_sha256": "sha256_170e56c722ead8dba66aa6d60f53965fbae85bfecc59a77a4fd2c61f0f3e994b",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "ADX_15M_USDT2",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "15m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "AlligatorStrat": [
+      {
+        "available_prefix_candles": 2029,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/AlligatorStrat-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 43.0,
+        "file_derived_period": 13,
+        "implementation_id": "AlligatorStrat:0f9f93fc281f",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy AlligatorStrat --strategy-path user_data/profile_bias_strategies/AlligatorStrat --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
+        "ladder_candles": [
+          42,
+          84,
+          180,
+          540
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          6,
+          12
+        ],
+        "output_sha256": "sha256_2c74a8eba899d090bde8c3db308eea283566e06a7e9da7c14fe027e9eea5e8fd",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "AlligatorStrat",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "4h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
     "AwesomeMacd": [
       {
         "available_prefix_candles": 8104,
@@ -84740,6 +83528,195 @@
         "timeframe": "1h",
         "timerange": "20190101-20190401",
         "why": "analyzer produced no drift table"
+      }
+    ],
+    "BBRSIS": [
+      {
+        "available_prefix_candles": 97222,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/BBRSIS-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 52.5,
+        "file_derived_period": 200,
+        "implementation_id": "BBRSIS:9cbc9ac5b110",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BBRSIS --strategy-path user_data/profile_bias_strategies/BBRSIS --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
+        "ladder_candles": [
+          2016,
+          4032
+        ],
+        "ladder_days": [
+          7,
+          14
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          288,
+          576
+        ],
+        "output_sha256": "sha256_84603b3cb027ca1d877087d2bd29cc3f899705295d435fcfe6c0a12ce4156911",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "BBRSIS",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "5m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "BBRSIoriginal": [
+      {
+        "available_prefix_candles": 8104,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/BBRSIoriginal-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 41.6,
+        "file_derived_period": 20,
+        "implementation_id": "BBRSIoriginal:0b7f8f86963f",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BBRSIoriginal --strategy-path user_data/profile_bias_strategies/BBRSIoriginal --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
+        "ladder_candles": [
+          168,
+          336,
+          720,
+          2160
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          24,
+          48
+        ],
+        "output_sha256": "sha256_2822da00efcde2830b4f026807fe31b273834176d2fa24bb5cd169283c44ea80",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "BBRSIoriginal",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "1h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "BB_RSI": [
+      {
+        "available_prefix_candles": 8104,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/BB_RSI-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 33.6,
+        "file_derived_period": 20,
+        "implementation_id": "BB_RSI:8fc62c11510d",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BB_RSI --strategy-path user_data/profile_bias_strategies/BB_RSI --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
+        "ladder_candles": [
+          168,
+          336,
+          720,
+          2160
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          24,
+          48
+        ],
+        "output_sha256": "sha256_f3aedba66b8f20cdbfb56355a08bf3b7c27439c9fed4784b973f9cee3a63eef5",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "BB_RSI",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "1h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "BB_Strategy04": [
+      {
+        "available_prefix_candles": 8104,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/BB_Strategy04-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 32.5,
+        "file_derived_period": 24,
+        "implementation_id": "BB_Strategy04:2a6015204750",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BB_Strategy04 --strategy-path user_data/profile_bias_strategies/BB_Strategy04 --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
+        "ladder_candles": [
+          168,
+          336,
+          720,
+          2160
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          24,
+          48
+        ],
+        "output_sha256": "sha256_1103ae3cf8113c024babb4800f425411093d38896bae969e7753c546691661ee",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "BB_Strategy04",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "1h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "BbRoi": [
+      {
+        "available_prefix_candles": 32408,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/BbRoi-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 33.7,
+        "file_derived_period": 200,
+        "implementation_id": "BbRoi:220417917186",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BbRoi --strategy-path user_data/profile_bias_strategies/BbRoi --timerange 20190101-20190401 --no-color --startup-candle 672 1344 2880",
+        "ladder_candles": [
+          672,
+          1344,
+          2880
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          96,
+          192
+        ],
+        "output_sha256": "sha256_d01c3eba8afa8e6b4318c94e8a4bd9d3ba14a6a7ae241f59343a24ad23c9868b",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "BbRoi",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "15m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
       }
     ],
     "BinHV27F": [
@@ -84806,6 +83783,45 @@
         "timeframe": "5m",
         "timerange": "20200301-20200401",
         "why": "freqtrade refused startup 4032 as above the exchange limit"
+      }
+    ],
+    "Chispei": [
+      {
+        "available_prefix_candles": 2029,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/Chispei-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 29.2,
+        "file_derived_period": null,
+        "implementation_id": "Chispei:f16650c34f6c",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Chispei --strategy-path user_data/profile_bias_strategies/Chispei --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
+        "ladder_candles": [
+          42,
+          84,
+          180,
+          540
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          6,
+          12
+        ],
+        "output_sha256": "sha256_4a7044f987d28cfb38755c3a1cf8b5fdd2505ecb17c4d28ecfda55763fae022b",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "Chispei",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "4h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
       }
     ],
     "ConsensusShort": [
@@ -84905,6 +83921,117 @@
         "timeframe": "5m",
         "timerange": "20200301-20200401",
         "why": "freqtrade refused startup 4032 as above the exchange limit"
+      }
+    ],
+    "EMABBRSI": [
+      {
+        "available_prefix_candles": 8104,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/EMABBRSI-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 31.7,
+        "file_derived_period": 200,
+        "implementation_id": "EMABBRSI:ab6bed3c354e",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy EMABBRSI --strategy-path user_data/profile_bias_strategies/EMABBRSI --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
+        "ladder_candles": [
+          168,
+          336,
+          720,
+          2160
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          24,
+          48
+        ],
+        "output_sha256": "sha256_a788dbf27794bd0e6c1fb93f4f214502abc85b8761c590c6338c43f522432c0d",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "EMABBRSI",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "1h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "EMAVolume": [
+      {
+        "available_prefix_candles": 32408,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/EMAVolume-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 30.1,
+        "file_derived_period": 200,
+        "implementation_id": "EMAVolume:d1e8d261e1fe",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy EMAVolume --strategy-path user_data/profile_bias_strategies/EMAVolume --timerange 20190101-20190401 --no-color --startup-candle 672 1344 2880",
+        "ladder_candles": [
+          672,
+          1344,
+          2880
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          96,
+          192
+        ],
+        "output_sha256": "sha256_e240b9fde6cf1d44cff8020c6ed9e42bf2b104446034fa8b54072e929f9b1bae",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "EMAVolume",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "15m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "EXPERIMENTAL_STRATEGY": [
+      {
+        "available_prefix_candles": 97222,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/EXPERIMENTAL_STRATEGY-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 31.0,
+        "file_derived_period": 40,
+        "implementation_id": "EXPERIMENTAL_STRATEGY:7f83965a528d",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy EXPERIMENTAL_STRATEGY --strategy-path user_data/profile_bias_strategies/EXPERIMENTAL_STRATEGY --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
+        "ladder_candles": [
+          2016,
+          4032
+        ],
+        "ladder_days": [
+          7,
+          14
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          288,
+          576
+        ],
+        "output_sha256": "sha256_688d99bd87ca9514e56fdccda55d61fa4d86d5795308ee0646fbf1c72f9e485a",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "EXPERIMENTAL_STRATEGY",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "5m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
       }
     ],
     "FReinforcedStrategy": [
@@ -85249,6 +84376,448 @@
         "why": "analyzer produced no drift table"
       }
     ],
+    "Ichimoku_v12": [
+      {
+        "available_prefix_candles": 2029,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/Ichimoku_v12-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 25.0,
+        "file_derived_period": null,
+        "implementation_id": "Ichimoku_v12:239140e7a000",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v12 --strategy-path user_data/profile_bias_strategies/Ichimoku_v12 --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
+        "ladder_candles": [
+          42,
+          84,
+          180,
+          540
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          6,
+          12
+        ],
+        "output_sha256": "sha256_feec3c4caae484c01fd475e7300a5d103ceffbe53708b2450b1d21376ab3a56d",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "Ichimoku_v12",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "4h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "Ichimoku_v30": [
+      {
+        "available_prefix_candles": 2029,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/Ichimoku_v30-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 24.7,
+        "file_derived_period": null,
+        "implementation_id": "Ichimoku_v30:cc125c04e31b",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v30 --strategy-path user_data/profile_bias_strategies/Ichimoku_v30 --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
+        "ladder_candles": [
+          42,
+          84,
+          180,
+          540
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          6,
+          12
+        ],
+        "output_sha256": "sha256_59652c0d4fab74bd7b80f4f5277a0d3863921e4b4dd59ad7cb84fd53ad6f5ad4",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "Ichimoku_v30",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "4h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "Ichimoku_v32": [
+      {
+        "available_prefix_candles": 2029,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/Ichimoku_v32-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 24.3,
+        "file_derived_period": null,
+        "implementation_id": "Ichimoku_v32:e7de6f78d43f",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v32 --strategy-path user_data/profile_bias_strategies/Ichimoku_v32 --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
+        "ladder_candles": [
+          42,
+          84,
+          180,
+          540
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          6,
+          12
+        ],
+        "output_sha256": "sha256_19f207754bcba4617c1377360db3592ac6a6499cea939773b861080261b8fdc5",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "Ichimoku_v32",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "4h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "Ichimoku_v33": [
+      {
+        "available_prefix_candles": 2029,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/Ichimoku_v33-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 26.0,
+        "file_derived_period": null,
+        "implementation_id": "Ichimoku_v33:8e39599c5f08",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v33 --strategy-path user_data/profile_bias_strategies/Ichimoku_v33 --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
+        "ladder_candles": [
+          42,
+          84,
+          180,
+          540
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          6,
+          12
+        ],
+        "output_sha256": "sha256_6a1c2f68406750e5d37d9dbcd22f4ef07af576b6d911a5fb7edb9d9882f84bc2",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "Ichimoku_v33",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "4h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "Ichimoku_v35": [
+      {
+        "available_prefix_candles": 2029,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/Ichimoku_v35-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 24.7,
+        "file_derived_period": 14,
+        "implementation_id": "Ichimoku_v35:f640a73dd0d8",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Ichimoku_v35 --strategy-path user_data/profile_bias_strategies/Ichimoku_v35 --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
+        "ladder_candles": [
+          42,
+          84,
+          180,
+          540
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          6,
+          12
+        ],
+        "output_sha256": "sha256_bffd3898f571bbf53836a95547e0305bcdcc282f5b4d16ca2d51b1a2a4997f48",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "Ichimoku_v35",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "4h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "JustROCR": [
+      {
+        "available_prefix_candles": 8104,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/JustROCR-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 24.5,
+        "file_derived_period": null,
+        "implementation_id": "JustROCR:0c056ac53867",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy JustROCR --strategy-path user_data/profile_bias_strategies/JustROCR --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
+        "ladder_candles": [
+          168,
+          336,
+          720,
+          2160
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          24,
+          48
+        ],
+        "output_sha256": "sha256_871c3a002bf983b3b6f82dfef14f5d232bc0da7c3266c78109f6df8d654c026e",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "JustROCR",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "1h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "JustROCR2": [
+      {
+        "available_prefix_candles": 97222,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/JustROCR2-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 24.6,
+        "file_derived_period": null,
+        "implementation_id": "JustROCR2:499f71de285e",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy JustROCR2 --strategy-path user_data/profile_bias_strategies/JustROCR2 --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
+        "ladder_candles": [
+          2016,
+          4032
+        ],
+        "ladder_days": [
+          7,
+          14
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          288,
+          576
+        ],
+        "output_sha256": "sha256_bc1fc85bdb3255bc10ade8ee22e929a66de400604c80d81821689997eefa6625",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "JustROCR2",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "5m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "JustROCR3": [
+      {
+        "available_prefix_candles": 97222,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/JustROCR3-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 25.9,
+        "file_derived_period": null,
+        "implementation_id": "JustROCR3:fb482eb1d59f",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy JustROCR3 --strategy-path user_data/profile_bias_strategies/JustROCR3 --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
+        "ladder_candles": [
+          2016,
+          4032
+        ],
+        "ladder_days": [
+          7,
+          14
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          288,
+          576
+        ],
+        "output_sha256": "sha256_cf0bde9525af872a2695b38d6538c86387a68f80ff95d8a2af6a12ccf09a6827",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "JustROCR3",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "5m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "JustROCR4": [
+      {
+        "available_prefix_candles": 97222,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/JustROCR4-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 24.7,
+        "file_derived_period": null,
+        "implementation_id": "JustROCR4:9b483e0ff6ab",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy JustROCR4 --strategy-path user_data/profile_bias_strategies/JustROCR4 --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
+        "ladder_candles": [
+          2016,
+          4032
+        ],
+        "ladder_days": [
+          7,
+          14
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          288,
+          576
+        ],
+        "output_sha256": "sha256_ae8db184296374c7ad1017a04248de09db14541139a2d0311c592bced770c505",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "JustROCR4",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "5m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "JustROCR5": [
+      {
+        "available_prefix_candles": 486102,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/JustROCR5-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 27.1,
+        "file_derived_period": 5,
+        "implementation_id": "JustROCR5:39c4be6a37f5",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy JustROCR5 --strategy-path user_data/profile_bias_strategies/JustROCR5 --timerange 20190101-20190401 --no-color --startup-candle 2880",
+        "ladder_candles": [
+          2880
+        ],
+        "ladder_days": [
+          2
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          1440
+        ],
+        "output_sha256": "sha256_73e1e7b092b56276a75b297b34ef47337db239c7fcb88376e003b373eb0dfa9d",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "JustROCR5",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "1m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "JustROCR6": [
+      {
+        "available_prefix_candles": 486102,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/JustROCR6-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 25.5,
+        "file_derived_period": 499,
+        "implementation_id": "JustROCR6:3beea9617b4e",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy JustROCR6 --strategy-path user_data/profile_bias_strategies/JustROCR6 --timerange 20190101-20190401 --no-color --startup-candle 2880",
+        "ladder_candles": [
+          2880
+        ],
+        "ladder_days": [
+          2
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          1440
+        ],
+        "output_sha256": "sha256_75a51769d462fecacfbae53e4dcdfb23ebafaafab507aefc53aa3b1b16baf676",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "JustROCR6",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "1m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "MACDCCI": [
+      {
+        "available_prefix_candles": 16206,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/MACDCCI-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 25.1,
+        "file_derived_period": 62,
+        "implementation_id": "MACDCCI:13131ed784a7",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MACDCCI --strategy-path user_data/profile_bias_strategies/MACDCCI --timerange 20190101-20190401 --no-color --startup-candle 336 672 1440 4320",
+        "ladder_candles": [
+          336,
+          672,
+          1440,
+          4320
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          48,
+          96
+        ],
+        "output_sha256": "sha256_c75d9b76a7975080b7e7b3372f9121d1e1f8802431163a82bf354240626ca9f8",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "MACDCCI",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "30m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
     "MACDRL": [
       {
         "available_prefix_candles": 7391,
@@ -85317,6 +84886,41 @@
         "why": "freqtrade refused startup 4032 as above the exchange limit"
       }
     ],
+    "MACDRSI200": [
+      {
+        "available_prefix_candles": 97222,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/MACDRSI200-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 25.6,
+        "file_derived_period": 200,
+        "implementation_id": "MACDRSI200:2a562c45320c",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MACDRSI200 --strategy-path user_data/profile_bias_strategies/MACDRSI200 --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
+        "ladder_candles": [
+          2016,
+          4032
+        ],
+        "ladder_days": [
+          7,
+          14
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          288,
+          576
+        ],
+        "output_sha256": "sha256_3122edcd7ca135735d7a81a8c5d15346f0514356342256653cabf1df75e6ce9f",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "MACDRSI200",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "5m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
     "MabStra": [
       {
         "available_prefix_candles": 2029,
@@ -85381,6 +84985,43 @@
           90
         ],
         "output_sha256": "sha256_da9b6053690070c0e5c3b6e71830c063b105b8fd626d16640c1db11895667dc6",
+        "returncode": 0,
+        "run_profile": "spot_long",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "state": "inconclusive",
+        "strategy_id": "MabStra",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "4h",
+        "timerange": "20190101-20190401",
+        "why": "analyzer produced no drift table"
+      },
+      {
+        "available_prefix_candles": 2029,
+        "cohort": "recursive_unsettled",
+        "debug_log": "user_data/convergence_logs/MabStra-ladder.log",
+        "declared_warmup_override": 6,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 59.1,
+        "file_derived_period": 28,
+        "implementation_id": "MabStra:63fcdd4567ba",
+        "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/MabStra_startup_6.json --strategy MabStra --strategy-path user_data/profile_bias_strategies/MabStra --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540",
+        "ladder_candles": [
+          6,
+          12,
+          42,
+          84,
+          180,
+          540
+        ],
+        "ladder_days": [
+          1,
+          2,
+          7,
+          14,
+          30,
+          90
+        ],
+        "output_sha256": "sha256_9d5e1d8e02da6d4cd9bbdd2e6f40b1c61a9d517cedfa035611313da275c58f42",
         "returncode": 0,
         "run_profile": "spot_long",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
@@ -85876,6 +85517,45 @@
         "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
       }
     ],
+    "RSIBB02": [
+      {
+        "available_prefix_candles": 8104,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/RSIBB02-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 24.9,
+        "file_derived_period": 20,
+        "implementation_id": "RSIBB02:e5b7372b0519",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy RSIBB02 --strategy-path user_data/profile_bias_strategies/RSIBB02 --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
+        "ladder_candles": [
+          168,
+          336,
+          720,
+          2160
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          24,
+          48
+        ],
+        "output_sha256": "sha256_06db81449d44223764a7152ec1c0c124df86af8889716ea28ba48bba3f78ffab",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "RSIBB02",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "1h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
     "SMAOffset_Hippocritical_dca_leverage": [
       {
         "available_prefix_candles": 7391,
@@ -85982,6 +85662,45 @@
         "why": "analyzer produced no drift table"
       }
     ],
+    "SwingHigh": [
+      {
+        "available_prefix_candles": 16206,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/SwingHigh-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 25.3,
+        "file_derived_period": 76,
+        "implementation_id": "SwingHigh:7a62b0ee70e7",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SwingHigh --strategy-path user_data/profile_bias_strategies/SwingHigh --timerange 20190101-20190401 --no-color --startup-candle 336 672 1440 4320",
+        "ladder_candles": [
+          336,
+          672,
+          1440,
+          4320
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          48,
+          96
+        ],
+        "output_sha256": "sha256_25a53c6ba7d80d47ee13ea0ffcd43ce8f9d020e3b331b85db2b448d63a47c5d2",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "SwingHigh",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "30m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
     "SwingHighToSky": [
       {
         "available_prefix_candles": 32408,
@@ -86042,6 +85761,41 @@
           30
         ],
         "output_sha256": "sha256_fb112d80c7e23ff2e2bdf883f0be6b5b1fdf3a27d3ad582e1c55d27ef15fc36f",
+        "returncode": 0,
+        "run_profile": "spot_long",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "state": "inconclusive",
+        "strategy_id": "SwingHighToSky",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "15m",
+        "timerange": "20190101-20190401",
+        "why": "analyzer produced no drift table"
+      },
+      {
+        "available_prefix_candles": 32408,
+        "cohort": "recursive_unsettled",
+        "debug_log": "user_data/convergence_logs/SwingHighToSky-ladder.log",
+        "declared_warmup_override": 96,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 62.4,
+        "file_derived_period": null,
+        "implementation_id": "SwingHighToSky:73facc48a003",
+        "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/SwingHighToSky_startup_96.json --strategy SwingHighToSky --strategy-path user_data/profile_bias_strategies/SwingHighToSky --timerange 20190101-20190401 --no-color --startup-candle 96 192 672 1344 2880",
+        "ladder_candles": [
+          96,
+          192,
+          672,
+          1344,
+          2880
+        ],
+        "ladder_days": [
+          1,
+          2,
+          7,
+          14,
+          30
+        ],
+        "output_sha256": "sha256_b8aaa62e397e8b8c1a85772940b690b1355286a95624954cc5758ea587830638",
         "returncode": 0,
         "run_profile": "spot_long",
         "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
@@ -86189,6 +85943,77 @@
         "why": "freqtrade refused startup 4032 as above the exchange limit"
       }
     ],
+    "adx_opt_strat": [
+      {
+        "available_prefix_candles": 486102,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/adx_opt_strat-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 24.8,
+        "file_derived_period": 25,
+        "implementation_id": "adx_opt_strat:d6314b2a21f2",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy adx_opt_strat --strategy-path user_data/profile_bias_strategies/adx_opt_strat --timerange 20190101-20190401 --no-color --startup-candle 2880",
+        "ladder_candles": [
+          2880
+        ],
+        "ladder_days": [
+          2
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          1440
+        ],
+        "output_sha256": "sha256_7469e9dacc81130fb4ea238c2ea3c99e96469dea0afc40eacf679ed51864d56b",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "adx_opt_strat",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "1m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "bb_rsi_opt_new": [
+      {
+        "available_prefix_candles": 8104,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/bb_rsi_opt_new-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 35.7,
+        "file_derived_period": 20,
+        "implementation_id": "bb_rsi_opt_new:852bf38b0b9b",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy bb_rsi_opt_new --strategy-path user_data/profile_bias_strategies/bb_rsi_opt_new --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
+        "ladder_candles": [
+          168,
+          336,
+          720,
+          2160
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          24,
+          48
+        ],
+        "output_sha256": "sha256_e28ae333ad31537cee86fa3077c3ed6e03b2b359bfe1d4fea634cbf6b57f5c38",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "bb_rsi_opt_new",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "1h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
     "beta_factors_model": [
       {
         "available_prefix_candles": 49,
@@ -86222,6 +86047,84 @@
         "timeframe": "1w",
         "timerange": "20190101-20190401",
         "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+      }
+    ],
+    "chispei": [
+      {
+        "available_prefix_candles": 2029,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/chispei-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 49.7,
+        "file_derived_period": null,
+        "implementation_id": "chispei:6b4e2cdd6976",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy chispei --strategy-path user_data/profile_bias_strategies/chispei --timerange 20190101-20190401 --no-color --startup-candle 42 84 180 540",
+        "ladder_candles": [
+          42,
+          84,
+          180,
+          540
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          6,
+          12
+        ],
+        "output_sha256": "sha256_ef7dc53e6123f7a057fd07fa599c151259d354a3d3809901aeb54cebf204f339",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "chispei",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "4h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "cryptohassle": [
+      {
+        "available_prefix_candles": 8104,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/cryptohassle-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 52.8,
+        "file_derived_period": 20,
+        "implementation_id": "cryptohassle:217abd28aa5b",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy cryptohassle --strategy-path user_data/profile_bias_strategies/cryptohassle --timerange 20190101-20190401 --no-color --startup-candle 168 336 720 2160",
+        "ladder_candles": [
+          168,
+          336,
+          720,
+          2160
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          24,
+          48
+        ],
+        "output_sha256": "sha256_54ac690bf02f9c38b9cfe830e9890a529825994b954aedc62de04a84a7c56017",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "cryptohassle",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "1h",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
       }
     ],
     "mabStra": [
@@ -86297,6 +86200,214 @@
         "timeframe": "4h",
         "timerange": "20190101-20190401",
         "why": "analyzer produced no drift table"
+      },
+      {
+        "available_prefix_candles": 2029,
+        "cohort": "recursive_unsettled",
+        "debug_log": "user_data/convergence_logs/mabStra-ladder.log",
+        "declared_warmup_override": 6,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 59.6,
+        "file_derived_period": null,
+        "implementation_id": "mabStra:a7796af206e8",
+        "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/mabStra_startup_6.json --strategy mabStra --strategy-path user_data/profile_bias_strategies/mabStra --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540",
+        "ladder_candles": [
+          6,
+          12,
+          42,
+          84,
+          180,
+          540
+        ],
+        "ladder_days": [
+          1,
+          2,
+          7,
+          14,
+          30,
+          90
+        ],
+        "output_sha256": "sha256_9ec3aa4d69334069d6b18b370eb090f5743d9a3aa0ef4d686b0363f91b49a2ab",
+        "returncode": 0,
+        "run_profile": "spot_long",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "state": "inconclusive",
+        "strategy_id": "mabStra",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "4h",
+        "timerange": "20190101-20190401",
+        "why": "analyzer produced no drift table"
+      }
+    ],
+    "macd_recovery": [
+      {
+        "available_prefix_candles": 97222,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/macd_recovery-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 39.4,
+        "file_derived_period": 200,
+        "implementation_id": "macd_recovery:54b38b6f58f1",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy macd_recovery --strategy-path user_data/profile_bias_strategies/macd_recovery --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
+        "ladder_candles": [
+          2016,
+          4032
+        ],
+        "ladder_days": [
+          7,
+          14
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          288,
+          576
+        ],
+        "output_sha256": "sha256_a16bd879a59b28057c7df8b135fc2803f7a60ba935b92793643f81f224cd0022",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "macd_recovery",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "5m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "mark_strat": [
+      {
+        "available_prefix_candles": 486102,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/mark_strat-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 37.4,
+        "file_derived_period": 20,
+        "implementation_id": "mark_strat:d6c7af041c6d",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy mark_strat --strategy-path user_data/profile_bias_strategies/mark_strat --timerange 20190101-20190401 --no-color --startup-candle 2880",
+        "ladder_candles": [
+          2880
+        ],
+        "ladder_days": [
+          2
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          1440
+        ],
+        "output_sha256": "sha256_b94bc9e693e7f56fa477e00d3f0ab8c0ffa81c6798affa140a1ccbf1909f24bf",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "mark_strat",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "1m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "mark_strat_opt": [
+      {
+        "available_prefix_candles": 486102,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/mark_strat_opt-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 35.4,
+        "file_derived_period": 20,
+        "implementation_id": "mark_strat_opt:d5eaebf770b8",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy mark_strat_opt --strategy-path user_data/profile_bias_strategies/mark_strat_opt --timerange 20190101-20190401 --no-color --startup-candle 2880",
+        "ladder_candles": [
+          2880
+        ],
+        "ladder_days": [
+          2
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          1440
+        ],
+        "output_sha256": "sha256_faaf82874e38e6eb2ecc95153b35505ab489ca97c1209f5f73b8aad0bb100f68",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "mark_strat_opt",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "1m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "quantumfirst": [
+      {
+        "available_prefix_candles": 97222,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/quantumfirst-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 35.9,
+        "file_derived_period": 40,
+        "implementation_id": "quantumfirst:94dedeffe4cf",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy quantumfirst --strategy-path user_data/profile_bias_strategies/quantumfirst --timerange 20190101-20190401 --no-color --startup-candle 2016 4032",
+        "ladder_candles": [
+          2016,
+          4032
+        ],
+        "ladder_days": [
+          7,
+          14
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          288,
+          576
+        ],
+        "output_sha256": "sha256_0fc979780fadce9764ad52d5d1dfc120c73369672abf8aadbac08caeab2ffa13",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "quantumfirst",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "5m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "redditMA": [
+      {
+        "available_prefix_candles": 32408,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/redditMA-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 37.1,
+        "file_derived_period": null,
+        "implementation_id": "redditMA:44ccdf271d56",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy redditMA --strategy-path user_data/profile_bias_strategies/redditMA --timerange 20190101-20190401 --no-color --startup-candle 672 1344 2880",
+        "ladder_candles": [
+          672,
+          1344,
+          2880
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          96,
+          192
+        ],
+        "output_sha256": "sha256_832871673dd8563ec43a02c8abf73a6883d1fc3fbe82e64c5a600e525efbec7e",
+        "returncode": 2,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "redditMA",
+        "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "15m",
+        "timerange": "20190101-20190401",
+        "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
       }
     ]
   }
