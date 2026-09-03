@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-03 23:31:21 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-04 00:36:37 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -42,8 +42,8 @@ have neither and are left empty rather than given an invented time.
 | `E1_expanded` | 556 |
 | `excluded` | 169 |
 | `pending` | 98 |
-| `exclusion_unconfirmed` | 41 |
-| `too_few_trades` | 17 |
+| `exclusion_unconfirmed` | 40 |
+| `too_few_trades` | 18 |
 | `not_a_strategy` | 14 |
 | `convergence_candidate` | 5 |
 
@@ -163,7 +163,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1091 of 2185 commands are recorded so far, and every new run
+recording. 1093 of 2185 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -3708,7 +3708,7 @@ neither a pass nor a fail.
 `multi_tf`, `new_turtle`, `new_turtle_roi`, `qrsi`
 `tacos1`, `thetank2`
 
-## Exclusion unconfirmed - 41 strategies
+## Exclusion unconfirmed - 40 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -3720,7 +3720,7 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_verdict_on_lookahead` | `no_finding` | 33 |
+| `no_verdict_on_lookahead` | `no_finding` | 32 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 5 |
 | `unclassified` | `no_finding` | 1 |
 | `recursive_bias_unverified` | `no_finding` | 1 |
@@ -3913,7 +3913,7 @@ Wave `C_measurement_recovery` - 17:
 | `recursive_ladder_pending` | 231 |
 | `convergence_not_converged_within_ladder` | 60 |
 | `needs_a_look` | 53 |
-| `lookahead_remeasure_pending` | 42 |
+| `lookahead_remeasure_pending` | 41 |
 | `to_be_fixed` | 18 |
 | `repair_attempted` | 16 |
 | `convergence_inconclusive` | 10 |
