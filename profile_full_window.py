@@ -21,8 +21,25 @@ import profile_smoke
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUTPUT = os.path.join(ROOT, "PROFILE_FULL_WINDOW.json")
-TIMERANGE = "20200301-20260821"
+# Amendment 2026-09-03 (REGIME_PREREGISTRATION.md): the spot window starts a
+# month later than the futures one. DASH/USDT was listed on Binance
+# 2019-03-28; at the old shared start of 2020-03-01 that left only 337 days
+# of prefix history, so the warm-up ladder could never reach its 365-day
+# rung for a spot row on any timeframe short enough to need it - not a
+# finding about the sixty-odd strategies it capped, a property of the
+# calendar. 2020-04-01 clears DASH (and XMR, the other late listing) with a
+# few days to spare. Futures pairs were listed later still - the last one,
+# DASH/USDT:USDT, on 2020-02-04 - so matching the same fix there would need
+# 2021-02-04, cutting eleven months from the whole futures window for
+# fourteen affected strategies. Left as it was; those rows are capped by data
+# that will never arrive, which is a fact about the exchange's own history
+# and belongs in their reason as that, not folded into a bias verdict.
+TIMERANGE = {"spot": "20200401-20260821", "futures": "20200301-20260821"}
 LOCK = threading.Lock()
+
+
+def timerange(mode):
+    return TIMERANGE["futures" if mode == "futures" else "spot"]
 
 CONVERGENCE = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
 # Stores holding a repair run. A repaired row has to be measured the way it
@@ -99,6 +116,9 @@ def _write(data, path):
 def _load(path):
     if not os.path.exists(path):
         return {"schema_version": 2, "timerange": TIMERANGE, "results": {}}
+    # A store written before the amendment carries the old shared string
+    # instead of the per-mode mapping; read it forward without rewriting
+    # rows that already have a per-pair-shard timerange of their own.
     data = json.load(io.open(path, encoding="utf-8"))
     data["schema_version"] = 2
     data.setdefault("results", {})
@@ -144,7 +164,6 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--strategy", action="append", required=True)
     parser.add_argument("--output", default=OUTPUT)
-    parser.add_argument("--timerange", default=TIMERANGE)
     parser.add_argument("--timeout", type=int, default=1800)
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--pair", action="append", default=[])
@@ -154,8 +173,6 @@ def main(argv=None):
         help="run only rows whose warm-up the ladder settled, so every "
              "number in the set rests on the same basis")
     args = parser.parse_args(argv)
-    if args.timerange != TIMERANGE:
-        raise SystemExit("full-window timerange must be %s" % TIMERANGE)
 
     rows = {row["strategy_id"]: row
             for row in profile_smoke.read_manifest(profile_smoke.MANIFEST)}
@@ -198,7 +215,7 @@ def main(argv=None):
             record = {}
         record.update(identity)
         record.update({"mode": mode, "run_profile": row["run_profile"],
-                       "timerange": TIMERANGE,
+                       "timerange": timerange(mode),
                        "runtime_id": data["runtime_id"]})
         record.setdefault("pair_results", {})
         todo = [pair for pair in pairs if args.force or
@@ -211,7 +228,7 @@ def main(argv=None):
 
         def run(pair):
             return pair, profile_smoke.run_one(
-                row, TIMERANGE, args.timeout, pair,
+                row, timerange(mode), args.timeout, pair,
                 config_overrides=settings)
 
         with concurrent.futures.ThreadPoolExecutor(

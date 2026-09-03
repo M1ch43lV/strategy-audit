@@ -63,7 +63,14 @@ LOG_DIR = os.path.join(ROOT, "user_data", "convergence_logs")
 # timeframe, 30 days is 30 candles, which cannot settle an EMA200; a year can.
 LADDER_DAYS = (1, 2, 7, 14, 30, 90, 365)
 DRIFT_THRESHOLD_PCT = 1.0
-WINDOW_START = "2020-03-01"
+# Amendment 2026-09-03 (REGIME_PREREGISTRATION.md): the ceiling this caps the
+# ladder at exists to protect the full-window run these values are later
+# reused in - see profile_full_window.py's own note on the same amendment.
+# Spot and futures pairs were listed on Binance at different times, so their
+# windows now differ too; each mode's start must match the window
+# profile_full_window.timerange(mode) actually uses, or a warm-up this ladder
+# accepts could still silently truncate the pair it is later run against.
+WINDOW_START = {"spot": "2020-04-01", "futures": "2020-03-01"}
 
 # Freqtrade refuses any startup_candle_count above five times what the exchange
 # serves per request - "more than 5x (4999 candles)" for Binance - and exits
@@ -185,7 +192,7 @@ def available_prefix_candles(run_profile, timeframe):
         if not os.path.exists(path):
             continue
         frame = pandas.read_feather(path, columns=["date"])
-        count = int((frame["date"] < WINDOW_START).sum())
+        count = int((frame["date"] < WINDOW_START[mode]).sum())
         smallest = count if smallest is None else min(smallest, count)
     return smallest
 
@@ -250,6 +257,49 @@ def recursion_only_rows():
     rows.sort(key=lambda row: (order.get(row["expansion_wave"], len(order)),
                                row["strategy_id"]))
     return rows
+
+
+def window_thawed_rows():
+    """Spot rows the 2026-09-03 window amendment newly lets reach 365 days.
+
+    Distinct from `budget_capped_rows`: that cohort is everything the call
+    budget shim applies to, spot and futures alike, whether or not the window
+    change helps it. This one is only the rows for which it actually does -
+    computed the same way the amendment's own targets were, so a row that
+    still falls short after the window moved is left where it is rather than
+    re-run to reproduce the same answer.
+    """
+    profiles = {row["strategy_id"]: row for row in _csv(PROFILES)}
+    results = _load(OUTPUT).get("results", {})
+    superseded = _load(OUTPUT).get("superseded", {})
+    known = set(results) | set(superseded)
+    wanted = []
+    for strategy in sorted(known):
+        row = profiles.get(strategy)
+        if not row or row["run_profile"].startswith("futures_"):
+            continue
+        # The current result always wins over history: a row moved aside
+        # and then re-measured (ARIMASTR, BBRSIS, under `shim5`) must be read
+        # from its converged verdict, not from the stale record that sent it
+        # to `superseded` in the first place.
+        prior = results.get(strategy)
+        if prior is None:
+            history = superseded.get(strategy) or []
+            history = history if isinstance(history, list) else [history]
+            prior = next((r for r in reversed(history)
+                         if r.get("state") == "not_converged_within_ladder"),
+                        None)
+        if not prior or prior.get("state") != "not_converged_within_ladder":
+            continue
+        timeframe = prior.get("timeframe")
+        minutes = timeframe_minutes(timeframe)
+        cap = available_prefix_candles(row["run_profile"], timeframe)
+        if not minutes or cap is None:
+            continue
+        needed = -(-365 * 1440 // minutes)
+        if cap >= needed and max(prior.get("ladder_days") or [0]) < 365:
+            wanted.append(strategy)
+    return [profiles[strategy] for strategy in wanted]
 
 
 def budget_capped_rows():
@@ -368,6 +418,8 @@ def cohort(name):
         wanted = frozen_baseline_rows()
     elif name == "budget_capped":
         wanted = budget_capped_rows()
+    elif name == "window_thawed":
+        wanted = [row["strategy_id"] for row in window_thawed_rows()]
     elif name == "wave_b_static_rejected":
         wanted = list(WAVE_B_STATIC_REJECTED)
     elif name == "wave_d":
@@ -774,7 +826,7 @@ def main(argv=None):
     parser.add_argument("--cohort", default="recursion_only",
                         choices=("recursion_only", "wave_d", "wave_c_refusals",
                                  "ladder_pending", "frozen_baseline",
-                                 "budget_capped",
+                                 "budget_capped", "window_thawed",
                                  "wave_b_static_rejected",
                                  "recursive_unsettled"))
     parser.add_argument("--limit", type=int, default=1)

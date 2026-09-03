@@ -245,6 +245,52 @@ Implemented by `eligibility_admit_converged.py` under ruleset
 `converged_clean_gates_v1`; every row it admits carries that ruleset, so any
 result can still be reported with and without this amendment.
 
+## Amendment 2026-09-03: the spot analysis window starts a month later
+
+**Owner's decision**, on a finding from the warm-up ladder's own coverage.
+
+The convergence ladder tests warm-ups up to 365 days, but its ceiling is
+capped by whichever of the eight basket pairs has the least history before
+the analysis window starts - a warm-up the ladder accepts is later reused as
+`startup_candle_count` in the full-window run across all eight pairs, and a
+value that exceeds one pair's available history would silently shorten that
+pair's measured span rather than fail loudly.
+
+`DASH/USDT` was listed on Binance 2019-03-28, the latest of the eight. At the
+original window start of 2020-03-01 that left 337 days of prefix history -
+short of the 365-day rung by four weeks. Not one of the 62 strategies the
+ladder could not settle, across both the original and the `shim5`-widened
+runs, was ever offered that rung. Two converged the moment `shim5` let them
+reach 90 days at all; the rest sat at whatever their timeframe's nearest
+reachable rung was, some worse off there than at 14 days, because drift
+against the full-history reference is not monotone in the warm-up.
+
+**The spot window now starts 2020-04-01**, not 2020-03-01. `DASH/USDT` then
+carries 370 days of prefix, clearing the 365-day rung with a few days to
+spare; `XMR/USDT`, the second-latest listing, clears it with more. The cost
+is 31 days off a 6.5-year window, under 0.5 percent, and current for only 18
+strategies' full-window measurements at the time of the change - the
+market-phase benchmark itself had not yet started.
+
+**The futures window is untouched, and stays at 2020-03-01.** Futures pairs
+were listed later still - the last, `DASH/USDT:USDT`, on 2020-02-04 - so
+matching fix would need a start of 2021-02-04, cutting eleven months from the
+whole futures window to help fourteen strategies. Declined: those fourteen
+are capped by history that will never arrive on this exchange, which is a
+fact about the pair's own listing date, not a choice this audit is making.
+Their reason names that rather than folding it into a bias verdict.
+
+Implemented in `profile_full_window.TIMERANGE` (now `{"spot":
+"20200401-20260821", "futures": "20200301-20260821"}`) and
+`warmup_convergence.WINDOW_START` (now `{"spot": "2020-04-01", "futures":
+"2020-03-01"}`), which the ladder's ceiling and the full-window run must
+agree on - the same reasoning as the `shim5` amendment: a warm-up accepted
+under one window and applied under another can silently shorten a pair's
+span. The `recursive-analysis` and `lookahead-analysis` diagnostic windows
+(`profile_bias.WINDOWS`) are a separate, shorter measurement and are not
+affected - those checks are forced onto `BTC/USDT` alone by freqtrade itself,
+for which `DASH/USDT`'s listing date is irrelevant.
+
 ## OPEN before Stage 9 ranking
 
 The following choices are intentionally not inferred from strategy outcomes:

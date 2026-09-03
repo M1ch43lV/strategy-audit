@@ -6376,17 +6376,25 @@
       "class1_rules": [
         "bias_market_order_price_side_compatibility"
       ],
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
       "implementation_id": "Lateralus:0b5ca6b45113",
       "lookahead": {
         "attempted_timeranges": [
           "20190101-20190401",
           "20200101-20220101"
         ],
-        "elapsed_s": 764.2,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Lateralus --strategy-path user_data/profile_bias_strategies/Lateralus --timerange 20200101-20220101 --no-color",
-        "status": "NA",
+        "config_overrides": {
+          "startup_candle_count": 288
+        },
+        "elapsed_s": 1252.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Lateralus_gate.json --strategy Lateralus --strategy-path user_data/profile_bias_strategies/Lateralus --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_eddcef5e56e626a583f281eeecb6fcdedd7f70ade33b8464cc64c681400b59dc",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
         "timerange": "20200101-20220101",
-        "why": "TIMEOUT"
+        "why": "no bias detected"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -6487,6 +6495,36 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "LorentzianClassification"
+    },
+    "Low_BB": {
+      "canonical_sha256": "sha256_fa2c70df8480b1fcd50777d3511f67725667a2172adde8efd20577a00240c481",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "config_overrides": {
+        "startup_candle_count": 1440
+      },
+      "implementation_id": "Low_BB:fa2c70df8480",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 1440
+        },
+        "elapsed_s": 177.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Low_BB_gate.json --strategy Low_BB --strategy-path user_data/profile_bias_strategies/Low_BB --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_c0b72232622809c6e2b7f019462872e6dff0327b71e112bf8dda4c8407277e7c",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Low_BB"
     },
     "LuxOSC": {
       "canonical_sha256": "sha256_4eb4f180d5a086b67fea053de007f8b462a0a6d3dc46f4f76d891a88869851b6",
@@ -6969,17 +7007,23 @@
       "class1_rules": [
         "bias_market_order_price_side_compatibility"
       ],
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
       "implementation_id": "Matrix:fab350681162",
       "lookahead": {
         "attempted_timeranges": [
           "20190101-20190401",
           "20200101-20220101"
         ],
+        "config_overrides": {
+          "startup_candle_count": 288
+        },
         "debug_log": "user_data/profile_bias_logs/Matrix-lookahead.log",
-        "elapsed_s": 101.8,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Matrix --strategy-path user_data/profile_bias_strategies/Matrix --timerange 20200101-20220101 --no-color",
-        "output_sha256": "sha256_e695e4995ad59aad29f90f6b63f7ce28b3c7a88f884cc413975f826ede0a32b1",
-        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "elapsed_s": 79.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Matrix_gate.json --strategy Matrix --strategy-path user_data/profile_bias_strategies/Matrix --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_8350305d1b054c7d2292abb8a5e83a0f4a5129af24f1d051f7add233b297239d",
+        "runtime_id": "native_unversioned",
         "status": "NA",
         "timerange": "20200101-20220101",
         "why": "'coef'"
@@ -7126,6 +7170,32 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "MontrealStrategy"
+    },
+    "MostOfAll": {
+      "canonical_sha256": "sha256_97ce2cc284d857971e28d9c2bf2a701ca19401011310e0703a0d9109227cbf1a",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "config_overrides": {
+        "startup_candle_count": 30
+      },
+      "implementation_id": "MostOfAll:97ce2cc284d8",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101",
+          "20200301-20260820"
+        ],
+        "elapsed_s": 4470.1,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/MostOfAll_gate.json --strategy MostOfAll --strategy-path user_data/profile_bias_strategies/MostOfAll --timerange 20200301-20260820 --no-color",
+        "status": "NA",
+        "timerange": "20200301-20260820",
+        "why": "TIMEOUT"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MostOfAll"
     },
     "MultiFactorConfluenceStrategy": {
       "canonical_sha256": "sha256_676380749bed301c9ce130d776853f78ce4ed711fef7e4e60d053ecef4044542",
