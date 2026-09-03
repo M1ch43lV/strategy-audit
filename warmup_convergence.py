@@ -215,6 +215,29 @@ def recursion_only_rows():
     return rows
 
 
+def frozen_baseline_rows():
+    """The 67 rows of the frozen E0 baseline, which the ladder never saw.
+
+    Their recursion verdict comes from the original sweep, at whatever warm-up
+    the author declared. Nobody searched for the value at which their
+    indicators actually settle - the ladder did not exist yet.
+
+    That matters for what comes next rather than for their standing. Of the
+    518 rows the ladder HAS settled and which declare a value, 424 declare too
+    little - 82 percent, one of them by a factor of 144. There is no reason to
+    think these 67 are the exception, and a market-phase ranking that mixes
+    them with rows measured at a settled warm-up is comparing two different
+    things.
+
+    Measuring them changes nothing about E0. The cohort is frozen and this
+    route does not touch it: it records what the ladder finds so the benchmark
+    can run on one basis, and a row that turns out not to settle is a finding
+    to put to the owner, not a membership to revoke.
+    """
+    return [row["strategy_id"] for row in _csv(STATUS)
+            if row["cohort"] == "E0_strict67"]
+
+
 def ladder_pending_rows():
     """Every unfinished row the status table has queued for the ladder.
 
@@ -286,6 +309,8 @@ def cohort(name):
         wanted = unsettled_rows()
     elif name == "ladder_pending":
         wanted = ladder_pending_rows()
+    elif name == "frozen_baseline":
+        wanted = frozen_baseline_rows()
     elif name == "wave_b_static_rejected":
         wanted = list(WAVE_B_STATIC_REJECTED)
     elif name == "wave_d":
@@ -691,7 +716,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--cohort", default="recursion_only",
                         choices=("recursion_only", "wave_d", "wave_c_refusals",
-                                 "ladder_pending",
+                                 "ladder_pending", "frozen_baseline",
                                  "wave_b_static_rejected",
                                  "recursive_unsettled"))
     parser.add_argument("--limit", type=int, default=1)
