@@ -72,6 +72,10 @@ def _never_trades(row):
             and row["trade_evidence"] == "full_window")
 
 
+def _no_repair_possible(row):
+    return row["primary_reason"] == "repair_refused_would_invent_strategy"
+
+
 CRITERIA = [
     {
         "id": "C1",
@@ -161,6 +165,36 @@ CRITERIA = [
                  "because it was given the wrong profile - a futures strategy "
                  "run on spot, a short-only strategy with `can_short` unset - "
                  "is a setup fault of ours, not this criterion.",
+    },
+    {
+        "id": "C4",
+        "name": "No repair exists that would not invent the strategy",
+        "test": _no_repair_possible,
+        "columns": 'primary_reason == "repair_refused_would_invent_strategy"',
+        "what": "The strategy declares no timeframe anywhere, no stoploss, "
+                "no exit logic, or names a prediction model that no longer "
+                "exists and that this repository holds no copy of. A repair "
+                "route read the file looking for the author's own value and "
+                "found none to restore.",
+        "why_final": "This is the same ground as C1 and C2, one step "
+                     "earlier: those found that the measurement cannot be "
+                     "trusted, this finds that no measurement can be taken "
+                     "at all without writing the missing part ourselves. "
+                     "Supplying a timeframe, a stoploss, an exit signal or a "
+                     "model the author never named would not repair the "
+                     "strategy - it would measure a strategy of our own "
+                     "invention wearing the author's name.",
+        "evidence": "`repair_family` names which requirement is missing "
+                    "(`timeframe_not_recoverable`, `no_stoploss`, "
+                    "`no_exit_logic`, `freqai_model`) and `repair_settings` "
+                    "or the row's note in `repair_measures_list.md` records "
+                    "what was searched and where.",
+        "watch": "`freqai_arm` and `freqai_config_built` are also recorded "
+                 "as `refuse_repair` but are not this criterion: both are "
+                 "measured in the separate FreqAI arm, under the author's "
+                 "own configuration, and refused only for this audit's "
+                 "ordinary cohort - a different question from whether any "
+                 "measurement is possible.",
     },
 ]
 
@@ -502,15 +536,20 @@ REPAIRS = [
     },
     {
         "family": "framework_compat_shim",
-        "name": "Four compatibility shims for freqtrade's own behaviour",
+        "name": "Seven compatibility shims for freqtrade's own behaviour",
         "error": "IStrategy.min_roi_reached_entry() missing 2 required "
                  "positional arguments: 'trade_dur' and 'current_time'  /  "
-                 "Impossible to load Strategy '<Name>'. This class does not "
-                 "exist or contains Python code errors.  /  ValueError: "
-                 "cannot reindex on an axis with duplicate labels  /  "
-                 "KeyError: 'rmi-up-trend'",
-        "cause": "Four unrelated things inside freqtrade, none of them a "
-                 "defect in a strategy.\n\n"
+                 "<Name>.min_roi_reached_entry() takes 2 positional arguments "
+                 "but 4 were given  /  Impossible to load Strategy '<Name>'. "
+                 "This class does not exist or contains Python code errors.  "
+                 "/  ValueError: cannot reindex on an axis with duplicate "
+                 "labels  /  KeyError: 'rmi-up-trend'  /  This strategy "
+                 "requires <N> candles to start, which is more than 5x the "
+                 "amount of candles Binance provides  /  ImportError: cannot "
+                 "import name 'accumulation_distribution' from "
+                 "'technical.indicators'",
+        "cause": "Seven unrelated things inside freqtrade or a package it "
+                 "depends on, none of them a defect in a strategy.\n\n"
                  "1. The ROI hook gained two parameters, so a strategy "
                  "calling the old one-argument form crashes.\n\n"
                  "2. `IResolver._search_object` decides whether to import a "
@@ -531,7 +570,21 @@ REPAIRS = [
                  "per-candle series under `if self.dp.runmode.value in "
                  "('backtest', 'hyperopt')` caches nothing and raises when it "
                  "reads them back - even though the analyzer does build a "
-                 "Backtesting object and run `backtest()` over real candles.",
+                 "Backtesting object and run `backtest()` over real candles."
+                 "\n\n"
+                 "5. `Exchange.validate_required_startup_candles` refuses a "
+                 "warm-up needing more than five OHLCV calls per pair - a "
+                 "live-bot API courtesy that a backtest reading local feather "
+                 "files never spends.\n\n"
+                 "6. The reverse of 1: four strategies DEFINE their own "
+                 "`min_roi_reached_entry(self, trade_dur)` in the pre-2022 "
+                 "shape, and freqtrade calls it with three arguments. "
+                 "Patching the base class does nothing here - the subclass's "
+                 "own method is what Python resolves.\n\n"
+                 "7. `IchimokuStrategy` and `Ichimoku_SenkouSpanCross` import "
+                 "`technical.indicators.accumulation_distribution`, which "
+                 "the installed `technical` 1.6.0 no longer ships, and never "
+                 "call it - dead code from an earlier revision of the file.",
         "fix": "`repair/compat_signature.py` installs the shims into "
                "freqtrade inside the runner process, named per strategy by "
                "`PROFILE_COMPAT_SIGNATURES`.\n\n"
@@ -548,13 +601,37 @@ REPAIRS = [
                "`lookahead_runmode_reports_backtest` rewrites "
                "`UTIL_NO_EXCHANGE` to `BACKTEST` on `DataProvider.runmode` "
                "alone, leaving `self.config['runmode']` and every other "
-               "runmode as they are.",
+               "runmode as they are.\n\n"
+               "`startup_candles_not_limited_by_call_budget` catches only the "
+               "\"more than 5x\" refusal and recomputes the same call count "
+               "the original function would have returned; any other "
+               "refusal - in particular an exchange with no history at all - "
+               "still stands.\n\n"
+               "`legacy_min_roi_reached_entry_override` wraps "
+               "`StrategyResolver.load_strategy`: once the real loader "
+               "returns, if the resolved class's own `min_roi_reached_entry` "
+               "binds a one-argument call and rejects the three-argument "
+               "one, the INSTANCE gets its own attribute that translates a "
+               "three-argument call down to the author's form and passes "
+               "any other call through unchanged - which matters for "
+               "`Schism-v2`, whose own `min_roi_reached` calls its "
+               "`min_roi_reached_entry` internally with two arguments in its "
+               "own convention, not freqtrade's three.\n\n"
+               "`restore_accumulation_distribution` puts the function back "
+               "on `technical.indicators` before the strategy's import runs, "
+               "computed as the standard Money-Flow-Volume running total - "
+               "the same Money Flow Multiplier `technical`'s own "
+               "`chaikin_money_flow` still computes, summed rather than "
+               "averaged over a window.",
         "limit": "Each is scoped as narrowly as the defect it answers. The "
                  "scan shim only widens which files freqtrade agrees to look "
                  "at - a class that then fails to import for a real reason "
                  "still fails. The runmode shim touches one property and "
                  "cannot tell a live or dry run it is a backtest; the "
-                 "selftest checks every other runmode passes through.\n\n"
+                 "selftest checks every other runmode passes through. The "
+                 "startup-budget shim leaves the ceiling `available_prefix_"
+                 "candles` computes untouched - it removes a courtesy limit, "
+                 "not the limit of what history exists.\n\n"
                  "Neutrality of the `enter_tag` shim was measured rather than "
                  "assumed. On `NotAnotherSMAOffsetStrategy`, `Apollo11`, "
                  "`Saturn5`, `INSIDEUP`, `Dracula` and `tbtest` the entry "
@@ -562,7 +639,11 @@ REPAIRS = [
                  "on runs carrying 138, 147 and 1956 entries. "
                  "`BinHV27_werkkrew`, which writes `buy` but no `buy_tag`, "
                  "holds one `enter_tag` column and passes twice unshimmed - "
-                 "the control that identifies the rename as the cause.",
+                 "the control that identifies the rename as the cause.\n\n"
+                 "The accumulation/distribution shim restores a genuinely "
+                 "standard, unambiguous formula rather than inventing one - "
+                 "and both strategies it applies to never call the function "
+                 "at all, so its exact values are untested by either.",
         "tool": "repair/compat_signature.py",
     },
     {

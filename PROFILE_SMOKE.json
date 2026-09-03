@@ -504,6 +504,27 @@
       "timerange": "20200301-20200401",
       "trades": 5
     },
+    "BinHV27_werkkrew": {
+      "archive": "user_data/profile_smoke/BinHV27_werkkrew-3a997e27-2026-09-03_21-02-46.zip",
+      "archive_sha256": "sha256_bc15d157baba23ac3c3461178c128f4116b6fb993d2f47e3035c4f5ad6a7b16f",
+      "canonical_sha256": "sha256_0284ea98351db697c2b4216b3959182b986561194dafbe0faca65b0de15ea46d",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_override"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 31.1,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BinHV27_werkkrew --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinHV27_werkkrew-3a997e27 --cache none",
+      "long_trades": 127,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 127,
+      "trades_sha256": "sha256_aaca1eb0eb33a54fb8ff4c77fae795d79387636ac8a393d9cd2dd55b2f8cfa32"
+    },
     "BinanceStream": {
       "canonical_sha256": "sha256_d45467113bfd34c17bd29c96982ed5862513e9ee9c8ac418ff3a7c874bce9590",
       "class1_rules": [],
@@ -821,6 +842,27 @@
       "timerange": "20200301-20200401",
       "why": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'"
     },
+    "CryptoFrogNFI": {
+      "archive": "user_data/profile_smoke/CryptoFrogNFI-08ea05db-2026-09-03_20-53-08.zip",
+      "archive_sha256": "sha256_ae1020968dae85d559c0804ef7bc5befcca94c0cbac1c9e9b81b279124614451",
+      "canonical_sha256": "sha256_2683be32b0434d4163023c54ecf9040fa121cfd8ca0dc552fa77588a41abbabc",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 47.2,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogNFI --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogNFI-08ea05db --cache none",
+      "long_trades": 370,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 370,
+      "trades_sha256": "sha256_ae51b3e1940a3317d4fa9fd1bbc7890f43e67f040d878c1591332c3b57ea5c32"
+    },
     "CryptoFrogNFI2": {
       "canonical_sha256": "sha256_7382d6068b5e4344f00aae3e34c8a790a2bb4d8f8f38fc791cfe85328e2ea2d2",
       "class1_rules": [],
@@ -833,6 +875,48 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "why": "'CryptoFrogNFI2' object has no attribute 'buy_pump_threshold_7'. Did you mean: 'buy_pump_threshold_1'?"
+    },
+    "CryptoFrogNFIHO1A": {
+      "archive": "user_data/profile_smoke/CryptoFrogNFIHO1A-366468cd-2026-09-03_20-53-56.zip",
+      "archive_sha256": "sha256_adb607fe37a332c93d3dedfa6b8d7d2cd554b17ac0b8aab6946d0daaea967342",
+      "canonical_sha256": "sha256_5c97e4fad3b80fdc9c28ea5148e9bf328adbadc7ed6fb2d110d69347ae34b346",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 48.2,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogNFIHO1A --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogNFIHO1A-366468cd --cache none",
+      "long_trades": 358,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 358,
+      "trades_sha256": "sha256_1eef35b1be35f84d81116a708e0fd066b8f8b14889a865a65f2331ecf27cd066"
+    },
+    "CryptoFrogOffset": {
+      "archive": "user_data/profile_smoke/CryptoFrogOffset-058d44a6-2026-09-03_20-54-39.zip",
+      "archive_sha256": "sha256_80a402f2e0e388ce81422aec50c3f2b6ae9cd54f743323d221d5714e8debff47",
+      "canonical_sha256": "sha256_8c5a7ed49aa3e2c40c76ac7bd9f6cfe78e082d4e54f5ea9863ca8dee8a4a6d65",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 42.7,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogOffset --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogOffset-058d44a6 --cache none",
+      "long_trades": 295,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 295,
+      "trades_sha256": "sha256_732d499bb6509e0a9d7c2fa7784abb3d34632c576e2da5cc21641a338b113552"
     },
     "CryptoFrog_nateema": {
       "canonical_sha256": "sha256_ba28d48d8d6712689ac1e81b5154003abeb831073f6caa15d67feaa16c30180f",
@@ -1799,29 +1883,35 @@
     },
     "IchimokuStrategy": {
       "canonical_sha256": "sha256_3aa8e3a1a618d49d6df3c094f7745f889b48391e662b5c6bba7b8a895b0a0a56",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/IchimokuStrategy.log",
-      "elapsed_s": 24.1,
+      "class1_rules": [
+        "restore_accumulation_distribution"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/IchimokuStrategy-67b217c6.log",
+      "elapsed_s": 34.7,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy IchimokuStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/IchimokuStrategy-67b217c6 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "runtime_id": "native_unversioned",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'IchimokuStrategy'. This class does not exist or contains Python code errors."
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "Ichimoku_SenkouSpanCross": {
       "canonical_sha256": "sha256_0e5b58cf8b15b9701fc63eb538fd5b1b2bf4724fd52df4671980583b89f008ef",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/Ichimoku_SenkouSpanCross.log",
-      "elapsed_s": 24.3,
+      "class1_rules": [
+        "restore_accumulation_distribution"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/Ichimoku_SenkouSpanCross-d71627c7.log",
+      "elapsed_s": 33.4,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Ichimoku_SenkouSpanCross --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Ichimoku_SenkouSpanCross-d71627c7 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "runtime_id": "native_unversioned",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'Ichimoku_SenkouSpanCross'. This class does not exist or contains Python code errors."
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "Ichimoku_v12": {
       "canonical_sha256": "sha256_239140e7a000af8448378f1129df61e02ca83b5594e09cb3d33a494e39973932",
@@ -2224,6 +2314,69 @@
       "timerange": "20200301-20200401",
       "why": "Impossible to load Strategy 'MKR'. This class does not exist or contains Python code errors."
     },
+    "MacheteV8b": {
+      "archive": "user_data/profile_smoke/MacheteV8b-b42642cf-2026-09-03_20-52-20.zip",
+      "archive_sha256": "sha256_2443b8b2aad8ac1492437bc3590b884fa756088930911fb65dc3f60b37f85169",
+      "canonical_sha256": "sha256_03e93809d87757fc2c208847298e42d0cedd553abd0e600654a7a124a526d154",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 45.8,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy MacheteV8b --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MacheteV8b-b42642cf --cache none",
+      "long_trades": 77,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 77,
+      "trades_sha256": "sha256_ee6343ce1803a19c2c2c5e9c62ce23d5b72d136518871263a98088eeb71c2029"
+    },
+    "MacheteV8bRallimod": {
+      "archive": "user_data/profile_smoke/MacheteV8bRallimod-019087a6-2026-09-03_20-55-26.zip",
+      "archive_sha256": "sha256_c621e8267e12dcfdc9d98cf3f29c2b13de82c7b7218d04eedf26318899f74376",
+      "canonical_sha256": "sha256_a32e955e51d25725ca5503de79a01c23f2f45f61a82880caa02b39baf0d18816",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 47.0,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy MacheteV8bRallimod --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MacheteV8bRallimod-019087a6 --cache none",
+      "long_trades": 63,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 63,
+      "trades_sha256": "sha256_0b6eb8de0bb806c50a5074ff4463d15154a6f24c1dbbfdc1c2bc41574ca90e7a"
+    },
+    "MacheteV8bRallimod2": {
+      "archive": "user_data/profile_smoke/MacheteV8bRallimod2-2a221533-2026-09-03_20-56-01.zip",
+      "archive_sha256": "sha256_10928922cf181207a4ae539b37b5ee38f481e8947782d3788937899aa628ba5c",
+      "canonical_sha256": "sha256_1cddafe6cb5c1abf0f1038016f0d3df5803801ce137cb64d351d9b01cdcc9a1c",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 35.2,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy MacheteV8bRallimod2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MacheteV8bRallimod2-2a221533 --cache none",
+      "long_trades": 11,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 11,
+      "trades_sha256": "sha256_3f47a02181b604395e733601dbedbe947fccdb808a9a7be38ff3df7a1a4b8e17"
+    },
     "MasterMoniGoManiHyperStrategy": {
       "canonical_sha256": "sha256_c2b2fb772c1d8f342b9ad4dfc37e3e2b05e1068bb683c176338bfdab4c398d85",
       "class1_rules": [],
@@ -2458,6 +2611,48 @@
       "timerange": "20200301-20200401",
       "trades": 452,
       "trades_sha256": "sha256_dbfa025fa84a434d56d6e78f7f2e72ab85ecddd5a49368a4a430c8117e75ec99"
+    },
+    "NFI46Frog": {
+      "archive": "user_data/profile_smoke/NFI46Frog-c5debb17-2026-09-03_20-56-46.zip",
+      "archive_sha256": "sha256_4bdbf058c8bdede5427edb3c3b177d4962c1e886c5af07870df8a888aa30b838",
+      "canonical_sha256": "sha256_bdad559e841db312e5470d0d399fe6552c13864922ce1eff3c147be592393a33",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 44.9,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy NFI46Frog --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NFI46Frog-c5debb17 --cache none",
+      "long_trades": 180,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 180,
+      "trades_sha256": "sha256_51ec4b855ce776e172a782b584122c6d35f588c5476f7bc9644eb342fd9c11f1"
+    },
+    "NFI4Frog": {
+      "archive": "user_data/profile_smoke/NFI4Frog-a1f40e4d-2026-09-03_20-57-25.zip",
+      "archive_sha256": "sha256_66f7f5c16c9371d08f36b484e46b46900c6fa998fd061e6b798da4e383f4a174",
+      "canonical_sha256": "sha256_870a99e6d36128475d0f4a2efde7e01e462eb3e125475ae7fda1c6f682e01f02",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 38.8,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy NFI4Frog --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NFI4Frog-a1f40e4d --cache none",
+      "long_trades": 188,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 188,
+      "trades_sha256": "sha256_8f27f6c4b615b639004722da899cd53db970b5b1ae273e34058fa87bdf9cdcbc"
     },
     "NFI731_BUSD": {
       "archive": "user_data/profile_smoke/NFI731_BUSD-2026-08-31_15-14-23.zip",
@@ -3247,6 +3442,48 @@
       "timerange": "20200301-20200401",
       "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
+    "Schism": {
+      "archive": "user_data/profile_smoke/Schism-4f0b8f62-2026-09-03_21-00-02.zip",
+      "archive_sha256": "sha256_98b4bea5d4d113955bce8898c4242e8843cdd3a1ccb2ec96a53718bbcb983f4d",
+      "canonical_sha256": "sha256_bd361bf697ce83293bfcf3ab16927ceae30e19adacb148fc84b7ed33ece86bf9",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_override"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 148.9,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Schism --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Schism-4f0b8f62 --cache none",
+      "long_trades": 388,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 388,
+      "trades_sha256": "sha256_3c4e93cc532daee869acf2522c51b79c66f2e7bb5211918bbf904d40a683a956"
+    },
+    "Schism2": {
+      "archive": "user_data/profile_smoke/Schism2-488547c4-2026-09-03_21-05-52.zip",
+      "archive_sha256": "sha256_089aa5beb1ea767af6d980666d1e2f2be1284a99d06868746004b9414bb54d15",
+      "canonical_sha256": "sha256_da17435ebbcc2bddc7b9d19553652af7fbef838342586ef52b5486e2bac62f9b",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_override"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 89.7,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Schism2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Schism2-488547c4 --cache none",
+      "long_trades": 149,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 149,
+      "trades_sha256": "sha256_a9682aa21eca63c657c7939998c6a4c50eae1fa08651b1f1bf1822fdace7276c"
+    },
     "SimpleHopt1Ashort": {
       "canonical_sha256": "sha256_6ac2dafe92e01ad260d8e6f9c649122bf8f60f159fae2bdb37779ec9edbb7186",
       "elapsed_s": 4.9,
@@ -3380,17 +3617,25 @@
       "trades": 818
     },
     "SuperHV27": {
+      "archive": "user_data/profile_smoke/SuperHV27-aefe004a-2026-09-03_21-02-15.zip",
+      "archive_sha256": "sha256_10ba4ca249dcdcc376a1560c73eacaf14cf989ee4056265b4ac849c1f5b61093",
       "canonical_sha256": "sha256_e46029e72411f0393eb7c1382f939d0abc9db7d6b8a8412551585d9ed59f2f2b",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/SuperHV27.log",
-      "elapsed_s": 25.2,
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_override"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 97.0,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy SuperHV27 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperHV27-aefe004a --cache none",
+      "long_trades": 226,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "status": "failed",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "SuperHV27.min_roi_reached_entry() takes 2 positional arguments but 4 were given"
+      "trades": 226,
+      "trades_sha256": "sha256_4f226980701fdc426cfeb70d7af15ecb18667f0ff48d4c446536e90defbba0db"
     },
     "SuperTrendPure": {
       "canonical_sha256": "sha256_583ab2946233f3f32168948efc2db64ba0fdc3396032054803cfe486c0d437ef",

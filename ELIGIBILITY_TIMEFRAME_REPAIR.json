@@ -40,6 +40,26 @@
     "ScalpingCCI": {
       "route": "timeframe_repair",
       "why": "declares ticker_interval = '15', which carries no unit and cannot be read as a timeframe"
+    },
+    "freqai_rl_test_strat": {
+      "route": "timeframe_repair",
+      "why": "a FreqAI strategy: the timeframe comes from the freqai block of the config, not from the strategy"
+    },
+    "freqai_test_classifier": {
+      "route": "timeframe_repair",
+      "why": "a FreqAI strategy: the timeframe comes from the freqai block of the config, not from the strategy"
+    },
+    "freqai_test_multimodel_classifier_strat": {
+      "route": "timeframe_repair",
+      "why": "a FreqAI strategy: the timeframe comes from the freqai block of the config, not from the strategy"
+    },
+    "freqai_test_multimodel_strat": {
+      "route": "timeframe_repair",
+      "why": "a FreqAI strategy: the timeframe comes from the freqai block of the config, not from the strategy"
+    },
+    "freqai_test_strat": {
+      "route": "timeframe_repair",
+      "why": "a FreqAI strategy: the timeframe comes from the freqai block of the config, not from the strategy"
     }
   },
   "results": {
@@ -367,6 +387,123 @@
       "timerange": "20200301-20200401",
       "trades": 8,
       "trades_sha256": "sha256_32f60e66b658a5bd6ebd3e7af479dd5d0b504114dfaedd7cb0c7a7392c14b13e"
+    },
+    "IchimokuStrategy": {
+      "archive": "user_data/profile_smoke/IchimokuStrategy-67b217c6-2026-09-03_21-08-41.zip",
+      "archive_sha256": "sha256_4926cf6454ecbb9ff77961e3dd0518b7c2a6f21e039e4cd12df208d3aa8befcf",
+      "canonical_sha256": "sha256_3aa8e3a1a618d49d6df3c094f7745f889b48391e662b5c6bba7b8a895b0a0a56",
+      "class1_rules": [
+        "restore_accumulation_distribution"
+      ],
+      "config_overrides": {
+        "timeframe": "3m"
+      },
+      "elapsed_s": 37.2,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/IchimokuStrategy-67b217c6-override-1e59e7a90fc3.json --strategy IchimokuStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/IchimokuStrategy-67b217c6 --cache none",
+      "long_trades": 90,
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "config_overrides": {
+          "timeframe": "3m"
+        },
+        "elapsed_s": 48.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/IchimokuStrategy-67b217c6_gate.json --strategy IchimokuStrategy --strategy-path user_data/profile_bias_strategies/IchimokuStrategy-67b217c6 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_3e320716eb0d9ff3c1b1bf0e9aa7666d515c9dcf13fbf60d1008c57235c3ae98",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "config_overrides": {
+          "timeframe": "3m"
+        },
+        "drifts": [],
+        "elapsed_s": 28.5,
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/IchimokuStrategy-67b217c6_gate.json --strategy IchimokuStrategy --strategy-path user_data/profile_bias_strategies/IchimokuStrategy-67b217c6 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_8f96402986487222bd3f07f4890d871d4f299da1114a7e78c66d459ffbe9df65",
+        "runtime_id": "native_unversioned",
+        "status": "WARMUP_NEEDED",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "IchimokuStrategy",
+      "timeframe": "3m",
+      "timeframe_evidence": "author_ticker_interval",
+      "timeframe_evidence_source": "repos/PeetCrypto_freqtrade-stuff/IchimokuStrategy.py:23 declares ticker_interval = '3m'; freqtrade renamed the attribute to timeframe in 2021.4 and no longer reads the old name",
+      "timerange": "20200301-20200401",
+      "trades": 90,
+      "trades_sha256": "sha256_5880d1d5fd033928d2f44d54c86a35f6301c22f0ca4f2b19b3a7942ba69e3e12"
+    },
+    "Ichimoku_SenkouSpanCross": {
+      "archive": "user_data/profile_smoke/Ichimoku_SenkouSpanCross-d71627c7-2026-09-03_21-09-11.zip",
+      "archive_sha256": "sha256_e23c50d2cfb513a3ea090e078b8093e2825d999e377f3e50b02def86a8847bfe",
+      "canonical_sha256": "sha256_0e5b58cf8b15b9701fc63eb538fd5b1b2bf4724fd52df4671980583b89f008ef",
+      "class1_rules": [
+        "restore_accumulation_distribution"
+      ],
+      "config_overrides": {
+        "timeframe": "4h"
+      },
+      "elapsed_s": 30.0,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/Ichimoku_SenkouSpanCross-d71627c7-override-aa2053461232.json --strategy Ichimoku_SenkouSpanCross --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Ichimoku_SenkouSpanCross-d71627c7 --cache none",
+      "long_trades": 1,
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101"
+        ],
+        "config_overrides": {
+          "timeframe": "4h"
+        },
+        "elapsed_s": 65.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Ichimoku_SenkouSpanCross-d71627c7_gate.json --strategy Ichimoku_SenkouSpanCross --strategy-path user_data/profile_bias_strategies/Ichimoku_SenkouSpanCross-d71627c7 --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_b983dab442cbbd9a51ef9b557cc4ba29775bd1baeca68e605e3437bede3d5f89",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "config_overrides": {
+          "timeframe": "4h"
+        },
+        "drifts": [],
+        "elapsed_s": 28.8,
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/Ichimoku_SenkouSpanCross-d71627c7_gate.json --strategy Ichimoku_SenkouSpanCross --strategy-path user_data/profile_bias_strategies/Ichimoku_SenkouSpanCross-d71627c7 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_b620636a28a30756a55cd297f7a828a2fc434e175e7902c46f4bce87f0466cb9",
+        "runtime_id": "native_unversioned",
+        "status": "WARMUP_NEEDED",
+        "timerange": "20190101-20190401",
+        "why": "startup_candle_count=0 refused by recursive-analysis; nothing was compared"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "Ichimoku_SenkouSpanCross",
+      "timeframe": "4h",
+      "timeframe_evidence": "author_ticker_interval",
+      "timeframe_evidence_source": "repos/PeetCrypto_freqtrade-stuff/Ichimoku_SenkouSpanCross.py:17 declares ticker_interval = '4h'; freqtrade renamed the attribute to timeframe in 2021.4 and no longer reads the old name",
+      "timerange": "20200301-20200401",
+      "trades": 1,
+      "trades_sha256": "sha256_2eb970b46343937eaa8271fa0e1c4a5096a879b6d53e2f9280c5697364cf0655"
     },
     "Ichimoku_v12": {
       "archive": "user_data/profile_smoke/Ichimoku_v12-2026-09-01_19-41-45.zip",

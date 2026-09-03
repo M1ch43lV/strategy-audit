@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-03 22:24:26 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-03 23:31:21 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -31,18 +31,18 @@ have neither and are left empty rather than given an invented time.
 | | Strategies |
 |---|---:|
 | in the manifest | 900 |
-| measured at all | 761 |
-| produced trades | 726 |
+| measured at all | 775 |
+| produced trades | 740 |
 | carrying a run time | 897 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
-| `E1_expanded` | 551 |
-| `excluded` | 151 |
-| `pending` | 129 |
-| `exclusion_unconfirmed` | 33 |
+| `E1_expanded` | 556 |
+| `excluded` | 169 |
+| `pending` | 98 |
+| `exclusion_unconfirmed` | 41 |
 | `too_few_trades` | 17 |
 | `not_a_strategy` | 14 |
 | `convergence_candidate` | 5 |
@@ -163,7 +163,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1083 of 2185 commands are recorded so far, and every new run
+recording. 1091 of 2185 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -183,7 +183,7 @@ evaluate a single signal without it. The warm-up ladder passes
 `--startup-candle` with every rung at once, which is why one run
 reports the whole ladder.
 
-## Passing - 551 strategies
+## Passing - 556 strategies
 
 Every original gate returned `PASS`: measured in its native mode,
 produced trades, clean look-ahead and recursion, complete candle
@@ -432,6 +432,8 @@ coverage, no published trap.
 | `Ichess` | `spot_long` | `E1_expanded` | 355 | `convergence:90:warmup_supplied` | 2026-09-01 14:15:39 | [log](user_data/convergence_logs/Ichess-ladder.log) |
 | `Ichimoku` | `spot_long` | `E1_expanded` | 8609 | `convergence:288:warmup_supplied` | 2026-09-01 14:16:28 | [log](user_data/convergence_logs/Ichimoku-ladder.log) |
 | `IchimokuSimpleStrategy` | `spot_long` | `E1_expanded` | 19831 | `convergence:288:warmup_supplied` | 2026-09-01 12:27:25 | [log](user_data/convergence_logs/IchimokuSimpleStrategy-ladder.log) |
+| `IchimokuStrategy` | `spot_long` | `E1_expanded` | 90 | `convergence:480:warmup_supplied` | 2026-09-03 21:08:41 | [archive](user_data/profile_smoke/IchimokuStrategy-67b217c6-2026-09-03_21-08-41.zip) [log](user_data/convergence_logs/IchimokuStrategy-67b217c6-ladder.log) |
+| `Ichimoku_SenkouSpanCross` | `spot_long` | `E1_expanded` | 1 | `convergence:180:warmup_supplied` | 2026-09-03 21:09:11 | [archive](user_data/profile_smoke/Ichimoku_SenkouSpanCross-d71627c7-2026-09-03_21-09-11.zip) [log](user_data/convergence_logs/Ichimoku_SenkouSpanCross-d71627c7-ladder.log) |
 | `Ichimoku_v12` | `spot_long` | `E1_expanded` | 7 | `convergence:180:warmup_supplied` | 2026-09-01 19:41:45 | [archive](user_data/profile_smoke/Ichimoku_v12-2026-09-01_19-41-45.zip) [log](user_data/convergence_logs/Ichimoku_v12-ladder.log) |
 | `Ichimoku_v30` | `spot_long` | `E1_expanded` | 3 | `convergence:180:warmup_supplied` | 2026-09-01 19:42:22 | [archive](user_data/profile_smoke/Ichimoku_v30-2026-09-01_19-42-22.zip) [log](user_data/convergence_logs/Ichimoku_v30-ladder.log) |
 | `Ichimoku_v31` | `spot_long` | `E1_expanded` | 1564 | `convergence:150` | 2026-09-03 13:57:01 | [log](user_data/convergence_logs/Ichimoku_v31-ladder.log) |
@@ -522,6 +524,7 @@ coverage, no published trap.
 | `NFINextMultiOffsetAndHO` | `spot_long` | `E1_expanded` | 1094 | `convergence:2016:warmup_supplied` | 2026-09-01 12:36:33 | [log](user_data/convergence_logs/NFINextMultiOffsetAndHO-ladder.log) |
 | `NFINextMultiOffsetAndHO2` | `spot_long` | `E1_expanded` | 705 | `convergence:2016:warmup_supplied` | 2026-09-01 12:37:00 | [log](user_data/convergence_logs/NFINextMultiOffsetAndHO2-ladder.log) |
 | `NFIX_BB_RPB` | `spot_long` | `E1_expanded` | 34 | `convergence:2016:warmup_supplied` | 2026-08-31 15:14:55 | [archive](user_data/profile_smoke/NFIX_BB_RPB-2026-08-31_15-14-55.zip) [log](user_data/convergence_logs/NFIX_BB_RPB-ladder.log) |
+| `NFIX_BB_RPB_c7c477d_20211030` | `spot_long` | `E1_expanded` | 16 | `convergence:2016:warmup_supplied` | 2026-08-31 16:04:36 | [archive](user_data/profile_smoke/NFIX_BB_RPB_c7c477d_20211030-2026-08-31_16-04-36.zip) [log](user_data/convergence_logs/NFIX_BB_RPB_c7c477d_20211030-ladder.log) |
 | `NWEv6_new` | `spot_long` | `E1_expanded` | 8108 | `convergence:480:warmup_supplied` | 2026-09-03 14:00:13 | [log](user_data/convergence_logs/NWEv6_new-ladder.log) |
 | `NormalizerStrategy` | `spot_long` | `E1_expanded` | 3747 | `convergence:610` | 2026-09-01 12:37:23 | [log](user_data/convergence_logs/NormalizerStrategy-ladder.log) |
 | `NormalizerStrategyHO2` | `spot_long` | `E1_expanded` | 3149 | `convergence:610` | 2026-09-01 14:34:54 | [log](user_data/convergence_logs/NormalizerStrategyHO2-ladder.log) |
@@ -542,6 +545,7 @@ coverage, no published trap.
 | `NostalgiaForInfinityV7_SMA` | `spot_long` | `E1_expanded` | 927 | `convergence:2016:warmup_supplied` | 2026-09-01 14:39:23 | [log](user_data/convergence_logs/NostalgiaForInfinityV7_SMA-ladder.log) |
 | `NostalgiaForInfinityV7_SMAv2` | `spot_long` | `E1_expanded` | 927 | `convergence:2016:warmup_supplied` | 2026-09-01 14:39:50 | [log](user_data/convergence_logs/NostalgiaForInfinityV7_SMAv2-ladder.log) |
 | `NostalgiaForInfinityV7_SMAv2_1` | `spot_long` | `E1_expanded` | 545 | `convergence:2016:warmup_supplied` | 2026-09-01 14:40:17 | [log](user_data/convergence_logs/NostalgiaForInfinityV7_SMAv2_1-ladder.log) |
+| `NostalgiaForInfinityX` | `spot_long` | `E1_expanded` | 28 | `convergence:2016:warmup_supplied` | 2026-08-31 14:50:00 | [archive](user_data/profile_smoke/NostalgiaForInfinityX-2026-08-31_14-50-00.zip) [log](user_data/convergence_logs/NostalgiaForInfinityX-ladder.log) |
 | `NotAnotherSMAOffsetStrategy` | `spot_long` | `E1_expanded` | 898 | `convergence:2016:warmup_supplied` | 2026-09-01 14:44:33 | [log](user_data/convergence_logs/NotAnotherSMAOffsetStrategy-ladder.log) |
 | `NotAnotherSMAOffsetStrategyHO` | `spot_long` | `E1_expanded` | 905 | `convergence:2016:warmup_supplied` | 2026-09-01 14:44:59 | [log](user_data/convergence_logs/NotAnotherSMAOffsetStrategyHO-ladder.log) |
 | `NotAnotherSMAOffsetStrategyHOv3` | `spot_long` | `E1_expanded` | 752 | `convergence:2016:warmup_supplied` | 2026-09-01 14:45:25 | [log](user_data/convergence_logs/NotAnotherSMAOffsetStrategyHOv3-ladder.log) |
@@ -715,6 +719,7 @@ coverage, no published trap.
 | `hansencandlepatternV1` | `spot_long` | `E1_expanded` | 17165 | `convergence:24:warmup_supplied` | 2026-09-01 15:25:15 | [log](user_data/convergence_logs/hansencandlepatternV1-ladder.log) |
 | `heikin` | `spot_long` | `E1_expanded` | 21053 | `convergence:24:warmup_supplied` | 2026-09-01 15:26:03 | [log](user_data/convergence_logs/heikin-ladder.log) |
 | `hlhb` | `spot_long` | `E1_expanded` | 861 | `convergence:540:warmup_supplied` | 2026-09-03 19:52:33 | [log](user_data/convergence_logs/hlhb-4d4b7c4a-ladder.log) |
+| `ichi` | `spot_long` | `E1_expanded` | 61 | `convergence:168:warmup_supplied` | 2026-09-02 16:27:35 | [archive](user_data/profile_smoke/ichi-2026-09-02_16-27-35.zip) [log](user_data/convergence_logs/ichi-a7e6edf3-ladder.log) |
 | `keltnerchannel` | `spot_long` | `E1_expanded` | 1131 | `convergence:360:warmup_supplied` | 2026-09-01 15:26:51 | [log](user_data/convergence_logs/keltnerchannel-ladder.log) |
 | `mabStra` | `spot_long` | `E1_expanded` | 1174 | `convergence:42:warmup_supplied` | 2026-09-03 07:51:13 | [log](user_data/convergence_logs/mabStra-ladder.log) |
 | `macd_recovery` | `spot_long` | `E1_expanded` | 202 | `convergence:2016:warmup_supplied` | 2026-09-01 19:56:22 | [archive](user_data/profile_smoke/macd_recovery-2026-09-01_19-56-22.zip) [log](user_data/convergence_logs/macd_recovery-ladder.log) |
@@ -2016,6 +2021,18 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy IchimokuSimpleStrategy --strategy-path user_data/profile_bias_strategies/IchimokuSimpleStrategy --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy IchimokuSimpleStrategy --strategy-path user_data/profile_bias_strategies/IchimokuSimpleStrategy --timerange 20190101-20190401 --no-color
   ```
+- `IchimokuStrategy`
+  ```
+  backtest   [recorded] freqtrade backtesting --config user_data/profile_configs/IchimokuStrategy-67b217c6-override-1e59e7a90fc3.json --strategy IchimokuStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/IchimokuStrategy-67b217c6 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/IchimokuStrategy-67b217c6_gate.json --strategy IchimokuStrategy --strategy-path user_data/profile_bias_strategies/IchimokuStrategy-67b217c6 --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/IchimokuStrategy_startup_480.json --strategy IchimokuStrategy --strategy-path user_data/profile_bias_strategies/IchimokuStrategy-67b217c6 --timerange 20190101-20190401 --no-color --startup-candle 480 960 3360 --timeframe 3m
+  ```
+- `Ichimoku_SenkouSpanCross`
+  ```
+  backtest   [recorded] freqtrade backtesting --config user_data/profile_configs/Ichimoku_SenkouSpanCross-d71627c7-override-aa2053461232.json --strategy Ichimoku_SenkouSpanCross --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Ichimoku_SenkouSpanCross-d71627c7 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/Ichimoku_SenkouSpanCross-d71627c7_gate.json --strategy Ichimoku_SenkouSpanCross --strategy-path user_data/profile_bias_strategies/Ichimoku_SenkouSpanCross-d71627c7 --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/Ichimoku_SenkouSpanCross_startup_6.json --strategy Ichimoku_SenkouSpanCross --strategy-path user_data/profile_bias_strategies/Ichimoku_SenkouSpanCross-d71627c7 --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540 2190 --timeframe 4h
+  ```
 - `Ichimoku_v12`
   ```
   backtest   [recorded] freqtrade backtesting --config user_data/profile_configs/Ichimoku_v12-override-aa2053461232.json --strategy Ichimoku_v12 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Ichimoku_v12 --cache none
@@ -2491,6 +2508,12 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/NFIX_BB_RPB_gate.json --strategy NFIX_BB_RPB --strategy-path user_data/profile_bias_strategies/NFIX_BB_RPB --timerange 20200101-20220101 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NFIX_BB_RPB --strategy-path user_data/profile_bias_strategies/NFIX_BB_RPB --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
+- `NFIX_BB_RPB_c7c477d_20211030`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy NFIX_BB_RPB_c7c477d_20211030 --strategy-path repair/patched/repos/davidzr_freqtrade-strategies/strategies/NFIX_BB_RPB_c7c477d_20211030 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NFIX_BB_RPB_c7c477d_20211030 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/NFIX_BB_RPB_c7c477d_20211030_gate.json --strategy NFIX_BB_RPB_c7c477d_20211030 --strategy-path user_data/profile_bias_strategies/NFIX_BB_RPB_c7c477d_20211030 --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NFIX_BB_RPB_c7c477d_20211030 --strategy-path user_data/profile_bias_strategies/NFIX_BB_RPB_c7c477d_20211030 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
+  ```
 - `NWEv6_new`
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NWEv6_new --strategy-path user_data/profile_bias_strategies/NWEv6_new --timerange 20190101-20190401 --no-color
@@ -2590,6 +2613,12 @@ The calls behind each, one per gate:
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NostalgiaForInfinityV7_SMAv2_1 --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityV7_SMAv2_1 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NostalgiaForInfinityV7_SMAv2_1 --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityV7_SMAv2_1 --timerange 20190101-20190401 --no-color
+  ```
+- `NostalgiaForInfinityX`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy NostalgiaForInfinityX --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NostalgiaForInfinityX --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/NostalgiaForInfinityX_gate.json --strategy NostalgiaForInfinityX --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityX --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NostalgiaForInfinityX --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityX --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `NotAnotherSMAOffsetStrategy`
   ```
@@ -3481,6 +3510,12 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy hlhb --strategy-path user_data/profile_bias_strategies/hlhb --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy hlhb --strategy-path user_data/profile_bias_strategies/hlhb-4d4b7c4a --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540 2190
   ```
+- `ichi`
+  ```
+  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy ichi --strategy-path repos/werkkrew_freqtrade-strategies/strategies/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ichi --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ichi --strategy-path user_data/profile_bias_strategies/ichi --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/ichi_startup_24.json --strategy ichi --strategy-path user_data/profile_bias_strategies/ichi-a7e6edf3 --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160
+  ```
 - `keltnerchannel`
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy keltnerchannel --strategy-path user_data/profile_bias_strategies/keltnerchannel --timerange 20190101-20190401 --no-color
@@ -3642,46 +3677,38 @@ an identical trade list.
 | `RSIDirectionalWithTrend` | `spot_long` | 720 candles | 0.0% on `rsi` | 2026-09-03 19:48:33 | `user_data/convergence_logs/RSIDirectionalWithTrend-0268a91f-ladder.log` |
 | `RSIDirectionalWithTrendSlow` | `spot_long` | 2160 candles | 0.0% on `rsi_slow` | 2026-09-03 19:49:38 | `user_data/convergence_logs/RSIDirectionalWithTrendSlow-247b9c8f-ladder.log` |
 
-## Pending - 129 strategies
+## Pending - 98 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
 
-`AdaptiveRenkoStrategy`, `AdvancedRiskFilterStrategy`, `Astro`, `AstroQAV4`
-`AutoArimaTripleV1`, `BBRSI`, `BB_RPB_3c`, `BaseStrategy`
-`BestSingleAssetPortfolio`, `BinClucMadDevelop`, `BinClucMadSMADevelop`, `BinHV27_werkkrew`
-`BinanceStream`, `BlueEyes_MPP_v1`, `Chained`, `ClucCrypROI`
-`ClucCrypSlow`, `ClucHAnix_BB_RPB_MOD_trailing_buy`, `ClucHAnix_BB_RPB_TraNz`, `CombinedBinHAndClucV6H`
-`CopyLitmusMinMaxBroadClassificationStrategy`, `CoreStrategy`, `CryptoFrogNFI`, `CryptoFrogNFI2`
-`CryptoFrogNFIHO1A`, `CryptoFrogOffset`, `CryptoPredictionTraining`, `DIV_v1`
-`DWT`, `Danke`, `DualModelPolymarketPortfolio`, `Dyna_opti`
-`EmaCrossStrategy`, `Enchilada`, `EnsembleStrategy`, `EnsembleStrategyV1`
-`EnsembleStrategyV2`, `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `FastSupertrend`
-`FastSupertrendOpt`, `FileLoadingStrategy`, `FreqaiExampleHybridStrategy`, `FreqaiExampleStrategy`
-`GPR`, `GodStra`, `Guacamole`, `GymStrategy`
-`HLHB`, `IchimokuStrategy`, `Ichimoku_SenkouSpanCross`, `KMM`
-`Kamaflage`, `LitmusEntryRollClassificationStrategy`, `LitmusGoodMinMaxClassificationStrategy`, `LitmusMLDPStrategy`
-`LitmusMetaStrategy`, `LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`
-`LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`
-`LongShortRangeTradingMachetesV1`, `MKR`, `MacheteV8b`, `MacheteV8bRallimod`
-`MacheteV8bRallimod2`, `MasterMoniGoManiHyperStrategy`, `MlpSpeculativeStrategy`, `MomentumRegimeBasket15m`
-`MostOfAll`, `MultiMA_TSL`, `MultiMA_TSL5`, `MultiMa`
-`MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`, `MyStrategyNew10`, `NFI46Frog`
-`NFI4Frog`, `NoLost`, `NowoIchimoku1hV1`, `Persia`
-`Pmax`, `PnF`, `PolymarketLogicalArbStrategy`, `PolymarketMeanReversionStrategy`
-`PolymarketMomentumStrategy`, `Prediction_Strategy`, `Proton`, `QuickAdapterV3`
-`QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`, `RenkoYolo`
-`SMAOPv1_TTF`, `ScalpingCCI`, `Schism`, `Schism2`
-`Schism6`, `SimpleRiskFilterStrategy`, `Solipsis3`, `Solipsis4`
-`Solipsis5`, `Solipsis6`, `SolipsisCon`, `SolipsisMM`
-`SuperHV27`, `SuperTrendPure`, `Supertrend`, `TGMA`
-`TankAi`, `TankAiRevival`, `Test_MAMA4`, `TrainCatBoostStrategy`
-`TuplaBollinger`, `TwoCandleTheory`, `UpSliceStrategy`, `WTAI`
-`WTHO`, `WTRSIAI`, `haGradient`, `multi_tf`
-`new_turtle`, `new_turtle_roi`, `qrsi`, `tacos1`
-`thetank2`
+`AdvancedRiskFilterStrategy`, `Astro`, `AstroQAV4`, `AutoArimaTripleV1`
+`BBRSI`, `BB_RPB_3c`, `BaseStrategy`, `BestSingleAssetPortfolio`
+`BinClucMadDevelop`, `BinClucMadSMADevelop`, `BinanceStream`, `BlueEyes_MPP_v1`
+`ClucHAnix_BB_RPB_MOD_trailing_buy`, `CombinedBinHAndClucV6H`, `CopyLitmusMinMaxBroadClassificationStrategy`, `CoreStrategy`
+`CryptoFrogNFI2`, `CryptoPredictionTraining`, `DIV_v1`, `DWT`
+`Danke`, `DualModelPolymarketPortfolio`, `Dyna_opti`, `EmaCrossStrategy`
+`Enchilada`, `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `FastSupertrend`
+`FastSupertrendOpt`, `FileLoadingStrategy`, `GPR`, `GodStra`
+`Guacamole`, `GymStrategy`, `HLHB`, `KMM`
+`Kamaflage`, `LitmusEntryRollClassificationStrategy`, `LitmusMLDPStrategy`, `LitmusMinMaxBroadClassificationStrategy`
+`LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`, `LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`
+`LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`, `LongShortRangeTradingMachetesV1`, `MKR`
+`MasterMoniGoManiHyperStrategy`, `MlpSpeculativeStrategy`, `MomentumRegimeBasket15m`, `MostOfAll`
+`MultiMA_TSL`, `MultiMA_TSL5`, `MultiMa`, `MyStrategyNew10`
+`NoLost`, `NowoIchimoku1hV1`, `Persia`, `Pmax`
+`PnF`, `PolymarketLogicalArbStrategy`, `PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy`
+`Prediction_Strategy`, `Proton`, `QuickBuyStrategy`, `RLAgentStrategy`
+`RLStrategy`, `RenkoYolo`, `SMAOPv1_TTF`, `Schism6`
+`Solipsis3`, `Solipsis4`, `Solipsis5`, `Solipsis6`
+`SolipsisCon`, `SolipsisMM`, `SuperTrendPure`, `Supertrend`
+`TGMA`, `TankAi`, `TankAiRevival`, `Test_MAMA4`
+`TrainCatBoostStrategy`, `TuplaBollinger`, `TwoCandleTheory`, `UpSliceStrategy`
+`WTAI`, `WTHO`, `WTRSIAI`, `haGradient`
+`multi_tf`, `new_turtle`, `new_turtle_roi`, `qrsi`
+`tacos1`, `thetank2`
 
-## Exclusion unconfirmed - 33 strategies
+## Exclusion unconfirmed - 41 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -3693,10 +3720,10 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_verdict_on_lookahead` | `no_finding` | 24 |
+| `no_verdict_on_lookahead` | `no_finding` | 33 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 5 |
-| `recursive_bias_unverified` | `no_finding` | 2 |
 | `unclassified` | `no_finding` | 1 |
+| `recursive_bias_unverified` | `no_finding` | 1 |
 | `recursive_warmup_refused` | `no_finding` | 1 |
 
 This is not a softening. A row here may well end up excluded - the
@@ -3704,7 +3731,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 151 strategies, by decisive reason
+## Not passing - 169 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -3752,7 +3779,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 151 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 169 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -3760,20 +3787,22 @@ one of them carries none.
 
 | Reason | Meaning | Strategies |
 |---|---|---:|
-| `lookahead_found` | reads data it could not have had at the time | 84 |
+| `lookahead_found` | reads data it could not have had at the time | 85 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 60 |
 | `no_trades_in_full_measurement` | never trades over the full window | 7 |
+| `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 17 |
 
 
 ### Reason by wave
 
 | Reason | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `E0_strict67` | `not_scheduled` |
 |---|---|---|---|---|---|---|
-| `lookahead_found` | 2 | 0 | 18 | 0 | 0 | 64 |
+| `lookahead_found` | 2 | 0 | 19 | 0 | 0 | 64 |
 | `recursive_bias_found` | 0 | 3 | 17 | 14 | 1 | 25 |
 | `no_trades_in_full_measurement` | 0 | 0 | 7 | 0 | 0 | 0 |
+| `repair_refused_would_invent_strategy` | 0 | 0 | 17 | 0 | 0 | 0 |
 
-### `lookahead_found` - 84
+### `lookahead_found` - 85
 
 Reads data it could not have had at the time.
 
@@ -3781,13 +3810,13 @@ Wave `A_pending_diagnostics` - 2:
 
 `HyperStra_GSN_SMAOnly`, `kalthetank`
 
-Wave `C_measurement_recovery` - 18:
+Wave `C_measurement_recovery` - 19:
 
-`ARIMASTR`, `ARIMA_15`, `NfiNextModded`, `NostalgiaForInfinityNext`
-`NostalgiaForInfinityNext772`, `NostalgiaForInfinityNextV7155`, `NostalgiaForInfinityNext_ChangeToTower_V5_2`, `NostalgiaForInfinityNext_ChangeToTower_V5_3`
-`NostalgiaForInfinityNext_ChangeToTower_V6`, `NostalgiaForInfinityNext_maximizer`, `NostalgiaForInfinityV7_7_2`, `NostalgiaForInfinityXw`
-`Obelisk_Ichimoku_Slow_v1_3`, `Obelisk_Ichimoku_ZEMA_v1`, `Stavix2`, `Stinkfist`
-`bbema`, `ichiV1_Marius`
+`ARIMASTR`, `ARIMA_15`, `NfiNextModded`, `NostalgiaForInfinity772martinsk3`
+`NostalgiaForInfinityNext`, `NostalgiaForInfinityNext772`, `NostalgiaForInfinityNextV7155`, `NostalgiaForInfinityNext_ChangeToTower_V5_2`
+`NostalgiaForInfinityNext_ChangeToTower_V5_3`, `NostalgiaForInfinityNext_ChangeToTower_V6`, `NostalgiaForInfinityNext_maximizer`, `NostalgiaForInfinityV7_7_2`
+`NostalgiaForInfinityXw`, `Obelisk_Ichimoku_Slow_v1_3`, `Obelisk_Ichimoku_ZEMA_v1`, `Stavix2`
+`Stinkfist`, `bbema`, `ichiV1_Marius`
 
 Wave `not_scheduled` - 64:
 
@@ -3854,6 +3883,18 @@ Wave `C_measurement_recovery` - 7:
 `BreakEven`, `DoesNothingStrategy`, `Miku_PP_v3`, `MyStrategyTemplate`
 `Obelisk_3EMA_StochRSI_ATR`, `ViN`, `ep3mas2`
 
+### `repair_refused_would_invent_strategy` - 17
+
+Declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy.
+
+Wave `C_measurement_recovery` - 17:
+
+`AdaptiveRenkoStrategy`, `Chained`, `ClucCrypROI`, `ClucCrypSlow`
+`ClucHAnix_BB_RPB_TraNz`, `EnsembleStrategy`, `EnsembleStrategyV1`, `EnsembleStrategyV2`
+`FreqaiExampleHybridStrategy`, `FreqaiExampleStrategy`, `LitmusGoodMinMaxClassificationStrategy`, `LitmusMetaStrategy`
+`MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`, `QuickAdapterV3`, `ScalpingCCI`
+`SimpleRiskFilterStrategy`
+
 ## Expansion wave
 
 | Wave | Strategies |
@@ -3869,15 +3910,15 @@ Wave `C_measurement_recovery` - 7:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 251 |
+| `recursive_ladder_pending` | 231 |
 | `convergence_not_converged_within_ladder` | 60 |
-| `needs_a_look` | 56 |
-| `lookahead_remeasure_pending` | 33 |
-| `to_be_fixed` | 29 |
-| `refuse_repair` | 21 |
+| `needs_a_look` | 53 |
+| `lookahead_remeasure_pending` | 42 |
+| `to_be_fixed` | 18 |
 | `repair_attempted` | 16 |
-| `convergence_inconclusive` | 11 |
+| `convergence_inconclusive` | 10 |
 | `repair_withdrawn` | 4 |
+| `refuse_repair` | 4 |
 
 Per-row detail, including every evidence path, is in
 `STRATEGY_STATUS.csv`.

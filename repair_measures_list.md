@@ -8,19 +8,19 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 
 | Verdict | Strategies | Meaning |
 |---|---:|---|
-| `repaired` | 72 | runs now, and the run is recorded |
+| `repaired` | 122 | runs now, and the run is recorded |
 | `repair_attempted` | 18 | a route was applied and did not finish the job |
-| `to_be_fixed` | 9 | the route is known, the run has not happened yet |
-| `needs_a_look` | 56 | no route yet; the obstacle has been identified |
+| `to_be_fixed` | 31 | the route is known, the run has not happened yet |
+| `needs_a_look` | 54 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 4 | the repair made things worse and was undone |
-| `refuse_repair` | 22 | repairing it would mean inventing the strategy |
+| `refuse_repair` | 27 | repairing it would mean inventing the strategy |
 | `-` | 6 |  |
 
 ## Routes taken
 
 ### Timeframe recovered from the author's own field
 
-`repair_family: timeframe_missing` &mdash; 39 strategies (repaired 39)
+`repair_family: timeframe_missing` &mdash; 41 strategies (repaired 41)
 
 **The message.**
 
@@ -38,20 +38,23 @@ Tool: `eligibility_timeframe_repair.py`.
 
 For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `BBRSIS`, `BBRSIoriginal`, `BB_RSI`.
 
-### Four compatibility shims for freqtrade's own behaviour
+### Seven compatibility shims for freqtrade's own behaviour
 
-`repair_family: framework_compat_shim` &mdash; 35 strategies (repaired 30, repair_attempted 2, to_be_fixed 3)
+`repair_family: framework_compat_shim` &mdash; 106 strategies (repaired 78, repair_attempted 2, to_be_fixed 25, needs_a_look 1)
 
 **The message.**
 
 ```
 IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'
+<Name>.min_roi_reached_entry() takes 2 positional arguments but 4 were given
 Impossible to load Strategy '<Name>'. This class does not exist or contains Python code errors.
 ValueError: cannot reindex on an axis with duplicate labels
 KeyError: 'rmi-up-trend'
+This strategy requires <N> candles to start, which is more than 5x the amount of candles Binance provides
+ImportError: cannot import name 'accumulation_distribution' from 'technical.indicators'
 ```
 
-**What it actually was.** Four unrelated things inside freqtrade, none of them a defect in a strategy.
+**What it actually was.** Seven unrelated things inside freqtrade or a package it depends on, none of them a defect in a strategy.
 
 1. The ROI hook gained two parameters, so a strategy calling the old one-argument form crashes.
 
@@ -60,6 +63,12 @@ KeyError: 'rmi-up-trend'
 3. `advise_entry` initialises `enter_tag` to "" - its own workaround for a pandas bug - and then renames a legacy `buy_tag` onto that same name. Renaming relabels rather than merges, so the frame comes back with TWO `enter_tag` columns. An ordinary backtest calls the hook once and never notices; `lookahead-analysis` calls it twice on the same frame, and the second pass cannot align against a duplicate label.
 
 4. `start_lookahead_analysis` builds its config with `RunMode.UTIL_NO_EXCHANGE`, so a strategy that caches per-candle series under `if self.dp.runmode.value in ('backtest', 'hyperopt')` caches nothing and raises when it reads them back - even though the analyzer does build a Backtesting object and run `backtest()` over real candles.
+
+5. `Exchange.validate_required_startup_candles` refuses a warm-up needing more than five OHLCV calls per pair - a live-bot API courtesy that a backtest reading local feather files never spends.
+
+6. The reverse of 1: four strategies DEFINE their own `min_roi_reached_entry(self, trade_dur)` in the pre-2022 shape, and freqtrade calls it with three arguments. Patching the base class does nothing here - the subclass's own method is what Python resolves.
+
+7. `IchimokuStrategy` and `Ichimoku_SenkouSpanCross` import `technical.indicators.accumulation_distribution`, which the installed `technical` 1.6.0 no longer ships, and never call it - dead code from an earlier revision of the file.
 
 **The repair.** `repair/compat_signature.py` installs the shims into freqtrade inside the runner process, named per strategy by `PROFILE_COMPAT_SIGNATURES`.
 
@@ -71,13 +80,21 @@ KeyError: 'rmi-up-trend'
 
 `lookahead_runmode_reports_backtest` rewrites `UTIL_NO_EXCHANGE` to `BACKTEST` on `DataProvider.runmode` alone, leaving `self.config['runmode']` and every other runmode as they are.
 
-**Where it stops.** Each is scoped as narrowly as the defect it answers. The scan shim only widens which files freqtrade agrees to look at - a class that then fails to import for a real reason still fails. The runmode shim touches one property and cannot tell a live or dry run it is a backtest; the selftest checks every other runmode passes through.
+`startup_candles_not_limited_by_call_budget` catches only the "more than 5x" refusal and recomputes the same call count the original function would have returned; any other refusal - in particular an exchange with no history at all - still stands.
+
+`legacy_min_roi_reached_entry_override` wraps `StrategyResolver.load_strategy`: once the real loader returns, if the resolved class's own `min_roi_reached_entry` binds a one-argument call and rejects the three-argument one, the INSTANCE gets its own attribute that translates a three-argument call down to the author's form and passes any other call through unchanged - which matters for `Schism-v2`, whose own `min_roi_reached` calls its `min_roi_reached_entry` internally with two arguments in its own convention, not freqtrade's three.
+
+`restore_accumulation_distribution` puts the function back on `technical.indicators` before the strategy's import runs, computed as the standard Money-Flow-Volume running total - the same Money Flow Multiplier `technical`'s own `chaikin_money_flow` still computes, summed rather than averaged over a window.
+
+**Where it stops.** Each is scoped as narrowly as the defect it answers. The scan shim only widens which files freqtrade agrees to look at - a class that then fails to import for a real reason still fails. The runmode shim touches one property and cannot tell a live or dry run it is a backtest; the selftest checks every other runmode passes through. The startup-budget shim leaves the ceiling `available_prefix_candles` computes untouched - it removes a courtesy limit, not the limit of what history exists.
 
 Neutrality of the `enter_tag` shim was measured rather than assumed. On `NotAnotherSMAOffsetStrategy`, `Apollo11`, `Saturn5`, `INSIDEUP`, `Dracula` and `tbtest` the entry signals and their tags are identical with and without it, on runs carrying 138, 147 and 1956 entries. `BinHV27_werkkrew`, which writes `buy` but no `buy_tag`, holds one `enter_tag` column and passes twice unshimmed - the control that identifies the rename as the cause.
 
+The accumulation/distribution shim restores a genuinely standard, unambiguous formula rather than inventing one - and both strategies it applies to never call the function at all, so its exact values are untested by either.
+
 Tool: `repair/compat_signature.py`.
 
-For example: `Apollo11`, `Cenderawasih_30m`, `Cenderawasih_3_kucoin`, `CryptoFrog`, `CryptoFrogHO`, `CryptoFrogHO2`.
+For example: `ARIMASTR`, `Apollo11`, `BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB_RPB_TSL_BI`.
 
 ### The author's own module put back on the path
 
@@ -244,7 +261,7 @@ For example: `ClucHAnix_BB_RPB_TraNz`, `SimpleRiskFilterStrategy`.
 
 ### Refused: timeframe nowhere stated
 
-`repair_family: timeframe_not_recoverable` &mdash; 10 strategies (refuse_repair 10)
+`repair_family: timeframe_not_recoverable` &mdash; 15 strategies (refuse_repair 15)
 
 **The message.**
 
@@ -305,7 +322,7 @@ For example: `BBRSI`, `CopyLitmusMinMaxBroadClassificationStrategy`, `CryptoPred
 
 ### Open: the class will not import
 
-`repair_family: class_not_loaded` &mdash; 7 strategies (to_be_fixed 2, needs_a_look 5)
+`repair_family: class_not_loaded` &mdash; 5 strategies (to_be_fixed 2, needs_a_look 3)
 
 **The message.**
 
@@ -321,11 +338,11 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `blocked_triage.py`.
 
-For example: `AutoArimaTripleV1`, `BlueEyes_MPP_v1`, `ClucHAnix_BB_RPB_MOD_trailing_buy`, `GymStrategy`, `IchimokuStrategy`, `Ichimoku_SenkouSpanCross`.
+For example: `AutoArimaTripleV1`, `BlueEyes_MPP_v1`, `ClucHAnix_BB_RPB_MOD_trailing_buy`, `GymStrategy`, `TrainCatBoostStrategy`.
 
 ### Open: one of a kind
 
-`repair_family: individual` &mdash; 20 strategies (needs_a_look 20)
+`repair_family: individual` &mdash; 19 strategies (needs_a_look 19)
 
 **The message.**
 
@@ -353,13 +370,15 @@ For example: `Astro`, `BestSingleAssetPortfolio`, `CryptoFrogNFI2`, `GodStra`, `
 |---|---:|
 | `startup_candles_not_limited_by_call_budget` | 62 |
 | `idempotent_entry_tag_initialisation` | 21 |
+| `legacy_min_roi_reached_entry_signature` | 17 |
 | `restore_copied_local_module` | 14 |
 | `restore_author_package_extension` | 11 |
 | `restore_author_config` | 11 |
-| `legacy_min_roi_reached_entry_signature` | 9 |
 | `lookahead_runmode_reports_backtest` | 9 |
 | `whitespace_tolerant_class_scan` | 6 |
+| `legacy_min_roi_reached_entry_override` | 4 |
 | `datetime_safe_rmi_fillna` | 3 |
+| `restore_accumulation_distribution` | 2 |
 | `freqai_config_from_author_block` | 2 |
 | `restore_declared_pypi_dependency` | 1 |
 

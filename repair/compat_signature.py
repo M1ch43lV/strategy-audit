@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
 """Compatibility shims for framework changes the strategies predate.
 
-Five of them so far. A hook whose signature gained parameters. A file scan
+Seven of them so far. A hook whose signature gained parameters. A file scan
 that assumes a formatting convention. A column the framework duplicates when
 its own analyzer calls a hook twice. An analyzer that announces itself as a
-utility while running a backtest. And a budget for calls to the exchange,
-enforced on a backtest that makes none. None is a defect in a strategy, and no
-shim touches a strategy file - they are installed into freqtrade in the
-runner process, only when PROFILE_COMPAT_SIGNATURES names them.
+utility while running a backtest. A budget for calls to the exchange,
+enforced on a backtest that makes none. The same signature change as the
+first, met from the other side: a strategy that overrode the hook itself, in
+the shape freqtrade used to call it in. And a function two strategies import
+and never call, which a newer version of a third-party package stopped
+shipping. None is a defect in a strategy, and no shim touches a strategy file
+- they are installed into freqtrade in the runner process, only when
+PROFILE_COMPAT_SIGNATURES names them.
 
 --------------------------------------------------------------------------
 Accept a freqtrade call signature that has since gained parameters.
@@ -73,6 +77,92 @@ def install_min_roi_reached_entry():
     min_roi_reached_entry._legacy_signature_installed = True
     min_roi_reached_entry._legacy_signature_original = original
     IStrategy.min_roi_reached_entry = min_roi_reached_entry
+    return True
+
+
+SUBCLASS_RULE = "legacy_min_roi_reached_entry_override"
+
+
+def install_legacy_min_roi_entry_override():
+    """Adapt a strategy that OVERRIDES min_roi_reached_entry in the old form.
+
+    `install_min_roi_reached_entry` above fixes the opposite direction: a
+    strategy that calls the base class's hook with one argument. Four
+    strategies (`BinHV27_werkkrew`, `SuperHV27`, and PeetCrypto's `Schism`,
+    `Schism-v2`) do the reverse - they DEFINE their own
+    `min_roi_reached_entry(self, trade_dur)`, in the same pre-2022 shape, and
+    freqtrade calls it with the current three-argument form
+    `(trade, trade_dur, current_time)`, from two places:
+    `IStrategy.min_roi_reached` and, separately,
+    `Backtesting._get_close_rate_for_roi`. Patching the base class does
+    nothing here - Python resolves the subclass's own method first, and the
+    base class is never consulted - and patching one call site misses the
+    other.
+
+    So this patches neither call site and no class. It wraps
+    `StrategyResolver.load_strategy`, and once the real loader has returned
+    the strategy instance, checks whether the resolved class defines its own
+    `min_roi_reached_entry` that only accepts the old form - it must bind a
+    call with just `trade_dur` and must NOT bind a call with
+    `(trade, trade_dur, current_time)`, which is `Schism-v2`'s reason for
+    existing: it takes an extra `pair` keyword the others don't. Where that
+    holds, the INSTANCE - not the class - gets its own `min_roi_reached_entry`
+    attribute, which ordinary Python attribute lookup hands to every caller
+    ahead of the class's version, wrapping the author's original function to
+    accept the current call and pass through only `trade_dur`, exactly as the
+    author wrote it. A strategy whose override already takes the modern form,
+    or takes neither, is left untouched.
+
+    `Schism-v2` also overrides `min_roi_reached` itself, and that override
+    calls `self.min_roi_reached_entry(trade_dur, trade.pair)` internally - two
+    positional arguments, its own old convention, not freqtrade's three. That
+    call has to reach the author's original function unadapted; only a call
+    shaped like freqtrade's current three-argument form is translated. Hence
+    the adapter dispatches on argument count rather than assuming every call
+    is freqtrade's.
+    """
+    import inspect
+    from freqtrade.resolvers.strategy_resolver import StrategyResolver
+
+    if getattr(StrategyResolver, "_legacy_min_roi_override_adapted", False):
+        return True
+
+    original = StrategyResolver.load_strategy
+
+    def _is_legacy_override(func):
+        try:
+            sig = inspect.signature(func)
+        except (TypeError, ValueError):
+            return False
+        try:
+            sig.bind(None, 0)
+        except TypeError:
+            return False
+        try:
+            sig.bind(None, None, 0, None)
+        except TypeError:
+            return True
+        return False
+
+    def load_strategy(config=None):
+        strategy = original(config)
+        own = type(strategy).__dict__.get("min_roi_reached_entry")
+        if own is not None and _is_legacy_override(own):
+            def min_roi_reached_entry(*args, _own=own, _self=strategy, **kwargs):
+                if len(args) == 3 and not kwargs:
+                    # freqtrade's current shape: (trade, trade_dur,
+                    # current_time). Only trade_dur reaches the author's
+                    # function - it never asked for the other two.
+                    return _own(_self, args[1])
+                # Anything else is the strategy calling its own old-style
+                # method the way it always did (Schism-v2's own
+                # min_roi_reached passes trade_dur and pair) - forward as is.
+                return _own(_self, *args, **kwargs)
+            strategy.min_roi_reached_entry = min_roi_reached_entry
+        return strategy
+
+    StrategyResolver.load_strategy = staticmethod(load_strategy)
+    StrategyResolver._legacy_min_roi_override_adapted = True
     return True
 
 
@@ -342,11 +432,53 @@ def install_unlimited_startup_candles():
     return True
 
 
+AD_RULE = "restore_accumulation_distribution"
+
+
+def install_accumulation_distribution():
+    """Restore `technical.indicators.accumulation_distribution`, dropped upstream.
+
+    `IchimokuStrategy` and `Ichimoku_SenkouSpanCross` both open with
+    `from technical.indicators import accumulation_distribution`, and neither
+    ever calls it - the import is dead code, left over from an earlier
+    revision. `technical` 1.6.0, the version this runtime is pinned to, no
+    longer defines the name at all (`chaikin_money_flow` is still there;
+    `accumulation_distribution` is not), so the import fails before either
+    strategy's own logic runs.
+
+    Because it is unreachable in both known cases, a stub that merely
+    satisfies the import would be enough. This restores the real indicator
+    instead, at the same cost, so a future caller gets the correct value
+    rather than a landmine: the Accumulation/Distribution line is the running
+    total of Money Flow Volume, and `technical`'s own `chaikin_money_flow`
+    computes the same Money Flow Multiplier this uses, just averaged over a
+    window instead of summed without end. Restoring the function is not
+    authoring the strategy - the formula is the textbook one, unrelated to
+    any decision either author made - and no strategy file is touched.
+    """
+    import technical.indicators as ti
+
+    if hasattr(ti, "accumulation_distribution"):
+        return True
+
+    def accumulation_distribution(dataframe):
+        mfm = ((dataframe["close"] - dataframe["low"])
+              - (dataframe["high"] - dataframe["close"])) / (
+                  dataframe["high"] - dataframe["low"])
+        mfv = mfm * dataframe["volume"]
+        return mfv.cumsum()
+
+    ti.accumulation_distribution = accumulation_distribution
+    return True
+
+
 INSTALLERS = {RULE: install_min_roi_reached_entry,
               SCAN_RULE: install_tolerant_class_scan,
               ADVISE_RULE: install_idempotent_advise_entry,
               RUNMODE_RULE: install_backtest_runmode_in_analysis,
-              STARTUP_RULE: install_unlimited_startup_candles}
+              STARTUP_RULE: install_unlimited_startup_candles,
+              SUBCLASS_RULE: install_legacy_min_roi_entry_override,
+              AD_RULE: install_accumulation_distribution}
 
 
 def install_from_environment():
@@ -552,6 +684,82 @@ def selftest():
             sys.modules["freqtrade.exchange.exchange"] = saved
         else:
             sys.modules.pop("freqtrade.exchange.exchange", None)
+
+    # The sixth shim: a subclass override in the old shape is adapted on the
+    # instance, a modern override is left alone, and Schism-v2's extra `pair`
+    # keyword does not confuse the detector.
+    class FakeStrategyOld(object):
+        def min_roi_reached_entry(self, trade_dur):
+            return ("old", trade_dur)
+
+    class FakeStrategyExtraKw(object):
+        def min_roi_reached_entry(self, trade_dur, pair="backtest"):
+            return ("old_kw", trade_dur, pair)
+
+    class FakeStrategyModern(object):
+        def min_roi_reached_entry(self, trade, trade_dur, current_time):
+            return ("modern", trade, trade_dur, current_time)
+
+    class FakeResolver(object):
+        _target = None
+
+        @staticmethod
+        def load_strategy(config=None):
+            return FakeResolver._target()
+
+    module = _types.ModuleType("freqtrade.resolvers.strategy_resolver")
+    module.StrategyResolver = FakeResolver
+    saved = sys.modules.get("freqtrade.resolvers.strategy_resolver")
+    sys.modules["freqtrade.resolvers.strategy_resolver"] = module
+    try:
+        assert install_legacy_min_roi_entry_override()
+        FakeResolver._target = FakeStrategyOld
+        old_instance = FakeResolver.load_strategy()
+        assert old_instance.min_roi_reached_entry("T", 30, "now") == ("old", 30)
+        FakeResolver._target = FakeStrategyExtraKw
+        kw_instance = FakeResolver.load_strategy()
+        assert (kw_instance.min_roi_reached_entry("T", 30, "now")
+               == ("old_kw", 30, "backtest"))
+        # Schism-v2's own min_roi_reached calls its min_roi_reached_entry
+        # with two positional arguments (trade_dur, pair) - its own old
+        # convention, not freqtrade's three. That call must reach the
+        # author's function unadapted rather than be mistaken for the
+        # modern shape and lose its second argument.
+        assert (kw_instance.min_roi_reached_entry(30, "ETH/USDT")
+               == ("old_kw", 30, "ETH/USDT"))
+        FakeResolver._target = FakeStrategyModern
+        modern_instance = FakeResolver.load_strategy()
+        assert (modern_instance.min_roi_reached_entry("T", 30, "now")
+               == ("modern", "T", 30, "now"))
+        assert "min_roi_reached_entry" not in vars(modern_instance)
+    finally:
+        if saved is not None:
+            sys.modules["freqtrade.resolvers.strategy_resolver"] = saved
+        else:
+            sys.modules.pop("freqtrade.resolvers.strategy_resolver", None)
+
+    # The seventh shim: the restored function computes the standard
+    # Money-Flow-Volume running total, and a second install is a no-op.
+    module = _types.ModuleType("technical.indicators")
+    saved = sys.modules.get("technical.indicators")
+    sys.modules["technical.indicators"] = module
+    try:
+        assert install_accumulation_distribution()
+        frame = pandas.DataFrame({
+            "high": [10.0, 12.0], "low": [8.0, 9.0],
+            "close": [9.0, 12.0], "volume": [100.0, 200.0]})
+        result = module.accumulation_distribution(frame)
+        # Row 0: mfm = ((9-8)-(10-9))/(10-8) = 0 -> mfv 0.
+        # Row 1: mfm = ((12-9)-(12-12))/(12-9) = 1 -> mfv 200, cumsum 200.
+        assert list(result) == [0.0, 200.0], list(result)
+        sentinel = module.accumulation_distribution
+        assert install_accumulation_distribution()
+        assert module.accumulation_distribution is sentinel
+    finally:
+        if saved is not None:
+            sys.modules["technical.indicators"] = saved
+        else:
+            sys.modules.pop("technical.indicators", None)
 
     print("compat_signature selftest: PASS")
 

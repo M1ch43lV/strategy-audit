@@ -143,6 +143,10 @@ REASON_ORDER = (
      "trades fewer than ten times over the full window and all eight pairs, "
      "which is below what any check or ranking can work with"),
     ("no_trades_in_full_measurement", "never trades over the full window"),
+    ("repair_refused_would_invent_strategy",
+     "declares no timeframe, no stoploss, no exit logic, or names a model "
+     "that no longer exists and cannot be restored; supplying one would "
+     "measure our invention rather than the author's strategy"),
     ("canonical_implementation_not_measured", "never ran"),
     ("no_verdict_on_lookahead_and_recursive", "measured; neither gate returned a verdict"),
     ("no_verdict_on_lookahead", "measured and recursion clean; look-ahead has no verdict"),
@@ -355,6 +359,14 @@ def _csv(path):
 # about the strategy, not about a window that was too short.
 FULL_FALLBACK = "20200301-20260820"
 TRADE_FLOOR = 10
+# Criterion C4 (exclusion_criteria.py): a repair route ran, read what the
+# author actually wrote, and refused to invent what is missing rather than
+# leave the row "to be fixed" forever. `freqai_arm` and `freqai_config_built`
+# are deliberately not here - both are `refuse_repair` for THIS audit only
+# because the row is measured separately in the FreqAI arm, which is a
+# different question from "no measurement is possible at all".
+NO_REPAIR_POSSIBLE = {"timeframe_not_recoverable", "no_stoploss",
+                      "no_exit_logic", "freqai_model"}
 
 
 def _json(path, key="results"):
@@ -548,9 +560,12 @@ def rows():
     # settings said what was done and the family said nothing was.
     SHIM_FAMILY = {
         "legacy_min_roi_reached_entry_signature": "framework_compat_shim",
+        "legacy_min_roi_reached_entry_override": "framework_compat_shim",
         "whitespace_tolerant_class_scan": "framework_compat_shim",
         "idempotent_entry_tag_initialisation": "framework_compat_shim",
         "lookahead_runmode_reports_backtest": "framework_compat_shim",
+        "startup_candles_not_limited_by_call_budget": "framework_compat_shim",
+        "restore_accumulation_distribution": "framework_compat_shim",
         "restore_copied_local_module": "local_module_off_path",
         "datetime_safe_rmi_fillna": "dtype_drift",
     }
@@ -1066,6 +1081,19 @@ def rows():
         if strategy in withdrawn:
             repair["verdict"] = "repair_withdrawn"
             repair["family"] = "local_module_off_path"
+        # C4: the repair route ran and refused on the author's own account -
+        # not "nobody has looked yet" but "supplying this would invent the
+        # strategy". `pending` promised a look that will never happen and
+        # never change the answer, so the row is decided.
+        if cohort == "pending" and repair.get("verdict") == "refuse_repair" \
+                and repair.get("family") in NO_REPAIR_POSSIBLE:
+            cohort = "excluded"
+            reason = "repair_refused_would_invent_strategy"
+            basis = "own_measurement"
+            # Nothing is still owed: no ladder will ever run on a row that
+            # never starts, so the pending-side flag from before this row was
+            # decided does not belong on it any more.
+            open_work = []
         if basis == "blocked" and not repair.get("verdict"):
             repair["verdict"] = "to_be_fixed"
         if basis == "blocked":
@@ -1658,13 +1686,15 @@ def selftest():
     # were passing on 1 of 900 rows. A test that reports PASS while covering
     # almost nothing is worse than no test.
     for row in data:
-        # Excluded means one of exactly three things, and every one of them
+        # Excluded means one of exactly four things, and every one of them
         # is a result this audit produced itself: the look-ahead check found
-        # bias, our own ladder failed to settle the indicators, or the
-        # strategy ran the whole window and never traded. Nothing else may
-        # put a row here - in particular not the source-code trap heuristic,
-        # which excluded 40 running strategies before either bias check had
-        # seen them, and not a verdict inherited from the original sweep.
+        # bias, our own ladder failed to settle the indicators, the strategy
+        # ran the whole window and never traded, or a repair route read the
+        # file and refused to invent what the author never wrote. Nothing
+        # else may put a row here - in particular not the source-code trap
+        # heuristic, which excluded 40 running strategies before either bias
+        # check had seen them, and not a verdict inherited from the original
+        # sweep.
         if row["cohort"] == "excluded":
             assert row["exclusion_basis"] == "own_measurement",                 (row["strategy_id"], row["exclusion_basis"])
             assert (
@@ -1672,6 +1702,7 @@ def selftest():
                  and row["lookahead_evidence"] == "native")
                 or row["recursive_evidence"] == "convergence:not_settled"
                 or row["primary_reason"] == "no_trades_in_full_measurement"
+                or row["primary_reason"] == "repair_refused_would_invent_strategy"
             ), (row["strategy_id"], row["primary_reason"],
                 row["lookahead"], row["recursive_evidence"])
         # A trap is a fact about the source, never a verdict. It may sit on
