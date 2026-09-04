@@ -1,0 +1,14 @@
+# Packages four corpus strategies import and this runtime does not carry.
+# Full dependency resolution checked first (pip install --dry-run, no
+# --no-deps) for each: numpy 2.5.2, pandas 3.0.5 and scipy 1.18.1 are already
+# satisfied by every one of them, so nothing here can pull a newer core stack
+# than strategy-audit-runtime already pins. That is the comparability this
+# companion image rests on - checked, not assumed.
+#
+# stable-baselines3 (GymStrategy's own need) is deliberately not here: its
+# resolution pulls the full CUDA/PyTorch chain, multiple gigabytes, for one
+# row. Held rather than built reflexively.
+matplotlib==3.11.1
+catboost==1.2.10
+tslearn==0.9.0
+pykalman==0.11.2

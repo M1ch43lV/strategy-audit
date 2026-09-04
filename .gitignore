@@ -74,3 +74,9 @@ venv/
 *.log
 /fetch.lock
 /corpus.lock
+
+# A strategy's own side effects, written to the working directory rather than
+# user_data/ - CryptoPredictionTraining saves model.h5 and prediction.png
+# here at import/populate time regardless of where it is asked to write.
+/model.h5
+/prediction.png

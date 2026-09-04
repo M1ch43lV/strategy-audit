@@ -87,25 +87,46 @@ def _write(data):
     os.replace(tmp, OUTPUT)
 
 
+# Every exclusion reason whose family/verdict traces back to THIS file's own
+# classification - directly, or one step removed through
+# repair_local_modules.py, which only ever acts on a row this file has
+# already tagged `local_module_off_path`. C6 (measured_only_in_freqai_arm)
+# is the one exception: it comes from the FreqAI arm's own result cards, a
+# store this file never wrote to and never reads.
+#
+# Missing one of these here reproduces the same bug differently: C4's five
+# rows were the first round, three C7 rows the second (a stale
+# "third_party_package" tag survived under a row whose real blocker had
+# moved on), and C5's local_module_off_path rows - Solipsis3 and seven
+# others - were the third, this time emptying repair_local_modules.py's own
+# selftest fixture rather than misreporting a reason.
+CRITERIA_SOURCED_HERE = ("repair_refused_would_invent_strategy",
+                         "third_party_package_declined",
+                         "shared_runtime_change_declined",
+                         "local_module_repair_exhausted")
+
+
 def blocked_rows():
     """Rows this file has something to say about.
 
     Ordinarily that is `exclusion_basis == "blocked"` - a row still open,
-    waiting on a verdict. Criterion C4 (exclusion_criteria.py) is the
-    exception: it excludes a row on THIS file's own family/verdict
-    (`no_stoploss`, `no_exit_logic`, ...), read back out of
-    strategy_status.py's cohort logic. Once excluded, `exclusion_basis`
-    becomes `own_measurement`, and a naive re-triage would stop selecting
-    the row and silently drop the very classification the exclusion rests
-    on - five rows did exactly that the first time this was missed. Kept
-    here rather than fixed by no longer regenerating: the family is a text
-    match against `runtime_failure`, which does not change once a strategy
-    is measured, so re-deriving it is free and keeps the two files unable
-    to drift apart.
+    waiting on a verdict. The criteria in CRITERIA_SOURCED_HERE are the
+    exception: each excludes a row on THIS file's own family/verdict, read
+    back out of strategy_status.py's cohort logic. Once excluded,
+    `exclusion_basis` becomes `own_measurement`, and a naive re-triage would
+    stop selecting the row and silently drop the very classification the
+    exclusion rests on. Two separate rounds of this were caught the hard
+    way: first for C4's five rows, then for three C7 rows whose `runtime_
+    failure` had moved on to a stoploss/model-file problem underneath a
+    still-stale "third_party_package" tag, because only C4's reason string
+    was carried over the first time. Kept here rather than fixed by no
+    longer regenerating: the family is a text match against `runtime_
+    failure`, which does not change once a strategy is measured, so
+    re-deriving it is free and keeps the files unable to drift apart.
     """
     return [row for row in _csv(STATUS)
            if row["exclusion_basis"] == "blocked"
-           or row["primary_reason"] == "repair_refused_would_invent_strategy"]
+           or row["primary_reason"] in CRITERIA_SOURCED_HERE]
 
 
 def probe_import(source_file, class_name):

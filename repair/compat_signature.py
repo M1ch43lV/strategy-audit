@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 """Compatibility shims for framework changes the strategies predate.
 
-Seven of them so far. A hook whose signature gained parameters. A file scan
+Ten of them so far. A hook whose signature gained parameters. A file scan
 that assumes a formatting convention. A column the framework duplicates when
 its own analyzer calls a hook twice. An analyzer that announces itself as a
 utility while running a backtest. A budget for calls to the exchange,
 enforced on a backtest that makes none. The same signature change as the
 first, met from the other side: a strategy that overrode the hook itself, in
-the shape freqtrade used to call it in. And a function two strategies import
-and never call, which a newer version of a third-party package stopped
-shipping. None is a defect in a strategy, and no shim touches a strategy file
-- they are installed into freqtrade in the runner process, only when
+the shape freqtrade used to call it in. And four functions, each imported
+and never called (three commented out, one bare), that a newer version of
+freqtrade, numpy or Keras stopped shipping under the path an older strategy
+still names. None is a defect in a strategy, and no shim touches a strategy
+file - they are installed into freqtrade in the runner process, only when
 PROFILE_COMPAT_SIGNATURES names them.
 
 --------------------------------------------------------------------------
@@ -472,13 +473,116 @@ def install_accumulation_distribution():
     return True
 
 
+FISHER_RULE = "restore_freqtrade_indicator_helpers"
+
+
+def install_indicator_helpers():
+    """Restore `freqtrade.indicator_helpers.fishers_inverse`, removed upstream.
+
+    `BBRSI` opens with `from freqtrade.indicator_helpers import
+    fishers_inverse` and never calls it - dead code from when freqtrade
+    shipped this module as a grab-bag of indicator utilities. The module
+    itself is gone from freqtrade 2026.7, not merely the one function, so the
+    import fails before BBRSI's own logic runs.
+
+    Because it is unreachable, a stub would be enough, but the inverse Fisher
+    transform is a two-line, unambiguous textbook formula -
+    `(e^2x - 1) / (e^2x + 1)` - so restoring it costs nothing extra and
+    leaves nothing invented if a future caller does reach it. This creates
+    the module rather than patching an existing one, since none exists to
+    patch; no strategy file is touched.
+    """
+    import sys
+    import types
+
+    import numpy as np
+
+    if "freqtrade.indicator_helpers" in sys.modules:
+        return True
+
+    module = types.ModuleType("freqtrade.indicator_helpers")
+
+    def fishers_inverse(x, y=None):
+        return (np.exp(2 * x) - 1) / (np.exp(2 * x) + 1)
+
+    module.fishers_inverse = fishers_inverse
+    sys.modules["freqtrade.indicator_helpers"] = module
+    return True
+
+
+NUMPY_APPEND_RULE = "restore_numpy_lib_function_base"
+
+
+def install_numpy_lib_function_base():
+    """Restore `numpy.lib.function_base`, reorganised out of the public API.
+
+    `Persia` opens with `from numpy.lib.function_base import append` and
+    never calls it under that name - the file's own use of `.append` a few
+    lines down is Python's list method, not this import. numpy 2.x moved the
+    implementation out of the path this was ever meant to be a stable
+    reference to (`numpy.append` itself is untouched and still public), so
+    the import fails before Persia's own logic runs.
+
+    Creates a module exposing exactly the one name the historical path
+    carried, aliased to numpy's own current public function - not a
+    reimplementation, the same function under its old address. No strategy
+    file is touched.
+    """
+    import sys
+    import types
+
+    import numpy as np
+
+    if "numpy.lib.function_base" in sys.modules:
+        return True
+
+    module = types.ModuleType("numpy.lib.function_base")
+    module.append = np.append
+    sys.modules["numpy.lib.function_base"] = module
+    return True
+
+
+VIS_UTILS_RULE = "restore_keras_vis_utils"
+
+
+def install_keras_vis_utils():
+    """Restore `keras.utils.vis_utils.plot_model`, moved in Keras 3.
+
+    `CryptoPredictionTraining` opens with `from keras.utils.vis_utils import
+    plot_model` and its only call is commented out
+    (`# plot_model(self.model, to_file='model.png')`) - dead code from Keras
+    2, where `plot_model` lived at this submodule path. Keras 3 moved it to
+    `keras.utils.plot_model` directly; the function itself is untouched, only
+    its address changed.
+
+    Creates the submodule aliased to the current public function - the same
+    function under its old address, not a reimplementation. No strategy file
+    is touched.
+    """
+    import sys
+    import types
+
+    import keras
+
+    if "keras.utils.vis_utils" in sys.modules:
+        return True
+
+    module = types.ModuleType("keras.utils.vis_utils")
+    module.plot_model = keras.utils.plot_model
+    sys.modules["keras.utils.vis_utils"] = module
+    return True
+
+
 INSTALLERS = {RULE: install_min_roi_reached_entry,
               SCAN_RULE: install_tolerant_class_scan,
               ADVISE_RULE: install_idempotent_advise_entry,
               RUNMODE_RULE: install_backtest_runmode_in_analysis,
               STARTUP_RULE: install_unlimited_startup_candles,
               SUBCLASS_RULE: install_legacy_min_roi_entry_override,
-              AD_RULE: install_accumulation_distribution}
+              AD_RULE: install_accumulation_distribution,
+              FISHER_RULE: install_indicator_helpers,
+              NUMPY_APPEND_RULE: install_numpy_lib_function_base,
+              VIS_UTILS_RULE: install_keras_vis_utils}
 
 
 def install_from_environment():
@@ -760,6 +864,63 @@ def selftest():
             sys.modules["technical.indicators"] = saved
         else:
             sys.modules.pop("technical.indicators", None)
+
+    # The eighth shim: the inverse Fisher transform, and a second install
+    # does not recreate the module.
+    saved = sys.modules.pop("freqtrade.indicator_helpers", None)
+    try:
+        assert install_indicator_helpers()
+        helpers = sys.modules["freqtrade.indicator_helpers"]
+        import math
+        got = helpers.fishers_inverse(0.5)
+        expected = (math.exp(1.0) - 1) / (math.exp(1.0) + 1)
+        assert abs(got - expected) < 1e-9, got
+        sentinel = sys.modules["freqtrade.indicator_helpers"]
+        assert install_indicator_helpers()
+        assert sys.modules["freqtrade.indicator_helpers"] is sentinel
+    finally:
+        sys.modules.pop("freqtrade.indicator_helpers", None)
+        if saved is not None:
+            sys.modules["freqtrade.indicator_helpers"] = saved
+
+    # The ninth shim: the old path reaches numpy's own current append,
+    # unmodified.
+    import numpy as np
+    saved = sys.modules.pop("numpy.lib.function_base", None)
+    try:
+        assert install_numpy_lib_function_base()
+        fb = sys.modules["numpy.lib.function_base"]
+        assert fb.append is np.append
+        sentinel = sys.modules["numpy.lib.function_base"]
+        assert install_numpy_lib_function_base()
+        assert sys.modules["numpy.lib.function_base"] is sentinel
+    finally:
+        sys.modules.pop("numpy.lib.function_base", None)
+        if saved is not None:
+            sys.modules["numpy.lib.function_base"] = saved
+
+    # The tenth shim: the old path reaches keras's own current plot_model,
+    # unmodified. Keras is only on the TensorFlow companion image; skip
+    # rather than fail where it is not installed, same as the runmode shim
+    # above skips where freqtrade itself cannot be imported.
+    try:
+        import keras
+    except Exception as exc:
+        print("compat_signature selftest: PASS "
+              "(keras vis_utils NOT checked here: %s)" % type(exc).__name__)
+        return
+    saved = sys.modules.pop("keras.utils.vis_utils", None)
+    try:
+        assert install_keras_vis_utils()
+        vis = sys.modules["keras.utils.vis_utils"]
+        assert vis.plot_model is keras.utils.plot_model
+        sentinel = sys.modules["keras.utils.vis_utils"]
+        assert install_keras_vis_utils()
+        assert sys.modules["keras.utils.vis_utils"] is sentinel
+    finally:
+        sys.modules.pop("keras.utils.vis_utils", None)
+        if saved is not None:
+            sys.modules["keras.utils.vis_utils"] = saved
 
     print("compat_signature selftest: PASS")
 

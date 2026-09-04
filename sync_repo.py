@@ -53,7 +53,7 @@ PIPELINE = [
     "traps.py",          # community backtest pitfalls
     "dof.py",            # degrees of freedom
     "power.py",          # power
-    "coverage.py",       # pair data coverage
+    "pair_coverage.py",  # pair data coverage
     "loadscan.py",       # download failure reasons
     "report.py",         # cards and pointers
     "census_repos.py",   # source census

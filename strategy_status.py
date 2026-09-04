@@ -103,8 +103,8 @@ FIELDS = [
     "observed_trades", "trade_evidence", "lookahead", "lookahead_evidence",
     "recursive", "recursive_evidence", "coverage_status", "traps_n", "artifact_role",
     "baseline_status", "primary_reason", "exclusion_basis",
-    "repair_family", "repair_verdict", "repair_settings", "gate_notes",
-    "runtime_failure", "evidence_gap",
+    "repair_family", "repair_verdict", "repair_settings", "required_image",
+    "gate_notes", "runtime_failure", "evidence_gap",
     "last_tested_at",
     "last_tested_source", "settled_startup", "settled_days", "settled_drift_pct",
     "needed_no_override", "cmd_backtest", "cmd_lookahead", "cmd_recursive",
@@ -375,6 +375,12 @@ def _csv(path):
 # about the strategy, not about a window that was too short.
 FULL_FALLBACK = "20200301-20260820"
 TRADE_FLOOR = 10
+# Which image a row needs, for the benchmark run this table exists to feed.
+# Read from PROFILE_CLASS1's own per-strategy "image" field where a row
+# needed one - BuyRegions and CryptoPredictionTraining on the TensorFlow
+# companion image, four rows on the packages one - and this otherwise, which
+# is what every row without an explicit override actually runs on.
+DEFAULT_IMAGE = "strategy-audit-runtime:2026.7"
 # Criterion C4 (exclusion_criteria.py): a repair route ran, read what the
 # author actually wrote, and refused to invent what is missing rather than
 # leave the row "to be fixed" forever. `freqai_arm` and `freqai_config_built`
@@ -1275,6 +1281,7 @@ def rows():
             "repair_settings": "; ".join(
                 part for part in (repair_settings(class1_entry, repair_run),
                                   repair.get("settings_extra", "")) if part),
+            "required_image": class1_entry.get("image", DEFAULT_IMAGE),
             "primary_reason": reason,
             "runtime_failure": (i18n.translate(measurement.get("why") or "")[:160]
                                 if measurement.get("status") not in (None, "measured")
@@ -1337,6 +1344,102 @@ def _names(strategies, per_line=4):
         lines.append(", ".join("`%s`" % name
                                for name in batch[start:start + per_line]))
     return lines
+
+
+RUNTIME_OUT = os.path.join(ROOT, "RUNTIME_ENVIRONMENTS.md")
+
+IMAGES = {
+    "strategy-audit-runtime:2026.7": {
+        "dockerfile": "Dockerfile.audit",
+        "base": "freqtradeorg/freqtrade:2026.7 (pinned digest)",
+        "adds": "requirements-audit-runtime.txt: numpy 2.5.2, pandas 3.0.5, "
+                "scipy 1.18.1, TA-Lib 0.7.1, and the corpus's other ordinary "
+                "dependencies.",
+        "purpose": "The default. Every row not listed under one of the "
+                   "images below runs on this one.",
+    },
+    "strategy-audit-tensorflow-runtime:2026.7": {
+        "dockerfile": "Dockerfile.audit-tensorflow",
+        "base": "python:3.12-slim (pinned digest) + freqtrade==2026.7 "
+                "installed directly - a different base line from the "
+                "default image, not a layer on top of it.",
+        "adds": "requirements-audit-tensorflow.txt: the same "
+                "requirements-audit-runtime.txt, plus tensorflow==2.21.0, "
+                "keras==3.15.1, matplotlib==3.11.1. Its own build asserts "
+                "numpy/pandas/scipy/talib/freqtrade land at the exact "
+                "versions the default image pins, despite the different "
+                "base - that assertion is what makes a row measured here "
+                "comparable with one measured on the default image.",
+        "purpose": "Rows whose own code imports TensorFlow/Keras at module "
+                   "load time, independent of anything this audit does.",
+    },
+    "strategy-audit-packages-runtime:2026.7": {
+        "dockerfile": "Dockerfile.audit-packages",
+        "base": "strategy-audit-runtime:2026.7 - a layer on top of the "
+                "default image, not a separate base line.",
+        "adds": "requirements-audit-packages.txt: matplotlib, catboost, "
+                "tslearn, pykalman. Each was checked with `pip install "
+                "--dry-run` before being added - numpy, pandas and scipy "
+                "were already satisfied at the pinned versions for all "
+                "four, so none of them moves the core stack.",
+        "purpose": "Rows whose own code imports a package the default "
+                   "image does not carry, where that package installs "
+                   "cleanly without touching the pinned numerical core.",
+    },
+}
+
+
+def _runtime_environments_report(data):
+    now = datetime.datetime.now().replace(microsecond=0).isoformat(sep=" ")
+    by_image = collections.defaultdict(list)
+    for row in data:
+        by_image[row["required_image"]].append(row)
+
+    lines = [
+        "# Runtime environments - what each strategy needs to run",
+        "",
+        "**Generated %s by `strategy_status.py`.** Regenerate it rather "
+        "than editing it." % now,
+        "",
+        "For the benchmark run: before measuring a row, look up its "
+        "`required_image` in `STRATEGY_STATUS.csv` and launch it under "
+        "that image rather than the default. Everything else - which "
+        "compatibility shims to install, which warm-up to use, which "
+        "config overrides apply - is read automatically from "
+        "`PROFILE_CLASS1.json` and `WARMUP_CONVERGENCE.json` by the same "
+        "`profile_smoke.run_one` / `profile_full_window.py` machinery this "
+        "audit already uses; the image is the one thing that machinery "
+        "cannot decide for itself, because it is chosen before any Python "
+        "in the container runs.",
+        "",
+        "## Images", "",
+        "| Image | Dockerfile | Base | Rows |",
+        "|---|---|---|---:|",
+    ]
+    for image, meta in IMAGES.items():
+        lines.append("| `%s` | `%s` | %s | %d |" % (
+            image, meta["dockerfile"], meta["base"], len(by_image.get(image, []))))
+    lines.append("")
+
+    for image, meta in IMAGES.items():
+        rows_here = by_image.get(image, [])
+        lines += [
+            "## `%s`" % image, "",
+            "**Adds:** %s" % meta["adds"], "",
+            "**For:** %s" % meta["purpose"], "",
+        ]
+        if image == DEFAULT_IMAGE:
+            lines += ["All %d rows not listed under another image below." %
+                      len(rows_here), ""]
+            continue
+        lines += ["| Strategy | Cohort | Why |", "|---|---|---|"]
+        for row in sorted(rows_here, key=lambda r: r["strategy_id"]):
+            why = (row["repair_settings"] or row["runtime_failure"] or "")[:150]
+            lines.append("| `%s` | %s | %s |" % (
+                row["strategy_id"], row["cohort"], why.replace("|", "\\|")))
+        lines.append("")
+
+    return "\n".join(lines).encode("utf-8")
 
 
 def _report(data):
@@ -1937,7 +2040,8 @@ def main(argv=None):
         selftest()
         return 0
     data = rows()
-    rendered = {OUTPUT: _csv_bytes(data), REPORT: _report(data)}
+    rendered = {OUTPUT: _csv_bytes(data), REPORT: _report(data),
+               RUNTIME_OUT: _runtime_environments_report(data)}
     if args.check:
         # The report embeds its generation time, so it is stale by definition
         # a second after it is written. Only the row data is compared.

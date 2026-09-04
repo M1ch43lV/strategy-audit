@@ -221,16 +221,19 @@
     },
     "BBRSI": {
       "canonical_sha256": "sha256_8a5058ea5a2ef3b66265c01dd977a580222545edc1fbf63d9ed7fe12591d1f73",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/BBRSI.log",
-      "elapsed_s": 21.4,
+      "class1_rules": [
+        "restore_freqtrade_indicator_helpers"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/BBRSI-0d31007a.log",
+      "elapsed_s": 28.2,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BBRSI --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBRSI-0d31007a --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "runtime_id": "native_unversioned",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'BBRSI'. This class does not exist or contains Python code errors."
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "BBRSIS": {
       "canonical_sha256": "sha256_9cbc9ac5b1105fb18999cfecba8576150cfaa37b5d13bc768b55bd0c44c3e4a0",
@@ -934,16 +937,19 @@
     },
     "CryptoPredictionTraining": {
       "canonical_sha256": "sha256_629ebdb8dd6ce969bff4c5589f3bc0ae39492b1e0a3ec7482c1a7eadbb43486b",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/CryptoPredictionTraining.log",
-      "elapsed_s": 21.3,
+      "class1_rules": [
+        "restore_keras_vis_utils"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/CryptoPredictionTraining-74e5d3b8.log",
+      "elapsed_s": 63.5,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CryptoPredictionTraining --strategy-path repos/ShahAnuj2610_my-freqtrade/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoPredictionTraining-74e5d3b8 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "runtime_id": "tensorflow:2026.7",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'CryptoPredictionTraining'. This class does not exist or contains Python code errors."
+      "why": "Configuration error: 'stoploss' is a required property"
     },
     "DWT": {
       "canonical_sha256": "sha256_ac98506b588e4bbd7f82e6dea9d0de7691dea9470c896cfd6cd3b95839c5dc8e",
@@ -2338,17 +2344,23 @@
       "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "MKR": {
+      "archive": "user_data/profile_smoke/MKR-b761aeca-2026-09-04_10-26-47.zip",
+      "archive_sha256": "sha256_12c2446fd6fd74860ba647e9f3fab941260cedd8d94bbaf0dee0386eea4f6fa8",
       "canonical_sha256": "sha256_49ae85f6d6ec560253394642d6294e6f44a127aca2c77c9e43acd9cec52882e5",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/MKR.log",
-      "elapsed_s": 29.2,
+      "config_overrides": {},
+      "elapsed_s": 34.2,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy MKR --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MKR-b761aeca --cache none",
+      "long_trades": 21,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "status": "failed",
+      "runtime_id": "packages:2026.7",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'MKR'. This class does not exist or contains Python code errors."
+      "trades": 21,
+      "trades_sha256": "sha256_a38831686ef6e0bd80eadbb23f289c8b7542338ada1768241bad32b6d28b3bc4"
     },
     "MacheteV8b": {
       "archive": "user_data/profile_smoke/MacheteV8b-b42642cf-2026-09-03_20-52-20.zip",
@@ -3235,17 +3247,25 @@
       "trades_sha256": "sha256_197d503d23fd9e5ff94bd969014bd687c31b779af7fd7a8338152f195bf2dc3e"
     },
     "Persia": {
+      "archive": "user_data/profile_smoke/Persia-f2f6ac3e-2026-09-04_10-30-24.zip",
+      "archive_sha256": "sha256_06a2bc7e2d3698f7540cf4d11e489b12ed3a952a36a67abc3a865780a5e2e677",
       "canonical_sha256": "sha256_33ccafd6fae4d8191d8c3dd957cd21b300833457c0aca9c4d00aa1260ce249e6",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/Persia.log",
-      "elapsed_s": 24.5,
+      "class1_rules": [
+        "restore_numpy_lib_function_base"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 38.6,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Persia --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Persia-f2f6ac3e --cache none",
+      "long_trades": 176,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "status": "failed",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'Persia'. This class does not exist or contains Python code errors."
+      "trades": 176,
+      "trades_sha256": "sha256_0ed9a822674ad95d574c5d1913678cb69a5e2f68f817be65b875ec3dbdfa277b"
     },
     "Pmax": {
       "canonical_sha256": "sha256_0d4334112a7d884ccb3d46f071af464f7c414c704402e066d30be8c48aa3f1a1",
@@ -3315,15 +3335,16 @@
     "Prediction_Strategy": {
       "canonical_sha256": "sha256_cb4c9523b5b38a9bc87112156d573affc87b23cdeadc328bbd33071c10d2d55b",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/Prediction_Strategy.log",
-      "elapsed_s": 25.6,
+      "debug_log": "user_data/profile_smoke_logs/Prediction_Strategy-dd9c561e.log",
+      "elapsed_s": 30.4,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Prediction_Strategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Prediction_Strategy-dd9c561e --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "runtime_id": "packages:2026.7",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'Prediction_Strategy'. This class does not exist or contains Python code errors."
+      "why": "[Errno 2] No such file or directory: 'user_data/notebooks/model_portfolio.pkl'"
     },
     "Proton": {
       "canonical_sha256": "sha256_8e806ac9c4f68c21a6bf2634e125afe5e03ff16f5ab2b16f3fd9247c712d18a2",
@@ -3659,16 +3680,19 @@
     },
     "Solipsis6": {
       "canonical_sha256": "sha256_10d3307231ad4c1c3189d1aaf69a303a98daeefc5f739e7321f2739d3f806899",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/Solipsis6.log",
-      "elapsed_s": 24.4,
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/Solipsis6-18bc5ada.log",
+      "elapsed_s": 32.3,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Solipsis6 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis6-18bc5ada --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "runtime_id": "native_unversioned",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'Solipsis6'. This class does not exist or contains Python code errors."
+      "why": "module 'custom_indicators' has no attribute 'bollinger_bands'"
     },
     "SolipsisCon": {
       "archive": "user_data/profile_smoke/SolipsisCon-12ab7e8b-2026-09-04_04-46-07.zip",
@@ -3693,16 +3717,19 @@
     },
     "SolipsisMM": {
       "canonical_sha256": "sha256_32e2d5db21f4f692902babb0ed2803e5494dd921b8a7032900d63d57313bbddf",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/SolipsisMM.log",
-      "elapsed_s": 25.4,
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/SolipsisMM-613239ba.log",
+      "elapsed_s": 28.8,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy SolipsisMM --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SolipsisMM-613239ba --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "runtime_id": "native_unversioned",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'SolipsisMM'. This class does not exist or contains Python code errors."
+      "why": "module 'custom_indicators' has no attribute 'fib_ret'"
     },
     "Stavix2": {
       "canonical_sha256": "sha256_64547b0d8bbb600b753db59451f76bb26f304e133102bc5e155b39e5336f9e4f",
@@ -3896,15 +3923,16 @@
     "TrainCatBoostStrategy": {
       "canonical_sha256": "sha256_5ff5c13b62e37bf9371f3cd84fc671bbd8c417ed757a8462ffd750987b133176",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/TrainCatBoostStrategy.log",
-      "elapsed_s": 25.7,
+      "debug_log": "user_data/profile_smoke_logs/TrainCatBoostStrategy-95a3fe82.log",
+      "elapsed_s": 33.3,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy TrainCatBoostStrategy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrainCatBoostStrategy-95a3fe82 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "runtime_id": "packages:2026.7",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'TrainCatBoostStrategy'. This class does not exist or contains Python code errors."
+      "why": "Configuration error: 'stoploss' is a required property"
     },
     "TrendFollowingStrategy": {
       "canonical_sha256": "sha256_5b587371c8710634642c52367f50e532de711a3ecca6a18523948d8013dc895b",
@@ -3944,17 +3972,23 @@
       "why": "No data found. Terminating."
     },
     "TwoCandleTheory": {
+      "archive": "user_data/profile_smoke/TwoCandleTheory-aede3331-2026-09-04_10-24-31.zip",
+      "archive_sha256": "sha256_2c2115eb89bc62443a88b5ac5f5a9e5f984f6eb323b236c3d40d9fd03f41a4f6",
       "canonical_sha256": "sha256_6986bca4e8c7cd66cefd93c8b4ff043e9db2b8b8dfa5056baba9cf2fa915f9e3",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/TwoCandleTheory.log",
-      "elapsed_s": 27.4,
+      "config_overrides": {},
+      "elapsed_s": 55.2,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy TwoCandleTheory --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TwoCandleTheory-aede3331 --cache none",
+      "long_trades": 37,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "status": "failed",
+      "runtime_id": "packages:2026.7",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'TwoCandleTheory'. This class does not exist or contains Python code errors."
+      "trades": 37,
+      "trades_sha256": "sha256_60a2d7166d75fdb52f682dd8f30e8401e6260bed365f44b43d09d78b4e5795da"
     },
     "UpSliceStrategy": {
       "canonical_sha256": "sha256_cf3e9ea5f4f0c3ebb2dd061ec1abb57e1039be82d7c34e15fc42b9ad54c15a6c",

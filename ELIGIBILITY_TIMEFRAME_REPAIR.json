@@ -138,6 +138,33 @@
       "trades": 48,
       "trades_sha256": "sha256_ad4cd3f5c081179dfccb1799a24b96716a120c2ee9b06b67ed4c885a9843525d"
     },
+    "BBRSI": {
+      "archive": "user_data/profile_smoke/BBRSI-0d31007a-2026-09-04_10-32-03.zip",
+      "archive_sha256": "sha256_a1b251624a933dd7708c5d061fbb1c7a2184e5c66f5871d89c71507b0716aa72",
+      "canonical_sha256": "sha256_8a5058ea5a2ef3b66265c01dd977a580222545edc1fbf63d9ed7fe12591d1f73",
+      "class1_rules": [
+        "restore_freqtrade_indicator_helpers"
+      ],
+      "config_overrides": {
+        "timeframe": "1h"
+      },
+      "elapsed_s": 63.2,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/BBRSI-0d31007a-override-f400cf1f3448.json --strategy BBRSI --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBRSI-0d31007a --cache none",
+      "long_trades": 11,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "BBRSI",
+      "timeframe": "1h",
+      "timeframe_evidence": "author_ticker_interval",
+      "timeframe_evidence_source": "repos/Foxel05_freqtrade-stuff/strategies/BBRSI.py:30 declares ticker_interval = '1h'; freqtrade renamed the attribute to timeframe in 2021.4 and no longer reads the old name",
+      "timerange": "20200301-20200401",
+      "trades": 11,
+      "trades_sha256": "sha256_b4d74a233e4f66d050b396e2fb322bbac115f055fb578235235ab2bda1e68a83"
+    },
     "BBRSIS": {
       "archive": "user_data/profile_smoke/BBRSIS-2026-09-01_19-33-03.zip",
       "archive_sha256": "sha256_fc128c7f0d1106c993c5d83c4cc2804c2f00bb3dd329bfa4e6ca6e3296205241",

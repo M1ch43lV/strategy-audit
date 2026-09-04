@@ -5,3 +5,9 @@
 # These versions match the previously validated Windows audit environment.
 tensorflow==2.21.0
 keras==3.15.1
+
+# CryptoPredictionTraining needs both keras and matplotlib; numpy/pandas/scipy
+# already satisfied at the pinned versions when checked alone (matches
+# requirements-audit-packages.txt's own check), so this does not change what
+# tensorflow/keras above resolved to.
+matplotlib==3.11.1

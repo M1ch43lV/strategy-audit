@@ -8,19 +8,19 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 
 | Verdict | Strategies | Meaning |
 |---|---:|---|
-| `repaired` | 136 | runs now, and the run is recorded |
+| `repaired` | 137 | runs now, and the run is recorded |
 | `repair_attempted` | 16 | a route was applied and did not finish the job |
 | `to_be_fixed` | 18 | the route is known, the run has not happened yet |
-| `needs_a_look` | 67 | no route yet; the obstacle has been identified |
+| `needs_a_look` | 59 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 6 | the repair made things worse and was undone |
-| `refuse_repair` | 27 | repairing it would mean inventing the strategy |
-| `-` | 7 |  |
+| `refuse_repair` | 29 | repairing it would mean inventing the strategy |
+| `-` | 9 |  |
 
 ## Routes taken
 
 ### Timeframe recovered from the author's own field
 
-`repair_family: timeframe_missing` &mdash; 41 strategies (repaired 41)
+`repair_family: timeframe_missing` &mdash; 42 strategies (repaired 42)
 
 **The message.**
 
@@ -36,11 +36,11 @@ Timeframe needs to be set in either configuration or as cli argument `--timefram
 
 Tool: `eligibility_timeframe_repair.py`.
 
-For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `BBRSIS`, `BBRSIoriginal`, `BB_RSI`.
+For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `BBRSI`, `BBRSIS`, `BBRSIoriginal`.
 
 ### Seven compatibility shims for freqtrade's own behaviour
 
-`repair_family: framework_compat_shim` &mdash; 108 strategies (repaired 92, repair_attempted 2, to_be_fixed 13, needs_a_look 1)
+`repair_family: framework_compat_shim` &mdash; 108 strategies (repaired 92, repair_attempted 2, to_be_fixed 14)
 
 **The message.**
 
@@ -98,7 +98,7 @@ For example: `ARIMASTR`, `Apollo11`, `BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB
 
 ### The author's own module put back on the path
 
-`repair_family: local_module_off_path` &mdash; 26 strategies (repaired 2, repair_attempted 9, to_be_fixed 1, needs_a_look 1, repair_withdrawn 6, - 7)
+`repair_family: local_module_off_path` &mdash; 26 strategies (repaired 2, repair_attempted 9, repair_withdrawn 6, - 9)
 
 **The message.**
 
@@ -221,7 +221,7 @@ For example: `BasketStrategy`.
 
 ### Refused: no stoploss declared
 
-`repair_family: no_stoploss` &mdash; 3 strategies (refuse_repair 3)
+`repair_family: no_stoploss` &mdash; 5 strategies (refuse_repair 5)
 
 **The message.**
 
@@ -237,7 +237,7 @@ Configuration error: 'stoploss' is a required property
 
 Tool: `blocked_triage.py`.
 
-For example: `AdaptiveRenkoStrategy`, `ClucCrypROI`, `ClucCrypSlow`.
+For example: `AdaptiveRenkoStrategy`, `ClucCrypROI`, `ClucCrypSlow`, `CryptoPredictionTraining`, `TrainCatBoostStrategy`.
 
 ### Refused: no exit logic
 
@@ -302,7 +302,7 @@ For example: `BinClucMadDevelop`, `BinClucMadSMADevelop`, `CombinedBinHAndClucV6
 
 ### Open: a package the author depended on
 
-`repair_family: third_party_package` &mdash; 20 strategies (needs_a_look 20)
+`repair_family: third_party_package` &mdash; 13 strategies (needs_a_look 13)
 
 **The message.**
 
@@ -318,11 +318,11 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `blocked_triage.py`.
 
-For example: `BBRSI`, `CopyLitmusMinMaxBroadClassificationStrategy`, `CryptoPredictionTraining`, `Enchilada`, `GymStrategy`, `KMM`.
+For example: `CopyLitmusMinMaxBroadClassificationStrategy`, `Enchilada`, `GymStrategy`, `KMM`, `LitmusEntryRollClassificationStrategy`, `LitmusMLDPStrategy`.
 
 ### Open: the class will not import
 
-`repair_family: class_not_loaded` &mdash; 3 strategies (needs_a_look 3)
+`repair_family: class_not_loaded` &mdash; 2 strategies (needs_a_look 2)
 
 **The message.**
 
@@ -338,11 +338,11 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `blocked_triage.py`.
 
-For example: `AutoArimaTripleV1`, `BlueEyes_MPP_v1`, `ClucHAnix_BB_RPB_MOD_trailing_buy`.
+For example: `BlueEyes_MPP_v1`, `ClucHAnix_BB_RPB_MOD_trailing_buy`.
 
 ### Open: one of a kind
 
-`repair_family: individual` &mdash; 25 strategies (needs_a_look 25)
+`repair_family: individual` &mdash; 27 strategies (needs_a_look 27)
 
 **The message.**
 
@@ -360,7 +360,7 @@ Remora API key missing. Set REMORA_API_KEY env var.
 
 Tool: `blocked_triage.py`.
 
-For example: `Astro`, `BestSingleAssetPortfolio`, `CryptoFrogNFI2`, `GodStra`, `Guacamole`, `HLHB`.
+For example: `Astro`, `AutoArimaTripleV1`, `BestSingleAssetPortfolio`, `CryptoFrogNFI2`, `GodStra`, `Guacamole`.
 
 ## Rules recorded per strategy
 
@@ -381,6 +381,9 @@ For example: `Astro`, `BestSingleAssetPortfolio`, `CryptoFrogNFI2`, `GodStra`, `
 | `restore_accumulation_distribution` | 2 |
 | `freqai_config_from_author_block` | 2 |
 | `restore_declared_pypi_dependency` | 1 |
+| `restore_freqtrade_indicator_helpers` | 1 |
+| `restore_keras_vis_utils` | 1 |
+| `restore_numpy_lib_function_base` | 1 |
 
 ## Corrections to our own reading
 

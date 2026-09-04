@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
-u"""coverage — how much of the window each pair actually covers.
+u"""pair_coverage — how much of the window each pair actually covers.
+
+Renamed from coverage.py 2026-09-04: this directory sits on sys.path for
+every strategy-audit invocation (the script's own directory, Python's usual
+sys.path[0]), so a file named coverage.py here shadowed the real `coverage`
+PyPI package for anything importing it - surfaced when `numba`, pulled in by
+the companion packages image, tried `import coverage` and got this file
+instead. Not a numba-specific fix: any future package expecting the real
+`coverage` would have hit the same collision in any image.
 
 WHY. I wrote "8 pairs to USDT," and that reads as "eight pairs for the whole window."
 The measurement says otherwise: DASH was listed 2019-03-28 (46% of the author's window), XMR

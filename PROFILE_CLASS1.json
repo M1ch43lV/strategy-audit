@@ -47,6 +47,13 @@
       ],
       "status": "applied"
     },
+    "BBRSI": {
+      "note": "imports freqtrade.indicator_helpers.fishers_inverse, a module freqtrade 2026.7 no longer ships, and never calls it - dead code. The shim restores the module with the textbook inverse Fisher transform.",
+      "rules": [
+        "restore_freqtrade_indicator_helpers"
+      ],
+      "status": "applied"
+    },
     "BBRSIS": {
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
       "rules": [
@@ -209,6 +216,7 @@
       "status": "applied"
     },
     "BuyRegions": {
+      "image": "strategy-audit-tensorflow-runtime:2026.7",
       "note": "The strategy imports the author's adjacent utils package; analyzer isolation must retain the repository package root.",
       "python_paths": [
         "repos/nateemma_strategies"
@@ -371,6 +379,14 @@
       "rules": [
         "legacy_min_roi_reached_entry_signature",
         "lookahead_runmode_reports_backtest"
+      ],
+      "status": "applied"
+    },
+    "CryptoPredictionTraining": {
+      "image": "strategy-audit-tensorflow-runtime:2026.7",
+      "note": "imports keras.utils.vis_utils.plot_model (moved to keras.utils.plot_model in Keras 3) and matplotlib; its only call to plot_model is commented out. Runs on the TensorFlow companion image (needs keras for a separate, real import), plus matplotlib added to that image for this row.",
+      "rules": [
+        "restore_keras_vis_utils"
       ],
       "status": "applied"
     },
@@ -754,6 +770,12 @@
       ],
       "status": "blocked_missing_dependency"
     },
+    "MKR": {
+      "image": "strategy-audit-packages-runtime:2026.7",
+      "note": "imports tslearn, not on the standard audit image; installed (no core-stack version change) into strategy-audit-packages-runtime.",
+      "rules": [],
+      "status": "applied"
+    },
     "Macd": {
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
       "rules": [
@@ -962,6 +984,13 @@
       ],
       "status": "applied"
     },
+    "Persia": {
+      "note": "imports numpy.lib.function_base.append, a path numpy 2.x reorganised away from, and never calls it under that name - the .append() calls in the file are on a plain Python list. The shim restores the module, aliased to the still-public numpy.append.",
+      "rules": [
+        "restore_numpy_lib_function_base"
+      ],
+      "status": "applied"
+    },
     "PolymarketMeanReversionStrategy": {
       "note": "repair withdrawn 2026-09-01: the only corpus copy of `alpha` is in repos/mlsys-io_PortfolioBench, which carries its own freqtrade/ and shadows the installed package the moment it goes on sys.path. The run then fails with \"cannot import name '__version__' from 'freqtrade' (unknown location)\", which names neither the path nor the cause. Deleting the entry would have deleted the finding too.",
       "rules": [],
@@ -979,6 +1008,12 @@
       "rules": [
         "startup_candles_not_limited_by_call_budget"
       ],
+      "status": "applied"
+    },
+    "Prediction_Strategy": {
+      "image": "strategy-audit-packages-runtime:2026.7",
+      "note": "imports catboost, not on the standard audit image; installed (no core-stack version change) into strategy-audit-packages-runtime. Still excluded, on a missing pre-trained model file no corpus copy holds.",
+      "rules": [],
       "status": "applied"
     },
     "Proton": {
@@ -1080,7 +1115,7 @@
       "status": "applied"
     },
     "Solipsis6": {
-      "note": "the corpus copy chosen for consistency with the other Solipsis variants imports cleanly but does not define bollinger_bands, which this file's own code calls; none of the three known custom_indicators.py copies in the corpus define it either, so the author was working from a revision none of the corpus holds.",
+      "note": "the corpus copy imports cleanly but the run still fails on custom_indicators: module 'custom_indicators' has no attribute 'bollinger_bands'",
       "status": "withdrawn",
       "withdrawn_path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
     },
@@ -1095,7 +1130,7 @@
       "status": "applied"
     },
     "SolipsisMM": {
-      "note": "the corpus copy chosen for consistency with the other Solipsis variants imports cleanly but does not define fib_ret, which this file's own code calls; none of the three known custom_indicators.py copies in the corpus define it either, so the author was working from a revision none of the corpus holds.",
+      "note": "the corpus copy imports cleanly but the run still fails on custom_indicators: module 'custom_indicators' has no attribute 'fib_ret'",
       "status": "withdrawn",
       "withdrawn_path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
     },
@@ -1122,6 +1157,12 @@
       ],
       "status": "applied"
     },
+    "TrainCatBoostStrategy": {
+      "image": "strategy-audit-packages-runtime:2026.7",
+      "note": "imports catboost, not on the standard audit image; installed (no core-stack version change) into strategy-audit-packages-runtime. Still excluded under C4, no stoploss declared.",
+      "rules": [],
+      "status": "applied"
+    },
     "TrendFollowingStrategy": {
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
       "rules": [
@@ -1134,6 +1175,12 @@
       "rules": [
         "startup_candles_not_limited_by_call_budget"
       ],
+      "status": "applied"
+    },
+    "TwoCandleTheory": {
+      "image": "strategy-audit-packages-runtime:2026.7",
+      "note": "imports pykalman, not on the standard audit image; installed (no core-stack version change) into strategy-audit-packages-runtime.",
+      "rules": [],
       "status": "applied"
     },
     "WTAI": {

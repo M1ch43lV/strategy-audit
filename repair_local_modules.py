@@ -296,7 +296,46 @@ def verify():
                                  for r in data["results"].values())
     for key, count in counts.most_common():
         print("   %-20s %d" % (key, count))
+    withdrawn = withdraw_insufficient(data["results"])
+    if withdrawn:
+        print("withdrew %d entries from PROFILE_CLASS1.json "
+              "(import test passed, the run did not): %s"
+              % (len(withdrawn), ", ".join(sorted(withdrawn))))
     return 0
+
+
+def withdraw_insufficient(results):
+    """Take back a class1 registration the run proved insufficient.
+
+    `apply_to_class1` only ever sees `resolve()`'s import test, which cannot
+    tell `Solipsis6` apart from a row whose candidate is genuinely correct -
+    both import cleanly. `verify()` runs the actual measurement and can, but
+    writing that here rather than in `apply_to_class1` is what keeps a
+    routine `--apply` from re-registering a row this already withdrew: apply
+    only ever reads the import-test store, never this one, so a fresh
+    `resolve()` for an unrelated row cannot undo a verified withdrawal.
+    """
+    data = _json(CLASS1)
+    strategies = data.get("strategies", {})
+    changed = []
+    for strategy, record in results.items():
+        if record.get("verification") != "path_insufficient":
+            continue
+        entry = strategies.get(strategy)
+        if not entry or entry.get("status") != "applied" \
+                or RULE not in entry.get("rules", []):
+            continue
+        entry["status"] = "withdrawn"
+        entry["withdrawn_path"] = entry.pop("python_paths", [None])[0]
+        entry.pop("rules", None)
+        entry["note"] = ("the corpus copy imports cleanly but the run still "
+                         "fails on %s: %s" % (record.get("missing_module"),
+                                              (record.get("verified_why")
+                                               or "")[:150]))
+        changed.append(strategy)
+    if changed:
+        _write(CLASS1, data)
+    return changed
 
 
 def selftest():
@@ -322,6 +361,14 @@ def selftest():
         for strategy, entry in class1.items():
             if RULE in entry.get("rules", []) and strategy in results:
                 assert results[strategy]["status"] == "resolved", strategy
+        # A row the run proved insufficient is never left "applied": the
+        # import test that would say so is exactly what verify() replaces.
+        for strategy, record in results.items():
+            if record.get("verification") != "path_insufficient":
+                continue
+            entry = class1.get(strategy)
+            if entry is not None:
+                assert entry.get("status") == "withdrawn", strategy
     print("repair_local_modules selftest: PASS (%d rows)" % len(rows))
 
 

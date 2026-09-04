@@ -1,0 +1,24 @@
+ARG BASE_IMAGE=strategy-audit-runtime:2026.7
+FROM ${BASE_IMAGE}
+
+# Four corpus strategies each import a package this runtime does not carry
+# (matplotlib, catboost, tslearn, pykalman - one row's own reason for each,
+# not four copies of the same problem). Installing any of them into
+# strategy-audit-runtime itself would change what every one of the ~900
+# corpus strategies imports into, for the sake of four rows - declined
+# 2026-09-04, in favour of this companion image instead.
+#
+# The comparability this rests on: `pip install --dry-run` (full resolution,
+# no --no-deps) was checked for each of the four before this file was
+# written, and numpy, pandas and scipy were already satisfied by the pinned
+# audit stack in every case - none of them needed a newer core to install.
+# The assertion below is the same one strategy-audit-runtime's own Dockerfile
+# makes, repeated after these installs to prove nothing shifted regardless.
+COPY --chown=ftuser:ftuser requirements-audit-packages.txt /tmp/
+RUN python -m pip install --user --no-cache-dir \
+      -r /tmp/requirements-audit-packages.txt \
+    && python -c "import freqtrade,numpy,pandas,scipy,talib; assert freqtrade.__version__ == '2026.7'; assert numpy.__version__ == '2.5.2'; assert pandas.__version__ == '3.0.5'; assert scipy.__version__ == '1.18.1'; assert talib.__version__ == '0.7.1'" \
+    && python -c "import matplotlib, catboost, tslearn, pykalman"
+
+LABEL org.opencontainers.image.title="strategy-audit companion-package runtime" \
+      org.opencontainers.image.description="strategy-audit-runtime plus four third-party packages, same pinned numerical core"
