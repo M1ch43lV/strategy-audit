@@ -13054,12 +13054,13 @@
       "lookahead": {
         "attempted_timeranges": [
           "20190101-20190401",
-          "20200101-20220101"
+          "20200101-20220101",
+          "20200301-20260820"
         ],
-        "elapsed_s": 1040.3,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/epretrace-7f3a8522_gate.json --strategy epretrace --strategy-path user_data/profile_bias_strategies/epretrace-7f3a8522 --timerange 20200101-20220101 --no-color",
+        "elapsed_s": 5152.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/epretrace-7f3a8522_gate.json --strategy epretrace --strategy-path user_data/profile_bias_strategies/epretrace-7f3a8522 --timerange 20200301-20260820 --no-color",
         "status": "NA",
-        "timerange": "20200101-20220101",
+        "timerange": "20200301-20260820",
         "why": "TIMEOUT"
       },
       "mode": "spot",
