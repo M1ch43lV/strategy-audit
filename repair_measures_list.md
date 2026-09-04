@@ -8,12 +8,12 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 
 | Verdict | Strategies | Meaning |
 |---|---:|---|
-| `repaired` | 137 | runs now, and the run is recorded |
+| `repaired` | 140 | runs now, and the run is recorded |
 | `repair_attempted` | 16 | a route was applied and did not finish the job |
-| `to_be_fixed` | 18 | the route is known, the run has not happened yet |
-| `needs_a_look` | 59 | no route yet; the obstacle has been identified |
+| `to_be_fixed` | 17 | the route is known, the run has not happened yet |
+| `needs_a_look` | 53 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 6 | the repair made things worse and was undone |
-| `refuse_repair` | 29 | repairing it would mean inventing the strategy |
+| `refuse_repair` | 34 | repairing it would mean inventing the strategy |
 | `-` | 9 |  |
 
 ## Routes taken
@@ -40,7 +40,7 @@ For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `BBRSI`, `BBRSIS
 
 ### Seven compatibility shims for freqtrade's own behaviour
 
-`repair_family: framework_compat_shim` &mdash; 108 strategies (repaired 92, repair_attempted 2, to_be_fixed 14)
+`repair_family: framework_compat_shim` &mdash; 108 strategies (repaired 95, repair_attempted 2, to_be_fixed 11)
 
 **The message.**
 
@@ -221,7 +221,7 @@ For example: `BasketStrategy`.
 
 ### Refused: no stoploss declared
 
-`repair_family: no_stoploss` &mdash; 5 strategies (refuse_repair 5)
+`repair_family: no_stoploss` &mdash; 6 strategies (refuse_repair 6)
 
 **The message.**
 
@@ -237,7 +237,7 @@ Configuration error: 'stoploss' is a required property
 
 Tool: `blocked_triage.py`.
 
-For example: `AdaptiveRenkoStrategy`, `ClucCrypROI`, `ClucCrypSlow`, `CryptoPredictionTraining`, `TrainCatBoostStrategy`.
+For example: `AdaptiveRenkoStrategy`, `ClucCrypROI`, `ClucCrypSlow`, `CryptoPredictionTraining`, `NoLost`, `TrainCatBoostStrategy`.
 
 ### Refused: no exit logic
 
@@ -258,6 +258,66 @@ For example: `AdaptiveRenkoStrategy`, `ClucCrypROI`, `ClucCrypSlow`, `CryptoPred
 Tool: `blocked_triage.py`.
 
 For example: `ClucHAnix_BB_RPB_TraNz`, `SimpleRiskFilterStrategy`.
+
+### Refused: no populate_indicators at all
+
+`repair_family: no_populate_indicators` &mdash; 1 strategies (refuse_repair 1)
+
+**The message.**
+
+```
+Can't instantiate abstract class <Name> without an implementation for abstract method 'populate_indicators'.
+```
+
+**What it actually was.** Not a missing helper - the one method every strategy is built around was never written.
+
+**The repair.** None. Writing it would be writing the strategy from nothing, not restoring anything the author left out by accident.
+
+**Where it stops.** `refuse_repair`.
+
+Tool: `blocked_triage.py`.
+
+For example: `thetank2`.
+
+### Refused: a file the author never shipped
+
+`repair_family: missing_author_data_file` &mdash; 2 strategies (refuse_repair 2)
+
+**The message.**
+
+```
+[Errno 2] No such file or directory: '<path>' / Could not find pair source at '<path>'.
+```
+
+**What it actually was.** The strategy opens a specific file at runtime - a pre-trained model, a lookup table - that never existed in the author's own repository.
+
+**The repair.** None; no corpus copy exists to restore. Distinct from `AutoArimaTripleV1`'s unrelated missing LOG directory, which this audit's own environment supplies as a write target rather than something the author would have shipped - see repair/compat_signature.py's `install_dataframe_append` docstring for that row.
+
+**Where it stops.** `refuse_repair`.
+
+Tool: `blocked_triage.py`.
+
+For example: `PolymarketLogicalArbStrategy`, `Prediction_Strategy`.
+
+### Refused: two declared values that cannot both be honoured
+
+`repair_family: invalid_declared_config` &mdash; 1 strategies (refuse_repair 1)
+
+**The message.**
+
+```
+Configuration error: The config trailing_stop_positive_offset needs to be greater than trailing_stop_positive.
+```
+
+**What it actually was.** The author's own `trailing_stop_positive_offset` is smaller than their own `trailing_stop_positive`, a combination freqtrade's lookahead-analysis refuses to start on even though the strategy backtests and trades normally otherwise.
+
+**The repair.** None. Both values are the author's; adjusting either one would be guessing which of the two they actually meant.
+
+**Where it stops.** `refuse_repair`. Found by the lookahead gate rather than a trial-run failure - `TGMA` measures and trades normally - so the family is set directly in strategy_status.py's own cohort logic rather than read out of `BLOCKED_TRIAGE.json` the way the others here are.
+
+Tool: `strategy_status.py (invalid_gate_config)`.
+
+For example: `TGMA`.
 
 ### Refused: timeframe nowhere stated
 
@@ -322,7 +382,7 @@ For example: `CopyLitmusMinMaxBroadClassificationStrategy`, `Enchilada`, `GymStr
 
 ### Open: the class will not import
 
-`repair_family: class_not_loaded` &mdash; 2 strategies (needs_a_look 2)
+`repair_family: class_not_loaded` &mdash; 2 strategies (to_be_fixed 2)
 
 **The message.**
 
@@ -342,7 +402,7 @@ For example: `BlueEyes_MPP_v1`, `ClucHAnix_BB_RPB_MOD_trailing_buy`.
 
 ### Open: one of a kind
 
-`repair_family: individual` &mdash; 27 strategies (needs_a_look 27)
+`repair_family: individual` &mdash; 23 strategies (needs_a_look 23)
 
 **The message.**
 
@@ -370,8 +430,8 @@ For example: `Astro`, `AutoArimaTripleV1`, `BestSingleAssetPortfolio`, `CryptoFr
 |---|---:|
 | `startup_candles_not_limited_by_call_budget` | 62 |
 | `idempotent_entry_tag_initialisation` | 23 |
+| `lookahead_runmode_reports_backtest` | 21 |
 | `legacy_min_roi_reached_entry_signature` | 20 |
-| `lookahead_runmode_reports_backtest` | 17 |
 | `restore_copied_local_module` | 15 |
 | `restore_author_package_extension` | 11 |
 | `restore_author_config` | 11 |
@@ -381,9 +441,14 @@ For example: `Astro`, `AutoArimaTripleV1`, `BestSingleAssetPortfolio`, `CryptoFr
 | `restore_accumulation_distribution` | 2 |
 | `freqai_config_from_author_block` | 2 |
 | `restore_declared_pypi_dependency` | 1 |
+| `restore_dataframe_append` | 1 |
+| `legacy_hour_asfreq_rule` | 1 |
 | `restore_freqtrade_indicator_helpers` | 1 |
 | `restore_keras_vis_utils` | 1 |
+| `legacy_replace_method_kwarg` | 1 |
 | `restore_numpy_lib_function_base` | 1 |
+| `legacy_pmax_parameter_names` | 1 |
+| `legacy_minute_resample_rule` | 1 |
 
 ## Corrections to our own reading
 

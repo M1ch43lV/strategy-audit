@@ -40,6 +40,14 @@
       ],
       "status": "applied"
     },
+    "AutoArimaTripleV1": {
+      "note": "opens ../logs/strategy-log.log relative to its own file at import time (2026-09-04: directory created, not tracked, repos/ is gitignored). Also calls self.data.append(...), removed from pandas 2.0+; the shim restores it as a thin pd.concat wrapper, matching the documented pre-removal equivalence. The strategy's other .append call is on an ARIMA model object, unrelated, and untouched. Also constructs its own frequency string as bare 'H', which pandas 3.0.5 no longer accepts on .asfreq(); the shim translates only that shape.",
+      "rules": [
+        "restore_dataframe_append",
+        "legacy_hour_asfreq_rule"
+      ],
+      "status": "applied"
+    },
     "BBMod1": {
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
       "rules": [
@@ -446,13 +454,14 @@
       "withdrawn_path": "repos/mlsys-io_PortfolioBench"
     },
     "Dyna_opti": {
-      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement Also calls min_roi_reached_entry(trade_dur) in the pre-2022 one-argument form against the base class; use_custom_roi is not set.",
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement Also calls min_roi_reached_entry(trade_dur) in the pre-2022 one-argument form against the base class; use_custom_roi is not set. Also caches per-candle series under self.dp.runmode.value in ('backtest', 'hyperopt'), the same CryptoFrog-family guard; needs the runmode shim for lookahead-analysis too.",
       "python_paths": [
         "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
       ],
       "rules": [
         "restore_copied_local_module",
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
@@ -770,6 +779,13 @@
       ],
       "status": "blocked_missing_dependency"
     },
+    "LongShortRangeTradingMachetesV1": {
+      "note": "calls .replace(to_replace=0, method='ffill'); pandas removed method from replace(). Shim reproduces replace-then-fill only when method is passed.",
+      "rules": [
+        "legacy_replace_method_kwarg"
+      ],
+      "status": "applied"
+    },
     "MKR": {
       "image": "strategy-audit-packages-runtime:2026.7",
       "note": "imports tslearn, not on the standard audit image; installed (no core-stack version change) into strategy-audit-packages-runtime.",
@@ -991,6 +1007,13 @@
       ],
       "status": "applied"
     },
+    "Pmax": {
+      "note": "calls technical.indicators.PMAX(atrperiod=, malength=, matype=, source=), renamed to period/length/MAtype/src in the installed 1.6.0. Shim translates the four old names.",
+      "rules": [
+        "legacy_pmax_parameter_names"
+      ],
+      "status": "applied"
+    },
     "PolymarketMeanReversionStrategy": {
       "note": "repair withdrawn 2026-09-01: the only corpus copy of `alpha` is in repos/mlsys-io_PortfolioBench, which carries its own freqtrade/ and shadows the installed package the moment it goes on sys.path. The run then fails with \"cannot import name '__version__' from 'freqtrade' (unknown location)\", which names neither the path nor the cause. Deleting the entry would have deleted the finding too.",
       "rules": [],
@@ -1082,35 +1105,38 @@
       "status": "applied"
     },
     "Solipsis3": {
-      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement Also calls min_roi_reached_entry(trade_dur) in the pre-2022 one-argument form against the base class; use_custom_roi is not set.",
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement Also calls min_roi_reached_entry(trade_dur) in the pre-2022 one-argument form against the base class; use_custom_roi is not set. Also caches per-candle series under self.dp.runmode.value in ('backtest', 'hyperopt'), the same CryptoFrog-family guard; needs the runmode shim for lookahead-analysis too.",
       "python_paths": [
         "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
       ],
       "rules": [
         "restore_copied_local_module",
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
     "Solipsis4": {
-      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement Also calls min_roi_reached_entry(trade_dur) in the pre-2022 one-argument form against the base class; use_custom_roi is not set.",
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement Also calls min_roi_reached_entry(trade_dur) in the pre-2022 one-argument form against the base class; use_custom_roi is not set. Also caches per-candle series under self.dp.runmode.value in ('backtest', 'hyperopt'), the same CryptoFrog-family guard; needs the runmode shim for lookahead-analysis too.",
       "python_paths": [
         "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
       ],
       "rules": [
         "restore_copied_local_module",
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
     "Solipsis5": {
-      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement Also overrides min_roi_reached_entry(self, trade_dur, pair='backtest') in the pre-2022 shape, same as Schism-v2; needs the instance-level adapter too.",
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement Also overrides min_roi_reached_entry(self, trade_dur, pair='backtest') in the pre-2022 shape, same as Schism-v2; needs the instance-level adapter too. Also caches per-candle series under self.dp.runmode.value in ('backtest', 'hyperopt'), the same CryptoFrog-family guard; needs the runmode shim for lookahead-analysis too.",
       "python_paths": [
         "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
       ],
       "rules": [
         "restore_copied_local_module",
-        "legacy_min_roi_reached_entry_override"
+        "legacy_min_roi_reached_entry_override",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
@@ -1276,6 +1302,13 @@
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
       "rules": [
         "startup_candles_not_limited_by_call_budget"
+      ],
+      "status": "applied"
+    },
+    "qrsi": {
+      "note": "calls dataframe.resample(timeframe) with freqtrade's own \"15m\"; pandas 3.0.5 reserves lowercase m for month. Shim translates only the \\d+m shape, never touching \"1h\", \"15min\" or \"M\".",
+      "rules": [
+        "legacy_minute_resample_rule"
       ],
       "status": "applied"
     },

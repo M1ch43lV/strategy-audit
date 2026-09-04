@@ -187,11 +187,18 @@ CRITERIA = [
         "name": "No repair exists that would not invent the strategy",
         "test": _no_repair_possible,
         "columns": 'primary_reason == "repair_refused_would_invent_strategy"',
-        "what": "The strategy declares no timeframe anywhere, no stoploss, "
-                "no exit logic, or names a prediction model that no longer "
-                "exists and that this repository holds no copy of. A repair "
-                "route read the file looking for the author's own value and "
-                "found none to restore.",
+        "what": "The strategy declares no timeframe anywhere, no stoploss "
+                "or an explicit stoploss of 0, no exit logic, no "
+                "`populate_indicators` at all, names a prediction model "
+                "that no longer exists and that this repository holds no "
+                "copy of, opens a data file (a pre-trained model, a lookup "
+                "table) the author's own repository never included, or "
+                "declares two config values in a combination freqtrade "
+                "refuses (`trailing_stop_positive_offset` below "
+                "`trailing_stop_positive`). A repair route read the file "
+                "looking for the author's own value and found none to "
+                "restore, or found two declared values that cannot both be "
+                "honoured without guessing which one the author meant.",
         "why_final": "This is the same ground as C1 and C2, one step "
                      "earlier: those found that the measurement cannot be "
                      "trusted, this finds that no measurement can be taken "
@@ -965,6 +972,55 @@ REPAIRS = [
                "the strategy.",
         "limit": "`refuse_repair`.",
         "tool": "blocked_triage.py",
+    },
+    {
+        "family": "no_populate_indicators",
+        "name": "Refused: no populate_indicators at all",
+        "error": "Can't instantiate abstract class <Name> without an "
+                 "implementation for abstract method 'populate_indicators'.",
+        "cause": "Not a missing helper - the one method every strategy is "
+                 "built around was never written.",
+        "fix": "None. Writing it would be writing the strategy from "
+               "nothing, not restoring anything the author left out by "
+               "accident.",
+        "limit": "`refuse_repair`.",
+        "tool": "blocked_triage.py",
+    },
+    {
+        "family": "missing_author_data_file",
+        "name": "Refused: a file the author never shipped",
+        "error": "[Errno 2] No such file or directory: '<path>' / Could not "
+                 "find pair source at '<path>'.",
+        "cause": "The strategy opens a specific file at runtime - a "
+                 "pre-trained model, a lookup table - that never existed in "
+                 "the author's own repository.",
+        "fix": "None; no corpus copy exists to restore. Distinct from "
+               "`AutoArimaTripleV1`'s unrelated missing LOG directory, "
+               "which this audit's own environment supplies as a write "
+               "target rather than something the author would have shipped "
+               "- see repair/compat_signature.py's `install_dataframe_"
+               "append` docstring for that row.",
+        "limit": "`refuse_repair`.",
+        "tool": "blocked_triage.py",
+    },
+    {
+        "family": "invalid_declared_config",
+        "name": "Refused: two declared values that cannot both be honoured",
+        "error": "Configuration error: The config trailing_stop_positive_"
+                 "offset needs to be greater than trailing_stop_positive.",
+        "cause": "The author's own `trailing_stop_positive_offset` is "
+                 "smaller than their own `trailing_stop_positive`, a "
+                 "combination freqtrade's lookahead-analysis refuses to "
+                 "start on even though the strategy backtests and trades "
+                 "normally otherwise.",
+        "fix": "None. Both values are the author's; adjusting either one "
+               "would be guessing which of the two they actually meant.",
+        "limit": "`refuse_repair`. Found by the lookahead gate rather than "
+                 "a trial-run failure - `TGMA` measures and trades "
+                 "normally - so the family is set directly in strategy_"
+                 "status.py's own cohort logic rather than read out of "
+                 "`BLOCKED_TRIAGE.json` the way the others here are.",
+        "tool": "strategy_status.py (invalid_gate_config)",
     },
     {
         "family": "timeframe_not_recoverable",

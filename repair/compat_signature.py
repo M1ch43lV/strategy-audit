@@ -1,17 +1,24 @@
 # -*- coding: utf-8 -*-
 """Compatibility shims for framework changes the strategies predate.
 
-Ten of them so far. A hook whose signature gained parameters. A file scan
-that assumes a formatting convention. A column the framework duplicates when
-its own analyzer calls a hook twice. An analyzer that announces itself as a
-utility while running a backtest. A budget for calls to the exchange,
+Fifteen of them so far. A hook whose signature gained parameters. A file
+scan that assumes a formatting convention. A column the framework duplicates
+when its own analyzer calls a hook twice. An analyzer that announces itself
+as a utility while running a backtest. A budget for calls to the exchange,
 enforced on a backtest that makes none. The same signature change as the
 first, met from the other side: a strategy that overrode the hook itself, in
-the shape freqtrade used to call it in. And four functions, each imported
-and never called (three commented out, one bare), that a newer version of
+the shape freqtrade used to call it in. Four functions, each imported and
+never called (three commented out, one bare), that a newer version of
 freqtrade, numpy or Keras stopped shipping under the path an older strategy
-still names. None is a defect in a strategy, and no shim touches a strategy
-file - they are installed into freqtrade in the runner process, only when
+still names. Three parameter renames or removals in `technical` and pandas,
+each intercepted only for the exact call shape that is already a hard
+failure without it - a renamed PMAX keyword, freqtrade's own "15m" reaching
+a resample call, a `replace(method=...)` pandas no longer accepts. And one
+method pandas removed outright (`DataFrame.append`), restored rather than
+translated, since nothing currently calls it successfully for the
+restoration to disturb. None is a defect in a strategy, and no shim touches
+a strategy file - they
+are installed into freqtrade in the runner process, only when
 PROFILE_COMPAT_SIGNATURES names them.
 
 --------------------------------------------------------------------------
@@ -573,6 +580,214 @@ def install_keras_vis_utils():
     return True
 
 
+PMAX_RULE = "legacy_pmax_parameter_names"
+
+
+def install_legacy_pmax_names():
+    """Accept PMAX's pre-rename parameter names.
+
+    `Pmax` calls `technical.indicators.PMAX(dataframe, atrperiod=...,
+    multiplier=..., malength=..., matype=..., source=...)`. The installed
+    `technical` (1.6.0) signature is
+    `PMAX(dataframe, period=10, multiplier=3, length=12, MAtype=1, src=1)` -
+    same five parameters, four renamed, `multiplier` untouched.
+
+    Wraps PMAX to translate exactly those four old names to their current
+    ones and pass everything else through unchanged; a call already using
+    the current names is untouched, since none of the old names is present
+    to translate.
+    """
+    import technical.indicators as ti
+
+    original = ti.PMAX
+    if getattr(original, "_legacy_names_installed", False):
+        return True
+
+    RENAMED = {"atrperiod": "period", "malength": "length",
+              "matype": "MAtype", "source": "src"}
+
+    def PMAX(dataframe, *args, **kwargs):
+        translated = {RENAMED.get(key, key): value
+                     for key, value in kwargs.items()}
+        return original(dataframe, *args, **translated)
+
+    PMAX._legacy_names_installed = True
+    ti.PMAX = PMAX
+    return True
+
+
+# Shared by the resample and asfreq shims below: both pandas methods parse
+# their frequency string through their own internal (non-Python-patchable)
+# machinery rather than the public `pandas.tseries.frequencies.to_offset` -
+# confirmed by patching that function alone and finding neither method
+# affected - so each method needs its own wrapper, not one shared choke
+# point. The translation table is shared so the two agree on what "legacy"
+# means. Minute: freqtrade's own "15m", which pandas now reads as 15 months.
+# Hour: bare "H"/"4H", which pandas now wants lowercase. Neither pattern can
+# match a call that already works: "M"/"ME" for month keep their meaning,
+# and "15min"/"4h" already parse.
+def _translate_legacy_offset(rule):
+    import re
+
+    if not isinstance(rule, str):
+        return rule
+    if re.fullmatch(r"\d+m", rule):
+        return rule + "in"
+    if re.fullmatch(r"\d*H", rule):
+        return rule[:-1] + "h"
+    return rule
+
+
+RESAMPLE_RULE = "legacy_minute_resample_rule"
+
+
+def install_legacy_minute_resample():
+    """Translate freqtrade's own "15m" into pandas' current "15min".
+
+    `qrsi` calls `dataframe.resample(timeframe)` where `timeframe` is
+    freqtrade's own config value, e.g. "15m". Pandas used to accept lowercase
+    "m" as a minute alias; it now reserves "m" for month and raises
+    `ValueError: 'm' is no longer supported for offsets`.
+
+    The wrapped `resample` only ever inspects the first positional argument,
+    and only translates it when `_translate_legacy_offset` recognises the
+    shape - freqtrade's own minute-timeframe pattern, never a legitimate
+    month specifier (those use uppercase "M"/"ME", not a lowercase "m"
+    appended to digits). Every other call - `"1h"`, `"15min"`, `"M"`, no
+    argument, a DateOffset object - is passed through untouched. Patches
+    `NDFrame.resample`, shared by Series and DataFrame, so both call shapes
+    are covered by one installation.
+    """
+    import pandas as pd
+
+    original = pd.core.generic.NDFrame.resample
+    if getattr(original, "_legacy_minute_resample_installed", False):
+        return True
+
+    def resample(self, rule=None, *args, **kwargs):
+        return original(self, _translate_legacy_offset(rule), *args, **kwargs)
+
+    resample._legacy_minute_resample_installed = True
+    pd.core.generic.NDFrame.resample = resample
+    return True
+
+
+ASFREQ_RULE = "legacy_hour_asfreq_rule"
+
+
+def install_legacy_asfreq():
+    """Translate a bare "H" into pandas' current "h" for `.asfreq()`.
+
+    `AutoArimaTripleV1` builds its own `frequency` attribute from a literal
+    `'H'` passed at construction and calls `series.asfreq(freq=frequency)`.
+    Pandas used to accept uppercase "H" for hourly; it now wants lowercase
+    and raises `ValueError: Invalid frequency: H ... Did you mean h?` -
+    pandas' own message names the fix. `.asfreq()` parses its frequency
+    string through machinery separate from `.resample()`'s (confirmed: a
+    resample-only patch left `.asfreq('H')` still failing), so this is a
+    second, symmetric wrapper rather than a rule the resample shim already
+    covers.
+
+    Reuses `_translate_legacy_offset`, so this also accepts freqtrade's "15m"
+    shape on `.asfreq()` if some future row needs that combination; nothing
+    in the current corpus does. Every call `_translate_legacy_offset` leaves
+    unchanged - `"1h"`, `"15min"`, `"M"`, no argument - passes through as
+    before.
+    """
+    import pandas as pd
+
+    original = pd.core.generic.NDFrame.asfreq
+    if getattr(original, "_legacy_asfreq_installed", False):
+        return True
+
+    def asfreq(self, freq=None, *args, **kwargs):
+        return original(self, _translate_legacy_offset(freq), *args, **kwargs)
+
+    asfreq._legacy_asfreq_installed = True
+    pd.core.generic.NDFrame.asfreq = asfreq
+    return True
+
+
+REPLACE_METHOD_RULE = "legacy_replace_method_kwarg"
+
+
+def install_legacy_replace_method():
+    """Accept the removed `method=` keyword on `Series`/`DataFrame.replace`.
+
+    `LongShortRangeTradingMachetesV1` calls
+    `series.replace(to_replace=0, method='ffill')`. Pandas removed `method`
+    from `replace()`; its own current signature is
+    `replace(to_replace=None, value=<no_default>, *, inplace=False,
+    regex=False)`.
+
+    The wrapped `replace` only intercepts a call that supplies `method` -
+    which is unconditionally a `TypeError` on the current signature, so no
+    call this reaches was working before - and reproduces the pre-removal
+    semantics exactly: replace the matched value with a gap, then fill the
+    gap using the named method (`ffill`/`pad` or `bfill`/`backfill`, the two
+    values pandas' own `replace(method=...)` ever accepted). A call that
+    does not pass `method` is untouched.
+    """
+    import pandas as pd
+
+    original = pd.core.generic.NDFrame.replace
+    if getattr(original, "_legacy_replace_method_installed", False):
+        return True
+
+    FILL = {"ffill": "ffill", "pad": "ffill",
+           "bfill": "bfill", "backfill": "bfill"}
+
+    def replace(self, *args, **kwargs):
+        method = kwargs.pop("method", None)
+        if method is None:
+            return original(self, *args, **kwargs)
+        kwargs.setdefault("value", None)
+        filled = original(self, *args, **kwargs)
+        return getattr(filled, FILL[method])()
+
+    replace._legacy_replace_method_installed = True
+    pd.core.generic.NDFrame.replace = replace
+    return True
+
+
+APPEND_RULE = "restore_dataframe_append"
+
+
+def install_dataframe_append():
+    """Restore `DataFrame.append`, removed in pandas 2.0.
+
+    `AutoArimaTripleV1` calls `self.data = self.data.append(other,
+    verify_integrity=True)`, where `self.data` is a `DataFrame`. Pandas 2.0
+    removed the method outright - `DataFrame.append` does not exist at all in
+    3.0.5, so unlike the other shims here there is no original call shape
+    still working that this could disturb: every call this reaches is
+    already a hard `AttributeError` without it.
+
+    (The strategy's OTHER `.append(...)` call, on `self.model` - a pmdarima
+    ARIMA object, not a DataFrame - is that library's own update method and
+    is untouched; this shim is added to the `DataFrame` class specifically,
+    not to anything more general.)
+
+    `append` was documented as equivalent to `pd.concat` with the receiver
+    first, which is what it is implemented as here: `df.append(other,
+    ignore_index=False, verify_integrity=False, sort=False)` becomes
+    `pd.concat([df, other], ignore_index=ignore_index,
+    verify_integrity=verify_integrity, sort=sort)`.
+    """
+    import pandas as pd
+
+    if hasattr(pd.DataFrame, "append"):
+        return True
+
+    def append(self, other, ignore_index=False, verify_integrity=False,
+              sort=False):
+        return pd.concat([self, other], ignore_index=ignore_index,
+                         verify_integrity=verify_integrity, sort=sort)
+
+    pd.DataFrame.append = append
+    return True
+
+
 INSTALLERS = {RULE: install_min_roi_reached_entry,
               SCAN_RULE: install_tolerant_class_scan,
               ADVISE_RULE: install_idempotent_advise_entry,
@@ -582,7 +797,12 @@ INSTALLERS = {RULE: install_min_roi_reached_entry,
               AD_RULE: install_accumulation_distribution,
               FISHER_RULE: install_indicator_helpers,
               NUMPY_APPEND_RULE: install_numpy_lib_function_base,
-              VIS_UTILS_RULE: install_keras_vis_utils}
+              VIS_UTILS_RULE: install_keras_vis_utils,
+              PMAX_RULE: install_legacy_pmax_names,
+              RESAMPLE_RULE: install_legacy_minute_resample,
+              REPLACE_METHOD_RULE: install_legacy_replace_method,
+              APPEND_RULE: install_dataframe_append,
+              ASFREQ_RULE: install_legacy_asfreq}
 
 
 def install_from_environment():
@@ -899,7 +1119,100 @@ def selftest():
         if saved is not None:
             sys.modules["numpy.lib.function_base"] = saved
 
-    # The tenth shim: the old path reaches keras's own current plot_model,
+    # The tenth shim: the four renamed PMAX keywords reach the current
+    # function; a call already using the current names is untouched.
+    import technical.indicators as ti
+    saved = ti.PMAX
+    try:
+        assert install_legacy_pmax_names()
+        frame = pandas.DataFrame({
+            "high": [10.0, 11.0, 12.0, 11.0, 13.0],
+            "low": [9.0, 10.0, 10.0, 9.0, 11.0],
+            "close": [9.5, 10.5, 11.0, 10.0, 12.5]})
+        old_call = ti.PMAX(frame, atrperiod=2, multiplier=2,
+                          malength=2, matype=1, source=1)
+        current_call = saved(frame, period=2, multiplier=2,
+                            length=2, MAtype=1, src=1)
+        assert old_call.equals(current_call)
+        # The current names, unmodified, pass straight through.
+        direct = ti.PMAX(frame, period=2, multiplier=2,
+                        length=2, MAtype=1, src=1)
+        assert direct.equals(current_call)
+    finally:
+        ti.PMAX = saved
+
+    # The eleventh shim: freqtrade's own "15m" reaches pandas as "15min";
+    # "1h", "15min" and "M" - never freqtrade's own shape - pass unchanged.
+    import pandas as pd
+    original_resample = pd.core.generic.NDFrame.resample
+    try:
+        assert install_legacy_minute_resample()
+        idx = pd.date_range("2020-01-01", periods=10, freq="1min")
+        series = pd.Series(range(10), index=idx)
+        translated = series.resample("15m").mean()
+        direct = series.resample("15min").mean()
+        assert list(translated) == list(direct)
+        assert list(series.resample("1h").mean()) == \
+            list(original_resample(series, "1h").mean())
+        try:
+            series.resample("M").mean()
+            raise AssertionError("'M' must still raise, not be translated")
+        except ValueError:
+            pass
+    finally:
+        pd.core.generic.NDFrame.resample = original_resample
+
+    # A twelfth: the same translation, on asfreq - a separate wrapper because
+    # a resample-only patch left this method's "H" still failing.
+    original_asfreq = pd.core.generic.NDFrame.asfreq
+    try:
+        assert install_legacy_asfreq()
+        idx = pd.date_range("2020-01-01", periods=48, freq="1h")
+        series = pd.Series(range(48), index=idx)
+        assert list(series.asfreq("H")) == list(series.asfreq("h"))
+        assert list(series.asfreq("1h")) == \
+            list(original_asfreq(series, "1h"))
+        try:
+            series.asfreq("M")
+            raise AssertionError("'M' must still raise, not be translated")
+        except ValueError:
+            pass
+    finally:
+        pd.core.generic.NDFrame.asfreq = original_asfreq
+
+    # The twelfth shim: replace(method=...) reproduces the pre-removal
+    # fill-after-replace semantics; a call without method is untouched.
+    original_replace = pd.core.generic.NDFrame.replace
+    try:
+        assert install_legacy_replace_method()
+        s = pd.Series([0.0, 1.0, 0.0, 2.0])
+        got = s.replace(to_replace=0, method="ffill")
+        want = original_replace(s, to_replace=0, value=None).ffill()
+        assert got.equals(want)
+        # No `method` kwarg: passes straight through, unmodified result.
+        plain = s.replace(to_replace=0, value=9)
+        assert list(plain) == list(original_replace(s, to_replace=0, value=9))
+    finally:
+        pd.core.generic.NDFrame.replace = original_replace
+
+    # The thirteenth shim: DataFrame.append reproduces pd.concat under the
+    # old name and signature; nothing calls it successfully beforehand, so
+    # there is no untouched case to keep separate from the restored one.
+    had_append = hasattr(pd.DataFrame, "append")
+    try:
+        assert not had_append, "pandas already has DataFrame.append again"
+        assert install_dataframe_append()
+        left = pd.DataFrame({"a": [1, 2]})
+        right = pd.DataFrame({"a": [3, 4]})
+        got = left.append(right, ignore_index=True)
+        want = pd.concat([left, right], ignore_index=True,
+                        verify_integrity=False, sort=False)
+        assert got.equals(want)
+    finally:
+        if not had_append:
+            del pd.DataFrame.append
+
+    # The fourteenth shim: the old path reaches keras's own current plot_model,
     # unmodified. Keras is only on the TensorFlow companion image; skip
     # rather than fail where it is not installed, same as the runmode shim
     # above skips where freqtrade itself cannot be imported.

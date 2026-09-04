@@ -388,7 +388,9 @@ DEFAULT_IMAGE = "strategy-audit-runtime:2026.7"
 # because the row is measured separately in the FreqAI arm, which is a
 # different question from "no measurement is possible at all".
 NO_REPAIR_POSSIBLE = {"timeframe_not_recoverable", "no_stoploss",
-                      "no_exit_logic", "freqai_model"}
+                      "no_exit_logic", "freqai_model",
+                      "no_populate_indicators", "missing_author_data_file",
+                      "invalid_declared_config"}
 
 
 def _json(path, key="results"):
@@ -764,6 +766,17 @@ def rows():
             gate_record.get("status") == "NA"
             and "too few trades" in (gate_record.get("why") or "")
             and FULL_FALLBACK in (gate_record.get("attempted_timeranges") or []))
+        # C4, reached from the gate rather than from a trial-run failure:
+        # `TGMA` measures and trades fine, but its own declared
+        # trailing_stop_positive_offset is smaller than its own declared
+        # trailing_stop_positive, and freqtrade's lookahead-analysis refuses
+        # to start over it. Both values are the author's; adjusting either
+        # would be guessing which one they meant, the same ground as a
+        # missing stoploss, just found by a gate instead of the trial run.
+        invalid_gate_config = (
+            gate_record.get("status") == "NA"
+            and "needs to be greater than trailing_stop_positive"
+               in (gate_record.get("why") or ""))
         ran_here = bool(measurement or diagnostics or window or settled)
         if role != "strategy":
             # Decided before any measurement is consulted, because no
@@ -1128,6 +1141,18 @@ def rows():
             # never starts, so the pending-side flag from before this row was
             # decided does not belong on it any more.
             open_work = []
+        # C4, reached from the gate rather than a trial-run failure: see
+        # `invalid_gate_config` above. The row measures and trades fine, so
+        # `repair` never carries a verdict for it; the refusal is the
+        # lookahead gate's own, over the author's declared trailing-stop
+        # combination.
+        if cohort == "pending" and invalid_gate_config:
+            cohort = "excluded"
+            reason = "repair_refused_would_invent_strategy"
+            basis = "own_measurement"
+            repair["family"] = "invalid_declared_config"
+            repair["verdict"] = "refuse_repair"
+            open_work = []
         # C5: a repair route ran, searched the corpus for a candidate (or
         # applied one), and the row still does not start. `repair_attempted`
         # already means every candidate was tried and none worked;
@@ -1182,7 +1207,16 @@ def rows():
         # under every column write in the corpus, not just these eighteen
         # rows' own. That is the "large intervention" a narrow shim exists
         # to avoid, so none is written.
-        if cohort == "pending" and repair.get("family") == "dtype_drift":
+        # `repair["family"]` can still read an earlier, already-fixed
+        # problem - a row a compat shim rescued from "class does not load"
+        # can land on this same dtype wall afterward, and the shim's family
+        # keeps the slot (`MultiMA_TSL5`: whitespace_tolerant_class_scan
+        # fixed the import, framework_compat_shim is what repair_source
+        # still says, and the row is on the C8 dtype wall regardless). So
+        # the raw failure text is checked too, not only the family tag.
+        dtype_wall = (repair.get("family") == "dtype_drift"
+                     or "could not be promoted" in (measurement.get("why") or ""))
+        if cohort == "pending" and dtype_wall:
             cohort = "excluded"
             reason = "shared_runtime_change_declined"
             basis = "own_measurement"

@@ -64,8 +64,40 @@ FAMILIES = (
      "The strategy declares no stoploss. Supplying one does not restore "
      "anything the author wrote; it invents the risk management and then "
      "measures the invention."),
+    ("no_stoploss", "needs to be different from 0", "refuse_repair",
+     "The strategy declares stoploss = 0 outright, which freqtrade refuses "
+     "for the same reason as declaring none: 0 disables the stop entirely, "
+     "and choosing a real value would be inventing risk management the "
+     "author never wrote. Same family, freqtrade's other wording for it."),
     ("no_exit_logic", "must be implemented", "refuse_repair",
      "No exit logic at all. Whatever we wrote would be ours, not theirs."),
+    ("no_populate_indicators", "abstract method 'populate_indicators'",
+     "refuse_repair",
+     "The class never implements populate_indicators, freqtrade's own "
+     "required entry point - not a missing helper, the method every "
+     "strategy is built around. Writing one would be authoring the "
+     "strategy from nothing."),
+    ("missing_author_data_file", "model_portfolio.pkl", "refuse_repair",
+     "The strategy opens a specific file - a pre-trained model, a lookup "
+     "table - that the author's own repository never included. No corpus "
+     "copy exists to restore; inventing the contents would measure "
+     "something the author never ran. Named narrowly (the exact missing "
+     "file, not the generic FileNotFoundError text) so this never collides "
+     "with AutoArimaTripleV1's unrelated missing log DIRECTORY, which is a "
+     "write target this audit's own environment supplies, not an input the "
+     "author would have had to ship - see repair/compat_signature.py's "
+     "install_dataframe_append docstring and this file's own history for "
+     "that row's actual fix."),
+    ("missing_author_data_file", "Could not find pair source at", "refuse_repair",
+     "Same shape as the file-not-found case above, in the strategy's own "
+     "wording: a data file the author's repository never shipped."),
+    ("invalid_declared_config", "needs to be greater than trailing_stop_positive",
+     "refuse_repair",
+     "The author declared trailing_stop_positive_offset smaller than "
+     "trailing_stop_positive, which freqtrade refuses to start on. Both "
+     "values are the author's own; swapping or adjusting either one would "
+     "be guessing which of the two they meant, not restoring what they "
+     "wrote."),
     ("dtype_drift", "dtype", "needs_a_look",
      "The strategy's own code trips a pandas or numpy type rule that has "
      "tightened since it was written. Sometimes a one-line cast the author "

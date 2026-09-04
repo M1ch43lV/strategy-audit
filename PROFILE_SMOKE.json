@@ -189,9 +189,12 @@
     },
     "AutoArimaTripleV1": {
       "canonical_sha256": "sha256_28658be5735d28879c3f4aac0a7b46367308215d2f3291992cb2ac1e831056c9",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_dataframe_append",
+        "legacy_hour_asfreq_rule"
+      ],
       "debug_log": "user_data/profile_smoke_logs/AutoArimaTripleV1-06610f2a.log",
-      "elapsed_s": 34.2,
+      "elapsed_s": 30.9,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy AutoArimaTripleV1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AutoArimaTripleV1-06610f2a --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -199,7 +202,7 @@
       "runtime_id": "native_unversioned",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "'DataFrame' object has no attribute 'append'"
+      "why": "Not enough data in history. Please first download enough data"
     },
     "BBMod1": {
       "archive": "user_data/profile_smoke/BBMod1-2026-08-31_15-57-29.zip",
@@ -543,17 +546,18 @@
       "why": "Impossible to load Strategy 'BinanceStream'. This class does not exist or contains Python code errors."
     },
     "BlueEyes_MPP_v1": {
-      "canonical_sha256": "sha256_76b7b90abb59077319d6172d3e6c2bf695d9e1e3a314348bfeefce0a53461dff",
+      "canonical_sha256": "sha256_ff2aa976fc35dff5c83a637f78e6776a3bbf43c3f38ae8e2fc22b8d09161bbdd",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/BlueEyes_MPP_v1.log",
-      "elapsed_s": 25.1,
+      "debug_log": "user_data/profile_smoke_logs/BlueEyes_MPP_v1-6b3a60ae.log",
+      "elapsed_s": 30.0,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BlueEyes_MPP_v1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BlueEyes_MPP_v1-6b3a60ae --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "runtime_id": "native_unversioned",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'BlueEyes_MPP_v1'. This class does not exist or contains Python code errors."
+      "why": "unsupported callable"
     },
     "BreakEven": {
       "archive": "user_data/profile_smoke/BreakEven-2026-08-31_14-56-18.zip",
@@ -678,17 +682,18 @@
       "why": "Configuration error: 'stoploss' is a required property"
     },
     "ClucHAnix_BB_RPB_MOD_trailing_buy": {
-      "canonical_sha256": "sha256_008305386e9f644836f71b3ea89e31d90e1fc99cfc59e96387c6e08f32289065",
+      "canonical_sha256": "sha256_aee9aeba5466060187005e5a2909b7ee86562fc7a34c2bff28611dfd66512151",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/ClucHAnix_BB_RPB_MOD_trailing_buy.log",
-      "elapsed_s": 24.3,
+      "debug_log": "user_data/profile_smoke_logs/ClucHAnix_BB_RPB_MOD_trailing_buy-b43a1147.log",
+      "elapsed_s": 42.3,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy ClucHAnix_BB_RPB_MOD_trailing_buy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix_BB_RPB_MOD_trailing_buy-b43a1147 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "runtime_id": "native_unversioned",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'ClucHAnix_BB_RPB_MOD_trailing_buy'. This class does not exist or contains Python code errors."
+      "why": "'buy_tag'"
     },
     "ClucHAnix_BB_RPB_TraNz": {
       "canonical_sha256": "sha256_632bce3462b54af74552c873cdea99e047b5362fd482c105fd55f2acb82bd16a",
@@ -2281,17 +2286,25 @@
       "why": "Impossible to load Strategy 'LitmusSimpleStrategy'. This class does not exist or contains Python code errors."
     },
     "LongShortRangeTradingMachetesV1": {
+      "archive": "user_data/profile_smoke/LongShortRangeTradingMachetesV1-547b224f-2026-09-04_11-18-43.zip",
+      "archive_sha256": "sha256_b6cc56c42e4d14f69ceedf723365055596ed05ae386c56a88d6237489dbe2f58",
       "canonical_sha256": "sha256_33f0c77297f307e7dc7d88b6ffcdd07939c5812852fad7ec9fb3909fc6f0ccc1",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/LongShortRangeTradingMachetesV1.log",
-      "elapsed_s": 25.3,
+      "class1_rules": [
+        "legacy_replace_method_kwarg"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 50.0,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy LongShortRangeTradingMachetesV1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/LongShortRangeTradingMachetesV1-547b224f --cache none",
+      "long_trades": 0,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "status": "failed",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "NDFrame.replace() got an unexpected keyword argument 'method'"
+      "trades": 0,
+      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
     "MACDCCI": {
       "canonical_sha256": "sha256_13131ed784a7dd272f1cf8b3c8e81fe5d3ed9b7e4aab52c5347da9b8c4cda434",
@@ -3268,17 +3281,25 @@
       "trades_sha256": "sha256_0ed9a822674ad95d574c5d1913678cb69a5e2f68f817be65b875ec3dbdfa277b"
     },
     "Pmax": {
-      "canonical_sha256": "sha256_0d4334112a7d884ccb3d46f071af464f7c414c704402e066d30be8c48aa3f1a1",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/Pmax.log",
-      "elapsed_s": 23.5,
+      "archive": "user_data/profile_smoke/Pmax-4df3db7b-2026-09-04_11-22-56.zip",
+      "archive_sha256": "sha256_a7619ccc5db40d9a1cd161a66ee1aa2f346e31c2bb5fdabaeaf2e57405c86625",
+      "canonical_sha256": "sha256_3586d2d70dff852369c1c4f1dc063e291c63c332c1fc3b937af49dd98ae6fcd6",
+      "class1_rules": [
+        "legacy_pmax_parameter_names"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 59.9,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Pmax --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Pmax-4df3db7b --cache none",
+      "long_trades": 669,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "status": "failed",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "PMAX() got an unexpected keyword argument 'atrperiod'. Did you mean 'period'?"
+      "trades": 669,
+      "trades_sha256": "sha256_2025851d47d3ab00f617e1804d4299fd8120d34118bcd80736ef71d0cc86b448"
     },
     "PnF": {
       "canonical_sha256": "sha256_e1ac0106dae9b204a5e509862d65769f26c2a21a7e1dbb2937b977cbc2e5f319",
@@ -4497,6 +4518,27 @@
       "timerange": "20200301-20200401",
       "trades": 23,
       "trades_sha256": "sha256_5c13c23d10b1fe9e2cc30dae2043e09b922f55c699ce2baed3e0c2ff86accaf4"
+    },
+    "qrsi": {
+      "archive": "user_data/profile_smoke/qrsi-7b93d564-2026-09-04_11-20-23.zip",
+      "archive_sha256": "sha256_5bfd77cab99ea803d3e701d209d1c6202971186f09a7e1432c5f6a8bed57f4dc",
+      "canonical_sha256": "sha256_12f29e1936ac248f74b62a150b32c7ddfc960dba76928dd3c559e338398eada1",
+      "class1_rules": [
+        "legacy_minute_resample_rule"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 43.9,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy qrsi --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/qrsi-7b93d564 --cache none",
+      "long_trades": 394,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 394,
+      "trades_sha256": "sha256_4dc2ca10ff6f1dde7f6efa14922e847e387cf725397ea3c7c430f9eef46e71f8"
     },
     "quantumfirst": {
       "canonical_sha256": "sha256_94dedeffe4cf45cb841ea6d4ef0162023f490af667240c67c7a08797a4438e16",
