@@ -190,15 +190,16 @@
     "AutoArimaTripleV1": {
       "canonical_sha256": "sha256_28658be5735d28879c3f4aac0a7b46367308215d2f3291992cb2ac1e831056c9",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/AutoArimaTripleV1.log",
-      "elapsed_s": 21.9,
+      "debug_log": "user_data/profile_smoke_logs/AutoArimaTripleV1-06610f2a.log",
+      "elapsed_s": 34.2,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy AutoArimaTripleV1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AutoArimaTripleV1-06610f2a --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "runtime_id": "native_unversioned",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'AutoArimaTripleV1'. This class does not exist or contains Python code errors."
+      "why": "'DataFrame' object has no attribute 'append'"
     },
     "BBMod1": {
       "archive": "user_data/profile_smoke/BBMod1-2026-08-31_15-57-29.zip",
@@ -3860,17 +3861,25 @@
       "why": "freqAI is not enabled. Please enable it in your config to use this strategy."
     },
     "Test_MAMA4": {
+      "archive": "user_data/profile_smoke/Test_MAMA4-aa83c1d0-2026-09-04_06-22-04.zip",
+      "archive_sha256": "sha256_6011efb685f72857a16853b69d5112cf61222cb9bc17d2f61f70917759bd2daf",
       "canonical_sha256": "sha256_d6e1444c50e3f75888a5bf899e363c6b20334b41422c4bd68410242af66644bd",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/Test_MAMA4.log",
-      "elapsed_s": 24.3,
+      "class1_rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 35.9,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Test_MAMA4 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Test_MAMA4-aa83c1d0 --cache none",
+      "long_trades": 94,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "status": "failed",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "cannot reindex on an axis with duplicate labels"
+      "trades": 94,
+      "trades_sha256": "sha256_9dfa1d9bc4fa99e5ee0fac7a51b70c4cf09fddf2bf700ac0745f49ceffcd39d2"
     },
     "ToTheMoon": {
       "canonical_sha256": "sha256_50166db0362cdc89a798fc1caa7554f57c217a8d8f34f2ed8f6c498a7744a795",

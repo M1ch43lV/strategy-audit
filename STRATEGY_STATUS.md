@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-04 08:18:21 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-04 08:22:16 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -31,8 +31,8 @@ have neither and are left empty rather than given an invented time.
 | | Strategies |
 |---|---:|
 | in the manifest | 900 |
-| measured at all | 770 |
-| produced trades | 741 |
+| measured at all | 771 |
+| produced trades | 742 |
 | carrying a run time | 897 |
 
 ## Cohort
@@ -41,8 +41,8 @@ have neither and are left empty rather than given an invented time.
 |---|---:|
 | `E1_expanded` | 569 |
 | `excluded` | 191 |
-| `pending` | 74 |
-| `exclusion_unconfirmed` | 31 |
+| `pending` | 73 |
+| `exclusion_unconfirmed` | 32 |
 | `too_few_trades` | 21 |
 | `not_a_strategy` | 14 |
 
@@ -162,7 +162,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1090 of 2190 commands are recorded so far, and every new run
+recording. 1092 of 2190 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -3752,7 +3752,7 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Pending - 74 strategies
+## Pending - 73 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
@@ -3772,12 +3772,12 @@ neither a pass nor a fail.
 `PnF`, `PolymarketLogicalArbStrategy`, `Prediction_Strategy`, `Proton`
 `QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`, `RenkoYolo`
 `SMAOPv1_TTF`, `Schism6`, `SuperTrendPure`, `Supertrend`
-`TGMA`, `Test_MAMA4`, `TrainCatBoostStrategy`, `TuplaBollinger`
-`TwoCandleTheory`, `UpSliceStrategy`, `WTHO`, `haGradient`
-`multi_tf`, `new_turtle`, `new_turtle_roi`, `qrsi`
-`tacos1`, `thetank2`
+`TGMA`, `TrainCatBoostStrategy`, `TuplaBollinger`, `TwoCandleTheory`
+`UpSliceStrategy`, `WTHO`, `haGradient`, `multi_tf`
+`new_turtle`, `new_turtle_roi`, `qrsi`, `tacos1`
+`thetank2`
 
-## Exclusion unconfirmed - 31 strategies
+## Exclusion unconfirmed - 32 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -3789,7 +3789,7 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_verdict_on_lookahead` | `no_finding` | 21 |
+| `no_verdict_on_lookahead` | `no_finding` | 22 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 5 |
 | `recursive_bias_unverified` | `no_finding` | 4 |
 | `recursive_warmup_refused` | `no_finding` | 1 |
@@ -4007,9 +4007,9 @@ Wave `not_scheduled` - 1:
 | Item | Strategies |
 |---|---:|
 | `recursive_ladder_pending` | 212 |
-| `needs_a_look` | 66 |
+| `needs_a_look` | 65 |
 | `convergence_not_converged_within_ladder` | 60 |
-| `lookahead_remeasure_pending` | 33 |
+| `lookahead_remeasure_pending` | 34 |
 | `convergence_inconclusive` | 12 |
 | `repair_attempted` | 5 |
 | `to_be_fixed` | 1 |

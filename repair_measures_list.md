@@ -40,7 +40,7 @@ For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `BBRSIS`, `BBRSI
 
 ### Seven compatibility shims for freqtrade's own behaviour
 
-`repair_family: framework_compat_shim` &mdash; 107 strategies (repaired 92, repair_attempted 2, to_be_fixed 13)
+`repair_family: framework_compat_shim` &mdash; 108 strategies (repaired 92, repair_attempted 2, to_be_fixed 13, needs_a_look 1)
 
 **The message.**
 
@@ -342,7 +342,7 @@ For example: `AutoArimaTripleV1`, `BlueEyes_MPP_v1`, `ClucHAnix_BB_RPB_MOD_trail
 
 ### Open: one of a kind
 
-`repair_family: individual` &mdash; 26 strategies (needs_a_look 26)
+`repair_family: individual` &mdash; 25 strategies (needs_a_look 25)
 
 **The message.**
 
@@ -369,7 +369,7 @@ For example: `Astro`, `BestSingleAssetPortfolio`, `CryptoFrogNFI2`, `GodStra`, `
 | Rule | Strategies |
 |---|---:|
 | `startup_candles_not_limited_by_call_budget` | 62 |
-| `idempotent_entry_tag_initialisation` | 22 |
+| `idempotent_entry_tag_initialisation` | 23 |
 | `legacy_min_roi_reached_entry_signature` | 20 |
 | `lookahead_runmode_reports_backtest` | 17 |
 | `restore_copied_local_module` | 15 |
