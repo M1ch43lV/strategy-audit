@@ -147,6 +147,14 @@ REASON_ORDER = (
      "declares no timeframe, no stoploss, no exit logic, or names a model "
      "that no longer exists and cannot be restored; supplying one would "
      "measure our invention rather than the author's strategy"),
+    ("local_module_repair_exhausted",
+     "imports a helper the author shipped beside it; every candidate copy "
+     "in the corpus either fails to import, would shadow an installed "
+     "package, or imports cleanly but does not define what the strategy "
+     "calls"),
+    ("measured_only_in_freqai_arm",
+     "runs only under its author's own FreqAI configuration, measured "
+     "separately in that arm; not comparable with the ordinary spot audit"),
     ("canonical_implementation_not_measured", "never ran"),
     ("no_verdict_on_lookahead_and_recursive", "measured; neither gate returned a verdict"),
     ("no_verdict_on_lookahead", "measured and recursion clean; look-ahead has no verdict"),
@@ -626,7 +634,19 @@ def rows():
         wave = waves.get(strategy, {}).get("expansion_wave", "")
         measurement = smoke.get(strategy) or {}
         repair_run = repaired.get(strategy) or {}
-        if repair_run.get("status") in ("measured", "failed"):
+        # `repaired` is a handful of one-off runner stores, each written once
+        # and never touched again once no script remains that regenerates it.
+        # `smoke` is PROFILE_SMOKE.json, re-run directly whenever a rule is
+        # added or corrected. When both hold a record and disagree on which
+        # rules were active, the fresher one is whichever measured under the
+        # rules PROFILE_CLASS1 currently registers - not by construction
+        # whichever store this is. Solipsis4 and Dyna_opti needed a second
+        # shim after their module-path repair was already measured and
+        # filed; a bare `status in (...)` check kept reporting that stale
+        # failure days after a passing run sat in `smoke`.
+        current_rules = class1.get(strategy, {}).get("rules") or []
+        if repair_run.get("status") in ("measured", "failed") \
+                and repair_run.get("class1_rules", current_rules) == current_rules:
             # The obstacle is gone and the row produced trades. Continuing to
             # report the old failure would say the strategy does not run while
             # a run of it sits on disk.
@@ -1093,6 +1113,33 @@ def rows():
             # Nothing is still owed: no ladder will ever run on a row that
             # never starts, so the pending-side flag from before this row was
             # decided does not belong on it any more.
+            open_work = []
+        # C5: a repair route ran, searched the corpus for a candidate (or
+        # applied one), and the row still does not start. `repair_attempted`
+        # already means every candidate was tried and none worked;
+        # `repair_withdrawn` means the one candidate that satisfied the
+        # import shadowed an installed package and had to be taken back. In
+        # three cases - Solipsis6, SolipsisMM, DWT - a candidate WAS applied
+        # and the row moved past the import to a second, unrelated failure
+        # (a missing attribute the module never defined, a read-only numpy
+        # buffer); the search is exhausted either way, not merely undone.
+        if cohort == "pending" and repair.get("family") == "local_module_off_path" \
+                and repair.get("verdict") in ("repair_attempted", "repair_withdrawn"):
+            cohort = "excluded"
+            reason = "local_module_repair_exhausted"
+            basis = "own_measurement"
+            open_work = []
+        # C6: the FreqAI arm already measured this row under the author's own
+        # config, in a runtime this audit does not share. That is a genuine
+        # measurement, not a gap - the row is decided, just not by this
+        # audit's ordinary cohort. `refuse_repair` here means "not
+        # comparable", not "no fix exists", which is why it is its own
+        # criterion rather than folded into C4.
+        if cohort == "pending" and repair.get("verdict") == "refuse_repair" \
+                and repair.get("family") in ("freqai_arm", "freqai_config_built"):
+            cohort = "excluded"
+            reason = "measured_only_in_freqai_arm"
+            basis = "own_measurement"
             open_work = []
         if basis == "blocked" and not repair.get("verdict"):
             repair["verdict"] = "to_be_fixed"
@@ -1686,15 +1733,16 @@ def selftest():
     # were passing on 1 of 900 rows. A test that reports PASS while covering
     # almost nothing is worse than no test.
     for row in data:
-        # Excluded means one of exactly four things, and every one of them
-        # is a result this audit produced itself: the look-ahead check found
+        # Excluded means one of exactly six things, and every one of them is
+        # a result this audit produced itself: the look-ahead check found
         # bias, our own ladder failed to settle the indicators, the strategy
-        # ran the whole window and never traded, or a repair route read the
-        # file and refused to invent what the author never wrote. Nothing
-        # else may put a row here - in particular not the source-code trap
-        # heuristic, which excluded 40 running strategies before either bias
-        # check had seen them, and not a verdict inherited from the original
-        # sweep.
+        # ran the whole window and never traded, a repair route read the file
+        # and refused to invent what the author never wrote, a repair route
+        # exhausted every candidate module the corpus holds, or the row is
+        # already measured, just in the separate FreqAI arm. Nothing else may
+        # put a row here - in particular not the source-code trap heuristic,
+        # which excluded 40 running strategies before either bias check had
+        # seen them, and not a verdict inherited from the original sweep.
         if row["cohort"] == "excluded":
             assert row["exclusion_basis"] == "own_measurement",                 (row["strategy_id"], row["exclusion_basis"])
             assert (
@@ -1703,6 +1751,8 @@ def selftest():
                 or row["recursive_evidence"] == "convergence:not_settled"
                 or row["primary_reason"] == "no_trades_in_full_measurement"
                 or row["primary_reason"] == "repair_refused_would_invent_strategy"
+                or row["primary_reason"] == "local_module_repair_exhausted"
+                or row["primary_reason"] == "measured_only_in_freqai_arm"
             ), (row["strategy_id"], row["primary_reason"],
                 row["lookahead"], row["recursive_evidence"])
         # A trap is a fact about the source, never a verdict. It may sit on

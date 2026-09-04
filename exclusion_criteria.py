@@ -76,6 +76,14 @@ def _no_repair_possible(row):
     return row["primary_reason"] == "repair_refused_would_invent_strategy"
 
 
+def _local_module_exhausted(row):
+    return row["primary_reason"] == "local_module_repair_exhausted"
+
+
+def _freqai_arm_only(row):
+    return row["primary_reason"] == "measured_only_in_freqai_arm"
+
+
 CRITERIA = [
     {
         "id": "C1",
@@ -195,6 +203,71 @@ CRITERIA = [
                  "own configuration, and refused only for this audit's "
                  "ordinary cohort - a different question from whether any "
                  "measurement is possible.",
+    },
+    {
+        "id": "C5",
+        "name": "Local module repair exhausted every candidate",
+        "test": _local_module_exhausted,
+        "columns": 'primary_reason == "local_module_repair_exhausted"',
+        "what": "The strategy imports a helper the author shipped beside it "
+                "in their own repository, and the corpus copy has nowhere to "
+                "resolve from on its own. `repair_local_modules.py` searched "
+                "the whole corpus for another copy that satisfies the import.",
+        "why_final": "Three shapes, the search exhausted either way. No "
+                     "candidate imports at all - `BaseStrategy`, "
+                     "`BinanceStream` and four others, each candidate's own "
+                     "failure recorded. The one candidate that does import "
+                     "would shadow an installed package (`freqtrade` itself, "
+                     "for `DualModelPolymarketPortfolio` and three peers) and "
+                     "was applied, found to break other rows, and withdrawn. "
+                     "Or a candidate was applied and the row moved past the "
+                     "import to a second failure the import test cannot see - "
+                     "`Solipsis6` and `SolipsisMM` reach werkkrew's "
+                     "`custom_indicators` module and then call a function it "
+                     "does not define; `DWT` reaches a read-only numpy "
+                     "buffer past its own module fix. Restoring a module we "
+                     "cannot verify against the author's own copy would be "
+                     "writing code under their name.",
+        "evidence": "`REPAIR_LOCAL_MODULES.json` keeps every candidate tried "
+                    "and why each failed, or the shadowing that forced a "
+                    "withdrawal recorded in `PROFILE_CLASS1.json` with "
+                    "`status: withdrawn` rather than deleted.",
+        "watch": "A row with NO entry in `REPAIR_LOCAL_MODULES.json` at all "
+                 "has not been searched, not searched-and-refused - that is "
+                 "`needs_a_look`, not this criterion, and three rows moved "
+                 "from there to a working repair the same day this criterion "
+                 "was written (`Solipsis3`, `SolipsisCon`, `Solipsis4`, "
+                 "`Dyna_opti`), which is the reason `repair_attempted` is "
+                 "trusted here only once `repair_local_modules.py` has "
+                 "actually run against the row.",
+    },
+    {
+        "id": "C6",
+        "name": "Measured only in the separate FreqAI arm",
+        "test": _freqai_arm_only,
+        "columns": 'primary_reason == "measured_only_in_freqai_arm"',
+        "what": "The strategy is only half a strategy without its FreqAI "
+                "configuration - the feature set, the model, the training "
+                "window live in a config file, not the source - and it was "
+                "measured with the author's own config, in the FreqAI arm's "
+                "own runtime.",
+        "why_final": "Not a gap, a different measurement. The FreqAI arm "
+                     "answers a different question, under a different "
+                     "runtime, with the author's own settings rather than "
+                     "this audit's frozen basket and windows. Its result is "
+                     "real and is kept - `WTAI` and `WTRSIAI` both start and "
+                     "trade under the config `repair/freqai_config_wtai.py` "
+                     "rebuilt from the author's own commented block - it is "
+                     "just not comparable with the ordinary cohort, so it "
+                     "cannot admit a row here either.",
+        "evidence": "The arm's own result card - trades, verdict, the config "
+                    "used - travels with the row in `repair_settings` and "
+                    "`repair/results_freqai`.",
+        "watch": "This is the one criterion that is not a finding against "
+                 "the strategy. A row here may run perfectly well; it is "
+                 "excluded from THIS cohort because this audit's own "
+                 "preconditions - the eight-pair basket, the frozen windows, "
+                 "the shared runtime - were never applied to it.",
     },
 ]
 

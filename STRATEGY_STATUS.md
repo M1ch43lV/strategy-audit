@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-04 06:57:18 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-04 08:18:21 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -31,18 +31,18 @@ have neither and are left empty rather than given an invented time.
 | | Strategies |
 |---|---:|
 | in the manifest | 900 |
-| measured at all | 778 |
-| produced trades | 748 |
+| measured at all | 770 |
+| produced trades | 741 |
 | carrying a run time | 897 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
-| `E1_expanded` | 564 |
-| `excluded` | 170 |
-| `pending` | 95 |
-| `exclusion_unconfirmed` | 36 |
+| `E1_expanded` | 569 |
+| `excluded` | 191 |
+| `pending` | 74 |
+| `exclusion_unconfirmed` | 31 |
 | `too_few_trades` | 21 |
 | `not_a_strategy` | 14 |
 
@@ -162,7 +162,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1099 of 2190 commands are recorded so far, and every new run
+recording. 1090 of 2190 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -182,7 +182,7 @@ evaluate a single signal without it. The warm-up ladder passes
 `--startup-candle` with every rung at once, which is why one run
 reports the whole ladder.
 
-## Passing - 564 strategies
+## Passing - 569 strategies
 
 Every original gate returned `PASS`: measured in its native mode,
 produced trades, clean look-ahead and recursion, complete candle
@@ -217,7 +217,7 @@ coverage, no published trap.
 | `BBRSIOptim2020Strategy` | `spot_long` | `E1_expanded` | 34955 | `convergence:288:warmup_supplied` | 2026-09-01 12:09:44 | [log](user_data/convergence_logs/BBRSIOptim2020Strategy-ladder.log) |
 | `BBRSIOptimStrategy` | `spot_long` | `E1_expanded` | 10697 | `convergence:288:warmup_supplied` | 2026-09-01 12:10:08 | [log](user_data/convergence_logs/BBRSIOptimStrategy-ladder.log) |
 | `BBRSIOptimizedStrategy` | `spot_long` | `E1_expanded` | 33132 | `convergence:288:warmup_supplied` | 2026-09-01 13:02:19 | [log](user_data/convergence_logs/BBRSIOptimizedStrategy-ladder.log) |
-| `BBRSIS` | `spot_long` | `E1_expanded` | 110 | `convergence:8640:warmup_supplied` | 2026-09-01 19:33:03 | [archive](user_data/profile_smoke/BBRSIS-2026-09-01_19-33-03.zip) [log](user_data/convergence_logs/BBRSIS-ladder.log) |
+| `BBRSIS` | `spot_long` | `E1_expanded` |  | `convergence:8640:warmup_supplied` | 2026-09-03 14:40:12 | [log](user_data/profile_smoke_logs/BBRSIS.log) |
 | `BBRSIStrategy` | `spot_long` | `E1_expanded` | 12330 | `convergence:192:warmup_supplied` | 2026-09-01 12:10:32 | [log](user_data/convergence_logs/BBRSIStrategy-ladder.log) |
 | `BBRSITV` | `spot_long` | `E1_expanded` | 420 | `convergence:2016:warmup_supplied` | 2026-09-01 13:02:44 | [log](user_data/convergence_logs/BBRSITV-ladder.log) |
 | `BBRSIoriginal` | `spot_long` | `E1_expanded` | 47 | `convergence:168:warmup_supplied` | 2026-09-01 19:33:39 | [archive](user_data/profile_smoke/BBRSIoriginal-2026-09-01_19-33-39.zip) [log](user_data/convergence_logs/BBRSIoriginal-ladder.log) |
@@ -325,15 +325,15 @@ coverage, no published trap.
 | `ConsensusShort` | `futures_long_short` | `E1_expanded` | 414 | `convergence:288:warmup_supplied` | 2026-09-02 06:55:30 | [log](user_data/convergence_logs/ConsensusShort-ladder.log) |
 | `CoppockCurveStrategy` | `spot_long` | `E1_expanded` | 22332 | `convergence:288:warmup_supplied` | 2026-09-01 12:23:39 | [log](user_data/convergence_logs/CoppockCurveStrategy-ladder.log) |
 | `CrossEMAStrategy` | `spot_long` | `E1_expanded` | 4063 | `convergence:168:warmup_supplied` | 2026-09-01 13:18:36 | [log](user_data/convergence_logs/CrossEMAStrategy-ladder.log) |
-| `CryptoFrog` | `spot_long` | `E1_expanded` | 217 | `convergence:288:warmup_supplied` | 2026-09-01 20:36:48 | [archive](user_data/profile_smoke/CryptoFrog-2026-09-01_20-36-48.zip) [log](user_data/convergence_logs/CryptoFrog-ladder.log) |
-| `CryptoFrogHO` | `spot_long` | `E1_expanded` | 613 | `convergence:288:warmup_supplied` | 2026-09-01 20:37:32 | [archive](user_data/profile_smoke/CryptoFrogHO-2026-09-01_20-37-32.zip) [log](user_data/convergence_logs/CryptoFrogHO-ladder.log) |
-| `CryptoFrogHO2` | `spot_long` | `E1_expanded` | 672 | `convergence:288:warmup_supplied` | 2026-09-01 20:38:16 | [archive](user_data/profile_smoke/CryptoFrogHO2-2026-09-01_20-38-16.zip) [log](user_data/convergence_logs/CryptoFrogHO2-ladder.log) |
-| `CryptoFrogHO2A` | `spot_long` | `E1_expanded` | 672 | `convergence:288:warmup_supplied` | 2026-09-01 20:39:01 | [archive](user_data/profile_smoke/CryptoFrogHO2A-2026-09-01_20-39-01.zip) [log](user_data/convergence_logs/CryptoFrogHO2A-ladder.log) |
-| `CryptoFrogHO3A1` | `spot_long` | `E1_expanded` | 929 | `convergence:288:warmup_supplied` | 2026-09-01 20:39:46 | [archive](user_data/profile_smoke/CryptoFrogHO3A1-2026-09-01_20-39-46.zip) [log](user_data/convergence_logs/CryptoFrogHO3A1-ladder.log) |
-| `CryptoFrogHO3A2` | `spot_long` | `E1_expanded` | 964 | `convergence:288:warmup_supplied` | 2026-09-01 20:40:29 | [archive](user_data/profile_smoke/CryptoFrogHO3A2-2026-09-01_20-40-29.zip) [log](user_data/convergence_logs/CryptoFrogHO3A2-ladder.log) |
-| `CryptoFrogHO3A3` | `spot_long` | `E1_expanded` | 960 | `convergence:288:warmup_supplied` | 2026-09-01 20:46:38 | [archive](user_data/profile_smoke/CryptoFrogHO3A3-2026-09-01_20-46-38.zip) [log](user_data/convergence_logs/CryptoFrogHO3A3-ladder.log) |
-| `CryptoFrogHO3A4` | `spot_long` | `E1_expanded` | 564 | `convergence:288:warmup_supplied` | 2026-09-01 20:47:21 | [archive](user_data/profile_smoke/CryptoFrogHO3A4-2026-09-01_20-47-21.zip) [log](user_data/convergence_logs/CryptoFrogHO3A4-ladder.log) |
-| `CryptoFrog_nateema` | `spot_long` | `E1_expanded` | 478 | `convergence:288:warmup_supplied` | 2026-09-01 20:48:07 | [archive](user_data/profile_smoke/CryptoFrog_nateema-2026-09-01_20-48-07.zip) [log](user_data/convergence_logs/CryptoFrog_nateema-ladder.log) |
+| `CryptoFrog` | `spot_long` | `E1_expanded` |  | `convergence:288:warmup_supplied` | 2026-09-02 18:43:11 | [log](user_data/profile_smoke_logs/CryptoFrog.log) |
+| `CryptoFrogHO` | `spot_long` | `E1_expanded` |  | `convergence:288:warmup_supplied` | 2026-09-02 18:44:17 | [log](user_data/profile_smoke_logs/CryptoFrogHO.log) |
+| `CryptoFrogHO2` | `spot_long` | `E1_expanded` |  | `convergence:288:warmup_supplied` | 2026-09-02 18:45:18 | [log](user_data/profile_smoke_logs/CryptoFrogHO2.log) |
+| `CryptoFrogHO2A` | `spot_long` | `E1_expanded` |  | `convergence:288:warmup_supplied` | 2026-09-02 18:46:12 | [log](user_data/profile_smoke_logs/CryptoFrogHO2A.log) |
+| `CryptoFrogHO3A1` | `spot_long` | `E1_expanded` |  | `convergence:288:warmup_supplied` | 2026-09-02 18:47:07 | [log](user_data/profile_smoke_logs/CryptoFrogHO3A1.log) |
+| `CryptoFrogHO3A2` | `spot_long` | `E1_expanded` |  | `convergence:288:warmup_supplied` | 2026-09-02 18:48:01 | [log](user_data/profile_smoke_logs/CryptoFrogHO3A2.log) |
+| `CryptoFrogHO3A3` | `spot_long` | `E1_expanded` |  | `convergence:288:warmup_supplied` | 2026-09-02 18:48:55 | [log](user_data/profile_smoke_logs/CryptoFrogHO3A3.log) |
+| `CryptoFrogHO3A4` | `spot_long` | `E1_expanded` |  | `convergence:288:warmup_supplied` | 2026-09-02 18:49:56 | [log](user_data/profile_smoke_logs/CryptoFrogHO3A4.log) |
+| `CryptoFrog_nateema` | `spot_long` | `E1_expanded` |  | `convergence:288:warmup_supplied` | 2026-09-02 18:52:49 | [log](user_data/profile_smoke_logs/CryptoFrog_nateema.log) |
 | `CustomStoplossWithPSAR` | `spot_long` | `E1_expanded` | 140 | `convergence:24:warmup_supplied` | 2026-09-01 13:50:31 | [log](user_data/convergence_logs/CustomStoplossWithPSAR-ladder.log) |
 | `DD` | `spot_long` | `E1_expanded` | 32051 | `convergence:288:warmup_supplied` | 2026-09-01 15:45:44 | [log](user_data/convergence_logs/DD-ladder.log) |
 | `DWT_LongShort` | `futures_long_short` | `E1_expanded` | 859 | `convergence:288:warmup_supplied` | 2026-09-02 06:56:43 | [log](user_data/convergence_logs/DWT_LongShort-ladder.log) |
@@ -511,11 +511,13 @@ coverage, no published trap.
 | `NASOSv5_mod3` | `spot_long` | `E1_expanded` | 74 | `convergence:2016:warmup_supplied` | 2026-09-02 16:16:36 | [archive](user_data/profile_smoke/NASOSv5_mod3-2026-09-02_16-16-36.zip) [log](user_data/convergence_logs/NASOSv5_mod3-ladder.log) |
 | `NEWTEST15m` | `spot_long` | `E1_expanded` | 2644 | `convergence:672:warmup_supplied` | 2026-09-01 14:29:37 | [log](user_data/convergence_logs/NEWTEST15m-ladder.log) |
 | `NFI46` | `spot_long` | `E1_expanded` | 77 | `convergence:2016:warmup_supplied` | 2026-09-01 14:30:04 | [log](user_data/convergence_logs/NFI46-ladder.log) |
+| `NFI46Frog` | `spot_long` | `E1_expanded` | 180 | `convergence:2016:warmup_supplied` | 2026-09-03 20:56:46 | [archive](user_data/profile_smoke/NFI46Frog-c5debb17-2026-09-03_20-56-46.zip) [log](user_data/convergence_logs/NFI46Frog-ladder.log) |
 | `NFI46FrogZ` | `spot_long` | `E1_expanded` | 16273 | `convergence:2016:warmup_supplied` | 2026-09-01 14:30:31 | [log](user_data/convergence_logs/NFI46FrogZ-ladder.log) |
 | `NFI46Offset` | `spot_long` | `E1_expanded` | 941 | `convergence:2016:warmup_supplied` | 2026-09-01 14:30:57 | [log](user_data/convergence_logs/NFI46Offset-ladder.log) |
 | `NFI46OffsetHOA1` | `spot_long` | `E1_expanded` | 1037 | `convergence:2016:warmup_supplied` | 2026-09-01 14:31:24 | [log](user_data/convergence_logs/NFI46OffsetHOA1-ladder.log) |
 | `NFI46Z` | `spot_long` | `E1_expanded` | 699 | `convergence:2016:warmup_supplied` | 2026-09-01 14:31:53 | [log](user_data/convergence_logs/NFI46Z-ladder.log) |
 | `NFI47V2` | `spot_long` | `E1_expanded` | 524 | `convergence:2016:warmup_supplied` | 2026-09-01 12:33:20 | [log](user_data/convergence_logs/NFI47V2-ladder.log) |
+| `NFI4Frog` | `spot_long` | `E1_expanded` | 188 | `convergence:2016:warmup_supplied` | 2026-09-03 20:57:25 | [archive](user_data/profile_smoke/NFI4Frog-a1f40e4d-2026-09-03_20-57-25.zip) [log](user_data/convergence_logs/NFI4Frog-ladder.log) |
 | `NFI5MOHO` | `spot_long` | `E1_expanded` | 378 | `convergence:2016:warmup_supplied` | 2026-09-01 14:32:21 | [log](user_data/convergence_logs/NFI5MOHO-ladder.log) |
 | `NFI5MOHO2` | `spot_long` | `E1_expanded` | 1436 | `convergence:2016:warmup_supplied` | 2026-09-01 12:33:48 | [log](user_data/convergence_logs/NFI5MOHO2-ladder.log) |
 | `NFI5MOHO_WIP` | `spot_long` | `E1_expanded` | 951 | `convergence:2016:warmup_supplied` | 2026-09-01 14:32:49 | [log](user_data/convergence_logs/NFI5MOHO_WIP-ladder.log) |
@@ -617,6 +619,8 @@ coverage, no published trap.
 | `Sar` | `spot_long` | `E1_expanded` | 12724 | `convergence:288:warmup_supplied` | 2026-09-01 15:00:35 | [log](user_data/convergence_logs/Sar-ladder.log) |
 | `Saturn5` | `spot_long` | `E1_expanded` | 3356 | `convergence:1344:warmup_supplied` | 2026-09-01 15:01:02 | [log](user_data/convergence_logs/Saturn5-ladder.log) |
 | `Scalp` | `spot_long` | `E1_expanded` | 28414 | `convergence:1440:warmup_supplied` | 2026-09-01 15:01:53 | [log](user_data/convergence_logs/Scalp-ladder.log) |
+| `Schism` | `spot_long` | `E1_expanded` | 388 | `convergence:288:warmup_supplied` | 2026-09-03 21:00:02 | [archive](user_data/profile_smoke/Schism-4f0b8f62-2026-09-03_21-00-02.zip) [log](user_data/convergence_logs/Schism-ladder.log) |
+| `Schism2` | `spot_long` | `E1_expanded` | 149 | `convergence:288:warmup_supplied` | 2026-09-03 21:05:52 | [archive](user_data/profile_smoke/Schism2-488547c4-2026-09-03_21-05-52.zip) [log](user_data/convergence_logs/Schism2-ladder.log) |
 | `Schism3` | `spot_long` | `E1_expanded` | 3631 | `convergence:288:warmup_supplied` | 2026-09-01 15:02:45 | [log](user_data/convergence_logs/Schism3-ladder.log) |
 | `Schism4` | `spot_long` | `E1_expanded` | 993 | `convergence:288:warmup_supplied` | 2026-09-01 15:03:10 | [log](user_data/convergence_logs/Schism4-ladder.log) |
 | `Seb` | `spot_long` | `E1_expanded` | 13947 | `convergence:576:warmup_supplied` | 2026-09-01 15:04:02 | [log](user_data/convergence_logs/Seb-ladder.log) |
@@ -647,6 +651,7 @@ coverage, no published trap.
 | `Strategy005` | `spot_long` | `E1_expanded` | 5597 | `convergence:288:warmup_supplied` | 2026-09-01 16:22:21 | [log](user_data/convergence_logs/Strategy005-ladder.log) |
 | `StrategyScalpingFast` | `spot_long` | `E1_expanded` | 4830 | `convergence:1440:warmup_supplied` | 2026-09-01 12:46:27 | [log](user_data/convergence_logs/StrategyScalpingFast-ladder.log) |
 | `StrategyScalpingFast2` | `spot_long` | `E1_expanded` | 1468 | `convergence:1440:warmup_supplied` | 2026-09-01 16:23:18 | [log](user_data/convergence_logs/StrategyScalpingFast2-ladder.log) |
+| `SuperHV27` | `spot_long` | `E1_expanded` | 226 | `convergence:576:warmup_supplied` | 2026-09-03 21:02:15 | [archive](user_data/profile_smoke/SuperHV27-aefe004a-2026-09-03_21-02-15.zip) [log](user_data/convergence_logs/SuperHV27-ladder.log) |
 | `SuperTrend` | `spot_long` | `E1_expanded` | 2219 | `convergence:1440:warmup_supplied` | 2026-09-03 19:50:54 | [log](user_data/convergence_logs/SuperTrend-e9770a14-ladder.log) |
 | `SupertrendStrategy` | `spot_long` | `E1_expanded` | 3820 | `convergence:336:warmup_supplied` | 2026-09-02 07:43:31 | [log](user_data/convergence_logs/SupertrendStrategy-ladder.log) |
 | `SwingHigh` | `spot_long` | `E1_expanded` | 20 | `convergence:336:warmup_supplied` | 2026-09-01 19:52:15 | [archive](user_data/profile_smoke/SwingHigh-2026-09-01_19-52-15.zip) [log](user_data/convergence_logs/SwingHigh-ladder.log) |
@@ -901,7 +906,7 @@ The calls behind each, one per gate:
   ```
 - `BBRSIS`
   ```
-  backtest   [recorded] freqtrade backtesting --config user_data/profile_configs/BBRSIS-override-2c7527d808c6.json --strategy BBRSIS --strategy-path repair/patched/repos/davidzr_freqtrade-strategies/strategies/BBRSIS --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBRSIS --cache none
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy BBRSIS --strategy-path repair/patched/repos/davidzr_freqtrade-strategies/strategies/BBRSIS --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBRSIS --cache none --timeframe 5m
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/BBRSIS_gate.json --strategy BBRSIS --strategy-path user_data/profile_bias_strategies/BBRSIS --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/BBRSIS_startup_288.json --strategy BBRSIS --strategy-path user_data/profile_bias_strategies/BBRSIS --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032 8640 25920 --timeframe 5m
   ```
@@ -1458,55 +1463,55 @@ The calls behind each, one per gate:
   ```
 - `CryptoFrog`
   ```
-  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrog --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrog --cache none
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy CryptoFrog --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrog --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrog_gate.json --strategy CryptoFrog --strategy-path user_data/profile_bias_strategies/CryptoFrog --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/CryptoFrog_startup_288.json --strategy CryptoFrog --strategy-path user_data/profile_bias_strategies/CryptoFrog --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `CryptoFrogHO`
   ```
-  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogHO --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO --cache none
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy CryptoFrogHO --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrogHO_gate.json --strategy CryptoFrogHO --strategy-path user_data/profile_bias_strategies/CryptoFrogHO --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/CryptoFrogHO_startup_288.json --strategy CryptoFrogHO --strategy-path user_data/profile_bias_strategies/CryptoFrogHO --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `CryptoFrogHO2`
   ```
-  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogHO2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO2 --cache none
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy CryptoFrogHO2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO2 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrogHO2_gate.json --strategy CryptoFrogHO2 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO2 --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/CryptoFrogHO2_startup_288.json --strategy CryptoFrogHO2 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO2 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `CryptoFrogHO2A`
   ```
-  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogHO2A --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO2A --cache none
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy CryptoFrogHO2A --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO2A --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrogHO2A_gate.json --strategy CryptoFrogHO2A --strategy-path user_data/profile_bias_strategies/CryptoFrogHO2A --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/CryptoFrogHO2A_startup_288.json --strategy CryptoFrogHO2A --strategy-path user_data/profile_bias_strategies/CryptoFrogHO2A --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `CryptoFrogHO3A1`
   ```
-  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogHO3A1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO3A1 --cache none
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy CryptoFrogHO3A1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO3A1 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrogHO3A1_gate.json --strategy CryptoFrogHO3A1 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO3A1 --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/CryptoFrogHO3A1_startup_288.json --strategy CryptoFrogHO3A1 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO3A1 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `CryptoFrogHO3A2`
   ```
-  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogHO3A2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO3A2 --cache none
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy CryptoFrogHO3A2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO3A2 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrogHO3A2_gate.json --strategy CryptoFrogHO3A2 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO3A2 --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/CryptoFrogHO3A2_startup_288.json --strategy CryptoFrogHO3A2 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO3A2 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `CryptoFrogHO3A3`
   ```
-  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogHO3A3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO3A3 --cache none
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy CryptoFrogHO3A3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO3A3 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrogHO3A3_gate.json --strategy CryptoFrogHO3A3 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO3A3 --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/CryptoFrogHO3A3_startup_288.json --strategy CryptoFrogHO3A3 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO3A3 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `CryptoFrogHO3A4`
   ```
-  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrogHO3A4 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO3A4 --cache none
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy CryptoFrogHO3A4 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrogHO3A4 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrogHO3A4_gate.json --strategy CryptoFrogHO3A4 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO3A4 --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/CryptoFrogHO3A4_startup_288.json --strategy CryptoFrogHO3A4 --strategy-path user_data/profile_bias_strategies/CryptoFrogHO3A4 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `CryptoFrog_nateema`
   ```
-  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy CryptoFrog_nateema --strategy-path repos/TheoBrigitte_freqtrade/strategies/cryptofrog-strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrog_nateema --cache none
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy CryptoFrog_nateema --strategy-path repos/TheoBrigitte_freqtrade/strategies/cryptofrog-strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CryptoFrog_nateema --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrog_nateema_gate.json --strategy CryptoFrog_nateema --strategy-path user_data/profile_bias_strategies/CryptoFrog_nateema --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/CryptoFrog_nateema_startup_288.json --strategy CryptoFrog_nateema --strategy-path user_data/profile_bias_strategies/CryptoFrog_nateema --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
@@ -2457,6 +2462,12 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NFI46 --strategy-path user_data/profile_bias_strategies/NFI46 --timerange 20200101-20220101 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NFI46 --strategy-path user_data/profile_bias_strategies/NFI46 --timerange 20190101-20190401 --no-color
   ```
+- `NFI46Frog`
+  ```
+  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy NFI46Frog --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NFI46Frog-c5debb17 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/NFI46Frog-c5debb17_gate.json --strategy NFI46Frog --strategy-path user_data/profile_bias_strategies/NFI46Frog-c5debb17 --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NFI46Frog --strategy-path user_data/profile_bias_strategies/NFI46Frog --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
+  ```
 - `NFI46FrogZ`
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NFI46FrogZ --strategy-path user_data/profile_bias_strategies/NFI46FrogZ --timerange 20190101-20190401 --no-color
@@ -2481,6 +2492,12 @@ The calls behind each, one per gate:
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NFI47V2 --strategy-path user_data/profile_bias_strategies/NFI47V2 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NFI47V2 --strategy-path user_data/profile_bias_strategies/NFI47V2 --timerange 20190101-20190401 --no-color
+  ```
+- `NFI4Frog`
+  ```
+  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy NFI4Frog --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NFI4Frog-a1f40e4d --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/NFI4Frog-a1f40e4d_gate.json --strategy NFI4Frog --strategy-path user_data/profile_bias_strategies/NFI4Frog-a1f40e4d --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NFI4Frog --strategy-path user_data/profile_bias_strategies/NFI4Frog --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `NFI5MOHO`
   ```
@@ -3000,6 +3017,18 @@ The calls behind each, one per gate:
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Scalp --strategy-path user_data/profile_bias_strategies/Scalp --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Scalp --strategy-path user_data/profile_bias_strategies/Scalp --timerange 20190101-20190401 --no-color
   ```
+- `Schism`
+  ```
+  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy Schism --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Schism-4f0b8f62 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/Schism-4f0b8f62_gate.json --strategy Schism --strategy-path user_data/profile_bias_strategies/Schism-4f0b8f62 --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Schism --strategy-path user_data/profile_bias_strategies/Schism --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
+  ```
+- `Schism2`
+  ```
+  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy Schism2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Schism2-488547c4 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/Schism2-488547c4_gate.json --strategy Schism2 --strategy-path user_data/profile_bias_strategies/Schism2-488547c4 --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Schism2 --strategy-path user_data/profile_bias_strategies/Schism2 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
+  ```
 - `Schism3`
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Schism3 --strategy-path user_data/profile_bias_strategies/Schism3 --timerange 20190101-20190401 --no-color
@@ -3152,6 +3181,12 @@ The calls behind each, one per gate:
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy StrategyScalpingFast2 --strategy-path user_data/profile_bias_strategies/StrategyScalpingFast2 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy StrategyScalpingFast2 --strategy-path user_data/profile_bias_strategies/StrategyScalpingFast2 --timerange 20190101-20190401 --no-color
+  ```
+- `SuperHV27`
+  ```
+  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy SuperHV27 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperHV27-aefe004a --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/SuperHV27-aefe004a_gate.json --strategy SuperHV27 --strategy-path user_data/profile_bias_strategies/SuperHV27-aefe004a --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/SuperHV27_startup_288.json --strategy SuperHV27 --strategy-path user_data/profile_bias_strategies/SuperHV27 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `SuperTrend`
   ```
@@ -3717,37 +3752,32 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Pending - 95 strategies
+## Pending - 74 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
 
-`AdvancedRiskFilterStrategy`, `Astro`, `AstroQAV4`, `AutoArimaTripleV1`
-`BBRSI`, `BB_RPB_3c`, `BaseStrategy`, `BestSingleAssetPortfolio`
-`BinClucMadDevelop`, `BinClucMadSMADevelop`, `BinanceStream`, `BlueEyes_MPP_v1`
-`ClucHAnix_BB_RPB_MOD_trailing_buy`, `CombinedBinHAndClucV6H`, `CopyLitmusMinMaxBroadClassificationStrategy`, `CoreStrategy`
-`CryptoFrogNFI2`, `CryptoPredictionTraining`, `DIV_v1`, `DWT`
-`Danke`, `DualModelPolymarketPortfolio`, `Dyna_opti`, `EmaCrossStrategy`
-`Enchilada`, `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `FastSupertrend`
-`FastSupertrendOpt`, `FileLoadingStrategy`, `GPR`, `GodStra`
-`Guacamole`, `GymStrategy`, `HLHB`, `KMM`
-`Kamaflage`, `LitmusEntryRollClassificationStrategy`, `LitmusMLDPStrategy`, `LitmusMinMaxBroadClassificationStrategy`
-`LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`, `LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`
-`LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`, `LongShortRangeTradingMachetesV1`, `MKR`
-`MasterMoniGoManiHyperStrategy`, `MlpSpeculativeStrategy`, `MomentumRegimeBasket15m`, `MostOfAll`
-`MultiMA_TSL5`, `MultiMa`, `MyStrategyNew10`, `NoLost`
-`NowoIchimoku1hV1`, `Persia`, `Pmax`, `PnF`
-`PolymarketLogicalArbStrategy`, `PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy`, `Prediction_Strategy`
-`Proton`, `QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`
-`RenkoYolo`, `SMAOPv1_TTF`, `Schism6`, `Solipsis4`
-`Solipsis5`, `Solipsis6`, `SolipsisMM`, `SuperTrendPure`
-`Supertrend`, `TGMA`, `TankAi`, `TankAiRevival`
-`Test_MAMA4`, `TrainCatBoostStrategy`, `TuplaBollinger`, `TwoCandleTheory`
-`UpSliceStrategy`, `WTAI`, `WTHO`, `WTRSIAI`
-`haGradient`, `multi_tf`, `new_turtle`, `new_turtle_roi`
-`qrsi`, `tacos1`, `thetank2`
+`Astro`, `AutoArimaTripleV1`, `BBRSI`, `BestSingleAssetPortfolio`
+`BinClucMadDevelop`, `BinClucMadSMADevelop`, `BlueEyes_MPP_v1`, `ClucHAnix_BB_RPB_MOD_trailing_buy`
+`CombinedBinHAndClucV6H`, `CopyLitmusMinMaxBroadClassificationStrategy`, `CoreStrategy`, `CryptoFrogNFI2`
+`CryptoPredictionTraining`, `DIV_v1`, `Danke`, `Enchilada`
+`FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `FastSupertrend`, `FastSupertrendOpt`
+`GPR`, `GodStra`, `Guacamole`, `GymStrategy`
+`HLHB`, `KMM`, `Kamaflage`, `LitmusEntryRollClassificationStrategy`
+`LitmusMLDPStrategy`, `LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`
+`LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`
+`LongShortRangeTradingMachetesV1`, `MKR`, `MasterMoniGoManiHyperStrategy`, `MomentumRegimeBasket15m`
+`MostOfAll`, `MultiMA_TSL5`, `MultiMa`, `MyStrategyNew10`
+`NoLost`, `NowoIchimoku1hV1`, `Persia`, `Pmax`
+`PnF`, `PolymarketLogicalArbStrategy`, `Prediction_Strategy`, `Proton`
+`QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`, `RenkoYolo`
+`SMAOPv1_TTF`, `Schism6`, `SuperTrendPure`, `Supertrend`
+`TGMA`, `Test_MAMA4`, `TrainCatBoostStrategy`, `TuplaBollinger`
+`TwoCandleTheory`, `UpSliceStrategy`, `WTHO`, `haGradient`
+`multi_tf`, `new_turtle`, `new_turtle_roi`, `qrsi`
+`tacos1`, `thetank2`
 
-## Exclusion unconfirmed - 36 strategies
+## Exclusion unconfirmed - 31 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -3759,9 +3789,9 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_verdict_on_lookahead` | `no_finding` | 27 |
+| `no_verdict_on_lookahead` | `no_finding` | 21 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 5 |
-| `recursive_bias_unverified` | `no_finding` | 3 |
+| `recursive_bias_unverified` | `no_finding` | 4 |
 | `recursive_warmup_refused` | `no_finding` | 1 |
 
 This is not a softening. A row here may well end up excluded - the
@@ -3769,7 +3799,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 170 strategies, by decisive reason
+## Not passing - 191 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -3817,7 +3847,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 170 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 191 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -3825,22 +3855,26 @@ one of them carries none.
 
 | Reason | Meaning | Strategies |
 |---|---|---:|
-| `lookahead_found` | reads data it could not have had at the time | 86 |
+| `lookahead_found` | reads data it could not have had at the time | 89 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 60 |
 | `no_trades_in_full_measurement` | never trades over the full window | 7 |
 | `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 17 |
+| `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 13 |
+| `measured_only_in_freqai_arm` | runs only under its author's own FreqAI configuration, measured separately in that arm; not comparable with the ordinary spot audit | 5 |
 
 
 ### Reason by wave
 
 | Reason | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `E0_strict67` | `not_scheduled` |
 |---|---|---|---|---|---|---|
-| `lookahead_found` | 2 | 0 | 19 | 0 | 0 | 65 |
+| `lookahead_found` | 2 | 0 | 19 | 0 | 0 | 68 |
 | `recursive_bias_found` | 0 | 3 | 17 | 14 | 1 | 25 |
 | `no_trades_in_full_measurement` | 0 | 0 | 7 | 0 | 0 | 0 |
 | `repair_refused_would_invent_strategy` | 0 | 0 | 17 | 0 | 0 | 0 |
+| `local_module_repair_exhausted` | 0 | 0 | 13 | 0 | 0 | 0 |
+| `measured_only_in_freqai_arm` | 0 | 0 | 4 | 0 | 0 | 1 |
 
-### `lookahead_found` - 86
+### `lookahead_found` - 89
 
 Reads data it could not have had at the time.
 
@@ -3856,7 +3890,7 @@ Wave `C_measurement_recovery` - 19:
 `NostalgiaForInfinityXw`, `Obelisk_Ichimoku_Slow_v1_3`, `Obelisk_Ichimoku_ZEMA_v1`, `Stavix2`
 `Stinkfist`, `bbema`, `ichiV1_Marius`
 
-Wave `not_scheduled` - 65:
+Wave `not_scheduled` - 68:
 
 `AlexBTK_CT`, `AlexBattleTankKiller`, `AlexBattleTankKillerV3`, `AlexBattleTankKillerV40H`
 `Auto_EI_t4c0s`, `BBBreakoutStrategy`, `BB_RPB_TSL_c7c477d_20211030`, `BreakoutStrategy`
@@ -3866,15 +3900,15 @@ Wave `not_scheduled` - 65:
 `FrostAuraRandomStrategy`, `HEW`, `Heracles`, `HurstCycle3`
 `HyperStra_SMAOnly`, `Ichi`, `IchiVwapAdx`, `IchimokuCloudStrategy`
 `Leveraged`, `LookaheadStrategy`, `LorentzianClassification`, `MSO`
-`MaxSharpePortfolio`, `MinimumVariancePortfolio`, `MomentumRegimeBasket`, `NOTankAi_17`
-`NOTankAi_19`, `NWEv6`, `NeuroV1`, `NotAnotherSMAOffsetStrategy_uzi3`
-`Obelisk_TradePro_Ichi_v1_1`, `Obelisk_TradePro_Ichi_v2_1`, `PolymarketPortfolio`, `Precognition`
-`RSIDivTirail`, `ReinforcedQuickie`, `Renko`, `Rsiqui`
-`RsiquiV2`, `RsiquiV5`, `RsiquiV5_long_only`, `StarRise_strat3`
-`TSPredict`, `Tank1Modulus`, `Tank5ModulusDCA`, `Tank5ModulusDCAV3`
-`UziChan`, `UziChan2`, `Zeus`, `custom`
-`grad`, `ichiV1`, `tsp0chicken`, `turbov8`
-`wtc`
+`MacheteV8b`, `MacheteV8bRallimod`, `MacheteV8bRallimod2`, `MaxSharpePortfolio`
+`MinimumVariancePortfolio`, `MomentumRegimeBasket`, `NOTankAi_17`, `NOTankAi_19`
+`NWEv6`, `NeuroV1`, `NotAnotherSMAOffsetStrategy_uzi3`, `Obelisk_TradePro_Ichi_v1_1`
+`Obelisk_TradePro_Ichi_v2_1`, `PolymarketPortfolio`, `Precognition`, `RSIDivTirail`
+`ReinforcedQuickie`, `Renko`, `Rsiqui`, `RsiquiV2`
+`RsiquiV5`, `RsiquiV5_long_only`, `StarRise_strat3`, `TSPredict`
+`Tank1Modulus`, `Tank5ModulusDCA`, `Tank5ModulusDCAV3`, `UziChan`
+`UziChan2`, `Zeus`, `custom`, `grad`
+`ichiV1`, `tsp0chicken`, `turbov8`, `wtc`
 
 ### `recursive_bias_found` - 60
 
@@ -3934,6 +3968,29 @@ Wave `C_measurement_recovery` - 17:
 `MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`, `QuickAdapterV3`, `ScalpingCCI`
 `SimpleRiskFilterStrategy`
 
+### `local_module_repair_exhausted` - 13
+
+Imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls.
+
+Wave `C_measurement_recovery` - 13:
+
+`AdvancedRiskFilterStrategy`, `BB_RPB_3c`, `BaseStrategy`, `BinanceStream`
+`DWT`, `DualModelPolymarketPortfolio`, `EmaCrossStrategy`, `FileLoadingStrategy`
+`MlpSpeculativeStrategy`, `PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy`, `Solipsis6`
+`SolipsisMM`
+
+### `measured_only_in_freqai_arm` - 5
+
+Runs only under its author's own freqai configuration, measured separately in that arm; not comparable with the ordinary spot audit.
+
+Wave `C_measurement_recovery` - 4:
+
+`TankAi`, `TankAiRevival`, `WTAI`, `WTRSIAI`
+
+Wave `not_scheduled` - 1:
+
+`AstroQAV4`
+
 ## Expansion wave
 
 | Wave | Strategies |
@@ -3949,14 +4006,12 @@ Wave `C_measurement_recovery` - 17:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 230 |
-| `needs_a_look` | 67 |
+| `recursive_ladder_pending` | 212 |
+| `needs_a_look` | 66 |
 | `convergence_not_converged_within_ladder` | 60 |
-| `lookahead_remeasure_pending` | 38 |
-| `repair_attempted` | 16 |
-| `convergence_inconclusive` | 11 |
-| `repair_withdrawn` | 4 |
-| `refuse_repair` | 4 |
+| `lookahead_remeasure_pending` | 33 |
+| `convergence_inconclusive` | 12 |
+| `repair_attempted` | 5 |
 | `to_be_fixed` | 1 |
 
 Per-row detail, including every evidence path, is in

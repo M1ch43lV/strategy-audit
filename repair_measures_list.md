@@ -8,11 +8,11 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 
 | Verdict | Strategies | Meaning |
 |---|---:|---|
-| `repaired` | 128 | runs now, and the run is recorded |
-| `repair_attempted` | 18 | a route was applied and did not finish the job |
-| `to_be_fixed` | 26 | the route is known, the run has not happened yet |
+| `repaired` | 136 | runs now, and the run is recorded |
+| `repair_attempted` | 16 | a route was applied and did not finish the job |
+| `to_be_fixed` | 18 | the route is known, the run has not happened yet |
 | `needs_a_look` | 67 | no route yet; the obstacle has been identified |
-| `repair_withdrawn` | 4 | the repair made things worse and was undone |
+| `repair_withdrawn` | 6 | the repair made things worse and was undone |
 | `refuse_repair` | 27 | repairing it would mean inventing the strategy |
 | `-` | 7 |  |
 
@@ -40,7 +40,7 @@ For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `BBRSIS`, `BBRSI
 
 ### Seven compatibility shims for freqtrade's own behaviour
 
-`repair_family: framework_compat_shim` &mdash; 107 strategies (repaired 84, repair_attempted 2, to_be_fixed 21)
+`repair_family: framework_compat_shim` &mdash; 107 strategies (repaired 92, repair_attempted 2, to_be_fixed 13)
 
 **The message.**
 
@@ -98,7 +98,7 @@ For example: `ARIMASTR`, `Apollo11`, `BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB
 
 ### The author's own module put back on the path
 
-`repair_family: local_module_off_path` &mdash; 26 strategies (repaired 2, repair_attempted 11, to_be_fixed 1, needs_a_look 1, repair_withdrawn 4, - 7)
+`repair_family: local_module_off_path` &mdash; 26 strategies (repaired 2, repair_attempted 9, to_be_fixed 1, needs_a_look 1, repair_withdrawn 6, - 7)
 
 **The message.**
 
@@ -370,9 +370,9 @@ For example: `Astro`, `BestSingleAssetPortfolio`, `CryptoFrogNFI2`, `GodStra`, `
 |---|---:|
 | `startup_candles_not_limited_by_call_budget` | 62 |
 | `idempotent_entry_tag_initialisation` | 22 |
-| `legacy_min_roi_reached_entry_signature` | 18 |
-| `restore_copied_local_module` | 17 |
+| `legacy_min_roi_reached_entry_signature` | 20 |
 | `lookahead_runmode_reports_backtest` | 17 |
+| `restore_copied_local_module` | 15 |
 | `restore_author_package_extension` | 11 |
 | `restore_author_config` | 11 |
 | `whitespace_tolerant_class_scan` | 6 |

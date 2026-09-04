@@ -430,12 +430,13 @@
       "withdrawn_path": "repos/mlsys-io_PortfolioBench"
     },
     "Dyna_opti": {
-      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement Also calls min_roi_reached_entry(trade_dur) in the pre-2022 one-argument form against the base class; use_custom_roi is not set.",
       "python_paths": [
         "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
       ],
       "rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "legacy_min_roi_reached_entry_signature"
       ],
       "status": "applied"
     },
@@ -1057,12 +1058,13 @@
       "status": "applied"
     },
     "Solipsis4": {
-      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement Also calls min_roi_reached_entry(trade_dur) in the pre-2022 one-argument form against the base class; use_custom_roi is not set.",
       "python_paths": [
         "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
       ],
       "rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "legacy_min_roi_reached_entry_signature"
       ],
       "status": "applied"
     },
@@ -1078,14 +1080,9 @@
       "status": "applied"
     },
     "Solipsis6": {
-      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
-      "python_paths": [
-        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
-      ],
-      "rules": [
-        "restore_copied_local_module"
-      ],
-      "status": "applied"
+      "note": "the corpus copy chosen for consistency with the other Solipsis variants imports cleanly but does not define bollinger_bands, which this file's own code calls; none of the three known custom_indicators.py copies in the corpus define it either, so the author was working from a revision none of the corpus holds.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
     },
     "SolipsisCon": {
       "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
@@ -1098,14 +1095,9 @@
       "status": "applied"
     },
     "SolipsisMM": {
-      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
-      "python_paths": [
-        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
-      ],
-      "rules": [
-        "restore_copied_local_module"
-      ],
-      "status": "applied"
+      "note": "the corpus copy chosen for consistency with the other Solipsis variants imports cleanly but does not define fib_ret, which this file's own code calls; none of the three known custom_indicators.py copies in the corpus define it either, so the author was working from a revision none of the corpus holds.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
     },
     "SuperHV27": {
       "note": "defines its own min_roi_reached_entry(self, trade_dur) in the pre-2022 shape freqtrade's own hook has since grown past. The instance gets an adapter that accepts the current three-argument call and passes trade_dur through to the author's own function unchanged. No strategy source is touched.",

@@ -1045,17 +1045,26 @@
       "why": "Impossible to load Strategy 'DualModelPolymarketPortfolio'. This class does not exist or contains Python code errors."
     },
     "Dyna_opti": {
+      "archive": "user_data/profile_smoke/Dyna_opti-8aa17cbf-2026-09-04_06-12-17.zip",
+      "archive_sha256": "sha256_79b89067d64de50440561fc5dddcc56f0a15f8ce51aebb2431769e10e74e6bce",
       "canonical_sha256": "sha256_b04a36f48cec5fd4a2149895857953f8e22bc6c59cecca48ebbbf9e37268f60d",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/Dyna_opti.log",
-      "elapsed_s": 26.7,
+      "class1_rules": [
+        "restore_copied_local_module",
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 33.9,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Dyna_opti --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Dyna_opti-8aa17cbf --cache none",
+      "long_trades": 26,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "status": "failed",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'Dyna_opti'. This class does not exist or contains Python code errors."
+      "trades": 26,
+      "trades_sha256": "sha256_131bcf819b54aa6bef0649934f2abaf2353ff7755c8916d6aef5b1f652a7ecd1"
     },
     "EMABBRSI": {
       "canonical_sha256": "sha256_ab6bed3c354ef0177f319f7bc1610e10b12613c3aa07b80c028cc2cf1ea6431e",
@@ -1704,6 +1713,19 @@
       "timerange": "20200301-20200401",
       "trades": 0
     },
+    "Guacamole": {
+      "canonical_sha256": "sha256_c81793986db6a2d1e2b72bc53f09b8e61e76a70808d8ef1281b9200bf9742052",
+      "class1_rules": [],
+      "elapsed_s": 1800.0,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Guacamole --strategy-path repos/davidzr_freqtrade-strategies/strategies/Guacamole --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Guacamole-8b882387 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "status": "timeout",
+      "timerange": "20200301-20200401",
+      "why": "timeout after 1800 seconds"
+    },
     "GymStrategy": {
       "canonical_sha256": "sha256_be099be3c57db7490351a539cb73824bace16c6cc0e062ff160223d7bcc6972a",
       "class1_rules": [],
@@ -2077,6 +2099,19 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "why": "Impossible to load Strategy 'KMM'. This class does not exist or contains Python code errors."
+    },
+    "Kamaflage": {
+      "canonical_sha256": "sha256_7bbb3db17a366343e89aac29cc3a879d6a7fc3e585555bd9f5c70e663e46be7b",
+      "class1_rules": [],
+      "elapsed_s": 1800.0,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Kamaflage --strategy-path repos/davidzr_freqtrade-strategies/strategies/Kamaflage --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Kamaflage-a6bcdf29 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "status": "timeout",
+      "timerange": "20200301-20200401",
+      "why": "timeout after 1800 seconds"
     },
     "KitchenSink": {
       "archive": "user_data/profile_smoke/KitchenSink-2026-08-31_16-18-43.zip",
@@ -3578,33 +3613,48 @@
       "trades_sha256": "sha256_dae3f9bec7ed9b9a2f784f6fb67b66cba1ff4856bf38a2db2a93f847a7257478"
     },
     "Solipsis4": {
+      "archive": "user_data/profile_smoke/Solipsis4-5bd23c38-2026-09-04_06-12-55.zip",
+      "archive_sha256": "sha256_cf47eedda3e8a652464f57f65cd584fd0b88e67faee94072ae56f7f015f1f33a",
       "canonical_sha256": "sha256_f483e328f49a1f55415de3f1e0b020da9277686a4233dc127d3b8b732b115233",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/Solipsis4.log",
-      "elapsed_s": 24.5,
+      "class1_rules": [
+        "restore_copied_local_module",
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 38.6,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Solipsis4 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis4-5bd23c38 --cache none",
+      "long_trades": 7,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "status": "failed",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'Solipsis4'. This class does not exist or contains Python code errors."
+      "trades": 7,
+      "trades_sha256": "sha256_220503a415648b3976898cb288422b9f77ebb0476c1c4137b8f8e74290365317"
     },
     "Solipsis5": {
+      "archive": "user_data/profile_smoke/Solipsis5-1c959a70-2026-09-04_05-11-30.zip",
+      "archive_sha256": "sha256_91bff7be3322eb1aeab18e767db41920487ea289b3dd3c2548093081b8275dfa",
       "canonical_sha256": "sha256_8fa173b9732af996949f25e5d8af809b3e2fe4d8be29560ae1a43a91fef8cc83",
       "class1_rules": [
         "restore_copied_local_module",
         "legacy_min_roi_reached_entry_override"
       ],
-      "elapsed_s": 300.0,
+      "config_overrides": {},
+      "elapsed_s": 807.9,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Solipsis5 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis5-1c959a70 --cache none",
+      "long_trades": 2703,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "status": "timeout",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "timeout after 300 seconds"
+      "trades": 2703,
+      "trades_sha256": "sha256_3fa88659d01375f73ba1ed14ee942f6aa8f99d9ae4b0d12b7b85b673d9d08836"
     },
     "Solipsis6": {
       "canonical_sha256": "sha256_10d3307231ad4c1c3189d1aaf69a303a98daeefc5f739e7321f2739d3f806899",
