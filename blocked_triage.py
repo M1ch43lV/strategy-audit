@@ -88,7 +88,24 @@ def _write(data):
 
 
 def blocked_rows():
-    return [row for row in _csv(STATUS) if row["exclusion_basis"] == "blocked"]
+    """Rows this file has something to say about.
+
+    Ordinarily that is `exclusion_basis == "blocked"` - a row still open,
+    waiting on a verdict. Criterion C4 (exclusion_criteria.py) is the
+    exception: it excludes a row on THIS file's own family/verdict
+    (`no_stoploss`, `no_exit_logic`, ...), read back out of
+    strategy_status.py's cohort logic. Once excluded, `exclusion_basis`
+    becomes `own_measurement`, and a naive re-triage would stop selecting
+    the row and silently drop the very classification the exclusion rests
+    on - five rows did exactly that the first time this was missed. Kept
+    here rather than fixed by no longer regenerating: the family is a text
+    match against `runtime_failure`, which does not change once a strategy
+    is measured, so re-deriving it is free and keeps the two files unable
+    to drift apart.
+    """
+    return [row for row in _csv(STATUS)
+           if row["exclusion_basis"] == "blocked"
+           or row["primary_reason"] == "repair_refused_would_invent_strategy"]
 
 
 def probe_import(source_file, class_name):

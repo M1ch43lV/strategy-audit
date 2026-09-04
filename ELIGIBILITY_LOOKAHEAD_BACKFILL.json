@@ -3525,10 +3525,10 @@
         "config_overrides": {
           "startup_candle_count": 288
         },
-        "debug_log": "user_data/profile_bias_logs/Dimond-lookahead.log",
-        "elapsed_s": 136.2,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Dimond_gate.json --strategy Dimond --strategy-path user_data/profile_bias_strategies/Dimond --timerange 20200301-20260820 --no-color",
-        "output_sha256": "sha256_dbddb1df105992da7bb1b8f9db140174bd4c838805e2a9091cd7a594fd0ae0ad",
+        "debug_log": "user_data/profile_bias_logs/Dimond-eba97121-lookahead.log",
+        "elapsed_s": 163.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Dimond-eba97121_gate.json --strategy Dimond --strategy-path user_data/profile_bias_strategies/Dimond-eba97121 --timerange 20200301-20260820 --no-color",
+        "output_sha256": "sha256_292bcd6e9a267d491078427e32ca76ac7a190f869e58176897331ca7e09663ac",
         "runtime_id": "native_unversioned",
         "status": "NA",
         "timerange": "20200301-20260820",

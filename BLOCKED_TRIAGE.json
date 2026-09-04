@@ -79,6 +79,22 @@
       "strategy_id": "BestSingleAssetPortfolio",
       "verdict": "needs_a_look"
     },
+    "BinClucMadDevelop": {
+      "family": "dtype_drift",
+      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
+      "runtime_failure": "Invalid value '1' for dtype 'bool'",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/BinClucMadDevelop.py",
+      "strategy_id": "BinClucMadDevelop",
+      "verdict": "needs_a_look"
+    },
+    "BinClucMadSMADevelop": {
+      "family": "dtype_drift",
+      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
+      "runtime_failure": "Invalid value '1' for dtype 'bool'",
+      "source_file": "repos/MMR-19_freqtrade-strategies/strategies/BinClucMadSMADevelop.py",
+      "strategy_id": "BinClucMadSMADevelop",
+      "verdict": "needs_a_look"
+    },
     "BinanceStream": {
       "family": "local_module_off_path",
       "missing_module": "binance",
@@ -163,6 +179,14 @@
       "strategy_id": "CopyLitmusMinMaxBroadClassificationStrategy",
       "verdict": "needs_a_look"
     },
+    "CoreStrategy": {
+      "family": "dtype_drift",
+      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
+      "runtime_failure": "Invalid value '1' for dtype 'bool'",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/BinClucMadSMACore.py",
+      "strategy_id": "CoreStrategy",
+      "verdict": "needs_a_look"
+    },
     "CryptoFrogNFI2": {
       "family": "individual",
       "note": "one of a kind; read the message",
@@ -173,14 +197,22 @@
     },
     "CryptoPredictionTraining": {
       "family": "third_party_package",
-      "missing_module": "keras",
+      "missing_module": "matplotlib",
       "module_found_at": "",
-      "note": "Imports keras, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "note": "Imports matplotlib, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'keras' at CryptoPrediction.py:6",
+      "probe_detail": "ModuleNotFoundError: No module named 'matplotlib' at CryptoPrediction.py:4",
       "runtime_failure": "Impossible to load Strategy 'CryptoPredictionTraining'. This class does not exist or contains Python code errors.",
       "source_file": "repos/ShahAnuj2610_my-freqtrade/user_data/strategies/CryptoPrediction.py",
       "strategy_id": "CryptoPredictionTraining",
+      "verdict": "needs_a_look"
+    },
+    "DIV_v1": {
+      "family": "dtype_drift",
+      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
+      "runtime_failure": "Invalid value 'True' for dtype 'float64'",
+      "source_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/DIV_v1.py",
+      "strategy_id": "DIV_v1",
       "verdict": "needs_a_look"
     },
     "DWT": {
@@ -335,15 +367,25 @@
       "strategy_id": "GodStra",
       "verdict": "needs_a_look"
     },
+    "Guacamole": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "timeout after 900 seconds",
+      "source_file": "repos/davidzr_freqtrade-strategies/strategies/Guacamole/Guacamole.py",
+      "strategy_id": "Guacamole",
+      "verdict": "needs_a_look"
+    },
     "GymStrategy": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class GymStrategy is present",
+      "family": "third_party_package",
+      "missing_module": "stable_baselines3",
+      "module_found_at": "",
+      "note": "Imports stable_baselines3, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'stable_baselines3' at GymStrategy.py:8",
       "runtime_failure": "Impossible to load Strategy 'GymStrategy'. This class does not exist or contains Python code errors.",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/GymStrategy.py",
       "strategy_id": "GymStrategy",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "HLHB": {
       "family": "individual",
@@ -351,26 +393,6 @@
       "runtime_failure": "'tuple' object has no attribute 'items'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/HLHB.py",
       "strategy_id": "HLHB",
-      "verdict": "needs_a_look"
-    },
-    "IchimokuStrategy": {
-      "family": "class_not_loaded",
-      "note": "The file raises on import. Whether that is a missing dependency we can install or code that no longer runs depends on the exception.",
-      "probe": "import_raises",
-      "probe_detail": "ImportError: cannot import name 'accumulation_distribution' from 'technical.indicators' (/home/ftuser/.local/lib/python3.14/site-packages/technical/indicators/__init__.py) at IchimokuStrategy.py:3",
-      "runtime_failure": "Impossible to load Strategy 'IchimokuStrategy'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/IchimokuStrategy.py",
-      "strategy_id": "IchimokuStrategy",
-      "verdict": "needs_a_look"
-    },
-    "Ichimoku_SenkouSpanCross": {
-      "family": "class_not_loaded",
-      "note": "The file raises on import. Whether that is a missing dependency we can install or code that no longer runs depends on the exception.",
-      "probe": "import_raises",
-      "probe_detail": "ImportError: cannot import name 'accumulation_distribution' from 'technical.indicators' (/home/ftuser/.local/lib/python3.14/site-packages/technical/indicators/__init__.py) at Ichimoku_SenkouSpanCross.py:3",
-      "runtime_failure": "Impossible to load Strategy 'Ichimoku_SenkouSpanCross'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/Ichimoku_SenkouSpanCross.py",
-      "strategy_id": "Ichimoku_SenkouSpanCross",
       "verdict": "needs_a_look"
     },
     "KMM": {
@@ -383,6 +405,14 @@
       "runtime_failure": "Impossible to load Strategy 'KMM'. This class does not exist or contains Python code errors.",
       "source_file": "repos/jaredrsommer_freqtradestrategies/KMM.py",
       "strategy_id": "KMM",
+      "verdict": "needs_a_look"
+    },
+    "Kamaflage": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "timeout after 900 seconds",
+      "source_file": "repos/davidzr_freqtrade-strategies/strategies/Kamaflage/Kamaflage.py",
+      "strategy_id": "Kamaflage",
       "verdict": "needs_a_look"
     },
     "LitmusEntryRollClassificationStrategy": {
@@ -557,6 +587,14 @@
       "strategy_id": "MomentumRegimeBasket15m",
       "verdict": "needs_a_look"
     },
+    "MostOfAll": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "",
+      "source_file": "repos/davidzr_freqtrade-strategies/strategies/MostOfAll/MostOfAll.py",
+      "strategy_id": "MostOfAll",
+      "verdict": "needs_a_look"
+    },
     "MultiMA_TSL5": {
       "family": "dtype_drift",
       "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
@@ -589,12 +627,28 @@
       "strategy_id": "MultiTargetRegressorTestStrategy",
       "verdict": "to_be_fixed"
     },
+    "MyStrategyNew10": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "attribute name must be string, not 'NoneType'",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/MyStrategyNew10.py",
+      "strategy_id": "MyStrategyNew10",
+      "verdict": "needs_a_look"
+    },
     "NoLost": {
       "family": "individual",
       "note": "one of a kind; read the message",
       "runtime_failure": "Configuration error: The config stoploss needs to be different from 0 to avoid problems with sell orders.",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/NoLost.py",
       "strategy_id": "NoLost",
+      "verdict": "needs_a_look"
+    },
+    "NowoIchimoku1hV1": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "'buy'",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/NowoIchimoku1hV1 (1).py",
+      "strategy_id": "NowoIchimoku1hV1",
       "verdict": "needs_a_look"
     },
     "Persia": {
@@ -651,11 +705,11 @@
     },
     "Prediction_Strategy": {
       "family": "third_party_package",
-      "missing_module": "numba",
+      "missing_module": "catboost",
       "module_found_at": "",
-      "note": "Imports numba, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "note": "Imports catboost, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'numba' at Prediction_Strategy.py:11",
+      "probe_detail": "ModuleNotFoundError: No module named 'catboost' at Prediction_Strategy.py:8",
       "runtime_failure": "Impossible to load Strategy 'Prediction_Strategy'. This class does not exist or contains Python code errors.",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/Prediction_Strategy.py",
       "strategy_id": "Prediction_Strategy",
@@ -725,6 +779,14 @@
       "strategy_id": "ScalpingCCI",
       "verdict": "to_be_fixed"
     },
+    "Schism6": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "'inf-rsi'",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.6.py",
+      "strategy_id": "Schism6",
+      "verdict": "needs_a_look"
+    },
     "SimpleRiskFilterStrategy": {
       "family": "no_exit_logic",
       "note": "No exit logic at all. Whatever we wrote would be ours, not theirs.",
@@ -733,6 +795,14 @@
       "strategy_id": "SimpleRiskFilterStrategy",
       "verdict": "refuse_repair"
     },
+    "Solipsis3": {
+      "family": "old_hook_signature",
+      "note": "The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.",
+      "runtime_failure": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-v3-fuck (1).py",
+      "strategy_id": "Solipsis3",
+      "verdict": "to_be_fixed"
+    },
     "Solipsis4": {
       "family": "old_hook_signature",
       "note": "The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.",
@@ -740,6 +810,14 @@
       "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis_v4.py",
       "strategy_id": "Solipsis4",
       "verdict": "to_be_fixed"
+    },
+    "Solipsis5": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "timeout after 300 seconds",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-v2.5.py",
+      "strategy_id": "Solipsis5",
+      "verdict": "needs_a_look"
     },
     "Solipsis6": {
       "family": "individual",
@@ -755,14 +833,6 @@
       "runtime_failure": "module 'custom_indicators' has no attribute 'fib_ret'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/SolipsisMM.py",
       "strategy_id": "SolipsisMM",
-      "verdict": "needs_a_look"
-    },
-    "SuperHV27": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "SuperHV27.min_roi_reached_entry() takes 2 positional arguments but 4 were given",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/SuperHV27.py",
-      "strategy_id": "SuperHV27",
       "verdict": "needs_a_look"
     },
     "SuperTrendPure": {
@@ -806,14 +876,16 @@
       "verdict": "needs_a_look"
     },
     "TrainCatBoostStrategy": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class TrainCatBoostStrategy is present",
+      "family": "third_party_package",
+      "missing_module": "catboost",
+      "module_found_at": "",
+      "note": "Imports catboost, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'catboost' at TrainCatBoostStrategy.py:7",
       "runtime_failure": "Impossible to load Strategy 'TrainCatBoostStrategy'. This class does not exist or contains Python code errors.",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/TrainCatBoostStrategy.py",
       "strategy_id": "TrainCatBoostStrategy",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "TuplaBollinger": {
       "family": "individual",
@@ -889,6 +961,22 @@
       "runtime_failure": "Invalid value 'False' for dtype 'float64'",
       "source_file": "repos/TheoBrigitte_freqtrade/strategies/turtle/new_turtle_roi.py",
       "strategy_id": "new_turtle_roi",
+      "verdict": "needs_a_look"
+    },
+    "qrsi": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "Invalid frequency: 15m. Failed to parse with error message: ValueError(\"'m' is no longer supported for offsets. Please use 'ME' instead.\")",
+      "source_file": "repos/jaredrsommer_freqtradestrategies/qrsi.py",
+      "strategy_id": "qrsi",
+      "verdict": "needs_a_look"
+    },
+    "tacos1": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "'tacos1' object has no attribute 'buy_ema_short'. Did you mean: 'buy_ema_long'?",
+      "source_file": "repos/jaredrsommer_freqtradestrategies/tacos1.py",
+      "strategy_id": "tacos1",
       "verdict": "needs_a_look"
     },
     "thetank2": {

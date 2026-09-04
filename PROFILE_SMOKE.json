@@ -2470,6 +2470,27 @@
       "trades": 0,
       "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
+    "MultiMA_TSL": {
+      "archive": "user_data/profile_smoke/MultiMA_TSL-432f3842-2026-09-04_04-48-31.zip",
+      "archive_sha256": "sha256_940a64cc743bb2ae5e0d075c75bfba48ae086e497b6cb5c111d0e9ea82aefbab",
+      "canonical_sha256": "sha256_7e8f8a956c7fe5b67eb28a462b8901fa9c42300e9f2e2f19d11509b7c31d948d",
+      "class1_rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 35.3,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy MultiMA_TSL --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiMA_TSL-432f3842 --cache none",
+      "long_trades": 6,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 6,
+      "trades_sha256": "sha256_dbd67a8da3876e73a9d5b6c9f3f43e4e56930d3cdd10fb4f5b87b460034090c5"
+    },
     "MultiMA_TSL3": {
       "archive": "user_data/profile_smoke/MultiMA_TSL3-2026-08-31_15-13-04.zip",
       "archive_sha256": "sha256_bd48e6fdefa366473187850737f376cd26829526d9c8ebea3e337d6cf33a6d99",
@@ -3534,6 +3555,28 @@
       "timerange": "20200301-20200401",
       "why": "Impossible to load Strategy 'Solipsis'. This class does not exist or contains Python code errors."
     },
+    "Solipsis3": {
+      "archive": "user_data/profile_smoke/Solipsis3-a8a18040-2026-09-04_04-55-29.zip",
+      "archive_sha256": "sha256_2c8a1809e3364f502a32838b3c1ca958ad00a399c26cc56ef87bb8cf58824811",
+      "canonical_sha256": "sha256_3cce8566c0e638bff0d1f206b96a75ee57538df9aec1207d32496de538fbdd98",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 117.8,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Solipsis3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis3-a8a18040 --cache none",
+      "long_trades": 278,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 278,
+      "trades_sha256": "sha256_dae3f9bec7ed9b9a2f784f6fb67b66cba1ff4856bf38a2db2a93f847a7257478"
+    },
     "Solipsis4": {
       "canonical_sha256": "sha256_f483e328f49a1f55415de3f1e0b020da9277686a4233dc127d3b8b732b115233",
       "class1_rules": [],
@@ -3547,6 +3590,22 @@
       "timerange": "20200301-20200401",
       "why": "Impossible to load Strategy 'Solipsis4'. This class does not exist or contains Python code errors."
     },
+    "Solipsis5": {
+      "canonical_sha256": "sha256_8fa173b9732af996949f25e5d8af809b3e2fe4d8be29560ae1a43a91fef8cc83",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "legacy_min_roi_reached_entry_override"
+      ],
+      "elapsed_s": 300.0,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Solipsis5 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis5-1c959a70 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "status": "timeout",
+      "timerange": "20200301-20200401",
+      "why": "timeout after 300 seconds"
+    },
     "Solipsis6": {
       "canonical_sha256": "sha256_10d3307231ad4c1c3189d1aaf69a303a98daeefc5f739e7321f2739d3f806899",
       "class1_rules": [],
@@ -3559,6 +3618,27 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "why": "Impossible to load Strategy 'Solipsis6'. This class does not exist or contains Python code errors."
+    },
+    "SolipsisCon": {
+      "archive": "user_data/profile_smoke/SolipsisCon-12ab7e8b-2026-09-04_04-46-07.zip",
+      "archive_sha256": "sha256_ac58e415225e4ec2193e25f6944534a82edde0066a7ad5bfbd18e535af4826a2",
+      "canonical_sha256": "sha256_4ce1ee4cb639a5183a74dbee26ab88fe5e00b0b88aeb9b564d85ff8311821986",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 114.6,
+      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy SolipsisCon --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SolipsisCon-12ab7e8b --cache none",
+      "long_trades": 252,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trades": 252,
+      "trades_sha256": "sha256_7eee8e136af16fab7f056c101ed80cf3131fda11feba5dba59f5651db0af77b9"
     },
     "SolipsisMM": {
       "canonical_sha256": "sha256_32e2d5db21f4f692902babb0ed2803e5494dd921b8a7032900d63d57313bbddf",

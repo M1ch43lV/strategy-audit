@@ -343,23 +343,26 @@
       "status": "applied"
     },
     "CryptoFrogNFI": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched. Also caches per-candle series in custom_trade_info under the same self.dp.runmode.value in ('backtest', 'hyperopt') guard as the rest of the CryptoFrog family, so lookahead-analysis needs the runmode shim too or it reads back an empty cache.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
     "CryptoFrogNFIHO1A": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched. Also caches per-candle series in custom_trade_info under the same self.dp.runmode.value in ('backtest', 'hyperopt') guard as the rest of the CryptoFrog family, so lookahead-analysis needs the runmode shim too or it reads back an empty cache.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
     "CryptoFrogOffset": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched. Also caches per-candle series in custom_trade_info under the same self.dp.runmode.value in ('backtest', 'hyperopt') guard as the rest of the CryptoFrog family, so lookahead-analysis needs the runmode shim too or it reads back an empty cache.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
@@ -765,23 +768,33 @@
       "status": "applied"
     },
     "MacheteV8b": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched. Also caches per-candle series in custom_trade_info under the same self.dp.runmode.value in ('backtest', 'hyperopt') guard as the rest of the CryptoFrog family, so lookahead-analysis needs the runmode shim too or it reads back an empty cache.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
     "MacheteV8bRallimod": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched. Also caches per-candle series in custom_trade_info under the same self.dp.runmode.value in ('backtest', 'hyperopt') guard as the rest of the CryptoFrog family, so lookahead-analysis needs the runmode shim too or it reads back an empty cache.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
     "MacheteV8bRallimod2": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched. Also caches per-candle series in custom_trade_info under the same self.dp.runmode.value in ('backtest', 'hyperopt') guard as the rest of the CryptoFrog family, so lookahead-analysis needs the runmode shim too or it reads back an empty cache.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
+      ],
+      "status": "applied"
+    },
+    "MultiMA_TSL": {
+      "note": "writes buy_tag, which advise_entry's own workaround for pandas #56503 renames onto an already-initialised enter_tag column, producing two columns of that name and the duplicate-label reindex the analyzer trips on. Same shape as the other rows this shim already covers.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
       ],
       "status": "applied"
     },
@@ -842,16 +855,18 @@
       "status": "applied"
     },
     "NFI46Frog": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched. Also caches per-candle series in custom_trade_info under the same self.dp.runmode.value in ('backtest', 'hyperopt') guard as the rest of the CryptoFrog family, so lookahead-analysis needs the runmode shim too or it reads back an empty cache.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
     "NFI4Frog": {
-      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched.",
+      "note": "calls min_roi_reached_entry(trade_dur), freqtrade's signature before the hook gained trade and current_time. use_custom_roi is not set, so the adapter fills the two missing arguments with None and the computed ROI is identical. No strategy source is touched. Also caches per-candle series in custom_trade_info under the same self.dp.runmode.value in ('backtest', 'hyperopt') guard as the rest of the CryptoFrog family, so lookahead-analysis needs the runmode shim too or it reads back an empty cache.",
       "rules": [
-        "legacy_min_roi_reached_entry_signature"
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
       ],
       "status": "applied"
     },
@@ -1030,6 +1045,17 @@
       ],
       "status": "applied"
     },
+    "Solipsis3": {
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement Also calls min_roi_reached_entry(trade_dur) in the pre-2022 one-argument form against the base class; use_custom_roi is not set.",
+      "python_paths": [
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "rules": [
+        "restore_copied_local_module",
+        "legacy_min_roi_reached_entry_signature"
+      ],
+      "status": "applied"
+    },
     "Solipsis4": {
       "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
       "python_paths": [
@@ -1040,7 +1066,28 @@
       ],
       "status": "applied"
     },
+    "Solipsis5": {
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement Also overrides min_roi_reached_entry(self, trade_dur, pair='backtest') in the pre-2022 shape, same as Schism-v2; needs the instance-level adapter too.",
+      "python_paths": [
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "rules": [
+        "restore_copied_local_module",
+        "legacy_min_roi_reached_entry_override"
+      ],
+      "status": "applied"
+    },
     "Solipsis6": {
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
+      "python_paths": [
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
+    },
+    "SolipsisCon": {
       "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
       "python_paths": [
         "repos/werkkrew_freqtrade-strategies/strategies/solipsis"

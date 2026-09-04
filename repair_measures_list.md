@@ -10,11 +10,11 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 |---|---:|---|
 | `repaired` | 128 | runs now, and the run is recorded |
 | `repair_attempted` | 18 | a route was applied and did not finish the job |
-| `to_be_fixed` | 25 | the route is known, the run has not happened yet |
-| `needs_a_look` | 54 | no route yet; the obstacle has been identified |
+| `to_be_fixed` | 26 | the route is known, the run has not happened yet |
+| `needs_a_look` | 67 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 4 | the repair made things worse and was undone |
 | `refuse_repair` | 27 | repairing it would mean inventing the strategy |
-| `-` | 6 |  |
+| `-` | 7 |  |
 
 ## Routes taken
 
@@ -40,7 +40,7 @@ For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `BBRSIS`, `BBRSI
 
 ### Seven compatibility shims for freqtrade's own behaviour
 
-`repair_family: framework_compat_shim` &mdash; 106 strategies (repaired 84, repair_attempted 2, to_be_fixed 19, needs_a_look 1)
+`repair_family: framework_compat_shim` &mdash; 107 strategies (repaired 84, repair_attempted 2, to_be_fixed 21)
 
 **The message.**
 
@@ -98,7 +98,7 @@ For example: `ARIMASTR`, `Apollo11`, `BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB
 
 ### The author's own module put back on the path
 
-`repair_family: local_module_off_path` &mdash; 23 strategies (repaired 2, repair_attempted 11, repair_withdrawn 4, - 6)
+`repair_family: local_module_off_path` &mdash; 26 strategies (repaired 2, repair_attempted 11, to_be_fixed 1, needs_a_look 1, repair_withdrawn 4, - 7)
 
 **The message.**
 
@@ -281,7 +281,7 @@ For example: `Chained`, `EnsembleStrategy`, `EnsembleStrategyV1`, `EnsembleStrat
 
 ### Open: pandas and numpy have moved under the strategy
 
-`repair_family: dtype_drift` &mdash; 14 strategies (to_be_fixed 1, needs_a_look 13)
+`repair_family: dtype_drift` &mdash; 18 strategies (to_be_fixed 1, needs_a_look 17)
 
 **The message.**
 
@@ -298,11 +298,11 @@ Invalid value 'False' for dtype 'float64'
 
 Tool: `blocked_triage.py`.
 
-For example: `CombinedBinHAndClucV6H`, `Danke`, `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `FastSupertrend`, `FastSupertrendOpt`.
+For example: `BinClucMadDevelop`, `BinClucMadSMADevelop`, `CombinedBinHAndClucV6H`, `CoreStrategy`, `DIV_v1`, `Danke`.
 
 ### Open: a package the author depended on
 
-`repair_family: third_party_package` &mdash; 18 strategies (needs_a_look 18)
+`repair_family: third_party_package` &mdash; 20 strategies (needs_a_look 20)
 
 **The message.**
 
@@ -318,11 +318,11 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `blocked_triage.py`.
 
-For example: `BBRSI`, `CopyLitmusMinMaxBroadClassificationStrategy`, `CryptoPredictionTraining`, `Enchilada`, `KMM`, `LitmusEntryRollClassificationStrategy`.
+For example: `BBRSI`, `CopyLitmusMinMaxBroadClassificationStrategy`, `CryptoPredictionTraining`, `Enchilada`, `GymStrategy`, `KMM`.
 
 ### Open: the class will not import
 
-`repair_family: class_not_loaded` &mdash; 5 strategies (to_be_fixed 2, needs_a_look 3)
+`repair_family: class_not_loaded` &mdash; 3 strategies (needs_a_look 3)
 
 **The message.**
 
@@ -338,11 +338,11 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `blocked_triage.py`.
 
-For example: `AutoArimaTripleV1`, `BlueEyes_MPP_v1`, `ClucHAnix_BB_RPB_MOD_trailing_buy`, `GymStrategy`, `TrainCatBoostStrategy`.
+For example: `AutoArimaTripleV1`, `BlueEyes_MPP_v1`, `ClucHAnix_BB_RPB_MOD_trailing_buy`.
 
 ### Open: one of a kind
 
-`repair_family: individual` &mdash; 19 strategies (needs_a_look 19)
+`repair_family: individual` &mdash; 26 strategies (needs_a_look 26)
 
 **The message.**
 
@@ -360,7 +360,7 @@ Remora API key missing. Set REMORA_API_KEY env var.
 
 Tool: `blocked_triage.py`.
 
-For example: `Astro`, `BestSingleAssetPortfolio`, `CryptoFrogNFI2`, `GodStra`, `HLHB`, `LongShortRangeTradingMachetesV1`.
+For example: `Astro`, `BestSingleAssetPortfolio`, `CryptoFrogNFI2`, `GodStra`, `Guacamole`, `HLHB`.
 
 ## Rules recorded per strategy
 
@@ -369,14 +369,14 @@ For example: `Astro`, `BestSingleAssetPortfolio`, `CryptoFrogNFI2`, `GodStra`, `
 | Rule | Strategies |
 |---|---:|
 | `startup_candles_not_limited_by_call_budget` | 62 |
-| `idempotent_entry_tag_initialisation` | 21 |
-| `legacy_min_roi_reached_entry_signature` | 17 |
-| `restore_copied_local_module` | 14 |
+| `idempotent_entry_tag_initialisation` | 22 |
+| `legacy_min_roi_reached_entry_signature` | 18 |
+| `restore_copied_local_module` | 17 |
+| `lookahead_runmode_reports_backtest` | 17 |
 | `restore_author_package_extension` | 11 |
 | `restore_author_config` | 11 |
-| `lookahead_runmode_reports_backtest` | 9 |
 | `whitespace_tolerant_class_scan` | 6 |
-| `legacy_min_roi_reached_entry_override` | 4 |
+| `legacy_min_roi_reached_entry_override` | 5 |
 | `datetime_safe_rmi_fillna` | 3 |
 | `restore_accumulation_distribution` | 2 |
 | `freqai_config_from_author_block` | 2 |
