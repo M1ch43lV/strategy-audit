@@ -155,6 +155,14 @@ REASON_ORDER = (
     ("measured_only_in_freqai_arm",
      "runs only under its author's own FreqAI configuration, measured "
      "separately in that arm; not comparable with the ordinary spot audit"),
+    ("third_party_package_declined",
+     "needs a Python package this runtime does not install; declined "
+     "because installing one changes the runtime every other strategy runs "
+     "under, owner's call 2026-09-04"),
+    ("shared_runtime_change_declined",
+     "the fix is understood - pandas' or numpy's own type-coercion rules "
+     "have tightened - but applying it would touch every strategy's column "
+     "writes, not just this row's; declined, owner's call 2026-09-04"),
     ("canonical_implementation_not_measured", "never ran"),
     ("no_verdict_on_lookahead_and_recursive", "measured; neither gate returned a verdict"),
     ("no_verdict_on_lookahead", "measured and recursion clean; look-ahead has no verdict"),
@@ -1141,6 +1149,38 @@ def rows():
             reason = "measured_only_in_freqai_arm"
             basis = "own_measurement"
             open_work = []
+        # C7 (owner's call, 2026-09-04): a package the author depended on is
+        # not installed, and installing one changes the runtime every other
+        # strategy runs under - not a decision to make row by row. Twenty
+        # rows each name a specific missing module (`BBRSI` wants
+        # `freqtrade.indicator_helpers`, `KMM` wants `openai`, and so on);
+        # none of that changes by looking harder, only by deciding to
+        # install it, which is declined here for all of them at once.
+        if cohort == "pending" and repair.get("family") == "third_party_package":
+            cohort = "excluded"
+            reason = "third_party_package_declined"
+            basis = "own_measurement"
+            open_work = []
+        # C8 (owner's call, 2026-09-04): every one of these eighteen rows
+        # traces to the same two mechanisms, not eighteen different bugs.
+        # Fourteen assign a Python bool or int into a column pandas 3.0.5 now
+        # refuses to coerce silently (`Invalid value '1' for dtype 'bool'`
+        # and its mirror images). Seven - a Supertrend snippet credited to
+        # freqtrade/freqtrade-strategies#30, copied near-verbatim into five
+        # unrelated repositories - build a direction column with
+        # `np.where(cond, np.where(..., 'down', 'up'), np.NaN)`, mixing a
+        # string branch with a float NaN in one array, which numpy 2.5.2
+        # refuses to promote to a common dtype where older numpy coerced it.
+        # Both are fixable in principle - relax pandas' item-assignment
+        # dtype check, or numpy's promotion rule - and both fixes would run
+        # under every column write in the corpus, not just these eighteen
+        # rows' own. That is the "large intervention" a narrow shim exists
+        # to avoid, so none is written.
+        if cohort == "pending" and repair.get("family") == "dtype_drift":
+            cohort = "excluded"
+            reason = "shared_runtime_change_declined"
+            basis = "own_measurement"
+            open_work = []
         if basis == "blocked" and not repair.get("verdict"):
             repair["verdict"] = "to_be_fixed"
         if basis == "blocked":
@@ -1733,16 +1773,19 @@ def selftest():
     # were passing on 1 of 900 rows. A test that reports PASS while covering
     # almost nothing is worse than no test.
     for row in data:
-        # Excluded means one of exactly six things, and every one of them is
-        # a result this audit produced itself: the look-ahead check found
+        # Excluded means one of exactly eight things, and every one of them
+        # is a result this audit produced itself: the look-ahead check found
         # bias, our own ladder failed to settle the indicators, the strategy
         # ran the whole window and never traded, a repair route read the file
         # and refused to invent what the author never wrote, a repair route
-        # exhausted every candidate module the corpus holds, or the row is
-        # already measured, just in the separate FreqAI arm. Nothing else may
-        # put a row here - in particular not the source-code trap heuristic,
-        # which excluded 40 running strategies before either bias check had
-        # seen them, and not a verdict inherited from the original sweep.
+        # exhausted every candidate module the corpus holds, the row is
+        # already measured (just in the separate FreqAI arm), or the only
+        # known fix would change something every strategy in the corpus
+        # shares - an installed package, or pandas'/numpy's own type rules -
+        # and touching that for one row was declined. Nothing else may put a
+        # row here - in particular not the source-code trap heuristic, which
+        # excluded 40 running strategies before either bias check had seen
+        # them, and not a verdict inherited from the original sweep.
         if row["cohort"] == "excluded":
             assert row["exclusion_basis"] == "own_measurement",                 (row["strategy_id"], row["exclusion_basis"])
             assert (
@@ -1753,6 +1796,8 @@ def selftest():
                 or row["primary_reason"] == "repair_refused_would_invent_strategy"
                 or row["primary_reason"] == "local_module_repair_exhausted"
                 or row["primary_reason"] == "measured_only_in_freqai_arm"
+                or row["primary_reason"] == "third_party_package_declined"
+                or row["primary_reason"] == "shared_runtime_change_declined"
             ), (row["strategy_id"], row["primary_reason"],
                 row["lookahead"], row["recursive_evidence"])
         # A trap is a fact about the source, never a verdict. It may sit on

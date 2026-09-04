@@ -84,6 +84,14 @@ def _freqai_arm_only(row):
     return row["primary_reason"] == "measured_only_in_freqai_arm"
 
 
+def _third_party_package_declined(row):
+    return row["primary_reason"] == "third_party_package_declined"
+
+
+def _shared_runtime_change_declined(row):
+    return row["primary_reason"] == "shared_runtime_change_declined"
+
+
 CRITERIA = [
     {
         "id": "C1",
@@ -268,6 +276,69 @@ CRITERIA = [
                  "excluded from THIS cohort because this audit's own "
                  "preconditions - the eight-pair basket, the frozen windows, "
                  "the shared runtime - were never applied to it.",
+    },
+    {
+        "id": "C7",
+        "name": "A missing package, declined for the whole runtime's sake",
+        "test": _third_party_package_declined,
+        "columns": 'primary_reason == "third_party_package_declined"',
+        "what": "The strategy imports a package this runtime does not "
+                "install - sometimes declared by the author, sometimes not, "
+                "sometimes no longer installable at all. Each of twenty rows "
+                "names a specific one: `BBRSI` wants "
+                "`freqtrade.indicator_helpers`, `KMM` wants `openai`, `MKR` "
+                "wants `tslearn`, and so on.",
+        "why_final": "Owner's call, 2026-09-04: installing a package changes "
+                     "the runtime every one of the roughly 900 corpus "
+                     "strategies runs under, not only the row that needs it. "
+                     "That is a decision about the shared environment, not "
+                     "about any one strategy, and it was made once for all "
+                     "twenty rather than reflexively per row.",
+        "evidence": "`BLOCKED_TRIAGE.json` names the exact missing module "
+                    "for each row, found by importing the file directly in "
+                    "the pinned runtime rather than trusting freqtrade's "
+                    "generic \"does not exist\" message.",
+        "watch": "Not a finding that the strategy is broken - most of these "
+                 "would very likely run if the package were installed. The "
+                 "row is closed by a decision about the runtime, the same "
+                 "shape as C6 for that reason, kept separate because the "
+                 "thing declined is a package rather than a comparison "
+                 "across a different arm.",
+    },
+    {
+        "id": "C8",
+        "name": "The fix would touch every strategy's column writes",
+        "test": _shared_runtime_change_declined,
+        "columns": 'primary_reason == "shared_runtime_change_declined"',
+        "what": "Eighteen rows, two mechanisms, not eighteen bugs. Fourteen "
+                "assign a Python `bool` or `int` into a column pandas 3.0.5 "
+                "no longer coerces silently - `Invalid value '1' for dtype "
+                "'bool'` and its mirror images (`'True'` into `float64`, a "
+                "float into `int64`, an int into `str`). Seven build a "
+                "direction column with `np.where(cond, np.where(..., "
+                "'down', 'up'), np.NaN)` - a Supertrend snippet credited to "
+                "`freqtrade/freqtrade-strategies#30`, copied near-verbatim "
+                "into five unrelated repositories - mixing a string branch "
+                "with a float NaN in one array, which numpy 2.5.2 refuses "
+                "to promote to a common dtype where older numpy coerced it.",
+        "why_final": "Owner's call, 2026-09-04: both mechanisms are "
+                     "understood and both have a fix in principle - relax "
+                     "pandas' item-assignment dtype check, or numpy's "
+                     "promotion rule - and both fixes would run under every "
+                     "column write in the corpus, not only these eighteen "
+                     "rows'. That is the large intervention a narrow shim "
+                     "exists to avoid, so none was written.",
+        "evidence": "`BLOCKED_TRIAGE.json` and `runtime_failure` carry the "
+                    "exact pandas/numpy exception per row; the shared "
+                    "`np.where(...,'down','up'), np.NaN` line was confirmed "
+                    "byte-identical across five of the seven repositories "
+                    "before this criterion was written.",
+        "watch": "A row here is not judged unfixable in principle, only "
+                 "not worth fixing at the cost this fix would impose on "
+                 "the other roughly 880 strategies that never trip it. A "
+                 "future decision to relax the pandas or numpy rule "
+                 "corpus-wide would reopen every row this criterion "
+                 "closed, together.",
     },
 ]
 

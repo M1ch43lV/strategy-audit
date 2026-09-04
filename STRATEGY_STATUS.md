@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-04 09:12:32 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-04 10:52:44 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -40,8 +40,8 @@ have neither and are left empty rather than given an invented time.
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 569 |
-| `excluded` | 191 |
-| `pending` | 73 |
+| `excluded` | 229 |
+| `pending` | 35 |
 | `exclusion_unconfirmed` | 32 |
 | `too_few_trades` | 21 |
 | `not_a_strategy` | 14 |
@@ -3752,30 +3752,20 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Pending - 73 strategies
+## Pending - 35 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
 
-`Astro`, `AutoArimaTripleV1`, `BBRSI`, `BestSingleAssetPortfolio`
-`BinClucMadDevelop`, `BinClucMadSMADevelop`, `BlueEyes_MPP_v1`, `ClucHAnix_BB_RPB_MOD_trailing_buy`
-`CombinedBinHAndClucV6H`, `CopyLitmusMinMaxBroadClassificationStrategy`, `CoreStrategy`, `CryptoFrogNFI2`
-`CryptoPredictionTraining`, `DIV_v1`, `Danke`, `Enchilada`
-`FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `FastSupertrend`, `FastSupertrendOpt`
-`GPR`, `GodStra`, `Guacamole`, `GymStrategy`
-`HLHB`, `KMM`, `Kamaflage`, `LitmusEntryRollClassificationStrategy`
-`LitmusMLDPStrategy`, `LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`
-`LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`
-`LongShortRangeTradingMachetesV1`, `MKR`, `MasterMoniGoManiHyperStrategy`, `MomentumRegimeBasket15m`
-`MostOfAll`, `MultiMA_TSL5`, `MultiMa`, `MyStrategyNew10`
-`NoLost`, `NowoIchimoku1hV1`, `Persia`, `Pmax`
-`PnF`, `PolymarketLogicalArbStrategy`, `Prediction_Strategy`, `Proton`
+`Astro`, `AutoArimaTripleV1`, `BestSingleAssetPortfolio`, `BlueEyes_MPP_v1`
+`ClucHAnix_BB_RPB_MOD_trailing_buy`, `CryptoFrogNFI2`, `GodStra`, `Guacamole`
+`HLHB`, `Kamaflage`, `LongShortRangeTradingMachetesV1`, `MasterMoniGoManiHyperStrategy`
+`MultiMA_TSL5`, `MultiMa`, `MyStrategyNew10`, `NoLost`
+`NowoIchimoku1hV1`, `Pmax`, `PolymarketLogicalArbStrategy`, `Proton`
 `QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`, `RenkoYolo`
-`SMAOPv1_TTF`, `Schism6`, `SuperTrendPure`, `Supertrend`
-`TGMA`, `TrainCatBoostStrategy`, `TuplaBollinger`, `TwoCandleTheory`
+`SMAOPv1_TTF`, `Schism6`, `TGMA`, `TuplaBollinger`
 `UpSliceStrategy`, `WTHO`, `haGradient`, `multi_tf`
-`new_turtle`, `new_turtle_roi`, `qrsi`, `tacos1`
-`thetank2`
+`qrsi`, `tacos1`, `thetank2`
 
 ## Exclusion unconfirmed - 32 strategies
 
@@ -3799,7 +3789,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 191 strategies, by decisive reason
+## Not passing - 229 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -3847,7 +3837,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 191 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 229 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -3861,6 +3851,8 @@ one of them carries none.
 | `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 17 |
 | `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 13 |
 | `measured_only_in_freqai_arm` | runs only under its author's own FreqAI configuration, measured separately in that arm; not comparable with the ordinary spot audit | 5 |
+| `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 20 |
+| `shared_runtime_change_declined` | the fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04 | 18 |
 
 
 ### Reason by wave
@@ -3873,6 +3865,8 @@ one of them carries none.
 | `repair_refused_would_invent_strategy` | 0 | 0 | 17 | 0 | 0 | 0 |
 | `local_module_repair_exhausted` | 0 | 0 | 13 | 0 | 0 | 0 |
 | `measured_only_in_freqai_arm` | 0 | 0 | 4 | 0 | 0 | 1 |
+| `third_party_package_declined` | 0 | 0 | 20 | 0 | 0 | 0 |
+| `shared_runtime_change_declined` | 0 | 0 | 14 | 0 | 0 | 4 |
 
 ### `lookahead_found` - 89
 
@@ -3991,6 +3985,33 @@ Wave `not_scheduled` - 1:
 
 `AstroQAV4`
 
+### `third_party_package_declined` - 20
+
+Needs a python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04.
+
+Wave `C_measurement_recovery` - 20:
+
+`BBRSI`, `CopyLitmusMinMaxBroadClassificationStrategy`, `CryptoPredictionTraining`, `Enchilada`
+`GymStrategy`, `KMM`, `LitmusEntryRollClassificationStrategy`, `LitmusMLDPStrategy`
+`LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`, `LitmusMinMaxSegmentClassificationStrategy`
+`LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`, `MKR`
+`Persia`, `Prediction_Strategy`, `TrainCatBoostStrategy`, `TwoCandleTheory`
+
+### `shared_runtime_change_declined` - 18
+
+The fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04.
+
+Wave `C_measurement_recovery` - 14:
+
+`CombinedBinHAndClucV6H`, `Danke`, `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`
+`FastSupertrend`, `FastSupertrendOpt`, `GPR`, `MomentumRegimeBasket15m`
+`MostOfAll`, `PnF`, `SuperTrendPure`, `Supertrend`
+`new_turtle`, `new_turtle_roi`
+
+Wave `not_scheduled` - 4:
+
+`BinClucMadDevelop`, `BinClucMadSMADevelop`, `CoreStrategy`, `DIV_v1`
+
 ## Expansion wave
 
 | Wave | Strategies |
@@ -4006,13 +4027,12 @@ Wave `not_scheduled` - 1:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 212 |
-| `needs_a_look` | 65 |
+| `recursive_ladder_pending` | 180 |
 | `convergence_not_converged_within_ladder` | 60 |
 | `lookahead_remeasure_pending` | 34 |
+| `needs_a_look` | 28 |
 | `convergence_inconclusive` | 12 |
 | `repair_attempted` | 5 |
-| `to_be_fixed` | 1 |
 
 Per-row detail, including every evidence path, is in
 `STRATEGY_STATUS.csv`.
