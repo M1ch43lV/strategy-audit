@@ -48,6 +48,13 @@
       ],
       "status": "applied"
     },
+    "BBMod": {
+      "note": "same RMI() helper as BinHV27_short: df.fillna(0, inplace=True) on a frame whose informative-merge date column has leading NaT; same shim.",
+      "rules": [
+        "legacy_fillna_skips_incompatible_dtype"
+      ],
+      "status": "applied"
+    },
     "BBMod1": {
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
       "rules": [
@@ -213,6 +220,13 @@
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
       "rules": [
         "startup_candles_not_limited_by_call_budget"
+      ],
+      "status": "applied"
+    },
+    "BinHV27_short": {
+      "note": "its local RMI() helper copies dataframe.copy() (date column included) then calls df.fillna(0, inplace=True); pandas 3.0.5 raises on the datetime64 column instead of leaving it alone. Shim skips only a column the scalar cannot fill; every other column is filled exactly as before.",
+      "rules": [
+        "legacy_fillna_skips_incompatible_dtype"
       ],
       "status": "applied"
     },
@@ -780,9 +794,10 @@
       "status": "blocked_missing_dependency"
     },
     "LongShortRangeTradingMachetesV1": {
-      "note": "calls .replace(to_replace=0, method='ffill'); pandas removed method from replace(). Shim reproduces replace-then-fill only when method is passed.",
+      "note": "calls .replace(to_replace=0, method='ffill'); pandas removed method from replace(). Shim reproduces replace-then-fill only when method is passed. Also carries the same RMI() helper as BinHV27_short: df.fillna(0, inplace=True) on a frame whose informative-merge date column has leading NaT; same shim.",
       "rules": [
-        "legacy_replace_method_kwarg"
+        "legacy_replace_method_kwarg",
+        "legacy_fillna_skips_incompatible_dtype"
       ],
       "status": "applied"
     },

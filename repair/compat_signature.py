@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Compatibility shims for framework changes the strategies predate.
 
-Fifteen of them so far. A hook whose signature gained parameters. A file
+Sixteen of them so far. A hook whose signature gained parameters. A file
 scan that assumes a formatting convention. A column the framework duplicates
 when its own analyzer calls a hook twice. An analyzer that announces itself
 as a utility while running a backtest. A budget for calls to the exchange,
@@ -16,7 +16,11 @@ failure without it - a renamed PMAX keyword, freqtrade's own "15m" reaching
 a resample call, a `replace(method=...)` pandas no longer accepts. And one
 method pandas removed outright (`DataFrame.append`), restored rather than
 translated, since nothing currently calls it successfully for the
-restoration to disturb. None is a defect in a strategy, and no shim touches
+restoration to disturb. A sixteenth catches a scalar `fillna` that used to
+skip a column it could not fill and now raises instead; the wrapper tries
+the original call first and only steps in for that exact failure, on a
+frame that actually has an incompatible column. None is a defect in a
+strategy, and no shim touches
 a strategy file - they
 are installed into freqtrade in the runner process, only when
 PROFILE_COMPAT_SIGNATURES names them.
@@ -788,6 +792,91 @@ def install_dataframe_append():
     return True
 
 
+FILLNA_RULE = "legacy_fillna_skips_incompatible_dtype"
+
+
+def install_legacy_fillna_skips_incompatible_dtype():
+    """Skip a datetime/timedelta column a scalar `fillna` cannot fill.
+
+    Twenty-three strategies in the corpus carry a local `RMI(dataframe, ...)`
+    helper copied from the same source (its own docstring names
+    `technical/indicators/indicators.py`), which opens with
+
+        df = dataframe.copy()
+        df['maxup'] = (df['close'] - df['close'].shift(mom)).clip(lower=0)
+        df['maxdown'] = (df['close'].shift(mom) - df['close']).clip(lower=0)
+        df.fillna(0, inplace=True)
+
+    `df` is the *whole* indicator frame, `date` column included, and by this
+    point in `BinHV27_short` an informative-pair merge has left a leading run
+    of `NaT` in it wherever the informative pair's history starts later than
+    the base pair's. Pandas used to fill what it could and leave a column it
+    could not alone; 3.0 raises instead, and only for `inplace=True` - the
+    non-inplace call silently downcasts the column to `object` instead of
+    raising, on this pandas version, which is a separate quirk this shim
+    leaves alone:
+
+        TypeError: value should be a 'Timestamp', 'NaT', or array of those.
+        Got 'int' instead.
+
+    (a second, differently-worded `TypeError` comes out of the same call
+    shape depending on internal block layout - `Invalid value '0' for dtype
+    'datetime64[...]'` - so the wrapper is keyed on dtype, not on parsing
+    either message.)
+
+    The wrapped `fillna` only reroutes that exact shape: `inplace=True`,
+    a plain scalar value (a dict/Series/DataFrame value already fills
+    per-column correctly and is left alone), and at least one datetime- or
+    timedelta-typed column actually present. Every other call - non-inplace
+    on this same frame included, which downcasts the column to `object`
+    instead of raising on this pandas version and is a separate quirk this
+    shim does not touch - reaches the original `fillna` unchanged. Where it
+    does reroute, it fills the compatible columns exactly as the original
+    call would and leaves the rest untouched, which is what the call did
+    before 3.0. Column assignment rather than an in-place call on a slice,
+    because a slice is a copy under copy-on-write and an in-place fill on it
+    would silently vanish.
+    """
+    import pandas as pd
+    from pandas.api.types import is_datetime64_any_dtype, is_timedelta64_dtype
+
+    original = pd.DataFrame.fillna
+    if getattr(original, "_legacy_fillna_installed", False):
+        return True
+
+    def fillna(self, value=None, *args, **kwargs):
+        # Only the confirmed-broken shape is rerouted: an inplace call with
+        # a plain scalar (dict/Series/DataFrame values already fill
+        # per-column correctly) on a frame that actually carries a
+        # datetime- or timedelta-typed column. Every other call - including
+        # this same frame with inplace=False, which downcasts the column to
+        # object instead of raising on this pandas version - reaches
+        # `original` unchanged. Detected by dtype rather than by parsing the
+        # error text, because pandas 3.0.5 raises two differently-worded
+        # TypeErrors for this depending on internal block layout.
+        if kwargs.get("inplace") and hasattr(self, "columns") \
+                and not hasattr(value, "items") \
+                and not isinstance(value, pd.DataFrame):
+            incompatible = [column for column in self.columns
+                            if is_datetime64_any_dtype(self[column].dtype)
+                            or is_timedelta64_dtype(self[column].dtype)]
+            if incompatible:
+                compatible = [column for column in self.columns
+                             if column not in incompatible]
+                fill_kwargs = dict(kwargs)
+                fill_kwargs["inplace"] = False
+                filled = original(self[compatible], value, *args, **fill_kwargs)
+                self[compatible] = filled
+                # Matches this pandas version's own inplace=True return: the
+                # mutated receiver itself, not None.
+                return self
+        return original(self, value, *args, **kwargs)
+
+    fillna._legacy_fillna_installed = True
+    pd.DataFrame.fillna = fillna
+    return True
+
+
 INSTALLERS = {RULE: install_min_roi_reached_entry,
               SCAN_RULE: install_tolerant_class_scan,
               ADVISE_RULE: install_idempotent_advise_entry,
@@ -802,7 +891,8 @@ INSTALLERS = {RULE: install_min_roi_reached_entry,
               RESAMPLE_RULE: install_legacy_minute_resample,
               REPLACE_METHOD_RULE: install_legacy_replace_method,
               APPEND_RULE: install_dataframe_append,
-              ASFREQ_RULE: install_legacy_asfreq}
+              ASFREQ_RULE: install_legacy_asfreq,
+              FILLNA_RULE: install_legacy_fillna_skips_incompatible_dtype}
 
 
 def install_from_environment():
@@ -1211,6 +1301,46 @@ def selftest():
     finally:
         if not had_append:
             del pd.DataFrame.append
+
+    # The fifteenth shim: a scalar fillna skips a datetime column it cannot
+    # fill instead of raising; a frame with nothing incompatible, and any
+    # other TypeError, pass through to the original call unchanged.
+    original_fillna = pd.DataFrame.fillna
+    try:
+        assert install_legacy_fillna_skips_incompatible_dtype()
+        # A NaT in `date` is required: a full column never reaches the
+        # dtype check pandas raises from, same as it never did before 3.0.
+        # UTC-aware, matching freqtrade's own candle `date` column - a naive
+        # column hits a different internal pandas path with a different
+        # message and is not this shim's concern. And only inplace=True
+        # raises at all - non-inplace silently downcasts the column to
+        # object instead, on this pandas version, so that call shape is not
+        # this shim's problem either and is left alone.
+        mixed = pd.DataFrame({
+            "date": pd.to_datetime(
+                ["2020-01-01", None, "2020-01-03"], utc=True),
+            "close": [1.0, float("nan"), 3.0]})
+        untouched = mixed.fillna(0)
+        assert untouched.equals(original_fillna(mixed, 0))
+        # inplace=True must mutate the original and return it, same as the
+        # call it replaces on this pandas version (not None) - filling
+        # `close` and leaving the incompatible `date` column alone.
+        copy = mixed.copy()
+        assert copy.fillna(0, inplace=True) is copy
+        assert list(copy["close"]) == [1.0, 0.0, 3.0]
+        assert copy["date"].equals(mixed["date"])
+        # Nothing incompatible on the frame: passes straight through.
+        clean = pd.DataFrame({"close": [1.0, float("nan")]})
+        assert list(clean.fillna(0)["close"]) \
+            == list(original_fillna(clean, 0)["close"])
+        # A TypeError for an unrelated reason still raises.
+        try:
+            mixed.fillna(0, method="nonexistent")
+            raise AssertionError("bad method= must still raise")
+        except TypeError as exc:
+            assert "should be a 'Timestamp', 'NaT'" not in str(exc)
+    finally:
+        pd.DataFrame.fillna = original_fillna
 
     # The fourteenth shim: the old path reaches keras's own current plot_model,
     # unmodified. Keras is only on the TensorFlow companion image; skip

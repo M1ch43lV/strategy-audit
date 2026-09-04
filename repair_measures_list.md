@@ -8,9 +8,9 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 
 | Verdict | Strategies | Meaning |
 |---|---:|---|
-| `repaired` | 140 | runs now, and the run is recorded |
+| `repaired` | 142 | runs now, and the run is recorded |
 | `repair_attempted` | 16 | a route was applied and did not finish the job |
-| `to_be_fixed` | 17 | the route is known, the run has not happened yet |
+| `to_be_fixed` | 15 | the route is known, the run has not happened yet |
 | `needs_a_look` | 53 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 6 | the repair made things worse and was undone |
 | `refuse_repair` | 34 | repairing it would mean inventing the strategy |
@@ -40,7 +40,7 @@ For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `BBRSI`, `BBRSIS
 
 ### Seven compatibility shims for freqtrade's own behaviour
 
-`repair_family: framework_compat_shim` &mdash; 108 strategies (repaired 95, repair_attempted 2, to_be_fixed 11)
+`repair_family: framework_compat_shim` &mdash; 108 strategies (repaired 97, repair_attempted 2, to_be_fixed 9)
 
 **The message.**
 
@@ -437,6 +437,7 @@ For example: `Astro`, `AutoArimaTripleV1`, `BestSingleAssetPortfolio`, `CryptoFr
 | `restore_author_config` | 11 |
 | `whitespace_tolerant_class_scan` | 6 |
 | `legacy_min_roi_reached_entry_override` | 5 |
+| `legacy_fillna_skips_incompatible_dtype` | 3 |
 | `datetime_safe_rmi_fillna` | 3 |
 | `restore_accumulation_distribution` | 2 |
 | `freqai_config_from_author_block` | 2 |

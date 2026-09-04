@@ -119,6 +119,16 @@ def measured_rules():
     compatibility rules in force, and the config the row was run with - which
     carries the warm-up, and `Backtesting.__init__` reads `required_startup`
     from exactly that.
+
+    First store wins, per strategy - `LOOKAHEAD_STORES` is ordered from this
+    backfill's own output to the original native sweep for a reason: a row
+    this script has since re-measured must be compared against THAT record,
+    not against a leftover from `PROFILE_BIAS.json` made before the warm-up
+    ladder ever ran. Unconditional overwrite had it backwards - the last
+    store in the tuple always won - so any row with both a settled warm-up
+    and an older `PROFILE_BIAS.json` entry compared against an empty
+    `config_overrides` forever and was re-measured on every single
+    invocation, DevilStra and the two multi-hour TIMEOUT rows included.
     """
     out = {}
     for path in LOOKAHEAD_STORES:
@@ -126,6 +136,8 @@ def measured_rules():
             continue
         results = json.load(io.open(path, encoding="utf-8")).get("results", {})
         for strategy, record in results.items():
+            if strategy in out:
+                continue
             if not (record.get("lookahead") or {}).get("status"):
                 continue
             out[strategy] = (set(record.get("class1_rules") or []),

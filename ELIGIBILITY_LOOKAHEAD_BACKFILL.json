@@ -552,6 +552,7 @@
     "BBMod": {
       "canonical_sha256": "sha256_20884e32203032c71bc6ced64761a57d03844ede19f6e5d1e5fd16804ed96da5",
       "class1_rules": [
+        "legacy_fillna_skips_incompatible_dtype",
         "bias_market_order_price_side_compatibility"
       ],
       "config_overrides": {
@@ -565,14 +566,13 @@
         "config_overrides": {
           "startup_candle_count": 2016
         },
-        "debug_log": "user_data/profile_bias_logs/BBMod-lookahead.log",
-        "elapsed_s": 44.8,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/BBMod_gate.json --strategy BBMod --strategy-path user_data/profile_bias_strategies/BBMod --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_b4b95fe30c3ba83ad86648f594b811e60e96d4c57e78a5b4704dcbad2206b490",
+        "elapsed_s": 93.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/BBMod-c3880bce_gate.json --strategy BBMod --strategy-path user_data/profile_bias_strategies/BBMod-c3880bce --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_c8ab61c342b7e4e2f5d890c7ed22b1820f5c82316435e9ecdf683406eb4e510c",
         "runtime_id": "native_unversioned",
-        "status": "NA",
+        "status": "PASS",
         "timerange": "20190101-20190401",
-        "why": "Invalid value '0' for dtype 'datetime64[ms, UTC]'"
+        "why": "no bias detected"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -1688,7 +1688,9 @@
     },
     "BinHV27_short": {
       "canonical_sha256": "sha256_123093f3a1ce763c65fc9ebaadddc4bf50f9187d0924c4a1ee21e31ecc4778be",
-      "class1_rules": [],
+      "class1_rules": [
+        "legacy_fillna_skips_incompatible_dtype"
+      ],
       "config_overrides": {
         "startup_candle_count": 576
       },
@@ -1701,14 +1703,13 @@
         "config_overrides": {
           "startup_candle_count": 576
         },
-        "debug_log": "user_data/profile_bias_logs/BinHV27_short-15a8226e-lookahead.log",
-        "elapsed_s": 72.6,
+        "elapsed_s": 111.7,
         "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/BinHV27_short-15a8226e_gate.json --strategy BinHV27_short --strategy-path user_data/profile_bias_strategies/BinHV27_short-15a8226e --timerange 20200101-20220101 --no-color",
-        "output_sha256": "sha256_dd23562c2e2c61cdc5d7137ffc1b4e926beab09a025c6a17cf6a0be9b07447ff",
+        "output_sha256": "sha256_d0c104b8491eff9b1eda8cbd4c87d9e3bc17d3231444c77597627b3650774efa",
         "runtime_id": "native_unversioned",
-        "status": "NA",
+        "status": "PASS",
         "timerange": "20200101-20220101",
-        "why": "Invalid value '0' for dtype 'datetime64[ms, UTC]'"
+        "why": "no bias detected"
       },
       "mode": "futures",
       "run_profile": "futures_long_short",
@@ -3501,9 +3502,9 @@
           "startup_candle_count": 6
         },
         "debug_log": "user_data/profile_bias_logs/DevilStra-c0790e53-lookahead.log",
-        "elapsed_s": 46.5,
+        "elapsed_s": 34.9,
         "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/DevilStra-c0790e53_gate.json --strategy DevilStra --strategy-path user_data/profile_bias_strategies/DevilStra-c0790e53 --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_b11576474f3c3935054df470c05738b501de347ea03e147eb22e9f36512a39be",
+        "output_sha256": "sha256_076040d587f11ce0da3eb8077e24bcf9e922c4d9f8598d437583ba309201c4db",
         "runtime_id": "native_unversioned",
         "status": "NA",
         "timerange": "20190101-20190401",
@@ -3556,9 +3557,9 @@
           "startup_candle_count": 288
         },
         "debug_log": "user_data/profile_bias_logs/Dimond-eba97121-lookahead.log",
-        "elapsed_s": 191.3,
+        "elapsed_s": 168.6,
         "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Dimond-eba97121_gate.json --strategy Dimond --strategy-path user_data/profile_bias_strategies/Dimond-eba97121 --timerange 20200301-20260820 --no-color",
-        "output_sha256": "sha256_333284eca1c794cda662c7b683a55443ccd7499e55847f1dd94c5722e7d15e06",
+        "output_sha256": "sha256_351d8d4212f62da82bf2783c35e1bdcbddce810081bef98f31372eb34a06eec4",
         "runtime_id": "native_unversioned",
         "status": "NA",
         "timerange": "20200301-20260820",
@@ -3675,6 +3676,7 @@
       "class1_rules": [
         "restore_copied_local_module",
         "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest",
         "bias_market_order_price_side_compatibility"
       ],
       "config_overrides": {
@@ -3683,19 +3685,19 @@
       "implementation_id": "Dyna_opti:b04a36f48cec",
       "lookahead": {
         "attempted_timeranges": [
-          "20190101-20190401"
+          "20190101-20190401",
+          "20200101-20220101"
         ],
         "config_overrides": {
           "startup_candle_count": 576
         },
-        "debug_log": "user_data/profile_bias_logs/Dyna_opti-8aa17cbf-lookahead.log",
-        "elapsed_s": 38.9,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Dyna_opti-8aa17cbf_gate.json --strategy Dyna_opti --strategy-path user_data/profile_bias_strategies/Dyna_opti-8aa17cbf --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_cb19efd9790a1574271c6a413bf31a774454641a232cac4769111a69c3437e46",
+        "elapsed_s": 106.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Dyna_opti-8aa17cbf_gate.json --strategy Dyna_opti --strategy-path user_data/profile_bias_strategies/Dyna_opti-8aa17cbf --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_2bd4906841b2f31bbb12522ed5531a4fbe64544669a05d69201517a19e73685a",
         "runtime_id": "native_unversioned",
-        "status": "NA",
-        "timerange": "20190101-20190401",
-        "why": "'rmi-up-trend'"
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -4467,7 +4469,7 @@
           "20190101-20190401",
           "20200101-20220101"
         ],
-        "elapsed_s": 3873.5,
+        "elapsed_s": 3837.0,
         "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/ExponentialGradientPortfolio-129467e1_gate.json --strategy ExponentialGradientPortfolio --strategy-path user_data/profile_bias_strategies/ExponentialGradientPortfolio-129467e1 --timerange 20200101-20220101 --no-color",
         "status": "NA",
         "timerange": "20200101-20220101",
@@ -5512,9 +5514,9 @@
           "startup_candle_count": 6
         },
         "debug_log": "user_data/profile_bias_logs/GodStraNew-64358f8c-lookahead.log",
-        "elapsed_s": 84.9,
+        "elapsed_s": 86.3,
         "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/GodStraNew-64358f8c_gate.json --strategy GodStraNew --strategy-path user_data/profile_bias_strategies/GodStraNew-64358f8c --timerange 20200301-20260820 --no-color",
-        "output_sha256": "sha256_42655484bd071f09006d59e3f8690997bf0dc042c2d6976ef1a5e3b91227c38f",
+        "output_sha256": "sha256_98406155212369add8a36d223bf111e3e91a60afc790270601764ad2eca9da0e",
         "runtime_id": "native_unversioned",
         "status": "NA",
         "timerange": "20200301-20260820",
@@ -5544,9 +5546,9 @@
           "startup_candle_count": 6
         },
         "debug_log": "user_data/profile_bias_logs/GodStraNew40-d7e3e18f-lookahead.log",
-        "elapsed_s": 88.2,
+        "elapsed_s": 83.2,
         "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/GodStraNew40-d7e3e18f_gate.json --strategy GodStraNew40 --strategy-path user_data/profile_bias_strategies/GodStraNew40-d7e3e18f --timerange 20200301-20260820 --no-color",
-        "output_sha256": "sha256_b20f2c133b4d081fe14ddf55139520294980aa8b31ef5f9e3710489faa972434",
+        "output_sha256": "sha256_8bc581da0c8877eedce361756b89047c23132570bd5db89994e36897c2a3eba0",
         "runtime_id": "native_unversioned",
         "status": "NA",
         "timerange": "20200301-20260820",
@@ -5576,9 +5578,9 @@
           "startup_candle_count": 288
         },
         "debug_log": "user_data/profile_bias_logs/GodStraNew_SMAonly-3172eff6-lookahead.log",
-        "elapsed_s": 153.2,
+        "elapsed_s": 140.3,
         "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/GodStraNew_SMAonly-3172eff6_gate.json --strategy GodStraNew_SMAonly --strategy-path user_data/profile_bias_strategies/GodStraNew_SMAonly-3172eff6 --timerange 20200301-20260820 --no-color",
-        "output_sha256": "sha256_a3b3a94b83c6c577cd71cc8f5bd3e752a0b7fc9725142768c050bae4a6fb751f",
+        "output_sha256": "sha256_fcf0a77c33c149ab21198747a615e94fe5db5b4bebe44bf1889cabfbaa4bc26d",
         "runtime_id": "native_unversioned",
         "status": "NA",
         "timerange": "20200301-20260820",
@@ -6640,9 +6642,9 @@
           "20190101-20190401"
         ],
         "debug_log": "user_data/profile_bias_logs/KitchenSink-279d5d37-lookahead.log",
-        "elapsed_s": 104.1,
+        "elapsed_s": 92.3,
         "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy KitchenSink --strategy-path user_data/profile_bias_strategies/KitchenSink-279d5d37 --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_4d10d09d6e243ab65bf3dcc2b3c40f394810b7f1dba5ef2de1697a883d33c0b8",
+        "output_sha256": "sha256_6d759829b1a2af4fbe558c576366b93d21d583f7a9533f114243fb828528716e",
         "runtime_id": "native_unversioned",
         "status": "NA",
         "timerange": "20190101-20190401",
@@ -6729,6 +6731,34 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "LinearRegressionStrategy"
+    },
+    "LongShortRangeTradingMachetesV1": {
+      "canonical_sha256": "sha256_33f0c77297f307e7dc7d88b6ffcdd07939c5812852fad7ec9fb3909fc6f0ccc1",
+      "class1_rules": [
+        "legacy_replace_method_kwarg",
+        "legacy_fillna_skips_incompatible_dtype",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "LongShortRangeTradingMachetesV1:33f0c77297f3",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101",
+          "20200301-20260820"
+        ],
+        "debug_log": "user_data/profile_bias_logs/LongShortRangeTradingMachetesV1-547b224f-lookahead.log",
+        "elapsed_s": 418.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy LongShortRangeTradingMachetesV1 --strategy-path user_data/profile_bias_strategies/LongShortRangeTradingMachetesV1-547b224f --timerange 20200301-20260820 --no-color",
+        "output_sha256": "sha256_ee0b2150d209124356a1ea93575a24ebb25b0348fa2a81f4973c42122c22b930",
+        "runtime_id": "native_unversioned",
+        "status": "NA",
+        "timerange": "20200301-20260820",
+        "why": "process exit -9 or unparsed output"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "LongShortRangeTradingMachetesV1"
     },
     "LookaheadStrategy": {
       "canonical_sha256": "sha256_a34df9abb5efb84716e4b59c84f1d40692a7a2c32bb301c9ee981f4e0f2c8115",
@@ -7133,13 +7163,13 @@
           "20190101-20190401"
         ],
         "debug_log": "user_data/profile_bias_logs/MKR-b761aeca-lookahead.log",
-        "elapsed_s": 28.4,
+        "elapsed_s": 146.0,
         "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MKR --strategy-path user_data/profile_bias_strategies/MKR-b761aeca --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_d5602b25824afdd9461918996efa9703b407baf7a434d9fb83a1a89d38e4763f",
+        "output_sha256": "sha256_bc648f74c5a3ba61f38cddb632b5a0254807a4e77cb7adcf8f33587a3e0c90f7",
         "runtime_id": "native_unversioned",
-        "status": "NA",
+        "status": "FOUND",
         "timerange": "20190101-20190401",
-        "why": "There were no strategies specified neither through --strategy nor through --strategy-list or timeframe was not"
+        "why": "bias: entries 2, exits 6 of 20 signals; indicators y_train, prediction, enter_long, exit_long"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -7622,6 +7652,37 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "MultiFactorConfluenceStrategy"
+    },
+    "MultiMA_TSL": {
+      "canonical_sha256": "sha256_7e8f8a956c7fe5b67eb28a462b8901fa9c42300e9f2e2f19d11509b7c31d948d",
+      "class1_rules": [
+        "idempotent_entry_tag_initialisation",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "config_overrides": {
+        "startup_candle_count": 2016
+      },
+      "implementation_id": "MultiMA_TSL:7e8f8a956c7f",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401",
+          "20200101-20220101"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 2016
+        },
+        "elapsed_s": 95.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/MultiMA_TSL-432f3842_gate.json --strategy MultiMA_TSL --strategy-path user_data/profile_bias_strategies/MultiMA_TSL-432f3842 --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_79508abbf49336e964d38a6d4f591c6baff7fa550af44456f2c6ee880b4ba57f",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20200101-20220101",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "MultiMA_TSL"
     },
     "MultiOffsetLamboV0": {
       "canonical_sha256": "sha256_e23c904ac28e87e029a365b7a3ca369b581b5d0d10110bfc5577397e8974ebb1",
@@ -9031,19 +9092,14 @@
       "implementation_id": "NostalgiaForInfinityX4:1e74882784ff",
       "lookahead": {
         "attempted_timeranges": [
-          "20200301-20200401"
+          "20200301-20200401",
+          "20200101-20220101"
         ],
-        "config_overrides": {
-          "startup_candle_count": 2016
-        },
-        "debug_log": "user_data/profile_bias_logs/NostalgiaForInfinityX4-lookahead.log",
-        "elapsed_s": 47.5,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/NostalgiaForInfinityX4_gate.json --strategy NostalgiaForInfinityX4 --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityX4 --timerange 20200301-20200401 --no-color",
-        "output_sha256": "sha256_92e827cf3a444cb714241cecf982f1257f402dcaff5edda9a0acb3bd23ce1dc9",
-        "runtime_id": "native_unversioned",
+        "elapsed_s": 3667.1,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/NostalgiaForInfinityX4-9889f1ac_gate.json --strategy NostalgiaForInfinityX4 --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityX4-9889f1ac --timerange 20200101-20220101 --no-color",
         "status": "NA",
-        "timerange": "20200301-20200401",
-        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        "timerange": "20200101-20220101",
+        "why": "TIMEOUT"
       },
       "mode": "futures",
       "run_profile": "futures_long",
@@ -9430,19 +9486,14 @@
       "implementation_id": "ONS_Portfolio:3cba87a36373",
       "lookahead": {
         "attempted_timeranges": [
-          "20190101-20190401"
+          "20190101-20190401",
+          "20200101-20220101"
         ],
-        "config_overrides": {
-          "startup_candle_count": 288
-        },
-        "debug_log": "user_data/profile_bias_logs/ONS_Portfolio-lookahead.log",
-        "elapsed_s": 34.9,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/ONS_Portfolio_gate.json --strategy ONS_Portfolio --strategy-path user_data/profile_bias_strategies/ONS_Portfolio --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_dc985fe6bd11e40b6c8744c0038494e853e919a353e12a61098b5473be0f2539",
-        "runtime_id": "native_unversioned",
+        "elapsed_s": 4048.1,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/ONS_Portfolio-4709d796_gate.json --strategy ONS_Portfolio --strategy-path user_data/profile_bias_strategies/ONS_Portfolio-4709d796 --timerange 20200101-20220101 --no-color",
         "status": "NA",
-        "timerange": "20190101-20190401",
-        "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        "timerange": "20200101-20220101",
+        "why": "TIMEOUT"
       },
       "mode": "spot",
       "run_profile": "spot_long",
@@ -9697,6 +9748,60 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "PatternRecognition"
+    },
+    "Persia": {
+      "canonical_sha256": "sha256_33ccafd6fae4d8191d8c3dd957cd21b300833457c0aca9c4d00aa1260ce249e6",
+      "class1_rules": [
+        "restore_numpy_lib_function_base",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "config_overrides": {
+        "startup_candle_count": 2016
+      },
+      "implementation_id": "Persia:33ccafd6fae4",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 2016
+        },
+        "elapsed_s": 39.1,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Persia-f2f6ac3e_gate.json --strategy Persia --strategy-path user_data/profile_bias_strategies/Persia-f2f6ac3e --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_3ce40e8a1437140b696a71c5e8dc7234991cdf0275e9641bf3b4869e2d968660",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Persia"
+    },
+    "Pmax": {
+      "canonical_sha256": "sha256_3586d2d70dff852369c1c4f1dc063e291c63c332c1fc3b937af49dd98ae6fcd6",
+      "class1_rules": [
+        "legacy_pmax_parameter_names",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "Pmax:0d4334112a7d",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 61.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Pmax --strategy-path user_data/profile_bias_strategies/Pmax-4df3db7b --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_bdf572b93c386a92f3ea9834cd242787a47848a69d58a83e2159442d43c92c12",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Pmax"
     },
     "PolymarketPortfolio": {
       "canonical_sha256": "sha256_e2e94d910e9b342d1e9164df8d5b6adbe4e3e8a96fa41f9551e8ea4eb9018f33",
@@ -11263,6 +11368,130 @@
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "Solipsis"
     },
+    "Solipsis3": {
+      "canonical_sha256": "sha256_3cce8566c0e638bff0d1f206b96a75ee57538df9aec1207d32496de538fbdd98",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
+      "implementation_id": "Solipsis3:3cce8566c0e6",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 288
+        },
+        "debug_log": "user_data/profile_bias_logs/Solipsis3-a8a18040-lookahead.log",
+        "elapsed_s": 107.4,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Solipsis3-a8a18040_gate.json --strategy Solipsis3 --strategy-path user_data/profile_bias_strategies/Solipsis3-a8a18040 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_3baab48704cc15b9c314df8a73e85c8246e8940363f0e42ed60ef0fdac408755",
+        "runtime_id": "native_unversioned",
+        "status": "NA",
+        "timerange": "20190101-20190401",
+        "why": "Can only compare identically-labeled (both index and columns) DataFrame objects"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Solipsis3"
+    },
+    "Solipsis4": {
+      "canonical_sha256": "sha256_f483e328f49a1f55415de3f1e0b020da9277686a4233dc127d3b8b732b115233",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "config_overrides": {
+        "startup_candle_count": 576
+      },
+      "implementation_id": "Solipsis4:f483e328f49a",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 576
+        },
+        "debug_log": "user_data/profile_bias_logs/Solipsis4-5bd23c38-lookahead.log",
+        "elapsed_s": 30.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Solipsis4-5bd23c38_gate.json --strategy Solipsis4 --strategy-path user_data/profile_bias_strategies/Solipsis4-5bd23c38 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_fa409835e9773c200936005214982fc214ee0f1e61fac3470ebb5e9167c875f8",
+        "runtime_id": "native_unversioned",
+        "status": "NA",
+        "timerange": "20190101-20190401",
+        "why": "Can only compare identically-labeled (both index and columns) DataFrame objects"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Solipsis4"
+    },
+    "Solipsis5": {
+      "canonical_sha256": "sha256_8fa173b9732af996949f25e5d8af809b3e2fe4d8be29560ae1a43a91fef8cc83",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "legacy_min_roi_reached_entry_override",
+        "lookahead_runmode_reports_backtest",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "Solipsis5:8fa173b9732a",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Solipsis5-1c959a70-lookahead.log",
+        "elapsed_s": 441.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Solipsis5 --strategy-path user_data/profile_bias_strategies/Solipsis5-1c959a70 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_b22d44424d2367e9548b2372a7ee58fc7ac4ade81f2100b36677293620a3942b",
+        "runtime_id": "native_unversioned",
+        "status": "NA",
+        "timerange": "20190101-20190401",
+        "why": "Can only compare identically-labeled (both index and columns) DataFrame objects"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Solipsis5"
+    },
+    "SolipsisCon": {
+      "canonical_sha256": "sha256_4ce1ee4cb639a5183a74dbee26ab88fe5e00b0b88aeb9b564d85ff8311821986",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
+      "implementation_id": "SolipsisCon:4ce1ee4cb639",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 288
+        },
+        "debug_log": "user_data/profile_bias_logs/SolipsisCon-12ab7e8b-lookahead.log",
+        "elapsed_s": 103.2,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/SolipsisCon-12ab7e8b_gate.json --strategy SolipsisCon --strategy-path user_data/profile_bias_strategies/SolipsisCon-12ab7e8b --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_207102a970fac362fcc78bcf8ca9edae639c46bbda882a0fb23b7cb379441f12",
+        "runtime_id": "native_unversioned",
+        "status": "NA",
+        "timerange": "20190101-20190401",
+        "why": "Can only compare identically-labeled (both index and columns) DataFrame objects"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "SolipsisCon"
+    },
     "SqueezeMomentum": {
       "canonical_sha256": "sha256_6fcb840e9fe1bcd53d5cfed154131b5ed0dfc71f6ded389f6990c2731147769a",
       "class1_rules": [
@@ -12092,6 +12321,36 @@
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "TemaStrategy"
     },
+    "Test_MAMA4": {
+      "canonical_sha256": "sha256_d6e1444c50e3f75888a5bf899e363c6b20334b41422c4bd68410242af66644bd",
+      "class1_rules": [
+        "idempotent_entry_tag_initialisation",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
+      "implementation_id": "Test_MAMA4:d6e1444c50e3",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 288
+        },
+        "elapsed_s": 41.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/Test_MAMA4-aa83c1d0_gate.json --strategy Test_MAMA4 --strategy-path user_data/profile_bias_strategies/Test_MAMA4-aa83c1d0 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_bbfc6fd7961c0721d45a4478801eaef61ac10725610f50cdb65403fe2f59d5a7",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "Test_MAMA4"
+    },
     "TheForce": {
       "canonical_sha256": "sha256_dc3537c5cbe9d1d80e0db442a4ceef2fcd0ba7ccf40bd637515ec20a3f661485",
       "class1_rules": [
@@ -12342,6 +12601,29 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "TwoCandle"
+    },
+    "TwoCandleTheory": {
+      "canonical_sha256": "sha256_6986bca4e8c7cd66cefd93c8b4ff043e9db2b8b8dfa5056baba9cf2fa915f9e3",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "TwoCandleTheory:6986bca4e8c7",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "elapsed_s": 203.4,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TwoCandleTheory --strategy-path user_data/profile_bias_strategies/TwoCandleTheory-aede3331 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_505a1c09522c08846840bec7b0d5578f7ab102fa541ab3222e3d029ba6e8d708",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "TwoCandleTheory"
     },
     "UniversalMACD": {
       "canonical_sha256": "sha256_b3a62e0d8a26024e7ab5f3613d0964e3954373bc3735c1ffd0678d84ce1b1e32",
@@ -13143,7 +13425,7 @@
           "20200101-20220101",
           "20200301-20260820"
         ],
-        "elapsed_s": 5152.9,
+        "elapsed_s": 5130.3,
         "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/epretrace-7f3a8522_gate.json --strategy epretrace --strategy-path user_data/profile_bias_strategies/epretrace-7f3a8522 --timerange 20200301-20260820 --no-color",
         "status": "NA",
         "timerange": "20200301-20260820",
@@ -13526,6 +13808,31 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "newstrategy53_22"
+    },
+    "qrsi": {
+      "canonical_sha256": "sha256_12f29e1936ac248f74b62a150b32c7ddfc960dba76928dd3c559e338398eada1",
+      "class1_rules": [
+        "legacy_minute_resample_rule",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "implementation_id": "qrsi:12f29e1936ac",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "debug_log": "user_data/profile_bias_logs/qrsi-7b93d564-lookahead.log",
+        "elapsed_s": 49.2,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy qrsi --strategy-path user_data/profile_bias_strategies/qrsi-7b93d564 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_6c78ad024dbade6686c1cc9b766421be9a45aec17724d640475dfb8bbbd755e3",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20190101-20190401",
+        "why": "bias: entries 0, exits 0 of 20 signals; indicators rsi_1h, ma_trend, rsi_4h"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "qrsi"
     },
     "quantumfirst": {
       "canonical_sha256": "sha256_94dedeffe4cf45cb841ea6d4ef0162023f490af667240c67c7a08797a4438e16",
@@ -14067,5 +14374,125 @@
     }
   },
   "schema_version": 1,
+  "superseded": {
+    "MKR": [
+      {
+        "canonical_sha256": "sha256_49ae85f6d6ec560253394642d6294e6f44a127aca2c77c9e43acd9cec52882e5",
+        "class1_rules": [
+          "bias_market_order_price_side_compatibility"
+        ],
+        "implementation_id": "MKR:49ae85f6d6ec",
+        "lookahead": {
+          "attempted_timeranges": [
+            "20190101-20190401"
+          ],
+          "debug_log": "user_data/profile_bias_logs/MKR-b761aeca-lookahead.log",
+          "elapsed_s": 28.4,
+          "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MKR --strategy-path user_data/profile_bias_strategies/MKR-b761aeca --timerange 20190101-20190401 --no-color",
+          "output_sha256": "sha256_d5602b25824afdd9461918996efa9703b407baf7a434d9fb83a1a89d38e4763f",
+          "runtime_id": "native_unversioned",
+          "status": "NA",
+          "timerange": "20190101-20190401",
+          "why": "There were no strategies specified neither through --strategy nor through --strategy-list or timeframe was not"
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+        "strategy_id": "MKR",
+        "superseded_because": "measured under strategy-audit-runtime instead of the strategy-audit-packages-runtime image PROFILE_CLASS1.json declares for this row; the resolver's 'no strategies specified' is a masked ModuleNotFoundError (matplotlib/catboost), not a verdict"
+      }
+    ],
+    "NostalgiaForInfinityX4": [
+      {
+        "canonical_sha256": "sha256_1e74882784ff49b36b9a9408379b5dc3ac93f37df85605efa84029646348bedb",
+        "class1_rules": [],
+        "config_overrides": {
+          "startup_candle_count": 2016
+        },
+        "implementation_id": "NostalgiaForInfinityX4:1e74882784ff",
+        "lookahead": {
+          "attempted_timeranges": [
+            "20200301-20200401"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 2016
+          },
+          "debug_log": "user_data/profile_bias_logs/NostalgiaForInfinityX4-lookahead.log",
+          "elapsed_s": 47.5,
+          "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/NostalgiaForInfinityX4_gate.json --strategy NostalgiaForInfinityX4 --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityX4 --timerange 20200301-20200401 --no-color",
+          "output_sha256": "sha256_92e827cf3a444cb714241cecf982f1257f402dcaff5edda9a0acb3bd23ce1dc9",
+          "runtime_id": "native_unversioned",
+          "status": "NA",
+          "timerange": "20200301-20200401",
+          "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        },
+        "mode": "futures",
+        "run_profile": "futures_long",
+        "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+        "strategy_id": "NostalgiaForInfinityX4",
+        "superseded_because": "transient ExchangeNotAvailable from Binance at measurement time, not a code or data problem; worth a plain retry"
+      }
+    ],
+    "ONS_Portfolio": [
+      {
+        "canonical_sha256": "sha256_3cba87a36373a72a291ddcfdd52b4d0eb979289d0dd53e88eecc0f0c765df2b9",
+        "class1_rules": [
+          "bias_market_order_price_side_compatibility"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 288
+        },
+        "implementation_id": "ONS_Portfolio:3cba87a36373",
+        "lookahead": {
+          "attempted_timeranges": [
+            "20190101-20190401"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "debug_log": "user_data/profile_bias_logs/ONS_Portfolio-lookahead.log",
+          "elapsed_s": 34.9,
+          "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/ONS_Portfolio_gate.json --strategy ONS_Portfolio --strategy-path user_data/profile_bias_strategies/ONS_Portfolio --timerange 20190101-20190401 --no-color",
+          "output_sha256": "sha256_dc985fe6bd11e40b6c8744c0038494e853e919a353e12a61098b5473be0f2539",
+          "runtime_id": "native_unversioned",
+          "status": "NA",
+          "timerange": "20190101-20190401",
+          "why": "Could not load markets, therefore cannot start. Please investigate the above error for more details."
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+        "strategy_id": "ONS_Portfolio",
+        "superseded_because": "transient ExchangeNotAvailable from Binance at measurement time, not a code or data problem; worth a plain retry"
+      }
+    ],
+    "TwoCandleTheory": [
+      {
+        "canonical_sha256": "sha256_6986bca4e8c7cd66cefd93c8b4ff043e9db2b8b8dfa5056baba9cf2fa915f9e3",
+        "class1_rules": [
+          "bias_market_order_price_side_compatibility"
+        ],
+        "implementation_id": "TwoCandleTheory:6986bca4e8c7",
+        "lookahead": {
+          "attempted_timeranges": [
+            "20190101-20190401"
+          ],
+          "debug_log": "user_data/profile_bias_logs/TwoCandleTheory-aede3331-lookahead.log",
+          "elapsed_s": 25.0,
+          "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TwoCandleTheory --strategy-path user_data/profile_bias_strategies/TwoCandleTheory-aede3331 --timerange 20190101-20190401 --no-color",
+          "output_sha256": "sha256_1a3facf59c70b97e6da45c6689ebb950142cb2c14ad37891797d7511cdc07e56",
+          "runtime_id": "native_unversioned",
+          "status": "NA",
+          "timerange": "20190101-20190401",
+          "why": "There were no strategies specified neither through --strategy nor through --strategy-list or timeframe was not"
+        },
+        "mode": "spot",
+        "run_profile": "spot_long",
+        "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+        "strategy_id": "TwoCandleTheory",
+        "superseded_because": "measured under strategy-audit-runtime instead of the strategy-audit-packages-runtime image PROFILE_CLASS1.json declares for this row; the resolver's 'no strategies specified' is a masked ModuleNotFoundError (matplotlib/catboost), not a verdict"
+      }
+    ]
+  },
   "why": "look-ahead measured natively for convergence candidates that had no verdict of their own"
 }
