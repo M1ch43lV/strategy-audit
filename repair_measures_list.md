@@ -8,9 +8,9 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 
 | Verdict | Strategies | Meaning |
 |---|---:|---|
-| `repaired` | 127 | runs now, and the run is recorded |
+| `repaired` | 128 | runs now, and the run is recorded |
 | `repair_attempted` | 18 | a route was applied and did not finish the job |
-| `to_be_fixed` | 26 | the route is known, the run has not happened yet |
+| `to_be_fixed` | 25 | the route is known, the run has not happened yet |
 | `needs_a_look` | 54 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 4 | the repair made things worse and was undone |
 | `refuse_repair` | 27 | repairing it would mean inventing the strategy |
@@ -40,7 +40,7 @@ For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `BBRSIS`, `BBRSI
 
 ### Seven compatibility shims for freqtrade's own behaviour
 
-`repair_family: framework_compat_shim` &mdash; 106 strategies (repaired 83, repair_attempted 2, to_be_fixed 20, needs_a_look 1)
+`repair_family: framework_compat_shim` &mdash; 106 strategies (repaired 84, repair_attempted 2, to_be_fixed 19, needs_a_look 1)
 
 **The message.**
 

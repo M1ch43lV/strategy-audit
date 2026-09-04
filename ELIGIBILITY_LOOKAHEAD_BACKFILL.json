@@ -1671,10 +1671,10 @@
         "config_overrides": {
           "startup_candle_count": 576
         },
-        "debug_log": "user_data/profile_bias_logs/BinHV27_short-lookahead.log",
-        "elapsed_s": 67.9,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/BinHV27_short_gate.json --strategy BinHV27_short --strategy-path user_data/profile_bias_strategies/BinHV27_short --timerange 20200101-20220101 --no-color",
-        "output_sha256": "sha256_72ff17211bdb86d533fab7559db2d70dff620d9a268fd84d78010274db3c6da4",
+        "debug_log": "user_data/profile_bias_logs/BinHV27_short-15a8226e-lookahead.log",
+        "elapsed_s": 107.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/BinHV27_short-15a8226e_gate.json --strategy BinHV27_short --strategy-path user_data/profile_bias_strategies/BinHV27_short-15a8226e --timerange 20200101-20220101 --no-color",
+        "output_sha256": "sha256_f42eedad85a64a612d328a5b31e0e4824efefed9289a95c3b8913e7139bd1299",
         "runtime_id": "native_unversioned",
         "status": "NA",
         "timerange": "20200101-20220101",
@@ -1684,6 +1684,36 @@
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
       "strategy_id": "BinHV27_short"
+    },
+    "BinHV27_werkkrew": {
+      "canonical_sha256": "sha256_0284ea98351db697c2b4216b3959182b986561194dafbe0faca65b0de15ea46d",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_override",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "config_overrides": {
+        "startup_candle_count": 576
+      },
+      "implementation_id": "BinHV27_werkkrew:0284ea98351d",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 576
+        },
+        "elapsed_s": 52.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/BinHV27_werkkrew-3a997e27_gate.json --strategy BinHV27_werkkrew --strategy-path user_data/profile_bias_strategies/BinHV27_werkkrew-3a997e27 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_988e583a1da91b06abe688dc2798851e25dba8d51b672a892102921266080ce8",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20190101-20190401",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "BinHV27_werkkrew"
     },
     "BinHV45HO": {
       "canonical_sha256": "sha256_137f88a12a9d2f26af343aa17fd4d15deed08d75eaa91e66830be689e2a60cbf",
@@ -3190,6 +3220,99 @@
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
       "strategy_id": "CryptoFrogHO3A4"
     },
+    "CryptoFrogNFI": {
+      "canonical_sha256": "sha256_2683be32b0434d4163023c54ecf9040fa121cfd8ca0dc552fa77588a41abbabc",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "config_overrides": {
+        "startup_candle_count": 2016
+      },
+      "implementation_id": "CryptoFrogNFI:2683be32b043",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 2016
+        },
+        "debug_log": "user_data/profile_bias_logs/CryptoFrogNFI-08ea05db-lookahead.log",
+        "elapsed_s": 54.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrogNFI-08ea05db_gate.json --strategy CryptoFrogNFI --strategy-path user_data/profile_bias_strategies/CryptoFrogNFI-08ea05db --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_2921878fa3e246fe86f98704610a797284dd6fa34479ef848a77683cfaf6d600",
+        "runtime_id": "native_unversioned",
+        "status": "NA",
+        "timerange": "20190101-20190401",
+        "why": "'rmi-up-trend'"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "CryptoFrogNFI"
+    },
+    "CryptoFrogNFIHO1A": {
+      "canonical_sha256": "sha256_5c97e4fad3b80fdc9c28ea5148e9bf328adbadc7ed6fb2d110d69347ae34b346",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "config_overrides": {
+        "startup_candle_count": 2016
+      },
+      "implementation_id": "CryptoFrogNFIHO1A:5c97e4fad3b8",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 2016
+        },
+        "debug_log": "user_data/profile_bias_logs/CryptoFrogNFIHO1A-366468cd-lookahead.log",
+        "elapsed_s": 56.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrogNFIHO1A-366468cd_gate.json --strategy CryptoFrogNFIHO1A --strategy-path user_data/profile_bias_strategies/CryptoFrogNFIHO1A-366468cd --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_d42eaff211086070b377267dae7dcb43d824e87ce447603ff804633e52154f3a",
+        "runtime_id": "native_unversioned",
+        "status": "NA",
+        "timerange": "20190101-20190401",
+        "why": "'rmi-up-trend'"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "CryptoFrogNFIHO1A"
+    },
+    "CryptoFrogOffset": {
+      "canonical_sha256": "sha256_8c5a7ed49aa3e2c40c76ac7bd9f6cfe78e082d4e54f5ea9863ca8dee8a4a6d65",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "config_overrides": {
+        "startup_candle_count": 2016
+      },
+      "implementation_id": "CryptoFrogOffset:8c5a7ed49aa3",
+      "lookahead": {
+        "attempted_timeranges": [
+          "20190101-20190401"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 2016
+        },
+        "debug_log": "user_data/profile_bias_logs/CryptoFrogOffset-058d44a6-lookahead.log",
+        "elapsed_s": 48.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/CryptoFrogOffset-058d44a6_gate.json --strategy CryptoFrogOffset --strategy-path user_data/profile_bias_strategies/CryptoFrogOffset-058d44a6 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_bbdbe895ce7cc8800b0a4efb3f198be7eaed138e813cf42fee03b334cec3a971",
+        "runtime_id": "native_unversioned",
+        "status": "NA",
+        "timerange": "20190101-20190401",
+        "why": "'rmi-up-trend'"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0",
+      "strategy_id": "CryptoFrogOffset"
+    },
     "CryptoFrog_nateema": {
       "canonical_sha256": "sha256_ba28d48d8d6712689ac1e81b5154003abeb831073f6caa15d67feaa16c30180f",
       "class1_rules": [
@@ -3347,10 +3470,10 @@
         "config_overrides": {
           "startup_candle_count": 6
         },
-        "debug_log": "user_data/profile_bias_logs/DevilStra-lookahead.log",
-        "elapsed_s": 27.5,
-        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/DevilStra_gate.json --strategy DevilStra --strategy-path user_data/profile_bias_strategies/DevilStra --timerange 20190101-20190401 --no-color",
-        "output_sha256": "sha256_d560b48e4c3f51a849cce2dfd2db5685df1588ec2d15183a60dd98c75661086d",
+        "debug_log": "user_data/profile_bias_logs/DevilStra-c0790e53-lookahead.log",
+        "elapsed_s": 34.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/DevilStra-c0790e53_gate.json --strategy DevilStra --strategy-path user_data/profile_bias_strategies/DevilStra-c0790e53 --timerange 20190101-20190401 --no-color",
+        "output_sha256": "sha256_2489ffcd85dbd16a34271db5f544f64577d82f49a93709b3509f1a4429f2a219",
         "runtime_id": "native_unversioned",
         "status": "NA",
         "timerange": "20190101-20190401",

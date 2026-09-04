@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-04 01:35:38 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-04 06:19:02 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -32,20 +32,19 @@ have neither and are left empty rather than given an invented time.
 |---|---:|
 | in the manifest | 900 |
 | measured at all | 775 |
-| produced trades | 740 |
+| produced trades | 745 |
 | carrying a run time | 897 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
-| `E1_expanded` | 557 |
+| `E1_expanded` | 564 |
 | `excluded` | 170 |
 | `pending` | 98 |
-| `exclusion_unconfirmed` | 35 |
+| `exclusion_unconfirmed` | 33 |
 | `too_few_trades` | 21 |
 | `not_a_strategy` | 14 |
-| `convergence_candidate` | 5 |
 
 ## The order the checks run in
 
@@ -163,7 +162,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1098 of 2185 commands are recorded so far, and every new run
+recording. 1099 of 2190 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -183,7 +182,7 @@ evaluate a single signal without it. The warm-up ladder passes
 `--startup-candle` with every rung at once, which is why one run
 reports the whole ladder.
 
-## Passing - 557 strategies
+## Passing - 564 strategies
 
 Every original gate returned `PASS`: measured in its native mode,
 produced trades, clean look-ahead and recursion, complete candle
@@ -252,6 +251,7 @@ coverage, no published trap.
 | `BinClucMadV1` | `spot_long` | `E1_expanded` | 1164 | `convergence:2016:warmup_supplied` | 2026-09-01 12:16:09 | [log](user_data/convergence_logs/BinClucMadV1-ladder.log) |
 | `BinHV27` | `spot_long` | `E1_expanded` | 11503 | `convergence:576:warmup_supplied` | 2026-09-01 13:40:42 | [log](user_data/convergence_logs/BinHV27-ladder.log) |
 | `BinHV27F` | `futures_long` | `E1_expanded` | 154 | `convergence:576:warmup_supplied` | 2026-09-02 06:53:08 | [log](user_data/convergence_logs/BinHV27F-ladder.log) |
+| `BinHV27_werkkrew` | `spot_long` | `E1_expanded` | 127 | `convergence:576:warmup_supplied` | 2026-09-03 21:02:46 | [archive](user_data/profile_smoke/BinHV27_werkkrew-3a997e27-2026-09-03_21-02-46.zip) [log](user_data/convergence_logs/BinHV27_werkkrew-ladder.log) |
 | `BinHV45` | `spot_long` | `E1_expanded` | 749 | `convergence:1440:warmup_supplied` | 2026-09-01 23:46:36 | [log](user_data/convergence_logs/BinHV45-ladder.log) |
 | `BinHV45HO` | `spot_long` | `E1_expanded` | 389 | `convergence:1440:warmup_supplied` | 2026-09-01 13:41:32 | [log](user_data/convergence_logs/BinHV45HO-ladder.log) |
 | `BinHV45_kanaxe` | `spot_long` | `E1_expanded` | 1798 | `convergence:1440:warmup_supplied` | 2026-09-01 23:47:31 | [log](user_data/convergence_logs/BinHV45_kanaxe-ladder.log) |
@@ -264,6 +264,7 @@ coverage, no published trap.
 | `BullishEngulfingStrategy` | `spot_long` | `E1_expanded` | 24227 | `convergence:576:warmup_supplied` | 2026-09-01 12:17:26 | [log](user_data/convergence_logs/BullishEngulfingStrategy-ladder.log) |
 | `BuyOnly` | `spot_long` | `E1_expanded` | 2779 | `convergence:672:warmup_supplied` | 2026-09-01 12:17:52 | [log](user_data/convergence_logs/BuyOnly-ladder.log) |
 | `BuyOrDie` | `spot_long` | `E1_expanded` | 3247 | `convergence:288:warmup_supplied` | 2026-09-01 15:38:59 | [log](user_data/convergence_logs/BuyOrDie-ladder.log) |
+| `BuyRegions` | `spot_long` | `E1_expanded` | 4672 | `convergence:288:warmup_supplied` | 2026-09-04 06:15:11 | [log](user_data/convergence_logs/BuyRegions-dff7fcd2-ladder.log) |
 | `CBPete9` | `spot_long` | `E1_expanded` | 132 | `convergence:2016:warmup_supplied` | 2026-09-02 16:24:22 | [archive](user_data/profile_smoke/CBPete9-2026-09-02_16-24-22.zip) [log](user_data/convergence_logs/CBPete9-ladder.log) |
 | `CCI_BB` | `spot_long` | `E1_expanded` | 926 | `convergence:288:warmup_supplied` | 2026-09-01 23:51:00 | [log](user_data/convergence_logs/CCI_BB-ladder.log) |
 | `CMCWinner` | `spot_long` | `E1_expanded` | 6632 | `convergence:672:warmup_supplied` | 2026-09-01 13:42:18 | [log](user_data/convergence_logs/CMCWinner-ladder.log) |
@@ -341,6 +342,7 @@ coverage, no published trap.
 | `Diamond` | `spot_long` | `E1_expanded` | 4603 | `convergence:288:warmup_supplied` | 2026-09-01 15:46:33 | [log](user_data/convergence_logs/Diamond-ladder.log) |
 | `Divergences` | `spot_long` | `E1_expanded` | 9981 | `convergence:2160:warmup_supplied` | 2026-09-01 13:21:26 | [log](user_data/convergence_logs/Divergences-ladder.log) |
 | `DonchianBreakoutStrategy` | `spot_long` | `E1_expanded` | 21512 | `convergence:288:warmup_supplied` | 2026-09-01 12:24:28 | [log](user_data/convergence_logs/DonchianBreakoutStrategy-ladder.log) |
+| `DoubleEMACrossoverWithTrend` | `spot_long` | `E1_expanded` | 4019 | `convergence:2160:warmup_supplied` | 2026-09-03 19:41:49 | [log](user_data/convergence_logs/DoubleEMACrossoverWithTrend-2df7ee08-ladder.log) |
 | `E0V1E` | `spot_long` | `E1_expanded` | 329 | `convergence:2016:warmup_supplied` | 2026-09-01 13:22:16 | [log](user_data/convergence_logs/E0V1E-ladder.log) |
 | `E0V1E2` | `spot_long` | `E1_expanded` | 330 | `convergence:2016:warmup_supplied` | 2026-09-01 13:22:41 | [log](user_data/convergence_logs/E0V1E2-ladder.log) |
 | `E0V1EN` | `spot_long` | `E1_expanded` | 25 | `convergence:288:warmup_supplied` | 2026-09-02 16:26:52 | [archive](user_data/profile_smoke/E0V1EN-2026-09-02_16-26-52.zip) [log](user_data/convergence_logs/E0V1EN-ladder.log) |
@@ -353,6 +355,7 @@ coverage, no published trap.
 | `EMA520015_V17` | `spot_long` | `E1_expanded` | 8265 | `convergence:540:warmup_supplied` | 2026-09-01 15:47:21 | [log](user_data/convergence_logs/EMA520015_V17-ladder.log) |
 | `EMABBRSI` | `spot_long` | `E1_expanded` | 104 | `convergence:2160:warmup_supplied` | 2026-09-01 19:36:47 | [archive](user_data/profile_smoke/EMABBRSI-2026-09-01_19-36-47.zip) [log](user_data/convergence_logs/EMABBRSI-ladder.log) |
 | `EMABreakout` | `spot_long` | `E1_expanded` | 5734 | `convergence:288:warmup_supplied` | 2026-09-01 13:24:46 | [log](user_data/convergence_logs/EMABreakout-ladder.log) |
+| `EMAPriceCrossoverWithThreshold` | `spot_long` | `E1_expanded` | 1816 | `convergence:2160:warmup_supplied` | 2026-09-03 19:42:59 | [log](user_data/convergence_logs/EMAPriceCrossoverWithThreshold-b7ab2a0f-ladder.log) |
 | `EMASkipPump` | `spot_long` | `E1_expanded` | 34322 | `convergence:288:warmup_supplied` | 2026-09-01 13:53:49 | [log](user_data/convergence_logs/EMASkipPump-ladder.log) |
 | `EMAVolume` | `spot_long` | `E1_expanded` | 183 | `convergence:1344:warmup_supplied` | 2026-09-01 19:37:25 | [archive](user_data/profile_smoke/EMAVolume-2026-09-01_19-37-25.zip) [log](user_data/convergence_logs/EMAVolume-ladder.log) |
 | `EMA_CROSSOVER_STRATEGY` | `spot_long` | `E1_expanded` | 26980 | `convergence:4032:warmup_supplied` | 2026-09-03 13:52:59 | [log](user_data/convergence_logs/EMA_CROSSOVER_STRATEGY-ladder.log) |
@@ -461,6 +464,7 @@ coverage, no published trap.
 | `LuxOSC` | `spot_long` | `E1_expanded` | 14577 | `convergence:576:warmup_supplied` | 2026-09-01 14:19:26 | [log](user_data/convergence_logs/LuxOSC-ladder.log) |
 | `MAC` | `spot_long` | `E1_expanded` | 52 | `convergence:90:warmup_supplied` | 2026-09-01 14:19:51 | [log](user_data/convergence_logs/MAC-ladder.log) |
 | `MACDCCI` | `spot_long` | `E1_expanded` | 16 | `convergence:336:warmup_supplied` | 2026-09-01 19:49:03 | [archive](user_data/profile_smoke/MACDCCI-2026-09-01_19-49-03.zip) [log](user_data/convergence_logs/MACDCCI-ladder.log) |
+| `MACDCrossoverWithTrend` | `spot_long` | `E1_expanded` | 1420 | `convergence:720:warmup_supplied` | 2026-09-03 19:44:44 | [log](user_data/convergence_logs/MACDCrossoverWithTrend-b6e682ec-ladder.log) |
 | `MACDRL` | `futures_long` | `E1_expanded` | 200 | `convergence:2016:warmup_supplied` | 2026-09-02 07:27:57 | [log](user_data/convergence_logs/MACDRL-ladder.log) |
 | `MACDRS` | `futures_long_short` | `E1_expanded` | 613 | `convergence:2016:warmup_supplied` | 2026-09-02 07:30:14 | [log](user_data/convergence_logs/MACDRS-ladder.log) |
 | `MACDRSI200` | `spot_long` | `E1_expanded` | 170 | `convergence:2016:warmup_supplied` | 2026-09-01 19:49:47 | [archive](user_data/profile_smoke/MACDRSI200-2026-09-01_19-49-47.zip) [log](user_data/convergence_logs/MACDRSI200-ladder.log) |
@@ -571,6 +575,8 @@ coverage, no published trap.
 | `Quickie` | `spot_long` | `E1_expanded` | 7676 | `convergence:288:warmup_supplied` | 2026-09-01 14:51:56 | [log](user_data/convergence_logs/Quickie-ladder.log) |
 | `RSI` | `spot_long` | `E1_expanded` | 400 | `convergence:192:warmup_supplied` | 2026-09-01 16:09:44 | [log](user_data/convergence_logs/RSI-ladder.log) |
 | `RSIBB02` | `spot_long` | `E1_expanded` | 10 | `convergence:168:warmup_supplied` | 2026-09-01 19:50:27 | [archive](user_data/profile_smoke/RSIBB02-2026-09-01_19-50-27.zip) [log](user_data/convergence_logs/RSIBB02-ladder.log) |
+| `RSIDirectionalWithTrend` | `spot_long` | `E1_expanded` | 752 | `convergence:720:warmup_supplied` | 2026-09-03 19:48:33 | [log](user_data/convergence_logs/RSIDirectionalWithTrend-0268a91f-ladder.log) |
+| `RSIDirectionalWithTrendSlow` | `spot_long` | `E1_expanded` | 546 | `convergence:2160:warmup_supplied` | 2026-09-03 19:49:38 | [log](user_data/convergence_logs/RSIDirectionalWithTrendSlow-247b9c8f-ladder.log) |
 | `RSI_BB` | `spot_long` | `E1_expanded` | 14931 | `convergence:192:warmup_supplied` | 2026-09-01 16:10:33 | [log](user_data/convergence_logs/RSI_BB-ladder.log) |
 | `RSI_EMA_strategy` | `spot_long` | `E1_expanded` | 5240 | `convergence:288:warmup_supplied` | 2026-09-01 16:11:22 | [log](user_data/convergence_logs/RSI_EMA_strategy-ladder.log) |
 | `RSIv2` | `spot_long` | `E1_expanded` | 5908 | `convergence:192:warmup_supplied` | 2026-09-01 12:41:55 | [log](user_data/convergence_logs/RSIv2-ladder.log) |
@@ -1070,6 +1076,12 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config profile_futures_config.json --strategy BinHV27F --strategy-path user_data/profile_bias_strategies/BinHV27F --timerange 20200301-20200401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config profile_futures_config.json --strategy BinHV27F --strategy-path user_data/profile_bias_strategies/BinHV27F --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016
   ```
+- `BinHV27_werkkrew`
+  ```
+  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy BinHV27_werkkrew --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinHV27_werkkrew-3a997e27 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/BinHV27_werkkrew-3a997e27_gate.json --strategy BinHV27_werkkrew --strategy-path user_data/profile_bias_strategies/BinHV27_werkkrew-3a997e27 --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/BinHV27_werkkrew_startup_288.json --strategy BinHV27_werkkrew --strategy-path user_data/profile_bias_strategies/BinHV27_werkkrew --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
+  ```
 - `BinHV45`
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45 --strategy-path user_data/profile_bias_strategies/BinHV45 --timerange 20190101-20190401 --no-color
@@ -1129,6 +1141,11 @@ The calls behind each, one per gate:
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BuyOrDie --strategy-path user_data/profile_bias_strategies/BuyOrDie --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BuyOrDie --strategy-path user_data/profile_bias_strategies/BuyOrDie --timerange 20190101-20190401 --no-color
+  ```
+- `BuyRegions`
+  ```
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BuyRegions --strategy-path user_data/profile_bias_strategies/BuyRegions --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BuyRegions --strategy-path user_data/profile_bias_strategies/BuyRegions-dff7fcd2 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `CBPete9`
   ```
@@ -1535,6 +1552,12 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy DonchianBreakoutStrategy --strategy-path user_data/profile_bias_strategies/DonchianBreakoutStrategy --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy DonchianBreakoutStrategy --strategy-path user_data/profile_bias_strategies/DonchianBreakoutStrategy --timerange 20190101-20190401 --no-color
   ```
+- `DoubleEMACrossoverWithTrend`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy DoubleEMACrossoverWithTrend --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies-that-work --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DoubleEMACrossoverWithTrend --cache none --pairs {pair}   # 8 pairs, one call each
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy DoubleEMACrossoverWithTrend --strategy-path user_data/profile_bias_strategies/DoubleEMACrossoverWithTrend --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/DoubleEMACrossoverWithTrend_startup_24.json --strategy DoubleEMACrossoverWithTrend --strategy-path user_data/profile_bias_strategies/DoubleEMACrossoverWithTrend-2df7ee08 --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160
+  ```
 - `E0V1E`
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy E0V1E --strategy-path user_data/profile_bias_strategies/E0V1E --timerange 20200101-20220101 --no-color
@@ -1597,6 +1620,12 @@ The calls behind each, one per gate:
   ```
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy EMABreakout --strategy-path user_data/profile_bias_strategies/EMABreakout --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy EMABreakout --strategy-path user_data/profile_bias_strategies/EMABreakout --timerange 20190101-20190401 --no-color
+  ```
+- `EMAPriceCrossoverWithThreshold`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy EMAPriceCrossoverWithThreshold --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies-that-work --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/EMAPriceCrossoverWithThreshold --cache none --pairs {pair}   # 8 pairs, one call each
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy EMAPriceCrossoverWithThreshold --strategy-path user_data/profile_bias_strategies/EMAPriceCrossoverWithThreshold --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/EMAPriceCrossoverWithThreshold_startup_24.json --strategy EMAPriceCrossoverWithThreshold --strategy-path user_data/profile_bias_strategies/EMAPriceCrossoverWithThreshold-b7ab2a0f --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160
   ```
 - `EMASkipPump`
   ```
@@ -2180,6 +2209,12 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/MACDCCI_gate.json --strategy MACDCCI --strategy-path user_data/profile_bias_strategies/MACDCCI --timerange 20200101-20220101 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/MACDCCI_startup_48.json --strategy MACDCCI --strategy-path user_data/profile_bias_strategies/MACDCCI --timerange 20190101-20190401 --no-color --startup-candle 48 96 336 672 1440 4320 --timeframe 30m
   ```
+- `MACDCrossoverWithTrend`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy MACDCrossoverWithTrend --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies-that-work --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MACDCrossoverWithTrend --cache none --pairs {pair}   # 8 pairs, one call each
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MACDCrossoverWithTrend --strategy-path user_data/profile_bias_strategies/MACDCrossoverWithTrend --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/MACDCrossoverWithTrend_startup_24.json --strategy MACDCrossoverWithTrend --strategy-path user_data/profile_bias_strategies/MACDCrossoverWithTrend-b6e682ec --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160
+  ```
 - `MACDRL`
   ```
   backtest   [reconstructed] freqtrade backtesting --config user_data/profile_configs/futures_futures_long.json --strategy MACDRL --strategy-path repos/MelvynClark_Freqtrade-Strategy/MACDR --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MACDRL --cache none
@@ -2749,6 +2784,18 @@ The calls behind each, one per gate:
   backtest   [recorded] freqtrade backtesting --config user_data/profile_configs/RSIBB02-override-f400cf1f3448.json --strategy RSIBB02 --strategy-path repos/davidzr_freqtrade-strategies/strategies/RSIBB02 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/RSIBB02 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/RSIBB02_gate.json --strategy RSIBB02 --strategy-path user_data/profile_bias_strategies/RSIBB02 --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/RSIBB02_startup_24.json --strategy RSIBB02 --strategy-path user_data/profile_bias_strategies/RSIBB02 --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160 --timeframe 1h
+  ```
+- `RSIDirectionalWithTrend`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy RSIDirectionalWithTrend --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies-that-work --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/RSIDirectionalWithTrend --cache none --pairs {pair}   # 8 pairs, one call each
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy RSIDirectionalWithTrend --strategy-path user_data/profile_bias_strategies/RSIDirectionalWithTrend --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/RSIDirectionalWithTrend_startup_24.json --strategy RSIDirectionalWithTrend --strategy-path user_data/profile_bias_strategies/RSIDirectionalWithTrend-0268a91f --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160
+  ```
+- `RSIDirectionalWithTrendSlow`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy RSIDirectionalWithTrendSlow --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies-that-work --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/RSIDirectionalWithTrendSlow --cache none --pairs {pair}   # 8 pairs, one call each
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy RSIDirectionalWithTrendSlow --strategy-path user_data/profile_bias_strategies/RSIDirectionalWithTrendSlow --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/RSIDirectionalWithTrendSlow_startup_24.json --strategy RSIDirectionalWithTrendSlow --strategy-path user_data/profile_bias_strategies/RSIDirectionalWithTrendSlow-247b9c8f --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160
   ```
 - `RSI_BB`
   ```
@@ -3670,20 +3717,6 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Convergence candidates - 5 strategies
-
-A warm-up exists at which every indicator stays inside the band.
-That is not admission: the paired full-window run must still show
-an identical trade list.
-
-| Strategy | Profile | Chosen warm-up | Worst drift | Tested | Results |
-|---|---|---|---|---|---|
-| `DoubleEMACrossoverWithTrend` | `spot_long` | 2160 candles | 0.0% on `ema9` | 2026-09-03 19:41:49 | `user_data/convergence_logs/DoubleEMACrossoverWithTrend-2df7ee08-ladder.log` |
-| `EMAPriceCrossoverWithThreshold` | `spot_long` | 2160 candles | 0.001% on `ema800` | 2026-09-03 19:42:59 | `user_data/convergence_logs/EMAPriceCrossoverWithThreshold-b7ab2a0f-ladder.log` |
-| `MACDCrossoverWithTrend` | `spot_long` | 720 candles | 0.0% on `macd` | 2026-09-03 19:44:44 | `user_data/convergence_logs/MACDCrossoverWithTrend-b6e682ec-ladder.log` |
-| `RSIDirectionalWithTrend` | `spot_long` | 720 candles | 0.0% on `rsi` | 2026-09-03 19:48:33 | `user_data/convergence_logs/RSIDirectionalWithTrend-0268a91f-ladder.log` |
-| `RSIDirectionalWithTrendSlow` | `spot_long` | 2160 candles | 0.0% on `rsi_slow` | 2026-09-03 19:49:38 | `user_data/convergence_logs/RSIDirectionalWithTrendSlow-247b9c8f-ladder.log` |
-
 ## Pending - 98 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
@@ -3715,7 +3748,7 @@ neither a pass nor a fail.
 `multi_tf`, `new_turtle`, `new_turtle_roi`, `qrsi`
 `tacos1`, `thetank2`
 
-## Exclusion unconfirmed - 35 strategies
+## Exclusion unconfirmed - 33 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -3727,9 +3760,8 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_verdict_on_lookahead` | `no_finding` | 27 |
+| `no_verdict_on_lookahead` | `no_finding` | 26 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 5 |
-| `unclassified` | `no_finding` | 1 |
 | `recursive_bias_unverified` | `no_finding` | 1 |
 | `recursive_warmup_refused` | `no_finding` | 1 |
 
@@ -3918,13 +3950,13 @@ Wave `C_measurement_recovery` - 17:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 231 |
+| `recursive_ladder_pending` | 230 |
 | `convergence_not_converged_within_ladder` | 60 |
 | `needs_a_look` | 53 |
-| `lookahead_remeasure_pending` | 36 |
+| `lookahead_remeasure_pending` | 35 |
 | `to_be_fixed` | 18 |
 | `repair_attempted` | 16 |
-| `convergence_inconclusive` | 10 |
+| `convergence_inconclusive` | 9 |
 | `repair_withdrawn` | 4 |
 | `refuse_repair` | 4 |
 

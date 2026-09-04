@@ -23293,11 +23293,95 @@
     },
     "BuyRegions": {
       "available_prefix_candles": 106125,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
       "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 128
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
       "debug_log": "user_data/convergence_logs/BuyRegions-dff7fcd2-ladder.log",
+      "declared_max_drift_pct": 0.35,
+      "declared_startup_candle_count": 128,
       "declared_warmup_override": null,
       "drift_threshold_pct": 1.0,
-      "elapsed_s": 27.8,
+      "drifts": {
+        "bb_gain": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_loss": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_lowerband": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_upperband": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_width": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "guard_metric": [
+          -0.35,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "rmi": [
+          0.019,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "srmi": [
+          -0.35,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 12.0,
       "file_derived_period": null,
       "implementation_id": "BuyRegions:837173d07b03",
       "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BuyRegions --strategy-path user_data/profile_bias_strategies/BuyRegions-dff7fcd2 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
@@ -23313,15 +23397,17 @@
         7,
         14
       ],
-      "output_sha256": "sha256_e5f5a19de89b34ff2903d694ddfd66074b4b14207fb1adca26b2e02b72c81ec2",
+      "max_drift_indicator": "bb_lowerband",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_586492e0fe7fdec73b7ec256eff088cf98a7cfd558a5e71453ec3a63e23b7bf9",
       "returncode": 0,
       "run_profile": "spot_long",
       "runtime_id": "native_unversioned",
-      "state": "inconclusive",
+      "state": "converged",
       "strategy_id": "BuyRegions",
       "timeframe": "5m",
-      "timerange": "20190101-20190401",
-      "why": "analyzer produced no drift table"
+      "timerange": "20190101-20190401"
     },
     "CBPete9": {
       "available_prefix_candles": 97222,
@@ -134990,6 +135076,39 @@
         "state": "inconclusive",
         "strategy_id": "BuyRegions",
         "superseded_because": "recorded before the ladder trimmed an over-large top rung and dropped an uncomputable bottom rung; re-run under the fix",
+        "timeframe": "5m",
+        "timerange": "20190101-20190401",
+        "why": "analyzer produced no drift table"
+      },
+      {
+        "available_prefix_candles": 106125,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/BuyRegions-dff7fcd2-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 27.8,
+        "file_derived_period": null,
+        "implementation_id": "BuyRegions:837173d07b03",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BuyRegions --strategy-path user_data/profile_bias_strategies/BuyRegions-dff7fcd2 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+        "ladder_candles": [
+          288,
+          576,
+          2016,
+          4032
+        ],
+        "ladder_days": [
+          1,
+          2,
+          7,
+          14
+        ],
+        "output_sha256": "sha256_e5f5a19de89b34ff2903d694ddfd66074b4b14207fb1adca26b2e02b72c81ec2",
+        "returncode": 0,
+        "run_profile": "spot_long",
+        "runtime_id": "native_unversioned",
+        "state": "inconclusive",
+        "strategy_id": "BuyRegions",
+        "superseded_because": "re-run under the TensorFlow runtime",
         "timeframe": "5m",
         "timerange": "20190101-20190401",
         "why": "analyzer produced no drift table"
