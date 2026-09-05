@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 919 rows
 
-**Generated 2026-09-05 16:52:35 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-05 17:57:51 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -23,7 +23,7 @@ check.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 22 of 919 rows
+file's time and is labelled `log_mtime` for that reason. 7 of 919 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
@@ -31,21 +31,21 @@ have neither and are left empty rather than given an invented time.
 | | Strategies |
 |---|---:|
 | in the manifest | 919 |
-| measured at all | 778 |
-| produced trades | 748 |
-| carrying a run time | 897 |
+| measured at all | 791 |
+| produced trades | 760 |
+| carrying a run time | 912 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 579 |
-| `excluded` | 233 |
-| `pending` | 27 |
+| `excluded` | 241 |
+| `pending` | 26 |
 | `exclusion_unconfirmed` | 26 |
 | `too_few_trades` | 21 |
 | `not_a_strategy` | 18 |
-| `not_tested_in_current_runtime` | 15 |
+| `convergence_candidate` | 8 |
 
 ## Timeframe and signal family
 
@@ -123,11 +123,11 @@ look-ahead/recursion pair, a later native look-ahead
 re-measurement, the warm-up ladder, a wave B recursion attempt, and
 the eight-pair full-window backtest actually ran for it - see
 `test_duration` in strategy_status.py for why this is a sum rather
-than a pick-one-source figure. 19 of 919 rows carry no stamp at all,
+than a pick-one-source figure. 4 of 919 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 900 rows that do: **58.2 hours** of this audit's own compute so far.
+Summed across the 915 rows that do: **58.9 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -265,7 +265,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1119 of 2228 commands are recorded so far, and every new run
+recording. 1162 of 2243 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -3925,7 +3925,24 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Pending - 27 strategies
+## Convergence candidates - 8 strategies
+
+A warm-up exists at which every indicator stays inside the band.
+That is not admission: the paired full-window run must still show
+an identical trade list.
+
+| Strategy | Profile | Chosen warm-up | Worst drift | Tested | Results |
+|---|---|---|---|---|---|
+| `BB10fall` | `spot_long` | 168 candles | 0.0% on `SD of SMA 10` | 2026-09-05 15:09:31 | `user_data/convergence_logs/BB10fall-cef5331b-ladder.log` |
+| `EMA_Trailing_Stoploss` | `spot_long` | 24 candles | 0.0% on `ema3` | 2026-09-05 15:04:54 | `user_data/convergence_logs/EMA_Trailing_Stoploss-c357e7e7-ladder.log` |
+| `EMA_Trailing_Stoploss_LessMagic` | `spot_long` | 288 candles | 0.0% on `None` | 2026-09-05 15:06:00 | `user_data/convergence_logs/EMA_Trailing_Stoploss_LessMagic-aa2b302f-ladder.log` |
+| `MACD9fall` | `spot_long` | 720 candles | 0.0% on `EMA 5` | 2026-09-05 15:10:15 | `user_data/convergence_logs/MACD9fall-3ef1c8d0-ladder.log` |
+| `Magic_Trailing_Stoploss` | `spot_long` | 24 candles | 0.0% on `None` | 2026-09-05 15:06:57 | `user_data/convergence_logs/Magic_Trailing_Stoploss-1cf71129-ladder.log` |
+| `MultiActionZone` | `spot_long` | 540 candles | 0.002% on `resample_1440_slowMA` | 2026-09-05 15:21:02 | `user_data/convergence_logs/MultiActionZone-179b96b7-ladder.log` |
+| `OversoldReversion` | `spot_long` | 1250 candles | 0.0% on `rsi` | 2026-09-05 15:08:45 | `user_data/convergence_logs/OversoldReversion-dcb09e33-ladder.log` |
+| `simple_vwap_v1` | `spot_long` | 2190 candles | 0.0% on `EMA` | 2026-09-05 15:12:31 | `user_data/convergence_logs/simple_vwap_v1-28330b62-ladder.log` |
+
+## Pending - 26 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
@@ -3934,36 +3951,9 @@ neither a pass nor a fail.
 `ClucHAnix_BB_RPB_MOD_trailing_buy`, `CryptoFrogNFI2`, `GodStra`, `Guacamole`
 `HLHB`, `Kamaflage`, `MasterMoniGoManiHyperStrategy`, `MultiMa`
 `MyStrategyNew10`, `NowoIchimoku1hV1`, `Proton`, `QuickBuyStrategy`
-`RLAgentStrategy`, `RLStrategy`, `RenkoYolo`, `SMAOPv1_TTF`
-`Schism6`, `TuplaBollinger`, `UpSliceStrategy`, `WTHO`
-`haGradient`, `multi_tf`, `tacos1`
-
-## Attempted, no measurement - 15 strategies
-
-No run under the current pipeline is recorded for these. The
-original corpus sweep did attempt every row, but it ran in an
-environment that did not establish the preconditions this audit
-requires - which is the whole reason the pre-checks are being
-redone - so its outcome is a hint about what to expect and never a
-verdict. Where such a hint exists it is shown in brackets.
-
-| Strategy | Wave | Status |
-|---|---|---|
-| `BB10fall` | `-` | `no run under the current runtime` |
-| `EMA_Trailing_Stoploss` | `-` | `no run under the current runtime` |
-| `EMA_Trailing_Stoploss_LessMagic` | `-` | `no run under the current runtime` |
-| `MACD9fall` | `-` | `no run under the current runtime` |
-| `Magic_Trailing_Stoploss` | `-` | `no run under the current runtime` |
-| `MultiActionZone` | `-` | `no run under the current runtime` |
-| `Obelisk_Ichimoku_Slow_v1` | `-` | `no run under the current runtime` |
-| `Obelisk_Ichimoku_Slow_v1_1` | `-` | `no run under the current runtime` |
-| `Obelisk_Ichimoku_Slow_v1_2` | `-` | `no run under the current runtime` |
-| `Obelisk_TradePro_Ichi_v2` | `-` | `no run under the current runtime` |
-| `Obelisk_TradePro_Ichi_v2_2` | `-` | `no run under the current runtime` |
-| `OversoldReversion` | `-` | `no run under the current runtime` |
-| `kac_index_v1` | `-` | `no run under the current runtime` |
-| `kac_index_v2` | `-` | `no run under the current runtime` |
-| `simple_vwap_v1` | `-` | `no run under the current runtime` |
+`RLStrategy`, `RenkoYolo`, `SMAOPv1_TTF`, `Schism6`
+`TuplaBollinger`, `UpSliceStrategy`, `WTHO`, `haGradient`
+`multi_tf`, `tacos1`
 
 ## Exclusion unconfirmed - 26 strategies
 
@@ -3988,7 +3978,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 233 strategies, by decisive reason
+## Not passing - 241 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -4036,7 +4026,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 233 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 241 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -4044,32 +4034,37 @@ one of them carries none.
 
 | Reason | Meaning | Strategies |
 |---|---|---:|
-| `lookahead_found` | reads data it could not have had at the time | 91 |
+| `lookahead_found` | reads data it could not have had at the time | 96 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 61 |
 | `no_trades_in_full_measurement` | never trades over the full window | 7 |
 | `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 24 |
 | `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 13 |
 | `measured_only_in_freqai_arm` | runs only under its author's own FreqAI configuration, measured separately in that arm; not comparable with the ordinary spot audit | 5 |
-| `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 13 |
+| `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 16 |
 | `shared_runtime_change_declined` | the fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04 | 19 |
 
 
 ### Reason by wave
 
-| Reason | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `E0_strict67` | `not_scheduled` |
-|---|---|---|---|---|---|---|
-| `lookahead_found` | 2 | 0 | 20 | 0 | 0 | 69 |
-| `recursive_bias_found` | 0 | 3 | 17 | 14 | 1 | 26 |
-| `no_trades_in_full_measurement` | 0 | 0 | 7 | 0 | 0 | 0 |
-| `repair_refused_would_invent_strategy` | 1 | 0 | 23 | 0 | 0 | 0 |
-| `local_module_repair_exhausted` | 0 | 0 | 13 | 0 | 0 | 0 |
-| `measured_only_in_freqai_arm` | 0 | 0 | 4 | 0 | 0 | 1 |
-| `third_party_package_declined` | 0 | 0 | 13 | 0 | 0 | 0 |
-| `shared_runtime_change_declined` | 0 | 0 | 15 | 0 | 0 | 4 |
+| Reason | `-` | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `E0_strict67` | `not_scheduled` |
+|---|---|---|---|---|---|---|---|
+| `lookahead_found` | 5 | 2 | 0 | 20 | 0 | 0 | 69 |
+| `recursive_bias_found` | 0 | 0 | 3 | 17 | 14 | 1 | 26 |
+| `no_trades_in_full_measurement` | 0 | 0 | 0 | 7 | 0 | 0 | 0 |
+| `repair_refused_would_invent_strategy` | 0 | 1 | 0 | 23 | 0 | 0 | 0 |
+| `local_module_repair_exhausted` | 0 | 0 | 0 | 13 | 0 | 0 | 0 |
+| `measured_only_in_freqai_arm` | 0 | 0 | 0 | 4 | 0 | 0 | 1 |
+| `third_party_package_declined` | 2 | 0 | 0 | 14 | 0 | 0 | 0 |
+| `shared_runtime_change_declined` | 0 | 0 | 0 | 15 | 0 | 0 | 4 |
 
-### `lookahead_found` - 91
+### `lookahead_found` - 96
 
 Reads data it could not have had at the time.
+
+Wave `-` - 5:
+
+`Obelisk_Ichimoku_Slow_v1`, `Obelisk_Ichimoku_Slow_v1_1`, `Obelisk_Ichimoku_Slow_v1_2`, `Obelisk_TradePro_Ichi_v2`
+`Obelisk_TradePro_Ichi_v2_2`
 
 Wave `A_pending_diagnostics` - 2:
 
@@ -4190,16 +4185,20 @@ Wave `not_scheduled` - 1:
 
 `AstroQAV4`
 
-### `third_party_package_declined` - 13
+### `third_party_package_declined` - 16
 
 Needs a python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04.
 
-Wave `C_measurement_recovery` - 13:
+Wave `-` - 2:
+
+`kac_index_v1`, `kac_index_v2`
+
+Wave `C_measurement_recovery` - 14:
 
 `CopyLitmusMinMaxBroadClassificationStrategy`, `Enchilada`, `GymStrategy`, `KMM`
 `LitmusEntryRollClassificationStrategy`, `LitmusMLDPStrategy`, `LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`
 `LitmusMinMaxRegretClassificationStrategy`, `LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`
-`LitmusSimpleStrategy`
+`LitmusSimpleStrategy`, `RLAgentStrategy`
 
 ### `shared_runtime_change_declined` - 19
 
@@ -4232,13 +4231,12 @@ Wave `not_scheduled` - 4:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 190 |
+| `recursive_ladder_pending` | 174 |
 | `convergence_not_converged_within_ladder` | 61 |
 | `lookahead_remeasure_pending` | 25 |
 | `needs_a_look` | 20 |
-| `first_measurement_in_current_runtime` | 15 |
 | `convergence_inconclusive` | 14 |
-| `repair_attempted` | 4 |
+| `repair_attempted` | 3 |
 | `to_be_fixed` | 2 |
 
 Per-row detail, including every evidence path, is in

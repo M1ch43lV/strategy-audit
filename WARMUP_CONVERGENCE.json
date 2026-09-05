@@ -2272,6 +2272,197 @@
       "timeframe": "1h",
       "timerange": "20190101-20190401"
     },
+    "BB10fall": {
+      "available_prefix_candles": 8847,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 168,
+      "cohort": "new_wave_2026_09_05",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 24
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 30
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 48
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 168
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 336
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 720
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2160
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/BB10fall-cef5331b-ladder.log",
+      "declared_max_drift_pct": 0.017,
+      "declared_startup_candle_count": 30,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "BB10 Lower": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "BB10 Upper": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "EMA 10": [
+          0.002,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA 100": [
+          null,
+          null,
+          null,
+          -0.0,
+          0.001,
+          -0.0,
+          0.0
+        ],
+        "EMA 12": [
+          0.005,
+          -0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA 20": [
+          0.03,
+          -0.01,
+          0.004,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA 26": [
+          0.06,
+          -0.017,
+          0.016,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "EMA 35": [
+          null,
+          null,
+          0.056,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA 5": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA 50": [
+          null,
+          null,
+          0.172,
+          0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "SD of SMA 10": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "buyThreshold10": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sellThreshold10": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ]
+      },
+      "elapsed_s": 63.3,
+      "file_derived_period": null,
+      "implementation_id": "BB10fall:2c63dda2d740",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BB10fall --strategy-path user_data/profile_bias_strategies/BB10fall-cef5331b --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160",
+      "ladder_candles": [
+        24,
+        48,
+        168,
+        336,
+        720,
+        2160
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90
+      ],
+      "max_drift_indicator": "SD of SMA 10",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_e6bc58f71bacb800cec99aa3a02486284e2b659f3ba710a1ae7f05c75ae95646",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "converged",
+      "strategy_id": "BB10fall",
+      "timeframe": "1h",
+      "timerange": "20190101-20190401"
+    },
     "BBMod": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 7,
@@ -39022,6 +39213,129 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "EMA_Trailing_Stoploss": {
+      "available_prefix_candles": 8847,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 24,
+      "cohort": "new_wave_2026_09_05",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 24
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 48
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 168
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 336
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 720
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2160
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/EMA_Trailing_Stoploss-c357e7e7-ladder.log",
+      "declared_max_drift_pct": 0.0,
+      "declared_startup_candle_count": 24,
+      "declared_warmup_override": 24,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "ema3": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema5": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 97.5,
+      "file_derived_period": null,
+      "implementation_id": "EMA_Trailing_Stoploss:0540159f2617",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/EMA_Trailing_Stoploss_startup_24.json --strategy EMA_Trailing_Stoploss --strategy-path user_data/profile_bias_strategies/EMA_Trailing_Stoploss-c357e7e7 --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160",
+      "ladder_candles": [
+        24,
+        48,
+        168,
+        336,
+        720,
+        2160
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90
+      ],
+      "max_drift_indicator": "ema3",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_a6bcdacb463c62a4ff4860db2e6d6c4f349e3a84181efedfc657b21008b48091",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "converged",
+      "strategy_id": "EMA_Trailing_Stoploss",
+      "timeframe": "1h",
+      "timerange": "20190101-20190401"
+    },
+    "EMA_Trailing_Stoploss_LessMagic": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
+      "cohort": "new_wave_2026_09_05",
+      "debug_log": "user_data/convergence_logs/EMA_Trailing_Stoploss_LessMagic-aa2b302f-ladder.log",
+      "declared_warmup_override": 288,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 78.9,
+      "file_derived_period": null,
+      "implementation_id": "EMA_Trailing_Stoploss_LessMagic:55517396de7f",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/EMA_Trailing_Stoploss_LessMagic_startup_288.json --strategy EMA_Trailing_Stoploss_LessMagic --strategy-path user_data/profile_bias_strategies/EMA_Trailing_Stoploss_LessMagic-aa2b302f --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_9e4854ae4422c1ea5ecb07e00d331b54b55e6aa275ba3878257127b69617f2f2",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "converged",
+      "strategy_id": "EMA_Trailing_Stoploss_LessMagic",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401",
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
+    },
     "EXPERIMENTAL_STRATEGY": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 1,
@@ -56402,6 +56716,314 @@
       "timeframe": "1d",
       "timerange": "20190101-20190401"
     },
+    "MACD9fall": {
+      "available_prefix_candles": 8847,
+      "chosen_ladder_days": 30,
+      "chosen_startup_candle_count": 720,
+      "cohort": "new_wave_2026_09_05",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 24
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 30
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 48
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 168
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 336
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 720
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2160
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/MACD9fall-3ef1c8d0-ladder.log",
+      "declared_max_drift_pct": 24.874,
+      "declared_startup_candle_count": 30,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "10-20 EMA diff": [
+          -32.07,
+          11.171,
+          -4.635,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "10-20 EMA diff EMA 5": [
+          -49.47,
+          17.735,
+          -7.422,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "10-20 EMA diff EMA 9": [
+          -58.372,
+          24.874,
+          -10.604,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "12-26 EMA diff": [
+          -50.371,
+          14.624,
+          -14.85,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "12-26 EMA diff EMA 5": [
+          -41.171,
+          19.385,
+          -20.915,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "12-26 EMA diff EMA 9": [
+          -38.678,
+          21.986,
+          -26.49,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "20-50 EMA diff": [
+          null,
+          null,
+          -68.351,
+          -0.005,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "20-50 EMA diff EMA 5": [
+          null,
+          null,
+          -67.335,
+          -0.006,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "20-50 EMA diff EMA 9": [
+          null,
+          null,
+          -67.704,
+          -0.006,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "5-10 EMA diff": [
+          -2.653,
+          0.469,
+          -0.019,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "5-10 EMA diff EMA 5": [
+          -8.274,
+          1.477,
+          -0.062,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "5-10 EMA diff EMA 9": [
+          -17.883,
+          3.27,
+          -0.246,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "5-35 EMA diff": [
+          null,
+          null,
+          -20.303,
+          -0.001,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "5-35 EMA diff EMA 5": [
+          null,
+          null,
+          -29.416,
+          -0.001,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "5-35 EMA diff EMA 9": [
+          null,
+          null,
+          -35.117,
+          -0.002,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "50-100 EMA diff": [
+          null,
+          null,
+          null,
+          0.097,
+          -0.174,
+          0.0,
+          0.0
+        ],
+        "50-100 EMA diff EMA 5": [
+          null,
+          null,
+          null,
+          0.1,
+          -0.181,
+          0.0,
+          0.0
+        ],
+        "50-100 EMA diff EMA 9": [
+          null,
+          null,
+          null,
+          0.104,
+          -0.187,
+          0.0,
+          0.0
+        ],
+        "EMA 10": [
+          0.002,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA 100": [
+          null,
+          null,
+          null,
+          -0.0,
+          0.001,
+          -0.0,
+          0.0
+        ],
+        "EMA 12": [
+          0.005,
+          -0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA 20": [
+          0.03,
+          -0.01,
+          0.004,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA 26": [
+          0.06,
+          -0.017,
+          0.016,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "EMA 35": [
+          null,
+          null,
+          0.056,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA 5": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA 50": [
+          null,
+          null,
+          0.172,
+          0.0,
+          0.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 44.6,
+      "file_derived_period": null,
+      "implementation_id": "MACD9fall:6506bc1d5a44",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MACD9fall --strategy-path user_data/profile_bias_strategies/MACD9fall-3ef1c8d0 --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160",
+      "ladder_candles": [
+        24,
+        48,
+        168,
+        336,
+        720,
+        2160
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90
+      ],
+      "max_drift_indicator": "EMA 5",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_6a4920512a9f2d80ae80769bd09d42b351c222de5425d45905becb6ef4c14178",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "converged",
+      "strategy_id": "MACD9fall",
+      "timeframe": "1h",
+      "timerange": "20190101-20190401"
+    },
     "MACDCCI": {
       "available_prefix_candles": 16206,
       "chosen_ladder_days": 7,
@@ -59828,6 +60450,47 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "Magic_Trailing_Stoploss": {
+      "available_prefix_candles": 8847,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 24,
+      "cohort": "new_wave_2026_09_05",
+      "debug_log": "user_data/convergence_logs/Magic_Trailing_Stoploss-1cf71129-ladder.log",
+      "declared_warmup_override": 24,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 74.3,
+      "file_derived_period": null,
+      "implementation_id": "Magic_Trailing_Stoploss:32c2b390692c",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/Magic_Trailing_Stoploss_startup_24.json --strategy Magic_Trailing_Stoploss --strategy-path user_data/profile_bias_strategies/Magic_Trailing_Stoploss-1cf71129 --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160",
+      "ladder_candles": [
+        24,
+        48,
+        168,
+        336,
+        720,
+        2160
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90
+      ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_b4bcb2b9765e29f3743bfb4dcd61ce73a3ab572c7322bf7f3111ea8dac5388a1",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "converged",
+      "strategy_id": "Magic_Trailing_Stoploss",
+      "timeframe": "1h",
+      "timerange": "20190101-20190401",
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
+    },
     "MarketChyperHyperStrategy": {
       "available_prefix_candles": 8104,
       "chosen_ladder_days": 14,
@@ -61077,6 +61740,136 @@
       "state": "converged",
       "strategy_id": "MostOfAll",
       "timeframe": "5m",
+      "timerange": "20190101-20190401"
+    },
+    "MultiActionZone": {
+      "available_prefix_candles": 2215,
+      "chosen_ladder_days": 90,
+      "chosen_startup_candle_count": 540,
+      "cohort": "new_wave_2026_09_05",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 6
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 12
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 30
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 42
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 84
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 180
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 540
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2190
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/MultiActionZone-179b96b7-ladder.log",
+      "declared_max_drift_pct": 0.083,
+      "declared_startup_candle_count": 30,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "fastMA": [
+          null,
+          0.076,
+          0.003,
+          0.001,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "lowest": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "resample_1440_fastMA": [
+          null,
+          null,
+          null,
+          null,
+          0.182,
+          -0.013,
+          0.0,
+          0.0
+        ],
+        "resample_1440_slowMA": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          -0.095,
+          0.002,
+          -0.002
+        ],
+        "slowMA": [
+          null,
+          null,
+          -0.083,
+          -0.09,
+          0.001,
+          -0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 41.7,
+      "file_derived_period": null,
+      "implementation_id": "MultiActionZone:052884983086",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MultiActionZone --strategy-path user_data/profile_bias_strategies/MultiActionZone-179b96b7 --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540 2190",
+      "ladder_candles": [
+        6,
+        12,
+        42,
+        84,
+        180,
+        540,
+        2190
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90,
+        365
+      ],
+      "max_drift_indicator": "resample_1440_slowMA",
+      "max_drift_pct": 0.002,
+      "needed_no_override": false,
+      "output_sha256": "sha256_a8b11c42f5e682f38abbcc6e4835a484836d3391586e739e041b22a3a3cf1bd5",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "converged",
+      "strategy_id": "MultiActionZone",
+      "timeframe": "4h",
       "timerange": "20190101-20190401"
     },
     "MultiFactorConfluenceStrategy": {
@@ -81223,7 +82016,7 @@
     },
     "NostalgiaForInfinityX7": {
       "available_prefix_candles": 7391,
-      "cohort": "budget_capped",
+      "cohort": "new_wave_2026_09_05",
       "columns": [
         {
           "from_strategy": false,
@@ -81246,7 +82039,7 @@
           "startup_candle_count": 4032
         }
       ],
-      "debug_log": "user_data/convergence_logs/NostalgiaForInfinityX7-ladder.log",
+      "debug_log": "user_data/convergence_logs/NostalgiaForInfinityX7-5576d030-ladder.log",
       "declared_max_drift_pct": 1306.576,
       "declared_startup_candle_count": 800,
       "declared_warmup_override": null,
@@ -81806,10 +82599,10 @@
           0.0
         ]
       },
-      "elapsed_s": 36.0,
+      "elapsed_s": 70.3,
       "file_derived_period": 480,
-      "implementation_id": "NostalgiaForInfinityX7:12aeca2f8c57",
-      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy NostalgiaForInfinityX7 --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityX7 --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016 4032",
+      "implementation_id": "NostalgiaForInfinityX7:f847ed51db84",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy NostalgiaForInfinityX7 --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityX7-5576d030 --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016 4032",
       "ladder_candles": [
         288,
         576,
@@ -81822,8 +82615,7 @@
         7,
         14
       ],
-      "output_sha256": "sha256_01a7ba10157de70ce6bfc1bc842a982e9fe0a32afa328ebc93be87b4bdd0ec0c",
-      "reparsed_from_log": "punctuated_indicator_names_v1",
+      "output_sha256": "sha256_05902bee86335749b2e3559cd3e8575db6c69ab38a983a9634202a1cab43dbfe",
       "returncode": 0,
       "run_profile": "futures_long",
       "runtime_id": "native_unversioned",
@@ -83495,6 +84287,846 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "Obelisk_Ichimoku_Slow_v1": {
+      "available_prefix_candles": 8847,
+      "chosen_ladder_days": null,
+      "chosen_startup_candle_count": 180,
+      "cohort": "new_wave_2026_09_05",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 24
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 48
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 168
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 180
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 336
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 720
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2160
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/Obelisk_Ichimoku_Slow_v1-933691c1-ladder.log",
+      "declared_max_drift_pct": 0.0,
+      "declared_startup_candle_count": 180,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "buy_criteria": [
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "chikou_high": [
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "cloud_green": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "future_green": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "go_long": [
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "kijun_sen": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "leading_senkou_span_a": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "leading_senkou_span_b": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "senkou_a": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "senkou_b": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ssl_down": [
+          0.008,
+          -0.004,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ssl_up": [
+          -0.008,
+          0.004,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 40.3,
+      "file_derived_period": null,
+      "implementation_id": "Obelisk_Ichimoku_Slow_v1:af9d22c036a3",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Obelisk_Ichimoku_Slow_v1 --strategy-path user_data/profile_bias_strategies/Obelisk_Ichimoku_Slow_v1-933691c1 --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160",
+      "ladder_candles": [
+        24,
+        48,
+        168,
+        336,
+        720,
+        2160
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90
+      ],
+      "max_drift_indicator": "kijun_sen",
+      "max_drift_pct": 0.0,
+      "needed_no_override": true,
+      "output_sha256": "sha256_0b6b011926635b6483ebf910da2096f1e92721223d16ee26c29c83eb54f40e2b",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "converged",
+      "strategy_id": "Obelisk_Ichimoku_Slow_v1",
+      "timeframe": "1h",
+      "timerange": "20190101-20190401"
+    },
+    "Obelisk_Ichimoku_Slow_v1_1": {
+      "available_prefix_candles": 8847,
+      "chosen_ladder_days": null,
+      "chosen_startup_candle_count": 180,
+      "cohort": "new_wave_2026_09_05",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 24
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 48
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 168
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 180
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 336
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 720
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2160
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/Obelisk_Ichimoku_Slow_v1_1-877a1601-ladder.log",
+      "declared_max_drift_pct": 0.0,
+      "declared_startup_candle_count": 180,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "buy_criteria": [
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "chikou_high": [
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "cloud_green": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "future_green": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "go_long": [
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "kijun_sen": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "leading_senkou_span_a": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "leading_senkou_span_b": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "senkou_a": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "senkou_b": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ssl_down": [
+          0.008,
+          -0.004,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ssl_up": [
+          -0.008,
+          0.004,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 45.4,
+      "file_derived_period": null,
+      "implementation_id": "Obelisk_Ichimoku_Slow_v1_1:5dd82f3ef259",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Obelisk_Ichimoku_Slow_v1_1 --strategy-path user_data/profile_bias_strategies/Obelisk_Ichimoku_Slow_v1_1-877a1601 --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160",
+      "ladder_candles": [
+        24,
+        48,
+        168,
+        336,
+        720,
+        2160
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90
+      ],
+      "max_drift_indicator": "kijun_sen",
+      "max_drift_pct": 0.0,
+      "needed_no_override": true,
+      "output_sha256": "sha256_c05fd0cb977c0cc9091ef195292f6a6262fe6c9828c4d8075bdfa54bc725f533",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "converged",
+      "strategy_id": "Obelisk_Ichimoku_Slow_v1_1",
+      "timeframe": "1h",
+      "timerange": "20190101-20190401"
+    },
+    "Obelisk_Ichimoku_Slow_v1_2": {
+      "available_prefix_candles": 8847,
+      "chosen_ladder_days": null,
+      "chosen_startup_candle_count": 180,
+      "cohort": "new_wave_2026_09_05",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 24
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 48
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 168
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 180
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 336
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 720
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2160
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/Obelisk_Ichimoku_Slow_v1_2-fe861e17-ladder.log",
+      "declared_max_drift_pct": 0.0,
+      "declared_startup_candle_count": 180,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "atr": [
+          -2.284,
+          1.047,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "chikou_high": [
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "cloud_bottom": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "cloud_green": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "cloud_top": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "efi": [
+          -0.985,
+          -0.068,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "future_green": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ichimoku_ok": [
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "kijun_sen": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "leading_senkou_span_a": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "leading_senkou_span_b": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "senkou_a": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "senkou_b": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ssl_down": [
+          0.008,
+          -0.004,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ssl_up": [
+          -0.008,
+          0.004,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "trend_pulse": [
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "trending": [
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 42.6,
+      "file_derived_period": null,
+      "implementation_id": "Obelisk_Ichimoku_Slow_v1_2:390f9b538b0f",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Obelisk_Ichimoku_Slow_v1_2 --strategy-path user_data/profile_bias_strategies/Obelisk_Ichimoku_Slow_v1_2-fe861e17 --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160",
+      "ladder_candles": [
+        24,
+        48,
+        168,
+        336,
+        720,
+        2160
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90
+      ],
+      "max_drift_indicator": "kijun_sen",
+      "max_drift_pct": 0.0,
+      "needed_no_override": true,
+      "output_sha256": "sha256_93e0eaaceb8f81f97de3d4e3bb4221835ee2666092bd91d885418c456c0c0d6b",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "converged",
+      "strategy_id": "Obelisk_Ichimoku_Slow_v1_2",
+      "timeframe": "1h",
+      "timerange": "20190101-20190401"
+    },
+    "Obelisk_TradePro_Ichi_v2": {
+      "available_prefix_candles": 8847,
+      "chosen_ladder_days": null,
+      "chosen_startup_candle_count": 180,
+      "cohort": "new_wave_2026_09_05",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 24
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 48
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 168
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 180
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 336
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 720
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2160
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/Obelisk_TradePro_Ichi_v2-c9b4a814-ladder.log",
+      "declared_max_drift_pct": 0.0,
+      "declared_startup_candle_count": 180,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "chikou_high": [
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "cloud_green": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "future_green": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "go_long": [
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "kijun_sen": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "leading_senkou_span_a": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "leading_senkou_span_b": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "senkou_a": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "senkou_b": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ssl_down": [
+          0.008,
+          -0.004,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ssl_up": [
+          -0.008,
+          0.004,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 36.4,
+      "file_derived_period": null,
+      "implementation_id": "Obelisk_TradePro_Ichi_v2:485c04ba7e7c",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Obelisk_TradePro_Ichi_v2 --strategy-path user_data/profile_bias_strategies/Obelisk_TradePro_Ichi_v2-c9b4a814 --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160",
+      "ladder_candles": [
+        24,
+        48,
+        168,
+        336,
+        720,
+        2160
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90
+      ],
+      "max_drift_indicator": "kijun_sen",
+      "max_drift_pct": 0.0,
+      "needed_no_override": true,
+      "output_sha256": "sha256_570c44e5c75f9bdd7d9da05b24232883bf5cf8732d4ff2e8bca687a3758cdb5b",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "converged",
+      "strategy_id": "Obelisk_TradePro_Ichi_v2",
+      "timeframe": "1h",
+      "timerange": "20190101-20190401"
+    },
+    "Obelisk_TradePro_Ichi_v2_2": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": null,
+      "chosen_startup_candle_count": 180,
+      "cohort": "new_wave_2026_09_05",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 180
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/Obelisk_TradePro_Ichi_v2_2-596055ad-ladder.log",
+      "declared_max_drift_pct": 0.0,
+      "declared_startup_candle_count": 180,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "ssl_down": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ssl_up": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 44.7,
+      "file_derived_period": null,
+      "implementation_id": "Obelisk_TradePro_Ichi_v2_2:a775e4233224",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Obelisk_TradePro_Ichi_v2_2 --strategy-path user_data/profile_bias_strategies/Obelisk_TradePro_Ichi_v2_2-596055ad --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "ssl_down",
+      "max_drift_pct": 0.0,
+      "needed_no_override": true,
+      "output_sha256": "sha256_68100ab642ea78eb47826ed1d4e489b466cfaa96e387b0019c5b2e281dc0a942",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "converged",
+      "strategy_id": "Obelisk_TradePro_Ichi_v2_2",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401"
+    },
     "ObvTrendStrategy": {
       "available_prefix_candles": 106125,
       "cohort": "window_thawed",
@@ -83711,6 +85343,98 @@
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
       "state": "converged",
       "strategy_id": "OmaGann",
+      "timeframe": "1h",
+      "timerange": "20190101-20190401"
+    },
+    "OversoldReversion": {
+      "available_prefix_candles": 8847,
+      "chosen_ladder_days": null,
+      "chosen_startup_candle_count": 1250,
+      "cohort": "new_wave_2026_09_05",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 24
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 48
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 168
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 336
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 720
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 1250
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2160
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/OversoldReversion-dcb09e33-ladder.log",
+      "declared_max_drift_pct": 0.0,
+      "declared_startup_candle_count": 1250,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "dislocation": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          -4.682,
+          -1.265,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 39.3,
+      "file_derived_period": null,
+      "implementation_id": "OversoldReversion:c5b11fcf220b",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy OversoldReversion --strategy-path user_data/profile_bias_strategies/OversoldReversion-dcb09e33 --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160",
+      "ladder_candles": [
+        24,
+        48,
+        168,
+        336,
+        720,
+        2160
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90
+      ],
+      "max_drift_indicator": "rsi",
+      "max_drift_pct": 0.0,
+      "needed_no_override": true,
+      "output_sha256": "sha256_508caa8400ce4704205a1ac2dcc099c68b93f00fb2a9d54cda1bcf3bfd406eb7",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "converged",
+      "strategy_id": "OversoldReversion",
       "timeframe": "1h",
       "timerange": "20190101-20190401"
     },
@@ -111413,6 +113137,126 @@
       "state": "converged",
       "strategy_id": "redditMA",
       "timeframe": "15m",
+      "timerange": "20190101-20190401"
+    },
+    "simple_vwap_v1": {
+      "available_prefix_candles": 2215,
+      "chosen_ladder_days": 365,
+      "chosen_startup_candle_count": 2190,
+      "cohort": "new_wave_2026_09_05",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 6
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 12
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 42
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 84
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 180
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 300
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 540
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2190
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/simple_vwap_v1-28330b62-ladder.log",
+      "declared_max_drift_pct": 0.098,
+      "declared_startup_candle_count": 300,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "CCI": [
+          null,
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "EMA": [
+          null,
+          null,
+          null,
+          null,
+          0.261,
+          0.098,
+          -0.011,
+          0.0
+        ],
+        "I-VWAP": [
+          null,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "VWAP_low": [
+          null,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ]
+      },
+      "elapsed_s": 54.0,
+      "file_derived_period": null,
+      "implementation_id": "simple_vwap_v1:7ab2f4602891",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy simple_vwap_v1 --strategy-path user_data/profile_bias_strategies/simple_vwap_v1-28330b62 --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540 2190",
+      "ladder_candles": [
+        6,
+        12,
+        42,
+        84,
+        180,
+        540,
+        2190
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90,
+        365
+      ],
+      "max_drift_indicator": "EMA",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_a40ebe0e295deefe3c294e2ab41999332edd83cb2dcd5a734bfdbadd6bb235ed",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "native_unversioned",
+      "state": "converged",
+      "strategy_id": "simple_vwap_v1",
+      "timeframe": "4h",
       "timerange": "20190101-20190401"
     },
     "slope_is_dopeCT": {

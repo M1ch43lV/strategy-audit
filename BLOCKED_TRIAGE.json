@@ -702,12 +702,16 @@
       "verdict": "needs_a_look"
     },
     "RLAgentStrategy": {
-      "family": "freqai_model_missing",
-      "note": "Same arm: the model class ships with the FreqAI extras.",
-      "runtime_failure": "Impossible to load FreqaiModel 'ReforceXY'. This class does not exist or contains Python code errors.",
+      "family": "third_party_package",
+      "missing_module": "datasieve",
+      "module_found_at": "",
+      "note": "Imports datasieve.pipeline.Pipeline (FreqAI's newer feature preprocessing library), which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'datasieve' at RLAgentStrategy.py:103",
+      "runtime_failure": "Fatal exception!",
       "source_file": "repos/jerome-benoit_freqai-strategies/ReforceXY/user_data/strategies/RLAgentStrategy.py",
       "strategy_id": "RLAgentStrategy",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "RLStrategy": {
       "family": "freqai_not_enabled",

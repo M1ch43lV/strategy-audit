@@ -723,9 +723,24 @@ def rows():
         # shim after their module-path repair was already measured and
         # filed; a bare `status in (...)` check kept reporting that stale
         # failure days after a passing run sat in `smoke`.
+        #
+        # Rule-matching alone answers "did the registered compat rules
+        # change", not "did the underlying file change" - a different
+        # staleness question, and RLAgentStrategy fell straight through the
+        # gap between them: its upstream repo moved (a new dependency,
+        # datasieve, replacing the old optunahub one FREQAI_REPAIR.json was
+        # filed against), PROFILE_CLASS1's registered rule for it was
+        # untouched, so the rule check alone said "still current" over a
+        # canonical_sha256 that no longer existed on disk. Comparing hashes
+        # is the same fix `profile_smoke.py`'s own skip check needed for the
+        # same three rows this session, applied where a repair store
+        # competes with a fresh smoke measurement instead of with itself.
         current_rules = class1.get(strategy, {}).get("rules") or []
         if repair_run.get("status") in ("measured", "failed") \
-                and repair_run.get("class1_rules", current_rules) == current_rules:
+                and repair_run.get("class1_rules", current_rules) == current_rules \
+                and (not measurement.get("canonical_sha256")
+                     or repair_run.get("canonical_sha256")
+                     == measurement.get("canonical_sha256")):
             # The obstacle is gone and the row produced trades. Continuing to
             # report the old failure would say the strategy does not run while
             # a run of it sits on disk.
