@@ -1,0 +1,683 @@
+[
+  {
+    "repo": "paulcpk/freqtrade-strategies-that-work",
+    "status": "ok",
+    "pushed_at": "2021-06-14T16:26:26Z",
+    "py_files": 5,
+    "classes": [
+      {
+        "class": "DoubleEMACrossoverWithTrend",
+        "path": "DoubleEMACrossoverWithTrend.py",
+        "known": true
+      },
+      {
+        "class": "EMAPriceCrossoverWithThreshold",
+        "path": "EMAPriceCrossoverWithThreshold.py",
+        "known": true
+      },
+      {
+        "class": "MACDCrossoverWithTrend",
+        "path": "MACDCrossoverWithTrend.py",
+        "known": true
+      },
+      {
+        "class": "RSIDirectionalWithTrend",
+        "path": "RSIDirectionalWithTrend.py",
+        "known": true
+      },
+      {
+        "class": "RSIDirectionalWithTrendSlow",
+        "path": "RSIDirectionalWithTrendSlow.py",
+        "known": true
+      }
+    ]
+  },
+  {
+    "repo": "brookmiles/freqtrade-stuff",
+    "status": "ok",
+    "pushed_at": "2021-05-20T23:42:45Z",
+    "py_files": 15,
+    "classes": [
+      {
+        "class": "Obelisk_Ichimoku_Slow_v1",
+        "path": "strategies/Obelisk_Ichimoku_Slow_v1.py",
+        "known": false
+      },
+      {
+        "class": "Obelisk_Ichimoku_Slow_v1_1",
+        "path": "strategies/Obelisk_Ichimoku_Slow_v1_1.py",
+        "known": false
+      },
+      {
+        "class": "Obelisk_Ichimoku_Slow_v1_3",
+        "path": "strategies/Obelisk_Ichimoku_Slow_v1_3.py",
+        "known": true
+      },
+      {
+        "class": "ObeliskIM_v1_1",
+        "path": "strategies/archive/ObeliskIM_v1_1.py",
+        "known": true
+      },
+      {
+        "class": "ObeliskRSI_v6_1",
+        "path": "strategies/archive/ObeliskRSI_v6_1.py",
+        "known": true
+      },
+      {
+        "class": "Obelisk_Ichimoku_Slow_v1_2",
+        "path": "strategies/archive/Obelisk_Ichimoku_Slow_v1_2.py",
+        "known": false
+      },
+      {
+        "class": "Obelisk_TradePro_Ichi_v1_1",
+        "path": "strategies/archive/Obelisk_TradePro_Ichi_v1_1.py",
+        "known": true
+      },
+      {
+        "class": "Obelisk_TradePro_Ichi_v2",
+        "path": "strategies/archive/Obelisk_TradePro_Ichi_v2.py",
+        "known": false
+      },
+      {
+        "class": "Obelisk_TradePro_Ichi_v2_2",
+        "path": "strategies/archive/Obelisk_TradePro_Ichi_v2_2.py",
+        "known": false
+      },
+      {
+        "class": "EMA_Trailing_Stoploss",
+        "path": "strategies/examples/EMA_Trailing_Stoploss.py",
+        "known": false
+      },
+      {
+        "class": "EMA_Trailing_Stoploss_LessMagic",
+        "path": "strategies/examples/EMA_Trailing_Stoploss_LessMagic.py",
+        "known": false
+      },
+      {
+        "class": "Magic_Trailing_Stoploss",
+        "path": "strategies/examples/Magic_Trailing_Stoploss.py",
+        "known": false
+      },
+      {
+        "class": "Obelisk_3EMA_StochRSI_ATR",
+        "path": "strategies/experimental/Obelisk_3EMA_StochRSI_ATR.py",
+        "known": true
+      },
+      {
+        "class": "Obelisk_Ichimoku_ZEMA_v1",
+        "path": "strategies/experimental/Obelisk_Ichimoku_ZEMA_v1.py",
+        "known": true
+      }
+    ]
+  },
+  {
+    "repo": "titouannwtt/freqtrade-ultimate",
+    "status": "ok",
+    "pushed_at": "2026-09-05T12:03:17Z",
+    "py_files": 591,
+    "classes": [
+      {
+        "class": "FreqaiExampleHybridStrategy",
+        "path": "freqtrade/templates/FreqaiExampleHybridStrategy.py",
+        "known": true
+      },
+      {
+        "class": "FreqaiExampleStrategy",
+        "path": "freqtrade/templates/FreqaiExampleStrategy.py",
+        "known": true
+      },
+      {
+        "class": "SampleStrategy",
+        "path": "freqtrade/templates/sample_strategy.py",
+        "known": true
+      },
+      {
+        "class": "ReplayDetStrategy",
+        "path": "tests/replay/strats/ReplayDetStrategy.py",
+        "known": false
+      },
+      {
+        "class": "TestStrategyNoImplements",
+        "path": "tests/strategy/strats/broken_strats/broken_futures_strategies.py",
+        "known": true
+      },
+      {
+        "class": "TestStrategyLegacyV1",
+        "path": "tests/strategy/strats/broken_strats/legacy_strategy_v1.py",
+        "known": true
+      },
+      {
+        "class": "TestStrategyLegacyV1",
+        "path": "tests/strategy/strats/failing_strategy.py",
+        "known": true
+      },
+      {
+        "class": "freqai_rl_test_strat",
+        "path": "tests/strategy/strats/freqai_rl_test_strat.py",
+        "known": true
+      },
+      {
+        "class": "freqai_test_classifier",
+        "path": "tests/strategy/strats/freqai_test_classifier.py",
+        "known": true
+      },
+      {
+        "class": "freqai_test_multimodel_classifier_strat",
+        "path": "tests/strategy/strats/freqai_test_multimodel_classifier_strat.py",
+        "known": true
+      },
+      {
+        "class": "freqai_test_multimodel_strat",
+        "path": "tests/strategy/strats/freqai_test_multimodel_strat.py",
+        "known": true
+      },
+      {
+        "class": "freqai_test_strat",
+        "path": "tests/strategy/strats/freqai_test_strat.py",
+        "known": true
+      },
+      {
+        "class": "InformativeDecoratorTest",
+        "path": "tests/strategy/strats/informative_decorator_strategy.py",
+        "known": true
+      },
+      {
+        "class": "strategy_test_v3_with_lookahead_bias",
+        "path": "tests/strategy/strats/lookahead_bias/strategy_test_v3_with_lookahead_bias.py",
+        "known": false
+      },
+      {
+        "class": "StrategyTestV2",
+        "path": "tests/strategy/strats/strategy_test_v2.py",
+        "known": true
+      },
+      {
+        "class": "StrategyTestV3",
+        "path": "tests/strategy/strats/strategy_test_v3.py",
+        "known": true
+      },
+      {
+        "class": "strategy_test_v3_recursive_issue",
+        "path": "tests/strategy/strats/strategy_test_v3_recursive_issue.py",
+        "known": false
+      },
+      {
+        "class": "kac_index_v1",
+        "path": "user_data/strategies/kac_index_v1.py",
+        "known": false
+      },
+      {
+        "class": "kac_index_v2",
+        "path": "user_data/strategies/kac_index_v2.py",
+        "known": false
+      },
+      {
+        "class": "simple_vwap_v1",
+        "path": "user_data/strategies/simple_vwap_v1.py",
+        "known": false
+      }
+    ]
+  },
+  {
+    "repo": "titouannwtt/freqtrade-france-strategies-kac-index",
+    "status": "ok",
+    "pushed_at": "2026-05-19T20:21:20Z",
+    "py_files": 2,
+    "classes": [
+      {
+        "class": "kac_index_v1",
+        "path": "freqtrade/user_data/strategies/kac_index_v1.py",
+        "known": false
+      },
+      {
+        "class": "kac_index_v2",
+        "path": "freqtrade/user_data/strategies/kac_index_v2.py",
+        "known": false
+      }
+    ]
+  },
+  {
+    "repo": "titouannwtt/freqtrade-france-strategies_simple_vwap",
+    "status": "ok",
+    "pushed_at": "2026-05-19T20:21:16Z",
+    "py_files": 1,
+    "classes": [
+      {
+        "class": "simple_vwap_v1",
+        "path": "freqtrade/user_data/strategies/simple_vwap_v1.py",
+        "known": false
+      }
+    ]
+  },
+  {
+    "repo": "miwtoo/ft-action-zone",
+    "status": "ok",
+    "pushed_at": "2022-05-07T08:27:03Z",
+    "py_files": 2,
+    "classes": [
+      {
+        "class": "ActionZone",
+        "path": "user_data/strategies/ActionZone.py",
+        "known": true
+      },
+      {
+        "class": "MultiActionZone",
+        "path": "user_data/strategies/MultiActionZone.py",
+        "known": false
+      }
+    ]
+  },
+  {
+    "repo": "keithorange/FreqTrade_Helpers",
+    "status": "ok",
+    "pushed_at": "2024-04-13T14:35:34Z",
+    "py_files": 6,
+    "classes": [
+      {
+        "class": "IStrategyWithEntryOrderBlocking",
+        "path": "IStrategyWithEntryOrderBlocking.py",
+        "known": false
+      }
+    ]
+  },
+  {
+    "repo": "DonaldSimpson/remora-backtests",
+    "status": "ok",
+    "pushed_at": "2025-12-22T17:24:24Z",
+    "py_files": 29,
+    "classes": [
+      {
+        "class": "BollingerBreakoutStrategy",
+        "path": "strategies/BollingerBreakoutStrategy.py",
+        "known": false
+      },
+      {
+        "class": "MACDCrossStrategy",
+        "path": "strategies/MACDCrossStrategy.py",
+        "known": false
+      },
+      {
+        "class": "NFIQuickstartStrategy",
+        "path": "strategies/NFIQuickstartStrategy.py",
+        "known": false
+      },
+      {
+        "class": "RSIEMAStrategy",
+        "path": "strategies/RSIEMAStrategy.py",
+        "known": false
+      }
+    ]
+  },
+  {
+    "repo": "freqstart/freqstart",
+    "status": "ok",
+    "pushed_at": "2023-03-13T21:32:47Z",
+    "py_files": 0,
+    "classes": []
+  },
+  {
+    "repo": "kiploks/kiploks-freqtrade",
+    "status": "ok",
+    "pushed_at": "2026-04-29T16:10:45Z",
+    "py_files": 2,
+    "classes": []
+  },
+  {
+    "repo": "amcalabretta/botbase",
+    "status": "ok",
+    "pushed_at": "2026-02-11T12:19:38Z",
+    "py_files": 0,
+    "classes": []
+  },
+  {
+    "repo": "Ph3nol/FT-Trading-Bot",
+    "status": "ok",
+    "pushed_at": "2023-01-13T11:00:05Z",
+    "py_files": 1,
+    "classes": [
+      {
+        "class": "Example",
+        "path": "strategies/Example.py",
+        "known": false
+      }
+    ]
+  },
+  {
+    "repo": "meesvw/freqtrade-egg",
+    "status": "ok",
+    "pushed_at": "2022-07-04T09:01:27Z",
+    "py_files": 3,
+    "classes": [
+      {
+        "class": "keltnerhopt",
+        "path": "hyperopt/keltnerhopt.py",
+        "known": false
+      },
+      {
+        "class": "keltnerchannel",
+        "path": "strategies/keltnerchannel.py",
+        "known": true
+      }
+    ]
+  },
+  {
+    "repo": "mcDucksProject/mcDucksBroker",
+    "status": "ok",
+    "pushed_at": "2022-05-07T16:42:58Z",
+    "py_files": 22,
+    "classes": [
+      {
+        "class": "RandomStrategy",
+        "path": "user_data/strategies/RandomStrategy.py",
+        "known": false
+      },
+      {
+        "class": "StrategyDoubleScalper",
+        "path": "user_data/strategies/old/StrategyDoubleScalper.py",
+        "known": false
+      },
+      {
+        "class": "StrategyExample",
+        "path": "user_data/strategies/old/StrategyExample.py",
+        "known": false
+      },
+      {
+        "class": "StrategyKlinger",
+        "path": "user_data/strategies/old/StrategyKlinger.py",
+        "known": false
+      },
+      {
+        "class": "StrategyKlinger1D4hSupport",
+        "path": "user_data/strategies/old/StrategyKlinger1D4hSupport.py",
+        "known": false
+      },
+      {
+        "class": "StrategyKlingerHybrid",
+        "path": "user_data/strategies/old/StrategyKlingerHybrid.py",
+        "known": false
+      },
+      {
+        "class": "StrategyKlingerHybridMRoi",
+        "path": "user_data/strategies/old/StrategyKlingerHybridMRoi.py",
+        "known": false
+      },
+      {
+        "class": "StrategyKlingerSpikes",
+        "path": "user_data/strategies/old/StrategyKlingerSpikes.py",
+        "known": false
+      },
+      {
+        "class": "StrategyKlingerStoch",
+        "path": "user_data/strategies/old/StrategyKlingerStoch.py",
+        "known": false
+      },
+      {
+        "class": "StrategyKlingerStochWBtc",
+        "path": "user_data/strategies/old/StrategyKlingerStochWBtc.py",
+        "known": false
+      },
+      {
+        "class": "StrategyManual",
+        "path": "user_data/strategies/old/StrategyManual.py",
+        "known": false
+      },
+      {
+        "class": "StrategyQuickReturns",
+        "path": "user_data/strategies/old/StrategyQuickReturns.py",
+        "known": false
+      },
+      {
+        "class": "StrategyScalpingFast",
+        "path": "user_data/strategies/old/StrategyScalpingFast.py",
+        "known": true
+      },
+      {
+        "class": "StrategyScalpingFast2",
+        "path": "user_data/strategies/old/StrategyScalpingFast2.py",
+        "known": true
+      },
+      {
+        "class": "StrategyTrendReversal",
+        "path": "user_data/strategies/old/StrategyTrendReversal.py",
+        "known": false
+      }
+    ]
+  },
+  {
+    "repo": "shadowp2810/technical_indicators_cryptos",
+    "status": "ok",
+    "pushed_at": "2021-12-30T22:22:19Z",
+    "py_files": 2,
+    "classes": [
+      {
+        "class": "BB10fall",
+        "path": "Freqtrade/ft_userdata/user_data/strategies/BB10fall.py",
+        "known": false
+      },
+      {
+        "class": "MACD9fall",
+        "path": "Freqtrade/ft_userdata/user_data/strategies/MACD9fall.py",
+        "known": false
+      }
+    ]
+  },
+  {
+    "repo": "joaorafaelm/freqtrade-heroku",
+    "status": "ok",
+    "pushed_at": "2021-09-04T06:50:18Z",
+    "py_files": 41,
+    "classes": [
+      {
+        "class": "AwesomeMacd",
+        "path": "user_data/strategies/AwesomeMacd.py",
+        "known": true
+      },
+      {
+        "class": "BigZ04_TSL3",
+        "path": "user_data/strategies/BigZ04_TSL3.py",
+        "known": true
+      },
+      {
+        "class": "BuyAllSellAllStrategy",
+        "path": "user_data/strategies/BuyAllSellAllStrategy.py",
+        "known": true
+      },
+      {
+        "class": "CombinedBinHAndCluc",
+        "path": "user_data/strategies/CombinedBinHAndCluc.py",
+        "known": true
+      },
+      {
+        "class": "CombinedBinHAndClucV2",
+        "path": "user_data/strategies/CombinedBinHAndClucV2.py",
+        "known": true
+      },
+      {
+        "class": "CombinedBinHAndClucV5",
+        "path": "user_data/strategies/CombinedBinHAndClucV5.py",
+        "known": true
+      },
+      {
+        "class": "CombinedBinHAndClucV6",
+        "path": "user_data/strategies/CombinedBinHAndClucV6.py",
+        "known": true
+      },
+      {
+        "class": "CombinedBinHAndClucV6H",
+        "path": "user_data/strategies/CombinedBinHAndClucV6H.py",
+        "known": true
+      },
+      {
+        "class": "CombinedBinHAndClucV7",
+        "path": "user_data/strategies/CombinedBinHAndClucV7.py",
+        "known": true
+      },
+      {
+        "class": "CombinedBinHAndClucV8",
+        "path": "user_data/strategies/CombinedBinHAndClucV8.py",
+        "known": true
+      },
+      {
+        "class": "CombinedBinHAndClucV8Hyper",
+        "path": "user_data/strategies/CombinedBinHAndClucV8Hyper.py",
+        "known": true
+      },
+      {
+        "class": "CombinedBinHClucAndMADV6",
+        "path": "user_data/strategies/CombinedBinHClucAndMADV6.py",
+        "known": true
+      },
+      {
+        "class": "DoesNothingStrategy",
+        "path": "user_data/strategies/DoesNothingStrategy.py",
+        "known": true
+      },
+      {
+        "class": "EnsembleStrategy",
+        "path": "user_data/strategies/EnsembleStrategy.py",
+        "known": true
+      },
+      {
+        "class": "EnsembleStrategyV1",
+        "path": "user_data/strategies/EnsembleStrategyV1.py",
+        "known": true
+      },
+      {
+        "class": "EnsembleStrategyV2",
+        "path": "user_data/strategies/EnsembleStrategyV2.py",
+        "known": true
+      },
+      {
+        "class": "GymStrategy",
+        "path": "user_data/strategies/GymStrategy.py",
+        "known": true
+      },
+      {
+        "class": "NostalgiaForInfinityNext",
+        "path": "user_data/strategies/NostalgiaForInfinityNext.py",
+        "known": true
+      },
+      {
+        "class": "NostalgiaForInfinityV1",
+        "path": "user_data/strategies/NostalgiaForInfinityV1.py",
+        "known": true
+      },
+      {
+        "class": "NostalgiaForInfinityV2",
+        "path": "user_data/strategies/NostalgiaForInfinityV2.py",
+        "known": true
+      },
+      {
+        "class": "NostalgiaForInfinityV3",
+        "path": "user_data/strategies/NostalgiaForInfinityV3.py",
+        "known": true
+      },
+      {
+        "class": "NostalgiaForInfinityV4",
+        "path": "user_data/strategies/NostalgiaForInfinityV4.py",
+        "known": true
+      },
+      {
+        "class": "NostalgiaForInfinityV5",
+        "path": "user_data/strategies/NostalgiaForInfinityV5.py",
+        "known": true
+      },
+      {
+        "class": "NostalgiaForInfinityV6",
+        "path": "user_data/strategies/NostalgiaForInfinityV6.py",
+        "known": true
+      },
+      {
+        "class": "NostalgiaForInfinityV7",
+        "path": "user_data/strategies/NostalgiaForInfinityV7.py",
+        "known": true
+      },
+      {
+        "class": "Obelisk_Ichimoku_ZEMA_v1",
+        "path": "user_data/strategies/Obelisk_Ichimoku_ZEMA_v1.py",
+        "known": true
+      },
+      {
+        "class": "SMAOffset",
+        "path": "user_data/strategies/SMAOffset.py",
+        "known": true
+      },
+      {
+        "class": "SMAOffsetProtectOptV0",
+        "path": "user_data/strategies/SMAOffsetProtectOptV0.py",
+        "known": true
+      },
+      {
+        "class": "SMAOffsetProtectOptV1",
+        "path": "user_data/strategies/SMAOffsetProtectOptV1.py",
+        "known": true
+      },
+      {
+        "class": "SMAOffsetV2",
+        "path": "user_data/strategies/SMAOffsetV2.py",
+        "known": true
+      },
+      {
+        "class": "TheRealPullbackV2",
+        "path": "user_data/strategies/TheRealPullbackV2.py",
+        "known": true
+      },
+      {
+        "class": "TrainCatBoostStrategy",
+        "path": "user_data/strategies/TrainCatBoostStrategy.py",
+        "known": true
+      }
+    ]
+  },
+  {
+    "repo": "freqsignals/freqtrade-strategies",
+    "status": "ok",
+    "pushed_at": "2023-02-28T07:00:13Z",
+    "py_files": 7,
+    "classes": [
+      {
+        "class": "FreqSignalsAiDataProvider",
+        "path": "strategies/FreqSignalsAiDataProvider.py",
+        "known": false
+      },
+      {
+        "class": "FreqSignalsAiWebhookDataProvider",
+        "path": "strategies/FreqSignalsAiWebhookDataProvider.py",
+        "known": false
+      },
+      {
+        "class": "FreqSignalsDataProvider",
+        "path": "strategies/FreqSignalsDataProvider.py",
+        "known": false
+      },
+      {
+        "class": "FreqSignalsProvider",
+        "path": "strategies/FreqSignalsProvider.py",
+        "known": false
+      },
+      {
+        "class": "FreqSignalsWebhookDataProvider",
+        "path": "strategies/FreqSignalsWebhookDataProvider.py",
+        "known": false
+      },
+      {
+        "class": "FreqSignalsStrategy",
+        "path": "strategies/freqsignals.py",
+        "known": false
+      }
+    ]
+  },
+  {
+    "repo": "Lijunnan0113/Lijunnan0113-Lijunnan_Freqtrade_Strategy",
+    "status": "ok",
+    "pushed_at": "2024-09-24T05:53:13Z",
+    "py_files": 1,
+    "classes": [
+      {
+        "class": "FTT_DWT_FBB_FUTURES",
+        "path": "Strategy/FTT_DWT_FBB_FUTURES.py",
+        "known": true
+      }
+    ]
+  }
+]
