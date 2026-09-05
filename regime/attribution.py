@@ -6,6 +6,7 @@ import csv
 import hashlib
 import io
 import json
+import sys
 import zipfile
 from pathlib import Path
 
@@ -13,15 +14,27 @@ import numpy as np
 import pandas as pd
 
 import profile_smoke
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import market_phase_hypothesis
+from regime import episodes as regime_episodes
 
 
 ROOT = Path(__file__).resolve().parents[1]
 DAILY = ROOT / "results" / "regime" / "regime_daily.csv"
 OUT = ROOT / "results" / "regime"
 FULL_MANIFEST = OUT / "full_backtest_manifest.json"
+STATUS = ROOT / "STRATEGY_STATUS.csv"
 START = pd.Timestamp("2020-03-01T00:00:00Z")
 END = pd.Timestamp("2026-08-21T00:00:00Z")
 MEASUREMENT_SCOPE = "canonical_pooled_native_pair_universe"
+# The six reporting phases, at the two thresholds frozen in
+# `REGIME_PREREGISTRATION.md`'s 2026-09-05 amendment - read from
+# `market_phase_hypothesis` rather than restated here, so the one number
+# that decides `high_vol_shock` can never drift between the module that
+# predicts a strategy's phase and the one that measures which phase it
+# actually traded in.
+SHOCK_VOL = market_phase_hypothesis.SHOCK_VOL
+RANGE_SPLIT_VOL = market_phase_hypothesis.RANGE_SPLIT_VOL
 
 
 def _sha(data: bytes) -> str:
@@ -36,10 +49,40 @@ def _file_sha(path: Path) -> str:
     return "sha256_" + digest.hexdigest()
 
 
+def phase_of(regime: pd.Series, realized_vol_30d: pd.Series) -> pd.Series:
+    """The six-phase reporting label for a DMI state plus its own volatility.
+
+    `high_vol_shock` outranks the DMI label by construction - a day in the
+    top volatility decile is that day's market whichever way ADX points -
+    so it is checked first and every other branch only applies where it does
+    not hold. `SIDEWAYS` is the one state that splits: below the threshold is
+    `range_quiet`, at or above it is `range_choppy`. `WARMUP` (no daily state
+    yet, prefix history too short) and any other unmapped value produce an
+    empty string rather than a guess.
+    """
+    return pd.Series(np.select(
+        [realized_vol_30d.ge(SHOCK_VOL),
+         regime.eq("BULL"), regime.eq("BEAR"), regime.eq("TRANSITION"),
+         regime.eq("SIDEWAYS") & realized_vol_30d.ge(RANGE_SPLIT_VOL),
+         regime.eq("SIDEWAYS")],
+        ["high_vol_shock", "bull_trend", "bear_trend", "transition",
+         "range_choppy", "range_quiet"],
+        default=""), index=regime.index)
+
+
 def eligible_profiles() -> dict[str, dict]:
-    with (ROOT / "REGIME_ELIGIBILITY.csv").open(newline="", encoding="utf-8-sig") as handle:
-        eligibility = {row["strategy_id"]: row for row in csv.DictReader(handle)
-                       if row["regime_eligible"].lower() == "true"}
+    """The current benchmark population, not the frozen E0 anchor.
+
+    `REGIME_ELIGIBILITY.csv`'s `regime_eligible=true` is the 67-row set E0
+    was frozen on 2026-08-30; E0 was retired as a cohort on 2026-09-03 and
+    every one of its rows is now decided the same way as the other 833 -
+    `STRATEGY_STATUS.csv`'s `cohort == "E1_expanded"`, 579 rows regenerated
+    from current evidence rather than a snapshot that predates four
+    expansion waves.
+    """
+    with STATUS.open(newline="", encoding="utf-8-sig") as handle:
+        eligibility = {row["strategy_id"] for row in csv.DictReader(handle)
+                       if row["cohort"] == "E1_expanded"}
     with (ROOT / "EXECUTION_PROFILES.csv").open(newline="", encoding="utf-8-sig") as handle:
         profiles = {row["strategy_id"]: row for row in csv.DictReader(handle)
                     if row["strategy_id"] in eligibility}
@@ -126,10 +169,30 @@ def archive_inventory(search_root: Path, profiles: dict[str, dict],
 
 def attribute(archives: list[dict], daily_path: Path = DAILY) -> pd.DataFrame:
     states = pd.read_csv(daily_path, parse_dates=["date"])
-    btc_fields = ["btc_regime", "btc_adx", "btc_ser_30", "btc_return_90d",
+    # The six-phase reporting label, computed here rather than stored in
+    # `regime_daily.csv`: it is a formula over two columns already there
+    # (`*_regime`, `*_realized_vol_30d`), not a new measurement, and adding it
+    # at read time means `market_phase_hypothesis.SHOCK_VOL`/`RANGE_SPLIT_VOL`
+    # can change without a Stage 3/4 regeneration.
+    states["btc_phase"] = phase_of(states["btc_regime"], states["btc_realized_vol_30d"])
+    states["coin_phase"] = phase_of(states["coin_regime"], states["coin_realized_vol_30d"])
+    # A phase episode is not a regime episode: `SIDEWAYS` splits into
+    # `range_quiet`/`range_choppy` on volatility alone, so a pair can leave
+    # one phase and enter the other without `coin_regime` ever changing.
+    # Reusing `coin_episode_id` here would under-count exactly the boundary
+    # this split exists to see, so phase gets its own per-pair episode id
+    # from the same boundary rule (`episode_ids`), independent of the
+    # regime-keyed one already in the daily table.
+    ordered = states.sort_values(["pair", "date"])
+    states["coin_phase_episode_id"] = pd.concat([
+        regime_episodes.episode_ids(group["date"], group["coin_phase"], "PHASE")
+        for _pair, group in ordered.groupby("pair", sort=False)
+    ]).reindex(states.index)
+    btc_fields = ["btc_regime", "btc_phase", "btc_adx", "btc_ser_30", "btc_return_90d",
                   "btc_realized_vol_30d", "btc_episode_id"]
-    coin_fields = ["coin_regime", "coin_adx", "coin_ser_30", "coin_return_90d",
-                   "coin_realized_vol_30d", "rs_30d", "rs_90d", "coin_episode_id"]
+    coin_fields = ["coin_regime", "coin_phase", "coin_adx", "coin_ser_30", "coin_return_90d",
+                   "coin_realized_vol_30d", "rs_30d", "rs_90d", "coin_episode_id",
+                   "coin_phase_episode_id"]
     keep = ["date", "pair"] + btc_fields + coin_fields
     states = states[keep].set_index(["pair", "date"])
     rows = []
@@ -206,6 +269,36 @@ def summarize_btc(trades: pd.DataFrame) -> pd.DataFrame:
     return _summarize(trades, ["strategy_id", "btc_regime"], "btc_regime_match")
 
 
+def summarize_phase(trades: pd.DataFrame) -> pd.DataFrame:
+    """Per strategy, per six-phase reporting label - the market-phase
+    benchmark's own primary table. Keyed on the coin's own phase, not BTC's:
+    a strategy trades the pair it is given, and the pair's own state at entry
+    is what decided whether its signal could fire, not the wider market's."""
+    return _summarize(trades, ["strategy_id", "coin_phase"], "coin_regime_match")
+
+
+def summarize_phase_episodes(trades: pd.DataFrame) -> pd.DataFrame:
+    """Independent-evidence view of `summarize_phase`: a strategy profitable
+    across 3000 adjacent days of one uninterrupted phase episode has one
+    data point, not 3000. `coin_phase_episode_id` gives every trade the
+    episode it actually happened in, so this can say how many separate
+    episodes contributed and whether most of them agreed."""
+    matched = trades[trades["coin_regime_match"] & trades["coin_phase"].astype(bool)].copy()
+    if matched.empty:
+        return pd.DataFrame(columns=["strategy_id", "coin_phase", "episodes"])
+    by_episode = (matched.groupby(["strategy_id", "coin_phase", "coin_phase_episode_id"])
+                  ["profit_abs"].sum().rename("episode_profit").reset_index())
+    return (by_episode.groupby(["strategy_id", "coin_phase"])
+            .agg(episodes=("coin_phase_episode_id", "nunique"),
+                 positive_episodes=("episode_profit", lambda x: int((x > 0).sum())),
+                 negative_episodes=("episode_profit", lambda x: int((x < 0).sum())),
+                 median_episode_profit=("episode_profit", "median"),
+                 worst_episode_profit=("episode_profit", "min"),
+                 best_episode_profit=("episode_profit", "max"))
+            .reset_index().assign(
+                episode_win_rate=lambda x: x["positive_episodes"] / x["episodes"]))
+
+
 def summarize_episodes(trades: pd.DataFrame) -> pd.DataFrame:
     matched = trades[trades["btc_regime_match"]].copy()
     if matched.empty:
@@ -276,6 +369,9 @@ def main(argv=None) -> int:
     _write(summarize_btc(trades), args.outdir / "strategy_btc_regime_summary.csv")
     _write(summarize(trades), args.outdir / "strategy_regime_summary.csv")
     _write(summarize_episodes(trades), args.outdir / "strategy_episode_summary.csv")
+    _write(summarize_phase(trades), args.outdir / "strategy_phase_summary.csv")
+    _write(summarize_phase_episodes(trades),
+          args.outdir / "strategy_phase_episode_summary.csv")
     covered = sorted(set(trades["strategy_id"])) if not trades.empty else []
     btc_matched = int(trades["btc_regime_match"].sum()) if not trades.empty else 0
     coin_matched = int(trades["coin_regime_match"].sum()) if not trades.empty else 0
@@ -315,20 +411,43 @@ def main(argv=None) -> int:
     return 0
 
 
+def _phase_selftest() -> None:
+    """`phase_of` against the frozen thresholds, and the boundary each one sits on."""
+    regime = pd.Series(["BULL", "BEAR", "TRANSITION", "SIDEWAYS", "SIDEWAYS", "SIDEWAYS"])
+    vol = pd.Series([0.3, 0.3, 0.3, 0.3, RANGE_SPLIT_VOL, SHOCK_VOL])
+    phases = phase_of(regime, vol)
+    assert phases.tolist() == ["bull_trend", "bear_trend", "transition",
+                                "range_quiet", "range_choppy", "high_vol_shock"], \
+        phases.tolist()
+    # Shock outranks the DMI label: a BULL day at or above the shock
+    # threshold is `high_vol_shock`, not `bull_trend`.
+    assert phase_of(pd.Series(["BULL"]), pd.Series([SHOCK_VOL])).iloc[0] == "high_vol_shock"
+    # WARMUP (no daily state yet) maps to no phase, not a guess.
+    assert phase_of(pd.Series(["WARMUP"]), pd.Series([0.3])).iloc[0] == ""
+
+
 def selftest() -> None:
+    _phase_selftest()
     with __import__("tempfile").TemporaryDirectory() as directory:
         path = Path(directory) / "daily.csv"
+        # Four BTC/USDT days spanning every phase branch, plus a fifth that
+        # repeats SIDEWAYS-quiet after a gap so the phase-episode id (not the
+        # regime one) has to start a new episode rather than extend the first.
         pd.DataFrame({
-            "date": ["2024-01-01T00:00:00Z", "2024-01-02T00:00:00Z"],
-            "pair": ["BTC/USDT", "BTC/USDT"],
-            "btc_regime": ["BULL", "BEAR"], "coin_regime": ["BULL", "BEAR"],
-            "btc_adx": [30, 31], "coin_adx": [30, 31],
-            "btc_ser_30": [.5, -.5], "coin_ser_30": [.5, -.5],
-            "btc_return_90d": [.2, -.2], "coin_return_90d": [.2, -.2],
-            "btc_realized_vol_30d": [.5, .6], "coin_realized_vol_30d": [.5, .6],
-            "rs_30d": [0, 0], "rs_90d": [0, 0],
-            "btc_episode_id": ["BTC-1", "BTC-2"],
-            "coin_episode_id": ["BTC-1", "BTC-2"],
+            "date": ["2024-01-01T00:00:00Z", "2024-01-02T00:00:00Z",
+                     "2024-01-03T00:00:00Z", "2024-01-04T00:00:00Z",
+                     "2024-01-10T00:00:00Z"],
+            "pair": ["BTC/USDT"] * 5,
+            "btc_regime": ["BULL", "BEAR", "SIDEWAYS", "SIDEWAYS", "SIDEWAYS"],
+            "coin_regime": ["BULL", "BEAR", "SIDEWAYS", "SIDEWAYS", "SIDEWAYS"],
+            "btc_adx": [30, 31, 10, 10, 10], "coin_adx": [30, 31, 10, 10, 10],
+            "btc_ser_30": [.5, -.5, 0, 0, 0], "coin_ser_30": [.5, -.5, 0, 0, 0],
+            "btc_return_90d": [.2, -.2, 0, 0, 0], "coin_return_90d": [.2, -.2, 0, 0, 0],
+            "btc_realized_vol_30d": [.5, .6, 0.3, 0.9, 0.3],
+            "coin_realized_vol_30d": [.5, .6, 0.3, 0.9, 0.3],
+            "rs_30d": [0] * 5, "rs_90d": [0] * 5,
+            "btc_episode_id": ["BTC-1", "BTC-2", "BTC-3", "BTC-3", "BTC-3"],
+            "coin_episode_id": ["BTC-1", "BTC-2", "BTC-3", "BTC-3", "BTC-3"],
         }).to_csv(path, index=False)
         trade = {"pair": "BTC/USDT:USDT", "open_date": "2024-01-01T12:00:00Z",
                  "close_date": "2024-01-02T12:00:00Z", "open_timestamp": 1,
@@ -337,15 +456,35 @@ def selftest() -> None:
                  "trade_duration": 1440}
         xmr_trade = dict(trade, pair="XMR/USDT:USDT", open_timestamp=3,
                          close_timestamp=4)
+        # One more trade on day 3 (range_quiet) and one on day 10 (range_quiet
+        # again, after the choppy day breaks continuity) - same phase label,
+        # two episodes.
+        quiet_a = dict(trade, open_date="2024-01-03T12:00:00Z",
+                      close_date="2024-01-03T18:00:00Z", open_timestamp=5,
+                      close_timestamp=6, profit_abs=2.0)
+        quiet_b = dict(trade, open_date="2024-01-10T12:00:00Z",
+                      close_date="2024-01-10T18:00:00Z", open_timestamp=7,
+                      close_timestamp=8, profit_abs=3.0)
         archive = {"strategy_id": "S", "archive": ROOT / "dummy.zip",
-                   "trades": [trade, xmr_trade]}
+                   "trades": [trade, xmr_trade, quiet_a, quiet_b]}
         rows = attribute([archive, archive], path)
-        assert len(rows) == 2
+        assert len(rows) == 4
         assert rows.iloc[0]["btc_regime"] == "BULL"
+        assert rows.iloc[0]["btc_phase"] == "bull_trend"
         assert rows["btc_regime_match"].all()
-        assert rows["coin_regime_match"].tolist() == [True, False]
-        assert int(summarize_btc(rows)["trades"].sum()) == 2
-        assert int(summarize(rows)["trades"].sum()) == 1
+        assert rows["coin_regime_match"].tolist() == [True, False, True, True]
+        assert int(summarize_btc(rows)["trades"].sum()) == 4
+        assert int(summarize(rows)["trades"].sum()) == 3
+        phase_summary = summarize_phase(rows)
+        quiet_row = phase_summary[phase_summary["coin_phase"] == "range_quiet"].iloc[0]
+        assert int(quiet_row["trades"]) == 2, quiet_row
+        episode_summary = summarize_phase_episodes(rows)
+        quiet_episodes = episode_summary[
+            episode_summary["coin_phase"] == "range_quiet"].iloc[0]
+        # Two trades, two separate episodes: the choppy day in between broke
+        # continuity, so this is independent evidence twice, not one trade
+        # counted twice under a single episode.
+        assert int(quiet_episodes["episodes"]) == 2, quiet_episodes
         assert _file_sha(path) == _sha(path.read_bytes())
     print("regime attribution selftest: PASS")
 

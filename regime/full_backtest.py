@@ -6,15 +6,26 @@ import concurrent.futures
 import csv
 import json
 import os
+import sys
 import threading
 from pathlib import Path
 
 import profile_smoke
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import profile_full_window
 
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "results" / "regime" / "full_backtest_manifest.json"
-TIMERANGE = "20200301-20260821"
+STATUS = ROOT / "STRATEGY_STATUS.csv"
+# The window lives in exactly one place - `profile_full_window.TIMERANGE` -
+# so this stays a per-mode lookup through that module rather than its own
+# copy of the same two dates. A second constant is how this file spent
+# 2026-09-03 to 2026-09-05 measuring the pre-amendment window after the
+# root runner had already moved to the amended one: nothing failed loudly,
+# every row here just quietly disagreed with every row there.
+TIMERANGE = profile_full_window.TIMERANGE
+timerange = profile_full_window.timerange
 LOCK = threading.Lock()
 
 
@@ -31,9 +42,18 @@ def _load(path: Path) -> dict:
 
 
 def eligible() -> list[dict]:
-    with (ROOT / "REGIME_ELIGIBILITY.csv").open(newline="", encoding="utf-8-sig") as handle:
+    """The current benchmark population, not the frozen E0 anchor.
+
+    `REGIME_ELIGIBILITY.csv`'s `regime_eligible=true` is the 67-row set E0
+    was frozen on 2026-08-30; E0 was retired as a cohort on 2026-09-03 and
+    every one of its rows is now decided the same way as the other 833 -
+    `STRATEGY_STATUS.csv`'s `cohort == "E1_expanded"`, 579 rows regenerated
+    from current evidence rather than a snapshot that predates four
+    expansion waves.
+    """
+    with STATUS.open(newline="", encoding="utf-8-sig") as handle:
         allowed = {row["strategy_id"] for row in csv.DictReader(handle)
-                   if row["regime_eligible"].lower() == "true"}
+                   if row["cohort"] == "E1_expanded"}
     return [row for row in profile_smoke.read_manifest(profile_smoke.MANIFEST)
             if row["strategy_id"] in allowed]
 
@@ -101,8 +121,8 @@ def main(argv=None) -> int:
         if (not args.force and previous.get("status") == "measured" and
                 all(previous.get(key) == value for key, value in identity.items())):
             return strategy, previous, True
-        result = profile_smoke.run_one(row, TIMERANGE, args.timeout)
         mode = "futures" if row["run_profile"].startswith("futures_") else "spot"
+        result = profile_smoke.run_one(row, timerange(mode), args.timeout)
         config = (profile_smoke.FUTURES_CONFIG if mode == "futures"
                   else profile_smoke.SPOT_CONFIG)
         result.update(identity)
