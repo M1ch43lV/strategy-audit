@@ -1,5 +1,18 @@
 # Shared handoff - Codex and Claude
 
+> **Marked outdated 2026-09-06 — not currently needed.** Everything below
+> this line describes state through the Wave C bias queue (baton dated
+> 2026-09-01): E1 at 75, Wave D not started, several `Next concrete steps`
+> long since done differently than planned. The corpus has since grown to
+> 919 rows across further waves, a six-phase market-regime reporting split
+> was added, and the source-repo freshness/candidate-discovery machinery
+> (`REPO_FRESHNESS.md`, `NEW_REPO_CANDIDATES.md`) did not exist yet. None of
+> that is reflected here, and reading a `Current checkpoint` or `Do not redo`
+> line below as live risks exactly the mistake this file exists to prevent —
+> `STRATEGY_STATUS.csv`, `git log`, and `docker ps` are the current truth;
+> this file is not. Kept for its record of Wave A-C's own history, not as a
+> cold-start document — see `DOCUMENT_MAP.md` for what actually binds today.
+
 ## Baton
 
 - Last agent: claude
