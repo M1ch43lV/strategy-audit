@@ -352,32 +352,43 @@ CRITERIA = [
         "name": "The fix would touch every strategy's column writes",
         "test": _shared_runtime_change_declined,
         "columns": 'primary_reason == "shared_runtime_change_declined"',
-        "what": "Eighteen rows, two mechanisms, not eighteen bugs. Fourteen "
-                "assign a Python `bool` or `int` into a column pandas 3.0.5 "
-                "no longer coerces silently - `Invalid value '1' for dtype "
-                "'bool'` and its mirror images (`'True'` into `float64`, a "
-                "float into `int64`, an int into `str`). Seven build a "
-                "direction column with `np.where(cond, np.where(..., "
+        "what": "Nineteen rows, three known mechanisms, not nineteen bugs. "
+                "Nine assign a Python `bool` or `int` into a column pandas "
+                "3.0.5 no longer coerces silently - `Invalid value '1' for "
+                "dtype 'bool'` and its mirror images (`'True'` into "
+                "`float64`, a float into `int64`, an int into `str`). Eight "
+                "build a direction column with `np.where(cond, np.where(..., "
                 "'down', 'up'), np.NaN)` - a Supertrend snippet credited to "
                 "`freqtrade/freqtrade-strategies#30`, copied near-verbatim "
                 "into five unrelated repositories - mixing a string branch "
                 "with a float NaN in one array, which numpy 2.5.2 refuses "
-                "to promote to a common dtype where older numpy coerced it.",
-        "why_final": "Owner's call, 2026-09-04: both mechanisms are "
+                "to promote to a common dtype where older numpy coerced it. "
+                "The remaining two are each their own break, catalogued "
+                "individually rather than folded into a count that would "
+                "overstate how common they are: `MomentumRegimeBasket15m` "
+                "compares an `int64` column against a `datetime64[ms, UTC]` "
+                "one, and `MostOfAll` loses a computed column outright to "
+                "pandas copy-on-write - no exception, the column is just not "
+                "there - which is why it carries no `runtime_failure` text "
+                "at all.",
+        "why_final": "Owner's call, 2026-09-04: the two large mechanisms are "
                      "understood and both have a fix in principle - relax "
                      "pandas' item-assignment dtype check, or numpy's "
                      "promotion rule - and both fixes would run under every "
-                     "column write in the corpus, not only these eighteen "
-                     "rows'. That is the large intervention a narrow shim "
-                     "exists to avoid, so none was written.",
+                     "column write in the corpus, not only these rows'. "
+                     "That is the large intervention a narrow shim exists to "
+                     "avoid, so none was written. The two individual rows "
+                     "were re-examined on the same basis when their upstream "
+                     "sources were checked for updates (2026-09-05) and "
+                     "confirmed unfixed upstream either.",
         "evidence": "`BLOCKED_TRIAGE.json` and `runtime_failure` carry the "
                     "exact pandas/numpy exception per row; the shared "
                     "`np.where(...,'down','up'), np.NaN` line was confirmed "
                     "byte-identical across five of the seven repositories "
-                    "before this criterion was written.",
+                    "sharing it before this criterion was written.",
         "watch": "A row here is not judged unfixable in principle, only "
                  "not worth fixing at the cost this fix would impose on "
-                 "the other roughly 880 strategies that never trip it. A "
+                 "the other roughly 900 strategies that never trip it. A "
                  "future decision to relax the pandas or numpy rule "
                  "corpus-wide would reopen every row this criterion "
                  "closed, together.",

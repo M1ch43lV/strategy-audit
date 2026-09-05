@@ -1,6 +1,6 @@
 # Runtime environments - what each strategy needs to run
 
-**Generated 2026-09-05 17:57:51 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-05 19:23:19 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 For the benchmark run: before measuring a row, look up its `required_image` in `STRATEGY_STATUS.csv` and launch it under that image rather than the default. Everything else - which compatibility shims to install, which warm-up to use, which config overrides apply - is read automatically from `PROFILE_CLASS1.json` and `WARMUP_CONVERGENCE.json` by the same `profile_smoke.run_one` / `profile_full_window.py` machinery this audit already uses; the image is the one thing that machinery cannot decide for itself, because it is chosen before any Python in the container runs.
 
