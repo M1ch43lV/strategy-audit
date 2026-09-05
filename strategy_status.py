@@ -105,7 +105,8 @@ FIELDS = [
     "strategy_id", "repo", "source_file", "result_archive",
     "run_profile", "expansion_wave", "timeframe", "strategy_type",
     "cohort", "measured",
-    "observed_trades", "trade_evidence", "lookahead", "lookahead_evidence",
+    "observed_trades", "trade_evidence", "test_duration_s",
+    "test_duration_evidence", "lookahead", "lookahead_evidence",
     "recursive", "recursive_evidence", "coverage_status", "traps_n", "artifact_role",
     "baseline_status", "primary_reason", "exclusion_basis",
     "repair_family", "repair_verdict", "repair_settings", "required_image",
@@ -411,6 +412,13 @@ def _integer(value):
         return 0
 
 
+def _float(value):
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return 0.0
+
+
 def _mtime(relative):
     path = os.path.join(ROOT, (relative or "").replace("/", os.sep))
     if not relative or not os.path.isfile(path):
@@ -509,6 +517,47 @@ def exclusion_basis(reason, lookahead_evidence, trade_evidence,
             or reason == "canonical_implementation_not_measured":
         return "no_finding"
     return "no_finding"
+
+
+def test_duration(measurement, diagnostics, window, settled, fresh, tried,
+                  attempt):
+    """Wall-clock seconds this audit's own tooling has spent measuring a row.
+
+    Every runner times its own subprocess call and stores the figure beside
+    the result; nothing here re-derives it, only collects it. A row can carry
+    several distinct calls at once - a trial-run backtest, a bias-store
+    look-ahead and recursion pair from the original sweep, a later native
+    re-measurement of look-ahead, the warm-up ladder, a wave B recursion
+    attempt, and the eight-pair full-window backtest - because later waves
+    measured on top of earlier ones rather than replacing them, and each is
+    real time genuinely spent, not a duplicate of another. So this is a sum,
+    unlike `observed_trades`'s pick-one-source priority chain: the point is
+    to see where the time actually went, and hiding a superseded run's cost
+    would understate what the row cost to measure. Blank where nothing here
+    carries a stamp.
+    """
+    parts = []
+    if measurement.get("elapsed_s"):
+        parts.append(("backtest", measurement["elapsed_s"]))
+    full_window_elapsed = round(sum(
+        (pair.get("elapsed_s") or 0)
+        for pair in (window.get("pair_results") or {}).values()), 1)
+    if full_window_elapsed:
+        parts.append(("full_window", full_window_elapsed))
+    if (diagnostics.get("lookahead") or {}).get("elapsed_s"):
+        parts.append(("lookahead", diagnostics["lookahead"]["elapsed_s"]))
+    remeasured_lookahead = (fresh or tried or {}).get("elapsed_s")
+    if remeasured_lookahead:
+        parts.append(("lookahead_remeasured", remeasured_lookahead))
+    if (diagnostics.get("recursive") or {}).get("elapsed_s"):
+        parts.append(("recursive", diagnostics["recursive"]["elapsed_s"]))
+    if settled.get("elapsed_s"):
+        parts.append(("recursive_ladder", settled["elapsed_s"]))
+    if attempt.get("elapsed_s"):
+        parts.append(("recursive_wave_b", attempt["elapsed_s"]))
+    total = round(sum(value for _, value in parts), 1)
+    evidence = "; ".join("%s=%ss" % (name, value) for name, value in parts)
+    return (total if total else "", evidence)
 
 
 def freqai_arm():
@@ -1248,6 +1297,8 @@ def rows():
                    fresh or {}, (diagnostics.get("lookahead") or {}),
                    (diagnostics.get("recursive") or {}), attempt]
         stamp, stamp_source = tested_at(records)
+        duration_s, duration_evidence = test_duration(
+            measurement, diagnostics, window, settled, fresh, tried, attempt)
 
         repo, source_file = provenance(profile.get("canonical_file"))
         run_profile = profile.get("run_profile")
@@ -1295,6 +1346,8 @@ def rows():
                         else "false",
             "observed_trades": trades,
             "trade_evidence": source,
+            "test_duration_s": duration_s,
+            "test_duration_evidence": duration_evidence,
             "lookahead": lookahead,
             "lookahead_evidence": lookahead_evidence,
             "recursive": recursive,
@@ -1555,6 +1608,33 @@ def _report(data):
     ]
     lines += _table(timeframes, "### Timeframe", "Timeframe")
     lines += _table(types, "### Signal family", "Type")
+
+    timed = [row for row in data if row["test_duration_s"]]
+    lines += [
+        "## Test duration", "",
+        "Wall-clock seconds each runner timed its own call at, summed per row",
+        "across whichever of the trial-run backtest, the bias-store",
+        "look-ahead/recursion pair, a later native look-ahead",
+        "re-measurement, the warm-up ladder, a wave B recursion attempt, and",
+        "the eight-pair full-window backtest actually ran for it - see",
+        "`test_duration` in strategy_status.py for why this is a sum rather",
+        "than a pick-one-source figure. %d of %d rows carry no stamp at all,"
+        % (len(data) - len(timed), len(data)),
+        "either because nothing has run yet or because no runner on that",
+        "path records its own time.", "",
+    ]
+    if timed:
+        total_hours = sum(_float(row["test_duration_s"]) for row in timed) / 3600.0
+        lines += ["Summed across the %d rows that do: **%.1f hours** of this "
+                  "audit's own compute so far." % (len(timed), total_hours), ""]
+        slowest = sorted(timed, key=lambda r: -_float(r["test_duration_s"]))[:15]
+        lines += ["### Slowest 15", "",
+                  "| Strategy | Total | Breakdown |", "|---|---:|---|"]
+        for row in slowest:
+            lines.append("| `%s` | %ss | %s |" % (
+                row["strategy_id"], row["test_duration_s"],
+                row["test_duration_evidence"].replace("|", "\\|")))
+        lines.append("")
 
     gates = ("cmd_backtest", "cmd_lookahead", "cmd_recursive")
     recorded = sum(1 for row in data for gate in gates

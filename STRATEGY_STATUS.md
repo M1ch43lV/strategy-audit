@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-05 08:14:45 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-05 10:11:05 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -85,6 +85,40 @@ limits. `timeframe` is blank on 42 rows the source does not state it for. `strat
 | `grid_dca` | 93 |
 | `ml_ai` | 46 |
 | `stat_arb` | 9 |
+
+## Test duration
+
+Wall-clock seconds each runner timed its own call at, summed per row
+across whichever of the trial-run backtest, the bias-store
+look-ahead/recursion pair, a later native look-ahead
+re-measurement, the warm-up ladder, a wave B recursion attempt, and
+the eight-pair full-window backtest actually ran for it - see
+`test_duration` in strategy_status.py for why this is a sum rather
+than a pick-one-source figure. 0 of 900 rows carry no stamp at all,
+either because nothing has run yet or because no runner on that
+path records its own time.
+
+Summed across the 900 rows that do: **58.2 hours** of this audit's own compute so far.
+
+### Slowest 15
+
+| Strategy | Total | Breakdown |
+|---|---:|---|
+| `MostOfAll` | 10954.7s | backtest=45.1s; full_window=6406.0s; lookahead_remeasured=4470.1s; recursive_ladder=33.5s |
+| `ARIMASTR` | 8061.6s | backtest=317.7s; lookahead=1200.0s; lookahead_remeasured=6185.3s; recursive=113.4s; recursive_ladder=245.2s |
+| `Hacklemore` | 7729.0s | backtest=464.1s; lookahead=1200.0s; lookahead_remeasured=6014.3s; recursive=24.0s; recursive_ladder=26.6s |
+| `Hacklemore3` | 6982.2s | lookahead_remeasured=6934.8s; recursive_ladder=47.4s |
+| `epretrace` | 6656.8s | backtest=65.5s; lookahead=1348.0s; lookahead_remeasured=5130.3s; recursive=22.3s; recursive_ladder=61.2s; recursive_wave_b=29.5s |
+| `ExponentialGradientPortfolio` | 4604.3s | backtest=165.6s; lookahead=543.3s; lookahead_remeasured=3837.0s; recursive=25.3s; recursive_ladder=33.1s |
+| `ONS_Portfolio` | 4502.5s | backtest=390.2s; lookahead_remeasured=4048.1s; recursive_ladder=64.2s |
+| `NostalgiaForInfinityX3` | 3757.8s | backtest=29.5s; lookahead_remeasured=3682.6s; recursive_ladder=45.7s |
+| `NostalgiaForInfinityX4` | 3750.4s | backtest=39.6s; lookahead_remeasured=3667.1s; recursive_ladder=43.7s |
+| `BreakoutStrategy` | 3176.5s | backtest=65.0s; full_window=3033.6s; lookahead=56.1s; recursive=21.8s |
+| `TSPredict` | 2987.1s | backtest=13.2s; full_window=2919.0s; lookahead=44.6s; recursive=10.3s |
+| `haGradient` | 2862.0s | backtest=38.4s; lookahead=2772.5s; recursive=24.0s; recursive_ladder=27.1s |
+| `HarmonicDivergence` | 2601.6s | backtest=51.3s; full_window=1802.9s; lookahead_remeasured=710.9s; recursive_ladder=36.5s |
+| `HurstCycleV6` | 2246.7s | backtest=15.9s; lookahead_remeasured=2176.7s; recursive_ladder=54.1s |
+| `Hacklemore2` | 2214.6s | lookahead_remeasured=2167.7s; recursive_ladder=46.9s |
 
 ## The order the checks run in
 
