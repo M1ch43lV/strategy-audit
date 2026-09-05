@@ -821,6 +821,30 @@
       "strategy_id": "WTHO",
       "verdict": "needs_a_look"
     },
+    "kac_index_v1": {
+      "family": "third_party_package",
+      "missing_module": "tvDatafeed",
+      "module_found_at": "",
+      "note": "Imports tvDatafeed (TradingView data feed client), which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'tvDatafeed' at kac_index_v1",
+      "runtime_failure": "Impossible to load Strategy 'kac_index_v1'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/titouannwtt_freqtrade-ultimate/user_data/strategies/kac_index_v1.py",
+      "strategy_id": "kac_index_v1",
+      "verdict": "needs_a_look"
+    },
+    "kac_index_v2": {
+      "family": "third_party_package",
+      "missing_module": "tvDatafeed",
+      "module_found_at": "",
+      "note": "Imports tvDatafeed (TradingView data feed client), which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'tvDatafeed' at kac_index_v2",
+      "runtime_failure": "Impossible to load Strategy 'kac_index_v2'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/titouannwtt_freqtrade-ultimate/user_data/strategies/kac_index_v2.py",
+      "strategy_id": "kac_index_v2",
+      "verdict": "needs_a_look"
+    },
     "multi_tf": {
       "family": "individual",
       "note": "one of a kind; read the message",

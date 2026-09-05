@@ -423,6 +423,36 @@ def selftest():
     assert [r["strategy_id"] for r in select(rows, [], {"futures_long"}, 0)] == ["A"]
     sample = '{"url":"https://example.invalid/a//b",// c\n"x":1,/*d*/}'
     assert json.loads(_jsonc(sample))["x"] == 1
+
+    # A stored record is only skipped when its OWN identity still matches
+    # the file on disk today - not merely because a record exists at all.
+    # Three real rows (NostalgiaForInfinityX7, RLAgentStrategy,
+    # MomentumRegimeBasket15m) had their canonical_sha256 silently stamped
+    # onto a pre-upstream-update result before this was fixed.
+    import argparse as _argparse
+    import tempfile
+    global _identity, run_one
+    saved_identity, saved_run_one = _identity, run_one
+    calls = []
+    _identity = lambda row: {"canonical_sha256": row["_sha"]}
+    run_one = lambda row, timerange, timeout: (
+        calls.append(row["strategy_id"]) or {"status": "measured", "trades": 1})
+    try:
+        with tempfile.TemporaryDirectory() as directory:
+            output = os.path.join(directory, "smoke.json")
+            args = _argparse.Namespace(output=output, timerange="x", force=False,
+                                       timeout=1)
+            row = {"strategy_id": "S", "_sha": "sha_v1"}
+            _run(args, [row], None)
+            assert calls == ["S"], "first sight must measure"
+            _run(args, [row], None)
+            assert calls == ["S"], "identical identity must skip, not re-measure"
+            row = {"strategy_id": "S", "_sha": "sha_v2"}
+            _run(args, [row], None)
+            assert calls == ["S", "S"], \
+                "changed identity must re-measure, not stamp and skip"
+    finally:
+        _identity, run_one = saved_identity, saved_run_one
     print("profile_smoke selftest: PASS")
 
 
@@ -486,8 +516,18 @@ def _run(args, rows, claim):
             identity = _identity(row)
         except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
             identity = {"identity_error": "%s: %s" % (type(exc).__name__, exc)}
-        if previous and not args.force:
-            previous.update(identity)
+        # A stored record is only current if it was measured under this
+        # exact file and config - not merely "some record exists". Checking
+        # only presence let three rows updated by an upstream `git pull`
+        # (NostalgiaForInfinityX7, RLAgentStrategy, MomentumRegimeBasket15m)
+        # get their `canonical_sha256` silently stamped onto the OLD result
+        # here, which reads as "measured, identity current" while nothing
+        # of the new file was ever run - `regime/full_backtest.py` already
+        # gets this right the same way, one identity comparison before
+        # deciding to skip.
+        if (previous and not args.force
+                and all(previous.get(key) == value
+                        for key, value in identity.items())):
             write_results(data, args.output)
             print("[%d/%d] %-38s skip" % (index, len(rows), name), flush=True)
             continue

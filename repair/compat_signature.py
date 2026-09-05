@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Compatibility shims for framework changes the strategies predate.
 
-Sixteen of them so far. A hook whose signature gained parameters. A file
+Seventeen of them so far. A hook whose signature gained parameters. A file
 scan that assumes a formatting convention. A column the framework duplicates
 when its own analyzer calls a hook twice. An analyzer that announces itself
 as a utility while running a backtest. A budget for calls to the exchange,
@@ -19,7 +19,10 @@ translated, since nothing currently calls it successfully for the
 restoration to disturb. A sixteenth catches a scalar `fillna` that used to
 skip a column it could not fill and now raises instead; the wrapper tries
 the original call first and only steps in for that exact failure, on a
-frame that actually has an incompatible column. None is a defect in a
+frame that actually has an incompatible column. A seventeenth restores the
+`method=` keyword `fillna` removed the same way `replace()` lost it,
+patched once on the shared base class rather than twice for `Series` and
+`DataFrame` separately. None is a defect in a
 strategy, and no shim touches
 a strategy file - they
 are installed into freqtrade in the runner process, only when
@@ -877,6 +880,57 @@ def install_legacy_fillna_skips_incompatible_dtype():
     return True
 
 
+FILLNA_METHOD_RULE = "legacy_fillna_method_kwarg"
+
+
+def install_legacy_fillna_method_kwarg():
+    """Accept the removed `method=` keyword on `Series`/`DataFrame.fillna`.
+
+    `Obelisk_Ichimoku_Slow_v1` and its numbered siblings call
+    `dataframe['go_long'].fillna(method='ffill', inplace=True)` - a Series
+    call, not a DataFrame one, which is why this is a separate shim from
+    `legacy_fillna_skips_incompatible_dtype` above rather than an extra
+    branch in it: that one is deliberately scoped to `pd.DataFrame.fillna`
+    alone, keyed on a per-column dtype check that only makes sense for a
+    frame. Pandas removed `method` from `fillna()` the same way it removed
+    it from `replace()` (`install_legacy_replace_method`, same file); the
+    call is unconditionally a `TypeError` on the current signature -
+
+        NDFrame.fillna() got an unexpected keyword argument 'method'
+
+    - patched on `NDFrame` itself, the class both `Series` and `DataFrame`
+    inherit `fillna` from without overriding, rather than twice, once per
+    subclass.
+
+    The wrapped call only reroutes a `method=` of `ffill`/`pad` or
+    `bfill`/`backfill` - the only two values pandas' own removed keyword
+    ever accepted - to the equivalent named method, respecting `inplace`.
+    Any other keyword combination, `method` absent included, reaches the
+    original call unchanged and fails exactly as it did before this shim
+    existed.
+    """
+    import pandas as pd
+
+    original = pd.core.generic.NDFrame.fillna
+    if getattr(original, "_legacy_fillna_method_installed", False):
+        return True
+
+    FILL = {"ffill": "ffill", "pad": "ffill",
+           "bfill": "bfill", "backfill": "bfill"}
+
+    def fillna(self, *args, **kwargs):
+        method = kwargs.get("method")
+        if method not in FILL:
+            return original(self, *args, **kwargs)
+        inplace = kwargs.get("inplace", False)
+        filled = getattr(self, FILL[method])(inplace=inplace)
+        return self if inplace else filled
+
+    fillna._legacy_fillna_method_installed = True
+    pd.core.generic.NDFrame.fillna = fillna
+    return True
+
+
 INSTALLERS = {RULE: install_min_roi_reached_entry,
               SCAN_RULE: install_tolerant_class_scan,
               ADVISE_RULE: install_idempotent_advise_entry,
@@ -892,7 +946,8 @@ INSTALLERS = {RULE: install_min_roi_reached_entry,
               REPLACE_METHOD_RULE: install_legacy_replace_method,
               APPEND_RULE: install_dataframe_append,
               ASFREQ_RULE: install_legacy_asfreq,
-              FILLNA_RULE: install_legacy_fillna_skips_incompatible_dtype}
+              FILLNA_RULE: install_legacy_fillna_skips_incompatible_dtype,
+              FILLNA_METHOD_RULE: install_legacy_fillna_method_kwarg}
 
 
 def install_from_environment():
@@ -1306,6 +1361,13 @@ def selftest():
     # fill instead of raising; a frame with nothing incompatible, and any
     # other TypeError, pass through to the original call unchanged.
     original_fillna = pd.DataFrame.fillna
+    # Fresh pandas defines fillna once, on NDFrame; DataFrame has no entry of
+    # its own in __dict__ and inherits it. Restoring below with a plain
+    # `pd.DataFrame.fillna = original_fillna` would still create one - same
+    # value, but now an explicit override that shadows the seventeenth
+    # shim's later patch to NDFrame.fillna for DataFrame specifically,
+    # which is exactly the residue that shim's own selftest caught.
+    had_own_fillna = "fillna" in pd.DataFrame.__dict__
     try:
         assert install_legacy_fillna_skips_incompatible_dtype()
         # A NaT in `date` is required: a full column never reaches the
@@ -1340,7 +1402,47 @@ def selftest():
         except TypeError as exc:
             assert "should be a 'Timestamp', 'NaT'" not in str(exc)
     finally:
-        pd.DataFrame.fillna = original_fillna
+        if had_own_fillna:
+            pd.DataFrame.fillna = original_fillna
+        else:
+            del pd.DataFrame.fillna
+
+    # The seventeenth shim: the removed `method=` keyword on `fillna`,
+    # patched on NDFrame so a Series call is covered the same as a
+    # DataFrame one - unlike the sixteenth shim just above, which is
+    # deliberately DataFrame-only.
+    original_ndframe_fillna = pd.core.generic.NDFrame.fillna
+    try:
+        assert install_legacy_fillna_method_kwarg()
+        series = pd.Series([1.0, None, None, 4.0])
+        # Not inplace: returns the filled copy, original untouched.
+        filled = series.fillna(method="ffill")
+        assert list(filled) == [1.0, 1.0, 1.0, 4.0]
+        assert series.isna().sum() == 2
+        # inplace=True mutates and returns the mutated receiver, matching
+        # this pandas version's own inplace=True return (not None).
+        copy = series.copy()
+        assert copy.fillna(method="ffill", inplace=True) is copy
+        assert list(copy) == [1.0, 1.0, 1.0, 4.0]
+        # bfill fills from the other direction. NaN, not None, is what a
+        # trailing gap bfill cannot reach actually holds.
+        back = pd.Series([None, 2.0, None]).fillna(method="bfill")
+        assert back.iloc[0] == 2.0 and back.iloc[1] == 2.0 and pd.isna(back.iloc[2])
+        # A DataFrame call is covered too - both classes inherit fillna from
+        # NDFrame without overriding it.
+        frame = pd.DataFrame({"a": [1.0, None, 3.0]})
+        assert list(frame.fillna(method="ffill")["a"]) == [1.0, 1.0, 3.0]
+        # No method=: reaches the original call unchanged.
+        assert series.fillna(0).equals(original_ndframe_fillna(series, 0))
+        # An unsupported method value is not this shim's concern and still
+        # raises exactly as it did before the shim existed.
+        try:
+            series.fillna(method="nonexistent")
+            raise AssertionError("bad method= must still raise")
+        except TypeError as exc:
+            assert "unexpected keyword argument 'method'" in str(exc)
+    finally:
+        pd.core.generic.NDFrame.fillna = original_ndframe_fillna
 
     # The fourteenth shim: the old path reaches keras's own current plot_model,
     # unmodified. Keras is only on the TensorFlow companion image; skip
