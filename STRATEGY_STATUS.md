@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-05 10:11:05 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-05 11:00:16 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -85,6 +85,34 @@ limits. `timeframe` is blank on 42 rows the source does not state it for. `strat
 | `grid_dca` | 93 |
 | `ml_ai` | 46 |
 | `stat_arb` | 9 |
+
+## Assumed market phase
+
+**A prediction, written down before the benchmark that will test it.**
+It decides nothing here and clears no row. It is recorded now because
+a hypothesis formed after the per-phase numbers are on screen is not a
+hypothesis - the mirror image of the rule against tuning the regime
+labels to make strategies look specialised.
+
+The frozen primary model emits four states. These six split `SIDEWAYS`
+on volatility and add a shock phase that outranks the DMI label,
+because a dead low-volatility drift and a violent range reward
+opposite machinery, and a top-decile volatility day is the market
+whichever way ADX points. Owner's decision of 2026-09-05 on
+preregistration OPEN item 6; the amendment records it.
+
+| Phase | Market-side rule | Strategies predicted |
+|---|---|---:|
+| `bear_trend` | `coin_adx >= 25 and coin_minus_di > coin_plus_di` | 34 |
+| `bull_trend` | `coin_adx >= 25 and coin_plus_di > coin_minus_di` | 537 |
+| `high_vol_shock` | `coin_realized_vol_30d >= 1.291, whatever the DMI state` | 38 |
+| `range_choppy` | `coin_adx < 20 and coin_realized_vol_30d >= 0.623` | 265 |
+| `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 250 |
+| `transition` | `20 <= coin_adx < 25` | 19 |
+
+A row may carry more than one phase, and 101 carry none: 47 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 54 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
+
+`bear_trend` is rare by construction: 832 of 900 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
 
 ## Test duration
 

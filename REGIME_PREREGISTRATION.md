@@ -367,6 +367,57 @@ Records whose log the punctuation fix would have shrunk (`SuperTrend`,
 fresh, collision-safe run rather than reparsed from a log that no longer
 describes them.
 
+## Amendment 2026-09-05: volatility becomes a reporting label, and the six phases
+
+**Owner's decision**, resolving OPEN item 6 before any per-phase strategy
+result was inspected. That order is the whole value of the decision: a
+volatility cut chosen after seeing which strategies it flatters is not a
+preregistered cut.
+
+**The primary DMI/ADX model is untouched.** `BULL`, `BEAR`, `SIDEWAYS` and
+`TRANSITION` keep their definitions, keep deciding attribution, and the
+sixteen BTC-by-coin combinations remain observable. Nothing below changes a
+single daily label the frozen model emits.
+
+What changes is that annualized 30-day realized log-return volatility, until
+now stored as descriptive only, becomes a **reporting** label alongside those
+states. `SIDEWAYS` is the reason. It covers both a dead low-volatility drift
+and a violent range that traverses its own width every other day, and those
+two reward opposite machinery: a grid earns per traversal and earns almost
+nothing in the first, while a cointegration pair holds in the first and breaks
+in the second. Reporting both as one state averages a strategy's best phase
+against its worst and calls the result no specialisation.
+
+**The six reporting phases**, over `coin_realized_vol_30d`:
+
+| Phase | Rule |
+| --- | --- |
+| `bull_trend` | ADX >= 25 and +DI > -DI |
+| `bear_trend` | ADX >= 25 and -DI > +DI |
+| `range_quiet` | ADX < 20 and vol < 0.623 |
+| `range_choppy` | ADX < 20 and vol >= 0.623 |
+| `transition` | 20 <= ADX < 25 |
+| `high_vol_shock` | vol >= 1.291, whatever the DMI state |
+
+`high_vol_shock` outranks the DMI label: a day in the top volatility decile is
+that day's market, and reading it as an ordinary `BULL` puts a blow-off and a
+steady rally in one bucket.
+
+**Both thresholds are frozen as the numbers above, not as quantile rules.**
+They were measured once over the frozen window in
+`results/regime/regime_daily.csv` - 18000 pair-days - as the 90th percentile
+of realized volatility over all pair-days and its median over `SIDEWAYS` days
+alone. Stated as numbers because a quantile re-derived from a different slice
+is a different cut wearing the same name. Over the frozen window they divide
+the days 23.6 / 19.3 / 17.9 / 15.2 / 14.0 / 10.0 percent, so no phase is
+starved of evidence.
+
+Implemented in `market_phase_hypothesis.PHASES`, which also carries the
+per-strategy prediction this split exists to make testable
+(`MARKET_PHASE_HYPOTHESIS.json`, surfaced as `assumed_market_regime` in
+`STRATEGY_STATUS.csv`). That prediction is not part of the frozen model and
+decides nothing; it is written down now so the benchmark can refute it.
+
 ## OPEN before Stage 9 ranking
 
 The following choices are intentionally not inferred from strategy outcomes:
@@ -377,7 +428,10 @@ The following choices are intentionally not inferred from strategy outcomes:
 3. Exact exposure-matched benchmark construction.
 4. Whether SER stays continuous or receives preregistered categories.
 5. Whether the 90-day return robustness classifier freezes at +/-20 percent.
-6. Whether volatility stays descriptive in version 1.
+6. ~~Whether volatility stays descriptive in version 1.~~ **DECIDED
+   2026-09-05**: it becomes a reporting label at the two frozen thresholds,
+   splitting `SIDEWAYS` and adding `high_vol_shock`. The primary DMI/ADX model
+   is unchanged. See the amendment above.
 7. Whether breadth remains the eight-pair, availability-aware audit universe.
 8. Whether forced exit is included only as a later sensitivity test.
 9. Portfolio allocation when multiple strategy/pair candidates qualify.

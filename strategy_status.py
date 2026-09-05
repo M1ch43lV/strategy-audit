@@ -73,6 +73,12 @@ CLASS1 = os.path.join(ROOT, "PROFILE_CLASS1.json")
 # strategy_classification.py. Neither is a measurement, so neither lives in
 # any of the stores above; both are regenerated from source alone.
 CLASSIFICATION = os.path.join(ROOT, "STRATEGY_CLASSIFICATION.json")
+# Which of the six market phases each strategy is predicted to work in,
+# written by market_phase_hypothesis.py before the benchmark that will test
+# it. A prediction, not a measurement: it decides no cohort and clears no row,
+# and it is carried here so the benchmark reads it from the same table it
+# reports against rather than from a note somebody kept separately.
+PHASE_HYPOTHESIS = os.path.join(ROOT, "MARKET_PHASE_HYPOTHESIS.json")
 
 # What has actually become of a row that could not start. The triage says what
 # ought to be done; these say what was done and what it achieved, which is a
@@ -104,6 +110,7 @@ REPORT = os.path.join(ROOT, "STRATEGY_STATUS.md")
 FIELDS = [
     "strategy_id", "repo", "source_file", "result_archive",
     "run_profile", "expansion_wave", "timeframe", "strategy_type",
+    "assumed_market_regime", "assumed_market_regime_evidence",
     "cohort", "measured",
     "observed_trades", "trade_evidence", "test_duration_s",
     "test_duration_evidence", "lookahead", "lookahead_evidence",
@@ -597,6 +604,7 @@ def rows():
     admitted = {r["strategy_id"] for r in _csv(ADJUDICATION)
                 if r["adjudication_status"] == "admitted_E1"}
     classification = _json(CLASSIFICATION)
+    phase_hypothesis = _json(PHASE_HYPOTHESIS)
     smoke = dict(_json(SMOKE))
     # A row measured by a later wave was not measured before, so the
     # earlier store has nothing to overwrite. Without this the 60
@@ -1340,6 +1348,10 @@ def rows():
             "timeframe": classification.get(strategy, {}).get("timeframe", ""),
             "strategy_type": classification.get(strategy, {}).get(
                 "strategy_type", ""),
+            "assumed_market_regime": phase_hypothesis.get(strategy, {}).get(
+                "assumed_market_regime", ""),
+            "assumed_market_regime_evidence": phase_hypothesis.get(
+                strategy, {}).get("assumed_market_regime_evidence", ""),
             "cohort": cohort,
             "measured": "true" if (measurement.get("status") == "measured"
                                    or base.get("canonical_measured") == "true")
@@ -1608,6 +1620,48 @@ def _report(data):
     ]
     lines += _table(timeframes, "### Timeframe", "Timeframe")
     lines += _table(types, "### Signal family", "Type")
+
+    phases = collections.Counter(
+        phase for row in data
+        for phase in row["assumed_market_regime"].split(";") if phase)
+    no_phase = [row for row in data if not row["assumed_market_regime"]]
+    model_driven = sum(1 for row in no_phase
+                       if row["assumed_market_regime_evidence"].startswith(
+                           "model_driven"))
+    store = json.load(io.open(PHASE_HYPOTHESIS, encoding="utf-8")) \
+        if os.path.exists(PHASE_HYPOTHESIS) else {}
+    lines += [
+        "## Assumed market phase", "",
+        "**A prediction, written down before the benchmark that will test it.**",
+        "It decides nothing here and clears no row. It is recorded now because",
+        "a hypothesis formed after the per-phase numbers are on screen is not a",
+        "hypothesis - the mirror image of the rule against tuning the regime",
+        "labels to make strategies look specialised.", "",
+        "The frozen primary model emits four states. These six split `SIDEWAYS`",
+        "on volatility and add a shock phase that outranks the DMI label,",
+        "because a dead low-volatility drift and a violent range reward",
+        "opposite machinery, and a top-decile volatility day is the market",
+        "whichever way ADX points. Owner's decision of 2026-09-05 on",
+        "preregistration OPEN item 6; the amendment records it.", "",
+        "| Phase | Market-side rule | Strategies predicted |",
+        "|---|---|---:|",
+    ]
+    for phase, rule in (store.get("phases") or {}).items():
+        lines.append("| `%s` | `%s` | %d |" % (phase, rule, phases.get(phase, 0)))
+    lines += [
+        "",
+        "A row may carry more than one phase, and %d carry none: %d are "
+        "model-driven, where the indicators are features of a model and say "
+        "nothing about which phase it favours, and %d name no phase-bearing "
+        "marker at all. Both are left blank rather than given an invented "
+        "prior - a blank is itself testable, as the prediction that the row "
+        "is phase-neutral." % (len(no_phase), model_driven,
+                               len(no_phase) - model_driven),
+        "",
+        "`bear_trend` is rare by construction: 832 of 900 rows are long-only "
+        "and a long-only strategy cannot earn in a sustained downtrend, so "
+        "the direction gate removes it whatever the indicators suggest.", "",
+    ]
 
     timed = [row for row in data if row["test_duration_s"]]
     lines += [
