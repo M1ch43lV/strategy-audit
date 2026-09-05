@@ -1255,11 +1255,11 @@ def rows():
             reason = "third_party_package_declined"
             basis = "own_measurement"
             open_work = []
-        # C8 (owner's call, 2026-09-04): every one of these eighteen rows
-        # traces to the same two mechanisms, not eighteen different bugs.
-        # Fourteen assign a Python bool or int into a column pandas 3.0.5 now
-        # refuses to coerce silently (`Invalid value '1' for dtype 'bool'`
-        # and its mirror images). Seven - a Supertrend snippet credited to
+        # C8 (owner's call, 2026-09-04): every one of these 19 rows traces to
+        # the same two mechanisms, not 19 different bugs. Eleven assign a
+        # Python bool, int or float into a column pandas 3.0.5 now refuses to
+        # coerce silently (`Invalid value '1' for dtype 'bool'` and its mirror
+        # images). Eight - a Supertrend snippet credited to
         # freqtrade/freqtrade-strategies#30, copied near-verbatim into five
         # unrelated repositories - build a direction column with
         # `np.where(cond, np.where(..., 'down', 'up'), np.NaN)`, mixing a
@@ -1267,9 +1267,22 @@ def rows():
         # refuses to promote to a common dtype where older numpy coerced it.
         # Both are fixable in principle - relax pandas' item-assignment
         # dtype check, or numpy's promotion rule - and both fixes would run
-        # under every column write in the corpus, not just these eighteen
-        # rows' own. That is the "large intervention" a narrow shim exists
-        # to avoid, so none is written.
+        # under every column write in the corpus, not just these rows' own.
+        # That is the "large intervention" a narrow shim exists to avoid, so
+        # none is written.
+        #
+        # Re-examined 2026-09-05, on the question of whether an upstream
+        # source refresh would retire any of them. It would not. The snippet's
+        # own author fixed it - `freqtrade/freqtrade-strategies` now calls
+        # `ftt.supertrend` and keeps the direction column a pure string with
+        # `.fillna("")` - and this corpus already carries that fixed file:
+        # `FSupertrendStrategy` is admitted to E1 on it. The eight blocked
+        # rows are stale COPIES in repositories whose own authors never
+        # followed the fix, so re-fetching those repositories returns the same
+        # broken line. What the re-examination did establish is that both
+        # mechanisms raise rather than mis-compute, which is the bar every
+        # other shim here is held to; whether that reopens the owner's call is
+        # the owner's to decide, not this generator's.
         # `repair["family"]` can still read an earlier, already-fixed
         # problem - a row a compat shim rescued from "class does not load"
         # can land on this same dtype wall afterward, and the shim's family
