@@ -32,32 +32,43 @@ rule is the most likely way to corrupt this study.
 
 | File | What it settles |
 |---|---|
-| `REGIME_PREREGISTRATION.md` | Frozen rules: DMI/ADX(14), the four states and their thresholds, the one-day causal lag, analysis order. **Plus nine OPEN choices that forbid any ranked output until they are decided.** |
+| `REGIME_PREREGISTRATION.md` | Frozen rules: DMI/ADX(14), the four states and their thresholds, the one-day causal lag, analysis order, plus a 2026-09-05 amendment adding a six-phase reporting split on top (see Tier 3). **Plus eight OPEN choices (of the original nine - #6 was decided 2026-09-05) that forbid any ranked output until the rest are.** |
 | `REGIME_AUDIT_PLAN.md` | The reasoning behind them: why DMI/ADX over a moving average, the 4x4 BTC-state x coin-state matrix, Models 0/1/2, benchmarks, metrics, specialist and universal definitions, Stages 1-12, the Decision Log. Reference, not rulebook. |
 | `ELIGIBILITY_EXPANSION_PLAN.md` | The protocol admitting new strategies to the study. Governs the current work. Waves, repair boundary, resource attempts, stop rule. |
 
 ## Tier 2 - who is measured
 
 - **`STRATEGY_STATUS.md` / `.csv` - start here.** The current evidence for all
-  900 rows, regenerated from the smoke, bias, full-window, adjudication and
+  919 rows, regenerated from the smoke, bias, full-window, adjudication and
   convergence stores. It is the only table that answers "what do we know about
   this strategy today"; the frozen baseline cannot, by design. It decides
   nothing - admission happens in the adjudicator alone.
-- `REGIME_ELIGIBILITY.md` - E0, the frozen 67. Deliberately not regenerated.
-  Where it and the status table disagree, E0 is not wrong: it is the state at
-  the freeze, and the difference is the expansion.
+- `REGIME_ELIGIBILITY.md` - E0, the frozen 67. Deliberately not regenerated,
+  and retired as a separate cohort on 2026-09-03: every one of its rows is now
+  decided by the same criteria as any other, with membership in the frozen 67
+  kept only as provenance in `gate_notes`. Where it and the status table
+  disagree, E0 is not wrong: it is the state at the freeze, and the
+  difference is the expansion.
 - `ELIGIBILITY_EXPANSION_ADJUDICATION.md` - the profiles admitted since, by
-  route. **Read with the file above or you will quote a wrong number: E1 is
-  78, not 67 and not 11.**
+  route. **Read with the file above or you will quote a wrong number:**
+  `cohort=E1_expanded` in `STRATEGY_STATUS.csv` **is currently 579**, plus 8
+  more sitting in `convergence_candidate` - cleared both bias gates, still
+  owed the paired full-window backtest before admission. Both numbers move
+  with every wave; get them from the CSV, not from prose.
 - `EXECUTION_PROFILES.md` - which implementation of a strategy is canonical, and
   whether it runs spot or futures. Relevant to the goal in a way the title
-  hides: 832 of 900 strategies are long-only, so bear-phase evidence is
+  hides: 855 of 919 strategies are long-only, so bear-phase evidence is
   structurally scarce before any measurement happens.
 - `REGIME_COVERAGE.md` - the candle-data gate. Note the documented `XMR/USDT`
   delisting in 2024: the pair basket changes composition inside the window.
 - `cluster/CLUSTERS.md` - the a-priori source taxonomy, five independent axes.
   Plan section 9.2 forbids using it to decide which regimes a strategy may
   enter; it is a descriptor and a later comparison target, not a filter.
+- `REPO_FRESHNESS.md` - has any source repo moved since this corpus captured
+  it, checked live against GitHub. `NEW_REPO_CANDIDATES.md` - named candidate
+  repos outside the corpus, checked for strategy names not already in it.
+  Neither decides anything; both are the record behind the 2026-09-05 wave
+  that took the corpus from 900 to 919 rows.
 
 ## Tier 3 - the market phases themselves
 
@@ -74,6 +85,22 @@ count:
 
 Plan section 13: a strategy that worked in one historical bull episode is not a
 bull specialist.
+
+**Amendment 2026-09-05, in `REGIME_PREREGISTRATION.md`: a sixth-phase
+reporting split, on top of the frozen four states, not instead of them.**
+`SIDEWAYS` covers both a dead low-volatility drift and a violent range that
+rewards opposite machinery, so it splits into `range_quiet`/`range_choppy` on
+realized volatility, and a `high_vol_shock` phase outranks the DMI label
+outright at the top volatility decile. The frozen DMI/ADX model itself is
+untouched. `market_phase_hypothesis.py` also carries a per-strategy
+*prediction* of which phase it should favour, written before the benchmark
+runs so it can be falsified rather than fitted - `assumed_market_regime` in
+`STRATEGY_STATUS.csv`, decides nothing, same status as `cluster/CLUSTERS.md`.
+`regime/attribution.py` computes both the four-state and six-phase views per
+trade; as of 2026-09-05 it reads `STRATEGY_STATUS.csv`'s current
+`E1_expanded` cohort rather than the retired `REGIME_ELIGIBILITY.csv` E0 set
+it originally shipped against - check its own module docstring before
+trusting an old run of it.
 
 ## Tier 4 - the traps that would invalidate a conclusion
 
@@ -98,6 +125,15 @@ bull specialist.
 `EXPANSION_WAVE_C_RESULTS.md`, `EXPANSION_STATIC_PROOF_FINDINGS.md`,
 `EXPANSION_WAVE_C_BIAS_RESULTS.md`, `TRAILING_SENSITIVITY_FINDINGS.md`.
 
+**`HANDOFF.md` itself is stale as of 2026-09-05** - its own baton last dates
+2026-09-01 and its checkpoint still describes Wave C at E1=75, several waves
+and this file's own 900-to-919 wave behind current state. Trust the Machine
+state commands it prescribes over its prose checkpoint; its cold-session
+checklist (read this map, the preregistration, then reconstruct state from
+`git log`/`git status`/the CSVs) is still the right procedure even though its
+own worked example is not. It is due a rewrite, not a patch - a checkpoint is
+either current or it is noise.
+
 ## Do not read for this purpose
 
 Skipping these is the point of this file.
@@ -119,7 +155,8 @@ Skipping these is the point of this file.
 
 ## The actual bottleneck
 
-It is not the number of working strategies. It is the **nine OPEN choices** in
+It is not the number of working strategies. It is the **eight OPEN choices**
+(of the original nine numbered ones - #6 was decided 2026-09-05) in
 `REGIME_PREREGISTRATION.md`, which state plainly: "No ranked discovery output
 may be generated while these entries remain OPEN." At least three cannot be
 delegated to an agent - the discovery/validation split, the minimum episode
