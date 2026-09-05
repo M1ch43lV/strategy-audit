@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 900 rows
 
-**Generated 2026-09-05 00:20:33 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-05 08:14:45 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -45,6 +45,46 @@ have neither and are left empty rather than given an invented time.
 | `exclusion_unconfirmed` | 26 |
 | `too_few_trades` | 21 |
 | `not_a_strategy` | 14 |
+
+## Timeframe and signal family
+
+Both read from the strategy's own source by `strategy_classification.py`,
+not measured - see that module's docstring for the marker table and its
+limits. `timeframe` is blank on 42 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 33 rows where no marker matched at all, so its counts below add up to more than 900.
+
+### Timeframe
+
+| Timeframe | Strategies |
+|---|---:|
+| `5m` | 504 |
+| `1h` | 130 |
+| `15m` | 84 |
+| `1m` | 52 |
+| `4h` | 38 |
+| `1d` | 23 |
+| `30m` | 9 |
+| `3m` | 8 |
+| `6h` | 3 |
+| `2h` | 2 |
+| `12h` | 1 |
+| `1hr` | 1 |
+| `15` | 1 |
+| `5h` | 1 |
+| `1w` | 1 |
+
+### Signal family
+
+| Type | Strategies |
+|---|---:|
+| `scalping` | 564 |
+| `mean_reversion` | 457 |
+| `momentum` | 445 |
+| `trend_following` | 239 |
+| `volatility_breakout` | 192 |
+| `volume_based` | 126 |
+| `grid_dca` | 93 |
+| `ml_ai` | 46 |
+| `stat_arb` | 9 |
 
 ## The order the checks run in
 

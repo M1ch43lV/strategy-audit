@@ -69,6 +69,10 @@ LOCAL_MODULES = os.path.join(ROOT, "REPAIR_LOCAL_MODULES.json")
 # A route that has run and found nothing has still run. Leaving such a row on
 # "to be fixed" says the work is ahead of us when it is behind us and failed.
 CLASS1 = os.path.join(ROOT, "PROFILE_CLASS1.json")
+# Timeframe and signal-family label, read from the strategy's own source in
+# strategy_classification.py. Neither is a measurement, so neither lives in
+# any of the stores above; both are regenerated from source alone.
+CLASSIFICATION = os.path.join(ROOT, "STRATEGY_CLASSIFICATION.json")
 
 # What has actually become of a row that could not start. The triage says what
 # ought to be done; these say what was done and what it achieved, which is a
@@ -99,7 +103,8 @@ REPORT = os.path.join(ROOT, "STRATEGY_STATUS.md")
 
 FIELDS = [
     "strategy_id", "repo", "source_file", "result_archive",
-    "run_profile", "expansion_wave", "cohort", "measured",
+    "run_profile", "expansion_wave", "timeframe", "strategy_type",
+    "cohort", "measured",
     "observed_trades", "trade_evidence", "lookahead", "lookahead_evidence",
     "recursive", "recursive_evidence", "coverage_status", "traps_n", "artifact_role",
     "baseline_status", "primary_reason", "exclusion_basis",
@@ -542,6 +547,7 @@ def rows():
     waves = {r["strategy_id"]: r for r in _csv(CANDIDATES)}
     admitted = {r["strategy_id"] for r in _csv(ADJUDICATION)
                 if r["adjudication_status"] == "admitted_E1"}
+    classification = _json(CLASSIFICATION)
     smoke = dict(_json(SMOKE))
     # A row measured by a later wave was not measured before, so the
     # earlier store has nothing to overwrite. Without this the 60
@@ -1280,6 +1286,9 @@ def rows():
             "result_archive": archive,
             "run_profile": profile.get("run_profile", ""),
             "expansion_wave": wave,
+            "timeframe": classification.get(strategy, {}).get("timeframe", ""),
+            "strategy_type": classification.get(strategy, {}).get(
+                "strategy_type", ""),
             "cohort": cohort,
             "measured": "true" if (measurement.get("status") == "measured"
                                    or base.get("canonical_measured") == "true")
@@ -1527,6 +1536,25 @@ def _report(data):
         "",
     ]
     lines += _table(cohorts, "## Cohort", "Cohort")
+
+    timeframes = collections.Counter(row["timeframe"] for row in data
+                                     if row["timeframe"])
+    types = collections.Counter(t for row in data
+                                for t in row["strategy_type"].split(";") if t)
+    no_type = len(data) - sum(1 for row in data if row["strategy_type"])
+    no_tf = len(data) - sum(1 for row in data if row["timeframe"])
+    lines += [
+        "## Timeframe and signal family", "",
+        "Both read from the strategy's own source by `strategy_classification.py`,",
+        "not measured - see that module's docstring for the marker table and its",
+        "limits. `timeframe` is blank on %d rows the source does not state it "
+        "for. `strategy_type` can be more than one label - most rows carry two "
+        "or three - and is blank on %d rows where no marker matched at all, so "
+        "its counts below add up to more than %d." % (no_tf, no_type, len(data)),
+        "",
+    ]
+    lines += _table(timeframes, "### Timeframe", "Timeframe")
+    lines += _table(types, "### Signal family", "Type")
 
     gates = ("cmd_backtest", "cmd_lookahead", "cmd_recursive")
     recorded = sum(1 for row in data for gate in gates

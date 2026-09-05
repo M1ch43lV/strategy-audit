@@ -1,0 +1,4506 @@
+{
+  "description": "Per-strategy timeframe and a heuristic signal-family label, read from each canonical file's own class block. See the module docstring in strategy_classification.py for the marker table and its limits. Neither field is a measurement; both are regenerated from source and never hand-edited.",
+  "results": {
+    "A9AV": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ADXMomentum": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ADX_15M_USDT": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "ADX_15M_USDT2": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "ARIMASTR": {
+      "strategy_type": "ml_ai;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ARIMA_15": {
+      "strategy_type": "ml_ai",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ASDTSRockwellTrading": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ActionZone": {
+      "strategy_type": "momentum",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AdaptiveMAStrategy": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AdaptiveRenkoStrategy": {
+      "strategy_type": "ml_ai;scalping",
+      "timeframe": "3m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AdvancedRiskFilterStrategy": {
+      "strategy_type": "grid_dca;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AdxSmas": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AdxSmasS": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AdxStrengthStrategy": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AlexBTK_CT": {
+      "strategy_type": "grid_dca;momentum;stat_arb;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AlexBattleTankKiller": {
+      "strategy_type": "grid_dca;momentum;stat_arb;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AlexBattleTankKillerV3": {
+      "strategy_type": "grid_dca;momentum;stat_arb;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AlexBattleTankKillerV40H": {
+      "strategy_type": "grid_dca;momentum;stat_arb;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AlligatorStrat": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "4h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "AlligatorStrategy": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AlmgrenChrissStrategy": {
+      "strategy_type": "grid_dca",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AlwaysBuy": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Apollo11": {
+      "strategy_type": "momentum;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AroonTrendStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Astro": {
+      "strategy_type": "grid_dca;volume_based",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AstroQAV4": {
+      "strategy_type": "ml_ai",
+      "timeframe": "30m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AtrTrailingStopStrategy": {
+      "strategy_type": "scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AutoArimaTripleV1": {
+      "strategy_type": "ml_ai;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Auto_EI_t4c0s": {
+      "strategy_type": "grid_dca;mean_reversion;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AverageStrategy": {
+      "strategy_type": "momentum",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AwesomeMacd": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AwesomeMacdS": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBBreakoutStrategy": {
+      "strategy_type": "scalping",
+      "timeframe": "3m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBMod": {
+      "strategy_type": "mean_reversion;momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBMod1": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBRSI": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "BBRSI2": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBRSI21": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBRSI3366": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBRSI4cust": {
+      "strategy_type": "momentum",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBRSINaiveStrategy": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBRSIOptim2020Strategy": {
+      "strategy_type": "momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBRSIOptimStrategy": {
+      "strategy_type": "momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBRSIOptimizedStrategy": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBRSIS": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "BBRSIStrategy": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBRSITV": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBRSIoriginal": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "BBRSIv2": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_3c": {
+      "strategy_type": "grid_dca;mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL_2": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "3m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL_BI": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL_BIV1": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL_RNG": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL_RNG_2": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL_RNG_TBS": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL_RNG_TBS_GOLD": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL_RNG_VWAP": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL_SMA_Tranz": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL_SMA_Tranz_TB_1_1_1": {
+      "strategy_type": "mean_reversion;momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL_SMA_Tranz_TB_MOD": {
+      "strategy_type": "mean_reversion;momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL_Tranz": {
+      "strategy_type": "mean_reversion;momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL_c7c477d_20211030": {
+      "strategy_type": "mean_reversion;scalping;trend_following;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSLmeneguzzo": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RSI": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "BB_RTR": {
+      "strategy_type": "grid_dca;mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_Strategy04": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "BBands": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBandsRSI": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BBlower": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Babico_SMA5xBBmid": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Bandtastic": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BaseStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BasketStrategy": {
+      "strategy_type": "grid_dca",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BbRoi": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "15m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "BbWidthExpansionStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BbandRsi": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BbandRsiRolling": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BcmbigzDevelop": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BcmbigzV1": {
+      "strategy_type": "momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BeastBotXBLR6": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BeastBotXBLR7": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BestSingleAssetPortfolio": {
+      "strategy_type": "",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigPete": {
+      "strategy_type": "momentum;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigTrader": {
+      "strategy_type": "momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigZ03": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigZ0307HO": {
+      "strategy_type": "mean_reversion;momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigZ03HO": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigZ04": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigZ0407": {
+      "strategy_type": "mean_reversion;momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigZ0407HO": {
+      "strategy_type": "mean_reversion;momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigZ04HO": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigZ04HO2": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigZ04_TSL3": {
+      "strategy_type": "momentum;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigZ04_TSL4": {
+      "strategy_type": "momentum;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigZ06": {
+      "strategy_type": "momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigZ07": {
+      "strategy_type": "momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigZ07Next": {
+      "strategy_type": "mean_reversion;momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BigZ07Next2": {
+      "strategy_type": "mean_reversion;momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinClucMad": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinClucMadDevelop": {
+      "strategy_type": "mean_reversion;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinClucMadSMADevelop": {
+      "strategy_type": "mean_reversion;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinClucMadV1": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinHV27": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinHV27F": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinHV27_short": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinHV27_werkkrew": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinHV45": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinHV45HO": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinHV45_kanaxe": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinHV45_stash": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinHV45_werkkrew": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinMfiBTCv5003": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinanceStream": {
+      "strategy_type": "",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "BlueEyes_MPP_v1": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BollingerBandStrategy": {
+      "strategy_type": "scalping",
+      "timeframe": "3m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BollingerBounceStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BopTrendStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BreakEven": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BreakoutStrategy": {
+      "strategy_type": "scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BullishEngulfingStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BuyAllSellAllStrategy": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BuyOnly": {
+      "strategy_type": "mean_reversion;momentum;trend_following;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BuyOrDie": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BuyRegions": {
+      "strategy_type": "ml_ai;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CBPete9": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CCIStrategy": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CCI_BB": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CMCWinner": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "COPY_HL": {
+      "strategy_type": "grid_dca",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CTIBS": {
+      "strategy_type": "grid_dca",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Candle2": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Cci": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CciMeanReversionStrategy": {
+      "strategy_type": "mean_reversion;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Cenderawasih_30m": {
+      "strategy_type": "trend_following",
+      "timeframe": "30m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Cenderawasih_3_kucoin": {
+      "strategy_type": "scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ChaikinMoneyFlowStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Chained": {
+      "strategy_type": "",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Chandem": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Chandemtwo": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Chispei": {
+      "strategy_type": "momentum",
+      "timeframe": "4h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "Cluc4": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Cluc4werk": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Cluc5werk": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Cluc7werk": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucCrypROI": {
+      "strategy_type": "trend_following",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ClucCrypSlow": {
+      "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ClucFiatROI": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucFiatSlow": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix5m": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix_5M_E0V1E": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix_5m": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix_5m1": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix_5m_old": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix_BB_RPB": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix_BB_RPB_HO2": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix_BB_RPB_MOD": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix_BB_RPB_MOD2_ROI": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix_BB_RPB_MOD_CTT": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix_BB_RPB_MOD_E0V1E_ROI": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix_BB_RPB_MOD_trailing_buy": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix_BB_RPB_TraNz": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix_hhll": {
+      "strategy_type": "scalping;trend_following;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAwerk": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucMay72018": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Cluckie": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CofiBitStrategy": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndCluc": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndCluc2021": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndCluc2021Bull": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucHyper": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucHyperV0": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucHyperV3": {
+      "strategy_type": "scalping;volatility_breakout",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucV2": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucV3": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucV4": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucV5": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucV5Hyperoptable": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucV6": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucV6H": {
+      "strategy_type": "scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucV7": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucV8": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucV8Hyper": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucV8XH": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucV8XHO": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHClucAndMADV3": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHClucAndMADV5": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHClucAndMADV6": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHClucAndMADV9": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Combined_Indicators": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Combined_NFIv6_SMA": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Combined_NFIv7_SMA": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Combined_NFIv7_SMA_Rallipanos_20210707": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Combined_NFIv7_SMA_bAdBoY_20211204": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CompositeScoreStrategy": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ConsensusShort": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CoppockCurveStrategy": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CopyLitmusMinMaxBroadClassificationStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "CoreStrategy": {
+      "strategy_type": "mean_reversion;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CrossEMAStrategy": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CryptoFrog": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CryptoFrogHO": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CryptoFrogHO2": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CryptoFrogHO2A": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CryptoFrogHO3A1": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CryptoFrogHO3A2": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CryptoFrogHO3A3": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CryptoFrogHO3A4": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CryptoFrogNFI": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CryptoFrogNFI2": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CryptoFrogNFIHO1A": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CryptoFrogOffset": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CryptoFrog_nateema": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CryptoPredictionTraining": {
+      "strategy_type": "ml_ai",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CustomStoplossWithPSAR": {
+      "strategy_type": "trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "DCBBBounce": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "DD": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "DIV_v1": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "DWT": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "DWT_Leveraged": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "DWT_LongShort": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "DWT_short": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Danke": {
+      "strategy_type": "grid_dca;mean_reversion;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "DemaCrossStrategy": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "DevilStra": {
+      "strategy_type": "",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Diamond": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Dimond": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Divergences": {
+      "strategy_type": "mean_reversion;momentum;trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "DoesNothingStrategy": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "DonchianBreakoutStrategy": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "DoubleEMACrossoverWithTrend": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Dracula": {
+      "strategy_type": "scalping;volume_based",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "DualModelPolymarketPortfolio": {
+      "strategy_type": "grid_dca;stat_arb",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Dyna_opti": {
+      "strategy_type": "momentum;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "E0V1E": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "E0V1E2": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "E0V1EN": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "E0V1E_DCA3": {
+      "strategy_type": "grid_dca;mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "E0V1E_ewo": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "E0V1E_protections": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "E0V1E_strs": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "EI1_t4c0s_V4": {
+      "strategy_type": "grid_dca;mean_reversion;trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "EI3v2_tag_cofi_green": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "EI4_t4c0s_V2": {
+      "strategy_type": "grid_dca;mean_reversion;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "EI4_t4c0s_V2_2": {
+      "strategy_type": "grid_dca;mean_reversion;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "EMA50": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "EMA520015_V17": {
+      "strategy_type": "momentum",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "EMABBRSI": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "EMABreakout": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "EMAPriceCrossoverWithThreshold": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "EMASkipPump": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "EMAVolume": {
+      "strategy_type": "momentum",
+      "timeframe": "15m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "EMA_CROSSOVER_STRATEGY": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "EXPERIMENTAL_STRATEGY": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "EasyInEasyOut": {
+      "strategy_type": "scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ElliotV2": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ElliotV4": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ElliotV531": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ElliotV5HO": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ElliotV5HOMod2": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ElliotV5HOMod3": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ElliotV5_SMA": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ElliotV7": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ElliotV8HO": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ElliotV8_original": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ElliotV8_original_ichiv2": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ElliotV8_original_ichiv2OH": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ElliotV8_original_ichiv3": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ElliotWave": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Elliotv8": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "EmaCrossStrategy": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "EmaRibbonStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Enchilada": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "EnsembleStrategy": {
+      "strategy_type": "",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "EnsembleStrategyV1": {
+      "strategy_type": "",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "EnsembleStrategyV2": {
+      "strategy_type": "",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ExponentialGradientPortfolio": {
+      "strategy_type": "grid_dca;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FAdxSmaStrategy": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FOttStrategy": {
+      "strategy_type": "trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FRAYSTRAT": {
+      "strategy_type": "mean_reversion;momentum;trend_following;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FReinforcedStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FSampleStrategy": {
+      "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FSupertrendStrategy": {
+      "strategy_type": "trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FSupertrendStrategyBTC": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FSupertrendStrategyETH": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FTT_DWT_FBB_FUTURES": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FVGAdvancedStrategy_V2": {
+      "strategy_type": "grid_dca;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FVGChannel": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Fakebuy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FakeoutStrategy": {
+      "strategy_type": "scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrendOpt": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend_optim3": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend_optim3_rsi_70": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend_optim3_rsi_75": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend_optim3_rsi_752": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend_optim3_rsi_75fix": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend_optim3_rsi_75fix_signal": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend_optim3_rsi_75lev": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend_optim3_rsi_75sell": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend_optim3_rsi_80": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend_optim_quick": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend_optim_quick2": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend_optim_quick3": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend_optim_quick4": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend_optim_quick5": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FastSupertrend_ts_origstop_fix": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FileLoadingStrategy": {
+      "strategy_type": "trend_following",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "FisherHull": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FisherTransformStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FiveMinCrossAbove": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FixedRiskRewardLoss": {
+      "strategy_type": "scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "repair:corpus_twin"
+    },
+    "FlawlessVictory": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ForexRobootSuperScalper": {
+      "strategy_type": "scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ForexSignal": {
+      "strategy_type": "momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FrayLIVEBTC15m": {
+      "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FrayStratBTC": {
+      "strategy_type": "mean_reversion;momentum;trend_following;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FreqaiExampleHybridStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "FreqaiExampleStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Freqtrade_backtest_validation_freqtrade1": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FrostAuraM115mStrategy": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FrostAuraM11hStrategy": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FrostAuraM21hStrategy": {
+      "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FrostAuraM315mStrategy": {
+      "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FrostAuraM31hStrategy": {
+      "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FrostAuraRandomStrategy": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FundingCarry": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GKD_Baseline": {
+      "strategy_type": "trend_following;volatility_breakout;volume_based",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GKD_BaselineAllMAs": {
+      "strategy_type": "trend_following;volatility_breakout;volume_based",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GKD_C": {
+      "strategy_type": "trend_following;volatility_breakout;volume_based",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GKD_CT": {
+      "strategy_type": "grid_dca;trend_following;volatility_breakout;volume_based",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GKD_FisherTransform": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GKD_FisherTransformMTF": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GKD_HurstExponent": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GKD_PFE": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GPR": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GPTREV": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GeneStrategy": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GeneStrategy_v2": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GeneTrader_gen10_1734895087_6007": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GeneTrader_gen5_1735014093_4541": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GodCard": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GodStra": {
+      "strategy_type": "trend_following",
+      "timeframe": "12h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GodStraNew": {
+      "strategy_type": "momentum",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GodStraNew40": {
+      "strategy_type": "",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GodStraNew_SMAonly": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GoldHedgeZeroMACD": {
+      "strategy_type": "grid_dca;momentum;stat_arb",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GoldenCrossStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Guacamole": {
+      "strategy_type": "momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Gumbo1": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GymStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "ticker_interval_attr"
+    },
+    "HEW": {
+      "strategy_type": "grid_dca;mean_reversion;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HLHB": {
+      "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HSI": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Hacklemore": {
+      "strategy_type": "momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Hacklemore2": {
+      "strategy_type": "trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Hacklemore3": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Hacklemost": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HansenSmaOffsetV1": {
+      "strategy_type": "momentum",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HarmonicDivergence": {
+      "strategy_type": "mean_reversion;momentum;volatility_breakout;volume_based",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HarmonicDivergence_fix": {
+      "strategy_type": "mean_reversion;momentum;volatility_breakout;volume_based",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HeikinAshiStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Heracles": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HigherHighStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HilbertSineWave": {
+      "strategy_type": "",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HourBasedStrategy": {
+      "strategy_type": "",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HourBasedStrategy_5m": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HurstCycle3": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HurstCycle7": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HurstCycleV4": {
+      "strategy_type": "",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HurstCycleV5": {
+      "strategy_type": "grid_dca",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HurstCycleV5RSI": {
+      "strategy_type": "grid_dca;mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HurstCycleV6": {
+      "strategy_type": "",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HyperStra_GSN_SMAOnly": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "HyperStra_SMAOnly": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "INSIDEUP": {
+      "strategy_type": "mean_reversion;trend_following",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Ichess": {
+      "strategy_type": "trend_following",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Ichi": {
+      "strategy_type": "trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "IchiVwapAdx": {
+      "strategy_type": "momentum;trend_following;volatility_breakout;volume_based",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Ichimoku": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "IchimokuCloudStrategy": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "IchimokuSimpleStrategy": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "IchimokuStrategy": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "3m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "Ichimoku_SenkouSpanCross": {
+      "strategy_type": "trend_following",
+      "timeframe": "4h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "Ichimoku_v12": {
+      "strategy_type": "trend_following",
+      "timeframe": "4h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "Ichimoku_v30": {
+      "strategy_type": "trend_following",
+      "timeframe": "4h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "Ichimoku_v31": {
+      "strategy_type": "trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Ichimoku_v32": {
+      "strategy_type": "trend_following",
+      "timeframe": "4h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "Ichimoku_v33": {
+      "strategy_type": "trend_following",
+      "timeframe": "4h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "Ichimoku_v35": {
+      "strategy_type": "mean_reversion;trend_following",
+      "timeframe": "4h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "Ichimoku_v37": {
+      "strategy_type": "trend_following",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ImpulseV1": {
+      "strategy_type": "grid_dca;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "InformativeDecoratorTest": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "InformativeSample": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Insomnia_short": {
+      "strategy_type": "grid_dca;trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Inverse": {
+      "strategy_type": "mean_reversion;momentum;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "InverseV2": {
+      "strategy_type": "mean_reversion;momentum;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "InverseVolatilityPortfolio": {
+      "strategy_type": "grid_dca",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "JuicyTrend": {
+      "strategy_type": "mean_reversion;trend_following;volume_based",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "JustROCR": {
+      "strategy_type": "",
+      "timeframe": "1h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "JustROCR2": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "JustROCR3": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "JustROCR4": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "JustROCR5": {
+      "strategy_type": "scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "JustROCR6": {
+      "strategy_type": "scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "KAMACCIRSI": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "KAMACCIRSI_new": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "KC_BB": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "KMM": {
+      "strategy_type": "grid_dca;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Kamaflage": {
+      "strategy_type": "momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "KeltnerChannelStrategy": {
+      "strategy_type": "scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "KitchenSink": {
+      "strategy_type": "grid_dca;mean_reversion;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Lateralus": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Leveraged": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "LinearRegressionStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "LitmusEntryRollClassificationStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "LitmusGoodMinMaxClassificationStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "LitmusMLDPStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "LitmusMetaStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "LitmusMinMaxBroadClassificationStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "LitmusMinMaxClassificationStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "LitmusMinMaxRegretClassificationStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "LitmusMinMaxSegmentClassificationStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "LitmusMinMaxStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "LitmusMinMaxTrendStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "LitmusSimpleStrategy": {
+      "strategy_type": "ml_ai;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "LongShortRangeTradingMachetesV1": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "LookaheadStrategy": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "LorentzianClassification": {
+      "strategy_type": "mean_reversion;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Low_BB": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "LuxOSC": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MAC": {
+      "strategy_type": "momentum",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACDCCI": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "30m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "MACDCrossoverWithTrend": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACDRL": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACDRS": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACDRSI200": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "MACDStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACDStrategyADA": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACDStrategyAVAX": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACDStrategyBTC": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACDStrategyENJ": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACDStrategyETC": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACDStrategySOL": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACDStrategyXRP": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACDStrategy_crossed": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACDZeroCrossStrategy": {
+      "strategy_type": "momentum",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACD_EMA": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACD_TRIPLE_MA": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MACD_TRI_EMA": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MADisplaceV3": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MFI": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MKR": {
+      "strategy_type": "ml_ai",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MSO": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MabStra": {
+      "strategy_type": "momentum",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Macd": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MacdAdxStrategy": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MacdStrategy": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MacdZeroCrossStrategy": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MacheteV8b": {
+      "strategy_type": "mean_reversion;momentum;trend_following;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MacheteV8bRallimod": {
+      "strategy_type": "mean_reversion;momentum;trend_following;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MacheteV8bRallimod2": {
+      "strategy_type": "momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MarketChyperHyperStrategy": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Maro4hMacdSd": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Martin": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MasterMoniGoManiHyperStrategy": {
+      "strategy_type": "trend_following",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Matrix": {
+      "strategy_type": "scalping;stat_arb",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MaxSharpePortfolio": {
+      "strategy_type": "grid_dca",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Miku_PP_v3": {
+      "strategy_type": "momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MiniLambo": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MinimumVariancePortfolio": {
+      "strategy_type": "grid_dca",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Minmax": {
+      "strategy_type": "",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MlpSpeculativeStrategy": {
+      "strategy_type": "",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "MomStrategy": {
+      "strategy_type": "mean_reversion;momentum;trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MomentumRegimeBasket": {
+      "strategy_type": "",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MomentumRegimeBasket15m": {
+      "strategy_type": "grid_dca",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MomentumScoreStrategy": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Momentumv2": {
+      "strategy_type": "momentum;volatility_breakout",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MoneyFlowStrategy": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MontrealStrategy": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MostOfAll": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MultiFactorConfluenceStrategy": {
+      "strategy_type": "mean_reversion;momentum;volume_based",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MultiMA_TSL": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MultiMA_TSL3": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MultiMA_TSL3_Mod": {
+      "strategy_type": "scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MultiMA_TSL5": {
+      "strategy_type": "scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MultiMa": {
+      "strategy_type": "momentum",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MultiOffsetLamboV0": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MultiRSI": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MultiTargetClassifierTestStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "MultiTargetRegressorTestStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "MyStratV1": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MyStrategyNew10": {
+      "strategy_type": "",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "MyStrategyTemplate": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NASOSRv6_private_Reinuvader_20211121": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NASOSv4": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NASOSv5": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NASOSv5_mod1": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NASOSv5_mod1_DanMod": {
+      "strategy_type": "scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NASOSv5_mod2": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NASOSv5_mod3": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NEWTEST15m": {
+      "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFI46": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFI46Frog": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFI46FrogZ": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFI46Offset": {
+      "strategy_type": "mean_reversion;scalping;trend_following;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFI46OffsetHOA1": {
+      "strategy_type": "mean_reversion;scalping;trend_following;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFI46Z": {
+      "strategy_type": "mean_reversion;momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFI47V2": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFI4Frog": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFI5MOHO": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFI5MOHO2": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFI5MOHO_WIP": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFI5MOHO_WIP_1": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFI5MOHO_WIP_2": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFI731_BUSD": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFI7MOHO": {
+      "strategy_type": "mean_reversion;scalping;trend_following;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFINextMOHO": {
+      "strategy_type": "mean_reversion;scalping;trend_following;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFINextMOHO2": {
+      "strategy_type": "mean_reversion;scalping;trend_following;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFINextMultiOffsetAndHO": {
+      "strategy_type": "mean_reversion;scalping;trend_following;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFINextMultiOffsetAndHO2": {
+      "strategy_type": "mean_reversion;scalping;trend_following;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFIX_BB_RPB": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NFIX_BB_RPB_c7c477d_20211030": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NOTankAi_15": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;volatility_breakout;volume_based",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NOTankAi_15_Cleaned": {
+      "strategy_type": "grid_dca;momentum;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NOTankAi_15_Cleaned_v2": {
+      "strategy_type": "grid_dca;momentum;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NOTankAi_17": {
+      "strategy_type": "ml_ai",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NOTankAi_19": {
+      "strategy_type": "ml_ai",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NWEv6": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NWEv6_new": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "3m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NeuroV1": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NfiNextModded": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NoLost": {
+      "strategy_type": "",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NormalizerStrategy": {
+      "strategy_type": "",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NormalizerStrategyHO2": {
+      "strategy_type": "",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Nostalgia": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinity772martinsk3": {
+      "strategy_type": "grid_dca;mean_reversion;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityNext": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityNext772": {
+      "strategy_type": "mean_reversion;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityNextGen": {
+      "strategy_type": "mean_reversion;momentum;volume_based",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityNextGen_TSL": {
+      "strategy_type": "mean_reversion;momentum;volume_based",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityNextV7155": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityNext_ChangeToTower_V5_2": {
+      "strategy_type": "mean_reversion;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityNext_ChangeToTower_V5_3": {
+      "strategy_type": "mean_reversion;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityNext_ChangeToTower_V6": {
+      "strategy_type": "mean_reversion;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityNext_maximizer": {
+      "strategy_type": "mean_reversion;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityV1": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityV2": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityV3": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityV4": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityV4HO": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityV5": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityV5MultiOffsetAndHO": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityV5MultiOffsetAndHO2": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityV6": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityV6HO": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityV7": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityV7_7_2": {
+      "strategy_type": "mean_reversion;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityV7_SMA": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityV7_SMAv2": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityV7_SMAv2_1": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityX": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityX2": {
+      "strategy_type": "grid_dca;mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityX3": {
+      "strategy_type": "grid_dca;mean_reversion;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityX4": {
+      "strategy_type": "grid_dca;mean_reversion;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityX5": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;trend_following;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityX6": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;trend_following;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityX7": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityXw": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NotAnotherSMAOffSetStrategy_V2": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NotAnotherSMAOffsetStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NotAnotherSMAOffsetStrategyHO": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NotAnotherSMAOffsetStrategyHOv3": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NotAnotherSMAOffsetStrategyLite": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NotAnotherSMAOffsetStrategyModHO": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NotAnotherSMAOffsetStrategyModHO_LamineDz_20210901": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NotAnotherSMAOffsetStrategyX1": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NotAnotherSMAOffsetStrategy_uzi": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NotAnotherSMAOffsetStrategy_uzi3": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NowoIchimoku1hV1": {
+      "strategy_type": "mean_reversion;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NowoIchimoku1hV2": {
+      "strategy_type": "mean_reversion;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NowoIchimoku5mV2": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ONS_Portfolio": {
+      "strategy_type": "grid_dca;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ONUR": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ObeliskIM_v1_1": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ObeliskRSI_v6_1": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Obelisk_3EMA_StochRSI_ATR": {
+      "strategy_type": "mean_reversion;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Obelisk_Ichimoku_Slow_v1_3": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Obelisk_Ichimoku_ZEMA_v1": {
+      "strategy_type": "scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Obelisk_TradePro_Ichi_v1_1": {
+      "strategy_type": "trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Obelisk_TradePro_Ichi_v2_1": {
+      "strategy_type": "trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ObvTrendStrategy": {
+      "strategy_type": "scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "OmaGann": {
+      "strategy_type": "",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "PRICEFOLLOWING": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "PRICEFOLLOWING2": {
+      "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "PRICEFOLLOWINGX": {
+      "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ParabolicSarStrategy": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "PatternRecognition": {
+      "strategy_type": "",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Persia": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Pmax": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "PnF": {
+      "strategy_type": "grid_dca;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "PolymarketLogicalArbStrategy": {
+      "strategy_type": "",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "PolymarketMeanReversionStrategy": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "PolymarketMomentumStrategy": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "PolymarketPortfolio": {
+      "strategy_type": "grid_dca",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "PowerTower": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "PpoMomentumStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "PrawnstarOBV": {
+      "strategy_type": "volume_based",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Precognition": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Prediction_Strategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "PriceActionCandleStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "PriceChannelStrategy": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Proton": {
+      "strategy_type": "ml_ai;scalping",
+      "timeframe": "3m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "PumpDetector": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "QuickAdapterV3": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "QuickBuyStrategy": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "1hr",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Quickie": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RLAgentStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "RLStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RSI": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RSIBB02": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "RSIDirectionalWithTrend": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RSIDirectionalWithTrendSlow": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RSIDivTirail": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RSI_BB": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RSI_EMA_strategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RSIv2": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RalliV1": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RalliV1_disable56": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RaposaDivergenceV1": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RegimeFilterStrategy": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ReinforcedAverageStrategy": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ReinforcedQuickie": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ReinforcedSmoothScalp": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ReinforcedSmoothScalpS": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Renko": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RenkoYolo": {
+      "strategy_type": "trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RiskParityPortfolio": {
+      "strategy_type": "grid_dca;stat_arb",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RobotradingBody": {
+      "strategy_type": "momentum",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RocMomentumStrategy": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Roth01": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Roth03": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RsiBollingerStrategy": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RsiDivergenceStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Rsiqui": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RsiquiV2": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RsiquiV5": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RsiquiV5_long_only": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SAR": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAIP3": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAIP3v2": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAOG": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAOPv1_TTF": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAOffset": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAOffsetProtectOpt": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAOffsetProtectOptV0": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAOffsetProtectOptV1": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAOffsetProtectOptV1HO1": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAOffsetProtectOptV1Mod": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAOffsetProtectOptV1Mod2": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAOffsetProtectOptV1_kkeue_20210619": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAOffsetV2": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAOffset_Hippocritical_dca": {
+      "strategy_type": "grid_dca;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAOffset_Hippocritical_dca_leverage": {
+      "strategy_type": "grid_dca;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAOffset_Hippocritical_dca_old": {
+      "strategy_type": "grid_dca;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAOffset_Hippocritical_dca_protections": {
+      "strategy_type": "grid_dca;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SMA_BBRSI": {
+      "strategy_type": "mean_reversion;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SRsi": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "STRATEGY_RSI_BB_BOUNDS_CROSS": {
+      "strategy_type": "momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "STRATEGY_RSI_BB_CROSS": {
+      "strategy_type": "momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SampleStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SampleStrategyV2": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Sar": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Saturn5": {
+      "strategy_type": "momentum;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Scalp": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ScalpingCCI": {
+      "strategy_type": "momentum",
+      "timeframe": "15",
+      "timeframe_evidence": "ticker_interval_attr"
+    },
+    "Schism": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Schism2": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Schism2MM": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Schism3": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Schism4": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Schism5": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Schism6": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Seb": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Simple": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SimpleHopt": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SimpleHopt1Along": {
+      "strategy_type": "momentum",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SimpleHopt1Ashort": {
+      "strategy_type": "momentum",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SimpleHoptS": {
+      "strategy_type": "momentum",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SimpleRiskFilterStrategy": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SlowPotato": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Slowbro": {
+      "strategy_type": "",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SmaRsiStrategy": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SmartMoneyStrategy": {
+      "strategy_type": "mean_reversion;volume_based",
+      "timeframe": "30m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SmartMoneyStrategyHyperopt": {
+      "strategy_type": "mean_reversion;volume_based",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SmoothOperator": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SmoothScalp": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Solipsis": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Solipsis3": {
+      "strategy_type": "momentum;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Solipsis4": {
+      "strategy_type": "momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Solipsis5": {
+      "strategy_type": "momentum;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Solipsis6": {
+      "strategy_type": "momentum;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SolipsisCon": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SolipsisMM": {
+      "strategy_type": "momentum;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SqueezeMomentum": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SqueezeMomentumStrategy": {
+      "strategy_type": "scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "StarRise": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "StarRise_strat": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "StarRise_strat3": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Stavix2": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "1m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "Stinkfist": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "StochRSITEMA": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "StochasticCciStrategy": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "StochasticOversoldStrategy": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "StochasticRsiStrategy": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Strategy": {
+      "strategy_type": "",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Strategy001": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Strategy001_custom_exit": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Strategy001_custom_sell": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Strategy002": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Strategy003": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Strategy004": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Strategy005": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "StrategyAnalysis": {
+      "strategy_type": "",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "StrategyScalpingFast": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "StrategyScalpingFast2": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "StrategyTestV2": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "StrategyTestV3": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SuperHV27": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SuperTrend": {
+      "strategy_type": "momentum;scalping;trend_following",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SuperTrendPure": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Supertrend": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SupertrendStrategy": {
+      "strategy_type": "mean_reversion;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SwingHigh": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "30m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "SwingHighToSky": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TD": {
+      "strategy_type": "grid_dca",
+      "timeframe": "2h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TDSequentialStrategy": {
+      "strategy_type": "",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TEMA": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TGMA": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TRIWAVE": {
+      "strategy_type": "grid_dca;mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TSPredict": {
+      "strategy_type": "ml_ai;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TWAPStrategy": {
+      "strategy_type": "grid_dca",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Tank1Modulus": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;volatility_breakout;volume_based",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Tank5ModulusDCA": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Tank5ModulusDCAV3": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TankAi": {
+      "strategy_type": "ml_ai",
+      "timeframe": "30m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TankAiRevival": {
+      "strategy_type": "ml_ai",
+      "timeframe": "30m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TechnicalExampleStrategy": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TemaMaster": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TemaMaster3": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TemaPure": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TemaPureNeat": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TemaPureTwo": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TemaStrategy": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TenderEnter": {
+      "strategy_type": "mean_reversion;momentum;trend_following;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TestStrategyLegacyV1": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TestStrategyNoImplements": {
+      "strategy_type": "",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Test_MAMA4": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TheForce": {
+      "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TheRealPullbackV2": {
+      "strategy_type": "mean_reversion;momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ThreeCommasStrategy": {
+      "strategy_type": "",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ToTheMoon": {
+      "strategy_type": "",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TouchEmaDelayStrategy": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "3m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TouchEmaStrategy": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TrainCatBoostStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TrendAtrStrategy": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TrendFollowingStrategy": {
+      "strategy_type": "scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TrendRiderStrategy": {
+      "strategy_type": "grid_dca;momentum;volatility_breakout;volume_based",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Trend_Strength_Directional": {
+      "strategy_type": "momentum",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TripleEmaStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TrixSignalStrategy": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TrixStrategy": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TrixV15Strategy": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TrixV21Strategy": {
+      "strategy_type": "mean_reversion;momentum;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TrixV23Strategy": {
+      "strategy_type": "mean_reversion;momentum;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TuplaBollinger": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "5h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TwoCandle": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TwoCandleTheory": {
+      "strategy_type": "scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "UltimateMomentumIndicator": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "UniversalMACD": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "UpSliceStrategy": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Uptrend": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "UziChan": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "UziChan2": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "VWAP": {
+      "strategy_type": "scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ViN": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "VolatilitySystem": {
+      "strategy_type": "grid_dca;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "VolatilitySystemV2": {
+      "strategy_type": "grid_dca;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "VolumeBreakoutStrategy": {
+      "strategy_type": "scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "VortexStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "VwapReversionStrategy": {
+      "strategy_type": "scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "WTAI": {
+      "strategy_type": "ml_ai",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "WTHO": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "2h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "WTRSIAI": {
+      "strategy_type": "ml_ai",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "WTX3": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "WaveTrendStra": {
+      "strategy_type": "momentum",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "WilliamsRStrategy": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "XebTradeStrat": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "XtraThicc": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "YOLO": {
+      "strategy_type": "scalping;trend_following",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "YourStrat": {
+      "strategy_type": "",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ZScoreMeanReversionStrategy": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ZaratustraDCA2_06": {
+      "strategy_type": "grid_dca;momentum;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ZaratustraDCA2_07": {
+      "strategy_type": "grid_dca;momentum;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ZaratustraDCA5": {
+      "strategy_type": "grid_dca;momentum;scalping;stat_arb;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Zeus": {
+      "strategy_type": "trend_following",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "adaptive": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "adaptive_trend": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "adx_opt_strat": {
+      "strategy_type": "momentum;scalping;trend_following",
+      "timeframe": "1m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "adxbbrsi2": {
+      "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "bb_rsi_opt_new": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "bbandrsi": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "bbema": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "bbrsi": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "bbrsi1_strategy": {
+      "strategy_type": "momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "bbrsi4Freq": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "bestV2": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "beta_factors_model": {
+      "strategy_type": "",
+      "timeframe": "1w",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "botbaby": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "30m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "chispei": {
+      "strategy_type": "momentum",
+      "timeframe": "4h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "conny": {
+      "strategy_type": "mean_reversion;trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "cryptohassle": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "cryptotank": {
+      "strategy_type": "grid_dca",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "cryptotankV2": {
+      "strategy_type": "grid_dca;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "cryptotankV5": {
+      "strategy_type": "grid_dca;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "custom": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "custom_sell": {
+      "strategy_type": "scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "dualwave": {
+      "strategy_type": "grid_dca;mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "e6v34": {
+      "strategy_type": "mean_reversion;trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "eltoro": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "eltoro1_4": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "eltoro1_4_simple": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ema": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ep3mas2": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "epretrace": {
+      "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "fahmibah": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "falconTrader": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "flawless_lambo": {
+      "strategy_type": "mean_reversion;momentum;volume_based",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "freqai_rl_test_strat": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "freqai_test_classifier": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "freqai_test_multimodel_classifier_strat": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "freqai_test_multimodel_strat": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "freqai_test_strat": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "gettinMoist": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "grad": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "haGradient": {
+      "strategy_type": "",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "hansencandlepatternV1": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "heikin": {
+      "strategy_type": "momentum",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "hlhb": {
+      "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ichi": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ichiV1": {
+      "strategy_type": "scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ichiV1_Marius": {
+      "strategy_type": "grid_dca;mean_reversion;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "kalthetank": {
+      "strategy_type": "grid_dca",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "keltnerchannel": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "6h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "lambotest": {
+      "strategy_type": "mean_reversion;momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "mabStra": {
+      "strategy_type": "momentum",
+      "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "macd_recovery": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "mark_strat": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "1m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "mark_strat_opt": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "1m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "momentum": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "momentum_long": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "momentum_rsi": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "momentum_wick": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "moonhouse": {
+      "strategy_type": "momentum",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "multi_tf": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "new_turtle": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "new_turtle_roi": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "newstrategy53": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "newstrategy53_22": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "pcb20": {
+      "strategy_type": "mean_reversion;momentum;volume_based",
+      "timeframe": "6h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "pmaxTest": {
+      "strategy_type": "mean_reversion;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "qrsi": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "quantumfirst": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "redditMA": {
+      "strategy_type": "momentum",
+      "timeframe": "15m",
+      "timeframe_evidence": "repair:author_ticker_interval"
+    },
+    "simple_patterns": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "slope_is_dopeCT": {
+      "strategy_type": "grid_dca",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "slownsteady": {
+      "strategy_type": "scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "stoploss": {
+      "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "stratfib": {
+      "strategy_type": "momentum;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "strato": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "tacos": {
+      "strategy_type": "mean_reversion;momentum;volume_based",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "tacos1": {
+      "strategy_type": "momentum",
+      "timeframe": "6h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "tbtest": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "tesla4": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "tesla7": {
+      "strategy_type": "mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "thetank2": {
+      "strategy_type": "grid_dca;trend_following;volatility_breakout;volume_based",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "thetank3": {
+      "strategy_type": "grid_dca;volume_based",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "thetank4TV": {
+      "strategy_type": "grid_dca;volume_based",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "true_lambo": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "tsp0chicken": {
+      "strategy_type": "ml_ai;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "turbov8": {
+      "strategy_type": "grid_dca;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "twinturboV8": {
+      "strategy_type": "grid_dca;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "twinturboV8_2": {
+      "strategy_type": "grid_dca;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ultratank": {
+      "strategy_type": "grid_dca;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "wavetrend": {
+      "strategy_type": "grid_dca",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "wavetrend_rsi": {
+      "strategy_type": "grid_dca",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "wtc": {
+      "strategy_type": "ml_ai",
+      "timeframe": "30m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "zorkv7_0_0": {
+      "strategy_type": "ml_ai;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    }
+  },
+  "schema_version": 1
+}
