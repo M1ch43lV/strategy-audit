@@ -39,6 +39,10 @@ data/
 !STRATEGY_STATUS.csv
 !cluster/CLUSTERS.csv
 !results/regime/*.csv
+# A live comparison against GitHub, regenerable but published for the same
+# reason as STRATEGY_STATUS.csv: it is the only place that answers "has a
+# source repo moved since we captured it".
+!REPO_FRESHNESS.csv
 
 # Downloaded upstream strategy repositories - regenerate from the corpus
 # source list. Their nested .git directories and worktrees do not belong to
