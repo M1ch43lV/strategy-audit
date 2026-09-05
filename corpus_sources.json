@@ -3,11 +3,11 @@
   {
    "repo": "PeetCrypto/freqtrade-stuff",
    "classes": 346,
-   "first": 312
+   "first": 311
   },
   {
    "repo": "davidzr/freqtrade-strategies",
-   "classes": 464,
+   "classes": 461,
    "first": 166
   },
   {
@@ -37,8 +37,8 @@
   },
   {
    "repo": "MelvynClark/Freqtrade-Strategy",
-   "classes": 21,
-   "first": 21
+   "classes": 22,
+   "first": 22
   },
   {
    "repo": "werkkrew/freqtrade-strategies",
@@ -46,8 +46,23 @@
    "first": 8
   },
   {
+   "repo": "brookmiles/freqtrade-stuff",
+   "classes": 14,
+   "first": 8
+  },
+  {
    "repo": "freqtrade/freqtrade-strategies",
    "classes": 68,
+   "first": 7
+  },
+  {
+   "repo": "titouannwtt/freqtrade-ultimate",
+   "classes": 20,
+   "first": 7
+  },
+  {
+   "repo": "nateemma/strategies",
+   "classes": 10,
    "first": 7
   },
   {
@@ -66,23 +81,18 @@
    "first": 6
   },
   {
-   "repo": "iterativv/NostalgiaForInfinity",
-   "classes": 10,
-   "first": 6
-  },
-  {
-   "repo": "nateemma/strategies",
-   "classes": 9,
-   "first": 6
-  },
-  {
    "repo": "MMR-19/freqtrade-strategies",
    "classes": 7,
    "first": 6
   },
   {
+   "repo": "iterativv/NostalgiaForInfinity",
+   "classes": 10,
+   "first": 5
+  },
+  {
    "repo": "ShahAnuj2610/my-freqtrade",
-   "classes": 54,
+   "classes": 5,
    "first": 5
   },
   {
@@ -116,7 +126,17 @@
    "first": 2
   },
   {
+   "repo": "shadowp2810/technical_indicators_cryptos",
+   "classes": 2,
+   "first": 2
+  },
+  {
    "repo": "ShahAnuj2610/my-freqtrade-nfi-nextgen",
+   "classes": 4,
+   "first": 1
+  },
+  {
+   "repo": "cyberjunky/freqtrade_strategy",
    "classes": 4,
    "first": 1
   },
@@ -132,6 +152,11 @@
   },
   {
    "repo": "jerome-benoit/freqai-strategies",
+   "classes": 2,
+   "first": 1
+  },
+  {
+   "repo": "miwtoo/ft-action-zone",
    "classes": 2,
    "first": 1
   },
@@ -191,6 +216,11 @@
    "first": 0
   },
   {
+   "repo": "nancyjimenezbnoewowo/NostalgiaForInfinity",
+   "classes": 9,
+   "first": 0
+  },
+  {
    "repo": "i1ya/freqtrade-strategies",
    "classes": 8,
    "first": 0
@@ -203,16 +233,6 @@
   {
    "repo": "hansen1015/freqtrade_strategy",
    "classes": 5,
-   "first": 0
-  },
-  {
-   "repo": "nancyjimenezbnoewowo/NostalgiaForInfinity",
-   "classes": 5,
-   "first": 0
-  },
-  {
-   "repo": "cyberjunky/freqtrade_strategy",
-   "classes": 3,
    "first": 0
   },
   {
@@ -256,6 +276,11 @@
    "first": 0
   },
   {
+   "repo": "logs",
+   "classes": 0,
+   "first": 0
+  },
+  {
    "repo": "raphant/lazyft",
    "classes": 0,
    "first": 0
@@ -266,6 +291,6 @@
    "first": 0
   }
  ],
- "unique": 900,
- "occurrences": 2567
+ "unique": 919,
+ "occurrences": 2560
 }

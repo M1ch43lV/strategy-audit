@@ -1671,9 +1671,12 @@ def _report(data):
         "is phase-neutral." % (len(no_phase), model_driven,
                                len(no_phase) - model_driven),
         "",
-        "`bear_trend` is rare by construction: 832 of 900 rows are long-only "
+        "`bear_trend` is rare by construction: %d of %d rows are long-only "
         "and a long-only strategy cannot earn in a sustained downtrend, so "
-        "the direction gate removes it whatever the indicators suggest.", "",
+        "the direction gate removes it whatever the indicators suggest."
+        % (sum(1 for row in _csv(PROFILES)
+               if row.get("direction_capability") not in
+               ("short_only", "long_short")), len(data)), "",
     ]
 
     timed = [row for row in data if row["test_duration_s"]]
@@ -2059,8 +2062,9 @@ def _write(path, content):
 
 def selftest():
     data = rows()
-    assert len(data) == 900, len(data)
-    assert len({row["strategy_id"] for row in data}) == 900
+    corpus_size = len(_csv(PROFILES))
+    assert len(data) == corpus_size, (len(data), corpus_size)
+    assert len({row["strategy_id"] for row in data}) == corpus_size
     # E0_strict67 was retired as a cohort on 2026-09-03: the recursion check
     # that produced these 67 used freqtrade's own hardcoded defaults, never
     # converted to the strategy's timeframe, not the calendar-day ladder

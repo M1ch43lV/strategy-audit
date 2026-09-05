@@ -1,6 +1,6 @@
-# Strategy status - current evidence for all 900 rows
+# Strategy status - current evidence for all 919 rows
 
-**Generated 2026-09-05 12:20:40 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-05 16:52:35 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -23,14 +23,14 @@ check.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 3 of 900 rows
+file's time and is labelled `log_mtime` for that reason. 22 of 919 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
 
 | | Strategies |
 |---|---:|
-| in the manifest | 900 |
+| in the manifest | 919 |
 | measured at all | 778 |
 | produced trades | 748 |
 | carrying a run time | 897 |
@@ -44,23 +44,24 @@ have neither and are left empty rather than given an invented time.
 | `pending` | 27 |
 | `exclusion_unconfirmed` | 26 |
 | `too_few_trades` | 21 |
-| `not_a_strategy` | 14 |
+| `not_a_strategy` | 18 |
+| `not_tested_in_current_runtime` | 15 |
 
 ## Timeframe and signal family
 
 Both read from the strategy's own source by `strategy_classification.py`,
 not measured - see that module's docstring for the marker table and its
-limits. `timeframe` is blank on 42 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 33 rows where no marker matched at all, so its counts below add up to more than 900.
+limits. `timeframe` is blank on 43 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 35 rows where no marker matched at all, so its counts below add up to more than 919.
 
 ### Timeframe
 
 | Timeframe | Strategies |
 |---|---:|
-| `5m` | 504 |
-| `1h` | 130 |
-| `15m` | 84 |
+| `5m` | 508 |
+| `1h` | 141 |
+| `15m` | 85 |
 | `1m` | 52 |
-| `4h` | 38 |
+| `4h` | 40 |
 | `1d` | 23 |
 | `30m` | 9 |
 | `3m` | 8 |
@@ -76,13 +77,13 @@ limits. `timeframe` is blank on 42 rows the source does not state it for. `strat
 
 | Type | Strategies |
 |---|---:|
-| `scalping` | 564 |
-| `mean_reversion` | 457 |
-| `momentum` | 445 |
-| `trend_following` | 239 |
-| `volatility_breakout` | 192 |
-| `volume_based` | 126 |
-| `grid_dca` | 93 |
+| `scalping` | 568 |
+| `mean_reversion` | 462 |
+| `momentum` | 451 |
+| `trend_following` | 245 |
+| `volatility_breakout` | 196 |
+| `volume_based` | 127 |
+| `grid_dca` | 97 |
 | `ml_ai` | 46 |
 | `stat_arb` | 9 |
 
@@ -104,15 +105,15 @@ preregistration OPEN item 6; the amendment records it.
 | Phase | Market-side rule | Strategies predicted |
 |---|---|---:|
 | `bear_trend` | `coin_adx >= 25 and coin_minus_di > coin_plus_di` | 34 |
-| `bull_trend` | `coin_adx >= 25 and coin_plus_di > coin_minus_di` | 537 |
-| `high_vol_shock` | `coin_realized_vol_30d >= 1.291, whatever the DMI state` | 38 |
-| `range_choppy` | `coin_adx < 20 and coin_realized_vol_30d >= 0.623` | 265 |
-| `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 250 |
-| `transition` | `20 <= coin_adx < 25` | 19 |
+| `bull_trend` | `coin_adx >= 25 and coin_plus_di > coin_minus_di` | 549 |
+| `high_vol_shock` | `coin_realized_vol_30d >= 1.291, whatever the DMI state` | 42 |
+| `range_choppy` | `coin_adx < 20 and coin_realized_vol_30d >= 0.623` | 271 |
+| `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 255 |
+| `transition` | `20 <= coin_adx < 25` | 23 |
 
-A row may carry more than one phase, and 101 carry none: 47 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 54 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
+A row may carry more than one phase, and 103 carry none: 47 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 56 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
 
-`bear_trend` is rare by construction: 832 of 900 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
+`bear_trend` is rare by construction: 855 of 919 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
 
 ## Test duration
 
@@ -122,7 +123,7 @@ look-ahead/recursion pair, a later native look-ahead
 re-measurement, the warm-up ladder, a wave B recursion attempt, and
 the eight-pair full-window backtest actually ran for it - see
 `test_duration` in strategy_status.py for why this is a sum rather
-than a pick-one-source figure. 0 of 900 rows carry no stamp at all,
+than a pick-one-source figure. 19 of 919 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
@@ -264,7 +265,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1119 of 2190 commands are recorded so far, and every new run
+recording. 1119 of 2228 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -3937,6 +3938,33 @@ neither a pass nor a fail.
 `Schism6`, `TuplaBollinger`, `UpSliceStrategy`, `WTHO`
 `haGradient`, `multi_tf`, `tacos1`
 
+## Attempted, no measurement - 15 strategies
+
+No run under the current pipeline is recorded for these. The
+original corpus sweep did attempt every row, but it ran in an
+environment that did not establish the preconditions this audit
+requires - which is the whole reason the pre-checks are being
+redone - so its outcome is a hint about what to expect and never a
+verdict. Where such a hint exists it is shown in brackets.
+
+| Strategy | Wave | Status |
+|---|---|---|
+| `BB10fall` | `-` | `no run under the current runtime` |
+| `EMA_Trailing_Stoploss` | `-` | `no run under the current runtime` |
+| `EMA_Trailing_Stoploss_LessMagic` | `-` | `no run under the current runtime` |
+| `MACD9fall` | `-` | `no run under the current runtime` |
+| `Magic_Trailing_Stoploss` | `-` | `no run under the current runtime` |
+| `MultiActionZone` | `-` | `no run under the current runtime` |
+| `Obelisk_Ichimoku_Slow_v1` | `-` | `no run under the current runtime` |
+| `Obelisk_Ichimoku_Slow_v1_1` | `-` | `no run under the current runtime` |
+| `Obelisk_Ichimoku_Slow_v1_2` | `-` | `no run under the current runtime` |
+| `Obelisk_TradePro_Ichi_v2` | `-` | `no run under the current runtime` |
+| `Obelisk_TradePro_Ichi_v2_2` | `-` | `no run under the current runtime` |
+| `OversoldReversion` | `-` | `no run under the current runtime` |
+| `kac_index_v1` | `-` | `no run under the current runtime` |
+| `kac_index_v2` | `-` | `no run under the current runtime` |
+| `simple_vwap_v1` | `-` | `no run under the current runtime` |
+
 ## Exclusion unconfirmed - 26 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
@@ -4197,16 +4225,18 @@ Wave `not_scheduled` - 4:
 | `D_recursive_drift` | 124 |
 | `B_warmup_refusal` | 82 |
 | `E0_strict67` | 67 |
+| `(none)` | 19 |
 | `A_pending_diagnostics` | 7 |
 
 ## Open work
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 175 |
+| `recursive_ladder_pending` | 190 |
 | `convergence_not_converged_within_ladder` | 61 |
 | `lookahead_remeasure_pending` | 25 |
 | `needs_a_look` | 20 |
+| `first_measurement_in_current_runtime` | 15 |
 | `convergence_inconclusive` | 14 |
 | `repair_attempted` | 4 |
 | `to_be_fixed` | 2 |

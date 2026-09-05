@@ -193,7 +193,7 @@ def build():
 
 def selftest():
     results = build()
-    assert len(results) == 900, len(results)
+    assert len(results) == len(_csv(STATUS)), (len(results), len(_csv(STATUS)))
     have_tf = sum(1 for v in results.values() if v["timeframe"])
     have_type = sum(1 for v in results.values() if v["strategy_type"])
     assert have_tf >= 850, have_tf

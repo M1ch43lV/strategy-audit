@@ -27,7 +27,9 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 from harness import find_strategies
 
 REPOS = os.path.join(_ROOT, "repos")
-GH = "C:/tmp/tools/gh/bin/gh.exe"
+# Resolved from PATH rather than a fixed install location, which was specific
+# to one earlier machine and no longer exists on this one.
+GH = __import__("shutil").which("gh") or "gh"
 MAX_FILE = 600000
 
 

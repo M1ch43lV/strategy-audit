@@ -233,7 +233,7 @@ def build():
 
 def selftest():
     results = build()
-    assert len(results) == 900, len(results)
+    assert len(results) == len(_csv(PROFILES)), (len(results), len(_csv(PROFILES)))
     assert set(PHASES) == {
         "bull_trend", "bear_trend", "range_quiet", "range_choppy",
         "transition", "high_vol_shock"}, sorted(PHASES)
