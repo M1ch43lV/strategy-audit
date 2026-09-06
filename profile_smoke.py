@@ -310,7 +310,7 @@ def _invocation(command):
 
 
 def run_one(row, timerange, timeout, pair=None, extra_env=None,
-            config_overrides=None):
+            config_overrides=None, artifact_key=None, run_context=None):
     strategy = row["strategy_id"]
     canonical = os.path.abspath(os.path.join(ROOT, row["canonical_file"].replace("/", os.sep)))
     profile = row["run_profile"]
@@ -319,7 +319,8 @@ def run_one(row, timerange, timeout, pair=None, extra_env=None,
         raise ValueError("canonical source not found: %s" % row["canonical_file"])
 
     os.makedirs(EXPORT_DIR, exist_ok=True)
-    suffix = "-" + _safe(pair) if pair else ""
+    suffix_source = artifact_key if artifact_key is not None else pair
+    suffix = "-" + _safe(suffix_source) if suffix_source else ""
     prefix = os.path.join(EXPORT_DIR, _safe(strategy) + suffix)
     try:
         config_path, env, class1, extra_args = _runtime(strategy, mode)
@@ -341,19 +342,20 @@ def run_one(row, timerange, timeout, pair=None, extra_env=None,
     # out but not what was asked, and a reader cannot reproduce the run without
     # re-deriving the arguments from four other files.
     invocation = _invocation(cmd)
+    run_metadata = {"run_profile": profile, "timerange": timerange}
+    if run_context:
+        run_metadata.update(run_context)
     started = time.time()
     try:
         proc = subprocess.run(cmd, cwd=ROOT, env=env, stdout=subprocess.PIPE,
                               stderr=subprocess.STDOUT, timeout=timeout)
         output = proc.stdout.decode("utf-8", "replace")
         runlog.append("backtesting", strategy, invocation, output,
-                      {"run_profile": profile, "timerange": timerange,
-                       "returncode": proc.returncode,
-                       "elapsed_s": round(time.time() - started, 1)})
+                      dict(run_metadata, returncode=proc.returncode,
+                           elapsed_s=round(time.time() - started, 1)))
     except subprocess.TimeoutExpired:
         runlog.append("backtesting", strategy, invocation, "",
-                      {"run_profile": profile, "timerange": timerange,
-                       "outcome": "timeout after %d seconds" % timeout})
+                      dict(run_metadata, outcome="timeout after %d seconds" % timeout))
         return {"status": "timeout", "mode": mode, "run_profile": profile,
                 "timerange": timerange, "elapsed_s": round(time.time() - started, 1),
                 "class1_rules": class1.get("rules", []),
@@ -391,6 +393,7 @@ def run_one(row, timerange, timeout, pair=None, extra_env=None,
             "archive_sha256": archive_sha256,
             "runtime_config_sha256": runtime_config_sha256,
             "config_overrides": config_overrides or {},
+            "artifact_key": artifact_key or "",
             "runtime_id": os.environ.get("PROFILE_RUNTIME_ID", "native_unversioned")}
 
 

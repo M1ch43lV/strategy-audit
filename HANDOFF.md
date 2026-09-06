@@ -1,306 +1,186 @@
 # Shared handoff - Codex and Claude
 
-> **Marked outdated 2026-09-06 — not currently needed.** Everything below
-> this line describes state through the Wave C bias queue (baton dated
-> 2026-09-01): E1 at 75, Wave D not started, several `Next concrete steps`
-> long since done differently than planned. The corpus has since grown to
-> 919 rows across further waves, a six-phase market-regime reporting split
-> was added, and the source-repo freshness/candidate-discovery machinery
-> (`REPO_FRESHNESS.md`, `NEW_REPO_CANDIDATES.md`) did not exist yet. None of
-> that is reflected here, and reading a `Current checkpoint` or `Do not redo`
-> line below as live risks exactly the mistake this file exists to prevent —
-> `STRATEGY_STATUS.csv`, `git log`, and `docker ps` are the current truth;
-> this file is not. Kept for its record of Wave A-C's own history, not as a
-> cold-start document — see `DOCUMENT_MAP.md` for what actually binds today.
-
 ## Baton
 
-- Last agent: claude
-- Last update: 2026-09-01T03:45:00+02:00
-- Stopped because: the Wave C bias queue finished; all 53 rows carry a verdict
-- Next agent should: give the adjudicator a Wave C ruleset (step 1 below)
-
-## No job running
-
-Both jobs finished. The nine zero-trade full-window rows and the 53-row bias
-queue are complete, and nothing holds the writer position.
+- Last agent: codex
+- Last update: 2026-09-06T15:00:16+02:00
+- Stopped because: Model 1/2 implementation was validated and committed as `0d6f8d2`; a separate Claude smoke-recovery runner is still active
+- Next agent should: inspect the active Claude runner and Git state first; do not start any measurement, regenerate status, or touch its result stores while it is alive
 
 ## Objective
 
-Maximize trustworthy regime coverage under the frozen expansion protocol, then
-complete Stages 9-12. Rankings remain unread and blocked.
+Maximize technically trustworthy strategy coverage, then benchmark the admitted
+strategies across the frozen four DMI/ADX states and six reporting phases.
+Keep attribution, true gated performance, and ranked conclusions separate.
 
-## Cold-session checklist - mandatory
+## Cold-session reading order - mandatory
 
-`DOCUMENT_MAP.md` says which of the 31 Markdown files bind, are background, or
-should be skipped. Without it, the 1,982-line discussion plan has been mistaken
-for frozen rules and the current 75 eligible strategies misquoted as 67.
+1. Read this file in full.
+2. Read `DOCUMENT_MAP.md` in full. It decides what binds and what to skip.
+3. Read `REGIME_PREREGISTRATION.md` in full. It binds, including its amendments
+   and OPEN choices. Never infer a frozen rule from the discussion plan.
+4. Read `PIPELINE.md` in full when deciding what runs next or changing a stage.
+5. Read only the section of `ELIGIBILITY_EXPANSION_PLAN.md` named under Plan
+   pointer. Read the whole file only when changing admission, repair, resource,
+   or stop rules, or when entering a new expansion wave.
+6. Read applicable `AGENTS.md` files. The session-supplied root instruction
+   currently requires the Graphify skill for `/graphify`.
+7. Run the Machine state commands, then inspect `git status` and relevant diffs.
 
-1. Read this file, `DOCUMENT_MAP.md`, and `REGIME_PREREGISTRATION.md` in full.
-   The preregistration binds; `REGIME_AUDIT_PLAN.md` is reference only.
-2. Read the `ELIGIBILITY_EXPANSION_PLAN.md` sections named under Plan pointer.
-   Read it in full when new to the expansion, when the wave changes, or before
-   interpreting/changing admission, repair, resource, or stop rules.
-3. Read applicable `AGENTS.md` files, if any. None existed at the last check.
-4. Run every Machine state command, inspect `git status` and relevant diffs,
-   and trust active processes plus atomic artifacts over prose counts.
-5. Reconstruct completed, active, and remaining work; obey `Do not redo`.
-   Never rerun a measurement merely because a prior session did not witness it.
-
-## STRATEGY_STATUS must be kept current - standing obligation
-
-`STRATEGY_STATUS.md` and `.csv` are the reference for what is known about every
-strategy: which passed, which did not and why, when each was tested and where
-its results are. **Regenerate them after any measurement, adjudication or
-convergence run**, and never edit them by hand:
-
-```bash
-python strategy_status.py            # rewrite
-python strategy_status.py --check    # is the row data current?
-python strategy_status.py --selftest
-```
-
-Anchoring the newest results in `STRATEGY_STATUS.md` is the AI session's job,
-every time. The published artifact is not: the owner refreshes that manually,
-so do not treat a stale page as a reason to skip the regeneration here.
-
-Every freqtrade call is also appended to `user_data/freqtrade_runs.log` with
-its full console output - `python runlog.py` reports its size. It rotates at
-32 MiB across five generations, so it is bounded; older calls fall off the end
-and the per-run logs under `user_data/*_logs/` remain the durable copy.
-
-This is not housekeeping. The canonical manifest silently listed 66 measured
-strategies as unmeasured for two days, and that stale field nearly caused three
-admissible rows to be refused. A table nobody regenerates becomes a table that
-lies, and this one is the first thing a cold session reads.
-
-Two things it must never be allowed to say. It must not report a row as
-untested: every one of the 900 was attempted in the corpus sweep, and rows with
-no measurement carry the exception their card recorded. And it must not fold a
-missing verdict into a failure - `no_verdict_on_*` is a statement about this
-audit, not about the strategy.
-
-### Every row carries the parameters it was run with - standing obligation
-
-**A verdict whose call cannot be shown is not a reproducible result.** Every
-row therefore carries the freqtrade invocation for each gate it has:
-`cmd_backtest`, `cmd_lookahead`, `cmd_recursive`. They are separate columns
-because the three calls differ in more than their subcommand - the bias gates
-run against a config forcing `price_side=other`, a backtest uses the plain one
-and adds `--fee 0.001 --export trades --cache none` - so a single column could
-only ever show one of them and silently drop the rest.
-
-Rules for anything that adds or changes a run:
-
-1. **A new runner records its argv.** Put the rendered command in the record it
-   writes (`profile_smoke._invocation(command)` does the rendering) and append
-   the call and its console output with `runlog.append`. A run that stores
-   neither cannot be repeated and does not count.
-2. **A new store gets read.** `strategy_status.py` must load it, or the verdicts
-   in it never reach the table. This failed five times in one session - each
-   time the table looked current and was not - so after adding a store, check
-   that its rows appear with the evidence you expect.
-3. **A reconstruction is labelled and must actually run.** `[recorded]` is the
-   argv that ran; `[reconstructed]` is derived and is a weaker claim. A
-   reconstruction must still be executable: it names
-   `user_data/profile_bias_strategies/<strategy>` for the gates, because
-   freqtrade's resolver imports every file beside the one it wants and a
-   neighbour that raises at import time takes the run with it.
-4. **A repaired row states what the repair needs.** `repair_settings` carries
-   the rules, config, model and environment - including what cannot go on a
-   command line, such as `PYTHONPATH` additions, `PROFILE_FREQTRADE_PATH` and
-   `PROFILE_COMPAT_SIGNATURES`, and a recovered timeframe that otherwise lives
-   only in a generated config nobody could guess. The selftest fails if a
-   repaired row states neither its settings nor a recorded call.
-
-Check it the same way every time - take a row's printed command, run it
-verbatim in the pinned image, and see that it completes:
-
-```bash
-python -c "import csv,io; rows={r['strategy_id']:r for r in csv.DictReader(io.open('STRATEGY_STATUS.csv',newline='',encoding='utf-8-sig'))}; print(rows['ADX_15M_USDT']['cmd_lookahead'])"
-```
-
-This obligation exists because the reconstructions were wrong twice in one
-evening: they dropped the repair, so following them reproduced the original
-failure and read as the strategy's fault; and they named the repository
-directory rather than the isolated one, so they failed on a neighbouring file.
+`REGIME_AUDIT_PLAN.md` is reference, not the rulebook. For Model 1/2 work read
+only sections 12-15, Stages 8-11, cautions 28.1-28.6, and the current decision
+entry; do not reread the roughly 2,000-line file end to end.
 
 ## Plan pointer
 
-- File: `strategy-audit/ELIGIBILITY_EXPANSION_PLAN.md`
-- Now governing: **### Wave C**, plus **## 6** and **## 7**.
-- Wave C is explicit: a successful smoke is not eligibility; full measurement
-  and both bias gates still follow. Do not improvise a shortcut.
+- Binding file: `REGIME_PREREGISTRATION.md`, especially `Analysis order`,
+  `Frozen reporting safeguards`, and `OPEN before Stage 9 ranking`.
+- Pipeline file: `PIPELINE.md`, Stages 7-11.
+- Reference only: `REGIME_AUDIT_PLAN.md`, sections 12-15, Stages 8-11,
+  cautions 28.1-28.6, and Decision 0.17-03.
+- Eligibility protocol when measurement/admission is involved:
+  `ELIGIBILITY_EXPANSION_PLAN.md` sections 6 and 7. The old Wave C pointer is
+  retired; all expansion waves are already terminal in current artifacts.
 
-## Machine state - authoritative, check before trusting prose
+## Machine state - authoritative
 
-```bash
-cd strategy-audit
-docker ps --format "{{.ID}}|{{.Image}}|{{.Status}}|{{.Command}}"   # MANDATORY
-python eligibility_warmup_equivalence_queue.py --selftest
-git log --oneline -5 && git status --short
+Run these before trusting any count or prose:
+
+```powershell
+docker ps --format '{{.ID}}|{{.Image}}|{{.Status}}|{{.Command}}'
+Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match 'strategy-audit|full_backtest|profile_smoke|profile_full_window' } | Select-Object ProcessId,Name,CommandLine
+git log --oneline -8
+git status --short
+.\ftenv\Scripts\python.exe strategy_status.py --check
 ```
 
-If `docker ps` prints a container, a measurement is already running. Whether a
-second one may join it is a question with a definite answer, not a matter of
-nerve. Two runners may overlap when all three hold:
+The status check is read-only. Do not regenerate `STRATEGY_STATUS.csv` while a
+runner is writing one of its input stores.
 
-1. **Different output stores.** Each runner owns the JSON it writes. Two
-   writers on one store lose entries, because each rewrites the whole file.
-2. **Disjoint strategies.** The per-strategy scratch directories
-   (`user_data/expansion_configs/`, `user_data/profile_bias_strategies/`) are
-   named by strategy, so different strategies never collide - the same
-   strategy in two runners would.
-3. **Nobody regenerates `STRATEGY_STATUS.csv` mid-flight.** A runner reads its
-   cohort once at start, so a regeneration cannot move it; but only one process
-   should be writing that file at a time.
+Current counts without reading performance rankings:
 
-Check 1 and 2 before starting, in as many lines as it takes:
-
-```bash
-python -c "import warmup_convergence as w; print(len(w.cohort('recursive_unsettled')))"
+```powershell
+.\ftenv\Scripts\python.exe -c 'import csv,collections; r=list(csv.DictReader(open(`STRATEGY_STATUS.csv`,encoding=`utf-8-sig`))); print(len(r),collections.Counter(x[`cohort`] for x in r))'
+.\ftenv\Scripts\python.exe -c 'import csv,json,collections; r=list(csv.DictReader(open(`STRATEGY_STATUS.csv`,encoding=`utf-8-sig`))); e={x[`strategy_id`] for x in r if x[`cohort`]==`E1_expanded`}; m=json.load(open(`results/regime/full_backtest_manifest.json`,encoding=`utf-8`))[`results`]; print(collections.Counter((m.get(x) or {}).get(`status`,`missing`) for x in e))'
 ```
 
-`user_data/freqtrade_runs.log` is the one file every runner shares. It is safe
-for concurrent writers as of 2026-09-01: each entry is written under a claim
-(`runlog._claim`) so no two entries interleave. `python runlog.py --selftest`
-proves it with two writers and eighty entries. Before that change, eighty
-entries from two writers left seventy-three on disk.
+## Before starting any benchmark or analyzer
 
-Resources are not the constraint: a run holds about 670 MiB and saturates one
-core, against 14 GB and four processors in WSL.
+Never assume an empty terminal means idle. Run both process checks above and:
 
-Also useful: `python eligibility_expansion_wave_c_bias.py --selftest` prints
-`(53 candidates, N pending)`.
+```powershell
+Get-ChildItem PROFILE_SMOKE.json,PROFILE_FULL_WINDOW*.json,results\regime\*manifest*.json | Select-Object Name,Length,LastWriteTime
+Get-ChildItem -Force *.running,results\regime\*.running -ErrorAction SilentlyContinue
+```
 
-Last observed (2026-09-01 03:45): HEAD `03bb527`; no container running; Wave C
-bias queue 53 candidates, 0 pending.
+One writer per output store. Heavy measurements run one at a time. A Docker
+CLI timeout is not evidence that no container exists. Inspect processes,
+locks, artifact timestamps, and the run log before deciding.
 
-## Current checkpoint
+## Last observed machine state
 
-- Wave B: COMPLETE and adjudicated. 26 terminal records, 13 `equivalent`,
-  13 `not_equivalent`. Eight rows are `admitted_E1`; the other five equivalents
-  were refused a static proof on file-specific evidence
-  (`EXPANSION_STATIC_PROOF_FINDINGS.md`).
-- Wave A: COMPLETE. `Fakebuy` admissible, two excluded on `FOUND` lookahead,
-  four terminal pending for reasons that cannot be removed without changing
-  what is tested.
-- Wave C: measurement AND both bias gates COMPLETE; see
-  `EXPANSION_WAVE_C_BIAS_RESULTS.md`. Of the 53 rows that produced trades,
-  **3 passed both gates** - `NowoIchimoku5mV2`, `ObeliskIM_v1_1`,
-  `simple_patterns`, all `spot_long`, coverage `PASS`, zero traps. 37 are
-  excluded on demonstrated bias, 7 were REFUSED by the recursive analyzer
-  rather than judged, and 6 still hold an `NA`.
-- The 13 Wave C zero-trade rows are settled. Six genuinely never trade over the
-  full window; two are defective in a way a one-month window hid (`Matrix`
-  never builds the `coef` column its entry rule reads; `zorkv7_0_0` asks for
-  100,000 quantiles from 10,000 samples); four were already measured. None adds
-  a usable strategy.
-- Wave D: not started. Rows look into the future; the owner has ruled out any
-  admission that rests on that, so Wave D can only ever reach E2 or exclusion.
-- E0 immutable at 67. E1 currently 67 + 8 = 75, not yet frozen.
-- E3 arms so far: trailing-stop sensitivity (`TRAILING_SENSITIVITY_FINDINGS.md`)
-  and the four evidenced timeframes (`ELIGIBILITY_TIMEFRAME_EVIDENCE.json`).
+Observed 2026-09-06T15:00:16+02:00 at HEAD `0d6f8d2` after the Model 1/2
+checkpoint commit:
 
-## Constants - do not rederive
+- 919 status rows: 608 `E1_expanded`, 219 excluded, 25 pending,
+  21 too-few-trades, 27 exclusion-unconfirmed, 18 not-a-strategy, and
+  1 convergence candidate.
+- Model 0 pooled manifest: 512 stored records. Within current E1:
+  328 measured, 182 failed, 1 timeout, 97 missing.
+- `docker ps` did not return within 30 seconds. Do not translate that into
+  no container running.
+- A Claude scratchpad process `run_missing_smoke.py` is active and was observed
+  running `Schism5`; it writes `PROFILE_SMOKE.json`. That file gained current
+  measurements during this Codex turn and belongs to Claude's live work.
+- `PROFILE_FULL_WINDOW_shardA.json`, `_shardB.json`, `_shardTF.json` and temp
+  files are untracked live artifacts. `full_backtest_manifest.json` and its
+  temp file are also dirty. Do not add, revert, merge, or delete them from the
+  Model 1/2 code commit.
 
-- Canonical timerange: `20200301-20260821`, all eight pairs pooled.
-- Smoke window: `20200301-20200401`. Frozen Stage 6: 67 eligible, 7 pending,
-  826 ineligible; coverage 864 PASS.
-- Frozen waves: A 7, B 82, C 230, D 124; candidate hash
-  `sha256_2374db291d23252c7d6208709e0702ccb37bd6659f66e29a85cccfaab110be04`.
-- Windows Application Control blocks compiled DLLs in local venvs; every run
-  uses the digest-recorded Docker runtime.
-- WSL is `memory=14GB`, `swap=4GB` (`~/.wslconfig`, backups `.bak-20260830`,
-  `.bak-20260831`, `.bak-20260831-2`). This was LOWERED from 20/24 GB on
-  2026-08-31 and must not be raised back. A 20+24 GB ceiling on a 31.5 GB host
-  let one backtest take all memory and then page to the SSD for hours; the host
-  became unusable and the run still made no progress. The new ceiling makes a
-  runaway fail fast instead, which is the outcome the protocol can record.
-- Memory pressure has two signatures. In-container `-9` is the kernel killing
-  one process and IS recorded as `resource_inconclusive`. Wrapper exit 125 with
-  `error waiting for container: unexpected EOF` is the VM dying; it writes no
-  record, so the row stays unclassified and consumes no recovery attempt.
-  Never classify a row from the second signature. The small swap exists to keep
-  failures in the first, recordable category; do not set `swap=0`.
-- `HarmonicDivergence` has spent its first attempt: 1800 s on ONE of eight
-  pairs without finishing, after reaching 18.5 GiB under the old ceiling. Its
-  single recovery attempt is deliberately UNUSED. Spend it only when nothing
-  better is queued; the cost is hours for one row that must still clear two
-  gates. Do not raise the memory ceiling for it.
-- Concurrency is limited by MEMORY, not by a file rule. The plan forbids two
-  benchmark writers (section 6); a large image build alongside a benchmark has
-  also caused OOM on this 31.5 GB host. Run heavy work strictly one at a time.
-- Untracked `_sabotage/BrokenOnPurpose.py` is a negative-control fixture. The
-  `loadscan`, `anatman` and `sync_repo` selftests fail independently of this work.
+## Current implementation checkpoint
 
-## The original sweep is reference, not evidence
+Committed as `0d6f8d2` (`Implement identity-bound regime-gated models`).
 
-The owner's ruling, 2026-09-01: results from the original author's environment
-cannot be carried over, because that environment did not establish the
-preconditions this audit requires. That is the reason the pre-checks are being
-redone at all. `LEDGER.csv`, `LEDGER.md`, `README.md` and `corpus/` are
-historical reference. Read them for provenance and for hints; never let one
-clear a row.
+- `regime/regime_engine.py` produces causal, one-day-lagged four-state data.
+- `regime/attribution.py` already attributes Model 0 trades to both four states
+  and six reporting phases. It now also retains source strategy and model
+  identity when reused for gated candidates.
+- `regime/gate_adapter.py` is entry-only. It now treats BTC state as global,
+  treats coin state as local, fails closed on missing local evidence, and
+  refuses omitted state lists instead of silently allowing every state.
+- `regime/gated_backtest.py` implements resumable Model 1 and Model 2 pooled
+  runners from an explicit candidate spec. It does not choose the spec.
+- `regime/gated_attribution.py` validates and attributes gated candidate
+  archives. Complete input is the default; `--allow-partial` is explicit.
+- `regime/model_compare.py` writes a non-ranked Model 0/1/2 long table and
+  side-by-side deltas only after identity, candidate, gate, archive, and
+  timerange checks. It does not implement the still-open exposure benchmark.
+- `PIPELINE.md` and `DOCUMENT_MAP.md` describe these boundaries.
 
-They cannot simply be moved to `old/`: 15 scripts read `LEDGER.csv` and 35 read
-`corpus/`, including `execution_profiles.py` and `regime_eligibility.py`. The
-separation that matters is of role, not of directory, and it is done in
-`strategy_status.py`, which now attaches an old card's exception as a
-"historical hint" and never as a reason.
+No production Model 1/2 run has been started. No candidate gate was selected.
+No performance row or ranking was inspected while writing this code.
 
-**The contamination is real and measured.** `regime_eligibility.classify`
-promotes a historical spot PASS to a current one when no native verdict exists:
+## Validation completed for this checkpoint
 
-    lookahead = native if native in ("PASS", "FOUND") else historical_lookahead
+```text
+python -m regime.gate_adapter                         PASS
+python -m regime.gated_backtest --selftest            PASS including resume
+python -m regime.gated_attribution --selftest         PASS
+python -m regime.model_compare --selftest             PASS
+python -m regime.attribution --selftest               PASS
+python -m compileall -q regime profile_smoke.py       PASS
+actual regime_daily load                              PASS 2364 BTC days / 18000 pair-days
+gated archive-reader integration on A9AV              PASS 13679 trades
+```
 
-Futures were handled carefully - a historical PASS is explicitly not inherited
-across execution modes - but the same caution was never applied across
-environments. Twenty-two of the frozen 67 and eight of the eleven admitted
-since carry a look-ahead verdict from the original sweep.
+The historical 5-profile ungated equivalence artifact remains 5/5 exact at
+`results/regime/gate_equivalence.json`; do not rerun it without a reason.
 
 ## Next concrete steps
 
-1. **After the convergence run finishes**, re-measure the 30 inherited gates:
-   `.\eligibility_evidence_gap_docker.ps1 --limit 30 --timeout 1800`. A FOUND
-   there is a real outcome and is reported as one; re-measuring only until the
-   answer is convenient would be worse than not re-measuring at all.
-2. Give `eligibility_expansion_adjudicate.py` a Wave C ruleset so the three
-   survivors can be admitted. It is driven by
-   `ELIGIBILITY_EXPANSION_PROOFS.json` and checks `trade_equivalence` and
-   `static_proof`; both exist only because a Wave B row needs an adapter to
-   obtain a recursive verdict at all. A Wave C row needs no adapter - it passed
-   the original gates natively. The Wave C ruleset asserts identity, native
-   measurement with trades, both gates `PASS`, coverage `PASS`, trap-free and
-   not `behavior_changed`: the original Stage 6 rule, unrelaxed. Rewriting the
-   frozen `REGIME_ELIGIBILITY.csv` is not an alternative.
-2. Decide the 7 refused rows with the EXISTING Wave B warm-up procedure. Six of
-   them (`BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB_RPB_TSL_BI`, `BB_RPB_TSL_BIV1`,
-   `MultiRSI`, `pmaxTest`) already hold a look-ahead `PASS`; `epretrace` is
-   `NA`. Applying a frozen rule to newly matching rows is what section 6
-   requires when an analyzer limit is overcome. A second, softer route is not.
-   Note that four of the six are variants of one strategy.
-3. Rebuild `strategy-audit-runtime-rl:2026.7` with torch and retest the five
-   freqAI rows. Their common blocker is `No module named 'datasieve'`.
-4. Decide the 48 timeframe-less rows. Four now have author evidence; the other
-   44 would need an invented parameter, so they belong in a labelled E3 arm.
-5. Build the family manifest (`family_id` is empty for all 900), freeze E1,
-   rerun pooled Stage 7 for newly admitted profiles, then the nine Stage 9
-   choices.
+1. Let the active Claude missing-smoke queue finish. Its result store and any
+   resulting status regeneration are separate from this checkpoint.
+2. Re-read Git state after it finishes. Keep all live measurement artifacts
+   separate from the already committed Model 1/2 checkpoint `0d6f8d2`.
+3. Complete Model 0 coverage and adjudicate resource-inconclusive failures
+   under the existing attempt rules. Do not run a second Model 0 writer.
+4. Resolve the eight OPEN preregistration choices before producing a discovery
+   candidate spec or any ranked output. At minimum the owner must decide the
+   discovery/validation split, minimum trade/episode evidence, and the
+   exposure-matched benchmark construction.
+5. Once those choices are frozen, write and hash one explicit candidate spec,
+   run the 5-10 strategy pilot, then Model 1, Model 2, gated attribution, and
+   the non-ranked comparison in the order documented in `PIPELINE.md`.
 
 ## Do not redo
 
-- Stages 1-8, the 19 native imports, the original 67-profile attribution.
-- Any Wave B equivalence measurement; all 26 rows are terminal and committed.
-- All Wave B recursive/recovery runs and all 26 lookahead runs.
-- The Wave C smoke queue: all 218 rows have a terminal result.
-- The Wave C bias queue: all 53 rows carry a verdict. The queue refuses to
-  re-decide a stored PASS/FOUND and that is correct.
-- Rows without a second attempt keep their legacy inline shape on purpose; read
-  every record through `attempts_of`/`terminal_state`.
-- No new E1 profiles in Stage 7 until membership is frozen.
+- Corpus intake and the completed eligibility expansion waves.
+- Warm-up ladders, native bias diagnostics, or admission decisions already
+  represented in current stores.
+- The 5-profile ungated adapter equivalence suite.
+- Regime feature generation unless its hashed candle inputs or frozen formula
+  change.
+- Any measured Model 0 identity-matching archive. The runner is resumable.
+- Any live Claude runner or its output store.
+- Do not generate a candidate spec from observed strategy performance.
+- Do not rank while any required preregistration choice is OPEN.
 
-## Blockers / decisions needed
+## Constants - do not rederive
 
-- Owner decision open on the 44 timeframe-less rows (step 4).
-- Nine Stage 9 choices remain open; never infer them from generated data.
+- Spot analysis window: `20200401-20260821`.
+- Futures analysis window: `20200301-20260821`.
+- Eight-pair pooled canonical universe; pairwise shards are supporting trade
+  evidence and do not replace pooled shared-capital mechanics.
+- Primary state model: Wilder DMI/ADX(14), causal one-day lag, four states.
+- Six reporting phases and fixed volatility thresholds are frozen in the
+  2026-09-05 preregistration amendment; they do not replace the four states.
+- Model 0 is original entries/exits. Model 1 gates entries on BTC state.
+  Model 2 adds pair-local coin state. Original exits remain authoritative.
+- Missing gate evidence fails closed.
+- WSL ceiling remains 14 GB memory plus 4 GB swap. Do not raise it.
+- In-container exit `-9` is `resource_inconclusive`, not strategy failure.
+  Docker wrapper exit 125 or an unresponsive VM is not a completed attempt.
+- Results are identity-bound, atomic, and resumable. Every new runner records
+  its invocation and non-command environment/config provenance.
+- The prior long Wave A-C handoff remains recoverable in Git before commit
+  `548be09`; current artifacts and this file supersede its stale counts.

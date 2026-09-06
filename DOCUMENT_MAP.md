@@ -58,7 +58,7 @@ rule is the most likely way to corrupt this study.
   see the 2026-09-02 amendment in `REGIME_PREREGISTRATION.md`.
 - `PIPELINE.md` - which program runs in which order, and exactly which
   `.csv`/`.json`/`.md` each one reads and writes, from corpus intake through
-  Model 0 (running) and the still-unbuilt Model 1/2 gated variants.
+  Model 0 (running) and the implemented-but-not-yet-run Model 1/2 variants.
   Hand-maintained, not regenerated - read it when the question is "what do I
   run next", not "what is currently true" (that is every file above).
 - `graphify-out/GRAPH_REPORT.md` / `graph.html` - a navigable knowledge graph

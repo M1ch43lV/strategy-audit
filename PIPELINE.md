@@ -142,16 +142,20 @@ DMI(14)/ADX(14)) plus die Rohdaten, aus denen die Sechs-Phasen-Erweiterung
 (`bull_trend`/`bear_trend`/`range_quiet`/`range_choppy`/`transition`/
 `high_vol_shock`) in Stufe 9 abgeleitet wird.
 
-## Stufe 9 — Attribution (pro Strategie, pro Regime/Phase)
+## Stufe 9 — Attribution (pro Strategie/Kandidat, pro Regime/Phase)
 
 | Programm | Liest | Schreibt |
 |---|---|---|
 | `regime/attribution.py` | `results/regime/regime_daily.csv`, `full_backtest_manifest.json`, `STRATEGY_STATUS.csv` (E1-Kohorte) | `results/regime/trade_regime_attribution.csv`, `strategy_btc_regime_summary.csv`, `strategy_regime_summary.csv`, `strategy_episode_summary.csv`, `strategy_phase_summary.csv`, `strategy_phase_episode_summary.csv`, `attribution_manifest.json` |
+| `regime/gated_attribution.py` | `regime_daily.csv`, ein vollständiges `model1_backtest_manifest.json` oder `model2_backtest_manifest.json`, aktuelle E1-Identitäten | je Modell in `results/regime/modelN_attribution/`: Trade-Attribution, fünf `candidate_*_summary.csv` und `attribution_manifest.json` |
 
 Die beiden `*_phase_*`-Dateien (Sechs-Phasen-Modell, Nachtrag 2026-09-05)
 existieren als Code bereits, wurden aber noch nicht produktiv durchlaufen —
 sie brauchen `regime/full_backtest.py`s vollständige Ergebnisse (Stufe 7),
 die derzeit noch in den drei laufenden Hintergrund-Containern entstehen.
+Die gegatete Attribution verweigert standardmäßig einen unvollständigen
+Kandidatensatz; `--allow-partial` erzeugt nur einen ausdrücklich als partiell
+markierten technischen Zwischenstand und ist keine Ranking-Freigabe.
 
 ## Stufe 10 — Hypothese (unabhängig, vor jeder Auswertung einzufrieren)
 
@@ -176,24 +180,67 @@ Nach `REGIME_AUDIT_PLAN.md` §15, drei Vergleichsebenen pro Strategie:
   zu bauende Stufe. **Korrektur gegenüber der Vorversion dieser Datei:** hier
   stand fälschlich "kein Skript existiert" für die gesamte Stufe 11 — das
   galt nur für Modell 1/2 und den Vergleich selbst, nicht für Modell 0.
-- **Modell 1 — noch nicht implementiert.** Dieselben Entries, gefiltert auf
-  ein gewähltes BTC-Regime (aus Stufe 8). Braucht einen gegateten
-  Backtest-Lauf; `regime/full_backtest.py` bietet in seiner aktuellen Form
-  nur `measurement_scope=canonical_pooled_native_pair_universe` an, keine
-  Gate-Option.
-- **Modell 2 — noch nicht implementiert.** Zusätzlich gefiltert auf den
-  Eigenzustand des jeweils gehandelten Coins. Dieselbe fehlende
-  Gate-Infrastruktur wie Modell 1.
-- **Der Vergleich der drei Ebenen selbst — noch nicht implementiert.** Kein
-  Skript liest bisher alle drei nebeneinander und beantwortet "hilft das
-  Gating". Würde konsumieren: `strategy_phase_summary.csv`/
-  `strategy_phase_episode_summary.csv` (Stufe 9), `MARKET_PHASE_HYPOTHESIS.
-  json` (Stufe 10), `STRATEGY_STATUS.csv`s E1-Kohorte, und die Ergebnisse
-  aller drei Modelle.
+- **Modell 1 — implementiert, noch nicht produktiv gelaufen.**
+  `regime/gated_backtest.py --model model1` filtert Entries auf die im
+  Kandidaten-Spec ausdrücklich genannten BTC-Zustände. Globale BTC-Zustände
+  bleiben auch dann verfügbar, wenn für einen delisteten Coin keine lokale
+  Tageszeile mehr existiert.
+- **Modell 2 — implementiert, noch nicht produktiv gelaufen.**
+  `regime/gated_backtest.py --model model2` verlangt zusätzlich ausdrücklich
+  genannte Coin-Zustände. Fehlt der lokale Zustand, schließt das Gate; Exits
+  bleiben in beiden Modellen vollständig bei der Originalstrategie.
+- **Der technische Vergleich der drei Ebenen ist implementiert, noch nicht
+  produktiv gelaufen.** `regime/model_compare.py` prüft identische Kandidaten,
+  BTC-Gates, Zeitfenster, Identitäten und Archive, bevor es die drei
+  Laufmetriken nebeneinanderstellt. Es schreibt `model_metrics_long.csv`,
+  `model_comparison.csv` und `model_comparison_manifest.json`, sortiert oder
+  rangiert aber keine Strategie.
 
-Modell 1/2 plus der Vergleich sind der nächste offene Baustein, nicht nur
-eine Auswertung bestehender Dateien. Acht offene Preregistration-Fragen
-(siehe `DOCUMENT_MAP.md`) stehen einer Rangfolge ohnehin noch entgegen.
+Der Runner schreibt nach jedem Kandidaten atomar, sperrt einen Ausgabestore
+gegen einen zweiten Writer und bindet jeden Lauf an Quell-/Config-Identität,
+Regime-Datenhash, Gate-Regel, Kandidaten-Spec, Timerange und Analyse-Rolle.
+Mehrere Gatevarianten derselben Strategie erhalten getrennte Archive.
+
+Das Kandidaten-Spec wird nicht aus Performance-Ergebnissen erzeugt. Es hat
+Schema-Version 1 und enthält:
+
+```json
+{
+  "schema_version": 1,
+  "candidate_set_id": "predeclared-id",
+  "analysis_role": "PILOT",
+  "timerange": {
+    "spot": "YYYYMMDD-YYYYMMDD",
+    "futures": "YYYYMMDD-YYYYMMDD"
+  },
+  "candidates": [{
+    "candidate_id": "stable-candidate-id",
+    "strategy_id": "canonical-strategy-id",
+    "long_btc_states": ["BULL"],
+    "short_btc_states": ["BEAR"],
+    "long_coin_states": ["BULL"],
+    "short_coin_states": ["BEAR"]
+  }]
+}
+```
+
+Die Coin-Felder sind für Modell 2 Pflicht. Auch leere Listen müssen explizit
+stehen; ein vergessenes Feld darf nie stillschweigend alle Zustände erlauben.
+Die beiden Aufrufe gegen dasselbe eingefrorene Spec sind:
+
+```bash
+python -m regime.gated_backtest --model model1 --candidate-spec <spec.json>
+python -m regime.gated_backtest --model model2 --candidate-spec <spec.json>
+python -m regime.gated_attribution --model model1
+python -m regime.gated_attribution --model model2
+python -m regime.model_compare
+```
+
+Die noch offene Auswertungsstufe ist nicht das mechanische Nebeneinanderstellen,
+sondern die präregistrierte Bewertung: Exposure-Match, Spezialisten-Schwellen,
+Discovery/Validation und Portfolioregel. Acht offene Preregistration-Fragen
+(siehe `DOCUMENT_MAP.md`) verhindern weiterhin eine Rangfolge und vor allem
+das Erzeugen eines ergebnisgetriebenen Kandidaten-Specs.
 
 ## Wo Docker statt nativem Python steht
 

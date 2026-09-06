@@ -198,12 +198,13 @@ def attribute(archives: list[dict], daily_path: Path = DAILY) -> pd.DataFrame:
     rows = []
     seen_trades = set()
     for archive in archives:
+        analysis_id = archive.get("analysis_id", archive["strategy_id"])
         for ordinal, trade in enumerate(archive["trades"]):
             opened = pd.to_datetime(trade["open_date"], utc=True)
             if not (START <= opened < END):
                 continue
             semantic_key = (
-                archive["strategy_id"], trade.get("pair"), trade.get("open_timestamp"),
+                analysis_id, trade.get("pair"), trade.get("open_timestamp"),
                 trade.get("close_timestamp"), bool(trade.get("is_short", False)),
                 trade.get("open_rate"), trade.get("close_rate"), trade.get("profit_abs"),
             )
@@ -219,7 +220,10 @@ def attribute(archives: list[dict], daily_path: Path = DAILY) -> pd.DataFrame:
             if btc_state is None and btc_key in states.index:
                 btc_state = states.loc[btc_key]
             row = {
-                "strategy_id": archive["strategy_id"], "pair": trade["pair"],
+                "strategy_id": analysis_id,
+                "source_strategy_id": archive["strategy_id"],
+                "model": archive.get("model", "model0"),
+                "pair": trade["pair"],
                 "trade_ordinal": ordinal, "open_date": opened,
                 "close_date": pd.to_datetime(trade.get("close_date"), utc=True),
                 "is_short": bool(trade.get("is_short", False)),
