@@ -47,7 +47,25 @@ CLASS_RE = re.compile(r"^class\s+(\w+)\s*\(([^)]*)\)", re.M)
 # Checked 2026-09-05. Add to this list rather than replacing it, so a repo
 # already found to add nothing (paulcpk, joaorafaelm) is not re-fetched by
 # accident next time.
+#
+# 2026-09-06 additions: named search for futures/short-specialised strategies
+# (`can_short = True`, "short strategy", "long short"), since 855 of 919
+# corpus rows are long-only. `LazyPigPig/freqtrade-short-strategy` is an
+# empty repo (size 0, README only) and `LazyPigPig/freqtrade-grid` is a
+# freqtrade framework fork, not a strategy collection - both kept in this
+# list so neither is re-fetched believing it might hold something.
 CANDIDATES = [
+    "hippocritical/delist_scraper",
+    "Netanelshoshan/freqAI-LSTM",
+    "AlexCryptoKing/freqailstm",
+    "djienne/YOUTUBE_STRATEGIES_FREQTRADE",
+    "mmartel86/freqtrade-setup",
+    "thinkong/freqtradestrategies",
+    "kemplail/freqtrade-stuff",
+    "hamidreza07/freqai-strategy",
+    "webclinic017/strategies-freqtrade-",
+    "LazyPigPig/freqtrade-short-strategy",
+    "LazyPigPig/freqtrade-grid",
     "paulcpk/freqtrade-strategies-that-work",
     "brookmiles/freqtrade-stuff",
     "titouannwtt/freqtrade-ultimate",

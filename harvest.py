@@ -18,6 +18,7 @@ from __future__ import print_function
 import io
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -51,6 +52,19 @@ def raw(full, branch, path):
     return r.stdout if r.returncode == 0 else None
 
 
+# Windows forbids these in a path segment (POSIX allows all of them, so a
+# repo tree fetched via the GitHub API - itself POSIX-path-shaped - can
+# contain any of them). `hamidreza07/freqai-strategy` has a literal `*` in
+# `startegy test/5/*ADXDM/`, which crashed `os.makedirs` here with WinError
+# 123 partway through a ten-repo harvest, leaving three repos unfetched.
+_WIN_ILLEGAL = re.compile(r'[<>:"|?*]')
+
+
+def _win_safe_segment(segment):
+    cleaned = _WIN_ILLEGAL.sub("_", segment)
+    return cleaned.rstrip(" .") or "_"
+
+
 def harvest(full):
     d = full.replace("/", "_", 1)
     out_dir = os.path.join(REPOS, d)
@@ -69,7 +83,9 @@ def harvest(full):
         body = raw(full, br, t["path"])
         if not body or b"IStrategy" not in body:
             continue
-        dst = os.path.join(out_dir, t["path"].replace("/", os.sep))
+        safe_path = os.sep.join(_win_safe_segment(part)
+                                for part in t["path"].split("/"))
+        dst = os.path.join(out_dir, safe_path)
         os.makedirs(os.path.dirname(dst), exist_ok=True)
         with open(dst, "wb") as fh:
             fh.write(body)
