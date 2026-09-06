@@ -132,6 +132,26 @@ liest es für `observed_trades`/`trade_evidence`). Die gepoolten
 Backtest-Ergebnisse aus `regime/full_backtest.py` fließen **nicht** in die
 Zulassung zurück — sie sind die Datengrundlage für Stufe 9.
 
+**Missverständnis, das sich anbietet: "Einzelpaar" heißt nicht "jedes Paar
+vollständig gemessen".** `profile_full_window.py` ist eine Ja/Nein-Schranke,
+keine Performance-Messung: Sie beantwortet nur "handelt die Strategie über
+das ganze Fenster überhaupt, bei mindestens einem Paar?" Sobald EIN Paar
+Trades produziert, ist die Frage beantwortet und der Rest der Paarliste
+wird für diese Strategie nicht mehr angefasst (Kommentar im Skriptkopf:
+"One positive pair is sufficient to resolve a zero-trade smoke as
+positive... Sharding does not replace pooled performance backtests"). Nur
+wenn ALLE konfigurierten Paare null Trades liefern, muss wirklich jedes
+einzelne durchgelaufen sein, um "0 Trades" zu bestätigen — deshalb zeigen
+`PROFILE_FULL_WINDOW_shardA.json`/`_shardB.json` bei vielen Strategien
+weniger abgeschlossene Paar-Messungen als konfigurierte Paare, obwohl die
+Strategie selbst schon als `measured` gilt.
+
+Die tatsächliche Vollständigkeit — jedes Paar, über das komplette
+6,5-Jahres-Fenster, ohne Abbruch — liefert ausschließlich
+`regime/full_backtest.py` (Zeile darüber): der ruft freqtrade ohne
+`--pairs`-Filter auf, also mit der kompletten Paarliste gemeinsam in einem
+einzigen Backtest, und bricht nie früh ab.
+
 ## Stufe 8 — Marktregime-Klassifikation
 
 | Programm | Liest | Schreibt |
