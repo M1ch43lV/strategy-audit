@@ -168,7 +168,15 @@ DEFAULT_DRIFT_THRESHOLD = 0.01
 # The analyzer prints one column per tested startup value, numerically sorted,
 # and labels the strategy's own value "(from strategy)". Its position moves with
 # the value, so the column must be located by that label rather than by index.
-_HEADER = re.compile(r"┃\s*Indicators\s*┃(.+?)┃\s*$", re.M)
+#
+# `rich` renders this table with heavy box-drawing characters (┃/│) when it
+# detects a capable console, and silently falls back to plain ASCII (|) when
+# it does not - observed running natively on Windows, never through the Linux
+# Docker image, where the console it inherits apparently always looks capable
+# enough. Both must be read: ten rows straight came back "no drift table" here
+# only because every one of them used the ASCII fallback and the header/row
+# match was written for the Unicode form alone.
+_HEADER = re.compile(r"[┃|]\s*Indicators\s*[┃|](.+?)[┃|]\s*$", re.M)
 _FROM_STRATEGY = re.compile(r"\(from strategy\)")
 
 
@@ -213,8 +221,12 @@ def recursive_table(output):
     header = _HEADER.search(output)
     if not header:
         return [], {}
+    # Whichever delimiter the header matched on is the one the whole table
+    # uses - `rich` does not mix styles within one render.
+    delim = "┃" if "┃" in header.group(0) else "|"
+    row_delim = "│" if delim == "┃" else "|"
     columns = []
-    for cell in header.group(1).split("┃"):
+    for cell in header.group(1).split(delim):
         cell = cell.strip()
         match = re.match(r"(\d+)", cell)
         if not match:
@@ -222,9 +234,9 @@ def recursive_table(output):
         columns.append((int(match.group(1)), bool(_FROM_STRATEGY.search(cell))))
     rows = {}
     for line in output.splitlines():
-        if not line.startswith("│"):
+        if not line.startswith(row_delim):
             continue
-        cells = [part.strip() for part in line.strip("│").split("│")]
+        cells = [part.strip() for part in line.strip(row_delim).split(row_delim)]
         if len(cells) != len(columns) + 1:
             continue
         name = cells[0]
@@ -236,10 +248,12 @@ def recursive_table(output):
         # rows, all at or near 0.000%, thrown away as "inconclusive" because
         # every name carried a paren or a hyphen. What still needs excluding
         # is the box-drawing border rows and the header/separator lines -
-        # already handled above, since only genuine `│...│` data rows reach
-        # here at all. So the bar is simply: does this look like a name and
-        # not a blank cell.
-        if not name or not re.search(r"[A-Za-z0-9]", name):
+        # mostly handled above, since only genuine data rows share their
+        # delimiter's column count. The ASCII fallback's border row is `+`-
+        # delimited rather than `|`-delimited internally, so it never matches
+        # the column count and is dropped there; its own header row shares
+        # `|` with the data rows, though, and needs naming explicitly.
+        if not name or not re.search(r"[A-Za-z0-9]", name) or name == "Indicators":
             continue
         rows[name] = [_cell(part) for part in cells[1:]]
     return columns, rows

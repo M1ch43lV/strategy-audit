@@ -30,6 +30,13 @@ import sys
 ROOT = os.path.dirname(os.path.abspath(__file__))
 BS_SEP = chr(92)
 ELIGIBILITY = os.path.join(ROOT, "REGIME_ELIGIBILITY.csv")
+# The frozen baseline's own coverage_status was copied in from a run of this
+# file at freeze time and never refreshed; every row added by a later wave
+# has no entry there at all. This is regenerated freely (a filesystem check
+# of already-downloaded candle files, no backtest) and read here in
+# preference to the baseline for exactly that reason - confirmed by a full
+# re-run reproducing all 900 frozen values unchanged before this took over.
+COVERAGE = os.path.join(ROOT, "REGIME_COVERAGE.csv")
 PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
 CANDIDATES = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_CANDIDATES.csv")
 ADJUDICATION = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_ADJUDICATION.csv")
@@ -104,6 +111,16 @@ LOOKAHEAD_STORES = (
     os.path.join(ROOT, "ELIGIBILITY_LOOKAHEAD_BACKFILL.json"),
     os.path.join(ROOT, "ELIGIBILITY_EVIDENCE_GAP.json"),
 )
+# Hand-reviewed exceptions to a lookahead=FOUND verdict: rows where
+# freqtrade's own lookahead-analysis flagged an intermediate column but its
+# entry/exit signal check found nothing, and a source read confirms why.
+# Bound to canonical_sha256 so an upstream edit re-opens the question.
+LOOKAHEAD_INDICATOR_REVIEW = os.path.join(ROOT, "LOOKAHEAD_INDICATOR_REVIEW.json")
+# Wherever a gate downstream asks "is this row's lookahead evidence current
+# and trustworthy", a reviewed exception counts exactly as a native run does
+# - the difference between the two is provenance, which lookahead_evidence
+# itself keeps visible, not how much either can be trusted.
+NATIVE_LOOKAHEAD_EVIDENCE = ("native", "reviewed_indicator_only")
 OUTPUT = os.path.join(ROOT, "STRATEGY_STATUS.csv")
 REPORT = os.path.join(ROOT, "STRATEGY_STATUS.md")
 
@@ -114,7 +131,8 @@ FIELDS = [
     "cohort", "measured",
     "observed_trades", "trade_evidence", "test_duration_s",
     "test_duration_evidence", "lookahead", "lookahead_evidence",
-    "recursive", "recursive_evidence", "coverage_status", "traps_n", "artifact_role",
+    "recursive", "recursive_evidence", "coverage_status", "coverage_evidence",
+    "traps_n", "artifact_role",
     "baseline_status", "primary_reason", "exclusion_basis",
     "repair_family", "repair_verdict", "repair_settings", "required_image",
     "gate_notes", "runtime_failure", "evidence_gap",
@@ -599,6 +617,7 @@ def freqai_arm():
 
 def rows():
     baseline = {r["strategy_id"]: r for r in _csv(ELIGIBILITY)}
+    coverage = {r["strategy_id"]: r for r in _csv(COVERAGE)}
     profiles = {r["strategy_id"]: r for r in _csv(PROFILES)}
     waves = {r["strategy_id"]: r for r in _csv(CANDIDATES)}
     admitted = {r["strategy_id"] for r in _csv(ADJUDICATION)
@@ -692,6 +711,7 @@ def rows():
     # A native re-measurement outranks whatever PROFILE_BIAS or the baseline
     # holds: it is the same gate, measured later, from this implementation.
     remeasured = {}
+    remeasured_sha = {}
     # Separately: every row a gate of ours has been run against, verdict or
     # not. An NA is not a verdict, but it is emphatically not "never measured
     # here" either - the run happened, it produced nothing, and the reason is
@@ -703,8 +723,22 @@ def rows():
             gate = record.get("lookahead") or {}
             if gate.get("status") in ("PASS", "FOUND"):
                 remeasured[name] = gate
+                remeasured_sha[name] = record.get("canonical_sha256")
             elif gate.get("status"):
                 attempted_gate.setdefault(name, gate)
+    # freqtrade's lookahead-analysis flags `has_bias=Yes` the moment ANY
+    # dataframe column differs between a short and a long data window - that
+    # is also what a correctly-built lagging/leading Ichimoku span looks
+    # like by construction (a raw intermediate value briefly holds a real
+    # future close before the strategy re-aligns or never reads it). Its own
+    # signal-level check is stronger evidence: entries/exits actually
+    # replayed against 20 sampled trades. Where that check found zero biased
+    # entries and zero biased exits, and a strategy's own code has been read
+    # by hand to confirm the flagged column never reaches populate_entry/
+    # exit_trend un-neutralised, LOOKAHEAD_INDICATOR_REVIEW.json records the
+    # finding bound to the file's hash - so a later edit of the strategy
+    # invalidates the review instead of silently keeping it.
+    lookahead_review = _json(LOOKAHEAD_INDICATOR_REVIEW, key="reviewed")
 
     out = []
     for strategy in sorted(profiles):
@@ -772,6 +806,21 @@ def rows():
             else (base.get("lookahead_evidence_source") or "missing"))
         if not lookahead and tried:
             lookahead = tried.get("status") or ""
+        # A reviewed exception: the indicator freqtrade flagged never
+        # decided this row's actual entries/exits (see the note where
+        # LOOKAHEAD_INDICATOR_REVIEW is loaded), and the file has not
+        # changed since a human read confirmed why.
+        review = lookahead_review.get(strategy)
+        review_note = ""
+        if lookahead == "FOUND" and review:
+            active_sha = (remeasured_sha.get(strategy) if fresh is not None
+                          else diagnostics.get("canonical_sha256"))
+            if active_sha and active_sha == review.get("canonical_sha256"):
+                lookahead = "PASS"
+                lookahead_evidence = "reviewed_indicator_only"
+                review_note = ("lookahead reviewed: flagged column not "
+                               "decisive (%s, see LOOKAHEAD_INDICATOR_REVIEW.json)"
+                               % review.get("pattern", ""))
         recursive = ((diagnostics.get("recursive") or {}).get("status")
                      or base.get("recursive") or "")
         # Where a verdict comes from decides whether it may be shown as one.
@@ -785,6 +834,23 @@ def rows():
             recursive_evidence = "baseline"
         else:
             recursive_evidence = base.get("recursive_evidence_source") or "missing"
+        # Same precedence, for the same reason: REGIME_COVERAGE.csv is
+        # regenerated freely and now covers every row EXECUTION_PROFILES.csv
+        # does, so it is read first; the frozen baseline is the fallback for
+        # a row somehow missing from a regeneration, not the normal path.
+        coverage_row = coverage.get(strategy)
+        if coverage_row:
+            coverage_status = coverage_row.get("coverage_status", "")
+            coverage_evidence = "native"
+            coverage_detail = coverage_row.get("coverage_evidence", "")
+        elif base.get("coverage_status"):
+            coverage_status = base.get("coverage_status", "")
+            coverage_evidence = "baseline"
+            coverage_detail = base.get("coverage_evidence", "")
+        else:
+            coverage_status = ""
+            coverage_evidence = "missing"
+            coverage_detail = ""
         # A FOUND inherited from a run that never got as far as measuring is
         # not a finding. `refused_no_warmup` records that the analyzer declined
         # the strategy because it declared no warm-up - the same non-finding
@@ -865,7 +931,7 @@ def rows():
         elif strategy in admitted:
             cohort = "E1_expanded"
         elif settled.get("state") == "converged" and lookahead == "PASS" \
-                and lookahead_evidence == "native":
+                and lookahead_evidence in NATIVE_LOOKAHEAD_EVIDENCE:
             # Convergence answers one question: is there a warm-up at which no
             # indicator drifts. It says nothing about whether the strategy
             # reads data it could not have had, and a look-ahead finding is
@@ -945,6 +1011,14 @@ def rows():
             # Evidence gathered since the freeze outranks the frozen reason.
             if lookahead == "FOUND":
                 reasons.add("lookahead_found")
+            else:
+                # A frozen baseline can carry "lookahead_found" from a sweep
+                # this table has since superseded - a native PASS (or a
+                # reviewed exception, see LOOKAHEAD_INDICATOR_REVIEW.json)
+                # must retract it the same way a settled ladder retracts
+                # recursive_bias_found below, or the row stays excluded on a
+                # finding nothing here still supports.
+                reasons.discard("lookahead_found")
             if recursive == "FOUND":
                 reasons.add("recursive_bias_found")
             if recursive == "WARMUP_NEEDED":
@@ -1198,7 +1272,7 @@ def rows():
                 and not repair.get("verdict"):
             repair["verdict"] = (
                 "repaired"
-                if lookahead_evidence == "native"
+                if lookahead_evidence in NATIVE_LOOKAHEAD_EVIDENCE
                 and lookahead in ("PASS", "FOUND") else "to_be_fixed")
         if strategy in refused_repair:
             repair["verdict"] = "refuse_repair"
@@ -1322,7 +1396,7 @@ def rows():
             # Not only a borrowed verdict. A gate of ours that ran and
             # returned nothing - a timeout, an exception - has produced
             # no verdict either, and the row cannot rest on it.
-            if lookahead_evidence != "native" \
+            if lookahead_evidence not in NATIVE_LOOKAHEAD_EVIDENCE \
                     or lookahead not in ("PASS", "FOUND"):
                 open_work.append("lookahead_remeasure_pending")
             if reason == "no_trades_in_full_measurement" \
@@ -1392,7 +1466,8 @@ def rows():
             "lookahead_evidence": lookahead_evidence,
             "recursive": recursive,
             "recursive_evidence": recursive_evidence,
-            "coverage_status": base.get("coverage_status", ""),
+            "coverage_status": coverage_status,
+            "coverage_evidence": coverage_evidence,
             "traps_n": base.get("traps_n", ""),
             "artifact_role": profile.get("artifact_role", ""),
             "baseline_status": base.get("eligibility_status", ""),
@@ -1413,7 +1488,10 @@ def rows():
                 # 2026-09-03. Its own C1/C2 measurement now decides it like
                 # every other row.
                 ("originally in the frozen E0 baseline, retired 2026-09-03"
-                 if base.get("regime_eligible") == "true" else "")) if part),
+                 if base.get("regime_eligible") == "true" else ""),
+                review_note,
+                ("coverage %s: %s" % (coverage_status or "absent", coverage_detail[:110])
+                 if coverage_status != "PASS" else "")) if part),
             "repair_settings": "; ".join(
                 part for part in (repair_settings(class1_entry, repair_run),
                                   repair.get("settings_extra", "")) if part),
@@ -2194,7 +2272,7 @@ def selftest():
             # original sweep is an absence claim from an environment that could
             # not measure, and cannot carry a row towards admission.
             assert row["lookahead"] == "PASS" \
-                and row["lookahead_evidence"] == "native", \
+                and row["lookahead_evidence"] in NATIVE_LOOKAHEAD_EVIDENCE, \
                 (row["strategy_id"], row["lookahead"], row["lookahead_evidence"])
         # A row the ladder settled must not still carry the superseded verdict.
         if row["cohort"] == "convergence_candidate":
@@ -2234,17 +2312,51 @@ def selftest():
 
     # Every native re-measurement must be visible in the table. A verdict that
     # exists in a store this generator does not read is worse than no verdict:
-    # the table looks current and is not.
+    # the table looks current and is not. A row with a current (sha-matched)
+    # entry in LOOKAHEAD_INDICATOR_REVIEW.json is the one deliberate
+    # exception: its FOUND was reviewed and demoted to PASS by hand, so its
+    # table verdict is expected to differ from the raw store.
     fresh_store = {}
+    fresh_store_sha = {}
     for store in LOOKAHEAD_STORES:
         for name, record in _json(store).items():
             gate = record.get("lookahead") or {}
             if gate.get("status") in ("PASS", "FOUND"):
                 fresh_store[name] = gate["status"]
+                fresh_store_sha[name] = record.get("canonical_sha256")
     by_id = {r["strategy_id"]: r for r in data}
+    lookahead_review = _json(LOOKAHEAD_INDICATOR_REVIEW, key="reviewed")
+    reviewed_seen = set()
     for name, status in fresh_store.items():
-        assert by_id[name]["lookahead"] == status, (name, status)
-        assert by_id[name]["lookahead_evidence"] == "native", name
+        review = lookahead_review.get(name)
+        reviewed = (status == "FOUND" and review
+                    and review.get("canonical_sha256") == fresh_store_sha.get(name))
+        if reviewed:
+            reviewed_seen.add(name)
+            assert by_id[name]["lookahead"] == "PASS", (name, status)
+            assert by_id[name]["lookahead_evidence"] == "reviewed_indicator_only", name
+        else:
+            assert by_id[name]["lookahead"] == status, (name, status)
+            assert by_id[name]["lookahead_evidence"] == "native", name
+
+    # The check above only walks LOOKAHEAD_STORES; PROFILE_BIAS.json (the
+    # original corpus-wide sweep) is the other source `rows()` reads via
+    # `diagnostics`, at lower precedence. Re-check every reviewed row against
+    # whichever of the two actually produced its FOUND, so a review whose sha
+    # no longer matches anything currently FOUND - stale, or never matched -
+    # is caught instead of silently, permanently trusted.
+    combined_sha = dict(fresh_store_sha)
+    combined_status = dict(fresh_store)
+    for name, record in _json(BIAS).items():
+        gate = record.get("lookahead") or {}
+        if gate.get("status") in ("PASS", "FOUND") and name not in combined_status:
+            combined_status[name] = gate["status"]
+            combined_sha[name] = record.get("canonical_sha256")
+    for name, review in lookahead_review.items():
+        assert combined_status.get(name) == "FOUND" \
+            and combined_sha.get(name) == review.get("canonical_sha256"), name
+        assert by_id[name]["lookahead"] == "PASS", name
+        assert by_id[name]["lookahead_evidence"] == "reviewed_indicator_only", name
 
     # The old ledger is reference material, not evidence. It records what the
     # original author's sweep did in an environment that did not establish this

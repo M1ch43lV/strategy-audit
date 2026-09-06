@@ -51,10 +51,24 @@ rule is the most likely way to corrupt this study.
   difference is the expansion.
 - `ELIGIBILITY_EXPANSION_ADJUDICATION.md` - the profiles admitted since, by
   route. **Read with the file above or you will quote a wrong number:**
-  `cohort=E1_expanded` in `STRATEGY_STATUS.csv` **is currently 579**, plus 8
-  more sitting in `convergence_candidate` - cleared both bias gates, still
-  owed the paired full-window backtest before admission. Both numbers move
-  with every wave; get them from the CSV, not from prose.
+  `cohort=E1_expanded` in `STRATEGY_STATUS.csv` **is currently 608**, plus 1
+  more sitting in `convergence_candidate` (blocked on a plain "never trades",
+  not a gate). Both numbers move with every wave; get them from the CSV, not
+  from prose. Admission no longer waits on the paired full-window backtest -
+  see the 2026-09-02 amendment in `REGIME_PREREGISTRATION.md`.
+- `PIPELINE.md` - which program runs in which order, and exactly which
+  `.csv`/`.json`/`.md` each one reads and writes, from corpus intake through
+  Model 0 (running) and the still-unbuilt Model 1/2 gated variants.
+  Hand-maintained, not regenerated - read it when the question is "what do I
+  run next", not "what is currently true" (that is every file above).
+- `graphify-out/GRAPH_REPORT.md` / `graph.html` - a navigable knowledge graph
+  over the pipeline scripts and this tier's own `.md` files (not the corpus
+  under `repos/`), built 2026-09-06: 1273 nodes, 2136 edges, 167 communities.
+  Neither file is committed (`.gitignore`) and neither regenerates itself -
+  it is a snapshot, useful for "where do I look" navigation, never a
+  substitute for reading the current file when a decision depends on the
+  answer. Rebuild with `/graphify graphify-scope --update` after any of the
+  scanned scripts or docs change materially.
 - `EXECUTION_PROFILES.md` - which implementation of a strategy is canonical, and
   whether it runs spot or futures. Relevant to the goal in a way the title
   hides: 855 of 919 strategies are long-only, so bear-phase evidence is

@@ -84,3 +84,9 @@ venv/
 # here at import/populate time regardless of where it is asked to write.
 /model.h5
 /prediction.png
+
+# /graphify's own scan copy and generated knowledge graph - a local navigation
+# aid over the pipeline scripts and current docs, rebuilt with --update as
+# the machinery changes. Neither belongs in version control.
+/graphify-scope/
+/graphify-out/

@@ -1,0 +1,166 @@
+{
+  "reviewed": {
+    "BB_RPB_TSL_c7c477d_20211030": {
+      "canonical_sha256": "sha256_94144d76df36cf4556f08283794ebbdaf85e46c8b9b20add83e76bc06611e4a2",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 13 signals; indicators chikou_span_1h",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "Ichi": {
+      "canonical_sha256": "sha256_87916f286b5dedc3d59c27418bc26d95c0c370fd75f7adf07b62892d68a2d3c7",
+      "evidence": "flagged column is a raw lagging Ichimoku span (a real future value at the row it lands on) that populate_indicators computes but no populate_entry_trend/exit_trend/buy_trend/sell_trend in the file ever reads - confirmed by grep across the whole canonical file. freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou",
+      "pattern": "flagged_column_never_consumed",
+      "reviewed_at": "2026-09-06"
+    },
+    "IchimokuCloudStrategy": {
+      "canonical_sha256": "sha256_89fe46d5a67386a3a899daff0c50cf2a62373724aa2b3779d6adacedf271304d",
+      "evidence": "flagged column is a raw lagging Ichimoku span (a real future value at the row it lands on) that populate_indicators computes but no populate_entry_trend/exit_trend/buy_trend/sell_trend in the file ever reads - confirmed by grep across the whole canonical file. freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou_span",
+      "pattern": "flagged_column_never_consumed",
+      "reviewed_at": "2026-09-06"
+    },
+    "MacheteV8b": {
+      "canonical_sha256": "sha256_03e93809d87757fc2c208847298e42d0cedd553abd0e600654a7a124a526d154",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou_span_inf",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "MacheteV8bRallimod": {
+      "canonical_sha256": "sha256_a32e955e51d25725ca5503de79a01c23f2f45f61a82880caa02b39baf0d18816",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou_span_inf",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "MacheteV8bRallimod2": {
+      "canonical_sha256": "sha256_1cddafe6cb5c1abf0f1038016f0d3df5803801ce137cb64d351d9b01cdcc9a1c",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou_span_inf",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "NfiNextModded": {
+      "canonical_sha256": "sha256_100cce435cd4fde7b4fa538bee27da7de112bb842c56bcb1cdb9bfccd7532729",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou_span_1h",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "NostalgiaForInfinity772martinsk3": {
+      "canonical_sha256": "sha256_cdde4efa3b8477dc52e0eadd107f22950381578de1e01b87e60f531ee1d395f1",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "TIMEOUT",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "NostalgiaForInfinityNext": {
+      "canonical_sha256": "sha256_6699a897dded5f90c944743c0f3f5c95f7486a6f878f52549e2ac85ecee4bfa8",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 18 signals; indicators chikou_span_1h",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "NostalgiaForInfinityNext772": {
+      "canonical_sha256": "sha256_eb7cdb1d09730282f019771ad3c23389572eb8f2c44ad4a69eb92ddb585116cf",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 16 signals; indicators chikou_span_1h",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "NostalgiaForInfinityNextV7155": {
+      "canonical_sha256": "sha256_23093d5ac9ece8b5a5f10a19e06326af8496c303e294cba87778df2df3694539",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 15 signals; indicators chikou_span_1h",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "NostalgiaForInfinityNext_maximizer": {
+      "canonical_sha256": "sha256_2180a934157364fec52008ceb6a0275d2c110453f719378c939b8faea25a3b10",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 16 signals; indicators chikou_span_1h",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "NostalgiaForInfinityV7_7_2": {
+      "canonical_sha256": "sha256_781282e40e4f4e45666d8332222a748cdcf4cc265efc74c733096e8038558cee",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 17 signals; indicators chikou_span_1h",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "Obelisk_Ichimoku_Slow_v1": {
+      "canonical_sha256": "sha256_af9d22c036a33ec5f9ac26a9669ff3b38d1149bb2e6d24b0f265ec97b3c85d72",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou_span",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "Obelisk_Ichimoku_Slow_v1_1": {
+      "canonical_sha256": "sha256_5dd82f3ef259c5f3d7864641518cbc6712256a4cbb5cac6e1942fa696785c351",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou_span",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "Obelisk_Ichimoku_Slow_v1_2": {
+      "canonical_sha256": "sha256_390f9b538b0f57fcc6a7d523801c6ee2b9c8ede91041a3219f7153a54b1939ba",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou_span",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "Obelisk_Ichimoku_Slow_v1_3": {
+      "canonical_sha256": "sha256_7a4a81112a7a41e460054f4b6d05ad4560ecd95a504c61acc5ecd7b61f9ac4a7",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou_span",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "Obelisk_Ichimoku_ZEMA_v1": {
+      "canonical_sha256": "sha256_b16fa22d789b2bc8cd3c67ad4ad6af753dd5e8b4315569b7ebabd30ca12662a5",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou_span",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "Obelisk_TradePro_Ichi_v1_1": {
+      "canonical_sha256": "sha256_2d1dd383bd8e276fd2685544dcb5d5d4e2a23df0224be8219e62888c3102fb34",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou_span",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "Obelisk_TradePro_Ichi_v2": {
+      "canonical_sha256": "sha256_485c04ba7e7cb0bfd5b6106bec42d753a7d0726ca230840ec2d374d3ccf4b46a",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou_span",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "Obelisk_TradePro_Ichi_v2_1": {
+      "canonical_sha256": "sha256_6b60d2647a280e84ebb8fe540a33a7e47fe4e7e86af40bb65d4de601ffa5ea44",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou_span",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "Obelisk_TradePro_Ichi_v2_2": {
+      "canonical_sha256": "sha256_a775e4233224fba97f0ddc6a1e73dde8146cfefa0b7bc534953693d3db81fea3",
+      "evidence": "flagged column is a raw lagging/leading Ichimoku span (close shifted by -displacement, a real future value at the row it lands on); the strategy never reads it directly - only a boolean built from it is re-shifted forward by the same displacement before being read in the entry/exit logic, which cancels the future dependency exactly (verified by hand: the shifted boolean at row k depends only on close[k] and an undisplaced cloud value from row k-displacement, both already known at k). freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits, of the row's tested signals.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou_span",
+      "pattern": "realigned_via_compensating_shift",
+      "reviewed_at": "2026-09-06"
+    },
+    "Stavix2": {
+      "canonical_sha256": "sha256_64547b0d8bbb600b753db59451f76bb26f304e133102bc5e155b39e5336f9e4f",
+      "evidence": "flagged column is a raw lagging Ichimoku span (a real future value at the row it lands on) that populate_indicators computes but no populate_entry_trend/exit_trend/buy_trend/sell_trend in the file ever reads - confirmed by grep across the whole canonical file. freqtrade's own signal-level check agrees: 0 biased entries, 0 biased exits.",
+      "flagged_indicators": "bias: entries 0, exits 0 of 20 signals; indicators chikou_span",
+      "pattern": "flagged_column_never_consumed",
+      "reviewed_at": "2026-09-06"
+    }
+  },
+  "schema_version": 1
+}

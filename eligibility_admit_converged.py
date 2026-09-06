@@ -45,6 +45,8 @@ import json
 import os
 import sys
 
+import strategy_status
+
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 STATUS = os.path.join(ROOT, "STRATEGY_STATUS.csv")
@@ -69,7 +71,7 @@ def eligible(row):
     """Whether this row meets the new rule, and why not when it does not."""
     if row["lookahead"] != "PASS":
         return False, "look-ahead is %s, not PASS" % (row["lookahead"] or "absent")
-    if row["lookahead_evidence"] != "native":
+    if row["lookahead_evidence"] not in strategy_status.NATIVE_LOOKAHEAD_EVIDENCE:
         return False, "look-ahead verdict is %s, not measured here" % \
             row["lookahead_evidence"]
     if row["recursive"] not in ("PASS", "PASS_1PCT"):
@@ -168,7 +170,8 @@ def selftest():
     rows, refused = candidates()
     for row, _settled in rows:
         assert row["lookahead"] == "PASS", row["strategy_id"]
-        assert row["lookahead_evidence"] == "native", row["strategy_id"]
+        assert row["lookahead_evidence"] in strategy_status.NATIVE_LOOKAHEAD_EVIDENCE, \
+            row["strategy_id"]
         assert row["recursive"] in ("PASS", "PASS_1PCT"), row["strategy_id"]
         assert row["recursive_evidence"].startswith("convergence:"), \
             row["strategy_id"]
