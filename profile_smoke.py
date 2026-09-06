@@ -368,6 +368,23 @@ def run_one(row, timerange, timeout, pair=None, extra_env=None,
         log_path = os.path.join(LOG_DIR, _safe(strategy) + suffix + ".log")
         with io.open(log_path, "w", encoding="utf-8") as handle:
             handle.write(output)
+        # SIGKILL with nothing in the output is the Linux OOM killer, not the
+        # strategy: freqtrade never got a chance to log why it died. A pooled
+        # run shares one memory ceiling (.wslconfig) across several concurrent
+        # processes, so this says which process lost, not that the strategy is
+        # broken - a genuine crash (segfault, exception) still reaches `_error`
+        # below and stays "failed".
+        if proc.returncode == -9:
+            return {"status": "resource_inconclusive", "mode": mode,
+                    "run_profile": profile, "timerange": timerange,
+                    "elapsed_s": round(time.time() - started, 1),
+                    "class1_rules": class1.get("rules", []),
+                    "why": ("killed by SIGKILL (-9) with no exception logged: "
+                            "the OOM killer, not the strategy - retry with "
+                            "less concurrent load before treating this as a "
+                            "strategy defect"),
+                    "invocation": invocation,
+                    "debug_log": os.path.relpath(log_path, ROOT).replace(os.sep, "/")}
         return {"status": "failed", "mode": mode, "run_profile": profile,
                 "timerange": timerange, "elapsed_s": round(time.time() - started, 1),
                 "class1_rules": class1.get("rules", []),

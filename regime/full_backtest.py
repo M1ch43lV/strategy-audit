@@ -79,6 +79,12 @@ def main(argv=None) -> int:
             raise SystemExit("not currently eligible: " + ", ".join(sorted(missing)))
     data = _load(args.output)
     data.pop("runtime_id", None)
+    # Loaded once, so a run cannot half-apply it. Without this, every row
+    # `eligibility_timeframe_repair.py` already recovered a timeframe for
+    # (and the module/signature/freqAI repairs) fails again here for the
+    # same reason it failed before repair - this runner reads the manifest
+    # `profile_full_window.py` already reads, it just never asked before.
+    overrides = profile_full_window.repair_overrides()
     data.update({"schema_version": 1, "timerange": TIMERANGE,
                  "measurement_scope": "canonical_pooled_native_pair_universe"})
 
@@ -122,7 +128,9 @@ def main(argv=None) -> int:
                 all(previous.get(key) == value for key, value in identity.items())):
             return strategy, previous, True
         mode = "futures" if row["run_profile"].startswith("futures_") else "spot"
-        result = profile_smoke.run_one(row, timerange(mode), args.timeout)
+        settings = overrides.get(strategy) or None
+        result = profile_smoke.run_one(row, timerange(mode), args.timeout,
+                                        config_overrides=settings)
         config = (profile_smoke.FUTURES_CONFIG if mode == "futures"
                   else profile_smoke.SPOT_CONFIG)
         result.update(identity)
