@@ -3,8 +3,8 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-06T15:00:16+02:00
-- Stopped because: Model 1/2 implementation was validated and committed as `0d6f8d2`; a separate Claude smoke-recovery runner is still active
+- Last update: 2026-09-06T15:01:02+02:00
+- Stopped because: Model 1/2 implementation was validated and committed as `0de5829`; a separate Claude smoke-recovery runner is still active
 - Next agent should: inspect the active Claude runner and Git state first; do not start any measurement, regenerate status, or touch its result stores while it is alive
 
 ## Objective
@@ -79,7 +79,7 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-06T15:00:16+02:00 at HEAD `0d6f8d2` after the Model 1/2
+Observed 2026-09-06T15:01:02+02:00 at HEAD `0de5829` after the Model 1/2
 checkpoint commit:
 
 - 919 status rows: 608 `E1_expanded`, 219 excluded, 25 pending,
@@ -99,7 +99,7 @@ checkpoint commit:
 
 ## Current implementation checkpoint
 
-Committed as `0d6f8d2` (`Implement identity-bound regime-gated models`).
+Committed as `0de5829` (`Implement identity-bound regime-gated models`).
 
 - `regime/regime_engine.py` produces causal, one-day-lagged four-state data.
 - `regime/attribution.py` already attributes Model 0 trades to both four states
@@ -141,7 +141,7 @@ The historical 5-profile ungated equivalence artifact remains 5/5 exact at
 1. Let the active Claude missing-smoke queue finish. Its result store and any
    resulting status regeneration are separate from this checkpoint.
 2. Re-read Git state after it finishes. Keep all live measurement artifacts
-   separate from the already committed Model 1/2 checkpoint `0d6f8d2`.
+   separate from the already committed Model 1/2 checkpoint `0de5829`.
 3. Complete Model 0 coverage and adjudicate resource-inconclusive failures
    under the existing attempt rules. Do not run a second Model 0 writer.
 4. Resolve the eight OPEN preregistration choices before producing a discovery
