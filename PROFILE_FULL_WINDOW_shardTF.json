@@ -1,0 +1,227 @@
+{
+  "pair_universes": {
+    "futures": [
+      "BTC/USDT:USDT",
+      "ETH/USDT:USDT",
+      "LTC/USDT:USDT",
+      "XRP/USDT:USDT",
+      "ADA/USDT:USDT",
+      "XLM/USDT:USDT",
+      "XMR/USDT:USDT",
+      "DASH/USDT:USDT"
+    ],
+    "spot": [
+      "BTC/USDT",
+      "ETH/USDT",
+      "LTC/USDT",
+      "XRP/USDT",
+      "ADA/USDT",
+      "XLM/USDT",
+      "XMR/USDT",
+      "DASH/USDT"
+    ]
+  },
+  "results": {
+    "BuyRegions": {
+      "canonical_sha256": "sha256_837173d07b03ad4b83d9fd3520bac1ecc0c4494413f41c0b88b2c4e99924d6b9",
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
+      "long_trades": 16772,
+      "measurement_scope": "full_window_trade_presence",
+      "mode": "spot",
+      "pair_results": {
+        "ADA/USDT": {
+          "archive": "user_data/profile_smoke/BuyRegions-dff7fcd2-ADA_USDT-52bd0ad0-2026-09-05_12-16-19.zip",
+          "archive_sha256": "sha256_7c4c76f414be633f27200883aac6b61909e8c015249f7218f4729a28c548e0fe",
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 1003.1,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/BuyRegions-dff7fcd2-override-fe7b59b3e920.json --strategy BuyRegions --strategy-path repos/nateemma_strategies/TSPredict --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BuyRegions-dff7fcd2-ADA_USDT-52bd0ad0 --cache none --pairs ADA/USDT",
+          "long_trades": 2398,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 2398,
+          "trades_sha256": "sha256_86e12a78a883e7a7085e4e7d50d11feb5ced5e4a485fdff1845811ba9be799fb"
+        },
+        "BTC/USDT": {
+          "archive": "user_data/profile_smoke/BuyRegions-dff7fcd2-BTC_USDT-4d7eaaf1-2026-09-05_11-46-39.zip",
+          "archive_sha256": "sha256_ec55976dfc63aba3cc32ef53d18dae41f7a54160330c2ae54ea9dc56baa7d7f8",
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 504.9,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/BuyRegions-dff7fcd2-override-fe7b59b3e920.json --strategy BuyRegions --strategy-path repos/nateemma_strategies/TSPredict --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BuyRegions-dff7fcd2-BTC_USDT-4d7eaaf1 --cache none --pairs BTC/USDT",
+          "long_trades": 1527,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 1527,
+          "trades_sha256": "sha256_86f2dcc9fe5d0517aa4a2e96623e344b7b96d901eb07692caaed3ad3a632f72a"
+        },
+        "DASH/USDT": {
+          "archive": "user_data/profile_smoke/BuyRegions-dff7fcd2-DASH_USDT-f7c87511-2026-09-05_12-34-08.zip",
+          "archive_sha256": "sha256_06691cba04e7fb954914c3c9dde8af5f017837eb77fca6a5dea7b325398669c6",
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 1046.0,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/BuyRegions-dff7fcd2-override-fe7b59b3e920.json --strategy BuyRegions --strategy-path repos/nateemma_strategies/TSPredict --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BuyRegions-dff7fcd2-DASH_USDT-f7c87511 --cache none --pairs DASH/USDT",
+          "long_trades": 2682,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 2682,
+          "trades_sha256": "sha256_17dec42a55057a7d15a85ef0722d0d40d2948469cded509a64a59f9126145f5d"
+        },
+        "ETH/USDT": {
+          "archive": "user_data/profile_smoke/BuyRegions-dff7fcd2-ETH_USDT-d632ace3-2026-09-05_11-46-29.zip",
+          "archive_sha256": "sha256_90b003146492f110fb93d10fdf10411f8ff330d3e8e4704a21e50799174e17b3",
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 494.5,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/BuyRegions-dff7fcd2-override-fe7b59b3e920.json --strategy BuyRegions --strategy-path repos/nateemma_strategies/TSPredict --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BuyRegions-dff7fcd2-ETH_USDT-d632ace3 --cache none --pairs ETH/USDT",
+          "long_trades": 1951,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 1951,
+          "trades_sha256": "sha256_8f0f2a386f1dd4092a3b86dd380dc797a920506375dfda3279e33754d6b4f7ee"
+        },
+        "LTC/USDT": {
+          "archive": "user_data/profile_smoke/BuyRegions-dff7fcd2-LTC_USDT-9e46e6a4-2026-09-05_11-59-49.zip",
+          "archive_sha256": "sha256_fdc704d84ae657ee8be4b826aa177f9c257759738f310596dd9c583b168532c2",
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 827.9,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/BuyRegions-dff7fcd2-override-fe7b59b3e920.json --strategy BuyRegions --strategy-path repos/nateemma_strategies/TSPredict --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BuyRegions-dff7fcd2-LTC_USDT-9e46e6a4 --cache none --pairs LTC/USDT",
+          "long_trades": 2258,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 2258,
+          "trades_sha256": "sha256_899d16b25208fd3fa2f8982391b67cf52a5b61173a17ad7bb50cfd1eb04350d6"
+        },
+        "XLM/USDT": {
+          "archive": "user_data/profile_smoke/BuyRegions-dff7fcd2-XLM_USDT-f7c8a7b2-2026-09-05_12-16-33.zip",
+          "archive_sha256": "sha256_343c100a8b06a307ad9a45a8c76209c743dbee6307e0787400507ba3c7678ab0",
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 998.1,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/BuyRegions-dff7fcd2-override-fe7b59b3e920.json --strategy BuyRegions --strategy-path repos/nateemma_strategies/TSPredict --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BuyRegions-dff7fcd2-XLM_USDT-f7c8a7b2 --cache none --pairs XLM/USDT",
+          "long_trades": 2300,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 2300,
+          "trades_sha256": "sha256_592ee6bb90c0e678484d61f5826cbdeacc201fce3dd6cee919fc502cc8e39a34"
+        },
+        "XMR/USDT": {
+          "archive": "user_data/profile_smoke/BuyRegions-dff7fcd2-XMR_USDT-57b143c0-2026-09-05_12-29-59.zip",
+          "archive_sha256": "sha256_948479272df3431c56d7c48230db84c01db37e0130321cb41396ef6d67c78410",
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 807.2,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/BuyRegions-dff7fcd2-override-fe7b59b3e920.json --strategy BuyRegions --strategy-path repos/nateemma_strategies/TSPredict --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BuyRegions-dff7fcd2-XMR_USDT-57b143c0 --cache none --pairs XMR/USDT",
+          "long_trades": 1426,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 1426,
+          "trades_sha256": "sha256_98577219e03f144be91969d863a3a0be7e19b7b443c14e15c5336075113c1f20"
+        },
+        "XRP/USDT": {
+          "archive": "user_data/profile_smoke/BuyRegions-dff7fcd2-XRP_USDT-8d33c27a-2026-09-05_11-59-56.zip",
+          "archive_sha256": "sha256_03b9436d74bb0937bb9c9c36b40b604070e8858beac02171c6978345d226c6d9",
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 805.1,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/BuyRegions-dff7fcd2-override-fe7b59b3e920.json --strategy BuyRegions --strategy-path repos/nateemma_strategies/TSPredict --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BuyRegions-dff7fcd2-XRP_USDT-8d33c27a --cache none --pairs XRP/USDT",
+          "long_trades": 2230,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 2230,
+          "trades_sha256": "sha256_3c515f91691b1b67d0422b19c0fe1e31013ba6dd41f43c18e386959c3a47480a"
+        }
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200401-20260821",
+      "trades": 16772,
+      "why": "at least one pair produced trades over the full window"
+    }
+  },
+  "runtime_id": "native_unversioned",
+  "schema_version": 2,
+  "timerange": {
+    "futures": "20200301-20260821",
+    "spot": "20200401-20260821"
+  }
+}
