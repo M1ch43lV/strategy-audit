@@ -7,62 +7,257 @@ does not yet use - not a verdict that it is worth admitting; each
 still needs a human look for test fixtures, mixins, and templates
 before being queued as a wave.
 
+## `hippocritical/delist_scraper` - 1 new, 0 already known
+
+Pushed 2025-06-07T10:21:17Z, 2 `.py` files, 1 `IStrategy` classes found.
+
+| Class | Path |
+|---|---|
+| `delist_shorter_strategy` | `delist_shorter_strategy.py` |
+
+## `Netanelshoshan/freqAI-LSTM` - 1 new, 0 already known
+
+Pushed 2025-04-07T17:59:34Z, 6 `.py` files, 1 `IStrategy` classes found.
+
+| Class | Path |
+|---|---|
+| `ExampleLSTMStrategy` | `ExampleLSTMStrategy.py` |
+
+## `AlexCryptoKing/freqailstm` - 7 new, 3 already known
+
+Pushed 2024-11-14T05:14:55Z, 307 `.py` files, 10 `IStrategy` classes found.
+
+| Class | Path |
+|---|---|
+| `ExampleLSTMStrategy` | `V6/AlexStrategyFinalV6.py` |
+| `AlexStrategyFinalV8` | `V8/1HOUR/AlexStrategyFinalV8.py` |
+| `AlexStrategyFinalV8Hyper` | `V8/1HOUR/AlexStrategyFinalV8Hyper.py` |
+| `AlexStrategyFinalV9` | `V9/AlexStrategyFinalV90.py` |
+| `AlexStrategyFinalV9Hyper` | `V9/AlexStrategyFinalV90Hyper.py` |
+| `AlexStrategyFinalV9Hyper` | `V9/AlexStrategyFinalV90Hyper_Trail.py` |
+| `AlexStrategyFinalV9` | `V9/AlexStrategyFinalV90_Trail.py` |
+
+## `djienne/YOUTUBE_STRATEGIES_FREQTRADE` - 16 new, 3 already known
+
+Pushed 2025-12-22T21:37:49Z, 54 `.py` files, 19 `IStrategy` classes found.
+
+| Class | Path |
+|---|---|
+| `DELTA_NEUTRAL` | `DELTA_NEUTRAL/user_data/strategies/DELTA_NEUTRAL.py` |
+| `QuatreMousquetaires` | `Experiences/4Mousquetaires/user_data/strategies/QuatreMousquetaires.py` |
+| `CME` | `Experiences/CME/user_data/strategies/CME.py` |
+| `FLAGS` | `Experiences/FLAGS/user_data/strategies/FLAGS.py` |
+| `HEAD_SHOULDER` | `Experiences/HEAD_SHOULDER/user_data/strategies/HEAD_SHOULDER.py` |
+| `HMMv3` | `Experiences/HMM_updated/user_data/strategies/HMMv3.py` |
+| `SUPPORT_RESISTANCE` | `Experiences/SUPPORT_RESISTANCE/user_data/strategies/SUPPORT_RESISTANCE.py` |
+| `Trump_LIM` | `Experiences/Trump_LIM/user_data/strategies/Trump_LIM.py` |
+| `BigWill` | `Strategies/BigWill.py` |
+| `Claude` | `Strategies/Claude.py` |
+| `MartyEMA` | `Strategies/MartyEMA.py` |
+| `SimpleRSI` | `Strategies/SIMPLE_RSI/user_data/strategies/SimpleRSI.py` |
+| `SuperReversal_mtf` | `Strategies/SuperReversal_mtf.py` |
+| `TRIX_LS` | `Strategies/TRIX_LS.py` |
+| `TRIX_spot` | `Strategies/TRIX_spot.py` |
+| `chatgpt` | `Strategies/chatgpt.py` |
+
+## `mmartel86/freqtrade-setup` - 1 new, 0 already known
+
+Pushed 2026-07-14T22:39:39Z, 17 `.py` files, 1 `IStrategy` classes found.
+
+| Class | Path |
+|---|---|
+| `FreqaiStrategy_v2` | `strategies/FreqaiStrategy_v2.py` |
+
+## `thinkong/freqtradestrategies` - 4 new, 27 already known
+
+Pushed 2022-11-28T07:11:49Z, 32 `.py` files, 31 `IStrategy` classes found.
+
+| Class | Path |
+|---|---|
+| `Bins` | `user_data/strategies/Bins.py` |
+| `ClucHAnixV2` | `user_data/strategies/ClucHAnixV2.py` |
+| `MultiMA_TSL3b` | `user_data/strategies/MultiMA_TSL.py` |
+| `abbas` | `user_data/strategies/abbas.py` |
+
+## `kemplail/freqtrade-stuff` - 15 new, 36 already known
+
+Pushed 2023-11-15T19:11:56Z, 64 `.py` files, 51 `IStrategy` classes found.
+
+| Class | Path |
+|---|---|
+| `DWTHO` | `strategies/DWTHO.py` |
+| `DWT_Leveraged_recent` | `strategies/DWTLeveraged.py` |
+| `DWT_Leveraged_recentHO` | `strategies/DWTLeveragedHO.py` |
+| `DWT_LongShortHO` | `strategies/DWTLongShortHO.py` |
+| `DWT_lev_short` | `strategies/DWT_lev_short.py` |
+| `DWT_lev_simple` | `strategies/DWT_lev_simple.py` |
+| `FBB_DWT` | `strategies/FBB_DWT.py` |
+| `FFT` | `strategies/FFT.py` |
+| `Kalman` | `strategies/Kalman.py` |
+| `LeoStrategy` | `strategies/LeoStrategy.py` |
+| `MultiMA_TSL3b` | `strategies/MultiMA_TSL.py` |
+| `SARIMAX` | `strategies/SARIMAX.py` |
+| `Solipsis_v4` | `strategies/Solipsis_v4.py` |
+| `degen` | `strategies/degen.py` |
+| `IFutures` | `strategies/interface_futures_binance.py` |
+
+## `hamidreza07/freqai-strategy` - 39 new, 58 already known
+
+Pushed 2024-10-05T14:19:58Z, 175 `.py` files, 97 `IStrategy` classes found.
+
+| Class | Path |
+|---|---|
+| `Argrelextrema` | `classic/Argrelextrema.py` |
+| `TryEverything` | `classic/TryEverything.py` |
+| `kijun_cross_strong_s` | `classic/kijun_cross_strong_s.py` |
+| `mind` | `classic/mind.py` |
+| `Cenderawasih_freqai` | `freqai/Cenderawasih_freqai.py` |
+| `FreqaiBinaryClassStrategy` | `freqai/FreqaiBinaryClassStrategy.py` |
+| `TrendMomoClassifier` | `freqai/TrendMomoClassifier.py` |
+| `E0V1EAI` | `startegy test/1/E0V1E/E0V1EAI.py` |
+| `bigshort` | `startegy test/2/bigshort/bigshort.py` |
+| `gpt_reversal` | `startegy test/2/gpt_reversal/gpt_reversal.py` |
+| `mind` | `startegy test/2/mind/mind.py` |
+| `momentum_tf_divergence` | `startegy test/2/momentum_tf_divergence/momentum_tf_divergence.py` |
+| `TaSearchLevelG15m` | `startegy test/3/TaSearchLevelG15m/TaSearchLevelG15m.py` |
+| `BollingerBounce` | `startegy test/5/**BollingerBounce/BollingerBounce.py` |
+| `KeltnerBounce` | `startegy test/5/**KeltnerBounce/KeltnerBounce.py` |
+| `MACD003` | `startegy test/5/**MACD003/MACD003.py` |
+| `MACDCross` | `startegy test/5/**MACDCross/MACDCross.py` |
+| `MACDTurn` | `startegy test/5/**MACDTurn/MACDTurn.py` |
+| `NNPredict` | `startegy test/5/**NNPredict/NNPredict.py` |
+| `Squeeze002` | `startegy test/5/**Squeeze002/Squeeze002.py` |
+| `ADXDM` | `startegy test/5/*ADXDM/ADXDM.py` |
+| `Anomaly` | `startegy test/5/*Anomaly/Anomaly.py` |
+| `BBBHold` | `startegy test/5/*BBBHold/BBBHold.py` |
+| `MFIRSICross` | `startegy test/5/*MFIRSICross/MFIRSICross.py` |
+| `SqueezeOff` | `startegy test/5/*SqueezeOff/SqueezeOff.py` |
+| `BigDrop` | `startegy test/5/BigDrop/BigDrop.py` |
+| `BuyDips` | `startegy test/5/BuyDips/BuyDips.py` |
+| `DonchianChannel` | `startegy test/5/DonchianChannel/DonchianChannel.py` |
+| `EMA003` | `startegy test/5/EMA003/EMA003.py` |
+| `EMACross` | `startegy test/5/EMACross/EMACross.py` |
+| `Hammer` | `startegy test/5/Hammer/Hammer.py` |
+| `KeltnerChannels` | `startegy test/5/KeltnerChannels/KeltnerChannels.py` |
+| `MFI2` | `startegy test/5/MFI2/MFI2.py` |
+| `NDrop` | `startegy test/5/NDrop/NDrop.py` |
+| `NSeq` | `startegy test/5/NSeq/NSeq.py` |
+| `Patterns2` | `startegy test/5/Patterns2/Patterns2.py` |
+| `SARCross` | `startegy test/5/SARCross/SARCross.py` |
+| `SimpleBollinger` | `startegy test/5/SimpleBollinger/SimpleBollinger.py` |
+| `Squeeze001` | `startegy test/5/Squeeze001/Squeeze001.py` |
+
+## `webclinic017/strategies-freqtrade-` - 50 new, 10 already known
+
+Pushed 2024-05-01T16:33:50Z, 435 `.py` files, 60 `IStrategy` classes found.
+
+| Class | Path |
+|---|---|
+| `Anomaly` | `Anomaly/Anomaly.py` |
+| `NNPredict` | `NNPredict/NNPredict.py` |
+| `NNPredict` | `NNPredict/NNPredictold.py` |
+| `NNTC` | `NNTC/NNTC.py` |
+| `ADXDM` | `archived/ADXDM.py` |
+| `BBBHold` | `archived/BBBHold.py` |
+| `BBKCBounce` | `archived/BBKCBounce.py` |
+| `BTCBigDrop` | `archived/BTCBigDrop.py` |
+| `BTCEMABounce` | `archived/BTCEMABounce.py` |
+| `BTCJump` | `archived/BTCJump.py` |
+| `BTCMACDCross` | `archived/BTCMACDCross.py` |
+| `BTCNDrop` | `archived/BTCNDrop.py` |
+| `BTCNSeq` | `archived/BTCNSeq.py` |
+| `BigDrop` | `archived/BigDrop.py` |
+| `BollingerBounce` | `archived/BollingerBounce.py` |
+| `BuyDips` | `archived/BuyDips.py` |
+| `ComboHold` | `archived/ComboHold.py` |
+| `DonchianBounce` | `archived/DonchianBounce.py` |
+| `DonchianChannel` | `archived/DonchianChannel.py` |
+| `EMA003` | `archived/EMA003.py` |
+| `EMABounce` | `archived/EMABounce.py` |
+| `EMACross` | `archived/EMACross.py` |
+| `FBB_2` | `archived/FBB_2.py` |
+| `FBB_ROI` | `archived/FBB_ROI.py` |
+| `FisherBBDynamic` | `archived/FisherBBDynamic.py` |
+| `Hammer` | `archived/Hammer.py` |
+| `KeltnerBounce` | `archived/KeltnerBounce.py` |
+| `KeltnerChannels` | `archived/KeltnerChannels.py` |
+| `MACD003` | `archived/MACD003.py` |
+| `MACDCross` | `archived/MACDCross.py` |
+| `MACDTurn` | `archived/MACDTurn.py` |
+| `MFI2` | `archived/MFI2.py` |
+| `MFIRSICross` | `archived/MFIRSICross.py` |
+| `NDrop` | `archived/NDrop.py` |
+| `NSeq` | `archived/NSeq.py` |
+| `Patterns` | `archived/Patterns.py` |
+| `Patterns2` | `archived/Patterns2.py` |
+| `SARCross` | `archived/SARCross.py` |
+| `SimpleBollinger` | `archived/SimpleBollinger.py` |
+| `Squeeze001` | `archived/Squeeze001.py` |
+| `Squeeze002` | `archived/Squeeze002.py` |
+| `SqueezeOff` | `archived/SqueezeOff.py` |
+| `TEMABounce` | `archived/TEMABounce.py` |
+| `Anomaly` | `binanceus/Anomaly.py` |
+| `DWT_Predict` | `binanceus/DWT_Predict.py` |
+| `DWT_Predict2` | `binanceus/DWT_Predict2.py` |
+| `FBB_KalmanSIMD` | `binanceus/FBB_KalmanSIMD.py` |
+| `NNPredict` | `binanceus/NNPredict.py` |
+| `NNTC` | `binanceus/NNTC.py` |
+| `PCA` | `binanceus/PCA.py` |
+
+## `LazyPigPig/freqtrade-short-strategy` - 0 new, 0 already known
+
+Pushed 2025-02-09T14:12:28Z, 0 `.py` files, 0 `IStrategy` classes found.
+
+## `LazyPigPig/freqtrade-grid` - 20 new, 16 already known
+
+Pushed 2025-01-31T15:06:55Z, 437 `.py` files, 36 `IStrategy` classes found.
+
+| Class | Path |
+|---|---|
+| `DMIPRICEDCAStrategyFuture` | `user_data/strategies/ADX_PRICE_DCA_Strategy_Future.py` |
+| `GRIDDMIPRICEStrategyFutureV2Both` | `user_data/strategies/ADX_PRICE_DCA_Strategy_Future_Both.py` |
+| `GRIDDMIPRICEStrategyFutureV2Long` | `user_data/strategies/ADX_PRICE_DCA_Strategy_Future_Long.py` |
+| `GRIDDMIPRICEStrategyFutureV2Short` | `user_data/strategies/ADX_PRICE_DCA_Strategy_Future_Short.py` |
+| `GRIDDMIPRICEStrategyFuture` | `user_data/strategies/ADX_PRICE_GRID_Strategy_Future.py` |
+| `GRIDDMIPRICEStrategyFutureV5Long` | `user_data/strategies/ADX_PRICE_GRID_Strategy_Future_Long.py` |
+| `GRIDDMIPRICEStrategyFutureV5Short` | `user_data/strategies/ADX_PRICE_GRID_Strategy_Future_Short.py` |
+| `GRIDDMIPRICEStrategyFutureV2` | `user_data/strategies/ADX_PRICE_GRID_Strategy_Future_v2.py` |
+| `GRIDDMIPRICEStrategyFutureV3` | `user_data/strategies/ADX_PRICE_GRID_Strategy_Future_v3.py` |
+| `GRIDDMIPRICEStrategyFutureV4` | `user_data/strategies/ADX_PRICE_GRID_Strategy_Future_v4.py` |
+| `GRIDDMIPRICEStrategyFutureV5` | `user_data/strategies/ADX_PRICE_GRID_Strategy_Future_v5.py` |
+| `GRIDDMIPRICEStrategyFutureV6` | `user_data/strategies/ADX_PRICE_GRID_Strategy_Future_v6.py` |
+| `GRIDDMIPRICEStrategyFutureV7` | `user_data/strategies/ADX_PRICE_GRID_Strategy_Future_v7.py` |
+| `GRIDDMIPRICEStrategySpot` | `user_data/strategies/ADX_PRICE_GRID_Strategy_Spot.py` |
+| `WTDMIPRICESDCAtrategy` | `user_data/strategies/ADX_PRICE_WTDCA_Strategy.py` |
+| `WTDMIPRICEDCAStrategyFuture` | `user_data/strategies/ADX_PRICE_WTDCA_Strategy_Future.py` |
+| `DCADMIPRICEStrategySpot` | `user_data/strategies/DCA.py` |
+| `DCAGRID` | `user_data/strategies/DCA_GRID_Strategy.py` |
+| `GRIDDMIPRICEStrategySpot` | `user_data/strategies/GRID.py` |
+| `RebalanceStrategySpot` | `user_data/strategies/REBALANCE.py` |
+
 ## `paulcpk/freqtrade-strategies-that-work` - 0 new, 5 already known
 
 Pushed 2021-06-14T16:26:26Z, 5 `.py` files, 5 `IStrategy` classes found.
 
-## `brookmiles/freqtrade-stuff` - 8 new, 6 already known
+## `brookmiles/freqtrade-stuff` - 0 new, 14 already known
 
 Pushed 2021-05-20T23:42:45Z, 15 `.py` files, 14 `IStrategy` classes found.
 
-| Class | Path |
-|---|---|
-| `Obelisk_Ichimoku_Slow_v1` | `strategies/Obelisk_Ichimoku_Slow_v1.py` |
-| `Obelisk_Ichimoku_Slow_v1_1` | `strategies/Obelisk_Ichimoku_Slow_v1_1.py` |
-| `Obelisk_Ichimoku_Slow_v1_2` | `strategies/archive/Obelisk_Ichimoku_Slow_v1_2.py` |
-| `Obelisk_TradePro_Ichi_v2` | `strategies/archive/Obelisk_TradePro_Ichi_v2.py` |
-| `Obelisk_TradePro_Ichi_v2_2` | `strategies/archive/Obelisk_TradePro_Ichi_v2_2.py` |
-| `EMA_Trailing_Stoploss` | `strategies/examples/EMA_Trailing_Stoploss.py` |
-| `EMA_Trailing_Stoploss_LessMagic` | `strategies/examples/EMA_Trailing_Stoploss_LessMagic.py` |
-| `Magic_Trailing_Stoploss` | `strategies/examples/Magic_Trailing_Stoploss.py` |
-
-## `titouannwtt/freqtrade-ultimate` - 6 new, 14 already known
+## `titouannwtt/freqtrade-ultimate` - 0 new, 20 already known
 
 Pushed 2026-09-05T12:03:17Z, 591 `.py` files, 20 `IStrategy` classes found.
 
-| Class | Path |
-|---|---|
-| `ReplayDetStrategy` | `tests/replay/strats/ReplayDetStrategy.py` |
-| `strategy_test_v3_with_lookahead_bias` | `tests/strategy/strats/lookahead_bias/strategy_test_v3_with_lookahead_bias.py` |
-| `strategy_test_v3_recursive_issue` | `tests/strategy/strats/strategy_test_v3_recursive_issue.py` |
-| `kac_index_v1` | `user_data/strategies/kac_index_v1.py` |
-| `kac_index_v2` | `user_data/strategies/kac_index_v2.py` |
-| `simple_vwap_v1` | `user_data/strategies/simple_vwap_v1.py` |
-
-## `titouannwtt/freqtrade-france-strategies-kac-index` - 2 new, 0 already known
+## `titouannwtt/freqtrade-france-strategies-kac-index` - 0 new, 2 already known
 
 Pushed 2026-05-19T20:21:20Z, 2 `.py` files, 2 `IStrategy` classes found.
 
-| Class | Path |
-|---|---|
-| `kac_index_v1` | `freqtrade/user_data/strategies/kac_index_v1.py` |
-| `kac_index_v2` | `freqtrade/user_data/strategies/kac_index_v2.py` |
-
-## `titouannwtt/freqtrade-france-strategies_simple_vwap` - 1 new, 0 already known
+## `titouannwtt/freqtrade-france-strategies_simple_vwap` - 0 new, 1 already known
 
 Pushed 2026-05-19T20:21:16Z, 1 `.py` files, 1 `IStrategy` classes found.
 
-| Class | Path |
-|---|---|
-| `simple_vwap_v1` | `freqtrade/user_data/strategies/simple_vwap_v1.py` |
-
-## `miwtoo/ft-action-zone` - 1 new, 1 already known
+## `miwtoo/ft-action-zone` - 0 new, 2 already known
 
 Pushed 2022-05-07T08:27:03Z, 2 `.py` files, 2 `IStrategy` classes found.
-
-| Class | Path |
-|---|---|
-| `MultiActionZone` | `user_data/strategies/MultiActionZone.py` |
 
 ## `keithorange/FreqTrade_Helpers` - 1 new, 0 already known
 
@@ -131,14 +326,9 @@ Pushed 2022-05-07T16:42:58Z, 22 `.py` files, 15 `IStrategy` classes found.
 | `StrategyQuickReturns` | `user_data/strategies/old/StrategyQuickReturns.py` |
 | `StrategyTrendReversal` | `user_data/strategies/old/StrategyTrendReversal.py` |
 
-## `shadowp2810/technical_indicators_cryptos` - 2 new, 0 already known
+## `shadowp2810/technical_indicators_cryptos` - 0 new, 2 already known
 
 Pushed 2021-12-30T22:22:19Z, 2 `.py` files, 2 `IStrategy` classes found.
-
-| Class | Path |
-|---|---|
-| `BB10fall` | `Freqtrade/ft_userdata/user_data/strategies/BB10fall.py` |
-| `MACD9fall` | `Freqtrade/ft_userdata/user_data/strategies/MACD9fall.py` |
 
 ## `joaorafaelm/freqtrade-heroku` - 0 new, 32 already known
 
