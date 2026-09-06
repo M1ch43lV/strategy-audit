@@ -30859,10 +30859,31 @@
       "config_overrides": {
         "startup_candle_count": 576
       },
-      "long_trades": 3643,
+      "long_trades": 16113,
       "measurement_scope": "full_window_trade_presence",
       "mode": "spot",
       "pair_results": {
+        "ADA/USDT": {
+          "archive": "user_data/profile_smoke/Strategy001_custom_sell-21468069-ADA_USDT-52bd0ad0-2026-09-06_17-50-02.zip",
+          "archive_sha256": "sha256_2d02b1f4f99575db38b5582ac0681562971b281e00922411ed53e6d7206c3c4c",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 535.8,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy001_custom_sell-21468069-override-743922998d52.json --strategy Strategy001_custom_sell --strategy-path repos/davidzr_freqtrade-strategies/strategies/Strategy001_custom_sell --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy001_custom_sell-21468069-ADA_USDT-52bd0ad0 --cache none --pairs ADA/USDT",
+          "long_trades": 2332,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 2332,
+          "trades_sha256": "sha256_8fc41f29e650974b3132d064d6c610315936338e5560f6ef03b10cac3acfd066"
+        },
         "BTC/USDT": {
           "archive": "user_data/profile_smoke/Strategy001_custom_sell-21468069-BTC_USDT-4d7eaaf1-2026-09-06_17-33-04.zip",
           "archive_sha256": "sha256_34b339a7d5d539555d2fc707b1a742f9dfaeafab5fcb0bca5a583946c0b8fbc5",
@@ -30884,6 +30905,27 @@
           "trades": 1610,
           "trades_sha256": "sha256_71d3edd9459f88a741e6919bf18637168b5cdaa72a04e7d130e2778ef8e34a97"
         },
+        "DASH/USDT": {
+          "archive": "user_data/profile_smoke/Strategy001_custom_sell-21468069-DASH_USDT-f7c87511-2026-09-06_17-57-33.zip",
+          "archive_sha256": "sha256_1171050d90b0f67e60c8fe85fda4da8035185944f4a4d742e00e701b19cd01da",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 429.0,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy001_custom_sell-21468069-override-743922998d52.json --strategy Strategy001_custom_sell --strategy-path repos/davidzr_freqtrade-strategies/strategies/Strategy001_custom_sell --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy001_custom_sell-21468069-DASH_USDT-f7c87511 --cache none --pairs DASH/USDT",
+          "long_trades": 2386,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 2386,
+          "trades_sha256": "sha256_cb2f7b4c0f7561748ee9bc7039c13f18663ea930bfbd6919154443ff12615037"
+        },
         "ETH/USDT": {
           "archive": "user_data/profile_smoke/Strategy001_custom_sell-21468069-ETH_USDT-d632ace3-2026-09-06_17-32-39.zip",
           "archive_sha256": "sha256_16edab66bcc9af4c21f3d2a772bbf672130767a36776c69de43863beb11f8950",
@@ -30904,6 +30946,90 @@
           "timerange": "20200401-20260821",
           "trades": 2033,
           "trades_sha256": "sha256_5cf3db71f12d0931925c63894338280ecef555005e8cccd5da428b3a3e94716a"
+        },
+        "LTC/USDT": {
+          "archive": "user_data/profile_smoke/Strategy001_custom_sell-21468069-LTC_USDT-9e46e6a4-2026-09-06_17-40-57.zip",
+          "archive_sha256": "sha256_42d4c033b46715e42f8be7959b26492f390bcdf3f28756f5ab17747946b23ecb",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 504.2,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy001_custom_sell-21468069-override-743922998d52.json --strategy Strategy001_custom_sell --strategy-path repos/davidzr_freqtrade-strategies/strategies/Strategy001_custom_sell --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy001_custom_sell-21468069-LTC_USDT-9e46e6a4 --cache none --pairs LTC/USDT",
+          "long_trades": 2230,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 2230,
+          "trades_sha256": "sha256_dda59df375c63094644b144bf8f1f759c9e38d99cb1b758668449fb7234b2bfb"
+        },
+        "XLM/USDT": {
+          "archive": "user_data/profile_smoke/Strategy001_custom_sell-21468069-XLM_USDT-f7c8a7b2-2026-09-06_17-50-21.zip",
+          "archive_sha256": "sha256_1e63242f49020e7602848c49aac77ca72c2c7d876d1d49e75445558f2bcd2722",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 536.5,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy001_custom_sell-21468069-override-743922998d52.json --strategy Strategy001_custom_sell --strategy-path repos/davidzr_freqtrade-strategies/strategies/Strategy001_custom_sell --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy001_custom_sell-21468069-XLM_USDT-f7c8a7b2 --cache none --pairs XLM/USDT",
+          "long_trades": 2143,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 2143,
+          "trades_sha256": "sha256_4d02810c271a066b508e12591300c2f2bc4aa6bb487111d0f793491cc1d46205"
+        },
+        "XMR/USDT": {
+          "archive": "user_data/profile_smoke/Strategy001_custom_sell-21468069-XMR_USDT-57b143c0-2026-09-06_17-55-46.zip",
+          "archive_sha256": "sha256_10bc6c962a49f89cf03ad8463173516e218ae75e644f16bab2ff5511c25cdfbc",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 342.8,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy001_custom_sell-21468069-override-743922998d52.json --strategy Strategy001_custom_sell --strategy-path repos/davidzr_freqtrade-strategies/strategies/Strategy001_custom_sell --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy001_custom_sell-21468069-XMR_USDT-57b143c0 --cache none --pairs XMR/USDT",
+          "long_trades": 1333,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 1333,
+          "trades_sha256": "sha256_b18445efc743c1603a489981404c842d84b34fa98b75ff39ee59adab1cd4c958"
+        },
+        "XRP/USDT": {
+          "archive": "user_data/profile_smoke/Strategy001_custom_sell-21468069-XRP_USDT-8d33c27a-2026-09-06_17-41-20.zip",
+          "archive_sha256": "sha256_0d07af6e52e91ddd64815f0b7ea1b760fb741b0f60e39ca152d0e115cd7797e6",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 499.2,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy001_custom_sell-21468069-override-743922998d52.json --strategy Strategy001_custom_sell --strategy-path repos/davidzr_freqtrade-strategies/strategies/Strategy001_custom_sell --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy001_custom_sell-21468069-XRP_USDT-8d33c27a --cache none --pairs XRP/USDT",
+          "long_trades": 2046,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 2046,
+          "trades_sha256": "sha256_14ddb31d1e81c69d97bcd1112de5fe53c6c592d1259e745ba4a8abc0132c92cc"
         }
       },
       "run_profile": "spot_long",
@@ -30912,7 +31038,671 @@
       "short_trades": 0,
       "status": "measured",
       "timerange": "20200401-20260821",
-      "trades": 3643,
+      "trades": 16113,
+      "why": "at least one pair produced trades over the full window"
+    },
+    "Strategy002": {
+      "canonical_sha256": "sha256_d1ca86a4ceb68ef828b35490ce1112330dad209cc3bb1e1b6c303c21ab3d8a90",
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
+      "long_trades": 1125,
+      "measurement_scope": "full_window_trade_presence",
+      "mode": "spot",
+      "pair_results": {
+        "ADA/USDT": {
+          "archive": "user_data/profile_smoke/Strategy002-feae8690-ADA_USDT-52bd0ad0-2026-09-06_18-02-22.zip",
+          "archive_sha256": "sha256_0a77b09bf42884f30471feca8dac28186565764603b5b5600c63a19715505d3e",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 98.8,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy002-feae8690-override-fe7b59b3e920.json --strategy Strategy002 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy002-feae8690-ADA_USDT-52bd0ad0 --cache none --pairs ADA/USDT",
+          "long_trades": 132,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 132,
+          "trades_sha256": "sha256_82124246705306025248af55df07f2901bc20c37aeda8963598bafb6c7c2562f"
+        },
+        "BTC/USDT": {
+          "archive": "user_data/profile_smoke/Strategy002-feae8690-BTC_USDT-4d7eaaf1-2026-09-06_17-59-03.zip",
+          "archive_sha256": "sha256_110619de6f2cbfb0462bebc2ca5bd10f11b9644ae4bd99c404b7afad42f2ace7",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 89.2,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy002-feae8690-override-fe7b59b3e920.json --strategy Strategy002 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy002-feae8690-BTC_USDT-4d7eaaf1 --cache none --pairs BTC/USDT",
+          "long_trades": 125,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 125,
+          "trades_sha256": "sha256_17461d2fdbe68c46c6e7a7ac13a6e3d021fd0efed32d576ad74b2bbb59c0f92a"
+        },
+        "DASH/USDT": {
+          "archive": "user_data/profile_smoke/Strategy002-feae8690-DASH_USDT-f7c87511-2026-09-06_18-04-33.zip",
+          "archive_sha256": "sha256_b23ca555ffc2668aceb94fbbe88267b201d2410280dcd1603ded3bf528af4b71",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 131.1,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy002-feae8690-override-fe7b59b3e920.json --strategy Strategy002 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy002-feae8690-DASH_USDT-f7c87511 --cache none --pairs DASH/USDT",
+          "long_trades": 201,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 201,
+          "trades_sha256": "sha256_9a9ad3d5a80288ee20a8ed4383278641168f6e02127db64fb05ee385a88fcb77"
+        },
+        "ETH/USDT": {
+          "archive": "user_data/profile_smoke/Strategy002-feae8690-ETH_USDT-d632ace3-2026-09-06_17-59-02.zip",
+          "archive_sha256": "sha256_25477e39aeaa98600d24abfb3730c24d3641110223baadd83dc2654ff4372df7",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 89.0,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy002-feae8690-override-fe7b59b3e920.json --strategy Strategy002 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy002-feae8690-ETH_USDT-d632ace3 --cache none --pairs ETH/USDT",
+          "long_trades": 115,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 115,
+          "trades_sha256": "sha256_2281f6dd637d56cbcaa964416988cb9ed753cd54745565bac38158e3088b1984"
+        },
+        "LTC/USDT": {
+          "archive": "user_data/profile_smoke/Strategy002-feae8690-LTC_USDT-9e46e6a4-2026-09-06_18-00-45.zip",
+          "archive_sha256": "sha256_d2619c4b11e77a5671e10ae4d1161abfb6d0638034349e1f0d70ed04583949a9",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 102.6,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy002-feae8690-override-fe7b59b3e920.json --strategy Strategy002 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy002-feae8690-LTC_USDT-9e46e6a4 --cache none --pairs LTC/USDT",
+          "long_trades": 162,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 162,
+          "trades_sha256": "sha256_41f7a15edc166374c727da846eb144792caaebd9e8e110e8d19d291633346d31"
+        },
+        "XLM/USDT": {
+          "archive": "user_data/profile_smoke/Strategy002-feae8690-XLM_USDT-f7c8a7b2-2026-09-06_18-02-22.zip",
+          "archive_sha256": "sha256_8dd7b500d5bff1a712f4453a0b0bf24d0d45f76e84601403451a7dc18b647023",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 96.8,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy002-feae8690-override-fe7b59b3e920.json --strategy Strategy002 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy002-feae8690-XLM_USDT-f7c8a7b2 --cache none --pairs XLM/USDT",
+          "long_trades": 137,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 137,
+          "trades_sha256": "sha256_5cf9f9024670931cce058744ec7d119461b25941f2b61ee8b7f27ca2225bb1e8"
+        },
+        "XMR/USDT": {
+          "archive": "user_data/profile_smoke/Strategy002-feae8690-XMR_USDT-57b143c0-2026-09-06_18-04-21.zip",
+          "archive_sha256": "sha256_a012f79e52dc8d0ea6f64a44804f66248547f7549b24dcbc31a71fe92e923f2e",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 119.6,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy002-feae8690-override-fe7b59b3e920.json --strategy Strategy002 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy002-feae8690-XMR_USDT-57b143c0 --cache none --pairs XMR/USDT",
+          "long_trades": 120,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 120,
+          "trades_sha256": "sha256_ab487c7d6a558a6a92ee90aa706ae4f318ccaa81ba68b6733db018bd281781a8"
+        },
+        "XRP/USDT": {
+          "archive": "user_data/profile_smoke/Strategy002-feae8690-XRP_USDT-8d33c27a-2026-09-06_18-00-43.zip",
+          "archive_sha256": "sha256_da270393e58344745aad7b41b3014023d91d000415946b20943cd45c3e2c4d4c",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 100.5,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy002-feae8690-override-fe7b59b3e920.json --strategy Strategy002 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy002-feae8690-XRP_USDT-8d33c27a --cache none --pairs XRP/USDT",
+          "long_trades": 133,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 133,
+          "trades_sha256": "sha256_4502d5b9596ce1cb002c5aae6ab6c6325db29df81392e4869ab95cf74ffb40c3"
+        }
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200401-20260821",
+      "trades": 1125,
+      "why": "at least one pair produced trades over the full window"
+    },
+    "Strategy003": {
+      "canonical_sha256": "sha256_055984b4672779b36a2391f790ccbcd320e408eb0634e34718d7182acaeef9c9",
+      "config_overrides": {
+        "startup_candle_count": 576
+      },
+      "long_trades": 2978,
+      "measurement_scope": "full_window_trade_presence",
+      "mode": "spot",
+      "pair_results": {
+        "ADA/USDT": {
+          "archive": "user_data/profile_smoke/Strategy003-63d0ad16-ADA_USDT-52bd0ad0-2026-09-06_18-10-05.zip",
+          "archive_sha256": "sha256_16d27ba50b50a4da40c6ebe89fc88e8d54da60cb25a9462a1555c0970071e357",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 101.9,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy003-63d0ad16-override-743922998d52.json --strategy Strategy003 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy003-63d0ad16-ADA_USDT-52bd0ad0 --cache none --pairs ADA/USDT",
+          "long_trades": 367,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 367,
+          "trades_sha256": "sha256_24e6b33f1357870e1099cda3c32747989b09f2d5dc05e633dd80e771ebfc7d89"
+        },
+        "BTC/USDT": {
+          "archive": "user_data/profile_smoke/Strategy003-63d0ad16-BTC_USDT-4d7eaaf1-2026-09-06_18-06-17.zip",
+          "archive_sha256": "sha256_592eeb9a94f6b726a1f89874012ed7341a4d054bb9644c6f60c4e7f10c9fe10d",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 107.3,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy003-63d0ad16-override-743922998d52.json --strategy Strategy003 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy003-63d0ad16-BTC_USDT-4d7eaaf1 --cache none --pairs BTC/USDT",
+          "long_trades": 321,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 321,
+          "trades_sha256": "sha256_74f02198c2bb7137d2728f8672d0b3c084a501094c1a37a922c723633438655d"
+        },
+        "DASH/USDT": {
+          "archive": "user_data/profile_smoke/Strategy003-63d0ad16-DASH_USDT-f7c87511-2026-09-06_18-11-38.zip",
+          "archive_sha256": "sha256_3080168a366f03e418af735e9548301e2099513b2620d4540f480b04cc80d65d",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 88.3,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy003-63d0ad16-override-743922998d52.json --strategy Strategy003 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy003-63d0ad16-DASH_USDT-f7c87511 --cache none --pairs DASH/USDT",
+          "long_trades": 447,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 447,
+          "trades_sha256": "sha256_9a7eb8f5f7cf6383d19fd3acc04f1948aa444488bf431bd34486b5f04c0f20bf"
+        },
+        "ETH/USDT": {
+          "archive": "user_data/profile_smoke/Strategy003-63d0ad16-ETH_USDT-d632ace3-2026-09-06_18-06-17.zip",
+          "archive_sha256": "sha256_24d99af42415ee74de340011fb59010b63fa6b595e0497aae78c81e90d193605",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 107.1,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy003-63d0ad16-override-743922998d52.json --strategy Strategy003 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy003-63d0ad16-ETH_USDT-d632ace3 --cache none --pairs ETH/USDT",
+          "long_trades": 427,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 427,
+          "trades_sha256": "sha256_8d7919c19a224156262be2c8708bab03aee286e46a960357101c8fa19ff07150"
+        },
+        "LTC/USDT": {
+          "archive": "user_data/profile_smoke/Strategy003-63d0ad16-LTC_USDT-9e46e6a4-2026-09-06_18-08-23.zip",
+          "archive_sha256": "sha256_8e8300dc010633eb7557e117f1b6d9ba1508618fdcc011a93b24324eca0aa04c",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 126.8,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy003-63d0ad16-override-743922998d52.json --strategy Strategy003 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy003-63d0ad16-LTC_USDT-9e46e6a4 --cache none --pairs LTC/USDT",
+          "long_trades": 422,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 422,
+          "trades_sha256": "sha256_0c20fb4b97827fbe4dd76d902fc79f1b9319aaff93a37ffc5af6bde73930b3c0"
+        },
+        "XLM/USDT": {
+          "archive": "user_data/profile_smoke/Strategy003-63d0ad16-XLM_USDT-f7c8a7b2-2026-09-06_18-10-09.zip",
+          "archive_sha256": "sha256_b73fbdc75b8bc5e5b52938c51e9201d76d358febf98ae4b9b9430887f5d6c8b0",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 99.8,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy003-63d0ad16-override-743922998d52.json --strategy Strategy003 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy003-63d0ad16-XLM_USDT-f7c8a7b2 --cache none --pairs XLM/USDT",
+          "long_trades": 398,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 398,
+          "trades_sha256": "sha256_c3460ffc9e52979aa9cd99cb60e2b19087039763f2ec7de8d54b8924a4904699"
+        },
+        "XMR/USDT": {
+          "archive": "user_data/profile_smoke/Strategy003-63d0ad16-XMR_USDT-57b143c0-2026-09-06_18-11-29.zip",
+          "archive_sha256": "sha256_8d2ad26d3b4e773941d1888d9b945842190923f9b056f275b9a50f8d77d6c80d",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 83.3,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy003-63d0ad16-override-743922998d52.json --strategy Strategy003 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy003-63d0ad16-XMR_USDT-57b143c0 --cache none --pairs XMR/USDT",
+          "long_trades": 279,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 279,
+          "trades_sha256": "sha256_ee68986f302771872b3aa7c52b849e74c9ad9123f0cfc66537ac9c6392e51faf"
+        },
+        "XRP/USDT": {
+          "archive": "user_data/profile_smoke/Strategy003-63d0ad16-XRP_USDT-8d33c27a-2026-09-06_18-08-18.zip",
+          "archive_sha256": "sha256_08aa1a7cdedcb8a33f739e0b5bf99b341f9a0701d000af886be27c672b0165b3",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 121.2,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy003-63d0ad16-override-743922998d52.json --strategy Strategy003 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy003-63d0ad16-XRP_USDT-8d33c27a --cache none --pairs XRP/USDT",
+          "long_trades": 317,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 317,
+          "trades_sha256": "sha256_347851a0adf8ab3c4ef5c972b5d8c4071d97ec12c512a37bf40a8420be997b8a"
+        }
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200401-20260821",
+      "trades": 2978,
+      "why": "at least one pair produced trades over the full window"
+    },
+    "Strategy004": {
+      "canonical_sha256": "sha256_1b4c001e80b077aaf3ec227577c78d3283be549c7d25ce9279ea03f1db5de64a",
+      "config_overrides": {
+        "startup_candle_count": 576
+      },
+      "long_trades": 4999,
+      "measurement_scope": "full_window_trade_presence",
+      "mode": "spot",
+      "pair_results": {
+        "ADA/USDT": {
+          "archive": "user_data/profile_smoke/Strategy004-39eb4f05-ADA_USDT-52bd0ad0-2026-09-06_18-17-13.zip",
+          "archive_sha256": "sha256_2bf1ce6dd4b6376c01a161c4a2c3e43a77145351c55b795f90ba11d42962d1ce",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 98.8,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy004-39eb4f05-override-743922998d52.json --strategy Strategy004 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy004-39eb4f05-ADA_USDT-52bd0ad0 --cache none --pairs ADA/USDT",
+          "long_trades": 692,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 692,
+          "trades_sha256": "sha256_49d293b7f42c53dc60701d61d3ddd541640fb86ce90055576337728f935e598a"
+        },
+        "BTC/USDT": {
+          "archive": "user_data/profile_smoke/Strategy004-39eb4f05-BTC_USDT-4d7eaaf1-2026-09-06_18-13-35.zip",
+          "archive_sha256": "sha256_c0b4855da25b1230c686dff78d3f0f1e77a69a92eb49fa27ff94ea740fcedf38",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 121.8,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy004-39eb4f05-override-743922998d52.json --strategy Strategy004 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy004-39eb4f05-BTC_USDT-4d7eaaf1 --cache none --pairs BTC/USDT",
+          "long_trades": 598,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 598,
+          "trades_sha256": "sha256_7614b3295991632d803496fbe0e96f9c3bf7e4e980b12e853ce8f43a61a60b6a"
+        },
+        "DASH/USDT": {
+          "archive": "user_data/profile_smoke/Strategy004-39eb4f05-DASH_USDT-f7c87511-2026-09-06_18-18-43.zip",
+          "archive_sha256": "sha256_2a182ad80a02efb6a96e5c79fd8cebcfe02312de2ada278c16abdb819ddf6229",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 88.6,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy004-39eb4f05-override-743922998d52.json --strategy Strategy004 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy004-39eb4f05-DASH_USDT-f7c87511 --cache none --pairs DASH/USDT",
+          "long_trades": 637,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 637,
+          "trades_sha256": "sha256_ecb7a27a94477cb354df080bff6d3517cb271d6ba5cd77f13b798b534f65f82c"
+        },
+        "ETH/USDT": {
+          "archive": "user_data/profile_smoke/Strategy004-39eb4f05-ETH_USDT-d632ace3-2026-09-06_18-13-35.zip",
+          "archive_sha256": "sha256_f59272f433e749334617ccb7bbeacf96428694072eef464afb037b19f87665f7",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 122.0,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy004-39eb4f05-override-743922998d52.json --strategy Strategy004 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy004-39eb4f05-ETH_USDT-d632ace3 --cache none --pairs ETH/USDT",
+          "long_trades": 717,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 717,
+          "trades_sha256": "sha256_11f1a4b10bccdae0d0d5ff81c2a9d0258e19b487c9ef9616c2562c32592eeeec"
+        },
+        "LTC/USDT": {
+          "archive": "user_data/profile_smoke/Strategy004-39eb4f05-LTC_USDT-9e46e6a4-2026-09-06_18-15-35.zip",
+          "archive_sha256": "sha256_ce7f22ac8bfa72d0a577ea3e029a3b95ca462e97039450ffa31c8eb1acf9585f",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 117.0,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy004-39eb4f05-override-743922998d52.json --strategy Strategy004 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy004-39eb4f05-LTC_USDT-9e46e6a4 --cache none --pairs LTC/USDT",
+          "long_trades": 637,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 637,
+          "trades_sha256": "sha256_c329b965fd881b1d681b83bf506f004f80eab6a3738e0de8396a15998e8ad697"
+        },
+        "XLM/USDT": {
+          "archive": "user_data/profile_smoke/Strategy004-39eb4f05-XLM_USDT-f7c8a7b2-2026-09-06_18-17-12.zip",
+          "archive_sha256": "sha256_e7e46e39432ec8df579936510410d8d3500012ea7d8157ed070bc47bd16f27d2",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 96.9,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy004-39eb4f05-override-743922998d52.json --strategy Strategy004 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy004-39eb4f05-XLM_USDT-f7c8a7b2 --cache none --pairs XLM/USDT",
+          "long_trades": 665,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 665,
+          "trades_sha256": "sha256_654b741e960bdd1d63c74f03ed0234070299bce008d5a5ab05be967f4cc91313"
+        },
+        "XMR/USDT": {
+          "archive": "user_data/profile_smoke/Strategy004-39eb4f05-XMR_USDT-57b143c0-2026-09-06_18-18-32.zip",
+          "archive_sha256": "sha256_fa971f7c024f07283aa60df1a69f6774d03891f19d17dd746bc3f2317ce5489d",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 78.0,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy004-39eb4f05-override-743922998d52.json --strategy Strategy004 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy004-39eb4f05-XMR_USDT-57b143c0 --cache none --pairs XMR/USDT",
+          "long_trades": 392,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 392,
+          "trades_sha256": "sha256_c099c308f944832869b96618faacf2da6c0dadb3b8cc2438bc87f0274f86edec"
+        },
+        "XRP/USDT": {
+          "archive": "user_data/profile_smoke/Strategy004-39eb4f05-XRP_USDT-8d33c27a-2026-09-06_18-15-35.zip",
+          "archive_sha256": "sha256_f484aa2c102ade190b5c682b3bfd26ec43a77b9df6c502cbac6a0d1c675bdaa8",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 576
+          },
+          "elapsed_s": 115.5,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy004-39eb4f05-override-743922998d52.json --strategy Strategy004 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy004-39eb4f05-XRP_USDT-8d33c27a --cache none --pairs XRP/USDT",
+          "long_trades": 661,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9821bf320fcb726013769a8d06559b7b12cf4abc24a9bd707682e762350ec518",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 661,
+          "trades_sha256": "sha256_578d2e92014f3ccef8eb5a7dbae404a78d52a151190ee657e979a9a4aae9d16d"
+        }
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200401-20260821",
+      "trades": 4999,
+      "why": "at least one pair produced trades over the full window"
+    },
+    "Strategy005": {
+      "canonical_sha256": "sha256_797b293f5acd809f8c77f26b38c004c87b75d8847be4cde4d0224040cc591030",
+      "config_overrides": {
+        "startup_candle_count": 288
+      },
+      "long_trades": 2193,
+      "measurement_scope": "full_window_trade_presence",
+      "mode": "spot",
+      "pair_results": {
+        "BTC/USDT": {
+          "archive": "user_data/profile_smoke/Strategy005-880bd83d-BTC_USDT-4d7eaaf1-2026-09-06_18-20-31.zip",
+          "archive_sha256": "sha256_2649e954e47ad075a2077e0cc306ce7d30a6d832469c6b22ea3e3a352c6060a7",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 111.9,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy005-880bd83d-override-fe7b59b3e920.json --strategy Strategy005 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy005-880bd83d-BTC_USDT-4d7eaaf1 --cache none --pairs BTC/USDT",
+          "long_trades": 430,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 430,
+          "trades_sha256": "sha256_79011ddb0d51ae8409e3845b22626fdc0a1dea3a2c194d77afcd2e753e1da641"
+        },
+        "ETH/USDT": {
+          "archive": "user_data/profile_smoke/Strategy005-880bd83d-ETH_USDT-d632ace3-2026-09-06_18-20-32.zip",
+          "archive_sha256": "sha256_8a4ccf880b9901d13108579fe1f07030308434dae4e826245c2cca995d18f8d3",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 112.0,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy005-880bd83d-override-fe7b59b3e920.json --strategy Strategy005 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy005-880bd83d-ETH_USDT-d632ace3 --cache none --pairs ETH/USDT",
+          "long_trades": 627,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 627,
+          "trades_sha256": "sha256_93375469cfa9785db16f71263de2b5cebe0d620a93ebf4d1650d192aabf0aa9d"
+        },
+        "LTC/USDT": {
+          "archive": "user_data/profile_smoke/Strategy005-880bd83d-LTC_USDT-9e46e6a4-2026-09-06_18-22-30.zip",
+          "archive_sha256": "sha256_39ef76c4035c9c40f13e65083dfeea5032a159591bdc9018c4d038d3ff9d8b43",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 116.4,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy005-880bd83d-override-fe7b59b3e920.json --strategy Strategy005 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy005-880bd83d-LTC_USDT-9e46e6a4 --cache none --pairs LTC/USDT",
+          "long_trades": 635,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 635,
+          "trades_sha256": "sha256_c407a82f50af0b01f5807517417d4d8350585c7815bf74a42dbf84f6972bc795"
+        },
+        "XRP/USDT": {
+          "archive": "user_data/profile_smoke/Strategy005-880bd83d-XRP_USDT-8d33c27a-2026-09-06_18-22-22.zip",
+          "archive_sha256": "sha256_4c2b77ddc76a447b110b40a1d93c107c627de002172dd6ea2f4ddf74a86bf77a",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 288
+          },
+          "elapsed_s": 107.9,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/Strategy005-880bd83d-override-fe7b59b3e920.json --strategy Strategy005 --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Strategy005-880bd83d-XRP_USDT-8d33c27a --cache none --pairs XRP/USDT",
+          "long_trades": 501,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_4d49c8ba3fc742379ddd570bf17c81dea63149ffcdb8b56023fcf2b6bc8d7a7c",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 501,
+          "trades_sha256": "sha256_eb5713bb02dc82c674819d7c353e45d30758b35f1ef9c648091d9e1fda6e7104"
+        }
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200401-20260821",
+      "trades": 2193,
       "why": "at least one pair produced trades over the full window"
     }
   },

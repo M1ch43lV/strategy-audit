@@ -18166,45 +18166,54 @@
       "config_overrides": {
         "startup_candle_count": 2880
       },
-      "long_trades": 537,
+      "long_trades": 700,
       "measurement_scope": "full_window_trade_presence",
       "mode": "spot",
       "pair_results": {
         "ADA/USDT": {
           "class1_rules": [],
           "debug_log": "user_data/profile_smoke_logs/ClucHAnix_BB_RPB-d5edb88c-ADA_USDT-52bd0ad0.log",
-          "elapsed_s": 955.0,
+          "elapsed_s": 1071.5,
           "invocation": "freqtrade backtesting --config user_data/profile_configs/ClucHAnix_BB_RPB-d5edb88c-override-7872ab415df4.json --strategy ClucHAnix_BB_RPB --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix_BB_RPB-d5edb88c-ADA_USDT-52bd0ad0 --cache none --pairs ADA/USDT",
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_id": "native_unversioned",
-          "status": "failed",
+          "status": "resource_inconclusive",
           "timerange": "20200401-20260821",
-          "why": "process exit -9 without a readable backtest archive"
+          "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
         },
         "BTC/USDT": {
+          "archive": "user_data/profile_smoke/ClucHAnix_BB_RPB-d5edb88c-BTC_USDT-4d7eaaf1-2026-09-06_17-45-26.zip",
+          "archive_sha256": "sha256_e0ced7799bb93f91cb6479231e61f2965019339d6b161a0078ee43ec56025a16",
+          "artifact_key": "",
           "class1_rules": [],
-          "debug_log": "user_data/profile_smoke_logs/ClucHAnix_BB_RPB-d5edb88c-BTC_USDT-4d7eaaf1.log",
-          "elapsed_s": 1023.0,
+          "config_overrides": {
+            "startup_candle_count": 2880
+          },
+          "elapsed_s": 1283.3,
           "invocation": "freqtrade backtesting --config user_data/profile_configs/ClucHAnix_BB_RPB-d5edb88c-override-7872ab415df4.json --strategy ClucHAnix_BB_RPB --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix_BB_RPB-d5edb88c-BTC_USDT-4d7eaaf1 --cache none --pairs BTC/USDT",
+          "long_trades": 163,
           "mode": "spot",
           "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_9c8ea21226d75de303e1736b15c7927cf0644fecac5ad4118a5386bf52fcc1fd",
           "runtime_id": "native_unversioned",
-          "status": "failed",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200401-20260821",
-          "why": "process exit -9 without a readable backtest archive"
+          "trades": 163,
+          "trades_sha256": "sha256_2f190d47f9d65cc236cbeb81497e29af07a3096216768ba7c306b5df7a72638b"
         },
         "DASH/USDT": {
           "class1_rules": [],
           "debug_log": "user_data/profile_smoke_logs/ClucHAnix_BB_RPB-d5edb88c-DASH_USDT-f7c87511.log",
-          "elapsed_s": 840.1,
+          "elapsed_s": 1131.4,
           "invocation": "freqtrade backtesting --config user_data/profile_configs/ClucHAnix_BB_RPB-d5edb88c-override-7872ab415df4.json --strategy ClucHAnix_BB_RPB --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix_BB_RPB-d5edb88c-DASH_USDT-f7c87511 --cache none --pairs DASH/USDT",
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_id": "native_unversioned",
-          "status": "failed",
+          "status": "resource_inconclusive",
           "timerange": "20200401-20260821",
-          "why": "property 'sell_reason' of 'LocalTrade' object has no setter"
+          "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
         },
         "ETH/USDT": {
           "archive": "user_data/profile_smoke/ClucHAnix_BB_RPB-d5edb88c-ETH_USDT-d632ace3-2026-09-06_16-53-08.zip",
@@ -18230,14 +18239,14 @@
         "LTC/USDT": {
           "class1_rules": [],
           "debug_log": "user_data/profile_smoke_logs/ClucHAnix_BB_RPB-d5edb88c-LTC_USDT-9e46e6a4.log",
-          "elapsed_s": 848.9,
+          "elapsed_s": 1125.0,
           "invocation": "freqtrade backtesting --config user_data/profile_configs/ClucHAnix_BB_RPB-d5edb88c-override-7872ab415df4.json --strategy ClucHAnix_BB_RPB --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix_BB_RPB-d5edb88c-LTC_USDT-9e46e6a4 --cache none --pairs LTC/USDT",
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_id": "native_unversioned",
-          "status": "failed",
+          "status": "resource_inconclusive",
           "timerange": "20200401-20260821",
-          "why": "process exit -9 without a readable backtest archive"
+          "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
         },
         "XLM/USDT": {
           "class1_rules": [],
@@ -18273,15 +18282,13 @@
         },
         "XRP/USDT": {
           "class1_rules": [],
-          "debug_log": "user_data/profile_smoke_logs/ClucHAnix_BB_RPB-d5edb88c-XRP_USDT-8d33c27a.log",
-          "elapsed_s": 916.1,
-          "invocation": "freqtrade backtesting --config user_data/profile_configs/ClucHAnix_BB_RPB-d5edb88c-override-7872ab415df4.json --strategy ClucHAnix_BB_RPB --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix_BB_RPB-d5edb88c-XRP_USDT-8d33c27a --cache none --pairs XRP/USDT",
+          "elapsed_s": 1171.0,
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_id": "native_unversioned",
           "status": "failed",
           "timerange": "20200401-20260821",
-          "why": "process exit -9 without a readable backtest archive"
+          "why": "BadZipFile: File is not a zip file"
         }
       },
       "run_profile": "spot_long",
@@ -18290,7 +18297,7 @@
       "short_trades": 0,
       "status": "measured",
       "timerange": "20200401-20260821",
-      "trades": 537,
+      "trades": 700,
       "why": "at least one pair produced trades over the full window"
     },
     "ClucHAnix_BB_RPB_HO2": {
