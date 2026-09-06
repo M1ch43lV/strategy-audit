@@ -34,13 +34,16 @@ Kette).
 |---|---|---|
 | `profile_smoke.py` | `EXECUTION_PROFILES.csv`, `PROFILE_CLASS1.json` (Reparatur-Regeln) | `PROFILE_SMOKE.json` |
 
-`ELIGIBILITY_NEVER_RUN.json` und `ELIGIBILITY_TRAP_SMOKE.json` sind
-einmalige Stores früherer Wellen (kein Runner im aktuellen Repo schreibt sie
-neu — geprüft per Grep über alle `.py`-Dateien) und werden von
-`strategy_status.py` nur noch gelesen. Sollte eine Zeile künftig denselben
-Zustand brauchen ("nie von der ersten Sichtung erreicht"), fehlt dafür ein
-aktuelles Skript; das wäre eine neue Stufe, kein Wiederverwenden dieser
-Dateien.
+**2026-09-06, erledigt:** `ELIGIBILITY_NEVER_RUN.json` und
+`ELIGIBILITY_TRAP_SMOKE.json` waren einmalige Fallback-Stores früherer
+Wellen (kein Runner im aktuellen Repo schrieb sie neu) — 65 der 83 Zeilen
+darin hatten keinen eigenen `PROFILE_SMOKE.json`-Eintrag, `strategy_status.py`
+fiel für sie auf diese beiden Dateien zurück. Per gezieltem
+`profile_smoke.py --strategy ... --profiles spot_long futures_long unknown`
+nachgeholt (empirisch geprüft: vorher änderten sich 65 von 83 Zeilen in
+`STRATEGY_STATUS.csv`, wenn man die Dateien wegließ, danach keine einzige
+mehr) und beide Dateien entfernt, inklusive der Fallback-Schleife in
+`strategy_status.py`.
 
 Scheitert der Probelauf an einem benannten, behebbaren Hindernis (fehlender
 `timeframe`, fehlendes lokales Modul, Signatur-Änderung von freqtrade/pandas/
@@ -278,15 +281,11 @@ ersetzt hat.
 
 Anders als Kategorie 1: **unsere** Dateien, nicht die des ursprünglichen
 Autors — aber das Skript, das sie einmal schrieb, existiert nicht mehr im
-Repo (per Grep über alle `.py`-Dateien geprüft, siehe Stufe 1). Nur noch von
-`strategy_status.py` gelesen, nie neu geschrieben.
-
-- `ELIGIBILITY_NEVER_RUN.json`
-- `ELIGIBILITY_TRAP_SMOKE.json`
-
-Sollte künftig wieder eine Zeile in genau diesen Zustand fallen, fehlt dafür
-ein aktuelles Skript — das wäre eine neue Stufe, kein Wiederbeleben dieser
-Dateien.
+Repo. `ELIGIBILITY_NEVER_RUN.json` und `ELIGIBILITY_TRAP_SMOKE.json` waren
+die letzten beiden dieser Art und sind am 2026-09-06 entfernt worden (siehe
+Stufe 1) — aktuell keine Kandidaten in dieser Kategorie. Ein künftiger Fund
+würde genauso behandelt: erst per Diff bestätigen, dass keine Zeile mehr
+darauf angewiesen ist, dann committen, dann entfernen — nie umgekehrt.
 
 ### 3. `tools/` — eigene Werkzeuge, aber manuell, nicht Teil der automatischen Kette
 
