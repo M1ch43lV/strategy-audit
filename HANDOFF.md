@@ -3,11 +3,13 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-07T18:51:16+02:00
-- Stopped because: the requested four-model redesign is implemented, validated,
-  and committed as `b40ad60`; Claude's pooled Model 0 benchmark remains active
+- Last update: 2026-09-07T22:36:12+02:00
+- Stopped because: the invalid Stage 6 E0 cohort has been retired consistently
+  across binding documents, historical reports, and generator safeguards in
+  `717d1e3`; Claude's single pooled Model 0 retry writer remains active
 - Next agent should: let the existing Model 0 writer finish, then refresh status
-  from authoritative artifacts; do not start Model 1/2/3 or create a candidate
+  from authoritative artifacts; never count, regenerate, benchmark, attribute,
+  or report E0 as a cohort, and do not start Model 1/2/3 or create a candidate
   spec before the remaining preregistration choices are frozen
 
 ## Objective
@@ -37,10 +39,11 @@ entry; do not reread the roughly 2,000-line file end to end.
 ## Plan pointer
 
 - Binding file: `REGIME_PREREGISTRATION.md`, especially `Analysis order`,
-  `Frozen reporting safeguards`, and `OPEN before Stage 9 ranking`.
+  `Frozen reporting safeguards`, `Amendment 2026-09-03: E0 is retired as a
+  separate cohort`, and `OPEN before Stage 9 ranking`.
 - Pipeline file: `PIPELINE.md`, Stages 7-11.
 - Reference only: `REGIME_AUDIT_PLAN.md`, sections 12-15, Stages 8-11,
-  cautions 28.1-28.6, Decision 0.17-03, and Decision 0.22-01.
+  cautions 28.1-28.6, Decision 0.17-03, Decision 0.22-01, and Decision 0.23-01.
 - Eligibility protocol when measurement/admission is involved:
   `ELIGIBILITY_EXPANSION_PLAN.md` sections 6 and 7. The old Wave C pointer is
   retired; all expansion waves are already terminal in current artifacts.
@@ -82,17 +85,18 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-07T18:51:16+02:00 at HEAD `b40ad60` after the Model 1/2/3
-redesign commit:
+Observed 2026-09-07T22:36:12+02:00 at HEAD `717d1e3` after the E0 governance
+correction:
 
 - `STRATEGY_STATUS.csv` reports stale and must not be regenerated while the
   live writer is changing its inputs. Its last snapshot has 919 rows: 608
   `E1_expanded`, 219 excluded, 27 pending, 25 exclusion-unconfirmed, 21
   too-few-trades, 18 not-a-strategy, and 1 convergence candidate.
-- Model 0 pooled manifest: 550 stored records. Against the stale 608-row E1
-  snapshot: 481 measured, 62 resource-inconclusive, 59 missing, 5 timeout,
-  and 1 failed. Treat these as progress counts, not a finalized cohort.
-- Docker container `f963375a38ff` (`strategy-audit-runtime:2026.7`) is up and
+- Model 0 pooled manifest: 609 stored records. Against the stale 608-row E1
+  snapshot: 541 measured, 61 resource-inconclusive, 5 timeout, and 1 failed.
+  Every stale-snapshot E1 row currently has a terminal record, but the active
+  retry writer can still change those categories; these are progress counts.
+- Docker container `12675b2dc3db` (`strategy-audit-runtime:2026.7`) is up and
   runs `regime.full_backtest`; Claude's `watch_pooled_backlog.py` also remains
   active. `full_backtest_manifest.json` is dirty live output owned by that run.
 - No Model 1, Model 2, Model 3, or model-comparison manifest exists.
@@ -101,6 +105,12 @@ redesign commit:
 
 Base implementation was `0de5829`; the four-model redesign is committed as
 `b40ad60` (`Separate coin-only and combined regime gates`).
+
+Eligibility governance correction is committed as `717d1e3` (`Retire invalid
+Stage 6 E0 cohort`). `REGIME_ELIGIBILITY.csv` and the 67-label expansion
+inventory remain immutable evidence of the mistaken classification, not usable
+membership. Only the latest active `admitted_E1` decision per strategy defines
+the cohort; `STRATEGY_STATUS.csv` exposes it as `E1_expanded`.
 
 - `regime/regime_engine.py` produces causal, one-day-lagged four-state data.
 - `regime/attribution.py` already attributes Model 0 trades to both four states
@@ -122,6 +132,10 @@ Base implementation was `0de5829`; the four-model redesign is committed as
 No production Model 1/2/3 run has been started. No candidate gate was selected.
 No performance row or ranking was inspected while writing this code.
 
+The exact E0 reconciliation is complete: 67 historical members, of which 66
+were independently admitted to E1 under `converged_clean_gates_v1` and one,
+`MacdStrategy`, was excluded. Their E1 standing does not derive from E0.
+
 ## Validation completed for this checkpoint
 
 ```text
@@ -136,6 +150,15 @@ gated archive-reader integration on A9AV              PASS 13679 trades
 coin-only actual-data load has no BTC series           PASS
 combined actual-data load has BTC and coin series      PASS
 ```
+
+E0-retirement validation at `717d1e3`: `strategy_status.py`,
+`eligibility_expansion.py`, `eligibility_expansion_adjudicate.py`,
+`regime_eligibility.py`, `eligibility_evidence_gap.py`,
+`warmup_convergence.py`, and `exclusion_criteria.py` selftests all PASS;
+targeted `compileall` and `git diff --check` PASS. The frozen expansion
+generator's `--check` is expected to report its pre-amendment CSV/JSON inputs as
+stale after the governing documents changed; do not regenerate them to silence
+that historical mismatch.
 
 The historical 5-profile ungated equivalence artifact remains 5/5 exact at
 `results/regime/gate_equivalence.json`; do not rerun it without a reason.
@@ -166,6 +189,8 @@ The historical 5-profile ungated equivalence artifact remains 5/5 exact at
   change.
 - Any measured Model 0 identity-matching archive. The runner is resumable.
 - Any live Claude runner or its output store.
+- Any historical E0 benchmark or attribution as current evidence. Do not rerun
+  the old 67, add 67 to E1, or regenerate frozen E0 CSV/JSON artifacts.
 - Do not generate a candidate spec from observed strategy performance.
 - Do not rank while any required preregistration choice is OPEN.
 
@@ -189,5 +214,8 @@ The historical 5-profile ungated equivalence artifact remains 5/5 exact at
   Docker wrapper exit 125 or an unresponsive VM is not a completed attempt.
 - Results are identity-bound, atomic, and resumable. Every new runner records
   its invocation and non-command environment/config provenance.
+- E0 is invalid historical provenance only. The current usable population is
+  the latest active E1 adjudication set; currently 608 rows in the stale status
+  snapshot, including 66 independently re-admitted former E0 members.
 - The prior long Wave A-C handoff remains recoverable in Git before commit
   `548be09`; current artifacts and this file supersede its stale counts.
