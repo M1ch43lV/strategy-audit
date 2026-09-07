@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import concurrent.futures
 import csv
+import datetime
 import json
 import os
 import sys
@@ -136,6 +137,18 @@ def main(argv=None) -> int:
         result.update(identity)
         result["pairs"] = profile_smoke._read_jsonc(config)["exchange"]["pair_whitelist"]
         result["measurement_scope"] = "canonical_pooled_native_pair_universe"
+        result["attempted_at"] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
+        # Every earlier try this runner overwrote used to vanish outright, so a
+        # strategy that needed several retries before it measured - or that
+        # never does - looked identical to one that succeeded on the first
+        # attempt. Carry the previous outcome forward instead of discarding it.
+        if previous.get("status"):
+            result["attempts"] = previous.get("attempts", []) + [{
+                "status": previous.get("status"),
+                "why": previous.get("why"),
+                "elapsed_s": previous.get("elapsed_s"),
+                "attempted_at": previous.get("attempted_at"),
+            }]
         return strategy, result, False
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
