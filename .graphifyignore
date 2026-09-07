@@ -1,0 +1,64 @@
+# What the knowledge graph is built from, stated once and visibly.
+#
+# This replaces `graphify-scope/`, a hand-curated *copy* of the same selection.
+# A copy states its exclusions only by being diffed against the live tree, so
+# nobody notices when it drifts - and it had: the copy was missing twelve
+# documents DOCUMENT_MAP.md tiers as required or current, among them the whole
+# of Tier 4 ("the traps that would invalidate a conclusion") except TRAPS.md.
+# The graph asserted structure over the audit while omitting the documents the
+# audit's own map calls most important.
+#
+# The document rules below mirror DOCUMENT_MAP.md's "Do not read for this
+# purpose" section. When that list changes, change this one with it.
+
+# --- Third-party and generated trees ---------------------------------------
+# Also in .gitignore, repeated here so the scan policy survives a .gitignore
+# edit: together these hold ~21500 .py files against the ~114 that are ours.
+/repos/
+/user_data/
+# 43 third-party library licences and READMEs, not this project's
+# (DOCUMENT_MAP.md, "Do not read").
+/ftenv/
+# Archived by design, including a superseded German regime-definition draft.
+/old/
+# 896 per-strategy cards; open one only when that strategy is in question.
+/corpus/
+# Third-party strategy sources with our repairs applied - measured, not read.
+/repair/patched/
+# The graph's own output, and the copy this file replaces.
+/graphify-out/
+/graphify-scope/
+
+# --- Documents DOCUMENT_MAP.md says not to read -----------------------------
+# The five hand-picked case studies of the predecessor work: a case study,
+# not a population.
+/ANALYSIS.md
+/ANALYSIS.ru.md
+/results/*.md
+# Provenance and publication front matter for the 900-strategy sweep.
+/README.md
+/CORPUS.md
+/CORPUS_PLAN.md
+# Self-contained side investigations with no regime content.
+/DCA.md
+/DEPTH.md
+/RESOLVABLE.md
+# Repair provenance; needed only when a repaired implementation is discussed.
+/repair/REGISTER.md
+/repair/FREQAI_RESULTS.md
+/repair/TRANSLATION_AUDIT.md
+# Declares itself superseded by HANDOFF.md.
+/.codex/CONTINUATION.md
+
+# --- Agent configuration, not audit content ---------------------------------
+/CLAUDE.md
+
+# --- Data and generated output, not machinery -------------------------------
+# graphify reads .json as source. 341 of them here are evidence stores and
+# result manifests - what the machinery produced, not how it is built. They
+# would outnumber the 114 Python modules three to one and say nothing about
+# structure. `graphify-out/memory/` is exempt by graphify's own design: past
+# query answers are filed back in as corpus.
+*.json
+*.html
+requirements*.txt
