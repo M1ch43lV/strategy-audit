@@ -3,9 +3,12 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-06T15:01:02+02:00
-- Stopped because: Model 1/2 implementation was validated and committed as `0de5829`; a separate Claude smoke-recovery runner is still active
-- Next agent should: inspect the active Claude runner and Git state first; do not start any measurement, regenerate status, or touch its result stores while it is alive
+- Last update: 2026-09-07T18:51:16+02:00
+- Stopped because: the requested four-model redesign is implemented, validated,
+  and committed as `b40ad60`; Claude's pooled Model 0 benchmark remains active
+- Next agent should: let the existing Model 0 writer finish, then refresh status
+  from authoritative artifacts; do not start Model 1/2/3 or create a candidate
+  spec before the remaining preregistration choices are frozen
 
 ## Objective
 
@@ -27,7 +30,7 @@ Keep attribution, true gated performance, and ranked conclusions separate.
    currently requires the Graphify skill for `/graphify`.
 7. Run the Machine state commands, then inspect `git status` and relevant diffs.
 
-`REGIME_AUDIT_PLAN.md` is reference, not the rulebook. For Model 1/2 work read
+`REGIME_AUDIT_PLAN.md` is reference, not the rulebook. For Model 1/2/3 work read
 only sections 12-15, Stages 8-11, cautions 28.1-28.6, and the current decision
 entry; do not reread the roughly 2,000-line file end to end.
 
@@ -37,7 +40,7 @@ entry; do not reread the roughly 2,000-line file end to end.
   `Frozen reporting safeguards`, and `OPEN before Stage 9 ranking`.
 - Pipeline file: `PIPELINE.md`, Stages 7-11.
 - Reference only: `REGIME_AUDIT_PLAN.md`, sections 12-15, Stages 8-11,
-  cautions 28.1-28.6, and Decision 0.17-03.
+  cautions 28.1-28.6, Decision 0.17-03, and Decision 0.22-01.
 - Eligibility protocol when measurement/admission is involved:
   `ELIGIBILITY_EXPANSION_PLAN.md` sections 6 and 7. The old Wave C pointer is
   retired; all expansion waves are already terminal in current artifacts.
@@ -79,45 +82,44 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-06T15:01:02+02:00 at HEAD `0de5829` after the Model 1/2
-checkpoint commit:
+Observed 2026-09-07T18:51:16+02:00 at HEAD `b40ad60` after the Model 1/2/3
+redesign commit:
 
-- 919 status rows: 608 `E1_expanded`, 219 excluded, 25 pending,
-  21 too-few-trades, 27 exclusion-unconfirmed, 18 not-a-strategy, and
-  1 convergence candidate.
-- Model 0 pooled manifest: 512 stored records. Within current E1:
-  328 measured, 182 failed, 1 timeout, 97 missing.
-- `docker ps` did not return within 30 seconds. Do not translate that into
-  no container running.
-- A Claude scratchpad process `run_missing_smoke.py` is active and was observed
-  running `Schism5`; it writes `PROFILE_SMOKE.json`. That file gained current
-  measurements during this Codex turn and belongs to Claude's live work.
-- `PROFILE_FULL_WINDOW_shardA.json`, `_shardB.json`, `_shardTF.json` and temp
-  files are untracked live artifacts. `full_backtest_manifest.json` and its
-  temp file are also dirty. Do not add, revert, merge, or delete them from the
-  Model 1/2 code commit.
+- `STRATEGY_STATUS.csv` reports stale and must not be regenerated while the
+  live writer is changing its inputs. Its last snapshot has 919 rows: 608
+  `E1_expanded`, 219 excluded, 27 pending, 25 exclusion-unconfirmed, 21
+  too-few-trades, 18 not-a-strategy, and 1 convergence candidate.
+- Model 0 pooled manifest: 550 stored records. Against the stale 608-row E1
+  snapshot: 481 measured, 62 resource-inconclusive, 59 missing, 5 timeout,
+  and 1 failed. Treat these as progress counts, not a finalized cohort.
+- Docker container `f963375a38ff` (`strategy-audit-runtime:2026.7`) is up and
+  runs `regime.full_backtest`; Claude's `watch_pooled_backlog.py` also remains
+  active. `full_backtest_manifest.json` is dirty live output owned by that run.
+- No Model 1, Model 2, Model 3, or model-comparison manifest exists.
 
 ## Current implementation checkpoint
 
-Committed as `0de5829` (`Implement identity-bound regime-gated models`).
+Base implementation was `0de5829`; the four-model redesign is committed as
+`b40ad60` (`Separate coin-only and combined regime gates`).
 
 - `regime/regime_engine.py` produces causal, one-day-lagged four-state data.
 - `regime/attribution.py` already attributes Model 0 trades to both four states
   and six reporting phases. It now also retains source strategy and model
   identity when reused for gated candidates.
-- `regime/gate_adapter.py` is entry-only. It now treats BTC state as global,
-  treats coin state as local, fails closed on missing local evidence, and
-  refuses omitted state lists instead of silently allowing every state.
-- `regime/gated_backtest.py` implements resumable Model 1 and Model 2 pooled
-  runners from an explicit candidate spec. It does not choose the spec.
+- `regime/gate_adapter.py` is entry-only. It has independent `btc`, `coin`, and
+  `btc_coin` modes; coin-only mode neither reads nor validates a BTC column.
+  Missing required local evidence fails closed, and omitted state lists fail.
+- `regime/gated_backtest.py` implements resumable Model 1, Model 2, and Model 3
+  pooled runners from one explicit candidate spec. It does not choose the spec.
 - `regime/gated_attribution.py` validates and attributes gated candidate
   archives. Complete input is the default; `--allow-partial` is explicit.
-- `regime/model_compare.py` writes a non-ranked Model 0/1/2 long table and
-  side-by-side deltas only after identity, candidate, gate, archive, and
-  timerange checks. It does not implement the still-open exposure benchmark.
+- `regime/model_compare.py` writes a non-ranked Model 0/1/2/3 long table and
+  deltas only after identity, candidate, gate, archive, and timerange checks.
+  It enforces that Model 3 reuses Model 1's BTC gate and Model 2's coin gate.
+  It does not implement the still-open exposure benchmark.
 - `PIPELINE.md` and `DOCUMENT_MAP.md` describe these boundaries.
 
-No production Model 1/2 run has been started. No candidate gate was selected.
+No production Model 1/2/3 run has been started. No candidate gate was selected.
 No performance row or ranking was inspected while writing this code.
 
 ## Validation completed for this checkpoint
@@ -131,6 +133,8 @@ python -m regime.attribution --selftest               PASS
 python -m compileall -q regime profile_smoke.py       PASS
 actual regime_daily load                              PASS 2364 BTC days / 18000 pair-days
 gated archive-reader integration on A9AV              PASS 13679 trades
+coin-only actual-data load has no BTC series           PASS
+combined actual-data load has BTC and coin series      PASS
 ```
 
 The historical 5-profile ungated equivalence artifact remains 5/5 exact at
@@ -138,10 +142,10 @@ The historical 5-profile ungated equivalence artifact remains 5/5 exact at
 
 ## Next concrete steps
 
-1. Let the active Claude missing-smoke queue finish. Its result store and any
-   resulting status regeneration are separate from this checkpoint.
-2. Re-read Git state after it finishes. Keep all live measurement artifacts
-   separate from the already committed Model 1/2 checkpoint `0de5829`.
+1. Let the active Claude pooled Model 0 run finish; never start a second writer.
+2. Re-read machine and Git state after it finishes, then refresh derived status
+   only when no writer is changing its input stores. Keep the live manifest
+   separate from code checkpoints `0de5829` and `b40ad60`.
 3. Complete Model 0 coverage and adjudicate resource-inconclusive failures
    under the existing attempt rules. Do not run a second Model 0 writer.
 4. Resolve the eight OPEN preregistration choices before producing a discovery
@@ -149,8 +153,8 @@ The historical 5-profile ungated equivalence artifact remains 5/5 exact at
    discovery/validation split, minimum trade/episode evidence, and the
    exposure-matched benchmark construction.
 5. Once those choices are frozen, write and hash one explicit candidate spec,
-   run the 5-10 strategy pilot, then Model 1, Model 2, gated attribution, and
-   the non-ranked comparison in the order documented in `PIPELINE.md`.
+   run the 5-10 strategy pilot, then Model 1, Model 2, Model 3, gated
+   attribution, and the non-ranked comparison in the order in `PIPELINE.md`.
 
 ## Do not redo
 
@@ -175,8 +179,11 @@ The historical 5-profile ungated equivalence artifact remains 5/5 exact at
 - Six reporting phases and fixed volatility thresholds are frozen in the
   2026-09-05 preregistration amendment; they do not replace the four states.
 - Model 0 is original entries/exits. Model 1 gates entries on BTC state.
-  Model 2 adds pair-local coin state. Original exits remain authoritative.
-- Missing gate evidence fails closed.
+  Model 2 gates entries only on pair-local coin state and does not use BTC.
+  Model 3 requires both the Model 1 BTC gate and Model 2 coin gate. Original
+  exits remain authoritative.
+- Missing local gate evidence fails closed in Models 2 and 3. Model 1 needs
+  only the global BTC evidence.
 - WSL ceiling remains 14 GB memory plus 4 GB swap. Do not raise it.
 - In-container exit `-9` is `resource_inconclusive`, not strategy failure.
   Docker wrapper exit 125 or an unresponsive VM is not a completed attempt.
