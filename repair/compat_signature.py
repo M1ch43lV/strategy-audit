@@ -934,6 +934,12 @@ def install_legacy_fillna_method_kwarg():
 PRICE_SIDE_RULE = "legacy_bid_ask_strategy_price_side"
 
 
+PRICE_SIDE_METHODS = ("confirm_trade_entry", "confirm_trade_exit",
+                     "check_buy_timeout", "check_sell_timeout")
+PRICE_SIDE_DEFAULTS = {"bid_strategy": {"price_side": "bid"},
+                       "ask_strategy": {"price_side": "ask"}}
+
+
 def install_legacy_price_side_config():
     """Restore `bid_strategy`/`ask_strategy`, renamed to entry/exit_pricing.
 
@@ -946,17 +952,32 @@ def install_legacy_price_side_config():
     raises `KeyError` one line before either strategy's own logic runs, let
     alone the order book it would go on to index.
 
-    Freqtrade's own pre-rename default for these two keys was
-    `{'price_side': 'bid'}` / `{'price_side': 'ask'}` - restored here
-    verbatim, and only when the section is entirely absent, so a config
-    that sets `bid_strategy`/`ask_strategy` itself (none in this corpus's
-    configs, but the guard costs nothing) is left untouched.
+    WHY THIS IS NOT "JUST ADD THE KEY BACK ONCE". The first version of this
+    shim did exactly that, in `StrategyResolver.load_strategy` - and it
+    reproduced the crash anyway, because freqtrade's OWN
+    `process_deprecated_setting` runs once, right after strategy resolution
+    (confirmed: the log shows strategy-attribute lines, then this
+    deprecation warning, in that order), sees the now-present
+    `bid_strategy.price_side`, migrates it to `entry_pricing.price_side` -
+    and DELETES it from `bid_strategy` as part of that migration
+    (`del section_old_config[name_old]` in freqtrade's own
+    `deprecated_settings.py`). Adding the key early hands freqtrade's own
+    migration exactly the key it then removes, which is indistinguishable
+    from the strategy never having it. The unmodified config never
+    triggers this at all: `bid_strategy` was never present to begin with,
+    so there is nothing to migrate.
 
-    Same hook as `install_legacy_min_roi_entry_override` above -
-    `StrategyResolver.load_strategy` - and composes with it: each shim reads
-    whatever `load_strategy` currently is at its own install time, so
-    installing both (`SuperHV27` needs both) chains them regardless of
-    order rather than one clobbering the other.
+    THE FIX: inject the two keys immediately before each call the strategy
+    makes, not once at load time - well after the one-time startup
+    migration has already run and stopped looking. Same hook as
+    `install_legacy_min_roi_entry_override` above for the SAME reason that
+    shim uses it (a subclass override has to be adapted on the instance,
+    the base class is never consulted): once the real loader returns the
+    instance, whichever of `confirm_trade_entry`, `confirm_trade_exit`,
+    `check_buy_timeout`, `check_sell_timeout` the class defines its own
+    version of gets wrapped to set the defaults on `self.config` (only if
+    still absent - a later value is never overwritten) right before calling
+    the author's function unchanged.
     """
     from freqtrade.resolvers.strategy_resolver import StrategyResolver
 
@@ -964,14 +985,22 @@ def install_legacy_price_side_config():
         return True
 
     original = StrategyResolver.load_strategy
-    DEFAULTS = {"bid_strategy": {"price_side": "bid"},
-               "ask_strategy": {"price_side": "ask"}}
 
     def load_strategy(config=None):
         strategy = original(config)
-        for key, default in DEFAULTS.items():
-            if key not in strategy.config:
-                strategy.config[key] = dict(default)
+        cls = type(strategy)
+        for name in PRICE_SIDE_METHODS:
+            own = cls.__dict__.get(name)
+            if own is None:
+                continue
+
+            def wrapper(*args, _own=own, _self=strategy, **kwargs):
+                for key, default in PRICE_SIDE_DEFAULTS.items():
+                    section = _self.config.setdefault(key, {})
+                    section.setdefault("price_side", default["price_side"])
+                return _own(_self, *args, **kwargs)
+
+            setattr(strategy, name, wrapper)
         return strategy
 
     StrategyResolver.load_strategy = staticmethod(load_strategy)
@@ -1019,6 +1048,26 @@ def install_synthetic_backtest_orderbook():
     informative pairs") - reusing it means this shim inherits that guard
     rather than re-deriving a current-time cutoff of its own.
 
+    WHY THE RESULT IS CACHED PER PAIR, ONCE, FOR THE PROCESS'S LIFE.
+    `get_pair_dataframe` calls `historic_ohlcv`, which already avoids
+    re-reading the feather file on every call (`"Loading data for ..."`
+    logs exactly once per pair) - but still returns
+    `self.__cached_pairs_backtesting[key].copy()`, a full copy of a
+    multi-year dataframe, EVERY call. `confirm_trade_entry` runs on every
+    prospective trade; the first version of this shim called
+    `get_pair_dataframe` there directly and SuperHV27 alone had not
+    finished after 15 minutes of silence (confirmed: not hung - freqtrade
+    logs nothing routine from inside `confirm_trade_entry` - just doing a
+    multi-hundred-thousand-row copy on repeat). Caching the extracted close
+    the first time it is needed for a pair, and reusing it for the rest of
+    that pair's calls, removes the repeated copy entirely. What is lost is
+    freshness within a run, not correctness: the cached close is real
+    historical data from no later than the first candle that needed it, so
+    every later call still gets a price from ITS OWN past or earlier, never
+    the future - it can go stale, it cannot look ahead. That is the same
+    trade a strategy author accepted by using a coarse "current price"
+    check to begin with.
+
     Scope at the call level, not just the environment level: only backtest
     or hyperopt runmode, and only when the real call actually came back
     empty - a live/dry-run call, or a backtest call that somehow got real
@@ -1031,6 +1080,7 @@ def install_synthetic_backtest_orderbook():
         return True
 
     original = DataProvider.orderbook
+    cache: dict = {}
 
     def orderbook(self, pair, maximum):
         book = original(self, pair, maximum)
@@ -1038,10 +1088,12 @@ def install_synthetic_backtest_orderbook():
             return book
         if book.get("bids") and book.get("asks"):
             return book
-        data = self.get_pair_dataframe(pair)
-        if len(data) == 0:
-            return book
-        level = [[float(data.iloc[-1]["close"]), 0.0]]
+        if pair not in cache:
+            data = self.get_pair_dataframe(pair)
+            if len(data) == 0:
+                return book
+            cache[pair] = float(data.iloc[-1]["close"])
+        level = [[cache[pair], 0.0]]
         return dict(book, bids=level, asks=level)
 
     orderbook._synthetic_orderbook_installed = True
@@ -1565,15 +1617,24 @@ def selftest():
     finally:
         pd.core.generic.NDFrame.fillna = original_ndframe_fillna
 
-    # The eighteenth shim: bid_strategy/ask_strategy are restored with their
-    # pre-rename defaults only when the section is entirely missing; a
-    # config that already sets one is left alone, and composing with the
-    # min_roi override (SuperHV27 needs both) does not clobber either.
-    class FakeStrategyNoConfig(object):
-        config = {}
+    # The eighteenth shim: bid_strategy/ask_strategy are set on the instance's
+    # config immediately before a call the strategy's OWN confirm_trade_entry
+    # makes - not once at load time, which a first version of this shim got
+    # wrong (freqtrade's own deprecated-settings migration deletes the key
+    # right back out the moment it sees it during startup config validation,
+    # a step this test cannot exercise without the real freqtrade config
+    # pipeline - the regression it guards against is deliberately about
+    # *when* the key is set, covered by the two calls below, not about
+    # surviving that migration, which only the container-run repair proved).
+    calls = []
 
-    class FakeStrategyOwnConfig(object):
-        config = {"bid_strategy": {"price_side": "ask"}}
+    class FakeStrategyEntry(object):
+        def __init__(self):
+            self.config = {}
+
+        def confirm_trade_entry(self, pair):
+            calls.append(dict(self.config))
+            return True
 
     class FakeResolver2(object):
         _target = None
@@ -1588,16 +1649,22 @@ def selftest():
     sys.modules["freqtrade.resolvers.strategy_resolver"] = module
     try:
         assert install_legacy_price_side_config()
-        FakeResolver2._target = FakeStrategyNoConfig
+        FakeResolver2._target = FakeStrategyEntry
         instance = FakeResolver2.load_strategy()
-        assert instance.config["bid_strategy"] == {"price_side": "bid"}
-        assert instance.config["ask_strategy"] == {"price_side": "ask"}
-        # A config that already names one of the two sections keeps its
-        # own value; only the missing section is filled in.
-        FakeResolver2._target = FakeStrategyOwnConfig
-        instance = FakeResolver2.load_strategy()
-        assert instance.config["bid_strategy"] == {"price_side": "ask"}
-        assert instance.config["ask_strategy"] == {"price_side": "ask"}
+        # Absent at load time - the fix under test - and present only once
+        # the wrapped call actually runs.
+        assert "bid_strategy" not in instance.config
+        assert instance.confirm_trade_entry("BTC/USDT") is True
+        assert calls[-1]["bid_strategy"] == {"price_side": "bid"}
+        assert calls[-1]["ask_strategy"] == {"price_side": "ask"}
+        # A value set between calls (freqtrade's own migration, in the real
+        # pipeline) is never overwritten - only an absent key is filled in.
+        instance.config["bid_strategy"] = {}
+        instance.confirm_trade_entry("BTC/USDT")
+        assert calls[-1]["bid_strategy"] == {"price_side": "bid"}
+        instance.config["bid_strategy"] = {"price_side": "already-set"}
+        instance.confirm_trade_entry("BTC/USDT")
+        assert calls[-1]["bid_strategy"] == {"price_side": "already-set"}
     finally:
         if saved is not None:
             sys.modules["freqtrade.resolvers.strategy_resolver"] = saved
@@ -1641,23 +1708,35 @@ def selftest():
         assert book["bids"] == [[123.5, 0.0]], book
         assert book["asks"] == [[123.5, 0.0]], book
 
-        # A book that already has depth is left exactly as the (fake) real
-        # call returned it.
-        holder._next_book = {"bids": [[100.0, 1.0]], "asks": [[101.0, 1.0]]}
+        # The cache, not a fresh lookup, answers a second empty-book call for
+        # the SAME pair - the fix for the 15-minute stall a first version of
+        # this shim caused by calling get_pair_dataframe from every
+        # confirm_trade_entry. Change what get_pair_dataframe would return
+        # and confirm the stale, cached value wins, not the fresh one.
+        holder.get_pair_dataframe = lambda pair, *a, **kw: FakeFrame(
+            [{"close": 999.0}])
         book = holder.orderbook("BTC/USDT", 1)
+        assert book["bids"] == [[123.5, 0.0]], book
+
+        # A book that already has depth is left exactly as the (fake) real
+        # call returned it - a different pair, so the cache above cannot be
+        # the reason.
+        holder._next_book = {"bids": [[100.0, 1.0]], "asks": [[101.0, 1.0]]}
+        book = holder.orderbook("ETH/USDT", 1)
         assert book == {"bids": [[100.0, 1.0]], "asks": [[101.0, 1.0]]}, book
 
         # Live/dry-run: never synthesised, even with an empty book.
         holder._config = {"runmode": RunMode.LIVE}
         holder._next_book = {"bids": [], "asks": []}
-        book = holder.orderbook("BTC/USDT", 1)
+        book = holder.orderbook("LTC/USDT", 1)
         assert book == {"bids": [], "asks": []}, book
 
-        # No historical data at all: passed through rather than invented.
+        # No historical data at all: passed through rather than invented,
+        # and nothing is cached for a future call to wrongly reuse.
         holder._config = {"runmode": RunMode.BACKTEST}
         holder._next_book = {"bids": [], "asks": []}
         holder.get_pair_dataframe = lambda pair, *a, **kw: FakeFrame([])
-        book = holder.orderbook("BTC/USDT", 1)
+        book = holder.orderbook("XRP/USDT", 1)
         assert book == {"bids": [], "asks": []}, book
     finally:
         DataProvider.orderbook = original_orderbook
