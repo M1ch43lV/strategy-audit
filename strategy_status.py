@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Current status of every strategy, as an overlay on the frozen baseline.
+"""Current status of every strategy from the complete audit evidence chain.
 
-`REGIME_ELIGIBILITY.csv` is E0 and is deliberately never regenerated: it is the
-baseline every published figure is bound to. That means it cannot answer "what
-do we know about this strategy today", and after four expansion waves the
-answer lives scattered across the smoke, bias, full-window, adjudication and
-convergence stores. This file collects them into one reference without touching
-E0.
+`REGIME_ELIGIBILITY.csv` is the invalidated historical E0 snapshot. It is never
+an admission fallback: its former membership is retained only as provenance.
+Current evidence lives across the smoke, bias, full-window, adjudication and
+convergence stores. This file collects that evidence into one reference without
+rewriting the historical artifact.
 
 Nothing here decides anything. Admission happens in
 `eligibility_expansion_adjudicate.py` and nowhere else; this is a reading of
@@ -1114,12 +1113,10 @@ def rows():
             reason = ("no run under the current runtime"
                       + (" (historical hint: %s)" % hint if hint else ""))
 
-        # An admitted row can still rest on the original author's sweep.
-        # regime_eligibility.classify promotes a historical spot PASS to a
-        # current one when no native verdict exists, and that sweep ran in an
-        # environment which did not establish this audit's preconditions. The
-        # row stays admitted - E0 is frozen and this table decides nothing -
-        # but the gap is named where anyone reading the row will see it.
+        # A row that has an active E1 adjudication can still carry a historical
+        # gate verdict from the original author's sweep. E0 membership itself
+        # never admits it; the gap is named so that current-runtime evidence can
+        # replace the inherited verdict without hiding its provenance.
         gaps = []
         if cohort == "E1_expanded":
             if lookahead_evidence.startswith("historical"):

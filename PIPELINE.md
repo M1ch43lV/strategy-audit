@@ -97,11 +97,16 @@ timeframe)` gecacht — günstig, jederzeit sicher neu zu erzeugen. Deckt seit
 
 | Programm | Liest | Schreibt |
 |---|---|---|
-| `strategy_status.py` | **alles** aus Stufe 0–4 plus `REGIME_ELIGIBILITY.csv` (eingefrorene E0-Basis, nur Rückfalloption), `ELIGIBILITY_EXPANSION_ADJUDICATION.csv`, `STRATEGY_CLASSIFICATION.json`, `MARKET_PHASE_HYPOTHESIS.json`, `BLOCKED_TRIAGE.json` | `STRATEGY_STATUS.csv`, `STRATEGY_STATUS.md`, **im selben Lauf automatisch**: `exclusion_criteria_list.md`, `repair_measures_list.md`, `RUNTIME_ENVIRONMENTS.md` |
+| `strategy_status.py` | **alles** aus Stufe 0–4 plus `REGIME_ELIGIBILITY.csv` (invalidierter historischer E0-Snapshot, ausschließlich Provenienz), `ELIGIBILITY_EXPANSION_ADJUDICATION.csv` (aktive E1-Entscheidungen), `STRATEGY_CLASSIFICATION.json`, `MARKET_PHASE_HYPOTHESIS.json`, `BLOCKED_TRIAGE.json` | `STRATEGY_STATUS.csv`, `STRATEGY_STATUS.md`, **im selben Lauf automatisch**: `exclusion_criteria_list.md`, `repair_measures_list.md`, `RUNTIME_ENVIRONMENTS.md` |
 
 Ein einziger Aufruf (`python strategy_status.py`) schreibt alle fünf Dateien.
 `--check` prüft nur, ob sie noch aktuell sind (schreibt nichts); `--selftest`
 läuft die eingebauten Konsistenz-Prüfungen.
+
+E0 ist keine Rückfalloption: seine 67 alten `regime_eligible=true`-Flags dürfen
+keinen Check ersetzen und keine Zeile zulassen. Nur eine aktive
+`admitted_E1`-Entscheidung erzeugt `cohort=E1_expanded`; die alte E0-
+Mitgliedschaft erscheint lediglich in `gate_notes`.
 
 ## Stufe 6 — Zulassung (Admission)
 

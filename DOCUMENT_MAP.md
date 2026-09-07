@@ -33,7 +33,7 @@ rule is the most likely way to corrupt this study.
 | File | What it settles |
 |---|---|
 | `REGIME_PREREGISTRATION.md` | Frozen rules: DMI/ADX(14), the four states and their thresholds, the one-day causal lag, analysis order, plus a 2026-09-05 amendment adding a six-phase reporting split on top (see Tier 3). **Plus eight OPEN choices (of the original nine - #6 was decided 2026-09-05) that forbid any ranked output until the rest are.** |
-| `REGIME_AUDIT_PLAN.md` | The reasoning behind them: why DMI/ADX over a moving average, the 4x4 BTC-state x coin-state matrix, Models 0/1/2, benchmarks, metrics, specialist and universal definitions, Stages 1-12, the Decision Log. Reference, not rulebook. |
+| `REGIME_AUDIT_PLAN.md` | The reasoning behind them: why DMI/ADX over a moving average, the 4x4 BTC-state x coin-state matrix, Models 0/1/2/3, benchmarks, metrics, specialist and universal definitions, Stages 1-12, the Decision Log. Reference, not rulebook. |
 | `ELIGIBILITY_EXPANSION_PLAN.md` | The protocol admitting new strategies to the study. Governs the current work. Waves, repair boundary, resource attempts, stop rule. |
 
 ## Tier 2 - who is measured
@@ -43,19 +43,18 @@ rule is the most likely way to corrupt this study.
   convergence stores. It is the only table that answers "what do we know about
   this strategy today"; the frozen baseline cannot, by design. It decides
   nothing - admission happens in the adjudicator alone.
-- `REGIME_ELIGIBILITY.md` - E0, the frozen 67. Deliberately not regenerated,
-  and retired as a separate cohort on 2026-09-03: every one of its rows is now
-  decided by the same criteria as any other, with membership in the frozen 67
-  kept only as provenance in `gate_notes`. Where it and the status table
-  disagree, E0 is not wrong: it is the state at the freeze, and the
-  difference is the expansion.
-- `ELIGIBILITY_EXPANSION_ADJUDICATION.md` - the profiles admitted since, by
-  route. **Read with the file above or you will quote a wrong number:**
-  `cohort=E1_expanded` in `STRATEGY_STATUS.csv` **is currently 608**, plus 1
-  more sitting in `convergence_candidate` (blocked on a plain "never trades",
-  not a gate). Both numbers move with every wave; get them from the CSV, not
-  from prose. Admission no longer waits on the paired full-window backtest -
-  see the 2026-09-02 amendment in `REGIME_PREREGISTRATION.md`.
+- `REGIME_ELIGIBILITY.md` / `.csv` - the invalidated historical Stage 6
+  snapshot. Its 67 `regime_eligible=true` flags were assigned before every row
+  completed this audit's uniform check chain. They are preserved to document
+  the error, not as a cohort, sensitivity, admission source, fallback, or
+  usable-strategy count. Sixty-six former members were later admitted
+  independently under `converged_clean_gates_v1`; `MacdStrategy` was not.
+- `ELIGIBILITY_EXPANSION_ADJUDICATION.md` / `.csv` - row-level admission and
+  withdrawal history. Only active `admitted_E1` rows can enter the benchmark;
+  `STRATEGY_STATUS.csv` exposes them as `cohort=E1_expanded`. Counts move with
+  every adjudication, so compute them from the CSVs rather than adding 67 to an
+  expansion count. Admission no longer waits on the paired full-window
+  backtest - see the 2026-09-02 amendment in `REGIME_PREREGISTRATION.md`.
 - `PIPELINE.md` - which program runs in which order, and exactly which
   `.csv`/`.json`/`.md` each one reads and writes, from corpus intake through
   Model 0 (running) and the implemented-but-not-yet-run Model 1/2/3 variants.
@@ -140,14 +139,10 @@ trusting an old run of it.
 `EXPANSION_WAVE_C_RESULTS.md`, `EXPANSION_STATIC_PROOF_FINDINGS.md`,
 `EXPANSION_WAVE_C_BIAS_RESULTS.md`, `TRAILING_SENSITIVITY_FINDINGS.md`.
 
-**`HANDOFF.md` itself is stale as of 2026-09-05** - its own baton last dates
-2026-09-01 and its checkpoint still describes Wave C at E1=75, several waves
-and this file's own 900-to-919 wave behind current state. Trust the Machine
-state commands it prescribes over its prose checkpoint; its cold-session
-checklist (read this map, the preregistration, then reconstruct state from
-`git log`/`git status`/the CSVs) is still the right procedure even though its
-own worked example is not. It is due a rewrite, not a patch - a checkpoint is
-either current or it is noise.
+`HANDOFF.md` is the shared live baton, not a result store. Trust the Machine
+state commands it prescribes over even its most recent prose counts; its
+cold-session checklist remains mandatory because another runner may have
+advanced the artifacts after the last handoff update.
 
 ## Do not read for this purpose
 

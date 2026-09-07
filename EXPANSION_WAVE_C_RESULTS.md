@@ -1,5 +1,9 @@
 # Wave C - canonical measurement results
 
+**Historical context:** references below to comparability with the frozen 67
+describe the rule at the time. E0 was invalidated as a cohort on 2026-09-03;
+those 67 labels now provide provenance only and no admission authority.
+
 All 218 measurable Wave C rows were run through the frozen smoke window
 `20200301-20200401`. The queue was exhaustive: every row has a result.
 
@@ -41,9 +45,11 @@ stop, but sharper, and it is left open pending an explicit decision.
 ### The 12 dtype and 10 interface failures
 
 These are old strategies meeting freqtrade 2026.7. Repairing them means either
-editing the sources, which changes behaviour, or pinning an older runtime, which
-breaks comparability with the frozen 67. Neither is available at the harness
-layer, so both remain terminal here.
+editing the sources, which changes behaviour, or pinning an older runtime. At
+the time, the latter was rejected as breaking comparability with the frozen 67;
+that cohort was later invalidated, but the common-runtime requirement remains.
+Neither option was available at the harness layer, so both remained terminal
+in this wave.
 
 ## The 13 zero-trade rows, settled
 

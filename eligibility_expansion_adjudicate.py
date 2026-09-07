@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Adjudicate expansion proofs without mutating the frozen Stage 6 table."""
+"""Adjudicate legacy expansion proofs without rewriting Stage 6 provenance.
+
+The frozen 67-row E0 snapshot is archival and has no admission authority.
+Current usability is determined only by active row-level E1 adjudications.
+"""
 from __future__ import annotations
 
 import argparse
@@ -268,8 +272,11 @@ def _report(rows):
     admitted = [row for row in rows if row["adjudication_status"] == "admitted_E1"]
     lines = [
         "# Eligibility expansion adjudication", "",
-        "This report overlays new prospective evidence without rewriting the frozen",
-        "67-row E0 result in `REGIME_ELIGIBILITY.csv`.", "",
+        "This legacy report records prospective evidence without rewriting the",
+        "historical 67-row E0 artifact in `REGIME_ELIGIBILITY.csv`. E0 was later",
+        "invalidated as a cohort and contributes zero admissions. Only active",
+        "`admitted_E1` rows in the current adjudication CSV define usability; never",
+        "add 67 to the count in this report.", "",
         "Two admission routes exist, and a row's route decides what evidence it",
         "owes. `zero_warmup_adapter` covers a strategy that declares no warm-up:",
         "the recursive analyzer refuses such a row outright, so a verdict exists",
@@ -289,8 +296,10 @@ def _report(rows):
             row["recursive_source"], row["current_native_lookahead"],
             row["adapted_recursive"], row["full_trade_equivalence"]))
     lines.extend([
-        "", "Current E1 count: **%d** = 67 frozen E0 profiles + %d newly "
-        "adjudicated profile(s)." % (67 + len(admitted), len(admitted)), "",
+        "", "Rows admitted by this legacy adjudicator output: **%d**. The current "
+        "E1 total must be computed from active `admitted_E1` rows in "
+        "`ELIGIBILITY_EXPANSION_ADJUDICATION.csv` or `cohort=E1_expanded` in "
+        "`STRATEGY_STATUS.csv`; it is not 67 plus this number." % len(admitted), "",
         "Admission here does not start Stage 9 or inspect regime rankings. Newly",
         "admitted profiles still require identity-bound pooled Stage 7 attribution",
         "before they can contribute to the expanded regime analysis.", "",

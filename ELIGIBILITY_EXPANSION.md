@@ -6,6 +6,10 @@
 This inventory uses technical Stage 6 evidence only. No strategy-by-regime
 performance or ranking output was read to select candidates.
 
+**Current-use warning:** `E0_strict67` is an invalidated historical tag, not an
+eligible cohort. Its 67 rows require independent active E1 decisions before
+use; this inventory grants no admission.
+
 ## Frozen waves
 
 | Wave | Rows |
@@ -17,7 +21,9 @@ performance or ranking output was read to select candidates.
 | `E0_strict67` | 67 |
 | `not_scheduled` | 390 |
 
-The four expansion waves contain **443** candidates. E0 contains **67** already eligible profiles; **390** rows are not scheduled by this equivalent-repair expansion.
+The four expansion waves contain **443** candidates. The historical E0 tag
+contains **67** rows but confers no eligibility; **390** rows are not scheduled
+by this equivalent-repair expansion.
 
 Candidate member hash: `sha256_2374db291d23252c7d6208709e0702ccb37bd6659f66e29a85cccfaab110be04`.
 

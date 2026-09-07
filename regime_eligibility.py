@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Build the preregistered technical eligibility table for regime analysis.
+"""Reproduce the historical Stage 6 technical-classification table.
 
 This stage never uses profit, significance, market return, or source taxonomy.
 It distinguishes a demonstrated technical failure from a diagnostic that has
 not yet been run in the canonical execution profile.
+
+Its E0 output was invalidated as an admission source on 2026-09-03. Current
+eligibility comes only from active E1 adjudications.
 """
 from __future__ import annotations
 
@@ -282,10 +285,15 @@ def _write_report(rows, path):
     eligible = statuses["eligible"]
     text = """# Regime eligibility — technical Stage 6
 
+**Historical-invalidity warning:** this generator reproduces the Stage 6 E0
+classification. E0 was retired on 2026-09-03 because its 67 rows had not all
+completed one uniform audit chain. A `regime_eligible=true` value here grants
+no current admission and must never be used as fallback evidence.
+
 This table is keyed by `strategy_id × run_profile` and uses the single
 canonical implementation selected in `EXECUTION_PROFILES.csv`. It is frozen
-before any regime-performance ranking. Here, eligibility means admission to
-the Stage 7 regime backtests; it is not approval for live trading.
+before any regime-performance ranking. At the time, eligibility purported to
+mean admission to Stage 7; that interpretation is no longer valid.
 
 ## Rule
 
@@ -309,15 +317,14 @@ Coverage uses available pair history, matching the existing audit. Exact pair
 and candle coverage for the frozen regime window is a hard Stage 7 precondition.
 Until `REGIME_COVERAGE.csv` supplies a `PASS` for a strategy/run-profile row,
 that row remains `pending_diagnostics` rather than being called eligible.
-At the current checkpoint, %d rows pass all gates including coverage; %d pass
+In this historical classification, %d rows pass all gates including coverage; %d pass
 every other gate and wait only for coverage.
 
-The committed report reflects E0, the frozen baseline, which is deliberately
-not regenerated as the expansion waves complete; a fresh run of this generator
-can therefore report a higher count than the committed table. Profiles admitted
-after the freeze are recorded beside it in
-`ELIGIBILITY_EXPANSION_ADJUDICATION.md`, never by rewriting the count above.
-Read both together before quoting a number of usable strategies.
+The committed report and CSV are immutable provenance of the invalid E0
+classification and are deliberately not regenerated. Do not combine their 67
+rows with an expansion count. Quote usable strategies only from active
+`admitted_E1` decisions in `ELIGIBILITY_EXPANSION_ADJUDICATION.csv`, exposed as
+`cohort=E1_expanded` in `STRATEGY_STATUS.csv`.
 
 The coverage input schema is `strategy_id,run_profile,coverage_status,coverage_evidence`.
 `coverage_status` is `PASS`, `FAIL`, or `PENDING`; evidence should identify the
@@ -412,23 +419,21 @@ def main(argv=None):
     parser.add_argument("--selftest", action="store_true")
     parser.add_argument(
         "--rewrite-frozen-baseline", action="store_true",
-        help="overwrite REGIME_ELIGIBILITY.csv, the frozen E0 baseline")
+        help="overwrite REGIME_ELIGIBILITY.csv, the invalidated historical E0 artifact")
     args = parser.parse_args(argv)
     if args.selftest:
         selftest()
         return 0
-    # REGIME_ELIGIBILITY.csv is the frozen E0 baseline. Every later cohort is
-    # an overlay on it, and strategy_status asserts it still names exactly 67
-    # eligible rows. Re-running this file against it silently reclassifies the
-    # baseline under today's rules, which is how 67 became 123 the moment the
-    # trap stopped being a hard failure. The classifier stays runnable - that
-    # is what --output is for - but not over the baseline by accident.
+    # REGIME_ELIGIBILITY.csv is immutable evidence of the invalidated E0
+    # classification. Re-running this file against it would erase the record of
+    # how the mistaken 67 was produced. The classifier stays runnable for
+    # historical diagnostics via --output, but its output never admits a row.
     if args.output == OUTPUT and not args.rewrite_frozen_baseline:
         raise SystemExit(
-            "refusing to rewrite the frozen E0 baseline (%s). "
+            "refusing to rewrite the invalidated historical E0 artifact (%s). "
             "Write elsewhere with --output, or pass "
-            "--rewrite-frozen-baseline if the freeze is being lifted "
-            "deliberately." % os.path.basename(OUTPUT))
+            "--rewrite-frozen-baseline only for an explicit provenance rewrite. "
+            "This does not create current eligibility." % os.path.basename(OUTPUT))
     rows = build(args.profiles, args.ledger, args.coverage, args.bias,
                  args.full_measurement)
     _write_csv(rows, args.output)

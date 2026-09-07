@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Freeze the outcome-blind eligibility expansion candidate universe.
+"""Freeze the historical outcome-blind eligibility expansion inventory.
 
 This inventory consumes technical Stage 6 artifacts only.  It must not read
 strategy-by-regime performance or ranking outputs.
+
+The Stage 6 E0 tag is retained only to reproduce the original wave assignment.
+It is not an admission decision; current eligibility comes only from an active
+``admitted_E1`` row in ``ELIGIBILITY_EXPANSION_ADJUDICATION.csv``.
 """
 from __future__ import annotations
 
@@ -85,6 +89,8 @@ def expansion_wave(row):
 
 def _terminal_status(wave):
     if wave == "E0_strict67":
+        # Historical serialization only: this reproduces what the frozen
+        # inventory claimed at the time. It is not a current admission status.
         return "admitted_E0"
     if wave == "not_scheduled":
         return "baseline_excluded"
@@ -227,13 +233,16 @@ def _report(rows, missingness, manifest):
         "**Protocol:** `ELIGIBILITY_EXPANSION_PLAN.md`", "",
         "This inventory uses technical Stage 6 evidence only. No strategy-by-regime",
         "performance or ranking output was read to select candidates.", "",
+        "**Current-use warning:** `E0_strict67` is an invalidated historical tag,",
+        "not an eligible cohort. Its 67 rows require independent active E1 decisions",
+        "before use; this inventory grants no admission.", "",
         "## Frozen waves", "", "| Wave | Rows |", "|---|---:|",
     ]
     for wave, count in sorted(wave_counts.items()):
         lines.append("| `%s` | %d |" % (wave, count))
     lines.extend([
-        "", "The four expansion waves contain **%d** candidates. E0 contains "
-        "**%d** already eligible profiles; **%d** rows are not scheduled by this "
+        "", "The four expansion waves contain **%d** candidates. The historical E0 "
+        "tag contains **%d** rows but confers no eligibility; **%d** rows are not scheduled by this "
         "equivalent-repair expansion." % (
             manifest["baseline"]["scheduled_expansion_candidates"],
             manifest["baseline"]["E0_strict67"],
@@ -289,6 +298,7 @@ def selftest():
     base = {"eligibility_status": "ineligible", "exclusion_reasons": "",
             "pending_reasons": "", "recursive_kind": ""}
     assert expansion_wave(dict(base, eligibility_status="eligible")) == "E0_strict67"
+    assert _terminal_status("E0_strict67") == "admitted_E0"
     assert expansion_wave(dict(base, eligibility_status="pending_diagnostics")) == \
         "A_pending_diagnostics"
     assert expansion_wave(dict(base, exclusion_reasons="recursive_bias_found",

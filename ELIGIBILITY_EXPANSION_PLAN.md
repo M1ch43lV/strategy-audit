@@ -1,14 +1,18 @@
 # Eligibility expansion protocol
 
-**Status:** accepted and frozen on 2026-08-30, before Stage 9 ranking
+**Status:** accepted and frozen on 2026-08-30, before Stage 9 ranking; all E0
+admission/reporting clauses superseded on 2026-09-03
 **Purpose:** maximize the number of strategies that can be evaluated across
 market regimes without admitting future leakage, unresolved evidence, duplicate
 implementations, or behavior-changing repairs into confirmatory claims.
 
-This protocol is an amendment to the completed Stage 6 measurement campaign.
-It does not erase or relabel the frozen 67-profile result. It creates a
-prospective expansion campaign whose repair rules, candidate universe, and stop
-conditions are fixed before any strategy-by-regime ranking is inspected.
+This protocol began as an amendment to the Stage 6 campaign. The later audit
+showed that its 67-profile result had not passed one uniform, complete check
+chain. The immutable files remain as historical evidence, but the 67 labels
+have no admission or inferential force. Every usable strategy, including a
+former E0 member, requires its own active E1 adjudication under the current
+rules. The prospective repair rules, candidate universe, and stop conditions
+remain fixed before any strategy-by-regime ranking is inspected.
 
 ## 1. Estimands and populations
 
@@ -25,14 +29,14 @@ Four evidence populations are retained:
 
 | Code | Population | Use |
 |---|---|---|
-| `E0_strict67` | The 67 profiles frozen at the completed Stage 6 checkpoint | Mandatory nested confirmatory sensitivity and provenance baseline |
-| `E1_expanded_confirmatory` | E0 plus newly validated profiles that pass every original gate after a permitted equivalent repair or completed missing diagnostic | Expanded confirmatory analysis |
+| `E0_strict67` | Historical tag for the 67 profiles recorded at Stage 6 before the uniform check chain existed | Provenance only; invalid as cohort, sensitivity, baseline, fallback, or admission |
+| `E1_expanded_confirmatory` | Every profile with an active row-level `admitted_E1` decision after the applicable current audit chain, including independently re-admitted former E0 members | Confirmatory analysis population |
 | `E2_drift_sensitivity` | Profiles with recursive drift whose decisions are exactly invariant under the frozen tests but whose recursive diagnostic remains `FOUND` | Sensitivity only |
 | `E3_derived_exploratory` | `behavior_changed`, lookahead-rewritten, trap-corrected, or otherwise behavior-changing variants | Separate exploratory analysis only |
 
 One `strategy_id x run_profile` contributes at most one canonical
-implementation to E0 or E1. Original and repaired variants are never counted as
-independent strategies.
+implementation to E1. Original and repaired variants are never counted as
+independent strategies. E0 membership is retained only as a historical tag.
 
 ## 2. Rules that do not change
 
@@ -209,17 +213,21 @@ The expansion ends when every row in Waves A-D has one terminal state:
 - hard ineligible with a demonstrated technical failure; or
 - pending after the fixed diagnostic/resource attempts are exhausted.
 
-There is no target survivor count. In particular, 156 is only the arithmetic
-ceiling from E0 plus Waves A and B, not a success criterion or forecast. The
+There is no target survivor count. The former figure 156 was only historical
+planning arithmetic that added the invalid E0 count to Waves A and B; it is not
+a success criterion, forecast, or valid population ceiling. The
 protocol does not stop early after reaching a desirable count and does not add
 new repair classes after inspecting rankings.
 
 E1 membership and all input/code/result hashes are frozen before Stage 9 is
-rerun. E0 is never overwritten.
+rerun. E0 artifacts are not overwritten because they document the error, but
+their rows are never admitted or analyzed on that basis.
 
 ## 8. Statistical safeguards after expansion
 
-- Report E0 and E1 results side by side for every confirmatory conclusion.
+- Never report E0 as a confirmatory or sensitivity result. Former membership
+  may be shown only as provenance beside the member's independently valid E1
+  result.
 - Preserve original/repaired provenance and report their strata.
 - Treat copy families as dependence clusters; report family-clustered bootstrap
   or hierarchical uncertainty and an equal-family-weight sensitivity.
@@ -238,7 +246,8 @@ The expansion produces:
   waves, rules, and stop conditions;
 - `ELIGIBILITY_EXPANSION_CANDIDATES.csv` - row-level wave and terminal status;
 - `ELIGIBILITY_EXPANSION_MISSINGNESS.csv` - Wave C missingness inventory;
-- `ELIGIBILITY_EXPANSION.md` - counts, repairs, failures, pending rows, E0/E1/E2/E3;
+- `ELIGIBILITY_EXPANSION.md` - historical frozen wave inventory; its E0 labels
+  are provenance, while current E1/E2/E3 status comes from current adjudication;
 - append-only technical result artifacts keyed by canonical identity;
 - regenerated eligibility and pooled Stage 7 artifacts only after E1 is frozen.
 

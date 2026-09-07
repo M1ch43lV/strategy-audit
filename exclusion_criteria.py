@@ -1370,7 +1370,7 @@ def selftest():
             assert not classify(row), (
                 "%s is in the too-few-trades cohort and also satisfies %s"
                 % (row["strategy_id"], ", ".join(classify(row))))
-        if row["cohort"] in ("E0_strict67", "E1_expanded"):
+        if row["cohort"] == "E1_expanded":
             assert not too_few(row), row["strategy_id"]
     for criterion in CRITERIA:
         matched = [r for r in excluded if criterion["test"](r)]

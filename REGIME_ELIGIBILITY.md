@@ -1,9 +1,14 @@
 # Regime eligibility — technical Stage 6
 
+**Historical-invalidity warning:** this is the frozen Stage 6 E0
+classification. E0 was retired on 2026-09-03 because its 67 rows had not all
+completed one uniform audit chain. A `regime_eligible=true` value here grants
+no current admission and must never be used as fallback evidence.
+
 This table is keyed by `strategy_id × run_profile` and uses the single
 canonical implementation selected in `EXECUTION_PROFILES.csv`. It is frozen
-before any regime-performance ranking. Here, eligibility means admission to
-the Stage 7 regime backtests; it is not approval for live trading.
+before any regime-performance ranking. At the time, eligibility purported to
+mean admission to Stage 7; that interpretation is no longer valid.
 
 ## Rule
 
@@ -27,15 +32,14 @@ Coverage uses available pair history, matching the existing audit. Exact pair
 and candle coverage for the frozen regime window is a hard Stage 7 precondition.
 Until `REGIME_COVERAGE.csv` supplies a `PASS` for a strategy/run-profile row,
 that row remains `pending_diagnostics` rather than being called eligible.
-At the current checkpoint, 67 rows pass all gates including coverage; 0 pass
+In this historical classification, 67 rows pass all gates including coverage; 0 pass
 every other gate and wait only for coverage.
 
-This table is E0, the frozen baseline, and it is deliberately not regenerated
-as the expansion waves complete. Regenerating it today would report 68,
-because `Fakebuy` has since cleared both bias gates. Profiles admitted after
-the freeze are recorded beside this table in
-`ELIGIBILITY_EXPANSION_ADJUDICATION.md`, never by rewriting the count above.
-Read both together before quoting a number of usable strategies.
+This report and its CSV are immutable provenance of the invalid E0
+classification and are deliberately not regenerated. Do not combine these 67
+rows with an expansion count. Quote usable strategies only from active
+`admitted_E1` decisions in `ELIGIBILITY_EXPANSION_ADJUDICATION.csv`, exposed as
+`cohort=E1_expanded` in `STRATEGY_STATUS.csv`.
 
 The coverage input schema is `strategy_id,run_profile,coverage_status,coverage_evidence`.
 `coverage_status` is `PASS`, `FAIL`, or `PENDING`; evidence should identify the

@@ -321,23 +321,13 @@ def budget_capped_rows():
 
 
 def frozen_baseline_rows():
-    """The 67 rows of the frozen E0 baseline, which the ladder never saw.
+    """Legacy CLI selector retained after E0's retirement.
 
-    Their recursion verdict comes from the original sweep, at whatever warm-up
-    the author declared. Nobody searched for the value at which their
-    indicators actually settle - the ladder did not exist yet.
-
-    That matters for what comes next rather than for their standing. Of the
-    518 rows the ladder HAS settled and which declare a value, 424 declare too
-    little - 82 percent, one of them by a factor of 144. There is no reason to
-    think these 67 are the exception, and a market-phase ranking that mixes
-    them with rows measured at a settled warm-up is comparing two different
-    things.
-
-    Measuring them changes nothing about E0. The cohort is frozen and this
-    route does not touch it: it records what the ladder finds so the benchmark
-    can run on one basis, and a row that turns out not to settle is a finding
-    to put to the owner, not a membership to revoke.
+    The 67 were re-measured through the ladder, E0 was invalidated as a cohort,
+    and `strategy_status.py` deliberately never assigns `E0_strict67` again.
+    This therefore returns no rows. Do not reconstruct the set from provenance:
+    the completed row-level evidence is already represented by E1 decisions or
+    exclusion, and rerunning it would duplicate finished work.
     """
     return [row["strategy_id"] for row in _csv(STATUS)
             if row["cohort"] == "E0_strict67"]

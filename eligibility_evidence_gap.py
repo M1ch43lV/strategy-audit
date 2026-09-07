@@ -10,7 +10,8 @@ Futures were handled carefully - a historical PASS is explicitly not inherited
 across execution modes - but the same caution was never applied across
 environments. The original author's sweep ran without the preconditions this
 audit establishes, so a PASS from it says nothing about whether the strategy is
-clean here. Thirty admitted rows rest on exactly that.
+clean here. This queue originally identified thirty admitted rows with that
+gap; after all are re-measured, the dynamically derived queue is empty.
 
 This queue measures those gates natively, in the pinned runtime, so the usable
 set stands on one body of evidence rather than two. It changes no rule and no
@@ -72,7 +73,7 @@ def cohort():
     profiles = {row["strategy_id"]: row for row in _csv(PROFILES)}
     selected = []
     for row in _csv(STATUS):
-        if row["cohort"] not in ("E0_strict67", "E1_expanded"):
+        if row["cohort"] != "E1_expanded":
             continue
         gaps = [gate for gate in GATES
                 if "%s_from_original_sweep" % gate in row["evidence_gap"]]
@@ -119,7 +120,6 @@ def run(limit, timeout, fallback_timeout):
 
 def selftest():
     rows = cohort()
-    assert rows, "no admitted row inherits a verdict; has the status table been regenerated?"
     ids = [row["strategy_id"] for row, _gaps in rows]
     assert len(ids) == len(set(ids))
     status = {r["strategy_id"]: r for r in _csv(STATUS)}
@@ -127,7 +127,7 @@ def selftest():
         entry = status[row["strategy_id"]]
         # Only admitted rows may be here: this queue exists to put the usable
         # set on one body of evidence, not to revisit exclusions.
-        assert entry["cohort"] in ("E0_strict67", "E1_expanded")
+        assert entry["cohort"] == "E1_expanded"
         for gate in gaps:
             assert entry["%s_evidence" % gate].startswith("historical"), \
                 (row["strategy_id"], gate)

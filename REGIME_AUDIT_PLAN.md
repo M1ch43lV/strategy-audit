@@ -1,8 +1,8 @@
 # Regime-based Freqtrade Strategy Audit
 
 **Working title:** Regime-Aware Audit and Strategy Selection for Public Freqtrade Strategies
-**Status:** Stage 7 complete / Stage 9 awaiting preregistration decisions
-**Version:** 0.22
+**Status:** expanded Stage 7 Model 0 evidence in progress / Stage 9 awaiting preregistration decisions
+**Version:** 0.23
 **Date:** 2026-09-07
 **Primary target:** Codex / other AI coding sessions working on `Apex-prim/strategy-audit`
 **Repository:** https://github.com/Apex-prim/strategy-audit
@@ -1302,8 +1302,14 @@ Do not begin with the full corpus backtest.
 
 ## Stage 6 — regime eligibility
 
-25. **Implemented:** build `regime_eligible` by `strategy_id × run_profile` from technical audit fields.
-26. **Implemented:** produce row-level exclusion and pending reasons in `REGIME_ELIGIBILITY.csv` and the summary in `REGIME_ELIGIBILITY.md`.
+25. **Historical implementation, retired as admission authority:**
+    `REGIME_ELIGIBILITY.csv` recorded the 67-row Stage 6 snapshot before the
+    uniform current-runtime check chain was complete. Preserve it as provenance
+    only; never use its `regime_eligible` flag to admit or analyze a row.
+26. **Current implementation:** active `admitted_E1` rows in
+    `ELIGIBILITY_EXPANSION_ADJUDICATION.csv`, exposed as
+    `cohort=E1_expanded` in `STRATEGY_STATUS.csv`, define the benchmark
+    population. Former E0 members require the same row-level decision.
 27. **Implemented:** do not use whole-window profitability/significance as eligibility gates.
 28. **Coverage implemented:** `REGIME_COVERAGE.csv` records exact frozen-window pair/candle checks; before Stage 7, complete the remaining native-profile coverage and canonical bias diagnostics, then regenerate eligibility without changing its rules.
 
@@ -1314,9 +1320,11 @@ Do not begin with the full corpus backtest.
 27. Produce episode-level consistency statistics.
 28. Do not yet claim that regime gating improves portfolio performance.
 
-**Implementation status:** complete. All canonical pooled trades are annotated
-with every causal state available at entry; BTC-only, BTC x coin, and episode
-summaries are separate, and Phase A remains descriptive.
+**Implementation status:** the historical 67-profile attribution completed,
+but that population was later invalidated and cannot support current claims.
+Expanded Model 0 artifacts are identity-bound and resumable; only current E1
+members with accepted archives may enter the new attribution. BTC-only,
+BTC x coin, and episode summaries remain separate, and Phase A is descriptive.
 
 ## Stage 8 — regime-gate adapter
 
@@ -1894,6 +1902,9 @@ implement the planned treatment without editing strategy sources.
 ## Decision 0.18-01 - Exhausted Stage 6 diagnostics and pooled Phase A runs
 
 **Status:** Stage 6 complete; Stage 7 canonical pooled runs in progress
+**Superseded population claim:** Decision 0.23-01. The measurements remain
+historical evidence, but the 67-row Stage 6 eligibility result is invalid as a
+cohort because its rows had not completed one uniform audit chain.
 **Timing:** before inspecting strategy-by-regime performance or ranking
 **Class:** implementation and measurement checkpoint; no eligibility-rule change
 **Decision:** finish the native bias queue with one-file analyzer isolation,
@@ -1927,6 +1938,9 @@ mechanics rather than a convenient sum of independent pair runs.
 ## Decision 0.19-01 - Complete canonical pooled Phase A attribution
 
 **Status:** Stage 7 complete; Stage 9 blocked only on the frozen open choices
+**Superseded population claim:** Decision 0.23-01. This closed the historical
+67-profile run only; it is not the current confirmatory population and its
+aggregate results cannot be carried forward as E0 sensitivity evidence.
 **Timing:** before inspecting strategy-by-regime performance or ranking
 **Class:** implementation and measurement checkpoint; no methodology change
 **Decision:** accept the complete identity-bound corpus of 67 pooled native
@@ -1960,8 +1974,10 @@ BTC x coin, and episode evidence distinct before any Stage 9 selection.
 **Reason:** the repository now holds 31 active Markdown files, and a session
 starting without prior chat context had no way to tell a frozen rule from a
 proposal. Two concrete failures motivated this: reading this plan's proposals
-as binding rules, and quoting the frozen 67 eligible profiles when the current
-figure is 75 because the expansion adjudication is recorded in a second file.
+as binding rules, and, at that time, quoting the frozen 67 eligible profiles
+when the then-current figure was 75 because expansion adjudication lived in a
+second file. Decision 0.23-01 later superseded that population interpretation:
+the 67 are now provenance only and must never be added to E1.
 The map is descriptive only. Where it and a governing document disagree, the
 governing document wins and the map is the error.
 
@@ -1995,7 +2011,8 @@ are not ordered, and Wave B contains a row that matched trades exactly and was
 still refused on recursion grounds. Both are required because each misses what
 the other catches. Rows
 admitted this way carry `convergence_warmup_v1` and every result is reportable
-with and without them. E0 is never regenerated.
+with and without them. The immutable E0 files are retained only to document the
+superseded classification; E0 membership is never a valid analysis stratum.
 **Must be decided before the next result run:** yes, and it was.
 
 ## Decision 0.22-01 - Separate BTC-only, coin-only, and combined entry gates
@@ -2022,6 +2039,31 @@ attribution on a Model 2 trade remains descriptive and is not an entry
 condition.
 **Must be decided before the next result run:** yes, and it was. No productive
 gated manifest existed when this decision was recorded.
+
+## Decision 0.23-01 - Retire E0 as eligibility and analysis authority
+
+**Status:** governance correction; owner-confirmed and already binding through
+the 2026-09-03 preregistration amendment
+**Timing:** the defect was discovered while re-measuring the 67 and before the
+expanded E1 regime benchmark is interpreted; this entry propagates the prior
+binding correction through active documentation and generators
+**Class:** validity correction, not a threshold change
+**Decision:** `E0_strict67` is an invalid historical Stage 6 classification,
+not a cohort. Its 67 `regime_eligible=true` flags were assigned before every row
+completed this audit's uniform current-runtime measurement and diagnostic
+chain. The files remain immutable provenance so the mistake stays auditable,
+but E0 must never be used as admission, fallback evidence, confirmatory or
+sensitivity population, denominator, benchmark, or shortcut past a check.
+Only active row-level `admitted_E1` decisions define the usable population.
+Of the former 67, 66 were later admitted independently under
+`converged_clean_gates_v1`; `MacdStrategy` was excluded. Those 66 are usable
+because of their E1 decisions, not because they were once in E0.
+**Reason:** preserving a reproducibility artifact does not preserve the
+validity of the classification it contains. Reporting E0 beside E1 would treat
+an incomplete check chain as confirmatory evidence and would reintroduce the
+blind carry-forward that the remeasurement exposed.
+**Must be decided before the next ranked result:** yes, and it is. Existing
+historical E0 aggregate outputs are excluded from current inference.
 
 ---
 

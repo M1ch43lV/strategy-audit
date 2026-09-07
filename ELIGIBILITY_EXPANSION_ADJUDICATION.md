@@ -1,7 +1,10 @@
 # Eligibility expansion adjudication
 
-This report overlays new prospective evidence without rewriting the frozen
-67-row E0 result in `REGIME_ELIGIBILITY.csv`.
+This legacy report records prospective evidence without rewriting the
+historical 67-row E0 artifact in `REGIME_ELIGIBILITY.csv`. E0 was later
+invalidated as a cohort and contributes zero admissions. Only active
+`admitted_E1` rows in the current adjudication CSV define usability; never add
+67 to the count in this report.
 
 Two admission routes exist, and a row's route decides what evidence it
 owes. `zero_warmup_adapter` covers a strategy that declares no warm-up:
@@ -28,7 +31,10 @@ override that was never applied does not apply and is reported as
 | `ObeliskIM_v1_1` | `admitted_E1` | `native_gate` | `PASS` | `PASS` | `not_applicable` |
 | `simple_patterns` | `admitted_E1` | `native_gate` | `PASS` | `PASS` | `not_applicable` |
 
-Current E1 count: **78** = 67 frozen E0 profiles + 11 newly adjudicated profile(s).
+Rows admitted by this legacy adjudicator output: **11**. The current E1 total
+must be computed from active `admitted_E1` rows in
+`ELIGIBILITY_EXPANSION_ADJUDICATION.csv` or `cohort=E1_expanded` in
+`STRATEGY_STATUS.csv`; it is not 67 plus this number.
 
 Admission here does not start Stage 9 or inspect regime rankings. Newly
 admitted profiles still require identity-bound pooled Stage 7 attribution

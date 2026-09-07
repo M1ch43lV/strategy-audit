@@ -52,9 +52,12 @@ admissions.
   trailing branches are independent, so the trailing logic is live rather than
   vestigial. Any repair alters exits.
 
-## E0 is untouched
+## Historical E0 handling, superseded 2026-09-03
 
-Regenerating `REGIME_ELIGIBILITY.csv` from the new bias results would move
+At the time, regenerating `REGIME_ELIGIBILITY.csv` from the new bias results
+would have moved
 `Fakebuy` to `eligible` and the two `FOUND` rows to `ineligible`, taking the
 table from 67 to 68. That file is the frozen E0 baseline and was deliberately
-not rewritten. `Fakebuy` belongs in the E1 expansion, recorded beside E0.
+not rewritten. The later uniform-chain audit invalidated E0 as a cohort.
+`Fakebuy` and every former E0 member are usable only through independent active
+E1 adjudications; E0 remains provenance only.

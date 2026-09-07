@@ -160,8 +160,9 @@ def _lookahead(output, returncode):
     return "NA", errors[-1].strip()[:300] if errors else "lookahead output not parsed"
 
 
-# The frozen Stage 6 gate. The convergence amendment runs the same analyzer at
-# a wider band; the default here is never changed so E0 stays reproducible.
+# Historical Stage 6 threshold, retained to reproduce and interpret the
+# invalidated snapshot. It does not admit E0 rows. Current admission uses the
+# separately frozen convergence ladder and its 1 percent band.
 DEFAULT_DRIFT_THRESHOLD = 0.01
 
 

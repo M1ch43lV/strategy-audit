@@ -6,28 +6,39 @@ marked `OPEN` must be resolved before Stage 9 produces any ranked strategy table
 The 2026-09-07 gate-factor amendment was accepted before any productive gated
 run or candidate specification existed.
 
+**Current eligibility authority:** the 2026-09-03 retirement of E0 overrides
+every earlier sentence in this file that called the 67-profile Stage 6 snapshot
+eligible, confirmatory, untouched, or reportable beside E1. `E0_strict67` is an
+archival provenance tag only. It is not a cohort, sensitivity population,
+admission source, fallback, denominator, or benchmark result.
+
 ## Scope and causal clock
 
 The canonical, deduplicated strategy corpus and its native run profiles are
-defined by `EXECUTION_PROFILES.csv`. Technical admission is defined only by
-`REGIME_ELIGIBILITY.csv`; whole-window profit is not an admission rule.
+defined by `EXECUTION_PROFILES.csv`. Technical admission is defined only by an
+active `admitted_E1` decision in `ELIGIBILITY_EXPANSION_ADJUDICATION.csv` under
+the current audit rules, exposed as `cohort=E1_expanded` in
+`STRATEGY_STATUS.csv`. `REGIME_ELIGIBILITY.csv` is the invalidated historical
+Stage 6 snapshot and supplies provenance only. Whole-window profit is not an
+admission rule.
 
 The analysis window is 2020-03-01 00:00 UTC through 2026-08-21 00:00 UTC
 (exclusive end). A daily candle is usable only on the following UTC day. No
 feature, label, gate, or attribution may use the still-open daily candle.
 
-## Frozen eligibility expansion amendment
+## Frozen eligibility expansion amendment, with E0 clauses superseded
 
 The user authorized maximizing technically trustworthy strategy coverage on
 2026-08-30, before any strategy-by-regime ranking was inspected. The complete
 prospective protocol is frozen in `ELIGIBILITY_EXPANSION_PLAN.md`.
 
-The completed 67-profile Stage 6 corpus is retained as `E0_strict67` and must
-be reported as a nested confirmatory sensitivity. A new
-`E1_expanded_confirmatory` corpus may add deduplicated profiles only after a
-predeclared equivalent repair or missing diagnostic is completed and every
-original technical gate returns `PASS`. The eligibility thresholds themselves
-are not relaxed.
+The original amendment retained the completed 67-profile Stage 6 corpus as
+`E0_strict67`. That clause is superseded by the 2026-09-03 finding below: the
+67 had not all completed this audit's own check chain. E0 membership now grants
+nothing. `E1_expanded_confirmatory` contains only deduplicated profiles with an
+active row-level `admitted_E1` decision after the applicable current-runtime
+measurement, look-ahead, convergence, coverage, trade, role, and repair checks.
+This applies equally to former E0 members and every other strategy.
 
 Recursive `FOUND` rows with exact decision-invariance evidence but no fresh
 recursive `PASS` are `E2_drift_sensitivity`, never E1. Behavior-changing,
@@ -40,7 +51,8 @@ resource attempts, and stop rule are fixed before expansion measurements. No
 profit or regime outcome may select a repair, candidate, diagnostic window, or
 stopping point. E1 and its hashes must be frozen before Stage 9 ranking.
 
-E0 and E1 are reported side by side. Strategy copy families are dependence
+E0 must not be reported as a confirmatory or sensitivity cohort. Its original
+membership may appear only as provenance. Strategy copy families are dependence
 clusters, with family-clustered or hierarchical uncertainty and an
 equal-family-weight sensitivity. Where inferential multiplicity correction is
 applicable, report both Benjamini-Hochberg and Benjamini-Yekutieli results.
@@ -121,8 +133,9 @@ entry-only and original exits remain authoritative.
 ## Frozen warm-up convergence amendment
 
 Authorized by the owner on 2026-09-01, before any strategy-by-regime ranking
-was generated or inspected. It governs a new admission route and changes
-nothing about E0.
+was generated or inspected. It governs a new admission route. Its contemporary
+promise that E0 would remain a valid untouched cohort was superseded on
+2026-09-03 after E0's missing checks were discovered.
 
 **The problem it solves.** The recursive gate asks whether an indicator's value
 depends on how much history was loaded. Answering it requires a warm-up, and
@@ -224,8 +237,10 @@ carrying a second hard reason are deliberately excluded: 35 also record
 warm-up changes any of those. Processing order is fixed here, not chosen from
 results: Wave D, then the unscheduled rows, then the Wave B remainder.
 
-**E0 is untouched.** It remains the frozen 67 and is reported beside every
-result derived under this amendment.
+**Historical clause, superseded 2026-09-03.** At adoption, E0 was to remain the
+frozen 67 and be reported beside every result. It is retained only as an
+immutable record of that mistaken Stage 6 classification and must not enter any
+current result. Former E0 members require independent E1 admission.
 
 ## Amendment 2026-09-02: the settled warm-up is the measurement
 
@@ -356,15 +371,18 @@ residual drift at the largest warm-up the data supports (365 days, after the
 and `StochRSITEMA`, had been misread by a defect in our own table parser
 (see below) rather than measured at all.
 
-**E0_strict67 is retired as a cohort.** The 67 are no longer admitted by
-having been in the original Stage 6 corpus; each is decided by the same C1/
-C2/C3 criteria as every other strategy, using this audit's own measurements.
+**E0_strict67 is retired and invalid as a cohort.** The 67 are no longer
+admitted by having been in the original Stage 6 corpus; each must complete the
+same current audit chain as every other strategy, including current-runtime
+measurement, the C1-C4 exclusions, convergence, coverage, trade evidence,
+artifact role, and repair provenance. No E0 flag may skip a check or serve as a
+fallback verdict.
 Membership in the original frozen set is kept as provenance on the row
 (`gate_notes`), never as a reason to skip a check or override a finding.
 
-`MacdStrategy` moves to `excluded` under C2. The other 66 are evaluated
-through the ordinary admission pass exactly as any other converged row would
-be.
+`MacdStrategy` moves to `excluded` under C2. The other 66 were subsequently
+admitted independently under `converged_clean_gates_v1`; their usability comes
+from those 66 row-level E1 decisions, never from former E0 membership.
 
 ## Amendment 2026-09-03: a second reader defect, corpus-wide
 
