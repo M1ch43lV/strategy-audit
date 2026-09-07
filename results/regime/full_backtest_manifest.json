@@ -527,7 +527,7 @@
       "canonical_sha256": "sha256_58f6a2d72a769ef615f71f0af66d558a1397efd08ab60cabe2625f8e8e60482d",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/BBRSI2-86823e82.log",
-      "elapsed_s": 308.3,
+      "elapsed_s": 235.3,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BBRSI2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/BBRSI2 --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBRSI2-86823e82 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -1424,11 +1424,15 @@
       "trades_sha256": "sha256_d8a4a274f35511c786342ceeef343d6af9828a18fa4b79408c090913e472b277"
     },
     "BigPete": {
+      "archive": "user_data/profile_smoke/BigPete-b194f963-2026-09-07_13-28-54.zip",
+      "archive_sha256": "sha256_e4116d1ed442a8d7a90f632f3ee3b6d66c82c70985e85a038b8a38b473e3ddf9",
+      "artifact_key": "",
       "canonical_sha256": "sha256_d27f97d739e5c798a772fe471793d5fef4bde4c8ea3df6ee46cb9c2d80b04af2",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/BigPete-b194f963.log",
-      "elapsed_s": 245.3,
+      "config_overrides": {},
+      "elapsed_s": 701.4,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BigPete --strategy-path repos/davidzr_freqtrade-strategies/strategies/BigPete --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BigPete-b194f963 --cache none",
+      "long_trades": 14529,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -1443,9 +1447,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 14529,
+      "trades_sha256": "sha256_9693cc7331c4c32a62b33903e7da5ee21d9552f23bceb4b06e8cc26bf2476ca4"
     },
     "BigTrader": {
       "archive": "user_data/profile_smoke/BigTrader-fc53f0ba-2026-09-06_02-54-32.zip",
@@ -1508,11 +1515,15 @@
       "trades_sha256": "sha256_9877819e8a0cfda10368ef619efc29ad437cfeaf91f63d4352bf416b0e1b2865"
     },
     "BigZ03HO": {
+      "archive": "user_data/profile_smoke/BigZ03HO-223e9e10-2026-09-07_13-42-10.zip",
+      "archive_sha256": "sha256_bf58ec8ab353c2c7b3838cd88f40dda5231dc0cdb28a36124d54d9452b47dca1",
+      "artifact_key": "",
       "canonical_sha256": "sha256_69198df9bcc97b04f60f1fb5a8c42c758c0906eb3fe4b143cda2a1e002df4ac1",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/BigZ03HO-223e9e10.log",
-      "elapsed_s": 899.4,
+      "config_overrides": {},
+      "elapsed_s": 1446.7,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BigZ03HO --strategy-path repos/davidzr_freqtrade-strategies/strategies/BigZ03HO --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BigZ03HO-223e9e10 --cache none",
+      "long_trades": 10851,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -1527,9 +1538,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 10851,
+      "trades_sha256": "sha256_ae75c6ba9e5f0ee95d44fc73ba475ba0dee2c2ced4d936ee9133c440da4e3303"
     },
     "BigZ04_TSL3": {
       "archive": "user_data/profile_smoke/BigZ04_TSL3-da25b418-2026-09-05_14-23-34.zip",
@@ -1592,11 +1606,15 @@
       "trades_sha256": "sha256_a9a4768e8d1df552443b41223778c2475206e8186bd5035b0a197986b5f70597"
     },
     "BigZ07Next": {
+      "archive": "user_data/profile_smoke/BigZ07Next-49314d41-2026-09-07_13-35-13.zip",
+      "archive_sha256": "sha256_b0ef77d6aca451a66d53c2c1a5ba4af539c1af88936b2874bf488d8912b27957",
+      "artifact_key": "",
       "canonical_sha256": "sha256_a0cf89b2bf0920cb9c54cc6a0f27fe5a50fb9d96c42637ba2ae8db6f4e85bdea",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/BigZ07Next-49314d41.log",
-      "elapsed_s": 223.6,
+      "config_overrides": {},
+      "elapsed_s": 181.7,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BigZ07Next --strategy-path repos/davidzr_freqtrade-strategies/strategies/BigZ07Next --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BigZ07Next-49314d41 --cache none",
+      "long_trades": 1337,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -1611,16 +1629,23 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 1337,
+      "trades_sha256": "sha256_9fb17c6c915d0df608cbd87ed8649c707947c725cd4bb32ce1efb782982df4c4"
     },
     "BigZ07Next2": {
+      "archive": "user_data/profile_smoke/BigZ07Next2-746d2c59-2026-09-07_13-32-12.zip",
+      "archive_sha256": "sha256_dd78dd565f7d4855f4528a37d3ed32264290c30561d3d9281364b0b1dd6a84cd",
+      "artifact_key": "",
       "canonical_sha256": "sha256_bc3b7327678e770c32a0acdb016c19c4b2f6226c2c4cd30d6d91da745af9706c",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/BigZ07Next2-746d2c59.log",
-      "elapsed_s": 137.6,
+      "config_overrides": {},
+      "elapsed_s": 190.9,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BigZ07Next2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/BigZ07Next2 --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BigZ07Next2-746d2c59 --cache none",
+      "long_trades": 1313,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -1635,9 +1660,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 1313,
+      "trades_sha256": "sha256_1f887b5cfb5cbe85e5203dae574d5789461cea646e9eb247beeb7400838395fc"
     },
     "BinClucMad": {
       "archive": "user_data/profile_smoke/BinClucMad-22180ec8-2026-09-06_05-11-06.zip",
@@ -1846,7 +1874,7 @@
       "canonical_sha256": "sha256_137f88a12a9d2f26af343aa17fd4d15deed08d75eaa91e66830be689e2a60cbf",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/BinHV45HO-2a444e3c.log",
-      "elapsed_s": 303.9,
+      "elapsed_s": 209.4,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BinHV45HO --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinHV45HO-2a444e3c --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -1870,7 +1898,7 @@
       "canonical_sha256": "sha256_3de55f927af3e2ead320718bc308a4a20caaecee5255169cf7f9a173cb9ebeb3",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/BinHV45_kanaxe-5d56a0a8.log",
-      "elapsed_s": 330.3,
+      "elapsed_s": 250.7,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BinHV45_kanaxe --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinHV45_kanaxe-5d56a0a8 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -1894,7 +1922,7 @@
       "canonical_sha256": "sha256_37a6a89a6302a13818680edd27ee1494d4758aa8110abd90f348e11ba20d7feb",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/BinHV45_stash-2477766f.log",
-      "elapsed_s": 319.5,
+      "elapsed_s": 243.6,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BinHV45_stash --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinHV45_stash-2477766f --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -1918,7 +1946,7 @@
       "canonical_sha256": "sha256_379b5bd8faf969db26b0f2b424ed0cffb10cbc4b19c752da79412dbf72bff62b",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/BinHV45_werkkrew-1637ab87.log",
-      "elapsed_s": 352.9,
+      "elapsed_s": 255.7,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BinHV45_werkkrew --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinHV45_werkkrew-1637ab87 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -2334,7 +2362,7 @@
       "canonical_sha256": "sha256_b1c9929b686df7537b4d5763d0971a5d9d31088f62a7c785aa7886775077d6f5",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/Cluc4-72b005ae.log",
-      "elapsed_s": 285.5,
+      "elapsed_s": 219.6,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Cluc4 --strategy-path repos/davidzr_freqtrade-strategies/strategies/Cluc4 --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Cluc4-72b005ae --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -2910,7 +2938,7 @@
       "canonical_sha256": "sha256_bae14e9ad549c80ccfe83bae2781142a230aa7b229c51e35806ac6c4396b8115",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/CombinedBinHAndClucHyper-48a908dc.log",
-      "elapsed_s": 334.6,
+      "elapsed_s": 211.8,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CombinedBinHAndClucHyper --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CombinedBinHAndClucHyper-48a908dc --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -2934,7 +2962,7 @@
       "canonical_sha256": "sha256_1f9bfbc3e5ead0693dc39113707711284f79561b7df5a03de00011c76bb9a4f3",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/CombinedBinHAndClucHyperV0-e03b8c29.log",
-      "elapsed_s": 293.9,
+      "elapsed_s": 238.7,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CombinedBinHAndClucHyperV0 --strategy-path repos/davidzr_freqtrade-strategies/strategies/CombinedBinHAndClucHyperV0 --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CombinedBinHAndClucHyperV0-e03b8c29 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -2958,7 +2986,7 @@
       "canonical_sha256": "sha256_82200df31c45c2cb8b5c3ad3199c9d9cd0866d995374ba392cda4e752cdb88be",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/CombinedBinHAndClucHyperV3-84115c08.log",
-      "elapsed_s": 318.9,
+      "elapsed_s": 241.5,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CombinedBinHAndClucHyperV3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/CombinedBinHAndClucHyperV3 --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CombinedBinHAndClucHyperV3-84115c08 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -3339,11 +3367,15 @@
       "trades_sha256": "sha256_121aea1e37f76d0d5748973087a548b9f63eb005ba095eaa06ac04da325132a2"
     },
     "CombinedBinHClucAndMADV5": {
+      "archive": "user_data/profile_smoke/CombinedBinHClucAndMADV5-f746355d-2026-09-07_13-44-55.zip",
+      "archive_sha256": "sha256_061020b1469849a25750a405237e13451f4abee48976c175608b9f77c3ad125e",
+      "artifact_key": "",
       "canonical_sha256": "sha256_ec954f77cea1c12ec400a8678fdab881fd3f5ff05722f879f96ec61f25cd4414",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/CombinedBinHClucAndMADV5-f746355d.log",
-      "elapsed_s": 188.3,
+      "config_overrides": {},
+      "elapsed_s": 122.1,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy CombinedBinHClucAndMADV5 --strategy-path repos/davidzr_freqtrade-strategies/strategies/CombinedBinHClucAndMADV5 --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CombinedBinHClucAndMADV5-f746355d --cache none",
+      "long_trades": 1331,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -3358,9 +3390,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 1331,
+      "trades_sha256": "sha256_6a3f96cd7518cd7839c7f1803cd3495de491820ff2cdf3a0cb75ea7fa090df29"
     },
     "CombinedBinHClucAndMADV6": {
       "archive": "user_data/profile_smoke/CombinedBinHClucAndMADV6-13156fb3-2026-09-05_16-45-42.zip",
@@ -3426,7 +3461,7 @@
       "canonical_sha256": "sha256_39dc56f0be05e4dbfacf08f203b6ad7baa9d8a06cbd1ed5f593799ef26657de9",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/Combined_Indicators-8c5e3bcf.log",
-      "elapsed_s": 326.7,
+      "elapsed_s": 303.1,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Combined_Indicators --strategy-path repos/davidzr_freqtrade-strategies/strategies/Combined_Indicators --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Combined_Indicators-8c5e3bcf --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -3504,7 +3539,7 @@
       "canonical_sha256": "sha256_7c418bfb65492eae17271e1e3bf09ce80e42e986b26b4651b2c723d8514730fe",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/Combined_NFIv7_SMA_Rallipanos_20210707-e9761cd4.log",
-      "elapsed_s": 131.6,
+      "elapsed_s": 167.7,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Combined_NFIv7_SMA_Rallipanos_20210707 --strategy-path repos/davidzr_freqtrade-strategies/strategies/Combined_NFIv7_SMA_Rallipanos_20210707 --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Combined_NFIv7_SMA_Rallipanos_20210707-e9761cd4 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -3525,11 +3560,15 @@
       "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
     },
     "Combined_NFIv7_SMA_bAdBoY_20211204": {
+      "archive": "user_data/profile_smoke/Combined_NFIv7_SMA_bAdBoY_20211204-553271e2-2026-09-07_13-52-29.zip",
+      "archive_sha256": "sha256_bb717483507ed8eeead97690f9f8e5e4df1369b879b21d16aaa8e271e4851dbb",
+      "artifact_key": "",
       "canonical_sha256": "sha256_c74c33844b8c29f13e96b6b192fbefd4d9b820beff6be4d1e066fb8ee3a402a7",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/Combined_NFIv7_SMA_bAdBoY_20211204-553271e2.log",
-      "elapsed_s": 168.1,
+      "config_overrides": {},
+      "elapsed_s": 204.5,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Combined_NFIv7_SMA_bAdBoY_20211204 --strategy-path repos/davidzr_freqtrade-strategies/strategies/Combined_NFIv7_SMA_bAdBoY_20211204 --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Combined_NFIv7_SMA_bAdBoY_20211204-553271e2 --cache none",
+      "long_trades": 722,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -3544,9 +3583,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 722,
+      "trades_sha256": "sha256_85dce6cada742b6e1768f59e0daf70df041423f4e4a3f2cd9a21a3a4a5ae5145"
     },
     "ConsensusShort": {
       "canonical_sha256": "sha256_4e8ceeaec14c13bb5dfcd5f42971e3375635c496a76f90ab13f90883aee527a6",
@@ -4482,11 +4524,15 @@
       "trades_sha256": "sha256_2df97a0cfa0b7f1bdd8e4f5ae8c6c1d7cb142fbdb4c64cac5b1ebdae050510cf"
     },
     "EMA50": {
+      "archive": "user_data/profile_smoke/EMA50-07c89e5c-2026-09-07_13-55-57.zip",
+      "archive_sha256": "sha256_c34d2ecb552e20e555222aa69e0187dbeea2669e22d7a9459758da15187e5fc0",
+      "artifact_key": "",
       "canonical_sha256": "sha256_d62465f056d7f0c715b598389abb3203359fc5ee91e2a5609c3286331979aad2",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/EMA50-07c89e5c.log",
-      "elapsed_s": 369.9,
+      "config_overrides": {},
+      "elapsed_s": 364.8,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy EMA50 --strategy-path repos/davidzr_freqtrade-strategies/strategies/EMA50 --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/EMA50-07c89e5c --cache none",
+      "long_trades": 10435,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -4501,9 +4547,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 10435,
+      "trades_sha256": "sha256_14bb06925de25807e83bbd6a5246b177627ddbf4bfacfc65da6e0bfce9e64f6d"
     },
     "EMA520015_V17": {
       "archive": "user_data/profile_smoke/EMA520015_V17-94b0e424-2026-09-06_05-53-43.zip",
@@ -5694,7 +5743,7 @@
       "canonical_sha256": "sha256_eed1448f07b515c2f0cc65477293bc0e36b66506652744d970e0da55658bfa64",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/FastSupertrend_optim3_rsi_75lev-b817c3a1.log",
-      "elapsed_s": 187.8,
+      "elapsed_s": 157.5,
       "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy FastSupertrend_optim3_rsi_75lev --strategy-path user_data/profile_repairs --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FastSupertrend_optim3_rsi_75lev-b817c3a1 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "futures",
@@ -6458,11 +6507,15 @@
       "trades_sha256": "sha256_1521148d633797d8165e55f020bea4646647dd993760f848c475994a3c919f23"
     },
     "Gumbo1": {
+      "archive": "user_data/profile_smoke/Gumbo1-d72ec524-2026-09-07_11-53-51.zip",
+      "archive_sha256": "sha256_fa2565b96af44e95ba03ffd503207aefe3014c4eff88253a3ea85ca6a472d942",
+      "artifact_key": "",
       "canonical_sha256": "sha256_5e3498b397df229436fa78b9069089645e6283dee974271187d6bce72c37dc59",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/Gumbo1-d72ec524.log",
-      "elapsed_s": 180.4,
+      "config_overrides": {},
+      "elapsed_s": 168.3,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Gumbo1 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Gumbo1-d72ec524 --cache none",
+      "long_trades": 15510,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -6477,9 +6530,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 15510,
+      "trades_sha256": "sha256_f10763ce4927d54180c101a0497bac3d7ef2694abfe132663f3d0664d94046d2"
     },
     "Hacklemore2": {
       "archive": "user_data/profile_smoke/Hacklemore2-25466732-2026-09-06_07-21-38.zip",
@@ -8703,7 +8759,7 @@
         "idempotent_entry_tag_initialisation"
       ],
       "debug_log": "user_data/profile_smoke_logs/NASOSRv6_private_Reinuvader_20211121-05f96346.log",
-      "elapsed_s": 1204.1,
+      "elapsed_s": 964.7,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy NASOSRv6_private_Reinuvader_20211121 --strategy-path repair/patched/repos/ShahAnuj2610_my-freqtrade/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NASOSRv6_private_Reinuvader_20211121-05f96346 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -9358,11 +9414,15 @@
       "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
     },
     "NFI7MOHO": {
+      "archive": "user_data/profile_smoke/NFI7MOHO-4963f506-2026-09-07_13-58-53.zip",
+      "archive_sha256": "sha256_91e84708818c3de955eb056d1f62beb3753a946f98da36e03f272a6bae0495aa",
+      "artifact_key": "",
       "canonical_sha256": "sha256_fd4b8fbca94279364e303b10f769aec62945d3d5a528c92f83fce66256e7200c",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/NFI7MOHO-4963f506.log",
-      "elapsed_s": 130.1,
+      "config_overrides": {},
+      "elapsed_s": 170.1,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy NFI7MOHO --strategy-path repos/davidzr_freqtrade-strategies/strategies/NFI7MOHO --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NFI7MOHO-4963f506 --cache none",
+      "long_trades": 1633,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -9377,16 +9437,23 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 1633,
+      "trades_sha256": "sha256_3d3bc738aa6dae95de129c6f8461c2cc4a7337977d3b1642aa1d4f050fd41f1e"
     },
     "NFINextMOHO": {
+      "archive": "user_data/profile_smoke/NFINextMOHO-92310738-2026-09-07_14-05-23.zip",
+      "archive_sha256": "sha256_f9cc0461e316b75e9b99ab93f854b09bf7a1c973f954a687383920aaaefa6f59",
+      "artifact_key": "",
       "canonical_sha256": "sha256_27d42963533fb01c9189cd917ad7d45cd9cf165b5eb6affb2381ca394168e571",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/NFINextMOHO-92310738.log",
-      "elapsed_s": 115.1,
+      "config_overrides": {},
+      "elapsed_s": 212.5,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy NFINextMOHO --strategy-path repos/davidzr_freqtrade-strategies/strategies/NFINextMOHO --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NFINextMOHO-92310738 --cache none",
+      "long_trades": 1213,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -9401,16 +9468,23 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 1213,
+      "trades_sha256": "sha256_99f01ac8f22c5650859d285c1b51819467ce1decf5edc9b9ebc487235a6c09c8"
     },
     "NFINextMOHO2": {
+      "archive": "user_data/profile_smoke/NFINextMOHO2-6491efe9-2026-09-07_14-01-51.zip",
+      "archive_sha256": "sha256_f51f2fc88440d927de4e59a93077d1e62fe7b308345f4a26101ae135fb1b0115",
+      "artifact_key": "",
       "canonical_sha256": "sha256_7aef4cd632c15afbf0fc1147ef0fa188ebe31fcd7d3886a81c281d6cee7a276e",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/NFINextMOHO2-6491efe9.log",
-      "elapsed_s": 127.9,
+      "config_overrides": {},
+      "elapsed_s": 176.7,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy NFINextMOHO2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/NFINextMOHO2 --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NFINextMOHO2-6491efe9 --cache none",
+      "long_trades": 1489,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -9425,9 +9499,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 1489,
+      "trades_sha256": "sha256_6d20af913c30e3e16dac5f2ce6a422384ed1f104c73719bf0f740343f03c4722"
     },
     "NFINextMultiOffsetAndHO": {
       "canonical_sha256": "sha256_269d71651c46e3bdd298ae51610c6ad1f2de74ba7771f6701f901c32d69973f4",
@@ -9526,11 +9603,15 @@
       "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
     },
     "NWEv6_new": {
+      "archive": "user_data/profile_smoke/NWEv6_new-3a4963e7-2026-09-07_12-55-59.zip",
+      "archive_sha256": "sha256_8b92469643a45d3e5b5ca8ef4fcf9bdee4bf311f6c7890796e56f3ec6c0c89c7",
+      "artifact_key": "",
       "canonical_sha256": "sha256_643838521ab8df98448412e1aa8fc023e6352914d35a57db1c39c476b8f6c7dd",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/NWEv6_new-3a4963e7.log",
-      "elapsed_s": 1077.0,
+      "config_overrides": {},
+      "elapsed_s": 893.7,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy NWEv6_new --strategy-path repos/anakein_beastbotXB/working --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NWEv6_new-3a4963e7 --cache none",
+      "long_trades": 6611,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -9545,9 +9626,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 6611,
+      "trades_sha256": "sha256_68593d90c353e6f2d91a027949e1bcd8dc134a2a56bc3f690bfe5269cac7198f"
     },
     "NfiNextModded": {
       "canonical_sha256": "sha256_100cce435cd4fde7b4fa538bee27da7de112bb842c56bcb1cdb9bfccd7532729",
@@ -9668,7 +9752,7 @@
       "canonical_sha256": "sha256_cdde4efa3b8477dc52e0eadd107f22950381578de1e01b87e60f531ee1d395f1",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/NostalgiaForInfinity772martinsk3-01ceac58.log",
-      "elapsed_s": 1030.6,
+      "elapsed_s": 820.5,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy NostalgiaForInfinity772martinsk3 --strategy-path repair/patched/repos/TheoBrigitte_freqtrade/strategies/nfix --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NostalgiaForInfinity772martinsk3-01ceac58 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -9723,7 +9807,7 @@
       "canonical_sha256": "sha256_eb7cdb1d09730282f019771ad3c23389572eb8f2c44ad4a69eb92ddb585116cf",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/NostalgiaForInfinityNext772-8d6ca7f0.log",
-      "elapsed_s": 932.7,
+      "elapsed_s": 909.7,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy NostalgiaForInfinityNext772 --strategy-path repair/patched/repos/TheoBrigitte_freqtrade/sources/nfix --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NostalgiaForInfinityNext772-8d6ca7f0 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -9807,7 +9891,7 @@
       "canonical_sha256": "sha256_23093d5ac9ece8b5a5f10a19e06326af8496c303e294cba87778df2df3694539",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/NostalgiaForInfinityNextV7155-fd1e8353.log",
-      "elapsed_s": 1011.4,
+      "elapsed_s": 626.0,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy NostalgiaForInfinityNextV7155 --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NostalgiaForInfinityNextV7155-fd1e8353 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -12333,13 +12417,17 @@
       "why": "timeout after 3600 seconds"
     },
     "Schism2": {
+      "archive": "user_data/profile_smoke/Schism2-488547c4-2026-09-07_11-12-34.zip",
+      "archive_sha256": "sha256_bf2f3cf9b11e93effaf1874287334ad04360fb77530ba3f7c1ed98193d863c1b",
+      "artifact_key": "",
       "canonical_sha256": "sha256_da17435ebbcc2bddc7b9d19553652af7fbef838342586ef52b5486e2bac62f9b",
       "class1_rules": [
         "legacy_min_roi_reached_entry_override"
       ],
-      "debug_log": "user_data/profile_smoke_logs/Schism2-488547c4.log",
-      "elapsed_s": 158.5,
+      "config_overrides": {},
+      "elapsed_s": 2134.3,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Schism2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Schism2-488547c4 --cache none",
+      "long_trades": 6078,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -12354,16 +12442,23 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 6078,
+      "trades_sha256": "sha256_4b6c949d8ab136e22b0447bcf09980361b19b78d3a008fcbe454317fe7ae160f"
     },
     "Schism3": {
+      "archive": "user_data/profile_smoke/Schism3-ee2a15e4-2026-09-07_10-37-44.zip",
+      "archive_sha256": "sha256_519ffb70ee71ecc07dd1ec97bdf4e4bdaf9391d98b2f2e8b7a9caaf58f0dcd1a",
+      "artifact_key": "",
       "canonical_sha256": "sha256_3e641ed1d3de0fff9193f38d841f0714cfed63e397b395e8a301bb740b5f3e7f",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/Schism3-ee2a15e4.log",
-      "elapsed_s": 304.8,
+      "config_overrides": {},
+      "elapsed_s": 2014.5,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Schism3 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Schism3-ee2a15e4 --cache none",
+      "long_trades": 6429,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -12378,16 +12473,23 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 6429,
+      "trades_sha256": "sha256_00ed6223fc91bb7d6a72e9f6a8905c5e1a812fe0bcf185044560dedf5fdcc72d"
     },
     "Schism4": {
+      "archive": "user_data/profile_smoke/Schism4-cabe5254-2026-09-07_10-52-44.zip",
+      "archive_sha256": "sha256_24a3d81df0efa9ef54757fa319a1051f6ab468f86ec5e5f3c2dc8bdd71cbc3db",
+      "artifact_key": "",
       "canonical_sha256": "sha256_8c70df08eac9fc5c931c964924f6f241c4da941c2933aa097a8f49e5813f65ea",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/Schism4-cabe5254.log",
-      "elapsed_s": 410.0,
+      "config_overrides": {},
+      "elapsed_s": 2473.2,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Schism4 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Schism4-cabe5254 --cache none",
+      "long_trades": 7932,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -12402,16 +12504,23 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 7932,
+      "trades_sha256": "sha256_8bdb31e7dee0a87d4e24663ef0db4acd41ea81af388c13a53f02060be914dff5"
     },
     "Seb": {
+      "archive": "user_data/profile_smoke/Seb-884e1568-2026-09-07_11-04-30.zip",
+      "archive_sha256": "sha256_1f8b3bfb8d36c6df66e6d0cc3bd7ae04357c78984c5ab48fa33d0e7ffb121853",
+      "artifact_key": "",
       "canonical_sha256": "sha256_7523b678ca65e9a98edb4bdbbe0499f6b886cf5c88cd11b78d8aba6955788a18",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/Seb-884e1568.log",
-      "elapsed_s": 1459.7,
+      "config_overrides": {},
+      "elapsed_s": 703.3,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Seb --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Seb-884e1568 --cache none",
+      "long_trades": 11597,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -12426,16 +12535,23 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 11597,
+      "trades_sha256": "sha256_ef5d369bf8ea5461228d75f0e8bd754505860ce1eb0429e58dc09a978ec20639"
     },
     "Simple": {
+      "archive": "user_data/profile_smoke/Simple-3fee95da-2026-09-07_11-07-53.zip",
+      "archive_sha256": "sha256_d9a0c12f1dd137693630aef8a8ab717ea26a7fe7cbe9ee170943814251fa5642",
+      "artifact_key": "",
       "canonical_sha256": "sha256_94180c92536515ed957b297fe6cae74ca4ad4c2128b36d91d6b8bd5c312c5b83",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/Simple-3fee95da.log",
-      "elapsed_s": 153.8,
+      "config_overrides": {},
+      "elapsed_s": 201.5,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Simple --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Simple-3fee95da --cache none",
+      "long_trades": 13287,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -12450,9 +12566,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 13287,
+      "trades_sha256": "sha256_d63d2f98d21fba0b9ea35323e11a43c7f96e22928b0660beb9928fb9b9e25cb3"
     },
     "SimpleHopt": {
       "archive": "user_data/profile_smoke/SimpleHopt-ade85462-2026-09-05_13-47-16.zip",
@@ -12632,7 +12751,7 @@
       "canonical_sha256": "sha256_0364d41573bbaa271449efa84c2b8daa2160c284dd643eada173cc5e3cb01f1f",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/SmoothScalp-aa3c9357.log",
-      "elapsed_s": 326.3,
+      "elapsed_s": 187.1,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy SmoothScalp --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SmoothScalp-aa3c9357 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -12653,11 +12772,15 @@
       "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
     },
     "SqueezeMomentum": {
+      "archive": "user_data/profile_smoke/SqueezeMomentum-55dbc2ef-2026-09-07_11-16-16.zip",
+      "archive_sha256": "sha256_96b86f549ea553d5a0b21b295927729921a2ef3fe44a2577db2e9690fa5ca4a9",
+      "artifact_key": "",
       "canonical_sha256": "sha256_6fcb840e9fe1bcd53d5cfed154131b5ed0dfc71f6ded389f6990c2731147769a",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/SqueezeMomentum-55dbc2ef.log",
-      "elapsed_s": 388.8,
+      "config_overrides": {},
+      "elapsed_s": 323.8,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy SqueezeMomentum --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SqueezeMomentum-55dbc2ef --cache none",
+      "long_trades": 17858,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -12672,9 +12795,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 17858,
+      "trades_sha256": "sha256_2d1ea4cb8aa8811f24020f1103fed231294fb98761d69fc7ceb2a38a2d78adf0"
     },
     "StarRise": {
       "archive": "user_data/profile_smoke/StarRise-2ce8ff8a-2026-09-06_03-04-41.zip",
@@ -12737,11 +12863,15 @@
       "trades_sha256": "sha256_27219c269ff2a9cc281c23f299a034294305df67bcb18abd058e077b0310e02b"
     },
     "StochRSITEMA": {
+      "archive": "user_data/profile_smoke/StochRSITEMA-ad00b250-2026-09-07_11-15-54.zip",
+      "archive_sha256": "sha256_28ccdf525e95a83a6506716541e3a9c58e0d2a145e35484818b12c5d8d5a26f1",
+      "artifact_key": "",
       "canonical_sha256": "sha256_fe2b7dde3da374b2cb305ccb389e177d7fed55ecaebf7aca11f5e0ee1f49b187",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/StochRSITEMA-ad00b250.log",
-      "elapsed_s": 139.1,
+      "config_overrides": {},
+      "elapsed_s": 147.2,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy StochRSITEMA --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/StochRSITEMA-ad00b250 --cache none",
+      "long_trades": 3866,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -12756,9 +12886,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 3866,
+      "trades_sha256": "sha256_80d81a5b8a5447478ad5492932641b8245f565ccfea97eb28933a06e092f0ce8"
     },
     "StochasticCciStrategy": {
       "archive": "user_data/profile_smoke/StochasticCciStrategy-2026-08-29_21-20-56.zip",
@@ -13043,10 +13176,11 @@
     "SuperHV27": {
       "canonical_sha256": "sha256_e46029e72411f0393eb7c1382f939d0abc9db7d6b8a8412551585d9ed59f2f2b",
       "class1_rules": [
-        "legacy_min_roi_reached_entry_override"
+        "legacy_min_roi_reached_entry_override",
+        "legacy_bid_ask_strategy_price_side",
+        "synthetic_orderbook_from_last_close"
       ],
-      "debug_log": "user_data/profile_smoke_logs/SuperHV27-aefe004a.log",
-      "elapsed_s": 783.4,
+      "elapsed_s": 3600.0,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy SuperHV27 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperHV27-aefe004a --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -13062,15 +13196,15 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "status": "timeout",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "why": "timeout after 3600 seconds"
     },
     "SuperTrend": {
       "canonical_sha256": "sha256_8906a5d26582e786bffdff1c24256d6ad6c953180686275ef240c4778ee04dc6",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/SuperTrend-e9770a14.log",
-      "elapsed_s": 844.8,
+      "elapsed_s": 1246.5,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy SuperTrend --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperTrend-e9770a14 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -13248,7 +13382,7 @@
       "canonical_sha256": "sha256_59e0f6c50d86dbaabee59573d940d2005aa2e59a7198cd48dc95cea9d558a7b8",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/TEMA-2a9399f6.log",
-      "elapsed_s": 299.7,
+      "elapsed_s": 194.8,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy TEMA --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TEMA-2a9399f6 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -13528,13 +13662,17 @@
       "trades_sha256": "sha256_e519c300a944843485122913a13d325f0e2482c1a96df49aff6d4a6c84b50f44"
     },
     "Test_MAMA4": {
+      "archive": "user_data/profile_smoke/Test_MAMA4-aa83c1d0-2026-09-07_11-44-52.zip",
+      "archive_sha256": "sha256_fe4dd105d9527246af380a530c96a6e6f69ae4461d68bab227066d7d04356042",
+      "artifact_key": "",
       "canonical_sha256": "sha256_d6e1444c50e3f75888a5bf899e363c6b20334b41422c4bd68410242af66644bd",
       "class1_rules": [
         "idempotent_entry_tag_initialisation"
       ],
-      "debug_log": "user_data/profile_smoke_logs/Test_MAMA4-aa83c1d0.log",
-      "elapsed_s": 335.2,
+      "config_overrides": {},
+      "elapsed_s": 267.3,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Test_MAMA4 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Test_MAMA4-aa83c1d0 --cache none",
+      "long_trades": 6447,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -13549,9 +13687,12 @@
       ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200401-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 6447,
+      "trades_sha256": "sha256_21c14feadf3c695f49735dc524c081f1244203c053d15b4961085495bfed4529"
     },
     "TheForce": {
       "archive": "user_data/profile_smoke/TheForce-9789c829-2026-09-07_00-16-19.zip",
@@ -14134,7 +14275,7 @@
       "canonical_sha256": "sha256_667864719d07f92103614268094c11211ed6a61e98baa66e0cb48fb90b78aa3a",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/XebTradeStrat-5d160cab.log",
-      "elapsed_s": 297.4,
+      "elapsed_s": 178.9,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy XebTradeStrat --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/XebTradeStrat-5d160cab --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -14189,7 +14330,7 @@
       "canonical_sha256": "sha256_b822711c4fee44f2fe1f1768d0d1f7583d29e263250caa357917a028a0ca83ee",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/YOLO-99f26510.log",
-      "elapsed_s": 275.1,
+      "elapsed_s": 189.9,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy YOLO --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/YOLO-99f26510 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
@@ -14241,11 +14382,15 @@
       "trades_sha256": "sha256_20d8e3d221ce40bcdc78bad486c0a67e5ca4384154813746b2d2c8669482ffce"
     },
     "ZaratustraDCA2_07": {
+      "archive": "user_data/profile_smoke/ZaratustraDCA2_07-7fa52d62-2026-09-07_13-14-18.zip",
+      "archive_sha256": "sha256_b8b2af98ef157c5892c228bfe3608a85de7ecb78583d3ce98f40ef351415f59a",
+      "artifact_key": "",
       "canonical_sha256": "sha256_150220a876fd2b5c3b13dad5e8c2898f76a70ad8fce26a862a03b67907356e69",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/ZaratustraDCA2_07-7fa52d62.log",
-      "elapsed_s": 1751.9,
+      "config_overrides": {},
+      "elapsed_s": 1488.9,
       "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy ZaratustraDCA2_07 --strategy-path repos/bustillo_freqtrade-strategies/ZaratustraDCA --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ZaratustraDCA2_07-7fa52d62 --cache none",
+      "long_trades": 5367,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "futures",
       "pairs": [
@@ -14260,16 +14405,23 @@
       ],
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 4177,
+      "status": "measured",
       "timerange": "20200301-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 9544,
+      "trades_sha256": "sha256_c06b7d4c558eb51f71afbdc451f18187a35b36ffbac8dcdcd80e07da090b5f4a"
     },
     "ZaratustraDCA5": {
+      "archive": "user_data/profile_smoke/ZaratustraDCA5-f0cc3625-2026-09-07_13-17-17.zip",
+      "archive_sha256": "sha256_fb949c1ed4e340b7afff1772f285741351162c32caf46a8c83e859b8db64f032",
+      "artifact_key": "",
       "canonical_sha256": "sha256_6dfc2e9a3565c8144fa6cd8c213ea9ba33077d1349ba8a083d347696325af074",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/ZaratustraDCA5-f0cc3625.log",
-      "elapsed_s": 1459.3,
+      "config_overrides": {},
+      "elapsed_s": 1265.8,
       "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy ZaratustraDCA5 --strategy-path repos/bustillo_freqtrade-strategies/ZaratustraDCA --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ZaratustraDCA5-f0cc3625 --cache none",
+      "long_trades": 5304,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "futures",
       "pairs": [
@@ -14284,9 +14436,12 @@
       ],
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
-      "status": "resource_inconclusive",
+      "runtime_id": "native_unversioned",
+      "short_trades": 8687,
+      "status": "measured",
       "timerange": "20200301-20260821",
-      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
+      "trades": 13991,
+      "trades_sha256": "sha256_803a80ee26f0fae9b4523132369f1b074746385eacd164d89254cd9264bc4eca"
     },
     "adaptive": {
       "archive": "user_data/profile_smoke/adaptive-4bc3f073-2026-09-06_08-57-59.zip",
@@ -15403,7 +15558,7 @@
       "canonical_sha256": "sha256_9ee9bae231b2ab2cbab9237a75ca95a8f19b23dddaee1fc0955478ac23e2c850",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/simple_patterns-eab00a4d.log",
-      "elapsed_s": 288.9,
+      "elapsed_s": 212.5,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy simple_patterns --strategy-path repos/TheoBrigitte_freqtrade/strategies/yodo --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/simple_patterns-eab00a4d --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",

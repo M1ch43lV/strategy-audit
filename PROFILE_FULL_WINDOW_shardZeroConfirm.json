@@ -797,7 +797,7 @@
       "config_overrides": {
         "startup_candle_count": 2016
       },
-      "long_trades": 4,
+      "long_trades": 15,
       "measurement_scope": "full_window_trade_presence",
       "mode": "futures",
       "pair_results": {
@@ -833,6 +833,27 @@
           "trades": 4,
           "trades_sha256": "sha256_adfc484936871779a8baf1ad13e05145ccc282785f061d7c3fbba1fc3295164d"
         },
+        "DASH/USDT:USDT": {
+          "archive": "user_data/profile_smoke/NostalgiaForInfinityX4-9889f1ac-DASH_USDT_USDT-f5164804-2026-09-07_12-38-50.zip",
+          "archive_sha256": "sha256_f115730ebce3969186151025287adb8d8f3443c3b9f307374145d6a2ddd20617",
+          "artifact_key": "",
+          "class1_rules": [],
+          "config_overrides": {
+            "startup_candle_count": 2016
+          },
+          "elapsed_s": 415.0,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/NostalgiaForInfinityX4-9889f1ac-override-1d2527c2d6f4.json --strategy NostalgiaForInfinityX4 --strategy-path repos/cyberjunky_freqtrade_strategy/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NostalgiaForInfinityX4-9889f1ac-DASH_USDT_USDT-f5164804 --cache none --pairs DASH/USDT:USDT",
+          "long_trades": 11,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_config_sha256": "sha256_41c678aa6ca6bba9eadf84aa3e1807f463e575d7e57070a4b164dc66f30b870f",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20260821",
+          "trades": 11,
+          "trades_sha256": "sha256_d319e0e78e1bc5d0ae2e1cf12ce3a8066172ef207639c22f10c525beed886eae"
+        },
         "ETH/USDT:USDT": {
           "class1_rules": [],
           "elapsed_s": 1800.1,
@@ -848,6 +869,28 @@
           "class1_rules": [],
           "elapsed_s": 1800.1,
           "invocation": "freqtrade backtesting --config user_data/profile_configs/NostalgiaForInfinityX4-9889f1ac-override-1d2527c2d6f4.json --strategy NostalgiaForInfinityX4 --strategy-path repos/cyberjunky_freqtrade_strategy/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NostalgiaForInfinityX4-9889f1ac-LTC_USDT_USDT-02dc15f5 --cache none --pairs LTC/USDT:USDT",
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "native_unversioned",
+          "status": "timeout",
+          "timerange": "20200301-20260821",
+          "why": "timeout after 1800 seconds"
+        },
+        "XLM/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 1800.0,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/NostalgiaForInfinityX4-9889f1ac-override-1d2527c2d6f4.json --strategy NostalgiaForInfinityX4 --strategy-path repos/cyberjunky_freqtrade_strategy/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NostalgiaForInfinityX4-9889f1ac-XLM_USDT_USDT-8ea64e78 --cache none --pairs XLM/USDT:USDT",
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_id": "native_unversioned",
+          "status": "timeout",
+          "timerange": "20200301-20260821",
+          "why": "timeout after 1800 seconds"
+        },
+        "XMR/USDT:USDT": {
+          "class1_rules": [],
+          "elapsed_s": 1800.0,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/NostalgiaForInfinityX4-9889f1ac-override-1d2527c2d6f4.json --strategy NostalgiaForInfinityX4 --strategy-path repos/cyberjunky_freqtrade_strategy/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NostalgiaForInfinityX4-9889f1ac-XMR_USDT_USDT-b4737a8a --cache none --pairs XMR/USDT:USDT",
           "mode": "futures",
           "run_profile": "futures_long",
           "runtime_id": "native_unversioned",
@@ -873,7 +916,7 @@
       "short_trades": 0,
       "status": "measured",
       "timerange": "20200301-20260821",
-      "trades": 4,
+      "trades": 15,
       "why": "at least one pair produced trades over the full window"
     },
     "zorkv7_0_0": {
@@ -884,7 +927,7 @@
         "ADA/USDT": {
           "class1_rules": [],
           "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-ADA_USDT-52bd0ad0.log",
-          "elapsed_s": 12.6,
+          "elapsed_s": 11.6,
           "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-ADA_USDT-52bd0ad0 --cache none --pairs ADA/USDT",
           "mode": "spot",
           "run_profile": "spot_long",
@@ -896,7 +939,7 @@
         "BTC/USDT": {
           "class1_rules": [],
           "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-BTC_USDT-4d7eaaf1.log",
-          "elapsed_s": 15.1,
+          "elapsed_s": 12.5,
           "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-BTC_USDT-4d7eaaf1 --cache none --pairs BTC/USDT",
           "mode": "spot",
           "run_profile": "spot_long",
@@ -908,7 +951,7 @@
         "DASH/USDT": {
           "class1_rules": [],
           "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-DASH_USDT-f7c87511.log",
-          "elapsed_s": 12.2,
+          "elapsed_s": 11.7,
           "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-DASH_USDT-f7c87511 --cache none --pairs DASH/USDT",
           "mode": "spot",
           "run_profile": "spot_long",
@@ -920,7 +963,7 @@
         "ETH/USDT": {
           "class1_rules": [],
           "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-ETH_USDT-d632ace3.log",
-          "elapsed_s": 14.6,
+          "elapsed_s": 12.2,
           "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-ETH_USDT-d632ace3 --cache none --pairs ETH/USDT",
           "mode": "spot",
           "run_profile": "spot_long",
@@ -932,7 +975,7 @@
         "LTC/USDT": {
           "class1_rules": [],
           "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-LTC_USDT-9e46e6a4.log",
-          "elapsed_s": 12.9,
+          "elapsed_s": 11.7,
           "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-LTC_USDT-9e46e6a4 --cache none --pairs LTC/USDT",
           "mode": "spot",
           "run_profile": "spot_long",
@@ -944,7 +987,7 @@
         "XLM/USDT": {
           "class1_rules": [],
           "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-XLM_USDT-f7c8a7b2.log",
-          "elapsed_s": 12.6,
+          "elapsed_s": 11.5,
           "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-XLM_USDT-f7c8a7b2 --cache none --pairs XLM/USDT",
           "mode": "spot",
           "run_profile": "spot_long",
@@ -956,7 +999,7 @@
         "XMR/USDT": {
           "class1_rules": [],
           "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-XMR_USDT-57b143c0.log",
-          "elapsed_s": 10.4,
+          "elapsed_s": 9.4,
           "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-XMR_USDT-57b143c0 --cache none --pairs XMR/USDT",
           "mode": "spot",
           "run_profile": "spot_long",
@@ -968,7 +1011,7 @@
         "XRP/USDT": {
           "class1_rules": [],
           "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-XRP_USDT-8d33c27a.log",
-          "elapsed_s": 13.0,
+          "elapsed_s": 11.3,
           "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-XRP_USDT-8d33c27a --cache none --pairs XRP/USDT",
           "mode": "spot",
           "run_profile": "spot_long",
