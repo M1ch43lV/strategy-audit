@@ -3,6 +3,41 @@
   "method": "probe_zero.py loads the strategy the way freqtrade does, runs populate_indicators and the entry hook over real BTC/USDT data, and counts the rows the entry condition marks. That separates 'the condition is never true' from 'the indicator never got a value'.",
   "probed_at": "2026-09-02",
   "results": {
+    "Matrix": {
+      "verdict": "never_trades",
+      "family": "missing_indicator_column",
+      "signals": null,
+      "why": "Not a zero-trade result - the full-window measurement cannot complete at all, deterministically, on any pair. `populate_buy_trend` (repair/patched/repos/TheoBrigitte_freqtrade/sources/sponsors/Matrix.py:315) reads `buy_df['coef']`, a column `populate_indicators` never creates - `KeyError: 'coef'`. Confirmed on all eight pairs on the 2026-09-07 profile_full_window.py retry (ADA, BTC, DASH, ETH, LTC, XLM, XMR, XRP/USDT), same traceback every time, so this is not a resource or timing artifact like HarmonicDivergence - it is a straightforward missing-column bug in the strategy's own indicator code.",
+      "fix": "Would require adding the missing `coef` column inside populate_indicators - an edit to the strategy's own logic, not a compat shim restoring something the framework removed. Not attempted; excluded rather than repaired."
+    },
+    "HurstCycleV4": {
+      "verdict": "never_trades",
+      "family": "confirmed_zero_over_full_window",
+      "signals": 0,
+      "why": "profile_full_window.py measured all eight configured futures_long pairs (ADA, BTC, DASH, ETH, LTC, XLM, XMR, XRP/USDT:USDT) over the full 2020-2026 window on 2026-09-07; every pair completed and none produced a trade. The one-month smoke test's zero was not a sampling artifact - the strategy genuinely never enters over the full period.",
+      "fix": "None - this is the strategy's own property, not something to repair."
+    },
+    "LongShortRangeTradingMachetesV1": {
+      "verdict": "never_trades",
+      "family": "confirmed_zero_over_full_window",
+      "signals": 0,
+      "why": "profile_full_window.py measured all eight configured spot_long pairs (ADA, BTC, DASH, ETH, LTC, XLM, XMR, XRP/USDT) over the full 2020-2026 window on 2026-09-07; every pair completed and none produced a trade. The one-month smoke test's zero was not a sampling artifact.",
+      "fix": "None - this is the strategy's own property, not something to repair."
+    },
+    "NostalgiaForInfinityX2": {
+      "verdict": "never_trades",
+      "family": "confirmed_zero_over_full_window",
+      "signals": 0,
+      "why": "profile_full_window.py measured all eight configured futures_long pairs (ADA, BTC, DASH, ETH, LTC, XLM, XMR, XRP/USDT:USDT) over the full 2020-2026 window on 2026-09-07; every pair completed and none produced a trade. The one-month smoke test's zero was not a sampling artifact.",
+      "fix": "None - this is the strategy's own property, not something to repair."
+    },
+    "HarmonicDivergence": {
+      "verdict": "never_trades",
+      "family": "unbounded_array_growth",
+      "signals": null,
+      "why": "Not a zero-trade result - the full-window measurement cannot complete at all. `add_divergences` (repos/TheoBrigitte_freqtrade/strategies/harmonic-divergence/HarmonicDivergence.py:347) calls `divergence_finder_dataframe`, which appends a full-length `np.empty(len(dataframe['close']))` array to a list once per divergence point found rather than reusing or bounding the buffer. Over the full 6.5-year window this exhausts memory before the run finishes: confirmed on the 2026-09-07 profile_full_window.py retry with `numpy._core._exceptions._ArrayMemoryError: Unable to allocate 1.71 MiB for an array with shape (223998,)` on LTC/USDT and XRP/USDT, and a 1800s timeout (same underlying growth, slower to the same wall) on BTC/USDT, ETH/USDT, XLM/USDT, ADA/USDT. Only XMR/USDT (the shortest history of the eight, delisted 2024-02-20) completed, at 0 trades. The defect is in the strategy's own indicator code, not in this audit's setup - unlike BasketStrategy/MostOfAll/FundingCarry below, this is not a setup_fault.",
+      "fix": "Would require bounding or reusing the array inside divergence_finder_dataframe - an edit to the strategy's own logic, not a compat shim restoring something the framework removed. Not attempted; excluded rather than repaired."
+    },
     "BasketStrategy": {
       "verdict": "setup_fault",
       "family": "measured_outside_its_design",
