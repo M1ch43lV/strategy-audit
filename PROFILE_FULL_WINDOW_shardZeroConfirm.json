@@ -875,6 +875,115 @@
       "timerange": "20200301-20260821",
       "trades": 4,
       "why": "at least one pair produced trades over the full window"
+    },
+    "zorkv7_0_0": {
+      "canonical_sha256": "sha256_175f15c80c9f30fb7453d23a782cb5b1910dae58143148888ecd46c6933e1d79",
+      "measurement_scope": "pair_shards",
+      "mode": "spot",
+      "pair_results": {
+        "ADA/USDT": {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-ADA_USDT-52bd0ad0.log",
+          "elapsed_s": 12.6,
+          "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-ADA_USDT-52bd0ad0 --cache none --pairs ADA/USDT",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_id": "native_unversioned",
+          "status": "failed",
+          "timerange": "20200401-20260821",
+          "why": "The number of quantiles cannot be greater than the number of samples used. Got 100000 quantiles and 10000 samples."
+        },
+        "BTC/USDT": {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-BTC_USDT-4d7eaaf1.log",
+          "elapsed_s": 15.1,
+          "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-BTC_USDT-4d7eaaf1 --cache none --pairs BTC/USDT",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_id": "native_unversioned",
+          "status": "failed",
+          "timerange": "20200401-20260821",
+          "why": "The number of quantiles cannot be greater than the number of samples used. Got 100000 quantiles and 10000 samples."
+        },
+        "DASH/USDT": {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-DASH_USDT-f7c87511.log",
+          "elapsed_s": 12.2,
+          "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-DASH_USDT-f7c87511 --cache none --pairs DASH/USDT",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_id": "native_unversioned",
+          "status": "failed",
+          "timerange": "20200401-20260821",
+          "why": "The number of quantiles cannot be greater than the number of samples used. Got 100000 quantiles and 10000 samples."
+        },
+        "ETH/USDT": {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-ETH_USDT-d632ace3.log",
+          "elapsed_s": 14.6,
+          "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-ETH_USDT-d632ace3 --cache none --pairs ETH/USDT",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_id": "native_unversioned",
+          "status": "failed",
+          "timerange": "20200401-20260821",
+          "why": "The number of quantiles cannot be greater than the number of samples used. Got 100000 quantiles and 10000 samples."
+        },
+        "LTC/USDT": {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-LTC_USDT-9e46e6a4.log",
+          "elapsed_s": 12.9,
+          "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-LTC_USDT-9e46e6a4 --cache none --pairs LTC/USDT",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_id": "native_unversioned",
+          "status": "failed",
+          "timerange": "20200401-20260821",
+          "why": "The number of quantiles cannot be greater than the number of samples used. Got 100000 quantiles and 10000 samples."
+        },
+        "XLM/USDT": {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-XLM_USDT-f7c8a7b2.log",
+          "elapsed_s": 12.6,
+          "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-XLM_USDT-f7c8a7b2 --cache none --pairs XLM/USDT",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_id": "native_unversioned",
+          "status": "failed",
+          "timerange": "20200401-20260821",
+          "why": "The number of quantiles cannot be greater than the number of samples used. Got 100000 quantiles and 10000 samples."
+        },
+        "XMR/USDT": {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-XMR_USDT-57b143c0.log",
+          "elapsed_s": 10.4,
+          "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-XMR_USDT-57b143c0 --cache none --pairs XMR/USDT",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_id": "native_unversioned",
+          "status": "failed",
+          "timerange": "20200401-20260821",
+          "why": "The number of quantiles cannot be greater than the number of samples used. Got 100000 quantiles and 10000 samples."
+        },
+        "XRP/USDT": {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/zorkv7_0_0-907afeb5-XRP_USDT-8d33c27a.log",
+          "elapsed_s": 13.0,
+          "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy zorkv7_0_0 --strategy-path repos/TheoBrigitte_freqtrade/sources/sponsors --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/zorkv7_0_0-907afeb5-XRP_USDT-8d33c27a --cache none --pairs XRP/USDT",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_id": "native_unversioned",
+          "status": "failed",
+          "timerange": "20200401-20260821",
+          "why": "The number of quantiles cannot be greater than the number of samples used. Got 100000 quantiles and 10000 samples."
+        }
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "status": "incomplete",
+      "timerange": "20200401-20260821",
+      "why": "0/8 pairs completed; no positive pair yet"
     }
   },
   "runtime_id": "native_unversioned",

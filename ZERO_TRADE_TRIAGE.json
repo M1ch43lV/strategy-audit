@@ -3,6 +3,13 @@
   "method": "probe_zero.py loads the strategy the way freqtrade does, runs populate_indicators and the entry hook over real BTC/USDT data, and counts the rows the entry condition marks. That separates 'the condition is never true' from 'the indicator never got a value'.",
   "probed_at": "2026-09-02",
   "results": {
+    "zorkv7_0_0": {
+      "verdict": "never_trades",
+      "family": "misconfigured_transformer_parameter",
+      "signals": null,
+      "why": "Not a zero-trade result - the full-window measurement cannot complete at all, deterministically, on any pair, including BTC/USDT with a full 2020-2026 history. `MadSqueeze` (repos/TheoBrigitte_freqtrade/sources/sponsors/zorkv7_0_0.py:475) calls `sklearn.preprocessing.QuantileTransformer.fit_transform` on a fixed ~10000-row window while the transformer is constructed with `n_quantiles=100000` - sklearn refuses whenever quantiles exceed samples: `ValueError: The number of quantiles cannot be greater than the number of samples used. Got 100000 quantiles and 10000 samples.` Confirmed identical on all eight pairs on the 2026-09-07 profile_full_window.py retry, same traceback every time regardless of the pair's own history length - a fixed parameter mismatch in the strategy's own indicator code, not a resource or per-pair artifact.",
+      "fix": "Would require setting n_quantiles to at most the window size (or vice versa) inside MadSqueeze - an edit to the strategy's own logic, not a compat shim restoring something the framework removed. Not attempted; excluded rather than repaired."
+    },
     "Matrix": {
       "verdict": "never_trades",
       "family": "missing_indicator_column",
