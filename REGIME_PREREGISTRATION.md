@@ -3,6 +3,8 @@
 **Status:** frozen for feature generation and attribution; the eligibility
 expansion amendment below was accepted on 2026-08-30 before ranking; choices
 marked `OPEN` must be resolved before Stage 9 produces any ranked strategy table.
+The 2026-09-07 gate-factor amendment was accepted before any productive gated
+run or candidate specification existed.
 
 ## Scope and causal clock
 
@@ -66,7 +68,8 @@ is explicitly frozen; they do not alter the primary DMI/ADX labels.
 
 1. Attribute ungated trades to the state available at entry (Phase A).
 2. Verify an ungated adapter reproduces the canonical baseline.
-3. Compare original, BTC-entry-gated, and BTC-plus-coin-entry-gated runs.
+3. Compare original, BTC-entry-gated, coin-entry-gated, and
+   BTC-plus-coin-entry-gated runs.
 4. Lock candidate identities, rules, hashes, data fingerprints, and versions.
 5. Evaluate the locked set once on validation; failed candidates are not replaced.
 6. Run robustness, sensitivity, and behavioral clustering only after primary
@@ -74,6 +77,35 @@ is explicitly frozen; they do not alter the primary DMI/ADX labels.
 
 Original exits remain authoritative. Forced exit at a regime change is not a
 primary treatment.
+
+## Amendment 2026-09-07: separate global and local gate effects
+
+**Owner's decision**, recorded before any productive Model 1, Model 2, or
+Model 3 run, before a candidate gate specification was frozen, and before any
+gated performance was inspected.
+
+The previously implemented Model 2 combined the global BTC state and the local
+coin state with logical AND. That combination is retained, but reassigned to
+Model 3. Model 2 is now pair-local and must not read, require, validate, or gate
+on the BTC state:
+
+- **Model 0:** original entries and exits, no regime gate.
+- **Model 1:** original entry AND selected global BTC state.
+- **Model 2:** original entry AND selected local coin state.
+- **Model 3:** original entry AND selected global BTC state AND selected local
+  coin state.
+
+This is a factorial separation of the two observable gate dimensions. Model 1
+measures the global gate alone, Model 2 the local gate alone, and Model 3 their
+intersection. Model 3 must reuse exactly Model 1's BTC state lists and exactly
+Model 2's coin state lists for the same candidate identity; otherwise the
+incremental comparisons are not admitted.
+
+BTC and coin states remain attached to every attributable trade in every
+model. Recording a BTC state for a Model 2 trade is descriptive attribution,
+not a BTC entry condition. Missing local evidence fails closed for Models 2
+and 3; it does not close the global-only Model 1 gate. All gates remain
+entry-only and original exits remain authoritative.
 
 ## Frozen reporting safeguards
 

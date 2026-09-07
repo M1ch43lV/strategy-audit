@@ -2,8 +2,8 @@
 
 **Working title:** Regime-Aware Audit and Strategy Selection for Public Freqtrade Strategies
 **Status:** Stage 7 complete / Stage 9 awaiting preregistration decisions
-**Version:** 0.21
-**Date:** 2026-09-01
+**Version:** 0.22
+**Date:** 2026-09-07
 **Primary target:** Codex / other AI coding sessions working on `Apex-prim/strategy-audit`
 **Repository:** https://github.com/Apex-prim/strategy-audit
 
@@ -887,6 +887,13 @@ for BTC-only tests, or:
 
 ```text
 original_strategy_entry
+AND coin_state == target_coin_state
+```
+
+for coin-only tests, or:
+
+```text
+original_strategy_entry
 AND btc_regime == target_btc_regime
 AND coin_state == target_coin_state
 ```
@@ -903,7 +910,7 @@ Forced regime exits may be examined later as a separate sensitivity test.
 
 ---
 
-# 15. Three model levels to compare directly
+# 15. Four model levels to compare directly
 
 For every strategy compare:
 
@@ -920,7 +927,14 @@ original strategy
 AND selected BTC regime
 ```
 
-## Model 2 — BTC + coin-state gated
+## Model 2 — coin-state gated
+
+```text
+original strategy
+AND selected coin state
+```
+
+## Model 3 — BTC + coin-state gated
 
 ```text
 original strategy
@@ -928,9 +942,12 @@ AND selected BTC regime
 AND selected coin state
 ```
 
-Central research question:
+Central research questions:
 
 > Does the local coin state add useful information beyond the global BTC regime?
+
+> What does each state source contribute independently, and does their
+> intersection add value beyond either gate alone?
 
 This should be evaluated out of sample, not assumed.
 
@@ -1309,7 +1326,7 @@ summaries are separate, and Phase A remains descriptive.
 
 ## Stage 9 — discovery sweep
 
-32. Run Model 0 / Model 1 / Model 2 on the discovery period.
+32. Run Model 0 / Model 1 / Model 2 / Model 3 on the discovery period.
 33. Compute full, regime-gated, and cash benchmarks.
 34. Include exposure metrics.
 35. Rank specialists and universal candidates using preregistered criteria.
@@ -1340,7 +1357,8 @@ summaries are separate, and Phase A remains descriptive.
 The final `REGIME_ANALYSIS.md` should explicitly answer:
 
 1. Does strategy performance materially differ across DMI/ADX-defined BTC regimes?
-2. Does individual coin state add predictive / selection value beyond BTC regime?
+2. What selection value do BTC state and individual coin state add separately,
+   and does their intersection add value beyond either one alone?
 3. Which strategies are robust bull specialists?
 4. Which strategies are robust bear / defensive specialists?
 5. Which strategies work in sideways markets?
@@ -1980,6 +1998,31 @@ admitted this way carry `convergence_warmup_v1` and every result is reportable
 with and without them. E0 is never regenerated.
 **Must be decided before the next result run:** yes, and it was.
 
+## Decision 0.22-01 - Separate BTC-only, coin-only, and combined entry gates
+
+**Status:** methodological; owner-authorized and implemented
+**Timing:** before any productive Model 1, Model 2, or Model 3 run, before a
+candidate gate specification was frozen, and before gated performance was
+inspected
+**Class:** methodological
+**Decision:** retain Model 0 as the ungated original and Model 1 as the
+BTC-only entry gate. Redefine Model 2 as a strictly pair-local coin-state
+entry gate that neither reads nor requires BTC state. Move the former Model 2
+BTC-and-coin conjunction unchanged to Model 3. Original exits remain
+authoritative in every model. Missing local state fails closed in Models 2
+and 3, while Model 1 remains usable wherever the global BTC state exists.
+Model 3 is admissible for comparison only when its BTC rule is identical to
+Model 1's and its coin rule is identical to Model 2's for the same candidate,
+window, data, and implementation identity.
+**Reason:** the former three-level design could estimate the BTC gate and the
+incremental addition of a coin gate, but it could not measure the local coin
+gate independently of BTC. The four-level design is the complete two-factor
+comparison: neither gate, BTC only, coin only, and both gates. Recording BTC
+attribution on a Model 2 trade remains descriptive and is not an entry
+condition.
+**Must be decided before the next result run:** yes, and it was. No productive
+gated manifest existed when this decision was recorded.
+
 ---
 
 # 31. Change protocol
@@ -2026,4 +2069,4 @@ Only after this design review should implementation proceed.
 
 # 33. One-paragraph handoff summary
 
-The existing `Apex-prim/strategy-audit` tested 895 public Freqtrade strategy classes and found that whole-window economic conclusions are heavily affected by the market window; its own exploratory calendar-year split showed that strategies can appear weak against buy-and-hold in rising years and defensive in falling years, while low exposure complicates interpretation. The new project therefore asks a different question: whether strategy suitability is conditional on observable market regimes. Version 1 should use a transparent, causal DMI(14)/ADX(14) daily classifier applied separately to BTC and each coin, creating a global BTC regime plus local coin state. All technically trustworthy strategies should be evaluated across all states rather than pre-filtered by presumed archetype. Source-code taxonomy (mean reversion, momentum, breakout, hybrid, etc.) should be recorded before outcomes but used only for interpretation; behavioral clustering comes later. Signed Kaufman Efficiency Ratio and 90-day return plus 30-day realized volatility are explicitly included as independent robustness models. First attribute existing trades to regimes, then perform true entry-gated Freqtrade backtests, compare original vs BTC-only vs BTC+coin gating, use buy-and-hold, regime-gated buy-and-hold, cash, and ideally exposure-aware benchmarks, split discovery from locked validation, and report specialists as well as universal strategies without silently tuning regime rules after seeing results.
+The existing `Apex-prim/strategy-audit` tested 895 public Freqtrade strategy classes and found that whole-window economic conclusions are heavily affected by the market window; its own exploratory calendar-year split showed that strategies can appear weak against buy-and-hold in rising years and defensive in falling years, while low exposure complicates interpretation. The new project therefore asks a different question: whether strategy suitability is conditional on observable market regimes. Version 1 should use a transparent, causal DMI(14)/ADX(14) daily classifier applied separately to BTC and each coin, creating a global BTC regime plus local coin state. All technically trustworthy strategies should be evaluated across all states rather than pre-filtered by presumed archetype. Source-code taxonomy (mean reversion, momentum, breakout, hybrid, etc.) should be recorded before outcomes but used only for interpretation; behavioral clustering comes later. Signed Kaufman Efficiency Ratio and 90-day return plus 30-day realized volatility are explicitly included as independent robustness models. First attribute existing trades to regimes, then perform true entry-gated Freqtrade backtests, compare original vs BTC-only vs coin-only vs BTC+coin gating, use buy-and-hold, regime-gated buy-and-hold, cash, and ideally exposure-aware benchmarks, split discovery from locked validation, and report specialists as well as universal strategies without silently tuning regime rules after seeing results.

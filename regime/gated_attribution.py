@@ -1,4 +1,4 @@
-"""Causal trade attribution for identity-bound Model 1 and Model 2 archives."""
+"""Causal trade attribution for identity-bound Model 1/2/3 archives."""
 from __future__ import annotations
 
 import argparse
@@ -125,6 +125,9 @@ def selftest() -> None:
         assert "expected 'model2'" in str(exc)
     else:
         raise AssertionError("a Model 1 manifest must not be read as Model 2")
+    model3 = dict(sample, model="model3",
+                  measurement_scope=gated_backtest.MODELS["model3"]["scope"])
+    _validate_header(model3, "model3")
     sample["candidate_ids"] = ["one", "one"]
     try:
         _validate_header(sample, "model1")

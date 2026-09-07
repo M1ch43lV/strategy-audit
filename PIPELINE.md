@@ -200,7 +200,7 @@ DMI(14)/ADX(14)) plus die Rohdaten, aus denen die Sechs-Phasen-Erweiterung
 | Programm | Liest | Schreibt |
 |---|---|---|
 | `regime/attribution.py` | `results/regime/regime_daily.csv`, `full_backtest_manifest.json`, `STRATEGY_STATUS.csv` (E1-Kohorte) | `results/regime/trade_regime_attribution.csv`, `strategy_btc_regime_summary.csv`, `strategy_regime_summary.csv`, `strategy_episode_summary.csv`, `strategy_phase_summary.csv`, `strategy_phase_episode_summary.csv`, `attribution_manifest.json` |
-| `regime/gated_attribution.py` | `regime_daily.csv`, ein vollständiges `model1_backtest_manifest.json` oder `model2_backtest_manifest.json`, aktuelle E1-Identitäten | je Modell in `results/regime/modelN_attribution/`: Trade-Attribution, fünf `candidate_*_summary.csv` und `attribution_manifest.json` |
+| `regime/gated_attribution.py` | `regime_daily.csv`, ein vollständiges `model1_backtest_manifest.json`, `model2_backtest_manifest.json` oder `model3_backtest_manifest.json`, aktuelle E1-Identitäten | je Modell in `results/regime/modelN_attribution/`: Trade-Attribution, fünf `candidate_*_summary.csv` und `attribution_manifest.json` |
 
 Die beiden `*_phase_*`-Dateien (Sechs-Phasen-Modell, Nachtrag 2026-09-05)
 existieren als Code bereits, wurden aber noch nicht produktiv durchlaufen —
@@ -221,9 +221,10 @@ ansieht — sonst ist es keine Vorhersage mehr (`REGIME_AUDIT_PLAN.md` §28.3).
 Bereits durchgelaufen; wird von `strategy_status.py` (Stufe 5) nur gelesen,
 nie neu entschieden.
 
-## Stufe 11 — Benchmark: Modell 0/1/2
+## Stufe 11 — Benchmark: Modell 0/1/2/3
 
-Nach `REGIME_AUDIT_PLAN.md` §15, drei Vergleichsebenen pro Strategie:
+Nach der am 2026-09-07 vor jedem produktiven Gate-Lauf eingefrorenen
+Erweiterung, vier Vergleichsebenen pro Strategie:
 
 - **Modell 0 — läuft bereits.** "Original strategy, no regime filter" ist
   genau das, was `regime/full_backtest.py` (Stufe 7) berechnet: der
@@ -239,15 +240,24 @@ Nach `REGIME_AUDIT_PLAN.md` §15, drei Vergleichsebenen pro Strategie:
   bleiben auch dann verfügbar, wenn für einen delisteten Coin keine lokale
   Tageszeile mehr existiert.
 - **Modell 2 — implementiert, noch nicht produktiv gelaufen.**
-  `regime/gated_backtest.py --model model2` verlangt zusätzlich ausdrücklich
-  genannte Coin-Zustände. Fehlt der lokale Zustand, schließt das Gate; Exits
-  bleiben in beiden Modellen vollständig bei der Originalstrategie.
-- **Der technische Vergleich der drei Ebenen ist implementiert, noch nicht
+  `regime/gated_backtest.py --model model2` filtert Entries ausschließlich auf
+  die ausdrücklich genannten lokalen Coin-Zustände. Es liest und verlangt
+  keinen BTC-Zustand. Fehlt der lokale Zustand, schließt das Gate.
+- **Modell 3 — implementiert, noch nicht produktiv gelaufen.**
+  `regime/gated_backtest.py --model model3` ist die bisherige kombinierte
+  Modell-2-Logik: Entries brauchen sowohl einen erlaubten globalen BTC-Zustand
+  als auch einen erlaubten lokalen Coin-Zustand. Exits bleiben in allen drei
+  Gate-Modellen vollständig bei der Originalstrategie.
+- **Der technische Vergleich der vier Ebenen ist implementiert, noch nicht
   produktiv gelaufen.** `regime/model_compare.py` prüft identische Kandidaten,
-  BTC-Gates, Zeitfenster, Identitäten und Archive, bevor es die drei
-  Laufmetriken nebeneinanderstellt. Es schreibt `model_metrics_long.csv`,
+  Modell-3s Übereinstimmung mit Modell 1s BTC-Gate und Modell 2s Coin-Gate,
+  Zeitfenster, Identitäten und Archive, bevor es die vier Laufmetriken
+  nebeneinanderstellt. Es schreibt `model_metrics_long.csv`,
   `model_comparison.csv` und `model_comparison_manifest.json`, sortiert oder
-  rangiert aber keine Strategie.
+  rangiert aber keine Strategie. Die mechanischen Deltas sind Modell 1 minus
+  0, Modell 2 minus 0, Modell 3 minus 0, Modell 3 minus 1 und Modell 3 minus 2;
+  Modell 2 minus Modell 1 wird nicht als inkrementeller Effekt ausgegeben,
+  weil die beiden Einzel-Gates nicht ineinander verschachtelt sind.
 
 Der Runner schreibt nach jedem Kandidaten atomar, sperrt einen Ausgabestore
 gegen einen zweiten Writer und bindet jeden Lauf an Quell-/Config-Identität,
@@ -277,15 +287,19 @@ Schema-Version 1 und enthält:
 }
 ```
 
-Die Coin-Felder sind für Modell 2 Pflicht. Auch leere Listen müssen explizit
-stehen; ein vergessenes Feld darf nie stillschweigend alle Zustände erlauben.
-Die beiden Aufrufe gegen dasselbe eingefrorene Spec sind:
+Die BTC-Felder sind für Modell 1 und 3 Pflicht, die Coin-Felder für Modell 2
+und 3. Dasselbe eingefrorene Spec darf alle vier Felder tragen; jeder Runner
+liest ausschließlich die für sein Modell relevanten Felder. Auch leere Listen
+müssen explizit stehen; ein vergessenes Feld darf nie stillschweigend alle
+Zustände erlauben. Die drei Aufrufe gegen dasselbe eingefrorene Spec sind:
 
 ```bash
 python -m regime.gated_backtest --model model1 --candidate-spec <spec.json>
 python -m regime.gated_backtest --model model2 --candidate-spec <spec.json>
+python -m regime.gated_backtest --model model3 --candidate-spec <spec.json>
 python -m regime.gated_attribution --model model1
 python -m regime.gated_attribution --model model2
+python -m regime.gated_attribution --model model3
 python -m regime.model_compare
 ```
 

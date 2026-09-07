@@ -1,4 +1,4 @@
-"""Non-ranked, identity-checked Model 0/1/2 comparison table.
+"""Non-ranked, identity-checked Model 0/1/2/3 comparison table.
 
 This module deliberately does not select candidates, rank strategies, or
 construct the still-open exposure-matched benchmark.  It only places locked
@@ -28,6 +28,15 @@ SUMMARY_FIELDS = (
     "profit_total_abs", "profit_factor", "expectancy", "max_drawdown_account",
     "max_drawdown_abs", "cagr", "sharpe", "sortino", "market_change",
 )
+BTC_STATE_FIELDS = ("long_btc_states", "short_btc_states")
+COIN_STATE_FIELDS = ("long_coin_states", "short_coin_states")
+DELTA_PAIRS = (
+    ("model1", "model0"),
+    ("model2", "model0"),
+    ("model3", "model0"),
+    ("model3", "model1"),
+    ("model3", "model2"),
+)
 
 
 def _write_json(value: dict, path: Path) -> None:
@@ -36,21 +45,32 @@ def _write_json(value: dict, path: Path) -> None:
     os.replace(temporary, path)
 
 
-def _candidate_projection(manifest: dict) -> list[dict]:
-    return [{key: row.get(key) for key in (
-        "candidate_id", "strategy_id", "long_btc_states", "short_btc_states"
-    )} for row in manifest.get("candidates", [])]
+def _candidate_projection(manifest: dict, fields: tuple[str, ...] = ()) -> list[dict]:
+    keys = ("candidate_id", "strategy_id", *fields)
+    return [{key: row.get(key) for key in keys}
+            for row in manifest.get("candidates", [])]
 
 
-def _validate_pair(model1: dict, model2: dict) -> None:
-    gated_attribution._validate_header(model1, "model1")
-    gated_attribution._validate_header(model2, "model2")
-    for key in ("candidate_set_id", "candidate_ids", "analysis_role", "timerange",
-                "regime_daily_sha256", "eligibility_snapshot_sha256"):
-        if model1.get(key) != model2.get(key):
-            raise ValueError(f"Model 1 and Model 2 differ in {key}")
-    if _candidate_projection(model1) != _candidate_projection(model2):
-        raise ValueError("Model 1 and Model 2 differ in candidate identity or BTC gate")
+def _validate_models(model1: dict, model2: dict, model3: dict) -> None:
+    manifests = {"model1": model1, "model2": model2, "model3": model3}
+    for model, manifest in manifests.items():
+        gated_attribution._validate_header(manifest, model)
+    for key in ("candidate_set_id", "candidate_spec_sha256", "candidate_ids",
+                "analysis_role", "timerange", "regime_daily_sha256",
+                "eligibility_snapshot_sha256"):
+        if any(manifest.get(key) != model1.get(key)
+               for manifest in (model2, model3)):
+            raise ValueError(f"Model 1, Model 2, and Model 3 differ in {key}")
+    identities = _candidate_projection(model1)
+    if any(_candidate_projection(manifest) != identities
+           for manifest in (model2, model3)):
+        raise ValueError("Model 1, Model 2, and Model 3 differ in candidate identity")
+    if (_candidate_projection(model1, BTC_STATE_FIELDS) !=
+            _candidate_projection(model3, BTC_STATE_FIELDS)):
+        raise ValueError("Model 1 and Model 3 differ in BTC gate")
+    if (_candidate_projection(model2, COIN_STATE_FIELDS) !=
+            _candidate_projection(model3, COIN_STATE_FIELDS)):
+        raise ValueError("Model 2 and Model 3 differ in coin gate")
 
 
 def _load_model0(path: Path, source_strategies: set[str], expected_timerange: dict):
@@ -136,7 +156,8 @@ def _metrics(record: dict) -> dict:
     return result
 
 
-def _comparison_rows(candidates: list[dict], model0: dict, model1: dict, model2: dict):
+def _comparison_rows(candidates: list[dict], model0: dict, model1: dict,
+                     model2: dict, model3: dict):
     long_rows = []
     wide_rows = []
     for candidate in candidates:
@@ -146,6 +167,7 @@ def _comparison_rows(candidates: list[dict], model0: dict, model1: dict, model2:
             "model0": model0.get(strategy),
             "model1": model1.get(candidate_id),
             "model2": model2.get(candidate_id),
+            "model3": model3.get(candidate_id),
         }
         if any(record is None for record in records.values()):
             continue
@@ -160,7 +182,7 @@ def _comparison_rows(candidates: list[dict], model0: dict, model1: dict, model2:
         for key in SUMMARY_FIELDS + ("position_time_days", "mean_open_positions",
                                      "slot_utilization",
                                      "time_weighted_gross_capital_exposure"):
-            for left, right in (("model1", "model0"), ("model2", "model1")):
+            for left, right in DELTA_PAIRS:
                 left_value, right_value = metrics[left].get(key), metrics[right].get(key)
                 try:
                     wide[f"delta_{left}_minus_{right}_{key}"] = float(left_value) - float(right_value)
@@ -187,18 +209,49 @@ def selftest() -> None:
     assert values["mean_open_positions"] == 0.5
     assert values["slot_utilization"] == 0.25
     assert values["time_weighted_gross_capital_exposure"] == 0.05
-    one = {"schema_version": 1, "model": "model1",
+    common = {"schema_version": 1,
+              "candidate_set_id": "x", "candidate_spec_sha256": "spec",
+              "candidate_ids": ["c"], "analysis_role": "PILOT",
+              "timerange": {"spot": "a", "futures": "b"},
+              "regime_daily_sha256": "d", "eligibility_snapshot_sha256": "e"}
+    one = {**common, "model": "model1",
            "measurement_scope": gated_backtest.MODELS["model1"]["scope"],
-           "candidate_set_id": "x", "candidate_ids": ["c"],
            "candidates": [{"candidate_id": "c", "strategy_id": "S",
-                           "long_btc_states": ["BULL"], "short_btc_states": []}],
-           "analysis_role": "PILOT", "timerange": {"spot": "a", "futures": "b"},
-           "regime_daily_sha256": "d", "eligibility_snapshot_sha256": "e"}
-    two = dict(one, model="model2",
-               measurement_scope=gated_backtest.MODELS["model2"]["scope"])
-    two["candidates"] = [dict(one["candidates"][0], long_coin_states=["BULL"],
-                              short_coin_states=[])]
-    _validate_pair(one, two)
+                           "long_btc_states": ["BULL"], "short_btc_states": []}]}
+    two = {**common, "model": "model2",
+           "measurement_scope": gated_backtest.MODELS["model2"]["scope"],
+           "candidates": [{"candidate_id": "c", "strategy_id": "S",
+                           "long_coin_states": ["SIDEWAYS"],
+                           "short_coin_states": []}]}
+    three = {**common, "model": "model3",
+             "measurement_scope": gated_backtest.MODELS["model3"]["scope"],
+             "candidates": [{"candidate_id": "c", "strategy_id": "S",
+                             "long_btc_states": ["BULL"], "short_btc_states": [],
+                             "long_coin_states": ["SIDEWAYS"],
+                             "short_coin_states": []}]}
+    _validate_models(one, two, three)
+    wrong_btc = json.loads(json.dumps(three))
+    wrong_btc["candidates"][0]["long_btc_states"] = ["BEAR"]
+    try:
+        _validate_models(one, two, wrong_btc)
+    except ValueError as exc:
+        assert "BTC gate" in str(exc)
+    else:
+        raise AssertionError("Model 3 must reuse Model 1's BTC gate")
+    wrong_coin = json.loads(json.dumps(three))
+    wrong_coin["candidates"][0]["long_coin_states"] = ["BULL"]
+    try:
+        _validate_models(one, two, wrong_coin)
+    except ValueError as exc:
+        assert "coin gate" in str(exc)
+    else:
+        raise AssertionError("Model 3 must reuse Model 2's coin gate")
+    record = {"summary": summary}
+    long_frame, wide_frame = _comparison_rows(
+        one["candidates"], {"S": record}, {"c": record}, {"c": record}, {"c": record})
+    assert set(long_frame["model"]) == {"model0", "model1", "model2", "model3"}
+    assert "delta_model2_minus_model0_profit_total" in wide_frame
+    assert "delta_model3_minus_model2_profit_total" in wide_frame
     print("model comparison selftest: PASS")
 
 
@@ -207,6 +260,7 @@ def main(argv=None) -> int:
     parser.add_argument("--model0", type=Path, default=MODEL0)
     parser.add_argument("--model1", type=Path, default=gated_backtest.MODELS["model1"]["output"])
     parser.add_argument("--model2", type=Path, default=gated_backtest.MODELS["model2"]["output"])
+    parser.add_argument("--model3", type=Path, default=gated_backtest.MODELS["model3"]["output"])
     parser.add_argument("--daily", type=Path, default=attribution.DAILY)
     parser.add_argument("--outdir", type=Path, default=OUT)
     parser.add_argument("--allow-partial", action="store_true")
@@ -215,12 +269,13 @@ def main(argv=None) -> int:
     if args.selftest:
         selftest()
         return 0
-    for path in (args.model0, args.model1, args.model2, args.daily):
+    for path in (args.model0, args.model1, args.model2, args.model3, args.daily):
         if not path.is_file():
             parser.error(f"required input not found: {path}")
     model1_manifest = json.loads(args.model1.read_text(encoding="utf-8"))
     model2_manifest = json.loads(args.model2.read_text(encoding="utf-8"))
-    _validate_pair(model1_manifest, model2_manifest)
+    model3_manifest = json.loads(args.model3.read_text(encoding="utf-8"))
+    _validate_models(model1_manifest, model2_manifest, model3_manifest)
     candidates = model1_manifest["candidates"]
     sources = {row["strategy_id"] for row in candidates}
     model0_manifest, model0, rejected0 = _load_model0(
@@ -229,16 +284,21 @@ def main(argv=None) -> int:
         model1_manifest, "model1", args.daily)
     accepted2, rejected2, _evidence2 = gated_attribution._load_archives(
         model2_manifest, "model2", args.daily)
+    accepted3, rejected3, _evidence3 = gated_attribution._load_archives(
+        model3_manifest, "model3", args.daily)
     model1 = {row["analysis_id"]: row for row in accepted1}
     model2 = {row["analysis_id"]: row for row in accepted2}
-    rejections = {"model0": rejected0, "model1": rejected1, "model2": rejected2}
+    model3 = {row["analysis_id"]: row for row in accepted3}
+    rejections = {"model0": rejected0, "model1": rejected1,
+                  "model2": rejected2, "model3": rejected3}
     if any(rejections.values()) and not args.allow_partial:
         counts = {model: len(rows) for model, rows in rejections.items() if rows}
         raise SystemExit(
             "model set is incomplete; no comparison written: " +
             ", ".join(f"{key}={value}" for key, value in counts.items())
         )
-    long_frame, wide_frame = _comparison_rows(candidates, model0, model1, model2)
+    long_frame, wide_frame = _comparison_rows(
+        candidates, model0, model1, model2, model3)
     args.outdir.mkdir(parents=True, exist_ok=True)
     attribution._write(long_frame, args.outdir / "model_metrics_long.csv")
     attribution._write(wide_frame, args.outdir / "model_comparison.csv")
@@ -256,16 +316,17 @@ def main(argv=None) -> int:
             "model0": attribution._file_sha(args.model0),
             "model1": attribution._file_sha(args.model1),
             "model2": attribution._file_sha(args.model2),
+            "model3": attribution._file_sha(args.model3),
             "regime_daily": attribution._file_sha(args.daily),
         },
         "model0_timerange": model0_manifest.get("timerange"),
         "comparison_scope": (
-            "Non-ranked mechanical Model 0/1/2 metrics and deltas. "
+            "Non-ranked mechanical Model 0/1/2/3 metrics and deltas. "
             "No exposure-matched benchmark, specialist threshold, or alpha claim is included."
         ),
     }
     _write_json(payload, args.outdir / "model_comparison_manifest.json")
-    print(f"compared Model 0/1/2 for {len(compared)}/{len(candidates)} candidates")
+    print(f"compared Model 0/1/2/3 for {len(compared)}/{len(candidates)} candidates")
     return 0
 
 

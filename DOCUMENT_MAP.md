@@ -58,16 +58,17 @@ rule is the most likely way to corrupt this study.
   see the 2026-09-02 amendment in `REGIME_PREREGISTRATION.md`.
 - `PIPELINE.md` - which program runs in which order, and exactly which
   `.csv`/`.json`/`.md` each one reads and writes, from corpus intake through
-  Model 0 (running) and the implemented-but-not-yet-run Model 1/2 variants.
+  Model 0 (running) and the implemented-but-not-yet-run Model 1/2/3 variants.
   Hand-maintained, not regenerated - read it when the question is "what do I
   run next", not "what is currently true" (that is every file above).
 - `graphify-out/GRAPH_REPORT.md` / `graph.html` - a navigable knowledge graph
   over the pipeline scripts and this tier's own `.md` files (not the corpus
-  under `repos/`), built 2026-09-06: 1273 nodes, 2136 edges, 167 communities.
-  Neither file is committed (`.gitignore`) and neither regenerates itself -
-  it is a snapshot, useful for "where do I look" navigation, never a
+  under `repos/`). Neither file is committed (`.gitignore`) and neither
+  regenerates itself - it is a snapshot, useful for "where do I look"
+  navigation, never a
   substitute for reading the current file when a decision depends on the
-  answer. Rebuild with `/graphify graphify-scope --update` after any of the
+  answer. The exact current graph counts are recorded in its summary. Rebuild
+  with `/graphify graphify-scope --update` after any of the
   scanned scripts or docs change materially.
 - `EXECUTION_PROFILES.md` - which implementation of a strategy is canonical, and
   whether it runs spot or futures. Relevant to the goal in a way the title

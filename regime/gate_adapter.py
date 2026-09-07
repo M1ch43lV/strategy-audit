@@ -30,30 +30,36 @@ class RegimeGate:
     def __init__(self, config: dict):
         self.config = config
         self.mode = config.get("mode", "ungated")
-        if self.mode not in {"ungated", "btc", "btc_coin"}:
+        if self.mode not in {"ungated", "btc", "coin", "btc_coin"}:
             raise ValueError(f"unknown regime gate mode: {self.mode}")
         self.btc_daily = None
         self.coin_daily = None
         self.allowed = {}
         if self.mode != "ungated":
             path = Path(config["daily_path"])
-            daily = pd.read_csv(path, usecols=["date", "pair", "btc_regime", "coin_regime"])
+            uses_btc = self.mode in {"btc", "btc_coin"}
+            uses_coin = self.mode in {"coin", "btc_coin"}
+            state_columns = (["btc_regime"] if uses_btc else []) + (
+                ["coin_regime"] if uses_coin else [])
+            daily = pd.read_csv(path, usecols=["date", "pair", *state_columns])
             daily["date"] = pd.to_datetime(daily["date"], utc=True).dt.normalize()
             if daily.duplicated(["pair", "date"]).any():
                 raise ValueError("regime daily data contains duplicate pair/date keys")
-            inconsistent = daily.groupby("date")["btc_regime"].nunique(dropna=False).gt(1)
-            if inconsistent.any():
-                raise ValueError("regime daily data contains inconsistent BTC states for one date")
-            # BTC is a global state.  It must remain available even when the
-            # traded coin has no local row (for example XMR after delisting).
-            # Model 2 separately looks up the pair-local state and therefore
-            # still fails closed when that local evidence is absent.
-            self.btc_daily = (daily.drop_duplicates("date").set_index("date")["btc_regime"]
-                              .sort_index())
-            self.coin_daily = daily.set_index(["pair", "date"])["coin_regime"].sort_index()
+            if uses_btc:
+                inconsistent = daily.groupby("date")["btc_regime"].nunique(dropna=False).gt(1)
+                if inconsistent.any():
+                    raise ValueError("regime daily data contains inconsistent BTC states for one date")
+                # BTC is global and remains available even when a delisted
+                # traded coin has no pair-local row.
+                self.btc_daily = (daily.drop_duplicates("date").set_index("date")
+                                  ["btc_regime"].sort_index())
+            if uses_coin:
+                self.coin_daily = (daily.set_index(["pair", "date"])["coin_regime"]
+                                   .sort_index())
             for side in ("long", "short"):
-                self.allowed[(side, "btc")] = _states(config, side, "btc")
-                if self.mode == "btc_coin":
+                if uses_btc:
+                    self.allowed[(side, "btc")] = _states(config, side, "btc")
+                if uses_coin:
                     self.allowed[(side, "coin")] = _states(config, side, "coin")
 
     def mask(self, dataframe: pd.DataFrame, metadata: dict) -> pd.DataFrame:
@@ -61,15 +67,21 @@ class RegimeGate:
             return dataframe
         pair = metadata["pair"].split(":", 1)[0]
         dates = pd.to_datetime(dataframe["date"], utc=True).dt.normalize()
-        btc_states = self.btc_daily.reindex(dates).reset_index(drop=True)
-        key = pd.MultiIndex.from_arrays([[pair] * len(dates), dates], names=["pair", "date"])
-        coin_states = self.coin_daily.reindex(key).reset_index(drop=True)
+        btc_states = (self.btc_daily.reindex(dates).reset_index(drop=True)
+                      if self.btc_daily is not None else None)
+        coin_states = None
+        if self.coin_daily is not None:
+            key = pd.MultiIndex.from_arrays(
+                [[pair] * len(dates), dates], names=["pair", "date"])
+            coin_states = self.coin_daily.reindex(key).reset_index(drop=True)
         result = dataframe.copy()
         for side, column in (("long", "enter_long"), ("short", "enter_short")):
             if column not in result.columns:
                 continue
-            allowed = btc_states.isin(self.allowed[(side, "btc")])
-            if self.mode == "btc_coin":
+            allowed = pd.Series(True, index=range(len(result)))
+            if btc_states is not None:
+                allowed &= btc_states.isin(self.allowed[(side, "btc")])
+            if coin_states is not None:
                 allowed &= coin_states.isin(self.allowed[(side, "coin")])
             result.loc[~allowed.to_numpy(), column] = 0
         return result
@@ -121,16 +133,30 @@ def selftest() -> None:
         assert result["enter_short"].tolist() == [0, 1]
         assert result["exit_long"].tolist() == [1, 1]
 
+        # Coin-only gating is independent of the BTC state.  The second row
+        # is allowed by its local SIDEWAYS state even though BTC is BEAR.
+        coin_only_path = Path(directory) / "coin_only_daily.csv"
+        pd.DataFrame({
+            "date": ["2024-01-01T00:00:00Z", "2024-01-02T00:00:00Z"],
+            "pair": ["BTC/USDT", "BTC/USDT"],
+            "coin_regime": ["BULL", "SIDEWAYS"],
+        }).to_csv(coin_only_path, index=False)
+        coin_gate = RegimeGate({"mode": "coin", "daily_path": str(coin_only_path),
+                                "long_coin_states": ["SIDEWAYS"],
+                                "short_coin_states": []})
+        coin_result = coin_gate.mask(source, {"pair": "BTC/USDT:USDT"})
+        assert coin_result["enter_long"].tolist() == [0, 1]
+        assert coin_result["enter_short"].tolist() == [0, 0]
+        assert coin_result["exit_long"].tolist() == [1, 1]
+
         # BTC-only gating is global and survives a missing pair-local row;
-        # BTC+coin gating has no local evidence and therefore fails closed.
+        # every gate that needs a local state fails closed without that row.
         missing_pair = source.iloc[:1].copy()
         btc_gate = RegimeGate({"mode": "btc", "daily_path": str(path),
                                "long_btc_states": ["BULL"],
                                "short_btc_states": []})
         assert btc_gate.mask(missing_pair, {"pair": "XMR/USDT"})["enter_long"].tolist() == [1]
-        local_gate = RegimeGate({"mode": "btc_coin", "daily_path": str(path),
-                                 "long_btc_states": ["BULL"],
-                                 "short_btc_states": [],
+        local_gate = RegimeGate({"mode": "coin", "daily_path": str(path),
                                  "long_coin_states": ["BULL"],
                                  "short_coin_states": []})
         assert local_gate.mask(missing_pair, {"pair": "XMR/USDT"})["enter_long"].tolist() == [0]
@@ -141,6 +167,13 @@ def selftest() -> None:
             assert "short_btc_states" in str(exc)
         else:
             raise AssertionError("gated configs must never default an omitted side to all states")
+        try:
+            RegimeGate({"mode": "coin", "daily_path": str(path),
+                        "long_coin_states": ["BULL"]})
+        except ValueError as exc:
+            assert "short_coin_states" in str(exc)
+        else:
+            raise AssertionError("coin-only configs must require both sides explicitly")
     print("regime gate selftest: PASS")
 
 

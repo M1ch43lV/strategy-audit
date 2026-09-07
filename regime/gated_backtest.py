@@ -1,4 +1,4 @@
-"""Identity-bound, resumable Model 1 and Model 2 pooled backtests.
+"""Identity-bound, resumable Model 1, Model 2, and Model 3 pooled backtests.
 
 The runner executes only an explicit candidate specification.  It never
 chooses profitable states, a discovery/validation split, or a replacement for
@@ -34,9 +34,14 @@ MODELS = {
         "output": ROOT / "results" / "regime" / "model1_backtest_manifest.json",
     },
     "model2": {
+        "gate_mode": "coin",
+        "scope": "coin_entry_gated_pooled_native_pair_universe",
+        "output": ROOT / "results" / "regime" / "model2_backtest_manifest.json",
+    },
+    "model3": {
         "gate_mode": "btc_coin",
         "scope": "btc_coin_entry_gated_pooled_native_pair_universe",
-        "output": ROOT / "results" / "regime" / "model2_backtest_manifest.json",
+        "output": ROOT / "results" / "regime" / "model3_backtest_manifest.json",
     },
 }
 ANALYSIS_ROLES = {
@@ -111,10 +116,11 @@ def load_candidate_spec(path: Path, model: str) -> dict:
         item = {
             "candidate_id": candidate_id,
             "strategy_id": strategy_id,
-            "long_btc_states": _state_list(candidate, "long_btc_states"),
-            "short_btc_states": _state_list(candidate, "short_btc_states"),
         }
-        if model == "model2":
+        if model in {"model1", "model3"}:
+            item["long_btc_states"] = _state_list(candidate, "long_btc_states")
+            item["short_btc_states"] = _state_list(candidate, "short_btc_states")
+        if model in {"model2", "model3"}:
             item["long_coin_states"] = _state_list(candidate, "long_coin_states")
             item["short_coin_states"] = _state_list(candidate, "short_coin_states")
         normalized.append(item)
@@ -147,10 +153,13 @@ def _gate_config(candidate: dict, model: str, daily_path: Path) -> dict:
         "schema_version": 1,
         "mode": MODELS[model]["gate_mode"],
         "daily_path": relative_daily,
-        "long_btc_states": candidate["long_btc_states"],
-        "short_btc_states": candidate["short_btc_states"],
     }
-    if model == "model2":
+    if model in {"model1", "model3"}:
+        config.update({
+            "long_btc_states": candidate["long_btc_states"],
+            "short_btc_states": candidate["short_btc_states"],
+        })
+    if model in {"model2", "model3"}:
         config.update({
             "long_coin_states": candidate["long_coin_states"],
             "short_coin_states": candidate["short_coin_states"],
@@ -250,10 +259,21 @@ def selftest() -> None:
         base["candidates"][0].update({"long_coin_states": ["SIDEWAYS"],
                                       "short_coin_states": []})
         path.write_text(json.dumps(base), encoding="utf-8")
+        model3 = load_candidate_spec(path, "model3")
+        combined = _gate_config(model3["candidates"][0], "model3", DAILY)
+        assert combined["mode"] == "btc_coin"
+        assert combined["long_btc_states"] == ["BULL"]
+        assert combined["long_coin_states"] == ["SIDEWAYS"]
+        coin_only = json.loads(json.dumps(base))
+        del coin_only["candidates"][0]["long_btc_states"]
+        del coin_only["candidates"][0]["short_btc_states"]
+        path.write_text(json.dumps(coin_only), encoding="utf-8")
         model2 = load_candidate_spec(path, "model2")
         config = _gate_config(model2["candidates"][0], "model2", DAILY)
-        assert config["mode"] == "btc_coin"
+        assert config["mode"] == "coin"
         assert config["long_coin_states"] == ["SIDEWAYS"]
+        assert "long_btc_states" not in model2["candidates"][0]
+        assert "long_btc_states" not in config
         expected = {"model": "model2", "candidate_ids": ["Example-bull"]}
         _validate_existing(dict(expected, results={}), expected, path)
         try:
@@ -298,7 +318,8 @@ def selftest() -> None:
             stored = json.loads(output.read_text(encoding="utf-8"))
             result = stored["results"]["Example-bull"]
             assert len(calls) == 1
-            assert result["gate_config"]["mode"] == "btc_coin"
+            assert result["gate_config"]["mode"] == "coin"
+            assert "long_btc_states" not in result["gate_config"]
             assert result["artifact_key"] == "model2-Example-bull"
             assert calls[0]["run_context"]["candidate_id"] == "Example-bull"
         finally:
