@@ -931,6 +931,125 @@ def install_legacy_fillna_method_kwarg():
     return True
 
 
+PRICE_SIDE_RULE = "legacy_bid_ask_strategy_price_side"
+
+
+def install_legacy_price_side_config():
+    """Restore `bid_strategy`/`ask_strategy`, renamed to entry/exit_pricing.
+
+    `SuperHV27` and the `Schism` family read
+    `self.config.get('bid_strategy', {})['price_side']` (the exit side reads
+    `ask_strategy` the same way) to decide which side of the order book
+    "the current price" means. Freqtrade renamed both sections to
+    `entry_pricing`/`exit_pricing` years ago and the old names are gone
+    entirely - `.get(..., {})` returns an empty dict and `['price_side']`
+    raises `KeyError` one line before either strategy's own logic runs, let
+    alone the order book it would go on to index.
+
+    Freqtrade's own pre-rename default for these two keys was
+    `{'price_side': 'bid'}` / `{'price_side': 'ask'}` - restored here
+    verbatim, and only when the section is entirely absent, so a config
+    that sets `bid_strategy`/`ask_strategy` itself (none in this corpus's
+    configs, but the guard costs nothing) is left untouched.
+
+    Same hook as `install_legacy_min_roi_entry_override` above -
+    `StrategyResolver.load_strategy` - and composes with it: each shim reads
+    whatever `load_strategy` currently is at its own install time, so
+    installing both (`SuperHV27` needs both) chains them regardless of
+    order rather than one clobbering the other.
+    """
+    from freqtrade.resolvers.strategy_resolver import StrategyResolver
+
+    if getattr(StrategyResolver, "_legacy_price_side_adapted", False):
+        return True
+
+    original = StrategyResolver.load_strategy
+    DEFAULTS = {"bid_strategy": {"price_side": "bid"},
+               "ask_strategy": {"price_side": "ask"}}
+
+    def load_strategy(config=None):
+        strategy = original(config)
+        for key, default in DEFAULTS.items():
+            if key not in strategy.config:
+                strategy.config[key] = dict(default)
+        return strategy
+
+    StrategyResolver.load_strategy = staticmethod(load_strategy)
+    StrategyResolver._legacy_price_side_adapted = True
+    return True
+
+
+ORDERBOOK_RULE = "synthetic_orderbook_from_last_close"
+
+
+def install_synthetic_backtest_orderbook():
+    """Give `confirm_trade_entry` a usable book without a live network call.
+
+    `SuperHV27` and `Hacklemore3` (and the `Schism` family, on the same
+    template) read "the current price" as `ob[f"{side}s"][0][0]` from
+    `self.dp.orderbook(pair, N)`. `DataProvider.orderbook` delegates to
+    `Exchange.fetch_l2_order_book`, which unconditionally calls
+    `self._api.fetch_l2_order_book(pair, limit)` - a real request to the
+    exchange's LIVE order book, with no runmode guard at all, confirmed by
+    reading `exchange.py` directly. Backtesting keeps that call reachable
+    (nothing crashes on the call itself) but it comes back with empty
+    'bids'/'asks' - there is no historical L2 book to serve for a backtest -
+    so `[0][0]` raises: `KeyError('price_side')` for `SuperHV27`, whose own
+    `self.config.get('bid_strategy', {})` is ALSO empty (freqtrade renamed
+    that key to `entry_pricing` years ago, one line before the book is even
+    indexed); `IndexError` directly for `Hacklemore3`, which never reads
+    that key.
+
+    SCOPE. 79 admitted strategies call `dp.orderbook()`; most of them
+    complete anyway (a live call that happens to succeed, or code that
+    tolerates an empty book). Patching `orderbook()` unconditionally would
+    change what ALL 79 measure, most of which nobody asked to touch. This
+    installs only through `PROFILE_COMPAT_SIGNATURES`, which
+    `PROFILE_CLASS1.json` sets per strategy - so it activates only for the
+    two rows confirmed, on a second independent run, to crash on this exact
+    shape (`ELIGIBILITY`/pooled-backtest retries, 2026-09-07), not for the
+    75+ that were never touched.
+
+    THE PROXY. Freqtrade's backtest model fills a candle at its own price
+    with no real-world gap for an order book to have moved in - so
+    `current_price == last close` is what the model already treats as "now",
+    not an invented number. The safe source for that close is
+    `DataProvider.get_pair_dataframe`, freqtrade's OWN look-ahead-guarded
+    accessor (its own comment: "prevent lookahead bias... through
+    informative pairs") - reusing it means this shim inherits that guard
+    rather than re-deriving a current-time cutoff of its own.
+
+    Scope at the call level, not just the environment level: only backtest
+    or hyperopt runmode, and only when the real call actually came back
+    empty - a live/dry-run call, or a backtest call that somehow got real
+    depth, is returned unchanged.
+    """
+    from freqtrade.data.dataprovider import DataProvider
+    from freqtrade.enums import RunMode
+
+    if getattr(DataProvider, "_synthetic_orderbook_installed", False):
+        return True
+
+    original = DataProvider.orderbook
+
+    def orderbook(self, pair, maximum):
+        book = original(self, pair, maximum)
+        if self.runmode not in (RunMode.BACKTEST, RunMode.HYPEROPT):
+            return book
+        if book.get("bids") and book.get("asks"):
+            return book
+        data = self.get_pair_dataframe(pair)
+        if len(data) == 0:
+            return book
+        level = [[float(data.iloc[-1]["close"]), 0.0]]
+        return dict(book, bids=level, asks=level)
+
+    orderbook._synthetic_orderbook_installed = True
+    DataProvider.orderbook = orderbook
+    DataProvider._synthetic_orderbook_installed = True
+    return True
+
+
 INSTALLERS = {RULE: install_min_roi_reached_entry,
               SCAN_RULE: install_tolerant_class_scan,
               ADVISE_RULE: install_idempotent_advise_entry,
@@ -947,7 +1066,9 @@ INSTALLERS = {RULE: install_min_roi_reached_entry,
               APPEND_RULE: install_dataframe_append,
               ASFREQ_RULE: install_legacy_asfreq,
               FILLNA_RULE: install_legacy_fillna_skips_incompatible_dtype,
-              FILLNA_METHOD_RULE: install_legacy_fillna_method_kwarg}
+              FILLNA_METHOD_RULE: install_legacy_fillna_method_kwarg,
+              ORDERBOOK_RULE: install_synthetic_backtest_orderbook,
+              PRICE_SIDE_RULE: install_legacy_price_side_config}
 
 
 def install_from_environment():
@@ -1443,6 +1564,104 @@ def selftest():
             assert "unexpected keyword argument 'method'" in str(exc)
     finally:
         pd.core.generic.NDFrame.fillna = original_ndframe_fillna
+
+    # The eighteenth shim: bid_strategy/ask_strategy are restored with their
+    # pre-rename defaults only when the section is entirely missing; a
+    # config that already sets one is left alone, and composing with the
+    # min_roi override (SuperHV27 needs both) does not clobber either.
+    class FakeStrategyNoConfig(object):
+        config = {}
+
+    class FakeStrategyOwnConfig(object):
+        config = {"bid_strategy": {"price_side": "ask"}}
+
+    class FakeResolver2(object):
+        _target = None
+
+        @staticmethod
+        def load_strategy(config=None):
+            return FakeResolver2._target()
+
+    module = _types.ModuleType("freqtrade.resolvers.strategy_resolver")
+    module.StrategyResolver = FakeResolver2
+    saved = sys.modules.get("freqtrade.resolvers.strategy_resolver")
+    sys.modules["freqtrade.resolvers.strategy_resolver"] = module
+    try:
+        assert install_legacy_price_side_config()
+        FakeResolver2._target = FakeStrategyNoConfig
+        instance = FakeResolver2.load_strategy()
+        assert instance.config["bid_strategy"] == {"price_side": "bid"}
+        assert instance.config["ask_strategy"] == {"price_side": "ask"}
+        # A config that already names one of the two sections keeps its
+        # own value; only the missing section is filled in.
+        FakeResolver2._target = FakeStrategyOwnConfig
+        instance = FakeResolver2.load_strategy()
+        assert instance.config["bid_strategy"] == {"price_side": "ask"}
+        assert instance.config["ask_strategy"] == {"price_side": "ask"}
+    finally:
+        if saved is not None:
+            sys.modules["freqtrade.resolvers.strategy_resolver"] = saved
+        else:
+            sys.modules.pop("freqtrade.resolvers.strategy_resolver", None)
+
+    # The nineteenth shim: an empty backtest/hyperopt book is replaced by a
+    # synthetic single-level one at the last close; a live/dry-run call, and
+    # a book that already has depth, pass through unchanged.
+    class FakeFrame(object):
+        def __init__(self, rows):
+            self._rows = rows
+        def __len__(self):
+            return len(self._rows)
+        @property
+        def iloc(self):
+            rows = self._rows
+            class _ILoc(object):
+                def __getitem__(self, index):
+                    return rows[index]
+            return _ILoc()
+
+    calls = []
+
+    def fake_orderbook(self, pair, maximum):
+        calls.append(pair)
+        return dict(self._next_book)
+
+    original_orderbook = DataProvider.orderbook
+    DataProvider.orderbook = fake_orderbook
+    DataProvider._synthetic_orderbook_installed = False
+    try:
+        assert install_synthetic_backtest_orderbook()
+
+        holder = DataProvider.__new__(DataProvider)
+        holder._config = {"runmode": RunMode.BACKTEST}
+        holder._next_book = {"bids": [], "asks": []}
+        holder.get_pair_dataframe = lambda pair, *a, **kw: FakeFrame(
+            [{"close": 123.5}])
+        book = holder.orderbook("BTC/USDT", 1)
+        assert book["bids"] == [[123.5, 0.0]], book
+        assert book["asks"] == [[123.5, 0.0]], book
+
+        # A book that already has depth is left exactly as the (fake) real
+        # call returned it.
+        holder._next_book = {"bids": [[100.0, 1.0]], "asks": [[101.0, 1.0]]}
+        book = holder.orderbook("BTC/USDT", 1)
+        assert book == {"bids": [[100.0, 1.0]], "asks": [[101.0, 1.0]]}, book
+
+        # Live/dry-run: never synthesised, even with an empty book.
+        holder._config = {"runmode": RunMode.LIVE}
+        holder._next_book = {"bids": [], "asks": []}
+        book = holder.orderbook("BTC/USDT", 1)
+        assert book == {"bids": [], "asks": []}, book
+
+        # No historical data at all: passed through rather than invented.
+        holder._config = {"runmode": RunMode.BACKTEST}
+        holder._next_book = {"bids": [], "asks": []}
+        holder.get_pair_dataframe = lambda pair, *a, **kw: FakeFrame([])
+        book = holder.orderbook("BTC/USDT", 1)
+        assert book == {"bids": [], "asks": []}, book
+    finally:
+        DataProvider.orderbook = original_orderbook
+        DataProvider._synthetic_orderbook_installed = False
 
     # The fourteenth shim: the old path reaches keras's own current plot_model,
     # unmodified. Keras is only on the TensorFlow companion image; skip

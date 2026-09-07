@@ -565,6 +565,13 @@
       ],
       "status": "applied"
     },
+    "Hacklemore3": {
+      "note": "confirm_trade_entry reads self.dp.orderbook(pair, 1)['asks'][0][0] to get the current price; a live backtest exchange call returns an empty book (no historical L2 order book exists to replay), so the index raises IndexError before the strategy's own logic runs. Reproduced on a second, independent pooled-backtest run (2026-09-07). The order book is replaced by a synthetic single-level one from the last (look-ahead-guarded) close, only when the real call comes back empty. No strategy source is touched.",
+      "rules": [
+        "synthetic_orderbook_from_last_close"
+      ],
+      "status": "applied"
+    },
     "HurstCycle7": {
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
       "rules": [
@@ -1204,9 +1211,11 @@
       "withdrawn_path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
     },
     "SuperHV27": {
-      "note": "defines its own min_roi_reached_entry(self, trade_dur) in the pre-2022 shape freqtrade's own hook has since grown past. The instance gets an adapter that accepts the current three-argument call and passes trade_dur through to the author's own function unchanged. No strategy source is touched.",
+      "note": "defines its own min_roi_reached_entry(self, trade_dur) in the pre-2022 shape freqtrade's own hook has since grown past. The instance gets an adapter that accepts the current three-argument call and passes trade_dur through to the author's own function unchanged. No strategy source is touched. Also crashes on a second, independent pooled-backtest run (2026-09-07) with KeyError('price_side') from confirm_trade_entry: self.config.get('bid_strategy', {}) is empty (freqtrade renamed the key to entry_pricing years ago), one line before ob['bids'][0][0] would also fail on the empty book a live backtest exchange call returns. Both are restored: the config section gets its pre-rename default, and the order book gets a synthetic single-level book from the last close instead of an empty live-network result.",
       "rules": [
-        "legacy_min_roi_reached_entry_override"
+        "legacy_min_roi_reached_entry_override",
+        "legacy_bid_ask_strategy_price_side",
+        "synthetic_orderbook_from_last_close"
       ],
       "status": "applied"
     },
