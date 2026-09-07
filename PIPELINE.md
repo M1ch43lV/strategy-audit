@@ -152,6 +152,36 @@ Die tatsächliche Vollständigkeit — jedes Paar, über das komplette
 `--pairs`-Filter auf, also mit der kompletten Paarliste gemeinsam in einem
 einzigen Backtest, und bricht nie früh ab.
 
+**Korrektur 2026-09-07: `profile_full_window.py` ist nicht für die ganze
+E1-Kohorte nötig, nur für Zero-Trade-Kandidaten.** Die Zitation oben
+(`REGIME_AUDIT_PLAN.md` §28.1) trägt diese Behauptung nicht — §28.1 handelt
+von einem anderen Thema (Trade-Attribution vs. gegatete Performance,
+Phase A/B), nicht von Einzelpaar- vs. gepooltem Backtest. Der tatsächliche
+Grund, warum `profile_full_window.py` überhaupt existiert, steht in
+`strategy_status.py`: die Zulassung selbst braucht nur `observed_trades !=
+0` aus dem Probelauf (`eligibility_admit_converged.py`, keine
+Mindestanzahl — auch nicht 10, trotz anderslautender Erinnerung, geprüft
+und im ganzen Repo nicht gefunden). Das volle 6,5-Jahres-Fenster ist nur
+dann zwingend, wenn der Probelauf null Trades zeigte und eine Strategie
+deswegen ausgeschlossen werden soll (`full_window_measurement_pending`,
+nur für `reason == "no_trades_in_full_measurement"`) — sonst würde ein
+zufällig ruhiger Probelauf-Monat eine tatsächlich handelnde Strategie zu
+Unrecht verwerfen.
+
+Stichprobe an diesem Datum: **0 von 608 `E1_expanded`-Strategien haben
+`observed_trades == 0`.** Der Bedarf, der diese Stufe rechtfertigt, bestand
+zu diesem Zeitpunkt für niemanden im zugelassenen Bestand — alle 571 den
+Containern `full-window-a`/`full-window-b` zugeteilten Strategien hatten
+bereits positive Probelauf-Evidenz und brauchten die Bestätigung nicht.
+`regime/full_backtest.py` (gepoolt, ohnehin für dieselbe Kohorte laufend)
+liefert für diese Mehrheit einen repräsentativeren Trade-Count obendrein
+(gemeinsame `max_open_trades`-Kapitalbindung über alle Paare, nicht pro
+Paar isoliert). Beide Container deshalb gestoppt (571/571 zugeteilt, davon
+0 mit echtem Zero-Trade-Bedarf) — bei einer künftigen Kohortenerweiterung
+lohnt sich vorher genau diese Prüfung (`observed_trades == 0` in
+`STRATEGY_STATUS.csv`), bevor `profile_full_window.py` erneut für die
+ganze Kohorte statt nur die Zero-Trade-Teilmenge gestartet wird.
+
 ## Stufe 8 — Marktregime-Klassifikation
 
 | Programm | Liest | Schreibt |
