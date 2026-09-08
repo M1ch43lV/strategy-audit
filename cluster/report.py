@@ -53,7 +53,7 @@ def write_md(rows, dst):
              "classification can be refuted on the individual case rather than only "
              "showing up as noise in the aggregate.")
     L.extend(["", "This is a preregistered **source taxonomy**, not behavioral "
-              "clustering. It consumes `EXECUTION_PROFILES.csv`, keeps dormant "
+              "clustering. It consumes `evidence/EXECUTION_PROFILES.csv`, keeps dormant "
               "short writes separate through canonical `direction_capability`, and "
               "does not determine `regime_eligible`."])
 

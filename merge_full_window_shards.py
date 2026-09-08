@@ -2,7 +2,7 @@
 """Merge the sharded full-window containers' own output files into the one
 store `strategy_status.py` reads.
 
-Three containers wrote to three separate files - `PROFILE_FULL_WINDOW.json`
+Three containers wrote to three separate files - `evidence/PROFILE_FULL_WINDOW.json`
 itself is a single JSON document with no cross-process lock, and two
 processes loading it, updating their own slice, and writing back would race:
 whichever finished last would overwrite the other's results with the copy it
@@ -21,9 +21,9 @@ import os
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-TARGET = os.path.join(ROOT, "PROFILE_FULL_WINDOW.json")
-SHARDS = ("PROFILE_FULL_WINDOW_shardA.json", "PROFILE_FULL_WINDOW_shardB.json",
-         "PROFILE_FULL_WINDOW_shardTF.json")
+TARGET = os.path.join(ROOT, "evidence/PROFILE_FULL_WINDOW.json")
+SHARDS = ("evidence/PROFILE_FULL_WINDOW_shardA.json", "evidence/PROFILE_FULL_WINDOW_shardB.json",
+         "evidence/PROFILE_FULL_WINDOW_shardTF.json")
 
 
 def _load(path):

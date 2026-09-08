@@ -19,12 +19,12 @@ if ($RebuildRuntime -or $LASTEXITCODE -ne 0) {
 $imageId = docker image inspect $image --format '{{.Id}}'
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-# Writes ELIGIBILITY_TIMEFRAME_EVIDENCE.json only, so it never contends with
+# Writes evidence/ELIGIBILITY_TIMEFRAME_EVIDENCE.json only, so it never contends with
 # the smoke or full-window manifests; each row is stored as soon as it exists.
 docker run --rm `
     -e "PROFILE_RUNTIME_ID=docker:$imageId" `
     -v "${auditPath}:/audit" `
     -w /audit `
     --entrypoint python `
-    $image eligibility_timeframe_evidence.py @RunArguments
+    $image -m evidence.eligibility_timeframe_evidence @RunArguments
 exit $LASTEXITCODE

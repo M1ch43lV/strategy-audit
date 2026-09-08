@@ -16,11 +16,11 @@ import os
 import sys
 import threading
 
-import profile_smoke
+from evidence import profile_smoke
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-OUTPUT = os.path.join(ROOT, "PROFILE_FULL_WINDOW.json")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUTPUT = os.path.join(ROOT, "evidence/PROFILE_FULL_WINDOW.json")
 # Amendment 2026-09-03 (REGIME_PREREGISTRATION.md): the spot window starts a
 # month later than the futures one. DASH/USDT was listed on Binance
 # 2019-03-28; at the old shared start of 2020-03-01 that left only 337 days
@@ -41,15 +41,15 @@ LOCK = threading.Lock()
 def timerange(mode):
     return TIMERANGE["futures" if mode == "futures" else "spot"]
 
-CONVERGENCE = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
+CONVERGENCE = os.path.join(ROOT, "evidence/WARMUP_CONVERGENCE.json")
 # Stores holding a repair run. A repaired row has to be measured the way it
 # was repaired, or the run reports on a configuration nobody intends to use.
 REPAIR_STORES = (
-    os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_MODULE_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_SIGNATURE_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_FREQAI_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_FREQAI_WTAI.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_TIMEFRAME_REPAIR.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_MODULE_REPAIR.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_SIGNATURE_REPAIR.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_FREQAI_REPAIR.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_FREQAI_WTAI.json"),
 )
 
 

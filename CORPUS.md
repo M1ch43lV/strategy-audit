@@ -273,7 +273,7 @@ description: "outdated - please use the official repo... from now on") ·
 `raphant/lazyft` (a real, substantial backtest/hyperopt CLI wrapper library
 around freqtrade — tooling, not a strategy) · `yalcin/freqtrade-mcp` (an MCP
 server exposing freqtrade's codebase for LLM introspection — developer
-tooling, not a strategy). A fourth entry, `logs`, in `corpus_sources.json` is
+tooling, not a strategy). A fourth entry, `logs`, in `evidence/corpus_sources.json` is
 not a repository at all: it is a stray local directory (a leftover log file
 and a README) that `census_repos.py`'s directory scan picked up alongside the
 77 real repos — noted here so a future reader doesn't go looking for a GitHub

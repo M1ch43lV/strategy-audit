@@ -282,7 +282,7 @@ def n_repos():
     u"""One implementation for two places — in ledger_block. A local copy here has already
     diverged from the truth and printed 3 instead of 53."""
     from ledger_block import n_repos as _n
-    return _n(os.path.join(_ROOT, "corpus_sources.json"))
+    return _n(os.path.join(_ROOT, "evidence/corpus_sources.json"))
 
 
 def write_csv(rows, out):

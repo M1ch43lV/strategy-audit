@@ -18,19 +18,19 @@ import json
 import os
 import sys
 
-import profile_bias
-import profile_smoke
+from evidence import profile_bias
+from evidence import profile_smoke
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
 LEDGER = os.path.join(ROOT, "LEDGER.csv")
-COVERAGE = os.path.join(ROOT, "REGIME_COVERAGE.csv")
-BIAS = os.path.join(ROOT, "PROFILE_BIAS.json")
-FULL_MEASUREMENT = os.path.join(ROOT, "PROFILE_FULL_WINDOW.json")
+COVERAGE = os.path.join(ROOT, "evidence/REGIME_COVERAGE.csv")
+BIAS = os.path.join(ROOT, "evidence/PROFILE_BIAS.json")
+FULL_MEASUREMENT = os.path.join(ROOT, "evidence/PROFILE_FULL_WINDOW.json")
 FULL_TIMERANGE = "20200301-20260821"
-OUTPUT = os.path.join(ROOT, "REGIME_ELIGIBILITY.csv")
-REPORT = os.path.join(ROOT, "REGIME_ELIGIBILITY.md")
+OUTPUT = os.path.join(ROOT, "evidence/REGIME_ELIGIBILITY.csv")
+REPORT = os.path.join(ROOT, "evidence/REGIME_ELIGIBILITY.md")
 
 FIELDS = [
     "strategy_id", "run_profile", "implementation_id", "canonical_file",
@@ -227,7 +227,7 @@ def build(profile_path=PROFILES, ledger_path=LEDGER, coverage_path=COVERAGE,
     else:
         stored_full = {}
     # A source/config/rule/mode/profile change invalidates old evidence even if
-    # profile_bias.py has not yet been rerun. This makes the identity binding a
+    # evidence/profile_bias.py has not yet been rerun. This makes the identity binding a
     # consumer-side gate, not merely metadata written by the producer.
     bias = {}
     full = {}
@@ -291,7 +291,7 @@ completed one uniform audit chain. A `regime_eligible=true` value here grants
 no current admission and must never be used as fallback evidence.
 
 This table is keyed by `strategy_id × run_profile` and uses the single
-canonical implementation selected in `EXECUTION_PROFILES.csv`. It is frozen
+canonical implementation selected in `evidence/EXECUTION_PROFILES.csv`. It is frozen
 before any regime-performance ranking. At the time, eligibility purported to
 mean admission to Stage 7; that interpretation is no longer valid.
 
@@ -315,7 +315,7 @@ from historical spot diagnostics.
 
 Coverage uses available pair history, matching the existing audit. Exact pair
 and candle coverage for the frozen regime window is a hard Stage 7 precondition.
-Until `REGIME_COVERAGE.csv` supplies a `PASS` for a strategy/run-profile row,
+Until `evidence/REGIME_COVERAGE.csv` supplies a `PASS` for a strategy/run-profile row,
 that row remains `pending_diagnostics` rather than being called eligible.
 In this historical classification, %d rows pass all gates including coverage; %d pass
 every other gate and wait only for coverage.
@@ -323,7 +323,7 @@ every other gate and wait only for coverage.
 The committed report and CSV are immutable provenance of the invalid E0
 classification and are deliberately not regenerated. Do not combine their 67
 rows with an expansion count. Quote usable strategies only from active
-`admitted_E1` decisions in `ELIGIBILITY_EXPANSION_ADJUDICATION.csv`, exposed as
+`admitted_E1` decisions in `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv`, exposed as
 `cohort=E1_expanded` in `STRATEGY_STATUS.csv`.
 
 The coverage input schema is `strategy_id,run_profile,coverage_status,coverage_evidence`.
@@ -361,7 +361,7 @@ cannot be both failed and pending on one row.
 |---|---:|
 %s
 
-The machine-readable row-level record is `REGIME_ELIGIBILITY.csv`.
+The machine-readable row-level record is `evidence/REGIME_ELIGIBILITY.csv`.
 """ % (eligible, coverage_only, _table(statuses), _table(profiles),
        _table(exclusions), _table(pending))
     tmp = path + ".tmp"
@@ -419,12 +419,12 @@ def main(argv=None):
     parser.add_argument("--selftest", action="store_true")
     parser.add_argument(
         "--rewrite-frozen-baseline", action="store_true",
-        help="overwrite REGIME_ELIGIBILITY.csv, the invalidated historical E0 artifact")
+        help="overwrite evidence/REGIME_ELIGIBILITY.csv, the invalidated historical E0 artifact")
     args = parser.parse_args(argv)
     if args.selftest:
         selftest()
         return 0
-    # REGIME_ELIGIBILITY.csv is immutable evidence of the invalidated E0
+    # evidence/REGIME_ELIGIBILITY.csv is immutable evidence of the invalidated E0
     # classification. Re-running this file against it would erase the record of
     # how the mistaken 67 was produced. The classifier stays runnable for
     # historical diagnostics via --output, but its output never admits a row.

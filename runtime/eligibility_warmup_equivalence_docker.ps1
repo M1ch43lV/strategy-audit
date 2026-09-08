@@ -20,12 +20,12 @@ $imageId = docker image inspect $image --format '{{.Id}}'
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 # The queue is a single sequential writer: it runs one original/override pair at
-# a time and writes ELIGIBILITY_EXPANSION_EQUIVALENCE.json atomically after each
+# a time and writes evidence/ELIGIBILITY_EXPANSION_EQUIVALENCE.json atomically after each
 # pair, so an interrupted container leaves completed pairs intact and resumable.
 docker run --rm `
     -e "PROFILE_RUNTIME_ID=docker:$imageId" `
     -v "${auditPath}:/audit" `
     -w /audit `
     --entrypoint python `
-    $image eligibility_warmup_equivalence_queue.py @QueueArguments
+    $image -m evidence.eligibility_warmup_equivalence_queue @QueueArguments
 exit $LASTEXITCODE

@@ -6,7 +6,7 @@ import io
 import json
 import os
 
-import profile_bias
+from evidence import profile_bias
 
 
 def _load(path):

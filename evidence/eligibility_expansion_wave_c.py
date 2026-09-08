@@ -21,13 +21,13 @@ import io
 import os
 import sys
 
-import profile_smoke
+from evidence import profile_smoke
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-CANDIDATES = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_CANDIDATES.csv")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CANDIDATES = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_CANDIDATES.csv")
 WAVE = "C_measurement_recovery"
-# The frozen smoke window; see PROFILE_SMOKE.json, which records it per file.
+# The frozen smoke window; see evidence/PROFILE_SMOKE.json, which records it per file.
 TIMERANGE = "20200301-20200401"
 
 

@@ -33,11 +33,11 @@ import json
 import os
 import sys
 
-import profile_smoke
+from evidence import profile_smoke
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-OUTPUT = os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_EVIDENCE.json")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUTPUT = os.path.join(ROOT, "evidence/ELIGIBILITY_TIMEFRAME_EVIDENCE.json")
 TIMERANGE = "20200301-20200401"
 
 EVIDENCE = {

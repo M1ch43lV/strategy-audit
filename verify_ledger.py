@@ -75,7 +75,7 @@ def n_repos():
     u"""We call the same implementation as ledger.py. Previously there was a copy here, and
     both copies erred identically — so the reconciliation was silent."""
     from ledger_block import n_repos as _n
-    return _n(os.path.join(_HERE, "corpus_sources.json"))
+    return _n(os.path.join(_HERE, "evidence/corpus_sources.json"))
 
 
 def selftest():

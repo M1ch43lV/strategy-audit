@@ -3,7 +3,7 @@
 
 Original repository files are never edited.  Generated overlays live under
 ``user_data/profile_repairs`` and the reproducible manifest is published as
-``PROFILE_REPAIRS.json``.
+``evidence/PROFILE_REPAIRS.json``.
 """
 from __future__ import print_function
 
@@ -16,10 +16,10 @@ import os
 import sys
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-MANIFEST = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
-SMOKE = os.path.join(ROOT, "PROFILE_SMOKE.json")
-OUTPUT = os.path.join(ROOT, "PROFILE_REPAIRS.json")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MANIFEST = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
+SMOKE = os.path.join(ROOT, "evidence/PROFILE_SMOKE.json")
+OUTPUT = os.path.join(ROOT, "evidence/PROFILE_REPAIRS.json")
 OVERLAYS = os.path.join(ROOT, "user_data", "profile_repairs")
 
 

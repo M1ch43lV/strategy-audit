@@ -9,15 +9,15 @@ import json
 import os
 import sys
 
-import profile_full_window
-import profile_smoke
+from evidence import profile_full_window
+from evidence import profile_smoke
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-CANDIDATES = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_CANDIDATES.csv")
-PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
-WARMUP = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_WARMUP.json")
-OUTPUT = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_EQUIVALENCE.json")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CANDIDATES = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_CANDIDATES.csv")
+PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
+WARMUP = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_WARMUP.json")
+OUTPUT = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_EQUIVALENCE.json")
 
 
 def _csv(path):

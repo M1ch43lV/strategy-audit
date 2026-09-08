@@ -185,7 +185,7 @@ def n_repos(path):
     u"""How many repositories entered the sweep.
 
     ⚠ DEFECT 22.08, published. Counted `len(src.keys())`, while
-    `corpus_sources.json` is a dictionary of three keys, where the repository list
+    `evidence/corpus_sources.json` is a dictionary of three keys, where the repository list
     sits inside `repos`. README got "repositories swept 3" instead of 53.
 
     The `verify_ledger` check did NOT CATCH this, and could not: both sides counted
@@ -241,7 +241,7 @@ def claims(rows, n_repo):
         ("strategies in corpus", len(rows), DESCRIPTIVE, "-",
          "census of what could be found and loaded"),
         ("repositories swept", n_repo, DESCRIPTIVE, "-",
-         "corpus_sources.json"),
+         "evidence/corpus_sources.json"),
         ("negative in the author's own window", 
          sum(1 for r in rows if (r.get("dropped_at") or "") == "G2_is_pos"),
          DESCRIPTIVE, "-", "ladder gate G2"),

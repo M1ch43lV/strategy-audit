@@ -25,7 +25,7 @@ from repair_overrides import repair_overrides, sibling_config_timeframe
 import warnings
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPOS = os.path.join(ROOT, "repos")
 DEFAULT_REPAIR = os.path.join(ROOT, "repair")
 FIELDS = [
@@ -345,7 +345,7 @@ def _ledger_rows():
 
 
 def _smoke_results():
-    path = os.path.join(ROOT, "PROFILE_SMOKE.json")
+    path = os.path.join(ROOT, "evidence/PROFILE_SMOKE.json")
     if not os.path.exists(path):
         return {}
     try:
@@ -356,7 +356,7 @@ def _smoke_results():
 
 
 def _profile_repairs():
-    path = os.path.join(ROOT, "PROFILE_REPAIRS.json")
+    path = os.path.join(ROOT, "evidence/PROFILE_REPAIRS.json")
     if not os.path.exists(path):
         return {}
     try:
@@ -367,7 +367,7 @@ def _profile_repairs():
 
 
 def _profile_class1():
-    path = os.path.join(ROOT, "PROFILE_CLASS1.json")
+    path = os.path.join(ROOT, "evidence/PROFILE_CLASS1.json")
     if not os.path.exists(path):
         return {}
     try:
@@ -437,9 +437,9 @@ def build(repair_root=DEFAULT_REPAIR):
         # A fourth and last source: a value recovered by a repair route with
         # no source location at all to scan - Argrelextrema's timeframe is a
         # comment ("# timeframe = '5m'"), not a live assignment, so nothing
-        # above ever sees it. eligibility_timeframe_repair.py already found
-        # it and warmup_convergence.py/profile_bias.py already run with it
-        # via this same repair_overrides() lookup; regime_coverage.py reads
+        # above ever sees it. evidence/eligibility_timeframe_repair.py already found
+        # it and warmup_convergence.py/evidence/profile_bias.py already run with it
+        # via this same repair_overrides() lookup; evidence/regime_coverage.py reads
         # this row's timeframe from this CSV alone, so leaving this source
         # out left a row with a native look-ahead PASS and a settled ladder
         # stuck on "coverage: unsupported_or_unknown_profile" indefinitely.
@@ -660,7 +660,7 @@ class OldLong(IStrategy):
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--repair-root", default=DEFAULT_REPAIR)
-    parser.add_argument("--output", default=os.path.join(ROOT, "EXECUTION_PROFILES.csv"))
+    parser.add_argument("--output", default=os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv"))
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:

@@ -29,5 +29,5 @@ docker run --rm `
     -v "${auditPath}:/audit" `
     -w /audit `
     --entrypoint python `
-    $image eligibility_lookahead_backfill.py @RunArguments
+    $image -m evidence.eligibility_lookahead_backfill @RunArguments
 exit $LASTEXITCODE

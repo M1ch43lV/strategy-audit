@@ -15,7 +15,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-import profile_smoke
+from evidence import profile_smoke
 from regime import attribution, gated_attribution, gated_backtest
 
 

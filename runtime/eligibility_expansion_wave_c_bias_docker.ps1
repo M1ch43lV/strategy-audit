@@ -27,5 +27,5 @@ docker run --rm `
     -v "${auditPath}:/audit" `
     -w /audit `
     --entrypoint python `
-    $image eligibility_expansion_wave_c_bias.py @RunArguments
+    $image -m evidence.eligibility_expansion_wave_c_bias @RunArguments
 exit $LASTEXITCODE

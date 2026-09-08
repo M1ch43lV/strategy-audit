@@ -24,5 +24,5 @@ docker run --rm `
     -v "${auditPath}:/audit" `
     -w /audit `
     --entrypoint python `
-    $image profile_smoke.py @SmokeArguments
+    $image -m evidence.profile_smoke @SmokeArguments
 exit $LASTEXITCODE

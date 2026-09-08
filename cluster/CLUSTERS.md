@@ -4,7 +4,7 @@
 
 Five **independent** axes rather than one bucket. A strategy is not `mean_reversion` OR `long_short`, it is both at once - and for the question "which market phase" the combination is what matters. Every label carries its reason in `clusters.json` under `why`, so a wrong classification can be refuted on the individual case rather than only showing up as noise in the aggregate.
 
-This is a preregistered **source taxonomy**, not behavioral clustering. It consumes `EXECUTION_PROFILES.csv`, keeps dormant short writes separate through canonical `direction_capability`, and does not determine `regime_eligible`.
+This is a preregistered **source taxonomy**, not behavioral clustering. It consumes `evidence/EXECUTION_PROFILES.csv`, keeps dormant short writes separate through canonical `direction_capability`, and does not determine `regime_eligible`.
 
 ## Direction
 

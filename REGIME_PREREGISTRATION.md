@@ -15,10 +15,10 @@ admission source, fallback, denominator, or benchmark result.
 ## Scope and causal clock
 
 The canonical, deduplicated strategy corpus and its native run profiles are
-defined by `EXECUTION_PROFILES.csv`. Technical admission is defined only by an
-active `admitted_E1` decision in `ELIGIBILITY_EXPANSION_ADJUDICATION.csv` under
+defined by `evidence/EXECUTION_PROFILES.csv`. Technical admission is defined only by an
+active `admitted_E1` decision in `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` under
 the current audit rules, exposed as `cohort=E1_expanded` in
-`STRATEGY_STATUS.csv`. `REGIME_ELIGIBILITY.csv` is the invalidated historical
+`STRATEGY_STATUS.csv`. `evidence/REGIME_ELIGIBILITY.csv` is the invalidated historical
 Stage 6 snapshot and supplies provenance only. Whole-window profit is not an
 admission rule.
 
@@ -288,7 +288,7 @@ is no verdict and admits nothing - recursion settled by the ladder, coverage
 Three rows that clear both bias gates are held by a documented backtesting
 trap, which is not a warm-up question.
 
-Implemented by `eligibility_admit_converged.py` under ruleset
+Implemented by `evidence/eligibility_admit_converged.py` under ruleset
 `converged_clean_gates_v1`; every row it admits carries that ruleset, so any
 result can still be reported with and without this amendment.
 
@@ -464,7 +464,7 @@ starved of evidence.
 
 Implemented in `market_phase_hypothesis.PHASES`, which also carries the
 per-strategy prediction this split exists to make testable
-(`MARKET_PHASE_HYPOTHESIS.json`, surfaced as `assumed_market_regime` in
+(`evidence/MARKET_PHASE_HYPOTHESIS.json`, surfaced as `assumed_market_regime` in
 `STRATEGY_STATUS.csv`). That prediction is not part of the frozen model and
 decides nothing; it is written down now so the benchmark can refute it.
 

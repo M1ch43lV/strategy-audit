@@ -19,21 +19,21 @@ import subprocess
 import sys
 import time
 
-import profile_smoke
+from evidence import profile_smoke
 import runlog
 from repair_overrides import repair_overrides
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
-ELIGIBILITY = os.path.join(ROOT, "REGIME_ELIGIBILITY.csv")
-OUTPUT = os.path.join(ROOT, "PROFILE_BIAS.json")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
+ELIGIBILITY = os.path.join(ROOT, "evidence/REGIME_ELIGIBILITY.csv")
+OUTPUT = os.path.join(ROOT, "evidence/PROFILE_BIAS.json")
 SPOT_CONFIG = os.path.join(ROOT, "user_data", "config.json")
 CONFIG_DIR = os.path.join(ROOT, "user_data", "profile_configs")
 # Use the interpreter running this pipeline. This keeps the Windows venv and
 # the Linux/Docker execution path equivalent without host-specific branching.
 PYTHON = os.environ.get("PROFILE_PYTHON", sys.executable)
-FT_WRAPPER = os.path.join(ROOT, "profile_freqtrade.py")
+FT_WRAPPER = os.path.join(ROOT, "evidence/profile_freqtrade.py")
 LOG_DIR = os.path.join(ROOT, "user_data", "profile_bias_logs")
 ISOLATED_DIR = os.path.join(ROOT, "user_data", "profile_bias_strategies")
 WINDOWS = {"spot": "20190101-20190401", "futures": "20200301-20200401"}

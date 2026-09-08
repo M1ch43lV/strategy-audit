@@ -29,5 +29,5 @@ docker run --rm `
     -v "${auditPath}:/audit" `
     -w /audit `
     --entrypoint python `
-    $image eligibility_evidence_gap.py @RunArguments
+    $image -m evidence.eligibility_evidence_gap @RunArguments
 exit $LASTEXITCODE

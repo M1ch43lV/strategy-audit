@@ -10,7 +10,7 @@ attribute; older ones use the pre-2021.4 name `ticker_interval`. Read from
 the class block matching the strategy's own name, not the whole file - 121
 of 900 canonical files hold more than one class, and a file-wide search
 would occasionally attribute one strategy's timeframe to another sharing
-its file. `ELIGIBILITY_TIMEFRAME_REPAIR.json` is checked first and wins
+its file. `evidence/ELIGIBILITY_TIMEFRAME_REPAIR.json` is checked first and wins
 where it has an answer: that store already recovered a timeframe from
 something other than the plain attribute (the author's own config, in
 one case) for rows the plain read cannot answer, and repeating a weaker
@@ -46,7 +46,7 @@ rows it touches, which is the point of keeping it in one place instead of
 scattered regexes: anyone auditing a strategy's label reads the same five
 tables this module runs on.
 
-The population comes from `EXECUTION_PROFILES.csv`, not the generated status
+The population comes from `evidence/EXECUTION_PROFILES.csv`, not the generated status
 table. That breaks the former circular dependency in which a new strategy had
 to appear in `STRATEGY_STATUS.csv` before it could be classified for that same
 CSV.
@@ -62,9 +62,9 @@ import re
 
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
-TIMEFRAME_REPAIR = os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json")
-OUTPUT = os.path.join(ROOT, "STRATEGY_CLASSIFICATION.json")
+PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
+TIMEFRAME_REPAIR = os.path.join(ROOT, "evidence/ELIGIBILITY_TIMEFRAME_REPAIR.json")
+OUTPUT = os.path.join(ROOT, "evidence/STRATEGY_CLASSIFICATION.json")
 
 CLASS_RE = re.compile(r"^class\s+(\w+)\s*\(", re.M)
 TIMEFRAME_RE = re.compile(

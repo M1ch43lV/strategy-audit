@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 """Current status of every strategy from the complete audit evidence chain.
 
-`REGIME_ELIGIBILITY.csv` is the invalidated historical E0 snapshot. It is never
+`evidence/REGIME_ELIGIBILITY.csv` is the invalidated historical E0 snapshot. It is never
 an admission fallback: its former membership is retained only as provenance.
 Current evidence lives across the smoke, bias, full-window, adjudication and
 convergence stores. This file collects that evidence into one reference without
 rewriting the historical artifact.
 
 Nothing here decides anything. Admission happens in
-`eligibility_expansion_adjudicate.py` and nowhere else; this is a reading of
+`evidence/eligibility_expansion_adjudicate.py` and nowhere else; this is a reading of
 what has already been decided, regenerated from the evidence so it cannot
 quietly go stale - which the canonical manifest did, listing 66 measured rows
 as unmeasured for two days.
@@ -28,58 +28,58 @@ import sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 BS_SEP = chr(92)
-ELIGIBILITY = os.path.join(ROOT, "REGIME_ELIGIBILITY.csv")
+ELIGIBILITY = os.path.join(ROOT, "evidence/REGIME_ELIGIBILITY.csv")
 # The frozen baseline's own coverage_status was copied in from a run of this
 # file at freeze time and never refreshed; every row added by a later wave
 # has no entry there at all. This is regenerated freely (a filesystem check
 # of already-downloaded candle files, no backtest) and read here in
 # preference to the baseline for exactly that reason - confirmed by a full
 # re-run reproducing all 900 frozen values unchanged before this took over.
-COVERAGE = os.path.join(ROOT, "REGIME_COVERAGE.csv")
-PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
-CANDIDATES = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_CANDIDATES.csv")
-ADJUDICATION = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_ADJUDICATION.csv")
-SMOKE = os.path.join(ROOT, "PROFILE_SMOKE.json")
-BIAS = os.path.join(ROOT, "PROFILE_BIAS.json")
-FULL_WINDOW = os.path.join(ROOT, "PROFILE_FULL_WINDOW.json")
-CONVERGENCE = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
+COVERAGE = os.path.join(ROOT, "evidence/REGIME_COVERAGE.csv")
+PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
+CANDIDATES = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_CANDIDATES.csv")
+ADJUDICATION = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv")
+SMOKE = os.path.join(ROOT, "evidence/PROFILE_SMOKE.json")
+BIAS = os.path.join(ROOT, "evidence/PROFILE_BIAS.json")
+FULL_WINDOW = os.path.join(ROOT, "evidence/PROFILE_FULL_WINDOW.json")
+CONVERGENCE = os.path.join(ROOT, "evidence/WARMUP_CONVERGENCE.json")
 # Wave B supplied a warm-up to strategies the analyzer had refused and
 # re-ran the gate. Those verdicts were produced before the drift table was
 # read correctly, so they are carried as provenance - a date, a log, a
 # command - and never as a current verdict.
-WAVE_B_WARMUP = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_WARMUP.json")
+WAVE_B_WARMUP = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_WARMUP.json")
 # What stops each row that never ran, and whether repairing it would restore
 # what the author wrote or invent something they did not.
-BLOCKED_TRIAGE = os.path.join(ROOT, "BLOCKED_TRIAGE.json")
-ZERO_TRADE_TRIAGE = os.path.join(ROOT, "ZERO_TRADE_TRIAGE.json")
+BLOCKED_TRIAGE = os.path.join(ROOT, "evidence/BLOCKED_TRIAGE.json")
+ZERO_TRADE_TRIAGE = os.path.join(ROOT, "evidence/ZERO_TRADE_TRIAGE.json")
 # A repaired row is measured by its own runner, into its own store. The smoke
 # store holds the failure; this holds what happened once the obstacle was
 # removed, and outranks it - the same precedence a native gate has over an
 # inherited one, applied to the measurement instead of the verdict.
-TIMEFRAME_REPAIR = os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json")
-MODULE_REPAIR = os.path.join(ROOT, "ELIGIBILITY_MODULE_REPAIR.json")
-SIGNATURE_REPAIR = os.path.join(ROOT, "ELIGIBILITY_SIGNATURE_REPAIR.json")
-FREQAI_REPAIR = os.path.join(ROOT, "ELIGIBILITY_FREQAI_REPAIR.json")
-FREQAI_WTAI = os.path.join(ROOT, "ELIGIBILITY_FREQAI_WTAI.json")
+TIMEFRAME_REPAIR = os.path.join(ROOT, "evidence/ELIGIBILITY_TIMEFRAME_REPAIR.json")
+MODULE_REPAIR = os.path.join(ROOT, "evidence/ELIGIBILITY_MODULE_REPAIR.json")
+SIGNATURE_REPAIR = os.path.join(ROOT, "evidence/ELIGIBILITY_SIGNATURE_REPAIR.json")
+FREQAI_REPAIR = os.path.join(ROOT, "evidence/ELIGIBILITY_FREQAI_REPAIR.json")
+FREQAI_WTAI = os.path.join(ROOT, "evidence/ELIGIBILITY_FREQAI_WTAI.json")
 # A separate arm with its own runtime and its own configs, completed before
 # this table existed. Its records are per-strategy files rather than one store,
 # and nothing has ever read them here - which is how a strategy that PASSED a
 # FreqAI measurement came to be listed as excluded.
 FREQAI_ARM = os.path.join(ROOT, "repair", "results_freqai")
-LOCAL_MODULES = os.path.join(ROOT, "REPAIR_LOCAL_MODULES.json")
+LOCAL_MODULES = os.path.join(ROOT, "evidence/REPAIR_LOCAL_MODULES.json")
 # A route that has run and found nothing has still run. Leaving such a row on
 # "to be fixed" says the work is ahead of us when it is behind us and failed.
-CLASS1 = os.path.join(ROOT, "PROFILE_CLASS1.json")
+CLASS1 = os.path.join(ROOT, "evidence/PROFILE_CLASS1.json")
 # Timeframe and signal-family label, read from the strategy's own source in
 # strategy_classification.py. Neither is a measurement, so neither lives in
 # any of the stores above; both are regenerated from source alone.
-CLASSIFICATION = os.path.join(ROOT, "STRATEGY_CLASSIFICATION.json")
+CLASSIFICATION = os.path.join(ROOT, "evidence/STRATEGY_CLASSIFICATION.json")
 # Which of the six market phases each strategy is predicted to work in,
 # written by market_phase_hypothesis.py before the benchmark that will test
 # it. A prediction, not a measurement: it decides no cohort and clears no row,
 # and it is carried here so the benchmark reads it from the same table it
 # reports against rather than from a note somebody kept separately.
-PHASE_HYPOTHESIS = os.path.join(ROOT, "MARKET_PHASE_HYPOTHESIS.json")
+PHASE_HYPOTHESIS = os.path.join(ROOT, "evidence/MARKET_PHASE_HYPOTHESIS.json")
 
 # What has actually become of a row that could not start. The triage says what
 # ought to be done; these say what was done and what it achieved, which is a
@@ -102,14 +102,14 @@ REPAIR_STATE = {
 # cohorts, and forgetting to read one is how the newest evidence stops reaching
 # this table while the table still claims to be current.
 LOOKAHEAD_STORES = (
-    os.path.join(ROOT, "ELIGIBILITY_LOOKAHEAD_BACKFILL.json"),
-    os.path.join(ROOT, "ELIGIBILITY_EVIDENCE_GAP.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_LOOKAHEAD_BACKFILL.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_EVIDENCE_GAP.json"),
 )
 # Hand-reviewed exceptions to a lookahead=FOUND verdict: rows where
 # freqtrade's own lookahead-analysis flagged an intermediate column but its
 # entry/exit signal check found nothing, and a source read confirms why.
 # Bound to canonical_sha256 so an upstream edit re-opens the question.
-LOOKAHEAD_INDICATOR_REVIEW = os.path.join(ROOT, "LOOKAHEAD_INDICATOR_REVIEW.json")
+LOOKAHEAD_INDICATOR_REVIEW = os.path.join(ROOT, "evidence/LOOKAHEAD_INDICATOR_REVIEW.json")
 # Wherever a gate downstream asks "is this row's lookahead evidence current
 # and trustworthy", a reviewed exception counts exactly as a native run does
 # - the difference between the two is provenance, which lookahead_evidence
@@ -729,7 +729,7 @@ def rows():
     # replayed against 20 sampled trades. Where that check found zero biased
     # entries and zero biased exits, and a strategy's own code has been read
     # by hand to confirm the flagged column never reaches populate_entry/
-    # exit_trend un-neutralised, LOOKAHEAD_INDICATOR_REVIEW.json records the
+    # exit_trend un-neutralised, evidence/LOOKAHEAD_INDICATOR_REVIEW.json records the
     # finding bound to the file's hash - so a later edit of the strategy
     # invalidates the review instead of silently keeping it.
     lookahead_review = _json(LOOKAHEAD_INDICATOR_REVIEW, key="reviewed")
@@ -743,7 +743,7 @@ def rows():
         repair_run = repaired.get(strategy) or {}
         # `repaired` is a handful of one-off runner stores, each written once
         # and never touched again once no script remains that regenerates it.
-        # `smoke` is PROFILE_SMOKE.json, re-run directly whenever a rule is
+        # `smoke` is evidence/PROFILE_SMOKE.json, re-run directly whenever a rule is
         # added or corrected. When both hold a record and disagree on which
         # rules were active, the fresher one is whichever measured under the
         # rules PROFILE_CLASS1 currently registers - not by construction
@@ -760,7 +760,7 @@ def rows():
         # filed against), PROFILE_CLASS1's registered rule for it was
         # untouched, so the rule check alone said "still current" over a
         # canonical_sha256 that no longer existed on disk. Comparing hashes
-        # is the same fix `profile_smoke.py`'s own skip check needed for the
+        # is the same fix `evidence/profile_smoke.py`'s own skip check needed for the
         # same three rows this session, applied where a repair store
         # competes with a fresh smoke measurement instead of with itself.
         current_rules = class1.get(strategy, {}).get("rules") or []
@@ -813,7 +813,7 @@ def rows():
                 lookahead = "PASS"
                 lookahead_evidence = "reviewed_indicator_only"
                 review_note = ("lookahead reviewed: flagged column not "
-                               "decisive (%s, see LOOKAHEAD_INDICATOR_REVIEW.json)"
+                               "decisive (%s, see evidence/LOOKAHEAD_INDICATOR_REVIEW.json)"
                                % review.get("pattern", ""))
         recursive = ((diagnostics.get("recursive") or {}).get("status")
                      or base.get("recursive") or "")
@@ -828,8 +828,8 @@ def rows():
             recursive_evidence = "baseline"
         else:
             recursive_evidence = base.get("recursive_evidence_source") or "missing"
-        # Same precedence, for the same reason: REGIME_COVERAGE.csv is
-        # regenerated freely and now covers every row EXECUTION_PROFILES.csv
+        # Same precedence, for the same reason: evidence/REGIME_COVERAGE.csv is
+        # regenerated freely and now covers every row evidence/EXECUTION_PROFILES.csv
         # does, so it is read first; the frozen baseline is the fallback for
         # a row somehow missing from a regeneration, not the normal path.
         coverage_row = coverage.get(strategy)
@@ -1024,7 +1024,7 @@ def rows():
             else:
                 # A frozen baseline can carry "lookahead_found" from a sweep
                 # this table has since superseded - a native PASS (or a
-                # reviewed exception, see LOOKAHEAD_INDICATOR_REVIEW.json)
+                # reviewed exception, see evidence/LOOKAHEAD_INDICATOR_REVIEW.json)
                 # must retract it the same way a settled ladder retracts
                 # recursive_bias_found below, or the row stays excluded on a
                 # finding nothing here still supports.
@@ -1186,7 +1186,7 @@ def rows():
         # differently than measurement/window/diagnostics do -
         # `MabStra` carries a wave_b:28:superseded marker with none of
         # the other three present, because that store and
-        # PROFILE_BIAS.json disagreed on which of two differently-cased,
+        # evidence/PROFILE_BIAS.json disagreed on which of two differently-cased,
         # differently-authored strategies (`MabStra` from davidzr,
         # `mabStra` from PeetCrypto) each entry belonged to. Any
         # recorded recursive_evidence is itself proof the row has been
@@ -1639,8 +1639,8 @@ def _runtime_environments_report(data):
         "that image rather than the default. Everything else - which "
         "compatibility shims to install, which warm-up to use, which "
         "config overrides apply - is read automatically from "
-        "`PROFILE_CLASS1.json` and `WARMUP_CONVERGENCE.json` by the same "
-        "`profile_smoke.run_one` / `profile_full_window.py` machinery this "
+        "`evidence/PROFILE_CLASS1.json` and `evidence/WARMUP_CONVERGENCE.json` by the same "
+        "`profile_smoke.run_one` / `evidence/profile_full_window.py` machinery this "
         "audit already uses; the image is the one thing that machinery "
         "cannot decide for itself, because it is chosen before any Python "
         "in the container runs.",
@@ -1696,10 +1696,10 @@ def _report(data):
         "**Generated %s by `strategy_status.py`.** Regenerate it rather than "
         "editing it." % now, "",
         "**This table decides nothing.** Admission happens only in",
-        "`eligibility_expansion_adjudicate.py`; this is a reading of what has",
+        "`evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has",
         "already been decided, collected from the smoke, bias, full-window,",
         "adjudication and convergence stores.", "",
-        "`REGIME_ELIGIBILITY.csv` remains a frozen file and is never",
+        "`evidence/REGIME_ELIGIBILITY.csv` remains a frozen file and is never",
         "regenerated - but as of 2026-09-03 this table no longer treats its",
         "`regime_eligible=true` rows as automatically usable. The recursion",
         "check that produced them used freqtrade's own hardcoded candle",
@@ -1879,9 +1879,9 @@ def _report(data):
         "rates it cannot have on spot, and `Insomnia_short` raises only short",
         "signals with `can_short` unset. Those four read `open`, not",
         "`excluded`.", "",
-        "The criteria in full are in `exclusion_criteria_list.md`, and every",
+        "The criteria in full are in `evidence/exclusion_criteria_list.md`, and every",
         "repair route taken - with the message freqtrade gave beforehand - in",
-        "`repair_measures_list.md`. Both are written by this same command,",
+        "`evidence/repair_measures_list.md`. Both are written by this same command,",
         "from these same rows, and the generator refuses a row excluded for a",
         "reason nobody has written down, or a repair route taken and not",
         "recorded. So a new ground or a new repair reaches those lists by",
@@ -2336,7 +2336,7 @@ def selftest():
     # Every native re-measurement must be visible in the table. A verdict that
     # exists in a store this generator does not read is worse than no verdict:
     # the table looks current and is not. A row with a current (sha-matched)
-    # entry in LOOKAHEAD_INDICATOR_REVIEW.json is the one deliberate
+    # entry in evidence/LOOKAHEAD_INDICATOR_REVIEW.json is the one deliberate
     # exception: its FOUND was reviewed and demoted to PASS by hand, so its
     # table verdict is expected to differ from the raw store.
     fresh_store = {}
@@ -2362,7 +2362,7 @@ def selftest():
             assert by_id[name]["lookahead"] == status, (name, status)
             assert by_id[name]["lookahead_evidence"] == "native", name
 
-    # The check above only walks LOOKAHEAD_STORES; PROFILE_BIAS.json (the
+    # The check above only walks LOOKAHEAD_STORES; evidence/PROFILE_BIAS.json (the
     # original corpus-wide sweep) is the other source `rows()` reads via
     # `diagnostics`, at lower precedence. Re-check every reviewed row against
     # whichever of the two actually produced its FOUND, so a review whose sha

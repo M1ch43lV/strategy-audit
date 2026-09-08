@@ -25,9 +25,9 @@ import zipfile
 import runlog
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-MANIFEST = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
-OUTPUT = os.path.join(ROOT, "PROFILE_SMOKE.json")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MANIFEST = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
+OUTPUT = os.path.join(ROOT, "evidence/PROFILE_SMOKE.json")
 FUTURES_CONFIG = os.path.join(ROOT, "runtime", "profile_futures_config.json")
 SPOT_CONFIG = os.path.join(ROOT, "runtime", "profile_spot_config.json")
 # Use the interpreter running this pipeline. PROFILE_PYTHON remains available
@@ -37,8 +37,8 @@ PYTHON = os.environ.get("PROFILE_PYTHON", sys.executable)
 # A store claim older than this belongs to a runner that no longer exists.
 # Two hours is longer than any single run has ever taken.
 STALE_CLAIM_S = 2 * 60 * 60
-FT_WRAPPER = os.path.join(ROOT, "profile_freqtrade.py")
-CLASS1 = os.path.join(ROOT, "PROFILE_CLASS1.json")
+FT_WRAPPER = os.path.join(ROOT, "evidence/profile_freqtrade.py")
+CLASS1 = os.path.join(ROOT, "evidence/PROFILE_CLASS1.json")
 EXPORT_DIR = os.path.join(ROOT, "user_data", "profile_smoke")
 CONFIG_DIR = os.path.join(ROOT, "user_data", "profile_configs")
 LOG_DIR = os.path.join(ROOT, "user_data", "profile_smoke_logs")
@@ -304,7 +304,7 @@ def _invocation(command):
         if os.path.isabs(text) and os.path.normcase(text).startswith(root):
             text = os.path.relpath(text, ROOT).replace(os.sep, "/")
         parts.append('"%s"' % text if " " in text else text)
-    if parts and parts[0].endswith("profile_freqtrade.py"):
+    if parts and parts[0].endswith("evidence/profile_freqtrade.py"):
         parts[0] = "freqtrade"
     return " ".join(parts)
 

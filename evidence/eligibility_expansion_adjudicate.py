@@ -15,15 +15,15 @@ import os
 import sys
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-PROOFS = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_PROOFS.json")
-ELIGIBILITY = os.path.join(ROOT, "REGIME_ELIGIBILITY.csv")
-PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
-WARMUP = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_WARMUP.json")
-LOOKAHEAD = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_LOOKAHEAD.json")
-EQUIVALENCE = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_EQUIVALENCE.json")
-SMOKE = os.path.join(ROOT, "PROFILE_SMOKE.json")
-BIAS = os.path.join(ROOT, "PROFILE_BIAS.json")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROOFS = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_PROOFS.json")
+ELIGIBILITY = os.path.join(ROOT, "evidence/REGIME_ELIGIBILITY.csv")
+PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
+WARMUP = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_WARMUP.json")
+LOOKAHEAD = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_LOOKAHEAD.json")
+EQUIVALENCE = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_EQUIVALENCE.json")
+SMOKE = os.path.join(ROOT, "evidence/PROFILE_SMOKE.json")
+BIAS = os.path.join(ROOT, "evidence/PROFILE_BIAS.json")
 
 # Two admission routes, and the difference is what evidence a row needs.
 #
@@ -40,8 +40,8 @@ BIAS = os.path.join(ROOT, "PROFILE_BIAS.json")
 # The checks below are the original Stage 6 rule, unrelaxed.
 ZERO_WARMUP = "zero_warmup_analyzer_adapter_v1"
 NATIVE_GATE = "native_gate_pass_v1"
-OUTPUT = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_ADJUDICATION.csv")
-REPORT = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_ADJUDICATION.md")
+OUTPUT = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv")
+REPORT = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.md")
 
 FIELDS = [
     "strategy_id", "run_profile", "implementation_id", "ruleset",
@@ -155,8 +155,8 @@ def _bound(record, proof, profile, expected_mode):
 def _adjudicate_native_gate(strategy, proof, profile, baseline, smoke, bias):
     """Wave C: the original gates, passed with no adapter involved.
 
-    Measurement evidence deliberately comes from PROFILE_SMOKE.json rather than
-    EXECUTION_PROFILES.csv. That manifest was generated before Wave C ran and
+    Measurement evidence deliberately comes from evidence/PROFILE_SMOKE.json rather than
+    evidence/EXECUTION_PROFILES.csv. That manifest was generated before Wave C ran and
     still records these rows as unmeasured; treating its stale "false" as
     authoritative would refuse a row for the very gap the wave closed.
     """
@@ -273,7 +273,7 @@ def _report(rows):
     lines = [
         "# Eligibility expansion adjudication", "",
         "This legacy report records prospective evidence without rewriting the",
-        "historical 67-row E0 artifact in `REGIME_ELIGIBILITY.csv`. E0 was later",
+        "historical 67-row E0 artifact in `evidence/REGIME_ELIGIBILITY.csv`. E0 was later",
         "invalidated as a cohort and contributes zero admissions. Only active",
         "`admitted_E1` rows in the current adjudication CSV define usability; never",
         "add 67 to the count in this report.", "",
@@ -298,7 +298,7 @@ def _report(rows):
     lines.extend([
         "", "Rows admitted by this legacy adjudicator output: **%d**. The current "
         "E1 total must be computed from active `admitted_E1` rows in "
-        "`ELIGIBILITY_EXPANSION_ADJUDICATION.csv` or `cohort=E1_expanded` in "
+        "`evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` or `cohort=E1_expanded` in "
         "`STRATEGY_STATUS.csv`; it is not 67 plus this number." % len(admitted), "",
         "Admission here does not start Stage 9 or inspect regime rankings. Newly",
         "admitted profiles still require identity-bound pooled Stage 7 attribution",

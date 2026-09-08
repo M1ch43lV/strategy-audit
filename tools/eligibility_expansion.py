@@ -6,7 +6,7 @@ strategy-by-regime performance or ranking outputs.
 
 The Stage 6 E0 tag is retained only to reproduce the original wave assignment.
 It is not an admission decision; current eligibility comes only from an active
-``admitted_E1`` row in ``ELIGIBILITY_EXPANSION_ADJUDICATION.csv``.
+``admitted_E1`` row in ``evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv``.
 """
 from __future__ import annotations
 
@@ -21,15 +21,15 @@ import sys
 
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ELIGIBILITY = os.path.join(ROOT, "REGIME_ELIGIBILITY.csv")
-PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
+ELIGIBILITY = os.path.join(ROOT, "evidence/REGIME_ELIGIBILITY.csv")
+PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
 CLUSTERS = os.path.join(ROOT, "cluster", "CLUSTERS.csv")
 PLAN = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_PLAN.md")
 PREREGISTRATION = os.path.join(ROOT, "REGIME_PREREGISTRATION.md")
-OUTPUT = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_CANDIDATES.csv")
-MISSINGNESS = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_MISSINGNESS.csv")
-MANIFEST = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_MANIFEST.json")
-REPORT = os.path.join(ROOT, "ELIGIBILITY_EXPANSION.md")
+OUTPUT = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_CANDIDATES.csv")
+MISSINGNESS = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_MISSINGNESS.csv")
+MANIFEST = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_MANIFEST.json")
+REPORT = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION.md")
 
 FROZEN_AT = "2026-08-30"
 SCHEMA_VERSION = 1

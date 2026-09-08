@@ -18,7 +18,7 @@ import sys
 import threading
 from pathlib import Path
 
-import profile_smoke
+from evidence import profile_smoke
 from regime.gate_adapter import STATE_SET
 
 

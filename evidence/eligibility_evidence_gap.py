@@ -30,13 +30,13 @@ import json
 import os
 import sys
 
-import profile_bias
+from evidence import profile_bias
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATUS = os.path.join(ROOT, "STRATEGY_STATUS.csv")
-PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
-OUTPUT = os.path.join(ROOT, "ELIGIBILITY_EVIDENCE_GAP.json")
+PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
+OUTPUT = os.path.join(ROOT, "evidence/ELIGIBILITY_EVIDENCE_GAP.json")
 
 GATES = ("lookahead", "recursive")
 

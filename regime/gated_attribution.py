@@ -8,7 +8,7 @@ from pathlib import Path
 
 from regime import attribution
 from regime import gated_backtest
-import profile_smoke
+from evidence import profile_smoke
 
 
 ROOT = Path(__file__).resolve().parents[1]

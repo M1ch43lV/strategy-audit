@@ -9,15 +9,15 @@ import json
 import os
 import sys
 
-import eligibility_warmup_equivalence as equivalence
-import profile_full_window
-import profile_smoke
+from evidence import eligibility_warmup_equivalence as equivalence
+from evidence import profile_full_window
+from evidence import profile_smoke
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-RECOVERY = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_WARMUP_RECOVERY.csv")
-WARMUP = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_WARMUP.json")
-LOOKAHEAD = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_LOOKAHEAD.json")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RECOVERY = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_WARMUP_RECOVERY.csv")
+WARMUP = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_WARMUP.json")
+LOOKAHEAD = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_LOOKAHEAD.json")
 
 
 def _csv(path):

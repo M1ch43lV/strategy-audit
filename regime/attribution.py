@@ -13,7 +13,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-import profile_smoke
+from evidence import profile_smoke
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import market_phase_hypothesis
 from regime import episodes as regime_episodes
@@ -73,7 +73,7 @@ def phase_of(regime: pd.Series, realized_vol_30d: pd.Series) -> pd.Series:
 def eligible_profiles() -> dict[str, dict]:
     """The current benchmark population, not the frozen E0 anchor.
 
-    `REGIME_ELIGIBILITY.csv`'s `regime_eligible=true` is the 67-row set E0
+    `evidence/REGIME_ELIGIBILITY.csv`'s `regime_eligible=true` is the 67-row set E0
     was frozen on 2026-08-30; E0 was retired as a cohort on 2026-09-03 and
     every one of its rows is now decided the same way as the other 833 -
     `STRATEGY_STATUS.csv`'s `cohort == "E1_expanded"`, 579 rows regenerated
@@ -83,7 +83,7 @@ def eligible_profiles() -> dict[str, dict]:
     with STATUS.open(newline="", encoding="utf-8-sig") as handle:
         eligibility = {row["strategy_id"] for row in csv.DictReader(handle)
                        if row["cohort"] == "E1_expanded"}
-    with (ROOT / "EXECUTION_PROFILES.csv").open(newline="", encoding="utf-8-sig") as handle:
+    with (ROOT / "evidence/EXECUTION_PROFILES.csv").open(newline="", encoding="utf-8-sig") as handle:
         profiles = {row["strategy_id"]: row for row in csv.DictReader(handle)
                     if row["strategy_id"] in eligibility}
     return profiles

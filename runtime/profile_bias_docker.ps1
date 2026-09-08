@@ -24,5 +24,5 @@ docker run --rm `
     -v "${auditPath}:/audit" `
     -w /audit `
     --entrypoint python `
-    $image profile_bias.py @BiasArguments
+    $image -m evidence.profile_bias @BiasArguments
 exit $LASTEXITCODE

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Run the frozen diagnostic-only startup=1 pilot for Wave B.
 
-The canonical strategy source is not modified and PROFILE_BIAS.json is not
+The canonical strategy source is not modified and evidence/PROFILE_BIAS.json is not
 overwritten.  A PASS here is only feasibility evidence.  E1 admission still
 requires the full equivalence and canonical rerun protocol.
 """
@@ -18,19 +18,19 @@ import subprocess
 import sys
 import time
 
-import profile_bias
-import profile_smoke
+from evidence import profile_bias
+from evidence import profile_smoke
 import runlog
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-CANDIDATES = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_CANDIDATES.csv")
-PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
-MANIFEST = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_MANIFEST.json")
-OUTPUT = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_WARMUP.json")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CANDIDATES = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_CANDIDATES.csv")
+PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
+MANIFEST = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_MANIFEST.json")
+OUTPUT = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_WARMUP.json")
 CONFIG_DIR = os.path.join(ROOT, "user_data", "expansion_configs")
 LOG_DIR = os.path.join(ROOT, "user_data", "expansion_logs")
-BIAS = os.path.join(ROOT, "PROFILE_BIAS.json")
+BIAS = os.path.join(ROOT, "evidence/PROFILE_BIAS.json")
 DEFAULT_OVERRIDE = 1
 RULE = "diagnostic_startup_override_v1"
 

@@ -28,5 +28,5 @@ docker run --rm `
     -v "${auditPath}:/audit" `
     -w /audit `
     --entrypoint python `
-    $image eligibility_warmup.py @RunArguments
+    $image -m evidence.eligibility_warmup @RunArguments
 exit $LASTEXITCODE

@@ -19,11 +19,11 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 _CONFIG_TIMEFRAME = re.compile(r"^timeframe\s*=\s*['\"]([0-9]+[mhdwM])['\"]", re.M)
 
 REPAIR_STORES = (
-    os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_MODULE_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_SIGNATURE_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_FREQAI_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_FREQAI_WTAI.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_TIMEFRAME_REPAIR.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_MODULE_REPAIR.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_SIGNATURE_REPAIR.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_FREQAI_REPAIR.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_FREQAI_WTAI.json"),
 )
 
 
@@ -47,9 +47,9 @@ def sibling_config_timeframe(canonical_file):
 
     2026-09-08, wave-2 futures/short harvest: 18 rows in
     `hamidreza07_freqai-strategy` read the value this way rather than
-    stating it, which is why `execution_profiles.py`'s static source scan -
+    stating it, which is why `evidence/execution_profiles.py`'s static source scan -
     looking for a literal `timeframe = ...` in the strategy file itself -
-    finds nothing and `EXECUTION_PROFILES.csv` records `timeframe_source:
+    finds nothing and `evidence/EXECUTION_PROFILES.csv` records `timeframe_source:
     unresolved`. All 18 still ran a real Probelauf, so the value was never
     actually missing, only indirected through the author's own sibling
     file. This reads the same file the strategy imports at runtime; it is
@@ -62,10 +62,10 @@ def sibling_config_timeframe(canonical_file):
     risk of picking up an unrelated file is the same as it would be for a
     literal `Config.py` check.
 
-    Shared with execution_profiles.py (2026-09-08): the same 18-strategy gap
-    that blocked the ladder's candle math also left EXECUTION_PROFILES.csv's
+    Shared with evidence/execution_profiles.py (2026-09-08): the same 18-strategy gap
+    that blocked the ladder's candle math also left evidence/EXECUTION_PROFILES.csv's
     own timeframe column empty for them, which cascades into
-    regime_coverage.py reporting `unsupported_or_unknown_profile` even
+    evidence/regime_coverage.py reporting `unsupported_or_unknown_profile` even
     though the row already cleared both bias gates. One function, read from
     both places, so the two never see a different answer for the same file.
     """

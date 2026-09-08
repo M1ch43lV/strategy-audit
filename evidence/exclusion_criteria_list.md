@@ -72,7 +72,7 @@ Currently 256 of 1050 strategies are excluded. The criteria are not exclusive - 
 
 **Why it is final.** This is the same ground as C1 and C2, one step earlier: those found that the measurement cannot be trusted, this finds that no measurement can be taken at all without writing the missing part ourselves. Supplying a timeframe, a stoploss, an exit signal or a model the author never named would not repair the strategy - it would measure a strategy of our own invention wearing the author's name.
 
-**What stands behind it.** `repair_family` names which requirement is missing (`timeframe_not_recoverable`, `no_stoploss`, `no_exit_logic`, `freqai_model`) and `repair_settings` or the row's note in `repair_measures_list.md` records what was searched and where.
+**What stands behind it.** `repair_family` names which requirement is missing (`timeframe_not_recoverable`, `no_stoploss`, `no_exit_logic`, `freqai_model`) and `repair_settings` or the row's note in `evidence/repair_measures_list.md` records what was searched and where.
 
 **What this is not.** `freqai_arm` and `freqai_config_built` are also recorded as `refuse_repair` but are not this criterion: both are measured in the separate FreqAI arm, under the author's own configuration, and refused only for this audit's ordinary cohort - a different question from whether any measurement is possible.
 
@@ -86,9 +86,9 @@ Currently 256 of 1050 strategies are excluded. The criteria are not exclusive - 
 
 **Why it is final.** Three shapes, the search exhausted either way. No candidate imports at all - `BaseStrategy`, `BinanceStream` and four others, each candidate's own failure recorded. The one candidate that does import would shadow an installed package (`freqtrade` itself, for `DualModelPolymarketPortfolio` and three peers) and was applied, found to break other rows, and withdrawn. Or a candidate was applied and the row moved past the import to a second failure the import test cannot see - `Solipsis6` and `SolipsisMM` reach werkkrew's `custom_indicators` module and then call a function it does not define; `DWT` reaches a read-only numpy buffer past its own module fix. Restoring a module we cannot verify against the author's own copy would be writing code under their name.
 
-**What stands behind it.** `REPAIR_LOCAL_MODULES.json` keeps every candidate tried and why each failed, or the shadowing that forced a withdrawal recorded in `PROFILE_CLASS1.json` with `status: withdrawn` rather than deleted.
+**What stands behind it.** `evidence/REPAIR_LOCAL_MODULES.json` keeps every candidate tried and why each failed, or the shadowing that forced a withdrawal recorded in `evidence/PROFILE_CLASS1.json` with `status: withdrawn` rather than deleted.
 
-**What this is not.** A row with NO entry in `REPAIR_LOCAL_MODULES.json` at all has not been searched, not searched-and-refused - that is `needs_a_look`, not this criterion, and three rows moved from there to a working repair the same day this criterion was written (`Solipsis3`, `SolipsisCon`, `Solipsis4`, `Dyna_opti`), which is the reason `repair_attempted` is trusted here only once `repair_local_modules.py` has actually run against the row.
+**What this is not.** A row with NO entry in `evidence/REPAIR_LOCAL_MODULES.json` at all has not been searched, not searched-and-refused - that is `needs_a_look`, not this criterion, and three rows moved from there to a working repair the same day this criterion was written (`Solipsis3`, `SolipsisCon`, `Solipsis4`, `Dyna_opti`), which is the reason `repair_attempted` is trusted here only once `repair_local_modules.py` has actually run against the row.
 
 20 strategies, among them `AdvancedRiskFilterStrategy`, `Anomaly`, `BBBHold`, `BB_RPB_3c`, `BaseStrategy`, `BinanceStream`.
 
@@ -114,7 +114,7 @@ Currently 256 of 1050 strategies are excluded. The criteria are not exclusive - 
 
 **Why it is final.** Superseded 2026-09-04 from a blanket refusal to a row-by-row search. The original call - installing a package changes what every one of the ~900 corpus strategies imports into - is still true of the shared runtime, but it stops applying the moment the package is installed into an ISOLATED companion image instead: `strategy-audit-packages-runtime` (matplotlib, catboost, tslearn, pykalman - each checked beforehand with `pip install --dry-run`, no core-stack version bump) and the existing `strategy-audit-tensorflow-runtime` (matplotlib added there too, for `CryptoPredictionTraining`'s second import). Four rows moved off this criterion that way (`MKR`, `Persia` moved under C-none entirely once measured; `TwoCandleTheory`; `BBRSI`, which also needed its timeframe recovered once loading got that far) and three more turned out to need nothing installable at all once the real blocker was reached - `TrainCatBoostStrategy` and `CryptoPredictionTraining` moved to C4 (no stoploss declared), `Prediction_Strategy` to a missing pre-trained model file no corpus copy holds, neither a packaging question. Thirteen remain, individually investigated rather than assumed: five want `zigzag`, whose published sdist has a malformed `pyproject.toml` build requirement (`Cython>=^0.29`, invalid PEP 508 syntax) that this pip refuses to build; `LitmusSimpleStrategy` wants `cointanalysis`, which is not on PyPI under any name tried; four `Litmus*` rows and that same one want `freqtrade.litmus`, which lives inside `markdregan_FreqAI-Marcos-Lopez-De-Prado`'s own vendored `freqtrade/` tree - putting that repository on the path risks the real freqtrade package resolving to its fork instead; `KMM` wants `openai` to call a live model during indicator computation, which installing would not make a deterministic backtest; `Enchilada` wants `technical.tradingview`, a whole class (`SummaryConsensus`) the `technical` package dropped, which would need vendoring real algorithm code rather than restoring one textbook function; `GymStrategy` wants `stable-baselines3`, whose own resolution pulls the full CUDA/PyTorch chain - installable, held rather than built for one row.
 
-**What stands behind it.** `BLOCKED_TRIAGE.json` names the exact missing module for each row, found by importing the file directly in the pinned runtime rather than trusting freqtrade's generic "does not exist" message. `runtime/Dockerfile.audit-packages` records what was checked and installed for the four rows it resolved.
+**What stands behind it.** `evidence/BLOCKED_TRIAGE.json` names the exact missing module for each row, found by importing the file directly in the pinned runtime rather than trusting freqtrade's generic "does not exist" message. `runtime/Dockerfile.audit-packages` records what was checked and installed for the four rows it resolved.
 
 **What this is not.** Not a finding that the strategy is broken - several of these thirteen would very likely run if their package existed and could be isolated the same way. The row is closed by the search having been made and having found nothing safe, not by a standing policy against looking.
 
@@ -128,7 +128,7 @@ Currently 256 of 1050 strategies are excluded. The criteria are not exclusive - 
 
 **Why it is final.** Owner's call, 2026-09-04: the two large mechanisms are understood and both have a fix in principle - relax pandas' item-assignment dtype check, or numpy's promotion rule - and both fixes would run under every column write in the corpus, not only these rows'. That is the large intervention a narrow shim exists to avoid, so none was written. The two individual rows were re-examined on the same basis when their upstream sources were checked for updates (2026-09-05) and confirmed unfixed upstream either.
 
-**What stands behind it.** `BLOCKED_TRIAGE.json` and `runtime_failure` carry the exact pandas/numpy exception per row; the shared `np.where(...,'down','up'), np.NaN` line was confirmed byte-identical across five of the seven repositories sharing it before this criterion was written.
+**What stands behind it.** `evidence/BLOCKED_TRIAGE.json` and `runtime_failure` carry the exact pandas/numpy exception per row; the shared `np.where(...,'down','up'), np.NaN` line was confirmed byte-identical across five of the seven repositories sharing it before this criterion was written.
 
 **What this is not.** A row here is not judged unfixable in principle, only not worth fixing at the cost this fix would impose on the other roughly 900 strategies that never trip it. A future decision to relax the pandas or numpy rule corpus-wide would reopen every row this criterion closed, together.
 
@@ -142,7 +142,7 @@ Currently 256 of 1050 strategies are excluded. The criteria are not exclusive - 
 
 **Why it is final.** Not a finding - no drift was ever observed, because the row never produced a drift table to observe it in, so `recursive` stays `NA` rather than `FOUND`. But the recursive-bias check is not optional for any row admitted to this audit, and a row that cannot complete it even given the most generous warm-up this project's ladder offers has not passed it either. Decided on that basis, 2026-09-08.
 
-**What stands behind it.** `WARMUP_CONVERGENCE.json` keeps `ladder_rungs_dropped_as_uncomputable` (which rungs were tried and abandoned) and the final `runtime_failure` from the 3-rung attempt that still crashed, so the finding can be read rather than taken on faith.
+**What stands behind it.** `evidence/WARMUP_CONVERGENCE.json` keeps `ladder_rungs_dropped_as_uncomputable` (which rungs were tried and abandoned) and the final `runtime_failure` from the 3-rung attempt that still crashed, so the finding can be read rather than taken on faith.
 
 **What this is not.** Distinct from `not_converged_within_ladder` (C2): that is a confirmed finding, an indicator that ran and kept drifting. This is the ladder never producing a verdict at all, at any rung it could still offer. A row that crashes at the shortest rungs but converges once the shortest are dropped is `converged`, not this - only persistent failure through to the 3 longest rungs qualifies.
 
@@ -192,7 +192,7 @@ Currently 256 of 1050 strategies are excluded. The criteria are not exclusive - 
 
 **Where the number comes from.** Ten is not our number. It is what freqtrade itself requires before `lookahead-analysis` reaches a verdict, which makes it the one threshold here that is not a choice of ours. Whether a market-phase ranking needs more than ten - per phase rather than in total - belongs to the benchmark's preregistration and is still open.
 
-**What does not belong here.** A row that trades rarely because OUR setup stopped it does not belong here. `BasketStrategy` reports zero because a portfolio basket was measured one pair at a time; it is `open`, and `ZERO_TRADE_TRIAGE.json` says why.
+**What does not belong here.** A row that trades rarely because OUR setup stopped it does not belong here. `BasketStrategy` reports zero because a portfolio basket was measured one pair at a time; it is `open`, and `evidence/ZERO_TRADE_TRIAGE.json` says why.
 
 | Strategy | Trades | Measured over |
 |---|---:|---|

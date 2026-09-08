@@ -19,11 +19,11 @@ import os
 import sys
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
-POLICY = os.path.join(ROOT, "REGIME_COVERAGE_POLICY.json")
-OUTPUT = os.path.join(ROOT, "REGIME_COVERAGE.csv")
-REPORT = os.path.join(ROOT, "REGIME_COVERAGE.md")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
+POLICY = os.path.join(ROOT, "evidence/REGIME_COVERAGE_POLICY.json")
+OUTPUT = os.path.join(ROOT, "evidence/REGIME_COVERAGE.csv")
+REPORT = os.path.join(ROOT, "evidence/REGIME_COVERAGE.md")
 SPOT_DATA = os.path.join(ROOT, "user_data", "data", "binance")
 FUTURES_DATA = os.path.join(ROOT, "user_data", "data", "binance", "futures")
 
@@ -268,8 +268,8 @@ def _write_report(rows, policy, path):
 
 This report inventories the unversioned Freqtrade candle files used by the
 native execution profiles. The machine-readable result is
-`REGIME_COVERAGE.csv`; its policy is frozen in
-`REGIME_COVERAGE_POLICY.json`.
+`evidence/REGIME_COVERAGE.csv`; its policy is frozen in
+`evidence/REGIME_COVERAGE_POLICY.json`.
 
 The checked window is `%s` through `%s` (exclusive end). A documented
 listing/delisting boundary is valid available history. Exchange-wide gaps

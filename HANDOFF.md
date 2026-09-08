@@ -3,13 +3,12 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-08T21:57:40+02:00
-- Stopped because: repository-layout cleanup phases 1 and 2 are committed;
-  predecessor material is archived and runtime/operations are grouped
-- Next agent should: complete the remaining `evidence/` migration as one
-  dependency-checked family. Move active root evidence stores, update every
-  writer/reader and documented command, then run all generator `--check` and
-  selftests. Keep user-facing status and binding documents in root.
+- Last update: 2026-09-08T22:32:59+02:00
+- Stopped because: cleanup phase 3 is complete; active eligibility/profile
+  writers and their stores are grouped under `evidence/` and validated
+- Next agent should: inspect the remaining 68 root files with Graphify before
+  proposing cleanup phase 4. Keep the user entry points and binding documents
+  listed in README in root; do not move another writer without all readers.
 
 ## Objective
 
@@ -74,7 +73,7 @@ Current counts without reading performance rankings:
 Never assume an empty terminal means idle. Run both process checks above and:
 
 ```powershell
-Get-ChildItem PROFILE_SMOKE.json,PROFILE_FULL_WINDOW*.json,results\regime\*manifest*.json | Select-Object Name,Length,LastWriteTime
+Get-ChildItem evidence/PROFILE_SMOKE.json,evidence/PROFILE_FULL_WINDOW*.json,results\regime\*manifest*.json | Select-Object Name,Length,LastWriteTime
 Get-ChildItem -Force *.running,results\regime\*.running -ErrorAction SilentlyContinue
 ```
 
@@ -84,7 +83,8 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-08T21:25:54+02:00 at HEAD `a7259ad`:
+Observed 2026-09-08T22:32:59+02:00 before the evidence-layout commit at HEAD
+`1ee5f8c`:
 
 - No Docker benchmark container or Model 0 writer is active. Only shell/session
   processes matched the broad process expression.
@@ -93,9 +93,9 @@ Observed 2026-09-08T21:25:54+02:00 at HEAD `a7259ad`:
   not-a-strategy, and 2 convergence candidates.
 - Against current E1, the Model 0 manifest has 550 measured, 52 OOM-confirmed,
   5 performance-limited, 1 stake-overflow-confirmed, and 51 missing rows.
-- Git is clean except the pre-existing generated count change in
-  `repair_measures_list.md`; it predates `a7259ad` and was deliberately not
-  included in the classification commit.
+- The evidence-layout migration is staged. Its required status regeneration
+  also incorporates the pre-existing generated count change in
+  `evidence/repair_measures_list.md`; no hand edit was made to that report.
 
 ## Current implementation checkpoint
 
@@ -103,14 +103,14 @@ Base implementation was `0de5829`; the four-model redesign is committed as
 `b40ad60` (`Separate coin-only and combined regime gates`).
 
 Eligibility governance correction is committed as `717d1e3` (`Retire invalid
-Stage 6 E0 cohort`). `REGIME_ELIGIBILITY.csv` and the 67-label expansion
+Stage 6 E0 cohort`). `evidence/REGIME_ELIGIBILITY.csv` and the 67-label expansion
 inventory remain immutable evidence of the mistaken classification, not usable
 membership. Only the latest active `admitted_E1` decision per strategy defines
 the cohort; `STRATEGY_STATUS.csv` exposes it as `E1_expanded`.
 
 Strategy classification repair is committed as `a7259ad` (`Complete generated
 strategy type classification`). `tools/strategy_classification.py` now reads
-the canonical population from `EXECUTION_PROFILES.csv`, never from its own
+the canonical population from `evidence/EXECUTION_PROFILES.csv`, never from its own
 downstream status output. All 1,050 rows have an explicit generated Type: no
 blank and no current `unclassified`; 19 test/template artifacts are
 `not_applicable`. `CORPUS.md` prose was not broadcast from repo to strategy.
@@ -130,6 +130,11 @@ repository root through their parent, use runtime-local Dockerfiles, retain the
 root build context and `/audit` mount, and invoke the same Python entry points.
 New runs record `runtime/profile_*_config.json`; old invocation strings remain
 immutable historical provenance.
+
+Cleanup phase 3 groups 24 current evidence writers and 60 generated/frozen
+stores in the flat `evidence/` package. Every active reader, Docker wrapper,
+binding document, generated status link, and pipeline declaration uses the new
+path. Root retains the user-facing status outputs and binding documents.
 
 - `regime/regime_engine.py` produces causal, one-day-lagged four-state data.
 - `regime/attribution.py` already attributes Model 0 trades to both four states
@@ -163,7 +168,7 @@ python -m regime.gated_backtest --selftest            PASS including resume
 python -m regime.gated_attribution --selftest         PASS
 python -m regime.model_compare --selftest             PASS
 python -m regime.attribution --selftest               PASS
-python -m compileall -q regime profile_smoke.py       PASS
+python -m compileall -q regime evidence/profile_smoke.py       PASS
 actual regime_daily load                              PASS 2364 BTC days / 18000 pair-days
 gated archive-reader integration on A9AV              PASS 13679 trades
 coin-only actual-data load has no BTC series           PASS
@@ -171,8 +176,8 @@ combined actual-data load has BTC and coin series      PASS
 ```
 
 E0-retirement validation at `717d1e3`: `strategy_status.py`,
-`tools/eligibility_expansion.py`, `eligibility_expansion_adjudicate.py`,
-`regime_eligibility.py`, `eligibility_evidence_gap.py`,
+`tools/eligibility_expansion.py`, `evidence/eligibility_expansion_adjudicate.py`,
+`evidence/regime_eligibility.py`, `evidence/eligibility_evidence_gap.py`,
 `warmup_convergence.py`, and `exclusion_criteria.py` selftests all PASS;
 targeted `compileall` and `git diff --check` PASS. The frozen expansion
 generator's `--check` is expected to report its pre-amendment CSV/JSON inputs as
@@ -202,10 +207,17 @@ context; profile-smoke and status selftests PASS; status and classification
 checks current; regenerated runtime/exclusion reports; secret gate and
 `git diff --check` PASS. No benchmark was started.
 
+Cleanup phase 3 validation: all 18 available evidence-module selftests PASS;
+classification check, phase-hypothesis, warm-up, exclusion, status and status-
+page selftests PASS; status regeneration/check PASS at 1,050 rows; targeted
+compileall, 38 evidence JSON parses, all Docker-wrapper PowerShell parses,
+sync-repo selftest, secret gate and `git diff --check` PASS. No measurement or
+benchmark store was regenerated.
+
 ## Next concrete steps
 
-1. Finish the single remaining `evidence/` migration in small commits. Keep the
-   root user-facing files listed in README. Do not add narrower directories.
+1. Use Graphify to classify the remaining root programs before any further
+   layout move; archive only proven predecessors and keep directory count low.
 2. Repeat machine, lock, artifact and Git checks; never start a second writer.
 3. Complete the 51 missing Model 0 E1 rows resumably and adjudicate
    resource-inconclusive failures
@@ -233,6 +245,8 @@ checks current; regenerated runtime/exclusion reports; secret gate and
 - Routine Graphify refreshes use `graphify update .` only. Do not substitute
   `graphify extract .`: that performs semantic Markdown extraction and consumes
   API quota. The local post-commit hook already handles AST-only updates.
+- Do not move evidence stores back to root or invoke their writers by file
+  path. Run them from the repository root as `python -m evidence.<module>`.
 - Any historical E0 benchmark or attribution as current evidence. Do not rerun
   the old 67, add 67 to E1, or regenerate frozen E0 CSV/JSON artifacts.
 - Do not generate a candidate spec from observed strategy performance.

@@ -23,7 +23,7 @@ economic significance.
 Note the date against the corpus: the first result card of this corpus is
 2026-08-21 19:58 UTC. **The gate is 15 hours younger than the data**, which is
 exactly why the current result is labelled repair-adjusted and not confirmatory.
-`freeze_guard.py` derives that from `git log` and `CORPUS_RUN.json` rather than
+`freeze_guard.py` derives that from `git log` and `evidence/CORPUS_RUN.json` rather than
 taking anyone's word.
 
 ## 3. The result it produced
@@ -41,7 +41,7 @@ before the rule was changed, and it is the whole point of this document.*
 ## 4. When the regime dependence was found
 
 > ⚠ **2026-08-22, evening — this table was computed on a population that no
-> longer exists.** `regime_split.json` holds five strategies from the survivor
+> longer exists.** `evidence/regime_split.json` holds five strategies from the survivor
 > set as it stood before two corrections landed: the trap definition (6 → 14)
 > and then the `G6`/`G7` fix that stopped counting an unrunnable bias check as
 > a pass (14 → 2). The current survivors are `ClucHAnix_5m_old` and
@@ -116,7 +116,7 @@ The gate stays. The finding is published beside it. The next corpus decides.
 |---|---|
 | gate introduced | commit `5091379` |
 | ladder definition | `ledger_block.py`, `LADDER` |
-| corpus start | `CORPUS_RUN.json`, `first_card_epoch` |
+| corpus start | `evidence/CORPUS_RUN.json`, `first_card_epoch` |
 | status derived, not asserted | `freeze_guard.py` |
 | frozen rule for the next corpus | `PREREGISTRATION.md` |
 | the epoch table | `LEDGER.md`, `CLAIMS.csv` |

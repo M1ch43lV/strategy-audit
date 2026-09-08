@@ -29,24 +29,24 @@ import json
 import os
 import sys
 
-import profile_bias
-import profile_smoke
+from evidence import profile_bias
+from evidence import profile_smoke
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATUS = os.path.join(ROOT, "STRATEGY_STATUS.csv")
-PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
-OUTPUT = os.path.join(ROOT, "ELIGIBILITY_LOOKAHEAD_BACKFILL.json")
+PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
+OUTPUT = os.path.join(ROOT, "evidence/ELIGIBILITY_LOOKAHEAD_BACKFILL.json")
 
 # Stores holding a repair run, so a repaired row is gated the way it was
 # measured. Without this the gate re-runs the row in its unrepaired state and
 # records the original failure as a look-ahead verdict - which it is not.
 REPAIR_STORES = (
-    os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_MODULE_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_SIGNATURE_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_FREQAI_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_FREQAI_WTAI.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_TIMEFRAME_REPAIR.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_MODULE_REPAIR.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_SIGNATURE_REPAIR.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_FREQAI_REPAIR.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_FREQAI_WTAI.json"),
 )
 
 
@@ -54,11 +54,11 @@ REPAIR_STORES = (
 # the configuration each verdict was actually made under.
 LOOKAHEAD_STORES = (
     OUTPUT,
-    os.path.join(ROOT, "ELIGIBILITY_EXPANSION_LOOKAHEAD.json"),
-    os.path.join(ROOT, "PROFILE_BIAS.json"),
+    os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_LOOKAHEAD.json"),
+    os.path.join(ROOT, "evidence/PROFILE_BIAS.json"),
 )
 
-CONVERGENCE = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
+CONVERGENCE = os.path.join(ROOT, "evidence/WARMUP_CONVERGENCE.json")
 
 
 def settled_warmups():
@@ -95,7 +95,7 @@ def registered_rules():
     with the settled warm-up - so the comparison is against what would
     actually happen, not against an approximation of it.
     """
-    path = os.path.join(ROOT, "PROFILE_CLASS1.json")
+    path = os.path.join(ROOT, "evidence/PROFILE_CLASS1.json")
     entries = ({} if not os.path.exists(path)
                else json.load(io.open(path, encoding="utf-8"))
                .get("strategies", {}))
@@ -123,10 +123,10 @@ def measured_rules():
     First store wins, per strategy - `LOOKAHEAD_STORES` is ordered from this
     backfill's own output to the original native sweep for a reason: a row
     this script has since re-measured must be compared against THAT record,
-    not against a leftover from `PROFILE_BIAS.json` made before the warm-up
+    not against a leftover from `evidence/PROFILE_BIAS.json` made before the warm-up
     ladder ever ran. Unconditional overwrite had it backwards - the last
     store in the tuple always won - so any row with both a settled warm-up
-    and an older `PROFILE_BIAS.json` entry compared against an empty
+    and an older `evidence/PROFILE_BIAS.json` entry compared against an empty
     `config_overrides` forever and was re-measured on every single
     invocation, DevilStra and the two multi-hour TIMEOUT rows included.
     """

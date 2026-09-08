@@ -62,7 +62,7 @@ def main():
         print()
         print(u"CONTRIBUTED NO ORIGINALS (%d): %s"
               % (len(zero), u", ".join(zero)))
-    io.open(os.path.join(_ROOT, "corpus_sources.json"), "w",
+    io.open(os.path.join(_ROOT, "evidence/corpus_sources.json"), "w",
             encoding="utf-8").write(json.dumps(
                 {"repos": [{"repo": a, "classes": b, "first": c} for a, b, c in rows],
                  "unique": len(seen), "occurrences": occurrences},

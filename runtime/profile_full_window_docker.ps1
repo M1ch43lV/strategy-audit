@@ -19,5 +19,5 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 docker run --rm -e "PROFILE_RUNTIME_ID=docker:$imageId" `
     -v "${auditPath}:/audit" -w /audit --entrypoint python `
-    $image profile_full_window.py @FullWindowArguments
+    $image -m evidence.profile_full_window @FullWindowArguments
 exit $LASTEXITCODE

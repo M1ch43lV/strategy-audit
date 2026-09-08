@@ -1,13 +1,13 @@
 # Strategy status - current evidence for all 1050 rows
 
-**Generated 2026-09-08 21:19:26 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-08 22:31:22 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
-`eligibility_expansion_adjudicate.py`; this is a reading of what has
+`evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
 already been decided, collected from the smoke, bias, full-window,
 adjudication and convergence stores.
 
-`REGIME_ELIGIBILITY.csv` remains a frozen file and is never
+`evidence/REGIME_ELIGIBILITY.csv` remains a frozen file and is never
 regenerated - but as of 2026-09-03 this table no longer treats its
 `regime_eligible=true` rows as automatically usable. The recursion
 check that produced them used freqtrade's own hardcoded candle
@@ -223,9 +223,9 @@ rates it cannot have on spot, and `Insomnia_short` raises only short
 signals with `can_short` unset. Those four read `open`, not
 `excluded`.
 
-The criteria in full are in `exclusion_criteria_list.md`, and every
+The criteria in full are in `evidence/exclusion_criteria_list.md`, and every
 repair route taken - with the message freqtrade gave beforehand - in
-`repair_measures_list.md`. Both are written by this same command,
+`evidence/repair_measures_list.md`. Both are written by this same command,
 from these same rows, and the generator refuses a row excluded for a
 reason nobody has written down, or a repair route taken and not
 recorded. So a new ground or a new repair reaches those lists by

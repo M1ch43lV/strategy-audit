@@ -116,9 +116,9 @@ def regime_hypothesis(direction, logic):
 
 
 def main():
-    manifest = sys.argv[1] if len(sys.argv) > 1 else os.path.join(AUD, "EXECUTION_PROFILES.csv")
+    manifest = sys.argv[1] if len(sys.argv) > 1 else os.path.join(AUD, "evidence/EXECUTION_PROFILES.csv")
     rows = list(csv.DictReader(io.open(manifest, encoding="utf-8-sig")))
-    eligibility_path = os.path.join(AUD, "REGIME_ELIGIBILITY.csv")
+    eligibility_path = os.path.join(AUD, "evidence/REGIME_ELIGIBILITY.csv")
     eligibility = ({r["strategy_id"]: r for r in csv.DictReader(
         io.open(eligibility_path, encoding="utf-8-sig"))}
         if os.path.exists(eligibility_path) else {})

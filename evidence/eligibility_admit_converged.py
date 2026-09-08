@@ -48,10 +48,10 @@ import sys
 import strategy_status
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATUS = os.path.join(ROOT, "STRATEGY_STATUS.csv")
-CONVERGENCE = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
-ADJUDICATION = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_ADJUDICATION.csv")
+CONVERGENCE = os.path.join(ROOT, "evidence/WARMUP_CONVERGENCE.json")
+ADJUDICATION = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv")
 RULE = "converged_clean_gates_v1"
 COHORT = "E1_expanded_confirmatory"
 

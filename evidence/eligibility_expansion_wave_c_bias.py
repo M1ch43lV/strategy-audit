@@ -25,13 +25,13 @@ import json
 import os
 import sys
 
-import profile_bias
-import profile_smoke
+from evidence import profile_bias
+from evidence import profile_smoke
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-CANDIDATES = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_CANDIDATES.csv")
-FULL_WINDOW = os.path.join(ROOT, "PROFILE_FULL_WINDOW.json")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CANDIDATES = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_CANDIDATES.csv")
+FULL_WINDOW = os.path.join(ROOT, "evidence/PROFILE_FULL_WINDOW.json")
 WAVE = "C_measurement_recovery"
 DIAGNOSTICS = ("lookahead", "recursive")
 

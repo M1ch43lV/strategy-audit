@@ -112,8 +112,8 @@ as descriptive metadata and a sensitivity variable.
 ## Reproduction
 
 ```powershell
-.\ftenv\Scripts\python.exe execution_profiles.py --selftest
-.\ftenv\Scripts\python.exe profile_repairs.py --selftest
-.\ftenv\Scripts\python.exe profile_smoke.py --selftest
-.\ftenv\Scripts\python.exe execution_profiles.py
+.\ftenv\Scripts\python.exe -m evidence.execution_profiles --selftest
+.\ftenv\Scripts\python.exe -m evidence.profile_repairs --selftest
+.\ftenv\Scripts\python.exe -m evidence.profile_smoke --selftest
+.\ftenv\Scripts\python.exe -m evidence.execution_profiles
 ```

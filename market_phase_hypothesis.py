@@ -59,10 +59,10 @@ import os
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
-CLASSIFICATION = os.path.join(ROOT, "STRATEGY_CLASSIFICATION.json")
+PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
+CLASSIFICATION = os.path.join(ROOT, "evidence/STRATEGY_CLASSIFICATION.json")
 CLUSTERS = os.path.join(ROOT, "cluster", "clusters.json")
-OUTPUT = os.path.join(ROOT, "MARKET_PHASE_HYPOTHESIS.json")
+OUTPUT = os.path.join(ROOT, "evidence/MARKET_PHASE_HYPOTHESIS.json")
 
 # The market side of each phase, so the benchmark resolves the prediction
 # against the same rule it was written under. Thresholds are the ones measured

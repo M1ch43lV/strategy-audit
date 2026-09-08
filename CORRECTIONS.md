@@ -136,7 +136,7 @@ published code that is not declared part of the pipeline.
 ## A consistency check that could not catch its own error (2026-08-22)
 
 The generated block published **"repositories swept 3"** instead of 53:
-`corpus_sources.json` is a dict of three keys, and the list of repositories sits
+`evidence/corpus_sources.json` is a dict of three keys, and the list of repositories sits
 inside one of them.
 
 `verify_ledger.py` compared the README against a recount and stayed silent —

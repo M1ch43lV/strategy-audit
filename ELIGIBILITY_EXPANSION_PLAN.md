@@ -242,11 +242,11 @@ their rows are never admitted or analyzed on that basis.
 
 The expansion produces:
 
-- `ELIGIBILITY_EXPANSION_MANIFEST.json` - frozen inputs, candidate IDs, hashes,
+- `evidence/ELIGIBILITY_EXPANSION_MANIFEST.json` - frozen inputs, candidate IDs, hashes,
   waves, rules, and stop conditions;
-- `ELIGIBILITY_EXPANSION_CANDIDATES.csv` - row-level wave and terminal status;
-- `ELIGIBILITY_EXPANSION_MISSINGNESS.csv` - Wave C missingness inventory;
-- `ELIGIBILITY_EXPANSION.md` - historical frozen wave inventory; its E0 labels
+- `evidence/ELIGIBILITY_EXPANSION_CANDIDATES.csv` - row-level wave and terminal status;
+- `evidence/ELIGIBILITY_EXPANSION_MISSINGNESS.csv` - Wave C missingness inventory;
+- `evidence/ELIGIBILITY_EXPANSION.md` - historical frozen wave inventory; its E0 labels
   are provenance, while current E1/E2/E3 status comes from current adjudication;
 - append-only technical result artifacts keyed by canonical identity;
 - regenerated eligibility and pooled Stage 7 artifacts only after E1 is frozen.

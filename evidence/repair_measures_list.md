@@ -30,11 +30,11 @@ Timeframe needs to be set in either configuration or as cli argument `--timefram
 
 **What it actually was.** Freqtrade renamed `ticker_interval` to `timeframe` in 2021.4 and stopped reading the old name. A strategy written before that declares its timeframe in a field current freqtrade ignores, so it refuses to start - even though the author did state it.
 
-**The repair.** `eligibility_timeframe_repair.py` reads `ticker_interval` from the source and passes the value as `--timeframe`. The source is not touched, and `repair_settings` records the recovered value and where it came from (`author_ticker_interval`).
+**The repair.** `evidence/eligibility_timeframe_repair.py` reads `ticker_interval` from the source and passes the value as `--timeframe`. The source is not touched, and `repair_settings` records the recovered value and where it came from (`author_ticker_interval`).
 
 **Where it stops.** Only where the author wrote the value down. Where no field exists, choosing a timeframe would be inventing the strategy rather than restoring it, and those rows are refused as `timeframe_not_recoverable`.
 
-Tool: `eligibility_timeframe_repair.py`.
+Tool: `evidence/eligibility_timeframe_repair.py`.
 
 For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `Argrelextrema`, `BBRSI`, `BBRSIS`.
 
@@ -110,7 +110,7 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 **The repair.** `repair_local_modules.py` finds copies of the missing module in the corpus and decides between them by testing the import, not by name. `shadows_a_package()` rejects any directory containing `freqtrade/`, `numpy/` and the like.
 
-**Where it stops.** That guard exists because four repairs made things worse: adding `repos/mlsys-io_PortfolioBench` to the path shadowed freqtrade itself. They are recorded as `repair_withdrawn`, and the withdrawn entries stay in `PROFILE_CLASS1.json` with `status: withdrawn` - deleting them had deleted the finding.
+**Where it stops.** That guard exists because four repairs made things worse: adding `repos/mlsys-io_PortfolioBench` to the path shadowed freqtrade itself. They are recorded as `repair_withdrawn`, and the withdrawn entries stay in `evidence/PROFILE_CLASS1.json` with `status: withdrawn` - deleting them had deleted the finding.
 
 Tool: `repair_local_modules.py`.
 
@@ -193,9 +193,9 @@ For example: `WTAI`, `WTRSIAI`.
 
 **The repair.** Re-run under the profile the strategy was written for. Nothing about the strategy is changed; what changes is what we asked it to run in.
 
-**Where it stops.** This is the one shape of zero trades that is our fault rather than the strategy's, which is why criterion C3 requires it to be ruled out first. Recorded in `ZERO_TRADE_TRIAGE.json` with the reason, so the row reads `open` and `to be fixed` rather than `excluded`.
+**Where it stops.** This is the one shape of zero trades that is our fault rather than the strategy's, which is why criterion C3 requires it to be ruled out first. Recorded in `evidence/ZERO_TRADE_TRIAGE.json` with the reason, so the row reads `open` and `to be fixed` rather than `excluded`.
 
-Tool: `tools/probe_zero.py, ZERO_TRADE_TRIAGE.json`.
+Tool: `tools/probe_zero.py, evidence/ZERO_TRADE_TRIAGE.json`.
 
 For example: `FundingCarry`, `Insomnia_short`.
 
@@ -215,7 +215,7 @@ For example: `FundingCarry`, `Insomnia_short`.
 
 **Where it stops.** Worth watching for beyond this one row: any strategy whose position sizing reads the portfolio rather than the pair will do the same thing, and it looks exactly like a strategy that never trades.
 
-Tool: `tools/probe_zero.py, ZERO_TRADE_TRIAGE.json`.
+Tool: `tools/probe_zero.py, evidence/ZERO_TRADE_TRIAGE.json`.
 
 For example: `BasketStrategy`.
 
@@ -313,7 +313,7 @@ Configuration error: The config trailing_stop_positive_offset needs to be greate
 
 **The repair.** None. Both values are the author's; adjusting either one would be guessing which of the two they actually meant.
 
-**Where it stops.** `refuse_repair`. Found by the lookahead gate rather than a trial-run failure - `TGMA` measures and trades normally - so the family is set directly in strategy_status.py's own cohort logic rather than read out of `BLOCKED_TRIAGE.json` the way the others here are.
+**Where it stops.** `refuse_repair`. Found by the lookahead gate rather than a trial-run failure - `TGMA` measures and trades normally - so the family is set directly in strategy_status.py's own cohort logic rather than read out of `evidence/BLOCKED_TRIAGE.json` the way the others here are.
 
 Tool: `strategy_status.py (invalid_gate_config)`.
 
@@ -335,7 +335,7 @@ Timeframe needs to be set in either configuration or as cli argument `--timefram
 
 **Where it stops.** `refuse_repair`.
 
-Tool: `eligibility_timeframe_repair.py`.
+Tool: `evidence/eligibility_timeframe_repair.py`.
 
 For example: `Chained`, `EMA003`, `EnsembleStrategy`, `EnsembleStrategyV1`, `EnsembleStrategyV2`, `FreqaiBinaryClassStrategy`.
 
@@ -432,7 +432,7 @@ For example: `AlexStrategyFinalV8`, `AlexStrategyFinalV9`, `Astro`, `AutoArimaTr
 freqAI is not enabled. Please enable it in your config to use this strategy.
 ```
 
-**What it actually was.** `E0V1EAI`, from the 2026-09-06 wave-2 futures/short harvest, needs a freqai config block the same way the rows under `freqai_arm` do - but it arrived after that arm's own generator, `eligibility_freqai_repair.py`, was retired; only its output `ELIGIBILITY_FREQAI_REPAIR.json` remains, as a frozen historical artifact.
+**What it actually was.** `E0V1EAI`, from the 2026-09-06 wave-2 futures/short harvest, needs a freqai config block the same way the rows under `freqai_arm` do - but it arrived after that arm's own generator, `eligibility_freqai_repair.py`, was retired; only its output `evidence/ELIGIBILITY_FREQAI_REPAIR.json` remains, as a frozen historical artifact.
 
 **The repair.** Not attempted. The FreqAI arm is deliberately a separate track that is never merged into a cohort (see `freqai_arm` above), so reviving tooling for one new row would not even join the main admission funnel this row is otherwise waiting on.
 
@@ -444,7 +444,7 @@ For example: `E0V1EAI`.
 
 ## Rules recorded per strategy
 
-`PROFILE_CLASS1.json` is the registry of environment and configuration restorations. No strategy source is modified by any of them.
+`evidence/PROFILE_CLASS1.json` is the registry of environment and configuration restorations. No strategy source is modified by any of them.
 
 | Rule | Strategies |
 |---|---:|
@@ -457,12 +457,12 @@ For example: `E0V1EAI`.
 | `restore_author_config` | 11 |
 | `whitespace_tolerant_class_scan` | 6 |
 | `legacy_min_roi_reached_entry_override` | 5 |
+| `freqai_config_from_author_block` | 4 |
 | `legacy_fillna_method_kwarg` | 4 |
 | `legacy_fillna_skips_incompatible_dtype` | 3 |
 | `datetime_safe_rmi_fillna` | 3 |
 | `synthetic_orderbook_from_last_close` | 2 |
 | `restore_accumulation_distribution` | 2 |
-| `freqai_config_from_author_block` | 2 |
 | `restore_declared_pypi_dependency` | 1 |
 | `restore_dataframe_append` | 1 |
 | `legacy_hour_asfreq_rule` | 1 |
@@ -562,7 +562,7 @@ The other half of the answer. Each of these had already put strategies in the wr
 
 **How it showed.** Three measurements lost.
 
-**What it was.** A rule of this audit is one writer per store. I broke it: two runs shared `ELIGIBILITY_SIGNATURE_REPAIR.json`.
+**What it was.** A rule of this audit is one writer per store. I broke it: two runs shared `evidence/ELIGIBILITY_SIGNATURE_REPAIR.json`.
 
 **The correction.** A store claim - a `<store>.running` directory held for the life of the run, with a two-hour takeover for a claim left behind by `docker stop`. `runlog.py` builds the whole entry before writing it under a claim.
 

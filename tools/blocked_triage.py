@@ -39,7 +39,7 @@ import traceback
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATUS = os.path.join(ROOT, "STRATEGY_STATUS.csv")
-OUTPUT = os.path.join(ROOT, "BLOCKED_TRIAGE.json")
+OUTPUT = os.path.join(ROOT, "evidence/BLOCKED_TRIAGE.json")
 
 LOAD_FAILURE = re.compile(r"Impossible to load (?:Strategy|FreqaiModel) '([^']+)'")
 

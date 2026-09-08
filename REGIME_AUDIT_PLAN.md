@@ -1303,15 +1303,15 @@ Do not begin with the full corpus backtest.
 ## Stage 6 — regime eligibility
 
 25. **Historical implementation, retired as admission authority:**
-    `REGIME_ELIGIBILITY.csv` recorded the 67-row Stage 6 snapshot before the
+    `evidence/REGIME_ELIGIBILITY.csv` recorded the 67-row Stage 6 snapshot before the
     uniform current-runtime check chain was complete. Preserve it as provenance
     only; never use its `regime_eligible` flag to admit or analyze a row.
 26. **Current implementation:** active `admitted_E1` rows in
-    `ELIGIBILITY_EXPANSION_ADJUDICATION.csv`, exposed as
+    `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv`, exposed as
     `cohort=E1_expanded` in `STRATEGY_STATUS.csv`, define the benchmark
     population. Former E0 members require the same row-level decision.
 27. **Implemented:** do not use whole-window profitability/significance as eligibility gates.
-28. **Coverage implemented:** `REGIME_COVERAGE.csv` records exact frozen-window pair/candle checks; before Stage 7, complete the remaining native-profile coverage and canonical bias diagnostics, then regenerate eligibility without changing its rules.
+28. **Coverage implemented:** `evidence/REGIME_COVERAGE.csv` records exact frozen-window pair/candle checks; before Stage 7, complete the remaining native-profile coverage and canonical bias diagnostics, then regenerate eligibility without changing its rules.
 
 ## Stage 7 — Phase A attribution
 
@@ -1599,7 +1599,7 @@ changing basket composition and local data incompleteness explicit.
 **Timing:** before regime-performance ranking
 **Class:** methodological
 **Decision:** store canonical look-ahead and recursive reruns separately from
-the historical ledger in `PROFILE_BIAS.json`, bound to canonical source,
+the historical ledger in `evidence/PROFILE_BIAS.json`, bound to canonical source,
 effective config, mode, timerange, and output hashes. Spot may retain a valid
 historical diagnostic for an unchanged canonical implementation. Futures may
 retain historical FOUND as disqualifying evidence but never inherit a spot
@@ -1627,7 +1627,7 @@ DLLs. The image pins Freqtrade 2026.7 and the same NumPy, pandas, SciPy, TA-Lib,
 and non-FreqAI optional strategy dependencies as the original audit
 environment. The
 repository is mounted read/write so raw ignored candles are reused, while
-`profile_bias.py` records the container image ID with each new diagnostic.
+`evidence/profile_bias.py` records the container image ID with each new diagnostic.
 The global Class 1 compatibility aliases are activated through the versioned
 `repair/sitecustomize.py` in every subprocess. `runtime/profile_bias_docker.ps1`
 rebuilds and launches this runtime.
@@ -1787,8 +1787,8 @@ resolving zero-trade smoke profiles
 **Class:** implementation and measurement checkpoint; no eligibility-rule or
 strategy change
 **Decision:** store full-window backtest evidence in
-`PROFILE_FULL_WINDOW.json` rather than overwriting `PROFILE_SMOKE.json`.
-`regime_eligibility.py` consumes a full-window result only when its canonical
+`evidence/PROFILE_FULL_WINDOW.json` rather than overwriting `evidence/PROFILE_SMOKE.json`.
+`evidence/regime_eligibility.py` consumes a full-window result only when its canonical
 source and effective runtime-config hashes match the current execution profile.
 A measured positive trade count replaces zero-trade smoke evidence; a measured
 zero becomes `no_trades_in_full_measurement`; failures and timeouts leave the

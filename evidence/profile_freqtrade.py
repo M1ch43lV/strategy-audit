@@ -7,6 +7,10 @@ import sys
 
 import freqtrade
 
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+
 
 def main() -> int:
     import_paths = os.environ.get("PROFILE_STRATEGY_IMPORT_PATH", "")

@@ -11,17 +11,17 @@ import sys
 import threading
 from pathlib import Path
 
-import profile_smoke
+from evidence import profile_smoke
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import profile_full_window
+from evidence import profile_full_window
 
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "results" / "regime" / "full_backtest_manifest.json"
 STATUS = ROOT / "STRATEGY_STATUS.csv"
-PERFORMANCE_LIMITS = ROOT / "POOLED_BACKTEST_PERFORMANCE_LIMIT.json"
-OOM_LIMITS = ROOT / "POOLED_BACKTEST_OOM_LIMIT.json"
-STAKE_OVERFLOWS = ROOT / "POOLED_BACKTEST_STAKE_OVERFLOW.json"
+PERFORMANCE_LIMITS = ROOT / "evidence/POOLED_BACKTEST_PERFORMANCE_LIMIT.json"
+OOM_LIMITS = ROOT / "evidence/POOLED_BACKTEST_OOM_LIMIT.json"
+STAKE_OVERFLOWS = ROOT / "evidence/POOLED_BACKTEST_STAKE_OVERFLOW.json"
 # The window lives in exactly one place - `profile_full_window.TIMERANGE` -
 # so this stays a per-mode lookup through that module rather than its own
 # copy of the same two dates. A second constant is how this file spent
@@ -48,7 +48,7 @@ def _load(path: Path) -> dict:
 def eligible() -> list[dict]:
     """The current benchmark population, not the frozen E0 anchor.
 
-    `REGIME_ELIGIBILITY.csv`'s `regime_eligible=true` is the 67-row set E0
+    `evidence/REGIME_ELIGIBILITY.csv`'s `regime_eligible=true` is the 67-row set E0
     was frozen on 2026-08-30; E0 was retired as a cohort on 2026-09-03 and
     every one of its rows is now decided the same way as the other 833 -
     `STRATEGY_STATUS.csv`'s `cohort == "E1_expanded"`, 579 rows regenerated
@@ -68,7 +68,7 @@ def performance_limits() -> dict:
     The 3600s timeout is a hard limit, not tuned per strategy (PIPELINE.md
     Stufe 7), so a strategy that keeps landing exactly on it would otherwise
     retry forever - burning another full hour every container pass with no
-    prospect of ever reaching `measured`. `POOLED_BACKTEST_PERFORMANCE_LIMIT.json`
+    prospect of ever reaching `measured`. `evidence/POOLED_BACKTEST_PERFORMANCE_LIMIT.json`
     is the hand-curated confirmation (at least two independent timeouts, no
     other failure mode) that a strategy belongs here rather than just being
     unlucky once.
@@ -84,7 +84,7 @@ def oom_limits() -> dict:
 
     A `resource_inconclusive` result (SIGKILL, no exception) is ordinarily
     retried, because it may just mean this row lost a memory race against a
-    concurrent worker. `POOLED_BACKTEST_OOM_LIMIT.json` holds strategies that
+    concurrent worker. `evidence/POOLED_BACKTEST_OOM_LIMIT.json` holds strategies that
     stayed `resource_inconclusive` after the 2026-09-07 move to a 16GB VM
     with `--workers 1` - one process, the entire budget to itself, nothing
     left to blame but the strategy's own memory footprint. Retrying those
@@ -105,7 +105,7 @@ def stake_overflows() -> dict:
     real market liquidity and freqtrade raises. Unlike `resource_inconclusive`
     or `timeout`, this has nothing to do with memory, workers, or wall-clock
     time - a retry reproduces the identical failure at the identical point
-    every time. `POOLED_BACKTEST_STAKE_OVERFLOW.json` holds the confirmation.
+    every time. `evidence/POOLED_BACKTEST_STAKE_OVERFLOW.json` holds the confirmation.
     """
     if not STAKE_OVERFLOWS.exists():
         return {}
@@ -134,10 +134,10 @@ def main(argv=None) -> int:
     data = _load(args.output)
     data.pop("runtime_id", None)
     # Loaded once, so a run cannot half-apply it. Without this, every row
-    # `eligibility_timeframe_repair.py` already recovered a timeframe for
+    # `evidence/eligibility_timeframe_repair.py` already recovered a timeframe for
     # (and the module/signature/freqAI repairs) fails again here for the
     # same reason it failed before repair - this runner reads the manifest
-    # `profile_full_window.py` already reads, it just never asked before.
+    # `evidence/profile_full_window.py` already reads, it just never asked before.
     overrides = profile_full_window.repair_overrides()
     # (status this strategy is retired under, its confirmation source) - checked
     # in this order so a strategy present in both is reported as its first match.
@@ -192,8 +192,8 @@ def main(argv=None) -> int:
             if strategy not in confirmations:
                 continue
             # Confirmed unable to reach `measured` under the best conditions
-            # this runner offers (see POOLED_BACKTEST_PERFORMANCE_LIMIT.json /
-            # POOLED_BACKTEST_OOM_LIMIT.json) - applying this the first time a
+            # this runner offers (see evidence/POOLED_BACKTEST_PERFORMANCE_LIMIT.json /
+            # evidence/POOLED_BACKTEST_OOM_LIMIT.json) - applying this the first time a
             # strategy qualifies retires it without spending another attempt
             # to reconfirm what earlier ones already did.
             result = dict(identity)

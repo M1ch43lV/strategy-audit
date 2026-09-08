@@ -37,10 +37,10 @@ import sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 STATUS = os.path.join(ROOT, "STRATEGY_STATUS.csv")
-TRIAGE = os.path.join(ROOT, "BLOCKED_TRIAGE.json")
-CLASS1 = os.path.join(ROOT, "PROFILE_CLASS1.json")
-CRITERIA_OUT = os.path.join(ROOT, "exclusion_criteria_list.md")
-REPAIRS_OUT = os.path.join(ROOT, "repair_measures_list.md")
+TRIAGE = os.path.join(ROOT, "evidence/BLOCKED_TRIAGE.json")
+CLASS1 = os.path.join(ROOT, "evidence/PROFILE_CLASS1.json")
+CRITERIA_OUT = os.path.join(ROOT, "evidence/exclusion_criteria_list.md")
+REPAIRS_OUT = os.path.join(ROOT, "evidence/repair_measures_list.md")
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
@@ -214,7 +214,7 @@ CRITERIA = [
         "evidence": "`repair_family` names which requirement is missing "
                     "(`timeframe_not_recoverable`, `no_stoploss`, "
                     "`no_exit_logic`, `freqai_model`) and `repair_settings` "
-                    "or the row's note in `repair_measures_list.md` records "
+                    "or the row's note in `evidence/repair_measures_list.md` records "
                     "what was searched and where.",
         "watch": "`freqai_arm` and `freqai_config_built` are also recorded "
                  "as `refuse_repair` but are not this criterion: both are "
@@ -247,11 +247,11 @@ CRITERIA = [
                      "buffer past its own module fix. Restoring a module we "
                      "cannot verify against the author's own copy would be "
                      "writing code under their name.",
-        "evidence": "`REPAIR_LOCAL_MODULES.json` keeps every candidate tried "
+        "evidence": "`evidence/REPAIR_LOCAL_MODULES.json` keeps every candidate tried "
                     "and why each failed, or the shadowing that forced a "
-                    "withdrawal recorded in `PROFILE_CLASS1.json` with "
+                    "withdrawal recorded in `evidence/PROFILE_CLASS1.json` with "
                     "`status: withdrawn` rather than deleted.",
-        "watch": "A row with NO entry in `REPAIR_LOCAL_MODULES.json` at all "
+        "watch": "A row with NO entry in `evidence/REPAIR_LOCAL_MODULES.json` at all "
                  "has not been searched, not searched-and-refused - that is "
                  "`needs_a_look`, not this criterion, and three rows moved "
                  "from there to a working repair the same day this criterion "
@@ -339,7 +339,7 @@ CRITERIA = [
                      "`GymStrategy` wants `stable-baselines3`, whose own "
                      "resolution pulls the full CUDA/PyTorch chain - "
                      "installable, held rather than built for one row.",
-        "evidence": "`BLOCKED_TRIAGE.json` names the exact missing module "
+        "evidence": "`evidence/BLOCKED_TRIAGE.json` names the exact missing module "
                     "for each row, found by importing the file directly in "
                     "the pinned runtime rather than trusting freqtrade's "
                     "generic \"does not exist\" message. `runtime/Dockerfile.audit-"
@@ -385,7 +385,7 @@ CRITERIA = [
                      "were re-examined on the same basis when their upstream "
                      "sources were checked for updates (2026-09-05) and "
                      "confirmed unfixed upstream either.",
-        "evidence": "`BLOCKED_TRIAGE.json` and `runtime_failure` carry the "
+        "evidence": "`evidence/BLOCKED_TRIAGE.json` and `runtime_failure` carry the "
                     "exact pandas/numpy exception per row; the shared "
                     "`np.where(...,'down','up'), np.NaN` line was confirmed "
                     "byte-identical across five of the seven repositories "
@@ -424,7 +424,7 @@ CRITERIA = [
                      "complete it even given the most generous warm-up "
                      "this project's ladder offers has not passed it "
                      "either. Decided on that basis, 2026-09-08.",
-        "evidence": "`WARMUP_CONVERGENCE.json` keeps `ladder_rungs_dropped_"
+        "evidence": "`evidence/WARMUP_CONVERGENCE.json` keeps `ladder_rungs_dropped_"
                     "as_uncomputable` (which rungs were tried and abandoned) "
                     "and the final `runtime_failure` from the 3-rung attempt "
                     "that still crashed, so the finding can be read rather "
@@ -569,7 +569,7 @@ TOO_FEW = {
                         "it does not belong here. `BasketStrategy` reports "
                         "zero because a portfolio basket was measured one "
                         "pair at a time; it is `open`, and "
-                        "`ZERO_TRADE_TRIAGE.json` says why.",
+                        "`evidence/ZERO_TRADE_TRIAGE.json` says why.",
 }
 
 
@@ -751,7 +751,7 @@ def criteria_report(rows, path):
 # ------------------------------------------------------------------ repairs
 
 # One entry per repair route actually taken. `error` is the message freqtrade
-# produced before the repair, verbatim from BLOCKED_TRIAGE.json where one was
+# produced before the repair, verbatim from evidence/BLOCKED_TRIAGE.json where one was
 # recorded. `family` ties the entry to the rows in the status table, so the
 # counts below are read from the table rather than typed in.
 REPAIRS = [
@@ -765,7 +765,7 @@ REPAIRS = [
                  "before that declares its timeframe in a field current "
                  "freqtrade ignores, so it refuses to start - even though the "
                  "author did state it.",
-        "fix": "`eligibility_timeframe_repair.py` reads `ticker_interval` "
+        "fix": "`evidence/eligibility_timeframe_repair.py` reads `ticker_interval` "
                "from the source and passes the value as `--timeframe`. The "
                "source is not touched, and `repair_settings` records the "
                "recovered value and where it came from "
@@ -774,7 +774,7 @@ REPAIRS = [
                  "exists, choosing a timeframe would be inventing the "
                  "strategy rather than restoring it, and those rows are "
                  "refused as `timeframe_not_recoverable`.",
-        "tool": "eligibility_timeframe_repair.py",
+        "tool": "evidence/eligibility_timeframe_repair.py",
     },
     {
         "family": "framework_compat_shim",
@@ -903,7 +903,7 @@ REPAIRS = [
         "limit": "That guard exists because four repairs made things worse: "
                  "adding `repos/mlsys-io_PortfolioBench` to the path shadowed "
                  "freqtrade itself. They are recorded as `repair_withdrawn`, "
-                 "and the withdrawn entries stay in `PROFILE_CLASS1.json` "
+                 "and the withdrawn entries stay in `evidence/PROFILE_CLASS1.json` "
                  "with `status: withdrawn` - deleting them had deleted the "
                  "finding.",
         "tool": "repair_local_modules.py",
@@ -983,9 +983,9 @@ REPAIRS = [
         "limit": "This is the one shape of zero trades that is our fault "
                  "rather than the strategy's, which is why criterion C3 "
                  "requires it to be ruled out first. Recorded in "
-                 "`ZERO_TRADE_TRIAGE.json` with the reason, so the row reads "
+                 "`evidence/ZERO_TRADE_TRIAGE.json` with the reason, so the row reads "
                  "`open` and `to be fixed` rather than `excluded`.",
-        "tool": "tools/probe_zero.py, ZERO_TRADE_TRIAGE.json",
+        "tool": "tools/probe_zero.py, evidence/ZERO_TRADE_TRIAGE.json",
     },
     {
         "family": "measured_outside_its_design",
@@ -1004,7 +1004,7 @@ REPAIRS = [
                  "position sizing reads the portfolio rather than the pair "
                  "will do the same thing, and it looks exactly like a "
                  "strategy that never trades.",
-        "tool": "tools/probe_zero.py, ZERO_TRADE_TRIAGE.json",
+        "tool": "tools/probe_zero.py, evidence/ZERO_TRADE_TRIAGE.json",
     },
     {
         "family": "no_stoploss",
@@ -1075,7 +1075,7 @@ REPAIRS = [
                  "a trial-run failure - `TGMA` measures and trades "
                  "normally - so the family is set directly in strategy_"
                  "status.py's own cohort logic rather than read out of "
-                 "`BLOCKED_TRIAGE.json` the way the others here are.",
+                 "`evidence/BLOCKED_TRIAGE.json` the way the others here are.",
         "tool": "strategy_status.py (invalid_gate_config)",
     },
     {
@@ -1087,7 +1087,7 @@ REPAIRS = [
                  "situation: the author names no timeframe anywhere.",
         "fix": "None. Every timeframe would produce a different strategy.",
         "limit": "`refuse_repair`.",
-        "tool": "eligibility_timeframe_repair.py",
+        "tool": "evidence/eligibility_timeframe_repair.py",
     },
     {
         "family": "dtype_drift",
@@ -1157,7 +1157,7 @@ REPAIRS = [
                  "needs a freqai config block the same way the rows under "
                  "`freqai_arm` do - but it arrived after that arm's own "
                  "generator, `eligibility_freqai_repair.py`, was retired; only "
-                 "its output `ELIGIBILITY_FREQAI_REPAIR.json` remains, as a "
+                 "its output `evidence/ELIGIBILITY_FREQAI_REPAIR.json` remains, as a "
                  "frozen historical artifact.",
         "fix": "Not attempted. The FreqAI arm is deliberately a separate "
                "track that is never merged into a cohort (see `freqai_arm` "
@@ -1268,7 +1268,7 @@ READER_FIXES = [
         "what": "Two runners on one store",
         "symptom": "Three measurements lost.",
         "cause": "A rule of this audit is one writer per store. I broke it: "
-                 "two runs shared `ELIGIBILITY_SIGNATURE_REPAIR.json`.",
+                 "two runs shared `evidence/ELIGIBILITY_SIGNATURE_REPAIR.json`.",
         "fix": "A store claim - a `<store>.running` directory held for the "
                "life of the run, with a two-hour takeover for a claim left "
                "behind by `docker stop`. `runlog.py` builds the whole entry "
@@ -1361,7 +1361,7 @@ def repair_report(rows, path):
 
     add("## Rules recorded per strategy")
     add("")
-    add("`PROFILE_CLASS1.json` is the registry of environment and "
+    add("`evidence/PROFILE_CLASS1.json` is the registry of environment and "
         "configuration restorations. No strategy source is modified by any "
         "of them.")
     add("")

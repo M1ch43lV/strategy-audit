@@ -35,17 +35,17 @@ import subprocess
 import sys
 import time
 
-import eligibility_warmup
-import profile_bias
-import profile_smoke
+from evidence import eligibility_warmup
+from evidence import profile_bias
+from evidence import profile_smoke
 import runlog
 from repair_overrides import repair_overrides, sibling_config_timeframe
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-CANDIDATES = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_CANDIDATES.csv")
-PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
-OUTPUT = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
+CANDIDATES = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_CANDIDATES.csv")
+PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
+OUTPUT = os.path.join(ROOT, "evidence/WARMUP_CONVERGENCE.json")
 STATUS = os.path.join(ROOT, "STRATEGY_STATUS.csv")
 LOG_DIR = os.path.join(ROOT, "user_data", "convergence_logs")
 
@@ -66,7 +66,7 @@ LADDER_DAYS = (1, 2, 7, 14, 30, 90, 365)
 DRIFT_THRESHOLD_PCT = 1.0
 # Amendment 2026-09-03 (REGIME_PREREGISTRATION.md): the ceiling this caps the
 # ladder at exists to protect the full-window run these values are later
-# reused in - see profile_full_window.py's own note on the same amendment.
+# reused in - see evidence/profile_full_window.py's own note on the same amendment.
 # Spot and futures pairs were listed on Binance at different times, so their
 # windows now differ too; each mode's start must match the window
 # profile_full_window.timerange(mode) actually uses, or a warm-up this ladder
@@ -105,7 +105,7 @@ def startup_ceiling(strategy=None):
 
 def class1_rules():
     """Compatibility rules registered per strategy."""
-    path = os.path.join(ROOT, "PROFILE_CLASS1.json")
+    path = os.path.join(ROOT, "evidence/PROFILE_CLASS1.json")
     if not os.path.exists(path):
         return {}
     entries = json.load(io.open(path, encoding="utf-8")).get("strategies", {})
@@ -229,7 +229,7 @@ def ladder(timeframe, cap=None, budget=MAX_STARTUP_CANDLES):
 # Rows already admitted to E1 are not revisited: their verdict stands and the
 # route exists to decide rows that have none.
 def _admitted():
-    path = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_PROOFS.json")
+    path = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_PROOFS.json")
     if not os.path.exists(path):
         return set()
     return set(json.load(io.open(path, encoding="utf-8")).get("strategies", {}))
@@ -422,7 +422,7 @@ def cohort(name):
 
 
 def derived_value(strategy):
-    import eligibility_warmup_recovery as recovery
+    from evidence import eligibility_warmup_recovery as recovery
     if strategy in recovery.OVERRIDES:
         return recovery.OVERRIDES[strategy][0]
     return recovery._audited_period(strategy)
@@ -517,7 +517,7 @@ def resolve(row, timeout, overrides=None):
     """Find the smallest warm-up from which this row stays inside the band."""
     strategy = row["strategy_id"]
     # A repair-store override (Argrelextrema: config_overrides={"timeframe":
-    # "5m"} from eligibility_timeframe_repair.py) already reaches run_ladder
+    # "5m"} from evidence/eligibility_timeframe_repair.py) already reaches run_ladder
     # below for the subprocess config - it also has to reach the candle math
     # here, or a strategy whose timeframe is only known through the override
     # still reports no_usable_ladder despite having a real, evidenced value.
@@ -736,7 +736,7 @@ def redo_defective(cohort_name):
 def run(cohort_name, limit, timeout, wanted=None):
     rows = cohort(cohort_name)
     if wanted:
-        # Mirrors profile_bias.py's --only: an explicit strategy list selects
+        # Mirrors evidence/profile_bias.py's --only: an explicit strategy list selects
         # from within the cohort, so a specific wave can be run without the
         # rest of what "ladder_pending" happens to also contain interleaved
         # alphabetically with it.

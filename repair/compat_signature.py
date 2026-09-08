@@ -1034,7 +1034,7 @@ def install_synthetic_backtest_orderbook():
     tolerates an empty book). Patching `orderbook()` unconditionally would
     change what ALL 79 measure, most of which nobody asked to touch. This
     installs only through `PROFILE_COMPAT_SIGNATURES`, which
-    `PROFILE_CLASS1.json` sets per strategy - so it activates only for the
+    `evidence/PROFILE_CLASS1.json` sets per strategy - so it activates only for the
     two rows confirmed, on a second independent run, to crash on this exact
     shape (`ELIGIBILITY`/pooled-backtest retries, 2026-09-07), not for the
     75+ that were never touched.

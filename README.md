@@ -46,6 +46,8 @@ strategy-audit/
 │   Frozen methodology and detailed design record
 ├── STRATEGY_STATUS.{csv,md}, strategy_status.html
 │   Current published strategy inventory
+├── evidence/
+│   Current eligibility/profile writers and their generated evidence stores
 ├── regime/
 │   Regime features, Model 0/1/2/3 runners, attribution, comparison
 ├── results/regime/
@@ -61,9 +63,8 @@ strategy-audit/
 └── graphify-out/           Local generated code graph; not versioned
 ```
 
-Current eligibility/profile generators and their stores will be relocated only
-as dependency-checked families. Moving a store independently from its atomic
-writer would break resume and staleness guarantees.
+The flat [`evidence/`](evidence/) family keeps each eligibility/profile writer
+beside the store it owns. See its README before running or regenerating a store.
 
 ## Reproduction and safety
 

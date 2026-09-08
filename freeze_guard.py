@@ -12,7 +12,7 @@ THE RULE ENFORCED HERE:
 
 Both values come not from prose:
   · t(rule)  — `git log` on the file where LADDER lives;
-  · t(data)  — the `first_card_utc` field in CORPUS_RUN.json, written at sweep time.
+  · t(data)  — the `first_card_utc` field in evidence/CORPUS_RUN.json, written at sweep time.
 
 If the registry calls the primary result pre-registered, but the times say the
 opposite — that's a failure, not a warning.
@@ -53,7 +53,7 @@ except Exception:
 # functions with a decorator and derive the list from it.
 LADDER_FILES = ["ledger_block.py", "traps.py", "ledger.py"]  # TOTAL: by hand, risk named
 LADDER_FILE = LADDER_FILES[0]          # for messages
-RUN_FILE = "CORPUS_RUN.json"
+RUN_FILE = "evidence/CORPUS_RUN.json"
 CLAIMS_FILE = "CLAIMS.csv"
 PRIMARY = "survivors under the full rule set"
 

@@ -66,13 +66,13 @@ PIPELINE = [
     "old/predecessor_audit/depth.py",  # archived depth diagnostic
     "loadcheck.py",      # first-gate import/load failure attribution
     "old/predecessor_audit/resolvable.py",  # archived barrier diagnostic
-    "execution_profiles.py",  # canonical implementation and run-profile manifest
-    "regime_coverage.py",  # exact native-profile candle coverage inventory
-    "regime_eligibility.py",  # technical Stage 6 inclusion/exclusion matrix
-    "profile_bias.py",  # resumable canonical native-mode bias diagnostics
-    "profile_repairs.py",     # reproducible Class 2 compatibility overlays
-    "profile_smoke.py",       # mode-correct futures runtime validation
-    "profile_freqtrade.py",   # author-package extension launcher for smoke tests
+    "evidence/execution_profiles.py",  # canonical implementation and run-profile manifest
+    "evidence/regime_coverage.py",  # exact native-profile candle coverage inventory
+    "evidence/regime_eligibility.py",  # technical Stage 6 inclusion/exclusion matrix
+    "evidence/profile_bias.py",  # resumable canonical native-mode bias diagnostics
+    "evidence/profile_repairs.py",     # reproducible Class 2 compatibility overlays
+    "evidence/profile_smoke.py",       # mode-correct futures runtime validation
+    "evidence/profile_freqtrade.py",   # author-package extension launcher for smoke tests
     "runlock.py",        # one writer for a shared resource
     "anatman.py",        # observed defects as executable cases
     "tf_guard_selftest.py",  # sabotage against the timeframe guard

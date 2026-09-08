@@ -4,7 +4,7 @@
 Monthly archives lag the active month.  This resumable helper reads each
 existing Freqtrade feather file, requests only missing calendar days and the
 unclosed monthly tail, merges by timestamp, and writes atomically.  Raw market
-data remains ignored; `regime_coverage.py` publishes the integrity evidence.
+data remains ignored; `evidence/regime_coverage.py` publishes the integrity evidence.
 """
 from __future__ import annotations
 

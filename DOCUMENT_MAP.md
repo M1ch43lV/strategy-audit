@@ -43,13 +43,13 @@ rule is the most likely way to corrupt this study.
   convergence stores. It is the only table that answers "what do we know about
   this strategy today"; the frozen baseline cannot, by design. It decides
   nothing - admission happens in the adjudicator alone.
-- `REGIME_ELIGIBILITY.md` / `.csv` - the invalidated historical Stage 6
+- `evidence/REGIME_ELIGIBILITY.md` / `.csv` - the invalidated historical Stage 6
   snapshot. Its 67 `regime_eligible=true` flags were assigned before every row
   completed this audit's uniform check chain. They are preserved to document
   the error, not as a cohort, sensitivity, admission source, fallback, or
   usable-strategy count. Sixty-six former members were later admitted
   independently under `converged_clean_gates_v1`; `MacdStrategy` was not.
-- `ELIGIBILITY_EXPANSION_ADJUDICATION.md` / `.csv` - row-level admission and
+- `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.md` / `.csv` - row-level admission and
   withdrawal history. Only active `admitted_E1` rows can enter the benchmark;
   `STRATEGY_STATUS.csv` exposes them as `cohort=E1_expanded`. Counts move with
   every adjudication, so compute them from the CSVs rather than adding 67 to an
@@ -69,17 +69,17 @@ rule is the most likely way to corrupt this study.
   answer. The exact current graph counts are recorded in its summary. Rebuild
   with `/graphify graphify-scope --update` after any of the
   scanned scripts or docs change materially.
-- `EXECUTION_PROFILES.md` - which implementation of a strategy is canonical, and
+- `evidence/EXECUTION_PROFILES.md` - which implementation of a strategy is canonical, and
   whether it runs spot or futures. Relevant to the goal in a way the title
   hides: 855 of 919 strategies are long-only, so bear-phase evidence is
   structurally scarce before any measurement happens.
-- `REGIME_COVERAGE.md` - the candle-data gate. Note the documented `XMR/USDT`
+- `evidence/REGIME_COVERAGE.md` - the candle-data gate. Note the documented `XMR/USDT`
   delisting in 2024: the pair basket changes composition inside the window.
 - `cluster/CLUSTERS.md` - the a-priori source taxonomy, five independent axes.
   Plan section 9.2 forbids using it to decide which regimes a strategy may
   enter; it is a descriptor and a later comparison target, not a filter.
-- `REPO_FRESHNESS.md` - has any source repo moved since this corpus captured
-  it, checked live against GitHub. `NEW_REPO_CANDIDATES.md` - named candidate
+- `evidence/REPO_FRESHNESS.md` - has any source repo moved since this corpus captured
+  it, checked live against GitHub. `evidence/NEW_REPO_CANDIDATES.md` - named candidate
   repos outside the corpus, checked for strategy names not already in it.
   Neither decides anything; both are the record behind the 2026-09-05 wave
   that took the corpus from 900 to 919 rows.
@@ -112,7 +112,7 @@ runs so it can be falsified rather than fitted - `assumed_market_regime` in
 `STRATEGY_STATUS.csv`, decides nothing, same status as `cluster/CLUSTERS.md`.
 `regime/attribution.py` computes both the four-state and six-phase views per
 trade; as of 2026-09-05 it reads `STRATEGY_STATUS.csv`'s current
-`E1_expanded` cohort rather than the retired `REGIME_ELIGIBILITY.csv` E0 set
+`E1_expanded` cohort rather than the retired `evidence/REGIME_ELIGIBILITY.csv` E0 set
 it originally shipped against - check its own module docstring before
 trusting an old run of it.
 
@@ -134,10 +134,10 @@ trusting an old run of it.
 
 ## Tier 5 - current state, no methodology
 
-`HANDOFF.md` (the shared baton - always read first), `ELIGIBILITY_EXPANSION.md`,
-`EXPANSION_WAVE_A_RESULTS.md`, `EXPANSION_WAVE_C_PREFLIGHT.md`,
-`EXPANSION_WAVE_C_RESULTS.md`, `EXPANSION_STATIC_PROOF_FINDINGS.md`,
-`EXPANSION_WAVE_C_BIAS_RESULTS.md`, `TRAILING_SENSITIVITY_FINDINGS.md`.
+`HANDOFF.md` (the shared baton - always read first), `evidence/ELIGIBILITY_EXPANSION.md`,
+`evidence/EXPANSION_WAVE_A_RESULTS.md`, `evidence/EXPANSION_WAVE_C_PREFLIGHT.md`,
+`evidence/EXPANSION_WAVE_C_RESULTS.md`, `evidence/EXPANSION_STATIC_PROOF_FINDINGS.md`,
+`evidence/EXPANSION_WAVE_C_BIAS_RESULTS.md`, `TRAILING_SENSITIVITY_FINDINGS.md`.
 
 `HANDOFF.md` is the shared live baton, not a result store. Trust the Machine
 state commands it prescribes over even its most recent prose counts; its

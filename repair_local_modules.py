@@ -23,7 +23,7 @@ is not offered.
 
 WHAT THIS IS AND IS NOT. Adding a directory to `PYTHONPATH` restores what the
 author had when they wrote the file. No strategy source is touched and no
-behaviour is supplied. The result is recorded in `PROFILE_CLASS1.json` under
+behaviour is supplied. The result is recorded in `evidence/PROFILE_CLASS1.json` under
 the rule that already exists for it, `restore_copied_local_module`, with the
 evidence that chose the copy.
 """
@@ -42,9 +42,9 @@ import traceback
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-TRIAGE = os.path.join(ROOT, "BLOCKED_TRIAGE.json")
-CLASS1 = os.path.join(ROOT, "PROFILE_CLASS1.json")
-OUTPUT = os.path.join(ROOT, "REPAIR_LOCAL_MODULES.json")
+TRIAGE = os.path.join(ROOT, "evidence/BLOCKED_TRIAGE.json")
+CLASS1 = os.path.join(ROOT, "evidence/PROFILE_CLASS1.json")
+OUTPUT = os.path.join(ROOT, "evidence/REPAIR_LOCAL_MODULES.json")
 RULE = "restore_copied_local_module"
 
 
@@ -230,7 +230,7 @@ def run(write_class1):
         print("   %-12s %d" % (key, count))
     if write_class1:
         applied = apply_to_class1(results)
-        print("wrote %d entries to PROFILE_CLASS1.json" % applied)
+        print("wrote %d entries to evidence/PROFILE_CLASS1.json" % applied)
     return 0
 
 
@@ -257,7 +257,7 @@ def apply_to_class1(results):
     return applied
 
 
-MEASURED = os.path.join(ROOT, "ELIGIBILITY_MODULE_REPAIR.json")
+MEASURED = os.path.join(ROOT, "evidence/ELIGIBILITY_MODULE_REPAIR.json")
 
 
 def verify():
@@ -298,7 +298,7 @@ def verify():
         print("   %-20s %d" % (key, count))
     withdrawn = withdraw_insufficient(data["results"])
     if withdrawn:
-        print("withdrew %d entries from PROFILE_CLASS1.json "
+        print("withdrew %d entries from evidence/PROFILE_CLASS1.json "
               "(import test passed, the run did not): %s"
               % (len(withdrawn), ", ".join(sorted(withdrawn))))
     return 0
@@ -375,7 +375,7 @@ def selftest():
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--apply", action="store_true",
-                        help="write the resolved paths into PROFILE_CLASS1.json")
+                        help="write the resolved paths into evidence/PROFILE_CLASS1.json")
     parser.add_argument("--verify", action="store_true",
                         help="write back what the repaired rows did when run")
     parser.add_argument("--selftest", action="store_true")

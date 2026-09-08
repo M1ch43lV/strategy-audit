@@ -11,15 +11,15 @@ import os
 import re
 import sys
 
-import eligibility_warmup
+from evidence import eligibility_warmup
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-OUTPUT = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_WARMUP_RECOVERY.csv")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUTPUT = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_WARMUP_RECOVERY.csv")
 # The Wave C refusals get their own manifest. The Wave B file is frozen
 # evidence for a completed wave and is never rewritten to hold a second cohort.
 OUTPUT_WAVE_C = os.path.join(
-    ROOT, "ELIGIBILITY_EXPANSION_WARMUP_RECOVERY_WAVE_C.csv")
+    ROOT, "evidence/ELIGIBILITY_EXPANSION_WARMUP_RECOVERY_WAVE_C.csv")
 
 # Values not represented by the original literal timeperiod/window audit.
 # Each basis names the finite dependency visible in the canonical source.

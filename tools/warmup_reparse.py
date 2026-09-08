@@ -42,12 +42,12 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import profile_bias
+from evidence import profile_bias
 
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CONVERGENCE = os.path.join(ROOT, "WARMUP_CONVERGENCE.json")
-BIAS = os.path.join(ROOT, "PROFILE_BIAS.json")
+CONVERGENCE = os.path.join(ROOT, "evidence/WARMUP_CONVERGENCE.json")
+BIAS = os.path.join(ROOT, "evidence/PROFILE_BIAS.json")
 RULE = "no_variance_is_a_pass_v1"
 BIAS_RULE = "current_reader_v1"
 BLIND_RULE = "undefined_column_is_not_a_finding_v1"
