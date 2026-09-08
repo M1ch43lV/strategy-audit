@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "results" / "regime" / "full_backtest_manifest.json"
 STATUS = ROOT / "STRATEGY_STATUS.csv"
 PERFORMANCE_LIMITS = ROOT / "POOLED_BACKTEST_PERFORMANCE_LIMIT.json"
+OOM_LIMITS = ROOT / "POOLED_BACKTEST_OOM_LIMIT.json"
 # The window lives in exactly one place - `profile_full_window.TIMERANGE` -
 # so this stays a per-mode lookup through that module rather than its own
 # copy of the same two dates. A second constant is how this file spent
@@ -76,6 +77,24 @@ def performance_limits() -> dict:
     return json.loads(PERFORMANCE_LIMITS.read_text(encoding="utf-8"))["results"]
 
 
+def oom_limits() -> dict:
+    """Strategies confirmed to hit the OOM killer under the most generous
+    resource conditions this audit offers - not just under load.
+
+    A `resource_inconclusive` result (SIGKILL, no exception) is ordinarily
+    retried, because it may just mean this row lost a memory race against a
+    concurrent worker. `POOLED_BACKTEST_OOM_LIMIT.json` holds strategies that
+    stayed `resource_inconclusive` after the 2026-09-07 move to a 16GB VM
+    with `--workers 1` - one process, the entire budget to itself, nothing
+    left to blame but the strategy's own memory footprint. Retrying those
+    further only spends another ~200s per pass confirming what is already
+    confirmed.
+    """
+    if not OOM_LIMITS.exists():
+        return {}
+    return json.loads(OOM_LIMITS.read_text(encoding="utf-8"))["results"]
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--strategy", action="append", default=[])
@@ -103,7 +122,10 @@ def main(argv=None) -> int:
     # same reason it failed before repair - this runner reads the manifest
     # `profile_full_window.py` already reads, it just never asked before.
     overrides = profile_full_window.repair_overrides()
-    limited = performance_limits()
+    # (status this strategy is retired under, its confirmation source) - checked
+    # in this order so a strategy present in both is reported as its first match.
+    retired = [("performance_limited", performance_limits()),
+               ("oom_confirmed", oom_limits())]
     data.update({"schema_version": 1, "timerange": TIMERANGE,
                  "measurement_scope": "canonical_pooled_native_pair_universe"})
 
@@ -146,17 +168,20 @@ def main(argv=None) -> int:
         if (not args.force and previous.get("status") == "measured" and
                 all(previous.get(key) == value for key, value in identity.items())):
             return strategy, previous, True
-        if not args.force and previous.get("status") == "performance_limited":
+        if not args.force and previous.get("status") in {status for status, _ in retired}:
             return strategy, previous, True
-        if strategy in limited:
-            # Confirmed to hit the fixed 3600s ceiling reproducibly (see
-            # POOLED_BACKTEST_PERFORMANCE_LIMIT.json) - applying this the
-            # first time a strategy qualifies retires it without spending
-            # another hour to reconfirm what two prior timeouts already did.
+        for status, confirmations in retired:
+            if strategy not in confirmations:
+                continue
+            # Confirmed unable to reach `measured` under the best conditions
+            # this runner offers (see POOLED_BACKTEST_PERFORMANCE_LIMIT.json /
+            # POOLED_BACKTEST_OOM_LIMIT.json) - applying this the first time a
+            # strategy qualifies retires it without spending another attempt
+            # to reconfirm what earlier ones already did.
             result = dict(identity)
             result.update({
-                "status": "performance_limited",
-                "why": limited[strategy]["why"],
+                "status": status,
+                "why": confirmations[strategy]["why"],
                 "measurement_scope": "canonical_pooled_native_pair_universe",
                 "attempted_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
             })

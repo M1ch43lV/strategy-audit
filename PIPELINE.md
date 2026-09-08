@@ -171,6 +171,19 @@ volle Stunde zu verbrauchen. Die Strategie bleibt zugelassen
 (`E1_expanded`) — es fehlt ihr dauerhaft nur die gepoolte
 Performance-Kennzahl für Stufe 9.
 
+**Dasselbe Prinzip für bestätigten Speichermangel.** 52 Strategien
+(BBRSI2/BBands/BinHV45-\*/Cluc\*-Familie u.a.) waren `resource_inconclusive`
+sowohl unter der ursprünglichen 13-14GB/`--workers 2`-Einstellung als auch
+danach, nach der Anhebung auf 16GB VM-Speicher mit `--workers 1` am
+2026-09-07 — ein einzelner Prozess mit dem vollen Speicherbudget, keine
+Nebenläufigkeit mehr, die die Schuld tragen könnte. Das entkräftet
+Ressourcenkonkurrenz als Ursache; übrig bleibt der eigene
+Speicherverbrauch der Strategie über 8 Paare und 6,5 Jahre.
+`POOLED_BACKTEST_OOM_LIMIT.json` hält die Bestätigung fest,
+`regime/full_backtest.py` setzt den Status einmalig auf `oom_confirmed`
+statt endlos erneut zu versuchen. Auch hier: weiterhin zugelassen, nur
+ohne Stufe-9-Kennzahl.
+
 **Korrektur 2026-09-07: `profile_full_window.py` ist nicht für die ganze
 E1-Kohorte nötig, nur für Zero-Trade-Kandidaten.** Die Zitation oben
 (`REGIME_AUDIT_PLAN.md` §28.1) trägt diese Behauptung nicht — §28.1 handelt

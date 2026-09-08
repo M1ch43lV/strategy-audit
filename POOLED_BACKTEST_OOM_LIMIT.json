@@ -1,0 +1,215 @@
+{
+  "description": "Strategies confirmed to hit the OOM killer (SIGKILL, no exception logged) both under the original 13-14GB / --workers 2 pooled-backtest setup and again after the 2026-09-07 increase to a 16GB VM with --workers 1 - a single process given the entire memory budget, no concurrent worker left to blame. A strategy listed here is excluded from regime/full_backtest.py's automatic retry so it does not keep re-attempting a run that has already failed under the most generous resource conditions this audit can offer. It stays admitted (E1_expanded); it permanently lacks a Stufe-9 pooled-performance figure, the same consequence as POOLED_BACKTEST_PERFORMANCE_LIMIT.json.",
+  "confirmed_at": "2026-09-08",
+  "schema_version": 1,
+  "results": {
+    "BBRSI2": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "BBands": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 3 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "BbandRsi": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 3 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "BinHV45": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 3 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "BinHV45HO": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "BinHV45_kanaxe": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "BinHV45_stash": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "BinHV45_werkkrew": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "Cluc4": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "Cluc4werk": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 3 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "Cluc5werk": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 3 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "Cluc7werk": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 3 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "ClucHAnix": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "ClucHAnix_BB_RPB": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "ClucHAnix_BB_RPB_HO2": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "ClucHAnix_BB_RPB_MOD": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "ClucHAwerk": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "CombinedBinHAndClucHyper": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "CombinedBinHAndClucHyperV0": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "CombinedBinHAndClucHyperV3": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "Combined_Indicators": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "Combined_NFIv7_SMA_Rallipanos_20210707": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "EasyInEasyOut": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "FisherHull": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "GPTREV": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "JustROCR5": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "JustROCR6": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "Low_BB": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "MiniLambo": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "NASOSRv6_private_Reinuvader_20211121": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "NFINextMultiOffsetAndHO2": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "NostalgiaForInfinity772martinsk3": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "NostalgiaForInfinityNext772": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "NostalgiaForInfinityNextV7155": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "NostalgiaForInfinityNext_maximizer": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "NostalgiaForInfinityV7_7_2": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "SRsi": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "Scalp": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "SmoothScalp": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "Stavix2": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "StrategyScalpingFast": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "StrategyScalpingFast2": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "SuperTrend": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "TEMA": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "TemaMaster3": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "XebTradeStrat": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "YOLO": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "adx_opt_strat": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "mark_strat": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "mark_strat_opt": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "simple_patterns": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    },
+    "strato": {
+      "verdict": "oom_confirmed",
+      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
+    }
+  }
+}
