@@ -342,7 +342,7 @@ CRITERIA = [
         "evidence": "`BLOCKED_TRIAGE.json` names the exact missing module "
                     "for each row, found by importing the file directly in "
                     "the pinned runtime rather than trusting freqtrade's "
-                    "generic \"does not exist\" message. `Dockerfile.audit-"
+                    "generic \"does not exist\" message. `runtime/Dockerfile.audit-"
                     "packages` records what was checked and installed for "
                     "the four rows it resolved.",
         "watch": "Not a finding that the strategy is broken - several of "

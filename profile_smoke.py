@@ -28,8 +28,8 @@ import runlog
 ROOT = os.path.dirname(os.path.abspath(__file__))
 MANIFEST = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
 OUTPUT = os.path.join(ROOT, "PROFILE_SMOKE.json")
-FUTURES_CONFIG = os.path.join(ROOT, "profile_futures_config.json")
-SPOT_CONFIG = os.path.join(ROOT, "profile_spot_config.json")
+FUTURES_CONFIG = os.path.join(ROOT, "runtime", "profile_futures_config.json")
+SPOT_CONFIG = os.path.join(ROOT, "runtime", "profile_spot_config.json")
 # Use the interpreter running this pipeline. PROFILE_PYTHON remains available
 # for an explicit isolated runtime, while Docker/WSL can use their own Python.
 PYTHON = os.environ.get("PROFILE_PYTHON", sys.executable)

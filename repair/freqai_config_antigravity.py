@@ -55,7 +55,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUTHOR = os.path.join(ROOT, "repos", "Vijay190899_Trade-Bot", "config",
                       "config_backtest.json")
-BASE = os.path.join(ROOT, "profile_spot_config.json")
+BASE = os.path.join(ROOT, "runtime", "profile_spot_config.json")
 OUT_DIR = os.path.join(ROOT, "user_data", "freqai_configs")
 TARGETS = ("AntigravityStrategy", "AntigravityStrategyV3")
 BASE_TIMEFRAME = "1h"

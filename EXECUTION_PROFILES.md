@@ -60,7 +60,7 @@ not silently deleted from the corpus.
 
 ## Runtime validation rule
 
-Futures checks use `profile_futures_config.json` and the verified local Binance
+Futures checks use `runtime/profile_futures_config.json` and the verified local Binance
 USDT-M store. Across the eight requested pairs, the common native candle period
 starts on 2020-02-04. Spot and futures results are separate run profiles because
 funding, leverage, pair notation, and available history differ.

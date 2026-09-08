@@ -186,7 +186,7 @@ ohne Stufe-9-Kennzahl.
 
 **Dritte Kategorie: unbegrenztes Einsatzwachstum.** `FastSupertrend_optim3_rsi_75lev`
 scheiterte bei 37% des gepoolten Laufs mit `Stake amount 12570778.900608359
-too high for XMR/USDT:USDT`. Ursache: `profile_futures_config.json` setzt
+too high for XMR/USDT:USDT`. Ursache: `runtime/profile_futures_config.json` setzt
 `stake_amount: unlimited`, die Strategie hält 5×-Hebel fest und lässt
 Gewinne laufen (`minimal_roi = {"0": 0.99}`) — über genug profitable Jahre
 wächst das Wallet exponentiell, bis der errechnete Einsatz jede reale

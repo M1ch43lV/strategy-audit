@@ -5,13 +5,13 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$auditPath = (Resolve-Path -LiteralPath $PSScriptRoot).Path
+$auditPath = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
 $image = "strategy-audit-runtime:2026.7"
 
 docker image inspect $image *> $null
 if ($RebuildRuntime -or $LASTEXITCODE -ne 0) {
     docker build --provenance=false `
-        -f (Join-Path $auditPath "Dockerfile.audit") `
+        -f (Join-Path $PSScriptRoot "Dockerfile.audit") `
         -t $image $auditPath
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
@@ -22,11 +22,12 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 # Single sequential writer for the zero-warm-up diagnostic pilot. Each attempt
 # is stored under its own startup value the moment it exists, so an interrupted
 # container leaves finished attempts intact and the same command resumes.
-# Pass --cohort wave_c_refusals for the seven Wave C rows the analyzer refused.
+# Measures look-ahead natively for every convergence candidate that lacks a
+# verdict of its own. Fills a gap; never re-decides a native verdict.
 docker run --rm `
     -e "PROFILE_RUNTIME_ID=docker:$imageId" `
     -v "${auditPath}:/audit" `
     -w /audit `
     --entrypoint python `
-    $image eligibility_warmup.py @RunArguments
+    $image eligibility_lookahead_backfill.py @RunArguments
 exit $LASTEXITCODE

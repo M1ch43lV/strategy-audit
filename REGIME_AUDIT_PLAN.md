@@ -1622,14 +1622,14 @@ separate from the subsequent bias finding.
 **Timing:** after Windows infrastructure failure, before further bias results
 **Class:** operational reproducibility; no strategy or selection-rule change
 **Decision:** run the remaining native bias diagnostics in the versioned
-`Dockerfile.audit` runtime when Windows Smart App Control blocks unsigned PyPI
+`runtime/Dockerfile.audit` runtime when Windows Smart App Control blocks unsigned PyPI
 DLLs. The image pins Freqtrade 2026.7 and the same NumPy, pandas, SciPy, TA-Lib,
 and non-FreqAI optional strategy dependencies as the original audit
 environment. The
 repository is mounted read/write so raw ignored candles are reused, while
 `profile_bias.py` records the container image ID with each new diagnostic.
 The global Class 1 compatibility aliases are activated through the versioned
-`repair/sitecustomize.py` in every subprocess. `profile_bias_docker.ps1`
+`repair/sitecustomize.py` in every subprocess. `runtime/profile_bias_docker.ps1`
 rebuilds and launches this runtime.
 **Validation:** FTT first reproduced its old RMI failure boundary, then passed
 look-ahead analysis after the already classified Class 1 repairs were present.
@@ -1667,7 +1667,7 @@ stable on a mixed original/repaired futures batch before wider execution.
 **Class:** measurement and environment-parity checkpoint; no selection-rule
 change
 **Decision:** add the non-FreqAI optional packages already present in the
-original Windows audit environment to `requirements-audit-runtime.txt`, then
+original Windows audit environment to `runtime/requirements-audit-runtime.txt`, then
 rerun the second five-strategy futures batch in one fingerprinted image.
 `FastSupertrend_ts_origstop_fix`, `momentum`, `momentum_rsi`, and
 `momentum_wick` pass both native bias gates and become eligible. `ToTheMoon`
@@ -1792,7 +1792,7 @@ strategy change
 source and effective runtime-config hashes match the current execution profile.
 A measured positive trade count replaces zero-trade smoke evidence; a measured
 zero becomes `no_trades_in_full_measurement`; failures and timeouts leave the
-strategy pending. `profile_smoke_docker.ps1` binds each result to the pinned
+strategy pending. `runtime/profile_smoke_docker.ps1` binds each result to the pinned
 container image. The first calibration runs `FOttStrategy` over
 2020-03-01 through 2026-08-21 exclusive and reaches the fixed 1800-second
 limit while remaining CPU-active. It is recorded as `timeout`, not as zero

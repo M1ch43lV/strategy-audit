@@ -1583,21 +1583,21 @@ RUNTIME_OUT = os.path.join(ROOT, "RUNTIME_ENVIRONMENTS.md")
 
 IMAGES = {
     "strategy-audit-runtime:2026.7": {
-        "dockerfile": "Dockerfile.audit",
+        "dockerfile": "runtime/Dockerfile.audit",
         "base": "freqtradeorg/freqtrade:2026.7 (pinned digest)",
-        "adds": "requirements-audit-runtime.txt: numpy 2.5.2, pandas 3.0.5, "
+        "adds": "runtime/requirements-audit-runtime.txt: numpy 2.5.2, pandas 3.0.5, "
                 "scipy 1.18.1, TA-Lib 0.7.1, and the corpus's other ordinary "
                 "dependencies.",
         "purpose": "The default. Every row not listed under one of the "
                    "images below runs on this one.",
     },
     "strategy-audit-tensorflow-runtime:2026.7": {
-        "dockerfile": "Dockerfile.audit-tensorflow",
+        "dockerfile": "runtime/Dockerfile.audit-tensorflow",
         "base": "python:3.12-slim (pinned digest) + freqtrade==2026.7 "
                 "installed directly - a different base line from the "
                 "default image, not a layer on top of it.",
-        "adds": "requirements-audit-tensorflow.txt: the same "
-                "requirements-audit-runtime.txt, plus tensorflow==2.21.0, "
+        "adds": "runtime/requirements-audit-tensorflow.txt: the same "
+                "runtime/requirements-audit-runtime.txt, plus tensorflow==2.21.0, "
                 "keras==3.15.1, matplotlib==3.11.1. Its own build asserts "
                 "numpy/pandas/scipy/talib/freqtrade land at the exact "
                 "versions the default image pins, despite the different "
@@ -1607,10 +1607,10 @@ IMAGES = {
                    "load time, independent of anything this audit does.",
     },
     "strategy-audit-packages-runtime:2026.7": {
-        "dockerfile": "Dockerfile.audit-packages",
+        "dockerfile": "runtime/Dockerfile.audit-packages",
         "base": "strategy-audit-runtime:2026.7 - a layer on top of the "
                 "default image, not a separate base line.",
-        "adds": "requirements-audit-packages.txt: matplotlib, catboost, "
+        "adds": "runtime/requirements-audit-packages.txt: matplotlib, catboost, "
                 "tslearn, pykalman. Each was checked with `pip install "
                 "--dry-run` before being added - numpy, pandas and scipy "
                 "were already satisfied at the pinned versions for all "

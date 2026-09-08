@@ -430,7 +430,7 @@ with Freqtrade 2026.7, TensorFlow 2.21.0, XGBoost 3.4.1, NumPy 2.5.2, pandas
 the boundary is environment compatibility, not a Class 2 strategy edit.
 
 When Windows Application Control later blocked that environment, the canonical
-pooled `BuyRegions` run moved to `Dockerfile.audit-tensorflow`: a separate
+pooled `BuyRegions` run moved to `runtime/Dockerfile.audit-tensorflow`: a separate
 digest-pinned Python 3.12 Linux base with the same Freqtrade, TensorFlow, Keras,
 NumPy, pandas, SciPy, and TA-Lib versions. The standard Python 3.14 audit image
 is unchanged. The manifest records the special image digest, and neither the
@@ -442,7 +442,7 @@ The frozen spot basket intentionally retains XMR/USDT through its documented
 2024-02-20 Binance delisting boundary. Current Freqtrade's `StaticPairList`
 otherwise removes an inactive market before backtesting and reports `No pair in
 whitelist`, even though complete historical candles are locally available.
-`profile_spot_config.json` and the generated canonical spot-bias config therefore
+`runtime/profile_spot_config.json` and the generated canonical spot-bias config therefore
 enable StaticPairList's documented `allow_inactive` option. This changes no strategy signal or historical price;
 it permits the preregistered available-history run that the coverage policy
 already requires.

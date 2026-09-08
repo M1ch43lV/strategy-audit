@@ -6,7 +6,7 @@ FROM ${BASE_IMAGE}
 # audit runtime; only the interpreter boundary differs.
 ENV PYTHONPATH=/audit/repair
 
-COPY requirements-audit-runtime.txt requirements-audit-tensorflow.txt /tmp/
+COPY runtime/requirements-audit-runtime.txt runtime/requirements-audit-tensorflow.txt /tmp/
 RUN python -m pip install --no-cache-dir \
       freqtrade==2026.7 \
       -r /tmp/requirements-audit-tensorflow.txt \

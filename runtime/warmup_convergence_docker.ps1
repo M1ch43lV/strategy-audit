@@ -5,13 +5,13 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$auditPath = (Resolve-Path -LiteralPath $PSScriptRoot).Path
+$auditPath = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
 $image = "strategy-audit-runtime:2026.7"
 
 docker image inspect $image *> $null
 if ($RebuildRuntime -or $LASTEXITCODE -ne 0) {
     docker build --provenance=false `
-        -f (Join-Path $auditPath "Dockerfile.audit") `
+        -f (Join-Path $PSScriptRoot "Dockerfile.audit") `
         -t $image $auditPath
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
@@ -19,12 +19,15 @@ if ($RebuildRuntime -or $LASTEXITCODE -ne 0) {
 $imageId = docker image inspect $image --format '{{.Id}}'
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-# Single sequential writer: one pooled run at a time, written atomically after
-# each strategy, so an interrupted container leaves finished rows intact.
+# Single sequential writer for the zero-warm-up diagnostic pilot. Each attempt
+# is stored under its own startup value the moment it exists, so an interrupted
+# container leaves finished attempts intact and the same command resumes.
+# Walks the frozen warm-up ladder and stops at the first value inside the band.
+# --cohort selects which frozen cohort to walk; see REGIME_PREREGISTRATION.md.
 docker run --rm `
     -e "PROFILE_RUNTIME_ID=docker:$imageId" `
     -v "${auditPath}:/audit" `
     -w /audit `
     --entrypoint python `
-    $image trailing_sensitivity.py @RunArguments
+    $image warmup_convergence.py @RunArguments
 exit $LASTEXITCODE

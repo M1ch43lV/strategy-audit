@@ -14,7 +14,7 @@ FROM ${BASE_IMAGE}
 # audit stack in every case - none of them needed a newer core to install.
 # The assertion below is the same one strategy-audit-runtime's own Dockerfile
 # makes, repeated after these installs to prove nothing shifted regardless.
-COPY --chown=ftuser:ftuser requirements-audit-packages.txt /tmp/
+COPY --chown=ftuser:ftuser runtime/requirements-audit-packages.txt /tmp/
 RUN python -m pip install --user --no-cache-dir \
       -r /tmp/requirements-audit-packages.txt \
     && python -c "import freqtrade,numpy,pandas,scipy,talib; assert freqtrade.__version__ == '2026.7'; assert numpy.__version__ == '2.5.2'; assert pandas.__version__ == '3.0.5'; assert scipy.__version__ == '1.18.1'; assert talib.__version__ == '0.7.1'" \

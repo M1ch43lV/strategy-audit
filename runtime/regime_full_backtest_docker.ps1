@@ -6,7 +6,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$auditPath = (Resolve-Path -LiteralPath $PSScriptRoot).Path
+$auditPath = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
 if ($TensorflowRuntime) {
     $image = "strategy-audit-tensorflow-runtime:2026.7"
     $dockerfile = "Dockerfile.audit-tensorflow"
@@ -18,7 +18,7 @@ if ($TensorflowRuntime) {
 $existingImageId = docker image ls --quiet $image
 if ($RebuildRuntime -or -not $existingImageId) {
     docker build --provenance=false `
-        -f (Join-Path $auditPath $dockerfile) `
+        -f (Join-Path $PSScriptRoot $dockerfile) `
         -t $image $auditPath
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }

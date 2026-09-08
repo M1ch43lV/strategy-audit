@@ -1,7 +1,8 @@
 **
-!Dockerfile.audit
-!Dockerfile.audit-tensorflow
-!Dockerfile.audit-packages
-!requirements-audit-runtime.txt
-!requirements-audit-tensorflow.txt
-!requirements-audit-packages.txt
+!runtime/
+!runtime/Dockerfile.audit
+!runtime/Dockerfile.audit-tensorflow
+!runtime/Dockerfile.audit-packages
+!runtime/requirements-audit-runtime.txt
+!runtime/requirements-audit-tensorflow.txt
+!runtime/requirements-audit-packages.txt

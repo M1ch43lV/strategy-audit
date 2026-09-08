@@ -52,6 +52,7 @@ strategy-audit/
 │   Resumable benchmark manifests, archives, and regime summaries
 ├── repair/                 Compatibility overlays and repair provenance
 ├── tools/                  Manual generators, triage, and publication tools
+├── runtime/                Dockerfiles, requirements, configs, and wrappers
 ├── cluster/                A-priori strategy taxonomy, never an entry gate
 ├── repos/                  Downloaded upstream sources; not versioned
 ├── user_data/              Candles and Freqtrade runtime state; not versioned

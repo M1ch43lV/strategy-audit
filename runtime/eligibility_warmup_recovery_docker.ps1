@@ -5,13 +5,13 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$auditPath = (Resolve-Path -LiteralPath $PSScriptRoot).Path
+$auditPath = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
 $image = "strategy-audit-runtime:2026.7"
 
 docker image inspect $image *> $null
 if ($RebuildRuntime -or $LASTEXITCODE -ne 0) {
     docker build --provenance=false `
-        -f (Join-Path $auditPath "Dockerfile.audit") `
+        -f (Join-Path $PSScriptRoot "Dockerfile.audit") `
         -t $image $auditPath
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
@@ -19,12 +19,15 @@ if ($RebuildRuntime -or $LASTEXITCODE -ne 0) {
 $imageId = docker image inspect $image --format '{{.Id}}'
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-# Writes ELIGIBILITY_TIMEFRAME_EVIDENCE.json only, so it never contends with
-# the smoke or full-window manifests; each row is stored as soon as it exists.
+# Single sequential writer for the zero-warm-up diagnostic pilot. Each attempt
+# is stored under its own startup value the moment it exists, so an interrupted
+# container leaves finished attempts intact and the same command resumes.
+# Pass --cohort wave_c_refusals for the seven Wave C rows the analyzer refused.
+# --write-manifest freezes the derived startup values; --run tests them.
 docker run --rm `
     -e "PROFILE_RUNTIME_ID=docker:$imageId" `
     -v "${auditPath}:/audit" `
     -w /audit `
     --entrypoint python `
-    $image eligibility_timeframe_evidence.py @RunArguments
+    $image eligibility_warmup_recovery.py @RunArguments
 exit $LASTEXITCODE
