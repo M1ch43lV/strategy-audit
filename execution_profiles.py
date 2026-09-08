@@ -21,7 +21,7 @@ import json
 import os
 import sys
 
-from repair_overrides import sibling_config_timeframe
+from repair_overrides import repair_overrides, sibling_config_timeframe
 import warnings
 
 
@@ -411,6 +411,7 @@ def build(repair_root=DEFAULT_REPAIR):
     smoke_results = _smoke_results()
     profile_repairs = _profile_repairs()
     profile_class1 = _profile_class1()
+    timeframe_repairs = repair_overrides()
     rows = []
 
     for item in discover():
@@ -422,22 +423,36 @@ def build(repair_root=DEFAULT_REPAIR):
         timeframe, declared_timeframe_source = declared_timeframe(node)
         environment = profile_class1.get(strategy) or {}
         config_timeframe = _config_timeframe(environment)
-        # A third source, tried last: some strategies read timeframe from a
-        # same-directory Config*.py the source scan above never opens (it
-        # only reads the strategy file itself). warmup_convergence.py found
-        # this the hard way when its own candle math had nothing to resolve
-        # against despite the row already running a real Probelauf - see
-        # sibling_config_timeframe()'s docstring. Shared function, so this
-        # and the ladder can never end up with two different answers for the
-        # same file.
+        # A third source, tried before the fourth: some strategies read
+        # timeframe from a same-directory Config*.py the source scan above
+        # never opens (it only reads the strategy file itself).
+        # warmup_convergence.py found this the hard way when its own candle
+        # math had nothing to resolve against despite the row already
+        # running a real Probelauf - see sibling_config_timeframe()'s
+        # docstring. Shared function, so this and the ladder can never end
+        # up with two different answers for the same file.
         config_sibling_timeframe = (
             None if (timeframe or config_timeframe)
             else sibling_config_timeframe(_rel(original_path)))
+        # A fourth and last source: a value recovered by a repair route with
+        # no source location at all to scan - Argrelextrema's timeframe is a
+        # comment ("# timeframe = '5m'"), not a live assignment, so nothing
+        # above ever sees it. eligibility_timeframe_repair.py already found
+        # it and warmup_convergence.py/profile_bias.py already run with it
+        # via this same repair_overrides() lookup; regime_coverage.py reads
+        # this row's timeframe from this CSV alone, so leaving this source
+        # out left a row with a native look-ahead PASS and a settled ladder
+        # stuck on "coverage: unsupported_or_unknown_profile" indefinitely.
+        repair_timeframe = (
+            None if (timeframe or config_timeframe or config_sibling_timeframe)
+            else (timeframe_repairs.get(strategy) or {}).get("timeframe"))
         execution_timeframe = normalize_timeframe(
-            timeframe or config_timeframe or config_sibling_timeframe)
+            timeframe or config_timeframe or config_sibling_timeframe
+            or repair_timeframe)
         timeframe_source = (declared_timeframe_source if timeframe else
                             "author_config" if config_timeframe else
                             "author_sibling_config" if config_sibling_timeframe else
+                            "repair_override" if repair_timeframe else
                             "unresolved")
         long_entry, short_entry, methods, _writes = entry_writes(node)
         profile = _profile(original_path, node, can_short, long_entry, short_entry, methods)
