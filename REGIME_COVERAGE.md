@@ -18,19 +18,19 @@ each result to file size, temporal edges, row count, and duplicate count.
 
 | Status | Strategy profiles |
 |---|---:|
-| `PASS` | 1004 |
-| `PENDING` | 46 |
+| `PASS` | 1006 |
+| `PENDING` | 44 |
 
 ## Run profiles
 
 | Run profile / status | Strategies |
 |---|---:|
 | `futures_long / PASS` | 45 |
-| `futures_long_short / PASS` | 95 |
-| `futures_long_short / PENDING` | 8 |
+| `futures_long_short / PASS` | 96 |
+| `futures_long_short / PENDING` | 7 |
 | `futures_short / PASS` | 5 |
-| `spot_long / PASS` | 859 |
-| `spot_long / PENDING` | 36 |
+| `spot_long / PASS` | 860 |
+| `spot_long / PENDING` | 35 |
 | `unknown / PENDING` | 2 |
 
 ## Pending data conditions
@@ -39,7 +39,7 @@ Counts are row counts and may overlap.
 
 | Condition | Rows |
 |---|---:|
-| Unsupported, missing, or unknown timeframe/profile | 45 |
+| Unsupported, missing, or unknown timeframe/profile | 43 |
 | One or more required pair files missing | 0 |
 | One or more temporal edges incomplete | 1 |
 | Futures mark/funding feed incomplete | 0 |
