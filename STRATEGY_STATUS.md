@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1050 rows
 
-**Generated 2026-09-08 20:10:16 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-08 20:47:35 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -31,20 +31,21 @@ have neither and are left empty rather than given an invented time.
 | | Strategies |
 |---|---:|
 | in the manifest | 1050 |
-| measured at all | 875 |
-| produced trades | 832 |
+| measured at all | 880 |
+| produced trades | 837 |
 | carrying a run time | 1041 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
-| `E1_expanded` | 657 |
-| `excluded` | 255 |
-| `pending` | 51 |
+| `E1_expanded` | 659 |
+| `excluded` | 256 |
+| `pending` | 46 |
 | `exclusion_unconfirmed` | 39 |
 | `too_few_trades` | 29 |
 | `not_a_strategy` | 19 |
+| `convergence_candidate` | 2 |
 
 ## Timeframe and signal family
 
@@ -126,7 +127,7 @@ than a pick-one-source figure. 4 of 1050 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 1046 rows that do: **64.9 hours** of this audit's own compute so far.
+Summed across the 1046 rows that do: **65.0 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -264,7 +265,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1463 of 2636 commands are recorded so far, and every new run
+recording. 1468 of 2636 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -284,7 +285,7 @@ evaluate a single signal without it. The warm-up ladder passes
 `--startup-candle` with every rung at once, which is why one run
 reports the whole ladder.
 
-## Passing - 657 strategies
+## Passing - 659 strategies
 
 Every original gate returned `PASS`: measured in its native mode,
 produced trades, clean look-ahead and recursion, complete candle
@@ -307,6 +308,7 @@ coverage, no published trap.
 | `AlligatorStrategy` | `spot_long` | `E1_expanded` | 1839 | `convergence:720:warmup_supplied` | 2026-09-01 13:00:43 | [log](user_data/convergence_logs/AlligatorStrategy-ladder.log) |
 | `AlmgrenChrissStrategy` | `futures_long_short` | `E1_expanded` | 818 | `convergence:192:warmup_supplied` | 2026-09-01 13:01:08 | [log](user_data/convergence_logs/AlmgrenChrissStrategy-ladder.log) |
 | `AlwaysBuy` | `spot_long` | `E1_expanded` | 32359 | `convergence:288:warmup_supplied` | 2026-09-01 23:39:39 | [log](user_data/convergence_logs/AlwaysBuy-ladder.log) |
+| `AntigravityGridStrategy` | `spot_long` | `E1_expanded` | 172 | `convergence:672:warmup_supplied` | 2026-09-08 17:17:10 | [archive](user_data/profile_smoke/AntigravityGridStrategy-c15a2d4c-2026-09-08_17-17-10.zip) [log](user_data/convergence_logs/AntigravityGridStrategy-c15a2d4c-ladder.log) |
 | `Apollo11` | `spot_long` | `E1_expanded` | 6378 | `convergence:1344:warmup_supplied` | 2026-09-01 13:01:32 | [log](user_data/convergence_logs/Apollo11-ladder.log) |
 | `Argrelextrema` | `futures_long_short` | `E1_expanded` | 5473 | `convergence:30` | 2026-09-08 12:38:07 | [archive](user_data/profile_smoke/Argrelextrema-0ba99988-2026-09-08_12-38-07.zip) [log](user_data/convergence_logs/Argrelextrema-0ba99988-ladder.log) |
 | `AroonTrendStrategy` | `spot_long` | `E1_expanded` | 24271 | `convergence:288:warmup_supplied` | 2026-09-01 12:08:07 | [log](user_data/convergence_logs/AroonTrendStrategy-ladder.log) |
@@ -564,6 +566,7 @@ coverage, no published trap.
 | `Hacklemost` | `spot_long` | `E1_expanded` | 168 | `convergence:288:warmup_supplied` | 2026-09-01 14:07:44 | [log](user_data/convergence_logs/Hacklemost-ladder.log) |
 | `HansenSmaOffsetV1` | `spot_long` | `E1_expanded` | 119 | `convergence:96:warmup_supplied` | 2026-09-01 14:08:31 | [log](user_data/convergence_logs/HansenSmaOffsetV1-ladder.log) |
 | `HeikinAshiStrategy` | `spot_long` | `E1_expanded` | 26155 | `convergence:288:warmup_supplied` | 2026-09-01 12:26:36 | [log](user_data/convergence_logs/HeikinAshiStrategy-ladder.log) |
+| `HighFreqDemo` | `futures_long_short` | `E1_expanded` | 5914 | `convergence:1440:warmup_supplied` | 2026-09-08 17:14:22 | [archive](user_data/profile_smoke/HighFreqDemo-006fcf90-2026-09-08_17-14-22.zip) [log](user_data/convergence_logs/HighFreqDemo-006fcf90-ladder.log) |
 | `HigherHighStrategy` | `spot_long` | `E1_expanded` | 26360 | `convergence:288:warmup_supplied` | 2026-09-01 12:27:00 | [log](user_data/convergence_logs/HigherHighStrategy-ladder.log) |
 | `HilbertSineWave` | `spot_long` | `E1_expanded` | 4447 | `convergence:336:warmup_supplied` | 2026-09-01 15:56:37 | [log](user_data/convergence_logs/HilbertSineWave-ladder.log) |
 | `HourBasedStrategy` | `spot_long` | `E1_expanded` | 10884 | `convergence:24:warmup_supplied` | 2026-09-01 14:09:19 | [log](user_data/convergence_logs/HourBasedStrategy-ladder.log) |
@@ -1034,6 +1037,12 @@ The calls behind each, one per gate:
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy AlwaysBuy --strategy-path user_data/profile_bias_strategies/AlwaysBuy --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/AlwaysBuy_startup_288.json --strategy AlwaysBuy --strategy-path user_data/profile_bias_strategies/AlwaysBuy --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
+  ```
+- `AntigravityGridStrategy`
+  ```
+  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy AntigravityGridStrategy --strategy-path repos/Vijay190899_Trade-Bot/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AntigravityGridStrategy-c15a2d4c --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy AntigravityGridStrategy --strategy-path user_data/profile_bias_strategies/AntigravityGridStrategy-c15a2d4c --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy AntigravityGridStrategy --strategy-path user_data/profile_bias_strategies/AntigravityGridStrategy-c15a2d4c --timerange 20190101-20190401 --no-color --startup-candle 96 192 672 1344 2880
   ```
 - `Apollo11`
   ```
@@ -2414,6 +2423,12 @@ The calls behind each, one per gate:
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy HeikinAshiStrategy --strategy-path user_data/profile_bias_strategies/HeikinAshiStrategy --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy HeikinAshiStrategy --strategy-path user_data/profile_bias_strategies/HeikinAshiStrategy --timerange 20190101-20190401 --no-color
+  ```
+- `HighFreqDemo`
+  ```
+  backtest   [recorded] freqtrade backtesting --config profile_futures_config.json --strategy HighFreqDemo --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/HighFreqDemo-006fcf90 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config profile_futures_config.json --strategy HighFreqDemo --strategy-path user_data/profile_bias_strategies/HighFreqDemo-006fcf90 --timerange 20200301-20200401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config profile_futures_config.json --strategy HighFreqDemo --strategy-path user_data/profile_bias_strategies/HighFreqDemo-006fcf90 --timerange 20200301-20200401 --no-color --startup-candle 1440
   ```
 - `HigherHighStrategy`
   ```
@@ -4466,24 +4481,34 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Pending - 51 strategies
+## Convergence candidates - 2 strategies
+
+A warm-up exists at which every indicator stays inside the band.
+That is not admission: the paired full-window run must still show
+an identical trade list.
+
+| Strategy | Profile | Chosen warm-up | Worst drift | Tested | Results |
+|---|---|---|---|---|---|
+| `MeanReversionTrend` | `spot_long` | 336 candles | 0.0% on `ema200_4h` | 2026-09-08 17:21:22 | `user_data/convergence_logs/MeanReversionTrend-9c6041b5-ladder.log` |
+| `TrendBreakout` | `spot_long` | 365 candles | 0.317% on `ema200` | 2026-09-08 17:15:05 | `user_data/convergence_logs/TrendBreakout-9b18ab53-ladder.log` |
+
+## Pending - 46 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
 
-`AdaptiveRegime`, `AlexStrategyFinalV8`, `AlexStrategyFinalV9`, `AntigravityStrategy`
-`AntigravityStrategyV3`, `Astro`, `AutoArimaTripleV1`, `BBKCBounce`
-`BTCMACDCross`, `BestSingleAssetPortfolio`, `Bins`, `BlueEyes_MPP_v1`
-`CryptoFrogNFI2`, `DELTA_NEUTRAL`, `DWTHO`, `DWT_LongShortHO`
-`DonchianBounce`, `E0V1EAI`, `ExampleLSTMStrategy`, `FileLoadingStrategy`
-`GRIDDMIPRICEStrategyFutureV4`, `GodStra`, `Guacamole`, `HLHB`
-`Kamaflage`, `LiquiditySweep`, `MasterMoniGoManiHyperStrategy`, `MultiMa`
+`AlexStrategyFinalV8`, `AlexStrategyFinalV9`, `Astro`, `AutoArimaTripleV1`
+`BBKCBounce`, `BTCMACDCross`, `BestSingleAssetPortfolio`, `Bins`
+`BlueEyes_MPP_v1`, `CryptoFrogNFI2`, `DELTA_NEUTRAL`, `DWTHO`
+`DWT_LongShortHO`, `DonchianBounce`, `E0V1EAI`, `ExampleLSTMStrategy`
+`FileLoadingStrategy`, `GRIDDMIPRICEStrategyFutureV4`, `GodStra`, `Guacamole`
+`HLHB`, `Kamaflage`, `MasterMoniGoManiHyperStrategy`, `MultiMa`
 `MyStrategyNew10`, `NowoIchimoku1hV1`, `ONS_Portfolio`, `Proton`
 `QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`, `RebalanceStrategySpot`
 `RenkoYolo`, `SMAOPv1_TTF`, `Schism5`, `Schism6`
-`Solipsis_v4`, `TEMABounce`, `TrendFutures`, `TuplaBollinger`
-`UpSliceStrategy`, `WTHO`, `avellaneda`, `delist_shorter_strategy`
-`haGradient`, `multi_tf`, `tacos1`
+`Solipsis_v4`, `TEMABounce`, `TuplaBollinger`, `UpSliceStrategy`
+`WTHO`, `avellaneda`, `delist_shorter_strategy`, `haGradient`
+`multi_tf`, `tacos1`
 
 ## Exclusion unconfirmed - 39 strategies
 
@@ -4497,9 +4522,9 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_verdict_on_lookahead` | `no_finding` | 23 |
-| `unclassified` | `no_finding` | 8 |
+| `no_verdict_on_lookahead` | `no_finding` | 26 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 6 |
+| `unclassified` | `no_finding` | 5 |
 | `recursive_bias_unverified` | `no_finding` | 1 |
 | `recursive_warmup_refused` | `no_finding` | 1 |
 
@@ -4508,7 +4533,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 255 strategies, by decisive reason
+## Not passing - 256 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -4556,7 +4581,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 255 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 256 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -4565,7 +4590,7 @@ one of them carries none.
 | Reason | Meaning | Strategies |
 |---|---|---:|
 | `lookahead_found` | reads data it could not have had at the time | 75 |
-| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 75 |
+| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 76 |
 | `no_trades_in_full_measurement` | never trades over the full window | 7 |
 | `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 31 |
 | `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 20 |
@@ -4580,7 +4605,7 @@ one of them carries none.
 | Reason | `-` | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `E0_strict67` | `not_scheduled` |
 |---|---|---|---|---|---|---|---|
 | `lookahead_found` | 2 | 2 | 0 | 10 | 0 | 0 | 61 |
-| `recursive_bias_found` | 13 | 0 | 3 | 18 | 14 | 1 | 26 |
+| `recursive_bias_found` | 14 | 0 | 3 | 18 | 14 | 1 | 26 |
 | `no_trades_in_full_measurement` | 0 | 0 | 0 | 7 | 0 | 0 | 0 |
 | `repair_refused_would_invent_strategy` | 7 | 1 | 0 | 23 | 0 | 0 | 0 |
 | `local_module_repair_exhausted` | 8 | 0 | 0 | 12 | 0 | 0 | 0 |
@@ -4626,16 +4651,16 @@ Wave `not_scheduled` - 61:
 `ichiV1`, `qrsi`, `tsp0chicken`, `turbov8`
 `wtc`
 
-### `recursive_bias_found` - 75
+### `recursive_bias_found` - 76
 
 Indicator value still drifts at every warm-up the ladder can reach.
 
-Wave `-` - 13:
+Wave `-` - 14:
 
 `AlexStrategyFinalV8Hyper`, `AlexStrategyFinalV9Hyper`, `DWT_Predict`, `DWT_Predict2`
 `GRIDDMIPRICEStrategyFutureV2`, `GRIDDMIPRICEStrategyFutureV2Both`, `GRIDDMIPRICEStrategyFutureV2Long`, `GRIDDMIPRICEStrategyFutureV2Short`
-`GRIDDMIPRICEStrategyFutureV6`, `SuperReversal_mtf`, `TryEverything`, `mind`
-`momentum_tf_divergence`
+`GRIDDMIPRICEStrategyFutureV6`, `SuperReversal_mtf`, `TryEverything`, `UltimateAlphaV16`
+`mind`, `momentum_tf_divergence`
 
 Wave `B_warmup_refusal` - 3:
 
@@ -4785,12 +4810,12 @@ Wave `-` - 2:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 207 |
-| `convergence_not_converged_within_ladder` | 75 |
+| `recursive_ladder_pending` | 203 |
+| `convergence_not_converged_within_ladder` | 76 |
 | `needs_a_look` | 35 |
-| `lookahead_remeasure_pending` | 32 |
+| `lookahead_remeasure_pending` | 35 |
 | `convergence_inconclusive` | 14 |
-| `to_be_fixed` | 12 |
+| `to_be_fixed` | 7 |
 | `repair_attempted` | 3 |
 
 Per-row detail, including every evidence path, is in
