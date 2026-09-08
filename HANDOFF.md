@@ -3,12 +3,12 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-08T22:36:56+02:00
-- Stopped because: cleanup phases 3 and 4 are complete; evidence and repair
-  families are grouped, dependency-adjusted, validated, and committed
-- Next agent should: inspect the remaining 66 root files with Graphify before
-  proposing another family move. The next likely work is separating the active
-  benchmark support layer from the predecessor publication/CI family.
+- Last update: 2026-09-08T22:44:05+02:00
+- Stopped because: cleanup phase 5 is complete; the last three root writers
+  whose stores live under `evidence/` now live with those stores
+- Next agent should: inspect the remaining 63 root files with Graphify. The
+  next likely work is separating active benchmark support from the predecessor
+  publication/CI family; preserve current CI checks while doing so.
 
 ## Objective
 
@@ -83,8 +83,7 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-08T22:36:56+02:00 after the evidence-layout commit at HEAD
-`f285b24`:
+Observed 2026-09-08T22:44:05+02:00 before the phase-5 commit at HEAD `bda7f25`:
 
 - No Docker benchmark container or Model 0 writer is active. Only shell/session
   processes matched the broad process expression.
@@ -93,8 +92,8 @@ Observed 2026-09-08T22:36:56+02:00 after the evidence-layout commit at HEAD
   not-a-strategy, and 2 convergence candidates.
 - Against current E1, the Model 0 manifest has 550 measured, 52 OOM-confirmed,
   5 performance-limited, 1 stake-overflow-confirmed, and 51 missing rows.
-- The repair-layout migration is ready to commit. Its required generated
-  reports are current; no measurement artifact changed.
+- The three-writer evidence follow-up is ready to commit. Generated hypothesis
+  and status reports are current; no measurement artifact changed.
 
 ## Current implementation checkpoint
 
@@ -139,6 +138,11 @@ Cleanup phase 4 moves the shared override lookup and local-module restoration
 tool from root into the existing `repair/` package. All imports, generated
 reports, docs and comments now use `repair.overrides` or
 `repair/local_modules.py`; `repair/README.md` defines the directory boundary.
+
+Cleanup phase 5 moves `warmup_convergence.py`,
+`market_phase_hypothesis.py`, and `merge_full_window_shards.py` beside their
+stores in `evidence/`. The warm-up Docker wrapper uses module invocation and
+regime attribution imports the phase helper from the package.
 
 - `regime/regime_engine.py` produces causal, one-day-lagged four-state data.
 - `regime/attribution.py` already attributes Model 0 trades to both four states
@@ -222,6 +226,11 @@ Cleanup phase 4 validation: Graphify dependency query; local-module selftest,
 override-store import over 43 rows, execution-profile, profile-bias and warm-up
 selftests, status regeneration/check, classification check, targeted compileall
 and `git diff --check` PASS. No benchmark was started.
+
+Cleanup phase 5 validation: Graphify dependency query; warm-up and phase-
+hypothesis selftests, attribution selftest, targeted compileall, wrapper parse,
+phase-hypothesis regeneration, status regeneration/check, classification check
+and `git diff --check` PASS. No benchmark or warm-up measurement was started.
 
 ## Next concrete steps
 

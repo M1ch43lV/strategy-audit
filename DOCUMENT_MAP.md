@@ -106,7 +106,7 @@ reporting split, on top of the frozen four states, not instead of them.**
 rewards opposite machinery, so it splits into `range_quiet`/`range_choppy` on
 realized volatility, and a `high_vol_shock` phase outranks the DMI label
 outright at the top volatility decile. The frozen DMI/ADX model itself is
-untouched. `market_phase_hypothesis.py` also carries a per-strategy
+untouched. `evidence/market_phase_hypothesis.py` also carries a per-strategy
 *prediction* of which phase it should favour, written before the benchmark
 runs so it can be falsified rather than fitted - `assumed_market_regime` in
 `STRATEGY_STATUS.csv`, decides nothing, same status as `cluster/CLUSTERS.md`.

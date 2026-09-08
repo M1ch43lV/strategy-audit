@@ -58,7 +58,7 @@ import json
 import os
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
 CLASSIFICATION = os.path.join(ROOT, "evidence/STRATEGY_CLASSIFICATION.json")
 CLUSTERS = os.path.join(ROOT, "cluster", "clusters.json")
@@ -286,7 +286,7 @@ def main(argv=None):
             "Predicted market phases per strategy, written before the "
             "market-phase benchmark runs so that it can falsify them. Not a "
             "measurement; decides nothing. See the module docstring in "
-            "market_phase_hypothesis.py for how each prediction is derived "
+            "evidence/market_phase_hypothesis.py for how each prediction is derived "
             "and why model-driven rows carry none."),
         "phases": PHASES,
         "phase_precedence": list(PRECEDENCE),

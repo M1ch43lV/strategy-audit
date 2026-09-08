@@ -42,7 +42,7 @@ import runlog
 from repair.overrides import repair_overrides, sibling_config_timeframe
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CANDIDATES = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_CANDIDATES.csv")
 PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
 OUTPUT = os.path.join(ROOT, "evidence/WARMUP_CONVERGENCE.json")

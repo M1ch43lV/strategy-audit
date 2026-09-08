@@ -426,7 +426,7 @@ def build(repair_root=DEFAULT_REPAIR):
         # A third source, tried before the fourth: some strategies read
         # timeframe from a same-directory Config*.py the source scan above
         # never opens (it only reads the strategy file itself).
-        # warmup_convergence.py found this the hard way when its own candle
+        # evidence/warmup_convergence.py found this the hard way when its own candle
         # math had nothing to resolve against despite the row already
         # running a real Probelauf - see sibling_config_timeframe()'s
         # docstring. Shared function, so this and the ladder can never end
@@ -438,7 +438,7 @@ def build(repair_root=DEFAULT_REPAIR):
         # no source location at all to scan - Argrelextrema's timeframe is a
         # comment ("# timeframe = '5m'"), not a live assignment, so nothing
         # above ever sees it. evidence/eligibility_timeframe_repair.py already found
-        # it and warmup_convergence.py/evidence/profile_bias.py already run with it
+        # it and evidence/warmup_convergence.py/evidence/profile_bias.py already run with it
         # via this same repair_overrides() lookup; evidence/regime_coverage.py reads
         # this row's timeframe from this CSV alone, so leaving this source
         # out left a row with a native look-ahead PASS and a settled ladder

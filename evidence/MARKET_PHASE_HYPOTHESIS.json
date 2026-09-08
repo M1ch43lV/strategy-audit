@@ -1,5 +1,5 @@
 {
-  "description": "Predicted market phases per strategy, written before the market-phase benchmark runs so that it can falsify them. Not a measurement; decides nothing. See the module docstring in market_phase_hypothesis.py for how each prediction is derived and why model-driven rows carry none.",
+  "description": "Predicted market phases per strategy, written before the market-phase benchmark runs so that it can falsify them. Not a measurement; decides nothing. See the module docstring in evidence/market_phase_hypothesis.py for how each prediction is derived and why model-driven rows carry none.",
   "phase_precedence": [
     "high_vol_shock"
   ],

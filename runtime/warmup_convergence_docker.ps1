@@ -29,5 +29,5 @@ docker run --rm `
     -v "${auditPath}:/audit" `
     -w /audit `
     --entrypoint python `
-    $image warmup_convergence.py @RunArguments
+    $image -m evidence.warmup_convergence @RunArguments
 exit $LASTEXITCODE

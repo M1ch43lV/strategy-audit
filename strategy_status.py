@@ -75,7 +75,7 @@ CLASS1 = os.path.join(ROOT, "evidence/PROFILE_CLASS1.json")
 # any of the stores above; both are regenerated from source alone.
 CLASSIFICATION = os.path.join(ROOT, "evidence/STRATEGY_CLASSIFICATION.json")
 # Which of the six market phases each strategy is predicted to work in,
-# written by market_phase_hypothesis.py before the benchmark that will test
+# written by evidence/market_phase_hypothesis.py before the benchmark that will test
 # it. A prediction, not a measurement: it decides no cohort and clears no row,
 # and it is carried here so the benchmark reads it from the same table it
 # reports against rather than from a note somebody kept separately.
@@ -529,7 +529,7 @@ def exclusion_basis(reason, lookahead_evidence, trade_evidence,
                 if str(recursive_evidence).startswith("convergence")
                 else "inherited")
     # Also our own only when our ladder produced it - the shrinking-ladder
-    # retry in warmup_convergence.py's resolve() ran to its 3-longest-rungs
+    # retry in evidence/warmup_convergence.py's resolve() ran to its 3-longest-rungs
     # floor and still crashed. Never inherited: no earlier wave or baseline
     # sweep could have carried this specific verdict, since the state did
     # not exist before 2026-09-08.
@@ -886,7 +886,7 @@ def rows():
             # code, and both already pass a real Probelauf on full history,
             # so this is the ladder's extreme short rungs, not a defect
             # visible under real use. The shrinking-ladder retry (`resolve()`
-            # in warmup_convergence.py) already gave every rung down to the 3
+            # in evidence/warmup_convergence.py) already gave every rung down to the 3
             # longest a chance to be the reason and it still crashes there.
             # `recursive` stays `NA` - honestly, no bias verdict exists - but
             # the recursive-bias check is not optional for any row, so

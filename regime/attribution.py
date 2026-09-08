@@ -13,9 +13,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from evidence import profile_smoke
+from evidence import market_phase_hypothesis, profile_smoke
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import market_phase_hypothesis
 from regime import episodes as regime_episodes
 
 

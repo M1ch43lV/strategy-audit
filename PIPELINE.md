@@ -61,7 +61,7 @@ diese Zeile erneut:
 
 | Programm | Liest | Schreibt |
 |---|---|---|
-| `warmup_convergence.py` | `evidence/EXECUTION_PROFILES.csv`, `STRATEGY_STATUS.csv` (für die Kohorten-Auswahl), Reparatur-Stores | `evidence/WARMUP_CONVERGENCE.json` |
+| `evidence/warmup_convergence.py` | `evidence/EXECUTION_PROFILES.csv`, `STRATEGY_STATUS.csv` (für die Kohorten-Auswahl), Reparatur-Stores | `evidence/WARMUP_CONVERGENCE.json` |
 
 Leiter aus `REGIME_PREREGISTRATION.md`s eingefrorener Konvergenz-Regel: 1, 2,
 7, 14, 30, 90, 365 Tage, umgerechnet in Kerzen über den eigenen Zeitrahmen der
@@ -129,7 +129,7 @@ Zwei strukturell verschiedene, beide nötige Messungen (siehe
 | Programm | Zweck | Liest | Schreibt |
 |---|---|---|---|
 | `evidence/profile_full_window.py` (paarweise sharded) | Stage-6-Bestätigung: handelt die Strategie über das ganze Fenster, pro Paar | `evidence/EXECUTION_PROFILES.csv` | `evidence/PROFILE_FULL_WINDOW.json` (oder Shard-Dateien bei parallelen Containern) |
-| `merge_full_window_shards.py` | führt Shards zusammen | `evidence/PROFILE_FULL_WINDOW_shardA.json`, `_shardB.json`, `_shardTF.json` | die kanonische `evidence/PROFILE_FULL_WINDOW.json` |
+| `evidence/merge_full_window_shards.py` | führt Shards zusammen | `evidence/PROFILE_FULL_WINDOW_shardA.json`, `_shardB.json`, `_shardTF.json` | die kanonische `evidence/PROFILE_FULL_WINDOW.json` |
 | `regime/full_backtest.py` (gepoolt, `canonical_pooled_native_pair_universe`) | Phase A: tatsächlicher Performance-Backtest über alle 8 Paare gepoolt | `STRATEGY_STATUS.csv` (E1-Kohorte) | `results/regime/full_backtest_manifest.json`, `full_backtest_native.json` |
 
 `evidence/PROFILE_FULL_WINDOW.json` fließt zurück in Stufe 5 (`strategy_status.py`
@@ -263,7 +263,7 @@ markierten technischen Zwischenstand und ist keine Ranking-Freigabe.
 
 | Programm | Liest | Schreibt |
 |---|---|---|
-| `market_phase_hypothesis.py` | `evidence/EXECUTION_PROFILES.csv`, `evidence/STRATEGY_CLASSIFICATION.json`, `cluster/clusters.json` | `evidence/MARKET_PHASE_HYPOTHESIS.json` |
+| `evidence/market_phase_hypothesis.py` | `evidence/EXECUTION_PROFILES.csv`, `evidence/STRATEGY_CLASSIFICATION.json`, `cluster/clusters.json` | `evidence/MARKET_PHASE_HYPOTHESIS.json` |
 
 Muss geschrieben sein, **bevor** irgendjemand die Ergebnisse aus Stufe 9
 ansieht — sonst ist es keine Vorhersage mehr (`REGIME_AUDIT_PLAN.md` §28.3).

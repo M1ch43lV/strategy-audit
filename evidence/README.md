@@ -5,8 +5,9 @@ strategy is auditable. It deliberately stays flat: a writer and the store it
 owns live together, while user-facing status remains in the repository root.
 
 The files here are not benchmark rankings. They cover canonical execution
-profiles, smoke and bias diagnostics, warm-up convergence, coverage, repair
-provenance, expansion adjudication, and frozen supporting inventories.
+profiles, smoke and bias diagnostics, warm-up convergence, phase hypotheses,
+coverage, repair provenance, expansion adjudication, and frozen supporting
+inventories. Writer utilities that merge these stores live here as well.
 
 ## Rules
 
