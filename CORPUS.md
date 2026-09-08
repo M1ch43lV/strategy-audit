@@ -1,4 +1,4 @@
-# The corpus: 900 unique strategies from 53 repositories
+# The corpus: 1,050 unique strategies from 77 repositories
 
 This is, as far as I can establish, **the largest deduplicated index of public
 freqtrade strategies that exists** — and the claim is written so that you can
@@ -13,13 +13,13 @@ licences.
 ## Scale
 
 ```
-repositories indexed                        53
-class occurrences (with duplicates)      2,567
-UNIQUE STRATEGY CLASSES                    900
-share that are copies                      65%
+repositories indexed                        77
+class occurrences (with duplicates)      2,868
+UNIQUE STRATEGY CLASSES                  1,050
+share that are copies                      63%
 
 largest single repository   jaredrsommer/freqtradestrategies   558 classes
-this corpus is larger by                                       1.6x
+this corpus is larger by                                       1.9x
 ```
 
 ## Where the originals actually come from
@@ -29,22 +29,22 @@ point: a repository can hold five hundred strategies and contribute none.
 
 ```
 repository                                    classes   first seen   copies
-PeetCrypto/freqtrade-stuff                        346          312     10%
-davidzr/freqtrade-strategies                      464          166     64%
+PeetCrypto/freqtrade-stuff                        346          311     10%
+davidzr/freqtrade-strategies                      461          166     64%
 TheoBrigitte/freqtrade                            220          117     47%
-jaredrsommer/freqtradestrategies                  558           77     86%
 mlsys-io/PortfolioBench                            67           66      1%
+jaredrsommer/freqtradestrategies                  558           61     89%
+hamidreza07/freqai-strategy                        94           55     41%
+LazyPigPig/freqtrade-grid                          34           31      9%
 Foxel05/freqtrade-stuff                            31           31      0%
-markdregan/FreqAI-Marcos-Lopez-De-Prado            27           25      7%
-MelvynClark/Freqtrade-Strategy                     21           21      0%
-werkkrew/freqtrade-strategies                      50            8     84%
-freqtrade/freqtrade-strategies                     68            7     90%
+MelvynClark/Freqtrade-Strategy                     22           22      0%
+webclinic017/strategies-freqtrade-                 55           20     64%
 ...
 keithorange/HUGE_FreqTrade_Strategy_Collection    477            0    100%
 p-zombie/freqtrade                                 35            0    100%
 ```
 
-**Seventeen of the 53 repositories contributed no original strategy at all.**
+**Nineteen of the 77 repositories contributed no original strategy at all.**
 The most striking is a repository whose name announces a *huge collection*: 477
 classes, every one of them already present elsewhere.
 
@@ -95,6 +95,68 @@ One repository (`ShahAnuj2610/my-freqtrade`) could not be cloned at all — it
 contains filenames with colons, which Windows rejects. Fetching files
 individually recovered it. That is now the default method rather than a
 workaround.
+
+## 2026-09-08: closing corpus gaps by trading approach
+
+A keyword census of the corpus (restricted to files that actually declare a
+strategy class, not vendored framework copies some repos bundle) showed a
+handful of approaches near-empty: transformer-based models, Avellaneda-Stoikov
+market-making, regime-switching, and SMC/ICT liquidity-sweep style entries all
+had one digit of representation out of ~1,046 strategies at the time. Nine
+repositories were harvested to close those gaps specifically, six of them
+adding genuinely new strategies:
+
+- **`djienne/AVELLANEDA_MARKET_MAKING_FREQTRADE`** — `avellaneda`. Avellaneda-
+  Stoikov market-making on Hyperliquid; a companion script
+  (`run_avellaneda_param_calculation.py`, missed by `harvest.py`'s
+  `IStrategy`-only filter and fetched separately) recalculates optimal bid/ask
+  parameters via a local `subprocess.run([sys.executable, script_path, ...])`
+  call every 10 bot loops — verified to be a hardcoded local invocation, not
+  attacker-influenced input.
+- **`yeboster/liquidity-sweep-freqtrade`** — `LiquiditySweep`,
+  `MeanReversionTrend`. SMC/ICT-style liquidity-sweep reversal detection with
+  OTE (optimal-trade-entry) zones.
+- **`Vijay190899/Trade-Bot`** — `AntigravityStrategy`,
+  `AntigravityGridStrategy`, `AntigravityStrategyV3`. A signal-validation gate
+  around a reinforcement-learning (PPO-style) core; an optional `TradeMemory`
+  self-improvement hook points at the author's own local machine
+  (`V:/Antigravity/...`) and degrades gracefully (`try`/`except`) when absent.
+- **`OfficialGIGA/freqtrade-ml-strategy`** — `UltimateAlphaV16`. LightGBM-based
+  strategy with regime-aware position sizing; needed a sibling `features.py`
+  that `harvest.py`'s filter missed (no literal `IStrategy` in that file),
+  fetched separately and security-scanned clean.
+- **`songhuaxueyue-tech/trend-regime-transformer`** — `CsMom` (two variants:
+  `cs_mom_ai.py` with an optional transformer-based regime predictor behind a
+  hardcoded Docker path and a `try`/`except` fallback, `cs_mom_stable.py`
+  without it).
+- **`Kureshi25/cryptobot`** — `AdaptiveRegime`, `AdaptiveRegimeLong`,
+  `TrendBreakout`, `TrendFutures`, `HighFreqDemo`. Regime detection via the
+  Kaufman Efficiency Ratio, switching between a Donchian-breakout trend arm and
+  a Bollinger/RSI mean-reversion arm. `AdaptiveRegimeLong` is a long-only
+  variant that subclasses the sibling `AdaptiveRegime` file rather than
+  `IStrategy` directly, so `harvest.py`'s filter missed it too; fetched by
+  hand. A sixth file in the same repo, `AdaptiveRegimeDemo`, was left out
+  deliberately — the author's own docstring calls it "a DELIBERATELY LOOSENED
+  copy... built to make the machinery visible, not to make money."
+
+Three repositories were checked and added no new content: `darkvolg/trendrider-strategy`
+(`TrendRiderStrategy`, a class name already present elsewhere in the corpus)
+and `titouannwtt/freqtrade-france-strategies-kac-index` /
+`-strategies_simple_vwap` (`kac_index_v1`/`v2`, `simple_vwap_v1`, all three
+already vendored inside `titouannwtt/freqtrade-ultimate`, already in the
+corpus).
+
+**One gap stayed empty on purpose: on-chain/whale/copy-trading/"smart money"
+signals.** Every candidate repository found (`aicoincom/coinos-skills`,
+`Coinversaa/coinversaa-freqtrade-example`, `djienne/COPY_WALLET_HYPERLIQUID`,
+`Nicbyte/solnexus-freqtrade-adapter`) fails structurally against this
+project's out-of-sample backtest methodology, not on code quality: their
+distinguishing signal only activates in `live`/`dry_run` mode behind a paid
+API (AiCoin: $29-$699/month) and is a silent no-op in backtest, or it reads a
+wallet's *current* on-chain state with no way to replay it against a past
+window, or the author's own docstring labels it a non-production reference
+("SCAFFOLD, not a profitable strategy"; "reference implementation... not a
+production trading system"). None were harvested.
 
 ## Reproduce
 

@@ -81,11 +81,6 @@
    "first": 8
   },
   {
-   "repo": "freqtrade/freqtrade-strategies",
-   "classes": 68,
-   "first": 7
-  },
-  {
    "repo": "nateemma/strategies",
    "classes": 10,
    "first": 7
@@ -94,6 +89,11 @@
    "repo": "mikedigriz/freqtrade-strategy-mikedigriz",
    "classes": 7,
    "first": 7
+  },
+  {
+   "repo": "freqtrade/freqtrade-strategies",
+   "classes": 68,
+   "first": 6
   },
   {
    "repo": "eovie/freqtrade_strs",
@@ -111,11 +111,6 @@
    "first": 6
   },
   {
-   "repo": "titouannwtt/freqtrade-ultimate",
-   "classes": 20,
-   "first": 5
-  },
-  {
    "repo": "iterativv/NostalgiaForInfinity",
    "classes": 10,
    "first": 5
@@ -124,6 +119,11 @@
    "repo": "ShahAnuj2610/my-freqtrade",
    "classes": 5,
    "first": 5
+  },
+  {
+   "repo": "Kureshi25/cryptobot",
+   "classes": 5,
+   "first": 4
   },
   {
    "repo": "thinkong/freqtradestrategies",
@@ -136,8 +136,18 @@
    "first": 3
   },
   {
+   "repo": "Vijay190899/Trade-Bot",
+   "classes": 3,
+   "first": 3
+  },
+  {
    "repo": "phuchust/freqtrade_strategy",
    "classes": 24,
+   "first": 2
+  },
+  {
+   "repo": "titouannwtt/freqtrade-ultimate",
+   "classes": 20,
    "first": 2
   },
   {
@@ -162,6 +172,16 @@
   },
   {
    "repo": "shadowp2810/technical_indicators_cryptos",
+   "classes": 2,
+   "first": 2
+  },
+  {
+   "repo": "titouannwtt/freqtrade-france-strategies-kac-index",
+   "classes": 2,
+   "first": 2
+  },
+  {
+   "repo": "yeboster/liquidity-sweep-freqtrade",
    "classes": 2,
    "first": 2
   },
@@ -216,7 +236,22 @@
    "first": 1
   },
   {
+   "repo": "OfficialGIGA/freqtrade-ml-strategy",
+   "classes": 1,
+   "first": 1
+  },
+  {
    "repo": "TomtomEh/freqtrade-websocket",
+   "classes": 1,
+   "first": 1
+  },
+  {
+   "repo": "darkvolg/trendrider-strategy",
+   "classes": 1,
+   "first": 1
+  },
+  {
+   "repo": "djienne/AVELLANEDA_MARKET_MAKING_FREQTRADE",
    "classes": 1,
    "first": 1
   },
@@ -242,6 +277,16 @@
   },
   {
    "repo": "seannowotny/FlawlessVictoryPort",
+   "classes": 1,
+   "first": 1
+  },
+  {
+   "repo": "songhuaxueyue-tech/trend-regime-transformer",
+   "classes": 1,
+   "first": 1
+  },
+  {
+   "repo": "titouannwtt/freqtrade-france-strategies_simple_vwap",
    "classes": 1,
    "first": 1
   },
@@ -341,6 +386,6 @@
    "first": 0
   }
  ],
- "unique": 1038,
- "occurrences": 2851
+ "unique": 1050,
+ "occurrences": 2868
 }
