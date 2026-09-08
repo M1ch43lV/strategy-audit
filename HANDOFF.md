@@ -3,13 +3,13 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-08T21:38:30+02:00
-- Stopped because: repository-layout cleanup phase 1 is at a clean checkpoint;
-  predecessor side studies and selected case studies are archived together
-- Next agent should: continue the dependency-checked root cleanup. Design at
-  most two additional active-family directories (eligibility/profile evidence
-  and runtime/operations), move writers with their stores, update every path,
-  and validate each family before proceeding. Do not disturb live Model 0 data.
+- Last update: 2026-09-08T21:57:40+02:00
+- Stopped because: repository-layout cleanup phases 1 and 2 are committed;
+  predecessor material is archived and runtime/operations are grouped
+- Next agent should: complete the remaining `evidence/` migration as one
+  dependency-checked family. Move active root evidence stores, update every
+  writer/reader and documented command, then run all generator `--check` and
+  selftests. Keep user-facing status and binding documents in root.
 
 ## Objective
 
@@ -123,6 +123,14 @@ trailing-sensitivity family was deliberately kept active in root because
 Graphify showed its current profile/full-backtest dependencies. Root README is
 now about the market-regime benchmark and contains the directory tree.
 
+Cleanup phase 2 is committed as `699512d` (`Group runtime configs and Docker
+entry points`). `runtime/` now contains all four Dockerfiles, four requirement
+sets, spot/futures base configs, and 15 Docker wrappers. Wrappers resolve the
+repository root through their parent, use runtime-local Dockerfiles, retain the
+root build context and `/audit` mount, and invoke the same Python entry points.
+New runs record `runtime/profile_*_config.json`; old invocation strings remain
+immutable historical provenance.
+
 - `regime/regime_engine.py` produces causal, one-day-lagged four-state data.
 - `regime/attribution.py` already attributes Model 0 trades to both four states
   and six reporting phases. It now also retains source strategy and model
@@ -188,10 +196,16 @@ archived scripts `py_compile`, status check, classification check, archived
 case-study index check, and `git diff --check`. The old DCA read reproduces its
 895-row historical report; it does not affect the current 1,050-row status.
 
+Cleanup phase 2 validation: Graphify dependency query; all PowerShell wrappers
+parse; both config JSON files parse; Docker COPY sources resolve inside the root
+context; profile-smoke and status selftests PASS; status and classification
+checks current; regenerated runtime/exclusion reports; secret gate and
+`git diff --check` PASS. No benchmark was started.
+
 ## Next concrete steps
 
-1. Finish repository-layout cleanup in small committed families. Keep the root
-   user-facing files listed in README. Do not create many narrow directories.
+1. Finish the single remaining `evidence/` migration in small commits. Keep the
+   root user-facing files listed in README. Do not add narrower directories.
 2. Repeat machine, lock, artifact and Git checks; never start a second writer.
 3. Complete the 51 missing Model 0 E1 rows resumably and adjudicate
    resource-inconclusive failures
