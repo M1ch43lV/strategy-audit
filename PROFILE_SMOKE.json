@@ -124,18 +124,24 @@
       "trades_sha256": "sha256_fd7237d6e2ae3a4e9be12b39d35d2b52778a5c328032ff0b518aecf10a86f59a"
     },
     "AdaptiveRegime": {
+      "archive": "user_data/profile_smoke/AdaptiveRegime-90b67ba4-2026-09-08_18-40-02.zip",
+      "archive_sha256": "sha256_c9b1a4826b65d30c0ec000992a2227169ca71f8b243a8597cd72ccbf93ea7c62",
+      "artifact_key": "",
       "canonical_sha256": "sha256_cf6478f765e4b95984227e64b11d72f44c14935bc13c8f5a84fa7499354b47bc",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/AdaptiveRegime-90b67ba4.log",
-      "elapsed_s": 44.0,
-      "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy AdaptiveRegime --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AdaptiveRegime-90b67ba4 --cache none",
+      "config_overrides": {},
+      "elapsed_s": 43.7,
+      "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy AdaptiveRegime --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200101-20210101 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AdaptiveRegime-90b67ba4 --cache none",
+      "long_trades": 13,
       "mode": "futures",
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
-      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
-      "status": "failed",
-      "timerange": "20200301-20200401",
-      "why": "No data left after adjusting for startup candles."
+      "runtime_id": "docker:sha256:cf086383355b9d07b70c00b1c60a35a695947dd64c8d57b6ed989319be8170b5",
+      "short_trades": 3,
+      "status": "measured",
+      "timerange": "20200101-20210101",
+      "trades": 16,
+      "trades_sha256": "sha256_fa98a41fba7c3e357d9437a554d23a0dd1b82ef1c7465c54e1d01d557b20bc6e"
     },
     "AdaptiveRenkoStrategy": {
       "canonical_sha256": "sha256_b1efced546db261388b2e5bf302f5d4ef4841e64c358ada2cb05d2ce99782d18",
@@ -7246,18 +7252,24 @@
       "trades": 1029
     },
     "TrendFutures": {
+      "archive": "user_data/profile_smoke/TrendFutures-4ee78b0b-2026-09-08_18-40-48.zip",
+      "archive_sha256": "sha256_56d00966d7e8927f7ea31ce4b51730d59014ead75957b3c57c7e6443e9fb91e6",
+      "artifact_key": "",
       "canonical_sha256": "sha256_996f504ad07d02a330b9b27d10d78fbee3c2edf79d9e715bdc508126c12861bf",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/TrendFutures-4ee78b0b.log",
-      "elapsed_s": 40.9,
-      "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy TrendFutures --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrendFutures-4ee78b0b --cache none",
+      "config_overrides": {},
+      "elapsed_s": 45.5,
+      "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy TrendFutures --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200101-20210101 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrendFutures-4ee78b0b --cache none",
+      "long_trades": 36,
       "mode": "futures",
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
-      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
-      "status": "failed",
-      "timerange": "20200301-20200401",
-      "why": "No data left after adjusting for startup candles."
+      "runtime_id": "docker:sha256:cf086383355b9d07b70c00b1c60a35a695947dd64c8d57b6ed989319be8170b5",
+      "short_trades": 5,
+      "status": "measured",
+      "timerange": "20200101-20210101",
+      "trades": 41,
+      "trades_sha256": "sha256_0373db0b1447decaea59645ed43bd46234f3fd63b13bcda75be74748ce4ac3ff"
     },
     "TrendMomoClassifier": {
       "canonical_sha256": "sha256_0662bd34b81a18562d5c7e731376ef0adc4ac634dd4152306853bdcbd7eb46ec",
@@ -8493,5 +8505,5 @@
     }
   },
   "schema_version": 1,
-  "timerange": "20200301-20200401"
+  "timerange": "20200101-20210101"
 }
