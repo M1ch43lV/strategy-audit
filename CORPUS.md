@@ -146,17 +146,72 @@ and `titouannwtt/freqtrade-france-strategies-kac-index` /
 already vendored inside `titouannwtt/freqtrade-ultimate`, already in the
 corpus).
 
-**One gap stayed empty on purpose: on-chain/whale/copy-trading/"smart money"
-signals.** Every candidate repository found (`aicoincom/coinos-skills`,
-`Coinversaa/coinversaa-freqtrade-example`, `djienne/COPY_WALLET_HYPERLIQUID`,
-`Nicbyte/solnexus-freqtrade-adapter`) fails structurally against this
-project's out-of-sample backtest methodology, not on code quality: their
-distinguishing signal only activates in `live`/`dry_run` mode behind a paid
-API (AiCoin: $29-$699/month) and is a silent no-op in backtest, or it reads a
-wallet's *current* on-chain state with no way to replay it against a past
-window, or the author's own docstring labels it a non-production reference
-("SCAFFOLD, not a profitable strategy"; "reference implementation... not a
-production trading system"). None were harvested.
+## Repositories checked and rejected
+
+Not every repository the searches above surfaced was harvested. Recording the
+rejections too, not just the additions — a repo that looked relevant and
+wasn't is exactly the kind of thing a later search will trip over again
+without a note explaining why it was already ruled out.
+
+**Fails the out-of-sample backtest methodology itself, not a code-quality
+problem.** These all have a plausible-sounding edge that this project's
+methodology structurally cannot measure — the signal is either paid-API-gated
+and inert in backtest, needs to replay state that cannot be replayed, or the
+author says outright it isn't meant to be evaluated as a strategy:
+
+- **`aicoincom/coinos-skills`** — `FundingRateStrategy`,
+  `LiquidationHunterStrategy`, `WhaleFollowStrategy`. Each strategy's
+  distinguishing signal (funding rate, liquidation clusters, whale order flow)
+  only activates when `self.dp.runmode.value in ('live', 'dry_run')`, gated
+  behind a paid AiCoin API tier ($29-$699/month per feature). In backtest the
+  signal columns stay at their inert default and the strategy measures as a
+  bare RSI+EMA crossover — the thing this repo exists to test never gets
+  tested.
+- **`Coinversaa/coinversaa-freqtrade-example`** —
+  `CoinversaaSmartMoneyStrategy`. The module docstring calls it a "**reference
+  implementation** — it demonstrates how to call the API inside a strategy,
+  not a production trading system."
+- **`djienne/COPY_WALLET_HYPERLIQUID`** — `COPY_HL`. Copies a tracked wallet's
+  *current* Hyperliquid position every bot loop via a live API call; there is
+  no historical position-history source to replay, so a backtest over a past
+  window would apply today's live account state to yesterday's candles.
+- **`Nicbyte/solnexus-freqtrade-adapter`** — `SolnexusBridgeStrategy`. Its own
+  docstring: "This is a **SCAFFOLD** showing the bridge, not a profitable
+  strategy." No `populate_indicators` at all; entries come only from an
+  external JSON file a separate, non-public pipeline has to produce.
+- **`mihalismacura7-blip/leadedge-examples`** — matched a `freqtrade` search
+  only incidentally; `leadedge_signal_strategy.py` is a Hummingbot (not
+  freqtrade) script, and its own comments say the edge lives in a 60-400ms
+  window, tradeable only with a paid real-time signal feed and low-latency
+  execution — unrelated to this project's framework or its backtest horizon.
+- **`rajdeep7878/freqtrade-blockchain`** — vendors an entire copy of the
+  freqtrade framework itself plus a blockchain audit-log add-on; no actual
+  trading strategy in it to harvest.
+
+**No real strategy content to harvest at all** — the repository exists (some
+with real activity or star counts) but has no `IStrategy` class, or none
+outside of test/framework scaffolding:
+
+- **`djienne/Cartea-Jaimungal_MARKET_MAKING_FREQTRADE`** — a genuine
+  parameter-estimation research toolkit (dynamic-spread calibration scripts)
+  by the same author as the Avellaneda repo above, but has no
+  `user_data/strategies` directory at all — nothing runnable despite the
+  freqtrade branding.
+- **`hugocen/freqtrade-gym`** — 231 GitHub stars, but it is a *gym
+  environment* for training reinforcement-learning models
+  (`freqtradegym.py`, `rllib_example.py`, ...), not a deployable strategy.
+- **`kiploks/kiploks-freqtrade`** — a backtest-robustness-analytics wrapper
+  (`run.py`, Docker scripts) around freqtrade's own output; no strategy files.
+- **`MGTONY23/AegisSystems`** — description promised "market regime
+  detection"; the repository tree is empty.
+- **`cryptodeveloperq/FreqTrade`**, **`MuhammadUmer3/Crypto-Bot`**,
+  **`Fahedbentaleb/Crypto-Source`** — empty repositories (the first two
+  read as low-effort/marketing placeholders — "Join my journey to passive
+  income 🚀💻" — rather than working code).
+
+**Harvested but contributed nothing new** (already covered above): `darkvolg/trendrider-strategy`
+and the two `titouannwtt/freqtrade-france-strategies-*` repos duplicate
+classes already in the corpus.
 
 ## Reproduce
 
