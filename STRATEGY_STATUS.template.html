@@ -372,7 +372,12 @@
             <th data-k="s">Strategy</th>
             <th data-k="c">Status</th>
             <th data-k="w">Wave</th>
+            <th>Origin</th>
+            <th data-k="tf">Timeframe</th>
+            <th data-k="ty">Type</th>
+            <th data-k="amr">Phase</th>
             <th data-k="t" class="n">Trades</th>
+            <th data-k="td" class="n">Duration</th>
             <th data-k="l">Look-ahead</th>
             <th data-k="r">Recursion</th>
             <th data-k="n">Decisive reason</th>
@@ -728,6 +733,35 @@
   }).join("");
 
   var body = document.getElementById("body"), empty = document.getElementById("empty");
+  var TRADE_WINDOW = {
+    full_window:"2020–2026, this audit's own full-window run",
+    smoke:"2020-03-01–2020-04-01, one month, this audit's trial run",
+    baseline:"2018–2026, inherited from the original author's own sweep, a different and uncontrolled environment"
+  };
+  var PHASE = {
+    bull_trend:"bull", bear_trend:"bear",
+    range_quiet:"range quiet", range_choppy:"range choppy",
+    transition:"transition", high_vol_shock:"shock"
+  };
+  function phaseText(r){
+    var v = (r.amr||"").split(";").filter(Boolean);
+    if(!v.length) return "–";
+    return v.map(function(p){ return PHASE[p]||p; }).join(", ");
+  }
+  function fmtDuration(s){
+    s = +s||0;
+    if(!s) return "–";
+    if(s < 60) return (s < 10 ? s.toFixed(1) : Math.round(s)) + "s";
+    var m = Math.floor(s/60);
+    if(m < 60) return m + "m " + Math.round(s - m*60) + "s";
+    var h = Math.floor(m/60);
+    return h + "h " + (m - h*60) + "m";
+  }
+  function originLink(r){
+    if(!r.rp) return "–";
+    return '<a href="https://github.com/'+esc(r.rp)+'" target="_blank" '+
+      'rel="noopener noreferrer">'+esc(r.rp)+'</a>';
+  }
   function render(){
     var list = rows.filter(function(r){
       if(active && r.c !== active) return false;
@@ -740,7 +774,7 @@
         if(r._hay === undefined){
           r._hay = [r.s, r.w, r.c, (COHORT[r.c]||{}).label, r.n,
                     REASON_TEXT[r.n], r.f, r.xb, BASIS_LABEL[r.xb],
-                    r.l, r.r, r.ls, r.rs, r.o]
+                    r.l, r.r, r.ls, r.rs, r.o, r.rp, r.tf, r.ty, r.te, r.amr]
                    .filter(Boolean).join(" ").toLowerCase();
         }
         if(r._hay.indexOf(query) < 0) return false;
@@ -749,7 +783,7 @@
     });
     list.sort(function(a,b){
       var x = a[sortKey], y = b[sortKey];
-      if(sortKey === "t"){ x = +x||0; y = +y||0; }
+      if(sortKey === "t" || sortKey === "td"){ x = +x||0; y = +y||0; }
       if(x === y) return a.s < b.s ? -1 : 1;
       return (x > y ? 1 : -1) * sortDir;
     });
@@ -783,7 +817,12 @@
         '<td class="name">'+esc(r.s)+'</td>'+
         '<td><span class="pill '+co.cls+'">'+co.label+'</span>'+flag+'</td>'+
         '<td class="small">'+esc(r.w||"–")+'</td>'+
-        '<td class="num">'+(r.t||"–")+'</td>'+
+        '<td class="small">'+originLink(r)+'</td>'+
+        '<td class="small">'+esc(r.tf||"–")+'</td>'+
+        '<td class="small">'+esc((r.ty||"").split(";").join(", ")||"–")+'</td>'+
+        '<td class="small" title="'+esc(r.amre||"")+'">'+esc(phaseText(r))+'</td>'+
+        '<td class="num" title="'+(TRADE_WINDOW[r.te]||"source not recorded")+'">'+(r.t||"–")+'</td>'+
+        '<td class="num" title="'+esc(r.tde||"no timed run recorded")+'">'+fmtDuration(r.td)+'</td>'+
         '<td>'+bound(r.l, r.ls)+'</td>'+
         '<td>'+recursion(r)+'</td>'+
         '<td class="reason">'+reason+'</td>'+

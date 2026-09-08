@@ -26,11 +26,25 @@ TABLE = os.path.join(ROOT, "STRATEGY_STATUS.csv")
 TEMPLATE = os.path.join(ROOT, "STRATEGY_STATUS.template.html")
 
 # short key -> column in STRATEGY_STATUS.csv
+#
+# rp/tf/ty/amr/amre/td/tde/te were dropped from an earlier version of this
+# dict (Timeframe/Type/Phase/Duration silently went blank on the published
+# page, and the repo origin was never on it at all) - restored 2026-09-08
+# against an archived pre-regression copy of the page rather than guessed,
+# and the template's render() needs every one of these keys back too.
 FIELDS = {
     "s": "strategy_id",
     "c": "cohort",
     "w": "expansion_wave",
+    "rp": "repo",
+    "tf": "timeframe",
+    "ty": "strategy_type",
+    "amr": "assumed_market_regime",
+    "amre": "assumed_market_regime_evidence",
     "t": "observed_trades",
+    "te": "trade_evidence",
+    "td": "test_duration_s",
+    "tde": "test_duration_evidence",
     "l": "lookahead",
     "ls": "lookahead_evidence",
     "r": "recursive",
