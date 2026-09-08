@@ -108,11 +108,11 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 **What it actually was.** The strategy imports a helper the author shipped beside it in their repository. Collected on its own, the import has nowhere to resolve from.
 
-**The repair.** `repair_local_modules.py` finds copies of the missing module in the corpus and decides between them by testing the import, not by name. `shadows_a_package()` rejects any directory containing `freqtrade/`, `numpy/` and the like.
+**The repair.** `repair/local_modules.py` finds copies of the missing module in the corpus and decides between them by testing the import, not by name. `shadows_a_package()` rejects any directory containing `freqtrade/`, `numpy/` and the like.
 
 **Where it stops.** That guard exists because four repairs made things worse: adding `repos/mlsys-io_PortfolioBench` to the path shadowed freqtrade itself. They are recorded as `repair_withdrawn`, and the withdrawn entries stay in `evidence/PROFILE_CLASS1.json` with `status: withdrawn` - deleting them had deleted the finding.
 
-Tool: `repair_local_modules.py`.
+Tool: `repair/local_modules.py`.
 
 For example: `AdvancedRiskFilterStrategy`, `Anomaly`, `BBBHold`, `BBKCBounce`, `BB_RPB_3c`, `BTCMACDCross`.
 

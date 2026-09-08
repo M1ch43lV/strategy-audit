@@ -82,13 +82,13 @@ Currently 256 of 1050 strategies are excluded. The criteria are not exclusive - 
 
 **Machine test.** `primary_reason == "local_module_repair_exhausted"`, together with `exclusion_basis == "own_measurement"`.
 
-**What it means.** The strategy imports a helper the author shipped beside it in their own repository, and the corpus copy has nowhere to resolve from on its own. `repair_local_modules.py` searched the whole corpus for another copy that satisfies the import.
+**What it means.** The strategy imports a helper the author shipped beside it in their own repository, and the corpus copy has nowhere to resolve from on its own. `repair/local_modules.py` searched the whole corpus for another copy that satisfies the import.
 
 **Why it is final.** Three shapes, the search exhausted either way. No candidate imports at all - `BaseStrategy`, `BinanceStream` and four others, each candidate's own failure recorded. The one candidate that does import would shadow an installed package (`freqtrade` itself, for `DualModelPolymarketPortfolio` and three peers) and was applied, found to break other rows, and withdrawn. Or a candidate was applied and the row moved past the import to a second failure the import test cannot see - `Solipsis6` and `SolipsisMM` reach werkkrew's `custom_indicators` module and then call a function it does not define; `DWT` reaches a read-only numpy buffer past its own module fix. Restoring a module we cannot verify against the author's own copy would be writing code under their name.
 
 **What stands behind it.** `evidence/REPAIR_LOCAL_MODULES.json` keeps every candidate tried and why each failed, or the shadowing that forced a withdrawal recorded in `evidence/PROFILE_CLASS1.json` with `status: withdrawn` rather than deleted.
 
-**What this is not.** A row with NO entry in `evidence/REPAIR_LOCAL_MODULES.json` at all has not been searched, not searched-and-refused - that is `needs_a_look`, not this criterion, and three rows moved from there to a working repair the same day this criterion was written (`Solipsis3`, `SolipsisCon`, `Solipsis4`, `Dyna_opti`), which is the reason `repair_attempted` is trusted here only once `repair_local_modules.py` has actually run against the row.
+**What this is not.** A row with NO entry in `evidence/REPAIR_LOCAL_MODULES.json` at all has not been searched, not searched-and-refused - that is `needs_a_look`, not this criterion, and three rows moved from there to a working repair the same day this criterion was written (`Solipsis3`, `SolipsisCon`, `Solipsis4`, `Dyna_opti`), which is the reason `repair_attempted` is trusted here only once `repair/local_modules.py` has actually run against the row.
 
 20 strategies, among them `AdvancedRiskFilterStrategy`, `Anomaly`, `BBBHold`, `BB_RPB_3c`, `BaseStrategy`, `BinanceStream`.
 

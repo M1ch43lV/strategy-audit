@@ -21,7 +21,7 @@ import time
 
 from evidence import profile_smoke
 import runlog
-from repair_overrides import repair_overrides
+from repair.overrides import repair_overrides
 
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

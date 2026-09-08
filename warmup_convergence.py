@@ -39,7 +39,7 @@ from evidence import eligibility_warmup
 from evidence import profile_bias
 from evidence import profile_smoke
 import runlog
-from repair_overrides import repair_overrides, sibling_config_timeframe
+from repair.overrides import repair_overrides, sibling_config_timeframe
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))

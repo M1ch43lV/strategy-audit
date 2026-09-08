@@ -3,12 +3,12 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-08T22:32:59+02:00
-- Stopped because: cleanup phase 3 is complete; active eligibility/profile
-  writers and their stores are grouped under `evidence/` and validated
-- Next agent should: inspect the remaining 68 root files with Graphify before
-  proposing cleanup phase 4. Keep the user entry points and binding documents
-  listed in README in root; do not move another writer without all readers.
+- Last update: 2026-09-08T22:36:56+02:00
+- Stopped because: cleanup phases 3 and 4 are complete; evidence and repair
+  families are grouped, dependency-adjusted, validated, and committed
+- Next agent should: inspect the remaining 66 root files with Graphify before
+  proposing another family move. The next likely work is separating the active
+  benchmark support layer from the predecessor publication/CI family.
 
 ## Objective
 
@@ -83,8 +83,8 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-08T22:32:59+02:00 before the evidence-layout commit at HEAD
-`1ee5f8c`:
+Observed 2026-09-08T22:36:56+02:00 after the evidence-layout commit at HEAD
+`f285b24`:
 
 - No Docker benchmark container or Model 0 writer is active. Only shell/session
   processes matched the broad process expression.
@@ -93,9 +93,8 @@ Observed 2026-09-08T22:32:59+02:00 before the evidence-layout commit at HEAD
   not-a-strategy, and 2 convergence candidates.
 - Against current E1, the Model 0 manifest has 550 measured, 52 OOM-confirmed,
   5 performance-limited, 1 stake-overflow-confirmed, and 51 missing rows.
-- The evidence-layout migration is staged. Its required status regeneration
-  also incorporates the pre-existing generated count change in
-  `evidence/repair_measures_list.md`; no hand edit was made to that report.
+- The repair-layout migration is ready to commit. Its required generated
+  reports are current; no measurement artifact changed.
 
 ## Current implementation checkpoint
 
@@ -135,6 +134,11 @@ Cleanup phase 3 groups 24 current evidence writers and 60 generated/frozen
 stores in the flat `evidence/` package. Every active reader, Docker wrapper,
 binding document, generated status link, and pipeline declaration uses the new
 path. Root retains the user-facing status outputs and binding documents.
+
+Cleanup phase 4 moves the shared override lookup and local-module restoration
+tool from root into the existing `repair/` package. All imports, generated
+reports, docs and comments now use `repair.overrides` or
+`repair/local_modules.py`; `repair/README.md` defines the directory boundary.
 
 - `regime/regime_engine.py` produces causal, one-day-lagged four-state data.
 - `regime/attribution.py` already attributes Model 0 trades to both four states
@@ -214,10 +218,15 @@ compileall, 38 evidence JSON parses, all Docker-wrapper PowerShell parses,
 sync-repo selftest, secret gate and `git diff --check` PASS. No measurement or
 benchmark store was regenerated.
 
+Cleanup phase 4 validation: Graphify dependency query; local-module selftest,
+override-store import over 43 rows, execution-profile, profile-bias and warm-up
+selftests, status regeneration/check, classification check, targeted compileall
+and `git diff --check` PASS. No benchmark was started.
+
 ## Next concrete steps
 
 1. Use Graphify to classify the remaining root programs before any further
-   layout move; archive only proven predecessors and keep directory count low.
+   layout move; do not mix active benchmark support with predecessor archiving.
 2. Repeat machine, lock, artifact and Git checks; never start a second writer.
 3. Complete the 51 missing Model 0 E1 rows resumably and adjudicate
    resource-inconclusive failures

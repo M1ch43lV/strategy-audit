@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1050 rows
 
-**Generated 2026-09-08 22:31:22 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-08 22:36:26 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has

@@ -14,7 +14,7 @@ import json
 import os
 import re
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 _CONFIG_TIMEFRAME = re.compile(r"^timeframe\s*=\s*['\"]([0-9]+[mhdwM])['\"]", re.M)
 

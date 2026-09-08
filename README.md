@@ -52,7 +52,7 @@ strategy-audit/
 │   Regime features, Model 0/1/2/3 runners, attribution, comparison
 ├── results/regime/
 │   Resumable benchmark manifests, archives, and regime summaries
-├── repair/                 Compatibility overlays and repair provenance
+├── repair/                 Repair tools, compatibility overlays, and provenance
 ├── tools/                  Manual generators, triage, and publication tools
 ├── runtime/                Dockerfiles, requirements, configs, and wrappers
 ├── cluster/                A-priori strategy taxonomy, never an entry gate

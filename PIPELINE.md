@@ -53,7 +53,7 @@ diese Zeile erneut:
 | Reparaturroute | Schreibt |
 |---|---|
 | `evidence/eligibility_timeframe_evidence.py` → `evidence/eligibility_timeframe_repair.py` | `evidence/ELIGIBILITY_TIMEFRAME_EVIDENCE.json`, `evidence/ELIGIBILITY_TIMEFRAME_REPAIR.json` |
-| `repair_local_modules.py` | `evidence/REPAIR_LOCAL_MODULES.json` |
+| `repair/local_modules.py` | `evidence/REPAIR_LOCAL_MODULES.json` |
 | `repair/patch_class2.py`-artige Signatur-Reparaturen | `evidence/ELIGIBILITY_SIGNATURE_REPAIR.json` |
 | `repair/compat_signature.py` (17 Shims, automatisch über `evidence/profile_freqtrade.py` geladen) | kein eigener Store — wirkt zur Laufzeit, protokolliert in `evidence/PROFILE_CLASS1.json` |
 

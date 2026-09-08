@@ -41,7 +41,7 @@ import sys
 import traceback
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TRIAGE = os.path.join(ROOT, "evidence/BLOCKED_TRIAGE.json")
 CLASS1 = os.path.join(ROOT, "evidence/PROFILE_CLASS1.json")
 OUTPUT = os.path.join(ROOT, "evidence/REPAIR_LOCAL_MODULES.json")

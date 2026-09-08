@@ -230,7 +230,7 @@ CRITERIA = [
         "columns": 'primary_reason == "local_module_repair_exhausted"',
         "what": "The strategy imports a helper the author shipped beside it "
                 "in their own repository, and the corpus copy has nowhere to "
-                "resolve from on its own. `repair_local_modules.py` searched "
+                "resolve from on its own. `repair/local_modules.py` searched "
                 "the whole corpus for another copy that satisfies the import.",
         "why_final": "Three shapes, the search exhausted either way. No "
                      "candidate imports at all - `BaseStrategy`, "
@@ -257,7 +257,7 @@ CRITERIA = [
                  "from there to a working repair the same day this criterion "
                  "was written (`Solipsis3`, `SolipsisCon`, `Solipsis4`, "
                  "`Dyna_opti`), which is the reason `repair_attempted` is "
-                 "trusted here only once `repair_local_modules.py` has "
+                 "trusted here only once `repair/local_modules.py` has "
                  "actually run against the row.",
     },
     {
@@ -896,7 +896,7 @@ REPAIRS = [
         "cause": "The strategy imports a helper the author shipped beside it "
                  "in their repository. Collected on its own, the import has "
                  "nowhere to resolve from.",
-        "fix": "`repair_local_modules.py` finds copies of the missing module "
+        "fix": "`repair/local_modules.py` finds copies of the missing module "
                "in the corpus and decides between them by testing the import, "
                "not by name. `shadows_a_package()` rejects any directory "
                "containing `freqtrade/`, `numpy/` and the like.",
@@ -906,7 +906,7 @@ REPAIRS = [
                  "and the withdrawn entries stay in `evidence/PROFILE_CLASS1.json` "
                  "with `status: withdrawn` - deleting them had deleted the "
                  "finding.",
-        "tool": "repair_local_modules.py",
+        "tool": "repair/local_modules.py",
     },
     {
         "family": "freqai_arm",

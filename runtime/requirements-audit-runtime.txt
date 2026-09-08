@@ -31,7 +31,7 @@ talipp==2.7.0
 yfinance==1.7.0
 # pykalman: Kalman declares it, but Kalman's own blocker is actually an
 # earlier import, `custom_indicators` - genuinely absent from the corpus
-# (repair_local_modules.py confirmed no copy anywhere), so pykalman alone
+# (repair/local_modules.py confirmed no copy anywhere), so pykalman alone
 # does not unblock this row. Installed anyway: correct for its own row,
 # and repair_measures_list.md's `third_party_package` entry can now say so
 # precisely instead of "unexamined".

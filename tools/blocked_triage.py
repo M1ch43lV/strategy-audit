@@ -121,7 +121,7 @@ def _write(data):
 
 # Every exclusion reason whose family/verdict traces back to THIS file's own
 # classification - directly, or one step removed through
-# repair_local_modules.py, which only ever acts on a row this file has
+# repair/local_modules.py, which only ever acts on a row this file has
 # already tagged `local_module_off_path`. C6 (measured_only_in_freqai_arm)
 # is the one exception: it comes from the FreqAI arm's own result cards, a
 # store this file never wrote to and never reads.
@@ -130,7 +130,7 @@ def _write(data):
 # rows were the first round, three C7 rows the second (a stale
 # "third_party_package" tag survived under a row whose real blocker had
 # moved on), and C5's local_module_off_path rows - Solipsis3 and seven
-# others - were the third, this time emptying repair_local_modules.py's own
+# others - were the third, this time emptying repair/local_modules.py's own
 # selftest fixture rather than misreporting a reason.
 CRITERIA_SOURCED_HERE = ("repair_refused_would_invent_strategy",
                          "third_party_package_declined",
