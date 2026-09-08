@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1038 rows
 
-**Generated 2026-09-08 12:42:57 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-08 13:37:19 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -40,8 +40,8 @@ have neither and are left empty rather than given an invented time.
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 608 |
-| `excluded` | 251 |
-| `exclusion_unconfirmed` | 81 |
+| `excluded` | 256 |
+| `exclusion_unconfirmed` | 76 |
 | `pending` | 57 |
 | `too_few_trades` | 21 |
 | `not_a_strategy` | 19 |
@@ -127,7 +127,7 @@ than a pick-one-source figure. 4 of 1038 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 1034 rows that do: **59.9 hours** of this audit's own compute so far.
+Summed across the 1034 rows that do: **60.5 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -265,7 +265,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1309 of 2600 commands are recorded so far, and every new run
+recording. 1353 of 2600 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -4155,7 +4155,7 @@ neither a pass nor a fail.
 `WTHO`, `delist_shorter_strategy`, `haGradient`, `multi_tf`
 `tacos1`
 
-## Exclusion unconfirmed - 81 strategies
+## Exclusion unconfirmed - 76 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -4167,7 +4167,7 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `unclassified` | `no_finding` | 59 |
+| `unclassified` | `no_finding` | 54 |
 | `no_verdict_on_lookahead` | `no_finding` | 14 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 6 |
 | `recursive_bias_unverified` | `no_finding` | 1 |
@@ -4178,7 +4178,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 251 strategies, by decisive reason
+## Not passing - 256 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -4226,7 +4226,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 251 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 256 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -4235,7 +4235,7 @@ one of them carries none.
 | Reason | Meaning | Strategies |
 |---|---|---:|
 | `lookahead_found` | reads data it could not have had at the time | 73 |
-| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 67 |
+| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 72 |
 | `no_trades_in_full_measurement` | never trades over the full window | 7 |
 | `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 30 |
 | `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 29 |
@@ -4249,7 +4249,7 @@ one of them carries none.
 | Reason | `-` | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `E0_strict67` | `not_scheduled` |
 |---|---|---|---|---|---|---|---|
 | `lookahead_found` | 0 | 2 | 0 | 10 | 0 | 0 | 61 |
-| `recursive_bias_found` | 5 | 0 | 3 | 18 | 14 | 1 | 26 |
+| `recursive_bias_found` | 10 | 0 | 3 | 18 | 14 | 1 | 26 |
 | `no_trades_in_full_measurement` | 0 | 0 | 0 | 7 | 0 | 0 | 0 |
 | `repair_refused_would_invent_strategy` | 6 | 1 | 0 | 23 | 0 | 0 | 0 |
 | `local_module_repair_exhausted` | 17 | 0 | 0 | 12 | 0 | 0 | 0 |
@@ -4290,14 +4290,15 @@ Wave `not_scheduled` - 61:
 `ichiV1`, `qrsi`, `tsp0chicken`, `turbov8`
 `wtc`
 
-### `recursive_bias_found` - 67
+### `recursive_bias_found` - 72
 
 Indicator value still drifts at every warm-up the ladder can reach.
 
-Wave `-` - 5:
+Wave `-` - 10:
 
 `AlexStrategyFinalV8Hyper`, `AlexStrategyFinalV9Hyper`, `GRIDDMIPRICEStrategyFutureV2`, `GRIDDMIPRICEStrategyFutureV2Both`
-`GRIDDMIPRICEStrategyFutureV2Long`
+`GRIDDMIPRICEStrategyFutureV2Long`, `GRIDDMIPRICEStrategyFutureV2Short`, `SuperReversal_mtf`, `TryEverything`
+`mind`, `momentum_tf_divergence`
 
 Wave `B_warmup_refusal` - 3:
 
@@ -4444,11 +4445,11 @@ Wave `not_scheduled` - 4:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 242 |
-| `lookahead_remeasure_pending` | 79 |
-| `convergence_not_converged_within_ladder` | 67 |
+| `recursive_ladder_pending` | 205 |
+| `lookahead_remeasure_pending` | 74 |
+| `convergence_not_converged_within_ladder` | 72 |
 | `needs_a_look` | 47 |
-| `convergence_inconclusive` | 14 |
+| `convergence_inconclusive` | 16 |
 | `to_be_fixed` | 5 |
 | `repair_attempted` | 3 |
 | `refuse_repair` | 1 |

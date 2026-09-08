@@ -538,10 +538,37 @@ def run_ladder(row, timeout, startups, overrides=None):
     return output, meta
 
 
+_CONFIG_TIMEFRAME = re.compile(r"^timeframe\s*=\s*['\"]([0-9]+[mhdwM])['\"]", re.M)
+
+
+def sibling_config_timeframe(canonical_file):
+    """The timeframe from a same-directory `Config.py`, if the strategy reads
+    `Config.timeframe` instead of declaring its own.
+
+    2026-09-08, wave-2 futures/short harvest: 18 rows in
+    `hamidreza07_freqai-strategy` read the value this way rather than
+    stating it, which is why `execution_profiles.py`'s static source scan -
+    looking for a literal `timeframe = ...` in the strategy file itself -
+    finds nothing and `EXECUTION_PROFILES.csv` records `timeframe_source:
+    unresolved`. All 18 still ran a real Probelauf, so the value was never
+    actually missing, only indirected through the author's own sibling
+    file. This reads the same file the strategy imports at runtime; it is
+    not a different or invented value.
+    """
+    directory = os.path.dirname(os.path.join(ROOT, canonical_file.replace("/", os.sep)))
+    config_path = os.path.join(directory, "Config.py")
+    if not os.path.isfile(config_path):
+        return None
+    text = io.open(config_path, encoding="utf-8", errors="replace").read()
+    match = _CONFIG_TIMEFRAME.search(text)
+    return match.group(1) if match else None
+
+
 def resolve(row, timeout, overrides=None):
     """Find the smallest warm-up from which this row stays inside the band."""
     strategy = row["strategy_id"]
-    timeframe = row.get("execution_timeframe") or row.get("declared_timeframe")
+    timeframe = (row.get("execution_timeframe") or row.get("declared_timeframe")
+                 or sibling_config_timeframe(row["canonical_file"]))
     cap = available_prefix_candles(row["run_profile"], timeframe)
     rungs = ladder(timeframe, cap, startup_ceiling(strategy))
     record = {
