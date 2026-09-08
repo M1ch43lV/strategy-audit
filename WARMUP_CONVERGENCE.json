@@ -2393,6 +2393,98 @@
       "timeframe": "15m",
       "timerange": "20190101-20190401"
     },
+    "Argrelextrema": {
+      "available_prefix_candles": 7391,
+      "chosen_ladder_days": null,
+      "chosen_startup_candle_count": 30,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 30
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/Argrelextrema-0ba99988-ladder.log",
+      "declared_max_drift_pct": 0.0,
+      "declared_startup_candle_count": 30,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "bb_lowerband": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_percent": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_upperband": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_width": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "vol": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ]
+      },
+      "elapsed_s": 52.3,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": null,
+      "implementation_id": "Argrelextrema:a0dc5f2d0ad4",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy Argrelextrema --strategy-path user_data/profile_bias_strategies/Argrelextrema-0ba99988 --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016 --timeframe 5m",
+      "ladder_candles": [
+        288,
+        576,
+        2016
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        288,
+        576,
+        2016
+      ],
+      "max_drift_indicator": "vol",
+      "max_drift_pct": 0.0,
+      "needed_no_override": true,
+      "output_sha256": "sha256_bfb112896bd467b441aa53cbfd4996d49e00b0bdbc48071b4c8eadf856437330",
+      "returncode": 0,
+      "run_profile": "futures_long_short",
+      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "state": "converged",
+      "strategy_id": "Argrelextrema",
+      "timeframe": "5m",
+      "timerange": "20200301-20200401"
+    },
     "AroonTrendStrategy": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 1,
@@ -104829,18 +104921,234 @@
       "timerange": "20190101-20190401"
     },
     "SqueezeOff": {
-      "available_prefix_candles": null,
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 2,
+      "chosen_startup_candle_count": 576,
       "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 20
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/SqueezeOff-00971d90-ladder.log",
+      "declared_max_drift_pct": 39.412,
+      "declared_startup_candle_count": 20,
+      "declared_warmup_override": null,
       "drift_threshold_pct": 1.0,
+      "drifts": {
+        "adx": [
+          null,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_gain": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_lowerband": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_upperband": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dc_mid": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dm_delta": [
+          -39.412,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dm_minus": [
+          -5.295,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dm_plus": [
+          27.626,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema": [
+          -0.012,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema3": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema5": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fisher_rsi": [
+          -21.865,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macd": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macdhist": [
+          null,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macdsignal": [
+          null,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mfi": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "rsi": [
+          12.447,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sqz_ave": [
+          null,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sqz_delta": [
+          null,
+          0.127,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sqz_lower": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "sqz_upper": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "sqz_val": [
+          null,
+          0.033,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "tema": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 54.8,
       "file_derived_period": null,
       "implementation_id": "SqueezeOff:f71853bfc282",
-      "ladder_candles": [],
-      "ladder_days": [],
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SqueezeOff --strategy-path user_data/profile_bias_strategies/SqueezeOff-00971d90 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "sma",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_b6ebf1a53cb70b467846fe8acc7aa5cf48dab83f39c262e218d1d53284595302",
+      "returncode": 0,
       "run_profile": "spot_long",
-      "state": "no_usable_ladder",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
       "strategy_id": "SqueezeOff",
-      "timeframe": "",
-      "why": "no declared timeframe"
+      "timeframe": "5m",
+      "timerange": "20190101-20190401"
     },
     "StarRise": {
       "available_prefix_candles": 97222,
@@ -108548,27 +108856,28 @@
       "debug_log": "user_data/convergence_logs/TRIX_LS-1f89b909-ladder.log",
       "declared_warmup_override": null,
       "drift_threshold_pct": 1.0,
-      "elapsed_s": 42.2,
+      "elapsed_s": 47.1,
       "file_derived_period": null,
       "implementation_id": "TRIX_LS:37ba26717d46",
-      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy TRIX_LS --strategy-path user_data/profile_bias_strategies/TRIX_LS-1f89b909 --timerange 20200301-20200401 --no-color --startup-candle 168 336",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy TRIX_LS --strategy-path user_data/profile_bias_strategies/TRIX_LS-1f89b909 --timerange 20200301-20200401 --no-color --startup-candle 48 168 336",
       "ladder_candles": [
+        48,
         168,
         336
       ],
       "ladder_days": [
+        2,
         7,
         14
       ],
       "ladder_rungs_dropped_as_uncomputable": [
-        24,
-        48
+        24
       ],
-      "output_sha256": "sha256_41cbfeb870c7e16c0ad6cd66c6be444ff9348fce9c2fcd1d568382efc5a9be1a",
+      "output_sha256": "sha256_395b6f68e9a5ab67666519b518c7fa838bd2d99090efee9b38ae20ddf3e6c499",
       "returncode": 1,
       "run_profile": "futures_long_short",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "crashes_even_at_longest_rungs",
       "strategy_id": "TRIX_LS",
       "timeframe": "1h",
       "timerange": "20200301-20200401",
@@ -121313,33 +121622,31 @@
       "debug_log": "user_data/convergence_logs/kijun_cross_strong_s-5471d2bc-ladder.log",
       "declared_warmup_override": null,
       "drift_threshold_pct": 1.0,
-      "elapsed_s": 42.1,
+      "elapsed_s": 40.0,
       "file_derived_period": null,
       "implementation_id": "kijun_cross_strong_s:8e86a0a51015",
-      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy kijun_cross_strong_s --strategy-path user_data/profile_bias_strategies/kijun_cross_strong_s-5471d2bc --timerange 20190101-20190401 --no-color --startup-candle 7 14 30 90 365",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy kijun_cross_strong_s --strategy-path user_data/profile_bias_strategies/kijun_cross_strong_s-5471d2bc --timerange 20190101-20190401 --no-color --startup-candle 30 90 365",
       "ladder_candles": [
-        7,
-        14,
         30,
         90,
         365
       ],
       "ladder_days": [
-        7,
-        14,
         30,
         90,
         365
       ],
       "ladder_rungs_dropped_as_uncomputable": [
         1,
-        2
+        2,
+        7,
+        14
       ],
-      "output_sha256": "sha256_bd5ea7d56966161c03b303027a33d2df3ff188bb37a192c7fb222a91289559b6",
+      "output_sha256": "sha256_e52365fee76141e949685183ee3747921b3702e9a97ba88be214f99eac4fbf8b",
       "returncode": 1,
       "run_profile": "spot_long",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "state": "inconclusive",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "crashes_even_at_longest_rungs",
       "strategy_id": "kijun_cross_strong_s",
       "timeframe": "1d",
       "timerange": "20190101-20190401",
@@ -127900,6 +128207,23 @@
         "timeframe": "4h",
         "timerange": "20190101-20190401",
         "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+      }
+    ],
+    "Argrelextrema": [
+      {
+        "available_prefix_candles": null,
+        "cohort": "ladder_pending",
+        "drift_threshold_pct": 1.0,
+        "file_derived_period": null,
+        "implementation_id": "Argrelextrema:a0dc5f2d0ad4",
+        "ladder_candles": [],
+        "ladder_days": [],
+        "run_profile": "futures_long_short",
+        "state": "no_usable_ladder",
+        "strategy_id": "Argrelextrema",
+        "superseded_because": "timeframe was only known through the repair-store override (config_overrides={\"timeframe\": \"5m\"}), which resolve() did not consult for the candle-math lookup, only for the subprocess config - fixed; re-run under the fix",
+        "timeframe": null,
+        "why": "no declared timeframe"
       }
     ],
     "AwesomeMacd": [
@@ -164551,6 +164875,23 @@
         "why": "no declared timeframe"
       }
     ],
+    "SqueezeOff": [
+      {
+        "available_prefix_candles": null,
+        "cohort": "ladder_pending",
+        "drift_threshold_pct": 1.0,
+        "file_derived_period": null,
+        "implementation_id": "SqueezeOff:f71853bfc282",
+        "ladder_candles": [],
+        "ladder_days": [],
+        "run_profile": "spot_long",
+        "state": "no_usable_ladder",
+        "strategy_id": "SqueezeOff",
+        "superseded_because": "sibling_config_timeframe() only checked a literal Config.py; SqueezeOff imports Config_SqueezeOff.py, which the fixed glob-based resolver now finds (timeframe = 5m); re-run under the fix",
+        "timeframe": "",
+        "why": "no declared timeframe"
+      }
+    ],
     "Stavix2": [
       {
         "available_prefix_candles": 486102,
@@ -164991,6 +165332,41 @@
         "timeframe": "1h",
         "timerange": "20190101-20190401",
         "why": "analyzer produced no drift table"
+      }
+    ],
+    "TRIX_LS": [
+      {
+        "available_prefix_candles": 616,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/TRIX_LS-1f89b909-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 42.2,
+        "file_derived_period": null,
+        "implementation_id": "TRIX_LS:37ba26717d46",
+        "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy TRIX_LS --strategy-path user_data/profile_bias_strategies/TRIX_LS-1f89b909 --timerange 20200301-20200401 --no-color --startup-candle 168 336",
+        "ladder_candles": [
+          168,
+          336
+        ],
+        "ladder_days": [
+          7,
+          14
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          24,
+          48
+        ],
+        "output_sha256": "sha256_41cbfeb870c7e16c0ad6cd66c6be444ff9348fce9c2fcd1d568382efc5a9be1a",
+        "returncode": 1,
+        "run_profile": "futures_long_short",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "state": "inconclusive",
+        "strategy_id": "TRIX_LS",
+        "superseded_because": "extended shrinking-ladder retry (drop shortest rung until only the 3 longest remain, new crashes_even_at_longest_rungs terminal state) added; re-run under the fix",
+        "timeframe": "1h",
+        "timerange": "20200301-20200401",
+        "why": "'NoneType' object has no attribute 'rolling'"
       }
     ],
     "TrendFollowingStrategy": [
@@ -167629,6 +168005,47 @@
         "timeframe": "1h",
         "timerange": "20190101-20190401",
         "why": "analyzer produced no drift table"
+      }
+    ],
+    "kijun_cross_strong_s": [
+      {
+        "available_prefix_candles": 370,
+        "cohort": "ladder_pending",
+        "debug_log": "user_data/convergence_logs/kijun_cross_strong_s-5471d2bc-ladder.log",
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "elapsed_s": 42.1,
+        "file_derived_period": null,
+        "implementation_id": "kijun_cross_strong_s:8e86a0a51015",
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy kijun_cross_strong_s --strategy-path user_data/profile_bias_strategies/kijun_cross_strong_s-5471d2bc --timerange 20190101-20190401 --no-color --startup-candle 7 14 30 90 365",
+        "ladder_candles": [
+          7,
+          14,
+          30,
+          90,
+          365
+        ],
+        "ladder_days": [
+          7,
+          14,
+          30,
+          90,
+          365
+        ],
+        "ladder_rungs_dropped_as_uncomputable": [
+          1,
+          2
+        ],
+        "output_sha256": "sha256_bd5ea7d56966161c03b303027a33d2df3ff188bb37a192c7fb222a91289559b6",
+        "returncode": 1,
+        "run_profile": "spot_long",
+        "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+        "state": "inconclusive",
+        "strategy_id": "kijun_cross_strong_s",
+        "superseded_because": "extended shrinking-ladder retry (drop shortest rung until only the 3 longest remain, new crashes_even_at_longest_rungs terminal state) added; re-run under the fix",
+        "timeframe": "1d",
+        "timerange": "20190101-20190401",
+        "why": "'NoneType' object is not subscriptable"
       }
     ],
     "lambotest": [

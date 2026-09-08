@@ -528,6 +528,13 @@ def exclusion_basis(reason, lookahead_evidence, trade_evidence,
         return ("own_measurement"
                 if str(recursive_evidence).startswith("convergence")
                 else "inherited")
+    # Also our own only when our ladder produced it - the shrinking-ladder
+    # retry in warmup_convergence.py's resolve() ran to its 3-longest-rungs
+    # floor and still crashed. Never inherited: no earlier wave or baseline
+    # sweep could have carried this specific verdict, since the state did
+    # not exist before 2026-09-08.
+    if reason == "recursive_check_incomplete_at_longest_rungs":
+        return "own_measurement"
     if reason == "behavior_changed_primary_exclusion":
         return "own_measurement"
     if reason == "recursive_bias_unverified" \
@@ -871,6 +878,22 @@ def rows():
             # confirmed rather than inherited.
             recursive = "FOUND"
             recursive_evidence = "convergence:not_settled"
+        elif settled.get("state") == "crashes_even_at_longest_rungs":
+            # Not a finding - no drift was ever observed, because the row
+            # never produced a drift table to observe it in. TRIX_LS
+            # (`rsi_.rolling(length)` on `None`) and kijun_cross_strong_s (a
+            # `NoneType` subscript) both crash inside their own indicator
+            # code, and both already pass a real Probelauf on full history,
+            # so this is the ladder's extreme short rungs, not a defect
+            # visible under real use. The shrinking-ladder retry (`resolve()`
+            # in warmup_convergence.py) already gave every rung down to the 3
+            # longest a chance to be the reason and it still crashes there.
+            # `recursive` stays `NA` - honestly, no bias verdict exists - but
+            # the recursive-bias check is not optional for any row, so
+            # failing to complete it even at the most generous remaining
+            # warm-up is treated as failing to pass it.
+            recursive = "NA"
+            recursive_evidence = "convergence:crash_exhausted"
         elif attempt:
             # Measured here, at a supplied warm-up, but under the parser that
             # read the wrong table column and treated an undefined cell as a
@@ -931,7 +954,7 @@ def rows():
             # full-window run, hours of computation for a row that could not
             # be admitted whatever that run showed.
             cohort = "convergence_candidate"
-        elif lookahead == "FOUND" and lookahead_evidence == "native"                 or recursive_evidence == "convergence:not_settled":
+        elif lookahead == "FOUND" and lookahead_evidence == "native"                 or recursive_evidence == "convergence:not_settled"                 or recursive_evidence == "convergence:crash_exhausted":
             # A finding of ours settles the row, and settles it whatever else
             # is still outstanding. Without this the "diagnostics not
             # completed" branch below outranked the finding: dropping the trap
@@ -1068,6 +1091,8 @@ def rows():
             # being what the row is called.
             if recursive_evidence == "convergence:not_settled":
                 reason = "recursive_bias_found"
+            elif recursive_evidence == "convergence:crash_exhausted":
+                reason = "recursive_check_incomplete_at_longest_rungs"
             for key, _text in REASON_ORDER:
                 if reason:
                     break

@@ -542,8 +542,8 @@ _CONFIG_TIMEFRAME = re.compile(r"^timeframe\s*=\s*['\"]([0-9]+[mhdwM])['\"]", re
 
 
 def sibling_config_timeframe(canonical_file):
-    """The timeframe from a same-directory `Config.py`, if the strategy reads
-    `Config.timeframe` instead of declaring its own.
+    """The timeframe from a same-directory `Config*.py`, if the strategy
+    reads it from a sibling config module instead of declaring its own.
 
     2026-09-08, wave-2 futures/short harvest: 18 rows in
     `hamidreza07_freqai-strategy` read the value this way rather than
@@ -554,14 +554,26 @@ def sibling_config_timeframe(canonical_file):
     actually missing, only indirected through the author's own sibling
     file. This reads the same file the strategy imports at runtime; it is
     not a different or invented value.
+
+    Glob rather than a fixed `Config.py`: `SqueezeOff` imports
+    `Config_SqueezeOff`, not `Config` - the same repository names its
+    per-strategy config module after the strategy in some folders and
+    plainly `Config` in others. Scoped to this one directory only, so the
+    risk of picking up an unrelated file is the same as it would be for a
+    literal `Config.py` check.
     """
     directory = os.path.dirname(os.path.join(ROOT, canonical_file.replace("/", os.sep)))
-    config_path = os.path.join(directory, "Config.py")
-    if not os.path.isfile(config_path):
+    if not os.path.isdir(directory):
         return None
-    text = io.open(config_path, encoding="utf-8", errors="replace").read()
-    match = _CONFIG_TIMEFRAME.search(text)
-    return match.group(1) if match else None
+    candidates = sorted(name for name in os.listdir(directory)
+                        if name.startswith("Config") and name.endswith(".py"))
+    for name in candidates:
+        text = io.open(os.path.join(directory, name),
+                       encoding="utf-8", errors="replace").read()
+        match = _CONFIG_TIMEFRAME.search(text)
+        if match:
+            return match.group(1)
+    return None
 
 
 def resolve(row, timeout, overrides=None):
@@ -605,11 +617,17 @@ def resolve(row, timeout, overrides=None):
     # A single rung the strategy cannot compute aborts the whole run, and the
     # analyzer's exception then reaches the record as "no drift table", which
     # names neither the cause nor the cure. The cure is usually to start
-    # higher: nine of the ten failures here are an indicator refusing a series
-    # shorter than it needs. So the bottom rung is dropped and the ladder tried
-    # again, up to twice, and whatever survives is reported as the error it is.
+    # higher: most of these failures are an indicator refusing a series
+    # shorter than it needs (TRIX_LS: `rsi_.rolling(length)` on `None`;
+    # kijun_cross_strong_s: a `NoneType` subscript) - both already pass a real
+    # Probelauf on full history, so the crash is the ladder's own extreme short
+    # rungs, not a defect the strategy shows under real use. So the bottom
+    # rung is dropped and the ladder tried again, stopping once only the 3
+    # longest rungs are left - not promoted to a pass or a fail either way,
+    # just given every rung short of the ones the ladder rule itself judges
+    # least informative a chance to be the reason, before deciding it is not.
     dropped = []
-    while meta.get("returncode") and len(candles) > 1 and len(dropped) < 2:
+    while meta.get("returncode") and len(candles) > 3:
         dropped.append(candles[0])
         candles = candles[1:]
         rungs = rungs[1:]
@@ -624,6 +642,16 @@ def resolve(row, timeout, overrides=None):
         record["ladder_candles"] = candles
         record["ladder_days"] = [days for days, _value in rungs]
     if meta.get("returncode"):
+        if len(candles) <= 3:
+            # Every rung short of the 3 longest is gone and it still crashes.
+            # The recursive-bias check is not optional for any row, so a
+            # strategy that cannot complete it even given the most generous
+            # remaining warm-up is decided, not left open - unlike plain
+            # `inconclusive`, which stays a question because a shorter,
+            # untried rung might still have worked.
+            record["state"] = "crashes_even_at_longest_rungs"
+            record["why"] = profile_bias._error(output, meta["returncode"])
+            return record
         record["state"] = "inconclusive"
         record["why"] = profile_bias._error(output, meta["returncode"])
         return record

@@ -1776,17 +1776,24 @@
       "why": "Configuration error: 'stoploss' is a required property"
     },
     "DCADMIPRICEStrategySpot": {
+      "archive": "user_data/profile_smoke/DCADMIPRICEStrategySpot-6a6d0b33-2026-09-08_17-13-36.zip",
+      "archive_sha256": "sha256_3d576ea30d12a45a43dd12f530e5a885379cb446b5a927513a0732f14b6a5b8c",
+      "artifact_key": "",
       "canonical_sha256": "sha256_4b53741704a39a5d03cddb93be21c9734806bcc4dfb244412b722c3d644b3177",
       "class1_rules": [],
-      "elapsed_s": 300.0,
+      "config_overrides": {},
+      "elapsed_s": 203.1,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy DCADMIPRICEStrategySpot --strategy-path repos/LazyPigPig_freqtrade-grid/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DCADMIPRICEStrategySpot-6a6d0b33 --cache none",
+      "long_trades": 23,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "status": "timeout",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "timeout after 300 seconds"
+      "trades": 23,
+      "trades_sha256": "sha256_2044359d0472582d5e5d265a04568fb53da36352ccda2413e98cf906ab356d32"
     },
     "DCAGRID": {
       "archive": "user_data/profile_smoke/DCAGRID-8f1a8a50-2026-09-06_18-08-21.zip",
@@ -3271,7 +3278,7 @@
     "GRIDDMIPRICEStrategyFutureV4": {
       "canonical_sha256": "sha256_c6e8b1401ff60db3adbcadf3585e4e57bf4cdcd5de3c53e5edeb87d2be2367fd",
       "class1_rules": [],
-      "elapsed_s": 300.0,
+      "elapsed_s": 900.0,
       "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy GRIDDMIPRICEStrategyFutureV4 --strategy-path repos/LazyPigPig_freqtrade-grid/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/GRIDDMIPRICEStrategyFutureV4-7da18b95 --cache none",
       "mode": "futures",
       "run_profile": "futures_long_short",
@@ -3279,20 +3286,27 @@
       "runtime_id": "native_unversioned",
       "status": "timeout",
       "timerange": "20200301-20200401",
-      "why": "timeout after 300 seconds"
+      "why": "timeout after 900 seconds"
     },
     "GRIDDMIPRICEStrategyFutureV5": {
+      "archive": "user_data/profile_smoke/GRIDDMIPRICEStrategyFutureV5-a6b35126-2026-09-08_16-59-27.zip",
+      "archive_sha256": "sha256_3fbb70080a9307e67d51036911286e6699ccced9a9254e71bfb2f423f874cd36",
+      "artifact_key": "",
       "canonical_sha256": "sha256_39af2fefcdb2202f6f10b4d3a80faa3a7ff00343cf956f72614be6438822c3b6",
       "class1_rules": [],
-      "elapsed_s": 300.0,
+      "config_overrides": {},
+      "elapsed_s": 408.1,
       "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy GRIDDMIPRICEStrategyFutureV5 --strategy-path repos/LazyPigPig_freqtrade-grid/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/GRIDDMIPRICEStrategyFutureV5-a6b35126 --cache none",
+      "long_trades": 0,
       "mode": "futures",
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
       "runtime_id": "native_unversioned",
-      "status": "timeout",
+      "short_trades": 7,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "timeout after 300 seconds"
+      "trades": 7,
+      "trades_sha256": "sha256_f5f69cd0abc4e45f9420dd214a91ac52f8973a6f4c59efe65337d3ccc135b28d"
     },
     "GRIDDMIPRICEStrategyFutureV5Long": {
       "archive": "user_data/profile_smoke/GRIDDMIPRICEStrategyFutureV5Long-93a155ed-2026-09-06_16-37-51.zip",
@@ -3335,30 +3349,44 @@
       "trades_sha256": "sha256_2ded9610a2a1bed6369146e42eef70aaa1c997ef80c9819c131656453225e2aa"
     },
     "GRIDDMIPRICEStrategyFutureV6": {
+      "archive": "user_data/profile_smoke/GRIDDMIPRICEStrategyFutureV6-f9607587-2026-09-08_17-05-53.zip",
+      "archive_sha256": "sha256_cd2fca2648c38d2eaa575604c5980e87be28441598424d5816f69236ec11510f",
+      "artifact_key": "",
       "canonical_sha256": "sha256_96a135ff855b9e406de6113d7fc698fff8b4f32ba17366e1fb80b544aa6e57af",
       "class1_rules": [],
-      "elapsed_s": 300.2,
+      "config_overrides": {},
+      "elapsed_s": 386.0,
       "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy GRIDDMIPRICEStrategyFutureV6 --strategy-path repos/LazyPigPig_freqtrade-grid/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/GRIDDMIPRICEStrategyFutureV6-f9607587 --cache none",
+      "long_trades": 22,
       "mode": "futures",
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
       "runtime_id": "native_unversioned",
-      "status": "timeout",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "timeout after 300 seconds"
+      "trades": 22,
+      "trades_sha256": "sha256_d249b14c9360e6a5bec07a8f3ab100faec7882f8463feea1f93e06e5b94ee0de"
     },
     "GRIDDMIPRICEStrategyFutureV7": {
+      "archive": "user_data/profile_smoke/GRIDDMIPRICEStrategyFutureV7-20ea6876-2026-09-08_17-10-13.zip",
+      "archive_sha256": "sha256_cc7b16bd41049a84126a8d809196a127a9959cb1f95e80fac56e2e1ee905c10e",
+      "artifact_key": "",
       "canonical_sha256": "sha256_90e2662cd7ddfca015b4488cc1c8618e345cec21067bbe415de86cd112f49b4b",
       "class1_rules": [],
-      "elapsed_s": 300.0,
+      "config_overrides": {},
+      "elapsed_s": 259.1,
       "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy GRIDDMIPRICEStrategyFutureV7 --strategy-path repos/LazyPigPig_freqtrade-grid/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/GRIDDMIPRICEStrategyFutureV7-20ea6876 --cache none",
+      "long_trades": 15,
       "mode": "futures",
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
       "runtime_id": "native_unversioned",
-      "status": "timeout",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "timeout after 300 seconds"
+      "trades": 15,
+      "trades_sha256": "sha256_23e1434607d5dbea56bc06b302a8b88e3b7a00dd8bda2b6ab8a1be41e6579b9e"
     },
     "GRIDDMIPRICEStrategySpot": {
       "archive": "user_data/profile_smoke/GRIDDMIPRICEStrategySpot-bfcd5e8a-2026-09-06_17-58-32.zip",

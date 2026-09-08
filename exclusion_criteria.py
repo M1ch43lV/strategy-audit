@@ -67,6 +67,10 @@ def _recursion_found(row):
     return row["recursive_evidence"] == "convergence:not_settled"
 
 
+def _recursion_incomplete_at_longest_rungs(row):
+    return row["recursive_evidence"] == "convergence:crash_exhausted"
+
+
 def _never_trades(row):
     return (row["primary_reason"] == "no_trades_in_full_measurement"
             and row["trade_evidence"] == "full_window")
@@ -392,6 +396,47 @@ CRITERIA = [
                  "future decision to relax the pandas or numpy rule "
                  "corpus-wide would reopen every row this criterion "
                  "closed, together.",
+    },
+    {
+        "id": "C9",
+        "name": "Recursion check cannot complete even at the longest rungs",
+        "test": _recursion_incomplete_at_longest_rungs,
+        "columns": 'recursive_evidence == "convergence:crash_exhausted"',
+        "what": "The ladder's shortest rungs raise inside the strategy's own "
+                "indicator code rather than reporting a drift table - "
+                "`TRIX_LS` (`rsi_.rolling(length)` on `None` inside a custom "
+                "`custom_stochRSI` helper) and `kijun_cross_strong_s` (a "
+                "`NoneType` subscript). Both already pass a real Probelauf "
+                "on full history, so this is not the strategy failing under "
+                "real use - it is an indicator that cannot handle the "
+                "ladder's deliberately extreme short warm-ups. "
+                "`warmup_convergence.py`'s `resolve()` answers that "
+                "directly: on a crash it drops the shortest rung and "
+                "retries, continuing until only the 3 longest remain, "
+                "giving every rung short of those a chance to be the "
+                "reason before it stops trying. Both rows still crash with "
+                "only the 3 longest left.",
+        "why_final": "Not a finding - no drift was ever observed, because "
+                     "the row never produced a drift table to observe it "
+                     "in, so `recursive` stays `NA` rather than `FOUND`. "
+                     "But the recursive-bias check is not optional for any "
+                     "row admitted to this audit, and a row that cannot "
+                     "complete it even given the most generous warm-up "
+                     "this project's ladder offers has not passed it "
+                     "either. Decided on that basis, 2026-09-08.",
+        "evidence": "`WARMUP_CONVERGENCE.json` keeps `ladder_rungs_dropped_"
+                    "as_uncomputable` (which rungs were tried and abandoned) "
+                    "and the final `runtime_failure` from the 3-rung attempt "
+                    "that still crashed, so the finding can be read rather "
+                    "than taken on faith.",
+        "watch": "Distinct from `not_converged_within_ladder` (C2): that is "
+                 "a confirmed finding, an indicator that ran and kept "
+                 "drifting. This is the ladder never producing a verdict "
+                 "at all, at any rung it could still offer. A row that "
+                 "crashes at the shortest rungs but converges once the "
+                 "shortest are dropped is `converged`, not this - only "
+                 "persistent failure through to the 3 longest rungs "
+                 "qualifies.",
     },
 ]
 
