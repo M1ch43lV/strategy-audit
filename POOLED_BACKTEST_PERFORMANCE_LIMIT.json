@@ -17,6 +17,31 @@
         {"elapsed_s": 3600.2, "status": "timeout"},
         {"elapsed_s": 3599.9, "status": "timeout"}
       ]
+    },
+    "Hacklemore": {
+      "verdict": "performance_limited",
+      "why": "Two independent attempts (2026-09-07, 2026-09-08) both ran to exactly the 3600s ceiling with no exception and no OOM signature - not a resource_inconclusive case.",
+      "confirmed_attempts": [
+        {"elapsed_s": 3599.9, "status": "timeout"},
+        {"elapsed_s": 3599.9, "status": "timeout"}
+      ]
+    },
+    "Hacklemore3": {
+      "verdict": "performance_limited",
+      "why": "Two independent attempts (2026-09-07, 2026-09-08) both ran to exactly the 3600s ceiling with no exception and no OOM signature - not a resource_inconclusive case. This is the strategy the synthetic-orderbook compat shim was built for (repair/compat_signature.py); the shim fixed the KeyError crash, but the same remaining per-trade orderbook-lookup cost that limits SuperHV27/Schism applies here too.",
+      "confirmed_attempts": [
+        {"elapsed_s": 3600.0, "status": "timeout"},
+        {"elapsed_s": 3600.0, "status": "timeout"}
+      ]
+    },
+    "NowoIchimoku5mV2": {
+      "verdict": "performance_limited",
+      "why": "Three independent attempts (2026-09-07, 2026-09-08 x2) all ran to exactly the 3600s ceiling with no exception and no OOM signature - not a resource_inconclusive case.",
+      "confirmed_attempts": [
+        {"elapsed_s": 3600.0, "status": "timeout"},
+        {"elapsed_s": 3599.9, "status": "timeout"},
+        {"elapsed_s": 3599.9, "status": "timeout"}
+      ]
     }
   }
 }
