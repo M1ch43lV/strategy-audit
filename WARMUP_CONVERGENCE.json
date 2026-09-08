@@ -2207,6 +2207,170 @@
       "timerange": "20190101-20190401",
       "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
+    "AntigravityGridStrategy": {
+      "available_prefix_candles": 35376,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 672,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 60
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 96
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 192
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 672
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 1344
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2880
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/AntigravityGridStrategy-c15a2d4c-ladder.log",
+      "declared_max_drift_pct": 1089.933,
+      "declared_startup_candle_count": 60,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "adx": [
+          4.645,
+          0.625,
+          0.001,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_lower": [
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "bb_mid": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_position": [
+          -0.0,
+          -0.0,
+          0.0,
+          -0.0,
+          0.0,
+          -0.0
+        ],
+        "bb_upper": [
+          -0.0,
+          -0.0,
+          0.0,
+          -0.0,
+          0.0,
+          -0.0
+        ],
+        "bb_width": [
+          -0.0,
+          -0.0,
+          0.0,
+          -0.0,
+          0.0,
+          -0.0
+        ],
+        "ema20": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema50": [
+          0.016,
+          -0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macd": [
+          -1089.933,
+          458.238,
+          1.291,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macd_signal": [
+          9.279,
+          -4.677,
+          -0.013,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          0.226,
+          -0.092,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "volume_ma": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 57.3,
+      "file_derived_period": null,
+      "implementation_id": "AntigravityGridStrategy:be6d37107919",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy AntigravityGridStrategy --strategy-path user_data/profile_bias_strategies/AntigravityGridStrategy-c15a2d4c --timerange 20190101-20190401 --no-color --startup-candle 96 192 672 1344 2880",
+      "ladder_candles": [
+        96,
+        192,
+        672,
+        1344,
+        2880
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30
+      ],
+      "max_drift_indicator": "rsi",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_90dfe102d87796903e8d960de08ab3e8e20cb23dbf059cf267db792397bbe4b7",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "AntigravityGridStrategy",
+      "timeframe": "15m",
+      "timerange": "20190101-20190401"
+    },
     "Apollo11": {
       "available_prefix_candles": 32408,
       "chosen_ladder_days": 14,
@@ -56388,6 +56552,66 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "HighFreqDemo": {
+      "available_prefix_candles": 36954,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 1440,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 60
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 1440
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/HighFreqDemo-006fcf90-ladder.log",
+      "declared_max_drift_pct": 0.071,
+      "declared_startup_candle_count": 60,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "ema21": [
+          0.0,
+          0.0
+        ],
+        "ema9": [
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          -0.071,
+          0.0
+        ]
+      },
+      "elapsed_s": 46.0,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": null,
+      "implementation_id": "HighFreqDemo:d605bba0a20c",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy HighFreqDemo --strategy-path user_data/profile_bias_strategies/HighFreqDemo-006fcf90 --timerange 20200301-20200401 --no-color --startup-candle 1440",
+      "ladder_candles": [
+        1440
+      ],
+      "ladder_days": [
+        1
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        1440
+      ],
+      "max_drift_indicator": "ema9",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_54b1e7dae6ad850f15e1c2a2098d0000133deb148cc08d3d6fc4fb84e723e515",
+      "returncode": 0,
+      "run_profile": "futures_long_short",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "HighFreqDemo",
+      "timeframe": "1m",
+      "timerange": "20200301-20200401"
+    },
     "HigherHighStrategy": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 1,
@@ -67365,6 +67589,204 @@
       "state": "converged",
       "strategy_id": "Matrix",
       "timeframe": "5m",
+      "timerange": "20190101-20190401"
+    },
+    "MeanReversionTrend": {
+      "available_prefix_candles": 8847,
+      "chosen_ladder_days": 14,
+      "chosen_startup_candle_count": 336,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 24
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 48
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 168
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 336
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 720
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2160
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/MeanReversionTrend-9c6041b5-ladder.log",
+      "declared_max_drift_pct": 4.682,
+      "declared_startup_candle_count": 24,
+      "declared_warmup_override": 24,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "adx": [
+          null,
+          35.557,
+          0.009,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "atr": [
+          -2.284,
+          1.047,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "atr_pct": [
+          -2.284,
+          1.047,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "atr_pct_4h": [
+          -1.322,
+          -0.356,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "atr_sma20": [
+          null,
+          3.956,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_lower": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "bb_middle": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_upper": [
+          null,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "deviation": [
+          null,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema200_4h": [
+          null,
+          -0.078,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "rr_ratio": [
+          null,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          -4.682,
+          -1.265,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "sma20": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "trend_bullish": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "volume_ma": [
+          null,
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "volume_ratio": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 108.4,
+      "file_derived_period": null,
+      "implementation_id": "MeanReversionTrend:8970d13fe62a",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/MeanReversionTrend_startup_24.json --strategy MeanReversionTrend --strategy-path user_data/profile_bias_strategies/MeanReversionTrend-9c6041b5 --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160",
+      "ladder_candles": [
+        24,
+        48,
+        168,
+        336,
+        720,
+        2160
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90
+      ],
+      "max_drift_indicator": "ema200_4h",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_836dd732d004d6fd48296c4e7dc44a02cd2598e94f3cbb5600b6aa945123861f",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "MeanReversionTrend",
+      "timeframe": "1h",
       "timerange": "20190101-20190401"
     },
     "MiniLambo": {
@@ -112361,6 +112783,126 @@
       "timeframe": "4h",
       "timerange": "20190101-20190401"
     },
+    "TrendBreakout": {
+      "available_prefix_candles": 370,
+      "chosen_ladder_days": 365,
+      "chosen_startup_candle_count": 365,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 1
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 7
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 14
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 30
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 90
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 220
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 365
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/TrendBreakout-9b18ab53-ladder.log",
+      "declared_max_drift_pct": 2.846,
+      "declared_startup_candle_count": 220,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "atr": [
+          null,
+          null,
+          null,
+          -9.292,
+          -3.596,
+          -0.144,
+          -0.0,
+          0.0
+        ],
+        "dc_high_20": [
+          null,
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dc_low_10": [
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema200": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          2.846,
+          -0.317
+        ]
+      },
+      "elapsed_s": 48.4,
+      "file_derived_period": null,
+      "implementation_id": "TrendBreakout:694ac356d779",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TrendBreakout --strategy-path user_data/profile_bias_strategies/TrendBreakout-9b18ab53 --timerange 20190101-20190401 --no-color --startup-candle 1 2 7 14 30 90 365",
+      "ladder_candles": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90,
+        365
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90,
+        365
+      ],
+      "max_drift_indicator": "ema200",
+      "max_drift_pct": 0.317,
+      "needed_no_override": false,
+      "output_sha256": "sha256_1b38916abb3f2d7274a58f71eb611e688ee24b7c9657d5c95a78cddeb5a76830",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "TrendBreakout",
+      "timeframe": "1d",
+      "timerange": "20190101-20190401"
+    },
     "TrendFollowingStrategy": {
       "available_prefix_candles": 7391,
       "cohort": "budget_capped",
@@ -114535,6 +115077,772 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401",
       "why": "analyzer produced no drift table"
+    },
+    "UltimateAlphaV16": {
+      "available_prefix_candles": 2215,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 6
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 12
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 42
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 84
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 180
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 250
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 540
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2190
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/UltimateAlphaV16-4c57aa08-ladder.log",
+      "declared_max_drift_pct": 78.686,
+      "declared_startup_candle_count": 250,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "adx": [
+          null,
+          null,
+          -24.432,
+          0.63,
+          0.001,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "atr": [
+          null,
+          null,
+          0.728,
+          0.001,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "atr_pct": [
+          null,
+          null,
+          0.728,
+          0.001,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "close_1d": [
+          -0.354,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_200": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          0.338,
+          0.029,
+          0.015
+        ],
+        "ema_21": [
+          null,
+          null,
+          -0.038,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_50": [
+          null,
+          null,
+          null,
+          0.088,
+          -0.003,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "ema_9": [
+          null,
+          0.041,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feat_000": [
+          null,
+          null,
+          -8.544,
+          5.3,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "feat_001": [
+          null,
+          null,
+          -9.783,
+          17.313,
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "feat_002": [
+          null,
+          null,
+          -24.534,
+          37.515,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feat_003": [
+          null,
+          null,
+          -169.244,
+          179.344,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "feat_004": [
+          null,
+          null,
+          0.676,
+          62.614,
+          0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "feat_005": [
+          null,
+          null,
+          null,
+          132.043,
+          -0.0,
+          -0.0,
+          0.0,
+          -0.0
+        ],
+        "feat_006": [
+          null,
+          null,
+          null,
+          null,
+          -134.944,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "feat_007": [
+          null,
+          null,
+          null,
+          null,
+          152.778,
+          60.362,
+          0.0,
+          0.0
+        ],
+        "feat_008": [
+          -10.092,
+          -4.737,
+          -0.063,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feat_009": [
+          -22.546,
+          -22.546,
+          -1.33,
+          -0.007,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feat_010": [
+          -18.65,
+          -18.65,
+          -0.626,
+          -0.135,
+          0.001,
+          0.003,
+          0.0,
+          -0.0
+        ],
+        "feat_011": [
+          -30.805,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0,
+          -0.0
+        ],
+        "feat_012": [
+          -24.647,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "feat_013": [
+          -10.562,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feat_014": [
+          -42.908,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feat_015": [
+          null,
+          null,
+          7.122,
+          25.169,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feat_016": [
+          -16.795,
+          -16.795,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "feat_017": [
+          null,
+          null,
+          -24.534,
+          37.515,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "feat_018": [
+          null,
+          null,
+          -169.244,
+          179.344,
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "feat_019": [
+          null,
+          null,
+          0.676,
+          62.614,
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "feat_020": [
+          null,
+          null,
+          -34.232,
+          23.268,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "feat_021": [
+          null,
+          null,
+          -87.803,
+          29.933,
+          0.027,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "feat_022": [
+          null,
+          null,
+          null,
+          -7.856,
+          -5.687,
+          0.742,
+          -0.0,
+          0.0
+        ],
+        "feat_023": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          17.25,
+          2.064,
+          1.076
+        ],
+        "feat_024": [
+          null,
+          null,
+          -323.805,
+          43.366,
+          0.068,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "feat_025": [
+          null,
+          null,
+          null,
+          15.666,
+          -14.257,
+          1.837,
+          -0.0,
+          0.0
+        ],
+        "feat_026": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          78.686,
+          7.32,
+          3.856
+        ],
+        "feat_027": [
+          -22.713,
+          -22.713,
+          -24.432,
+          0.63,
+          0.001,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "feat_028": [
+          -2.799,
+          -2.799,
+          -1.379,
+          0.022,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feat_029": [
+          null,
+          null,
+          323.285,
+          14.733,
+          -0.113,
+          0.004,
+          0.0,
+          0.0
+        ],
+        "feat_030": [
+          null,
+          null,
+          -15.405,
+          86.733,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0
+        ],
+        "feat_031": [
+          null,
+          null,
+          15.879,
+          -34.787,
+          -0.169,
+          0.002,
+          0.0,
+          0.0
+        ],
+        "feat_032": [
+          471.136,
+          471.136,
+          0.833,
+          0.001,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feat_033": [
+          null,
+          null,
+          -485.478,
+          113.85,
+          0.0,
+          -0.0,
+          0.0,
+          -0.0
+        ],
+        "feat_034": [
+          null,
+          null,
+          -293.837,
+          -26.771,
+          0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "feat_035": [
+          null,
+          null,
+          null,
+          null,
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "feat_036": [
+          null,
+          null,
+          -123.917,
+          -121.173,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feat_037": [
+          -44.748,
+          -44.748,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          -0.0,
+          -0.0
+        ],
+        "feat_038": [
+          null,
+          null,
+          -375.078,
+          -137.379,
+          -0.16,
+          0.002,
+          0.0,
+          0.0
+        ],
+        "feat_039": [
+          null,
+          null,
+          -226.998,
+          -145.254,
+          0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "feat_040": [
+          null,
+          null,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "feat_041": [
+          null,
+          null,
+          39.226,
+          15.91,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "feat_042": [
+          null,
+          null,
+          null,
+          null,
+          -2.099,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "feat_043": [
+          null,
+          null,
+          null,
+          null,
+          -0.962,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "feat_044": [
+          null,
+          null,
+          1248.146,
+          861.24,
+          0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "feat_045": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0
+        ],
+        "feat_046": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "feat_048": [
+          null,
+          null,
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "feat_053": [
+          -42.908,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feat_054": [
+          -47.709,
+          -47.709,
+          -47.709,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feat_055": [
+          -48.797,
+          -48.797,
+          -48.797,
+          -48.797,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feat_056": [
+          null,
+          null,
+          null,
+          -29.649,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feat_057": [
+          null,
+          null,
+          null,
+          -12.875,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "final_score": [
+          -18.15,
+          -18.15,
+          -18.15,
+          -11.434,
+          -11.459,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "macd": [
+          null,
+          null,
+          16.817,
+          -0.171,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "macd_hist": [
+          null,
+          null,
+          421.922,
+          -3.368,
+          0.002,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "macd_signal": [
+          null,
+          null,
+          25.795,
+          -0.242,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          null,
+          null,
+          -1.33,
+          -0.007,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "trend_1d": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "volume_ma": [
+          null,
+          null,
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "volume_ratio": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 48.3,
+      "file_derived_period": null,
+      "implementation_id": "UltimateAlphaV16:599bf117dfc3",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy UltimateAlphaV16 --strategy-path user_data/profile_bias_strategies/UltimateAlphaV16-4c57aa08 --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540 2190",
+      "ladder_candles": [
+        6,
+        12,
+        42,
+        84,
+        180,
+        540,
+        2190
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30,
+        90,
+        365
+      ],
+      "output_sha256": "sha256_41496c852beb79dfeebf785e93e4eb85ce22ed641ae3e701252a1104fcfe0425",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "not_converged_within_ladder",
+      "strategy_id": "UltimateAlphaV16",
+      "timeframe": "4h",
+      "timerange": "20190101-20190401",
+      "why": "no startup up to 2190 candles keeps every indicator inside 1.0%"
     },
     "UltimateMomentumIndicator": {
       "available_prefix_candles": 97222,
