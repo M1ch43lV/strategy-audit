@@ -171,6 +171,9 @@ hypothesis selftest, status selftest/check, status-page selftest, targeted
 `py_compile`, generated JSON/CSV identity check, and `git diff --check` PASS.
 Graphify was refreshed with Claude's documented `graphify update .` AST-only
 path: 1,552 nodes, 2,527 edges, 151 communities, no LLM/API call.
+A local fail-open `.git/hooks/post-commit` now runs that exact command when
+Graphify and `graphify-out/graph.json` are present. It does not run semantic
+extraction and a Graphify failure cannot invalidate the commit.
 
 ## Next concrete steps
 
@@ -198,6 +201,9 @@ path: 1,552 nodes, 2,527 edges, 151 communities, no LLM/API call.
 - Any live Claude runner or its output store.
 - Strategy Type classification and the `a7259ad` artifact regeneration; do not
   hand-edit `STRATEGY_STATUS.csv` or infer per-strategy Type from repo prose.
+- Routine Graphify refreshes use `graphify update .` only. Do not substitute
+  `graphify extract .`: that performs semantic Markdown extraction and consumes
+  API quota. The local post-commit hook already handles AST-only updates.
 - Any historical E0 benchmark or attribution as current evidence. Do not rerun
   the old 67, add 67 to E1, or regenerate frozen E0 CSV/JSON artifacts.
 - Do not generate a candidate spec from observed strategy performance.
