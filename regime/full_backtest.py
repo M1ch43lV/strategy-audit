@@ -19,6 +19,7 @@ import profile_full_window
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "results" / "regime" / "full_backtest_manifest.json"
 STATUS = ROOT / "STRATEGY_STATUS.csv"
+PERFORMANCE_LIMITS = ROOT / "POOLED_BACKTEST_PERFORMANCE_LIMIT.json"
 # The window lives in exactly one place - `profile_full_window.TIMERANGE` -
 # so this stays a per-mode lookup through that module rather than its own
 # copy of the same two dates. A second constant is how this file spent
@@ -59,6 +60,22 @@ def eligible() -> list[dict]:
             if row["strategy_id"] in allowed]
 
 
+def performance_limits() -> dict:
+    """Strategies confirmed to reproducibly exceed the fixed 3600s budget.
+
+    The 3600s timeout is a hard limit, not tuned per strategy (PIPELINE.md
+    Stufe 7), so a strategy that keeps landing exactly on it would otherwise
+    retry forever - burning another full hour every container pass with no
+    prospect of ever reaching `measured`. `POOLED_BACKTEST_PERFORMANCE_LIMIT.json`
+    is the hand-curated confirmation (at least two independent timeouts, no
+    other failure mode) that a strategy belongs here rather than just being
+    unlucky once.
+    """
+    if not PERFORMANCE_LIMITS.exists():
+        return {}
+    return json.loads(PERFORMANCE_LIMITS.read_text(encoding="utf-8"))["results"]
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--strategy", action="append", default=[])
@@ -86,6 +103,7 @@ def main(argv=None) -> int:
     # same reason it failed before repair - this runner reads the manifest
     # `profile_full_window.py` already reads, it just never asked before.
     overrides = profile_full_window.repair_overrides()
+    limited = performance_limits()
     data.update({"schema_version": 1, "timerange": TIMERANGE,
                  "measurement_scope": "canonical_pooled_native_pair_universe"})
 
@@ -128,6 +146,27 @@ def main(argv=None) -> int:
         if (not args.force and previous.get("status") == "measured" and
                 all(previous.get(key) == value for key, value in identity.items())):
             return strategy, previous, True
+        if not args.force and previous.get("status") == "performance_limited":
+            return strategy, previous, True
+        if strategy in limited:
+            # Confirmed to hit the fixed 3600s ceiling reproducibly (see
+            # POOLED_BACKTEST_PERFORMANCE_LIMIT.json) - applying this the
+            # first time a strategy qualifies retires it without spending
+            # another hour to reconfirm what two prior timeouts already did.
+            result = dict(identity)
+            result.update({
+                "status": "performance_limited",
+                "why": limited[strategy]["why"],
+                "measurement_scope": "canonical_pooled_native_pair_universe",
+                "attempted_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+            })
+            if previous.get("status"):
+                result["attempts"] = previous.get("attempts", []) + [{
+                    "status": previous.get("status"), "why": previous.get("why"),
+                    "elapsed_s": previous.get("elapsed_s"),
+                    "attempted_at": previous.get("attempted_at"),
+                }]
+            return strategy, result, False
         mode = "futures" if row["run_profile"].startswith("futures_") else "spot"
         settings = overrides.get(strategy) or None
         result = profile_smoke.run_one(row, timerange(mode), args.timeout,

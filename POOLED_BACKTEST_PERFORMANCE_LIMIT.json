@@ -1,0 +1,22 @@
+{
+  "description": "Strategies confirmed to reproducibly exceed the pooled full-window backtest's 3600s budget - not an OOM kill (`resource_inconclusive`), not a crash, just too slow to finish 8 pairs over 6.5 years inside the fixed timeout. The 3600s budget is a hard limit, not tuned per strategy (see PIPELINE.md Stufe 7). A strategy listed here is excluded from `regime/full_backtest.py`'s automatic retry so it does not re-burn a full hour every container pass; it stays admitted (`E1_expanded`) and simply has no Stufe-9 pooled-performance figure. Confirmation bar: at least two independent timeout attempts at exactly the 3600s ceiling, with no other failure mode (no exception, no OOM signature) in between.",
+  "schema_version": 1,
+  "results": {
+    "SuperHV27": {
+      "verdict": "performance_limited",
+      "why": "Two independent attempts (2026-09-07, 2026-09-08) both ran to exactly the 3600s ceiling with no exception and no OOM signature - not a resource_inconclusive case. The compat shims (repair/compat_signature.py: legacy_bid_ask_strategy_price_side, synthetic_orderbook_from_last_close) fixed the crash this strategy used to hit; per-pair caching keeps the orderbook shim's DataProvider.get_pair_dataframe() call from being called on every confirm_trade_entry, but the strategy still calls confirm_trade_entry on every signal across 8 pairs and 6.5 years, and that remaining per-trade cost alone exceeds the budget.",
+      "confirmed_attempts": [
+        {"elapsed_s": 3600.0, "status": "timeout"},
+        {"elapsed_s": 3599.8, "status": "timeout"}
+      ]
+    },
+    "Schism": {
+      "verdict": "performance_limited",
+      "why": "Two independent attempts (2026-09-07, 2026-09-08) both ran to exactly the 3600s ceiling with no exception and no OOM signature - not a resource_inconclusive case. Same PeetCrypto_freqtrade-stuff family and orderbook-shim dependency as SuperHV27; the underlying per-trade cost of the synthetic orderbook lookup accumulates past the budget over the full pooled window.",
+      "confirmed_attempts": [
+        {"elapsed_s": 3600.2, "status": "timeout"},
+        {"elapsed_s": 3599.9, "status": "timeout"}
+      ]
+    }
+  }
+}

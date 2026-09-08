@@ -157,6 +157,20 @@ Die tatsächliche Vollständigkeit — jedes Paar, über das komplette
 `--pairs`-Filter auf, also mit der kompletten Paarliste gemeinsam in einem
 einzigen Backtest, und bricht nie früh ab.
 
+**Performance-Limit statt endlosem Retry.** Der 3600s-Timeout ist eine
+harte Grenze, nicht pro Strategie einstellbar. `SuperHV27` und `Schism`
+liefen je zweimal unabhängig exakt bis zur 3600s-Grenze, ohne Absturz und
+ohne OOM-Signatur — die Kompatibilitäts-Shims (`repair/compat_signature.py`)
+haben den ursprünglichen Absturz behoben, aber die verbleibenden
+Pro-Trade-Kosten über 8 Paare und 6,5 Jahre reichen dafür nicht.
+`POOLED_BACKTEST_PERFORMANCE_LIMIT.json` hält diese Bestätigung fest (Regel:
+mindestens zwei unabhängige Timeouts, keine andere Fehlerart dazwischen);
+`regime/full_backtest.py` liest sie und setzt den Status einmalig auf
+`performance_limited`, statt bei jedem Container-Durchlauf erneut eine
+volle Stunde zu verbrauchen. Die Strategie bleibt zugelassen
+(`E1_expanded`) — es fehlt ihr dauerhaft nur die gepoolte
+Performance-Kennzahl für Stufe 9.
+
 **Korrektur 2026-09-07: `profile_full_window.py` ist nicht für die ganze
 E1-Kohorte nötig, nur für Zero-Trade-Kandidaten.** Die Zitation oben
 (`REGIME_AUDIT_PLAN.md` §28.1) trägt diese Behauptung nicht — §28.1 handelt
