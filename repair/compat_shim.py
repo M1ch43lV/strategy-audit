@@ -55,6 +55,41 @@ def _patch_numpy(np):
         if not hasattr(np, old) and hasattr(np, new):
             setattr(np, old, getattr(np, new))
 
+    # Deprecated in numpy 1.20 as "deprecated alias for the builtin X",
+    # removed in 1.24 (AttributeError) - a separate, earlier cleanup from the
+    # numpy-2 one above. numpy's own deprecation notice named these as
+    # aliases for the Python builtins, so the builtin is the same object
+    # being handed back, not a numpy scalar type standing in for one (that
+    # would be float64, already restored above under its own name).
+    # `np.object`/`np.str` are deliberately not here: numpy still resolves
+    # them itself, through a FutureWarning rather than an AttributeError, and
+    # even checking `hasattr` for them prints that warning - restoring what
+    # already resolves would only add noise.
+    for old, builtin in (("float", float), ("int", int), ("bool", bool)):
+        if not hasattr(np, old):
+            setattr(np, old, builtin)
+
+
+def _patch_sklearn_fixes(mod):
+    """Restore `sklearn.utils.fixes.loguniform`, scikit-learn's own former
+    back-port of a scipy distribution scipy now ships itself.
+
+    `PCA` (repos/webclinic017_strategies-freqtrade-/binanceus/PCA.py) opens
+    with `from sklearn.utils.fixes import loguniform`. scikit-learn used to
+    carry this as a compatibility shim for scipy versions that lacked
+    `scipy.stats.loguniform`; once scipy added it natively, scikit-learn
+    dropped its own copy. The object handed back is scipy's own
+    `loguniform` - the same distribution scikit-learn's old copy wrapped,
+    not a reimplementation.
+    """
+    if hasattr(mod, "loguniform"):
+        return
+    try:
+        from scipy.stats import loguniform
+    except Exception:
+        return
+    mod.loguniform = loguniform
+
 
 def _patch_ft_hyper(mod):
     """Re-export the parameter classes from their former home.
@@ -126,7 +161,8 @@ def _patch_qtpylib(mod):
 
 PATCHES = {"numpy": _patch_numpy,
            "freqtrade.strategy.hyper": _patch_ft_hyper,
-           "technical.vendor.qtpylib.indicators": _patch_qtpylib}
+           "technical.vendor.qtpylib.indicators": _patch_qtpylib,
+           "sklearn.utils.fixes": _patch_sklearn_fixes}
 
 
 class _PostImportPatcher(importlib.abc.MetaPathFinder):

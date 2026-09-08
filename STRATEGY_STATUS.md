@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1038 rows
 
-**Generated 2026-09-08 13:37:19 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-08 16:12:07 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -31,8 +31,8 @@ have neither and are left empty rather than given an invented time.
 | | Strategies |
 |---|---:|
 | in the manifest | 1038 |
-| measured at all | 849 |
-| produced trades | 811 |
+| measured at all | 856 |
+| produced trades | 814 |
 | carrying a run time | 1024 |
 
 ## Cohort
@@ -40,12 +40,12 @@ have neither and are left empty rather than given an invented time.
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 608 |
-| `excluded` | 256 |
-| `exclusion_unconfirmed` | 76 |
-| `pending` | 57 |
-| `too_few_trades` | 21 |
+| `excluded` | 248 |
+| `pending` | 59 |
+| `exclusion_unconfirmed` | 42 |
+| `convergence_candidate` | 37 |
+| `too_few_trades` | 25 |
 | `not_a_strategy` | 19 |
-| `convergence_candidate` | 1 |
 
 ## Timeframe and signal family
 
@@ -127,7 +127,7 @@ than a pick-one-source figure. 4 of 1038 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 1034 rows that do: **60.5 hours** of this audit's own compute so far.
+Summed across the 1034 rows that do: **62.6 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -265,7 +265,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1353 of 2600 commands are recorded so far, and every new run
+recording. 1401 of 2600 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -4124,7 +4124,7 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Convergence candidates - 1 strategies
+## Convergence candidates - 37 strategies
 
 A warm-up exists at which every indicator stays inside the band.
 That is not admission: the paired full-window run must still show
@@ -4132,9 +4132,45 @@ an identical trade list.
 
 | Strategy | Profile | Chosen warm-up | Worst drift | Tested | Results |
 |---|---|---|---|---|---|
+| `ADXDM` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-06 18:28:13 | `user_data/convergence_logs/ADXDM-eef844db-ladder.log` |
+| `BigDrop` | `spot_long` | 576 candles | 0.0% on `mfi` | 2026-09-06 18:25:54 | `user_data/convergence_logs/BigDrop-05954866-ladder.log` |
+| `BollingerBounce` | `spot_long` | 576 candles | 0.0% on `mfi` | 2026-09-06 18:29:09 | `user_data/convergence_logs/BollingerBounce-4f0dc231-ladder.log` |
+| `BuyDips` | `spot_long` | 576 candles | 0.0% on `mfi` | 2026-09-06 18:26:03 | `user_data/convergence_logs/BuyDips-2afdb8fb-ladder.log` |
+| `DCAGRID` | `spot_long` | 1440 candles | 0.0% on `None` | 2026-09-06 18:08:21 | `user_data/convergence_logs/DCAGRID-8f1a8a50-ladder.log` |
+| `DMIPRICEDCAStrategyFuture` | `futures_long_short` | 1440 candles | 0.0% on `None` | 2026-09-06 16:33:08 | `user_data/convergence_logs/DMIPRICEDCAStrategyFuture-5ed3e947-ladder.log` |
+| `EMABounce` | `spot_long` | 288 candles | 0.0% on `rsi` | 2026-09-06 18:36:24 | `user_data/convergence_logs/EMABounce-ab0d2db4-ladder.log` |
+| `EMACross` | `spot_long` | 30 candles | 0.0% on `ema_short_5` | 2026-09-06 18:26:31 | `user_data/convergence_logs/EMACross-b5f64897-ladder.log` |
+| `FLAGS` | `futures_long_short` | 24 candles | 0.0% on `None` | 2026-09-06 18:13:49 | `user_data/convergence_logs/FLAGS-72416802-ladder.log` |
+| `FUTURES` | `futures_long_short` | 1440 candles | 0.0% on `ema5` | 2026-09-06 18:32:53 | `user_data/convergence_logs/FUTURES-676b167a-ladder.log` |
+| `GRIDDMIPRICEStrategyFutureV5Long` | `futures_long_short` | 1440 candles | 0.0% on `None` | 2026-09-06 16:37:51 | `user_data/convergence_logs/GRIDDMIPRICEStrategyFutureV5Long-93a155ed-ladder.log` |
+| `GRIDDMIPRICEStrategyFutureV5Short` | `futures_long_short` | 84 candles | 0.828% on `wt2` | 2026-09-06 16:38:14 | `user_data/convergence_logs/GRIDDMIPRICEStrategyFutureV5Short-0a37b705-ladder.log` |
+| `GRIDDMIPRICEStrategySpot` | `futures_long` | 1440 candles | 0.0% on `None` | 2026-09-06 17:58:32 | `user_data/convergence_logs/GRIDDMIPRICEStrategySpot-bfcd5e8a-ladder.log` |
+| `HEAD_SHOULDER` | `futures_long_short` | 96 candles | 0.0% on `None` | 2026-09-06 18:13:56 | `user_data/convergence_logs/HEAD_SHOULDER-3272caf5-ladder.log` |
+| `KeltnerChannels` | `spot_long` | 576 candles | 0.0% on `adx` | 2026-09-06 18:26:48 | `user_data/convergence_logs/KeltnerChannels-1628032a-ladder.log` |
+| `LeoStrategy` | `spot_long` | 540 candles | 0.0% on `ema10` | 2026-09-06 18:31:18 | `user_data/convergence_logs/LeoStrategy-a4770535-ladder.log` |
+| `MACD003` | `spot_long` | 576 candles | 0.0% on `mfi` | 2026-09-06 18:29:22 | `user_data/convergence_logs/MACD003-5def5884-ladder.log` |
+| `MACDCross` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-06 18:29:32 | `user_data/convergence_logs/MACDCross-c19524f6-ladder.log` |
+| `MACDTurn` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-06 18:29:40 | `user_data/convergence_logs/MACDTurn-e059bfc3-ladder.log` |
+| `MFI2` | `spot_long` | 576 candles | 0.0% on `adx` | 2026-09-06 18:27:02 | `user_data/convergence_logs/MFI2-9083ee50-ladder.log` |
+| `MFIRSICross` | `spot_long` | 288 candles | 0.0% on `mfi` | 2026-09-06 18:28:49 | `user_data/convergence_logs/MFIRSICross-00cbcde3-ladder.log` |
 | `MultiActionZone` | `spot_long` | 540 candles | 0.002% on `resample_1440_slowMA` | 2026-09-05 15:21:02 | `user_data/convergence_logs/MultiActionZone-179b96b7-ladder.log` |
+| `NDrop` | `spot_long` | 576 candles | 0.0% on `mfi` | 2026-09-06 18:27:19 | `user_data/convergence_logs/NDrop-035a8156-ladder.log` |
+| `NSeq` | `spot_long` | 576 candles | 0.0% on `mfi` | 2026-09-06 18:27:29 | `user_data/convergence_logs/NSeq-b0a87061-ladder.log` |
+| `Patterns2` | `spot_long` | 288 candles | 0.0% on `mfi` | 2026-09-06 18:27:39 | `user_data/convergence_logs/Patterns2-39f34344-ladder.log` |
+| `SARCross` | `spot_long` | 288 candles | 0.0% on `adx` | 2026-09-06 18:27:47 | `user_data/convergence_logs/SARCross-0c09ed9a-ladder.log` |
+| `SUPPORT_RESISTANCE` | `spot_long` | 730 candles | 0.0% on `signal` | 2026-09-06 18:14:10 | `user_data/convergence_logs/SUPPORT_RESISTANCE-e57b787f-ladder.log` |
+| `SimpleBollinger` | `spot_long` | 576 candles | 0.0% on `adx` | 2026-09-06 18:27:56 | `user_data/convergence_logs/SimpleBollinger-3b182c17-ladder.log` |
+| `Squeeze001` | `spot_long` | 576 candles | 0.0% on `sma` | 2026-09-06 18:28:04 | `user_data/convergence_logs/Squeeze001-f1de728b-ladder.log` |
+| `Squeeze002` | `spot_long` | 576 candles | 0.0% on `sma` | 2026-09-06 18:29:58 | `user_data/convergence_logs/Squeeze002-11618dd8-ladder.log` |
+| `TRIX_spot` | `spot_long` | 2160 candles | 0.0% on `EMA` | 2026-09-06 18:23:24 | `user_data/convergence_logs/TRIX_spot-b4f2394c-ladder.log` |
+| `Trump_LIM` | `spot_long` | 1440 candles | 0.0% on `None` | 2026-09-06 18:17:16 | `user_data/convergence_logs/Trump_LIM-4f331b98-ladder.log` |
+| `WTDMIPRICEDCAStrategyFuture` | `futures_long_short` | 288 candles | 0.0% on `wt1` | 2026-09-06 17:59:43 | `user_data/convergence_logs/WTDMIPRICEDCAStrategyFuture-6bd08369-ladder.log` |
+| `WTDMIPRICESDCAtrategy` | `spot_long` | 1440 candles | 0.0% on `wt2` | 2026-09-06 17:58:50 | `user_data/convergence_logs/WTDMIPRICESDCAtrategy-f668b499-ladder.log` |
+| `bigshort` | `futures_long_short` | 1440 candles | 0.0% on `fastd_15m` | 2026-09-06 18:24:57 | `user_data/convergence_logs/bigshort-ef8d2c90-ladder.log` |
+| `chatgpt` | `spot_long` | 336 candles | 0.0% on `stc` | 2026-09-06 18:23:33 | `user_data/convergence_logs/chatgpt-60965168-ladder.log` |
+| `gpt_reversal` | `spot_long` | 1440 candles | 0.0% on `rsi_15m` | 2026-09-06 18:25:14 | `user_data/convergence_logs/gpt_reversal-15eecf49-ladder.log` |
 
-## Pending - 57 strategies
+## Pending - 59 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
@@ -4143,19 +4179,19 @@ neither a pass nor a fail.
 `BBKCBounce`, `BTCBigDrop`, `BTCJump`, `BTCMACDCross`
 `BTCNDrop`, `BTCNSeq`, `BestSingleAssetPortfolio`, `Bins`
 `BlueEyes_MPP_v1`, `ComboHold`, `CryptoFrogNFI2`, `DCADMIPRICEStrategySpot`
-`DELTA_NEUTRAL`, `DonchianBounce`, `E0V1EAI`, `ExampleLSTMStrategy`
-`FBB_2`, `FileLoadingStrategy`, `FisherBBDynamic`, `GRIDDMIPRICEStrategyFutureV4`
-`GRIDDMIPRICEStrategyFutureV5`, `GRIDDMIPRICEStrategyFutureV6`, `GRIDDMIPRICEStrategyFutureV7`, `GodStra`
-`Guacamole`, `HLHB`, `Hammer`, `Kamaflage`
-`KeltnerBounce`, `MartyEMA`, `MasterMoniGoManiHyperStrategy`, `MultiMa`
-`MyStrategyNew10`, `NowoIchimoku1hV1`, `ONS_Portfolio`, `Proton`
-`QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`, `RebalanceStrategySpot`
-`RenkoYolo`, `SMAOPv1_TTF`, `Schism5`, `Schism6`
-`Solipsis_v4`, `TEMABounce`, `TuplaBollinger`, `UpSliceStrategy`
-`WTHO`, `delist_shorter_strategy`, `haGradient`, `multi_tf`
-`tacos1`
+`DELTA_NEUTRAL`, `DWTHO`, `DWT_LongShortHO`, `DWT_Predict`
+`DWT_Predict2`, `DonchianBounce`, `E0V1EAI`, `ExampleLSTMStrategy`
+`FBB_2`, `FileLoadingStrategy`, `GRIDDMIPRICEStrategyFutureV4`, `GRIDDMIPRICEStrategyFutureV5`
+`GRIDDMIPRICEStrategyFutureV6`, `GRIDDMIPRICEStrategyFutureV7`, `GodStra`, `Guacamole`
+`HLHB`, `Kamaflage`, `MartyEMA`, `MasterMoniGoManiHyperStrategy`
+`MultiMa`, `MyStrategyNew10`, `NowoIchimoku1hV1`, `ONS_Portfolio`
+`Proton`, `QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`
+`RebalanceStrategySpot`, `RenkoYolo`, `SARIMAX`, `SMAOPv1_TTF`
+`Schism5`, `Schism6`, `Solipsis_v4`, `TEMABounce`
+`TuplaBollinger`, `UpSliceStrategy`, `WTHO`, `delist_shorter_strategy`
+`haGradient`, `multi_tf`, `tacos1`
 
-## Exclusion unconfirmed - 76 strategies
+## Exclusion unconfirmed - 42 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -4167,8 +4203,8 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `unclassified` | `no_finding` | 54 |
-| `no_verdict_on_lookahead` | `no_finding` | 14 |
+| `no_verdict_on_lookahead` | `no_finding` | 20 |
+| `unclassified` | `no_finding` | 14 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 6 |
 | `recursive_bias_unverified` | `no_finding` | 1 |
 | `recursive_warmup_refused` | `no_finding` | 1 |
@@ -4178,7 +4214,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 256 strategies, by decisive reason
+## Not passing - 248 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -4226,7 +4262,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 256 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 248 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -4234,11 +4270,11 @@ one of them carries none.
 
 | Reason | Meaning | Strategies |
 |---|---|---:|
-| `lookahead_found` | reads data it could not have had at the time | 73 |
+| `lookahead_found` | reads data it could not have had at the time | 74 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 72 |
 | `no_trades_in_full_measurement` | never trades over the full window | 7 |
 | `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 30 |
-| `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 29 |
+| `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 20 |
 | `measured_only_in_freqai_arm` | runs only under its author's own FreqAI configuration, measured separately in that arm; not comparable with the ordinary spot audit | 5 |
 | `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 20 |
 | `shared_runtime_change_declined` | the fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04 | 20 |
@@ -4248,18 +4284,22 @@ one of them carries none.
 
 | Reason | `-` | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `E0_strict67` | `not_scheduled` |
 |---|---|---|---|---|---|---|---|
-| `lookahead_found` | 0 | 2 | 0 | 10 | 0 | 0 | 61 |
+| `lookahead_found` | 1 | 2 | 0 | 10 | 0 | 0 | 61 |
 | `recursive_bias_found` | 10 | 0 | 3 | 18 | 14 | 1 | 26 |
 | `no_trades_in_full_measurement` | 0 | 0 | 0 | 7 | 0 | 0 | 0 |
 | `repair_refused_would_invent_strategy` | 6 | 1 | 0 | 23 | 0 | 0 | 0 |
-| `local_module_repair_exhausted` | 17 | 0 | 0 | 12 | 0 | 0 | 0 |
+| `local_module_repair_exhausted` | 8 | 0 | 0 | 12 | 0 | 0 | 0 |
 | `measured_only_in_freqai_arm` | 0 | 0 | 0 | 4 | 0 | 0 | 1 |
 | `third_party_package_declined` | 7 | 0 | 0 | 13 | 0 | 0 | 0 |
 | `shared_runtime_change_declined` | 1 | 0 | 0 | 15 | 0 | 0 | 4 |
 
-### `lookahead_found` - 73
+### `lookahead_found` - 74
 
 Reads data it could not have had at the time.
+
+Wave `-` - 1:
+
+`DonchianChannel`
 
 Wave `A_pending_diagnostics` - 2:
 
@@ -4364,17 +4404,14 @@ Wave `C_measurement_recovery` - 23:
 `PolymarketLogicalArbStrategy`, `Prediction_Strategy`, `QuickAdapterV3`, `ScalpingCCI`
 `SimpleRiskFilterStrategy`, `TrainCatBoostStrategy`, `thetank2`
 
-### `local_module_repair_exhausted` - 29
+### `local_module_repair_exhausted` - 20
 
 Imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls.
 
-Wave `-` - 17:
+Wave `-` - 8:
 
-`Anomaly`, `BBBHold`, `DWTHO`, `DWT_Leveraged_recent`
-`DWT_Leveraged_recentHO`, `DWT_LongShortHO`, `DWT_Predict`, `DWT_Predict2`
-`DWT_lev_short`, `DWT_lev_simple`, `FBB_DWT`, `FBB_KalmanSIMD`
-`FFT`, `NNPredict`, `NNTC`, `PCA`
-`SARIMAX`
+`Anomaly`, `BBBHold`, `FBB_KalmanSIMD`, `Hammer`
+`KeltnerBounce`, `NNPredict`, `NNTC`, `PCA`
 
 Wave `C_measurement_recovery` - 12:
 
@@ -4445,12 +4482,12 @@ Wave `not_scheduled` - 4:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 205 |
-| `lookahead_remeasure_pending` | 74 |
+| `recursive_ladder_pending` | 213 |
 | `convergence_not_converged_within_ladder` | 72 |
 | `needs_a_look` | 47 |
+| `lookahead_remeasure_pending` | 40 |
 | `convergence_inconclusive` | 16 |
-| `to_be_fixed` | 5 |
+| `to_be_fixed` | 7 |
 | `repair_attempted` | 3 |
 | `refuse_repair` | 1 |
 

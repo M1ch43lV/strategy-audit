@@ -1104,29 +1104,6 @@ REPAIRS = [
         "tool": "blocked_triage.py",
     },
     {
-        "family": "old_hook_signature",
-        "name": "Open: strategy calls a freqtrade hook with the old arity",
-        "error": "IStrategy.min_roi_reached_entry() missing 2 required "
-                 "positional arguments: 'trade_dur' and 'current_time'",
-        "cause": "`FisherBBDynamic` does not override `min_roi_reached_entry` - "
-                 "it calls the base class's own implementation as "
-                 "`self.min_roi_reached_entry(trade_dur)`, a single-argument "
-                 "call from before freqtrade added `trade` and `current_time` "
-                 "to the signature. The base method changed under the author; "
-                 "nothing in the strategy's own logic did.",
-        "fix": "Not attempted. A shim could wrap `IStrategy.min_roi_reached_entry` "
-               "to accept the old one-argument call and supply the two new "
-               "parameters itself, the same shape as the shims in "
-               "`repair/compat_signature.py` - but unlike those, doing it "
-               "right requires knowing what `trade`/`current_time` are used "
-               "for inside the current implementation, not just that they are "
-               "expected. Guessing risks a shim that runs without erroring "
-               "and quietly changes what gets measured, which is worse than "
-               "leaving the row blocked.",
-        "limit": "`to_be_fixed` per `blocked_triage.py`, one row only.",
-        "tool": "blocked_triage.py",
-    },
-    {
         "family": "freqai_not_enabled",
         "name": "Open: FreqAI strategy outside the retired FreqAI arm",
         "error": "freqAI is not enabled. Please enable it in your config to "

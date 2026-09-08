@@ -9,8 +9,8 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 | Verdict | Strategies | Meaning |
 |---|---:|---|
 | `repaired` | 143 | runs now, and the run is recorded |
-| `repair_attempted` | 31 | a route was applied and did not finish the job |
-| `to_be_fixed` | 18 | the route is known, the run has not happened yet |
+| `repair_attempted` | 22 | a route was applied and did not finish the job |
+| `to_be_fixed` | 27 | the route is known, the run has not happened yet |
 | `needs_a_look` | 85 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 6 | the repair made things worse and was undone |
 | `refuse_repair` | 41 | repairing it would mean inventing the strategy |
@@ -40,7 +40,7 @@ For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `Argrelextrema`,
 
 ### Seven compatibility shims for freqtrade's own behaviour
 
-`repair_family: framework_compat_shim` &mdash; 108 strategies (repaired 97, repair_attempted 2, to_be_fixed 9)
+`repair_family: framework_compat_shim` &mdash; 109 strategies (repaired 97, repair_attempted 2, to_be_fixed 10)
 
 **The message.**
 
@@ -98,7 +98,7 @@ For example: `ARIMASTR`, `Apollo11`, `BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB
 
 ### The author's own module put back on the path
 
-`repair_family: local_module_off_path` &mdash; 46 strategies (repaired 2, repair_attempted 25, to_be_fixed 3, repair_withdrawn 6, refuse_repair 1, - 9)
+`repair_family: local_module_off_path` &mdash; 46 strategies (repaired 2, repair_attempted 16, to_be_fixed 12, repair_withdrawn 6, refuse_repair 1, - 9)
 
 **The message.**
 
@@ -422,26 +422,6 @@ Tool: `blocked_triage.py`.
 
 For example: `AlexStrategyFinalV9`, `Astro`, `AutoArimaTripleV1`, `BTCBigDrop`, `BTCJump`, `BTCNDrop`.
 
-### Open: strategy calls a freqtrade hook with the old arity
-
-`repair_family: old_hook_signature` &mdash; 1 strategies (to_be_fixed 1)
-
-**The message.**
-
-```
-IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'
-```
-
-**What it actually was.** `FisherBBDynamic` does not override `min_roi_reached_entry` - it calls the base class's own implementation as `self.min_roi_reached_entry(trade_dur)`, a single-argument call from before freqtrade added `trade` and `current_time` to the signature. The base method changed under the author; nothing in the strategy's own logic did.
-
-**The repair.** Not attempted. A shim could wrap `IStrategy.min_roi_reached_entry` to accept the old one-argument call and supply the two new parameters itself, the same shape as the shims in `repair/compat_signature.py` - but unlike those, doing it right requires knowing what `trade`/`current_time` are used for inside the current implementation, not just that they are expected. Guessing risks a shim that runs without erroring and quietly changes what gets measured, which is worse than leaving the row blocked.
-
-**Where it stops.** `to_be_fixed` per `blocked_triage.py`, one row only.
-
-Tool: `blocked_triage.py`.
-
-For example: `FisherBBDynamic`.
-
 ### Open: FreqAI strategy outside the retired FreqAI arm
 
 `repair_family: freqai_not_enabled` &mdash; 1 strategies (to_be_fixed 1)
@@ -469,10 +449,10 @@ For example: `E0V1EAI`.
 | Rule | Strategies |
 |---|---:|
 | `startup_candles_not_limited_by_call_budget` | 62 |
+| `restore_copied_local_module` | 28 |
 | `idempotent_entry_tag_initialisation` | 23 |
+| `legacy_min_roi_reached_entry_signature` | 21 |
 | `lookahead_runmode_reports_backtest` | 21 |
-| `legacy_min_roi_reached_entry_signature` | 20 |
-| `restore_copied_local_module` | 17 |
 | `restore_author_package_extension` | 11 |
 | `restore_author_config` | 11 |
 | `whitespace_tolerant_class_scan` | 6 |

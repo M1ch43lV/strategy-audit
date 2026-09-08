@@ -19,3 +19,26 @@ statsmodels==0.14.6
 xgboost==3.4.1
 ta==0.11.0
 talipp==2.7.0
+
+# 2026-09-08: wave-2 harvest's third_party_package rows. Verified in
+# isolation first (pip install --target with numpy/scipy/pandas pinned in
+# the same command) that none of these pull numpy past 2.5.2 - all resolve
+# cleanly against the pins above rather than upgrading them.
+#
+# yfinance: CME, HMMv3 declare it, but each has a second, deeper import
+# behind it once this one is satisfied (tvDatafeed, hmmlearn respectively)
+# - installed anyway since it is still a real, correct fix for its own row.
+yfinance==1.7.0
+# pykalman: Kalman declares it, but Kalman's own blocker is actually an
+# earlier import, `custom_indicators` - genuinely absent from the corpus
+# (repair_local_modules.py confirmed no copy anywhere), so pykalman alone
+# does not unblock this row. Installed anyway: correct for its own row,
+# and repair_measures_list.md's `third_party_package` entry can now say so
+# precisely instead of "unexamined".
+pykalman==0.11.2
+# hmmlearn: HMMv3's second-layer import, found only once yfinance stopped
+# masking it. NOT installed - its Cython extension has no prebuilt wheel
+# for this image's Python/platform and the base image has no gcc to build
+# one from source. Adding a compiler toolchain to the shared runtime image
+# is a materially bigger change than a package pin; left for a separate
+# decision rather than folded in here.

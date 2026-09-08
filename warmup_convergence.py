@@ -567,7 +567,13 @@ def sibling_config_timeframe(canonical_file):
 def resolve(row, timeout, overrides=None):
     """Find the smallest warm-up from which this row stays inside the band."""
     strategy = row["strategy_id"]
-    timeframe = (row.get("execution_timeframe") or row.get("declared_timeframe")
+    # A repair-store override (Argrelextrema: config_overrides={"timeframe":
+    # "5m"} from eligibility_timeframe_repair.py) already reaches run_ladder
+    # below for the subprocess config - it also has to reach the candle math
+    # here, or a strategy whose timeframe is only known through the override
+    # still reports no_usable_ladder despite having a real, evidenced value.
+    timeframe = ((overrides or {}).get("timeframe")
+                 or row.get("execution_timeframe") or row.get("declared_timeframe")
                  or sibling_config_timeframe(row["canonical_file"]))
     cap = available_prefix_candles(row["run_profile"], timeframe)
     rungs = ladder(timeframe, cap, startup_ceiling(strategy))
