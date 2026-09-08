@@ -15956,6 +15956,173 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "BTCBigDrop": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 2,
+      "chosen_startup_candle_count": 576,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 20
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/BTCBigDrop-f38a93aa-ladder.log",
+      "declared_max_drift_pct": 21.865,
+      "declared_startup_candle_count": 20,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "bb_gain": [
+          0.544,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_lowerband": [
+          0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_middleband": [
+          0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_upperband": [
+          0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema10": [
+          -0.003,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema100": [
+          null,
+          0.001,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema5": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema50": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fastd": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fisher_rsi": [
+          -21.865,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macd": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macdsignal": [
+          null,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mfi": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "rsi": [
+          12.447,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma": [
+          null,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 51.6,
+      "file_derived_period": null,
+      "implementation_id": "BTCBigDrop:890f369434f8",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BTCBigDrop --strategy-path user_data/profile_bias_strategies/BTCBigDrop-f38a93aa --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "mfi",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_105fc5d6af0c09db5cf612aa968fba4ff2fd6319b07ac275bc865811baf11ab3",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "BTCBigDrop",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401"
+    },
     "BTCEMABounce": {
       "available_prefix_candles": 106125,
       "chosen_ladder_days": 1,
@@ -16106,6 +16273,556 @@
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
       "state": "converged",
       "strategy_id": "BTCEMABounce",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401"
+    },
+    "BTCJump": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 2,
+      "chosen_startup_candle_count": 576,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 20
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/BTCJump-54335026-ladder.log",
+      "declared_max_drift_pct": 39.412,
+      "declared_startup_candle_count": 20,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "adx": [
+          null,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_gain": [
+          0.544,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_lowerband": [
+          0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_middleband": [
+          0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_upperband": [
+          0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "di_delta": [
+          -38.624,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "di_minus": [
+          -4.063,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "di_plus": [
+          29.287,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dm_delta": [
+          -39.412,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dm_minus": [
+          -5.295,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dm_plus": [
+          27.626,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema10": [
+          -0.003,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema100": [
+          null,
+          0.001,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema5": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema50": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fastd": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fisher_rsi": [
+          -21.865,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macd": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macdsignal": [
+          null,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mfi": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "rsi": [
+          12.447,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma": [
+          null,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 51.7,
+      "file_derived_period": null,
+      "implementation_id": "BTCJump:e2740dc8778c",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BTCJump --strategy-path user_data/profile_bias_strategies/BTCJump-54335026 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "adx",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_e643e1e0f463477be75468cfcfbe5ca42759f6d1d4e73e68697af29cae7f4bbf",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "BTCJump",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401"
+    },
+    "BTCNDrop": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 2,
+      "chosen_startup_candle_count": 576,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 20
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/BTCNDrop-a1196583-ladder.log",
+      "declared_max_drift_pct": 21.865,
+      "declared_startup_candle_count": 20,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "bb_gain": [
+          0.544,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_lowerband": [
+          0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_middleband": [
+          0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_upperband": [
+          0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema10": [
+          -0.003,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema100": [
+          null,
+          0.001,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema5": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema50": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fastd": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fisher_rsi": [
+          -21.865,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macd": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macdsignal": [
+          null,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mfi": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "rsi": [
+          12.447,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma": [
+          null,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 52.1,
+      "file_derived_period": null,
+      "implementation_id": "BTCNDrop:19f32f43f62d",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BTCNDrop --strategy-path user_data/profile_bias_strategies/BTCNDrop-a1196583 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "mfi",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_10233263ce3cea4067839c6446429cea1a4223b0f4e365e3c2a487d0f717773e",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "BTCNDrop",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401"
+    },
+    "BTCNSeq": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 2,
+      "chosen_startup_candle_count": 576,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 20
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/BTCNSeq-501b7637-ladder.log",
+      "declared_max_drift_pct": 21.865,
+      "declared_startup_candle_count": 20,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "bb_gain": [
+          0.544,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_lowerband": [
+          0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_middleband": [
+          0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_upperband": [
+          0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema10": [
+          -0.003,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema100": [
+          null,
+          0.001,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema5": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema50": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fastd": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fisher_rsi": [
+          -21.865,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macd": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macdsignal": [
+          null,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mfi": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "rsi": [
+          12.447,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma": [
+          null,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 46.0,
+      "file_derived_period": null,
+      "implementation_id": "BTCNSeq:52f80dac647a",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BTCNSeq --strategy-path user_data/profile_bias_strategies/BTCNSeq-501b7637 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "mfi",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_4f60735195d13181e98a704a0eff3c53118dc7b10706f694960febc000bdaa48",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "BTCNSeq",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
@@ -34648,6 +35365,250 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "ComboHold": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 2,
+      "chosen_startup_candle_count": 576,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 50
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/ComboHold-7aef3c0f-ladder.log",
+      "declared_max_drift_pct": 213.861,
+      "declared_startup_candle_count": 50,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "adx": [
+          -1.964,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_gain": [
+          0.085,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_lowerband": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_middleband": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_upperband": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "di_delta": [
+          -1.295,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "di_minus": [
+          -0.604,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "di_plus": [
+          0.063,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dm_delta": [
+          -1.816,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dm_minus": [
+          -1.128,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "dm_plus": [
+          -0.464,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema": [
+          0.013,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema10": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema100": [
+          null,
+          0.001,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema5": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema50": [
+          0.013,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_angle": [
+          0.003,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_diff": [
+          -0.206,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "ema_short": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fastd": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fisher_rsi": [
+          -0.929,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macd": [
+          213.861,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macdsignal": [
+          -115.752,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mfi": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "rsi": [
+          0.765,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0,
+          -0.0
+        ]
+      },
+      "elapsed_s": 44.6,
+      "file_derived_period": null,
+      "implementation_id": "ComboHold:a0477076b387",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ComboHold --strategy-path user_data/profile_bias_strategies/ComboHold-7aef3c0f --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "adx",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_d3a063f8f989ae5cbab5ce0cbebec119fb29b19e48ff5d1c6498ce01eca9b6d6",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "ComboHold",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401"
+    },
     "CompositeScoreStrategy": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 1,
@@ -37849,6 +38810,39 @@
       "timerange": "20190101-20190401",
       "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
+    "DCADMIPRICEStrategySpot": {
+      "available_prefix_candles": 530614,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 1440,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/DCADMIPRICEStrategySpot-6a6d0b33-ladder.log",
+      "declared_warmup_override": 1440,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 89.5,
+      "file_derived_period": null,
+      "implementation_id": "DCADMIPRICEStrategySpot:4b53741704a3",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/DCADMIPRICEStrategySpot_startup_1440.json --strategy DCADMIPRICEStrategySpot --strategy-path user_data/profile_bias_strategies/DCADMIPRICEStrategySpot-6a6d0b33 --timerange 20190101-20190401 --no-color --startup-candle 1440 2880",
+      "ladder_candles": [
+        1440,
+        2880
+      ],
+      "ladder_days": [
+        1,
+        2
+      ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_ce79dd12d23bea8953951f178ec2122686f5775414e398ae881ba99d951f9b38",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "DCADMIPRICEStrategySpot",
+      "timeframe": "1m",
+      "timerange": "20190101-20190401",
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
+    },
     "DCAGRID": {
       "available_prefix_candles": 530614,
       "chosen_ladder_days": 1,
@@ -38279,6 +39273,80 @@
       "timerange": "20190101-20190401",
       "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
+    "DWT_Leveraged_recent": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/DWT_Leveraged_recent-8b31ebf1-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 41.4,
+      "file_derived_period": null,
+      "implementation_id": "DWT_Leveraged_recent:d82684bc4985",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy DWT_Leveraged_recent --strategy-path user_data/profile_bias_strategies/DWT_Leveraged_recent-8b31ebf1 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": true,
+      "output_sha256": "sha256_67bc81f8dc70f9c999b4b3d80658c4acfa21576ae6e1f43351be3790ecd9c529",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "DWT_Leveraged_recent",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401",
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
+    },
+    "DWT_Leveraged_recentHO": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/DWT_Leveraged_recentHO-ba4f069a-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 41.2,
+      "file_derived_period": null,
+      "implementation_id": "DWT_Leveraged_recentHO:957160562a97",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy DWT_Leveraged_recentHO --strategy-path user_data/profile_bias_strategies/DWT_Leveraged_recentHO-ba4f069a --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": true,
+      "output_sha256": "sha256_d42295d29a3ea73ce1b3a8825b20cfafa13291c28c4516e40d86677fa361653f",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "DWT_Leveraged_recentHO",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401",
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
+    },
     "DWT_LongShort": {
       "available_prefix_candles": 7391,
       "chosen_ladder_days": 1,
@@ -38382,6 +39450,326 @@
       "strategy_id": "DWT_LongShort",
       "timeframe": "5m",
       "timerange": "20200301-20200401"
+    },
+    "DWT_Predict": {
+      "available_prefix_candles": 106125,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 128
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/DWT_Predict-f3da3e19-ladder.log",
+      "declared_max_drift_pct": 166903.409,
+      "declared_startup_candle_count": 128,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "bb_gain": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_loss": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_lowerband": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_upperband": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_width": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "fisher_rsi": [
+          -0.005,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fisher_wr": [
+          -0.002,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macd": [
+          0.146,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macdhist": [
+          -0.019,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macdsignal": [
+          -0.081,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "model_diff": [
+          -166903.409,
+          -190653.409,
+          -255227.273,
+          -72869.318,
+          -142187.5
+        ],
+        "model_predict": [
+          0.07,
+          0.08,
+          0.107,
+          0.031,
+          0.06
+        ],
+        "rsi": [
+          0.004,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 44.9,
+      "file_derived_period": null,
+      "implementation_id": "DWT_Predict:f6d1b3ecea9f",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy DWT_Predict --strategy-path user_data/profile_bias_strategies/DWT_Predict-f3da3e19 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "output_sha256": "sha256_62ba52c8c453913270b671b98e1ea477eed89ba885e1a4a3fba6cfed6b9daf4d",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "not_converged_within_ladder",
+      "strategy_id": "DWT_Predict",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401",
+      "why": "no startup up to 4032 candles keeps every indicator inside 1.0%"
+    },
+    "DWT_Predict2": {
+      "available_prefix_candles": 106125,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 128
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/DWT_Predict2-94729265-ladder.log",
+      "declared_max_drift_pct": 115.432,
+      "declared_startup_candle_count": 128,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "fisher_rsi": [
+          -0.005,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fisher_wr": [
+          -0.002,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "model_diff": [
+          115.432,
+          85.302,
+          169.276,
+          86.792,
+          23.714
+        ],
+        "model_predict": [
+          0.06,
+          0.044,
+          0.088,
+          0.045,
+          0.012
+        ],
+        "rsi": [
+          0.004,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 44.9,
+      "file_derived_period": null,
+      "implementation_id": "DWT_Predict2:3eff936f0a6b",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy DWT_Predict2 --strategy-path user_data/profile_bias_strategies/DWT_Predict2-94729265 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "output_sha256": "sha256_e7a5439bdeb6b586eab70bd1494ac0135cba0e87521e1608bd66eb9f3bc4da59",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "not_converged_within_ladder",
+      "strategy_id": "DWT_Predict2",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401",
+      "why": "no startup up to 4032 candles keeps every indicator inside 1.0%"
+    },
+    "DWT_lev_short": {
+      "available_prefix_candles": 7391,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/DWT_lev_short-3ca77b88-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 43.6,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": null,
+      "implementation_id": "DWT_lev_short:c27b8ea5380a",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy DWT_lev_short --strategy-path user_data/profile_bias_strategies/DWT_lev_short-3ca77b88 --timerange 20200301-20200401 --no-color --startup-candle 288 576 2016",
+      "ladder_candles": [
+        288,
+        576,
+        2016
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        288,
+        576,
+        2016
+      ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": true,
+      "output_sha256": "sha256_82be9efd72a5a1a7d261a5c88fda06801f647fbffee07100ba647e61abbb3041",
+      "returncode": 0,
+      "run_profile": "futures_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "DWT_lev_short",
+      "timeframe": "5m",
+      "timerange": "20200301-20200401",
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
+    },
+    "DWT_lev_simple": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/DWT_lev_simple-e9b4c2e0-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 46.3,
+      "file_derived_period": null,
+      "implementation_id": "DWT_lev_simple:9fb045b10057",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy DWT_lev_simple --strategy-path user_data/profile_bias_strategies/DWT_lev_simple-e9b4c2e0 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": true,
+      "output_sha256": "sha256_b008a2ee804014d84a98dce946db85bd83dc8eb48d5b73ae07376734a07f4377",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "DWT_lev_simple",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401",
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "DWT_short": {
       "available_prefix_candles": 7391,
@@ -43836,6 +45224,200 @@
       "strategy_id": "FAdxSmaStrategy",
       "timeframe": "1h",
       "timerange": "20200301-20200401"
+    },
+    "FBB_DWT": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 128
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/FBB_DWT-a8f9de02-ladder.log",
+      "declared_max_drift_pct": 0.005,
+      "declared_startup_candle_count": 128,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "bb_gain": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_lowerband": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_upperband": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "fisher_rsi": [
+          -0.005,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fisher_wr": [
+          -0.002,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rmi": [
+          -0.003,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          0.004,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sroc": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 45.4,
+      "file_derived_period": null,
+      "implementation_id": "FBB_DWT:11be59ac1a1f",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy FBB_DWT --strategy-path user_data/profile_bias_strategies/FBB_DWT-a8f9de02 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "rsi",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_633cb77ca0b0b090bb0dc4e37bdef8c843becb9bc2a3a770514115cad17a1624",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "FBB_DWT",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401"
+    },
+    "FFT": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 128
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/FFT-94fa3fe9-ladder.log",
+      "declared_max_drift_pct": 0.003,
+      "declared_startup_candle_count": 128,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "rmi": [
+          -0.003,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sroc": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 51.8,
+      "file_derived_period": null,
+      "implementation_id": "FFT:61daceed12f9",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy FFT --strategy-path user_data/profile_bias_strategies/FFT-94fa3fe9 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "rmi",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_adb92b8478c16634e722f3666463e415d7be7aebe34f66a892ae6f47caae5c99",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "FFT",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401"
     },
     "FLAGS": {
       "available_prefix_candles": 616,
@@ -50489,6 +52071,41 @@
       "timerange": "20200301-20200401",
       "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
+    "GRIDDMIPRICEStrategyFutureV5": {
+      "available_prefix_candles": 36954,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 1440,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/GRIDDMIPRICEStrategyFutureV5-a6b35126-ladder.log",
+      "declared_warmup_override": 1440,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 88.6,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": null,
+      "implementation_id": "GRIDDMIPRICEStrategyFutureV5:39af2fefcdb2",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/GRIDDMIPRICEStrategyFutureV5_startup_1440.json --strategy GRIDDMIPRICEStrategyFutureV5 --strategy-path user_data/profile_bias_strategies/GRIDDMIPRICEStrategyFutureV5-a6b35126 --timerange 20200301-20200401 --no-color --startup-candle 1440",
+      "ladder_candles": [
+        1440
+      ],
+      "ladder_days": [
+        1
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        1440
+      ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_49542760e55f6c1cfc0e9fac0715629ea8bd24c8e11443987dc4fbdf356c4c7f",
+      "returncode": 0,
+      "run_profile": "futures_long_short",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "GRIDDMIPRICEStrategyFutureV5",
+      "timeframe": "1m",
+      "timerange": "20200301-20200401",
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
+    },
     "GRIDDMIPRICEStrategyFutureV5Long": {
       "available_prefix_candles": 36954,
       "chosen_ladder_days": 1,
@@ -50593,6 +52210,101 @@
       "strategy_id": "GRIDDMIPRICEStrategyFutureV5Short",
       "timeframe": "4h",
       "timerange": "20200301-20200401"
+    },
+    "GRIDDMIPRICEStrategyFutureV6": {
+      "available_prefix_candles": 36954,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 30
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 1440
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/GRIDDMIPRICEStrategyFutureV6-f9607587-ladder.log",
+      "declared_max_drift_pct": 19.07,
+      "declared_startup_candle_count": 30,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "emaLong_1d": [
+          0.619,
+          -0.09
+        ],
+        "emaShort_1d": [
+          0.619,
+          -0.09
+        ],
+        "minus_di_1d": [
+          19.07,
+          -1.062
+        ],
+        "plus_di_1d": [
+          -8.89,
+          3.346
+        ]
+      },
+      "elapsed_s": 45.3,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": null,
+      "implementation_id": "GRIDDMIPRICEStrategyFutureV6:96a135ff855b",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy GRIDDMIPRICEStrategyFutureV6 --strategy-path user_data/profile_bias_strategies/GRIDDMIPRICEStrategyFutureV6-f9607587 --timerange 20200301-20200401 --no-color --startup-candle 1440",
+      "ladder_candles": [
+        1440
+      ],
+      "ladder_days": [
+        1
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        1440
+      ],
+      "output_sha256": "sha256_30fba0a4ff73bb29c8b2e5296c4032cb5483982866ee3616bd08bb61a7797c47",
+      "returncode": 0,
+      "run_profile": "futures_long_short",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "not_converged_within_ladder",
+      "strategy_id": "GRIDDMIPRICEStrategyFutureV6",
+      "timeframe": "1m",
+      "timerange": "20200301-20200401",
+      "why": "no startup up to 1440 candles keeps every indicator inside 1.0%"
+    },
+    "GRIDDMIPRICEStrategyFutureV7": {
+      "available_prefix_candles": 36954,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 1440,
+      "cohort": "ladder_pending",
+      "debug_log": "user_data/convergence_logs/GRIDDMIPRICEStrategyFutureV7-20ea6876-ladder.log",
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "elapsed_s": 44.0,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": null,
+      "implementation_id": "GRIDDMIPRICEStrategyFutureV7:90e2662cd7dd",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy GRIDDMIPRICEStrategyFutureV7 --strategy-path user_data/profile_bias_strategies/GRIDDMIPRICEStrategyFutureV7-20ea6876 --timerange 20200301-20200401 --no-color --startup-candle 1440",
+      "ladder_candles": [
+        1440
+      ],
+      "ladder_days": [
+        1
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        1440
+      ],
+      "max_drift_indicator": null,
+      "max_drift_pct": 0.0,
+      "needed_no_override": true,
+      "output_sha256": "sha256_5fe38009af5fd0b347506442ea10200db3536a4b285118fee6019b14332eddd6",
+      "returncode": 0,
+      "run_profile": "futures_long_short",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "GRIDDMIPRICEStrategyFutureV7",
+      "timeframe": "1m",
+      "timerange": "20200301-20200401",
+      "why": "analyzer reports no variance at the smallest rung; it compared and stopped there"
     },
     "GRIDDMIPRICEStrategySpot": {
       "available_prefix_candles": 36954,
@@ -65507,6 +67219,62 @@
       "strategy_id": "Martin",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
+    },
+    "MartyEMA": {
+      "available_prefix_candles": 36954,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 1440,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 751
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 1440
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/MartyEMA-67e05e61-ladder.log",
+      "declared_max_drift_pct": 0.011,
+      "declared_startup_candle_count": 751,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "EMA2_15m": [
+          0.0,
+          0.0
+        ],
+        "EMA3_15m": [
+          0.011,
+          -0.0
+        ]
+      },
+      "elapsed_s": 44.6,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": null,
+      "implementation_id": "MartyEMA:ca87166657e7",
+      "invocation": "freqtrade recursive-analysis --config profile_futures_config.json --strategy MartyEMA --strategy-path user_data/profile_bias_strategies/MartyEMA-67e05e61 --timerange 20200301-20200401 --no-color --startup-candle 1440",
+      "ladder_candles": [
+        1440
+      ],
+      "ladder_days": [
+        1
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        1440
+      ],
+      "max_drift_indicator": "EMA2_15m",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_1b0e447a79f68b54bb505a59a796889252bf61b3c819d3367d7ef5d7ed4f22ab",
+      "returncode": 0,
+      "run_profile": "futures_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "MartyEMA",
+      "timeframe": "1m",
+      "timerange": "20200301-20200401"
     },
     "MasterMoniGoManiHyperStrategy": {
       "available_prefix_candles": null,
@@ -98621,6 +100389,82 @@
       "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
       "state": "converged",
       "strategy_id": "SARCross",
+      "timeframe": "5m",
+      "timerange": "20190101-20190401"
+    },
+    "SARIMAX": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
+      "cohort": "ladder_pending",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 32
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/SARIMAX-78de56e1-ladder.log",
+      "declared_max_drift_pct": 60.923,
+      "declared_startup_candle_count": 32,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "rmi": [
+          -6.794,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sroc": [
+          60.923,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 132.2,
+      "file_derived_period": null,
+      "implementation_id": "SARIMAX:3d957d409887",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SARIMAX --strategy-path user_data/profile_bias_strategies/SARIMAX-78de56e1 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "rmi",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_2b283abaf0e5dda1e97bb92b8cbc669afbed671029d8722d2ecf85417b929f98",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "state": "converged",
+      "strategy_id": "SARIMAX",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
