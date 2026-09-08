@@ -152,7 +152,7 @@ combined actual-data load has BTC and coin series      PASS
 ```
 
 E0-retirement validation at `717d1e3`: `strategy_status.py`,
-`eligibility_expansion.py`, `eligibility_expansion_adjudicate.py`,
+`tools/eligibility_expansion.py`, `eligibility_expansion_adjudicate.py`,
 `regime_eligibility.py`, `eligibility_evidence_gap.py`,
 `warmup_convergence.py`, and `exclusion_criteria.py` selftests all PASS;
 targeted `compileall` and `git diff --check` PASS. The frozen expansion

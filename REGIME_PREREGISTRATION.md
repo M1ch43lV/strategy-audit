@@ -397,7 +397,7 @@ an incomplete table that never showed the very indicator whose name could
 not be parsed.
 
 Fixed in `profile_bias.recursive_table()`; re-derived from stored logs via
-`warmup_reparse.py --store punctuated`, applied only where the reading grew
+`tools/warmup_reparse.py --store punctuated`, applied only where the reading grew
 richer (58 records) and never where it would have shrunk, which is the
 signature of a different defect entirely (below).
 

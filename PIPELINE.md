@@ -402,13 +402,28 @@ darauf angewiesen ist, dann committen, dann entfernen — nie umgekehrt.
 
 ### 3. `tools/` — eigene Werkzeuge, aber manuell, nicht Teil der automatischen Kette
 
-Beide Dateien sind aktuell und nicht veraltet, laufen aber nur auf Zuruf,
-nie automatisch von Stufe 0–11 aus aufgerufen:
+Alle Dateien hier sind aktuell und nicht veraltet, laufen aber nur auf Zuruf,
+nie automatisch von Stufe 0–11 aus aufgerufen. **2026-09-08 aus dem Root
+hierher verschoben** (acht Dateien, siehe Begründung unten): jede wurde vorher
+geprüft — keine ist von einem anderen Root-Skript importiert, keine hat einen
+eigenen `_docker.ps1`-Wrapper, keine steht in `sync_repo.py`s `PIPELINE`-Liste.
+`ROOT`-Pfadannahmen (`os.path.dirname(os.path.abspath(__file__))`) wurden um
+eine Ebene korrigiert; `warmup_reparse.py`s `import profile_bias` bekam einen
+`sys.path.insert` auf das Root-Verzeichnis, denselben Kniff, den `repair/*.py`
+schon vorher benutzte.
 
 | Programm | Zweck | Wann laufen lassen |
 |---|---|---|
 | `tools/secret_gate.py` | Verhindert, dass ein Commit ein Secret enthält (vier Schichten, siehe eigener Docstring) | vor jedem Commit, das neue Dateien einführt |
 | `tools/translation_repair.py` | Übersetzt russische Kommentare/Strings in Python-Dateien, AST-geprüft, übersetzt fehlgeschlagene Stellen nie stillschweigend | wenn `harvest.py` (Stufe 0) ein Repo mit nicht-englischen Kommentaren einbringt |
+| `tools/blocked_triage.py` | Findet behebbare Ursachen für Zeilen, die der Probelauf nie erreicht (freqtrade startete sie gar nicht); schreibt `REPAIR_LIST.md` und `BLOCKED_TRIAGE.json`, das Stufe 5 liest | nach neuem Harvest oder wenn sich die Zahl blockierter Zeilen ändert (`--probe --list`) |
+| `tools/eligibility_expansion.py` | Friert das historische, ergebnisblinde Eligibility-Expansion-Inventar ein (nur technische Stage-6-Artefakte, keine Performance) | wenn `REGIME_PREREGISTRATION.md`/`ELIGIBILITY_EXPANSION_PLAN.md` geändert werden |
+| `tools/probe_double_advise.py` | Prüft, ob der doppelte `ft_advise_signals`-Aufruf in `lookahead-analysis` eine Spalte dupliziert | bei Verdacht, der `enter_tag`-Shim verfälsche das Ergebnis |
+| `tools/probe_shim_neutral.py` | Vergleicht Backtest-Ergebnisse mit/ohne `enter_tag`-Shim auf Neutralität | nach einer Änderung am Shim-Mechanismus |
+| `tools/probe_zero.py` | Unterscheidet bei einer Zeile ohne Trades, ob die Entry-Bedingung nie wahr wird oder der Indikator fehlt | wenn eine Zeile 0 Trades zeigt und die Ursache unklar ist |
+| `tools/strategy_classification.py` | Klassifiziert Typ/Timeframe je Zeile aus dem Strategie-Quellcode; schreibt `STRATEGY_CLASSIFICATION.json`, das Stufe 5 und Stufe 10 lesen | nach neuem Harvest oder wenn sich `EXECUTION_PROFILES.csv` ändert |
+| `tools/strategy_status_page.py` | Baut die veröffentlichte Seite aus `STRATEGY_STATUS.csv`, damit Seite und Tabelle nie auseinanderlaufen | nach jedem `strategy_status.py`-Lauf, vor Veröffentlichung |
+| `tools/warmup_reparse.py` | Liest gespeicherte Leiter-Logs mit dem aktuellen Parser erneut, ohne freqtrade neu laufen zu lassen | nach einer Korrektur am Drift-Tabellen-Parser |
 
 `repair/FREQAI_RESULTS.md`, `repair/REGISTER.md`, `repair/TRANSLATION_AUDIT.md`
 sind ebenfalls eigene, aktuelle Dateien, aber Provenienz-Protokolle, keine

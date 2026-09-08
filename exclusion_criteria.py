@@ -985,7 +985,7 @@ REPAIRS = [
                  "requires it to be ruled out first. Recorded in "
                  "`ZERO_TRADE_TRIAGE.json` with the reason, so the row reads "
                  "`open` and `to be fixed` rather than `excluded`.",
-        "tool": "probe_zero.py, ZERO_TRADE_TRIAGE.json",
+        "tool": "tools/probe_zero.py, ZERO_TRADE_TRIAGE.json",
     },
     {
         "family": "measured_outside_its_design",
@@ -1004,7 +1004,7 @@ REPAIRS = [
                  "position sizing reads the portfolio rather than the pair "
                  "will do the same thing, and it looks exactly like a "
                  "strategy that never trades.",
-        "tool": "probe_zero.py, ZERO_TRADE_TRIAGE.json",
+        "tool": "tools/probe_zero.py, ZERO_TRADE_TRIAGE.json",
     },
     {
         "family": "no_stoploss",
@@ -1182,7 +1182,7 @@ READER_FIXES = [
                  "strategy's declared warm-up. The analyzer prints one column "
                  "per startup value and labels the strategy's own; the "
                  "position moves with the value.",
-        "fix": "Locate the column by its label. `warmup_reparse.py --store "
+        "fix": "Locate the column by its label. `tools/warmup_reparse.py --store "
                "bias` re-reads the logs already on disk.",
         "cost": "47 of 302 logs flipped, every one from excluded to clean. "
                 "55 of 124 bias records disagreed with their own logs.",

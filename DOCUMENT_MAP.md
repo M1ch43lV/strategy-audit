@@ -10,7 +10,7 @@ generator-managed blocks between `BEGIN`/`END` comments: `DCA`, `DEPTH`,
 **`REGIME_PREREGISTRATION.md` and `ELIGIBILITY_EXPANSION_PLAN.md` are edited by
 hand.** An earlier version of this file listed them as generated, which was
 wrong and would have told a reader that amending them is futile. They are read
-by `eligibility_expansion.py` only to be hashed as inputs. Amend them
+by `tools/eligibility_expansion.py` only to be hashed as inputs. Amend them
 deliberately, and record the amendment in the plan's decision log.
 
 Purpose: a session that starts cold should not have to open 31 documents to
