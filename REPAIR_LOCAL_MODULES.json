@@ -1,5 +1,181 @@
 {
   "results": {
+    "Anomaly": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.custom_indicators'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.custom_indicators'"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "missing_module": "utils",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/Anomaly.py",
+      "status": "unresolved",
+      "strategy_id": "Anomaly",
+      "why": "no copy of utils in the corpus makes Anomaly import; the import failure is not only this module"
+    },
+    "BBBHold": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/BigDrop",
+          "sha256_16": "af4e8f6419d1ebc7",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/BuyDips",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/DCBBBounce",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/DonchianChannel",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/KeltnerChannels",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/MFI2",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/NDrop",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/NSeq",
+          "sha256_16": "60374d762b85edac",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/Patterns2",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/SARCross",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/SimpleBollinger",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/Squeeze001",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_ADXDM",
+          "sha256_16": "af4e8f6419d1ebc7",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_BBBHold",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_MFIRSICross",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Strategy003",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__BollingerBounce",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__MACDCross",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__MACDTurn",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__Squeeze002",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__SqueezeMomentum",
+          "sha256_16": "b1f72f74822e78ca",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        },
+        {
+          "imports": false,
+          "path": "repos/webclinic017_strategies-freqtrade-/archived",
+          "sha256_16": "17e232212e1d5c31",
+          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
+        }
+      ],
+      "missing_module": "Config",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/_BBBHold/BBBHold.py",
+      "status": "unresolved",
+      "strategy_id": "BBBHold",
+      "why": "no copy of Config in the corpus makes BBBHold import; the import failure is not only this module"
+    },
     "BB_RPB_3c": {
       "candidates": [
         {
@@ -72,6 +248,206 @@
       "strategy_id": "BinanceStream",
       "why": "no copy of binance in the corpus makes BinanceStream import; the import failure is not only this module"
     },
+    "DWTHO": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        }
+      ],
+      "missing_module": "custom_indicators",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWTHO.py",
+      "status": "unresolved",
+      "strategy_id": "DWTHO",
+      "why": "no copy of custom_indicators in the corpus makes DWTHO import; the import failure is not only this module"
+    },
+    "DWT_Leveraged_recent": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        }
+      ],
+      "missing_module": "custom_indicators",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWTLeveraged.py",
+      "status": "unresolved",
+      "strategy_id": "DWT_Leveraged_recent",
+      "why": "no copy of custom_indicators in the corpus makes DWT_Leveraged_recent import; the import failure is not only this module"
+    },
+    "DWT_Leveraged_recentHO": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        }
+      ],
+      "missing_module": "custom_indicators",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWTLeveragedHO.py",
+      "status": "unresolved",
+      "strategy_id": "DWT_Leveraged_recentHO",
+      "why": "no copy of custom_indicators in the corpus makes DWT_Leveraged_recentHO import; the import failure is not only this module"
+    },
+    "DWT_LongShortHO": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        }
+      ],
+      "missing_module": "custom_indicators",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWTLongShortHO.py",
+      "status": "unresolved",
+      "strategy_id": "DWT_LongShortHO",
+      "why": "no copy of custom_indicators in the corpus makes DWT_LongShortHO import; the import failure is not only this module"
+    },
+    "DWT_Predict": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "30d22005d48f26e5",
+          "why": "ImportError: DLL load failed while importing _pywrap_utils: Eine Anwendungssteuerungsrichtlinie hat diese Datei blockiert."
+        }
+      ],
+      "missing_module": "DataframeUtils",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/DWT_Predict.py",
+      "status": "unresolved",
+      "strategy_id": "DWT_Predict",
+      "why": "no copy of DataframeUtils in the corpus makes DWT_Predict import; the import failure is not only this module"
+    },
+    "DWT_Predict2": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "30d22005d48f26e5",
+          "why": "ImportError: DLL load failed while importing _pywrap_utils: Eine Anwendungssteuerungsrichtlinie hat diese Datei blockiert."
+        }
+      ],
+      "missing_module": "DataframeUtils",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/DWT_Predict2.py",
+      "status": "unresolved",
+      "strategy_id": "DWT_Predict2",
+      "why": "no copy of DataframeUtils in the corpus makes DWT_Predict2 import; the import failure is not only this module"
+    },
+    "DWT_lev_short": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        }
+      ],
+      "missing_module": "custom_indicators",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWT_lev_short.py",
+      "status": "unresolved",
+      "strategy_id": "DWT_lev_short",
+      "why": "no copy of custom_indicators in the corpus makes DWT_lev_short import; the import failure is not only this module"
+    },
+    "DWT_lev_simple": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        }
+      ],
+      "missing_module": "custom_indicators",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWT_lev_simple.py",
+      "status": "unresolved",
+      "strategy_id": "DWT_lev_simple",
+      "why": "no copy of custom_indicators in the corpus makes DWT_lev_simple import; the import failure is not only this module"
+    },
     "DualModelPolymarketPortfolio": {
       "candidates": [
         {
@@ -86,9 +462,6 @@
       "source_file": "repos/mlsys-io_PortfolioBench/user_data/strategies/DualModelPolymarketPortfolio.py",
       "status": "unresolved",
       "strategy_id": "DualModelPolymarketPortfolio",
-      "verification": "past_the_module",
-      "verified_status": "failed",
-      "verified_why": "cannot import name '__version__' from 'freqtrade' (unknown location)",
       "why": "no copy of alpha in the corpus makes DualModelPolymarketPortfolio import; the import failure is not only this module"
     },
     "EmaCrossStrategy": {
@@ -105,33 +478,164 @@
       "source_file": "repos/mlsys-io_PortfolioBench/strategy/EmaCrossStrategy.py",
       "status": "unresolved",
       "strategy_id": "EmaCrossStrategy",
-      "verification": "past_the_module",
-      "verified_status": "failed",
-      "verified_why": "cannot import name '__version__' from 'freqtrade' (unknown location)",
       "why": "no copy of alpha in the corpus makes EmaCrossStrategy import; the import failure is not only this module"
+    },
+    "FBB_2": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/froggleston_cryptofrog-strategies",
+        "repos/nateemma_strategies/utils",
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "missing_module": "custom_indicators",
+      "python_path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/FBB_2.py",
+      "status": "resolved",
+      "strategy_id": "FBB_2",
+      "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
+    },
+    "FBB_DWT": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        }
+      ],
+      "missing_module": "custom_indicators",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/FBB_DWT.py",
+      "status": "unresolved",
+      "strategy_id": "FBB_DWT",
+      "why": "no copy of custom_indicators in the corpus makes FBB_DWT import; the import failure is not only this module"
+    },
+    "FBB_KalmanSIMD": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": "ModuleNotFoundError: No module named 'simdkalman'"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": "ModuleNotFoundError: No module named 'simdkalman'"
+        },
+        {
+          "imports": false,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": "ModuleNotFoundError: No module named 'simdkalman'"
+        }
+      ],
+      "missing_module": "custom_indicators",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/FBB_KalmanSIMD.py",
+      "status": "unresolved",
+      "strategy_id": "FBB_KalmanSIMD",
+      "why": "no copy of custom_indicators in the corpus makes FBB_KalmanSIMD import; the import failure is not only this module"
+    },
+    "FFT": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        },
+        {
+          "imports": false,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
+        }
+      ],
+      "missing_module": "custom_indicators",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/FFT.py",
+      "status": "unresolved",
+      "strategy_id": "FFT",
+      "why": "no copy of custom_indicators in the corpus makes FFT import; the import failure is not only this module"
     },
     "FileLoadingStrategy": {
       "candidates": [
         {
-          "imports": false,
+          "imports": true,
           "path": "repos/keithorange_FreqTradeCustomOrders",
           "sha256_16": "2e56ca7479701964",
-          "why": "ModuleNotFoundError: No module named 'portalocker'"
+          "why": ""
         }
       ],
+      "copies_that_work": [
+        "repos/keithorange_FreqTradeCustomOrders"
+      ],
       "missing_module": "custom_order_form_handler",
+      "python_path": "repos/keithorange_FreqTradeCustomOrders",
       "rule": "restore_copied_local_module",
       "source_file": "repos/keithorange_FreqTradeCustomOrders/file_loading_strategy.py",
-      "status": "unresolved",
+      "status": "resolved",
       "strategy_id": "FileLoadingStrategy",
-      "why": "no copy of custom_order_form_handler in the corpus makes FileLoadingStrategy import; the import failure is not only this module"
+      "why": "1 copies satisfy the import and all are the same file, so the choice carries no risk"
     },
     "MlpSpeculativeStrategy": {
       "candidates": [
         {
           "imports": false,
+          "path": "repos/AlexCryptoKing_freqailstm/user_data/config",
+          "sha256_16": "62426bf583d80e13",
+          "why": "ModuleNotFoundError: No module named 'strategy.mlp_speculative_model'"
+        },
+        {
+          "imports": false,
           "path": "repos/imsatoshi_GeneTrader",
           "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'strategy.mlp_speculative_model'"
+        },
+        {
+          "imports": false,
+          "path": "repos/LazyPigPig_freqtrade-grid/freqtrade",
+          "sha256_16": "62426bf583d80e13",
           "why": "ModuleNotFoundError: No module named 'strategy.mlp_speculative_model'"
         },
         {
@@ -163,6 +667,12 @@
           "path": "repos/raphant_lazyft/lazyft/models",
           "sha256_16": "ba4c370a4b21bf8a",
           "why": "ModuleNotFoundError: No module named 'strategy.mlp_speculative_model'"
+        },
+        {
+          "imports": false,
+          "path": "repos/titouannwtt_freqtrade-ultimate/freqtrade",
+          "sha256_16": "cef6416573eb3f20",
+          "why": "ModuleNotFoundError: No module named 'strategy.mlp_speculative_model'"
         }
       ],
       "missing_module": "strategy",
@@ -171,6 +681,102 @@
       "status": "unresolved",
       "strategy_id": "MlpSpeculativeStrategy",
       "why": "no copy of strategy in the corpus makes MlpSpeculativeStrategy import; the import failure is not only this module"
+    },
+    "NNPredict": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.profiler'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.profiler'"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "missing_module": "utils",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/NNPredict.py",
+      "status": "unresolved",
+      "strategy_id": "NNPredict",
+      "why": "no copy of utils in the corpus makes NNPredict import; the import failure is not only this module"
+    },
+    "NNTC": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.custom_indicators'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.custom_indicators'"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "missing_module": "utils",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC.py",
+      "status": "unresolved",
+      "strategy_id": "NNTC",
+      "why": "no copy of utils in the corpus makes NNTC import; the import failure is not only this module"
+    },
+    "PCA": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": "ImportError: cannot import name 'loguniform' from 'sklearn.utils.fixes' (C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\ft"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": "ImportError: cannot import name 'loguniform' from 'sklearn.utils.fixes' (C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\ft"
+        },
+        {
+          "imports": false,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": "ImportError: cannot import name 'loguniform' from 'sklearn.utils.fixes' (C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\ft"
+        }
+      ],
+      "missing_module": "custom_indicators",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA.py",
+      "status": "unresolved",
+      "strategy_id": "PCA",
+      "why": "no copy of custom_indicators in the corpus makes PCA import; the import failure is not only this module"
     },
     "PolymarketMeanReversionStrategy": {
       "candidates": [
@@ -186,9 +792,6 @@
       "source_file": "repos/mlsys-io_PortfolioBench/strategy/PolymarketMeanReversionStrategy.py",
       "status": "unresolved",
       "strategy_id": "PolymarketMeanReversionStrategy",
-      "verification": "past_the_module",
-      "verified_status": "failed",
-      "verified_why": "cannot import name '__version__' from 'freqtrade' (unknown location)",
       "why": "no copy of alpha in the corpus makes PolymarketMeanReversionStrategy import; the import failure is not only this module"
     },
     "PolymarketMomentumStrategy": {
@@ -205,84 +808,35 @@
       "source_file": "repos/mlsys-io_PortfolioBench/strategy/PolymarketMomentumStrategy.py",
       "status": "unresolved",
       "strategy_id": "PolymarketMomentumStrategy",
-      "verification": "past_the_module",
-      "verified_status": "failed",
-      "verified_why": "cannot import name '__version__' from 'freqtrade' (unknown location)",
       "why": "no copy of alpha in the corpus makes PolymarketMomentumStrategy import; the import failure is not only this module"
     },
-    "Solipsis6": {
+    "SARIMAX": {
       "candidates": [
         {
-          "imports": true,
+          "imports": false,
           "path": "repos/froggleston_cryptofrog-strategies",
           "sha256_16": "64ffa04db3a0af9a",
-          "why": ""
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
         },
         {
-          "imports": true,
+          "imports": false,
           "path": "repos/nateemma_strategies/utils",
           "sha256_16": "e8bb76908ad0e26e",
-          "why": ""
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
         },
         {
-          "imports": true,
+          "imports": false,
           "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
           "sha256_16": "7c3043a6fcbbcd69",
-          "why": ""
+          "why": "AttributeError: module 'numpy' has no attribute 'float'.\n`np.float` was a deprecated alias for the builtin `float`. To avoid this error "
         }
       ],
-      "copies_that_work": [
-        "repos/froggleston_cryptofrog-strategies",
-        "repos/nateemma_strategies/utils",
-        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
-      ],
       "missing_module": "custom_indicators",
-      "python_path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
       "rule": "restore_copied_local_module",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-v2.6.py",
-      "status": "resolved",
-      "strategy_id": "Solipsis6",
-      "verification": "path_insufficient",
-      "verified_status": "failed",
-      "verified_why": "module 'custom_indicators' has no attribute 'bollinger_bands'",
-      "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
-    },
-    "SolipsisMM": {
-      "candidates": [
-        {
-          "imports": true,
-          "path": "repos/froggleston_cryptofrog-strategies",
-          "sha256_16": "64ffa04db3a0af9a",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/nateemma_strategies/utils",
-          "sha256_16": "e8bb76908ad0e26e",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
-          "sha256_16": "7c3043a6fcbbcd69",
-          "why": ""
-        }
-      ],
-      "copies_that_work": [
-        "repos/froggleston_cryptofrog-strategies",
-        "repos/nateemma_strategies/utils",
-        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
-      ],
-      "missing_module": "custom_indicators",
-      "python_path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
-      "rule": "restore_copied_local_module",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/SolipsisMM.py",
-      "status": "resolved",
-      "strategy_id": "SolipsisMM",
-      "verification": "path_insufficient",
-      "verified_status": "failed",
-      "verified_why": "module 'custom_indicators' has no attribute 'fib_ret'",
-      "why": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/SARIMAX.py",
+      "status": "unresolved",
+      "strategy_id": "SARIMAX",
+      "why": "no copy of custom_indicators in the corpus makes SARIMAX import; the import failure is not only this module"
     }
   },
   "rule": "restore_copied_local_module",

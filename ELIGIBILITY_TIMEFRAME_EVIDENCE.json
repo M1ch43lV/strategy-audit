@@ -47,6 +47,31 @@
       "trades": 178,
       "trades_sha256": "sha256_3140a50990cc8f0a24819aa0b8232481f446c7f983a414bcc94ce894971e4f33"
     },
+    "Argrelextrema": {
+      "archive": "user_data/profile_smoke/Argrelextrema-0ba99988-2026-09-08_12-36-14.zip",
+      "archive_sha256": "sha256_551a9abed2e9fc4ba906a8a80a676899f9c9be8ae42b3a4acd519d7de37b897d",
+      "artifact_key": "",
+      "canonical_sha256": "sha256_a0dc5f2d0ad4f2f585086121c81627948bf8d0e4670e1db100f0dafce9dfda28",
+      "class1_rules": [],
+      "config_overrides": {
+        "timeframe": "5m"
+      },
+      "elapsed_s": 50.3,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/Argrelextrema-0ba99988-override-2c7527d808c6.json --strategy Argrelextrema --strategy-path repos/hamidreza07_freqai-strategy/classic --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Argrelextrema-0ba99988 --cache none",
+      "long_trades": 2761,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 2712,
+      "status": "measured",
+      "timeframe": "5m",
+      "timeframe_evidence": "author_commented_declaration",
+      "timeframe_evidence_source": "repos/hamidreza07_freqai-strategy/classic/Argrelextrema.py:62, \"# timeframe = '5m'\" under \"Optimal timeframe for the strategy\"",
+      "timerange": "20200301-20200401",
+      "trades": 5473,
+      "trades_sha256": "sha256_2cd188b7d6118e3343a34c58e1afd9969bd2c60455dbef2753ba9afcd2ba40c4"
+    },
     "FixedRiskRewardLoss": {
       "archive": "user_data/profile_smoke/FixedRiskRewardLoss-2026-08-31_18-58-08.zip",
       "archive_sha256": "sha256_24469521de33eb1972c4552fbf5896ae2c5c29bc4d16178ce956a281a4405de2",

@@ -77,6 +77,11 @@ MANUAL = {
         "5m", "corpus_twin",
         "repos/davidzr_freqtrade-strategies/strategies/FixedRiskRewardLoss/"
         "FixedRiskRewardLoss.py, similarity 1.00"),
+    "Argrelextrema": (
+        "5m", "author_commented_declaration",
+        "repos/hamidreza07_freqai-strategy/classic/Argrelextrema.py:62, "
+        "\"# timeframe = '5m'\" under \"Optimal timeframe for the strategy\" - "
+        "not ticker_interval, so _TICKER does not match it"),
 }
 
 
@@ -259,7 +264,8 @@ def selftest():
     assert len(recovered) + len(refused) == len(rows)
     for row, timeframe, kind, source in recovered:
         assert timeframe in VALID, (row["strategy_id"], timeframe)
-        assert kind in ("author_ticker_interval", "corpus_twin"), kind
+        assert kind in ("author_ticker_interval", "corpus_twin",
+                        "author_commented_declaration"), kind
         assert source, row["strategy_id"]
     for _row, _tf, _kind, why in refused:
         # A refusal without a reason is indistinguishable from an oversight.
@@ -267,7 +273,8 @@ def selftest():
     # The rule has to reproduce the values that were derived by hand, or it is
     # not reading the same evidence a person read.
     established = {"ADX_15M_USDT": "15m", "ADX_15M_USDT2": "15m",
-                   "JustROCR5": "1m", "FixedRiskRewardLoss": "5m"}
+                   "JustROCR5": "1m", "FixedRiskRewardLoss": "5m",
+                   "Argrelextrema": "5m"}
     by_id = {row["strategy_id"]: tf for row, tf, _k, _w in rows}
     for strategy, expected in established.items():
         if strategy in by_id:

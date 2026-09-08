@@ -485,6 +485,16 @@
       "status": "withdrawn",
       "withdrawn_path": "repos/mlsys-io_PortfolioBench"
     },
+    "FBB_2": {
+      "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
+      "python_paths": [
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
+    },
     "FTT_DWT_FBB_FUTURES": {
       "python_paths": [
         "repair/compat_helpers",
@@ -493,6 +503,16 @@
       "rules": [
         "restore_copied_local_module",
         "datetime_safe_rmi_fillna"
+      ],
+      "status": "applied"
+    },
+    "FileLoadingStrategy": {
+      "note": "1 copies satisfy the import and all are the same file, so the choice carries no risk",
+      "python_paths": [
+        "repos/keithorange_FreqTradeCustomOrders"
+      ],
+      "rules": [
+        "restore_copied_local_module"
       ],
       "status": "applied"
     },

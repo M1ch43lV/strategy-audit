@@ -1,6 +1,6 @@
-# Strategy status - current evidence for all 919 rows
+# Strategy status - current evidence for all 1038 rows
 
-**Generated 2026-09-06 15:17:03 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-08 12:42:57 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -23,35 +23,35 @@ check.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 7 of 919 rows
+file's time and is labelled `log_mtime` for that reason. 14 of 1038 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
 
 | | Strategies |
 |---|---:|
-| in the manifest | 919 |
-| measured at all | 788 |
-| produced trades | 757 |
-| carrying a run time | 912 |
+| in the manifest | 1038 |
+| measured at all | 849 |
+| produced trades | 811 |
+| carrying a run time | 1024 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 608 |
-| `excluded` | 219 |
-| `pending` | 27 |
-| `exclusion_unconfirmed` | 25 |
+| `excluded` | 251 |
+| `exclusion_unconfirmed` | 81 |
+| `pending` | 57 |
 | `too_few_trades` | 21 |
-| `not_a_strategy` | 18 |
+| `not_a_strategy` | 19 |
 | `convergence_candidate` | 1 |
 
 ## Timeframe and signal family
 
 Both read from the strategy's own source by `strategy_classification.py`,
 not measured - see that module's docstring for the marker table and its
-limits. `timeframe` is blank on 43 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 35 rows where no marker matched at all, so its counts below add up to more than 919.
+limits. `timeframe` is blank on 162 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 154 rows where no marker matched at all, so its counts below add up to more than 1038.
 
 ### Timeframe
 
@@ -111,9 +111,9 @@ preregistration OPEN item 6; the amendment records it.
 | `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 255 |
 | `transition` | `20 <= coin_adx < 25` | 23 |
 
-A row may carry more than one phase, and 103 carry none: 47 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 56 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
+A row may carry more than one phase, and 222 carry none: 47 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 175 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
 
-`bear_trend` is rare by construction: 855 of 919 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
+`bear_trend` is rare by construction: 934 of 1038 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
 
 ## Test duration
 
@@ -123,11 +123,11 @@ look-ahead/recursion pair, a later native look-ahead
 re-measurement, the warm-up ladder, a wave B recursion attempt, and
 the eight-pair full-window backtest actually ran for it - see
 `test_duration` in strategy_status.py for why this is a sum rather
-than a pick-one-source figure. 4 of 919 rows carry no stamp at all,
+than a pick-one-source figure. 4 of 1038 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 915 rows that do: **58.3 hours** of this audit's own compute so far.
+Summed across the 1034 rows that do: **59.9 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -265,7 +265,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1175 of 2243 commands are recorded so far, and every new run
+recording. 1309 of 2600 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -4134,20 +4134,28 @@ an identical trade list.
 |---|---|---|---|---|---|
 | `MultiActionZone` | `spot_long` | 540 candles | 0.002% on `resample_1440_slowMA` | 2026-09-05 15:21:02 | `user_data/convergence_logs/MultiActionZone-179b96b7-ladder.log` |
 
-## Pending - 27 strategies
+## Pending - 57 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
 
-`Astro`, `AutoArimaTripleV1`, `BestSingleAssetPortfolio`, `BlueEyes_MPP_v1`
-`CryptoFrogNFI2`, `GodStra`, `Guacamole`, `HLHB`
-`Kamaflage`, `MasterMoniGoManiHyperStrategy`, `MultiMa`, `MyStrategyNew10`
-`NowoIchimoku1hV1`, `ONS_Portfolio`, `Proton`, `QuickBuyStrategy`
-`RLStrategy`, `RenkoYolo`, `SMAOPv1_TTF`, `Schism5`
-`Schism6`, `TuplaBollinger`, `UpSliceStrategy`, `WTHO`
-`haGradient`, `multi_tf`, `tacos1`
+`AlexStrategyFinalV8`, `AlexStrategyFinalV9`, `Astro`, `AutoArimaTripleV1`
+`BBKCBounce`, `BTCBigDrop`, `BTCJump`, `BTCMACDCross`
+`BTCNDrop`, `BTCNSeq`, `BestSingleAssetPortfolio`, `Bins`
+`BlueEyes_MPP_v1`, `ComboHold`, `CryptoFrogNFI2`, `DCADMIPRICEStrategySpot`
+`DELTA_NEUTRAL`, `DonchianBounce`, `E0V1EAI`, `ExampleLSTMStrategy`
+`FBB_2`, `FileLoadingStrategy`, `FisherBBDynamic`, `GRIDDMIPRICEStrategyFutureV4`
+`GRIDDMIPRICEStrategyFutureV5`, `GRIDDMIPRICEStrategyFutureV6`, `GRIDDMIPRICEStrategyFutureV7`, `GodStra`
+`Guacamole`, `HLHB`, `Hammer`, `Kamaflage`
+`KeltnerBounce`, `MartyEMA`, `MasterMoniGoManiHyperStrategy`, `MultiMa`
+`MyStrategyNew10`, `NowoIchimoku1hV1`, `ONS_Portfolio`, `Proton`
+`QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`, `RebalanceStrategySpot`
+`RenkoYolo`, `SMAOPv1_TTF`, `Schism5`, `Schism6`
+`Solipsis_v4`, `TEMABounce`, `TuplaBollinger`, `UpSliceStrategy`
+`WTHO`, `delist_shorter_strategy`, `haGradient`, `multi_tf`
+`tacos1`
 
-## Exclusion unconfirmed - 25 strategies
+## Exclusion unconfirmed - 81 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -4159,9 +4167,9 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
+| `unclassified` | `no_finding` | 59 |
 | `no_verdict_on_lookahead` | `no_finding` | 14 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 6 |
-| `unclassified` | `no_finding` | 3 |
 | `recursive_bias_unverified` | `no_finding` | 1 |
 | `recursive_warmup_refused` | `no_finding` | 1 |
 
@@ -4170,7 +4178,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 219 strategies, by decisive reason
+## Not passing - 251 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -4218,7 +4226,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 219 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 251 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -4227,13 +4235,13 @@ one of them carries none.
 | Reason | Meaning | Strategies |
 |---|---|---:|
 | `lookahead_found` | reads data it could not have had at the time | 73 |
-| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 62 |
+| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 67 |
 | `no_trades_in_full_measurement` | never trades over the full window | 7 |
-| `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 24 |
-| `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 13 |
+| `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 30 |
+| `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 29 |
 | `measured_only_in_freqai_arm` | runs only under its author's own FreqAI configuration, measured separately in that arm; not comparable with the ordinary spot audit | 5 |
-| `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 16 |
-| `shared_runtime_change_declined` | the fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04 | 19 |
+| `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 20 |
+| `shared_runtime_change_declined` | the fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04 | 20 |
 
 
 ### Reason by wave
@@ -4241,13 +4249,13 @@ one of them carries none.
 | Reason | `-` | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `E0_strict67` | `not_scheduled` |
 |---|---|---|---|---|---|---|---|
 | `lookahead_found` | 0 | 2 | 0 | 10 | 0 | 0 | 61 |
-| `recursive_bias_found` | 0 | 0 | 3 | 18 | 14 | 1 | 26 |
+| `recursive_bias_found` | 5 | 0 | 3 | 18 | 14 | 1 | 26 |
 | `no_trades_in_full_measurement` | 0 | 0 | 0 | 7 | 0 | 0 | 0 |
-| `repair_refused_would_invent_strategy` | 0 | 1 | 0 | 23 | 0 | 0 | 0 |
-| `local_module_repair_exhausted` | 0 | 0 | 0 | 13 | 0 | 0 | 0 |
+| `repair_refused_would_invent_strategy` | 6 | 1 | 0 | 23 | 0 | 0 | 0 |
+| `local_module_repair_exhausted` | 17 | 0 | 0 | 12 | 0 | 0 | 0 |
 | `measured_only_in_freqai_arm` | 0 | 0 | 0 | 4 | 0 | 0 | 1 |
-| `third_party_package_declined` | 2 | 0 | 0 | 14 | 0 | 0 | 0 |
-| `shared_runtime_change_declined` | 0 | 0 | 0 | 15 | 0 | 0 | 4 |
+| `third_party_package_declined` | 7 | 0 | 0 | 13 | 0 | 0 | 0 |
+| `shared_runtime_change_declined` | 1 | 0 | 0 | 15 | 0 | 0 | 4 |
 
 ### `lookahead_found` - 73
 
@@ -4282,9 +4290,14 @@ Wave `not_scheduled` - 61:
 `ichiV1`, `qrsi`, `tsp0chicken`, `turbov8`
 `wtc`
 
-### `recursive_bias_found` - 62
+### `recursive_bias_found` - 67
 
 Indicator value still drifts at every warm-up the ladder can reach.
+
+Wave `-` - 5:
+
+`AlexStrategyFinalV8Hyper`, `AlexStrategyFinalV9Hyper`, `GRIDDMIPRICEStrategyFutureV2`, `GRIDDMIPRICEStrategyFutureV2Both`
+`GRIDDMIPRICEStrategyFutureV2Long`
 
 Wave `B_warmup_refusal` - 3:
 
@@ -4328,9 +4341,14 @@ Wave `C_measurement_recovery` - 7:
 `BreakEven`, `DoesNothingStrategy`, `Miku_PP_v3`, `MyStrategyTemplate`
 `Obelisk_3EMA_StochRSI_ATR`, `ViN`, `ep3mas2`
 
-### `repair_refused_would_invent_strategy` - 24
+### `repair_refused_would_invent_strategy` - 30
 
 Declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy.
+
+Wave `-` - 6:
+
+`EMA003`, `FBB_ROI`, `FreqaiBinaryClassStrategy`, `FreqaiStrategy_v2`
+`TaSearchLevelG15m`, `TrendMomoClassifier`
 
 Wave `A_pending_diagnostics` - 1:
 
@@ -4345,16 +4363,23 @@ Wave `C_measurement_recovery` - 23:
 `PolymarketLogicalArbStrategy`, `Prediction_Strategy`, `QuickAdapterV3`, `ScalpingCCI`
 `SimpleRiskFilterStrategy`, `TrainCatBoostStrategy`, `thetank2`
 
-### `local_module_repair_exhausted` - 13
+### `local_module_repair_exhausted` - 29
 
 Imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls.
 
-Wave `C_measurement_recovery` - 13:
+Wave `-` - 17:
+
+`Anomaly`, `BBBHold`, `DWTHO`, `DWT_Leveraged_recent`
+`DWT_Leveraged_recentHO`, `DWT_LongShortHO`, `DWT_Predict`, `DWT_Predict2`
+`DWT_lev_short`, `DWT_lev_simple`, `FBB_DWT`, `FBB_KalmanSIMD`
+`FFT`, `NNPredict`, `NNTC`, `PCA`
+`SARIMAX`
+
+Wave `C_measurement_recovery` - 12:
 
 `AdvancedRiskFilterStrategy`, `BB_RPB_3c`, `BaseStrategy`, `BinanceStream`
-`DWT`, `DualModelPolymarketPortfolio`, `EmaCrossStrategy`, `FileLoadingStrategy`
-`MlpSpeculativeStrategy`, `PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy`, `Solipsis6`
-`SolipsisMM`
+`DWT`, `DualModelPolymarketPortfolio`, `EmaCrossStrategy`, `MlpSpeculativeStrategy`
+`PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy`, `Solipsis6`, `SolipsisMM`
 
 ### `measured_only_in_freqai_arm` - 5
 
@@ -4368,24 +4393,29 @@ Wave `not_scheduled` - 1:
 
 `AstroQAV4`
 
-### `third_party_package_declined` - 16
+### `third_party_package_declined` - 20
 
 Needs a python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04.
 
-Wave `-` - 2:
+Wave `-` - 7:
 
-`kac_index_v1`, `kac_index_v2`
+`CME`, `Cenderawasih_freqai`, `HMMv3`, `Kalman`
+`QuatreMousquetaires`, `kac_index_v1`, `kac_index_v2`
 
-Wave `C_measurement_recovery` - 14:
+Wave `C_measurement_recovery` - 13:
 
 `CopyLitmusMinMaxBroadClassificationStrategy`, `Enchilada`, `GymStrategy`, `KMM`
 `LitmusEntryRollClassificationStrategy`, `LitmusMLDPStrategy`, `LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`
 `LitmusMinMaxRegretClassificationStrategy`, `LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`
-`LitmusSimpleStrategy`, `RLAgentStrategy`
+`LitmusSimpleStrategy`
 
-### `shared_runtime_change_declined` - 19
+### `shared_runtime_change_declined` - 20
 
 The fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04.
+
+Wave `-` - 1:
+
+`MultiMA_TSL3b`
 
 Wave `C_measurement_recovery` - 15:
 
@@ -4404,23 +4434,24 @@ Wave `not_scheduled` - 4:
 |---|---:|
 | `not_scheduled` | 390 |
 | `C_measurement_recovery` | 230 |
+| `(none)` | 138 |
 | `D_recursive_drift` | 124 |
 | `B_warmup_refusal` | 82 |
 | `E0_strict67` | 67 |
-| `(none)` | 19 |
 | `A_pending_diagnostics` | 7 |
 
 ## Open work
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 161 |
-| `convergence_not_converged_within_ladder` | 62 |
-| `lookahead_remeasure_pending` | 23 |
-| `needs_a_look` | 20 |
+| `recursive_ladder_pending` | 242 |
+| `lookahead_remeasure_pending` | 79 |
+| `convergence_not_converged_within_ladder` | 67 |
+| `needs_a_look` | 47 |
 | `convergence_inconclusive` | 14 |
-| `to_be_fixed` | 3 |
+| `to_be_fixed` | 5 |
 | `repair_attempted` | 3 |
+| `refuse_repair` | 1 |
 
 Per-row detail, including every evidence path, is in
 `STRATEGY_STATUS.csv`.

@@ -17,6 +17,36 @@
       "strategy_id": "AdvancedRiskFilterStrategy",
       "verdict": "needs_a_look"
     },
+    "AlexStrategyFinalV8": {
+      "family": "class_not_loaded",
+      "note": "The file raises on import. Whether that is a missing dependency we can install or code that no longer runs depends on the exception.",
+      "probe": "import_raises",
+      "probe_detail": "NameError: name 'Dict' is not defined at AlexStrategyFinalV8.py:80",
+      "runtime_failure": "Impossible to load Strategy 'AlexStrategyFinalV8'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/AlexCryptoKing_freqailstm/V8/1HOUR/AlexStrategyFinalV8.py",
+      "strategy_id": "AlexStrategyFinalV8",
+      "verdict": "needs_a_look"
+    },
+    "AlexStrategyFinalV9": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "'freqai'",
+      "source_file": "repos/AlexCryptoKing_freqailstm/V9/AlexStrategyFinalV90.py",
+      "strategy_id": "AlexStrategyFinalV9",
+      "verdict": "needs_a_look"
+    },
+    "Anomaly": {
+      "family": "local_module_off_path",
+      "missing_module": "utils",
+      "module_found_at": "repos/imsatoshi_GeneTrader/utils",
+      "note": "The module the author imports is in the corpus at repos/imsatoshi_GeneTrader/utils. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'utils' at Anomaly.py:45",
+      "runtime_failure": "Impossible to load Strategy 'Anomaly'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/Anomaly.py",
+      "strategy_id": "Anomaly",
+      "verdict": "to_be_fixed"
+    },
     "Astro": {
       "family": "individual",
       "note": "one of a kind; read the message",
@@ -28,9 +58,31 @@
     "AutoArimaTripleV1": {
       "family": "individual",
       "note": "one of a kind; read the message",
-      "runtime_failure": "'DataFrame' object has no attribute 'append'",
+      "runtime_failure": "Not enough data in history. Please first download enough data",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/AutoArimaTripleV1.py",
       "strategy_id": "AutoArimaTripleV1",
+      "verdict": "needs_a_look"
+    },
+    "BBBHold": {
+      "family": "local_module_off_path",
+      "missing_module": "Config",
+      "module_found_at": "repos/hamidreza07_freqai-strategy/startegy test/5/BigDrop/Config.py",
+      "note": "The module the author imports is in the corpus at repos/hamidreza07_freqai-strategy/startegy test/5/BigDrop/Config.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'Config' at BBBHold.py:19",
+      "runtime_failure": "Impossible to load Strategy 'BBBHold'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/_BBBHold/BBBHold.py",
+      "strategy_id": "BBBHold",
+      "verdict": "to_be_fixed"
+    },
+    "BBKCBounce": {
+      "family": "class_not_loaded",
+      "note": "The file raises on import. Whether that is a missing dependency we can install or code that no longer runs depends on the exception.",
+      "probe": "import_raises",
+      "probe_detail": "ImportError: cannot import name 'Config' from 'user_data.strategies' (unknown location) at BBKCBounce.py:14",
+      "runtime_failure": "Impossible to load Strategy 'BBKCBounce'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/BBKCBounce.py",
+      "strategy_id": "BBKCBounce",
       "verdict": "needs_a_look"
     },
     "BB_RPB_3c": {
@@ -44,6 +96,48 @@
       "source_file": "repos/PeetCrypto_freqtrade-stuff/BB_RPB_3c.py",
       "strategy_id": "BB_RPB_3c",
       "verdict": "to_be_fixed"
+    },
+    "BTCBigDrop": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "module 'Config' has no attribute 'informative_pair'",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/BTCBigDrop.py",
+      "strategy_id": "BTCBigDrop",
+      "verdict": "needs_a_look"
+    },
+    "BTCJump": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "module 'Config' has no attribute 'informative_pair'",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/BTCJump.py",
+      "strategy_id": "BTCJump",
+      "verdict": "needs_a_look"
+    },
+    "BTCMACDCross": {
+      "family": "class_not_loaded",
+      "note": "The file raises on import. Whether that is a missing dependency we can install or code that no longer runs depends on the exception.",
+      "probe": "import_raises",
+      "probe_detail": "ImportError: cannot import name 'Config' from 'user_data.strategies' (unknown location) at BTCMACDCross.py:20",
+      "runtime_failure": "Impossible to load Strategy 'BTCMACDCross'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/BTCMACDCross.py",
+      "strategy_id": "BTCMACDCross",
+      "verdict": "needs_a_look"
+    },
+    "BTCNDrop": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "module 'Config' has no attribute 'informative_pair'",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/BTCNDrop.py",
+      "strategy_id": "BTCNDrop",
+      "verdict": "needs_a_look"
+    },
+    "BTCNSeq": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "module 'Config' has no attribute 'informative_pair'",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/BTCNSeq.py",
+      "strategy_id": "BTCNSeq",
+      "verdict": "needs_a_look"
     },
     "BaseStrategy": {
       "family": "local_module_off_path",
@@ -93,15 +187,45 @@
       "strategy_id": "BinanceStream",
       "verdict": "to_be_fixed"
     },
+    "Bins": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "Informative dataframe for (BTC/USDT, 1h, futures) is empty. Can't populate informative indicators.",
+      "source_file": "repos/thinkong_freqtradestrategies/user_data/strategies/Bins.py",
+      "strategy_id": "Bins",
+      "verdict": "needs_a_look"
+    },
     "BlueEyes_MPP_v1": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class BlueEyes_MPP_v1 is present",
-      "runtime_failure": "Impossible to load Strategy 'BlueEyes_MPP_v1'. This class does not exist or contains Python code errors.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "unsupported callable",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/BlueEyes_MPP_v1.py",
       "strategy_id": "BlueEyes_MPP_v1",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
+    },
+    "CME": {
+      "family": "third_party_package",
+      "missing_module": "yfinance",
+      "module_found_at": "",
+      "note": "Imports yfinance, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'yfinance' at CME.py:23",
+      "runtime_failure": "Impossible to load Strategy 'CME'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/CME/user_data/strategies/CME.py",
+      "strategy_id": "CME",
+      "verdict": "needs_a_look"
+    },
+    "Cenderawasih_freqai": {
+      "family": "third_party_package",
+      "missing_module": "freqtrade.freqai.strategy_bridge",
+      "module_found_at": "",
+      "note": "Imports freqtrade.freqai.strategy_bridge, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'freqtrade.freqai.strategy_bridge' at Cenderawasih_freqai.py:10",
+      "runtime_failure": "Impossible to load Strategy 'Cenderawasih_freqai'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/hamidreza07_freqai-strategy/freqai/Cenderawasih_freqai.py",
+      "strategy_id": "Cenderawasih_freqai",
+      "verdict": "needs_a_look"
     },
     "Chained": {
       "family": "timeframe_missing",
@@ -127,16 +251,6 @@
       "strategy_id": "ClucCrypSlow",
       "verdict": "refuse_repair"
     },
-    "ClucHAnix_BB_RPB_MOD_trailing_buy": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class ClucHAnix_BB_RPB_MOD_trailing_buy is present",
-      "runtime_failure": "Impossible to load Strategy 'ClucHAnix_BB_RPB_MOD_trailing_buy'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix_BB_RPB_MOD_trailing_buy.py",
-      "strategy_id": "ClucHAnix_BB_RPB_MOD_trailing_buy",
-      "verdict": "to_be_fixed"
-    },
     "ClucHAnix_BB_RPB_TraNz": {
       "family": "no_exit_logic",
       "note": "No exit logic at all. Whatever we wrote would be ours, not theirs.",
@@ -151,6 +265,14 @@
       "runtime_failure": "Invalid value '1' for dtype 'bool'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/CombinedBinHAndClucV6H.py",
       "strategy_id": "CombinedBinHAndClucV6H",
+      "verdict": "needs_a_look"
+    },
+    "ComboHold": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "module 'Config' has no attribute 'informative_pair'",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/ComboHold.py",
+      "strategy_id": "ComboHold",
       "verdict": "needs_a_look"
     },
     "CopyLitmusMinMaxBroadClassificationStrategy": {
@@ -189,6 +311,22 @@
       "strategy_id": "CryptoPredictionTraining",
       "verdict": "refuse_repair"
     },
+    "DCADMIPRICEStrategySpot": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "timeout after 300 seconds",
+      "source_file": "repos/LazyPigPig_freqtrade-grid/user_data/strategies/DCA.py",
+      "strategy_id": "DCADMIPRICEStrategySpot",
+      "verdict": "needs_a_look"
+    },
+    "DELTA_NEUTRAL": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "'NoneType' object has no attribute 'columns'",
+      "source_file": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/DELTA_NEUTRAL/user_data/strategies/DELTA_NEUTRAL.py",
+      "strategy_id": "DELTA_NEUTRAL",
+      "verdict": "needs_a_look"
+    },
     "DIV_v1": {
       "family": "dtype_drift",
       "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
@@ -205,12 +343,118 @@
       "strategy_id": "DWT",
       "verdict": "needs_a_look"
     },
+    "DWTHO": {
+      "family": "local_module_off_path",
+      "missing_module": "custom_indicators",
+      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
+      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at DWTHO.py:35",
+      "runtime_failure": "Impossible to load Strategy 'DWTHO'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWTHO.py",
+      "strategy_id": "DWTHO",
+      "verdict": "to_be_fixed"
+    },
+    "DWT_Leveraged_recent": {
+      "family": "local_module_off_path",
+      "missing_module": "custom_indicators",
+      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
+      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at DWTLeveraged.py:31",
+      "runtime_failure": "Impossible to load Strategy 'DWT_Leveraged_recent'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWTLeveraged.py",
+      "strategy_id": "DWT_Leveraged_recent",
+      "verdict": "to_be_fixed"
+    },
+    "DWT_Leveraged_recentHO": {
+      "family": "local_module_off_path",
+      "missing_module": "custom_indicators",
+      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
+      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at DWTLeveragedHO.py:2",
+      "runtime_failure": "Impossible to load Strategy 'DWT_Leveraged_recentHO'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWTLeveragedHO.py",
+      "strategy_id": "DWT_Leveraged_recentHO",
+      "verdict": "to_be_fixed"
+    },
+    "DWT_LongShortHO": {
+      "family": "local_module_off_path",
+      "missing_module": "custom_indicators",
+      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
+      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at DWTLongShortHO.py:3",
+      "runtime_failure": "Impossible to load Strategy 'DWT_LongShortHO'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWTLongShortHO.py",
+      "strategy_id": "DWT_LongShortHO",
+      "verdict": "to_be_fixed"
+    },
+    "DWT_Predict": {
+      "family": "local_module_off_path",
+      "missing_module": "DataframeUtils",
+      "module_found_at": "repos/nateemma_strategies/utils/DataframeUtils.py",
+      "note": "The module the author imports is in the corpus at repos/nateemma_strategies/utils/DataframeUtils.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'DataframeUtils' at DWT_Predict.py:40",
+      "runtime_failure": "Impossible to load Strategy 'DWT_Predict'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/DWT_Predict.py",
+      "strategy_id": "DWT_Predict",
+      "verdict": "to_be_fixed"
+    },
+    "DWT_Predict2": {
+      "family": "local_module_off_path",
+      "missing_module": "DataframeUtils",
+      "module_found_at": "repos/nateemma_strategies/utils/DataframeUtils.py",
+      "note": "The module the author imports is in the corpus at repos/nateemma_strategies/utils/DataframeUtils.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'DataframeUtils' at DWT_Predict2.py:40",
+      "runtime_failure": "Impossible to load Strategy 'DWT_Predict2'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/DWT_Predict2.py",
+      "strategy_id": "DWT_Predict2",
+      "verdict": "to_be_fixed"
+    },
+    "DWT_lev_short": {
+      "family": "local_module_off_path",
+      "missing_module": "custom_indicators",
+      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
+      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at DWT_lev_short.py:35",
+      "runtime_failure": "Impossible to load Strategy 'DWT_lev_short'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWT_lev_short.py",
+      "strategy_id": "DWT_lev_short",
+      "verdict": "to_be_fixed"
+    },
+    "DWT_lev_simple": {
+      "family": "local_module_off_path",
+      "missing_module": "custom_indicators",
+      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
+      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at DWT_lev_simple.py:35",
+      "runtime_failure": "Impossible to load Strategy 'DWT_lev_simple'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWT_lev_simple.py",
+      "strategy_id": "DWT_lev_simple",
+      "verdict": "to_be_fixed"
+    },
     "Danke": {
       "family": "dtype_drift",
       "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
       "runtime_failure": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given",
       "source_file": "repos/TheoBrigitte_freqtrade/strategies/danke/Danke.py",
       "strategy_id": "Danke",
+      "verdict": "needs_a_look"
+    },
+    "DonchianBounce": {
+      "family": "class_not_loaded",
+      "note": "The file raises on import. Whether that is a missing dependency we can install or code that no longer runs depends on the exception.",
+      "probe": "import_raises",
+      "probe_detail": "ImportError: cannot import name 'Config' from 'user_data.strategies' (unknown location) at DonchianBounce.py:14",
+      "runtime_failure": "Impossible to load Strategy 'DonchianBounce'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/DonchianBounce.py",
+      "strategy_id": "DonchianBounce",
       "verdict": "needs_a_look"
     },
     "DualModelPolymarketPortfolio": {
@@ -223,6 +467,22 @@
       "runtime_failure": "Impossible to load Strategy 'DualModelPolymarketPortfolio'. This class does not exist or contains Python code errors.",
       "source_file": "repos/mlsys-io_PortfolioBench/user_data/strategies/DualModelPolymarketPortfolio.py",
       "strategy_id": "DualModelPolymarketPortfolio",
+      "verdict": "to_be_fixed"
+    },
+    "E0V1EAI": {
+      "family": "freqai_not_enabled",
+      "note": "A runtime matter, not a strategy defect: the image needs torch and the config needs a freqai block. Already queued as the FreqAI arm.",
+      "runtime_failure": "freqAI is not enabled. Please enable it in your config to use this strategy.",
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/1/E0V1E/E0V1EAI.py",
+      "strategy_id": "E0V1EAI",
+      "verdict": "to_be_fixed"
+    },
+    "EMA003": {
+      "family": "timeframe_missing",
+      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
+      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/EMA003/EMA003.py",
+      "strategy_id": "EMA003",
       "verdict": "to_be_fixed"
     },
     "EmaCrossStrategy": {
@@ -273,6 +533,68 @@
       "strategy_id": "EnsembleStrategyV2",
       "verdict": "to_be_fixed"
     },
+    "ExampleLSTMStrategy": {
+      "family": "class_not_loaded",
+      "note": "The file raises on import. Whether that is a missing dependency we can install or code that no longer runs depends on the exception.",
+      "probe": "import_raises",
+      "probe_detail": "NameError: name 'Dict' is not defined at AlexStrategyFinalV6.py:98",
+      "runtime_failure": "Impossible to load Strategy 'ExampleLSTMStrategy'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/AlexCryptoKing_freqailstm/V6/AlexStrategyFinalV6.py",
+      "strategy_id": "ExampleLSTMStrategy",
+      "verdict": "needs_a_look"
+    },
+    "FBB_2": {
+      "family": "no_stoploss",
+      "note": "The strategy declares no stoploss. Supplying one does not restore anything the author wrote; it invents the risk management and then measures the invention.",
+      "runtime_failure": "Configuration error: 'stoploss' is a required property",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/FBB_2.py",
+      "strategy_id": "FBB_2",
+      "verdict": "refuse_repair"
+    },
+    "FBB_DWT": {
+      "family": "local_module_off_path",
+      "missing_module": "custom_indicators",
+      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
+      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at FBB_DWT.py:2",
+      "runtime_failure": "Impossible to load Strategy 'FBB_DWT'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/FBB_DWT.py",
+      "strategy_id": "FBB_DWT",
+      "verdict": "to_be_fixed"
+    },
+    "FBB_KalmanSIMD": {
+      "family": "local_module_off_path",
+      "missing_module": "custom_indicators",
+      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
+      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at FBB_KalmanSIMD.py:35",
+      "runtime_failure": "Impossible to load Strategy 'FBB_KalmanSIMD'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/FBB_KalmanSIMD.py",
+      "strategy_id": "FBB_KalmanSIMD",
+      "verdict": "to_be_fixed"
+    },
+    "FBB_ROI": {
+      "family": "no_stoploss",
+      "note": "The strategy declares no stoploss. Supplying one does not restore anything the author wrote; it invents the risk management and then measures the invention.",
+      "runtime_failure": "Configuration error: 'stoploss' is a required property",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/FBB_ROI.py",
+      "strategy_id": "FBB_ROI",
+      "verdict": "refuse_repair"
+    },
+    "FFT": {
+      "family": "local_module_off_path",
+      "missing_module": "custom_indicators",
+      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
+      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at FFT.py:1",
+      "runtime_failure": "Impossible to load Strategy 'FFT'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/FFT.py",
+      "strategy_id": "FFT",
+      "verdict": "to_be_fixed"
+    },
     "FSupertrendStrategyBTC": {
       "family": "dtype_drift",
       "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
@@ -317,11 +639,27 @@
       "strategy_id": "FileLoadingStrategy",
       "verdict": "to_be_fixed"
     },
+    "FisherBBDynamic": {
+      "family": "old_hook_signature",
+      "note": "The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.",
+      "runtime_failure": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/FisherBBDynamic.py",
+      "strategy_id": "FisherBBDynamic",
+      "verdict": "to_be_fixed"
+    },
+    "FreqaiBinaryClassStrategy": {
+      "family": "timeframe_missing",
+      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
+      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
+      "source_file": "repos/hamidreza07_freqai-strategy/freqai/FreqaiBinaryClassStrategy.py",
+      "strategy_id": "FreqaiBinaryClassStrategy",
+      "verdict": "to_be_fixed"
+    },
     "FreqaiExampleHybridStrategy": {
       "family": "freqai_model_missing",
       "note": "Same arm: the model class ships with the FreqAI extras.",
       "runtime_failure": "Impossible to load FreqaiModel 'CatboostClassifier'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/templates/FreqaiExampleHybridStrategy.py",
+      "source_file": "repos/AlexCryptoKing_freqailstm/user_data/config/templates/FreqaiExampleHybridStrategy.py",
       "strategy_id": "FreqaiExampleHybridStrategy",
       "verdict": "to_be_fixed"
     },
@@ -329,9 +667,17 @@
       "family": "timeframe_missing",
       "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
       "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/flaviosiotto_freqtrade-strategy/user_data/strategies/exemple-ai-strategy.py",
+      "source_file": "repos/AlexCryptoKing_freqailstm/user_data/config/templates/FreqaiExampleStrategy.py",
       "strategy_id": "FreqaiExampleStrategy",
       "verdict": "to_be_fixed"
+    },
+    "FreqaiStrategy_v2": {
+      "family": "no_stoploss",
+      "note": "The strategy declares no stoploss. Supplying one does not restore anything the author wrote; it invents the risk management and then measures the invention.",
+      "runtime_failure": "Configuration error: 'stoploss' is a required property",
+      "source_file": "repos/mmartel86_freqtrade-setup/strategies/FreqaiStrategy_v2.py",
+      "strategy_id": "FreqaiStrategy_v2",
+      "verdict": "refuse_repair"
     },
     "GPR": {
       "family": "dtype_drift",
@@ -339,6 +685,38 @@
       "runtime_failure": "Invalid value '114.31926513711869' for dtype 'int64'",
       "source_file": "repos/jaredrsommer_freqtradestrategies/GPR.py",
       "strategy_id": "GPR",
+      "verdict": "needs_a_look"
+    },
+    "GRIDDMIPRICEStrategyFutureV4": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "timeout after 300 seconds",
+      "source_file": "repos/LazyPigPig_freqtrade-grid/user_data/strategies/ADX_PRICE_GRID_Strategy_Future_v4.py",
+      "strategy_id": "GRIDDMIPRICEStrategyFutureV4",
+      "verdict": "needs_a_look"
+    },
+    "GRIDDMIPRICEStrategyFutureV5": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "timeout after 300 seconds",
+      "source_file": "repos/LazyPigPig_freqtrade-grid/user_data/strategies/ADX_PRICE_GRID_Strategy_Future_v5.py",
+      "strategy_id": "GRIDDMIPRICEStrategyFutureV5",
+      "verdict": "needs_a_look"
+    },
+    "GRIDDMIPRICEStrategyFutureV6": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "timeout after 300 seconds",
+      "source_file": "repos/LazyPigPig_freqtrade-grid/user_data/strategies/ADX_PRICE_GRID_Strategy_Future_v6.py",
+      "strategy_id": "GRIDDMIPRICEStrategyFutureV6",
+      "verdict": "needs_a_look"
+    },
+    "GRIDDMIPRICEStrategyFutureV7": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "timeout after 300 seconds",
+      "source_file": "repos/LazyPigPig_freqtrade-grid/user_data/strategies/ADX_PRICE_GRID_Strategy_Future_v7.py",
+      "strategy_id": "GRIDDMIPRICEStrategyFutureV7",
       "verdict": "needs_a_look"
     },
     "GodStra": {
@@ -377,6 +755,30 @@
       "strategy_id": "HLHB",
       "verdict": "needs_a_look"
     },
+    "HMMv3": {
+      "family": "third_party_package",
+      "missing_module": "yfinance",
+      "module_found_at": "",
+      "note": "Imports yfinance, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'yfinance' at HMMv3.py:33",
+      "runtime_failure": "Impossible to load Strategy 'HMMv3'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/HMM_updated/user_data/strategies/HMMv3.py",
+      "strategy_id": "HMMv3",
+      "verdict": "needs_a_look"
+    },
+    "Hammer": {
+      "family": "local_module_off_path",
+      "missing_module": "Config",
+      "module_found_at": "repos/hamidreza07_freqai-strategy/startegy test/5/BigDrop/Config.py",
+      "note": "The module the author imports is in the corpus at repos/hamidreza07_freqai-strategy/startegy test/5/BigDrop/Config.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'Config' at Hammer.py:14",
+      "runtime_failure": "Impossible to load Strategy 'Hammer'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/Hammer/Hammer.py",
+      "strategy_id": "Hammer",
+      "verdict": "to_be_fixed"
+    },
     "KMM": {
       "family": "third_party_package",
       "missing_module": "openai",
@@ -389,6 +791,18 @@
       "strategy_id": "KMM",
       "verdict": "needs_a_look"
     },
+    "Kalman": {
+      "family": "third_party_package",
+      "missing_module": "pykalman",
+      "module_found_at": "",
+      "note": "Imports pykalman, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'pykalman' at Kalman.py:1",
+      "runtime_failure": "Impossible to load Strategy 'Kalman'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/Kalman.py",
+      "strategy_id": "Kalman",
+      "verdict": "needs_a_look"
+    },
     "Kamaflage": {
       "family": "individual",
       "note": "one of a kind; read the message",
@@ -396,6 +810,18 @@
       "source_file": "repos/davidzr_freqtrade-strategies/strategies/Kamaflage/Kamaflage.py",
       "strategy_id": "Kamaflage",
       "verdict": "needs_a_look"
+    },
+    "KeltnerBounce": {
+      "family": "local_module_off_path",
+      "missing_module": "Config",
+      "module_found_at": "repos/hamidreza07_freqai-strategy/startegy test/5/BigDrop/Config.py",
+      "note": "The module the author imports is in the corpus at repos/hamidreza07_freqai-strategy/startegy test/5/BigDrop/Config.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'Config' at KeltnerBounce.py:14",
+      "runtime_failure": "Impossible to load Strategy 'KeltnerBounce'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/__KeltnerBounce/KeltnerBounce.py",
+      "strategy_id": "KeltnerBounce",
+      "verdict": "to_be_fixed"
     },
     "LitmusEntryRollClassificationStrategy": {
       "family": "third_party_package",
@@ -521,12 +947,12 @@
       "strategy_id": "LitmusSimpleStrategy",
       "verdict": "needs_a_look"
     },
-    "LongShortRangeTradingMachetesV1": {
+    "MartyEMA": {
       "family": "individual",
       "note": "one of a kind; read the message",
-      "runtime_failure": "NDFrame.replace() got an unexpected keyword argument 'method'",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/LongShortRangeTradingMachetesV1-1.py",
-      "strategy_id": "LongShortRangeTradingMachetesV1",
+      "runtime_failure": "timeout after 300 seconds",
+      "source_file": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Strategies/MartyEMA.py",
+      "strategy_id": "MartyEMA",
       "verdict": "needs_a_look"
     },
     "MasterMoniGoManiHyperStrategy": {
@@ -563,6 +989,14 @@
       "runtime_failure": "",
       "source_file": "repos/davidzr_freqtrade-strategies/strategies/MostOfAll/MostOfAll.py",
       "strategy_id": "MostOfAll",
+      "verdict": "needs_a_look"
+    },
+    "MultiMA_TSL3b": {
+      "family": "dtype_drift",
+      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
+      "runtime_failure": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/MultiMA_TSL.py",
+      "strategy_id": "MultiMA_TSL3b",
       "verdict": "needs_a_look"
     },
     "MultiMA_TSL5": {
@@ -605,6 +1039,30 @@
       "strategy_id": "MyStrategyNew10",
       "verdict": "needs_a_look"
     },
+    "NNPredict": {
+      "family": "local_module_off_path",
+      "missing_module": "utils",
+      "module_found_at": "repos/imsatoshi_GeneTrader/utils",
+      "note": "The module the author imports is in the corpus at repos/imsatoshi_GeneTrader/utils. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'utils' at NNPredict.py:40",
+      "runtime_failure": "Impossible to load Strategy 'NNPredict'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/NNPredict.py",
+      "strategy_id": "NNPredict",
+      "verdict": "to_be_fixed"
+    },
+    "NNTC": {
+      "family": "local_module_off_path",
+      "missing_module": "utils",
+      "module_found_at": "repos/imsatoshi_GeneTrader/utils",
+      "note": "The module the author imports is in the corpus at repos/imsatoshi_GeneTrader/utils. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'utils' at NNTC.py:45",
+      "runtime_failure": "Impossible to load Strategy 'NNTC'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC.py",
+      "strategy_id": "NNTC",
+      "verdict": "to_be_fixed"
+    },
     "NoLost": {
       "family": "no_stoploss",
       "note": "The strategy declares stoploss = 0 outright, which freqtrade refuses for the same reason as declaring none: 0 disables the stop entirely, and choosing a real value would be inventing risk management the author never wrote. Same family, freqtrade's other wording for it.",
@@ -621,13 +1079,25 @@
       "strategy_id": "NowoIchimoku1hV1",
       "verdict": "needs_a_look"
     },
-    "Pmax": {
+    "ONS_Portfolio": {
       "family": "individual",
       "note": "one of a kind; read the message",
-      "runtime_failure": "PMAX() got an unexpected keyword argument 'atrperiod'. Did you mean 'period'?",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/Pmax.py",
-      "strategy_id": "Pmax",
+      "runtime_failure": "timeout after 300 seconds",
+      "source_file": "repos/mlsys-io_PortfolioBench/user_data/strategies/ONS.py",
+      "strategy_id": "ONS_Portfolio",
       "verdict": "needs_a_look"
+    },
+    "PCA": {
+      "family": "local_module_off_path",
+      "missing_module": "custom_indicators",
+      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
+      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at PCA.py:43",
+      "runtime_failure": "Impossible to load Strategy 'PCA'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA.py",
+      "strategy_id": "PCA",
+      "verdict": "to_be_fixed"
     },
     "PnF": {
       "family": "dtype_drift",
@@ -681,8 +1151,20 @@
       "family": "individual",
       "note": "one of a kind; read the message",
       "runtime_failure": "'proton_parameters'",
-      "source_file": "repos/obseries_freqtrade-strategy-ichiv1/user_data/strategies/proton.py",
+      "source_file": "repos/hamidreza07_freqai-strategy/freqai/proton.py",
       "strategy_id": "Proton",
+      "verdict": "needs_a_look"
+    },
+    "QuatreMousquetaires": {
+      "family": "third_party_package",
+      "missing_module": "tvDatafeed",
+      "module_found_at": "",
+      "note": "Imports tvDatafeed, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'tvDatafeed' at QuatreMousquetaires.py:32",
+      "runtime_failure": "Impossible to load Strategy 'QuatreMousquetaires'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/4Mousquetaires/user_data/strategies/QuatreMousquetaires.py",
+      "strategy_id": "QuatreMousquetaires",
       "verdict": "needs_a_look"
     },
     "QuickAdapterV3": {
@@ -702,13 +1184,9 @@
       "verdict": "needs_a_look"
     },
     "RLAgentStrategy": {
-      "family": "third_party_package",
-      "missing_module": "datasieve",
-      "module_found_at": "",
-      "note": "Imports datasieve.pipeline.Pipeline (FreqAI's newer feature preprocessing library), which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'datasieve' at RLAgentStrategy.py:103",
-      "runtime_failure": "Fatal exception!",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "No module named 'datasieve'",
       "source_file": "repos/jerome-benoit_freqai-strategies/ReforceXY/user_data/strategies/RLAgentStrategy.py",
       "strategy_id": "RLAgentStrategy",
       "verdict": "needs_a_look"
@@ -721,6 +1199,14 @@
       "strategy_id": "RLStrategy",
       "verdict": "to_be_fixed"
     },
+    "RebalanceStrategySpot": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "timeout after 300 seconds",
+      "source_file": "repos/LazyPigPig_freqtrade-grid/user_data/strategies/REBALANCE.py",
+      "strategy_id": "RebalanceStrategySpot",
+      "verdict": "needs_a_look"
+    },
     "RenkoYolo": {
       "family": "individual",
       "note": "one of a kind; read the message",
@@ -728,6 +1214,18 @@
       "source_file": "repos/PeetCrypto_freqtrade-stuff/RenkoYolo (1).py",
       "strategy_id": "RenkoYolo",
       "verdict": "needs_a_look"
+    },
+    "SARIMAX": {
+      "family": "local_module_off_path",
+      "missing_module": "custom_indicators",
+      "module_found_at": "repos/froggleston_cryptofrog-strategies/custom_indicators.py",
+      "note": "The module the author imports is in the corpus at repos/froggleston_cryptofrog-strategies/custom_indicators.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'custom_indicators' at SARIMAX.py:2",
+      "runtime_failure": "Impossible to load Strategy 'SARIMAX'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/SARIMAX.py",
+      "strategy_id": "SARIMAX",
+      "verdict": "to_be_fixed"
     },
     "SMAOPv1_TTF": {
       "family": "individual",
@@ -744,6 +1242,14 @@
       "source_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/ScalpingCCI.py",
       "strategy_id": "ScalpingCCI",
       "verdict": "to_be_fixed"
+    },
+    "Schism5": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "timeout after 300 seconds",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.5.py",
+      "strategy_id": "Schism5",
+      "verdict": "needs_a_look"
     },
     "Schism6": {
       "family": "individual",
@@ -777,6 +1283,14 @@
       "strategy_id": "SolipsisMM",
       "verdict": "needs_a_look"
     },
+    "Solipsis_v4": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "Something has gone wrong, please report a bug at https://github.com/pandas-dev/pandas/issues",
+      "source_file": "repos/kemplail_freqtrade-stuff/strategies/Solipsis_v4.py",
+      "strategy_id": "Solipsis_v4",
+      "verdict": "needs_a_look"
+    },
     "SuperTrendPure": {
       "family": "dtype_drift",
       "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
@@ -793,6 +1307,32 @@
       "strategy_id": "Supertrend",
       "verdict": "needs_a_look"
     },
+    "TEMABounce": {
+      "family": "class_not_loaded",
+      "note": "The file raises on import. Whether that is a missing dependency we can install or code that no longer runs depends on the exception.",
+      "probe": "import_raises",
+      "probe_detail": "ImportError: cannot import name 'Config' from 'user_data.strategies' (unknown location) at TEMABounce.py:18",
+      "runtime_failure": "Impossible to load Strategy 'TEMABounce'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/TEMABounce.py",
+      "strategy_id": "TEMABounce",
+      "verdict": "needs_a_look"
+    },
+    "TGMA": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "",
+      "source_file": "repos/jaredrsommer_freqtradestrategies/TGMA.py",
+      "strategy_id": "TGMA",
+      "verdict": "needs_a_look"
+    },
+    "TaSearchLevelG15m": {
+      "family": "no_stoploss",
+      "note": "The strategy declares no stoploss. Supplying one does not restore anything the author wrote; it invents the risk management and then measures the invention.",
+      "runtime_failure": "Configuration error: 'stoploss' is a required property",
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/3/TaSearchLevelG15m/TaSearchLevelG15m.py",
+      "strategy_id": "TaSearchLevelG15m",
+      "verdict": "refuse_repair"
+    },
     "TrainCatBoostStrategy": {
       "family": "no_stoploss",
       "note": "The strategy declares no stoploss. Supplying one does not restore anything the author wrote; it invents the risk management and then measures the invention.",
@@ -800,6 +1340,14 @@
       "source_file": "repos/PeetCrypto_freqtrade-stuff/TrainCatBoostStrategy.py",
       "strategy_id": "TrainCatBoostStrategy",
       "verdict": "refuse_repair"
+    },
+    "TrendMomoClassifier": {
+      "family": "timeframe_missing",
+      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
+      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
+      "source_file": "repos/hamidreza07_freqai-strategy/freqai/TrendMomoClassifier.py",
+      "strategy_id": "TrendMomoClassifier",
+      "verdict": "to_be_fixed"
     },
     "TuplaBollinger": {
       "family": "individual",
@@ -821,17 +1369,27 @@
       "family": "individual",
       "note": "one of a kind; read the message",
       "runtime_failure": "Cannot determine parameter space for mfi_length.",
-      "source_file": "repos/jaredrsommer_freqtradestrategies/WTHO.py",
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/4/WTHO/WTHO.py",
       "strategy_id": "WTHO",
+      "verdict": "needs_a_look"
+    },
+    "delist_shorter_strategy": {
+      "family": "class_not_loaded",
+      "note": "The file raises on import. Whether that is a missing dependency we can install or code that no longer runs depends on the exception.",
+      "probe": "import_raises",
+      "probe_detail": "FileNotFoundError: [Errno 2] No such file or directory: './user_data/strategies/processed.json' at delist_shorter_strategy.py:28",
+      "runtime_failure": "Impossible to load Strategy 'delist_shorter_strategy'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/hippocritical_delist_scraper/delist_shorter_strategy.py",
+      "strategy_id": "delist_shorter_strategy",
       "verdict": "needs_a_look"
     },
     "kac_index_v1": {
       "family": "third_party_package",
       "missing_module": "tvDatafeed",
       "module_found_at": "",
-      "note": "Imports tvDatafeed (TradingView data feed client), which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "note": "Imports tvDatafeed, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'tvDatafeed' at kac_index_v1",
+      "probe_detail": "ModuleNotFoundError: No module named 'tvDatafeed' at kac_index_v1.py:32",
       "runtime_failure": "Impossible to load Strategy 'kac_index_v1'. This class does not exist or contains Python code errors.",
       "source_file": "repos/titouannwtt_freqtrade-ultimate/user_data/strategies/kac_index_v1.py",
       "strategy_id": "kac_index_v1",
@@ -841,9 +1399,9 @@
       "family": "third_party_package",
       "missing_module": "tvDatafeed",
       "module_found_at": "",
-      "note": "Imports tvDatafeed (TradingView data feed client), which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "note": "Imports tvDatafeed, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'tvDatafeed' at kac_index_v2",
+      "probe_detail": "ModuleNotFoundError: No module named 'tvDatafeed' at kac_index_v2.py:39",
       "runtime_failure": "Impossible to load Strategy 'kac_index_v2'. This class does not exist or contains Python code errors.",
       "source_file": "repos/titouannwtt_freqtrade-ultimate/user_data/strategies/kac_index_v2.py",
       "strategy_id": "kac_index_v2",
@@ -873,14 +1431,6 @@
       "strategy_id": "new_turtle_roi",
       "verdict": "needs_a_look"
     },
-    "qrsi": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "Invalid frequency: 15m. Failed to parse with error message: ValueError(\"'m' is no longer supported for offsets. Please use 'ME' instead.\")",
-      "source_file": "repos/jaredrsommer_freqtradestrategies/qrsi.py",
-      "strategy_id": "qrsi",
-      "verdict": "needs_a_look"
-    },
     "tacos1": {
       "family": "individual",
       "note": "one of a kind; read the message",
@@ -893,7 +1443,7 @@
       "family": "no_populate_indicators",
       "note": "The class never implements populate_indicators, freqtrade's own required entry point - not a missing helper, the method every strategy is built around. Writing one would be authoring the strategy from nothing.",
       "runtime_failure": "Can't instantiate abstract class thetank2 without an implementation for abstract method 'populate_indicators'",
-      "source_file": "repos/jaredrsommer_freqtradestrategies/battletank.py",
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/4/battletank/battletank.py",
       "strategy_id": "thetank2",
       "verdict": "refuse_repair"
     }

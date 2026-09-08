@@ -5,6 +5,10 @@
       "route": "timeframe_repair",
       "why": "declares only informative_timeframe, which is the higher timeframe pulled in alongside the base one; the base timeframe is not stated"
     },
+    "EMA003": {
+      "route": "timeframe_repair",
+      "why": "no timeframe declaration of any kind in the file"
+    },
     "EnsembleStrategy": {
       "route": "timeframe_repair",
       "why": "declares only informative_timeframe, which is the higher timeframe pulled in alongside the base one; the base timeframe is not stated"
@@ -16,6 +20,10 @@
     "EnsembleStrategyV2": {
       "route": "timeframe_repair",
       "why": "declares only informative_timeframe, which is the higher timeframe pulled in alongside the base one; the base timeframe is not stated"
+    },
+    "FreqaiBinaryClassStrategy": {
+      "route": "timeframe_repair",
+      "why": "a FreqAI strategy: the timeframe comes from the freqai block of the config, not from the strategy"
     },
     "FreqaiExampleStrategy": {
       "route": "timeframe_repair",
@@ -40,6 +48,10 @@
     "ScalpingCCI": {
       "route": "timeframe_repair",
       "why": "declares ticker_interval = '15', which carries no unit and cannot be read as a timeframe"
+    },
+    "TrendMomoClassifier": {
+      "route": "timeframe_repair",
+      "why": "a FreqAI strategy: the timeframe comes from the freqai block of the config, not from the strategy"
     },
     "freqai_rl_test_strat": {
       "route": "timeframe_repair",
@@ -137,6 +149,32 @@
       "timerange": "20200301-20200401",
       "trades": 48,
       "trades_sha256": "sha256_ad4cd3f5c081179dfccb1799a24b96716a120c2ee9b06b67ed4c885a9843525d"
+    },
+    "Argrelextrema": {
+      "archive": "user_data/profile_smoke/Argrelextrema-0ba99988-2026-09-08_12-38-07.zip",
+      "archive_sha256": "sha256_ef111acd5321a4a45e34f859875b83dcb4b801e8f40783fe610ec81a6fdf139a",
+      "artifact_key": "",
+      "canonical_sha256": "sha256_a0dc5f2d0ad4f2f585086121c81627948bf8d0e4670e1db100f0dafce9dfda28",
+      "class1_rules": [],
+      "config_overrides": {
+        "timeframe": "5m"
+      },
+      "elapsed_s": 21.4,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/Argrelextrema-0ba99988-override-2c7527d808c6.json --strategy Argrelextrema --strategy-path repos/hamidreza07_freqai-strategy/classic --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Argrelextrema-0ba99988 --cache none",
+      "long_trades": 2761,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 2712,
+      "status": "measured",
+      "strategy_id": "Argrelextrema",
+      "timeframe": "5m",
+      "timeframe_evidence": "author_commented_declaration",
+      "timeframe_evidence_source": "repos/hamidreza07_freqai-strategy/classic/Argrelextrema.py:62, \"# timeframe = '5m'\" under \"Optimal timeframe for the strategy\" - not ticker_interval, so _TICKER does not match it",
+      "timerange": "20200301-20200401",
+      "trades": 5473,
+      "trades_sha256": "sha256_2cd188b7d6118e3343a34c58e1afd9969bd2c60455dbef2753ba9afcd2ba40c4"
     },
     "BBRSI": {
       "archive": "user_data/profile_smoke/BBRSI-0d31007a-2026-09-04_10-32-03.zip",

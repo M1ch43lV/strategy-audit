@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Measure Wave C rows whose timeframe is evidenced, not guessed.
+"""Measure rows whose timeframe is evidenced, not guessed.
 
 48 Wave C rows declare no timeframe and freqtrade refuses to run them. For four
 of them the author's value is recoverable from evidence rather than invented:
@@ -12,6 +12,16 @@ of them the author's value is recoverable from evidence rather than invented:
 The remaining 44 have no recoverable value and are deliberately absent. The
 timeframe decides a strategy's whole behaviour, so supplying one from nothing
 would measure a strategy that never existed.
+
+2026-09-08, one row from the wave-2 futures/short harvest: `Argrelextrema`
+carries the line `# timeframe = '5m'` under the comment "Optimal timeframe for
+the strategy" - the author's own value, present in the file, just commented
+out. Restoring it is not different in kind from `author_class_name`; it is
+read directly off the same line the author wrote, not inferred from a twin.
+The other three timeframe_missing rows from that harvest (`EMA003`,
+`FreqaiBinaryClassStrategy`, `TrendMomoClassifier`) were checked the same way
+and have no such line, no twin close enough to trust, and no config file in
+their repo - left blocked rather than guessed.
 
 The evidence and its source are stored with every result.
 """
@@ -40,6 +50,9 @@ EVIDENCE = {
                             "FixedRiskRewardLoss/FixedRiskRewardLoss.py, similarity 1.00"),
     "JustROCR5": ("1m", "corpus_twin",
                   "three independent twins declare 1m, similarity 0.98"),
+    "Argrelextrema": ("5m", "author_commented_declaration",
+                      "repos/hamidreza07_freqai-strategy/classic/Argrelextrema.py:62, "
+                      "\"# timeframe = '5m'\" under \"Optimal timeframe for the strategy\""),
 }
 
 
@@ -97,8 +110,9 @@ def selftest():
     assert known == set(EVIDENCE)
     for name, (tf, kind, source) in EVIDENCE.items():
         assert tf.endswith(("m", "h")) and source, name
-        assert kind in ("author_class_name", "corpus_twin"), name
-    assert len(rows()) == 4, len(rows())
+        assert kind in ("author_class_name", "corpus_twin",
+                        "author_commented_declaration"), name
+    assert len(rows()) == 5, len(rows())
     print("eligibility_timeframe_evidence selftest: PASS (%d rows)" % len(rows()))
 
 

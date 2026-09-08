@@ -2502,9 +2502,11 @@
     },
     "FBB_2": {
       "canonical_sha256": "sha256_f872a073a42d772a1d6dd8fff10c52905ba9229523143fe7cabccbb7a7870b0a",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
       "debug_log": "user_data/profile_smoke_logs/FBB_2-a0868481.log",
-      "elapsed_s": 6.5,
+      "elapsed_s": 5.4,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy FBB_2 --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FBB_2-a0868481 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -2512,7 +2514,7 @@
       "runtime_id": "native_unversioned",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'FBB_2'. This class does not exist or contains Python code errors."
+      "why": "Configuration error: 'stoploss' is a required property"
     },
     "FBB_DWT": {
       "canonical_sha256": "sha256_11be59ac1a1fe388d89b86a3bc8e9ec929565af10e0abf7301393c9f2aa26d18",

@@ -8,19 +8,19 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 
 | Verdict | Strategies | Meaning |
 |---|---:|---|
-| `repaired` | 142 | runs now, and the run is recorded |
-| `repair_attempted` | 15 | a route was applied and did not finish the job |
-| `to_be_fixed` | 15 | the route is known, the run has not happened yet |
-| `needs_a_look` | 56 | no route yet; the obstacle has been identified |
+| `repaired` | 143 | runs now, and the run is recorded |
+| `repair_attempted` | 31 | a route was applied and did not finish the job |
+| `to_be_fixed` | 18 | the route is known, the run has not happened yet |
+| `needs_a_look` | 85 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 6 | the repair made things worse and was undone |
-| `refuse_repair` | 34 | repairing it would mean inventing the strategy |
+| `refuse_repair` | 41 | repairing it would mean inventing the strategy |
 | `-` | 9 |  |
 
 ## Routes taken
 
 ### Timeframe recovered from the author's own field
 
-`repair_family: timeframe_missing` &mdash; 42 strategies (repaired 42)
+`repair_family: timeframe_missing` &mdash; 43 strategies (repaired 43)
 
 **The message.**
 
@@ -36,7 +36,7 @@ Timeframe needs to be set in either configuration or as cli argument `--timefram
 
 Tool: `eligibility_timeframe_repair.py`.
 
-For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `BBRSI`, `BBRSIS`, `BBRSIoriginal`.
+For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `Argrelextrema`, `BBRSI`, `BBRSIS`.
 
 ### Seven compatibility shims for freqtrade's own behaviour
 
@@ -98,7 +98,7 @@ For example: `ARIMASTR`, `Apollo11`, `BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB
 
 ### The author's own module put back on the path
 
-`repair_family: local_module_off_path` &mdash; 26 strategies (repaired 2, repair_attempted 9, repair_withdrawn 6, - 9)
+`repair_family: local_module_off_path` &mdash; 46 strategies (repaired 2, repair_attempted 25, to_be_fixed 3, repair_withdrawn 6, refuse_repair 1, - 9)
 
 **The message.**
 
@@ -114,7 +114,7 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `repair_local_modules.py`.
 
-For example: `AdvancedRiskFilterStrategy`, `BB_RPB_3c`, `BaseStrategy`, `BinanceStream`, `BuyRegions`, `DWT`.
+For example: `AdvancedRiskFilterStrategy`, `Anomaly`, `BBBHold`, `BB_RPB_3c`, `BaseStrategy`, `BinanceStream`.
 
 ### FreqAI strategies given the author's own configuration
 
@@ -221,7 +221,7 @@ For example: `BasketStrategy`.
 
 ### Refused: no stoploss declared
 
-`repair_family: no_stoploss` &mdash; 6 strategies (refuse_repair 6)
+`repair_family: no_stoploss` &mdash; 9 strategies (refuse_repair 9)
 
 **The message.**
 
@@ -237,7 +237,7 @@ Configuration error: 'stoploss' is a required property
 
 Tool: `blocked_triage.py`.
 
-For example: `AdaptiveRenkoStrategy`, `ClucCrypROI`, `ClucCrypSlow`, `CryptoPredictionTraining`, `NoLost`, `TrainCatBoostStrategy`.
+For example: `AdaptiveRenkoStrategy`, `ClucCrypROI`, `ClucCrypSlow`, `CryptoPredictionTraining`, `FBB_ROI`, `FreqaiStrategy_v2`.
 
 ### Refused: no exit logic
 
@@ -321,7 +321,7 @@ For example: `TGMA`.
 
 ### Refused: timeframe nowhere stated
 
-`repair_family: timeframe_not_recoverable` &mdash; 15 strategies (refuse_repair 15)
+`repair_family: timeframe_not_recoverable` &mdash; 18 strategies (refuse_repair 18)
 
 **The message.**
 
@@ -337,11 +337,11 @@ Timeframe needs to be set in either configuration or as cli argument `--timefram
 
 Tool: `eligibility_timeframe_repair.py`.
 
-For example: `Chained`, `EnsembleStrategy`, `EnsembleStrategyV1`, `EnsembleStrategyV2`, `FreqaiExampleStrategy`, `LitmusGoodMinMaxClassificationStrategy`.
+For example: `Chained`, `EMA003`, `EnsembleStrategy`, `EnsembleStrategyV1`, `EnsembleStrategyV2`, `FreqaiBinaryClassStrategy`.
 
 ### Open: pandas and numpy have moved under the strategy
 
-`repair_family: dtype_drift` &mdash; 18 strategies (to_be_fixed 1, needs_a_look 17)
+`repair_family: dtype_drift` &mdash; 19 strategies (to_be_fixed 1, needs_a_look 18)
 
 **The message.**
 
@@ -362,7 +362,7 @@ For example: `BinClucMadDevelop`, `BinClucMadSMADevelop`, `CombinedBinHAndClucV6
 
 ### Open: a package the author depended on
 
-`repair_family: third_party_package` &mdash; 16 strategies (needs_a_look 16)
+`repair_family: third_party_package` &mdash; 20 strategies (needs_a_look 20)
 
 **The message.**
 
@@ -378,11 +378,11 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `blocked_triage.py`.
 
-For example: `CopyLitmusMinMaxBroadClassificationStrategy`, `Enchilada`, `GymStrategy`, `KMM`, `LitmusEntryRollClassificationStrategy`, `LitmusMLDPStrategy`.
+For example: `CME`, `Cenderawasih_freqai`, `CopyLitmusMinMaxBroadClassificationStrategy`, `Enchilada`, `GymStrategy`, `HMMv3`.
 
 ### Open: the class will not import
 
-`repair_family: class_not_loaded` &mdash; 2 strategies (to_be_fixed 2)
+`repair_family: class_not_loaded` &mdash; 7 strategies (needs_a_look 7)
 
 **The message.**
 
@@ -398,11 +398,11 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `blocked_triage.py`.
 
-For example: `BlueEyes_MPP_v1`, `ClucHAnix_BB_RPB_MOD_trailing_buy`.
+For example: `AlexStrategyFinalV8`, `BBKCBounce`, `BTCMACDCross`, `DonchianBounce`, `ExampleLSTMStrategy`, `TEMABounce`.
 
 ### Open: one of a kind
 
-`repair_family: individual` &mdash; 23 strategies (needs_a_look 23)
+`repair_family: individual` &mdash; 40 strategies (needs_a_look 40)
 
 **The message.**
 
@@ -420,7 +420,47 @@ Remora API key missing. Set REMORA_API_KEY env var.
 
 Tool: `blocked_triage.py`.
 
-For example: `Astro`, `AutoArimaTripleV1`, `BestSingleAssetPortfolio`, `CryptoFrogNFI2`, `GodStra`, `Guacamole`.
+For example: `AlexStrategyFinalV9`, `Astro`, `AutoArimaTripleV1`, `BTCBigDrop`, `BTCJump`, `BTCNDrop`.
+
+### Open: strategy calls a freqtrade hook with the old arity
+
+`repair_family: old_hook_signature` &mdash; 1 strategies (to_be_fixed 1)
+
+**The message.**
+
+```
+IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'
+```
+
+**What it actually was.** `FisherBBDynamic` does not override `min_roi_reached_entry` - it calls the base class's own implementation as `self.min_roi_reached_entry(trade_dur)`, a single-argument call from before freqtrade added `trade` and `current_time` to the signature. The base method changed under the author; nothing in the strategy's own logic did.
+
+**The repair.** Not attempted. A shim could wrap `IStrategy.min_roi_reached_entry` to accept the old one-argument call and supply the two new parameters itself, the same shape as the shims in `repair/compat_signature.py` - but unlike those, doing it right requires knowing what `trade`/`current_time` are used for inside the current implementation, not just that they are expected. Guessing risks a shim that runs without erroring and quietly changes what gets measured, which is worse than leaving the row blocked.
+
+**Where it stops.** `to_be_fixed` per `blocked_triage.py`, one row only.
+
+Tool: `blocked_triage.py`.
+
+For example: `FisherBBDynamic`.
+
+### Open: FreqAI strategy outside the retired FreqAI arm
+
+`repair_family: freqai_not_enabled` &mdash; 1 strategies (to_be_fixed 1)
+
+**The message.**
+
+```
+freqAI is not enabled. Please enable it in your config to use this strategy.
+```
+
+**What it actually was.** `E0V1EAI`, from the 2026-09-06 wave-2 futures/short harvest, needs a freqai config block the same way the rows under `freqai_arm` do - but it arrived after that arm's own generator, `eligibility_freqai_repair.py`, was retired; only its output `ELIGIBILITY_FREQAI_REPAIR.json` remains, as a frozen historical artifact.
+
+**The repair.** Not attempted. The FreqAI arm is deliberately a separate track that is never merged into a cohort (see `freqai_arm` above), so reviving tooling for one new row would not even join the main admission funnel this row is otherwise waiting on.
+
+**Where it stops.** `needs_a_look`, one row only.
+
+Tool: `blocked_triage.py`.
+
+For example: `E0V1EAI`.
 
 ## Rules recorded per strategy
 
@@ -432,7 +472,7 @@ For example: `Astro`, `AutoArimaTripleV1`, `BestSingleAssetPortfolio`, `CryptoFr
 | `idempotent_entry_tag_initialisation` | 23 |
 | `lookahead_runmode_reports_backtest` | 21 |
 | `legacy_min_roi_reached_entry_signature` | 20 |
-| `restore_copied_local_module` | 15 |
+| `restore_copied_local_module` | 17 |
 | `restore_author_package_extension` | 11 |
 | `restore_author_config` | 11 |
 | `whitespace_tolerant_class_scan` | 6 |
@@ -440,6 +480,7 @@ For example: `Astro`, `AutoArimaTripleV1`, `BestSingleAssetPortfolio`, `CryptoFr
 | `legacy_fillna_method_kwarg` | 4 |
 | `legacy_fillna_skips_incompatible_dtype` | 3 |
 | `datetime_safe_rmi_fillna` | 3 |
+| `synthetic_orderbook_from_last_close` | 2 |
 | `restore_accumulation_distribution` | 2 |
 | `freqai_config_from_author_block` | 2 |
 | `restore_declared_pypi_dependency` | 1 |
@@ -450,6 +491,7 @@ For example: `Astro`, `AutoArimaTripleV1`, `BestSingleAssetPortfolio`, `CryptoFr
 | `legacy_replace_method_kwarg` | 1 |
 | `restore_numpy_lib_function_base` | 1 |
 | `legacy_pmax_parameter_names` | 1 |
+| `legacy_bid_ask_strategy_price_side` | 1 |
 | `legacy_minute_resample_rule` | 1 |
 
 ## Corrections to our own reading
