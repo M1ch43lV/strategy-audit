@@ -10,11 +10,11 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 |---|---:|---|
 | `repaired` | 143 | runs now, and the run is recorded |
 | `repair_attempted` | 22 | a route was applied and did not finish the job |
-| `to_be_fixed` | 27 | the route is known, the run has not happened yet |
-| `needs_a_look` | 85 | no route yet; the obstacle has been identified |
+| `to_be_fixed` | 16 | the route is known, the run has not happened yet |
+| `needs_a_look` | 82 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 6 | the repair made things worse and was undone |
 | `refuse_repair` | 41 | repairing it would mean inventing the strategy |
-| `-` | 9 |  |
+| `-` | 18 |  |
 
 ## Routes taken
 
@@ -98,7 +98,7 @@ For example: `ARIMASTR`, `Apollo11`, `BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB
 
 ### The author's own module put back on the path
 
-`repair_family: local_module_off_path` &mdash; 46 strategies (repaired 2, repair_attempted 16, to_be_fixed 12, repair_withdrawn 6, refuse_repair 1, - 9)
+`repair_family: local_module_off_path` &mdash; 45 strategies (repaired 2, repair_attempted 16, to_be_fixed 1, needs_a_look 2, repair_withdrawn 6, - 18)
 
 **The message.**
 
@@ -221,7 +221,7 @@ For example: `BasketStrategy`.
 
 ### Refused: no stoploss declared
 
-`repair_family: no_stoploss` &mdash; 9 strategies (refuse_repair 9)
+`repair_family: no_stoploss` &mdash; 10 strategies (refuse_repair 10)
 
 **The message.**
 
@@ -237,7 +237,7 @@ Configuration error: 'stoploss' is a required property
 
 Tool: `blocked_triage.py`.
 
-For example: `AdaptiveRenkoStrategy`, `ClucCrypROI`, `ClucCrypSlow`, `CryptoPredictionTraining`, `FBB_ROI`, `FreqaiStrategy_v2`.
+For example: `AdaptiveRenkoStrategy`, `ClucCrypROI`, `ClucCrypSlow`, `CryptoPredictionTraining`, `FBB_2`, `FBB_ROI`.
 
 ### Refused: no exit logic
 
@@ -382,7 +382,7 @@ For example: `CME`, `Cenderawasih_freqai`, `CopyLitmusMinMaxBroadClassificationS
 
 ### Open: the class will not import
 
-`repair_family: class_not_loaded` &mdash; 7 strategies (needs_a_look 7)
+`repair_family: class_not_loaded` &mdash; 5 strategies (needs_a_look 5)
 
 **The message.**
 
@@ -398,11 +398,11 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `blocked_triage.py`.
 
-For example: `AlexStrategyFinalV8`, `BBKCBounce`, `BTCMACDCross`, `DonchianBounce`, `ExampleLSTMStrategy`, `TEMABounce`.
+For example: `BBKCBounce`, `BTCMACDCross`, `DonchianBounce`, `TEMABounce`, `delist_shorter_strategy`.
 
 ### Open: one of a kind
 
-`repair_family: individual` &mdash; 40 strategies (needs_a_look 40)
+`repair_family: individual` &mdash; 37 strategies (needs_a_look 37)
 
 **The message.**
 
@@ -420,7 +420,7 @@ Remora API key missing. Set REMORA_API_KEY env var.
 
 Tool: `blocked_triage.py`.
 
-For example: `AlexStrategyFinalV9`, `Astro`, `AutoArimaTripleV1`, `BTCBigDrop`, `BTCJump`, `BTCNDrop`.
+For example: `AlexStrategyFinalV8`, `AlexStrategyFinalV9`, `Astro`, `AutoArimaTripleV1`, `BestSingleAssetPortfolio`, `Bins`.
 
 ### Open: FreqAI strategy outside the retired FreqAI arm
 

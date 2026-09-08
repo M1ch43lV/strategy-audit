@@ -1202,7 +1202,16 @@ def rows():
         # triage - so the label saying what ought to be done disappeared at
         # exactly the moment it became worth reading. What was done to it is
         # recovered from the repair runners instead.
-        if strategy in repair_source:
+        #
+        # Except when triage still has something to say: a row can clear one
+        # blocker through a repair route and still be blocked by a second,
+        # unrelated one underneath it - FBB_2 left `local_module_off_path`
+        # once `custom_indicators` was restored, and the next run surfaced
+        # `no_stoploss`, which blocked_triage.py's fresh probe already
+        # classified as `refuse_repair`. Overwriting that with the repair
+        # route's own generic "repair_attempted" would hide a decided,
+        # specific finding behind a vaguer one that is no longer current.
+        if strategy in repair_source and repair.get("verdict") != "refuse_repair":
             repair["family"] = repair_source[strategy]
             if repair_run.get("status") == "measured":
                 repair["verdict"] = "repaired"

@@ -18,11 +18,9 @@
       "verdict": "needs_a_look"
     },
     "AlexStrategyFinalV8": {
-      "family": "class_not_loaded",
-      "note": "The file raises on import. Whether that is a missing dependency we can install or code that no longer runs depends on the exception.",
-      "probe": "import_raises",
-      "probe_detail": "NameError: name 'Dict' is not defined at AlexStrategyFinalV8.py:80",
-      "runtime_failure": "Impossible to load Strategy 'AlexStrategyFinalV8'. This class does not exist or contains Python code errors.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "'freqai'",
       "source_file": "repos/AlexCryptoKing_freqailstm/V8/1HOUR/AlexStrategyFinalV8.py",
       "strategy_id": "AlexStrategyFinalV8",
       "verdict": "needs_a_look"
@@ -97,22 +95,6 @@
       "strategy_id": "BB_RPB_3c",
       "verdict": "to_be_fixed"
     },
-    "BTCBigDrop": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "module 'Config' has no attribute 'informative_pair'",
-      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/BTCBigDrop.py",
-      "strategy_id": "BTCBigDrop",
-      "verdict": "needs_a_look"
-    },
-    "BTCJump": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "module 'Config' has no attribute 'informative_pair'",
-      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/BTCJump.py",
-      "strategy_id": "BTCJump",
-      "verdict": "needs_a_look"
-    },
     "BTCMACDCross": {
       "family": "class_not_loaded",
       "note": "The file raises on import. Whether that is a missing dependency we can install or code that no longer runs depends on the exception.",
@@ -121,22 +103,6 @@
       "runtime_failure": "Impossible to load Strategy 'BTCMACDCross'. This class does not exist or contains Python code errors.",
       "source_file": "repos/webclinic017_strategies-freqtrade-/archived/BTCMACDCross.py",
       "strategy_id": "BTCMACDCross",
-      "verdict": "needs_a_look"
-    },
-    "BTCNDrop": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "module 'Config' has no attribute 'informative_pair'",
-      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/BTCNDrop.py",
-      "strategy_id": "BTCNDrop",
-      "verdict": "needs_a_look"
-    },
-    "BTCNSeq": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "module 'Config' has no attribute 'informative_pair'",
-      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/BTCNSeq.py",
-      "strategy_id": "BTCNSeq",
       "verdict": "needs_a_look"
     },
     "BaseStrategy": {
@@ -267,14 +233,6 @@
       "strategy_id": "CombinedBinHAndClucV6H",
       "verdict": "needs_a_look"
     },
-    "ComboHold": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "module 'Config' has no attribute 'informative_pair'",
-      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/ComboHold.py",
-      "strategy_id": "ComboHold",
-      "verdict": "needs_a_look"
-    },
     "CopyLitmusMinMaxBroadClassificationStrategy": {
       "family": "third_party_package",
       "missing_module": "freqtrade.litmus",
@@ -344,84 +302,20 @@
       "verdict": "needs_a_look"
     },
     "DWTHO": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class DWTHO is present",
-      "runtime_failure": "Impossible to load Strategy 'DWTHO'. This class does not exist or contains Python code errors.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "buffer source array is read-only",
       "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWTHO.py",
       "strategy_id": "DWTHO",
-      "verdict": "to_be_fixed"
-    },
-    "DWT_Leveraged_recent": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class DWT_Leveraged_recent is present",
-      "runtime_failure": "Impossible to load Strategy 'DWT_Leveraged_recent'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWTLeveraged.py",
-      "strategy_id": "DWT_Leveraged_recent",
-      "verdict": "to_be_fixed"
-    },
-    "DWT_Leveraged_recentHO": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class DWT_Leveraged_recentHO is present",
-      "runtime_failure": "Impossible to load Strategy 'DWT_Leveraged_recentHO'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWTLeveragedHO.py",
-      "strategy_id": "DWT_Leveraged_recentHO",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "DWT_LongShortHO": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class DWT_LongShortHO is present",
-      "runtime_failure": "Impossible to load Strategy 'DWT_LongShortHO'. This class does not exist or contains Python code errors.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "buffer source array is read-only",
       "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWTLongShortHO.py",
       "strategy_id": "DWT_LongShortHO",
-      "verdict": "to_be_fixed"
-    },
-    "DWT_Predict": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class DWT_Predict is present",
-      "runtime_failure": "Impossible to load Strategy 'DWT_Predict'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/DWT_Predict.py",
-      "strategy_id": "DWT_Predict",
-      "verdict": "to_be_fixed"
-    },
-    "DWT_Predict2": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class DWT_Predict2 is present",
-      "runtime_failure": "Impossible to load Strategy 'DWT_Predict2'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/DWT_Predict2.py",
-      "strategy_id": "DWT_Predict2",
-      "verdict": "to_be_fixed"
-    },
-    "DWT_lev_short": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class DWT_lev_short is present",
-      "runtime_failure": "Impossible to load Strategy 'DWT_lev_short'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWT_lev_short.py",
-      "strategy_id": "DWT_lev_short",
-      "verdict": "to_be_fixed"
-    },
-    "DWT_lev_simple": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class DWT_lev_simple is present",
-      "runtime_failure": "Impossible to load Strategy 'DWT_lev_simple'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWT_lev_simple.py",
-      "strategy_id": "DWT_lev_simple",
-      "verdict": "to_be_fixed"
+      "verdict": "needs_a_look"
     },
     "Danke": {
       "family": "dtype_drift",
@@ -518,11 +412,9 @@
       "verdict": "to_be_fixed"
     },
     "ExampleLSTMStrategy": {
-      "family": "class_not_loaded",
-      "note": "The file raises on import. Whether that is a missing dependency we can install or code that no longer runs depends on the exception.",
-      "probe": "import_raises",
-      "probe_detail": "NameError: name 'Dict' is not defined at AlexStrategyFinalV6.py:98",
-      "runtime_failure": "Impossible to load Strategy 'ExampleLSTMStrategy'. This class does not exist or contains Python code errors.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "'freqai'",
       "source_file": "repos/AlexCryptoKing_freqailstm/V6/AlexStrategyFinalV6.py",
       "strategy_id": "ExampleLSTMStrategy",
       "verdict": "needs_a_look"
@@ -534,16 +426,6 @@
       "source_file": "repos/webclinic017_strategies-freqtrade-/archived/FBB_2.py",
       "strategy_id": "FBB_2",
       "verdict": "refuse_repair"
-    },
-    "FBB_DWT": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class FBB_DWT is present",
-      "runtime_failure": "Impossible to load Strategy 'FBB_DWT'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/kemplail_freqtrade-stuff/strategies/FBB_DWT.py",
-      "strategy_id": "FBB_DWT",
-      "verdict": "to_be_fixed"
     },
     "FBB_KalmanSIMD": {
       "family": "third_party_package",
@@ -564,16 +446,6 @@
       "source_file": "repos/webclinic017_strategies-freqtrade-/archived/FBB_ROI.py",
       "strategy_id": "FBB_ROI",
       "verdict": "refuse_repair"
-    },
-    "FFT": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class FFT is present",
-      "runtime_failure": "Impossible to load Strategy 'FFT'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/kemplail_freqtrade-stuff/strategies/FFT.py",
-      "strategy_id": "FFT",
-      "verdict": "to_be_fixed"
     },
     "FSupertrendStrategyBTC": {
       "family": "dtype_drift",
@@ -617,14 +489,6 @@
       "runtime_failure": "Impossible to load Strategy 'FileLoadingStrategy'. This class does not exist or contains Python code errors.",
       "source_file": "repos/keithorange_FreqTradeCustomOrders/file_loading_strategy.py",
       "strategy_id": "FileLoadingStrategy",
-      "verdict": "to_be_fixed"
-    },
-    "FisherBBDynamic": {
-      "family": "old_hook_signature",
-      "note": "The strategy overrides a freqtrade hook whose signature gained two parameters. Accepting them and ignoring them restores the author's logic unchanged - but it is a source edit, so it owes a paired equivalence run before the result counts.",
-      "runtime_failure": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'",
-      "source_file": "repos/webclinic017_strategies-freqtrade-/archived/FisherBBDynamic.py",
-      "strategy_id": "FisherBBDynamic",
       "verdict": "to_be_fixed"
     },
     "FreqaiBinaryClassStrategy": {
@@ -1194,16 +1058,6 @@
       "source_file": "repos/PeetCrypto_freqtrade-stuff/RenkoYolo (1).py",
       "strategy_id": "RenkoYolo",
       "verdict": "needs_a_look"
-    },
-    "SARIMAX": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class SARIMAX is present",
-      "runtime_failure": "Impossible to load Strategy 'SARIMAX'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/kemplail_freqtrade-stuff/strategies/SARIMAX.py",
-      "strategy_id": "SARIMAX",
-      "verdict": "to_be_fixed"
     },
     "SMAOPv1_TTF": {
       "family": "individual",

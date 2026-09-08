@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1038 rows
 
-**Generated 2026-09-08 16:12:07 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-08 16:47:57 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -31,8 +31,8 @@ have neither and are left empty rather than given an invented time.
 | | Strategies |
 |---|---:|
 | in the manifest | 1038 |
-| measured at all | 856 |
-| produced trades | 814 |
+| measured at all | 864 |
+| produced trades | 822 |
 | carrying a run time | 1024 |
 
 ## Cohort
@@ -40,9 +40,9 @@ have neither and are left empty rather than given an invented time.
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 608 |
-| `excluded` | 248 |
-| `pending` | 59 |
-| `exclusion_unconfirmed` | 42 |
+| `excluded` | 249 |
+| `pending` | 50 |
+| `exclusion_unconfirmed` | 50 |
 | `convergence_candidate` | 37 |
 | `too_few_trades` | 25 |
 | `not_a_strategy` | 19 |
@@ -127,7 +127,7 @@ than a pick-one-source figure. 4 of 1038 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 1034 rows that do: **62.6 hours** of this audit's own compute so far.
+Summed across the 1034 rows that do: **62.7 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -4170,28 +4170,26 @@ an identical trade list.
 | `chatgpt` | `spot_long` | 336 candles | 0.0% on `stc` | 2026-09-06 18:23:33 | `user_data/convergence_logs/chatgpt-60965168-ladder.log` |
 | `gpt_reversal` | `spot_long` | 1440 candles | 0.0% on `rsi_15m` | 2026-09-06 18:25:14 | `user_data/convergence_logs/gpt_reversal-15eecf49-ladder.log` |
 
-## Pending - 59 strategies
+## Pending - 50 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
 
 `AlexStrategyFinalV8`, `AlexStrategyFinalV9`, `Astro`, `AutoArimaTripleV1`
-`BBKCBounce`, `BTCBigDrop`, `BTCJump`, `BTCMACDCross`
-`BTCNDrop`, `BTCNSeq`, `BestSingleAssetPortfolio`, `Bins`
-`BlueEyes_MPP_v1`, `ComboHold`, `CryptoFrogNFI2`, `DCADMIPRICEStrategySpot`
-`DELTA_NEUTRAL`, `DWTHO`, `DWT_LongShortHO`, `DWT_Predict`
-`DWT_Predict2`, `DonchianBounce`, `E0V1EAI`, `ExampleLSTMStrategy`
-`FBB_2`, `FileLoadingStrategy`, `GRIDDMIPRICEStrategyFutureV4`, `GRIDDMIPRICEStrategyFutureV5`
+`BBKCBounce`, `BTCMACDCross`, `BestSingleAssetPortfolio`, `Bins`
+`BlueEyes_MPP_v1`, `CryptoFrogNFI2`, `DCADMIPRICEStrategySpot`, `DELTA_NEUTRAL`
+`DWTHO`, `DWT_LongShortHO`, `DonchianBounce`, `E0V1EAI`
+`ExampleLSTMStrategy`, `FileLoadingStrategy`, `GRIDDMIPRICEStrategyFutureV4`, `GRIDDMIPRICEStrategyFutureV5`
 `GRIDDMIPRICEStrategyFutureV6`, `GRIDDMIPRICEStrategyFutureV7`, `GodStra`, `Guacamole`
 `HLHB`, `Kamaflage`, `MartyEMA`, `MasterMoniGoManiHyperStrategy`
 `MultiMa`, `MyStrategyNew10`, `NowoIchimoku1hV1`, `ONS_Portfolio`
 `Proton`, `QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`
-`RebalanceStrategySpot`, `RenkoYolo`, `SARIMAX`, `SMAOPv1_TTF`
-`Schism5`, `Schism6`, `Solipsis_v4`, `TEMABounce`
-`TuplaBollinger`, `UpSliceStrategy`, `WTHO`, `delist_shorter_strategy`
-`haGradient`, `multi_tf`, `tacos1`
+`RebalanceStrategySpot`, `RenkoYolo`, `SMAOPv1_TTF`, `Schism5`
+`Schism6`, `Solipsis_v4`, `TEMABounce`, `TuplaBollinger`
+`UpSliceStrategy`, `WTHO`, `delist_shorter_strategy`, `haGradient`
+`multi_tf`, `tacos1`
 
-## Exclusion unconfirmed - 42 strategies
+## Exclusion unconfirmed - 50 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -4203,8 +4201,8 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
+| `unclassified` | `no_finding` | 22 |
 | `no_verdict_on_lookahead` | `no_finding` | 20 |
-| `unclassified` | `no_finding` | 14 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 6 |
 | `recursive_bias_unverified` | `no_finding` | 1 |
 | `recursive_warmup_refused` | `no_finding` | 1 |
@@ -4214,7 +4212,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 248 strategies, by decisive reason
+## Not passing - 249 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -4262,7 +4260,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 248 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 249 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -4273,7 +4271,7 @@ one of them carries none.
 | `lookahead_found` | reads data it could not have had at the time | 74 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 72 |
 | `no_trades_in_full_measurement` | never trades over the full window | 7 |
-| `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 30 |
+| `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 31 |
 | `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 20 |
 | `measured_only_in_freqai_arm` | runs only under its author's own FreqAI configuration, measured separately in that arm; not comparable with the ordinary spot audit | 5 |
 | `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 20 |
@@ -4287,7 +4285,7 @@ one of them carries none.
 | `lookahead_found` | 1 | 2 | 0 | 10 | 0 | 0 | 61 |
 | `recursive_bias_found` | 10 | 0 | 3 | 18 | 14 | 1 | 26 |
 | `no_trades_in_full_measurement` | 0 | 0 | 0 | 7 | 0 | 0 | 0 |
-| `repair_refused_would_invent_strategy` | 6 | 1 | 0 | 23 | 0 | 0 | 0 |
+| `repair_refused_would_invent_strategy` | 7 | 1 | 0 | 23 | 0 | 0 | 0 |
 | `local_module_repair_exhausted` | 8 | 0 | 0 | 12 | 0 | 0 | 0 |
 | `measured_only_in_freqai_arm` | 0 | 0 | 0 | 4 | 0 | 0 | 1 |
 | `third_party_package_declined` | 7 | 0 | 0 | 13 | 0 | 0 | 0 |
@@ -4382,14 +4380,14 @@ Wave `C_measurement_recovery` - 7:
 `BreakEven`, `DoesNothingStrategy`, `Miku_PP_v3`, `MyStrategyTemplate`
 `Obelisk_3EMA_StochRSI_ATR`, `ViN`, `ep3mas2`
 
-### `repair_refused_would_invent_strategy` - 30
+### `repair_refused_would_invent_strategy` - 31
 
 Declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy.
 
-Wave `-` - 6:
+Wave `-` - 7:
 
-`EMA003`, `FBB_ROI`, `FreqaiBinaryClassStrategy`, `FreqaiStrategy_v2`
-`TaSearchLevelG15m`, `TrendMomoClassifier`
+`EMA003`, `FBB_2`, `FBB_ROI`, `FreqaiBinaryClassStrategy`
+`FreqaiStrategy_v2`, `TaSearchLevelG15m`, `TrendMomoClassifier`
 
 Wave `A_pending_diagnostics` - 1:
 
@@ -4482,14 +4480,13 @@ Wave `not_scheduled` - 4:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 213 |
+| `recursive_ladder_pending` | 212 |
 | `convergence_not_converged_within_ladder` | 72 |
-| `needs_a_look` | 47 |
-| `lookahead_remeasure_pending` | 40 |
+| `lookahead_remeasure_pending` | 48 |
+| `needs_a_look` | 44 |
 | `convergence_inconclusive` | 16 |
-| `to_be_fixed` | 7 |
 | `repair_attempted` | 3 |
-| `refuse_repair` | 1 |
+| `to_be_fixed` | 2 |
 
 Per-row detail, including every evidence path, is in
 `STRATEGY_STATUS.csv`.

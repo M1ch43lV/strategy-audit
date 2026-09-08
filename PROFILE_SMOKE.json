@@ -210,10 +210,10 @@
       "trades": 0
     },
     "AlexStrategyFinalV8": {
-      "canonical_sha256": "sha256_b59070236a6be470810388f2eb3b8f2025a13839c18133010f3771a8a1dee041",
+      "canonical_sha256": "sha256_7c58e48fd19d16ea6d60428bff4517529264eb0e42e9c6cfab90f4a9384402a0",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/AlexStrategyFinalV8-c8cb35b5.log",
-      "elapsed_s": 6.7,
+      "elapsed_s": 4.2,
       "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy AlexStrategyFinalV8 --strategy-path repos/AlexCryptoKing_freqailstm/V8/1HOUR --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexStrategyFinalV8-c8cb35b5 --cache none",
       "mode": "futures",
       "run_profile": "futures_long_short",
@@ -221,7 +221,7 @@
       "runtime_id": "native_unversioned",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'AlexStrategyFinalV8'. This class does not exist or contains Python code errors."
+      "why": "'freqai'"
     },
     "AlexStrategyFinalV8Hyper": {
       "archive": "user_data/profile_smoke/AlexStrategyFinalV8Hyper-4014b7e3-2026-09-06_16-29-46.zip",
@@ -431,7 +431,7 @@
       "canonical_sha256": "sha256_dbd0e686d9c70afd99496a618dd26a75802710ee9c05451fed3adf9a4fa74b1a",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/BBKCBounce-4161a6f7.log",
-      "elapsed_s": 6.5,
+      "elapsed_s": 4.0,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BBKCBounce --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBKCBounce-4161a6f7 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -733,18 +733,24 @@
       "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "BTCBigDrop": {
+      "archive": "user_data/profile_smoke/BTCBigDrop-f38a93aa-2026-09-08_16-34-07.zip",
+      "archive_sha256": "sha256_761f46320d05f200359f2654fbeffd4a37c31fdfd7ec8c6c965355620b726259",
+      "artifact_key": "",
       "canonical_sha256": "sha256_890f369434f8fdb83d736dcb01145041c78107cc4bd60d2df7e528457d09d02e",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/BTCBigDrop-f38a93aa.log",
-      "elapsed_s": 7.2,
+      "config_overrides": {},
+      "elapsed_s": 6.6,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BTCBigDrop --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BTCBigDrop-f38a93aa --cache none",
+      "long_trades": 182,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "status": "failed",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "module 'Config' has no attribute 'informative_pair'"
+      "trades": 182,
+      "trades_sha256": "sha256_6145c326b34a38a151dc55afbd423091ca6b7b5fc0725d054d85c7bb31f4a735"
     },
     "BTCEMABounce": {
       "archive": "user_data/profile_smoke/BTCEMABounce-a2f69c0b-2026-09-06_18-35-32.zip",
@@ -767,24 +773,30 @@
       "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
     "BTCJump": {
+      "archive": "user_data/profile_smoke/BTCJump-54335026-2026-09-08_16-34-15.zip",
+      "archive_sha256": "sha256_501f66b4ba889935375e34c58eec3765cbaba67bd878faf4fd1444c241b76994",
+      "artifact_key": "",
       "canonical_sha256": "sha256_e2740dc8778cdad3c5fd7f2da103c72edbc8565ecf2582964455058995671b83",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/BTCJump-54335026.log",
-      "elapsed_s": 7.4,
+      "config_overrides": {},
+      "elapsed_s": 7.9,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BTCJump --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BTCJump-54335026 --cache none",
+      "long_trades": 221,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "status": "failed",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "module 'Config' has no attribute 'informative_pair'"
+      "trades": 221,
+      "trades_sha256": "sha256_4fbdf2ebf797e8098b94513e759aec51e841da2decc1552e9743da1891ae8acc"
     },
     "BTCMACDCross": {
       "canonical_sha256": "sha256_67574c12ec37ee4b05e2ea239c73eef206b6a146b14ad801d6c503d6d1be4559",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/BTCMACDCross-a8dfd26b.log",
-      "elapsed_s": 6.3,
+      "elapsed_s": 5.2,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BTCMACDCross --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BTCMACDCross-a8dfd26b --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -795,32 +807,44 @@
       "why": "Impossible to load Strategy 'BTCMACDCross'. This class does not exist or contains Python code errors."
     },
     "BTCNDrop": {
+      "archive": "user_data/profile_smoke/BTCNDrop-a1196583-2026-09-08_16-34-23.zip",
+      "archive_sha256": "sha256_66b43a06f42695b7b3174069f899768caa04a7a8be6460a2721207cc7d99fab1",
+      "artifact_key": "",
       "canonical_sha256": "sha256_19f32f43f62dd0269a337cabdb707a012bc36be6b4d0c9dc4ea51631baf7a359",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/BTCNDrop-a1196583.log",
-      "elapsed_s": 7.0,
+      "config_overrides": {},
+      "elapsed_s": 7.7,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BTCNDrop --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BTCNDrop-a1196583 --cache none",
+      "long_trades": 222,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "status": "failed",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "module 'Config' has no attribute 'informative_pair'"
+      "trades": 222,
+      "trades_sha256": "sha256_f548ff82751b9fb7f984ab78850f9e167d39fb37343aafae3ae08995c437e5f1"
     },
     "BTCNSeq": {
+      "archive": "user_data/profile_smoke/BTCNSeq-501b7637-2026-09-08_16-34-28.zip",
+      "archive_sha256": "sha256_46ac7ce76c7873874e5e6cae90a510f0f012e66a97ba963f1ceea60ef76f693b",
+      "artifact_key": "",
       "canonical_sha256": "sha256_52f80dac647a53068cce53bc8709b3ac0fcbeeac04e826ff59b2e5412f26b9bc",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/BTCNSeq-501b7637.log",
-      "elapsed_s": 6.7,
+      "config_overrides": {},
+      "elapsed_s": 5.6,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy BTCNSeq --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BTCNSeq-501b7637 --cache none",
+      "long_trades": 23,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "status": "failed",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "module 'Config' has no attribute 'informative_pair'"
+      "trades": 23,
+      "trades_sha256": "sha256_4dd71b9f3d98af77e89b0c5d43baff1a24d35c5c716ed62a7b89ff2813908dda"
     },
     "BaseStrategy": {
       "canonical_sha256": "sha256_95853455a61512bd3fa1ca673e3b37b235a2d76266eda39e3482439f89665cf8",
@@ -1483,18 +1507,24 @@
       "why": "Invalid value '1' for dtype 'bool'"
     },
     "ComboHold": {
+      "archive": "user_data/profile_smoke/ComboHold-7aef3c0f-2026-09-08_16-34-36.zip",
+      "archive_sha256": "sha256_00fe6c59a237e0d38fc13440b3ddccb61844c916504c5911184d60ba65c90576",
+      "artifact_key": "",
       "canonical_sha256": "sha256_a0477076b3876975fffea2b696c0021afa4699a77d6dee88649eb6b14418aa23",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/ComboHold-7aef3c0f.log",
-      "elapsed_s": 8.1,
+      "config_overrides": {},
+      "elapsed_s": 7.8,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy ComboHold --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ComboHold-7aef3c0f --cache none",
+      "long_trades": 233,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "status": "failed",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "module 'Config' has no attribute 'informative_pair'"
+      "trades": 233,
+      "trades_sha256": "sha256_a2cc22ee1b25606784d9915575e0ecfde40763b6e2c4c4f76183946e6e9925bc"
     },
     "ConsensusShort": {
       "canonical_sha256": "sha256_4e8ceeaec14c13bb5dfcd5f42971e3375635c496a76f90ab13f90883aee527a6",
@@ -1936,32 +1966,48 @@
       "why": "buffer source array is read-only"
     },
     "DWT_Predict": {
+      "archive": "user_data/profile_smoke/DWT_Predict-f3da3e19-2026-09-08_16-17-43.zip",
+      "archive_sha256": "sha256_7ebfed377b24686125e7b3808847897d2e0c429218405260b6ff62be9deb9fd9",
+      "artifact_key": "",
       "canonical_sha256": "sha256_f6d1b3ecea9f1eb4609c2b0d0a7a543a6a476df01ae2257d09f1830cc5dbf0e4",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/DWT_Predict-f3da3e19.log",
-      "elapsed_s": 10.9,
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 44.1,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy DWT_Predict --strategy-path repos/webclinic017_strategies-freqtrade-/binanceus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DWT_Predict-f3da3e19 --cache none",
+      "long_trades": 597,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "status": "failed",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'DWT_Predict'. This class does not exist or contains Python code errors."
+      "trades": 597,
+      "trades_sha256": "sha256_761ec88557fb908ffee9b2624ee09ae73764f46434bf63a15e3469e84a3514c4"
     },
     "DWT_Predict2": {
+      "archive": "user_data/profile_smoke/DWT_Predict2-94729265-2026-09-08_16-18-26.zip",
+      "archive_sha256": "sha256_4fbe107e0b5e5d7739d6246e14ef8972f934b776017196643aa1dc6ce892dabb",
+      "artifact_key": "",
       "canonical_sha256": "sha256_3eff936f0a6b77b3f0ab592765c0ed6ba030edd5c979df88723955f7ca2bd01d",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/DWT_Predict2-94729265.log",
-      "elapsed_s": 7.0,
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 42.4,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy DWT_Predict2 --strategy-path repos/webclinic017_strategies-freqtrade-/binanceus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DWT_Predict2-94729265 --cache none",
+      "long_trades": 738,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "status": "failed",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'DWT_Predict2'. This class does not exist or contains Python code errors."
+      "trades": 738,
+      "trades_sha256": "sha256_5a8f8b3164f88443b0ec0ce602d03e69a430772a4b74def55dac5fb892a1f255"
     },
     "DWT_lev_short": {
       "archive": "user_data/profile_smoke/DWT_lev_short-3ca77b88-2026-09-08_16-05-32.zip",
@@ -2053,7 +2099,7 @@
       "canonical_sha256": "sha256_1f1dd01f712d4c7cd637e9614fbb6aa5b5b1d8101f5e1c624e260ba6a3a23c43",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/DonchianBounce-9e62325a.log",
-      "elapsed_s": 6.3,
+      "elapsed_s": 4.6,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy DonchianBounce --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DonchianBounce-9e62325a --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -2481,10 +2527,10 @@
       "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "ExampleLSTMStrategy": {
-      "canonical_sha256": "sha256_938dc7db7c17af442536a1404a165d53430fc0a3ba8901192fd7811f4a7e9e57",
+      "canonical_sha256": "sha256_c4ba43ce606e92315efac969aace47db8f7eb7096642cc05d96d528ec293b0bf",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/ExampleLSTMStrategy-ff9e8ada.log",
-      "elapsed_s": 9.5,
+      "elapsed_s": 4.0,
       "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy ExampleLSTMStrategy --strategy-path repos/AlexCryptoKing_freqailstm/V6 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ExampleLSTMStrategy-ff9e8ada --cache none",
       "mode": "futures",
       "run_profile": "futures_long_short",
@@ -2492,7 +2538,7 @@
       "runtime_id": "native_unversioned",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'ExampleLSTMStrategy'. This class does not exist or contains Python code errors."
+      "why": "'freqai'"
     },
     "ExponentialGradientPortfolio": {
       "archive": "user_data/profile_smoke/ExponentialGradientPortfolio-2026-08-31_16-29-49.zip",
@@ -6075,18 +6121,26 @@
       "trades_sha256": "sha256_822d495fc2e9eefaa1033f54704aafbfcd15de68f17ec9f40ba033ac17d4e6f4"
     },
     "SARIMAX": {
-      "canonical_sha256": "sha256_3d957d4098870b173423ed221fe51fb7ac8270f9411baf619c98abe567853483",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/SARIMAX-78de56e1.log",
-      "elapsed_s": 71.5,
+      "archive": "user_data/profile_smoke/SARIMAX-78de56e1-2026-09-08_16-37-22.zip",
+      "archive_sha256": "sha256_9924766e0b37bf87277f8e03d445894790ef8489b0b843ddd90c591f92506ddd",
+      "artifact_key": "",
+      "canonical_sha256": "sha256_239384dcbbc60ece38c01d0f3f75ea349f6c570b31a9bb9f46a0b2c1c1e5a4ef",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 101.6,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy SARIMAX --strategy-path repos/kemplail_freqtrade-stuff/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SARIMAX-78de56e1 --cache none",
+      "long_trades": 59,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "status": "failed",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "'SARIMAX' object has no attribute 'entry_smax_diff'. Did you mean: 'entry_smax_dif'?"
+      "trades": 59,
+      "trades_sha256": "sha256_135baa1a5c50da8085e0e0be9501892678c9a1c979819fb45c6fa53d32795d85"
     },
     "SMAIP3v2": {
       "archive": "user_data/profile_smoke/SMAIP3v2-e79dedd0-2026-09-06_14-53-00.zip",
@@ -6733,7 +6787,7 @@
       "canonical_sha256": "sha256_0e2b74b766d5dbfc82587e1e561445de6d57a8f118704393f551fbf3940098da",
       "class1_rules": [],
       "debug_log": "user_data/profile_smoke_logs/TEMABounce-9f6a881a.log",
-      "elapsed_s": 6.4,
+      "elapsed_s": 4.1,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy TEMABounce --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TEMABounce-9f6a881a --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
