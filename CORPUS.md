@@ -55,6 +55,230 @@ mostly re-postings of each other.
 > **"First seen" means alphabetical scan order, not authorship.** Who copied
 > from whom is not visible in the code, and this index does not claim to know.
 
+## Every repository, by what it actually contains
+
+The table above answers "how much." This section answers "of what" — read
+from the actual strategy files, not inferred from file counts. Covers the 68
+repositories from before the 2026-09-08 gap-driven harvest (see the next
+section for those nine).
+
+**The five largest are hoarded mirrors, not research collections.** Together
+they hold more than half the corpus's raw file count, and the pattern in all
+five is the same: flat or loosely-organized dumps of other people's famous
+public strategies (NostalgiaForInfinity, ClucHAnix, BB_RPB_TSL, SMAOffset
+variants), often with the original author's credit comment still in the file,
+sometimes saved multiple times as `(1)`/`(2)` re-downloads. Each still holds a
+handful of genuinely distinctive files:
+
+- **`jaredrsommer/freqtradestrategies`** — 558 files (478 of them inside a
+  subfolder literally named `HUGE_FreqTrade_Strategy_Collection`, i.e.
+  `keithorange`'s repo copied wholesale into this one). Distinctive originals:
+  `HurstCycle3` (FFT dominant-cycle detection with Future-Line-of-Demarcation
+  convergence bands on Heikin-Ashi data), `FVGChannel` (a port of LuxAlgo's
+  Fair Value Gap indicator with a Fibonacci-spaced channel),
+  `LorentzianClassification` (k-NN over Lorentzian-distance RSI/WT/CCI/ADX
+  features plus Nadaraya-Watson kernel regression), `WTAI` (FreqAI CatBoost
+  hybrid), `AlexBattleTankKillerV3` (rolling Murrey Math levels).
+- **`keithorange/HUGE_FreqTrade_Strategy_Collection`** — 477 files, flat, no
+  subfolders, zero first-seen classes. A pure mirror: ~25 NostalgiaForInfinity
+  variants, ~15 BB_RPB_TSL, ~13 BBRSI, ~9 ClucHAnix, plus generic MACD/ADX/VWAP
+  templates. Nothing here originates in this repo.
+- **`davidzr/freqtrade-strategies`** — 461 files, nearly all crediting a
+  different outside author in their own docstring. Distinctive: `GodStraNew`
+  (brute-force hyperopt gene-search over ~180 TA-Lib indicators),
+  `PumpDetector` (a TradingView pump/whale-detection port), `LookaheadStrategy`
+  (a shifted-EMA crossover, apparently a deliberate bias-illustration example),
+  `RaposaDivergenceV1` (RSI divergence via `scipy` extrema, self-flagged in its
+  own docstring as possibly look-ahead biased).
+- **`PeetCrypto/freqtrade-stuff`** — 412 files, the single largest *original*
+  contributor in the whole corpus (311 first-seen) despite the mirror
+  character of most of it. Distinctive: `Persia`/`DevilStra` (brute-force
+  "genetic" formula generators over random TA-Lib indicator pairs), `Ichess`
+  (composite Ichimoku signal scoring), `Dracula` (hand-rolled support/
+  resistance tracker), `Stinkfist` (RMI/momentum-pinball with adaptive exits).
+- **`TheoBrigitte/freqtrade`** — folders named after upstream repos/authors,
+  code still carrying others' attribution comments, dated `dry-run/` snapshot
+  folders showing the owner live-testing downloaded strategies. Distinctive:
+  `QuickAdapterV3` (a FreqAI sponsor-released ML feature-engineering strategy
+  from robcaulk), `AdaptiveRenkoStrategy` (ATR-optimized Renko-brick trend
+  detection), `FVGAdvancedStrategy_V2` (Fair-Value-Gap detector with an
+  informative-timeframe filter).
+
+**Repos with genuine original research or unusual machinery:**
+
+- **`mlsys-io/PortfolioBench`** — 66 of 67 first-seen. `MlpSpeculativeStrategy`
+  trains an MLP ensemble on TA features; `beta_factors_model` loads a
+  joblib-serialized regression predicting weekly returns from Fama-French-style
+  crypto factors; `adaptive_trend` runs H4 momentum with a rolling-Sharpe
+  filter and market-cap top/bottom-K long/short allocation;
+  `PolymarketLogicalArbStrategy` arbitrages Polymarket BTC-threshold contracts
+  via subset/superset price-gap z-scores. (`PpoMomentumStrategy`'s "PPO" is the
+  Percentage Price Oscillator, not reinforcement learning, despite the name.)
+- **`webclinic017/strategies-freqtrade-`** — split by subfolder: `archived/`
+  and `binanceus/` are conventional, but `Anomaly/`, `NNPredict/`, `NNTC/`,
+  `TSPredict/` build a shared ML framework unusual in this corpus. `Anomaly`
+  trains a pluggable classifier zoo (autoencoder, PCA, IsolationForest, LOF,
+  KMeans, OneClassSVM, GMM, DBSCAN) to flag trade points as statistical
+  outliers; `FBB_KalmanSIMD` fits an EM-tuned Kalman filter (`simdkalman`) to
+  smooth/predict price; `NNPredict` trains a per-pair LSTM (GRU/CNN/
+  Transformer/TCN/N-BEATS/Wavenet variants); `TS_Wavelet` forecasts individual
+  wavelet coefficients via XGBoost/SVR before reconstructing the signal — "very
+  compute intensive" per its own docstring.
+- **`kemplail/freqtrade-stuff`** — a signal-processing cluster: `DWT` (Haar
+  wavelet denoising via `pywt`), `FFT` (Fourier low-pass via `scipy.fft`),
+  `SARIMAX` (statsmodels AR(2) forecast), `Kalman` (`pykalman` smoothing) —
+  each trades crossovers of "predicted vs. actual close."
+- **`markdregan/FreqAI-Marcos-Lopez-De-Prado`** — genuinely implements its
+  namesake's methods: `LitmusMLDPStrategy` builds zigzag peak/valley labels,
+  applies triple-barrier labeling, and trains a meta-model gated on the
+  primary model's own historical performance (real meta-labeling); fractional-
+  differentiation code exists (`FracdiffStat`) but is disabled by default.
+- **`p-zombie/freqtrade`** — otherwise a pure copy archive (0 first-seen), but
+  `GymStrategy` loads a `stable_baselines3` PPO reinforcement-learning model
+  for signals, and `TrainCatBoostStrategy` trains a CatBoost classifier on
+  seven other named strategies' buy signals as meta-ensemble features.
+- **`LazyPigPig/freqtrade-grid`** — grid/DCA trading, not signal-based: the
+  `GRIDDMIPRICEStrategy*` family sets `enter_long` unconditionally true and
+  manages a 4-line small/big price grid entirely inside
+  `adjust_trade_position`; `DCADMIPRICEStrategyFuture`/`RebalanceStrategySpot`
+  do position-scaling/rebalancing the same way.
+- **`AlexCryptoKing/freqailstm`** — FreqAI + LSTM: `ExampleLSTMStrategy` and
+  the `AlexStrategyFinalV6`/`V8`/`V9` (+ `Hyper` variants) family run neural-net
+  regressors for entry signals; the repo also vendors an entire local copy of
+  the freqtrade/FreqAI framework under `user_data/config/`.
+- **`djienne/YOUTUBE_STRATEGIES_FREQTRADE`** — companion code to the author's
+  YouTube channel, spanning a wide range of experimental approaches rather
+  than one family: `DELTA_NEUTRAL` (delta-neutral hedging), `HMMv3` (hidden
+  Markov regime detection, blocked in this corpus by `hmmlearn`'s missing
+  build toolchain), `HEAD_SHOULDER`/`SUPPORT_RESISTANCE` (chart-pattern
+  detection), `CME` (TradingView-fed strategy, blocked by a declined
+  `tvDatafeed` install), `BigWill` (a `pandas_ta` EMA strategy found this
+  session to crash when its window is shorter than the indicator period),
+  `MartyEMA`, `TRIX_LS`, `SARIMAX`.
+- **`jerome-benoit/freqai-strategies`** — `RLAgentStrategy` (ReforceXY) drives
+  entries/exits from a reinforcement-learning agent's action output;
+  `QuickAdapterV3` is a FreqAI regressor with extensive feature/label
+  engineering.
+- **`Mohamed-sm/Freqtrade-RLStrategy-IA`** — despite the "RL" name, a standard
+  FreqAI classification pipeline (RSI/MACD/SMA/EMA/volume/time features).
+- **`mmartel86/freqtrade-setup`** — FreqAI classifier over an extensive
+  engineered feature set (RSI/SMA/ATR/BB%/MACD-hist/ADX/OBV/EMA ratios/candle
+  body-wick %), 30x leverage, custom profit-reversal exit logic.
+- **`Netanelshoshan/freqAI-LSTM`** — FreqAI LSTM regressor combining
+  CCI/RSI/momentum/SMA/MACD/ROC/Bollinger features via a hyperoptimizable
+  weighted sum, letting the model set exits instead of fixed ROI/stoploss.
+- **`Lijunnan0113/Lijunnan0113-Lijunnan_Freqtrade_Strategy`** — futures
+  long/short combining discrete wavelet transform and FFT price smoothing with
+  Fisher-transformed Williams %R, Bollinger "gain," RMI/SSL trend filters, and
+  decay-based dynamic ROI/stoploss.
+- **`HeyMrRobot/Freqtrade-Adaptive-Renko-Strategy`** — Renko bricks with an
+  ATR-optimized adaptive brick size (`scipy.fminbound`), trading brick-
+  direction reversals.
+
+**Personal collections built mostly from other people's published strategies**
+(each still checked file-by-file; naming the few genuinely distinctive pieces
+where they exist): `hamidreza07/freqai-strategy` (despite the name, mostly
+conventional TA across `classic/` and five numbered "startegy test" folders;
+real FreqAI use only in `WTAI` and `FreqaiBinaryClassStrategy`) ·
+`freqtrade/freqtrade-strategies` (the official project's own tutorial repo:
+`Strategy001`-`005`, berlinguyinca's classic scalpers, Mablue's `GodStra`/
+`Zeus` auto-indicator generators, a dedicated `lookahead_bias/` teaching
+folder) · `werkkrew/freqtrade-strategies` (`Solipsis5` and `Schism` are the
+maintained flagships, RMI/informative-pair strategies with dynamic ROI; the
+rest is an archived Cluc*/Hacklemore*/BinHV* mirror) ·
+`Foxel05/freqtrade-stuff` (fully original but mostly generic offset/momentum
+ports; `RaposaDivergenceV1` again, self-flagged for possible look-ahead bias)
+· `thinkong/freqtradestrategies` (`HarmonicDivergence`, `TrixV21Strategy`,
+`abbas` are its three originals among mostly ClucHAnix/BB_RPB_TSL copies) ·
+`phuchust/freqtrade_strategy`, `MelvynClark/Freqtrade-Strategy` (22/22
+first-seen by name, but much of the code is a renamed copy of
+NostalgiaForInfinityX or freqtrade's own sample template underneath) ·
+`titouannwtt/freqtrade-ultimate` (`kac_index_v1`/`v2` pull a live TOTAL3
+altcoin-cap index via `tvDatafeed` for regime filtering; `simple_vwap_v1` is
+deliberately low-selectivity, aiming for ~90% market exposure) ·
+`brookmiles/freqtrade-stuff` (the `Obelisk_*` family: Ichimoku-Cloud trend
+following, one variant deliberately skips ROI/trailing-stop exits) ·
+`eovie/freqtrade_strs` (borrowed trading logic; the real contribution is
+custom `IHyperOptLoss` classes tuning by expectancy/win-rate instead of raw
+profit) · `nateemma/strategies` (unusually well-documented: OversoldReversion
+mean reversion, a portfolio-rebalancing `BasketStrategy` family, funding-rate
+carry, plus reference copies of NFI/MacheteV8b/CryptoFrog for comparison) ·
+`iterativv/NostalgiaForInfinity` (the ORIGINAL NFI repo — one of the most
+copied public freqtrade strategies in existence, a large multi-condition
+system with dozens of independently-tunable entry conditions across
+`normal`/`pump`/`quick`/`rebuy`/`rapid`/`grind`/`scalp` modes) ·
+`nancyjimenezbnoewowo/NostalgiaForInfinity` (a direct, unmodified fork of the
+above, 0 first-seen) · `flaviosiotto/freqtrade-strategy` (`TouchEmaStrategy`,
+`BBBreakoutStrategy`, `FakeoutStrategy` via `scipy.argrelextrema`) ·
+`i1ya/freqtrade-strategies` (entirely derivative `CombinedBinHClucAndMAD*`/
+`BigZ*` variants, explicitly credited to their inspiration, 0 first-seen) ·
+`mikedigriz/freqtrade-strategy-mikedigriz` (small honest toolbox: Hull-MA
+scalps, Fisher-Hull, a Chaikin-Money-Flow "SmartMoneyStrategy") ·
+`MMR-19/freqtrade-strategies` (`Tesla4`/`Tesla7`, EWO/SMA-offset variants
+credited to `@Rallipanos`) · `ShahAnuj2610/my-freqtrade` (fused EWO/offset-SMA
+community strategies, plus `CryptoPrediction` — a Keras LSTM on OHLCV+SAR) ·
+`ShahAnuj2610/my-freqtrade-nfi-nextgen` (NFI forks plus custom trailing-buy
+and RSI-gated DCA wrappers) · `cyberjunky/freqtrade_strategy` (NFI, E0V1E, an
+EMA-offset scalper) · `devbootstrap/optimize-trading-strategy-using-freqtrade`
+(a teaching repo: plain BB+RSI mean reversion, generic as advertised) ·
+`hansen1015/freqtrade_strategy` (TA-Lib candlestick patterns, a bare Heikin-
+Ashi SMA cross explicitly marked "not for live," 0 first-seen).
+
+**Small and single-strategy repos** (1-4 classes each; every one read, kept
+brief since there is little to characterize beyond what it does):
+`bustillo/freqtrade-strategies` (ZaratustraDCA: ADX/DMI entries with
+BTC-correlation filters, Murrey Math levels, progressive DCA) ·
+`Juusseli/Trade` (SMAOffset/EWO template with an HMA50-vs-EMA100 exit guard) ·
+`jilv220/BB_RPB_TSL` (Bollinger/Keltner squeeze-off breakout plus RMI/CCI/
+StochRSI dip conditions, ensembled) · `DonaldSimpson/remora-freqtrade`
+(wrappers calling an external risk-scoring API, fail-open if it's down) ·
+`anakein/beastbotXB` (Nadaraya-Watson kernel-regression envelope with SSL
+channels) · `ingpawat/freqtrade-strategy-with-backtest` (MACD zero-cross; a
+variant adds PAXG-correlation-based dynamic leverage) ·
+`shadowp2810/technical_indicators_cryptos` (hand-rolled "fall2/rise2"
+candle-pattern detectors) · `botenesp/freqtrade_strategies` (buys low-volume
+dips near the lower Bollinger band, avoiding pump-and-dump) ·
+`miwtoo/ft-action-zone` (classic EMA12/26 "Action Zone" indicator) ·
+`devbootstrap/freqtrade-hyperopt-running-in-cloud-example` (unmodified
+`sample_strategy` + `Strategy004`, a cloud-hyperopt demo, no original logic) ·
+`imsatoshi/GeneTrader` (EWO/Williams-%R/VWAP/Bollinger/CMF combo, plus files
+literally evolved by the repo's own genetic-algorithm optimizer) ·
+`keryc/crypto-bot` (unmodified NFI + sample template, no custom logic) ·
+`mohammadmoth/Freqtrade-Strategy` (freqtrade's own default sample logic,
+essentially unmodified; a 3-Supertrend-agreement variant) ·
+`obseries/freqtrade-strategy-ichiv1` (the well-known public "Ichi V1"
+Ichimoku strategy; `proton` is an unrelated FreqAI direction-classifier) ·
+`Bananajoexxc/RegimeFilterStrategy-Freqtrade` (EMA50-vs-EMA100 bull/bear
+regime gate with a 20-period breakout entry) ·
+`TomtomEh/freqtrade-websocket` (a live Binance-websocket order-book cache
+gating BB/EMA/RSI entries by bid/ask wall ratio) ·
+`hippocritical/delist_scraper` (10x-leveraged shorts triggered directly by a
+pre-scraped exchange-delisting-announcement feed) ·
+`keithorange/FreqTradeCustomOrders` (not a strategy — a CLI-configured
+stoploss/exit-management toolkit) ·
+`seannowotny/FlawlessVictoryPort` (port of a TradingView "Flawless Victory"
+Bollinger/RSI script) ·
+`Rikj000/MoniGoMani` (the well-known public MoniGoMani: eight
+independently-hyperopt-weighted signals combined into one composite score) ·
+`froggleston/cryptofrog-strategies` ("kitchen sink" strategy combining
+Heikin-Ashi smoothing, StochRSI, MFI, Bollinger expansion, squeeze-momentum,
+with a linear-decay trailing stoploss) ·
+`DutchCryptoDad/FreqtradeBotStrategyDevelopmentForBeginners` (a beginner
+tutorial repo: RSI+SMA cross, MACD cross, the stock sample template).
+
+**Contributed no strategy content at all** (4 repos, distinct from the
+"copies everything" repos above — these have no `IStrategy` class in them to
+begin with): `freqtrade/berlinguyinca-trading-strategies` (the repo's own
+description: "outdated - please use the official repo... from now on") ·
+`raphant/lazyft` (a real, substantial backtest/hyperopt CLI wrapper library
+around freqtrade — tooling, not a strategy) · `yalcin/freqtrade-mcp` (an MCP
+server exposing freqtrade's codebase for LLM introspection — developer
+tooling, not a strategy). A fourth entry, `logs`, in `corpus_sources.json` is
+not a repository at all: it is a stray local directory (a leftover log file
+and a README) that `census_repos.py`'s directory scan picked up alongside the
+77 real repos — noted here so a future reader doesn't go looking for a GitHub
+repo named "logs".
+
 ## The search, so you can extend or refute it
 
 Repositories were found with the GitHub search API using these queries, then
