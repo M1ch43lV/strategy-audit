@@ -351,32 +351,48 @@
       "trades_sha256": "sha256_bdf413da68ab06f727544a90d7b1206a7d2d975864b564d1a0e3ac3aa51a8f92"
     },
     "AntigravityStrategy": {
+      "archive": "user_data/profile_smoke/AntigravityStrategy-89a2576f-2026-09-08_18-37-22.zip",
+      "archive_sha256": "sha256_bd62aba06fd1e8ed592d8e8fc52c849298c494d4dbbc72e60ea24fbac59acc98",
+      "artifact_key": "",
       "canonical_sha256": "sha256_8ee088f9e08afbcf697dc2694aa920a743a298c5c1b098c1608b5d363849ff92",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/AntigravityStrategy-89a2576f.log",
-      "elapsed_s": 40.7,
-      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy AntigravityStrategy --strategy-path repos/Vijay190899_Trade-Bot/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AntigravityStrategy-89a2576f --cache none",
+      "class1_rules": [
+        "freqai_config_from_author_block"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 82.7,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/AntigravityStrategy-89a2576f.json --strategy AntigravityStrategy --strategy-path repos/Vijay190899_Trade-Bot/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AntigravityStrategy-89a2576f --cache none --freqaimodel LightGBMRegressor",
+      "long_trades": 104,
       "mode": "spot",
       "run_profile": "spot_long",
-      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
-      "status": "failed",
+      "runtime_config_sha256": "sha256_bf445bc3c539bb8526a96f56be3409f6009665b67738d66e0e7cb366f9b9f20b",
+      "runtime_id": "docker:sha256:cf086383355b9d07b70c00b1c60a35a695947dd64c8d57b6ed989319be8170b5",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "freqAI is not enabled. Please enable it in your config to use this strategy."
+      "trades": 104,
+      "trades_sha256": "sha256_fa9242aca4c73be61e00707092df8029f81d56b91f7d2c7314015ae85d7f0325"
     },
     "AntigravityStrategyV3": {
+      "archive": "user_data/profile_smoke/AntigravityStrategyV3-1193307f-2026-09-08_18-38-45.zip",
+      "archive_sha256": "sha256_7c22dd77a1c659fa46b357ee0796190a1bb63ac2e6ee7ed29130a1025e029927",
+      "artifact_key": "",
       "canonical_sha256": "sha256_1779982d84258181cbed10f886afdb244f04413fcde8850c12453d7baf639332",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/AntigravityStrategyV3-1193307f.log",
-      "elapsed_s": 40.5,
-      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy AntigravityStrategyV3 --strategy-path repos/Vijay190899_Trade-Bot/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AntigravityStrategyV3-1193307f --cache none",
+      "class1_rules": [
+        "freqai_config_from_author_block"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 82.2,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/AntigravityStrategyV3-1193307f.json --strategy AntigravityStrategyV3 --strategy-path repos/Vijay190899_Trade-Bot/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AntigravityStrategyV3-1193307f --cache none --freqaimodel LightGBMRegressor",
+      "long_trades": 90,
       "mode": "spot",
       "run_profile": "spot_long",
-      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
-      "status": "failed",
+      "runtime_config_sha256": "sha256_0745d254fade0ca08660e3ac106910552f6d7698d98a8f0d2eb8a38e7a9a59c2",
+      "runtime_id": "docker:sha256:cf086383355b9d07b70c00b1c60a35a695947dd64c8d57b6ed989319be8170b5",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "freqAI is not enabled. Please enable it in your config to use this strategy."
+      "trades": 90,
+      "trades_sha256": "sha256_3bacab6b5d5d267fda8ef43515539eefc8b4e4e655700e7333588db7017f1179"
     },
     "Argrelextrema": {
       "canonical_sha256": "sha256_a0dc5f2d0ad4f2f585086121c81627948bf8d0e4670e1db100f0dafce9dfda28",

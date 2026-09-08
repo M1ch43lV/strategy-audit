@@ -42,3 +42,11 @@ pykalman==0.11.2
 # one from source. Adding a compiler toolchain to the shared runtime image
 # is a materially bigger change than a package pin; left for a separate
 # decision rather than folded in here.
+#
+# datasieve: AntigravityStrategy/AntigravityStrategyV3 (Vijay190899/Trade-Bot)
+# need it for FreqAI's use_SVM_to_remove_outliers/DI_threshold/PCA feature
+# preprocessing - freqtrade's own official FreqAI companion package, not a
+# third-party find. Verified in isolation (pip install --target with
+# numpy/scipy/pandas pinned in the same command) that it resolves cleanly
+# against the pins above; only new transitive dependency is scikit-learn.
+datasieve==0.1.9

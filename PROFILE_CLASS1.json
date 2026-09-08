@@ -33,6 +33,32 @@
       ],
       "status": "applied"
     },
+    "AntigravityStrategy": {
+      "config_keys": [
+        "timeframe",
+        "freqai"
+      ],
+      "config_source": "user_data/freqai_configs/AntigravityStrategy.json",
+      "freqaimodel": "LightGBMRegressor",
+      "note": "freqAI config built by repair/freqai_config_antigravity.py from the author's own live (not commented-out) config/config_backtest.json in Vijay190899/Trade-Bot. Every feature/model parameter is theirs; the only change is model_training_parameters.device gpu->cpu, a runtime capability this image does not have, not a strategy parameter. freqaimodel is LightGBMRegressor, the author's own declared value for backtesting (not the repo's custom RL model, which needs a live TradeMemory loop this audit has no equivalent of) - confirmed author-sanctioned by the strategy's own is_rl = \"RL\" in self.config.get(\"freqaimodel\", \"\") branch. Both strategies already use the current feature_engineering_expand_all/standard + set_freqai_targets API, not the deprecated populate_any_indicators() that stopped WTAI/WTRSIAI, so this config is expected to actually run them, not merely decide the row.",
+      "rules": [
+        "freqai_config_from_author_block"
+      ],
+      "status": "applied"
+    },
+    "AntigravityStrategyV3": {
+      "config_keys": [
+        "timeframe",
+        "freqai"
+      ],
+      "config_source": "user_data/freqai_configs/AntigravityStrategyV3.json",
+      "freqaimodel": "LightGBMRegressor",
+      "note": "freqAI config built by repair/freqai_config_antigravity.py from the author's own live (not commented-out) config/config_backtest.json in Vijay190899/Trade-Bot. Every feature/model parameter is theirs; the only change is model_training_parameters.device gpu->cpu, a runtime capability this image does not have, not a strategy parameter. freqaimodel is LightGBMRegressor, the author's own declared value for backtesting (not the repo's custom RL model, which needs a live TradeMemory loop this audit has no equivalent of) - confirmed author-sanctioned by the strategy's own is_rl = \"RL\" in self.config.get(\"freqaimodel\", \"\") branch. Both strategies already use the current feature_engineering_expand_all/standard + set_freqai_targets API, not the deprecated populate_any_indicators() that stopped WTAI/WTRSIAI, so this config is expected to actually run them, not merely decide the row.",
+      "rules": [
+        "freqai_config_from_author_block"
+      ],
+      "status": "applied"
+    },
     "Apollo11": {
       "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
       "rules": [
