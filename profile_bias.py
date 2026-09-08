@@ -21,6 +21,7 @@ import time
 
 import profile_smoke
 import runlog
+from repair_overrides import repair_overrides
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -700,6 +701,7 @@ def main(argv=None):
         rows = [row for row in rows if row["strategy_id"] in set(args.only)]
     rows = rows[:args.limit]
     data = _load(args.output)
+    overrides = repair_overrides()
     for number, row in enumerate(rows, 1):
         strategy = row["strategy_id"]
         current_identity = identity(row)
@@ -716,7 +718,8 @@ def main(argv=None):
             print("[%d/%d] %s %s %s" %
                   (number, len(rows), strategy, mode, diagnostic), flush=True)
             previous[diagnostic] = run_diagnostic(
-                row, diagnostic, args.timeout, args.fallback_timeout)
+                row, diagnostic, args.timeout, args.fallback_timeout,
+                config_overrides=overrides.get(strategy))
             data["results"][strategy] = previous
             _write(data, args.output)
             print("  %s: %s" % (previous[diagnostic]["status"],

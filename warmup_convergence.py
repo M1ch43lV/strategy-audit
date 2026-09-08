@@ -39,6 +39,7 @@ import eligibility_warmup
 import profile_bias
 import profile_smoke
 import runlog
+from repair_overrides import repair_overrides
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -425,32 +426,6 @@ def derived_value(strategy):
     if strategy in recovery.OVERRIDES:
         return recovery.OVERRIDES[strategy][0]
     return recovery._audited_period(strategy)
-
-
-# Stores holding a repair run. A repaired row has to be measured the way it
-# was repaired, or the ladder reports on a configuration nobody intends to
-# use. The look-ahead queue learned this in September; the ladder had not.
-REPAIR_STORES = (
-    os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_MODULE_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_SIGNATURE_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_FREQAI_REPAIR.json"),
-    os.path.join(ROOT, "ELIGIBILITY_FREQAI_WTAI.json"),
-)
-
-
-def repair_overrides():
-    """Config keys a repaired row must be run with, keyed by strategy."""
-    out = {}
-    for path in REPAIR_STORES:
-        if not os.path.exists(path):
-            continue
-        results = json.load(io.open(path, encoding="utf-8")).get("results", {})
-        for strategy, record in results.items():
-            overrides = record.get("config_overrides") or {}
-            if overrides:
-                out.setdefault(strategy, dict(overrides))
-    return out
 
 
 def run_ladder(row, timeout, startups, overrides=None):
