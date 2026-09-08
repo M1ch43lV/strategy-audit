@@ -2201,9 +2201,12 @@ def selftest():
     # were passing on 1 of 900 rows. A test that reports PASS while covering
     # almost nothing is worse than no test.
     for row in data:
-        # Excluded means one of exactly eight things, and every one of them
+        # Excluded means one of exactly nine things, and every one of them
         # is a result this audit produced itself: the look-ahead check found
-        # bias, our own ladder failed to settle the indicators, the strategy
+        # bias, our own ladder failed to settle the indicators (either by
+        # exceeding the drift threshold, or by crashing at every rung down to
+        # the three longest lead times - the ladder must be passable by every
+        # strategy, so exhausting it is itself the finding), the strategy
         # ran the whole window and never traded, a repair route read the file
         # and refused to invent what the author never wrote, a repair route
         # exhausted every candidate module the corpus holds, the row is
@@ -2220,6 +2223,7 @@ def selftest():
                 (row["lookahead"] == "FOUND"
                  and row["lookahead_evidence"] == "native")
                 or row["recursive_evidence"] == "convergence:not_settled"
+                or row["recursive_evidence"] == "convergence:crash_exhausted"
                 or row["primary_reason"] == "no_trades_in_full_measurement"
                 or row["primary_reason"] == "repair_refused_would_invent_strategy"
                 or row["primary_reason"] == "local_module_repair_exhausted"
