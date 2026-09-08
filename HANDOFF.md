@@ -3,14 +3,13 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-07T22:36:12+02:00
-- Stopped because: the invalid Stage 6 E0 cohort has been retired consistently
-  across binding documents, historical reports, and generator safeguards in
-  `717d1e3`; Claude's single pooled Model 0 retry writer remains active
-- Next agent should: let the existing Model 0 writer finish, then refresh status
-  from authoritative artifacts; never count, regenerate, benchmark, attribute,
-  or report E0 as a cohort, and do not start Model 1/2/3 or create a candidate
-  spec before the remaining preregistration choices are frozen
+- Last update: 2026-09-08T21:25:54+02:00
+- Stopped because: strategy types are complete and generator-owned in `a7259ad`;
+  the requested classification repair and AST-only Graphify update are complete
+- Next agent should: continue Model 0 coverage from the resumable manifest only
+  after repeating the process/lock checks; 51 current E1 rows have no manifest
+  record. Do not start Model 1/2/3 or create a candidate spec before the
+  remaining preregistration choices are frozen
 
 ## Objective
 
@@ -85,21 +84,18 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-07T22:36:12+02:00 at HEAD `717d1e3` after the E0 governance
-correction:
+Observed 2026-09-08T21:25:54+02:00 at HEAD `a7259ad`:
 
-- `STRATEGY_STATUS.csv` reports stale and must not be regenerated while the
-  live writer is changing its inputs. Its last snapshot has 919 rows: 608
-  `E1_expanded`, 219 excluded, 27 pending, 25 exclusion-unconfirmed, 21
-  too-few-trades, 18 not-a-strategy, and 1 convergence candidate.
-- Model 0 pooled manifest: 609 stored records. Against the stale 608-row E1
-  snapshot: 541 measured, 61 resource-inconclusive, 5 timeout, and 1 failed.
-  Every stale-snapshot E1 row currently has a terminal record, but the active
-  retry writer can still change those categories; these are progress counts.
-- Docker container `12675b2dc3db` (`strategy-audit-runtime:2026.7`) is up and
-  runs `regime.full_backtest`; Claude's `watch_pooled_backlog.py` also remains
-  active. `full_backtest_manifest.json` is dirty live output owned by that run.
-- No Model 1, Model 2, Model 3, or model-comparison manifest exists.
+- No Docker benchmark container or Model 0 writer is active. Only shell/session
+  processes matched the broad process expression.
+- `STRATEGY_STATUS.csv` is current with 1,050 rows: 659 `E1_expanded`, 256
+  excluded, 46 pending, 39 exclusion-unconfirmed, 29 too-few-trades, 19
+  not-a-strategy, and 2 convergence candidates.
+- Against current E1, the Model 0 manifest has 550 measured, 52 OOM-confirmed,
+  5 performance-limited, 1 stake-overflow-confirmed, and 51 missing rows.
+- Git is clean except the pre-existing generated count change in
+  `repair_measures_list.md`; it predates `a7259ad` and was deliberately not
+  included in the classification commit.
 
 ## Current implementation checkpoint
 
@@ -111,6 +107,13 @@ Stage 6 E0 cohort`). `REGIME_ELIGIBILITY.csv` and the 67-label expansion
 inventory remain immutable evidence of the mistaken classification, not usable
 membership. Only the latest active `admitted_E1` decision per strategy defines
 the cohort; `STRATEGY_STATUS.csv` exposes it as `E1_expanded`.
+
+Strategy classification repair is committed as `a7259ad` (`Complete generated
+strategy type classification`). `tools/strategy_classification.py` now reads
+the canonical population from `EXECUTION_PROFILES.csv`, never from its own
+downstream status output. All 1,050 rows have an explicit generated Type: no
+blank and no current `unclassified`; 19 test/template artifacts are
+`not_applicable`. `CORPUS.md` prose was not broadcast from repo to strategy.
 
 - `regime/regime_engine.py` produces causal, one-day-lagged four-state data.
 - `regime/attribution.py` already attributes Model 0 trades to both four states
@@ -163,19 +166,23 @@ that historical mismatch.
 The historical 5-profile ungated equivalence artifact remains 5/5 exact at
 `results/regime/gate_equivalence.json`; do not rerun it without a reason.
 
+Classification validation at `a7259ad`: classifier selftest/check, phase
+hypothesis selftest, status selftest/check, status-page selftest, targeted
+`py_compile`, generated JSON/CSV identity check, and `git diff --check` PASS.
+Graphify was refreshed with Claude's documented `graphify update .` AST-only
+path: 1,552 nodes, 2,527 edges, 151 communities, no LLM/API call.
+
 ## Next concrete steps
 
-1. Let the active Claude pooled Model 0 run finish; never start a second writer.
-2. Re-read machine and Git state after it finishes, then refresh derived status
-   only when no writer is changing its input stores. Keep the live manifest
-   separate from code checkpoints `0de5829` and `b40ad60`.
-3. Complete Model 0 coverage and adjudicate resource-inconclusive failures
+1. Repeat machine, lock, artifact and Git checks; never start a second writer.
+2. Complete the 51 missing Model 0 E1 rows resumably and adjudicate
+   resource-inconclusive failures
    under the existing attempt rules. Do not run a second Model 0 writer.
-4. Resolve the eight OPEN preregistration choices before producing a discovery
+3. Resolve the eight OPEN preregistration choices before producing a discovery
    candidate spec or any ranked output. At minimum the owner must decide the
    discovery/validation split, minimum trade/episode evidence, and the
    exposure-matched benchmark construction.
-5. Once those choices are frozen, write and hash one explicit candidate spec,
+4. Once those choices are frozen, write and hash one explicit candidate spec,
    run the 5-10 strategy pilot, then Model 1, Model 2, Model 3, gated
    attribution, and the non-ranked comparison in the order in `PIPELINE.md`.
 
@@ -189,6 +196,8 @@ The historical 5-profile ungated equivalence artifact remains 5/5 exact at
   change.
 - Any measured Model 0 identity-matching archive. The runner is resumable.
 - Any live Claude runner or its output store.
+- Strategy Type classification and the `a7259ad` artifact regeneration; do not
+  hand-edit `STRATEGY_STATUS.csv` or infer per-strategy Type from repo prose.
 - Any historical E0 benchmark or attribution as current evidence. Do not rerun
   the old 67, add 67 to E1, or regenerate frozen E0 CSV/JSON artifacts.
 - Do not generate a candidate spec from observed strategy performance.
