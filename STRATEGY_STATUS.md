@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1050 rows
 
-**Generated 2026-09-08 20:02:55 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-08 20:10:16 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -32,20 +32,19 @@ have neither and are left empty rather than given an invented time.
 |---|---:|
 | in the manifest | 1050 |
 | measured at all | 875 |
-| produced trades | 831 |
+| produced trades | 832 |
 | carrying a run time | 1041 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
-| `E1_expanded` | 656 |
+| `E1_expanded` | 657 |
 | `excluded` | 255 |
 | `pending` | 51 |
 | `exclusion_unconfirmed` | 39 |
 | `too_few_trades` | 29 |
 | `not_a_strategy` | 19 |
-| `convergence_candidate` | 1 |
 
 ## Timeframe and signal family
 
@@ -127,7 +126,7 @@ than a pick-one-source figure. 4 of 1050 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 1046 rows that do: **64.8 hours** of this audit's own compute so far.
+Summed across the 1046 rows that do: **64.9 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -265,7 +264,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1464 of 2636 commands are recorded so far, and every new run
+recording. 1463 of 2636 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -285,7 +284,7 @@ evaluate a single signal without it. The warm-up ladder passes
 `--startup-candle` with every rung at once, which is why one run
 reports the whole ladder.
 
-## Passing - 656 strategies
+## Passing - 657 strategies
 
 Every original gate returned `PASS`: measured in its native mode,
 produced trades, clean look-ahead and recursion, complete candle
@@ -647,6 +646,7 @@ coverage, no published trap.
 | `Momentumv2` | `spot_long` | `E1_expanded` | 2263 | `convergence:540:warmup_supplied` | 2026-09-01 12:31:37 | [log](user_data/convergence_logs/Momentumv2-ladder.log) |
 | `MoneyFlowStrategy` | `spot_long` | `E1_expanded` | 19490 | `convergence:576:warmup_supplied` | 2026-09-01 12:32:02 | [log](user_data/convergence_logs/MoneyFlowStrategy-ladder.log) |
 | `MontrealStrategy` | `spot_long` | `E1_expanded` | 26411 | `convergence:192:warmup_supplied` | 2026-09-01 14:28:21 | [log](user_data/convergence_logs/MontrealStrategy-ladder.log) |
+| `MultiActionZone` | `spot_long` | `E1_expanded` | 290 | `convergence:540:warmup_supplied` | 2026-09-05 15:21:02 | [archive](user_data/profile_smoke/MultiActionZone-179b96b7-2026-09-05_15-21-02.zip) [log](user_data/convergence_logs/MultiActionZone-179b96b7-ladder.log) |
 | `MultiFactorConfluenceStrategy` | `spot_long` | `E1_expanded` | 5224 | `convergence:540:warmup_supplied` | 2026-09-01 12:32:26 | [log](user_data/convergence_logs/MultiFactorConfluenceStrategy-ladder.log) |
 | `MultiMA_TSL` | `spot_long` | `E1_expanded` | 6 | `convergence:2016:warmup_supplied` | 2026-09-04 04:48:31 | [archive](user_data/profile_smoke/MultiMA_TSL-432f3842-2026-09-04_04-48-31.zip) [log](user_data/convergence_logs/MultiMA_TSL-ladder.log) |
 | `MultiMA_TSL3` | `spot_long` | `E1_expanded` | 15 | `convergence:2016:warmup_supplied` | 2026-08-31 15:13:04 | [archive](user_data/profile_smoke/MultiMA_TSL3-2026-08-31_15-13-04.zip) [log](user_data/convergence_logs/MultiMA_TSL3-ladder.log) |
@@ -2854,6 +2854,12 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MontrealStrategy --strategy-path user_data/profile_bias_strategies/MontrealStrategy --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MontrealStrategy --strategy-path user_data/profile_bias_strategies/MontrealStrategy --timerange 20190101-20190401 --no-color
   ```
+- `MultiActionZone`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy MultiActionZone --strategy-path repos/miwtoo_ft-action-zone/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiActionZone --cache none --pairs {pair}   # 8 pairs, one call each
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/MultiActionZone-179b96b7_gate.json --strategy MultiActionZone --strategy-path user_data/profile_bias_strategies/MultiActionZone-179b96b7 --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MultiActionZone --strategy-path user_data/profile_bias_strategies/MultiActionZone-179b96b7 --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540 2190
+  ```
 - `MultiFactorConfluenceStrategy`
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MultiFactorConfluenceStrategy --strategy-path user_data/profile_bias_strategies/MultiFactorConfluenceStrategy --timerange 20190101-20190401 --no-color
@@ -4459,16 +4465,6 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
-
-## Convergence candidates - 1 strategies
-
-A warm-up exists at which every indicator stays inside the band.
-That is not admission: the paired full-window run must still show
-an identical trade list.
-
-| Strategy | Profile | Chosen warm-up | Worst drift | Tested | Results |
-|---|---|---|---|---|---|
-| `MultiActionZone` | `spot_long` | 540 candles | 0.002% on `resample_1440_slowMA` | 2026-09-05 15:21:02 | `user_data/convergence_logs/MultiActionZone-179b96b7-ladder.log` |
 
 ## Pending - 51 strategies
 

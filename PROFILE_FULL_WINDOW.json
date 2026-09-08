@@ -2115,6 +2115,209 @@
       "trades": 0,
       "why": "all configured pairs completed with zero trades"
     },
+    "MultiActionZone": {
+      "canonical_sha256": "sha256_05288498308646163d89560bf12ece262b72c3ce4dcc2e8cfb6310e269518401",
+      "config_overrides": {
+        "startup_candle_count": 540
+      },
+      "long_trades": 290,
+      "measurement_scope": "full_window_trade_presence",
+      "mode": "spot",
+      "pair_results": {
+        "ADA/USDT": {
+          "archive": "user_data/profile_smoke/MultiActionZone-179b96b7-ADA_USDT-52bd0ad0-2026-09-08_18-07-30.zip",
+          "archive_sha256": "sha256_f1f71e9cc3c5b5d5c32a26751dfe2fb34f98fd4a2f94d05b89ad95e012f02258",
+          "artifact_key": "",
+          "class1_rules": [
+            "legacy_fillna_method_kwarg"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 540
+          },
+          "elapsed_s": 48.5,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/MultiActionZone-179b96b7-override-0aaaa03277e3.json --strategy MultiActionZone --strategy-path repos/miwtoo_ft-action-zone/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiActionZone-179b96b7-ADA_USDT-52bd0ad0 --cache none --pairs ADA/USDT",
+          "long_trades": 30,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_fb4297e84b8b840b3d71ecc4756e42312a45a57e8bef5bafcf1e3f7c35123318",
+          "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 30,
+          "trades_sha256": "sha256_02d0f179dc89159e060d8c77068f2759268a62ca0891df8affe16a6b5cfd4e27"
+        },
+        "BTC/USDT": {
+          "archive": "user_data/profile_smoke/MultiActionZone-179b96b7-BTC_USDT-4d7eaaf1-2026-09-08_18-04-14.zip",
+          "archive_sha256": "sha256_aeebe609e5764c0bacd3966d8e3354282a2673247a3f6fc04a165966ea47bf63",
+          "artifact_key": "",
+          "class1_rules": [
+            "legacy_fillna_method_kwarg"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 540
+          },
+          "elapsed_s": 49.7,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/MultiActionZone-179b96b7-override-0aaaa03277e3.json --strategy MultiActionZone --strategy-path repos/miwtoo_ft-action-zone/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiActionZone-179b96b7-BTC_USDT-4d7eaaf1 --cache none --pairs BTC/USDT",
+          "long_trades": 36,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_fb4297e84b8b840b3d71ecc4756e42312a45a57e8bef5bafcf1e3f7c35123318",
+          "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 36,
+          "trades_sha256": "sha256_271f6a0baf32f7120a383cdf2b8fa54387a662196c30505df8a6e518775399d4"
+        },
+        "DASH/USDT": {
+          "archive": "user_data/profile_smoke/MultiActionZone-179b96b7-DASH_USDT-f7c87511-2026-09-08_18-09-56.zip",
+          "archive_sha256": "sha256_f7b20cbb964ad183736589f42a781cddc1cbffff7c05bc951bdb8c6de0e8104c",
+          "artifact_key": "",
+          "class1_rules": [
+            "legacy_fillna_method_kwarg"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 540
+          },
+          "elapsed_s": 47.9,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/MultiActionZone-179b96b7-override-0aaaa03277e3.json --strategy MultiActionZone --strategy-path repos/miwtoo_ft-action-zone/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiActionZone-179b96b7-DASH_USDT-f7c87511 --cache none --pairs DASH/USDT",
+          "long_trades": 37,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_fb4297e84b8b840b3d71ecc4756e42312a45a57e8bef5bafcf1e3f7c35123318",
+          "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 37,
+          "trades_sha256": "sha256_36ac2511f492124f6e64aaa4870f95ccb9d304d883fc7a65d40c91bc8a185172"
+        },
+        "ETH/USDT": {
+          "archive": "user_data/profile_smoke/MultiActionZone-179b96b7-ETH_USDT-d632ace3-2026-09-08_18-05-06.zip",
+          "archive_sha256": "sha256_2f503cd4636b5f280d9c68ebe281e008d90cd305b482d3c7d260f3dc8bf96f47",
+          "artifact_key": "",
+          "class1_rules": [
+            "legacy_fillna_method_kwarg"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 540
+          },
+          "elapsed_s": 51.6,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/MultiActionZone-179b96b7-override-0aaaa03277e3.json --strategy MultiActionZone --strategy-path repos/miwtoo_ft-action-zone/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiActionZone-179b96b7-ETH_USDT-d632ace3 --cache none --pairs ETH/USDT",
+          "long_trades": 37,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_fb4297e84b8b840b3d71ecc4756e42312a45a57e8bef5bafcf1e3f7c35123318",
+          "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 37,
+          "trades_sha256": "sha256_a42811f3975c7d8d4261873cd306dc959e6b98450f4c39e8026599d95dbfd7df"
+        },
+        "LTC/USDT": {
+          "archive": "user_data/profile_smoke/MultiActionZone-179b96b7-LTC_USDT-9e46e6a4-2026-09-08_18-05-53.zip",
+          "archive_sha256": "sha256_2767d2ebe93f28f1ca6114c188d6e28a0f462e0438977313c1ea33c1a3bdfcf2",
+          "artifact_key": "",
+          "class1_rules": [
+            "legacy_fillna_method_kwarg"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 540
+          },
+          "elapsed_s": 47.4,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/MultiActionZone-179b96b7-override-0aaaa03277e3.json --strategy MultiActionZone --strategy-path repos/miwtoo_ft-action-zone/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiActionZone-179b96b7-LTC_USDT-9e46e6a4 --cache none --pairs LTC/USDT",
+          "long_trades": 46,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_fb4297e84b8b840b3d71ecc4756e42312a45a57e8bef5bafcf1e3f7c35123318",
+          "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 46,
+          "trades_sha256": "sha256_b2061cd2044b5a5c5bd342e08b497ea5db4d36963bb54a137ab02562738b64eb"
+        },
+        "XLM/USDT": {
+          "archive": "user_data/profile_smoke/MultiActionZone-179b96b7-XLM_USDT-f7c8a7b2-2026-09-08_18-08-19.zip",
+          "archive_sha256": "sha256_5d39ada7b24942cba4ad21ed0a6b8b56e60f835cf3316005e7774e8a14113ac2",
+          "artifact_key": "",
+          "class1_rules": [
+            "legacy_fillna_method_kwarg"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 540
+          },
+          "elapsed_s": 48.9,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/MultiActionZone-179b96b7-override-0aaaa03277e3.json --strategy MultiActionZone --strategy-path repos/miwtoo_ft-action-zone/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiActionZone-179b96b7-XLM_USDT-f7c8a7b2 --cache none --pairs XLM/USDT",
+          "long_trades": 38,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_fb4297e84b8b840b3d71ecc4756e42312a45a57e8bef5bafcf1e3f7c35123318",
+          "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 38,
+          "trades_sha256": "sha256_39d7d2a5d00dee91fb222aefed0de5af32ebba1359d16df72af3454a1beaa4cf"
+        },
+        "XMR/USDT": {
+          "archive": "user_data/profile_smoke/MultiActionZone-179b96b7-XMR_USDT-57b143c0-2026-09-08_18-09-08.zip",
+          "archive_sha256": "sha256_39cbc94e338f951f27a1cb63db0684bc2973ca0ee6bb21a4103719e53d41e4d0",
+          "artifact_key": "",
+          "class1_rules": [
+            "legacy_fillna_method_kwarg"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 540
+          },
+          "elapsed_s": 48.6,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/MultiActionZone-179b96b7-override-0aaaa03277e3.json --strategy MultiActionZone --strategy-path repos/miwtoo_ft-action-zone/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiActionZone-179b96b7-XMR_USDT-57b143c0 --cache none --pairs XMR/USDT",
+          "long_trades": 27,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_fb4297e84b8b840b3d71ecc4756e42312a45a57e8bef5bafcf1e3f7c35123318",
+          "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 27,
+          "trades_sha256": "sha256_22084a967503243bb1c1fc1f29e5c70027daf5eb2d0d0dbe318de9b6aecd449e"
+        },
+        "XRP/USDT": {
+          "archive": "user_data/profile_smoke/MultiActionZone-179b96b7-XRP_USDT-8d33c27a-2026-09-08_18-06-42.zip",
+          "archive_sha256": "sha256_71a939441860e01020d5a48b24ff9103d790513721250b6aeca7937d306e07f1",
+          "artifact_key": "",
+          "class1_rules": [
+            "legacy_fillna_method_kwarg"
+          ],
+          "config_overrides": {
+            "startup_candle_count": 540
+          },
+          "elapsed_s": 48.5,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/MultiActionZone-179b96b7-override-0aaaa03277e3.json --strategy MultiActionZone --strategy-path repos/miwtoo_ft-action-zone/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiActionZone-179b96b7-XRP_USDT-8d33c27a --cache none --pairs XRP/USDT",
+          "long_trades": 39,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_fb4297e84b8b840b3d71ecc4756e42312a45a57e8bef5bafcf1e3f7c35123318",
+          "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200401-20260821",
+          "trades": 39,
+          "trades_sha256": "sha256_30168d145464ea1760ed1546256213aa79571a1bd54ffb71617efe7e8a7066c0"
+        }
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200401-20260821",
+      "trades": 290,
+      "why": "at least one pair produced trades over the full window"
+    },
     "MyStrategyTemplate": {
       "canonical_sha256": "sha256_2a53430c587af56ab4faa3ea3c71cc7919ad3df25bd0e69a49b7cfafbe5f2428",
       "long_trades": 0,
@@ -3447,7 +3650,7 @@
       "why": "0/8 pairs completed; no positive pair yet"
     }
   },
-  "runtime_id": "native_unversioned",
+  "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
   "schema_version": 2,
   "timerange": {
     "futures": "20200301-20260821",
