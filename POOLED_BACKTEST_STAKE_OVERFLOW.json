@@ -1,0 +1,11 @@
+{
+  "description": "Strategies confirmed to fail the pooled full-window backtest through unbounded stake-size growth, not a resource limit and not a code defect. `profile_futures_config.json` sets `stake_amount: unlimited`, which divides the *current* wallet balance across the open-trade slots and reinvests it on every new entry. A leveraged strategy that is genuinely profitable for long enough compounds that balance exponentially; over the full 6.5-year pooled window the computed stake for a single position can exceed real market liquidity, and freqtrade raises rather than silently clamping it. This is 100% reproducible - unlike resource_inconclusive/timeout, a retry changes nothing, because nothing about it depends on memory, worker count, or timing. It is also not caught earlier in the check chain: the Probelauf uses the same config but only a one-month window, far too short for compounding to reach this scale, and Recursive-Bias/Look-Ahead-Bias test for information leakage, not capital scaling. A strategy listed here is excluded from regime/full_backtest.py's automatic retry and stays admitted (E1_expanded); it permanently lacks a Stufe-9 pooled-performance figure, the same consequence as the performance and OOM limit files.",
+  "confirmed_at": "2026-09-08",
+  "schema_version": 1,
+  "results": {
+    "FastSupertrend_optim3_rsi_75lev": {
+      "verdict": "stake_overflow_confirmed",
+      "why": "Failed at 37% through the pooled backtest (2026-09-07) with 'Stake amount 12570778.900608359 too high for XMR/USDT:USDT'. The strategy (user_data/profile_repairs/FastSupertrend_optim3_rsi_75lev.py) fixes leverage at 5.0 and sets minimal_roi to {\"0\": 0.99}, letting winners run rather than taking profit early; under stake_amount: unlimited (profile_futures_config.json, dry_run_wallet: 1000) the wallet compounds on every reinvestment. Sustained profitability over roughly 2.4 of the 6.5 backtest years was enough to grow the computed per-position stake past what any real market could absorb. Deterministic given the same starting wallet and window - a retry reproduces the identical failure at the identical point."
+    }
+  }
+}

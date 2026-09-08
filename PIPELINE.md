@@ -184,6 +184,23 @@ Speicherverbrauch der Strategie über 8 Paare und 6,5 Jahre.
 statt endlos erneut zu versuchen. Auch hier: weiterhin zugelassen, nur
 ohne Stufe-9-Kennzahl.
 
+**Dritte Kategorie: unbegrenztes Einsatzwachstum.** `FastSupertrend_optim3_rsi_75lev`
+scheiterte bei 37% des gepoolten Laufs mit `Stake amount 12570778.900608359
+too high for XMR/USDT:USDT`. Ursache: `profile_futures_config.json` setzt
+`stake_amount: unlimited`, die Strategie hält 5×-Hebel fest und lässt
+Gewinne laufen (`minimal_roi = {"0": 0.99}`) — über genug profitable Jahre
+wächst das Wallet exponentiell, bis der errechnete Einsatz jede reale
+Marktliquidität übersteigt. Anders als bei den ersten beiden Kategorien
+ist das zu 100% deterministisch: kein Zusammenhang mit Speicher, Workern
+oder Zeit, ein Retry reproduziert exakt denselben Fehler an derselben
+Stelle. Auch von keiner früheren Stufe erkennbar — der Probelauf nutzt
+dieselbe Config, aber nur ein Monat, viel zu kurz für diese Art
+Verzinsung, und Recursive-/Look-Ahead-Bias prüfen auf Informationslecks,
+nicht auf Kapitalskalierung. `POOLED_BACKTEST_STAKE_OVERFLOW.json` hält
+die Bestätigung fest, derselbe Mechanismus wie oben setzt
+`stake_overflow_confirmed`. Nicht geprüft: ob weitere gehebelte
+Strategien dasselbe Risiko tragen — bewusst offen gelassen.
+
 **Korrektur 2026-09-07: `profile_full_window.py` ist nicht für die ganze
 E1-Kohorte nötig, nur für Zero-Trade-Kandidaten.** Die Zitation oben
 (`REGIME_AUDIT_PLAN.md` §28.1) trägt diese Behauptung nicht — §28.1 handelt

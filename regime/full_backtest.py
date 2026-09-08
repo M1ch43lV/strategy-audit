@@ -21,6 +21,7 @@ OUTPUT = ROOT / "results" / "regime" / "full_backtest_manifest.json"
 STATUS = ROOT / "STRATEGY_STATUS.csv"
 PERFORMANCE_LIMITS = ROOT / "POOLED_BACKTEST_PERFORMANCE_LIMIT.json"
 OOM_LIMITS = ROOT / "POOLED_BACKTEST_OOM_LIMIT.json"
+STAKE_OVERFLOWS = ROOT / "POOLED_BACKTEST_STAKE_OVERFLOW.json"
 # The window lives in exactly one place - `profile_full_window.TIMERANGE` -
 # so this stays a per-mode lookup through that module rather than its own
 # copy of the same two dates. A second constant is how this file spent
@@ -95,6 +96,22 @@ def oom_limits() -> dict:
     return json.loads(OOM_LIMITS.read_text(encoding="utf-8"))["results"]
 
 
+def stake_overflows() -> dict:
+    """Strategies confirmed to fail from unbounded stake growth, not a limit.
+
+    `profile_futures_config.json` sets `stake_amount: unlimited`, so a
+    leveraged strategy that stays profitable long enough compounds its
+    wallet exponentially until a single position's computed stake exceeds
+    real market liquidity and freqtrade raises. Unlike `resource_inconclusive`
+    or `timeout`, this has nothing to do with memory, workers, or wall-clock
+    time - a retry reproduces the identical failure at the identical point
+    every time. `POOLED_BACKTEST_STAKE_OVERFLOW.json` holds the confirmation.
+    """
+    if not STAKE_OVERFLOWS.exists():
+        return {}
+    return json.loads(STAKE_OVERFLOWS.read_text(encoding="utf-8"))["results"]
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--strategy", action="append", default=[])
@@ -125,7 +142,8 @@ def main(argv=None) -> int:
     # (status this strategy is retired under, its confirmation source) - checked
     # in this order so a strategy present in both is reported as its first match.
     retired = [("performance_limited", performance_limits()),
-               ("oom_confirmed", oom_limits())]
+               ("oom_confirmed", oom_limits()),
+               ("stake_overflow_confirmed", stake_overflows())]
     data.update({"schema_version": 1, "timerange": TIMERANGE,
                  "measurement_scope": "canonical_pooled_native_pair_universe"})
 
