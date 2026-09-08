@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1038 rows
 
-**Generated 2026-09-08 17:16:40 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-08 17:33:26 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -23,7 +23,7 @@ check.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 10 of 1038 rows
+file's time and is labelled `log_mtime` for that reason. 9 of 1038 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
@@ -31,9 +31,9 @@ have neither and are left empty rather than given an invented time.
 | | Strategies |
 |---|---:|
 | in the manifest | 1038 |
-| measured at all | 868 |
-| produced trades | 826 |
-| carrying a run time | 1028 |
+| measured at all | 869 |
+| produced trades | 827 |
+| carrying a run time | 1029 |
 
 ## Cohort
 
@@ -41,8 +41,8 @@ have neither and are left empty rather than given an invented time.
 |---|---:|
 | `E1_expanded` | 608 |
 | `excluded` | 251 |
-| `exclusion_unconfirmed` | 52 |
-| `pending` | 46 |
+| `exclusion_unconfirmed` | 53 |
+| `pending` | 45 |
 | `convergence_candidate` | 37 |
 | `too_few_trades` | 25 |
 | `not_a_strategy` | 19 |
@@ -127,7 +127,7 @@ than a pick-one-source figure. 4 of 1038 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 1034 rows that do: **62.8 hours** of this audit's own compute so far.
+Summed across the 1034 rows that do: **63.0 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -4170,7 +4170,7 @@ an identical trade list.
 | `chatgpt` | `spot_long` | 336 candles | 0.0% on `stc` | 2026-09-06 18:23:33 | `user_data/convergence_logs/chatgpt-60965168-ladder.log` |
 | `gpt_reversal` | `spot_long` | 1440 candles | 0.0% on `rsi_15m` | 2026-09-06 18:25:14 | `user_data/convergence_logs/gpt_reversal-15eecf49-ladder.log` |
 
-## Pending - 46 strategies
+## Pending - 45 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
@@ -4180,15 +4180,15 @@ neither a pass nor a fail.
 `BlueEyes_MPP_v1`, `CryptoFrogNFI2`, `DELTA_NEUTRAL`, `DWTHO`
 `DWT_LongShortHO`, `DonchianBounce`, `E0V1EAI`, `ExampleLSTMStrategy`
 `FileLoadingStrategy`, `GRIDDMIPRICEStrategyFutureV4`, `GodStra`, `Guacamole`
-`HLHB`, `Kamaflage`, `MartyEMA`, `MasterMoniGoManiHyperStrategy`
-`MultiMa`, `MyStrategyNew10`, `NowoIchimoku1hV1`, `ONS_Portfolio`
-`Proton`, `QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`
-`RebalanceStrategySpot`, `RenkoYolo`, `SMAOPv1_TTF`, `Schism5`
-`Schism6`, `Solipsis_v4`, `TEMABounce`, `TuplaBollinger`
-`UpSliceStrategy`, `WTHO`, `delist_shorter_strategy`, `haGradient`
-`multi_tf`, `tacos1`
+`HLHB`, `Kamaflage`, `MasterMoniGoManiHyperStrategy`, `MultiMa`
+`MyStrategyNew10`, `NowoIchimoku1hV1`, `ONS_Portfolio`, `Proton`
+`QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`, `RebalanceStrategySpot`
+`RenkoYolo`, `SMAOPv1_TTF`, `Schism5`, `Schism6`
+`Solipsis_v4`, `TEMABounce`, `TuplaBollinger`, `UpSliceStrategy`
+`WTHO`, `delist_shorter_strategy`, `haGradient`, `multi_tf`
+`tacos1`
 
-## Exclusion unconfirmed - 52 strategies
+## Exclusion unconfirmed - 53 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -4200,7 +4200,7 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `unclassified` | `no_finding` | 24 |
+| `unclassified` | `no_finding` | 25 |
 | `no_verdict_on_lookahead` | `no_finding` | 20 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 6 |
 | `recursive_bias_unverified` | `no_finding` | 1 |
@@ -4489,8 +4489,8 @@ Wave `-` - 2:
 |---|---:|
 | `recursive_ladder_pending` | 211 |
 | `convergence_not_converged_within_ladder` | 72 |
-| `lookahead_remeasure_pending` | 50 |
-| `needs_a_look` | 40 |
+| `lookahead_remeasure_pending` | 51 |
+| `needs_a_look` | 39 |
 | `convergence_inconclusive` | 14 |
 | `repair_attempted` | 3 |
 | `to_be_fixed` | 2 |

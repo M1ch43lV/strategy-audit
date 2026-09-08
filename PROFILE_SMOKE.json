@@ -4501,17 +4501,24 @@
       "trades_sha256": "sha256_2e3363c97d40ddc3ccf26508bcb430ffd0494100df140bfaa2e3746efe7488a9"
     },
     "MartyEMA": {
+      "archive": "user_data/profile_smoke/MartyEMA-67e05e61-2026-09-08_17-33-10.zip",
+      "archive_sha256": "sha256_c398fcfdfe598ddd9284a1cf358ebf248f96ddf2c95c73846ca3230881f5bf88",
+      "artifact_key": "",
       "canonical_sha256": "sha256_ca87166657e79296a8701568d82587cb27c4bf46f05e328b4f2ef13a335e61ad",
       "class1_rules": [],
-      "elapsed_s": 300.1,
+      "config_overrides": {},
+      "elapsed_s": 273.9,
       "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy MartyEMA --strategy-path repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MartyEMA-67e05e61 --cache none",
+      "long_trades": 8,
       "mode": "futures",
       "run_profile": "futures_long",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
       "runtime_id": "native_unversioned",
-      "status": "timeout",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "timeout after 300 seconds"
+      "trades": 8,
+      "trades_sha256": "sha256_4286892b624ea1e34a1882bb9531b8d43408978738b4483d2e6b61957a6882ab"
     },
     "MasterMoniGoManiHyperStrategy": {
       "canonical_sha256": "sha256_c2b2fb772c1d8f342b9ad4dfc37e3e2b05e1068bb683c176338bfdab4c398d85",
@@ -6037,7 +6044,7 @@
     "RebalanceStrategySpot": {
       "canonical_sha256": "sha256_91f7d0d61917bd3a1cd5358c72470033f7c1c8bb2de784673805aef9290412f9",
       "class1_rules": [],
-      "elapsed_s": 300.0,
+      "elapsed_s": 900.0,
       "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy RebalanceStrategySpot --strategy-path repos/LazyPigPig_freqtrade-grid/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/RebalanceStrategySpot-4933a88b --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -6045,7 +6052,7 @@
       "runtime_id": "native_unversioned",
       "status": "timeout",
       "timerange": "20200301-20200401",
-      "why": "timeout after 300 seconds"
+      "why": "timeout after 900 seconds"
     },
     "RegimeFilterStrategy": {
       "canonical_sha256": "sha256_11c48354d533ffb7016721014861842ec5220ddcf1bdf66237a96cb9bd5e9a55",
