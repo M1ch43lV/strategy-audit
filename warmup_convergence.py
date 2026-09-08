@@ -735,8 +735,14 @@ def redo_defective(cohort_name):
     return moved
 
 
-def run(cohort_name, limit, timeout):
+def run(cohort_name, limit, timeout, wanted=None):
     rows = cohort(cohort_name)
+    if wanted:
+        # Mirrors profile_bias.py's --only: an explicit strategy list selects
+        # from within the cohort, so a specific wave can be run without the
+        # rest of what "ladder_pending" happens to also contain interleaved
+        # alphabetically with it.
+        rows = [row for row in rows if row["strategy_id"] in wanted]
     data = _load(OUTPUT)
     pending = [row for row in rows if row["strategy_id"] not in data["results"]]
     if limit:
@@ -821,6 +827,8 @@ def main(argv=None):
                                  "recursive_unsettled"))
     parser.add_argument("--limit", type=int, default=1)
     parser.add_argument("--timeout", type=int, default=1800)
+    parser.add_argument("--strategy", action="append", default=[],
+                        help="restrict the cohort to these strategy_ids")
     parser.add_argument("--redo-defective", action="store_true",
                         dest="redo",
                         help="move records a known defect produced aside")
@@ -835,7 +843,7 @@ def main(argv=None):
         for strategy, why in moved:
             print("   %-30s %s" % (strategy, why))
         return 0
-    return run(args.cohort, args.limit, args.timeout)
+    return run(args.cohort, args.limit, args.timeout, set(args.strategy) or None)
 
 
 if __name__ == "__main__":
