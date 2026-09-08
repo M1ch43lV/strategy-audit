@@ -2387,6 +2387,8 @@ def selftest():
     # whether it works under the current runtime. It is read only to attach a
     # historical hint, never to decide a cohort or to clear a row.
     assert len({r["strategy"] for r in _csv(LEDGER)}) == 895
+    assert all(r["strategy_type"] for r in data), \
+        "strategy_type must be explicit: family, unclassified, or not_applicable"
     print("strategy_status selftest: PASS (%d rows, %d ex-E0, %d E1, %d unmeasured, "
           "%d timestamped)"
           % (len(data), len(noted), len(admitted),

@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1050 rows
 
-**Generated 2026-09-08 20:47:35 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-08 21:19:26 by `strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -51,23 +51,23 @@ have neither and are left empty rather than given an invented time.
 
 Both read from the strategy's own source by `strategy_classification.py`,
 not measured - see that module's docstring for the marker table and its
-limits. `timeframe` is blank on 174 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 166 rows where no marker matched at all, so its counts below add up to more than 1050.
+limits. `timeframe` is blank on 88 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 0 rows where no marker matched at all, so its counts below add up to more than 1050.
 
 ### Timeframe
 
 | Timeframe | Strategies |
 |---|---:|
-| `5m` | 508 |
-| `1h` | 141 |
-| `15m` | 85 |
-| `1m` | 52 |
-| `4h` | 40 |
-| `1d` | 23 |
+| `5m` | 533 |
+| `1h` | 156 |
+| `15m` | 93 |
+| `1m` | 74 |
+| `4h` | 47 |
+| `1d` | 31 |
 | `30m` | 9 |
 | `3m` | 8 |
 | `6h` | 3 |
+| `12h` | 2 |
 | `2h` | 2 |
-| `12h` | 1 |
 | `1hr` | 1 |
 | `15` | 1 |
 | `5h` | 1 |
@@ -77,15 +77,26 @@ limits. `timeframe` is blank on 174 rows the source does not state it for. `stra
 
 | Type | Strategies |
 |---|---:|
-| `scalping` | 568 |
-| `mean_reversion` | 462 |
-| `momentum` | 451 |
-| `trend_following` | 245 |
-| `volatility_breakout` | 196 |
-| `volume_based` | 127 |
-| `grid_dca` | 97 |
-| `ml_ai` | 46 |
-| `stat_arb` | 9 |
+| `scalping` | 615 |
+| `momentum` | 531 |
+| `mean_reversion` | 522 |
+| `trend_following` | 289 |
+| `volatility_breakout` | 225 |
+| `volume_based` | 130 |
+| `grid_dca` | 121 |
+| `ml_ai` | 64 |
+| `not_applicable` | 19 |
+| `stat_arb` | 10 |
+| `ensemble` | 4 |
+| `cycle_based` | 4 |
+| `portfolio_rotation` | 3 |
+| `multi_indicator` | 3 |
+| `pattern_based` | 3 |
+| `time_based` | 2 |
+| `external_signal` | 1 |
+| `always_in_market` | 1 |
+| `no_entry_signal` | 1 |
+| `arbitrage` | 1 |
 
 ## Assumed market phase
 
@@ -104,14 +115,14 @@ preregistration OPEN item 6; the amendment records it.
 
 | Phase | Market-side rule | Strategies predicted |
 |---|---|---:|
-| `bear_trend` | `coin_adx >= 25 and coin_minus_di > coin_plus_di` | 34 |
-| `bull_trend` | `coin_adx >= 25 and coin_plus_di > coin_minus_di` | 549 |
-| `high_vol_shock` | `coin_realized_vol_30d >= 1.291, whatever the DMI state` | 42 |
-| `range_choppy` | `coin_adx < 20 and coin_realized_vol_30d >= 0.623` | 271 |
-| `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 255 |
-| `transition` | `20 <= coin_adx < 25` | 23 |
+| `bear_trend` | `coin_adx >= 25 and coin_minus_di > coin_plus_di` | 58 |
+| `bull_trend` | `coin_adx >= 25 and coin_plus_di > coin_minus_di` | 635 |
+| `high_vol_shock` | `coin_realized_vol_30d >= 1.291, whatever the DMI state` | 71 |
+| `range_choppy` | `coin_adx < 20 and coin_realized_vol_30d >= 0.623` | 357 |
+| `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 318 |
+| `transition` | `20 <= coin_adx < 25` | 52 |
 
-A row may carry more than one phase, and 234 carry none: 47 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 187 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
+A row may carry more than one phase, and 122 carry none: 70 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 52 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
 
 `bear_trend` is rare by construction: 942 of 1050 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
 

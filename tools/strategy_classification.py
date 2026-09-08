@@ -15,9 +15,8 @@ where it has an answer: that store already recovered a timeframe from
 something other than the plain attribute (the author's own config, in
 one case) for rows the plain read cannot answer, and repeating a weaker
 read here would only disagree with a stronger one already on file.
-Left blank rather than guessed for the 43 rows - mostly FreqAI templates,
-test fixtures and ensemble wrappers - where the class block declares
-neither name.
+If no timeframe is declared or recovered it remains blank; unlike a trading
+approach, an invented candle size would change the strategy.
 
 STRATEGY_TYPE. There is no measurement behind this label, only which named
 indicators appear in the strategy's own class block. It describes the
@@ -35,12 +34,22 @@ libraries mark `ml_ai` and suppress every other label: an EMA computed as
 a model feature is not evidence the strategy is momentum-based.
 `scalping` is not an indicator family at all - it is timeframe alone
 (1m/3m/5m) - and is added on top of whatever else applies, never in place
-of it. Blank where no marker matches at all (63 rows).
+of it. Rare but mechanically identifiable approaches such as ensembles,
+patterns, cycles, calendar rules, portfolio rotation and always-invested rules
+have their own labels instead of being forced into an indicator family. A real
+strategy for which no marker matches is labelled `unclassified`; test/template
+artifacts are labelled `not_applicable`. A blank therefore means a generator
+defect, not an implicit classification.
 
-Changing the marker table changes the label on however many of the 900
+Changing the marker table changes the label on however many corpus
 rows it touches, which is the point of keeping it in one place instead of
 scattered regexes: anyone auditing a strategy's label reads the same five
 tables this module runs on.
+
+The population comes from `EXECUTION_PROFILES.csv`, not the generated status
+table. That breaks the former circular dependency in which a new strategy had
+to appear in `STRATEGY_STATUS.csv` before it could be classified for that same
+CSV.
 """
 from __future__ import annotations
 
@@ -53,7 +62,7 @@ import re
 
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STATUS = os.path.join(ROOT, "STRATEGY_STATUS.csv")
+PROFILES = os.path.join(ROOT, "EXECUTION_PROFILES.csv")
 TIMEFRAME_REPAIR = os.path.join(ROOT, "ELIGIBILITY_TIMEFRAME_REPAIR.json")
 OUTPUT = os.path.join(ROOT, "STRATEGY_CLASSIFICATION.json")
 
@@ -80,6 +89,30 @@ TIER1 = {
     "volume_based": (r"\bobv\b", r"\bvwap\b", r"\bvwma\b",
                      r"chaikin|accum\w*.{0,10}dist"),
 }
+# Source-level approaches used only when neither indicator tier finds a family.
+# Keeping these as a fallback avoids adding a label merely because an unrelated
+# helper or comment mentions a pattern, cycle, model, or strategy collection.
+FALLBACK = {
+    "mean_reversion": (r"argrelextrema", r"fischer_norm",
+                       r"30d-(?:low|high)", r"seq_(?:buy|sell)"),
+    "momentum": (r"\brocr\b", r"\bmomentum\b"),
+    "trend_following": (r"oma_series|jfghla", r"ha_trend"),
+    "pattern_based": (r"generate_signals", r"pattern_type", r"\bcdl\w+",
+                      r"head.?shoulder"),
+    "cycle_based": (r"hilbert", r"\bhurst\b", r"perform_fft",
+                    r"cycle_period|\bsine\b"),
+    "ensemble": (r"strat_(?:buy|sell)_signal", r"(?:buy|sell)_strategies",
+                 r"strat_combinations"),
+    "multi_indicator": (r"condition_generator", r"apply_indicator"),
+    "portfolio_rotation": (r"\brebalance\b", r"momentum_map", r"_hold_flag"),
+    "arbitrage": (r"logical.?arb", r"logic_rel_id"),
+    "time_based": (r"\.dt\.hour", r"moon_phase"),
+    "always_in_market": (
+        r"dataframe\[['\"](?:buy|enter_long)['\"]\]\s*=\s*1",),
+    "external_signal": (r"check_(?:buy|sell)\(\)",),
+    "no_entry_signal": (
+        r"dataframe\.loc\[\s*\(?\s*False\s*\)?\s*,\s*['\"]buy['\"]",),
+}
 # Common enough to appear regardless of design; read only when no TIER1
 # marker is present.
 TIER2 = {
@@ -92,7 +125,10 @@ TIER2 = {
 # usually implies.
 ML_MARKERS = (r"freqai", r"tensorflow|keras", r"\bsklearn\b", r"\btorch\b",
              r"lightgbm|catboost|xgboost", r"\btslearn\b", r"\bpmdarima\b",
-             r"\bprophet\b|statsmodels")
+             r"\bprophet\b|statsmodels", r"hmmlearn|gaussianhmm",
+             r"\bmlp\b", r"learner\.predict", r"get_model\(\)\.predict")
+
+NON_STRATEGY_ROLES = frozenset(["test_candidate", "template_candidate"])
 
 
 def _compile_table(table):
@@ -102,6 +138,7 @@ def _compile_table(table):
 
 _TIER1 = _compile_table(TIER1)
 _TIER2 = _compile_table(TIER2)
+_FALLBACK = _compile_table(FALLBACK)
 _ML = [re.compile(p, re.I) for p in ML_MARKERS]
 
 
@@ -161,6 +198,9 @@ def strategy_type_of(whole_file, block, timeframe):
         if not types:
             types = {name for name, rxs in _TIER2.items()
                     if any(rx.search(block) for rx in rxs)}
+        if not types:
+            types = {name for name, rxs in _FALLBACK.items()
+                    if any(rx.search(block) for rx in rxs)}
     if timeframe in SCALP_TIMEFRAMES:
         types.add("scalping")
     return types
@@ -169,20 +209,29 @@ def strategy_type_of(whole_file, block, timeframe):
 def build():
     repair = _json_results(TIMEFRAME_REPAIR)
     results = {}
-    for row in _csv(STATUS):
+    for row in _csv(PROFILES):
         strategy = row["strategy_id"]
-        source_file = row["source_file"]
+        source_file = row["canonical_file"]
+        if row.get("artifact_role") in NON_STRATEGY_ROLES:
+            results[strategy] = {
+                "timeframe": "",
+                "timeframe_evidence": "",
+                "strategy_type": "not_applicable",
+            }
+            continue
         path = os.path.join(ROOT, source_file.replace("/", os.sep)) \
             if source_file else ""
         if not path or not os.path.exists(path):
             results[strategy] = {"timeframe": "", "timeframe_evidence": "",
-                                 "strategy_type": ""}
+                                 "strategy_type": "unclassified"}
             continue
         with io.open(path, encoding="utf-8", errors="ignore") as handle:
             text = handle.read()
         block = class_block(text, strategy)
         timeframe, evidence = timeframe_of(block, repair.get(strategy))
         types = strategy_type_of(text, block, timeframe)
+        if not types:
+            types = {"unclassified"}
         results[strategy] = {
             "timeframe": timeframe,
             "timeframe_evidence": evidence,
@@ -193,11 +242,11 @@ def build():
 
 def selftest():
     results = build()
-    assert len(results) == len(_csv(STATUS)), (len(results), len(_csv(STATUS)))
+    assert len(results) == len(_csv(PROFILES)), (len(results), len(_csv(PROFILES)))
     have_tf = sum(1 for v in results.values() if v["timeframe"])
     have_type = sum(1 for v in results.values() if v["strategy_type"])
     assert have_tf >= 850, have_tf
-    assert have_type >= 800, have_type
+    assert have_type == len(results), (have_type, len(results))
     # A plain author-declared case, read the ordinary way.
     assert results["ARIMASTR"]["timeframe"] == "5m", results["ARIMASTR"]
     # A recovered case must come from the repair store, not a fresh guess.
@@ -207,6 +256,11 @@ def selftest():
     # model feature.
     catboost = results.get("TrainCatBoostStrategy", {})
     assert catboost.get("strategy_type") == "ml_ai", catboost
+    assert results["HMMv3"]["strategy_type"] == "ml_ai", results["HMMv3"]
+    assert results["HourBasedStrategy"]["strategy_type"] == "time_based", \
+        results["HourBasedStrategy"]
+    assert results["Strategy"]["strategy_type"] == "not_applicable", \
+        results["Strategy"]
     # scalping is additive, not a replacement for the indicator-based label.
     five_minute_mean_reversion = next(
         (sid for sid, rec in results.items()
@@ -222,6 +276,7 @@ def selftest():
 
 def main(argv=None):
     parser = argparse.ArgumentParser()
+    parser.add_argument("--check", action="store_true")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:
@@ -237,9 +292,19 @@ def main(argv=None):
             "are regenerated from source and never hand-edited."),
         "results": results,
     }
-    with io.open(OUTPUT, "w", encoding="utf-8", newline="\n") as handle:
-        json.dump(data, handle, ensure_ascii=False, indent=2, sort_keys=True)
-        handle.write("\n")
+    rendered = (json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True)
+                + "\n").encode("utf-8")
+    if args.check:
+        current = io.open(OUTPUT, "rb").read() if os.path.exists(OUTPUT) else b""
+        if current != rendered:
+            print("stale: %s" % os.path.relpath(OUTPUT, ROOT))
+            return 1
+        print("strategy classification: current")
+        return 0
+    tmp = OUTPUT + ".tmp"
+    with io.open(tmp, "wb") as handle:
+        handle.write(rendered)
+    os.replace(tmp, OUTPUT)
     have_tf = sum(1 for v in results.values() if v["timeframe"])
     have_type = sum(1 for v in results.values() if v["strategy_type"])
     print("strategy_classification: %d rows, %d with a timeframe, %d with a type"

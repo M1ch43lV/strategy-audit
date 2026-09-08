@@ -421,7 +421,7 @@ schon vorher benutzte.
 | `tools/probe_double_advise.py` | Prüft, ob der doppelte `ft_advise_signals`-Aufruf in `lookahead-analysis` eine Spalte dupliziert | bei Verdacht, der `enter_tag`-Shim verfälsche das Ergebnis |
 | `tools/probe_shim_neutral.py` | Vergleicht Backtest-Ergebnisse mit/ohne `enter_tag`-Shim auf Neutralität | nach einer Änderung am Shim-Mechanismus |
 | `tools/probe_zero.py` | Unterscheidet bei einer Zeile ohne Trades, ob die Entry-Bedingung nie wahr wird oder der Indikator fehlt | wenn eine Zeile 0 Trades zeigt und die Ursache unklar ist |
-| `tools/strategy_classification.py` | Klassifiziert Typ/Timeframe je Zeile aus dem Strategie-Quellcode; schreibt `STRATEGY_CLASSIFICATION.json`, das Stufe 5 und Stufe 10 lesen | nach neuem Harvest oder wenn sich `EXECUTION_PROFILES.csv` ändert |
+| `tools/strategy_classification.py` | Klassifiziert Typ/Timeframe je Zeile aus `EXECUTION_PROFILES.csv` und dem Strategie-Quellcode; schreibt `STRATEGY_CLASSIFICATION.json`, das Stufe 5 und Stufe 10 lesen. `strategy_type` ist immer explizit: erkannte Familie, `unclassified` oder für Test-/Template-Artefakte `not_applicable`. Reihenfolge: Klassifikation vor Phasenhypothese, Status und HTML-Seite. | nach neuem Harvest, wenn sich `EXECUTION_PROFILES.csv` ändert oder Klassifikationsregeln geändert wurden |
 | `tools/strategy_status_page.py` | Baut die veröffentlichte Seite aus `STRATEGY_STATUS.csv`, damit Seite und Tabelle nie auseinanderlaufen | nach jedem `strategy_status.py`-Lauf, vor Veröffentlichung |
 | `tools/warmup_reparse.py` | Liest gespeicherte Leiter-Logs mit dem aktuellen Parser erneut, ohne freqtrade neu laufen zu lassen | nach einer Korrektur am Drift-Tabellen-Parser |
 

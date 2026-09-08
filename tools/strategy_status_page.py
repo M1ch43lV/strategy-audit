@@ -6,8 +6,8 @@ not: the page was assembled by hand from whatever the table happened to hold
 that afternoon, so a correction to the table did not reach it. This puts one
 command between them.
 
-Field names are shortened on the way in. The page carries 900 rows and every
-byte of key text is paid for 900 times; the mapping is right here, so nothing
+Field names are shortened on the way in. The page carries the full corpus and
+every byte of key text is repeated per row; the mapping is right here, so nothing
 is lost by it.
 """
 from __future__ import annotations
@@ -74,7 +74,7 @@ def rows():
     with io.open(TABLE, newline="", encoding="utf-8-sig") as handle:
         for row in csv.DictReader(handle):
             # An empty value is dropped rather than shipped as "": the page
-            # tests for presence everywhere, and 900 rows of empty strings is
+            # tests for presence everywhere, and a corpus of empty strings is
             # a quarter of the payload.
             yield {key: row[column] for key, column in FIELDS.items()
                    if row.get(column)}
@@ -109,6 +109,11 @@ def selftest():
     # page will quietly show a blank cell for a value nobody notices is gone.
     for key in ("l", "r", "n", "c"):
         assert FIELDS[key] in columns
+    with io.open(TABLE, newline="", encoding="utf-8-sig") as handle:
+        data = list(csv.DictReader(handle))
+    missing_type = [row["strategy_id"] for row in data
+                    if not row.get("strategy_type")]
+    assert not missing_type, "blank strategy_type rows: %s" % ", ".join(missing_type)
     print("strategy_status_page selftest: PASS (%d fields)" % len(FIELDS))
 
 
