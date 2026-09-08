@@ -48,7 +48,7 @@ PIPELINE = [
     "corpus.py",         # corpus sweep by fractions
     "ledger.py",         # registry: one line per strategy, decision epochs
     "ledger_block.py",   # single build of the number block
-    "dca.py",            # entry averaging: detection, groups, paired A/B
+    "old/predecessor_audit/dca.py",  # archived entry-averaging study
     "multiplicity.py",   # multiplicity correction
     "traps.py",          # community backtest pitfalls
     "dof.py",            # degrees of freedom
@@ -63,9 +63,9 @@ PIPELINE = [
     "fetch_bulk.py",     # candles from monthly archives
     "setup_ft.py",       # freqtrade working folder
     "tfscan.py",         # which timeframes are declared
-    "depth.py",          # depth-conditioned forward-return diagnostic
+    "old/predecessor_audit/depth.py",  # archived depth diagnostic
     "loadcheck.py",      # first-gate import/load failure attribution
-    "resolvable.py",     # barrier-race sample-size diagnostic
+    "old/predecessor_audit/resolvable.py",  # archived barrier diagnostic
     "execution_profiles.py",  # canonical implementation and run-profile manifest
     "regime_coverage.py",  # exact native-profile candle coverage inventory
     "regime_eligibility.py",  # technical Stage 6 inclusion/exclusion matrix

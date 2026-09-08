@@ -60,9 +60,10 @@ jobs:
         run: |
           python - <<'PY'
           import os, sys
-          cards = {f[:-3] for f in os.listdir("results")
+          root = "old/predecessor_audit/results"
+          cards = {f[:-3] for f in os.listdir(root)
                    if f.endswith(".md") and f != "INDEX.md"}
-          idx = open("results/INDEX.md", encoding="utf-8").read()
+          idx = open(root + "/INDEX.md", encoding="utf-8").read()
           missing = [c for c in sorted(cards) if "(%s.md)" % c not in idx]
           print("cards: %d, missing from index: %d" % (len(cards), len(missing)))
           for m in missing:

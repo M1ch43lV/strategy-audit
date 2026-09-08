@@ -380,7 +380,7 @@ run here. `NostalgiaForInfinity772martinsk3` is among them.
 Their ledger rows are not wrong. They describe a different thing than their
 author built, and until now nothing said so. The column
 `suppressed_by_our_config` in [DCA.csv](DCA.csv) marks all nine, and
-[DCA.md](DCA.md) explains it.
+[the archived DCA study](old/predecessor_audit/DCA.md) explains it.
 
 **Found while answering a question, not by the machinery.** Someone asked in
 the Discord for DCA results; checking whether this corpus could answer it at

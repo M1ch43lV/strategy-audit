@@ -4,8 +4,8 @@
 written wholesale by a generator and will silently overwrite a hand edit:
 `ELIGIBILITY_EXPANSION`, `ELIGIBILITY_EXPANSION_ADJUDICATION`, `LEDGER`,
 `REGIME_COVERAGE`, `REGIME_DATA_REPORT`, `REGIME_ELIGIBILITY`. Four more carry
-generator-managed blocks between `BEGIN`/`END` comments: `DCA`, `DEPTH`,
-`README`, `RESOLVABLE`.
+generator-managed blocks between `BEGIN`/`END` comments in archived predecessor
+material: `old/predecessor_audit/DCA.md`, `DEPTH.md`, and `RESOLVABLE.md`.
 
 **`REGIME_PREREGISTRATION.md` and `ELIGIBILITY_EXPANSION_PLAN.md` are edited by
 hand.** An earlier version of this file listed them as generated, which was
@@ -148,12 +148,12 @@ advanced the artifacts after the last handoff update.
 
 Skipping these is the point of this file.
 
-- `ANALYSIS.md`, `ANALYSIS.ru.md`, `results/*.md` - the five hand-picked case
+- `old/predecessor_audit/ANALYSIS.md`, `ANALYSIS.ru.md`, and `results/*.md` - the five hand-picked case
   studies of the predecessor work. A case study, not a population.
 - `README.md`, `CORPUS.md`, `CORPUS_PLAN.md`, `corpus/INDEX.md` - provenance and
   publication front matter for the 900-strategy sweep. `corpus/` also holds 896
   per-strategy cards; open one only when that strategy is in question.
-- `DCA.md`, `DEPTH.md`, `RESOLVABLE.md` - self-contained side investigations
+- `old/predecessor_audit/DCA.md`, `DEPTH.md`, and `RESOLVABLE.md` - self-contained side investigations
   with no regime content.
 - `repair/REGISTER.md`, `repair/FREQAI_RESULTS.md`,
   `repair/TRANSLATION_AUDIT.md` - repair provenance; needed only when a repaired

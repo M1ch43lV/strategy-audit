@@ -46,8 +46,9 @@ except Exception:
     pass
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.environ.get("AUDIT_ROOT") or os.path.dirname(HERE)
-LEDGER = os.path.join(HERE, "LEDGER.csv")
+ROOT = os.environ.get("AUDIT_ROOT") or os.path.dirname(os.path.dirname(HERE))
+LEDGER = os.path.join(ROOT, "LEDGER.csv")
+RESULTS = os.path.join(HERE, "results")
 AB = os.path.join(HERE, "dca_ab_2024.json")
 BEGIN = u"<!-- DCA:BEGIN -->"
 END = u"<!-- DCA:END -->"
@@ -149,7 +150,7 @@ def sign_test(pos, n):
 
 
 def card(name):
-    p = os.path.join(ROOT, "results", name + ".json")
+    p = os.path.join(RESULTS, name + ".json")
     if not os.path.exists(p):
         return None
     try:

@@ -3,13 +3,13 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-08T21:25:54+02:00
-- Stopped because: strategy types are complete and generator-owned in `a7259ad`;
-  the requested classification repair and AST-only Graphify update are complete
-- Next agent should: continue Model 0 coverage from the resumable manifest only
-  after repeating the process/lock checks; 51 current E1 rows have no manifest
-  record. Do not start Model 1/2/3 or create a candidate spec before the
-  remaining preregistration choices are frozen
+- Last update: 2026-09-08T21:38:30+02:00
+- Stopped because: repository-layout cleanup phase 1 is at a clean checkpoint;
+  predecessor side studies and selected case studies are archived together
+- Next agent should: continue the dependency-checked root cleanup. Design at
+  most two additional active-family directories (eligibility/profile evidence
+  and runtime/operations), move writers with their stores, update every path,
+  and validate each family before proceeding. Do not disturb live Model 0 data.
 
 ## Objective
 
@@ -115,6 +115,14 @@ downstream status output. All 1,050 rows have an explicit generated Type: no
 blank and no current `unclassified`; 19 test/template artifacts are
 `not_applicable`. `CORPUS.md` prose was not broadcast from repo to strategy.
 
+Repository cleanup phase 1 archives the predecessor `ANALYSIS`, DCA, depth,
+resolvability, old signal/log, and selected-case-study families under
+`old/predecessor_audit/`. Graphify confirmed no call/import path from the
+current status or regime engine to DCA/depth/resolvability. The exploratory
+trailing-sensitivity family was deliberately kept active in root because
+Graphify showed its current profile/full-backtest dependencies. Root README is
+now about the market-regime benchmark and contains the directory tree.
+
 - `regime/regime_engine.py` produces causal, one-day-lagged four-state data.
 - `regime/attribution.py` already attributes Model 0 trades to both four states
   and six reporting phases. It now also retains source strategy and model
@@ -175,17 +183,24 @@ A local fail-open `.git/hooks/post-commit` now runs that exact command when
 Graphify and `graphify-out/graph.json` are present. It does not run semantic
 extraction and a Graphify failure cannot invalidate the commit.
 
+Cleanup phase 1 validation: Graphify dependency queries, archived DCA read run,
+archived scripts `py_compile`, status check, classification check, archived
+case-study index check, and `git diff --check`. The old DCA read reproduces its
+895-row historical report; it does not affect the current 1,050-row status.
+
 ## Next concrete steps
 
-1. Repeat machine, lock, artifact and Git checks; never start a second writer.
-2. Complete the 51 missing Model 0 E1 rows resumably and adjudicate
+1. Finish repository-layout cleanup in small committed families. Keep the root
+   user-facing files listed in README. Do not create many narrow directories.
+2. Repeat machine, lock, artifact and Git checks; never start a second writer.
+3. Complete the 51 missing Model 0 E1 rows resumably and adjudicate
    resource-inconclusive failures
    under the existing attempt rules. Do not run a second Model 0 writer.
-3. Resolve the eight OPEN preregistration choices before producing a discovery
+4. Resolve the eight OPEN preregistration choices before producing a discovery
    candidate spec or any ranked output. At minimum the owner must decide the
    discovery/validation split, minimum trade/episode evidence, and the
    exposure-matched benchmark construction.
-4. Once those choices are frozen, write and hash one explicit candidate spec,
+5. Once those choices are frozen, write and hash one explicit candidate spec,
    run the 5-10 strategy pilot, then Model 1, Model 2, Model 3, gated
    attribution, and the non-ranked comparison in the order in `PIPELINE.md`.
 

@@ -56,6 +56,7 @@ data/
 # Raw per-strategy harness output. The versioned evidence is rendered into the
 # corpus cards / ledger; keep the five tracked Markdown case studies visible.
 /results/*.json
+/old/predecessor_audit/results/*.json
 
 # Secrets — never commit. This list is convenience, not a control:
 # the control is tools/secret_gate.py, wired as a pre-commit hook.
