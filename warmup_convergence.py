@@ -39,7 +39,7 @@ import eligibility_warmup
 import profile_bias
 import profile_smoke
 import runlog
-from repair_overrides import repair_overrides
+from repair_overrides import repair_overrides, sibling_config_timeframe
 
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -511,44 +511,6 @@ def run_ladder(row, timeout, startups, overrides=None):
             output.encode("utf-8")).hexdigest(),
     }
     return output, meta
-
-
-_CONFIG_TIMEFRAME = re.compile(r"^timeframe\s*=\s*['\"]([0-9]+[mhdwM])['\"]", re.M)
-
-
-def sibling_config_timeframe(canonical_file):
-    """The timeframe from a same-directory `Config*.py`, if the strategy
-    reads it from a sibling config module instead of declaring its own.
-
-    2026-09-08, wave-2 futures/short harvest: 18 rows in
-    `hamidreza07_freqai-strategy` read the value this way rather than
-    stating it, which is why `execution_profiles.py`'s static source scan -
-    looking for a literal `timeframe = ...` in the strategy file itself -
-    finds nothing and `EXECUTION_PROFILES.csv` records `timeframe_source:
-    unresolved`. All 18 still ran a real Probelauf, so the value was never
-    actually missing, only indirected through the author's own sibling
-    file. This reads the same file the strategy imports at runtime; it is
-    not a different or invented value.
-
-    Glob rather than a fixed `Config.py`: `SqueezeOff` imports
-    `Config_SqueezeOff`, not `Config` - the same repository names its
-    per-strategy config module after the strategy in some folders and
-    plainly `Config` in others. Scoped to this one directory only, so the
-    risk of picking up an unrelated file is the same as it would be for a
-    literal `Config.py` check.
-    """
-    directory = os.path.dirname(os.path.join(ROOT, canonical_file.replace("/", os.sep)))
-    if not os.path.isdir(directory):
-        return None
-    candidates = sorted(name for name in os.listdir(directory)
-                        if name.startswith("Config") and name.endswith(".py"))
-    for name in candidates:
-        text = io.open(os.path.join(directory, name),
-                       encoding="utf-8", errors="replace").read()
-        match = _CONFIG_TIMEFRAME.search(text)
-        if match:
-            return match.group(1)
-    return None
 
 
 def resolve(row, timeout, overrides=None):

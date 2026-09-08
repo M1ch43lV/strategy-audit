@@ -20,6 +20,8 @@ import io
 import json
 import os
 import sys
+
+from repair_overrides import sibling_config_timeframe
 import warnings
 
 
@@ -420,9 +422,23 @@ def build(repair_root=DEFAULT_REPAIR):
         timeframe, declared_timeframe_source = declared_timeframe(node)
         environment = profile_class1.get(strategy) or {}
         config_timeframe = _config_timeframe(environment)
-        execution_timeframe = normalize_timeframe(timeframe or config_timeframe)
+        # A third source, tried last: some strategies read timeframe from a
+        # same-directory Config*.py the source scan above never opens (it
+        # only reads the strategy file itself). warmup_convergence.py found
+        # this the hard way when its own candle math had nothing to resolve
+        # against despite the row already running a real Probelauf - see
+        # sibling_config_timeframe()'s docstring. Shared function, so this
+        # and the ladder can never end up with two different answers for the
+        # same file.
+        config_sibling_timeframe = (
+            None if (timeframe or config_timeframe)
+            else sibling_config_timeframe(_rel(original_path)))
+        execution_timeframe = normalize_timeframe(
+            timeframe or config_timeframe or config_sibling_timeframe)
         timeframe_source = (declared_timeframe_source if timeframe else
-                            "author_config" if config_timeframe else "unresolved")
+                            "author_config" if config_timeframe else
+                            "author_sibling_config" if config_sibling_timeframe else
+                            "unresolved")
         long_entry, short_entry, methods, _writes = entry_writes(node)
         profile = _profile(original_path, node, can_short, long_entry, short_entry, methods)
         rel_lower = _rel(original_path).lower()
