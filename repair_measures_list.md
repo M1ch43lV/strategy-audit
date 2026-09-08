@@ -10,8 +10,8 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 |---|---:|---|
 | `repaired` | 143 | runs now, and the run is recorded |
 | `repair_attempted` | 22 | a route was applied and did not finish the job |
-| `to_be_fixed` | 16 | the route is known, the run has not happened yet |
-| `needs_a_look` | 82 | no route yet; the obstacle has been identified |
+| `to_be_fixed` | 20 | the route is known, the run has not happened yet |
+| `needs_a_look` | 73 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 6 | the repair made things worse and was undone |
 | `refuse_repair` | 41 | repairing it would mean inventing the strategy |
 | `-` | 18 |  |
@@ -98,7 +98,7 @@ For example: `ARIMASTR`, `Apollo11`, `BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB
 
 ### The author's own module put back on the path
 
-`repair_family: local_module_off_path` &mdash; 45 strategies (repaired 2, repair_attempted 16, to_be_fixed 1, needs_a_look 2, repair_withdrawn 6, - 18)
+`repair_family: local_module_off_path` &mdash; 49 strategies (repaired 2, repair_attempted 16, to_be_fixed 5, needs_a_look 2, repair_withdrawn 6, - 18)
 
 **The message.**
 
@@ -114,7 +114,7 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `repair_local_modules.py`.
 
-For example: `AdvancedRiskFilterStrategy`, `Anomaly`, `BBBHold`, `BB_RPB_3c`, `BaseStrategy`, `BinanceStream`.
+For example: `AdvancedRiskFilterStrategy`, `Anomaly`, `BBBHold`, `BBKCBounce`, `BB_RPB_3c`, `BTCMACDCross`.
 
 ### FreqAI strategies given the author's own configuration
 
@@ -195,7 +195,7 @@ For example: `WTAI`, `WTRSIAI`.
 
 **Where it stops.** This is the one shape of zero trades that is our fault rather than the strategy's, which is why criterion C3 requires it to be ruled out first. Recorded in `ZERO_TRADE_TRIAGE.json` with the reason, so the row reads `open` and `to be fixed` rather than `excluded`.
 
-Tool: `probe_zero.py, ZERO_TRADE_TRIAGE.json`.
+Tool: `tools/probe_zero.py, ZERO_TRADE_TRIAGE.json`.
 
 For example: `FundingCarry`, `Insomnia_short`.
 
@@ -215,7 +215,7 @@ For example: `FundingCarry`, `Insomnia_short`.
 
 **Where it stops.** Worth watching for beyond this one row: any strategy whose position sizing reads the portfolio rather than the pair will do the same thing, and it looks exactly like a strategy that never trades.
 
-Tool: `probe_zero.py, ZERO_TRADE_TRIAGE.json`.
+Tool: `tools/probe_zero.py, ZERO_TRADE_TRIAGE.json`.
 
 For example: `BasketStrategy`.
 
@@ -382,7 +382,7 @@ For example: `CME`, `Cenderawasih_freqai`, `CopyLitmusMinMaxBroadClassificationS
 
 ### Open: the class will not import
 
-`repair_family: class_not_loaded` &mdash; 5 strategies (needs_a_look 5)
+`repair_family: class_not_loaded` &mdash; 1 strategies (needs_a_look 1)
 
 **The message.**
 
@@ -398,11 +398,11 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `blocked_triage.py`.
 
-For example: `BBKCBounce`, `BTCMACDCross`, `DonchianBounce`, `TEMABounce`, `delist_shorter_strategy`.
+For example: `delist_shorter_strategy`.
 
 ### Open: one of a kind
 
-`repair_family: individual` &mdash; 37 strategies (needs_a_look 37)
+`repair_family: individual` &mdash; 32 strategies (needs_a_look 32)
 
 **The message.**
 
@@ -484,7 +484,7 @@ The other half of the answer. Each of these had already put strategies in the wr
 
 **What it was.** The parser took the drift at 199 candles instead of at the strategy's declared warm-up. The analyzer prints one column per startup value and labels the strategy's own; the position moves with the value.
 
-**The correction.** Locate the column by its label. `warmup_reparse.py --store bias` re-reads the logs already on disk.
+**The correction.** Locate the column by its label. `tools/warmup_reparse.py --store bias` re-reads the logs already on disk.
 
 **What it had cost.** 47 of 302 logs flipped, every one from excluded to clean. 55 of 124 bias records disagreed with their own logs.
 
