@@ -73,6 +73,11 @@ def build(destination):
     page = template.replace("__DATA__", json.dumps(data, ensure_ascii=False,
                                                    separators=(",", ":")))
     page = page.replace("__GEN__", generated[:16])
+    # The row count used to be typed into the template by hand ("900") and
+    # never got touched again after that - three build()s later the page
+    # still said 900 while the table underneath had moved to 1038. Same
+    # placeholder mechanism as __DATA__/__GEN__ so it can't happen again.
+    page = page.replace("__TOTAL__", str(len(data["rows"])))
     with io.open(destination, "w", encoding="utf-8", newline="\n") as handle:
         handle.write(page)
     return len(data["rows"]), os.path.getsize(destination)
@@ -80,7 +85,7 @@ def build(destination):
 
 def selftest():
     template = io.open(TEMPLATE, encoding="utf-8").read()
-    assert "__DATA__" in template and "__GEN__" in template
+    assert "__DATA__" in template and "__GEN__" in template and "__TOTAL__" in template
     with io.open(TABLE, newline="", encoding="utf-8-sig") as handle:
         columns = set(next(csv.reader(handle)))
     missing = sorted(set(FIELDS.values()) - columns)
