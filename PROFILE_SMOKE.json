@@ -4192,18 +4192,24 @@
       "trades_sha256": "sha256_75398c9f3e94b6f076375584b88c7de959bbc1a4deb8c7acf6b33e6479939443"
     },
     "LiquiditySweep": {
+      "archive": "user_data/profile_smoke/LiquiditySweep-551db1dc-2026-09-08_18-46-07.zip",
+      "archive_sha256": "sha256_7c7c329d27ceaa60117fbcb7c7eb3a1da1c09075a9e6d412f10847493cfd291a",
+      "artifact_key": "",
       "canonical_sha256": "sha256_aadb4508f474b237714e3958b7dabf5129925aec2ddf4f7e47640744b43eeb8b",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/LiquiditySweep-551db1dc.log",
-      "elapsed_s": 40.4,
+      "config_overrides": {},
+      "elapsed_s": 45.1,
       "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy LiquiditySweep --strategy-path repos/yeboster_liquidity-sweep-freqtrade/backtest-results/extracted --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/LiquiditySweep-551db1dc --cache none",
+      "long_trades": 3,
       "mode": "futures",
       "run_profile": "futures_long",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
-      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
-      "status": "failed",
+      "runtime_id": "docker:sha256:45db9d7696424cc1c57b3f59a07a3a4aaa590a0a163247f04e69983af848e76e",
+      "short_trades": 0,
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'LiquiditySweep'. This class does not exist or contains Python code errors."
+      "trades": 3,
+      "trades_sha256": "sha256_b7ab5ec83abd8f3ffdafa9e75c52bc9991e16d5c975dda744ae680abc3b23e42"
     },
     "LitmusEntryRollClassificationStrategy": {
       "canonical_sha256": "sha256_eed405eff84b0d1b5f16159ca79e7d131c3a2ea07cfaaf61936c8e44208d3d3e",
@@ -8505,5 +8511,5 @@
     }
   },
   "schema_version": 1,
-  "timerange": "20200101-20210101"
+  "timerange": "20200301-20200401"
 }

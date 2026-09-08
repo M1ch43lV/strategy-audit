@@ -50,3 +50,10 @@ pykalman==0.11.2
 # numpy/scipy/pandas pinned in the same command) that it resolves cleanly
 # against the pins above; only new transitive dependency is scikit-learn.
 datasieve==0.1.9
+# smartmoneyconcepts: LiquiditySweep (yeboster/liquidity-sweep-freqtrade)
+# imports it directly (`from smartmoneyconcepts import smc`) for its own
+# ICT/SMC indicator calculations (order blocks, FVGs, swing highs/lows) -
+# freqtrade's generic "Impossible to load Strategy" message was masking this
+# import error. Verified in isolation it resolves against the pins; only new
+# transitive dependencies are numba/llvmlite.
+smartmoneyconcepts==0.0.27
