@@ -25,7 +25,7 @@ from evidence import profile_full_window
 from evidence import profile_smoke
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
 CANONICAL = os.path.join(ROOT, "results", "regime", "full_backtest_manifest.json")
 OUTPUT = os.path.join(ROOT, "results", "regime", "trailing_sensitivity.json")

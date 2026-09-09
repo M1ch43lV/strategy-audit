@@ -49,7 +49,7 @@ strategy-audit/
 ├── evidence/
 │   Current eligibility/profile writers and their generated evidence stores
 ├── regime/
-│   Regime features, Model 0/1/2/3 runners, attribution, comparison
+│   Regime features, Model 0/1/2/3 runners, attribution, comparison, sensitivity
 ├── results/regime/
 │   Resumable benchmark manifests, archives, and regime summaries
 ├── repair/                 Repair tools, compatibility overlays, and provenance

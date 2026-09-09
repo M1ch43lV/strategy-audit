@@ -26,5 +26,5 @@ docker run --rm `
     -v "${auditPath}:/audit" `
     -w /audit `
     --entrypoint python `
-    $image trailing_sensitivity.py @RunArguments
+    $image -m regime.trailing_sensitivity @RunArguments
 exit $LASTEXITCODE
