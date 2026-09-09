@@ -172,7 +172,7 @@ def c9():
 def c10():
     u"""20.08 · first four runs wrote to one folder, an hour later — two
     loaders into the same candle files. The lock must refuse the second."""
-    import runlock
+    from runtime import runlock
     first = runlock.acquire("anatman_proba", quiet=True)
     second = runlock.acquire("anatman_proba", quiet=True)
     runlock.release("anatman_proba")

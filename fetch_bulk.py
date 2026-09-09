@@ -77,7 +77,7 @@ def grab(sym, tf, tag, daily=False):
 def main():
     # The same lock as in corpus.py: two loaders for one candle folder —
     # the same defect class, and it already happened to me (20.08).
-    import runlock
+    from runtime import runlock
     if not runlock.acquire("fetch"):
         raise SystemExit(2)
     import atexit

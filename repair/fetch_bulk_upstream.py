@@ -78,7 +78,7 @@ def grab(sym, tf, tag, daily=False):
 def main():
     # Тот же замок, что у corpus.py: два загрузчика на одну папку свечей —
     # тот же класс дефекта, и он у меня уже случился (20.08).
-    import runlock
+    from runtime import runlock
     if not runlock.acquire("fetch"):
         raise SystemExit(2)
     import atexit

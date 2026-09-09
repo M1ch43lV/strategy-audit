@@ -415,7 +415,7 @@ if __name__ == "__main__":
     # Прямой запуск harness.py пишет в ТУ ЖЕ папку карточек, что и corpus.py.
     # Замок общий и по имени ресурса, а не по имени скрипта — иначе «у меня
     # свой замок» вернуло бы ровно тот дефект, ради которого он заведён.
-    import runlock
+    from runtime import runlock
     if not runlock.acquire("case_study"):
         raise SystemExit(2)
     import atexit

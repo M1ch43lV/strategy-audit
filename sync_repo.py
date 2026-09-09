@@ -73,7 +73,7 @@ PIPELINE = [
     "evidence/profile_repairs.py",     # reproducible Class 2 compatibility overlays
     "evidence/profile_smoke.py",       # mode-correct futures runtime validation
     "evidence/profile_freqtrade.py",   # author-package extension launcher for smoke tests
-    "runlock.py",        # one writer for a shared resource
+    "runtime/runlock.py",  # one writer for a shared resource
     "anatman.py",        # observed defects as executable cases
     "tf_guard_selftest.py",  # sabotage against the timeframe guard
     "sync_repo.py",      # this file: published = working

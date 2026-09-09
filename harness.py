@@ -415,7 +415,7 @@ if __name__ == "__main__":
     # Direct run of harness.py writes to the SAME card folder as corpus.py.
     # The lock is shared and keyed by resource name, not script name — otherwise "my own
     # lock" would return exactly the defect it was introduced for.
-    import runlock
+    from runtime import runlock
     if not runlock.acquire("case_study"):
         raise SystemExit(2)
     import atexit

@@ -40,7 +40,7 @@ _ROOT = os.environ.get("AUDIT_ROOT") or os.path.dirname(os.path.abspath(__file__
 sys.path.insert(0, _ROOT)
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-import runlock
+from runtime import runlock
 from harness import RESULTS, audit_one, declared_tf
 
 TODO = os.path.join(_ROOT, "futures_todo.json")

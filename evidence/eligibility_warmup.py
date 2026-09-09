@@ -20,7 +20,7 @@ import time
 
 from evidence import profile_bias
 from evidence import profile_smoke
-import runlog
+from runtime import runlog
 
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

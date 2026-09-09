@@ -33,7 +33,7 @@ LOCK = _os.path.join(_ROOT, "corpus.lock")
 # card is STAMPED with a fingerprint of harness.py: the lock prevents mixing,
 # the fingerprint allows DETECTING it. A ban without detection is a promise.
 import hashlib
-import runlock
+from runtime import runlock
 
 SHARD, SHARDS = 0, 1
 for i, a in enumerate(sys.argv):

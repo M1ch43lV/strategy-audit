@@ -8,7 +8,7 @@ there. So we convert rather than download again.
 import json
 import sys as _sys
 _sys.path.insert(0, "C:/tmp/audit")
-import runlock as _rl
+from runtime import runlock as _rl
 if not _rl.acquire("fetch"):      # shared candle folder — one writer
     raise SystemExit(2)
 import atexit as _at

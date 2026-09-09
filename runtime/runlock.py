@@ -14,7 +14,8 @@ would block work forever, and the lock would start being bypassed by hand.
 from __future__ import print_function
 import io, os, sys
 
-LOCKDIR = os.environ.get("AUDIT_ROOT") or os.path.dirname(os.path.abspath(__file__))
+LOCKDIR = (os.environ.get("AUDIT_ROOT") or
+           os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 def _alive(pid):

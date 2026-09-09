@@ -6,7 +6,9 @@ This directory keeps the execution environment as one family:
 - `requirements*.txt`: dependency sets copied by those Dockerfiles;
 - `profile_*_config.json`: baseline spot and futures Freqtrade configs;
 - `*_docker.ps1`: host wrappers that build an image when needed, mount the
-  repository at `/audit`, and invoke the corresponding root or `regime/` module.
+  repository at `/audit`, and invoke the corresponding package module;
+- `runlock.py` / `runlog.py`: shared single-writer locking and complete command
+  provenance used across evidence and benchmark runners.
 
 Run wrappers from any working directory, for example:
 

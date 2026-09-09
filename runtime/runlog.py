@@ -44,7 +44,7 @@ import sys
 import time
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOG = os.path.join(ROOT, "user_data", "freqtrade_runs.log")
 
 # 32 MiB across six files caps the log at roughly 200 MB, which is the order

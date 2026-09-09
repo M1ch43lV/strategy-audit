@@ -20,7 +20,7 @@ import sys
 import time
 
 from evidence import profile_smoke
-import runlog
+from runtime import runlog
 from repair.overrides import repair_overrides
 
 
