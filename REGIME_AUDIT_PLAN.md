@@ -16,7 +16,7 @@
 Before changing code or methodology:
 
 1. Read this document in full.
-2. Read `DOCUMENT_MAP.md` first. It sorts every Markdown file in the repository by what it contributes to the regime benchmark, names the ones to skip, and states which document actually binds. Then inspect the repository, especially `REGIME_PREREGISTRATION.md`, `BASELINE.md`, `LEDGER.md`, `LEDGER.csv`, `CORRECTIONS.md`, `DECISION_INVARIANCE.md`, and the existing audit scripts.
+2. Read `DOCUMENT_MAP.md` first. It sorts every Markdown file in the repository by what it contributes to the regime benchmark, names the ones to skip, and states which document actually binds. Then inspect the repository, especially `REGIME_PREREGISTRATION.md`, `BASELINE.md`, archived predecessor evidence under `old/predecessor_audit/`, `CORRECTIONS.md`, `DECISION_INVARIANCE.md`, and the existing audit scripts.
 3. Verify that the repository has not materially changed since this document was written.
 4. Separate **frozen primary design**, **secondary robustness design**, and **open discussion items**.
 5. Do not silently modify primary thresholds or eligibility rules after seeing strategy-performance results.

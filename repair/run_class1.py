@@ -110,7 +110,8 @@ def run_one(job):
 
 
 def main():
-    ledger = sys.argv[1] if len(sys.argv) > 1 else os.path.join(AUD, "LEDGER.csv")
+    ledger = (sys.argv[1] if len(sys.argv) > 1 else
+              os.path.join(AUD, "old", "predecessor_audit", "LEDGER.csv"))
     workers = int(os.environ.get("MEASURE_WORKERS", "6"))
     os.makedirs(OUT_DIR, exist_ok=True)
     jobs, skipped = build_jobs(ledger)

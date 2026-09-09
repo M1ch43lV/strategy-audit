@@ -39,7 +39,8 @@ RX_EXIT_MARKET = re.compile(r"""["'](?:exit|sell)["']\s*:\s*["']market["']""")
 
 
 def main():
-    ledger = sys.argv[1] if len(sys.argv) > 1 else os.path.join(AUD, "LEDGER.csv")
+    ledger = (sys.argv[1] if len(sys.argv) > 1 else
+              os.path.join(AUD, "old", "predecessor_audit", "LEDGER.csv"))
     led = {r["strategy"]: r for r in csv.DictReader(io.open(ledger, encoding="utf-8"))}
 
     blocked = []

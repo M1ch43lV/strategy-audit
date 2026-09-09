@@ -209,7 +209,7 @@ sys.path.insert(0, os.path.join(ROOT, "repair"))
 import i18n
 
 CORPUS = os.path.join(ROOT, "corpus")
-LEDGER = os.path.join(ROOT, "LEDGER.csv")
+LEDGER = os.path.join(ROOT, "old", "predecessor_audit", "LEDGER.csv")
 _CARD_ERROR = re.compile(r"## Could not be measured\s*\n+```\s*\n(.+?)\n", re.S)
 
 

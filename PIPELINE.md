@@ -19,8 +19,8 @@ im System-Python) — meist über die Umgebungsvariable `PROFILE_PYTHON`.
 
 | Programm | Liest | Schreibt |
 |---|---|---|
-| `harvest.py` | GitHub-API (nur `.py`-Dateien mit `IStrategy`) | Dateien unter `repos/<repo>/` |
-| `census_repos.py` | `evidence/corpus_sources.json`, `repos/**` | Statistiken zu Kopie-Familien (Konsole/Referenz für `exclusion_criteria.py`s C-Text) |
+| `tools/harvest.py` | GitHub-API (nur `.py`-Dateien mit `IStrategy`) | Dateien unter `repos/<repo>/` |
+| `tools/census_repos.py` | `evidence/corpus_sources.json`, `repos/**` | Statistiken zu Kopie-Familien (Konsole/Referenz für `evidence/exclusion_criteria.py`s C-Text) |
 | `evidence/new_repo_candidates.py` | GitHub-Themensuche, `evidence/corpus_sources.json` | `evidence/NEW_REPO_CANDIDATES.json`, `evidence/NEW_REPO_CANDIDATES.md` |
 | `evidence/repo_freshness.py` | lokales `git log` je Repo, GitHub-Tip, `evidence/EXECUTION_PROFILES.csv` | `evidence/REPO_FRESHNESS.csv`, `evidence/REPO_FRESHNESS.md` |
 
@@ -90,8 +90,8 @@ Präzedenz wie eine native Messung.
 | `evidence/regime_coverage.py` | `evidence/EXECUTION_PROFILES.csv`, Kerzendateien unter `user_data/data/binance` | `evidence/REGIME_COVERAGE.csv`, `evidence/REGIME_COVERAGE.md` |
 
 Reine Dateisystem-Prüfung (keine Freqtrade-Ausführung), pro `(mode,
-timeframe)` gecacht — günstig, jederzeit sicher neu zu erzeugen. Deckt seit
-2026-09-06 alle 919 Zeilen ab (vorher 900, siehe unten).
+timeframe)` gecacht — günstig, jederzeit sicher neu zu erzeugen. Deckt aktuell
+alle 1.050 Zeilen ab; der historische Stand vom 2026-09-06 betrug 919.
 
 ## Stufe 5 — Zusammenführung
 
@@ -253,8 +253,9 @@ DMI(14)/ADX(14)) plus die Rohdaten, aus denen die Sechs-Phasen-Erweiterung
 
 Die beiden `*_phase_*`-Dateien (Sechs-Phasen-Modell, Nachtrag 2026-09-05)
 existieren als Code bereits, wurden aber noch nicht produktiv durchlaufen —
-sie brauchen `regime/full_backtest.py`s vollständige Ergebnisse (Stufe 7),
-die derzeit noch in den drei laufenden Hintergrund-Containern entstehen.
+sie brauchen `regime/full_backtest.py`s vollständige Ergebnisse (Stufe 7).
+Ob dafür gerade ein Writer läuft, wird ausschließlich mit den Prüfungen in
+`HANDOFF.md` festgestellt; diese Pipeline-Datei ist kein Laufstatus.
 Die gegatete Attribution verweigert standardmäßig einen unvollständigen
 Kandidatensatz; `--allow-partial` erzeugt nur einen ausdrücklich als partiell
 markierten technischen Zwischenstand und ist keine Ranking-Freigabe.
@@ -275,12 +276,12 @@ nie neu entschieden.
 Nach der am 2026-09-07 vor jedem produktiven Gate-Lauf eingefrorenen
 Erweiterung, vier Vergleichsebenen pro Strategie:
 
-- **Modell 0 — läuft bereits.** "Original strategy, no regime filter" ist
+- **Modell 0 — teilweise gemessen.** "Original strategy, no regime filter" ist
   genau das, was `regime/full_backtest.py` (Stufe 7) berechnet: der
-  ungegatete, gepoolte Backtest über alle 8 Paare. Der aktuell laufende
-  Container `full-backtest-pooled` (`python -m regime.full_backtest --workers
-  2 --timeout 3600 --force`) ist Modell 0 in Arbeit, keine gesonderte, noch
-  zu bauende Stufe. **Korrektur gegenüber der Vorversion dieser Datei:** hier
+  ungegatete, gepoolte Backtest über alle 8 Paare. Der resumierbare Aufruf
+  `python -m regime.full_backtest` setzt diese Messung fort; laufende Writer
+  werden vorher gemäß `HANDOFF.md` ausgeschlossen. Es ist keine gesonderte,
+  noch zu bauende Stufe. **Korrektur gegenüber der Vorversion dieser Datei:** hier
   stand fälschlich "kein Skript existiert" für die gesamte Stufe 11 — das
   galt nur für Modell 1/2 und den Vergleich selbst, nicht für Modell 0.
 - **Modell 1 — implementiert, noch nicht produktiv gelaufen.**
@@ -382,8 +383,8 @@ ersetzt hat.
 
 | Datei/Verzeichnis | Erzeugt von | Ersetzt durch |
 |---|---|---|
-| `README.md`, `LEDGER.csv`, `LEDGER.md` | `ledger.py` (eigener Generator, unabhängig von `evidence/strategy_status.py`) | `STRATEGY_STATUS.md` |
-| `CORPUS.md`, `CORPUS_PLAN.md`, `corpus/INDEX.md` + 896 Karten unter `corpus/` | (Vorgänger-Tooling, nicht Teil dieser Kette) | `evidence/EXECUTION_PROFILES.csv`, `evidence/corpus_sources.json` |
+| `old/predecessor_audit/README.md`, `LEDGER.csv`, `LEDGER.md` | archiviertes `ledger.py` | `STRATEGY_STATUS.md` |
+| `old/predecessor_audit/CORPUS.md`, `CORPUS_PLAN.md`, `corpus/INDEX.md` + 896 Karten unter `corpus/` | archiviertes Vorgänger-Tooling | `evidence/EXECUTION_PROFILES.csv`, `evidence/corpus_sources.json` |
 | `old/predecessor_audit/ANALYSIS.md`, `ANALYSIS.ru.md` | (Vorgänger-Tooling) | fünf handverlesene Fallstudien, keine Population — `STRATEGY_STATUS.csv` deckt die aktuelle Population |
 | `old/predecessor_audit/results/*.md` (`DoubleEMACrossoverWithTrend.md` u.a., `INDEX.md`) | (Vorgänger-Tooling) | dieselben fünf Fallstudien — **nicht zu verwechseln mit `results/regime/`**, das ist aktuell und wird von Stufe 7–9 beschrieben |
 | `old/predecessor_audit/DCA.md`, `DEPTH.md`, `RESOLVABLE.md` | (Vorgänger-Tooling) | eigenständige Seitenuntersuchungen ohne Regime-Bezug, nichts ersetzt sie, weil nichts in der aktuellen Kette dieselbe Frage stellt |
@@ -402,11 +403,14 @@ darauf angewiesen ist, dann committen, dann entfernen — nie umgekehrt.
 
 ### 3. `tools/` — eigene Werkzeuge, aber manuell, nicht Teil der automatischen Kette
 
-Alle Dateien hier sind aktuell und nicht veraltet, laufen aber nur auf Zuruf,
-nie automatisch von Stufe 0–11 aus aufgerufen. **2026-09-08 aus dem Root
-hierher verschoben** (acht Dateien, siehe Begründung unten): jede wurde vorher
-geprüft — keine ist von einem anderen Root-Skript importiert, keine hat einen
-eigenen `_docker.ps1`-Wrapper, keine steht in `sync_repo.py`s `PIPELINE`-Liste.
+Alle Dateien hier sind aktuell und nicht veraltet. Die meisten laufen auf
+Zuruf; Stufe 0 nutzt zusätzlich die Corpus-Werkzeuge in diesem Verzeichnis.
+Sie wurden aus dem Root hierher verschoben und ihre Root-Pfadannahmen angepasst.
+Die veralteten Vorgänger-Gates `sync_repo.py`, `freeze_guard.py`,
+`verify_ledger.py` und `totality.py` liegen dagegen unter
+`old/predecessor_audit/` und sind nicht mehr Teil der aktuellen CI. `totality.py`
+meldet auf der heutigen Pipeline 124 ungeprüfte Heuristiktreffer und eignet sich
+damit nicht als unveränderter Commit-Guard.
 `ROOT`-Pfadannahmen (`os.path.dirname(os.path.abspath(__file__))`) wurden um
 eine Ebene korrigiert; `warmup_reparse.py`s `from evidence import profile_bias` bekam einen
 `sys.path.insert` auf das Root-Verzeichnis, denselben Kniff, den `repair/*.py`
@@ -415,7 +419,7 @@ schon vorher benutzte.
 | Programm | Zweck | Wann laufen lassen |
 |---|---|---|
 | `tools/secret_gate.py` | Verhindert, dass ein Commit ein Secret enthält (vier Schichten, siehe eigener Docstring) | vor jedem Commit, das neue Dateien einführt |
-| `tools/translation_repair.py` | Übersetzt russische Kommentare/Strings in Python-Dateien, AST-geprüft, übersetzt fehlgeschlagene Stellen nie stillschweigend | wenn `harvest.py` (Stufe 0) ein Repo mit nicht-englischen Kommentaren einbringt |
+| `tools/translation_repair.py` | Übersetzt russische Kommentare/Strings in Python-Dateien, AST-geprüft, übersetzt fehlgeschlagene Stellen nie stillschweigend | wenn `tools/harvest.py` (Stufe 0) ein Repo mit nicht-englischen Kommentaren einbringt |
 | `tools/blocked_triage.py` | Findet behebbare Ursachen für Zeilen, die der Probelauf nie erreicht (freqtrade startete sie gar nicht); schreibt `REPAIR_LIST.md` und `evidence/BLOCKED_TRIAGE.json`, das Stufe 5 liest | nach neuem Harvest oder wenn sich die Zahl blockierter Zeilen ändert (`--probe --list`) |
 | `tools/eligibility_expansion.py` | Friert das historische, ergebnisblinde Eligibility-Expansion-Inventar ein (nur technische Stage-6-Artefakte, keine Performance) | wenn `REGIME_PREREGISTRATION.md`/`ELIGIBILITY_EXPANSION_PLAN.md` geändert werden |
 | `tools/probe_double_advise.py` | Prüft, ob der doppelte `ft_advise_signals`-Aufruf in `lookahead-analysis` eine Spalte dupliziert | bei Verdacht, der `enter_tag`-Shim verfälsche das Ergebnis |

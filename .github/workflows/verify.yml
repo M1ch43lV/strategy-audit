@@ -43,19 +43,6 @@ jobs:
           sys.exit(1 if bad else 0)
           PY
 
-      - name: Ledger check — prove the comparison can fail, then run it
-        run: |
-          python verify_ledger.py --selftest
-          python verify_ledger.py
-
-      - name: Freeze guard — a rule younger than the data is not confirmatory
-        run: |
-          python freeze_guard.py --selftest
-          python freeze_guard.py
-
-      - name: Every published module must be declared part of the pipeline
-        run: python sync_repo.py --orphans
-
       - name: Every strategy card must be backed by a result file
         run: |
           python - <<'PY'
@@ -76,14 +63,20 @@ jobs:
           python - <<'PY'
           import ast, io, os, sys
           bad = []
-          for f in os.listdir("."):
-              if f.endswith(".py"):
+          checked = []
+          for root in ("cluster", "evidence", "regime", "repair", "runtime", "tools"):
+            for dp, dirs, files in os.walk(root):
+              dirs[:] = [d for d in dirs if d not in ("__pycache__", "patched", "audit_clean")]
+              for name in files:
+                if name.endswith(".py"):
+                  f = os.path.join(dp, name)
+                  checked.append(f)
                   try:
                       ast.parse(io.open(f, encoding="utf-8").read())
                   except SyntaxError as e:
                       bad.append("%s: %s" % (f, e))
           for b in bad:
               print(b)
-          print("checked python files:", len([f for f in os.listdir(".") if f.endswith(".py")]))
+          print("checked python files:", len(checked))
           sys.exit(1 if bad else 0)
           PY

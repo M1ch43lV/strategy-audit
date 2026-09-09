@@ -24,7 +24,7 @@ from evidence import profile_smoke
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
-LEDGER = os.path.join(ROOT, "LEDGER.csv")
+LEDGER = os.path.join(ROOT, "old", "predecessor_audit", "LEDGER.csv")
 COVERAGE = os.path.join(ROOT, "evidence/REGIME_COVERAGE.csv")
 BIAS = os.path.join(ROOT, "evidence/PROFILE_BIAS.json")
 FULL_MEASUREMENT = os.path.join(ROOT, "evidence/PROFILE_FULL_WINDOW.json")

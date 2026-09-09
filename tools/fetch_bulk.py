@@ -14,7 +14,8 @@ not as a short series.
 """
 from __future__ import print_function
 import os as _os
-_ROOT = _os.environ.get("AUDIT_ROOT") or _os.path.dirname(_os.path.abspath(__file__))
+_ROOT = (_os.environ.get("AUDIT_ROOT") or
+         _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
 import io, os, sys, time, urllib.error, urllib.request, zipfile
 
 sys.path.insert(0, _ROOT)

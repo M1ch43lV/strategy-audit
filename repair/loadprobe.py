@@ -71,7 +71,8 @@ def probe(row):
 
 
 def main():
-    led = os.path.join(AUD, "LEDGER.csv") if len(sys.argv) < 2 else sys.argv[1]
+    led = (os.path.join(AUD, "old", "predecessor_audit", "LEDGER.csv")
+           if len(sys.argv) < 2 else sys.argv[1])
     rows = [r for r in csv.DictReader(io.open(led, encoding="utf-8"))
             if r["dropped_at"] == "G0_measured"]
     print("probing %d strategies with %s" % (len(rows), PY), flush=True)

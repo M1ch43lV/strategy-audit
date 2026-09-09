@@ -208,7 +208,7 @@ a reliability caveat, not a flattered number — and the fix is finer data, not 
 argument about the model.
 
 The gate stays as a reliability flag, its wording is corrected in
-[CHECKLIST.md](CHECKLIST.md) and on every card, and the claim it once carried is
+[CHECKLIST.md](old/predecessor_audit/CHECKLIST.md) and on every card, and the claim it once carried is
 withdrawn. Found by a reader, in public, within hours of publication — which is
 the entire reason for publishing.
 
@@ -450,7 +450,7 @@ inside `custom_exit`, `confirm_trade_entry` or a custom stoploss is invisible to
 something that reads declared constants, and the thresholds are practitioner
 judgement rather than physics.
 
-**[TRAPS.md](TRAPS.md) now states the scope as a necessary condition on declared
+**[TRAPS.md](old/predecessor_audit/TRAPS.md) now states the scope as a necessary condition on declared
 configuration, not a detector**, and the headline count went with it. The part of
 the criticism that is not accepted is left explicit rather than quietly dropped:
 the checks are individually verifiable — each is a named constant, a documented
@@ -560,7 +560,7 @@ package that has since vanished drop out silently. That is a survivorship
 filter, and it was never declared.
 
 **The reason was not recorded at run time**, so it is reconstructed by
-[`loadcheck.py`](loadcheck.py), cheapest route first: if either window
+[`loadcheck.py`](old/predecessor_audit/loadcheck.py), cheapest route first: if either window
 produced a trade count the file demonstrably loaded, which settles those from
 the ledger alone; the rest are imported in a subprocess and the exception is
 kept. Import takes seconds where a backtest takes minutes.

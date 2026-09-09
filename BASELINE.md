@@ -18,7 +18,8 @@ nothing to read and it is scrolled past in nearly every published backtest,
 because a large positive `Total profit %` already feels like an answer.
 
 **This page carries no counts of its own.** Every number lives in
-**[LEDGER.md](LEDGER.md)**, generated from [LEDGER.csv](LEDGER.csv) by
+**[LEDGER.md](old/predecessor_audit/LEDGER.md)**, generated from
+[LEDGER.csv](old/predecessor_audit/LEDGER.csv) by
 `ledger.py`, and a pre-commit hook rejects a commit in which the published
 figures no longer reproduce. That arrangement exists because this file used to
 open with a count in its own title, and that count went stale within a day of

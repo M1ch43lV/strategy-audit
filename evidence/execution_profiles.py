@@ -337,7 +337,7 @@ def _load_patch_report(repair_root):
 
 
 def _ledger_rows():
-    path = os.path.join(ROOT, "LEDGER.csv")
+    path = os.path.join(ROOT, "old", "predecessor_audit", "LEDGER.csv")
     if not os.path.exists(path):
         return {}
     with io.open(path, newline="", encoding="utf-8-sig") as handle:

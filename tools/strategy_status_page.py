@@ -23,7 +23,8 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TABLE = os.path.join(ROOT, "STRATEGY_STATUS.csv")
-TEMPLATE = os.path.join(ROOT, "STRATEGY_STATUS.template.html")
+TEMPLATE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                        "STRATEGY_STATUS.template.html")
 
 # short key -> column in STRATEGY_STATUS.csv
 #

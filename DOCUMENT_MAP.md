@@ -39,7 +39,7 @@ rule is the most likely way to corrupt this study.
 ## Tier 2 - who is measured
 
 - **`STRATEGY_STATUS.md` / `.csv` - start here.** The current evidence for all
-  919 rows, regenerated from the smoke, bias, full-window, adjudication and
+  1,050 rows, regenerated from the smoke, bias, full-window, adjudication and
   convergence stores. It is the only table that answers "what do we know about
   this strategy today"; the frozen baseline cannot, by design. It decides
   nothing - admission happens in the adjudicator alone.
@@ -71,7 +71,7 @@ rule is the most likely way to corrupt this study.
   scanned scripts or docs change materially.
 - `evidence/EXECUTION_PROFILES.md` - which implementation of a strategy is canonical, and
   whether it runs spot or futures. Relevant to the goal in a way the title
-  hides: 855 of 919 strategies are long-only, so bear-phase evidence is
+  hides: 940 of 1,050 strategies have a long-only execution profile, so bear-phase evidence is
   structurally scarce before any measurement happens.
 - `evidence/REGIME_COVERAGE.md` - the candle-data gate. Note the documented `XMR/USDT`
   delisting in 2024: the pair basket changes composition inside the window.
@@ -123,13 +123,14 @@ trusting an old run of it.
   skill. The countermeasure is the exposure-matched benchmark of plan section
   16.4, whose construction is still OPEN. Until it is decided, every
   bear-specialist claim is attackable.
-- `TRAPS.md` - four statically checkable backtest traps, from the freqtrade
+- `old/predecessor_audit/TRAPS.md` - four statically checkable backtest traps, from the freqtrade
   community's own document.
 - `DECISION_INVARIANCE.md` - the recorded case of a gate left alone after the
   data invited changing it. The standard this study is held to.
 - `CORRECTIONS.md` - errors already made and what each changed, including the
   metric that was not scale-free. Read before choosing a metric.
-- `CHECKLIST.md`, `LEDGER.md`, `PREREGISTRATION.md` - gate discipline, epoch
+- `old/predecessor_audit/CHECKLIST.md`, `old/predecessor_audit/LEDGER.md`,
+  `old/predecessor_audit/PREREGISTRATION.md` - gate discipline, epoch
   labelling, and the frozen survivor rule of the predecessor corpus study.
 
 ## Tier 5 - current state, no methodology
@@ -150,7 +151,8 @@ Skipping these is the point of this file.
 
 - `old/predecessor_audit/ANALYSIS.md`, `ANALYSIS.ru.md`, and `results/*.md` - the five hand-picked case
   studies of the predecessor work. A case study, not a population.
-- `README.md`, `CORPUS.md`, `CORPUS_PLAN.md`, `corpus/INDEX.md` - provenance and
+- `README.md`, `old/predecessor_audit/CORPUS.md`,
+  `old/predecessor_audit/CORPUS_PLAN.md`, `corpus/INDEX.md` - provenance and
   publication front matter for the 900-strategy sweep. `corpus/` also holds 896
   per-strategy cards; open one only when that strategy is in question.
 - `old/predecessor_audit/DCA.md`, `DEPTH.md`, and `RESOLVABLE.md` - self-contained side investigations

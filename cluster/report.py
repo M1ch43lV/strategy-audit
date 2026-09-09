@@ -96,7 +96,8 @@ def write_md(rows, dst):
 
 
 def main():
-    ledger = sys.argv[1] if len(sys.argv) > 1 else os.path.join(AUD, "LEDGER.csv")
+    ledger = (sys.argv[1] if len(sys.argv) > 1 else
+              os.path.join(AUD, "old", "predecessor_audit", "LEDGER.csv"))
     rows = json.load(io.open(os.path.join(ROOT, "cluster", "clusters.json"),
                              encoding="utf-8"))
     write_csv(rows, ledger, os.path.join(ROOT, "cluster", "CLUSTERS.csv"))

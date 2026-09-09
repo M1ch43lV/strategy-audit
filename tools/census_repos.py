@@ -18,10 +18,11 @@ import json
 import os
 import sys
 
-_ROOT = os.environ.get("AUDIT_ROOT") or os.path.dirname(os.path.abspath(__file__))
+_ROOT = (os.environ.get("AUDIT_ROOT") or
+         os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, _ROOT)
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-from harness import find_strategies
+from tools.harness import find_strategies
 
 REPOS = os.path.join(_ROOT, "repos")
 

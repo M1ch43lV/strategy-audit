@@ -48,7 +48,8 @@ except Exception:
 
 # The root is from the file itself, not from my disk: README promises that
 # harness.py can be run locally. AUDIT_ROOT is overridden.
-ROOT = os.environ.get("AUDIT_ROOT") or os.path.dirname(os.path.abspath(__file__))
+ROOT = (os.environ.get("AUDIT_ROOT") or
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 FT = os.path.join(ROOT, "ftenv", "Scripts", "freqtrade.exe")
 CFG = os.path.join(ROOT, "user_data", "config.json")
 STRAT_DIR = os.path.join(ROOT, "user_data", "strategies")

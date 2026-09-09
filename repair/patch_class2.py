@@ -431,7 +431,8 @@ def targets_from_ledger(ledger):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("ledger", nargs="?", default=os.path.join(AUD, "LEDGER.csv"))
+    ap.add_argument("ledger", nargs="?", default=os.path.join(
+        AUD, "old", "predecessor_audit", "LEDGER.csv"))
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 

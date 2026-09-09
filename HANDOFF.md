@@ -3,12 +3,13 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-08T22:44:05+02:00
-- Stopped because: cleanup phase 5 is complete; the last three root writers
-  whose stores live under `evidence/` now live with those stores
-- Next agent should: inspect the remaining 63 root files with Graphify. The
-  next likely work is separating active benchmark support from the predecessor
-  publication/CI family; preserve current CI checks while doing so.
+- Last update: 2026-09-09T02:33:18+02:00
+- Stopped because: repository classification and root cleanup are complete;
+  validation passed and the cleanup commit is the only remaining checkpoint
+- Next agent should: verify the cleanup commit and Graphify post-commit update,
+  then return to the 51 missing resumable Model 0 rows. Do not move additional
+  root reports merely to reduce the count: the remaining 22 files are the
+  current user-facing documents, status outputs, or repository metadata.
 
 ## Objective
 
@@ -83,7 +84,7 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-08T22:44:05+02:00 before the phase-5 commit at HEAD `bda7f25`:
+Observed 2026-09-09T02:33:18+02:00 before the final cleanup commit at HEAD `d424936`:
 
 - No Docker benchmark container or Model 0 writer is active. Only shell/session
   processes matched the broad process expression.
@@ -92,8 +93,8 @@ Observed 2026-09-08T22:44:05+02:00 before the phase-5 commit at HEAD `bda7f25`:
   not-a-strategy, and 2 convergence candidates.
 - Against current E1, the Model 0 manifest has 550 measured, 52 OOM-confirmed,
   5 performance-limited, 1 stake-overflow-confirmed, and 51 missing rows.
-- The three-writer evidence follow-up is ready to commit. Generated hypothesis
-  and status reports are current; no measurement artifact changed.
+- Root contains 22 files and no Python programs. The current status and HTML
+  page regenerate cleanly; no benchmark or measurement artifact changed.
 
 ## Current implementation checkpoint
 
@@ -143,6 +144,21 @@ Cleanup phase 5 moves `warmup_convergence.py`,
 `market_phase_hypothesis.py`, and `merge_full_window_shards.py` beside their
 stores in `evidence/`. The warm-up Docker wrapper uses module invocation and
 regime attribution imports the phase helper from the package.
+
+Cleanup phases 6-9 complete the classification. Status/exclusion writers moved
+to `evidence/`, run coordination moved to `runtime/`, and trailing sensitivity
+moved to `regime/`. The complete predecessor publication family — its ledger,
+corpus prose, reports, measurement programs, hard-coded setup program, and
+retired CI guards — now lives under `old/predecessor_audit/`. Current corpus
+intake/shared utilities live under `tools/`; all active readers of the archived
+ledger use its new path. The status HTML template lives with its generator.
+
+The predecessor `verify_ledger.py`, `freeze_guard.py`, `sync_repo.py`, and
+`totality.py` are deliberately not current CI gates. The first three govern
+the retired publication layout; `totality.py` reports 124 heuristic refusals on
+the current pipeline and is not a usable unchanged commit gate. CI now parses
+all 94 active Python files recursively, excluding vendored repair overlays,
+instead of vacuously checking only root-level Python files.
 
 - `regime/regime_engine.py` produces causal, one-day-lagged four-state data.
 - `regime/attribution.py` already attributes Model 0 trades to both four states
@@ -232,10 +248,16 @@ hypothesis selftests, attribution selftest, targeted compileall, wrapper parse,
 phase-hypothesis regeneration, status regeneration/check, classification check
 and `git diff --check` PASS. No benchmark or warm-up measurement was started.
 
+Final cleanup validation: Graphify dependency traversal; active tool import
+check; execution-profile, regime-eligibility, strategy-status and status-page
+selftests; status and classification freshness checks; HTML regeneration;
+compileall including the archive; active-tree AST parse (94 files); secret-gate
+selftest; and `git diff --check` PASS. The status page still contains 1,050
+rows. No benchmark or analyzer was started.
+
 ## Next concrete steps
 
-1. Use Graphify to classify the remaining root programs before any further
-   layout move; do not mix active benchmark support with predecessor archiving.
+1. Verify the final cleanup commit and the AST-only Graphify post-commit update.
 2. Repeat machine, lock, artifact and Git checks; never start a second writer.
 3. Complete the 51 missing Model 0 E1 rows resumably and adjudicate
    resource-inconclusive failures
@@ -265,6 +287,10 @@ and `git diff --check` PASS. No benchmark or warm-up measurement was started.
   API quota. The local post-commit hook already handles AST-only updates.
 - Do not move evidence stores back to root or invoke their writers by file
   path. Run them from the repository root as `python -m evidence.<module>`.
+- Do not restore predecessor publication programs or retired guards to root.
+  Current corpus utilities are under `tools/`; the historical family is under
+  `old/predecessor_audit/`. Root is intentionally limited to 22 user-facing or
+  repository-level files and contains no Python program.
 - Any historical E0 benchmark or attribution as current evidence. Do not rerun
   the old 67, add 67 to E1, or regenerate frozen E0 CSV/JSON artifacts.
 - Do not generate a candidate spec from observed strategy performance.
@@ -291,7 +317,7 @@ and `git diff --check` PASS. No benchmark or warm-up measurement was started.
 - Results are identity-bound, atomic, and resumable. Every new runner records
   its invocation and non-command environment/config provenance.
 - E0 is invalid historical provenance only. The current usable population is
-  the latest active E1 adjudication set; currently 608 rows in the stale status
-  snapshot, including 66 independently re-admitted former E0 members.
+  the latest active E1 adjudication set; currently 659 rows, including 66
+  independently re-admitted former E0 members.
 - The prior long Wave A-C handoff remains recoverable in Git before commit
   `548be09`; current artifacts and this file supersede its stale counts.

@@ -9,6 +9,9 @@ Der maßgebliche aktuelle Plan ist
 
 ## Inhalt
 
+- `predecessor_audit/`: vollständiger Veröffentlichungs-, Mess- und CI-Bestand
+  der Vorgängerstudie. Die Dateien sind als zusammengehöriger historischer
+  Schnappschuss erhalten und gehören nicht zur aktuellen Pipeline.
 - `corpus_repair/`: historischer Arbeitsplan der Korpus-Reparatur; aktuelle
   Reparaturfakten gehören in `repair/REGISTER.md`.
 - `vorueberlegungen/`: nicht eingefrorene methodische Ideensammlung.

@@ -41,7 +41,8 @@ def have():
 
 
 def main():
-    ledger = sys.argv[1] if len(sys.argv) > 1 else os.path.join(AUD, "LEDGER.csv")
+    ledger = (sys.argv[1] if len(sys.argv) > 1 else
+              os.path.join(AUD, "old", "predecessor_audit", "LEDGER.csv"))
     present = have()
     wanted = collections.Counter()
     who = collections.defaultdict(set)

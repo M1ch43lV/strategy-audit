@@ -51,7 +51,8 @@ def assigned(node):
 
 
 def main():
-    ledger = sys.argv[1] if len(sys.argv) > 1 else os.path.join(AUD, "LEDGER.csv")
+    ledger = (sys.argv[1] if len(sys.argv) > 1 else
+              os.path.join(AUD, "old", "predecessor_audit", "LEDGER.csv"))
     rows = list(csv.DictReader(io.open(ledger, encoding="utf-8")))
     hits = []
     for r in rows:
