@@ -4,10 +4,10 @@
 
 - Last agent: codex
 - Last update: 2026-09-09T02:33:18+02:00
-- Stopped because: repository classification and root cleanup are complete;
-  validation passed and the cleanup commit is the only remaining checkpoint
-- Next agent should: verify the cleanup commit and Graphify post-commit update,
-  then return to the 51 missing resumable Model 0 rows. Do not move additional
+- Stopped because: repository classification, root cleanup, validation, commit,
+  and AST-only Graphify refresh are complete
+- Next agent should: return to the 51 missing resumable Model 0 rows after the
+  mandatory writer checks. Do not move additional
   root reports merely to reduce the count: the remaining 22 files are the
   current user-facing documents, status outputs, or repository metadata.
 
@@ -84,7 +84,7 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-09T02:33:18+02:00 before the final cleanup commit at HEAD `d424936`:
+Observed 2026-09-09T02:33:18+02:00 after the final cleanup commit at HEAD `a1b7ecc`:
 
 - No Docker benchmark container or Model 0 writer is active. Only shell/session
   processes matched the broad process expression.
@@ -95,6 +95,9 @@ Observed 2026-09-09T02:33:18+02:00 before the final cleanup commit at HEAD `d424
   5 performance-limited, 1 stake-overflow-confirmed, and 51 missing rows.
 - Root contains 22 files and no Python programs. The current status and HTML
   page regenerate cleanly; no benchmark or measurement artifact changed.
+- The post-commit hook refreshed Graphify AST-only to 1,363 nodes, 2,205 edges,
+  and 155 communities. A fresh traversal resolves active code under its owning
+  directories, including `tools/harness.py`; no root Python node remains.
 
 ## Current implementation checkpoint
 
