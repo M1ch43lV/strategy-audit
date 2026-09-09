@@ -3,7 +3,7 @@
 
 Both are static properties of the strategy's own source, not measurement
 results, so they get their own store rather than living inline in
-`strategy_status.py`: neither depends on whether a row ever ran.
+`evidence/strategy_status.py`: neither depends on whether a row ever ran.
 
 TIMEFRAME. Freqtrade strategies declare `timeframe = "5m"` as a class
 attribute; older ones use the pre-2021.4 name `ticker_interval`. Read from

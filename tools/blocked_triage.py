@@ -144,7 +144,7 @@ def blocked_rows():
     Ordinarily that is `exclusion_basis == "blocked"` - a row still open,
     waiting on a verdict. The criteria in CRITERIA_SOURCED_HERE are the
     exception: each excludes a row on THIS file's own family/verdict, read
-    back out of strategy_status.py's cohort logic. Once excluded,
+    back out of evidence/strategy_status.py's cohort logic. Once excluded,
     `exclusion_basis` becomes `own_measurement`, and a naive re-triage would
     stop selecting the row and silently drop the very classification the
     exclusion rests on. Two separate rounds of this were caught the hard

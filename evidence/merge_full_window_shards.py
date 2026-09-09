@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Merge the sharded full-window containers' own output files into the one
-store `strategy_status.py` reads.
+store `evidence/strategy_status.py` reads.
 
 Three containers wrote to three separate files - `evidence/PROFILE_FULL_WINDOW.json`
 itself is a single JSON document with no cross-process lock, and two

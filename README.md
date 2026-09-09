@@ -73,9 +73,9 @@ the process, Docker, lock, and artifact checks in `HANDOFF.md`; never start two
 writers for one manifest.
 
 ```powershell
-.\ftenv\Scripts\python.exe strategy_status.py --check
+.\ftenv\Scripts\python.exe -m evidence.strategy_status --check
 .\ftenv\Scripts\python.exe tools\strategy_classification.py --check
-.\ftenv\Scripts\python.exe strategy_status.py --selftest
+.\ftenv\Scripts\python.exe -m evidence.strategy_status --selftest
 ```
 
 After code changes use `graphify update .`. This is the AST-only path. Do not

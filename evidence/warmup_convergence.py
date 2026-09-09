@@ -325,7 +325,7 @@ def frozen_baseline_rows():
     """Legacy CLI selector retained after E0's retirement.
 
     The 67 were re-measured through the ladder, E0 was invalidated as a cohort,
-    and `strategy_status.py` deliberately never assigns `E0_strict67` again.
+    and `evidence/strategy_status.py` deliberately never assigns `E0_strict67` again.
     This therefore returns no rows. Do not reconstruct the set from provenance:
     the completed row-level evidence is already represented by E1 decisions or
     exclusion, and rerunning it would duplicate finished work.

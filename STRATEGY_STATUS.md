@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1050 rows
 
-**Generated 2026-09-08 22:43:45 by `strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-09 02:10:51 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -133,7 +133,7 @@ across whichever of the trial-run backtest, the bias-store
 look-ahead/recursion pair, a later native look-ahead
 re-measurement, the warm-up ladder, a wave B recursion attempt, and
 the eight-pair full-window backtest actually ran for it - see
-`test_duration` in strategy_status.py for why this is a sum rather
+`test_duration` in evidence/strategy_status.py for why this is a sum rather
 than a pick-one-source figure. 4 of 1050 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.

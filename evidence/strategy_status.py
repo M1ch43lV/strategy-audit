@@ -26,7 +26,7 @@ import re
 import sys
 
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BS_SEP = chr(92)
 ELIGIBILITY = os.path.join(ROOT, "evidence/REGIME_ELIGIBILITY.csv")
 # The frozen baseline's own coverage_status was copied in from a run of this
@@ -406,7 +406,7 @@ TRADE_FLOOR = 10
 # companion image, four rows on the packages one - and this otherwise, which
 # is what every row without an explicit override actually runs on.
 DEFAULT_IMAGE = "strategy-audit-runtime:2026.7"
-# Criterion C4 (exclusion_criteria.py): a repair route ran, read what the
+# Criterion C4 (evidence/exclusion_criteria.py): a repair route ran, read what the
 # author actually wrote, and refused to invent what is missing rather than
 # leave the row "to be fixed" forever. `freqai_arm` and `freqai_config_built`
 # are deliberately not here - both are `refuse_repair` for THIS audit only
@@ -1631,7 +1631,7 @@ def _runtime_environments_report(data):
     lines = [
         "# Runtime environments - what each strategy needs to run",
         "",
-        "**Generated %s by `strategy_status.py`.** Regenerate it rather "
+        "**Generated %s by `evidence/strategy_status.py`.** Regenerate it rather "
         "than editing it." % now,
         "",
         "For the benchmark run: before measuring a row, look up its "
@@ -1693,7 +1693,7 @@ def _report(data):
 
     lines = [
         "# Strategy status - current evidence for all %d rows" % len(data), "",
-        "**Generated %s by `strategy_status.py`.** Regenerate it rather than "
+        "**Generated %s by `evidence/strategy_status.py`.** Regenerate it rather than "
         "editing it." % now, "",
         "**This table decides nothing.** Admission happens only in",
         "`evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has",
@@ -1799,7 +1799,7 @@ def _report(data):
         "look-ahead/recursion pair, a later native look-ahead",
         "re-measurement, the warm-up ladder, a wave B recursion attempt, and",
         "the eight-pair full-window backtest actually ran for it - see",
-        "`test_duration` in strategy_status.py for why this is a sum rather",
+        "`test_duration` in evidence/strategy_status.py for why this is a sum rather",
         "than a pick-one-source figure. %d of %d rows carry no stamp at all,"
         % (len(data) - len(timed), len(data)),
         "either because nothing has run yet or because no runner on that",
@@ -2414,7 +2414,7 @@ def main(argv=None):
         if current != rendered[OUTPUT]:
             print("stale: %s" % os.path.relpath(OUTPUT, ROOT))
             return 1
-        import exclusion_criteria
+        from evidence import exclusion_criteria
         for path, build in ((exclusion_criteria.CRITERIA_OUT,
                              exclusion_criteria.criteria_report),
                             (exclusion_criteria.REPAIRS_OUT,
@@ -2440,7 +2440,7 @@ def main(argv=None):
     # command somebody has to remember. exclusion_criteria.selftest is what
     # refuses a row excluded for a reason nobody has written down, and a
     # repair route taken and not recorded.
-    import exclusion_criteria
+    from evidence import exclusion_criteria
     exclusion_criteria.criteria_report(data, exclusion_criteria.CRITERIA_OUT)
     exclusion_criteria.repair_report(data, exclusion_criteria.REPAIRS_OUT)
     exclusion_criteria.selftest()

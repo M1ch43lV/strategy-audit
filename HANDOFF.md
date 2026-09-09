@@ -55,7 +55,7 @@ docker ps --format '{{.ID}}|{{.Image}}|{{.Status}}|{{.Command}}'
 Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match 'strategy-audit|full_backtest|profile_smoke|profile_full_window' } | Select-Object ProcessId,Name,CommandLine
 git log --oneline -8
 git status --short
-.\ftenv\Scripts\python.exe strategy_status.py --check
+.\ftenv\Scripts\python.exe -m evidence.strategy_status --check
 ```
 
 The status check is read-only. Do not regenerate `STRATEGY_STATUS.csv` while a

@@ -37,13 +37,13 @@ Kette).
 **2026-09-06, erledigt:** `ELIGIBILITY_NEVER_RUN.json` und
 `ELIGIBILITY_TRAP_SMOKE.json` waren einmalige Fallback-Stores früherer
 Wellen (kein Runner im aktuellen Repo schrieb sie neu) — 65 der 83 Zeilen
-darin hatten keinen eigenen `evidence/PROFILE_SMOKE.json`-Eintrag, `strategy_status.py`
+darin hatten keinen eigenen `evidence/PROFILE_SMOKE.json`-Eintrag, `evidence/strategy_status.py`
 fiel für sie auf diese beiden Dateien zurück. Per gezieltem
 `evidence/profile_smoke.py --strategy ... --profiles spot_long futures_long unknown`
 nachgeholt (empirisch geprüft: vorher änderten sich 65 von 83 Zeilen in
 `STRATEGY_STATUS.csv`, wenn man die Dateien wegließ, danach keine einzige
 mehr) und beide Dateien entfernt, inklusive der Fallback-Schleife in
-`strategy_status.py`.
+`evidence/strategy_status.py`.
 
 Scheitert der Probelauf an einem benannten, behebbaren Hindernis (fehlender
 `timeframe`, fehlendes lokales Modul, Signatur-Änderung von freqtrade/pandas/
@@ -80,7 +80,7 @@ Strategie. Eine Zeile ist `converged`, `not_converged_within_ladder` oder
 Hand geprüfte, an `canonical_sha256` gebundene Ausnahmeliste: Zeilen, bei
 denen freqtrades `lookahead-analysis` nur eine Zwischenspalte markiert (0
 verfälschte Entries/Exits), nachweislich weil die Spalte nie unverändert in
-die Signal-Logik einfließt. `strategy_status.py` liest sie mit derselben
+die Signal-Logik einfließt. `evidence/strategy_status.py` liest sie mit derselben
 Präzedenz wie eine native Messung.
 
 ## Stufe 4 — Datenabdeckung (Coverage)
@@ -97,9 +97,9 @@ timeframe)` gecacht — günstig, jederzeit sicher neu zu erzeugen. Deckt seit
 
 | Programm | Liest | Schreibt |
 |---|---|---|
-| `strategy_status.py` | **alles** aus Stufe 0–4 plus `evidence/REGIME_ELIGIBILITY.csv` (invalidierter historischer E0-Snapshot, ausschließlich Provenienz), `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` (aktive E1-Entscheidungen), `evidence/STRATEGY_CLASSIFICATION.json`, `evidence/MARKET_PHASE_HYPOTHESIS.json`, `evidence/BLOCKED_TRIAGE.json` | `STRATEGY_STATUS.csv`, `STRATEGY_STATUS.md`, **im selben Lauf automatisch**: `evidence/exclusion_criteria_list.md`, `evidence/repair_measures_list.md`, `RUNTIME_ENVIRONMENTS.md` |
+| `evidence/strategy_status.py` | **alles** aus Stufe 0–4 plus `evidence/REGIME_ELIGIBILITY.csv` (invalidierter historischer E0-Snapshot, ausschließlich Provenienz), `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` (aktive E1-Entscheidungen), `evidence/STRATEGY_CLASSIFICATION.json`, `evidence/MARKET_PHASE_HYPOTHESIS.json`, `evidence/BLOCKED_TRIAGE.json` | `STRATEGY_STATUS.csv`, `STRATEGY_STATUS.md`, **im selben Lauf automatisch**: `evidence/exclusion_criteria_list.md`, `evidence/repair_measures_list.md`, `RUNTIME_ENVIRONMENTS.md` |
 
-Ein einziger Aufruf (`python strategy_status.py`) schreibt alle fünf Dateien.
+Ein einziger Aufruf (`python -m evidence.strategy_status`) schreibt alle fünf Dateien.
 `--check` prüft nur, ob sie noch aktuell sind (schreibt nichts); `--selftest`
 läuft die eingebauten Konsistenz-Prüfungen.
 
@@ -116,7 +116,7 @@ Mitgliedschaft erscheint lediglich in `gate_notes`.
 | `evidence/eligibility_expansion_adjudicate.py` (ältere Wave-B/C-Regeln, `zero_warmup_analyzer_adapter_v1` / `native_gate_pass_v1`) | `evidence/ELIGIBILITY_EXPANSION_PROOFS.json`, `evidence/ELIGIBILITY_EXPANSION_WARMUP.json`, `evidence/ELIGIBILITY_EXPANSION_LOOKAHEAD.json`, `evidence/ELIGIBILITY_EXPANSION_EQUIVALENCE.json` | dieselbe `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv`, plus `.md`-Bericht |
 
 **Danach zwingend zurück zu Stufe 5.** Die Zulassungs-Entscheidung steht erst
-in `STRATEGY_STATUS.csv`, wenn `strategy_status.py` erneut läuft und die
+in `STRATEGY_STATUS.csv`, wenn `evidence/strategy_status.py` erneut läuft und die
 erweiterte `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` zurückliest. Ein Lauf
 von Stufe 6 ohne anschließende Stufe 5 zeigt in `STRATEGY_STATUS.csv` noch
 den alten Stand.
@@ -132,7 +132,7 @@ Zwei strukturell verschiedene, beide nötige Messungen (siehe
 | `evidence/merge_full_window_shards.py` | führt Shards zusammen | `evidence/PROFILE_FULL_WINDOW_shardA.json`, `_shardB.json`, `_shardTF.json` | die kanonische `evidence/PROFILE_FULL_WINDOW.json` |
 | `regime/full_backtest.py` (gepoolt, `canonical_pooled_native_pair_universe`) | Phase A: tatsächlicher Performance-Backtest über alle 8 Paare gepoolt | `STRATEGY_STATUS.csv` (E1-Kohorte) | `results/regime/full_backtest_manifest.json`, `full_backtest_native.json` |
 
-`evidence/PROFILE_FULL_WINDOW.json` fließt zurück in Stufe 5 (`strategy_status.py`
+`evidence/PROFILE_FULL_WINDOW.json` fließt zurück in Stufe 5 (`evidence/strategy_status.py`
 liest es für `observed_trades`/`trade_evidence`). Die gepoolten
 Backtest-Ergebnisse aus `regime/full_backtest.py` fließen **nicht** in die
 Zulassung zurück — sie sind die Datengrundlage für Stufe 9.
@@ -207,7 +207,7 @@ E1-Kohorte nötig, nur für Zero-Trade-Kandidaten.** Die Zitation oben
 von einem anderen Thema (Trade-Attribution vs. gegatete Performance,
 Phase A/B), nicht von Einzelpaar- vs. gepooltem Backtest. Der tatsächliche
 Grund, warum `evidence/profile_full_window.py` überhaupt existiert, steht in
-`strategy_status.py`: die Zulassung selbst braucht nur `observed_trades !=
+`evidence/strategy_status.py`: die Zulassung selbst braucht nur `observed_trades !=
 0` aus dem Probelauf (`evidence/eligibility_admit_converged.py`, keine
 Mindestanzahl — auch nicht 10, trotz anderslautender Erinnerung, geprüft
 und im ganzen Repo nicht gefunden). Das volle 6,5-Jahres-Fenster ist nur
@@ -267,7 +267,7 @@ markierten technischen Zwischenstand und ist keine Ranking-Freigabe.
 
 Muss geschrieben sein, **bevor** irgendjemand die Ergebnisse aus Stufe 9
 ansieht — sonst ist es keine Vorhersage mehr (`REGIME_AUDIT_PLAN.md` §28.3).
-Bereits durchgelaufen; wird von `strategy_status.py` (Stufe 5) nur gelesen,
+Bereits durchgelaufen; wird von `evidence/strategy_status.py` (Stufe 5) nur gelesen,
 nie neu entschieden.
 
 ## Stufe 11 — Benchmark: Modell 0/1/2/3
@@ -382,7 +382,7 @@ ersetzt hat.
 
 | Datei/Verzeichnis | Erzeugt von | Ersetzt durch |
 |---|---|---|
-| `README.md`, `LEDGER.csv`, `LEDGER.md` | `ledger.py` (eigener Generator, unabhängig von `strategy_status.py`) | `STRATEGY_STATUS.md` |
+| `README.md`, `LEDGER.csv`, `LEDGER.md` | `ledger.py` (eigener Generator, unabhängig von `evidence/strategy_status.py`) | `STRATEGY_STATUS.md` |
 | `CORPUS.md`, `CORPUS_PLAN.md`, `corpus/INDEX.md` + 896 Karten unter `corpus/` | (Vorgänger-Tooling, nicht Teil dieser Kette) | `evidence/EXECUTION_PROFILES.csv`, `evidence/corpus_sources.json` |
 | `old/predecessor_audit/ANALYSIS.md`, `ANALYSIS.ru.md` | (Vorgänger-Tooling) | fünf handverlesene Fallstudien, keine Population — `STRATEGY_STATUS.csv` deckt die aktuelle Population |
 | `old/predecessor_audit/results/*.md` (`DoubleEMACrossoverWithTrend.md` u.a., `INDEX.md`) | (Vorgänger-Tooling) | dieselben fünf Fallstudien — **nicht zu verwechseln mit `results/regime/`**, das ist aktuell und wird von Stufe 7–9 beschrieben |
@@ -422,7 +422,7 @@ schon vorher benutzte.
 | `tools/probe_shim_neutral.py` | Vergleicht Backtest-Ergebnisse mit/ohne `enter_tag`-Shim auf Neutralität | nach einer Änderung am Shim-Mechanismus |
 | `tools/probe_zero.py` | Unterscheidet bei einer Zeile ohne Trades, ob die Entry-Bedingung nie wahr wird oder der Indikator fehlt | wenn eine Zeile 0 Trades zeigt und die Ursache unklar ist |
 | `tools/strategy_classification.py` | Klassifiziert Typ/Timeframe je Zeile aus `evidence/EXECUTION_PROFILES.csv` und dem Strategie-Quellcode; schreibt `evidence/STRATEGY_CLASSIFICATION.json`, das Stufe 5 und Stufe 10 lesen. `strategy_type` ist immer explizit: erkannte Familie, `unclassified` oder für Test-/Template-Artefakte `not_applicable`. Reihenfolge: Klassifikation vor Phasenhypothese, Status und HTML-Seite. | nach neuem Harvest, wenn sich `evidence/EXECUTION_PROFILES.csv` ändert oder Klassifikationsregeln geändert wurden |
-| `tools/strategy_status_page.py` | Baut die veröffentlichte Seite aus `STRATEGY_STATUS.csv`, damit Seite und Tabelle nie auseinanderlaufen | nach jedem `strategy_status.py`-Lauf, vor Veröffentlichung |
+| `tools/strategy_status_page.py` | Baut die veröffentlichte Seite aus `STRATEGY_STATUS.csv`, damit Seite und Tabelle nie auseinanderlaufen | nach jedem `evidence/strategy_status.py`-Lauf, vor Veröffentlichung |
 | `tools/warmup_reparse.py` | Liest gespeicherte Leiter-Logs mit dem aktuellen Parser erneut, ohne freqtrade neu laufen zu lassen | nach einer Korrektur am Drift-Tabellen-Parser |
 
 `repair/FREQAI_RESULTS.md`, `repair/REGISTER.md`, `repair/TRANSLATION_AUDIT.md`
