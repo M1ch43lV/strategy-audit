@@ -86,6 +86,9 @@
   .stat-breakdown b{font-family:"IBM Plex Mono",ui-monospace,monospace;
     font-size:10.5px; font-weight:600; color:var(--ink);
     font-variant-numeric:tabular-nums; letter-spacing:0}
+  .stat-breakdown li.ready{margin-top:4px; padding-top:5px;
+    border-top:1px dashed var(--line-soft); color:var(--pass)}
+  .stat-breakdown li.ready b{color:var(--pass)}
 
   section{display:flex; flex-direction:column; gap:14px}
   h2{font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
@@ -566,13 +569,35 @@ __CRITERIA__
     not_tested_in_current_runtime: "not run here yet",
     not_a_strategy: "not a strategy"
   };
+  // "Ready to run" means only this: the row is new to this runtime and has
+  // never been through this stage's check at all. Every other cohort in
+  // "other reasons" - `pending` ("open"), `excluded` ("excluded, different
+  // reason"), `exclusion_unconfirmed`, `too_few_trades`, `convergence_
+  // candidate` - already has a result from a run that touched this stage,
+  // even if that result is not yet a settled verdict. That is unfinished
+  // work, not an unstarted one, so it does not count here.
+  function readyToRun(r){
+    return r.c === "not_tested_in_current_runtime";
+  }
   function breakdown(list){
     var counts = {};
     list.forEach(function(r){ counts[r.c] = (counts[r.c] || 0) + 1; });
     var keys = Object.keys(counts).sort(function(a, b){ return counts[b] - counts[a]; });
+    // Not a further split of the same total - every row above is counted
+    // once already, and these keys already sum to list.length. This is a
+    // second, overlapping cut through the same rows: how many carry no
+    // repair debt of ours (exclusion_basis "blocked" is what a genuine
+    // obstacle - a crash, a design mismatch - looks like) and so need only
+    // the next run, not a fix first. `not_tested_in_current_runtime` shares
+    // that same "blocked" label for an unrelated reason - nothing was ever
+    // found wrong with it, it only lacks a first pass under this runtime -
+    // so it counts as ready too.
+    var ready = list.filter(readyToRun).length;
     return '<ul class="stat-breakdown">' + keys.map(function(k){
       return '<li><span>' + (OTHER_LABEL[k] || k) + '</span><b>' + counts[k] + '</b></li>';
-    }).join("") + '</ul>';
+    }).join("") +
+      '<li class="ready"><span>of which ready to run</span><b>' + ready +
+      '</b></li></ul>';
   }
 
   document.getElementById("stats").innerHTML =
