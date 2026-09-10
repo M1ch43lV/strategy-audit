@@ -17,47 +17,21 @@
       "strategy_id": "AdvancedRiskFilterStrategy",
       "verdict": "needs_a_look"
     },
-    "AlexStrategyFinalV8": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "'freqai'",
-      "source_file": "repos/AlexCryptoKing_freqailstm/V8/1HOUR/AlexStrategyFinalV8.py",
-      "strategy_id": "AlexStrategyFinalV8",
-      "verdict": "needs_a_look"
-    },
-    "AlexStrategyFinalV9": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "'freqai'",
-      "source_file": "repos/AlexCryptoKing_freqailstm/V9/AlexStrategyFinalV90.py",
-      "strategy_id": "AlexStrategyFinalV9",
-      "verdict": "needs_a_look"
-    },
-    "Anomaly": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class Anomaly is present",
-      "runtime_failure": "Impossible to load Strategy 'Anomaly'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/Anomaly.py",
-      "strategy_id": "Anomaly",
-      "verdict": "to_be_fixed"
-    },
     "Astro": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "author_logic_incomplete",
+      "note": "Astro assigns a list of indicator-column names as row values; its length depends on the dataframe shape. No author-supplied replacement calculation exists in the repository.",
       "runtime_failure": "Length of values (180) does not match length of index (82)",
       "source_file": "repos/jaredrsommer_freqtradestrategies/Astro.py",
       "strategy_id": "Astro",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "AutoArimaTripleV1": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "insufficient_authored_history_contract",
+      "note": "AutoArimaTripleV1 hard-codes 10,000 samples independently for 5m, 30m, and 1h predictors but declares only 30 startup candles. Rewriting its data-loading contract would change the strategy architecture.",
       "runtime_failure": "Not enough data in history. Please first download enough data",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/AutoArimaTripleV1.py",
       "strategy_id": "AutoArimaTripleV1",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "BBBHold": {
       "family": "local_module_off_path",
@@ -84,23 +58,11 @@
       "verdict": "to_be_fixed"
     },
     "BaseStrategy": {
-      "family": "local_module_off_path",
-      "missing_module": "Framework",
-      "module_found_at": "repos/nateemma_strategies/Framework",
-      "note": "The module the author imports is in the corpus at repos/nateemma_strategies/Framework. Nothing is wrong with the strategy; our import path does not include it.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'Framework' at BaseStrategy.py:63",
-      "runtime_failure": "Impossible to load Strategy 'BaseStrategy'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/nateemma_strategies/Framework/BaseStrategy.py",
-      "strategy_id": "BaseStrategy",
-      "verdict": "to_be_fixed"
-    },
-    "BestSingleAssetPortfolio": {
       "family": "individual",
       "note": "one of a kind; read the message",
-      "runtime_failure": "Encountered all NA values",
-      "source_file": "repos/mlsys-io_PortfolioBench/user_data/strategies/best_single_asset.py",
-      "strategy_id": "BestSingleAssetPortfolio",
+      "runtime_failure": "None",
+      "source_file": "repos/nateemma_strategies/Framework/BaseStrategy.py",
+      "strategy_id": "BaseStrategy",
       "verdict": "needs_a_look"
     },
     "BinanceStream": {
@@ -111,21 +73,13 @@
       "strategy_id": "BinanceStream",
       "verdict": "refuse_repair"
     },
-    "Bins": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "Informative dataframe for (BTC/USDT, 1h, futures) is empty. Can't populate informative indicators.",
-      "source_file": "repos/thinkong_freqtradestrategies/user_data/strategies/Bins.py",
-      "strategy_id": "Bins",
-      "verdict": "needs_a_look"
-    },
     "BlueEyes_MPP_v1": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "unsupported callable",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/BlueEyes_MPP_v1.py",
+      "family": "local_module_repair_exhausted",
+      "note": "BlueEyes_MPP_v1 still lacks framework symbols after restoring its explicit DataFrame annotation and exact repository-local pivots helper. Continuing symbol-by-symbol would reconstruct an incomplete strategy file rather than apply one bounded compatibility repair.",
+      "runtime_failure": "name 'merge_informative_pair' is not defined",
+      "source_file": "user_data/profile_repairs/BlueEyes_MPP_v1.py",
       "strategy_id": "BlueEyes_MPP_v1",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "CME": {
       "family": "third_party_package",
@@ -179,7 +133,7 @@
       "family": "no_exit_logic",
       "note": "No exit logic at all. Whatever we wrote would be ours, not theirs.",
       "runtime_failure": "`populate_exit_trend` or `populate_sell_trend` must be implemented.",
-      "source_file": "repos/ShahAnuj2610_my-freqtrade/user_data/strategies/BB_RPB_TSL_ClucHAnix_BB_RPB_MOD_CTT_Dynamic_Offsets_COMBINED_MOD_TraNz_1.py",
+      "source_file": "repair/patched/repos/ShahAnuj2610_my-freqtrade/user_data/strategies/BB_RPB_TSL_ClucHAnix_BB_RPB_MOD_CTT_Dynamic_Offsets_COMBINED_MOD_TraNz_1.py",
       "strategy_id": "ClucHAnix_BB_RPB_TraNz",
       "verdict": "refuse_repair"
     },
@@ -196,12 +150,12 @@
       "verdict": "needs_a_look"
     },
     "CryptoFrogNFI2": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "author_parameter_missing",
+      "note": "CryptoFrogNFI2 reads a seventh pump threshold that the class never declares. Values in related variants are not provenance for this strategy and must not be guessed.",
       "runtime_failure": "'CryptoFrogNFI2' object has no attribute 'buy_pump_threshold_7'. Did you mean: 'buy_pump_threshold_1'?",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/CryptoFrogNFI2.py",
       "strategy_id": "CryptoFrogNFI2",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "CryptoPredictionTraining": {
       "family": "no_stoploss",
@@ -212,12 +166,12 @@
       "verdict": "refuse_repair"
     },
     "DELTA_NEUTRAL": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "backtest_mode_not_implemented",
+      "note": "DELTA_NEUTRAL returns a dataframe only in live or dry-run branches; its backtest branch returns None. Inventing historical portfolio behavior is outside the repair boundary.",
       "runtime_failure": "'NoneType' object has no attribute 'columns'",
       "source_file": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/DELTA_NEUTRAL/user_data/strategies/DELTA_NEUTRAL.py",
       "strategy_id": "DELTA_NEUTRAL",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "DIV_v1": {
       "family": "dtype_drift",
@@ -235,27 +189,11 @@
       "strategy_id": "DWT",
       "verdict": "needs_a_look"
     },
-    "DWTHO": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "buffer source array is read-only",
-      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWTHO.py",
-      "strategy_id": "DWTHO",
-      "verdict": "needs_a_look"
-    },
-    "DWT_LongShortHO": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "buffer source array is read-only",
-      "source_file": "repos/kemplail_freqtrade-stuff/strategies/DWTLongShortHO.py",
-      "strategy_id": "DWT_LongShortHO",
-      "verdict": "needs_a_look"
-    },
     "Danke": {
-      "family": "dtype_drift",
-      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
-      "runtime_failure": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given",
-      "source_file": "repair/patched/repos/TheoBrigitte_freqtrade/strategies/danke/Danke.py",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "timeout after 900 seconds",
+      "source_file": "user_data/profile_repairs/Danke.py",
       "strategy_id": "Danke",
       "verdict": "needs_a_look"
     },
@@ -311,14 +249,6 @@
       "strategy_id": "EnsembleStrategyV2",
       "verdict": "to_be_fixed"
     },
-    "ExampleLSTMStrategy": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "'freqai'",
-      "source_file": "repos/AlexCryptoKing_freqailstm/V6/AlexStrategyFinalV6.py",
-      "strategy_id": "ExampleLSTMStrategy",
-      "verdict": "needs_a_look"
-    },
     "FBB_2": {
       "family": "no_stoploss",
       "note": "The strategy declares no stoploss. Supplying one does not restore anything the author wrote; it invents the risk management and then measures the invention.",
@@ -327,16 +257,6 @@
       "strategy_id": "FBB_2",
       "verdict": "refuse_repair"
     },
-    "FBB_KalmanSIMD": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class FBB_KalmanSIMD is present",
-      "runtime_failure": "Impossible to load Strategy 'FBB_KalmanSIMD'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/FBB_KalmanSIMD.py",
-      "strategy_id": "FBB_KalmanSIMD",
-      "verdict": "to_be_fixed"
-    },
     "FBB_ROI": {
       "family": "no_stoploss",
       "note": "The strategy declares no stoploss. Supplying one does not restore anything the author wrote; it invents the risk management and then measures the invention.",
@@ -344,38 +264,6 @@
       "source_file": "repos/webclinic017_strategies-freqtrade-/archived/FBB_ROI.py",
       "strategy_id": "FBB_ROI",
       "verdict": "refuse_repair"
-    },
-    "FSupertrendStrategyBTC": {
-      "family": "dtype_drift",
-      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
-      "runtime_failure": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given",
-      "source_file": "repair/patched/repos/MelvynClark_Freqtrade-Strategy/FSupertrendStrategy - BTC.py",
-      "strategy_id": "FSupertrendStrategyBTC",
-      "verdict": "needs_a_look"
-    },
-    "FSupertrendStrategyETH": {
-      "family": "dtype_drift",
-      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
-      "runtime_failure": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given",
-      "source_file": "repair/patched/repos/MelvynClark_Freqtrade-Strategy/FSupertrendStrategy - ETH.py",
-      "strategy_id": "FSupertrendStrategyETH",
-      "verdict": "needs_a_look"
-    },
-    "FastSupertrend": {
-      "family": "dtype_drift",
-      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
-      "runtime_failure": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given",
-      "source_file": "repair/patched/repos/davidzr_freqtrade-strategies/strategies/FastSupertrend/FastSupertrend.py",
-      "strategy_id": "FastSupertrend",
-      "verdict": "needs_a_look"
-    },
-    "FastSupertrendOpt": {
-      "family": "dtype_drift",
-      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
-      "runtime_failure": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given",
-      "source_file": "repair/patched/repos/davidzr_freqtrade-strategies/strategies/FastSupertrendOpt/FastSupertrendOpt.py",
-      "strategy_id": "FastSupertrendOpt",
-      "verdict": "needs_a_look"
     },
     "FileLoadingStrategy": {
       "family": "timeframe_missing",
@@ -420,18 +308,18 @@
     "GRIDDMIPRICEStrategyFutureV4": {
       "family": "individual",
       "note": "one of a kind; read the message",
-      "runtime_failure": "timeout after 900 seconds",
+      "runtime_failure": "timeout after 1800 seconds",
       "source_file": "repos/LazyPigPig_freqtrade-grid/user_data/strategies/ADX_PRICE_GRID_Strategy_Future_v4.py",
       "strategy_id": "GRIDDMIPRICEStrategyFutureV4",
       "verdict": "needs_a_look"
     },
     "GodStra": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "author_logic_incomplete",
+      "note": "GodStra's authored parameter-DNA calculation and parameter groups disagree. Correcting its iteration changes which entry predicates are evaluated.",
       "runtime_failure": "index 14 is out of bounds for axis 0 with size 2",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/GodStraNew.py",
       "strategy_id": "GodStra",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "Guacamole": {
       "family": "individual",
@@ -454,12 +342,12 @@
       "verdict": "needs_a_look"
     },
     "HLHB": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "invalid_declared_config",
+      "note": "HLHB declares minimal_roi as a one-element tuple because of a trailing comma. Removing source punctuation would replace an invalid authored risk configuration.",
       "runtime_failure": "'tuple' object has no attribute 'items'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/HLHB.py",
       "strategy_id": "HLHB",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "HMMv3": {
       "family": "third_party_package",
@@ -484,16 +372,6 @@
       "source_file": "repos/jaredrsommer_freqtradestrategies/KMM.py",
       "strategy_id": "KMM",
       "verdict": "needs_a_look"
-    },
-    "Kalman": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class Kalman is present",
-      "runtime_failure": "Impossible to load Strategy 'Kalman'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/kemplail_freqtrade-stuff/strategies/Kalman.py",
-      "strategy_id": "Kalman",
-      "verdict": "to_be_fixed"
     },
     "Kamaflage": {
       "family": "individual",
@@ -623,17 +501,17 @@
       "probe": "import_raises",
       "probe_detail": "ModuleNotFoundError: No module named 'cointanalysis' at LitmusSimpleStrategy.py:7",
       "runtime_failure": "Impossible to load Strategy 'LitmusSimpleStrategy'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusSimpleStrategy.py",
+      "source_file": "repair/patched/repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusSimpleStrategy.py",
       "strategy_id": "LitmusSimpleStrategy",
       "verdict": "needs_a_look"
     },
     "MasterMoniGoManiHyperStrategy": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "missing_author_runtime",
+      "note": "MasterMoniGoManiHyperStrategy terminates during its repository-specific configuration path before Freqtrade can create an archive. Supplying that authored environment is not a shared harness repair.",
       "runtime_failure": "process exit 0 without a readable backtest archive",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/MasterMoniGoManiHyperStrategy.py",
       "strategy_id": "MasterMoniGoManiHyperStrategy",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "MlpSpeculativeStrategy": {
       "family": "local_module_off_path",
@@ -663,29 +541,13 @@
       "strategy_id": "MostOfAll",
       "verdict": "needs_a_look"
     },
-    "MultiMA_TSL3b": {
-      "family": "dtype_drift",
-      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
-      "runtime_failure": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given",
-      "source_file": "repos/kemplail_freqtrade-stuff/strategies/MultiMA_TSL.py",
-      "strategy_id": "MultiMA_TSL3b",
-      "verdict": "needs_a_look"
-    },
-    "MultiMA_TSL5": {
-      "family": "dtype_drift",
-      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
-      "runtime_failure": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given",
-      "source_file": "repair/patched/repos/MMR-19_freqtrade-strategies/strategies/MultiMA_TSL5.py",
-      "strategy_id": "MultiMA_TSL5",
-      "verdict": "needs_a_look"
-    },
     "MultiMa": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "author_logic_incomplete",
+      "note": "MultiMa generates indicator moving-average columns from a runtime-dependent parameter range and then reads columns it did not generate. Choosing a corrected range changes the signals.",
       "runtime_failure": "'buy-ma-10'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/MultiMa.py",
       "strategy_id": "MultiMa",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "MultiTargetClassifierTestStrategy": {
       "family": "timeframe_missing",
@@ -704,33 +566,23 @@
       "verdict": "to_be_fixed"
     },
     "MyStrategyNew10": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "author_parameter_missing",
+      "note": "MyStrategyNew10 passes an authored null indicator choice into TA-Lib. No exact author parameter set in this repository supplies the missing indicator.",
       "runtime_failure": "attribute name must be string, not 'NoneType'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/MyStrategyNew10.py",
       "strategy_id": "MyStrategyNew10",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "NNPredict": {
       "family": "local_module_off_path",
-      "missing_module": "NNPredictor_LSTM0",
-      "module_found_at": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/NNPredictor_LSTM0.py",
-      "note": "The module the author imports is in the corpus at repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/NNPredictor_LSTM0.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "missing_module": "utils",
+      "module_found_at": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/utils",
+      "note": "The module the author imports is in the corpus at repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/utils. Nothing is wrong with the strategy; our import path does not include it.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'NNPredictor_LSTM0' at NNPredict.py:43",
+      "probe_detail": "ModuleNotFoundError: No module named 'utils' at NNPredict.py:40",
       "runtime_failure": "Impossible to load Strategy 'NNPredict'. This class does not exist or contains Python code errors.",
       "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/NNPredict.py",
       "strategy_id": "NNPredict",
-      "verdict": "to_be_fixed"
-    },
-    "NNTC": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class NNTC is present",
-      "runtime_failure": "Impossible to load Strategy 'NNTC'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC.py",
-      "strategy_id": "NNTC",
       "verdict": "to_be_fixed"
     },
     "NoLost": {
@@ -742,30 +594,20 @@
       "verdict": "refuse_repair"
     },
     "NowoIchimoku1hV1": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "author_signal_missing",
+      "note": "NowoIchimoku1hV1 reads a buy signal column that is absent on reachable rows. Supplying or defaulting that signal would alter entry or exit behavior.",
       "runtime_failure": "'buy'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/NowoIchimoku1hV1 (1).py",
       "strategy_id": "NowoIchimoku1hV1",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "ONS_Portfolio": {
       "family": "individual",
       "note": "one of a kind; read the message",
-      "runtime_failure": "timeout after 300 seconds",
+      "runtime_failure": "timeout after 1800 seconds",
       "source_file": "repos/mlsys-io_PortfolioBench/user_data/strategies/ONS.py",
       "strategy_id": "ONS_Portfolio",
       "verdict": "needs_a_look"
-    },
-    "PCA": {
-      "family": "class_not_loaded",
-      "note": "The file imports and the class is there, so the failure is in how we resolve or invoke it, not in the strategy.",
-      "probe": "imports_fine",
-      "probe_detail": "class PCA is present",
-      "runtime_failure": "Impossible to load Strategy 'PCA'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA.py",
-      "strategy_id": "PCA",
-      "verdict": "to_be_fixed"
     },
     "PnF": {
       "family": "dtype_drift",
@@ -792,12 +634,12 @@
       "verdict": "refuse_repair"
     },
     "Proton": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "missing_author_config",
+      "note": "Proton requires a named strategy-specific configuration block whose values are not shipped in the captured repository. Each value controls reachable behavior.",
       "runtime_failure": "'proton_parameters'",
       "source_file": "repos/hamidreza07_freqai-strategy/freqai/proton.py",
       "strategy_id": "Proton",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "QuatreMousquetaires": {
       "family": "third_party_package",
@@ -819,69 +661,45 @@
       "strategy_id": "QuickAdapterV3",
       "verdict": "to_be_fixed"
     },
-    "QuickBuyStrategy": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "invalid literal for int() with base 10: '1h'",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/QuickBuyStrategy.py",
-      "strategy_id": "QuickBuyStrategy",
-      "verdict": "needs_a_look"
-    },
     "RLAgentStrategy": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "missing_author_runtime",
+      "note": "RLAgentStrategy belongs to a custom FreqAI reinforcement-learning stack with additional model and dependency requirements. It is not reproducible in the frozen shared runtime.",
       "runtime_failure": "No module named 'datasieve'",
       "source_file": "repos/jerome-benoit_freqai-strategies/ReforceXY/user_data/strategies/RLAgentStrategy.py",
       "strategy_id": "RLAgentStrategy",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "RebalanceStrategySpot": {
       "family": "individual",
       "note": "one of a kind; read the message",
-      "runtime_failure": "timeout after 900 seconds",
+      "runtime_failure": "timeout after 1800 seconds",
       "source_file": "repos/LazyPigPig_freqtrade-grid/user_data/strategies/REBALANCE.py",
       "strategy_id": "RebalanceStrategySpot",
       "verdict": "needs_a_look"
     },
     "RenkoYolo": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "author_parameter_missing",
+      "note": "RenkoYolo reads ADX and Aroon thresholds from buy_params, but the captured class supplies no such parameter dictionary. Thresholds cannot be inferred safely.",
       "runtime_failure": "'adx'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/RenkoYolo (1).py",
       "strategy_id": "RenkoYolo",
-      "verdict": "needs_a_look"
-    },
-    "SMAOPv1_TTF": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "Cannot determine parameter space for ttf_length.",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/SMAOPv1_TTF.py",
-      "strategy_id": "SMAOPv1_TTF",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "ScalpingCCI": {
       "family": "timeframe_missing",
       "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
       "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/ScalpingCCI.py",
+      "source_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/ScalpingCCI.py",
       "strategy_id": "ScalpingCCI",
       "verdict": "to_be_fixed"
     },
-    "Schism5": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "timeout after 300 seconds",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.5.py",
-      "strategy_id": "Schism5",
-      "verdict": "needs_a_look"
-    },
     "Schism6": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "author_parameter_missing",
+      "note": "The selected Schism6 class reads inf-rsi but does not declare it. Values in sibling classes and versions differ and cannot identify the intended threshold.",
       "runtime_failure": "'inf-rsi'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.6.py",
       "strategy_id": "Schism6",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "SimpleRiskFilterStrategy": {
       "family": "no_exit_logic",
@@ -905,30 +723,6 @@
       "runtime_failure": "module 'custom_indicators' has no attribute 'fib_ret'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/SolipsisMM.py",
       "strategy_id": "SolipsisMM",
-      "verdict": "needs_a_look"
-    },
-    "Solipsis_v4": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "Something has gone wrong, please report a bug at https://github.com/pandas-dev/pandas/issues",
-      "source_file": "repos/kemplail_freqtrade-stuff/strategies/Solipsis_v4.py",
-      "strategy_id": "Solipsis_v4",
-      "verdict": "needs_a_look"
-    },
-    "SuperTrendPure": {
-      "family": "dtype_drift",
-      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
-      "runtime_failure": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given",
-      "source_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/SuperTrendPure.py",
-      "strategy_id": "SuperTrendPure",
-      "verdict": "needs_a_look"
-    },
-    "Supertrend": {
-      "family": "dtype_drift",
-      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
-      "runtime_failure": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given",
-      "source_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/Supertrend.py",
-      "strategy_id": "Supertrend",
       "verdict": "needs_a_look"
     },
     "TGMA": {
@@ -964,46 +758,20 @@
       "verdict": "to_be_fixed"
     },
     "TuplaBollinger": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "unsupported_exchange_timeframe",
+      "note": "TuplaBollinger declares 5h, which Binance does not publish. Resampling another interval would introduce a new candle construction and change the measured strategy.",
       "runtime_failure": "No data found. Terminating.",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/TuplaBollinger.py",
       "strategy_id": "TuplaBollinger",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "UpSliceStrategy": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "author_logic_incomplete",
+      "note": "UpSliceStrategy compares a price to a method object. Selecting a call, property, or different operand would repair trading logic rather than compatibility.",
       "runtime_failure": "'<' not supported between instances of 'float' and 'method'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/UpSliceStrategy.py",
       "strategy_id": "UpSliceStrategy",
-      "verdict": "needs_a_look"
-    },
-    "WTHO": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "Cannot determine parameter space for mfi_length.",
-      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/4/WTHO/WTHO.py",
-      "strategy_id": "WTHO",
-      "verdict": "needs_a_look"
-    },
-    "avellaneda": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "process exit 0 without a readable backtest archive",
-      "source_file": "repos/djienne_AVELLANEDA_MARKET_MAKING_FREQTRADE/user_data/strategies/avellaneda.py",
-      "strategy_id": "avellaneda",
-      "verdict": "needs_a_look"
-    },
-    "delist_shorter_strategy": {
-      "family": "class_not_loaded",
-      "note": "The file raises on import. Whether that is a missing dependency we can install or code that no longer runs depends on the exception.",
-      "probe": "import_raises",
-      "probe_detail": "FileNotFoundError: [Errno 2] No such file or directory: './user_data/strategies/processed.json' at delist_shorter_strategy.py:28",
-      "runtime_failure": "Impossible to load Strategy 'delist_shorter_strategy'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/hippocritical_delist_scraper/delist_shorter_strategy.py",
-      "strategy_id": "delist_shorter_strategy",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "kac_index_v1": {
       "family": "third_party_package",
@@ -1054,12 +822,12 @@
       "verdict": "needs_a_look"
     },
     "tacos1": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
+      "family": "author_parameter_missing",
+      "note": "tacos1 references undeclared short EMA parameters and column names that its indicator method never creates. A commented result cannot supply the missing implementation.",
       "runtime_failure": "'tacos1' object has no attribute 'buy_ema_short'. Did you mean: 'buy_ema_long'?",
       "source_file": "repos/jaredrsommer_freqtradestrategies/tacos1.py",
       "strategy_id": "tacos1",
-      "verdict": "needs_a_look"
+      "verdict": "refuse_repair"
     },
     "thetank2": {
       "family": "no_populate_indicators",

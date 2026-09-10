@@ -16,7 +16,7 @@ from __future__ import print_function
 import os as _os
 _ROOT = (_os.environ.get("AUDIT_ROOT") or
          _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
-import io, os, sys, time, urllib.error, urllib.request, zipfile
+import argparse, io, os, sys, time, urllib.error, urllib.request, zipfile
 
 sys.path.insert(0, _ROOT)
 import pandas as pd
@@ -32,9 +32,35 @@ DAILY = "https://data.binance.vision/data/spot/daily/klines/%s/%s/%s-%s-%s.zip"
 # different timeframes, i.e., incomparable runs. A 20-day hole is less than
 # a percent, and that is exactly why it is easy to miss.
 TAIL_DAYS = ["2026-08-%02d" % d for d in range(1, 21)]
-TF = sys.argv[1] if len(sys.argv) > 1 else "5m"
 Y0, M0, Y1, M1 = 2018, 3, 2026, 7
 RETRY = 4
+
+
+def arguments(argv=None):
+    parser = argparse.ArgumentParser(
+        description="Fetch Binance Vision spot candles into Freqtrade feather files.")
+    parser.add_argument("timeframe", nargs="?", default="5m")
+    parser.add_argument("--refill", action="store_true")
+    parser.add_argument(
+        "--pair", action="append", default=[], metavar="SYMBOL=FILESTEM",
+        help=("fetch only this additional pair, for example "
+              "ETHBTC=ETH_BTC; repeat for multiple pairs"))
+    return parser.parse_args(argv)
+
+
+def selected_pairs(specs):
+    if not specs:
+        return dict(PAIRS)
+    pairs = {}
+    for spec in specs:
+        if "=" not in spec:
+            raise SystemExit("--pair must be SYMBOL=FILESTEM")
+        symbol, stem = spec.split("=", 1)
+        symbol, stem = symbol.strip().upper(), stem.strip()
+        if not symbol or not stem:
+            raise SystemExit("--pair must be SYMBOL=FILESTEM")
+        pairs[symbol] = stem
+    return pairs
 
 
 def months():
@@ -75,7 +101,10 @@ def grab(sym, tf, tag, daily=False):
     return [], u"NETWORK"
 
 
-def main():
+def main(argv=None):
+    args = arguments(argv)
+    timeframe = args.timeframe
+    pairs = selected_pairs(args.pair)
     # The same lock as in corpus.py: two loaders for one candle folder —
     # the same defect class, and it already happened to me (20.08).
     from runtime import runlock
@@ -84,16 +113,16 @@ def main():
     import atexit
     atexit.register(lambda: runlock.release("fetch"))
     os.makedirs(OUT, exist_ok=True)
-    force = "--refill" in sys.argv
-    todo = [(s, f) for s, f in PAIRS.items()
-            if force or not (os.path.exists(os.path.join(OUT, "%s-%s.feather" % (f, TF)))
-                             and os.path.getsize(os.path.join(OUT, "%s-%s.feather" % (f, TF))) > 100000)]
-    print(u"TIMEFRAME %s · pairs to load %d of %d" % (TF, len(todo), len(PAIRS)), flush=True)
+    todo = [(s, f) for s, f in pairs.items()
+            if args.refill or not (os.path.exists(os.path.join(OUT, "%s-%s.feather" % (f, timeframe)))
+                                   and os.path.getsize(os.path.join(OUT, "%s-%s.feather" % (f, timeframe))) > 100000)]
+    print(u"TIMEFRAME %s · pairs to load %d of %d" %
+          (timeframe, len(todo), len(pairs)), flush=True)
     for sym, ft in todo:
         t0 = time.time()  # TOTAL: duration for printing, not part of the verdict
         rows, gaps, neterr = [], [], 0
         for y, m in months():
-            r, st = grab(sym, TF, "%04d-%02d" % (y, m))
+            r, st = grab(sym, timeframe, "%04d-%02d" % (y, m))
             if st == u"ok":
                 rows += r
             elif st == u"not in archive":
@@ -102,30 +131,31 @@ def main():
                 neterr += 1
         tail = 0
         for day in TAIL_DAYS:                     # backfill of unclosed month
-            r, st = grab(sym, TF, day, daily=True)
+            r, st = grab(sym, timeframe, day, daily=True)
             if st == u"ok":
                 rows += r
                 tail += len(r)
             elif st != u"not in archive":
                 neterr += 1
         if not rows:
-            print(u"  ✗ %-9s NOT A SINGLE MONTH (network failures %d)" % (sym, neterr), flush=True)
+            print(u"  ERROR %-9s NOT A SINGLE MONTH (network failures %d)" % (sym, neterr), flush=True)
             continue
         d = pd.DataFrame(rows, columns=["ts", "open", "high", "low", "close", "volume"])
         d = d.drop_duplicates("ts").sort_values("ts")
         d["date"] = pd.to_datetime(d["ts"], unit="ms", utc=True)
         d[["date", "open", "high", "low", "close", "volume"]] \
-            .reset_index(drop=True).to_feather(os.path.join(OUT, "%s-%s.feather" % (ft, TF)))
+                .reset_index(drop=True).to_feather(
+                    os.path.join(OUT, "%s-%s.feather" % (ft, timeframe)))
         note = u""
         if gaps:
-            note += u" ? months without listing %d (since %s)" % (len(gaps), gaps[0])
-        note += u" · days backfilled %d" % tail
+            note += u"; months without listing %d (since %s)" % (len(gaps), gaps[0])
+        note += u"; days backfilled %d" % tail
         if neterr:
-            note += u" · NETWORK FAILURES %d — series INCOMPLETE" % neterr
-        print(u"  ✓ %-9s %8d candles  %s … %s  in %.0f s%s"
+            note += u"; NETWORK FAILURES %d - series INCOMPLETE" % neterr
+        print(u"  OK %-9s %8d candles  %s ... %s  in %.0f s%s"
               % (sym, len(d), str(d["date"].iloc[0])[:10], str(d["date"].iloc[-1])[:10],
                  time.time() - t0, note), flush=True)  # TOTAL: print duration
-    print(u"DONE %s" % TF, flush=True)
+    print(u"DONE %s" % timeframe, flush=True)
 
 
 if __name__ == "__main__":

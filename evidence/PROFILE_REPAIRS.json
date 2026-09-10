@@ -1,6 +1,20 @@
 {
   "repairs": [
     {
+      "base_file": "repos/mlsys-io_PortfolioBench/user_data/strategies/best_single_asset.py",
+      "equivalence_status": "output_equivalent",
+      "input_sha256": "sha256_abdcc7728bf2bef3093f801d14bb72e99bf16c21c9d2b1a0c73b6e3a0cc89208",
+      "output_sha256": "sha256_b53801d7902e024541f73f20d12aa6a88c50a4d25069fd324389381a75b625cb",
+      "overlay_file": "user_data/profile_repairs/BestSingleAssetPortfolio.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "pandas_all_na_idxmax_compatibility"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "BestSingleAssetPortfolio"
+    },
+    {
       "base_file": "repos/eovie_freqtrade_strs/binance/Archive/BinHV27_short.py",
       "equivalence_status": "output_equivalent",
       "input_sha256": "sha256_6fd0235fc8467aee972b1ded9f472aa2c98f3efa073d0aff258437ee4e37db40",
@@ -14,6 +28,35 @@
       ],
       "source_tree": "profile-class2-overlay",
       "strategy": "BinHV27_short"
+    },
+    {
+      "base_file": "repos/PeetCrypto_freqtrade-stuff/BlueEyes_MPP_v1.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_ff2aa976fc35dff5c83a637f78e6776a3bbf43c3f38ae8e2fc22b8d09161bbdd",
+      "output_sha256": "sha256_ce860392c235b65af8d647b258a07ac2ab99443252bf395ca44df83f8d8d0a94",
+      "overlay_file": "user_data/profile_repairs/BlueEyes_MPP_v1.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "missing_dataframe_annotation_import",
+        "restore_sibling_pivots_helper"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "BlueEyes_MPP_v1"
+    },
+    {
+      "base_file": "repos/kemplail_freqtrade-stuff/strategies/DWTHO.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_268dcded9dd8ce11f4901b9eb4ae1ed6f20c1ca444f46565a07aa7178bab9ca6",
+      "output_sha256": "sha256_aeeb5340ddde7f6414bb0327d35b729e2011e5b09a48f79b5aeafbf542ef6b19",
+      "overlay_file": "user_data/profile_repairs/DWTHO.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "pywavelets_writable_buffer"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "DWTHO"
     },
     {
       "base_file": "repos/TheoBrigitte_freqtrade/strategies/dwt/DWT_LongShort.py",
@@ -30,6 +73,20 @@
       "strategy": "DWT_LongShort"
     },
     {
+      "base_file": "repos/kemplail_freqtrade-stuff/strategies/DWTLongShortHO.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_63628ee6c25128423f73419f663aa354d0cd933083da3848bd4ca3d994668fb3",
+      "output_sha256": "sha256_339cf92776c1414f9c938d3ac4673c564bc743f424bb62b6aed757c730851941",
+      "overlay_file": "user_data/profile_repairs/DWT_LongShortHO.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "pywavelets_writable_buffer"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "DWT_LongShortHO"
+    },
+    {
       "base_file": "repos/TheoBrigitte_freqtrade/strategies/dwt/DWT_short.py",
       "equivalence_status": "strict_equivalent",
       "input_sha256": "sha256_e1bd4be437241f94f94655a927338d7c5fb42c346d2457a599efbe94053d6e5c",
@@ -42,6 +99,20 @@
       ],
       "source_tree": "profile-class2-overlay",
       "strategy": "DWT_short"
+    },
+    {
+      "base_file": "repair/patched/repos/TheoBrigitte_freqtrade/strategies/danke/Danke.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_038b06ad0405cf9e556546e9d25136ff5849c170058ff3455fd56f6d95dd9d4c",
+      "output_sha256": "sha256_85aa706c32deb8d660de6e0388d85bf70e4236263bba41ed46b22db5ae69810c",
+      "overlay_file": "user_data/profile_repairs/Danke.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "numpy1_string_nan_coercion"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "Danke"
     },
     {
       "base_file": "repos/MelvynClark_Freqtrade-Strategy/FOTT.py",
@@ -72,6 +143,34 @@
       "strategy": "FReinforcedStrategy"
     },
     {
+      "base_file": "repair/patched/repos/MelvynClark_Freqtrade-Strategy/FSupertrendStrategy - BTC.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_01b6789e44d0ddf9d824e2e27edc50325973a5cea605acc50d9ea15256d7e7d8",
+      "output_sha256": "sha256_a201f1e2cbb894e9d313446aa6b7a30026da3e36fddbb766ce290804ef29c0d0",
+      "overlay_file": "user_data/profile_repairs/FSupertrendStrategyBTC.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "numpy1_string_nan_coercion"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "FSupertrendStrategyBTC"
+    },
+    {
+      "base_file": "repair/patched/repos/MelvynClark_Freqtrade-Strategy/FSupertrendStrategy - ETH.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_b63a7252587c1c1d82e01e2315e58d27d380e5aff0ea70187f241fdb5c31c68c",
+      "output_sha256": "sha256_99c2530e2edb785dc7c24748ea03a6eeea341f250286320ddcc1a1d908db4842",
+      "overlay_file": "user_data/profile_repairs/FSupertrendStrategyETH.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "numpy1_string_nan_coercion"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "FSupertrendStrategyETH"
+    },
+    {
       "base_file": "repos/Lijunnan0113_Lijunnan0113-Lijunnan_Freqtrade_Strategy/Strategy/FTT_DWT_FBB_FUTURES.py",
       "equivalence_status": "strict_equivalent",
       "input_sha256": "sha256_57dddeb7d7d0bb2b15aa3c91a49ca9d8bf8b26dd69385ed520f390c286e53f65",
@@ -84,6 +183,34 @@
       ],
       "source_tree": "profile-class2-overlay",
       "strategy": "FTT_DWT_FBB_FUTURES"
+    },
+    {
+      "base_file": "repair/patched/repos/davidzr_freqtrade-strategies/strategies/FastSupertrend/FastSupertrend.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_06f5b4a3ecd29858eec9874c5be0eb3d9aa39acf4a946477b293cd3bcf6872d7",
+      "output_sha256": "sha256_025d6be455f9b724849bb3358512a20d2a73f5595c4b99258931b29cd5773504",
+      "overlay_file": "user_data/profile_repairs/FastSupertrend.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "numpy1_string_nan_coercion"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "FastSupertrend"
+    },
+    {
+      "base_file": "repair/patched/repos/davidzr_freqtrade-strategies/strategies/FastSupertrendOpt/FastSupertrendOpt.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_2ecd476b9aee41a8b979f40cc1b972db2fa487a256ec5c9369381e962979a28c",
+      "output_sha256": "sha256_fd703b89d54d63eb37bfed7d10fe69d273ecea0c793b3f32c190cf58df3c92f4",
+      "overlay_file": "user_data/profile_repairs/FastSupertrendOpt.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "numpy1_string_nan_coercion"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "FastSupertrendOpt"
     },
     {
       "base_file": "repos/TheoBrigitte_freqtrade/strategies/fastsupertrend/FastSupertrend_optim3.py",
@@ -324,6 +451,34 @@
       "strategy": "Insomnia_short"
     },
     {
+      "base_file": "repos/kemplail_freqtrade-stuff/strategies/MultiMA_TSL.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_459cd789315e4bda64f44616db0004b2a285ea64a950507b665b8c6af6eefeec",
+      "output_sha256": "sha256_2b284b733c3e4d7dadb1156c7b6e69a4f378d081de4293ef3ea1c570b1914ad5",
+      "overlay_file": "user_data/profile_repairs/MultiMA_TSL3b.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "numpy1_string_nan_coercion"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "MultiMA_TSL3b"
+    },
+    {
+      "base_file": "repair/patched/repos/MMR-19_freqtrade-strategies/strategies/MultiMA_TSL5.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_3578b62cf7398af678edd107809548cc39c4607cfae6820361a1a53dd4e94e9e",
+      "output_sha256": "sha256_b659f94b6bf33b19611b9e3ef7512814105a4ad1b4595b78e51729cc34d88208",
+      "overlay_file": "user_data/profile_repairs/MultiMA_TSL5.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "numpy1_string_nan_coercion"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "MultiMA_TSL5"
+    },
+    {
       "base_file": "repos/iterativv_NostalgiaForInfinity/NostalgiaForInfinityX5.py",
       "equivalence_status": "output_equivalent",
       "input_sha256": "sha256_e5ece504fee18776c9f29fae7dcb87d1ccca01635026775a4b824c27f36fb247",
@@ -338,6 +493,77 @@
       "strategy": "NostalgiaForInfinityX5"
     },
     {
+      "base_file": "repos/PeetCrypto_freqtrade-stuff/QuickBuyStrategy.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_7ff610b1bed5a8fefe87455d43fb86afa97fe6644a21899ca32024f974ce108d",
+      "output_sha256": "sha256_776e43f9937398aa4acc843edffc4ba47d421b887fd5bbd2f16eef8dce072ed7",
+      "overlay_file": "user_data/profile_repairs/QuickBuyStrategy.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "legacy_one_hour_timeframe_spelling"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "QuickBuyStrategy"
+    },
+    {
+      "base_file": "repos/PeetCrypto_freqtrade-stuff/SMAOPv1_TTF.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_b7aefac2ea1094a8942b92ca9d4c50e252aa3afd3d9e3653c52a2099053f68ed",
+      "output_sha256": "sha256_06d6d41f4aa59878846e52b8b19d9c673f0dc5b9f6bec2794b8b19ca1f5ad900",
+      "overlay_file": "user_data/profile_repairs/SMAOPv1_TTF.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "parameter_space_default_only"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "SMAOPv1_TTF"
+    },
+    {
+      "base_file": "repos/kemplail_freqtrade-stuff/strategies/Solipsis_v4.py",
+      "equivalence_status": "output_equivalent",
+      "input_sha256": "sha256_76abb5fb7441f5b557d0ef452e65e69cb0e0a02bdedc87f6a35a9cc998a1772c",
+      "output_sha256": "sha256_b176c022c2a9d2236ab4d5aa87958ceba5be65ba0b0bb43ac071a29a6658a501",
+      "overlay_file": "user_data/profile_repairs/Solipsis_v4.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "empty_loc_signal_initialization",
+        "current_min_roi_helper_signature"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "Solipsis_v4"
+    },
+    {
+      "base_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/SuperTrendPure.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_31c00389e46cc7036d51eba1b8c5a4b46a294e66fd3eafffa7a2da08c20b3925",
+      "output_sha256": "sha256_dddc980a2aa1bf29181999b2694f24d2c204a380074f3e0b4468e3cc699702ab",
+      "overlay_file": "user_data/profile_repairs/SuperTrendPure.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "numpy1_string_nan_coercion"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "SuperTrendPure"
+    },
+    {
+      "base_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/Supertrend.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_9cb8853c837fa93a951d1323f929fe0fb1775832ee69bca7bdf0cb0c75d0c095",
+      "output_sha256": "sha256_285ca67b1bac952011b87515cb5e01115ffe09d96870df30b07cd60ef12c41a4",
+      "overlay_file": "user_data/profile_repairs/Supertrend.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "numpy1_string_nan_coercion"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "Supertrend"
+    },
+    {
       "base_file": "repos/jaredrsommer_freqtradestrategies/TSPredict.py",
       "equivalence_status": "strict_equivalent",
       "input_sha256": "sha256_5e235441645a8b9acbd4283d5c92a93b69e6c44159cfd753a945e140a00119e2",
@@ -350,6 +576,20 @@
       ],
       "source_tree": "profile-class2-overlay",
       "strategy": "TSPredict"
+    },
+    {
+      "base_file": "repos/hamidreza07_freqai-strategy/startegy test/4/WTHO/WTHO.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_4fcd97f98c31fafa4ec8c68e91c71a2f27206703969ee5d87db1a8030a346478",
+      "output_sha256": "sha256_ca6d8e6c5661d320d68c4160444bf354b5de8bace72e1e8e2d7dba460940cac2",
+      "overlay_file": "user_data/profile_repairs/WTHO.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "parameter_space_default_only"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "WTHO"
     },
     {
       "base_file": "repos/jaredrsommer_freqtradestrategies/tsp0chicken.py",

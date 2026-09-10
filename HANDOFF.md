@@ -3,15 +3,13 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-10T07:50:00+02:00
-- Stopped because: the smoke-funnel discrepancy is reconciled and documented;
-  the sole admitted exception `Hacklemore3` now has a successful current smoke
-  result, while the remaining repair/reclassification queue requires bounded
-  per-family work rather than a blanket status change
-- Next agent should: read `evidence/SMOKE_FUNNEL_REVIEW_2026-09-10.md`, then
-  process its 9 reopen candidates and 4 known open repairs before the bounded
-  resource/data/provenance groups. Do not reopen the other 65 smoke-stage
-  exclusions or mass-exclude all 32 open rows.
+- Last update: 2026-09-10T15:12:00+02:00
+- Stopped because: smoke-funnel work packages 1-5 are complete, documented,
+  validated, and the generated status page is current; no writer is active
+- Next agent should: do not repeat these smoke or resource attempts. If the
+  owner continues eligibility work, run the applicable equivalence,
+  look-ahead, recursive, and admission gates for the ten newly measurable
+  at-least-ten-trade strategies listed in the smoke review.
 
 ## Objective
 
@@ -92,30 +90,28 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-10T07:50:00+02:00 after the targeted `Hacklemore3` rerun:
+Observed 2026-09-10T15:12:00+02:00 after completing work packages 1-5:
 
-- No Docker benchmark/analyzer or evidence writer is active. Only this session's
-  shell matched the broad process expression.
-- `STRATEGY_STATUS.csv` is current with 1,050 rows: 675 `E1_expanded`, 255
-  excluded, 38 exclusion-unconfirmed, 33 pending, 30 too-few-trades and 19
+- No Docker benchmark/analyzer or evidence writer is active.
+- `STRATEGY_STATUS.csv` is current with 1,050 rows: 675 `E1_expanded`, 263
+  excluded, 53 exclusion-unconfirmed, 30 too-few-trades, 10 pending and 19
   not-a-strategy.
-- The smoke funnel is now 906 passed, 74 excluded at that stage, and 51 other:
-  32 open plus 19 excluded for a different reason. Its former `admitted=1`
-  anomaly is gone.
-- The 30 too-few rows all carry look-ahead evidence through
-  `20200301-20260820`: 29 ended at 0/10 trades and `Cluckie` at 9/10. Seven
-  separate zero-trade exclusions have completed full-window evidence.
-- Root contains 22 files and no Python programs. The current status and HTML
-  page regenerate cleanly; no benchmark or measurement artifact changed.
-- The post-commit hook refreshed Graphify AST-only to 1,363 nodes, 2,205 edges,
-  and 155 communities. A fresh traversal resolves active code under its owning
-  directories, including `tools/harness.py`; no root Python node remains.
-- At the 2026-09-09 Futures-window decision, container `d1462dc40d52` was
-  actively writing Model 0. The then-current status held 153 Futures profiles:
-  74 excluded, including exactly 24 `recursive_bias_found` and 8 separate
-  `recursive_check_incomplete_at_longest_rungs` rows.
+- GRID measured 8 trades at one month then timed out at three months; ONS
+  measured 8 at one and three months then timed out at one year. Both exhausted
+  the 1,800-second recovery budget and need no repeat.
+- `evidence/SMOKE_FUNNEL_REVIEW_2026-09-10.md` records all five work packages.
+  `strategy_status.html` was regenerated from the current CSV.
 
 ## Current implementation checkpoint
+
+Smoke-funnel work packages 1-5 are complete. Ten strategies recovered at least
+ten trades: `FastSupertrend`, `FastSupertrendOpt`, `MultiMA_TSL3b`,
+`MultiMA_TSL5`, `SMAOPv1_TTF`, `WTHO`, `Schism5`, `QuickBuyStrategy`,
+`multi_tf`, and `Solipsis_v4`. They are measurable, not automatically admitted;
+their remaining gates still apply. `BestSingleAssetPortfolio` runs but remains
+too sparse at 8 trades through one year. Seventeen formerly open rows moved to
+confirmed C4/C5 exclusions because no E1-safe repair remains. The status reader
+now keeps a current measured smoke record ahead of an older failed repair store.
 
 `Hacklemore3` completed a targeted forced Docker smoke rerun under the frozen
 cascade: 11 long trades in the first rung `20200301-20200401`, 857.1 seconds,
@@ -306,30 +302,29 @@ productive rerun has not started because Model 0 is still active.
 
 ## Next concrete steps
 
-1. Let the active Model 0 writer finish; repeat machine, lock, artifact and Git
-   checks. Do not start the Futures recursion analyzer while it is active.
-2. Derive the 24 target IDs from the current status with `run_profile` beginning
-   `futures_`, `cohort == excluded`, and
-   `primary_reason == recursive_bias_found`. Pass the same explicit IDs first
-   to `python -m evidence.warmup_convergence --cohort recursive_unsettled
-   --redo-defective --strategy <ID>...`, then to the same command without
-   `--redo-defective` and with `--limit 0`. This preserves old records under
-   `superseded` and writes the three-month ladder results resumably.
-3. Regenerate status, run admission only for newly converged clean-gate rows,
-   regenerate status again, and report how many of the original 24 remain
-   excluded, become pending, or enter E1. Keep the original target denominator.
-4. Complete remaining Model 0 rows resumably and adjudicate
-   resource-inconclusive failures
-   under the existing attempt rules. Do not run a second Model 0 writer.
-4. Resolve the eight OPEN preregistration choices before producing a discovery
+1. Treat the five smoke-funnel packages as complete; do not repeat their smoke
+   or resource attempts while identities and rules match.
+2. For the ten recovered at-least-ten-trade rows, run any required output-
+   equivalence proof first, then native look-ahead and recursive gates. Only
+   rows passing every frozen technical gate may receive a new E1 adjudication.
+3. Derive the 24 Futures recursion targets from the current status and execute
+   the already-authorized three-month superseding ladder when no other writer
+   is active. Preserve the original target denominator.
+4. Complete remaining Model 0 rows resumably and adjudicate resource-
+   inconclusive failures under the existing attempt rules.
+5. Resolve the eight OPEN preregistration choices before producing a discovery
    candidate spec or any ranked output. At minimum the owner must decide the
    discovery/validation split, minimum trade/episode evidence, and the
    exposure-matched benchmark construction.
-5. Once those choices are frozen, write and hash one explicit candidate spec,
+6. Once those choices are frozen, write and hash one explicit candidate spec,
    run the 5-10 strategy pilot, then Model 1, Model 2, Model 3, gated
    attribution, and the non-ranked comparison in the order in `PIPELINE.md`.
 
 ## Do not redo
+
+- Smoke-funnel work packages 1-5 recorded in
+  `evidence/SMOKE_FUNNEL_REVIEW_2026-09-10.md`, including GRID/ONS 1,800-second
+  cascades and the bounded BlueEyes repair chain.
 
 - Corpus intake and the completed eligibility expansion waves.
 - Warm-up ladders, native bias diagnostics, or admission decisions already

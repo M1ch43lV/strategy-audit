@@ -1140,19 +1140,6 @@ REPAIRS = [
         "tool": "blocked_triage.py",
     },
     {
-        "family": "class_not_loaded",
-        "name": "Open: the class will not import",
-        "error": "Impossible to load Strategy '<Name>'. This class does not "
-                 "exist or contains Python code errors.",
-        "cause": "Whatever is left once the whitespace scan and the missing "
-                 "module have been ruled out.",
-        "fix": "`blocked_triage.py` imports the file in the pinned runtime to "
-               "get the real exception rather than freqtrade's summary. Seven "
-               "rows still need reading.",
-        "limit": "`needs_a_look`, two `to_be_fixed`.",
-        "tool": "blocked_triage.py",
-    },
-    {
         "family": "individual",
         "name": "Open: one of a kind",
         "error": "cannot import name '__version__' from 'freqtrade'  /  You "
@@ -1181,6 +1168,78 @@ REPAIRS = [
                "actual behaviour, not restore it.",
         "limit": "`refuse_repair`.",
         "tool": "blocked_triage.py",
+    },
+    {
+        "family": "author_logic_incomplete",
+        "name": "Refused: authored calculation is internally incomplete",
+        "error": "Shape, index, missing-column, or method-object failure inside the strategy.",
+        "cause": "The reachable calculation contradicts the columns, shapes, or call form the same source creates.",
+        "fix": "None without selecting a replacement trading calculation.",
+        "limit": "`refuse_repair`; a correction would be an E3 derived strategy.",
+        "tool": "tools/blocked_triage.py",
+    },
+    {
+        "family": "author_parameter_missing",
+        "name": "Refused: reachable parameter not declared",
+        "error": "Missing threshold, parameter attribute, or parameter-dictionary key.",
+        "cause": "The selected class reads a trading parameter it never supplies; sibling variants disagree or are not provenance for this class.",
+        "fix": "None. Borrowing or guessing a value would choose signals.",
+        "limit": "`refuse_repair`.",
+        "tool": "tools/blocked_triage.py",
+    },
+    {
+        "family": "author_signal_missing",
+        "name": "Refused: reachable signal column not created",
+        "error": "A buy, sell, entry, or exit column is read before the strategy creates it.",
+        "cause": "The authored signal pipeline is incomplete on reachable rows.",
+        "fix": "None; initializing a trading signal is behavior-changing unless the source proves it dormant.",
+        "limit": "`refuse_repair`.",
+        "tool": "tools/blocked_triage.py",
+    },
+    {
+        "family": "backtest_mode_not_implemented",
+        "name": "Refused: strategy implements only live or dry-run behavior",
+        "error": "Backtest hook returns `None` instead of a dataframe.",
+        "cause": "The source places its portfolio decisions only in live and dry-run branches.",
+        "fix": "None; historical behavior would have to be authored by the audit.",
+        "limit": "`refuse_repair`.",
+        "tool": "tools/blocked_triage.py",
+    },
+    {
+        "family": "insufficient_authored_history_contract",
+        "name": "Refused: model history contradicts startup metadata",
+        "error": "Not enough data in history.",
+        "cause": "The strategy hard-codes multi-timeframe training samples far beyond its declared startup history.",
+        "fix": "None within E1; changing how the model receives or trains on history changes its architecture.",
+        "limit": "`refuse_repair`.",
+        "tool": "tools/blocked_triage.py",
+    },
+    {
+        "family": "missing_author_runtime",
+        "name": "Refused: repository-specific runtime is not reproducible",
+        "error": "Missing custom ML stack or process exits before an archive exists.",
+        "cause": "The strategy requires an authored model/configuration environment outside the shared pinned runtime and captured repository.",
+        "fix": "None without a separately specified, provenance-bound runtime arm.",
+        "limit": "`refuse_repair` for this shared E1 measurement path.",
+        "tool": "tools/blocked_triage.py",
+    },
+    {
+        "family": "unsupported_exchange_timeframe",
+        "name": "Refused: exchange does not publish authored candles",
+        "error": "No data found for the strategy's declared timeframe.",
+        "cause": "The strategy declares an interval Binance does not provide natively.",
+        "fix": "None; resampling would introduce audit-chosen candle boundaries.",
+        "limit": "`refuse_repair`.",
+        "tool": "tools/blocked_triage.py",
+    },
+    {
+        "family": "local_module_repair_exhausted",
+        "name": "Refused: bounded local-symbol restoration exhausted",
+        "error": "A restored local dependency exposes another missing authored symbol.",
+        "cause": "The exact corpus-local module or helper was restored, but the selected strategy file remains incomplete after the bounded repair.",
+        "fix": "No further symbol-by-symbol reconstruction is allowed in E1.",
+        "limit": "`refuse_repair`; continue only if a complete author-supplied implementation is obtained.",
+        "tool": "tools/blocked_triage.py and repair/local_modules.py",
     },
 ]
 

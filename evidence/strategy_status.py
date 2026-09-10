@@ -426,7 +426,15 @@ NO_REPAIR_POSSIBLE = {"timeframe_not_recoverable", "no_stoploss",
                       # it is confirmed absent from every copy in the corpus
                       # AND the module's true origin repository - not a
                       # search gap, a gap in what the author ever published.
-                      "local_module_incomplete"}
+                      "local_module_incomplete",
+                      "author_logic_incomplete",
+                      "author_parameter_missing",
+                      "author_signal_missing",
+                      "backtest_mode_not_implemented",
+                      "insufficient_authored_history_contract",
+                      "missing_author_runtime",
+                      "unsupported_exchange_timeframe",
+                      "local_module_repair_exhausted"}
 
 
 def _json(path, key="results"):
@@ -783,7 +791,11 @@ def rows():
         # same three rows this session, applied where a repair store
         # competes with a fresh smoke measurement instead of with itself.
         current_rules = class1.get(strategy, {}).get("rules") or []
+        smoke_is_current_measurement = (
+            measurement.get("status") == "measured"
+            and measurement.get("class1_rules", current_rules) == current_rules)
         if repair_run.get("status") in ("measured", "failed") \
+                and not smoke_is_current_measurement \
                 and repair_run.get("class1_rules", current_rules) == current_rules \
                 and (not measurement.get("canonical_sha256")
                      or repair_run.get("canonical_sha256")

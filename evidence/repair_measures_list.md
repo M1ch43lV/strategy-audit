@@ -10,11 +10,11 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 |---|---:|---|
 | `repaired` | 146 | runs now, and the run is recorded |
 | `repair_attempted` | 12 | a route was applied and did not finish the job |
-| `to_be_fixed` | 21 | the route is known, the run has not happened yet |
-| `needs_a_look` | 68 | no route yet; the obstacle has been identified |
+| `to_be_fixed` | 15 | the route is known, the run has not happened yet |
+| `needs_a_look` | 31 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 2 | the repair made things worse and was undone |
-| `refuse_repair` | 46 | repairing it would mean inventing the strategy |
-| `-` | 24 |  |
+| `refuse_repair` | 63 | repairing it would mean inventing the strategy |
+| `-` | 27 |  |
 
 ## Routes taken
 
@@ -98,7 +98,7 @@ For example: `ARIMASTR`, `Apollo11`, `BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB
 
 ### The author's own module put back on the path
 
-`repair_family: local_module_off_path` &mdash; 40 strategies (repaired 2, repair_attempted 7, to_be_fixed 3, needs_a_look 2, repair_withdrawn 2, - 24)
+`repair_family: local_module_off_path` &mdash; 40 strategies (repaired 2, repair_attempted 7, to_be_fixed 1, needs_a_look 1, repair_withdrawn 2, - 27)
 
 **The message.**
 
@@ -321,7 +321,7 @@ For example: `GymStrategy`, `PolymarketLogicalArbStrategy`, `Prediction_Strategy
 
 ### Refused: two declared values that cannot both be honoured
 
-`repair_family: invalid_declared_config` &mdash; 1 strategies (refuse_repair 1)
+`repair_family: invalid_declared_config` &mdash; 2 strategies (refuse_repair 2)
 
 **The message.**
 
@@ -337,7 +337,7 @@ Configuration error: The config trailing_stop_positive_offset needs to be greate
 
 Tool: `evidence/strategy_status.py (invalid_gate_config)`.
 
-For example: `TGMA`.
+For example: `HLHB`, `TGMA`.
 
 ### Refused: timeframe nowhere stated
 
@@ -361,7 +361,7 @@ For example: `Chained`, `EMA003`, `EnsembleStrategy`, `EnsembleStrategyV1`, `Ens
 
 ### Open: pandas and numpy have moved under the strategy
 
-`repair_family: dtype_drift` &mdash; 15 strategies (to_be_fixed 1, needs_a_look 14)
+`repair_family: dtype_drift` &mdash; 7 strategies (to_be_fixed 1, needs_a_look 6)
 
 **The message.**
 
@@ -378,7 +378,7 @@ Invalid value 'False' for dtype 'float64'
 
 Tool: `blocked_triage.py`.
 
-For example: `DIV_v1`, `Danke`, `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `FastSupertrend`, `FastSupertrendOpt`.
+For example: `DIV_v1`, `GPR`, `MomentumRegimeBasket15m`, `MostOfAll`, `PnF`, `new_turtle`.
 
 ### Open: a package the author depended on
 
@@ -400,29 +400,9 @@ Tool: `blocked_triage.py`.
 
 For example: `CME`, `Cenderawasih_freqai`, `CopyLitmusMinMaxBroadClassificationStrategy`, `Enchilada`, `HMMv3`, `KMM`.
 
-### Open: the class will not import
-
-`repair_family: class_not_loaded` &mdash; 5 strategies (to_be_fixed 4, needs_a_look 1)
-
-**The message.**
-
-```
-Impossible to load Strategy '<Name>'. This class does not exist or contains Python code errors.
-```
-
-**What it actually was.** Whatever is left once the whitespace scan and the missing module have been ruled out.
-
-**The repair.** `blocked_triage.py` imports the file in the pinned runtime to get the real exception rather than freqtrade's summary. Seven rows still need reading.
-
-**Where it stops.** `needs_a_look`, two `to_be_fixed`.
-
-Tool: `blocked_triage.py`.
-
-For example: `Anomaly`, `FBB_KalmanSIMD`, `Kalman`, `PCA`, `delist_shorter_strategy`.
-
 ### Open: one of a kind
 
-`repair_family: individual` &mdash; 33 strategies (needs_a_look 33)
+`repair_family: individual` &mdash; 6 strategies (needs_a_look 6)
 
 **The message.**
 
@@ -440,7 +420,7 @@ Remora API key missing. Set REMORA_API_KEY env var.
 
 Tool: `blocked_triage.py`.
 
-For example: `AlexStrategyFinalV8`, `AlexStrategyFinalV9`, `Astro`, `AutoArimaTripleV1`, `BestSingleAssetPortfolio`, `Bins`.
+For example: `Danke`, `GRIDDMIPRICEStrategyFutureV4`, `Guacamole`, `Kamaflage`, `ONS_Portfolio`, `RebalanceStrategySpot`.
 
 ### Refused: FreqAI strategy, but no model named anywhere
 
@@ -461,6 +441,166 @@ freqAI is not enabled. Please enable it in your config to use this strategy.
 Tool: `blocked_triage.py`.
 
 For example: `E0V1EAI`.
+
+### Refused: authored calculation is internally incomplete
+
+`repair_family: author_logic_incomplete` &mdash; 4 strategies (refuse_repair 4)
+
+**The message.**
+
+```
+Shape, index, missing-column, or method-object failure inside the strategy.
+```
+
+**What it actually was.** The reachable calculation contradicts the columns, shapes, or call form the same source creates.
+
+**The repair.** None without selecting a replacement trading calculation.
+
+**Where it stops.** `refuse_repair`; a correction would be an E3 derived strategy.
+
+Tool: `tools/blocked_triage.py`.
+
+For example: `Astro`, `GodStra`, `MultiMa`, `UpSliceStrategy`.
+
+### Refused: reachable parameter not declared
+
+`repair_family: author_parameter_missing` &mdash; 5 strategies (refuse_repair 5)
+
+**The message.**
+
+```
+Missing threshold, parameter attribute, or parameter-dictionary key.
+```
+
+**What it actually was.** The selected class reads a trading parameter it never supplies; sibling variants disagree or are not provenance for this class.
+
+**The repair.** None. Borrowing or guessing a value would choose signals.
+
+**Where it stops.** `refuse_repair`.
+
+Tool: `tools/blocked_triage.py`.
+
+For example: `CryptoFrogNFI2`, `MyStrategyNew10`, `RenkoYolo`, `Schism6`, `tacos1`.
+
+### Refused: reachable signal column not created
+
+`repair_family: author_signal_missing` &mdash; 1 strategies (refuse_repair 1)
+
+**The message.**
+
+```
+A buy, sell, entry, or exit column is read before the strategy creates it.
+```
+
+**What it actually was.** The authored signal pipeline is incomplete on reachable rows.
+
+**The repair.** None; initializing a trading signal is behavior-changing unless the source proves it dormant.
+
+**Where it stops.** `refuse_repair`.
+
+Tool: `tools/blocked_triage.py`.
+
+For example: `NowoIchimoku1hV1`.
+
+### Refused: strategy implements only live or dry-run behavior
+
+`repair_family: backtest_mode_not_implemented` &mdash; 1 strategies (refuse_repair 1)
+
+**The message.**
+
+```
+Backtest hook returns `None` instead of a dataframe.
+```
+
+**What it actually was.** The source places its portfolio decisions only in live and dry-run branches.
+
+**The repair.** None; historical behavior would have to be authored by the audit.
+
+**Where it stops.** `refuse_repair`.
+
+Tool: `tools/blocked_triage.py`.
+
+For example: `DELTA_NEUTRAL`.
+
+### Refused: model history contradicts startup metadata
+
+`repair_family: insufficient_authored_history_contract` &mdash; 1 strategies (refuse_repair 1)
+
+**The message.**
+
+```
+Not enough data in history.
+```
+
+**What it actually was.** The strategy hard-codes multi-timeframe training samples far beyond its declared startup history.
+
+**The repair.** None within E1; changing how the model receives or trains on history changes its architecture.
+
+**Where it stops.** `refuse_repair`.
+
+Tool: `tools/blocked_triage.py`.
+
+For example: `AutoArimaTripleV1`.
+
+### Refused: repository-specific runtime is not reproducible
+
+`repair_family: missing_author_runtime` &mdash; 2 strategies (refuse_repair 2)
+
+**The message.**
+
+```
+Missing custom ML stack or process exits before an archive exists.
+```
+
+**What it actually was.** The strategy requires an authored model/configuration environment outside the shared pinned runtime and captured repository.
+
+**The repair.** None without a separately specified, provenance-bound runtime arm.
+
+**Where it stops.** `refuse_repair` for this shared E1 measurement path.
+
+Tool: `tools/blocked_triage.py`.
+
+For example: `MasterMoniGoManiHyperStrategy`, `RLAgentStrategy`.
+
+### Refused: exchange does not publish authored candles
+
+`repair_family: unsupported_exchange_timeframe` &mdash; 1 strategies (refuse_repair 1)
+
+**The message.**
+
+```
+No data found for the strategy's declared timeframe.
+```
+
+**What it actually was.** The strategy declares an interval Binance does not provide natively.
+
+**The repair.** None; resampling would introduce audit-chosen candle boundaries.
+
+**Where it stops.** `refuse_repair`.
+
+Tool: `tools/blocked_triage.py`.
+
+For example: `TuplaBollinger`.
+
+### Refused: bounded local-symbol restoration exhausted
+
+`repair_family: local_module_repair_exhausted` &mdash; 1 strategies (refuse_repair 1)
+
+**The message.**
+
+```
+A restored local dependency exposes another missing authored symbol.
+```
+
+**What it actually was.** The exact corpus-local module or helper was restored, but the selected strategy file remains incomplete after the bounded repair.
+
+**The repair.** No further symbol-by-symbol reconstruction is allowed in E1.
+
+**Where it stops.** `refuse_repair`; continue only if a complete author-supplied implementation is obtained.
+
+Tool: `tools/blocked_triage.py and repair/local_modules.py`.
+
+For example: `BlueEyes_MPP_v1`.
 
 ## Rules recorded per strategy
 

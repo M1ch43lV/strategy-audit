@@ -1618,8 +1618,8 @@
     },
     "EmaCrossStrategy": {
       "strategy_type": "momentum",
-      "timeframe": "",
-      "timeframe_evidence": ""
+      "timeframe": "4h",
+      "timeframe_evidence": "repair:corpus_twin"
     },
     "EmaRibbonStrategy": {
       "strategy_type": "mean_reversion;momentum;scalping",
@@ -3568,13 +3568,13 @@
     },
     "PolymarketMeanReversionStrategy": {
       "strategy_type": "mean_reversion",
-      "timeframe": "",
-      "timeframe_evidence": ""
+      "timeframe": "4h",
+      "timeframe_evidence": "repair:corpus_twin"
     },
     "PolymarketMomentumStrategy": {
       "strategy_type": "mean_reversion;momentum",
-      "timeframe": "",
-      "timeframe_evidence": ""
+      "timeframe": "4h",
+      "timeframe_evidence": "repair:corpus_twin"
     },
     "PolymarketPortfolio": {
       "strategy_type": "grid_dca",
@@ -3638,7 +3638,7 @@
     },
     "QuickBuyStrategy": {
       "strategy_type": "momentum;trend_following",
-      "timeframe": "1hr",
+      "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
     },
     "Quickie": {

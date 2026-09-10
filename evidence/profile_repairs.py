@@ -191,6 +191,71 @@ def patch_empty_loc_signals(source):
     return source, len(replacements)
 
 
+def patch_single_empty_exit(source):
+    """Initialize Solipsis_v4's deliberately empty exit signal numerically."""
+    old = "dataframe.loc[(), ['exit_long', 'exit_tag']] = (0, 'long_out')"
+    new = "dataframe.loc[:, 'exit_long'] = 0"
+    if source.count(old) != 1 or "class Solipsis_v4(IStrategy):" not in source:
+        return source, 0
+    return source.replace(old, new), 1
+
+
+def patch_quickbuy_timeframe_literal(source):
+    """Normalize the author's unambiguous legacy one-hour spelling."""
+    old = "timeframe = '1hr'"
+    new = "timeframe = '1h'"
+    if source.count(old) != 1 or "class QuickBuyStrategy(IStrategy):" not in source:
+        return source, 0
+    return source.replace(old, new), 1
+
+
+def patch_missing_dataframe_import(source):
+    """Supply the standard pandas annotation symbol referenced by BlueEyes."""
+    anchor = "from freqtrade.strategy.interface import IStrategy\n"
+    if (source.count(anchor) != 1 or "class BlueEyes_MPP_v1(IStrategy):" not in source
+            or "DataFrame" not in source or "from pandas import DataFrame" in source):
+        return source, 0
+    return source.replace(anchor, anchor + "from pandas import DataFrame\n"), 1
+
+
+def patch_missing_sibling_pivots_import(source):
+    """Import BlueEyes' referenced helper from the sibling file that defines it."""
+    anchor = "from pandas import DataFrame\n"
+    plain = "from Miku_PP_v3 import pivots_points\n"
+    loader = ("import os\nimport sys\n"
+              "sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "
+              "'..', '..', 'repos', 'PeetCrypto_freqtrade-stuff')))\n"
+              + plain)
+    if ("class BlueEyes_MPP_v1(IStrategy):" not in source
+            or "pivots_points(dataframe1d)" not in source):
+        return source, 0
+    if plain in source and "sys.path.insert(0" not in source:
+        return source.replace(plain, loader), 1
+    if source.count(anchor) != 1 or plain in source:
+        return source, 0
+    return source.replace(anchor, anchor + loader), 1
+
+
+def patch_all_na_idxmax(source):
+    """Restore pre-pandas-3 all-NA idxmax behavior without affecting valid rows."""
+    old = "momentum_df.idxmax(axis=1).reindex(dataframe.index)"
+    new = ("momentum_df.apply(lambda row: row.idxmax() if row.notna().any() "
+           "else None, axis=1).reindex(dataframe.index)")
+    if source.count(old) != 1 or "class BestSingleAssetPortfolio(IStrategy):" not in source:
+        return source, 0
+    return source.replace(old, new), 1
+
+
+def patch_min_roi_call_signature(source):
+    """Pass arguments added to Freqtrade's ROI-table helper."""
+    old = "self.min_roi_reached_entry(trade_dur)"
+    new = "self.min_roi_reached_entry(trade, trade_dur, current_time)"
+    count = source.count(old)
+    if count != 2 or "class Solipsis_v4(IStrategy):" not in source:
+        return source, 0
+    return source.replace(old, new), count
+
+
 def patch_fott_quadratic_recurrence(source):
     """Linearize two unused-variable fixpoint loops in FOttStrategy.ott().
 
@@ -334,9 +399,34 @@ def build():
                 rules.append("futures_settlement_pair_syntax")
         if "Something has gone wrong, please report a bug" in result.get("why", ""):
             changed, count = patch_empty_loc_signals(changed)
+            if not count:
+                changed, count = patch_single_empty_exit(changed)
             if count:
                 rules.append("empty_loc_signal_initialization")
                 equivalence = "output_equivalent"
+        if "invalid literal for int() with base 10: '1h'" in result.get("why", ""):
+            changed, count = patch_quickbuy_timeframe_literal(changed)
+            if count:
+                rules.append("legacy_one_hour_timeframe_spelling")
+        if "unsupported callable" in result.get("why", ""):
+            changed, count = patch_missing_dataframe_import(changed)
+            if count:
+                rules.append("missing_dataframe_annotation_import")
+        if ("name 'pivots_points' is not defined" in result.get("why", "")
+                or (strategy == "BlueEyes_MPP_v1"
+                    and "Impossible to load Strategy" in result.get("why", ""))):
+            changed, count = patch_missing_sibling_pivots_import(changed)
+            if count:
+                rules.append("restore_sibling_pivots_helper")
+        if "Encountered all NA values" in result.get("why", ""):
+            changed, count = patch_all_na_idxmax(changed)
+            if count:
+                rules.append("pandas_all_na_idxmax_compatibility")
+                equivalence = "output_equivalent"
+        if "min_roi_reached_entry() missing 2 required positional arguments" in result.get("why", ""):
+            changed, count = patch_min_roi_call_signature(changed)
+            if count:
+                rules.append("current_min_roi_helper_signature")
 
         if not rules or changed == original:
             continue
@@ -405,6 +495,21 @@ def selftest():
              "dataframe.loc[(), ['exit_short', 'exit_tag']] = (0, 'short_out')\n"
              "dataframe.loc[(), ['exit_long', 'exit_tag']] = (0, 'long_out')\n")
     assert patch_empty_loc_signals(empty)[1] == 3
+    solipsis = ("class Solipsis_v4(IStrategy):\n"
+                "dataframe.loc[(), ['exit_long', 'exit_tag']] = (0, 'long_out')\n")
+    assert patch_single_empty_exit(solipsis)[1] == 1
+    quickbuy = "class QuickBuyStrategy(IStrategy):\n    timeframe = '1hr'\n"
+    assert patch_quickbuy_timeframe_literal(quickbuy)[1] == 1
+    blue = ("from freqtrade.strategy.interface import IStrategy\n"
+            "class BlueEyes_MPP_v1(IStrategy):\n    def f(self, x: DataFrame): pass\n")
+    assert patch_missing_dataframe_import(blue)[1] == 1
+    portfolio = ("class BestSingleAssetPortfolio(IStrategy):\n"
+                 "x = momentum_df.idxmax(axis=1).reindex(dataframe.index)\n")
+    assert "notna" in patch_all_na_idxmax(portfolio)[0]
+    roi = ("class Solipsis_v4(IStrategy):\n"
+           "a = self.min_roi_reached_entry(trade_dur)\n"
+           "b = self.min_roi_reached_entry(trade_dur)\n")
+    assert patch_min_roi_call_signature(roi)[1] == 2
     fott = ('class FOttStrategy(IStrategy):\n'
             '        df["longstop"] = 0.0\n        for i in df["UD"]:\n'
             '            pass\n        # get xover\n'
