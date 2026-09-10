@@ -392,7 +392,7 @@ def _config_timeframe(environment):
         # Some author configs are JSONC. Reuse the same quote-aware parser as
         # the runtime smoke harness rather than deleting // inside URLs.
         try:
-            from profile_smoke import _read_jsonc
+            from evidence.profile_smoke import _read_jsonc
             data = _read_jsonc(path)
         except (ValueError, OSError):
             return ""

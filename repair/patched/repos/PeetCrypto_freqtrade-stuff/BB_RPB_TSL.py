@@ -963,13 +963,13 @@ class BB_RPB_TSL(IStrategy):
                             &
                             reduce(lambda x, y: x | y, conditions)
 
-                        , 'buy' ] = 1
+                        , 'buy' ] = True
 
         return dataframe
 
     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
 
-        dataframe.loc[ (dataframe['volume'] > 0), 'sell' ] = 0
+        dataframe.loc[ (dataframe['volume'] > 0), 'sell' ] = False
 
         return dataframe
 
@@ -1334,7 +1334,7 @@ class BB_RPB_TSL_Trailing(BB_RPB_TSL):
             else:
                 if (trailing_buy['trailing_buy_order_started'] == True):
                     logger.info(f"Continue trailing for {metadata['pair']}. Manually trigger buy signal!!")
-                    dataframe.loc[:,'buy'] = 1
+                    dataframe.loc[:,'buy'] = True
                     dataframe.loc[:, 'buy_tag'] = trailing_buy['buy_tag']
                     # dataframe['buy'] = 1
 

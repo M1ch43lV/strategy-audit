@@ -3594,7 +3594,7 @@ class NostalgiaForInfinityNext772(IStrategy):
         return dataframe
 
     def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        dataframe.loc[:, 'sell'] = 0
+        dataframe.loc[:, 'sell'] = False
 
         return dataframe
 

@@ -1042,8 +1042,8 @@ class KitchenSink(IStrategy):
         dataframe['2candle_resistance'] = dataframe['high'].rolling(window=20).max()
 
         # Initialize Freqtrade standard signal columns
-        dataframe['enter_long'] = 0
-        dataframe['enter_short'] = 0
+        dataframe['enter_long'] = False
+        dataframe['enter_short'] = False
         dataframe['enter_tag'] = '' # Default tag
 
         # --- Entry conditions to be merged ---
@@ -1210,8 +1210,8 @@ class KitchenSink(IStrategy):
 
         #exits
         # Initialize Freqtrade standard signal columns
-        dataframe['exit_long'] = 0
-        dataframe['exit_short'] = 0
+        dataframe['exit_long'] = False
+        dataframe['exit_short'] = False
         dataframe['exit_tag'] = '' # Default tag
 
         # --- Exit conditions to be merged ---
@@ -1350,7 +1350,7 @@ class KitchenSink(IStrategy):
                 (dataframe["sum_long_entries"] >= self.action.value) &
                 (dataframe['volume'] > 0)   # Make sure Volume is not 0
             ),
-            ['enter_long', 'enter_tag']] = (1, 'Long Enter')
+            ['enter_long', 'enter_tag']] = (True, 'Long Enter')
 
         # Short entry logic will be guarded by self.can_short
         if self.can_short == True:
@@ -1359,11 +1359,11 @@ class KitchenSink(IStrategy):
                     (dataframe["sum_short_entries"] >= self.action.value) &
                     (dataframe['volume'] > 0)   # Make sure Volume is not 0
                 ),
-                ['enter_short', 'enter_tag']] = (1, 'Short Enter')
+                ['enter_short', 'enter_tag']] = (True, 'Short Enter')
         else: # Explicitly ensure no short signals if can_short is False
             # This is redundant if 'enter_short' is already initialized to 0,
             # but kept for explicit clarity.
-            dataframe['enter_short'] = 0
+            dataframe['enter_short'] = False
             # Potentially clear enter_tag if it was set by long condition and short is also true but can_short is false
             # However, current logic assigns 'Short Enter' only if self.can_short is True.
             # If a long signal and a short signal could co-exist based on sums,
@@ -1378,7 +1378,7 @@ class KitchenSink(IStrategy):
                 (dataframe["sum_long_exits"] >= self.action.value) & # Assuming 2 is the threshold for exits as well
                 (dataframe['volume'] > 0)   # Make sure Volume is not 0
             ),
-            ['exit_long', 'exit_tag']] = (1, 'Long Exit')
+            ['exit_long', 'exit_tag']] = (True, 'Long Exit')
 
         if self.can_short == True:
             dataframe.loc[
@@ -1387,10 +1387,10 @@ class KitchenSink(IStrategy):
                     (dataframe['volume'] > 0)   # Make sure Volume is not 0
                 ),
                 # Corrected tag for short exit as per instruction
-                ['exit_short', 'exit_tag']] = (1, 'Short Exit')
+                ['exit_short', 'exit_tag']] = (True, 'Short Exit')
         else: # Explicitly ensure no short exit signals
             # Redundant if 'exit_short' is initialized to 0, but for clarity.
-            dataframe['exit_short'] = 0
+            dataframe['exit_short'] = False
             # Similar consideration for exit_tag as in populate_entry_trend
 
         return dataframe

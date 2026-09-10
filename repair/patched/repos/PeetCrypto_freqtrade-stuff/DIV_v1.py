@@ -86,7 +86,7 @@ class DIV_v1(IStrategy):
                 (dataframe['rsi'] < 30) &
                 (dataframe["volume"] > 0)
             ), 'buy'
-        ] = 1
+        ] = True
 
         return dataframe
 

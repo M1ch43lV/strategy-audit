@@ -1,0 +1,38 @@
+--- original/repos/MelvynClark_Freqtrade-Strategy/FSupertrendStrategy - ETH.py
++++ patched/repos/MelvynClark_Freqtrade-Strategy/FSupertrendStrategy - ETH.py
+@@ -133,7 +133,7 @@
+                 dataframe["volume"] > 0
+             ),
+             "enter_long",
+-        ] = 1
++        ] = True
+ 
+         dataframe.loc[
+             (
+@@ -158,7 +158,7 @@
+                 dataframe["volume"] > 0
+             ),
+             "enter_short",
+-        ] = 1
++        ] = True
+ 
+         return dataframe
+ 
+@@ -171,7 +171,7 @@
+                 == "down"
+             ),
+             "exit_long",
+-        ] = 1
++        ] = True
+ 
+         dataframe.loc[
+             (
+@@ -179,7 +179,7 @@
+                 == "up"
+             ),
+             "exit_short",
+-        ] = 1
++        ] = True
+ 
+         return dataframe
+ 

@@ -18,13 +18,63 @@ import datetime
 import io
 import json
 import os
+import re
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from evidence import exclusion_criteria
 
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TABLE = os.path.join(ROOT, "STRATEGY_STATUS.csv")
 TEMPLATE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                         "STRATEGY_STATUS.template.html")
+# regime/full_backtest.py's pooled, all-eight-pairs-together run - PIPELINE.md
+# Stufe 7. Deliberately not read by evidence/strategy_status.py: its own
+# docstring says a pooled result must never feed admission back (the pooled
+# run answers a different question, for Stufe 9, from the paired per-pair
+# `evidence/PROFILE_FULL_WINDOW.json` Stage-6 gate that does feed it). That
+# boundary is about STRATEGY_STATUS.csv and the cohort it decides - reading
+# the pooled manifest here, for the page's own Trades column only, doesn't
+# cross it: nothing here changes a cohort, only what the reader is shown for
+# a row already admitted on other evidence.
+POOLED_BACKTEST = os.path.join(ROOT, "results/regime/full_backtest_manifest.json")
+
+_NUMBER_WORDS = {1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five",
+                 6: "Six", 7: "Seven", 8: "Eight", 9: "Nine", 10: "Ten",
+                 11: "Eleven", 12: "Twelve"}
+
+
+def _spelled(n):
+    return _NUMBER_WORDS.get(n, str(n))
+
+
+def _inline(text):
+    """`evidence/exclusion_criteria.py`'s prose, as the HTML it was always
+    meant to become. Escaped first so a literal `&`/`<`/`>` in a criterion's
+    text can never be read as markup, then only backtick code spans are
+    converted - the one inline construct every `CRITERIA["what"]` entry
+    actually uses (checked: none currently carries `**bold**` either, but a
+    future one might, so bold is deliberately left unconverted rather than
+    silently wrong)."""
+    escaped = (text.replace("&", "&amp;").replace("<", "&lt;")
+                   .replace(">", "&gt;"))
+    return re.sub(r"`([^`]+)`", r"<code>\1</code>", escaped)
+
+
+def _criteria_cards():
+    """The exclusion-criteria legend, from the one place the criteria are
+    defined. Built by hand in the template until 2026-09-09, when it still
+    read C1-C3 four criteria after C4 was added - the count and the cards
+    were never the same list."""
+    cards = []
+    for criterion in exclusion_criteria.CRITERIA:
+        cards.append(
+            "      <div>\n        <h3>%s &middot; %s</h3>\n"
+            "        <p class=\"lead\">%s</p>\n      </div>"
+            % (criterion["id"], _inline(criterion["name"]),
+               _inline(criterion["what"])))
+    return "\n".join(cards)
 
 # short key -> column in STRATEGY_STATUS.csv
 #
@@ -71,14 +121,59 @@ FIELDS = {
 }
 
 
+POOLED_RETIRED = ("performance_limited", "oom_confirmed", "stake_overflow_confirmed")
+
+
+def pooled_results():
+    if not os.path.exists(POOLED_BACKTEST):
+        return {}
+    return json.load(io.open(POOLED_BACKTEST, encoding="utf-8")).get("results", {})
+
+
+def pooled_trades(results):
+    """strategy_id -> pooled trade count, for rows the pooled run measured.
+
+    Only `status == "measured"` counts - `oom_confirmed`/`performance_limited`/
+    `stake_overflow_confirmed` are the run giving up on a row, not a trade
+    count for it.
+    """
+    return {strategy: record["trades"] for strategy, record in results.items()
+            if record.get("status") == "measured"}
+
+
+def pooled_retired(results):
+    """strategy_id -> True, for rows regime/full_backtest.py has confirmed it
+    cannot measure under the best conditions this runner offers (see
+    evidence/POOLED_BACKTEST_PERFORMANCE_LIMIT.json /
+    evidence/POOLED_BACKTEST_OOM_LIMIT.json / _STAKE_OVERFLOW.json).
+
+    Deliberately not `failed`/`resource_inconclusive`: those are retried on
+    the runner's own next pass unless nothing about the row's file, config,
+    repair state or runtime image has moved since - they are still open,
+    not yet a verdict, the same distinction this table draws everywhere else
+    between an unfinished row and an excluded one.
+    """
+    return {strategy for strategy, record in results.items()
+            if record.get("status") in POOLED_RETIRED}
+
+
 def rows():
+    pooled = pooled_results()
+    trades = pooled_trades(pooled)
+    retired = pooled_retired(pooled)
     with io.open(TABLE, newline="", encoding="utf-8-sig") as handle:
         for row in csv.DictReader(handle):
             # An empty value is dropped rather than shipped as "": the page
             # tests for presence everywhere, and a corpus of empty strings is
             # a quarter of the payload.
-            yield {key: row[column] for key, column in FIELDS.items()
+            out = {key: row[column] for key, column in FIELDS.items()
                    if row.get(column)}
+            strategy = row["strategy_id"]
+            if strategy in trades:
+                out["pft"] = trades[strategy]
+            if strategy in retired:
+                out["pfr"] = True
+            yield out
 
 
 def build(destination):
@@ -93,6 +188,11 @@ def build(destination):
     # still said 900 while the table underneath had moved to 1038. Same
     # placeholder mechanism as __DATA__/__GEN__ so it can't happen again.
     page = page.replace("__TOTAL__", str(len(data["rows"])))
+    page = page.replace("__CRITERIA__", _criteria_cards())
+    page = page.replace("__CRITERIA_COUNT__",
+                        _spelled(len(exclusion_criteria.CRITERIA)))
+    page = page.replace("__NOT_CRITERIA_COUNT__",
+                        _spelled(len(exclusion_criteria.NOT_CRITERIA)))
     with io.open(destination, "w", encoding="utf-8", newline="\n") as handle:
         handle.write(page)
     return len(data["rows"]), os.path.getsize(destination)
@@ -101,6 +201,16 @@ def build(destination):
 def selftest():
     template = io.open(TEMPLATE, encoding="utf-8").read()
     assert "__DATA__" in template and "__GEN__" in template and "__TOTAL__" in template
+    assert "__CRITERIA__" in template and "__CRITERIA_COUNT__" in template \
+        and "__NOT_CRITERIA_COUNT__" in template
+    # The legend has to show every criterion that can actually exclude a row,
+    # or the page understates what "excluded" means - which is exactly the
+    # bug this replaced (three cards typed by hand, six criteria added since
+    # and never added to the page).
+    cards = _criteria_cards()
+    for criterion in exclusion_criteria.CRITERIA:
+        assert criterion["id"] in cards, \
+            "legend is missing %s" % criterion["id"]
     with io.open(TABLE, newline="", encoding="utf-8-sig") as handle:
         columns = set(next(csv.reader(handle)))
     missing = sorted(set(FIELDS.values()) - columns)
@@ -115,7 +225,18 @@ def selftest():
     missing_type = [row["strategy_id"] for row in data
                     if not row.get("strategy_type")]
     assert not missing_type, "blank strategy_type rows: %s" % ", ".join(missing_type)
-    print("strategy_status_page selftest: PASS (%d fields)" % len(FIELDS))
+    pooled_all = pooled_results()
+    pooled = pooled_trades(pooled_all)
+    assert pooled, "no measured rows in %s - has the pooled run moved?" \
+        % os.path.basename(POOLED_BACKTEST)
+    for trades in pooled.values():
+        assert isinstance(trades, int) and trades >= 0, trades
+    retired = pooled_retired(pooled_all)
+    assert not (retired & set(pooled)), \
+        "rows both measured and retired in the pooled run: %s" \
+        % ", ".join(sorted(retired & set(pooled)))
+    print("strategy_status_page selftest: PASS (%d fields, %d pooled trade "
+          "counts, %d pooled-retired)" % (len(FIELDS), len(pooled), len(retired)))
 
 
 def main(argv=None):

@@ -1,5 +1,14 @@
 --- original/repos/PeetCrypto_freqtrade-stuff/DIV_v1.py
 +++ patched/repos/PeetCrypto_freqtrade-stuff/DIV_v1.py
+@@ -86,7 +86,7 @@
+                 (dataframe['rsi'] < 30) &
+                 (dataframe["volume"] > 0)
+             ), 'buy'
+-        ] = 1
++        ] = True
+ 
+         return dataframe
+ 
 @@ -102,8 +102,8 @@
      dataframe['rsi_bottom'] = np.NaN
      dataframe.loc[(dataframe['close'].shift() <= dataframe['close'].shift(2)) & (dataframe['close'] >= dataframe['close'].shift()), 'ohlc_bottom'] = dataframe['close'].shift()

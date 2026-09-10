@@ -478,7 +478,7 @@ class LitmusSimpleStrategy(IStrategy):
         if conditions:
             df.loc[
                 reduce(lambda x, y: x & y, conditions), ["enter_long", "enter_tag"]
-            ] = (1, "meta_enter_long")
+            ] = (True, "meta_enter_long")
 
         # Short Entry
         conditions = [df["primary_enter_short"],
@@ -487,7 +487,7 @@ class LitmusSimpleStrategy(IStrategy):
         if conditions:
             df.loc[
                 reduce(lambda x, y: x & y, conditions), ["enter_short", "enter_tag"]
-            ] = (1, "meta_enter_short")
+            ] = (True, "meta_enter_short")
 
         return df
 

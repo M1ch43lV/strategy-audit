@@ -1,5 +1,23 @@
 --- original/repos/PeetCrypto_freqtrade-stuff/Stinkfist.py
 +++ patched/repos/PeetCrypto_freqtrade-stuff/Stinkfist.py
+@@ -146,7 +146,7 @@
+         if conditions:
+             dataframe.loc[
+                 reduce(lambda x, y: x & y, conditions),
+-                'buy'] = 1
++                'buy'] = True
+ 
+         return dataframe
+ 
+@@ -185,7 +185,7 @@
+         if conditions:
+             dataframe.loc[
+                 reduce(lambda x, y: x & y, conditions),
+-                'sell'] = 1
++                'sell'] = True
+         
+         return dataframe
+ 
 @@ -290,7 +290,7 @@
          dir = np.where(dir_1 == 1, dir_1, np.nan)
          dir = np.where(dir_2 == -1, dir_2, dir_1)

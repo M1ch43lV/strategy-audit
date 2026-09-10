@@ -1,0 +1,47 @@
+--- original/repos/PeetCrypto_freqtrade-stuff/CombinedBinHAndClucV6H.py
++++ patched/repos/PeetCrypto_freqtrade-stuff/CombinedBinHAndClucV6H.py
+@@ -304,7 +304,7 @@
+                 (self.buy_bin_enable.value == True)
+             ),
+             'buy_cond_bin'
+-        ] = 1
++        ] = True
+ 
+         # strategy ClucMay72018 + guards by @iterativ
+         dataframe.loc[
+@@ -326,7 +326,7 @@
+                 (self.buy_cluc_enable.value == True)
+             ),
+             'buy_cond_cluc'
+-        ] = 1
++        ] = True
+ 
+         # long strategy by @iterativ
+         dataframe.loc[
+@@ -339,7 +339,7 @@
+                 (self.buy_long_enable.value == True)
+             ),
+             'buy_cond_long'
+-        ] = 1
++        ] = True
+ 
+         # count the amount of conditions met
+         dataframe.loc[:, 'conditions_count'] = dataframe['buy_cond_bin'].astype(int) + dataframe['buy_cond_cluc'].astype(int) + dataframe['buy_cond_long'].astype(int)
+@@ -352,7 +352,7 @@
+             dataframe.loc[
+                 reduce(lambda x, y: x & y, conditions),
+                 'buy'
+-            ] = 1
++            ] = True
+ 
+         # verbose logging enable only for verbose information or troubleshooting
+         if self.cust_log_verbose == True:
+@@ -381,7 +381,7 @@
+             dataframe.loc[
+                 reduce(lambda x, y: x & y, conditions),
+                 'sell'
+-            ] = 1
++            ] = True
+ 
+         return dataframe
+ 

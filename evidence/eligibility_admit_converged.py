@@ -45,7 +45,7 @@ import json
 import os
 import sys
 
-import strategy_status
+from evidence import strategy_status
 
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

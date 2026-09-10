@@ -4561,7 +4561,7 @@ class NFIX_BB_RPB_c7c477d_20211030(IStrategy):
         return dataframe
 
     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        dataframe.loc[:, 'sell'] = 0
+        dataframe.loc[:, 'sell'] = False
 
         return dataframe
 

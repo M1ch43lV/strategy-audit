@@ -1,0 +1,38 @@
+--- original/repos/MMR-19_freqtrade-strategies/strategies/MultiMA_TSL5.py
++++ patched/repos/MMR-19_freqtrade-strategies/strategies/MultiMA_TSL5.py
+@@ -461,7 +461,7 @@
+             dataframe['volume_volatility2'] = (df_rvol < self.buy_volume_volatility2.value)
+ 
+         dataframe.loc[:, 'enter_tag'] = ''
+-        dataframe.loc[:, 'enter_long'] = 0
++        dataframe.loc[:, 'enter_long'] = False
+ 
+         go_long_1h = ((self.buy_ema_fast_length_1h.value < self.buy_ema_slow_length_1h.value) & (dataframe[f'ema_{self.buy_ema_fast_length_1h.value}_1h'] > dataframe[f'ema_{self.buy_ema_slow_length_1h.value}_1h'])).astype('int') * 2
+ 
+@@ -559,7 +559,7 @@
+                 &
+                 add_check,
+                 'enter_long',
+-            ]= 1
++            ]= True
+ 
+             dataframe.loc[
+                 buy_offset_hma 
+@@ -568,7 +568,7 @@
+                 &
+                 np.invert(buy_offset_hma3),
+                 'enter_long'
+-            ]= 0
++            ]= False
+ 
+ 
+         return dataframe
+@@ -652,7 +652,7 @@
+             dataframe.loc[
+                 reduce(lambda x, y: x | y, conditions) & add_check,
+                 'exit_long'
+-            ] = 1
++            ] = True
+ 
+         return dataframe
+ 

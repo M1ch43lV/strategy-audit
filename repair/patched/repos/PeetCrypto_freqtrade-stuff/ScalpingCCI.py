@@ -100,7 +100,7 @@ class ScalpingCCI(IStrategy):
                     (dataframe['close'] > dataframe['tc'].shift(97))
                 )
             ),
-            'buy'] = 1
+            'buy'] = True
         return dataframe
     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         dataframe.loc[
@@ -110,5 +110,5 @@ class ScalpingCCI(IStrategy):
             (
                 (qtpylib.crossed_below(dataframe['macd'], dataframe['macdsignal']))
             ),
-            'sell'] = 1
+            'sell'] = True
         return dataframe

@@ -10224,7 +10224,7 @@ class NostalgiaForInfinityXw(IStrategy):
         return dataframe
 
     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        dataframe.loc[:, 'sell'] = 0
+        dataframe.loc[:, 'sell'] = False
 
         return dataframe
 

@@ -9,6 +9,15 @@
          # END SUPER NORMAL BUY SIGNALS
  
          # Evaluate if we should buy based on if enough of the above buys happened
+@@ -323,7 +323,7 @@
+             (
+                 (dataframe['buy_count'] >= self.buy_min_corr_pairs.value) &
+                 (dataframe['volume'] > 0)
+-            ),'buy'] = 1
++            ),'buy'] = True
+ 
+         return dataframe
+ 
 @@ -342,7 +342,7 @@
          dataframe['sell_count'] = (
              (sell_df['coef'].gt(self.sell_min_corr_coef.value)) & 
@@ -18,3 +27,12 @@
          # END SUPER NORMAL SELL SIGNALS
  
          # Evaluate if we should sell based on if enough of the above sells happened
+@@ -351,7 +351,7 @@
+             (
+                 (dataframe['sell_count'] >= self.sell_min_corr_pairs.value) &
+                 (dataframe['volume'] > 0)
+-            ),'sell'] = 1
++            ),'sell'] = True
+ 
+         return dataframe
+ 

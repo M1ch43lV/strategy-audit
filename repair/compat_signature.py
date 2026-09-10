@@ -623,6 +623,90 @@ def install_legacy_pmax_names():
     return True
 
 
+TF_KERAS_SAVING_RULE = "tf_keras_saving_reexport"
+
+
+def install_tf_keras_saving():
+    """Give `tf.keras` back the `saving` submodule it is missing.
+
+    `NNTClassifier` (webclinic017/strategies-freqtrade-) decorates a class
+    with `@tf.keras.saving.register_keras_serializable(...)` at import time.
+    `tf.keras` is Keras 3's own backward-compatibility namespace
+    (`keras._tf_keras.keras`), built to mirror the old TF1-integrated
+    `tf.keras` API - and it re-exports most of `keras`, but not `saving`:
+    `keras.saving.register_keras_serializable` exists and works, `tf.keras.
+    saving` is simply absent from the compat module's own attribute list.
+    Same function, same registry, reached through a namespace that forgot
+    one submodule. Assigning it across is not a reimplementation - it is
+    the compat shim doing what its own name says it does.
+    """
+    import keras
+    import tensorflow as tf
+
+    if getattr(tf.keras, "_saving_reexported", False):
+        return True
+    tf.keras.saving = keras.saving
+    tf.keras._saving_reexported = True
+    return True
+
+
+SELL_CHECK_TUPLE_RULE = "legacy_sell_check_tuple"
+
+
+def install_legacy_sell_check_tuple():
+    """Accept the pre-rename `SellCheckTuple`/`SellType` names.
+
+    `BinanceStream` does
+    `from freqtrade.strategy.interface import IStrategy, SellCheckTuple, SellType`
+    and later `SellType.SELL_SIGNAL` and `SellCheckTuple(sell_type=reason)`.
+    Freqtrade's sell-to-exit rename touched three separate things here, and
+    each needs its own translation:
+
+    1. `ExitCheckTuple`/`ExitType` now live in `freqtrade.enums`, re-exported
+       into `freqtrade.strategy.interface` under their new names only - the
+       two attributes this shim adds.
+    2. `ExitCheckTuple`'s one constructor keyword renamed, `sell_type` ->
+       `exit_type`, so it needs a translating wrapper, not a bare alias.
+    3. The enum's own member names renamed too (`SELL_SIGNAL` ->
+       `EXIT_SIGNAL`, `FORCE_SELL` -> `FORCE_EXIT`, ...): a bare
+       `SellType = ExitType` alias exposes the right type but not the old
+       member names on it, since `ExitType` was never given them back.
+       `_LegacySellType` translates the well-documented SELL->EXIT renames
+       (freqtrade's own migration notes name them exhaustively) and falls
+       back to the current name unchanged, so `SellType.STOP_LOSS` (never
+       renamed) keeps working the same way `SellType.SELL_SIGNAL` now does.
+    """
+    import freqtrade.strategy.interface as interface
+
+    if getattr(interface, "_legacy_sell_check_tuple_installed", False):
+        return True
+
+    original = interface.ExitCheckTuple
+    exit_type = interface.ExitType
+
+    def SellCheckTuple(*args, **kwargs):
+        if "sell_type" in kwargs:
+            kwargs["exit_type"] = kwargs.pop("sell_type")
+        if "sell_reason" in kwargs:
+            kwargs["exit_reason"] = kwargs.pop("sell_reason")
+        return original(*args, **kwargs)
+
+    RENAMED_MEMBERS = {
+        "SELL_SIGNAL": "EXIT_SIGNAL", "FORCE_SELL": "FORCE_EXIT",
+        "EMERGENCY_SELL": "EMERGENCY_EXIT", "CUSTOM_SELL": "CUSTOM_EXIT",
+        "PARTIAL_SELL": "PARTIAL_EXIT",
+    }
+
+    class _LegacySellType(object):
+        def __getattr__(self, name):
+            return getattr(exit_type, RENAMED_MEMBERS.get(name, name))
+
+    interface.SellCheckTuple = SellCheckTuple
+    interface.SellType = _LegacySellType()
+    interface._legacy_sell_check_tuple_installed = True
+    return True
+
+
 # Shared by the resample and asfreq shims below: both pandas methods parse
 # their frequency string through their own internal (non-Python-patchable)
 # machinery rather than the public `pandas.tseries.frequencies.to_offset` -
@@ -1120,7 +1204,9 @@ INSTALLERS = {RULE: install_min_roi_reached_entry,
               FILLNA_RULE: install_legacy_fillna_skips_incompatible_dtype,
               FILLNA_METHOD_RULE: install_legacy_fillna_method_kwarg,
               ORDERBOOK_RULE: install_synthetic_backtest_orderbook,
-              PRICE_SIDE_RULE: install_legacy_price_side_config}
+              PRICE_SIDE_RULE: install_legacy_price_side_config,
+              SELL_CHECK_TUPLE_RULE: install_legacy_sell_check_tuple,
+              TF_KERAS_SAVING_RULE: install_tf_keras_saving}
 
 
 def install_from_environment():

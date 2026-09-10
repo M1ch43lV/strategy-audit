@@ -144,6 +144,7 @@ def main(argv=None) -> int:
     retired = [("performance_limited", performance_limits()),
                ("oom_confirmed", oom_limits()),
                ("stake_overflow_confirmed", stake_overflows())]
+    RETIRED_STATUSES = {status for status, _ in retired}
     data.update({"schema_version": 1, "timerange": TIMERANGE,
                  "measurement_scope": "canonical_pooled_native_pair_universe"})
 
@@ -179,44 +180,94 @@ def main(argv=None) -> int:
     if args.import_only:
         return 0
 
+    def repair_state(strategy):
+        """Everything about this strategy's own repair route that a rerun
+        would actually see, but that `profile_smoke._identity()`'s two
+        file hashes do not: PYTHONPATH/adapter state from
+        `PROFILE_CLASS1.json` (a module or signature repair) and any
+        `config_overrides` value from a repair store (a recovered
+        timeframe, for instance). Neither changes the strategy file's own
+        bytes or (usually) the base config file's, so a row repaired only
+        this way looked unchanged to every check that came before this."""
+        class1 = profile_smoke._class1(strategy)
+        return {"rules": class1.get("rules", []),
+               "python_paths": class1.get("python_paths", []),
+               "config_source": class1.get("config_source", ""),
+               "config_overrides": overrides.get(strategy) or {}}
+
     def run(row):
         strategy = row["strategy_id"]
         identity = profile_smoke._identity(row)
         previous = data["results"].get(strategy) or {}
+        # A `measured` row's own re-run gate is untouched: the file or the
+        # effective config, nothing else. Folding the broader fingerprint
+        # below into this check too would read every one of the hundreds
+        # of already-measured rows as stale the moment this field first
+        # existed, since none of them carry it yet.
         if (not args.force and previous.get("status") == "measured" and
                 all(previous.get(key) == value for key, value in identity.items())):
             return strategy, previous, True
-        if not args.force and previous.get("status") in {status for status, _ in retired}:
+
+        # For everything that is NOT a clean measurement - a prior
+        # failed/timeout/resource_inconclusive attempt, or an already
+        # `retired` one - the retry question is not "did this row change"
+        # but "did anything that could change its outcome change": the
+        # file/config identity above, this runner's own repair state, or
+        # the runtime image itself (a rebuilt image with an upgraded or
+        # newly-installed package can turn a `resource_inconclusive` OOM,
+        # or a genuine failure, into a clean measurement). A row with none
+        # of this recorded - every row attempted before this fingerprint
+        # existed - is treated as changed exactly once: it has never
+        # actually been checked against the current state at all, so
+        # nothing here loses ground to it, and 2026-09-09's manifest
+        # already skipped straight past hundreds of `cached` rows the
+        # same run this landed in.
+        fingerprint = dict(identity)
+        fingerprint["repair_state"] = repair_state(strategy)
+        fingerprint["runtime_id"] = os.environ.get(
+            "PROFILE_RUNTIME_ID", "native_unversioned")
+        unchanged = all(previous.get(key) == value
+                        for key, value in fingerprint.items())
+        if (not args.force and previous.get("status")
+                and previous.get("status") != "measured" and unchanged):
             return strategy, previous, True
-        for status, confirmations in retired:
-            if strategy not in confirmations:
-                continue
-            # Confirmed unable to reach `measured` under the best conditions
-            # this runner offers (see evidence/POOLED_BACKTEST_PERFORMANCE_LIMIT.json /
-            # evidence/POOLED_BACKTEST_OOM_LIMIT.json) - applying this the first time a
-            # strategy qualifies retires it without spending another attempt
-            # to reconfirm what earlier ones already did.
-            result = dict(identity)
-            result.update({
-                "status": status,
-                "why": confirmations[strategy]["why"],
-                "measurement_scope": "canonical_pooled_native_pair_universe",
-                "attempted_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
-            })
-            if previous.get("status"):
-                result["attempts"] = previous.get("attempts", []) + [{
-                    "status": previous.get("status"), "why": previous.get("why"),
-                    "elapsed_s": previous.get("elapsed_s"),
-                    "attempted_at": previous.get("attempted_at"),
-                }]
-            return strategy, result, False
+
+        # Only a row not already sitting at a retired status reaches the
+        # promotion below. One that IS retired and still reached here did
+        # so because `unchanged` was False just above - something moved,
+        # so it gets a real attempt below rather than being re-stamped
+        # retired on the strength of a confirmation file that predates
+        # the change.
+        if previous.get("status") not in RETIRED_STATUSES:
+            for status, confirmations in retired:
+                if strategy not in confirmations:
+                    continue
+                # Confirmed unable to reach `measured` under the best conditions
+                # this runner offers (see evidence/POOLED_BACKTEST_PERFORMANCE_LIMIT.json /
+                # evidence/POOLED_BACKTEST_OOM_LIMIT.json) - applying this the first time a
+                # strategy qualifies retires it without spending another attempt
+                # to reconfirm what earlier ones already did.
+                result = dict(fingerprint)
+                result.update({
+                    "status": status,
+                    "why": confirmations[strategy]["why"],
+                    "measurement_scope": "canonical_pooled_native_pair_universe",
+                    "attempted_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+                })
+                if previous.get("status"):
+                    result["attempts"] = previous.get("attempts", []) + [{
+                        "status": previous.get("status"), "why": previous.get("why"),
+                        "elapsed_s": previous.get("elapsed_s"),
+                        "attempted_at": previous.get("attempted_at"),
+                    }]
+                return strategy, result, False
         mode = "futures" if row["run_profile"].startswith("futures_") else "spot"
         settings = overrides.get(strategy) or None
         result = profile_smoke.run_one(row, timerange(mode), args.timeout,
                                         config_overrides=settings)
         config = (profile_smoke.FUTURES_CONFIG if mode == "futures"
                   else profile_smoke.SPOT_CONFIG)
-        result.update(identity)
+        result.update(fingerprint)
         result["pairs"] = profile_smoke._read_jsonc(config)["exchange"]["pair_whitelist"]
         result["measurement_scope"] = "canonical_pooled_native_pair_universe"
         result["attempted_at"] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")

@@ -10,6 +10,22 @@
      ## Sell params
  
      sell_btc_safe = IntParameter(-400, -300, default=-365, optimize = False)
+@@ -964,13 +963,13 @@
+                             &
+                             reduce(lambda x, y: x | y, conditions)
+ 
+-                        , 'buy' ] = 1
++                        , 'buy' ] = True
+ 
+         return dataframe
+ 
+     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+ 
+-        dataframe.loc[ (dataframe['volume'] > 0), 'sell' ] = 0
++        dataframe.loc[ (dataframe['volume'] > 0), 'sell' ] = False
+ 
+         return dataframe
+ 
 @@ -1061,7 +1060,7 @@
      pm = Series(pm_arr)
  
@@ -18,4 +34,13 @@
 +    pmx = np.where((pm_arr > 0.00), np.where((mavalue < pm_arr), 'down',  'up'), 'nan')
  
      return pm, pmx
+ 
+@@ -1335,7 +1334,7 @@
+             else:
+                 if (trailing_buy['trailing_buy_order_started'] == True):
+                     logger.info(f"Continue trailing for {metadata['pair']}. Manually trigger buy signal!!")
+-                    dataframe.loc[:,'buy'] = 1
++                    dataframe.loc[:,'buy'] = True
+                     dataframe.loc[:, 'buy_tag'] = trailing_buy['buy_tag']
+                     # dataframe['buy'] = 1
  

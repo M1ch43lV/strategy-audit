@@ -705,7 +705,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                     (dataframe['close'] < (
                             dataframe[f'ma_sell_{self.base_nb_candles_sell.value}'] * self.high_offset.value))
             ),
-            ['buy', 'buy_tag']] = (1, 'ewo1')
+            ['buy', 'buy_tag']] = (True, 'ewo1')
 
         dataframe.loc[
             (
@@ -720,7 +720,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                             dataframe[f'ma_sell_{self.base_nb_candles_sell.value}'] * self.high_offset.value)) &
                     (dataframe['rsi'] < 25)
             ),
-            ['buy', 'buy_tag']] = (1, 'ewo2')
+            ['buy', 'buy_tag']] = (True, 'ewo2')
 
         dataframe.loc[
             (
@@ -733,7 +733,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                     (dataframe['close'] < (
                             dataframe[f'ma_sell_{self.base_nb_candles_sell.value}'] * self.high_offset.value))
             ),
-            ['buy', 'buy_tag']] = (1, 'ewolow')
+            ['buy', 'buy_tag']] = (True, 'ewolow')
 
         # This produces around 0.85% - 1.0% profitable trades but long durations so decided against it.
         # dataframe.loc[
@@ -751,7 +751,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
 
         if dont_buy_conditions:
             for condition in dont_buy_conditions:
-                dataframe.loc[condition, 'buy'] = 0
+                dataframe.loc[condition, 'buy'] = False
 
         # This does not fit well the protections for EWO buys.
         dataframe.loc[
@@ -775,7 +775,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                             )
                     )
             ),
-            ['buy', 'buy_tag']] = (1, 'clucHA')
+            ['buy', 'buy_tag']] = (True, 'clucHA')
 
         # This does not fit well the protections for EWO buys.
         dataframe.loc[
@@ -821,7 +821,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                             )
                     )
             ),
-            ['buy', 'buy_tag']] = (1, 'zema')
+            ['buy', 'buy_tag']] = (True, 'zema')
 
         # cofi
         cofi = (
@@ -833,7 +833,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                 (dataframe['adx'] > self.cofi_adx.value) &
                 (dataframe['EWO'] > self.cofi_ewo_high.value)
         )
-        dataframe.loc[cofi, ['buy', 'buy_tag']] = (1, 'cofi')
+        dataframe.loc[cofi, ['buy', 'buy_tag']] = (True, 'cofi')
 
         # nfi
         nfi_32 = (
@@ -844,7 +844,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                 (dataframe['close'] < dataframe['sma_15'] * self.nfi32_sma_factor.value) &
                 (dataframe['cti'] < self.nfi32_cti_limit.value)
         )
-        dataframe.loc[nfi_32, ['buy', 'buy_tag']] = (1, 'nfi32')
+        dataframe.loc[nfi_32, ['buy', 'buy_tag']] = (True, 'nfi32')
 
         # vwma
         dataframe['vwma_offset_buy'] = pta.vwma(dataframe["close"], dataframe["volume"],
@@ -868,7 +868,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                         )
                 )
         )
-        dataframe.loc[buy_offset_vwma, ['buy', 'buy_tag']] = (1, 'vwma')
+        dataframe.loc[buy_offset_vwma, ['buy', 'buy_tag']] = (True, 'vwma')
 
         # vwap
         buy_offset_vwap = (
@@ -881,7 +881,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                 (dataframe['rsi_112'] < 60) &
                 (dataframe['volume'] > 0)
         )
-        dataframe.loc[buy_offset_vwap, ['buy', 'buy_tag']] = (1, 'vwap')
+        dataframe.loc[buy_offset_vwap, ['buy', 'buy_tag']] = (True, 'vwap')
 
         # ewo3
         ewo3 = (
@@ -896,7 +896,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                 ) &
                 (dataframe['volume'] > 0)
         )
-        dataframe.loc[ewo3, ['buy', 'buy_tag']] = (1, 'ewo3')
+        dataframe.loc[ewo3, ['buy', 'buy_tag']] = (True, 'ewo3')
 
         # nfi24
         nfi24 = (
@@ -908,7 +908,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                 (dataframe['rsi_14'] < self.buy_24_rsi_14_max) &
                 (dataframe['rsi_14_1h'] > self.buy_24_rsi_14_1h_min)
         )
-        dataframe.loc[nfi24, ['buy', 'buy_tag']] = (1, 'nfi24')
+        dataframe.loc[nfi24, ['buy', 'buy_tag']] = (True, 'nfi24')
 
         # keltner
         keltner = (
@@ -916,7 +916,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                 (qtpylib.crossed_above(dataframe['close'], dataframe['kc_upperband']))
                 & (dataframe["rsi"] > dataframe['hline'])
         )
-        dataframe.loc[keltner, ['buy', 'buy_tag']] = (1, 'keltner')
+        dataframe.loc[keltner, ['buy', 'buy_tag']] = (True, 'keltner')
 
         # gumbo
         gumbo = (
@@ -927,7 +927,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                 (dataframe['cti'] < self.buy_gumbo_cti.value) &
                 (dataframe['r_14'] < self.buy_gumbo_r14.value)
         )
-        dataframe.loc[gumbo, ['buy', 'buy_tag']] = (1, 'gumbo')
+        dataframe.loc[gumbo, ['buy', 'buy_tag']] = (True, 'gumbo')
 
         # nfix_39
         nfix_39 = (
@@ -942,7 +942,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                 (dataframe['close'].le(dataframe['close'].shift())) &
                 (dataframe['close'] > dataframe['ema_13'] * self.buy_nfix_39_ema.value)
         )
-        dataframe.loc[nfix_39, ['buy', 'buy_tag']] = (1, 'nfix_39')
+        dataframe.loc[nfix_39, ['buy', 'buy_tag']] = (True, 'nfix_39')
 
         # nfi7_33
         nfi7_33 = (
@@ -954,7 +954,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                 (dataframe['rsi'] < 32.0) &
                 (dataframe['volume'] < (dataframe['volume_mean_4'] * 2.0))
         )
-        dataframe.loc[nfi7_33, ['buy', 'buy_tag']] = (1, 'nfi7_33')
+        dataframe.loc[nfi7_33, ['buy', 'buy_tag']] = (True, 'nfi7_33')
 
         # nfi_38
         nfi_38 = (
@@ -966,7 +966,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
                 (dataframe['r_14'] < -97) &
                 (dataframe['crsi_1h'] > 0.5)
         )
-        dataframe.loc[nfi_38, ['buy', 'buy_tag']] = (1, 'nfi_38')
+        dataframe.loc[nfi_38, ['buy', 'buy_tag']] = (True, 'nfi_38')
 
         return dataframe
 
@@ -997,7 +997,7 @@ class NASOSRv6_private_Reinuvader_20211121(IStrategy):
             dataframe.loc[
                 reduce(lambda x, y: x | y, conditions),
                 'sell'
-            ] = 1
+            ] = True
 
         return dataframe
 

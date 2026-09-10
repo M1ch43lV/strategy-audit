@@ -57,3 +57,32 @@ datasieve==0.1.9
 # import error. Verified in isolation it resolves against the pins; only new
 # transitive dependencies are numba/llvmlite.
 smartmoneyconcepts==0.0.27
+# python-binance: BinanceStream (TomtomEh/freqtrade-websocket) does
+# `from binance import Client` - the corpus search mistook this for a
+# missing local module of the same name (repair/local_modules.py already
+# warns about exactly this collision) and it is really the PyPI package.
+# Verified in isolation it resolves against the pins; new transitive
+# dependencies are aiohttp, dateparser, pycryptodome.
+python-binance==1.0.37
+# tqdm: NNPredict (hamidreza07/freqai-strategy) does `from tqdm import tqdm`
+# directly - present transitively in the native ftenv (pulled in by an
+# already-installed package) but not in either Docker image, which resolve
+# from this file alone. Verified in isolation it resolves against the pins;
+# only new transitive dependency is colorama.
+tqdm==4.70.0
+# setuptools: NNPredict's utils/Environment.py does `import pkg_resources`
+# directly - setuptools 82.0.0 dropped it from the default install (only
+# setuptools[legacy] carries it now); the base image resolves a newer
+# setuptools than that on its own otherwise. Pinned to the last release that
+# still bundles it. Not a strategy-side fix: also the blocker already
+# declined for BaseStrategy/PCA under third_party_package_declined - this
+# pin does not reopen that decision, but does clear it as a side effect for
+# any row that only needed pkg_resources itself.
+setuptools==80.10.2
+# prettytable: Anomaly, PCA (both hamidreza07/freqai-strategy) do
+# `import prettytable` directly for console reporting - unrelated to any
+# indicator or signal, verified in isolation against the pins.
+prettytable==3.18.0
+# simdkalman: FBB_KalmanSIMD (nateemma/strategies) does `import simdkalman`
+# for a vectorised Kalman filter - verified in isolation against the pins.
+simdkalman==1.0.4

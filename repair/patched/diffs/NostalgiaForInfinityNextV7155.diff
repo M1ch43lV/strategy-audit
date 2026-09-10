@@ -1,5 +1,14 @@
 --- original/repos/PeetCrypto_freqtrade-stuff/nfiv7155.py
 +++ patched/repos/PeetCrypto_freqtrade-stuff/nfiv7155.py
+@@ -5383,7 +5383,7 @@
+         return dataframe
+ 
+     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+-        dataframe.loc[:, 'sell'] = 0
++        dataframe.loc[:, 'sell'] = False
+ 
+         return dataframe
+ 
 @@ -5701,7 +5701,7 @@
      pm = Series(pm_arr)
  

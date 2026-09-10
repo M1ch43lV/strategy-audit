@@ -24,6 +24,7 @@ REPAIR_STORES = (
     os.path.join(ROOT, "evidence/ELIGIBILITY_SIGNATURE_REPAIR.json"),
     os.path.join(ROOT, "evidence/ELIGIBILITY_FREQAI_REPAIR.json"),
     os.path.join(ROOT, "evidence/ELIGIBILITY_FREQAI_WTAI.json"),
+    os.path.join(ROOT, "evidence/REPAIR_LOCAL_MODULES.json"),
 )
 
 
@@ -75,9 +76,41 @@ def sibling_config_timeframe(canonical_file):
     candidates = sorted(name for name in os.listdir(directory)
                         if name.startswith("Config") and name.endswith(".py"))
     for name in candidates:
-        text = io.open(os.path.join(directory, name),
-                       encoding="utf-8", errors="replace").read()
-        match = _CONFIG_TIMEFRAME.search(text)
-        if match:
-            return match.group(1)
+        found = _timeframe_in_file(os.path.join(directory, name))
+        if found:
+            return found
+    return None
+
+
+def _timeframe_in_file(path):
+    if not os.path.isfile(path):
+        return None
+    text = io.open(path, encoding="utf-8", errors="replace").read()
+    match = _CONFIG_TIMEFRAME.search(text)
+    return match.group(1) if match else None
+
+
+def imported_module_timeframe(python_path, module):
+    """The timeframe declared in `module`'s own file at `python_path`.
+
+    Distinct from `sibling_config_timeframe`: that one guesses from a name
+    match in the strategy's own directory. This reads the exact file
+    `repair/local_modules.py` already proved importable by actually running
+    the import - not a same-directory guess, the file the strategy loads.
+
+    2026-09-09: `Hammer` and `KeltnerBounce` (hamidreza07/freqai-strategy)
+    read `Config.timeframe` from a sibling module their own directory does
+    not carry - `restore_copied_local_module` already resolved `Config` to
+    `BuyDips/Config.py`, one of 18 byte-identical copies across the same
+    batch, all 21 available copies declaring `timeframe = '5m'`. That
+    resolution is the answer to "which file does this strategy actually
+    load", so its own declared value is not a guess about the two rows that
+    lack a copy - it is the value the copy they do load already states.
+    """
+    top = module.split(".")[0]
+    for relative in (top + ".py", os.path.join(top, "__init__.py")):
+        found = _timeframe_in_file(
+            os.path.join(ROOT, python_path.replace("/", os.sep), relative))
+        if found:
+            return found
     return None

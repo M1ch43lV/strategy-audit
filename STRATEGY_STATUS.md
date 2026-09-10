@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1050 rows
 
-**Generated 2026-09-09 02:10:51 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-10 06:33:07 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -23,7 +23,7 @@ check.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 9 of 1050 rows
+file's time and is labelled `log_mtime` for that reason. 7 of 1050 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
@@ -31,45 +31,42 @@ have neither and are left empty rather than given an invented time.
 | | Strategies |
 |---|---:|
 | in the manifest | 1050 |
-| measured at all | 880 |
-| produced trades | 837 |
-| carrying a run time | 1041 |
+| measured at all | 900 |
+| produced trades | 850 |
+| carrying a run time | 1043 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
-| `E1_expanded` | 659 |
-| `excluded` | 256 |
-| `pending` | 46 |
-| `exclusion_unconfirmed` | 39 |
-| `too_few_trades` | 29 |
+| `E1_expanded` | 675 |
+| `excluded` | 255 |
+| `exclusion_unconfirmed` | 38 |
+| `pending` | 33 |
+| `too_few_trades` | 30 |
 | `not_a_strategy` | 19 |
-| `convergence_candidate` | 2 |
 
 ## Timeframe and signal family
 
 Both read from the strategy's own source by `strategy_classification.py`,
 not measured - see that module's docstring for the marker table and its
-limits. `timeframe` is blank on 88 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 0 rows where no marker matched at all, so its counts below add up to more than 1050.
+limits. `timeframe` is blank on 34 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 0 rows where no marker matched at all, so its counts below add up to more than 1050.
 
 ### Timeframe
 
 | Timeframe | Strategies |
 |---|---:|
-| `5m` | 533 |
-| `1h` | 156 |
-| `15m` | 93 |
+| `5m` | 574 |
+| `1h` | 157 |
+| `15m` | 94 |
 | `1m` | 74 |
-| `4h` | 47 |
+| `4h` | 50 |
 | `1d` | 31 |
+| `3m` | 18 |
 | `30m` | 9 |
-| `3m` | 8 |
 | `6h` | 3 |
 | `12h` | 2 |
 | `2h` | 2 |
-| `1hr` | 1 |
-| `15` | 1 |
 | `5h` | 1 |
 | `1w` | 1 |
 
@@ -138,7 +135,7 @@ than a pick-one-source figure. 4 of 1050 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 1046 rows that do: **65.0 hours** of this audit's own compute so far.
+Summed across the 1046 rows that do: **68.5 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -147,16 +144,16 @@ Summed across the 1046 rows that do: **65.0 hours** of this audit's own compute 
 | `MostOfAll` | 10954.7s | backtest=45.1s; full_window=6406.0s; lookahead_remeasured=4470.1s; recursive_ladder=33.5s |
 | `ARIMASTR` | 8061.6s | backtest=317.7s; lookahead=1200.0s; lookahead_remeasured=6185.3s; recursive=113.4s; recursive_ladder=245.2s |
 | `Hacklemore` | 7729.0s | backtest=464.1s; lookahead=1200.0s; lookahead_remeasured=6014.3s; recursive=24.0s; recursive_ladder=26.6s |
-| `Hacklemore3` | 6982.2s | lookahead_remeasured=6934.8s; recursive_ladder=47.4s |
-| `epretrace` | 6656.8s | backtest=65.5s; lookahead=1348.0s; lookahead_remeasured=5130.3s; recursive=22.3s; recursive_ladder=61.2s; recursive_wave_b=29.5s |
-| `ExponentialGradientPortfolio` | 4604.3s | backtest=165.6s; lookahead=543.3s; lookahead_remeasured=3837.0s; recursive=25.3s; recursive_ladder=33.1s |
+| `Hacklemore3` | 7282.2s | backtest=300.0s; lookahead_remeasured=6934.8s; recursive_ladder=47.4s |
+| `epretrace` | 5780.4s | backtest=65.5s; lookahead=471.6s; lookahead_remeasured=5130.3s; recursive=22.3s; recursive_ladder=61.2s; recursive_wave_b=29.5s |
+| `ExponentialGradientPortfolio` | 4622.4s | backtest=165.6s; lookahead=586.7s; lookahead_remeasured=3837.0s; recursive_ladder=33.1s |
 | `ONS_Portfolio` | 4412.3s | backtest=300.0s; lookahead_remeasured=4048.1s; recursive_ladder=64.2s |
-| `NostalgiaForInfinityX3` | 3757.8s | backtest=29.5s; lookahead_remeasured=3682.6s; recursive_ladder=45.7s |
-| `NostalgiaForInfinityX4` | 3750.4s | backtest=39.6s; lookahead_remeasured=3667.1s; recursive_ladder=43.7s |
+| `NostalgiaForInfinityX3` | 4133.0s | backtest=29.5s; lookahead=375.2s; lookahead_remeasured=3682.6s; recursive_ladder=45.7s |
+| `NostalgiaForInfinityX4` | 4123.3s | backtest=39.6s; lookahead=372.9s; lookahead_remeasured=3667.1s; recursive_ladder=43.7s |
 | `BreakoutStrategy` | 3176.5s | backtest=65.0s; full_window=3033.6s; lookahead=56.1s; recursive=21.8s |
+| `HarmonicDivergence` | 3014.6s | backtest=51.3s; full_window=1802.9s; lookahead=413.0s; lookahead_remeasured=710.9s; recursive_ladder=36.5s |
 | `TSPredict` | 2987.1s | backtest=13.2s; full_window=2919.0s; lookahead=44.6s; recursive=10.3s |
-| `haGradient` | 2862.0s | backtest=38.4s; lookahead=2772.5s; recursive=24.0s; recursive_ladder=27.1s |
-| `HarmonicDivergence` | 2601.6s | backtest=51.3s; full_window=1802.9s; lookahead_remeasured=710.9s; recursive_ladder=36.5s |
+| `GKD_CT` | 2262.6s | backtest=80.3s; lookahead_remeasured=2076.9s; recursive_ladder=105.4s |
 | `HurstCycleV6` | 2246.7s | backtest=15.9s; lookahead_remeasured=2176.7s; recursive_ladder=54.1s |
 | `Hacklemore2` | 2214.6s | lookahead_remeasured=2167.7s; recursive_ladder=46.9s |
 
@@ -276,7 +273,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1468 of 2636 commands are recorded so far, and every new run
+recording. 1666 of 2749 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -296,7 +293,7 @@ evaluate a single signal without it. The warm-up ladder passes
 `--startup-candle` with every rung at once, which is why one run
 reports the whole ladder.
 
-## Passing - 659 strategies
+## Passing - 675 strategies
 
 Every original gate returned `PASS`: measured in its native mode,
 produced trades, clean look-ahead and recursion, complete candle
@@ -312,6 +309,7 @@ coverage, no published trap.
 | `ASDTSRockwellTrading` | `spot_long` | `E1_expanded` | 29952 | `convergence:288:warmup_supplied` | 2026-09-01 15:32:20 | [log](user_data/convergence_logs/ASDTSRockwellTrading-ladder.log) |
 | `ActionZone` | `spot_long` | `E1_expanded` | 561 | `convergence:90:warmup_supplied` | 2026-09-01 12:59:33 | [log](user_data/convergence_logs/ActionZone-ladder.log) |
 | `AdaptiveMAStrategy` | `spot_long` | `E1_expanded` | 3195 | `convergence:288:warmup_supplied` | 2026-09-01 12:07:18 | [log](user_data/convergence_logs/AdaptiveMAStrategy-ladder.log) |
+| `AdaptiveRegime` | `futures_long_short` | `E1_expanded` | 16 | `convergence:220` | 2026-09-08 18:40:02 | [archive](user_data/profile_smoke/AdaptiveRegime-90b67ba4-2026-09-08_18-40-02.zip) [log](user_data/convergence_logs/AdaptiveRegime-90b67ba4-ladder.log) |
 | `AdxSmas` | `spot_long` | `E1_expanded` | 7004 | `convergence:336:warmup_supplied` | 2026-09-01 13:33:11 | [log](user_data/convergence_logs/AdxSmas-ladder.log) |
 | `AdxSmasS` | `futures_short` | `E1_expanded` | 74 | `convergence:336:warmup_supplied` | 2026-09-01 13:34:00 | [log](user_data/convergence_logs/AdxSmasS-ladder.log) |
 | `AdxStrengthStrategy` | `spot_long` | `E1_expanded` | 16952 | `convergence:288:warmup_supplied` | 2026-09-01 12:07:43 | [log](user_data/convergence_logs/AdxStrengthStrategy-ladder.log) |
@@ -327,9 +325,10 @@ coverage, no published trap.
 | `AverageStrategy` | `spot_long` | `E1_expanded` | 2875 | `convergence:84:warmup_supplied` | 2026-09-01 13:34:48 | [log](user_data/convergence_logs/AverageStrategy-ladder.log) |
 | `AwesomeMacd` | `spot_long` | `E1_expanded` | 3989 | `convergence:336:warmup_supplied` | 2026-09-02 06:51:58 | [log](user_data/convergence_logs/AwesomeMacd-ladder.log) |
 | `BB10fall` | `spot_long` | `E1_expanded` | 50 | `convergence:168:warmup_supplied` | 2026-09-05 15:09:31 | [archive](user_data/profile_smoke/BB10fall-cef5331b-2026-09-05_15-09-31.zip) [log](user_data/convergence_logs/BB10fall-cef5331b-ladder.log) |
+| `BBKCBounce` | `spot_long` | `E1_expanded` | 52 | `convergence:288:warmup_supplied` | 2026-09-09 07:47:51 | [archive](user_data/profile_smoke/BBKCBounce-4161a6f7-2026-09-09_07-47-51.zip) [log](user_data/convergence_logs/BBKCBounce-4161a6f7-ladder.log) |
 | `BBMod` | `spot_long` | `E1_expanded` | 300 | `convergence:2016:warmup_supplied` | 2026-09-06 15:09:06 | [archive](user_data/profile_smoke/BBMod-c3880bce-2026-09-06_15-09-06.zip) [log](user_data/convergence_logs/BBMod-ladder.log) |
 | `BBRSI` | `spot_long` | `E1_expanded` | 11 | `convergence:168:warmup_supplied` | 2026-09-04 10:32:03 | [archive](user_data/profile_smoke/BBRSI-0d31007a-2026-09-04_10-32-03.zip) [log](user_data/convergence_logs/BBRSI-0d31007a-ladder.log) |
-| `BBRSI2` | `spot_long` | `E1_expanded` | 24422 | `convergence:1440:warmup_supplied` | 2026-09-01 15:33:59 | [log](user_data/convergence_logs/BBRSI2-ladder.log) |
+| `BBRSI2` | `spot_long` | `E1_expanded` | 1178 | `convergence:1440:warmup_supplied` | 2026-09-09 16:30:03 | [archive](user_data/profile_smoke/BBRSI2-86823e82-2026-09-09_16-30-03.zip) [log](user_data/convergence_logs/BBRSI2-ladder.log) |
 | `BBRSI21` | `spot_long` | `E1_expanded` | 5845 | `convergence:288:warmup_supplied` | 2026-09-01 15:34:51 | [log](user_data/convergence_logs/BBRSI21-ladder.log) |
 | `BBRSI3366` | `spot_long` | `E1_expanded` | 26873 | `convergence:288:warmup_supplied` | 2026-09-01 15:35:41 | [log](user_data/convergence_logs/BBRSI3366-ladder.log) |
 | `BBRSI4cust` | `spot_long` | `E1_expanded` | 22886 | `convergence:192:warmup_supplied` | 2026-09-01 12:08:55 | [log](user_data/convergence_logs/BBRSI4cust-ladder.log) |
@@ -337,7 +336,7 @@ coverage, no published trap.
 | `BBRSIOptim2020Strategy` | `spot_long` | `E1_expanded` | 34955 | `convergence:288:warmup_supplied` | 2026-09-01 12:09:44 | [log](user_data/convergence_logs/BBRSIOptim2020Strategy-ladder.log) |
 | `BBRSIOptimStrategy` | `spot_long` | `E1_expanded` | 10697 | `convergence:288:warmup_supplied` | 2026-09-01 12:10:08 | [log](user_data/convergence_logs/BBRSIOptimStrategy-ladder.log) |
 | `BBRSIOptimizedStrategy` | `spot_long` | `E1_expanded` | 33132 | `convergence:288:warmup_supplied` | 2026-09-01 13:02:19 | [log](user_data/convergence_logs/BBRSIOptimizedStrategy-ladder.log) |
-| `BBRSIS` | `spot_long` | `E1_expanded` |  | `convergence:8640:warmup_supplied` | 2026-09-03 14:40:12 | [log](user_data/profile_smoke_logs/BBRSIS.log) |
+| `BBRSIS` | `spot_long` | `E1_expanded` | 110 | `convergence:8640:warmup_supplied` | 2026-09-10 04:32:52 | [archive](user_data/profile_smoke/BBRSIS-0c9416d4-2026-09-10_04-32-52.zip) [log](user_data/convergence_logs/BBRSIS-ladder.log) |
 | `BBRSIStrategy` | `spot_long` | `E1_expanded` | 12330 | `convergence:192:warmup_supplied` | 2026-09-01 12:10:32 | [log](user_data/convergence_logs/BBRSIStrategy-ladder.log) |
 | `BBRSITV` | `spot_long` | `E1_expanded` | 420 | `convergence:2016:warmup_supplied` | 2026-09-01 13:02:44 | [log](user_data/convergence_logs/BBRSITV-ladder.log) |
 | `BBRSIoriginal` | `spot_long` | `E1_expanded` | 47 | `convergence:168:warmup_supplied` | 2026-09-01 19:33:39 | [archive](user_data/profile_smoke/BBRSIoriginal-2026-09-01_19-33-39.zip) [log](user_data/convergence_logs/BBRSIoriginal-ladder.log) |
@@ -351,7 +350,7 @@ coverage, no published trap.
 | `BB_RSI` | `spot_long` | `E1_expanded` | 421 | `convergence:168:warmup_supplied` | 2026-09-01 19:34:17 | [archive](user_data/profile_smoke/BB_RSI-2026-09-01_19-34-17.zip) [log](user_data/convergence_logs/BB_RSI-ladder.log) |
 | `BB_RTR` | `spot_long` | `E1_expanded` | 987 | `convergence:2016:warmup_supplied` | 2026-09-01 12:11:28 | [log](user_data/convergence_logs/BB_RTR-ladder.log) |
 | `BB_Strategy04` | `spot_long` | `E1_expanded` | 56 | `convergence:168:warmup_supplied` | 2026-09-01 19:34:54 | [archive](user_data/profile_smoke/BB_Strategy04-2026-09-01_19-34-54.zip) [log](user_data/convergence_logs/BB_Strategy04-ladder.log) |
-| `BBands` | `spot_long` | `E1_expanded` | 7063 | `convergence:1440:warmup_supplied` | 2026-09-01 13:04:20 | [log](user_data/convergence_logs/BBands-ladder.log) |
+| `BBands` | `spot_long` | `E1_expanded` | 13538 | `convergence:1440:warmup_supplied` | 2026-09-09 16:15:53 | [archive](user_data/profile_smoke/BBands-62f4821e-2026-09-09_16-15-53.zip) [log](user_data/convergence_logs/BBands-ladder.log) |
 | `BBandsRSI` | `spot_long` | `E1_expanded` | 24684 | `convergence:288:warmup_supplied` | 2026-09-01 13:04:45 | [log](user_data/convergence_logs/BBandsRSI-ladder.log) |
 | `BBlower` | `spot_long` | `E1_expanded` | 1790 | `convergence:576:warmup_supplied` | 2026-09-01 15:37:20 | [log](user_data/convergence_logs/BBlower-ladder.log) |
 | `BTCBigDrop` | `spot_long` | `E1_expanded` | 182 | `convergence:576:warmup_supplied` | 2026-09-08 16:34:07 | [archive](user_data/profile_smoke/BTCBigDrop-f38a93aa-2026-09-08_16-34-07.zip) [log](user_data/convergence_logs/BTCBigDrop-f38a93aa-ladder.log) |
@@ -362,7 +361,7 @@ coverage, no published trap.
 | `Bandtastic` | `spot_long` | `E1_expanded` | 28745 | `convergence:1344:warmup_supplied` | 2026-09-01 15:38:10 | [log](user_data/convergence_logs/Bandtastic-ladder.log) |
 | `BbRoi` | `spot_long` | `E1_expanded` | 393 | `convergence:1344:warmup_supplied` | 2026-09-01 19:35:31 | [archive](user_data/profile_smoke/BbRoi-2026-09-01_19-35-31.zip) [log](user_data/convergence_logs/BbRoi-ladder.log) |
 | `BbWidthExpansionStrategy` | `spot_long` | `E1_expanded` | 21692 | `convergence:288:warmup_supplied` | 2026-09-01 12:11:52 | [log](user_data/convergence_logs/BbWidthExpansionStrategy-ladder.log) |
-| `BbandRsi` | `spot_long` | `E1_expanded` | 16106 | `convergence:1440:warmup_supplied` | 2026-09-03 19:39:25 | [log](user_data/convergence_logs/BbandRsi-6dcf5b91-ladder.log) |
+| `BbandRsi` | `spot_long` | `E1_expanded` | 1262 | `convergence:1440:warmup_supplied` | 2026-09-09 16:16:37 | [archive](user_data/profile_smoke/BbandRsi-6dcf5b91-2026-09-09_16-16-37.zip) [log](user_data/convergence_logs/BbandRsi-6dcf5b91-ladder.log) |
 | `BbandRsiRolling` | `spot_long` | `E1_expanded` | 17916 | `convergence:288:warmup_supplied` | 2026-09-01 13:39:54 | [log](user_data/convergence_logs/BbandRsiRolling-ladder.log) |
 | `BigDrop` | `spot_long` | `E1_expanded` | 207 | `convergence:576:warmup_supplied` | 2026-09-06 18:25:54 | [archive](user_data/profile_smoke/BigDrop-05954866-2026-09-06_18-25-54.zip) [log](user_data/convergence_logs/BigDrop-05954866-ladder.log) |
 | `BigPete` | `spot_long` | `E1_expanded` | 566 | `convergence:288:warmup_supplied` | 2026-09-06 15:08:15 | [archive](user_data/profile_smoke/BigPete-b194f963-2026-09-06_15-08-15.zip) [log](user_data/convergence_logs/BigPete-ladder.log) |
@@ -374,16 +373,18 @@ coverage, no published trap.
 | `BigZ07Next` | `spot_long` | `E1_expanded` | 1754 | `convergence:2016:warmup_supplied` | 2026-09-01 12:15:15 | [log](user_data/convergence_logs/BigZ07Next-ladder.log) |
 | `BigZ07Next2` | `spot_long` | `E1_expanded` | 1716 | `convergence:2016:warmup_supplied` | 2026-09-01 12:15:43 | [log](user_data/convergence_logs/BigZ07Next2-ladder.log) |
 | `BinClucMad` | `spot_long` | `E1_expanded` | 2517 | `convergence:2016:warmup_supplied` | 2026-09-03 13:45:43 | [log](user_data/convergence_logs/BinClucMad-ladder.log) |
+| `BinClucMadDevelop` | `spot_long` | `E1_expanded` | 77 | `convergence:2016:warmup_supplied` | 2026-09-09 09:28:11 | [archive](user_data/profile_smoke/BinClucMadDevelop-43196dbd-2026-09-09_09-28-11.zip) [log](user_data/convergence_logs/BinClucMadDevelop-ladder.log) |
+| `BinClucMadSMADevelop` | `spot_long` | `E1_expanded` | 50 | `convergence:2016:warmup_supplied` | 2026-09-09 09:27:51 | [archive](user_data/profile_smoke/BinClucMadSMADevelop-485890ae-2026-09-09_09-27-51.zip) [log](user_data/convergence_logs/BinClucMadSMADevelop-ladder.log) |
 | `BinClucMadV1` | `spot_long` | `E1_expanded` | 1164 | `convergence:2016:warmup_supplied` | 2026-09-01 12:16:09 | [log](user_data/convergence_logs/BinClucMadV1-ladder.log) |
 | `BinHV27` | `spot_long` | `E1_expanded` | 11503 | `convergence:576:warmup_supplied` | 2026-09-01 13:40:42 | [log](user_data/convergence_logs/BinHV27-ladder.log) |
 | `BinHV27F` | `futures_long` | `E1_expanded` | 154 | `convergence:576:warmup_supplied` | 2026-09-02 06:53:08 | [log](user_data/convergence_logs/BinHV27F-ladder.log) |
 | `BinHV27_short` | `futures_long_short` | `E1_expanded` | 5 | `convergence:576:warmup_supplied` | 2026-09-03 19:04:53 | [log](user_data/convergence_logs/BinHV27_short-ladder.log) |
 | `BinHV27_werkkrew` | `spot_long` | `E1_expanded` | 127 | `convergence:576:warmup_supplied` | 2026-09-03 21:02:46 | [archive](user_data/profile_smoke/BinHV27_werkkrew-3a997e27-2026-09-03_21-02-46.zip) [log](user_data/convergence_logs/BinHV27_werkkrew-ladder.log) |
-| `BinHV45` | `spot_long` | `E1_expanded` | 749 | `convergence:1440:warmup_supplied` | 2026-09-01 23:46:36 | [log](user_data/convergence_logs/BinHV45-ladder.log) |
-| `BinHV45HO` | `spot_long` | `E1_expanded` | 389 | `convergence:1440:warmup_supplied` | 2026-09-01 13:41:32 | [log](user_data/convergence_logs/BinHV45HO-ladder.log) |
-| `BinHV45_kanaxe` | `spot_long` | `E1_expanded` | 1798 | `convergence:1440:warmup_supplied` | 2026-09-01 23:47:31 | [log](user_data/convergence_logs/BinHV45_kanaxe-ladder.log) |
-| `BinHV45_stash` | `spot_long` | `E1_expanded` | 1700 | `convergence:1440:warmup_supplied` | 2026-09-01 23:48:23 | [log](user_data/convergence_logs/BinHV45_stash-ladder.log) |
-| `BinHV45_werkkrew` | `spot_long` | `E1_expanded` | 760 | `convergence:1440:warmup_supplied` | 2026-09-01 23:49:18 | [log](user_data/convergence_logs/BinHV45_werkkrew-ladder.log) |
+| `BinHV45` | `spot_long` | `E1_expanded` | 92 | `convergence:1440:warmup_supplied` | 2026-09-09 16:14:58 | [archive](user_data/profile_smoke/BinHV45-db2dd482-2026-09-09_16-14-58.zip) [log](user_data/convergence_logs/BinHV45-ladder.log) |
+| `BinHV45HO` | `spot_long` | `E1_expanded` | 59 | `convergence:1440:warmup_supplied` | 2026-09-09 16:27:13 | [archive](user_data/profile_smoke/BinHV45HO-2a444e3c-2026-09-09_16-27-13.zip) [log](user_data/convergence_logs/BinHV45HO-ladder.log) |
+| `BinHV45_kanaxe` | `spot_long` | `E1_expanded` | 184 | `convergence:1440:warmup_supplied` | 2026-09-09 16:27:50 | [archive](user_data/profile_smoke/BinHV45_kanaxe-5d56a0a8-2026-09-09_16-27-50.zip) [log](user_data/convergence_logs/BinHV45_kanaxe-ladder.log) |
+| `BinHV45_stash` | `spot_long` | `E1_expanded` | 179 | `convergence:1440:warmup_supplied` | 2026-09-09 16:28:31 | [archive](user_data/profile_smoke/BinHV45_stash-2477766f-2026-09-09_16-28-31.zip) [log](user_data/convergence_logs/BinHV45_stash-ladder.log) |
+| `BinHV45_werkkrew` | `spot_long` | `E1_expanded` | 74 | `convergence:1440:warmup_supplied` | 2026-09-09 16:29:10 | [archive](user_data/profile_smoke/BinHV45_werkkrew-1637ab87-2026-09-09_16-29-10.zip) [log](user_data/convergence_logs/BinHV45_werkkrew-ladder.log) |
 | `BinMfiBTCv5003` | `spot_long` | `E1_expanded` | 171 | `convergence:288:warmup_supplied` | 2026-09-01 13:09:38 | [log](user_data/convergence_logs/BinMfiBTCv5003-ladder.log) |
 | `BollingerBandStrategy` | `spot_long` | `E1_expanded` | 16302 | `convergence:480:warmup_supplied` | 2026-09-01 23:50:09 | [log](user_data/convergence_logs/BollingerBandStrategy-ladder.log) |
 | `BollingerBounce` | `spot_long` | `E1_expanded` | 60 | `convergence:576:warmup_supplied` | 2026-09-06 18:29:09 | [archive](user_data/profile_smoke/BollingerBounce-4f0dc231-2026-09-06_18-29-09.zip) [log](user_data/convergence_logs/BollingerBounce-4f0dc231-ladder.log) |
@@ -406,13 +407,13 @@ coverage, no published trap.
 | `Chandem` | `spot_long` | `E1_expanded` | 16308 | `convergence:2016:warmup_supplied` | 2026-09-01 15:40:37 | [log](user_data/convergence_logs/Chandem-ladder.log) |
 | `Chandemtwo` | `spot_long` | `E1_expanded` | 18812 | `convergence:2016:warmup_supplied` | 2026-09-01 15:41:25 | [log](user_data/convergence_logs/Chandemtwo-ladder.log) |
 | `Chispei` | `spot_long` | `E1_expanded` | 50 | `convergence:42:warmup_supplied` | 2026-09-01 19:36:09 | [archive](user_data/profile_smoke/Chispei-2026-09-01_19-36-09.zip) [log](user_data/convergence_logs/Chispei-62b19ed2-ladder.log) |
-| `Cluc4` | `spot_long` | `E1_expanded` | 4881 | `convergence:1440:warmup_supplied` | 2026-09-01 15:42:17 | [log](user_data/convergence_logs/Cluc4-ladder.log) |
-| `Cluc4werk` | `spot_long` | `E1_expanded` | 3269 | `convergence:1440:warmup_supplied` | 2026-09-01 13:43:54 | [log](user_data/convergence_logs/Cluc4werk-ladder.log) |
-| `Cluc5werk` | `spot_long` | `E1_expanded` | 2210 | `convergence:1440:warmup_supplied` | 2026-09-01 13:44:44 | [log](user_data/convergence_logs/Cluc5werk-ladder.log) |
-| `Cluc7werk` | `spot_long` | `E1_expanded` | 1719 | `convergence:1440:warmup_supplied` | 2026-09-03 13:46:37 | [log](user_data/convergence_logs/Cluc7werk-ladder.log) |
+| `Cluc4` | `spot_long` | `E1_expanded` | 171 | `convergence:1440:warmup_supplied` | 2026-09-09 16:30:42 | [archive](user_data/profile_smoke/Cluc4-72b005ae-2026-09-09_16-30-42.zip) [log](user_data/convergence_logs/Cluc4-ladder.log) |
+| `Cluc4werk` | `spot_long` | `E1_expanded` | 162 | `convergence:1440:warmup_supplied` | 2026-09-09 16:17:16 | [archive](user_data/profile_smoke/Cluc4werk-442f52c0-2026-09-09_16-17-16.zip) [log](user_data/convergence_logs/Cluc4werk-ladder.log) |
+| `Cluc5werk` | `spot_long` | `E1_expanded` | 31 | `convergence:1440:warmup_supplied` | 2026-09-09 16:17:59 | [archive](user_data/profile_smoke/Cluc5werk-12db1a87-2026-09-09_16-17-59.zip) [log](user_data/convergence_logs/Cluc5werk-ladder.log) |
+| `Cluc7werk` | `spot_long` | `E1_expanded` | 223 | `convergence:1440:warmup_supplied` | 2026-09-09 16:18:39 | [archive](user_data/profile_smoke/Cluc7werk-4eb74e34-2026-09-09_16-18-39.zip) [log](user_data/convergence_logs/Cluc7werk-ladder.log) |
 | `ClucFiatROI` | `spot_long` | `E1_expanded` | 6026 | `convergence:288:warmup_supplied` | 2026-09-01 13:11:38 | [log](user_data/convergence_logs/ClucFiatROI-ladder.log) |
 | `ClucFiatSlow` | `spot_long` | `E1_expanded` | 6026 | `convergence:288:warmup_supplied` | 2026-09-01 13:12:03 | [log](user_data/convergence_logs/ClucFiatSlow-ladder.log) |
-| `ClucHAnix` | `spot_long` | `E1_expanded` | 480 | `convergence:1440:warmup_supplied` | 2026-09-01 13:45:46 | [log](user_data/convergence_logs/ClucHAnix-ladder.log) |
+| `ClucHAnix` | `spot_long` | `E1_expanded` | 140 | `convergence:1440:warmup_supplied` | 2026-09-09 16:19:54 | [archive](user_data/profile_smoke/ClucHAnix-895ff1e0-2026-09-09_16-19-54.zip) [log](user_data/convergence_logs/ClucHAnix-ladder.log) |
 | `ClucHAnix_5M_E0V1E` | `spot_long` | `E1_expanded` | 5459 | `convergence:288:warmup_supplied` | 2026-09-03 13:47:08 | [log](user_data/convergence_logs/ClucHAnix_5M_E0V1E-ladder.log) |
 | `ClucHAnix_5m` | `spot_long` | `E1_expanded` | 2834 | `convergence:288:warmup_supplied` | 2026-09-03 13:47:38 | [log](user_data/convergence_logs/ClucHAnix_5m-ladder.log) |
 | `ClucHAnix_5m1` | `spot_long` | `E1_expanded` | 3049 | `convergence:288:warmup_supplied` | 2026-09-03 13:48:10 | [log](user_data/convergence_logs/ClucHAnix_5m1-ladder.log) |
@@ -421,21 +422,22 @@ coverage, no published trap.
 | `ClucHAnix_BB_RPB_HO2` | `spot_long` | `E1_expanded` | 201 | `convergence:2880:warmup_supplied` | 2026-09-06 14:50:18 | [archive](user_data/profile_smoke/ClucHAnix_BB_RPB_HO2-50399031-2026-09-06_14-50-18.zip) [log](user_data/convergence_logs/ClucHAnix_BB_RPB_HO2-ladder.log) |
 | `ClucHAnix_BB_RPB_MOD` | `spot_long` | `E1_expanded` | 217 | `convergence:2880:warmup_supplied` | 2026-09-06 14:51:41 | [archive](user_data/profile_smoke/ClucHAnix_BB_RPB_MOD-4949016b-2026-09-06_14-51-41.zip) [log](user_data/convergence_logs/ClucHAnix_BB_RPB_MOD-ladder.log) |
 | `ClucHAnix_hhll` | `spot_long` | `E1_expanded` | 2278 | `convergence:2016:warmup_supplied` | 2026-09-01 13:12:56 | [log](user_data/convergence_logs/ClucHAnix_hhll-ladder.log) |
-| `ClucHAwerk` | `spot_long` | `E1_expanded` | 2183 | `convergence:1440:warmup_supplied` | 2026-09-03 13:49:23 | [log](user_data/convergence_logs/ClucHAwerk-ladder.log) |
+| `ClucHAwerk` | `spot_long` | `E1_expanded` | 782 | `convergence:1440:warmup_supplied` | 2026-09-09 16:21:12 | [archive](user_data/profile_smoke/ClucHAwerk-06465a96-2026-09-09_16-21-12.zip) [log](user_data/convergence_logs/ClucHAwerk-ladder.log) |
 | `ClucMay72018` | `spot_long` | `E1_expanded` | 2507 | `convergence:288:warmup_supplied` | 2026-09-01 13:46:34 | [log](user_data/convergence_logs/ClucMay72018-ladder.log) |
 | `CofiBitStrategy` | `spot_long` | `E1_expanded` | 27444 | `convergence:288:warmup_supplied` | 2026-09-01 13:47:22 | [log](user_data/convergence_logs/CofiBitStrategy-ladder.log) |
 | `CombinedBinHAndCluc` | `spot_long` | `E1_expanded` | 3540 | `convergence:288:warmup_supplied` | 2026-09-01 13:48:09 | [log](user_data/convergence_logs/CombinedBinHAndCluc-ladder.log) |
 | `CombinedBinHAndCluc2021` | `spot_long` | `E1_expanded` | 3297 | `convergence:288:warmup_supplied` | 2026-09-01 13:48:57 | [log](user_data/convergence_logs/CombinedBinHAndCluc2021-ladder.log) |
 | `CombinedBinHAndCluc2021Bull` | `spot_long` | `E1_expanded` | 3876 | `convergence:288:warmup_supplied` | 2026-09-01 13:49:45 | [log](user_data/convergence_logs/CombinedBinHAndCluc2021Bull-ladder.log) |
 | `CombinedBinHAndClucHyper` | `spot_long` | `E1_expanded` | 90 | `convergence:1440:warmup_supplied` | 2026-09-06 14:59:31 | [archive](user_data/profile_smoke/CombinedBinHAndClucHyper-48a908dc-2026-09-06_14-59-31.zip) [log](user_data/convergence_logs/CombinedBinHAndClucHyper-ladder.log) |
-| `CombinedBinHAndClucHyperV0` | `spot_long` | `E1_expanded` | 4252 | `convergence:1440:warmup_supplied` | 2026-09-01 15:43:08 | [log](user_data/convergence_logs/CombinedBinHAndClucHyperV0-ladder.log) |
-| `CombinedBinHAndClucHyperV3` | `spot_long` | `E1_expanded` | 1810 | `convergence:1440:warmup_supplied` | 2026-09-01 15:43:59 | [log](user_data/convergence_logs/CombinedBinHAndClucHyperV3-ladder.log) |
+| `CombinedBinHAndClucHyperV0` | `spot_long` | `E1_expanded` | 282 | `convergence:1440:warmup_supplied` | 2026-09-09 16:31:26 | [archive](user_data/profile_smoke/CombinedBinHAndClucHyperV0-e03b8c29-2026-09-09_16-31-26.zip) [log](user_data/convergence_logs/CombinedBinHAndClucHyperV0-ladder.log) |
+| `CombinedBinHAndClucHyperV3` | `spot_long` | `E1_expanded` | 180 | `convergence:1440:warmup_supplied` | 2026-09-09 16:32:07 | [archive](user_data/profile_smoke/CombinedBinHAndClucHyperV3-84115c08-2026-09-09_16-32-07.zip) [log](user_data/convergence_logs/CombinedBinHAndClucHyperV3-ladder.log) |
 | `CombinedBinHAndClucV2` | `spot_long` | `E1_expanded` | 728 | `convergence:576:warmup_supplied` | 2026-09-01 13:15:19 | [log](user_data/convergence_logs/CombinedBinHAndClucV2-ladder.log) |
 | `CombinedBinHAndClucV3` | `spot_long` | `E1_expanded` | 2589 | `convergence:2016:warmup_supplied` | 2026-09-03 13:49:49 | [log](user_data/convergence_logs/CombinedBinHAndClucV3-ladder.log) |
 | `CombinedBinHAndClucV4` | `spot_long` | `E1_expanded` | 2965 | `convergence:288:warmup_supplied` | 2026-09-01 13:15:44 | [log](user_data/convergence_logs/CombinedBinHAndClucV4-ladder.log) |
 | `CombinedBinHAndClucV5` | `spot_long` | `E1_expanded` | 2985 | `convergence:288:warmup_supplied` | 2026-09-01 13:16:09 | [log](user_data/convergence_logs/CombinedBinHAndClucV5-ladder.log) |
 | `CombinedBinHAndClucV5Hyperoptable` | `spot_long` | `E1_expanded` | 2705 | `convergence:288:warmup_supplied` | 2026-09-01 12:21:09 | [log](user_data/convergence_logs/CombinedBinHAndClucV5Hyperoptable-ladder.log) |
 | `CombinedBinHAndClucV6` | `spot_long` | `E1_expanded` | 1724 | `convergence:2016:warmup_supplied` | 2026-09-03 13:50:16 | [log](user_data/convergence_logs/CombinedBinHAndClucV6-ladder.log) |
+| `CombinedBinHAndClucV6H` | `spot_long` | `E1_expanded` | 26 | `convergence:2016:warmup_supplied` | 2026-09-09 09:28:22 | [archive](user_data/profile_smoke/CombinedBinHAndClucV6H-88f6bcec-2026-09-09_09-28-22.zip) [log](user_data/convergence_logs/CombinedBinHAndClucV6H-ladder.log) |
 | `CombinedBinHAndClucV7` | `spot_long` | `E1_expanded` | 889 | `convergence:2016:warmup_supplied` | 2026-09-03 13:50:43 | [log](user_data/convergence_logs/CombinedBinHAndClucV7-ladder.log) |
 | `CombinedBinHAndClucV8` | `spot_long` | `E1_expanded` | 884 | `convergence:2016:warmup_supplied` | 2026-09-01 13:16:34 | [log](user_data/convergence_logs/CombinedBinHAndClucV8-ladder.log) |
 | `CombinedBinHAndClucV8Hyper` | `spot_long` | `E1_expanded` | 1243 | `convergence:2016:warmup_supplied` | 2026-09-01 13:16:59 | [log](user_data/convergence_logs/CombinedBinHAndClucV8Hyper-ladder.log) |
@@ -445,15 +447,16 @@ coverage, no published trap.
 | `CombinedBinHClucAndMADV5` | `spot_long` | `E1_expanded` | 1644 | `convergence:2016:warmup_supplied` | 2026-09-03 13:51:37 | [log](user_data/convergence_logs/CombinedBinHClucAndMADV5-ladder.log) |
 | `CombinedBinHClucAndMADV6` | `spot_long` | `E1_expanded` | 1616 | `convergence:2016:warmup_supplied` | 2026-09-03 13:52:03 | [log](user_data/convergence_logs/CombinedBinHClucAndMADV6-ladder.log) |
 | `CombinedBinHClucAndMADV9` | `spot_long` | `E1_expanded` | 2842 | `convergence:2016:warmup_supplied` | 2026-09-03 13:52:30 | [log](user_data/convergence_logs/CombinedBinHClucAndMADV9-ladder.log) |
-| `Combined_Indicators` | `spot_long` | `E1_expanded` | 2969 | `convergence:1440:warmup_supplied` | 2026-09-01 15:44:51 | [log](user_data/convergence_logs/Combined_Indicators-ladder.log) |
+| `Combined_Indicators` | `spot_long` | `E1_expanded` | 235 | `convergence:1440:warmup_supplied` | 2026-09-09 16:32:48 | [archive](user_data/profile_smoke/Combined_Indicators-8c5e3bcf-2026-09-09_16-32-48.zip) [log](user_data/convergence_logs/Combined_Indicators-ladder.log) |
 | `Combined_NFIv6_SMA` | `spot_long` | `E1_expanded` | 951 | `convergence:2016:warmup_supplied` | 2026-09-01 13:17:48 | [log](user_data/convergence_logs/Combined_NFIv6_SMA-ladder.log) |
 | `Combined_NFIv7_SMA` | `spot_long` | `E1_expanded` | 927 | `convergence:2016:warmup_supplied` | 2026-09-01 12:22:00 | [log](user_data/convergence_logs/Combined_NFIv7_SMA-ladder.log) |
-| `Combined_NFIv7_SMA_Rallipanos_20210707` | `spot_long` | `E1_expanded` | 927 | `convergence:2016:warmup_supplied` | 2026-09-01 12:22:25 | [log](user_data/convergence_logs/Combined_NFIv7_SMA_Rallipanos_20210707-ladder.log) |
+| `Combined_NFIv7_SMA_Rallipanos_20210707` | `spot_long` | `E1_expanded` | 36 | `convergence:2016:warmup_supplied` | 2026-09-09 16:33:26 | [archive](user_data/profile_smoke/Combined_NFIv7_SMA_Rallipanos_20210707-e9761cd4-2026-09-09_16-33-26.zip) [log](user_data/convergence_logs/Combined_NFIv7_SMA_Rallipanos_20210707-ladder.log) |
 | `Combined_NFIv7_SMA_bAdBoY_20211204` | `spot_long` | `E1_expanded` | 927 | `convergence:2016:warmup_supplied` | 2026-09-01 12:22:51 | [log](user_data/convergence_logs/Combined_NFIv7_SMA_bAdBoY_20211204-ladder.log) |
 | `ComboHold` | `spot_long` | `E1_expanded` | 233 | `convergence:576:warmup_supplied` | 2026-09-08 16:34:36 | [archive](user_data/profile_smoke/ComboHold-7aef3c0f-2026-09-08_16-34-36.zip) [log](user_data/convergence_logs/ComboHold-7aef3c0f-ladder.log) |
 | `CompositeScoreStrategy` | `spot_long` | `E1_expanded` | 28771 | `convergence:288:warmup_supplied` | 2026-09-01 12:23:15 | [log](user_data/convergence_logs/CompositeScoreStrategy-ladder.log) |
 | `ConsensusShort` | `futures_long_short` | `E1_expanded` | 414 | `convergence:288:warmup_supplied` | 2026-09-02 06:55:30 | [log](user_data/convergence_logs/ConsensusShort-ladder.log) |
 | `CoppockCurveStrategy` | `spot_long` | `E1_expanded` | 22332 | `convergence:288:warmup_supplied` | 2026-09-01 12:23:39 | [log](user_data/convergence_logs/CoppockCurveStrategy-ladder.log) |
+| `CoreStrategy` | `spot_long` | `E1_expanded` | 40 | `convergence:2016:warmup_supplied` | 2026-09-09 09:28:16 | [archive](user_data/profile_smoke/CoreStrategy-acac6ca9-2026-09-09_09-28-16.zip) [log](user_data/convergence_logs/CoreStrategy-ladder.log) |
 | `CrossEMAStrategy` | `spot_long` | `E1_expanded` | 4063 | `convergence:168:warmup_supplied` | 2026-09-01 13:18:36 | [log](user_data/convergence_logs/CrossEMAStrategy-ladder.log) |
 | `CryptoFrog` | `spot_long` | `E1_expanded` |  | `convergence:288:warmup_supplied` | 2026-09-02 18:43:11 | [log](user_data/profile_smoke_logs/CryptoFrog.log) |
 | `CryptoFrogHO` | `spot_long` | `E1_expanded` |  | `convergence:288:warmup_supplied` | 2026-09-02 18:44:17 | [log](user_data/profile_smoke_logs/CryptoFrogHO.log) |
@@ -477,6 +480,7 @@ coverage, no published trap.
 | `DemaCrossStrategy` | `spot_long` | `E1_expanded` | 21528 | `convergence:288:warmup_supplied` | 2026-09-01 12:24:04 | [log](user_data/convergence_logs/DemaCrossStrategy-ladder.log) |
 | `Diamond` | `spot_long` | `E1_expanded` | 4603 | `convergence:288:warmup_supplied` | 2026-09-01 15:46:33 | [log](user_data/convergence_logs/Diamond-ladder.log) |
 | `Divergences` | `spot_long` | `E1_expanded` | 9981 | `convergence:2160:warmup_supplied` | 2026-09-01 13:21:26 | [log](user_data/convergence_logs/Divergences-ladder.log) |
+| `DonchianBounce` | `spot_long` | `E1_expanded` | 32 | `convergence:576:warmup_supplied` | 2026-09-09 07:48:01 | [archive](user_data/profile_smoke/DonchianBounce-9e62325a-2026-09-09_07-48-01.zip) [log](user_data/convergence_logs/DonchianBounce-9e62325a-ladder.log) |
 | `DonchianBreakoutStrategy` | `spot_long` | `E1_expanded` | 21512 | `convergence:288:warmup_supplied` | 2026-09-01 12:24:28 | [log](user_data/convergence_logs/DonchianBreakoutStrategy-ladder.log) |
 | `DoubleEMACrossoverWithTrend` | `spot_long` | `E1_expanded` | 4019 | `convergence:2160:warmup_supplied` | 2026-09-03 19:41:49 | [log](user_data/convergence_logs/DoubleEMACrossoverWithTrend-2df7ee08-ladder.log) |
 | `Dyna_opti` | `spot_long` | `E1_expanded` | 26 | `convergence:576:warmup_supplied` | 2026-09-04 06:12:17 | [archive](user_data/profile_smoke/Dyna_opti-8aa17cbf-2026-09-04_06-12-17.zip) [log](user_data/convergence_logs/Dyna_opti-ladder.log) |
@@ -501,7 +505,7 @@ coverage, no published trap.
 | `EMA_Trailing_Stoploss` | `spot_long` | `E1_expanded` | 463 | `convergence:24:warmup_supplied` | 2026-09-05 15:04:54 | [archive](user_data/profile_smoke/EMA_Trailing_Stoploss-c357e7e7-2026-09-05_15-04-54.zip) [log](user_data/convergence_logs/EMA_Trailing_Stoploss-c357e7e7-ladder.log) |
 | `EMA_Trailing_Stoploss_LessMagic` | `spot_long` | `E1_expanded` | 463 | `convergence:288:warmup_supplied` | 2026-09-05 15:06:00 | [archive](user_data/profile_smoke/EMA_Trailing_Stoploss_LessMagic-aa2b302f-2026-09-05_15-06-00.zip) [log](user_data/convergence_logs/EMA_Trailing_Stoploss_LessMagic-aa2b302f-ladder.log) |
 | `EXPERIMENTAL_STRATEGY` | `spot_long` | `E1_expanded` | 582 | `convergence:288:warmup_supplied` | 2026-09-01 19:38:04 | [archive](user_data/profile_smoke/EXPERIMENTAL_STRATEGY-2026-09-01_19-38-04.zip) [log](user_data/convergence_logs/EXPERIMENTAL_STRATEGY-ladder.log) |
-| `EasyInEasyOut` | `spot_long` | `E1_expanded` | 17 | `convergence:1440:warmup_supplied` | 2026-09-01 15:48:12 | [log](user_data/convergence_logs/EasyInEasyOut-ladder.log) |
+| `EasyInEasyOut` | `spot_long` | `E1_expanded` | 46 | `convergence:1440:warmup_supplied` | 2026-09-09 16:44:31 | [archive](user_data/profile_smoke/EasyInEasyOut-fc725427-2026-09-09_16-44-31.zip) [log](user_data/convergence_logs/EasyInEasyOut-ladder.log) |
 | `ElliotV2` | `spot_long` | `E1_expanded` | 402 | `convergence:2016:warmup_supplied` | 2026-09-03 13:53:25 | [log](user_data/convergence_logs/ElliotV2-ladder.log) |
 | `ElliotV4` | `spot_long` | `E1_expanded` | 915 | `convergence:2016:warmup_supplied` | 2026-09-01 13:25:34 | [log](user_data/convergence_logs/ElliotV4-ladder.log) |
 | `ElliotV531` | `spot_long` | `E1_expanded` | 887 | `convergence:2016:warmup_supplied` | 2026-09-01 13:25:59 | [log](user_data/convergence_logs/ElliotV531-ladder.log) |
@@ -516,6 +520,7 @@ coverage, no published trap.
 | `ElliotV8_original_ichiv2OH` | `spot_long` | `E1_expanded` | 56 | `convergence:2016:warmup_supplied` | 2026-09-06 14:59:43 | [archive](user_data/profile_smoke/ElliotV8_original_ichiv2OH-a45e937f-2026-09-06_14-59-43.zip) [log](user_data/convergence_logs/ElliotV8_original_ichiv2OH-ladder.log) |
 | `ElliotV8_original_ichiv3` | `spot_long` | `E1_expanded` | 71 | `convergence:2016:warmup_supplied` | 2026-09-06 14:46:50 | [archive](user_data/profile_smoke/ElliotV8_original_ichiv3-433ffe91-2026-09-06_14-46-50.zip) [log](user_data/convergence_logs/ElliotV8_original_ichiv3-ladder.log) |
 | `Elliotv8` | `spot_long` | `E1_expanded` | 25 | `convergence:2016:warmup_supplied` | 2026-09-06 14:46:44 | [archive](user_data/profile_smoke/Elliotv8-bdc3ea5b-2026-09-06_14-46-44.zip) [log](user_data/convergence_logs/Elliotv8-ladder.log) |
+| `EmaCrossStrategy` | `spot_long` | `E1_expanded` | 28 | `convergence:180:warmup_supplied` | 2026-09-09 07:43:30 | [archive](user_data/profile_smoke/EmaCrossStrategy-a8314e54-2026-09-09_07-43-30.zip) [log](user_data/convergence_logs/EmaCrossStrategy-a8314e54-ladder.log) |
 | `EmaRibbonStrategy` | `spot_long` | `E1_expanded` | 22752 | `convergence:288:warmup_supplied` | 2026-09-01 12:25:20 | [log](user_data/convergence_logs/EmaRibbonStrategy-ladder.log) |
 | `FAdxSmaStrategy` | `futures_long_short` | `E1_expanded` | 15 | `convergence:336:warmup_supplied` | 2026-09-03 13:54:18 | [log](user_data/convergence_logs/FAdxSmaStrategy-ladder.log) |
 | `FBB_DWT` | `spot_long` | `E1_expanded` | 91 | `convergence:288:warmup_supplied` | 2026-09-08 16:03:43 | [archive](user_data/profile_smoke/FBB_DWT-a8f9de02-2026-09-08_16-03-43.zip) [log](user_data/convergence_logs/FBB_DWT-a8f9de02-ladder.log) |
@@ -545,7 +550,7 @@ coverage, no published trap.
 | `FastSupertrend_optim_quick4` | `futures_long_short` | `E1_expanded` | 1245 | `convergence:168:warmup_supplied` | 2026-09-02 19:14:15 | [log](user_data/convergence_logs/FastSupertrend_optim_quick4-ladder.log) |
 | `FastSupertrend_optim_quick5` | `futures_long_short` | `E1_expanded` | 1166 | `convergence:168:warmup_supplied` | 2026-09-02 19:14:43 | [log](user_data/convergence_logs/FastSupertrend_optim_quick5-ladder.log) |
 | `FastSupertrend_ts_origstop_fix` | `futures_long_short` | `E1_expanded` | 53 | `convergence:168:warmup_supplied` | 2026-09-03 13:55:11 | [log](user_data/convergence_logs/FastSupertrend_ts_origstop_fix-ladder.log) |
-| `FisherHull` | `spot_long` | `E1_expanded` | 34 | `convergence:1440:warmup_supplied` | 2026-09-01 13:54:39 | [log](user_data/convergence_logs/FisherHull-ladder.log) |
+| `FisherHull` | `spot_long` | `E1_expanded` | 27 | `convergence:1440:warmup_supplied` | 2026-09-09 16:45:19 | [archive](user_data/profile_smoke/FisherHull-40a72168-2026-09-09_16-45-19.zip) [log](user_data/convergence_logs/FisherHull-ladder.log) |
 | `FisherTransformStrategy` | `spot_long` | `E1_expanded` | 22576 | `convergence:288:warmup_supplied` | 2026-09-01 12:25:45 | [log](user_data/convergence_logs/FisherTransformStrategy-ladder.log) |
 | `FiveMinCrossAbove` | `spot_long` | `E1_expanded` | 1851 | `convergence:288:warmup_supplied` | 2026-09-01 13:55:28 | [log](user_data/convergence_logs/FiveMinCrossAbove-ladder.log) |
 | `FlawlessVictory` | `spot_long` | `E1_expanded` | 12240 | `convergence:96` | 2026-09-03 13:55:37 | [log](user_data/convergence_logs/FlawlessVictory-ladder.log) |
@@ -562,7 +567,7 @@ coverage, no published trap.
 | `GKD_FisherTransformMTF` | `spot_long` | `E1_expanded` | 4750 | `convergence:168:warmup_supplied` | 2026-09-01 14:01:15 | [log](user_data/convergence_logs/GKD_FisherTransformMTF-ladder.log) |
 | `GKD_HurstExponent` | `spot_long` | `E1_expanded` | 5896 | `convergence:168:warmup_supplied` | 2026-09-01 15:53:13 | [log](user_data/convergence_logs/GKD_HurstExponent-ladder.log) |
 | `GKD_PFE` | `spot_long` | `E1_expanded` | 17113 | `convergence:168:warmup_supplied` | 2026-09-01 15:54:03 | [log](user_data/convergence_logs/GKD_PFE-ladder.log) |
-| `GPTREV` | `spot_long` | `E1_expanded` | 600 | `convergence:1440:warmup_supplied` | 2026-09-01 14:01:43 | [log](user_data/convergence_logs/GPTREV-ladder.log) |
+| `GPTREV` | `spot_long` | `E1_expanded` | 20 | `convergence:1440:warmup_supplied` | 2026-09-09 16:43:40 | [archive](user_data/profile_smoke/GPTREV-7fba7b92-2026-09-09_16-43-40.zip) [log](user_data/convergence_logs/GPTREV-ladder.log) |
 | `GRIDDMIPRICEStrategyFutureV5Long` | `futures_long_short` | `E1_expanded` | 12 | `convergence:1440:warmup_supplied` | 2026-09-06 16:37:51 | [archive](user_data/profile_smoke/GRIDDMIPRICEStrategyFutureV5Long-93a155ed-2026-09-06_16-37-51.zip) [log](user_data/convergence_logs/GRIDDMIPRICEStrategyFutureV5Long-93a155ed-ladder.log) |
 | `GRIDDMIPRICEStrategyFutureV5Short` | `futures_long_short` | `E1_expanded` | 9 | `convergence:84:warmup_supplied` | 2026-09-06 16:38:14 | [archive](user_data/profile_smoke/GRIDDMIPRICEStrategyFutureV5Short-0a37b705-2026-09-06_16-38-14.zip) [log](user_data/convergence_logs/GRIDDMIPRICEStrategyFutureV5Short-0a37b705-ladder.log) |
 | `GRIDDMIPRICEStrategyFutureV7` | `futures_long_short` | `E1_expanded` | 15 | `convergence:1440` | 2026-09-08 17:10:13 | [archive](user_data/profile_smoke/GRIDDMIPRICEStrategyFutureV7-20ea6876-2026-09-08_17-10-13.zip) [log](user_data/convergence_logs/GRIDDMIPRICEStrategyFutureV7-20ea6876-ladder.log) |
@@ -575,6 +580,7 @@ coverage, no published trap.
 | `Hacklemore2` | `spot_long` | `E1_expanded` | 643 | `convergence:192:warmup_supplied` | 2026-09-01 14:06:05 | [log](user_data/convergence_logs/Hacklemore2-ladder.log) |
 | `Hacklemore3` | `spot_long` | `E1_expanded` | 34 | `convergence:288:warmup_supplied` | 2026-09-01 14:06:53 | [log](user_data/convergence_logs/Hacklemore3-ladder.log) |
 | `Hacklemost` | `spot_long` | `E1_expanded` | 168 | `convergence:288:warmup_supplied` | 2026-09-01 14:07:44 | [log](user_data/convergence_logs/Hacklemost-ladder.log) |
+| `Hammer` | `spot_long` | `E1_expanded` | 36 | `convergence:288:warmup_supplied` | 2026-09-09 07:32:38 | [archive](user_data/profile_smoke/Hammer-c157cbf6-2026-09-09_07-32-38.zip) [log](user_data/convergence_logs/Hammer-c157cbf6-ladder.log) |
 | `HansenSmaOffsetV1` | `spot_long` | `E1_expanded` | 119 | `convergence:96:warmup_supplied` | 2026-09-01 14:08:31 | [log](user_data/convergence_logs/HansenSmaOffsetV1-ladder.log) |
 | `HeikinAshiStrategy` | `spot_long` | `E1_expanded` | 26155 | `convergence:288:warmup_supplied` | 2026-09-01 12:26:36 | [log](user_data/convergence_logs/HeikinAshiStrategy-ladder.log) |
 | `HighFreqDemo` | `futures_long_short` | `E1_expanded` | 5914 | `convergence:1440:warmup_supplied` | 2026-09-08 17:14:22 | [archive](user_data/profile_smoke/HighFreqDemo-006fcf90-2026-09-08_17-14-22.zip) [log](user_data/convergence_logs/HighFreqDemo-006fcf90-ladder.log) |
@@ -609,12 +615,13 @@ coverage, no published trap.
 | `KAMACCIRSI` | `spot_long` | `E1_expanded` | 10269 | `convergence:576:warmup_supplied` | 2026-09-03 13:57:54 | [log](user_data/convergence_logs/KAMACCIRSI-ladder.log) |
 | `KAMACCIRSI_new` | `spot_long` | `E1_expanded` | 189 | `convergence:288:warmup_supplied` | 2026-09-01 12:29:09 | [log](user_data/convergence_logs/KAMACCIRSI_new-ladder.log) |
 | `KC_BB` | `spot_long` | `E1_expanded` | 695 | `convergence:288:warmup_supplied` | 2026-09-01 15:58:17 | [log](user_data/convergence_logs/KC_BB-ladder.log) |
+| `KeltnerBounce` | `spot_long` | `E1_expanded` | 1 | `convergence:576:warmup_supplied` | 2026-09-09 07:32:46 | [archive](user_data/profile_smoke/KeltnerBounce-63c48d3d-2026-09-09_07-32-46.zip) [log](user_data/convergence_logs/KeltnerBounce-63c48d3d-ladder.log) |
 | `KeltnerChannelStrategy` | `spot_long` | `E1_expanded` | 16720 | `convergence:288:warmup_supplied` | 2026-09-01 12:29:34 | [log](user_data/convergence_logs/KeltnerChannelStrategy-ladder.log) |
 | `KeltnerChannels` | `spot_long` | `E1_expanded` | 3 | `convergence:576:warmup_supplied` | 2026-09-06 18:26:48 | [archive](user_data/profile_smoke/KeltnerChannels-1628032a-2026-09-06_18-26-48.zip) [log](user_data/convergence_logs/KeltnerChannels-1628032a-ladder.log) |
 | `Lateralus` | `spot_long` | `E1_expanded` | 3077 | `convergence:288:warmup_supplied` | 2026-09-01 14:18:09 | [log](user_data/convergence_logs/Lateralus-ladder.log) |
 | `LeoStrategy` | `spot_long` | `E1_expanded` | 15 | `convergence:540:warmup_supplied` | 2026-09-06 18:31:18 | [archive](user_data/profile_smoke/LeoStrategy-a4770535-2026-09-06_18-31-18.zip) [log](user_data/convergence_logs/LeoStrategy-a4770535-ladder.log) |
 | `LinearRegressionStrategy` | `spot_long` | `E1_expanded` | 24570 | `convergence:288:warmup_supplied` | 2026-09-01 12:29:59 | [log](user_data/convergence_logs/LinearRegressionStrategy-ladder.log) |
-| `Low_BB` | `spot_long` | `E1_expanded` | 649 | `convergence:1440:warmup_supplied` | 2026-09-01 14:19:00 | [log](user_data/convergence_logs/Low_BB-ladder.log) |
+| `Low_BB` | `spot_long` | `E1_expanded` | 43 | `convergence:1440:warmup_supplied` | 2026-09-09 16:21:52 | [archive](user_data/profile_smoke/Low_BB-36ee484b-2026-09-09_16-21-52.zip) [log](user_data/convergence_logs/Low_BB-ladder.log) |
 | `LuxOSC` | `spot_long` | `E1_expanded` | 14577 | `convergence:576:warmup_supplied` | 2026-09-01 14:19:26 | [log](user_data/convergence_logs/LuxOSC-ladder.log) |
 | `MAC` | `spot_long` | `E1_expanded` | 52 | `convergence:90:warmup_supplied` | 2026-09-01 14:19:51 | [log](user_data/convergence_logs/MAC-ladder.log) |
 | `MACD003` | `spot_long` | `E1_expanded` | 46 | `convergence:576:warmup_supplied` | 2026-09-06 18:29:22 | [archive](user_data/profile_smoke/MACD003-5def5884-2026-09-06_18-29-22.zip) [log](user_data/convergence_logs/MACD003-5def5884-ladder.log) |
@@ -653,7 +660,8 @@ coverage, no published trap.
 | `MarketChyperHyperStrategy` | `spot_long` | `E1_expanded` | 2406 | `convergence:336` | 2026-09-03 13:59:41 | [log](user_data/convergence_logs/MarketChyperHyperStrategy-ladder.log) |
 | `Maro4hMacdSd` | `spot_long` | `E1_expanded` | 30492 | `convergence:288:warmup_supplied` | 2026-09-01 16:06:29 | [log](user_data/convergence_logs/Maro4hMacdSd-ladder.log) |
 | `Martin` | `spot_long` | `E1_expanded` | 12724 | `convergence:288:warmup_supplied` | 2026-09-01 14:26:38 | [log](user_data/convergence_logs/Martin-ladder.log) |
-| `MiniLambo` | `spot_long` | `E1_expanded` | 1469 | `convergence:2880:warmup_supplied` | 2026-09-01 14:27:06 | [log](user_data/convergence_logs/MiniLambo-ladder.log) |
+| `MeanReversionTrend` | `spot_long` | `E1_expanded` | 56 | `convergence:336:warmup_supplied` | 2026-09-08 17:21:22 | [archive](user_data/profile_smoke/MeanReversionTrend-9c6041b5-2026-09-08_17-21-22.zip) [log](user_data/convergence_logs/MeanReversionTrend-9c6041b5-ladder.log) |
+| `MiniLambo` | `spot_long` | `E1_expanded` | 163 | `convergence:2880:warmup_supplied` | 2026-09-09 16:22:34 | [archive](user_data/profile_smoke/MiniLambo-32df6766-2026-09-09_16-22-34.zip) [log](user_data/convergence_logs/MiniLambo-ladder.log) |
 | `Minmax` | `spot_long` | `E1_expanded` | 3882 | `convergence:24:warmup_supplied` | 2026-09-01 14:27:56 | [log](user_data/convergence_logs/Minmax-ladder.log) |
 | `MomStrategy` | `spot_long` | `E1_expanded` | 21607 | `convergence:336:warmup_supplied` | 2026-09-01 16:07:18 | [log](user_data/convergence_logs/MomStrategy-ladder.log) |
 | `MomentumScoreStrategy` | `spot_long` | `E1_expanded` | 27460 | `convergence:288:warmup_supplied` | 2026-09-01 12:31:13 | [log](user_data/convergence_logs/MomentumScoreStrategy-ladder.log) |
@@ -695,7 +703,7 @@ coverage, no published trap.
 | `NFINextMOHO` | `spot_long` | `E1_expanded` | 1442 | `convergence:2016:warmup_supplied` | 2026-09-01 12:35:41 | [log](user_data/convergence_logs/NFINextMOHO-ladder.log) |
 | `NFINextMOHO2` | `spot_long` | `E1_expanded` | 1784 | `convergence:2016:warmup_supplied` | 2026-09-01 12:36:07 | [log](user_data/convergence_logs/NFINextMOHO2-ladder.log) |
 | `NFINextMultiOffsetAndHO` | `spot_long` | `E1_expanded` | 1094 | `convergence:2016:warmup_supplied` | 2026-09-01 12:36:33 | [log](user_data/convergence_logs/NFINextMultiOffsetAndHO-ladder.log) |
-| `NFINextMultiOffsetAndHO2` | `spot_long` | `E1_expanded` | 705 | `convergence:2016:warmup_supplied` | 2026-09-01 12:37:00 | [log](user_data/convergence_logs/NFINextMultiOffsetAndHO2-ladder.log) |
+| `NFINextMultiOffsetAndHO2` | `spot_long` | `E1_expanded` | 34 | `convergence:2016:warmup_supplied` | 2026-09-09 16:39:10 | [archive](user_data/profile_smoke/NFINextMultiOffsetAndHO2-9c883070-2026-09-09_16-39-10.zip) [log](user_data/convergence_logs/NFINextMultiOffsetAndHO2-ladder.log) |
 | `NFIX_BB_RPB` | `spot_long` | `E1_expanded` | 34 | `convergence:2016:warmup_supplied` | 2026-08-31 15:14:55 | [archive](user_data/profile_smoke/NFIX_BB_RPB-2026-08-31_15-14-55.zip) [log](user_data/convergence_logs/NFIX_BB_RPB-ladder.log) |
 | `NFIX_BB_RPB_c7c477d_20211030` | `spot_long` | `E1_expanded` | 16 | `convergence:2016:warmup_supplied` | 2026-08-31 16:04:36 | [archive](user_data/profile_smoke/NFIX_BB_RPB_c7c477d_20211030-2026-08-31_16-04-36.zip) [log](user_data/convergence_logs/NFIX_BB_RPB_c7c477d_20211030-ladder.log) |
 | `NSeq` | `spot_long` | `E1_expanded` | 103 | `convergence:576:warmup_supplied` | 2026-09-06 18:27:29 | [archive](user_data/profile_smoke/NSeq-b0a87061-2026-09-06_18-27-29.zip) [log](user_data/convergence_logs/NSeq-b0a87061-ladder.log) |
@@ -756,6 +764,8 @@ coverage, no published trap.
 | `ParabolicSarStrategy` | `spot_long` | `E1_expanded` | 24042 | `convergence:288:warmup_supplied` | 2026-09-01 12:39:54 | [log](user_data/convergence_logs/ParabolicSarStrategy-ladder.log) |
 | `Patterns2` | `spot_long` | `E1_expanded` | 117 | `convergence:288:warmup_supplied` | 2026-09-06 18:27:39 | [archive](user_data/profile_smoke/Patterns2-39f34344-2026-09-06_18-27-39.zip) [log](user_data/convergence_logs/Patterns2-39f34344-ladder.log) |
 | `Persia` | `spot_long` | `E1_expanded` | 176 | `convergence:2016:warmup_supplied` | 2026-09-04 10:30:24 | [archive](user_data/profile_smoke/Persia-f2f6ac3e-2026-09-04_10-30-24.zip) [log](user_data/convergence_logs/Persia-f2f6ac3e-ladder.log) |
+| `PolymarketMeanReversionStrategy` | `spot_long` | `E1_expanded` | 2 | `convergence:180:warmup_supplied` | 2026-09-09 07:43:34 | [archive](user_data/profile_smoke/PolymarketMeanReversionStrategy-9c33dc8c-2026-09-09_07-43-34.zip) [log](user_data/convergence_logs/PolymarketMeanReversionStrategy-9c33dc8c-ladder.log) |
+| `PolymarketMomentumStrategy` | `spot_long` | `E1_expanded` | 10 | `convergence:180:warmup_supplied` | 2026-09-09 07:43:38 | [archive](user_data/profile_smoke/PolymarketMomentumStrategy-aee6b82b-2026-09-09_07-43-38.zip) [log](user_data/convergence_logs/PolymarketMomentumStrategy-aee6b82b-ladder.log) |
 | `PowerTower` | `spot_long` | `E1_expanded` | 5001 | `convergence:288` | 2026-09-03 14:01:36 | [log](user_data/convergence_logs/PowerTower-ladder.log) |
 | `PpoMomentumStrategy` | `spot_long` | `E1_expanded` | 20537 | `convergence:288:warmup_supplied` | 2026-09-01 12:40:19 | [log](user_data/convergence_logs/PpoMomentumStrategy-ladder.log) |
 | `PriceActionCandleStrategy` | `spot_long` | `E1_expanded` | 24545 | `convergence:288:warmup_supplied` | 2026-09-01 12:40:43 | [log](user_data/convergence_logs/PriceActionCandleStrategy-ladder.log) |
@@ -800,7 +810,7 @@ coverage, no published trap.
 | `SMAOffset_Hippocritical_dca_old` | `spot_long` | `E1_expanded` | 218 | `convergence:2016:warmup_supplied` | 2026-09-01 14:59:11 | [log](user_data/convergence_logs/SMAOffset_Hippocritical_dca_old-ladder.log) |
 | `SMAOffset_Hippocritical_dca_protections` | `spot_long` | `E1_expanded` | 218 | `convergence:2016:warmup_supplied` | 2026-09-01 14:59:41 | [log](user_data/convergence_logs/SMAOffset_Hippocritical_dca_protections-ladder.log) |
 | `SMA_BBRSI` | `spot_long` | `E1_expanded` | 706 | `convergence:2016:warmup_supplied` | 2026-09-01 15:00:08 | [log](user_data/convergence_logs/SMA_BBRSI-ladder.log) |
-| `SRsi` | `spot_long` | `E1_expanded` | 23768 | `convergence:1440:warmup_supplied` | 2026-09-01 12:43:10 | [log](user_data/convergence_logs/SRsi-ladder.log) |
+| `SRsi` | `spot_long` | `E1_expanded` | 6709 | `convergence:1440:warmup_supplied` | 2026-09-09 16:39:56 | [archive](user_data/profile_smoke/SRsi-6757d437-2026-09-09_16-39-56.zip) [log](user_data/convergence_logs/SRsi-ladder.log) |
 | `STRATEGY_RSI_BB_BOUNDS_CROSS` | `spot_long` | `E1_expanded` | 7197 | `convergence:288:warmup_supplied` | 2026-09-01 12:43:35 | [log](user_data/convergence_logs/STRATEGY_RSI_BB_BOUNDS_CROSS-ladder.log) |
 | `STRATEGY_RSI_BB_CROSS` | `spot_long` | `E1_expanded` | 16827 | `convergence:288:warmup_supplied` | 2026-09-01 12:44:00 | [log](user_data/convergence_logs/STRATEGY_RSI_BB_CROSS-ladder.log) |
 | `SUPPORT_RESISTANCE` | `spot_long` | `E1_expanded` | 5 | `convergence:730:warmup_supplied` | 2026-09-06 18:14:10 | [archive](user_data/profile_smoke/SUPPORT_RESISTANCE-e57b787f-2026-09-06_18-14-10.zip) [log](user_data/convergence_logs/SUPPORT_RESISTANCE-e57b787f-ladder.log) |
@@ -808,7 +818,7 @@ coverage, no published trap.
 | `SampleStrategyV2` | `spot_long` | `E1_expanded` | 5882 | `convergence:576` | 2026-09-03 14:04:18 | [log](user_data/convergence_logs/SampleStrategyV2-ladder.log) |
 | `Sar` | `spot_long` | `E1_expanded` | 12724 | `convergence:288:warmup_supplied` | 2026-09-01 15:00:35 | [log](user_data/convergence_logs/Sar-ladder.log) |
 | `Saturn5` | `spot_long` | `E1_expanded` | 3356 | `convergence:1344:warmup_supplied` | 2026-09-01 15:01:02 | [log](user_data/convergence_logs/Saturn5-ladder.log) |
-| `Scalp` | `spot_long` | `E1_expanded` | 28414 | `convergence:1440:warmup_supplied` | 2026-09-01 15:01:53 | [log](user_data/convergence_logs/Scalp-ladder.log) |
+| `Scalp` | `spot_long` | `E1_expanded` | 2767 | `convergence:1440:warmup_supplied` | 2026-09-09 16:23:18 | [archive](user_data/profile_smoke/Scalp-025555a4-2026-09-09_16-23-18.zip) [log](user_data/convergence_logs/Scalp-ladder.log) |
 | `Schism` | `spot_long` | `E1_expanded` | 388 | `convergence:288:warmup_supplied` | 2026-09-03 21:00:02 | [archive](user_data/profile_smoke/Schism-4f0b8f62-2026-09-03_21-00-02.zip) [log](user_data/convergence_logs/Schism-ladder.log) |
 | `Schism2` | `spot_long` | `E1_expanded` | 149 | `convergence:288:warmup_supplied` | 2026-09-03 21:05:52 | [archive](user_data/profile_smoke/Schism2-488547c4-2026-09-03_21-05-52.zip) [log](user_data/convergence_logs/Schism2-ladder.log) |
 | `Schism3` | `spot_long` | `E1_expanded` | 3631 | `convergence:288:warmup_supplied` | 2026-09-01 15:02:45 | [log](user_data/convergence_logs/Schism3-ladder.log) |
@@ -824,7 +834,7 @@ coverage, no published trap.
 | `SmartMoneyStrategy` | `spot_long` | `E1_expanded` | 285 | `convergence:1440:warmup_supplied` | 2026-09-01 16:16:19 | [log](user_data/convergence_logs/SmartMoneyStrategy-ladder.log) |
 | `SmartMoneyStrategyHyperopt` | `spot_long` | `E1_expanded` | 8 | `convergence:2160:warmup_supplied` | 2026-09-06 15:11:13 | [archive](user_data/profile_smoke/SmartMoneyStrategyHyperopt-fff5e4c0-2026-09-06_15-11-13.zip) [log](user_data/convergence_logs/SmartMoneyStrategyHyperopt-ladder.log) |
 | `SmoothOperator` | `spot_long` | `E1_expanded` | 17127 | `convergence:288:warmup_supplied` | 2026-09-01 15:05:49 | [log](user_data/convergence_logs/SmoothOperator-ladder.log) |
-| `SmoothScalp` | `spot_long` | `E1_expanded` | 26236 | `convergence:1440:warmup_supplied` | 2026-09-01 15:06:43 | [log](user_data/convergence_logs/SmoothScalp-ladder.log) |
+| `SmoothScalp` | `spot_long` | `E1_expanded` | 571 | `convergence:1440:warmup_supplied` | 2026-09-09 16:23:59 | [archive](user_data/profile_smoke/SmoothScalp-aa3c9357-2026-09-09_16-23-59.zip) [log](user_data/convergence_logs/SmoothScalp-ladder.log) |
 | `Squeeze001` | `spot_long` | `E1_expanded` | 26 | `convergence:576:warmup_supplied` | 2026-09-06 18:28:04 | [archive](user_data/profile_smoke/Squeeze001-f1de728b-2026-09-06_18-28-04.zip) [log](user_data/convergence_logs/Squeeze001-f1de728b-ladder.log) |
 | `Squeeze002` | `spot_long` | `E1_expanded` | 175 | `convergence:576:warmup_supplied` | 2026-09-06 18:29:58 | [archive](user_data/profile_smoke/Squeeze002-11618dd8-2026-09-06_18-29-58.zip) [log](user_data/convergence_logs/Squeeze002-11618dd8-ladder.log) |
 | `SqueezeMomentum` | `spot_long` | `E1_expanded` | 277 | `convergence:2016:warmup_supplied` | 2026-09-06 14:58:41 | [archive](user_data/profile_smoke/SqueezeMomentum-55dbc2ef-2026-09-06_14-58-41.zip) [log](user_data/convergence_logs/SqueezeMomentum-ladder.log) |
@@ -844,22 +854,23 @@ coverage, no published trap.
 | `Strategy003` | `spot_long` | `E1_expanded` | 3498 | `convergence:576:warmup_supplied` | 2026-09-01 16:20:40 | [log](user_data/convergence_logs/Strategy003-ladder.log) |
 | `Strategy004` | `spot_long` | `E1_expanded` | 6076 | `convergence:576:warmup_supplied` | 2026-09-01 16:21:32 | [log](user_data/convergence_logs/Strategy004-ladder.log) |
 | `Strategy005` | `spot_long` | `E1_expanded` | 5597 | `convergence:288:warmup_supplied` | 2026-09-01 16:22:21 | [log](user_data/convergence_logs/Strategy005-ladder.log) |
-| `StrategyScalpingFast` | `spot_long` | `E1_expanded` | 4830 | `convergence:1440:warmup_supplied` | 2026-09-01 12:46:27 | [log](user_data/convergence_logs/StrategyScalpingFast-ladder.log) |
-| `StrategyScalpingFast2` | `spot_long` | `E1_expanded` | 1468 | `convergence:1440:warmup_supplied` | 2026-09-01 16:23:18 | [log](user_data/convergence_logs/StrategyScalpingFast2-ladder.log) |
+| `StrategyScalpingFast` | `spot_long` | `E1_expanded` | 267 | `convergence:1440:warmup_supplied` | 2026-09-09 16:41:26 | [archive](user_data/profile_smoke/StrategyScalpingFast-7e07a768-2026-09-09_16-41-26.zip) [log](user_data/convergence_logs/StrategyScalpingFast-ladder.log) |
+| `StrategyScalpingFast2` | `spot_long` | `E1_expanded` | 355 | `convergence:1440:warmup_supplied` | 2026-09-09 16:40:43 | [archive](user_data/profile_smoke/StrategyScalpingFast2-aba7fb17-2026-09-09_16-40-43.zip) [log](user_data/convergence_logs/StrategyScalpingFast2-ladder.log) |
 | `SuperHV27` | `spot_long` | `E1_expanded` | 226 | `convergence:576:warmup_supplied` | 2026-09-03 21:02:15 | [archive](user_data/profile_smoke/SuperHV27-aefe004a-2026-09-03_21-02-15.zip) [log](user_data/convergence_logs/SuperHV27-ladder.log) |
-| `SuperTrend` | `spot_long` | `E1_expanded` | 2219 | `convergence:1440:warmup_supplied` | 2026-09-03 19:50:54 | [log](user_data/convergence_logs/SuperTrend-e9770a14-ladder.log) |
+| `SuperTrend` | `spot_long` | `E1_expanded` | 124 | `convergence:1440:warmup_supplied` | 2026-09-09 16:24:55 | [archive](user_data/profile_smoke/SuperTrend-e9770a14-2026-09-09_16-24-55.zip) [log](user_data/convergence_logs/SuperTrend-e9770a14-ladder.log) |
 | `SupertrendStrategy` | `spot_long` | `E1_expanded` | 3820 | `convergence:336:warmup_supplied` | 2026-09-02 07:43:31 | [log](user_data/convergence_logs/SupertrendStrategy-ladder.log) |
 | `SwingHigh` | `spot_long` | `E1_expanded` | 20 | `convergence:336:warmup_supplied` | 2026-09-01 19:52:15 | [archive](user_data/profile_smoke/SwingHigh-2026-09-01_19-52-15.zip) [log](user_data/convergence_logs/SwingHigh-ladder.log) |
 | `SwingHighToSky` | `spot_long` | `E1_expanded` | 6105 | `convergence:672:warmup_supplied` | 2026-09-03 07:45:15 | [log](user_data/convergence_logs/SwingHighToSky-ladder.log) |
 | `TD` | `spot_long` | `E1_expanded` | 6164 | `convergence:12:warmup_supplied` | 2026-09-01 15:11:03 | [log](user_data/convergence_logs/TD-ladder.log) |
 | `TDSequentialStrategy` | `spot_long` | `E1_expanded` | 4587 | `convergence:24` | 2026-09-03 14:06:05 | [log](user_data/convergence_logs/TDSequentialStrategy-ladder.log) |
-| `TEMA` | `spot_long` | `E1_expanded` | 25158 | `convergence:1440:warmup_supplied` | 2026-09-01 15:11:31 | [log](user_data/convergence_logs/TEMA-ladder.log) |
+| `TEMA` | `spot_long` | `E1_expanded` | 9966 | `convergence:1440:warmup_supplied` | 2026-09-09 16:25:50 | [archive](user_data/profile_smoke/TEMA-2a9399f6-2026-09-09_16-25-50.zip) [log](user_data/convergence_logs/TEMA-ladder.log) |
+| `TEMABounce` | `spot_long` | `E1_expanded` | 10 | `convergence:576:warmup_supplied` | 2026-09-09 07:48:05 | [archive](user_data/profile_smoke/TEMABounce-9f6a881a-2026-09-09_07-48-05.zip) [log](user_data/convergence_logs/TEMABounce-9f6a881a-ladder.log) |
 | `TRIWAVE` | `spot_long` | `E1_expanded` | 3624 | `convergence:672:warmup_supplied` | 2026-09-01 12:46:51 | [log](user_data/convergence_logs/TRIWAVE-ladder.log) |
 | `TRIX_spot` | `spot_long` | `E1_expanded` | 71 | `convergence:2160:warmup_supplied` | 2026-09-06 18:23:24 | [archive](user_data/profile_smoke/TRIX_spot-b4f2394c-2026-09-06_18-23-24.zip) [log](user_data/convergence_logs/TRIX_spot-b4f2394c-ladder.log) |
 | `TWAPStrategy` | `futures_long_short` | `E1_expanded` | 671 | `convergence:192:warmup_supplied` | 2026-09-01 15:11:56 | [log](user_data/convergence_logs/TWAPStrategy-ladder.log) |
 | `TechnicalExampleStrategy` | `spot_long` | `E1_expanded` | 24430 | `convergence:288:warmup_supplied` | 2026-09-01 15:12:44 | [log](user_data/convergence_logs/TechnicalExampleStrategy-ladder.log) |
 | `TemaMaster` | `spot_long` | `E1_expanded` | 6494 | `convergence:288:warmup_supplied` | 2026-09-01 16:24:07 | [log](user_data/convergence_logs/TemaMaster-ladder.log) |
-| `TemaMaster3` | `spot_long` | `E1_expanded` | 6058 | `convergence:2880:warmup_supplied` | 2026-09-01 16:24:59 | [log](user_data/convergence_logs/TemaMaster3-ladder.log) |
+| `TemaMaster3` | `spot_long` | `E1_expanded` | 118 | `convergence:2880:warmup_supplied` | 2026-09-09 16:42:13 | [archive](user_data/profile_smoke/TemaMaster3-59c6d053-2026-09-09_16-42-13.zip) [log](user_data/convergence_logs/TemaMaster3-ladder.log) |
 | `TemaPure` | `spot_long` | `E1_expanded` | 9651 | `convergence:2016:warmup_supplied` | 2026-09-01 16:25:50 | [log](user_data/convergence_logs/TemaPure-ladder.log) |
 | `TemaPureNeat` | `spot_long` | `E1_expanded` | 12402 | `convergence:288:warmup_supplied` | 2026-09-01 16:26:40 | [log](user_data/convergence_logs/TemaPureNeat-ladder.log) |
 | `TemaPureTwo` | `spot_long` | `E1_expanded` | 12383 | `convergence:2016:warmup_supplied` | 2026-09-01 16:27:31 | [log](user_data/convergence_logs/TemaPureTwo-ladder.log) |
@@ -872,6 +883,8 @@ coverage, no published trap.
 | `TouchEmaDelayStrategy` | `spot_long` | `E1_expanded` | 2331 | `convergence:480:warmup_supplied` | 2026-09-01 16:28:24 | [log](user_data/convergence_logs/TouchEmaDelayStrategy-ladder.log) |
 | `TouchEmaStrategy` | `spot_long` | `E1_expanded` | 5193 | `convergence:288:warmup_supplied` | 2026-09-01 16:29:16 | [log](user_data/convergence_logs/TouchEmaStrategy-ladder.log) |
 | `TrendAtrStrategy` | `spot_long` | `E1_expanded` | 3067 | `convergence:540:warmup_supplied` | 2026-09-01 12:47:40 | [log](user_data/convergence_logs/TrendAtrStrategy-ladder.log) |
+| `TrendBreakout` | `spot_long` | `E1_expanded` | 320 | `convergence:365:warmup_supplied` | 2026-09-08 17:15:05 | [archive](user_data/profile_smoke/TrendBreakout-9b18ab53-2026-09-08_17-15-05.zip) [log](user_data/convergence_logs/TrendBreakout-9b18ab53-ladder.log) |
+| `TrendFutures` | `futures_long_short` | `E1_expanded` | 41 | `convergence:220` | 2026-09-08 18:40:48 | [archive](user_data/profile_smoke/TrendFutures-4ee78b0b-2026-09-08_18-40-48.zip) [log](user_data/convergence_logs/TrendFutures-4ee78b0b-ladder.log) |
 | `Trend_Strength_Directional` | `spot_long` | `E1_expanded` | 7684 | `convergence:192:warmup_supplied` | 2026-09-01 16:30:06 | [log](user_data/convergence_logs/Trend_Strength_Directional-ladder.log) |
 | `TripleEmaStrategy` | `spot_long` | `E1_expanded` | 17670 | `convergence:288:warmup_supplied` | 2026-09-01 12:48:03 | [log](user_data/convergence_logs/TripleEmaStrategy-ladder.log) |
 | `TrixSignalStrategy` | `spot_long` | `E1_expanded` | 17885 | `convergence:288:warmup_supplied` | 2026-09-01 12:48:28 | [log](user_data/convergence_logs/TrixSignalStrategy-ladder.log) |
@@ -897,7 +910,7 @@ coverage, no published trap.
 | `WilliamsRStrategy` | `spot_long` | `E1_expanded` | 26924 | `convergence:2016:warmup_supplied` | 2026-09-01 12:50:33 | [log](user_data/convergence_logs/WilliamsRStrategy-ladder.log) |
 | `XebTradeStrat` | `spot_long` | `E1_expanded` | 7950 | `convergence:1440:warmup_supplied` | 2026-09-06 14:59:12 | [archive](user_data/profile_smoke/XebTradeStrat-5d160cab-2026-09-06_14-59-12.zip) [log](user_data/convergence_logs/XebTradeStrat-ladder.log) |
 | `XtraThicc` | `spot_long` | `E1_expanded` | 9167 | `convergence:288` | 2026-09-03 14:08:44 | [log](user_data/convergence_logs/XtraThicc-ladder.log) |
-| `YOLO` | `spot_long` | `E1_expanded` | 560 | `convergence:1440:warmup_supplied` | 2026-09-01 15:20:39 | [log](user_data/convergence_logs/YOLO-ladder.log) |
+| `YOLO` | `spot_long` | `E1_expanded` | 3 | `convergence:1440:warmup_supplied` | 2026-09-09 16:26:33 | [archive](user_data/profile_smoke/YOLO-99f26510-2026-09-09_16-26-33.zip) [log](user_data/convergence_logs/YOLO-ladder.log) |
 | `ZScoreMeanReversionStrategy` | `spot_long` | `E1_expanded` | 37 | `convergence:540:warmup_supplied` | 2026-09-01 15:21:04 | [log](user_data/convergence_logs/ZScoreMeanReversionStrategy-ladder.log) |
 | `ZaratustraDCA2_06` | `futures_long_short` | `E1_expanded` | 241 | `convergence:288:warmup_supplied` | 2026-09-02 07:48:03 | [log](user_data/convergence_logs/ZaratustraDCA2_06-ladder.log) |
 | `ZaratustraDCA2_07` | `futures_long_short` | `E1_expanded` | 219 | `convergence:288:warmup_supplied` | 2026-09-02 07:49:13 | [log](user_data/convergence_logs/ZaratustraDCA2_07-ladder.log) |
@@ -953,7 +966,7 @@ coverage, no published trap.
 | `slope_is_dopeCT` | `spot_long` | `E1_expanded` | 821 | `convergence:672:warmup_supplied` | 2026-09-01 12:55:49 | [log](user_data/convergence_logs/slope_is_dopeCT-ladder.log) |
 | `slownsteady` | `spot_long` | `E1_expanded` | 35 | `convergence:2016:warmup_supplied` | 2026-08-31 15:54:44 | [archive](user_data/profile_smoke/slownsteady-2026-08-31_15-54-44.zip) [log](user_data/convergence_logs/slownsteady-ladder.log) |
 | `stoploss` | `spot_long` | `E1_expanded` | 12724 | `convergence:288:warmup_supplied` | 2026-09-01 12:56:13 | [log](user_data/convergence_logs/stoploss-ladder.log) |
-| `strato` | `spot_long` | `E1_expanded` | 24409 | `convergence:1440:warmup_supplied` | 2026-09-01 12:56:41 | [log](user_data/convergence_logs/strato-ladder.log) |
+| `strato` | `spot_long` | `E1_expanded` | 7254 | `convergence:1440:warmup_supplied` | 2026-09-09 16:43:00 | [archive](user_data/profile_smoke/strato-79fbe4ba-2026-09-09_16-43-00.zip) [log](user_data/convergence_logs/strato-ladder.log) |
 | `tbtest` | `spot_long` | `E1_expanded` | 4884 | `convergence:288:warmup_supplied` | 2026-09-01 15:30:07 | [log](user_data/convergence_logs/tbtest-ladder.log) |
 | `thetank3` | `spot_long` | `E1_expanded` | 8620 | `convergence:672:warmup_supplied` | 2026-09-01 12:57:28 | [log](user_data/convergence_logs/thetank3-ladder.log) |
 | `thetank4TV` | `spot_long` | `E1_expanded` | 3023 | `convergence:672:warmup_supplied` | 2026-09-01 12:57:53 | [log](user_data/convergence_logs/thetank4TV-ladder.log) |
@@ -1010,6 +1023,12 @@ The calls behind each, one per gate:
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy AdaptiveMAStrategy --strategy-path user_data/profile_bias_strategies/AdaptiveMAStrategy --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy AdaptiveMAStrategy --strategy-path user_data/profile_bias_strategies/AdaptiveMAStrategy --timerange 20190101-20190401 --no-color
+  ```
+- `AdaptiveRegime`
+  ```
+  backtest   [recorded] freqtrade backtesting --config profile_futures_config.json --strategy AdaptiveRegime --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200101-20210101 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AdaptiveRegime-90b67ba4 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config profile_futures_config.json --strategy AdaptiveRegime --strategy-path user_data/profile_bias_strategies/AdaptiveRegime-90b67ba4 --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config runtime/profile_futures_config.json --strategy AdaptiveRegime --strategy-path user_data/profile_bias_strategies/AdaptiveRegime-90b67ba4 --timerange 20200301-20200401 --no-color --startup-candle 1 2 7 14
   ```
 - `AdxSmas`
   ```
@@ -1092,6 +1111,12 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/BB10fall-cef5331b_gate.json --strategy BB10fall --strategy-path user_data/profile_bias_strategies/BB10fall-cef5331b --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BB10fall --strategy-path user_data/profile_bias_strategies/BB10fall-cef5331b --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160
   ```
+- `BBKCBounce`
+  ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy BBKCBounce --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBKCBounce-4161a6f7 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BBKCBounce --strategy-path user_data/profile_bias_strategies/BBKCBounce-4161a6f7 --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BBKCBounce --strategy-path user_data/profile_bias_strategies/BBKCBounce-4161a6f7 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
+  ```
 - `BBMod`
   ```
   backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy BBMod --strategy-path repos/eovie_freqtrade_strs/binance/Archive --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBMod-c3880bce --cache none
@@ -1106,6 +1131,7 @@ The calls behind each, one per gate:
   ```
 - `BBRSI2`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy BBRSI2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/BBRSI2 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBRSI2-86823e82 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BBRSI2 --strategy-path user_data/profile_bias_strategies/BBRSI2 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BBRSI2 --strategy-path user_data/profile_bias_strategies/BBRSI2 --timerange 20190101-20190401 --no-color
   ```
@@ -1146,7 +1172,7 @@ The calls behind each, one per gate:
   ```
 - `BBRSIS`
   ```
-  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy BBRSIS --strategy-path repair/patched/repos/davidzr_freqtrade-strategies/strategies/BBRSIS --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBRSIS --cache none --timeframe 5m
+  backtest   [recorded] freqtrade backtesting --config user_data/profile_configs/BBRSIS-0c9416d4-override-2c7527d808c6.json --strategy BBRSIS --strategy-path repair/patched/repos/davidzr_freqtrade-strategies/strategies/BBRSIS --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBRSIS-0c9416d4 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/BBRSIS_gate.json --strategy BBRSIS --strategy-path user_data/profile_bias_strategies/BBRSIS --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/BBRSIS_startup_288.json --strategy BBRSIS --strategy-path user_data/profile_bias_strategies/BBRSIS --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032 8640 25920 --timeframe 5m
   ```
@@ -1220,6 +1246,7 @@ The calls behind each, one per gate:
   ```
 - `BBands`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy BBands --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBands-62f4821e --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BBands --strategy-path user_data/profile_bias_strategies/BBands --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BBands --strategy-path user_data/profile_bias_strategies/BBands --timerange 20190101-20190401 --no-color
   ```
@@ -1280,6 +1307,7 @@ The calls behind each, one per gate:
   ```
 - `BbandRsi`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy BbandRsi --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BbandRsi-6dcf5b91 --cache none
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BbandRsi --strategy-path user_data/profile_bias_strategies/BbandRsi --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/BbandRsi_startup_1440.json --strategy BbandRsi --strategy-path user_data/profile_bias_strategies/BbandRsi-6dcf5b91 --timerange 20190101-20190401 --no-color --startup-candle 1440 2880
   ```
@@ -1340,6 +1368,18 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinClucMad --strategy-path user_data/profile_bias_strategies/BinClucMad --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinClucMad --strategy-path user_data/profile_bias_strategies/BinClucMad --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
+- `BinClucMadDevelop`
+  ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy BinClucMadDevelop --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinClucMadDevelop-43196dbd --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinClucMadDevelop --strategy-path user_data/profile_bias_strategies/BinClucMadDevelop-43196dbd --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinClucMadDevelop --strategy-path user_data/profile_bias_strategies/BinClucMadDevelop --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
+  ```
+- `BinClucMadSMADevelop`
+  ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy BinClucMadSMADevelop --strategy-path repair/patched/repos/MMR-19_freqtrade-strategies/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinClucMadSMADevelop-485890ae --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinClucMadSMADevelop --strategy-path user_data/profile_bias_strategies/BinClucMadSMADevelop-485890ae --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinClucMadSMADevelop --strategy-path user_data/profile_bias_strategies/BinClucMadSMADevelop --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
+  ```
 - `BinClucMadV1`
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinClucMadV1 --strategy-path user_data/profile_bias_strategies/BinClucMadV1 --timerange 20190101-20190401 --no-color
@@ -1370,26 +1410,31 @@ The calls behind each, one per gate:
   ```
 - `BinHV45`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy BinHV45 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinHV45-db2dd482 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45 --strategy-path user_data/profile_bias_strategies/BinHV45 --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/BinHV45_startup_1440.json --strategy BinHV45 --strategy-path user_data/profile_bias_strategies/BinHV45 --timerange 20190101-20190401 --no-color --startup-candle 1440 2880
   ```
 - `BinHV45HO`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy BinHV45HO --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinHV45HO-2a444e3c --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45HO --strategy-path user_data/profile_bias_strategies/BinHV45HO --timerange 20200101-20220101 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45HO --strategy-path user_data/profile_bias_strategies/BinHV45HO --timerange 20190101-20190401 --no-color
   ```
 - `BinHV45_kanaxe`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy BinHV45_kanaxe --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinHV45_kanaxe-5d56a0a8 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_kanaxe --strategy-path user_data/profile_bias_strategies/BinHV45_kanaxe --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/BinHV45_kanaxe_startup_1440.json --strategy BinHV45_kanaxe --strategy-path user_data/profile_bias_strategies/BinHV45_kanaxe --timerange 20190101-20190401 --no-color --startup-candle 1440 2880
   ```
 - `BinHV45_stash`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy BinHV45_stash --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinHV45_stash-2477766f --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_stash --strategy-path user_data/profile_bias_strategies/BinHV45_stash --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/BinHV45_stash_startup_1440.json --strategy BinHV45_stash --strategy-path user_data/profile_bias_strategies/BinHV45_stash --timerange 20190101-20190401 --no-color --startup-candle 1440 2880
   ```
 - `BinHV45_werkkrew`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy BinHV45_werkkrew --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinHV45_werkkrew-1637ab87 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHV45_werkkrew --strategy-path user_data/profile_bias_strategies/BinHV45_werkkrew --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/BinHV45_werkkrew_startup_1440.json --strategy BinHV45_werkkrew --strategy-path user_data/profile_bias_strategies/BinHV45_werkkrew --timerange 20190101-20190401 --no-color --startup-candle 1440 2880
   ```
@@ -1511,21 +1556,25 @@ The calls behind each, one per gate:
   ```
 - `Cluc4`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy Cluc4 --strategy-path repos/davidzr_freqtrade-strategies/strategies/Cluc4 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Cluc4-72b005ae --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Cluc4 --strategy-path user_data/profile_bias_strategies/Cluc4 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Cluc4 --strategy-path user_data/profile_bias_strategies/Cluc4 --timerange 20190101-20190401 --no-color
   ```
 - `Cluc4werk`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy Cluc4werk --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Cluc4werk-442f52c0 --cache none
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Cluc4werk --strategy-path user_data/profile_bias_strategies/Cluc4werk --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Cluc4werk --strategy-path user_data/profile_bias_strategies/Cluc4werk --timerange 20190101-20190401 --no-color
   ```
 - `Cluc5werk`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy Cluc5werk --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Cluc5werk-12db1a87 --cache none
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Cluc5werk --strategy-path user_data/profile_bias_strategies/Cluc5werk --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Cluc5werk --strategy-path user_data/profile_bias_strategies/Cluc5werk --timerange 20190101-20190401 --no-color
   ```
 - `Cluc7werk`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy Cluc7werk --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Cluc7werk-4eb74e34 --cache none
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Cluc7werk --strategy-path user_data/profile_bias_strategies/Cluc7werk --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Cluc7werk --strategy-path user_data/profile_bias_strategies/Cluc7werk --timerange 20190101-20190401 --no-color --startup-candle 1440 2880
   ```
@@ -1541,6 +1590,7 @@ The calls behind each, one per gate:
   ```
 - `ClucHAnix`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy ClucHAnix --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix-895ff1e0 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/ClucHAnix_gate.json --strategy ClucHAnix --strategy-path user_data/profile_bias_strategies/ClucHAnix --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAnix --strategy-path user_data/profile_bias_strategies/ClucHAnix --timerange 20190101-20190401 --no-color
   ```
@@ -1589,6 +1639,7 @@ The calls behind each, one per gate:
   ```
 - `ClucHAwerk`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy ClucHAwerk --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAwerk-06465a96 --cache none
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAwerk --strategy-path user_data/profile_bias_strategies/ClucHAwerk --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy ClucHAwerk --strategy-path user_data/profile_bias_strategies/ClucHAwerk --timerange 20190101-20190401 --no-color --startup-candle 1440 2880
   ```
@@ -1625,11 +1676,13 @@ The calls behind each, one per gate:
   ```
 - `CombinedBinHAndClucHyperV0`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy CombinedBinHAndClucHyperV0 --strategy-path repos/davidzr_freqtrade-strategies/strategies/CombinedBinHAndClucHyperV0 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CombinedBinHAndClucHyperV0-e03b8c29 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucHyperV0 --strategy-path user_data/profile_bias_strategies/CombinedBinHAndClucHyperV0 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucHyperV0 --strategy-path user_data/profile_bias_strategies/CombinedBinHAndClucHyperV0 --timerange 20190101-20190401 --no-color
   ```
 - `CombinedBinHAndClucHyperV3`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy CombinedBinHAndClucHyperV3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/CombinedBinHAndClucHyperV3 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CombinedBinHAndClucHyperV3-84115c08 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucHyperV3 --strategy-path user_data/profile_bias_strategies/CombinedBinHAndClucHyperV3 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucHyperV3 --strategy-path user_data/profile_bias_strategies/CombinedBinHAndClucHyperV3 --timerange 20190101-20190401 --no-color
   ```
@@ -1662,6 +1715,12 @@ The calls behind each, one per gate:
   ```
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV6 --strategy-path user_data/profile_bias_strategies/CombinedBinHAndClucV6 --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV6 --strategy-path user_data/profile_bias_strategies/CombinedBinHAndClucV6 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
+  ```
+- `CombinedBinHAndClucV6H`
+  ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy CombinedBinHAndClucV6H --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CombinedBinHAndClucV6H-88f6bcec --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV6H --strategy-path user_data/profile_bias_strategies/CombinedBinHAndClucV6H-88f6bcec --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHAndClucV6H --strategy-path user_data/profile_bias_strategies/CombinedBinHAndClucV6H --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `CombinedBinHAndClucV7`
   ```
@@ -1710,6 +1769,7 @@ The calls behind each, one per gate:
   ```
 - `Combined_Indicators`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy Combined_Indicators --strategy-path repos/davidzr_freqtrade-strategies/strategies/Combined_Indicators --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Combined_Indicators-8c5e3bcf --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Combined_Indicators --strategy-path user_data/profile_bias_strategies/Combined_Indicators --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Combined_Indicators --strategy-path user_data/profile_bias_strategies/Combined_Indicators --timerange 20190101-20190401 --no-color
   ```
@@ -1725,6 +1785,7 @@ The calls behind each, one per gate:
   ```
 - `Combined_NFIv7_SMA_Rallipanos_20210707`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy Combined_NFIv7_SMA_Rallipanos_20210707 --strategy-path repos/davidzr_freqtrade-strategies/strategies/Combined_NFIv7_SMA_Rallipanos_20210707 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Combined_NFIv7_SMA_Rallipanos_20210707-e9761cd4 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Combined_NFIv7_SMA_Rallipanos_20210707 --strategy-path user_data/profile_bias_strategies/Combined_NFIv7_SMA_Rallipanos_20210707 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Combined_NFIv7_SMA_Rallipanos_20210707 --strategy-path user_data/profile_bias_strategies/Combined_NFIv7_SMA_Rallipanos_20210707 --timerange 20190101-20190401 --no-color
   ```
@@ -1754,6 +1815,12 @@ The calls behind each, one per gate:
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CoppockCurveStrategy --strategy-path user_data/profile_bias_strategies/CoppockCurveStrategy --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CoppockCurveStrategy --strategy-path user_data/profile_bias_strategies/CoppockCurveStrategy --timerange 20190101-20190401 --no-color
+  ```
+- `CoreStrategy`
+  ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy CoreStrategy --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CoreStrategy-acac6ca9 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CoreStrategy --strategy-path user_data/profile_bias_strategies/CoreStrategy-acac6ca9 --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CoreStrategy --strategy-path user_data/profile_bias_strategies/CoreStrategy --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `CrossEMAStrategy`
   ```
@@ -1886,6 +1953,12 @@ The calls behind each, one per gate:
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Divergences --strategy-path user_data/profile_bias_strategies/Divergences --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Divergences --strategy-path user_data/profile_bias_strategies/Divergences --timerange 20190101-20190401 --no-color
+  ```
+- `DonchianBounce`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy DonchianBounce --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DonchianBounce --cache none --pairs {pair}   # 8 pairs, one call each
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy DonchianBounce --strategy-path user_data/profile_bias_strategies/DonchianBounce-9e62325a --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy DonchianBounce --strategy-path user_data/profile_bias_strategies/DonchianBounce-9e62325a --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `DonchianBreakoutStrategy`
   ```
@@ -2021,6 +2094,7 @@ The calls behind each, one per gate:
   ```
 - `EasyInEasyOut`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy EasyInEasyOut --strategy-path repos/mikedigriz_freqtrade-strategy-mikedigriz/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/EasyInEasyOut-fc725427 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy EasyInEasyOut --strategy-path user_data/profile_bias_strategies/EasyInEasyOut --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy EasyInEasyOut --strategy-path user_data/profile_bias_strategies/EasyInEasyOut --timerange 20190101-20190401 --no-color
   ```
@@ -2098,6 +2172,12 @@ The calls behind each, one per gate:
   backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy Elliotv8 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Elliotv8-bdc3ea5b --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Elliotv8 --strategy-path user_data/profile_bias_strategies/Elliotv8 --timerange 20200101-20220101 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Elliotv8 --strategy-path user_data/profile_bias_strategies/Elliotv8 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
+  ```
+- `EmaCrossStrategy`
+  ```
+  backtest   [recorded] freqtrade backtesting --config user_data/profile_configs/EmaCrossStrategy-a8314e54-override-aa2053461232.json --strategy EmaCrossStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/EmaCrossStrategy-a8314e54 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/EmaCrossStrategy-a8314e54_gate.json --strategy EmaCrossStrategy --strategy-path user_data/profile_bias_strategies/EmaCrossStrategy-a8314e54 --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy EmaCrossStrategy --strategy-path user_data/profile_bias_strategies/EmaCrossStrategy-a8314e54 --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540 2190 --timeframe 4h
   ```
 - `EmaRibbonStrategy`
   ```
@@ -2271,6 +2351,7 @@ The calls behind each, one per gate:
   ```
 - `FisherHull`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy FisherHull --strategy-path repos/mikedigriz_freqtrade-strategy-mikedigriz/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FisherHull-40a72168 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy FisherHull --strategy-path user_data/profile_bias_strategies/FisherHull --timerange 20200101-20220101 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy FisherHull --strategy-path user_data/profile_bias_strategies/FisherHull --timerange 20190101-20190401 --no-color
   ```
@@ -2356,6 +2437,7 @@ The calls behind each, one per gate:
   ```
 - `GPTREV`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy GPTREV --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/GPTREV-7fba7b92 --cache none
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy GPTREV --strategy-path user_data/profile_bias_strategies/GPTREV --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy GPTREV --strategy-path user_data/profile_bias_strategies/GPTREV --timerange 20190101-20190401 --no-color
   ```
@@ -2417,6 +2499,7 @@ The calls behind each, one per gate:
   ```
 - `Hacklemore3`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy Hacklemore3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/Hacklemore3 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Hacklemore3-ec775e72 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/Hacklemore3_gate.json --strategy Hacklemore3 --strategy-path user_data/profile_bias_strategies/Hacklemore3 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Hacklemore3 --strategy-path user_data/profile_bias_strategies/Hacklemore3 --timerange 20190101-20190401 --no-color
   ```
@@ -2424,6 +2507,12 @@ The calls behind each, one per gate:
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Hacklemost --strategy-path user_data/profile_bias_strategies/Hacklemost --timerange 20200101-20220101 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Hacklemost --strategy-path user_data/profile_bias_strategies/Hacklemost --timerange 20190101-20190401 --no-color
+  ```
+- `Hammer`
+  ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy Hammer --strategy-path "repos/hamidreza07_freqai-strategy/startegy test/5/Hammer" --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Hammer-c157cbf6 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Hammer --strategy-path user_data/profile_bias_strategies/Hammer-c157cbf6 --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Hammer --strategy-path user_data/profile_bias_strategies/Hammer-c157cbf6 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032 --timeframe 5m
   ```
 - `HansenSmaOffsetV1`
   ```
@@ -2608,6 +2697,12 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy KC_BB --strategy-path user_data/profile_bias_strategies/KC_BB --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy KC_BB --strategy-path user_data/profile_bias_strategies/KC_BB --timerange 20190101-20190401 --no-color
   ```
+- `KeltnerBounce`
+  ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy KeltnerBounce --strategy-path "repos/hamidreza07_freqai-strategy/startegy test/5/__KeltnerBounce" --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/KeltnerBounce-63c48d3d --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy KeltnerBounce --strategy-path user_data/profile_bias_strategies/KeltnerBounce-63c48d3d --timerange 20200301-20260820 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy KeltnerBounce --strategy-path user_data/profile_bias_strategies/KeltnerBounce-63c48d3d --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032 --timeframe 5m
+  ```
 - `KeltnerChannelStrategy`
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy KeltnerChannelStrategy --strategy-path user_data/profile_bias_strategies/KeltnerChannelStrategy --timerange 20190101-20190401 --no-color
@@ -2637,6 +2732,7 @@ The calls behind each, one per gate:
   ```
 - `Low_BB`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy Low_BB --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Low_BB-36ee484b --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/Low_BB_gate.json --strategy Low_BB --strategy-path user_data/profile_bias_strategies/Low_BB --timerange 20200101-20220101 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Low_BB --strategy-path user_data/profile_bias_strategies/Low_BB --timerange 20190101-20190401 --no-color
   ```
@@ -2845,8 +2941,15 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Martin --strategy-path user_data/profile_bias_strategies/Martin --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Martin --strategy-path user_data/profile_bias_strategies/Martin --timerange 20190101-20190401 --no-color
   ```
+- `MeanReversionTrend`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy MeanReversionTrend --strategy-path repos/yeboster_liquidity-sweep-freqtrade/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MeanReversionTrend --cache none --pairs {pair}   # 8 pairs, one call each
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MeanReversionTrend --strategy-path user_data/profile_bias_strategies/MeanReversionTrend-9c6041b5 --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/MeanReversionTrend_startup_24.json --strategy MeanReversionTrend --strategy-path user_data/profile_bias_strategies/MeanReversionTrend-9c6041b5 --timerange 20190101-20190401 --no-color --startup-candle 24 48 168 336 720 2160
+  ```
 - `MiniLambo`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy MiniLambo --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MiniLambo-32df6766 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy MiniLambo --strategy-path user_data/profile_bias_strategies/MiniLambo --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy MiniLambo --strategy-path user_data/profile_bias_strategies/MiniLambo --timerange 20190101-20190401 --no-color
   ```
@@ -3072,6 +3175,7 @@ The calls behind each, one per gate:
   ```
 - `NFINextMultiOffsetAndHO2`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy NFINextMultiOffsetAndHO2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/NFINextMultiOffsetAndHO2 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NFINextMultiOffsetAndHO2-9c883070 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NFINextMultiOffsetAndHO2 --strategy-path user_data/profile_bias_strategies/NFINextMultiOffsetAndHO2 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NFINextMultiOffsetAndHO2 --strategy-path user_data/profile_bias_strategies/NFINextMultiOffsetAndHO2 --timerange 20190101-20190401 --no-color
   ```
@@ -3399,6 +3503,18 @@ The calls behind each, one per gate:
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/Persia-f2f6ac3e_gate.json --strategy Persia --strategy-path user_data/profile_bias_strategies/Persia-f2f6ac3e --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/Persia_startup_288.json --strategy Persia --strategy-path user_data/profile_bias_strategies/Persia-f2f6ac3e --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
+- `PolymarketMeanReversionStrategy`
+  ```
+  backtest   [recorded] freqtrade backtesting --config user_data/profile_configs/PolymarketMeanReversionStrategy-9c33dc8c-override-aa2053461232.json --strategy PolymarketMeanReversionStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/PolymarketMeanReversionStrategy-9c33dc8c --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/PolymarketMeanReversionStrategy-9c33dc8c_gate.json --strategy PolymarketMeanReversionStrategy --strategy-path user_data/profile_bias_strategies/PolymarketMeanReversionStrategy-9c33dc8c --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy PolymarketMeanReversionStrategy --strategy-path user_data/profile_bias_strategies/PolymarketMeanReversionStrategy-9c33dc8c --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540 2190 --timeframe 4h
+  ```
+- `PolymarketMomentumStrategy`
+  ```
+  backtest   [recorded] freqtrade backtesting --config user_data/profile_configs/PolymarketMomentumStrategy-aee6b82b-override-aa2053461232.json --strategy PolymarketMomentumStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/PolymarketMomentumStrategy-aee6b82b --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/PolymarketMomentumStrategy-aee6b82b_gate.json --strategy PolymarketMomentumStrategy --strategy-path user_data/profile_bias_strategies/PolymarketMomentumStrategy-aee6b82b --timerange 20190101-20190401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy PolymarketMomentumStrategy --strategy-path user_data/profile_bias_strategies/PolymarketMomentumStrategy-aee6b82b --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540 2190 --timeframe 4h
+  ```
 - `PowerTower`
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy PowerTower --strategy-path user_data/profile_bias_strategies/PowerTower --timerange 20190101-20190401 --no-color
@@ -3629,6 +3745,7 @@ The calls behind each, one per gate:
   ```
 - `SRsi`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy SRsi --strategy-path repos/davidzr_freqtrade-strategies/strategies/SRsi --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SRsi-6757d437 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SRsi --strategy-path user_data/profile_bias_strategies/SRsi --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SRsi --strategy-path user_data/profile_bias_strategies/SRsi --timerange 20190101-20190401 --no-color
   ```
@@ -3670,6 +3787,7 @@ The calls behind each, one per gate:
   ```
 - `Scalp`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy Scalp --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Scalp-025555a4 --cache none
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Scalp --strategy-path user_data/profile_bias_strategies/Scalp --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Scalp --strategy-path user_data/profile_bias_strategies/Scalp --timerange 20190101-20190401 --no-color
   ```
@@ -3755,6 +3873,7 @@ The calls behind each, one per gate:
   ```
 - `SmoothScalp`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy SmoothScalp --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SmoothScalp-aa3c9357 --cache none
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SmoothScalp --strategy-path user_data/profile_bias_strategies/SmoothScalp --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SmoothScalp --strategy-path user_data/profile_bias_strategies/SmoothScalp --timerange 20190101-20190401 --no-color
   ```
@@ -3860,11 +3979,13 @@ The calls behind each, one per gate:
   ```
 - `StrategyScalpingFast`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy StrategyScalpingFast --strategy-path repos/davidzr_freqtrade-strategies/strategies/StrategyScalpingFast --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/StrategyScalpingFast-7e07a768 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy StrategyScalpingFast --strategy-path user_data/profile_bias_strategies/StrategyScalpingFast --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy StrategyScalpingFast --strategy-path user_data/profile_bias_strategies/StrategyScalpingFast --timerange 20190101-20190401 --no-color
   ```
 - `StrategyScalpingFast2`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy StrategyScalpingFast2 --strategy-path repos/davidzr_freqtrade-strategies/strategies/StrategyScalpingFast2 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/StrategyScalpingFast2-aba7fb17 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy StrategyScalpingFast2 --strategy-path user_data/profile_bias_strategies/StrategyScalpingFast2 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy StrategyScalpingFast2 --strategy-path user_data/profile_bias_strategies/StrategyScalpingFast2 --timerange 20190101-20190401 --no-color
   ```
@@ -3876,6 +3997,7 @@ The calls behind each, one per gate:
   ```
 - `SuperTrend`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy SuperTrend --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperTrend-e9770a14 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SuperTrend --strategy-path user_data/profile_bias_strategies/SuperTrend --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy SuperTrend --strategy-path user_data/profile_bias_strategies/SuperTrend-e9770a14 --timerange 20190101-20190401 --no-color --startup-candle 1440 2880
   ```
@@ -3907,8 +4029,15 @@ The calls behind each, one per gate:
   ```
 - `TEMA`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy TEMA --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TEMA-2a9399f6 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TEMA --strategy-path user_data/profile_bias_strategies/TEMA --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TEMA --strategy-path user_data/profile_bias_strategies/TEMA --timerange 20190101-20190401 --no-color
+  ```
+- `TEMABounce`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy TEMABounce --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TEMABounce --cache none --pairs {pair}   # 8 pairs, one call each
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TEMABounce --strategy-path user_data/profile_bias_strategies/TEMABounce-9f6a881a --timerange 20200301-20260820 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TEMABounce --strategy-path user_data/profile_bias_strategies/TEMABounce-9f6a881a --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
 - `TRIWAVE`
   ```
@@ -3939,6 +4068,7 @@ The calls behind each, one per gate:
   ```
 - `TemaMaster3`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy TemaMaster3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/TemaMaster3 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TemaMaster3-59c6d053 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TemaMaster3 --strategy-path user_data/profile_bias_strategies/TemaMaster3 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TemaMaster3 --strategy-path user_data/profile_bias_strategies/TemaMaster3 --timerange 20190101-20190401 --no-color
   ```
@@ -4003,6 +4133,18 @@ The calls behind each, one per gate:
   ```
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TrendAtrStrategy --strategy-path user_data/profile_bias_strategies/TrendAtrStrategy --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TrendAtrStrategy --strategy-path user_data/profile_bias_strategies/TrendAtrStrategy --timerange 20190101-20190401 --no-color
+  ```
+- `TrendBreakout`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy TrendBreakout --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrendBreakout --cache none --pairs {pair}   # 8 pairs, one call each
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy TrendBreakout --strategy-path user_data/profile_bias_strategies/TrendBreakout-9b18ab53 --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy TrendBreakout --strategy-path user_data/profile_bias_strategies/TrendBreakout-9b18ab53 --timerange 20190101-20190401 --no-color --startup-candle 1 2 7 14 30 90 365
+  ```
+- `TrendFutures`
+  ```
+  backtest   [recorded] freqtrade backtesting --config profile_futures_config.json --strategy TrendFutures --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200101-20210101 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrendFutures-4ee78b0b --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config profile_futures_config.json --strategy TrendFutures --strategy-path user_data/profile_bias_strategies/TrendFutures-4ee78b0b --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config runtime/profile_futures_config.json --strategy TrendFutures --strategy-path user_data/profile_bias_strategies/TrendFutures-4ee78b0b --timerange 20200301-20200401 --no-color --startup-candle 1 2 7 14
   ```
 - `Trend_Strength_Directional`
   ```
@@ -4138,6 +4280,7 @@ The calls behind each, one per gate:
   ```
 - `YOLO`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy YOLO --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/YOLO-99f26510 --cache none
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy YOLO --strategy-path user_data/profile_bias_strategies/YOLO --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy YOLO --strategy-path user_data/profile_bias_strategies/YOLO --timerange 20190101-20190401 --no-color
   ```
@@ -4443,6 +4586,7 @@ The calls behind each, one per gate:
   ```
 - `strato`
   ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy strato --strategy-path repos/davidzr_freqtrade-strategies/strategies/strato --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/strato-79fbe4ba --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy strato --strategy-path user_data/profile_bias_strategies/strato --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy strato --strategy-path user_data/profile_bias_strategies/strato --timerange 20190101-20190401 --no-color
   ```
@@ -4492,36 +4636,22 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Convergence candidates - 2 strategies
-
-A warm-up exists at which every indicator stays inside the band.
-That is not admission: the paired full-window run must still show
-an identical trade list.
-
-| Strategy | Profile | Chosen warm-up | Worst drift | Tested | Results |
-|---|---|---|---|---|---|
-| `MeanReversionTrend` | `spot_long` | 336 candles | 0.0% on `ema200_4h` | 2026-09-08 17:21:22 | `user_data/convergence_logs/MeanReversionTrend-9c6041b5-ladder.log` |
-| `TrendBreakout` | `spot_long` | 365 candles | 0.317% on `ema200` | 2026-09-08 17:15:05 | `user_data/convergence_logs/TrendBreakout-9b18ab53-ladder.log` |
-
-## Pending - 46 strategies
+## Pending - 33 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
 
-`AlexStrategyFinalV8`, `AlexStrategyFinalV9`, `Astro`, `AutoArimaTripleV1`
-`BBKCBounce`, `BTCMACDCross`, `BestSingleAssetPortfolio`, `Bins`
-`BlueEyes_MPP_v1`, `CryptoFrogNFI2`, `DELTA_NEUTRAL`, `DWTHO`
-`DWT_LongShortHO`, `DonchianBounce`, `E0V1EAI`, `ExampleLSTMStrategy`
-`FileLoadingStrategy`, `GRIDDMIPRICEStrategyFutureV4`, `GodStra`, `Guacamole`
-`HLHB`, `Kamaflage`, `MasterMoniGoManiHyperStrategy`, `MultiMa`
-`MyStrategyNew10`, `NowoIchimoku1hV1`, `ONS_Portfolio`, `Proton`
-`QuickBuyStrategy`, `RLAgentStrategy`, `RLStrategy`, `RebalanceStrategySpot`
-`RenkoYolo`, `SMAOPv1_TTF`, `Schism5`, `Schism6`
-`Solipsis_v4`, `TEMABounce`, `TuplaBollinger`, `UpSliceStrategy`
-`WTHO`, `avellaneda`, `delist_shorter_strategy`, `haGradient`
-`multi_tf`, `tacos1`
+`Astro`, `AutoArimaTripleV1`, `BaseStrategy`, `BestSingleAssetPortfolio`
+`BlueEyes_MPP_v1`, `CryptoFrogNFI2`, `DELTA_NEUTRAL`, `GRIDDMIPRICEStrategyFutureV4`
+`GodStra`, `Guacamole`, `HLHB`, `Kamaflage`
+`MasterMoniGoManiHyperStrategy`, `MultiMa`, `MyStrategyNew10`, `NNPredict`
+`NowoIchimoku1hV1`, `ONS_Portfolio`, `Proton`, `QuickBuyStrategy`
+`RLAgentStrategy`, `RebalanceStrategySpot`, `RenkoYolo`, `SMAOPv1_TTF`
+`Schism5`, `Schism6`, `Solipsis_v4`, `TuplaBollinger`
+`UpSliceStrategy`, `WTHO`, `haGradient`, `multi_tf`
+`tacos1`
 
-## Exclusion unconfirmed - 39 strategies
+## Exclusion unconfirmed - 38 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -4533,9 +4663,9 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_verdict_on_lookahead` | `no_finding` | 26 |
-| `no_verdict_on_lookahead_and_recursive` | `no_finding` | 6 |
-| `unclassified` | `no_finding` | 5 |
+| `no_verdict_on_lookahead` | `no_finding` | 28 |
+| `no_verdict_on_lookahead_and_recursive` | `no_finding` | 5 |
+| `unclassified` | `no_finding` | 3 |
 | `recursive_bias_unverified` | `no_finding` | 1 |
 | `recursive_warmup_refused` | `no_finding` | 1 |
 
@@ -4544,7 +4674,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 256 strategies, by decisive reason
+## Not passing - 255 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -4592,7 +4722,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 256 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 255 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -4600,48 +4730,48 @@ one of them carries none.
 
 | Reason | Meaning | Strategies |
 |---|---|---:|
-| `lookahead_found` | reads data it could not have had at the time | 75 |
-| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 76 |
+| `lookahead_found` | reads data it could not have had at the time | 77 |
+| `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 77 |
 | `no_trades_in_full_measurement` | never trades over the full window | 7 |
-| `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 31 |
-| `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 20 |
-| `measured_only_in_freqai_arm` | runs only under its author's own FreqAI configuration, measured separately in that arm; not comparable with the ordinary spot audit | 5 |
-| `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 20 |
-| `shared_runtime_change_declined` | the fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04 | 20 |
-| `recursive_check_incomplete_at_longest_rungs` | - | 2 |
+| `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 35 |
+| `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 6 |
+| `measured_only_in_freqai_arm` | runs only under its author's own FreqAI configuration, measured separately in that arm; not comparable with the ordinary spot audit | 6 |
+| `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 18 |
+| `shared_runtime_change_declined` | the fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04 | 16 |
+| `recursive_check_incomplete_at_longest_rungs` | - | 13 |
 
 
 ### Reason by wave
 
 | Reason | `-` | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `E0_strict67` | `not_scheduled` |
 |---|---|---|---|---|---|---|---|
-| `lookahead_found` | 2 | 2 | 0 | 10 | 0 | 0 | 61 |
-| `recursive_bias_found` | 14 | 0 | 3 | 18 | 14 | 1 | 26 |
+| `lookahead_found` | 3 | 2 | 0 | 11 | 0 | 0 | 61 |
+| `recursive_bias_found` | 15 | 0 | 3 | 18 | 14 | 1 | 26 |
 | `no_trades_in_full_measurement` | 0 | 0 | 0 | 7 | 0 | 0 | 0 |
-| `repair_refused_would_invent_strategy` | 7 | 1 | 0 | 23 | 0 | 0 | 0 |
-| `local_module_repair_exhausted` | 8 | 0 | 0 | 12 | 0 | 0 | 0 |
-| `measured_only_in_freqai_arm` | 0 | 0 | 0 | 4 | 0 | 0 | 1 |
-| `third_party_package_declined` | 7 | 0 | 0 | 13 | 0 | 0 | 0 |
-| `shared_runtime_change_declined` | 1 | 0 | 0 | 15 | 0 | 0 | 4 |
-| `recursive_check_incomplete_at_longest_rungs` | 2 | 0 | 0 | 0 | 0 | 0 | 0 |
+| `repair_refused_would_invent_strategy` | 9 | 1 | 0 | 25 | 0 | 0 | 0 |
+| `local_module_repair_exhausted` | 0 | 0 | 0 | 6 | 0 | 0 | 0 |
+| `measured_only_in_freqai_arm` | 0 | 0 | 0 | 5 | 0 | 0 | 1 |
+| `third_party_package_declined` | 6 | 0 | 0 | 12 | 0 | 0 | 0 |
+| `shared_runtime_change_declined` | 1 | 0 | 0 | 14 | 0 | 0 | 1 |
+| `recursive_check_incomplete_at_longest_rungs` | 13 | 0 | 0 | 0 | 0 | 0 | 0 |
 
-### `lookahead_found` - 75
+### `lookahead_found` - 77
 
 Reads data it could not have had at the time.
 
-Wave `-` - 2:
+Wave `-` - 3:
 
-`CsMom`, `DonchianChannel`
+`CsMom`, `DonchianChannel`, `LiquiditySweep`
 
 Wave `A_pending_diagnostics` - 2:
 
 `HyperStra_GSN_SMAOnly`, `kalthetank`
 
-Wave `C_measurement_recovery` - 10:
+Wave `C_measurement_recovery` - 11:
 
-`ARIMASTR`, `ARIMA_15`, `MKR`, `NostalgiaForInfinityNext_ChangeToTower_V5_2`
-`NostalgiaForInfinityNext_ChangeToTower_V5_3`, `NostalgiaForInfinityNext_ChangeToTower_V6`, `NostalgiaForInfinityXw`, `Stinkfist`
-`bbema`, `ichiV1_Marius`
+`ARIMASTR`, `ARIMA_15`, `FreqaiExampleStrategy`, `MKR`
+`NostalgiaForInfinityNext_ChangeToTower_V5_2`, `NostalgiaForInfinityNext_ChangeToTower_V5_3`, `NostalgiaForInfinityNext_ChangeToTower_V6`, `NostalgiaForInfinityXw`
+`Stinkfist`, `bbema`, `ichiV1_Marius`
 
 Wave `not_scheduled` - 61:
 
@@ -4662,16 +4792,16 @@ Wave `not_scheduled` - 61:
 `ichiV1`, `qrsi`, `tsp0chicken`, `turbov8`
 `wtc`
 
-### `recursive_bias_found` - 76
+### `recursive_bias_found` - 77
 
 Indicator value still drifts at every warm-up the ladder can reach.
 
-Wave `-` - 14:
+Wave `-` - 15:
 
 `AlexStrategyFinalV8Hyper`, `AlexStrategyFinalV9Hyper`, `DWT_Predict`, `DWT_Predict2`
 `GRIDDMIPRICEStrategyFutureV2`, `GRIDDMIPRICEStrategyFutureV2Both`, `GRIDDMIPRICEStrategyFutureV2Long`, `GRIDDMIPRICEStrategyFutureV2Short`
-`GRIDDMIPRICEStrategyFutureV6`, `SuperReversal_mtf`, `TryEverything`, `UltimateAlphaV16`
-`mind`, `momentum_tf_divergence`
+`GRIDDMIPRICEStrategyFutureV6`, `Kalman`, `SuperReversal_mtf`, `TryEverything`
+`UltimateAlphaV16`, `mind`, `momentum_tf_divergence`
 
 Wave `B_warmup_refusal` - 3:
 
@@ -4715,72 +4845,68 @@ Wave `C_measurement_recovery` - 7:
 `BreakEven`, `DoesNothingStrategy`, `Miku_PP_v3`, `MyStrategyTemplate`
 `Obelisk_3EMA_StochRSI_ATR`, `ViN`, `ep3mas2`
 
-### `repair_refused_would_invent_strategy` - 31
+### `repair_refused_would_invent_strategy` - 35
 
 Declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy.
 
-Wave `-` - 7:
+Wave `-` - 9:
 
-`EMA003`, `FBB_2`, `FBB_ROI`, `FreqaiBinaryClassStrategy`
-`FreqaiStrategy_v2`, `TaSearchLevelG15m`, `TrendMomoClassifier`
+`BBBHold`, `E0V1EAI`, `EMA003`, `FBB_2`
+`FBB_ROI`, `FreqaiBinaryClassStrategy`, `FreqaiStrategy_v2`, `TaSearchLevelG15m`
+`TrendMomoClassifier`
 
 Wave `A_pending_diagnostics` - 1:
 
 `TGMA`
 
-Wave `C_measurement_recovery` - 23:
+Wave `C_measurement_recovery` - 25:
 
-`AdaptiveRenkoStrategy`, `Chained`, `ClucCrypROI`, `ClucCrypSlow`
-`ClucHAnix_BB_RPB_TraNz`, `CryptoPredictionTraining`, `EnsembleStrategy`, `EnsembleStrategyV1`
-`EnsembleStrategyV2`, `FreqaiExampleHybridStrategy`, `FreqaiExampleStrategy`, `LitmusGoodMinMaxClassificationStrategy`
-`LitmusMetaStrategy`, `MultiTargetClassifierTestStrategy`, `MultiTargetRegressorTestStrategy`, `NoLost`
-`PolymarketLogicalArbStrategy`, `Prediction_Strategy`, `QuickAdapterV3`, `ScalpingCCI`
-`SimpleRiskFilterStrategy`, `TrainCatBoostStrategy`, `thetank2`
+`AdaptiveRenkoStrategy`, `BinanceStream`, `Chained`, `ClucCrypROI`
+`ClucCrypSlow`, `ClucHAnix_BB_RPB_TraNz`, `CryptoPredictionTraining`, `EnsembleStrategy`
+`EnsembleStrategyV1`, `EnsembleStrategyV2`, `FileLoadingStrategy`, `FreqaiExampleHybridStrategy`
+`GymStrategy`, `LitmusGoodMinMaxClassificationStrategy`, `LitmusMetaStrategy`, `MultiTargetClassifierTestStrategy`
+`MultiTargetRegressorTestStrategy`, `NoLost`, `PolymarketLogicalArbStrategy`, `Prediction_Strategy`
+`QuickAdapterV3`, `ScalpingCCI`, `SimpleRiskFilterStrategy`, `TrainCatBoostStrategy`
+`thetank2`
 
-### `local_module_repair_exhausted` - 20
+### `local_module_repair_exhausted` - 6
 
 Imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls.
 
-Wave `-` - 8:
+Wave `C_measurement_recovery` - 6:
 
-`Anomaly`, `BBBHold`, `FBB_KalmanSIMD`, `Hammer`
-`KeltnerBounce`, `NNPredict`, `NNTC`, `PCA`
+`AdvancedRiskFilterStrategy`, `BB_RPB_3c`, `DWT`, `MlpSpeculativeStrategy`
+`Solipsis6`, `SolipsisMM`
 
-Wave `C_measurement_recovery` - 12:
-
-`AdvancedRiskFilterStrategy`, `BB_RPB_3c`, `BaseStrategy`, `BinanceStream`
-`DWT`, `DualModelPolymarketPortfolio`, `EmaCrossStrategy`, `MlpSpeculativeStrategy`
-`PolymarketMeanReversionStrategy`, `PolymarketMomentumStrategy`, `Solipsis6`, `SolipsisMM`
-
-### `measured_only_in_freqai_arm` - 5
+### `measured_only_in_freqai_arm` - 6
 
 Runs only under its author's own freqai configuration, measured separately in that arm; not comparable with the ordinary spot audit.
 
-Wave `C_measurement_recovery` - 4:
+Wave `C_measurement_recovery` - 5:
 
-`TankAi`, `TankAiRevival`, `WTAI`, `WTRSIAI`
+`RLStrategy`, `TankAi`, `TankAiRevival`, `WTAI`
+`WTRSIAI`
 
 Wave `not_scheduled` - 1:
 
 `AstroQAV4`
 
-### `third_party_package_declined` - 20
+### `third_party_package_declined` - 18
 
 Needs a python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04.
 
-Wave `-` - 7:
+Wave `-` - 6:
 
-`CME`, `Cenderawasih_freqai`, `HMMv3`, `Kalman`
-`QuatreMousquetaires`, `kac_index_v1`, `kac_index_v2`
+`CME`, `Cenderawasih_freqai`, `HMMv3`, `QuatreMousquetaires`
+`kac_index_v1`, `kac_index_v2`
 
-Wave `C_measurement_recovery` - 13:
+Wave `C_measurement_recovery` - 12:
 
-`CopyLitmusMinMaxBroadClassificationStrategy`, `Enchilada`, `GymStrategy`, `KMM`
-`LitmusEntryRollClassificationStrategy`, `LitmusMLDPStrategy`, `LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`
-`LitmusMinMaxRegretClassificationStrategy`, `LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`
-`LitmusSimpleStrategy`
+`CopyLitmusMinMaxBroadClassificationStrategy`, `Enchilada`, `KMM`, `LitmusEntryRollClassificationStrategy`
+`LitmusMLDPStrategy`, `LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`
+`LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`
 
-### `shared_runtime_change_declined` - 20
+### `shared_runtime_change_declined` - 16
 
 The fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04.
 
@@ -4788,22 +4914,25 @@ Wave `-` - 1:
 
 `MultiMA_TSL3b`
 
-Wave `C_measurement_recovery` - 15:
+Wave `C_measurement_recovery` - 14:
 
-`CombinedBinHAndClucV6H`, `Danke`, `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`
-`FastSupertrend`, `FastSupertrendOpt`, `GPR`, `MomentumRegimeBasket15m`
-`MostOfAll`, `MultiMA_TSL5`, `PnF`, `SuperTrendPure`
-`Supertrend`, `new_turtle`, `new_turtle_roi`
+`Danke`, `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `FastSupertrend`
+`FastSupertrendOpt`, `GPR`, `MomentumRegimeBasket15m`, `MostOfAll`
+`MultiMA_TSL5`, `PnF`, `SuperTrendPure`, `Supertrend`
+`new_turtle`, `new_turtle_roi`
 
-Wave `not_scheduled` - 4:
+Wave `not_scheduled` - 1:
 
-`BinClucMadDevelop`, `BinClucMadSMADevelop`, `CoreStrategy`, `DIV_v1`
+`DIV_v1`
 
-### `recursive_check_incomplete_at_longest_rungs` - 2
+### `recursive_check_incomplete_at_longest_rungs` - 13
 
-Wave `-` - 2:
+Wave `-` - 13:
 
-`TRIX_LS`, `kijun_cross_strong_s`
+`AlexStrategyFinalV8`, `AlexStrategyFinalV9`, `AntigravityStrategy`, `AntigravityStrategyV3`
+`Bins`, `DWTHO`, `DWT_LongShortHO`, `ExampleLSTMStrategy`
+`NNTC`, `TRIX_LS`, `avellaneda`, `delist_shorter_strategy`
+`kijun_cross_strong_s`
 
 ## Expansion wave
 
@@ -4821,13 +4950,13 @@ Wave `-` - 2:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 203 |
-| `convergence_not_converged_within_ladder` | 76 |
-| `needs_a_look` | 35 |
-| `lookahead_remeasure_pending` | 35 |
-| `convergence_inconclusive` | 14 |
-| `to_be_fixed` | 7 |
-| `repair_attempted` | 3 |
+| `recursive_ladder_pending` | 195 |
+| `convergence_not_converged_within_ladder` | 77 |
+| `lookahead_remeasure_pending` | 36 |
+| `needs_a_look` | 28 |
+| `convergence_inconclusive` | 12 |
+| `to_be_fixed` | 2 |
+| `repair_attempted` | 2 |
 
 Per-row detail, including every evidence path, is in
 `STRATEGY_STATUS.csv`.

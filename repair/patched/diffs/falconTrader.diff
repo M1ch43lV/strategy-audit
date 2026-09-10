@@ -1,5 +1,131 @@
 --- original/repos/TheoBrigitte_freqtrade/strategies/falcon/falconTrader.py
 +++ patched/repos/TheoBrigitte_freqtrade/strategies/falcon/falconTrader.py
+@@ -517,7 +517,7 @@
+                 (dataframe['roc_1h'] < self.buy_roc_1h.value) &
+                 (dataframe['bb_width_1h'] < self.buy_bb_width_1h.value)
+             ),
+-        ['enter_long', 'enter_tag']] = (1, 'DIP signal')     
++        ['enter_long', 'enter_tag']] = (True, 'DIP signal')     
+ 
+         dataframe.loc[
+ 
+@@ -529,7 +529,7 @@
+                 (dataframe['bb_width_1h'] < self.buy_bb_width_1h.value)
+ 
+             ),
+-        ['enter_long', 'enter_tag']] = (1, 'Break signal')    
++        ['enter_long', 'enter_tag']] = (True, 'Break signal')    
+         
+         
+         
+@@ -549,7 +549,7 @@
+                         (dataframe['ha_close'] < dataframe['ha_close'].shift()) 
+             
+                     ),
+-        ['enter_long', 'enter_tag']] = (1, 'cluc_HA')    
++        ['enter_long', 'enter_tag']] = (True, 'cluc_HA')    
+         
+          
+         dataframe.loc[    
+@@ -564,7 +564,7 @@
+                 (dataframe['close'] > dataframe['ema_50'] * 0.912)
+             
+             ),
+-        ['enter_long', 'enter_tag']] = (1, 'NFIX39')
++        ['enter_long', 'enter_tag']] = (True, 'NFIX39')
+         
+         dataframe.loc[
+                 ((dataframe['close'] > (dataframe['sup_level_1h'] * 0.72)) &
+@@ -573,7 +573,7 @@
+                 (dataframe['cti'] < -0.9)
+ 
+             ),
+-        ['enter_long', 'enter_tag']] = (1, 'NFIX29')
++        ['enter_long', 'enter_tag']] = (True, 'NFIX29')
+         
+         dataframe.loc[
+                 ((dataframe['ema_26'] > dataframe['ema_12']) &
+@@ -583,7 +583,7 @@
+                 (dataframe['closedelta'] > dataframe['close'] * self.buy_closedelta.value / 1000 ) 
+                 
+              ),
+-        ['enter_long', 'enter_tag']] = (1, 'local_uptrend')
++        ['enter_long', 'enter_tag']] = (True, 'local_uptrend')
+         
+         dataframe.loc[
+                 (
+@@ -597,7 +597,7 @@
+ 
+                 (dataframe['volume'] > 0)
+            ),
+-        ['enter_long', 'enter_tag']] = (1, 'vwap')
++        ['enter_long', 'enter_tag']] = (True, 'vwap')
+         
+         dataframe.loc[
+                 ((dataframe['bb_width_1h'] > 0.131) &
+@@ -611,7 +611,7 @@
+ 
+                 (dataframe['btc_close'].rolling(24).max() >= (dataframe['btc_close'] * 1.03 ))
+           ),
+-        ['enter_long', 'enter_tag']] = (1, 'insta_signal') 
++        ['enter_long', 'enter_tag']] = (True, 'insta_signal') 
+ 
+         dataframe.loc[
+             ((dataframe['close'] < (dataframe['ema_16'] * self.buy_44_ma_offset))&
+@@ -621,7 +621,7 @@
+ 
+             (dataframe['volume'] > 0)
+           ),
+-        ['enter_long', 'enter_tag']] = (1, 'NFINext44') 
++        ['enter_long', 'enter_tag']] = (True, 'NFINext44') 
+ 
+ 
+         dataframe.loc[  
+@@ -632,7 +632,7 @@
+             (dataframe['cti'] < self.buy_37_cti)
+ 
+         ),
+-        ['enter_long', 'enter_tag']] = (1, 'NFINext37')   
++        ['enter_long', 'enter_tag']] = (True, 'NFINext37')   
+ 
+         dataframe.loc[ 
+             ((dataframe['ema_26'] > dataframe['ema_12'])&
+@@ -641,7 +641,7 @@
+             (dataframe['cti'] < self.buy_cti_7)      
+ 
+         ),        
+-        ['enter_long', 'enter_tag']] = (1, 'NFINext7')   
++        ['enter_long', 'enter_tag']] = (True, 'NFINext7')   
+ 
+         dataframe.loc[
+                 ((dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1)) &
+@@ -650,7 +650,7 @@
+                 (dataframe['close'] < dataframe['sma_15'] * 0.942) &
+                 (dataframe['cti'] < -0.86)
+         ),        
+-        ['enter_long', 'enter_tag']] = (1, 'NFINext32')
++        ['enter_long', 'enter_tag']] = (True, 'NFINext32')
+ 
+ 
+ 
+@@ -663,7 +663,7 @@
+                 (dataframe['close'] < dataframe['close'].shift()) &
+                 (btc_dump == 0)
+         ),        
+-        ['enter_long', 'enter_tag']] = (1, 'sma_3')
++        ['enter_long', 'enter_tag']] = (True, 'sma_3')
+ 
+         dataframe.loc[
+                 ((dataframe['close'] < dataframe['vwap_lowerband']) &
+@@ -673,7 +673,7 @@
+                 (rsi_check) &
+                 (btc_dump == 0)
+         ),        
+-        ['enter_long', 'enter_tag']] = (1, 'WVAP')
++        ['enter_long', 'enter_tag']] = (True, 'WVAP')
+ 
+       
+         return dataframe
 @@ -893,7 +893,7 @@
  
      pm = Series(pm_arr)

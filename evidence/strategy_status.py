@@ -415,7 +415,18 @@ DEFAULT_IMAGE = "strategy-audit-runtime:2026.7"
 NO_REPAIR_POSSIBLE = {"timeframe_not_recoverable", "no_stoploss",
                       "no_exit_logic", "freqai_model",
                       "no_populate_indicators", "missing_author_data_file",
-                      "invalid_declared_config"}
+                      "invalid_declared_config",
+                      # No model name appears anywhere in the strategy's own
+                      # repository (checked directly, not assumed) - distinct
+                      # from `freqai_model`, where a name IS given but the
+                      # class it names does not exist.
+                      "freqai_no_model_named",
+                      # A local-module search found and applied a genuine
+                      # candidate, but the attribute the strategy reads from
+                      # it is confirmed absent from every copy in the corpus
+                      # AND the module's true origin repository - not a
+                      # search gap, a gap in what the author ever published.
+                      "local_module_incomplete"}
 
 
 def _json(path, key="results"):
@@ -667,6 +678,7 @@ def rows():
         "startup_candles_not_limited_by_call_budget": "framework_compat_shim",
         "restore_accumulation_distribution": "framework_compat_shim",
         "restore_copied_local_module": "local_module_off_path",
+        "restore_fetched_local_module": "local_module_off_path",
         "datetime_safe_rmi_fillna": "dtype_drift",
     }
     for name, entry in (_json(CLASS1, "strategies") or {}).items():
@@ -682,7 +694,14 @@ def rows():
     # A route that ran and concluded the row cannot be repaired without
     # inventing something. Recorded where the runners already look.
     class1 = _json(CLASS1, "strategies") or {}
-    refused_repair = {name: entry.get("note", "")
+    # `family` is optional: most refusals leave the family blocked_triage.py's
+    # fresh probe already assigned untouched. It is only set here when that
+    # family is not itself a member of NO_REPAIR_POSSIBLE and the refusal
+    # needs a family that is, so C4 can actually reach the row (E0V1EAI:
+    # freqai_not_enabled is a legitimate family for a row nobody has looked
+    # at yet, but this one HAS been looked at and refused, on the specific
+    # ground that no model is named anywhere in its repository).
+    refused_repair = {name: (entry.get("note", ""), entry.get("family"))
                       for name, entry in (_json(CLASS1, "strategies") or {}).items()
                       if entry.get("status") == "refused"}
     withdrawn = {name for name, entry
@@ -1242,11 +1261,44 @@ def rows():
                 repair["verdict"] = "repaired"
             elif repair_run.get("status") == "failed":
                 repair["verdict"] = "repair_attempted"
-        if strategy in attempted:
+        # `attempted` is `repair/local_modules.py`'s OWN corpus-only search,
+        # which only ever looks under `repos/**`. A row this audit repaired
+        # by a different, later route - fetching the missing module from the
+        # strategy's origin GitHub repo instead of finding a copy already in
+        # the corpus - stays `unresolved` there forever, because that search
+        # was never pointed at where the fetched copy actually lives
+        # (`repair/compat_helpers/`). Without this guard a genuine
+        # `repaired` verdict, set two lines above from a real `measured`
+        # result, was silently overwritten back to `repair_attempted` here -
+        # confirmed on `EmaCrossStrategy`/`PolymarketMeanReversionStrategy`/
+        # `PolymarketMomentumStrategy`, each already trading (28/2/10 trades)
+        # under a config `eligibility_timeframe_repair.py` built for it.
+        # Same guard the block above already has, and for the same reason:
+        # a fresh `refuse_repair` from `blocked_triage.py`'s own probe (e.g.
+        # `no_stoploss`, once a module fix clears the way to a *second*,
+        # unrelated blocker underneath it - `BinanceStream` does exactly
+        # this) is a decided, specific finding and must not be replaced by
+        # this block's vaguer "repair_attempted" either. Missing here
+        # originally; only the sibling block above was guarded.
+        if strategy in attempted and repair.get("verdict") not in (
+                "repaired", "refuse_repair"):
             repair["verdict"] = "repair_attempted"
             repair["family"] = "local_module_off_path"
             repair["note"] = attempted[strategy]
-        if strategy in refused_timeframe and strategy not in repair_source:
+        # `refused_timeframe` comes from `eligibility_timeframe_repair.py`'s
+        # `cohort()`, which re-derives itself fresh from THIS row's current
+        # `runtime_failure` on every call - membership here is never stale,
+        # unlike `repair_source`, which can still name an earlier blocker a
+        # later repair already cleared. `strategy not in repair_source` used
+        # to gate this, so a row with ANY repair-store history (e.g.
+        # `FileLoadingStrategy`, module-fixed then found to have no
+        # timeframe declaration underneath) kept its old, now-superseded
+        # `local_module_off_path` label instead of the current, correctly
+        # refused one - the same "second blocker under the first" case the
+        # comment above this block already describes, just not yet guarded
+        # against here. Only skip if the row has since genuinely started
+        # working.
+        if strategy in refused_timeframe and repair.get("verdict") != "repaired":
             repair["verdict"] = "refuse_repair"
             repair["family"] = "timeframe_not_recoverable"
             repair["note"] = refused_timeframe[strategy].get("why", "")
@@ -1273,6 +1325,18 @@ def rows():
                                   "repository holds no matching model. "
                                   "Initialising the placeholder would change "
                                   "the decision logic, so it is not done.")
+            elif "OperationalException" in arm["why"]:
+                # A named, structural freqtrade exception (RLStrategy: "all
+                # training data dropped due to NaNs") is a different claim
+                # from the `else` branch below's "ran and produced nothing" -
+                # freqtrade itself is stating why no model could ever train
+                # under this row's feature window, not merely failing
+                # silently. Supplying more/different training data than the
+                # author configured would be authorship, not repair.
+                repair["verdict"] = "refuse_repair"
+                repair["note"] = ("the FreqAI arm's own run stopped on a "
+                                  "named structural exception, not a silent "
+                                  "failure: %s" % arm["why"][:150])
             else:
                 repair["verdict"] = "repair_attempted"
                 repair["note"] = ("the FreqAI arm ran it and it did not "
@@ -1295,7 +1359,9 @@ def rows():
                 and lookahead in ("PASS", "FOUND") else "to_be_fixed")
         if strategy in refused_repair:
             repair["verdict"] = "refuse_repair"
-            repair["note"] = refused_repair[strategy]
+            repair["note"], refusal_family = refused_repair[strategy]
+            if refusal_family:
+                repair["family"] = refusal_family
         if strategy in withdrawn:
             repair["verdict"] = "repair_withdrawn"
             repair["family"] = "local_module_off_path"
@@ -1466,7 +1532,19 @@ def rows():
             "result_archive": archive,
             "run_profile": profile.get("run_profile", ""),
             "expansion_wave": wave,
-            "timeframe": classification.get(strategy, {}).get("timeframe", ""),
+            # evidence/execution_profiles.py's own column is the fresher,
+            # more complete derivation - it also tries a sibling Config*.py
+            # and a repair-store override, neither of which
+            # evidence/STRATEGY_CLASSIFICATION.json's older, narrower pass
+            # ever attempted. 54 rows carried a real value in one and
+            # nothing in the other before this preferred it; a further 3
+            # disagreed outright (`FisherBBDynamic`: this file's own live
+            # `timeframe = '5m'`, one line under an author's commented-out
+            # `# timeframe = '15m'` the older pass evidently read instead).
+            # Falls back to classification only for the 2 rows where it
+            # alone has a value.
+            "timeframe": (profile.get("execution_timeframe")
+                         or classification.get(strategy, {}).get("timeframe", "")),
             "strategy_type": classification.get(strategy, {}).get(
                 "strategy_type", ""),
             "assumed_market_regime": phase_hypothesis.get(strategy, {}).get(

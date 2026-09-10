@@ -8,19 +8,19 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 
 | Verdict | Strategies | Meaning |
 |---|---:|---|
-| `repaired` | 143 | runs now, and the run is recorded |
-| `repair_attempted` | 22 | a route was applied and did not finish the job |
-| `to_be_fixed` | 20 | the route is known, the run has not happened yet |
-| `needs_a_look` | 73 | no route yet; the obstacle has been identified |
-| `repair_withdrawn` | 6 | the repair made things worse and was undone |
-| `refuse_repair` | 41 | repairing it would mean inventing the strategy |
-| `-` | 18 |  |
+| `repaired` | 146 | runs now, and the run is recorded |
+| `repair_attempted` | 12 | a route was applied and did not finish the job |
+| `to_be_fixed` | 21 | the route is known, the run has not happened yet |
+| `needs_a_look` | 68 | no route yet; the obstacle has been identified |
+| `repair_withdrawn` | 2 | the repair made things worse and was undone |
+| `refuse_repair` | 46 | repairing it would mean inventing the strategy |
+| `-` | 24 |  |
 
 ## Routes taken
 
 ### Timeframe recovered from the author's own field
 
-`repair_family: timeframe_missing` &mdash; 43 strategies (repaired 43)
+`repair_family: timeframe_missing` &mdash; 46 strategies (repaired 46)
 
 **The message.**
 
@@ -98,7 +98,7 @@ For example: `ARIMASTR`, `Apollo11`, `BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB
 
 ### The author's own module put back on the path
 
-`repair_family: local_module_off_path` &mdash; 49 strategies (repaired 2, repair_attempted 16, to_be_fixed 5, needs_a_look 2, repair_withdrawn 6, - 18)
+`repair_family: local_module_off_path` &mdash; 40 strategies (repaired 2, repair_attempted 7, to_be_fixed 3, needs_a_look 2, repair_withdrawn 2, - 24)
 
 **The message.**
 
@@ -114,11 +114,31 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `repair/local_modules.py`.
 
-For example: `AdvancedRiskFilterStrategy`, `Anomaly`, `BBBHold`, `BBKCBounce`, `BB_RPB_3c`, `BTCMACDCross`.
+For example: `AdvancedRiskFilterStrategy`, `BBKCBounce`, `BB_RPB_3c`, `BTCMACDCross`, `BaseStrategy`, `BuyRegions`.
+
+### Refused: the author's own module doesn't define what's read
+
+`repair_family: local_module_incomplete` &mdash; 1 strategies (refuse_repair 1)
+
+**The message.**
+
+```
+module 'Config' has no attribute 'ignore_roi_if_buy_signal'
+```
+
+**What it actually was.** A different situation from `local_module_off_path`, reached only after that repair already applied: the missing module was found and put back on the path, and the import now succeeds, but the strategy also reads an attribute the found copy never defines.
+
+**The repair.** None. Checked every copy of the module anywhere in the corpus, by attribute grep, not by name - and the strategy's own origin repository directly, not only the harvested copy. No copy anywhere defines the attribute (`BBBHold`, `ignore_roi_if_buy_signal`).
+
+**Where it stops.** `refuse_repair`. A real gap in what the author published, not a search gap; inventing the value would be authorship.
+
+Tool: `repair/local_modules.py`.
+
+For example: `BBBHold`.
 
 ### FreqAI strategies given the author's own configuration
 
-`repair_family: freqai_arm` &mdash; 8 strategies (repaired 1, repair_attempted 4, refuse_repair 3)
+`repair_family: freqai_arm` &mdash; 8 strategies (repaired 1, repair_attempted 3, refuse_repair 4)
 
 **The message.**
 
@@ -221,7 +241,7 @@ For example: `BasketStrategy`.
 
 ### Refused: no stoploss declared
 
-`repair_family: no_stoploss` &mdash; 10 strategies (refuse_repair 10)
+`repair_family: no_stoploss` &mdash; 11 strategies (refuse_repair 11)
 
 **The message.**
 
@@ -237,7 +257,7 @@ Configuration error: 'stoploss' is a required property
 
 Tool: `blocked_triage.py`.
 
-For example: `AdaptiveRenkoStrategy`, `ClucCrypROI`, `ClucCrypSlow`, `CryptoPredictionTraining`, `FBB_2`, `FBB_ROI`.
+For example: `AdaptiveRenkoStrategy`, `BinanceStream`, `ClucCrypROI`, `ClucCrypSlow`, `CryptoPredictionTraining`, `FBB_2`.
 
 ### Refused: no exit logic
 
@@ -281,7 +301,7 @@ For example: `thetank2`.
 
 ### Refused: a file the author never shipped
 
-`repair_family: missing_author_data_file` &mdash; 2 strategies (refuse_repair 2)
+`repair_family: missing_author_data_file` &mdash; 3 strategies (refuse_repair 3)
 
 **The message.**
 
@@ -297,7 +317,7 @@ For example: `thetank2`.
 
 Tool: `blocked_triage.py`.
 
-For example: `PolymarketLogicalArbStrategy`, `Prediction_Strategy`.
+For example: `GymStrategy`, `PolymarketLogicalArbStrategy`, `Prediction_Strategy`.
 
 ### Refused: two declared values that cannot both be honoured
 
@@ -337,11 +357,11 @@ Timeframe needs to be set in either configuration or as cli argument `--timefram
 
 Tool: `evidence/eligibility_timeframe_repair.py`.
 
-For example: `Chained`, `EMA003`, `EnsembleStrategy`, `EnsembleStrategyV1`, `EnsembleStrategyV2`, `FreqaiBinaryClassStrategy`.
+For example: `Chained`, `EMA003`, `EnsembleStrategy`, `EnsembleStrategyV1`, `EnsembleStrategyV2`, `FileLoadingStrategy`.
 
 ### Open: pandas and numpy have moved under the strategy
 
-`repair_family: dtype_drift` &mdash; 19 strategies (to_be_fixed 1, needs_a_look 18)
+`repair_family: dtype_drift` &mdash; 15 strategies (to_be_fixed 1, needs_a_look 14)
 
 **The message.**
 
@@ -358,11 +378,11 @@ Invalid value 'False' for dtype 'float64'
 
 Tool: `blocked_triage.py`.
 
-For example: `BinClucMadDevelop`, `BinClucMadSMADevelop`, `CombinedBinHAndClucV6H`, `CoreStrategy`, `DIV_v1`, `Danke`.
+For example: `DIV_v1`, `Danke`, `FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `FastSupertrend`, `FastSupertrendOpt`.
 
 ### Open: a package the author depended on
 
-`repair_family: third_party_package` &mdash; 20 strategies (needs_a_look 20)
+`repair_family: third_party_package` &mdash; 18 strategies (needs_a_look 18)
 
 **The message.**
 
@@ -378,11 +398,11 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `blocked_triage.py`.
 
-For example: `CME`, `Cenderawasih_freqai`, `CopyLitmusMinMaxBroadClassificationStrategy`, `Enchilada`, `GymStrategy`, `HMMv3`.
+For example: `CME`, `Cenderawasih_freqai`, `CopyLitmusMinMaxBroadClassificationStrategy`, `Enchilada`, `HMMv3`, `KMM`.
 
 ### Open: the class will not import
 
-`repair_family: class_not_loaded` &mdash; 1 strategies (needs_a_look 1)
+`repair_family: class_not_loaded` &mdash; 5 strategies (to_be_fixed 4, needs_a_look 1)
 
 **The message.**
 
@@ -398,11 +418,11 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `blocked_triage.py`.
 
-For example: `delist_shorter_strategy`.
+For example: `Anomaly`, `FBB_KalmanSIMD`, `Kalman`, `PCA`, `delist_shorter_strategy`.
 
 ### Open: one of a kind
 
-`repair_family: individual` &mdash; 32 strategies (needs_a_look 32)
+`repair_family: individual` &mdash; 33 strategies (needs_a_look 33)
 
 **The message.**
 
@@ -422,9 +442,9 @@ Tool: `blocked_triage.py`.
 
 For example: `AlexStrategyFinalV8`, `AlexStrategyFinalV9`, `Astro`, `AutoArimaTripleV1`, `BestSingleAssetPortfolio`, `Bins`.
 
-### Open: FreqAI strategy outside the retired FreqAI arm
+### Refused: FreqAI strategy, but no model named anywhere
 
-`repair_family: freqai_not_enabled` &mdash; 1 strategies (to_be_fixed 1)
+`repair_family: freqai_no_model_named` &mdash; 1 strategies (refuse_repair 1)
 
 **The message.**
 
@@ -432,11 +452,11 @@ For example: `AlexStrategyFinalV8`, `AlexStrategyFinalV9`, `Astro`, `AutoArimaTr
 freqAI is not enabled. Please enable it in your config to use this strategy.
 ```
 
-**What it actually was.** `E0V1EAI`, from the 2026-09-06 wave-2 futures/short harvest, needs a freqai config block the same way the rows under `freqai_arm` do - but it arrived after that arm's own generator, `eligibility_freqai_repair.py`, was retired; only its output `evidence/ELIGIBILITY_FREQAI_REPAIR.json` remains, as a frozen historical artifact.
+**What it actually was.** The strategy (`E0V1EAI`) declares its own timeframe, so a config could in principle be built the way `AntigravityStrategy`'s and `FreqaiExampleStrategy`'s were - but no `freqaimodel` name appears anywhere in its repository (no config, no comment, no docstring), unlike those two rows where the author's own config states one.
 
-**The repair.** Not attempted. The FreqAI arm is deliberately a separate track that is never merged into a cohort (see `freqai_arm` above), so reviving tooling for one new row would not even join the main admission funnel this row is otherwise waiting on.
+**The repair.** None. Choosing a model ourselves would decide the strategy's actual behaviour, not restore it.
 
-**Where it stops.** `needs_a_look`, one row only.
+**Where it stops.** `refuse_repair`.
 
 Tool: `blocked_triage.py`.
 
@@ -449,15 +469,16 @@ For example: `E0V1EAI`.
 | Rule | Strategies |
 |---|---:|
 | `startup_candles_not_limited_by_call_budget` | 62 |
-| `restore_copied_local_module` | 28 |
+| `restore_copied_local_module` | 32 |
 | `idempotent_entry_tag_initialisation` | 23 |
 | `legacy_min_roi_reached_entry_signature` | 21 |
 | `lookahead_runmode_reports_backtest` | 21 |
 | `restore_author_package_extension` | 11 |
 | `restore_author_config` | 11 |
+| `restore_fetched_local_module` | 10 |
 | `whitespace_tolerant_class_scan` | 6 |
+| `freqai_config_from_author_block` | 5 |
 | `legacy_min_roi_reached_entry_override` | 5 |
-| `freqai_config_from_author_block` | 4 |
 | `legacy_fillna_method_kwarg` | 4 |
 | `legacy_fillna_skips_incompatible_dtype` | 3 |
 | `datetime_safe_rmi_fillna` | 3 |
@@ -467,8 +488,10 @@ For example: `E0V1EAI`.
 | `restore_dataframe_append` | 1 |
 | `legacy_hour_asfreq_rule` | 1 |
 | `restore_freqtrade_indicator_helpers` | 1 |
+| `legacy_sell_check_tuple` | 1 |
 | `restore_keras_vis_utils` | 1 |
 | `legacy_replace_method_kwarg` | 1 |
+| `tf_keras_saving_reexport` | 1 |
 | `restore_numpy_lib_function_base` | 1 |
 | `legacy_pmax_parameter_names` | 1 |
 | `legacy_bid_ask_strategy_price_side` | 1 |

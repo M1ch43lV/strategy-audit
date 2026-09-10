@@ -1,5 +1,14 @@
 --- original/repos/davidzr_freqtrade-strategies/strategies/NFIX_BB_RPB_c7c477d_20211030/NFIX_BB_RPB_c7c477d_20211030.py
 +++ patched/repos/davidzr_freqtrade-strategies/strategies/NFIX_BB_RPB_c7c477d_20211030/NFIX_BB_RPB_c7c477d_20211030.py
+@@ -4561,7 +4561,7 @@
+         return dataframe
+ 
+     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+-        dataframe.loc[:, 'sell'] = 0
++        dataframe.loc[:, 'sell'] = False
+ 
+         return dataframe
+ 
 @@ -4866,7 +4866,7 @@
      pm = Series(pm_arr)
  

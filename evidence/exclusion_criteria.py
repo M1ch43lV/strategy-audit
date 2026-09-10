@@ -909,6 +909,24 @@ REPAIRS = [
         "tool": "repair/local_modules.py",
     },
     {
+        "family": "local_module_incomplete",
+        "name": "Refused: the author's own module doesn't define what's read",
+        "error": "module 'Config' has no attribute 'ignore_roi_if_buy_signal'",
+        "cause": "A different situation from `local_module_off_path`, reached "
+                 "only after that repair already applied: the missing module "
+                 "was found and put back on the path, and the import now "
+                 "succeeds, but the strategy also reads an attribute the "
+                 "found copy never defines.",
+        "fix": "None. Checked every copy of the module anywhere in the "
+               "corpus, by attribute grep, not by name - and the strategy's "
+               "own origin repository directly, not only the harvested "
+               "copy. No copy anywhere defines the attribute (`BBBHold`, "
+               "`ignore_roi_if_buy_signal`).",
+        "limit": "`refuse_repair`. A real gap in what the author published, "
+                 "not a search gap; inventing the value would be authorship.",
+        "tool": "repair/local_modules.py",
+    },
+    {
         "family": "freqai_arm",
         "name": "FreqAI strategies given the author's own configuration",
         "error": "freqAI is not enabled. Please enable it in your config to "
@@ -1149,22 +1167,19 @@ REPAIRS = [
         "tool": "blocked_triage.py",
     },
     {
-        "family": "freqai_not_enabled",
-        "name": "Open: FreqAI strategy outside the retired FreqAI arm",
+        "family": "freqai_no_model_named",
+        "name": "Refused: FreqAI strategy, but no model named anywhere",
         "error": "freqAI is not enabled. Please enable it in your config to "
                  "use this strategy.",
-        "cause": "`E0V1EAI`, from the 2026-09-06 wave-2 futures/short harvest, "
-                 "needs a freqai config block the same way the rows under "
-                 "`freqai_arm` do - but it arrived after that arm's own "
-                 "generator, `eligibility_freqai_repair.py`, was retired; only "
-                 "its output `evidence/ELIGIBILITY_FREQAI_REPAIR.json` remains, as a "
-                 "frozen historical artifact.",
-        "fix": "Not attempted. The FreqAI arm is deliberately a separate "
-               "track that is never merged into a cohort (see `freqai_arm` "
-               "above), so reviving tooling for one new row would not even "
-               "join the main admission funnel this row is otherwise waiting "
-               "on.",
-        "limit": "`needs_a_look`, one row only.",
+        "cause": "The strategy (`E0V1EAI`) declares its own timeframe, so a "
+                 "config could in principle be built the way "
+                 "`AntigravityStrategy`'s and `FreqaiExampleStrategy`'s were "
+                 "- but no `freqaimodel` name appears anywhere in its "
+                 "repository (no config, no comment, no docstring), unlike "
+                 "those two rows where the author's own config states one.",
+        "fix": "None. Choosing a model ourselves would decide the strategy's "
+               "actual behaviour, not restore it.",
+        "limit": "`refuse_repair`.",
         "tool": "blocked_triage.py",
     },
 ]

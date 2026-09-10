@@ -1,0 +1,20 @@
+--- original/repos/jaredrsommer_freqtradestrategies/PnF (copy).py
++++ patched/repos/jaredrsommer_freqtradestrategies/PnF (copy).py
+@@ -225,7 +225,7 @@
+                 (df['volume'] > 0)   # Make sure Volume is not 0
+ 
+             ),
+-            ['enter_long', 'enter_tag']] = (1, 'downtrend ends')
++            ['enter_long', 'enter_tag']] = (True, 'downtrend ends')
+ 
+         return df
+ 
+@@ -238,7 +238,7 @@
+                 (df['volume'] > 0)   # Make sure Volume is not 0
+ 
+             ),
+-            ['exit_long', 'exit_tag']] = (1, 'uptrend ends')
++            ['exit_long', 'exit_tag']] = (True, 'uptrend ends')
+ 
+         return df
+ 

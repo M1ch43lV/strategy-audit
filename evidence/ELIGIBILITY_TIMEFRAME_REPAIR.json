@@ -21,11 +21,11 @@
       "route": "timeframe_repair",
       "why": "declares only informative_timeframe, which is the higher timeframe pulled in alongside the base one; the base timeframe is not stated"
     },
-    "FreqaiBinaryClassStrategy": {
+    "FileLoadingStrategy": {
       "route": "timeframe_repair",
-      "why": "a FreqAI strategy: the timeframe comes from the freqai block of the config, not from the strategy"
+      "why": "no timeframe declaration of any kind in the file"
     },
-    "FreqaiExampleStrategy": {
+    "FreqaiBinaryClassStrategy": {
       "route": "timeframe_repair",
       "why": "a FreqAI strategy: the timeframe comes from the freqai block of the config, not from the strategy"
     },
@@ -427,6 +427,34 @@
       "timerange": "20200301-20200401",
       "trades": 582,
       "trades_sha256": "sha256_e672db78b9f53ebb09d87c72856dc7dad5026ca6492c61cdc412e7fb00098b7e"
+    },
+    "EmaCrossStrategy": {
+      "archive": "user_data/profile_smoke/EmaCrossStrategy-a8314e54-2026-09-09_07-43-30.zip",
+      "archive_sha256": "sha256_a5a9be1c89702b52a312e8edc0292163f7ae7c8f6a96abea1fc35388fec7c516",
+      "artifact_key": "",
+      "canonical_sha256": "sha256_f7f999702cb12d78170091d9ca09e544bde64559d1ef42fbe7e27a9fde15a1b8",
+      "class1_rules": [
+        "restore_fetched_local_module"
+      ],
+      "config_overrides": {
+        "timeframe": "4h"
+      },
+      "elapsed_s": 4.1,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/EmaCrossStrategy-a8314e54-override-aa2053461232.json --strategy EmaCrossStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/EmaCrossStrategy-a8314e54 --cache none",
+      "long_trades": 28,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "EmaCrossStrategy",
+      "timeframe": "4h",
+      "timeframe_evidence": "corpus_twin",
+      "timeframe_evidence_source": "mlsys-io/PortfolioBench pipelines/simple_ema_cross.json (GitHub, not harvested): \"description\": \"Basic EMA crossover strategy on crypto pairs with 4-hour timeframe\", backtest.timeframe = \"4h\" - the pipeline is named for this exact strategy (strategies[0].type == \"ema_cross\")",
+      "timerange": "20200301-20200401",
+      "trades": 28,
+      "trades_sha256": "sha256_67e2cd87df4d748504c12193525e598b719b2ac6ceb5541b334971744366edbd"
     },
     "FixedRiskRewardLoss": {
       "archive": "user_data/profile_smoke/FixedRiskRewardLoss-2026-09-01_19-41-06.zip",
@@ -894,6 +922,62 @@
       "timerange": "20200301-20200401",
       "trades": 170,
       "trades_sha256": "sha256_159b4edd6fa250434c9fd4e1f7b7767907779a87757d1b37695903b1d8a8e438"
+    },
+    "PolymarketMeanReversionStrategy": {
+      "archive": "user_data/profile_smoke/PolymarketMeanReversionStrategy-9c33dc8c-2026-09-09_07-43-34.zip",
+      "archive_sha256": "sha256_5d89026025ce33f3e68874b70ce7c9add1f25978c8281bf31505fc9624151b99",
+      "artifact_key": "",
+      "canonical_sha256": "sha256_62a838619e15bf55c864029c5efb1f559c536014466e31dc48379317df41fec0",
+      "class1_rules": [
+        "restore_fetched_local_module"
+      ],
+      "config_overrides": {
+        "timeframe": "4h"
+      },
+      "elapsed_s": 3.8,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/PolymarketMeanReversionStrategy-9c33dc8c-override-aa2053461232.json --strategy PolymarketMeanReversionStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/PolymarketMeanReversionStrategy-9c33dc8c --cache none",
+      "long_trades": 2,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "PolymarketMeanReversionStrategy",
+      "timeframe": "4h",
+      "timeframe_evidence": "corpus_twin",
+      "timeframe_evidence_source": "mlsys-io/PortfolioBench user_data/config_polymarket.json (GitHub, not harvested): timeframe = \"4h\" - the repo's dedicated config for its Polymarket-strategy family, distinct from user_data/config.json's 5m default used by the non-Polymarket strategies",
+      "timerange": "20200301-20200401",
+      "trades": 2,
+      "trades_sha256": "sha256_59b08f2fffaaf26aa5557d45d1611784561c02d6d93d75e5d866a6970295547a"
+    },
+    "PolymarketMomentumStrategy": {
+      "archive": "user_data/profile_smoke/PolymarketMomentumStrategy-aee6b82b-2026-09-09_07-43-38.zip",
+      "archive_sha256": "sha256_a0ff402c68343da7360fef461a9af100b5e2cb5e00128672a8a616ff69078864",
+      "artifact_key": "",
+      "canonical_sha256": "sha256_66235975cdad6095dc6f6fcf92658412e35fdac63ce9ed36a488b5c201a77a36",
+      "class1_rules": [
+        "restore_fetched_local_module"
+      ],
+      "config_overrides": {
+        "timeframe": "4h"
+      },
+      "elapsed_s": 3.9,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/PolymarketMomentumStrategy-aee6b82b-override-aa2053461232.json --strategy PolymarketMomentumStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/PolymarketMomentumStrategy-aee6b82b --cache none",
+      "long_trades": 10,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "PolymarketMomentumStrategy",
+      "timeframe": "4h",
+      "timeframe_evidence": "corpus_twin",
+      "timeframe_evidence_source": "mlsys-io/PortfolioBench user_data/config_polymarket.json (GitHub, not harvested): timeframe = \"4h\", same evidence as PolymarketMeanReversionStrategy",
+      "timerange": "20200301-20200401",
+      "trades": 10,
+      "trades_sha256": "sha256_1969bea21a7578fa273b800b913059a8b068e423d48fcbf28dd75f60456376b3"
     },
     "RSIBB02": {
       "archive": "user_data/profile_smoke/RSIBB02-2026-09-01_19-50-27.zip",

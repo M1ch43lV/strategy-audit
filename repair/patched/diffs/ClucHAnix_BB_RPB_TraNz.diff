@@ -1,5 +1,23 @@
 --- original/repos/ShahAnuj2610_my-freqtrade/user_data/strategies/BB_RPB_TSL_ClucHAnix_BB_RPB_MOD_CTT_Dynamic_Offsets_COMBINED_MOD_TraNz_1.py
 +++ patched/repos/ShahAnuj2610_my-freqtrade/user_data/strategies/BB_RPB_TSL_ClucHAnix_BB_RPB_MOD_CTT_Dynamic_Offsets_COMBINED_MOD_TraNz_1.py
+@@ -1301,7 +1301,7 @@
+                             &
+                             reduce(lambda x, y: x | y, conditions)
+ 
+-                        , 'buy' ] = 1
++                        , 'buy' ] = True
+ 
+         return dataframe     
+         
+@@ -1326,7 +1326,7 @@
+ 
+     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+ 
+-        dataframe.loc[ (dataframe['volume'] > 0), 'sell' ] = 0
++        dataframe.loc[ (dataframe['volume'] > 0), 'sell' ] = False
+ 
+         return dataframe
+ 
 @@ -1416,7 +1416,7 @@
      pm = Series(pm_arr)
  
@@ -8,4 +26,22 @@
 +    pmx = np.where((pm_arr > 0.00), np.where((mavalue < pm_arr), 'down',  'up'), 'nan')
  
      return pm, pmx
+ 
+@@ -1688,7 +1688,7 @@
+             else:
+                 if (trailing_buy['trailing_buy_order_started'] == True):
+                     logger.info(f"Continue trailing for {metadata['pair']}. Manually trigger buy signal!!")
+-                    dataframe.loc[:,'buy'] = 1
++                    dataframe.loc[:,'buy'] = True
+                     dataframe.loc[:, 'buy_tag'] = trailing_buy['buy_tag']
+                     # dataframe['buy'] = 1
+ 
+@@ -1907,7 +1907,7 @@
+             else:
+                 if (trailing_buy['trailing_buy_order_started'] == True):
+                     logger.info(f"Continue trailing for {metadata['pair']}. Manually trigger buy signal!!")
+-                    dataframe.loc[:,'buy'] = 1
++                    dataframe.loc[:,'buy'] = True
+                     dataframe.loc[:, 'buy_tag'] = trailing_buy['buy_tag']
+                     # dataframe['buy'] = 1
  

@@ -9,3 +9,21 @@
      buy_btc_safe = IntParameter(-300, 50, default=buy_params['buy_btc_safe'], optimize = True)
      buy_btc_safe_1d = DecimalParameter(-0.5, -0.015, default=buy_params['buy_btc_safe_1d'], optimize=True)
      antipump_threshold = DecimalParameter(0, 0.4, default=buy_params['antipump_threshold'], space='buy', optimize=True)
+@@ -623,7 +623,7 @@
+             dataframe.loc[
+                 is_protection &
+                 reduce(lambda x, y: x & y, conditions),
+-                'buy'] = 1
++                'buy'] = True
+ 
+         return dataframe
+ 
+@@ -637,7 +637,7 @@
+         if conditions:
+             dataframe.loc[
+                 reduce(lambda x, y: x & y, conditions),
+-                'sell'] = 1
++                'sell'] = True
+ 
+         return dataframe
+         

@@ -31,6 +31,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import csv
 import hashlib
 import importlib.util
 import io
@@ -40,11 +41,14 @@ import re
 import sys
 import traceback
 
+from repair import overrides
+
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TRIAGE = os.path.join(ROOT, "evidence/BLOCKED_TRIAGE.json")
 CLASS1 = os.path.join(ROOT, "evidence/PROFILE_CLASS1.json")
 OUTPUT = os.path.join(ROOT, "evidence/REPAIR_LOCAL_MODULES.json")
+PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
 RULE = "restore_copied_local_module"
 
 
@@ -123,12 +127,63 @@ def _digest(path):
     return hashlib.sha256(io.open(path, "rb").read()).hexdigest()[:16]
 
 
-def try_import(source_file, extra_path):
-    """Import the strategy with `extra_path` on sys.path. Returns "" or why not."""
+_OWN_TIMEFRAME = None
+
+
+def _has_own_timeframe(strategy):
+    """True if EXECUTION_PROFILES.csv already carries a timeframe for this
+    row, so a module-derived one is never offered in place of a real one."""
+    global _OWN_TIMEFRAME
+    if _OWN_TIMEFRAME is None:
+        _OWN_TIMEFRAME = {}
+        with io.open(PROFILES, newline="", encoding="utf-8-sig") as handle:
+            for row in csv.DictReader(handle):
+                if row.get("declared_timeframe") or row.get("execution_timeframe"):
+                    _OWN_TIMEFRAME[row["strategy_id"]] = True
+    return _OWN_TIMEFRAME.get(strategy, False)
+
+
+def try_import(source_file, extra_path, target_module=None):
+    """Import the strategy with `extra_path` on sys.path. Returns "" or why not.
+
+    A bug found by hand, not by the tool: `exec_module` resolves the
+    strategy's own `import Config` (or any other absolute import) through
+    the real import system, which caches the result in `sys.modules['Config']`
+    - a name this function never touches directly, so the cleanup below never
+    saw it. `Config` is common across many rows in the same repository, so
+    the FIRST candidate directory tried for ANY of them poisoned the cache
+    for every candidate and every row that came after, in the same process:
+    a later, genuinely-satisfying candidate would import the earlier
+    candidate's stale cached module instead of its own file, keep failing,
+    and be recorded as `unresolved` on a false negative. Confirmed on
+    `BBBHold`: `NSeq/Config.py` imports clean when tried alone, fresh, and
+    was reported as failing here before this fix.
+
+    Evicting `target_module` (and any dotted submodule under it) before and
+    after the attempt gives it the same freshness as the synthetic probe
+    name. Evicting everything the attempt newly touched was tried first and
+    was worse: `technical`/`talib`/freqtrade's own vendored qtpylib carry
+    process-global C-extension or registration state that does not tolerate
+    being re-executed under a new module object, and every row started
+    failing with "cannot load module more than once per process" once they
+    were re-imported on a later candidate. Scoping the eviction to only the
+    module actually under test avoids disturbing anything the strategy
+    imports that was never the question.
+    """
     path = os.path.join(ROOT, source_file.replace("/", os.sep))
     name = "probe_%s" % re.sub(r"\W+", "_", os.path.basename(path))
     sys.path.insert(0, extra_path)
     previous = sys.modules.pop(name, None)
+    target_top = (target_module or "").split(".")[0]
+
+    def _evict_target():
+        if not target_top:
+            return
+        for key in [k for k in sys.modules
+                    if k == target_top or k.startswith(target_top + ".")]:
+            sys.modules.pop(key, None)
+
+    _evict_target()
     try:
         spec = importlib.util.spec_from_file_location(name, path)
         if spec is None or spec.loader is None:
@@ -141,6 +196,7 @@ def try_import(source_file, extra_path):
             return "%s: %s" % (type(exc).__name__, str(exc)[:120])
         return ""
     finally:
+        _evict_target()
         sys.modules.pop(name, None)
         if previous is not None:
             sys.modules[name] = previous
@@ -169,7 +225,7 @@ def resolve(record):
                           "why": ("would shadow the installed %s package"
                                   % shadowed)})
             continue
-        why = try_import(source, directory)
+        why = try_import(source, directory, module)
         tried.append({"path": relative, "imports": not why,
                       "sha256_16": _digest(file_path), "why": why})
         if not why:
@@ -209,6 +265,16 @@ def resolve(record):
                          "the strategy's own repository and none has been "
                          "chosen before, so which helper the author meant is "
                          "not established here" % len(working))
+        return result
+    # The chosen copy is proven, by the import test above, to be the file
+    # this strategy actually loads. If that file states a timeframe and the
+    # strategy's own row has none, it is not a guess about the strategy - it
+    # is the value the strategy's own import already carries.
+    if not _has_own_timeframe(strategy):
+        timeframe = overrides.imported_module_timeframe(
+            result["python_path"], module)
+        if timeframe:
+            result["config_overrides"] = {"timeframe": timeframe}
     return result
 
 

@@ -21,3 +21,19 @@
  
          # add indicator mapped to correct DatetimeIndex to custom_info
          self.custom_info[metadata['pair']] = dataframe[['date', 'stop_pct', 'take_profit']].copy().set_index('date')
+@@ -139,13 +139,13 @@
+         dataframe.loc[
+             qtpylib.crossed_above(dataframe['go_long'], 0)
+         ,
+-        'buy'] = 1
++        'buy'] = True
+ 
+         return dataframe
+ 
+     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+ 
+-        dataframe['sell'] = 0
++        dataframe['sell'] = False
+ 
+         return dataframe
+ 

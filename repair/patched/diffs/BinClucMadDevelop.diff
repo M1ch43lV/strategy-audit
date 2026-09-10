@@ -1,0 +1,191 @@
+--- original/repos/PeetCrypto_freqtrade-stuff/BinClucMadDevelop.py
++++ patched/repos/PeetCrypto_freqtrade-stuff/BinClucMadDevelop.py
+@@ -422,7 +422,7 @@
+                 & (self.v8_buy_condition_0_enable.value == True)
+             ),
+             "v8_buy_condition_0_enable",
+-        ] = 1
++        ] = True
+ 
+         dataframe.loc[
+             (
+@@ -444,7 +444,7 @@
+                 & (self.v8_buy_condition_1_enable.value == True)
+             ),
+             "v8_buy_condition_1_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["close"] < dataframe["sma_5"])
+@@ -467,7 +467,7 @@
+                 & (self.v8_buy_condition_2_enable.value == True)
+             ),
+             "v8_buy_condition_2_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["sma_200"] > dataframe["sma_200"].shift(20))
+@@ -494,7 +494,7 @@
+                 & (self.v8_buy_condition_3_enable.value == True)
+             ),
+             "v8_buy_condition_3_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["close"] > dataframe["ema_100_1h"])
+@@ -519,7 +519,7 @@
+                 & (self.v8_buy_condition_4_enable.value == True)
+             ),
+             "v8_buy_condition_4_enable",
+-        ] = 1
++        ] = True
+         # start from here
+         dataframe.loc[
+             (
+@@ -535,7 +535,7 @@
+                 & (self.v9_buy_condition_1_enable.value == True)
+             ),
+             "v9_buy_condition_1_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["close"] > dataframe["ema_200"])
+@@ -549,7 +549,7 @@
+                 & (self.v9_buy_condition_2_enable.value == True)
+             ),
+             "v9_buy_condition_2_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["close"] > dataframe["ema_200_1h"])
+@@ -559,7 +559,7 @@
+                 & (self.v9_buy_condition_3_enable.value == True)
+             ),
+             "v9_buy_condition_3_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["rsi_1h"] < self.buy_rsi_1h_1.value)
+@@ -568,7 +568,7 @@
+                 & (self.v9_buy_condition_4_enable.value == True)
+             ),
+             "v9_buy_condition_4_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["close"] > dataframe["ema_200"])
+@@ -582,7 +582,7 @@
+                 & (self.v9_buy_condition_5_enable.value == True)
+             ),
+             "v9_buy_condition_5_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["ema_26"] > dataframe["ema_12"])
+@@ -593,7 +593,7 @@
+                 & (self.v9_buy_condition_6_enable.value == True)
+             ),
+             "v9_buy_condition_6_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["rsi_1h"] < self.buy_rsi_1h_2.value)
+@@ -605,7 +605,7 @@
+                 & (self.v9_buy_condition_7_enable.value == True)
+             ),
+             "v9_buy_condition_7_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["rsi_1h"] < self.buy_rsi_1h_3.value)
+@@ -615,7 +615,7 @@
+                 & (self.v9_buy_condition_8_enable.value == True)
+             ),
+             "v9_buy_condition_8_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["rsi_1h"] < self.buy_rsi_1h_4.value)
+@@ -625,7 +625,7 @@
+                 & (self.v9_buy_condition_9_enable.value == True)
+             ),
+             "v9_buy_condition_9_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["close"] < dataframe["sma_5"])
+@@ -635,7 +635,7 @@
+                 & (self.v9_buy_condition_10_enable.value == True)
+             ),
+             "v9_buy_condition_10_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["close"] > dataframe["ema_200"])
+@@ -649,7 +649,7 @@
+                 & (self.v6_buy_condition_0_enable.value == True)
+             ),
+             "v6_buy_condition_0_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["close"] < dataframe["ema_50"])
+@@ -663,7 +663,7 @@
+                 & (self.v6_buy_condition_1_enable.value == True)
+             ),
+             "v6_buy_condition_1_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["close"] > dataframe["ema_200"])
+@@ -679,7 +679,7 @@
+                 & (self.v6_buy_condition_2_enable.value == True)
+             ),
+             "v6_buy_condition_2_enable",
+-        ] = 1
++        ] = True
+         dataframe.loc[
+             (
+                 (dataframe["ema_26"] > dataframe["ema_12"])
+@@ -690,7 +690,7 @@
+                 & (self.v6_buy_condition_3_enable.value == True)
+             ),
+             "v6_buy_condition_3_enable",
+-        ] = 1
++        ] = True
+ 
+         # count the amount of conditions met
+         dataframe.loc[:, "conditions_count"] = (
+@@ -720,7 +720,7 @@
+         conditions.append(dataframe["volume"].gt(0))
+ 
+         if conditions:
+-            dataframe.loc[reduce(lambda x, y: x & y, conditions), "buy"] = 1
++            dataframe.loc[reduce(lambda x, y: x & y, conditions), "buy"] = True
+ 
+         # verbose logging enable only for verbose information or troubleshooting
+         if self.cust_log_verbose == True:
+@@ -757,7 +757,7 @@
+             conditions.append(((dataframe["rsi"] > self.v8_sell_rsi_main.value) & (dataframe["volume"] > 0)))
+ 
+         if conditions:
+-            dataframe.loc[reduce(lambda x, y: x | y, conditions), "sell"] = 1
++            dataframe.loc[reduce(lambda x, y: x | y, conditions), "sell"] = True
+ 
+         return dataframe
+ 

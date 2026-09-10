@@ -584,7 +584,7 @@ class GeneStrategy_v2(IStrategy):
                 (dataframe['roc_1h'] < self.buy_roc_1h.value) &
                 (dataframe['bb_width_1h'] < self.buy_bb_width_1h.value)
             ),
-        ['enter_long', 'enter_tag']] = (1, 'DIP signal')     
+        ['enter_long', 'enter_tag']] = (True, 'DIP signal')     
 
         dataframe.loc[
 
@@ -596,7 +596,7 @@ class GeneStrategy_v2(IStrategy):
                 (dataframe['bb_width_1h'] < self.buy_bb_width_1h.value)
 
             ),
-        ['enter_long', 'enter_tag']] = (1, 'Break signal')    
+        ['enter_long', 'enter_tag']] = (True, 'Break signal')    
         
         
         
@@ -616,7 +616,7 @@ class GeneStrategy_v2(IStrategy):
                         (dataframe['ha_close'] < dataframe['ha_close'].shift()) 
             
                     ),
-        ['enter_long', 'enter_tag']] = (1, 'cluc_HA')    
+        ['enter_long', 'enter_tag']] = (True, 'cluc_HA')    
         
          
         dataframe.loc[    
@@ -631,7 +631,7 @@ class GeneStrategy_v2(IStrategy):
                 (dataframe['close'] > dataframe['ema_50'] * 0.912)
             
             ),
-        ['enter_long', 'enter_tag']] = (1, 'NFIX39')
+        ['enter_long', 'enter_tag']] = (True, 'NFIX39')
         
         dataframe.loc[
                 ((dataframe['close'] > (dataframe['sup_level_1h'] * 0.72)) &
@@ -640,7 +640,7 @@ class GeneStrategy_v2(IStrategy):
                 (dataframe['cti'] < -0.9)
 
             ),
-        ['enter_long', 'enter_tag']] = (1, 'NFIX29')
+        ['enter_long', 'enter_tag']] = (True, 'NFIX29')
         
         dataframe.loc[
                 ((dataframe['ema_26'] > dataframe['ema_12']) &
@@ -650,7 +650,7 @@ class GeneStrategy_v2(IStrategy):
                 (dataframe['closedelta'] > dataframe['close'] * self.buy_closedelta.value / 1000 ) 
                 
              ),
-        ['enter_long', 'enter_tag']] = (1, 'local_uptrend')
+        ['enter_long', 'enter_tag']] = (True, 'local_uptrend')
         
         dataframe.loc[
                 (
@@ -664,7 +664,7 @@ class GeneStrategy_v2(IStrategy):
                 #(dataframe['cmf'] > -0.20) & # povodne som mal -0.10
                 (dataframe['volume'] > 0)
            ),
-        ['enter_long', 'enter_tag']] = (1, 'vwap')
+        ['enter_long', 'enter_tag']] = (True, 'vwap')
         
         dataframe.loc[
                 ((dataframe['bb_width_1h'] > 0.131) &
@@ -678,7 +678,7 @@ class GeneStrategy_v2(IStrategy):
                 #(dataframe['tcp_percent_4'] > 0.053) & # 0.053) 
                 (dataframe['btc_close'].rolling(24).max() >= (dataframe['btc_close'] * 1.03 ))
           ),
-        ['enter_long', 'enter_tag']] = (1, 'insta_signal') 
+        ['enter_long', 'enter_tag']] = (True, 'insta_signal') 
 
         dataframe.loc[
             ((dataframe['close'] < (dataframe['ema_16'] * self.buy_44_ma_offset))&
@@ -688,7 +688,7 @@ class GeneStrategy_v2(IStrategy):
             #(dataframe['tcp_percent_4'] > 0.053) & # 0.053)
             (dataframe['volume'] > 0)
           ),
-        ['enter_long', 'enter_tag']] = (1, 'NFINext44') 
+        ['enter_long', 'enter_tag']] = (True, 'NFINext44') 
 
 
         dataframe.loc[  
@@ -699,7 +699,7 @@ class GeneStrategy_v2(IStrategy):
             (dataframe['cti'] < self.buy_37_cti)
             #(dataframe['safe_dump_50_1h'])  
         ),
-        ['enter_long', 'enter_tag']] = (1, 'NFINext37')   
+        ['enter_long', 'enter_tag']] = (True, 'NFINext37')   
 
         dataframe.loc[ 
             ((dataframe['ema_26'] > dataframe['ema_12'])&
@@ -708,7 +708,7 @@ class GeneStrategy_v2(IStrategy):
             (dataframe['cti'] < self.buy_cti_7)      
 
         ),        
-        ['enter_long', 'enter_tag']] = (1, 'NFINext7')   
+        ['enter_long', 'enter_tag']] = (True, 'NFINext7')   
 
 #newstrat52
         dataframe.loc[
@@ -718,7 +718,7 @@ class GeneStrategy_v2(IStrategy):
                 (dataframe['close'] < dataframe['sma_15'] * 0.942) &
                 (dataframe['cti'] < -0.86)
         ),        
-        ['enter_long', 'enter_tag']] = (1, 'NFINext32')
+        ['enter_long', 'enter_tag']] = (True, 'NFINext32')
 
 
 
@@ -731,7 +731,7 @@ class GeneStrategy_v2(IStrategy):
                 (dataframe['close'] < dataframe['close'].shift()) &
                 (btc_dump == 0)
         ),        
-        ['enter_long', 'enter_tag']] = (1, 'sma_3')
+        ['enter_long', 'enter_tag']] = (True, 'sma_3')
 
         dataframe.loc[
                 ((dataframe['close'] < dataframe['vwap_lowerband']) &
@@ -741,7 +741,7 @@ class GeneStrategy_v2(IStrategy):
                 (rsi_check) &
                 (btc_dump == 0)
         ),        
-        ['enter_long', 'enter_tag']] = (1, 'WVAP')
+        ['enter_long', 'enter_tag']] = (True, 'WVAP')
 
       
         return dataframe

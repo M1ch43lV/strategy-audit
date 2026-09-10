@@ -1,0 +1,20 @@
+--- original/repos/davidzr_freqtrade-strategies/strategies/FastSupertrend/FastSupertrend.py
++++ patched/repos/davidzr_freqtrade-strategies/strategies/FastSupertrend/FastSupertrend.py
+@@ -116,7 +116,7 @@
+                (dataframe[f'supertrend_3_buy_{self.buy_m3.value}_{self.buy_p3.value}'] == 'up') & # The three indicators are 'up' for the current candle
+                (dataframe['volume'] > 0) # There is at least some trading volume
+         ),
+-            'buy'] = 1
++            'buy'] = True
+ 
+         return dataframe
+ 
+@@ -128,7 +128,7 @@
+                (dataframe[f'supertrend_3_sell_{self.sell_m3.value}_{self.sell_p3.value}'] == 'down') & # The three indicators are 'down' for the current candle
+                (dataframe['volume'] > 0) # There is at least some trading volume
+             ),
+-            'sell'] = 1
++            'sell'] = True
+ 
+         return dataframe
+ 

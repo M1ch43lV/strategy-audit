@@ -1,0 +1,20 @@
+--- original/repos/PeetCrypto_freqtrade-stuff/SuperTrendPure.py
++++ patched/repos/PeetCrypto_freqtrade-stuff/SuperTrendPure.py
+@@ -44,7 +44,7 @@
+                (qtpylib.crossed_above(dataframe['close'], dataframe['st'])) &
+                (dataframe['volume'].gt(0))
+             ),
+-            'buy'] = 1
++            'buy'] = True
+ 
+         return dataframe
+ 
+@@ -54,7 +54,7 @@
+                (qtpylib.crossed_below(dataframe['close'], dataframe['st'])) &
+                (dataframe['volume'].gt(0))
+             ),
+-            'sell'] = 1
++            'sell'] = True
+ 
+         return dataframe
+ 

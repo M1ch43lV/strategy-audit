@@ -623,7 +623,7 @@ class ichiV1_Marius(IStrategy):
             dataframe.loc[
                 is_protection &
                 reduce(lambda x, y: x & y, conditions),
-                'buy'] = 1
+                'buy'] = True
 
         return dataframe
 
@@ -637,7 +637,7 @@ class ichiV1_Marius(IStrategy):
         if conditions:
             dataframe.loc[
                 reduce(lambda x, y: x & y, conditions),
-                'sell'] = 1
+                'sell'] = True
 
         return dataframe
         

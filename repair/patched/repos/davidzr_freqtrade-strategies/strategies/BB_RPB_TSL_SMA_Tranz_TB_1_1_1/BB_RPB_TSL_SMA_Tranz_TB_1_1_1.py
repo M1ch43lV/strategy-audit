@@ -2634,7 +2634,7 @@ class BB_RPB_TSL_SMA_Tranz_TB_1_1_1(IStrategy):
                             &
                             reduce(lambda x, y: x | y, conditions)
 
-                        , 'buy' ] = 1
+                        , 'buy' ] = True
 
         return dataframe
 
@@ -2722,7 +2722,7 @@ class BB_RPB_TSL_SMA_Tranz_TB_1_1_1(IStrategy):
             dataframe.loc[
                 reduce(lambda x, y: x | y, conditions),
                 'sell'
-            ] = 1
+            ] = True
 
         return dataframe
 
@@ -2951,7 +2951,7 @@ class BB_RPB_TSL_Tranz_TrailingBuy(BB_RPB_TSL_SMA_Tranz_TB_1_1_1):
             else:
                 if (trailing_buy['trailing_buy_order_started'] == True):
                     log.info(f"Continue trailing for {metadata['pair']}. Manually trigger buy signal!!")
-                    dataframe.loc[:,'buy'] = 1
+                    dataframe.loc[:,'buy'] = True
                     dataframe.loc[:, 'buy_tag'] = trailing_buy['buy_tag']
                     # dataframe['buy'] = 1
                     #idk its the right place here nut yea

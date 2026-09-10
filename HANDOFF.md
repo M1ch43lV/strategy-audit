@@ -3,13 +3,15 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-09T02:33:18+02:00
-- Stopped because: repository classification, root cleanup, validation, commit,
-  and AST-only Graphify refresh are complete
-- Next agent should: return to the 51 missing resumable Model 0 rows after the
-  mandatory writer checks. Do not move additional
-  root reports merely to reduce the count: the remaining 22 files are the
-  current user-facing documents, status outputs, or repository metadata.
+- Last update: 2026-09-09T03:05:00+02:00
+- Stopped because: the owner froze a three-month Futures recursion window, but
+  the productive Model 0 container is still active and the one-heavy-writer
+  rule forbids starting the 24 requested Futures ladder reruns concurrently
+- Next agent should: let the current Model 0 writer finish, then supersede and
+  rerun exactly the 24 Futures rows whose current `primary_reason` is
+  `recursive_bias_found`; regenerate/adjudicate status afterward. Do not include
+  the 8 `recursive_check_incomplete_at_longest_rungs` rows in that count: they
+  have no positive recursion-bias finding.
 
 ## Objective
 
@@ -46,6 +48,9 @@ entry; do not reread the roughly 2,000-line file end to end.
 - Eligibility protocol when measurement/admission is involved:
   `ELIGIBILITY_EXPANSION_PLAN.md` sections 6 and 7. The old Wave C pointer is
   retired; all expansion waves are already terminal in current artifacts.
+- Futures recursion retest: `REGIME_PREREGISTRATION.md`, amendment
+  `2026-09-09: three-month Futures recursion window`, plus
+  `evidence/profile_bias.py` and `evidence/warmup_convergence.py`.
 
 ## Machine state - authoritative
 
@@ -98,6 +103,10 @@ Observed 2026-09-09T02:33:18+02:00 after the final cleanup commit at HEAD `a1b7e
 - The post-commit hook refreshed Graphify AST-only to 1,363 nodes, 2,205 edges,
   and 155 communities. A fresh traversal resolves active code under its owning
   directories, including `tools/harness.py`; no root Python node remains.
+- At the 2026-09-09 Futures-window decision, container `d1462dc40d52` was
+  actively writing Model 0. The then-current status held 153 Futures profiles:
+  74 excluded, including exactly 24 `recursive_bias_found` and 8 separate
+  `recursive_check_incomplete_at_longest_rungs` rows.
 
 ## Current implementation checkpoint
 
@@ -258,11 +267,30 @@ compileall including the archive; active-tree AST parse (94 files); secret-gate
 selftest; and `git diff --check` PASS. The status page still contains 1,050
 rows. No benchmark or analyzer was started.
 
+Futures recursion-window change: `profile_bias.WINDOWS['futures']` is now
+`20200301-20200601`; Spot remains `20190101-20190401`. The preregistration and
+pipeline record the owner's prospective decision and why the old one-month
+window was an undocumented smoke-window inheritance. `redo_defective()` now
+moves a convergence record whose timerange differs from the current frozen
+mode window under `superseded`, and accepts the CLI's explicit strategy filter.
+Profile-bias and convergence selftests plus targeted compileall PASS. The
+productive rerun has not started because Model 0 is still active.
+
 ## Next concrete steps
 
-1. Verify the final cleanup commit and the AST-only Graphify post-commit update.
-2. Repeat machine, lock, artifact and Git checks; never start a second writer.
-3. Complete the 51 missing Model 0 E1 rows resumably and adjudicate
+1. Let the active Model 0 writer finish; repeat machine, lock, artifact and Git
+   checks. Do not start the Futures recursion analyzer while it is active.
+2. Derive the 24 target IDs from the current status with `run_profile` beginning
+   `futures_`, `cohort == excluded`, and
+   `primary_reason == recursive_bias_found`. Pass the same explicit IDs first
+   to `python -m evidence.warmup_convergence --cohort recursive_unsettled
+   --redo-defective --strategy <ID>...`, then to the same command without
+   `--redo-defective` and with `--limit 0`. This preserves old records under
+   `superseded` and writes the three-month ladder results resumably.
+3. Regenerate status, run admission only for newly converged clean-gate rows,
+   regenerate status again, and report how many of the original 24 remain
+   excluded, become pending, or enter E1. Keep the original target denominator.
+4. Complete remaining Model 0 rows resumably and adjudicate
    resource-inconclusive failures
    under the existing attempt rules. Do not run a second Model 0 writer.
 4. Resolve the eight OPEN preregistration choices before producing a discovery
@@ -278,6 +306,9 @@ rows. No benchmark or analyzer was started.
 - Corpus intake and the completed eligibility expansion waves.
 - Warm-up ladders, native bias diagnostics, or admission decisions already
   represented in current stores.
+- Exception authorized 2026-09-09: supersede and rerun the 24 Futures
+  `recursive_bias_found` ladder records because their one-month timerange is no
+  longer the frozen rule. Do not rerun unaffected Spot rows.
 - The 5-profile ungated adapter equivalence suite.
 - Regime feature generation unless its hashed candle inputs or frozen formula
   change.
@@ -303,6 +334,8 @@ rows. No benchmark or analyzer was started.
 
 - Spot analysis window: `20200401-20260821`.
 - Futures analysis window: `20200301-20260821`.
+- Bias/convergence diagnostic windows: Spot `20190101-20190401`; Futures
+  `20200301-20200601` after the prospective 2026-09-09 amendment.
 - Eight-pair pooled canonical universe; pairwise shards are supporting trade
   evidence and do not replace pooled shared-capital mechanics.
 - Primary state model: Wilder DMI/ADX(14), causal one-day lag, four states.

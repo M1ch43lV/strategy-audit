@@ -402,6 +402,144 @@ def apply_restore_feature_source(src):
     return RX_COMMENTED_MML.sub(repl, src)
 
 
+# ── rule 7: legacy int literal into a now bool-typed column ─────────────────
+
+# freqtrade guarantees these five are declared bool without needing textual
+# proof from the file itself - the standard pre-2021 idiom
+# `dataframe.loc[conditions, 'buy'] = 1` is safe on the framework's own word.
+SIGNAL_COLUMNS = {"buy", "sell", "enter_long", "exit_long",
+                  "enter_short", "exit_short"}
+
+
+def _column_name(target):
+    """The column a `Subscript` assignment target names, or None.
+
+    Handles both `df['col'] = ...` and the `.loc[cond, 'col'] = ...` shape,
+    where the slice is a tuple and the column is its last element. A
+    list/tuple of several columns on one side (`.loc[cond, ['a', 'b']] =
+    (1, 2)`) returns None - not this shape, deliberately left alone rather
+    than guessed at positionally.
+    """
+    if not isinstance(target, ast.Subscript):
+        return None
+    key = target.slice
+    if isinstance(key, ast.Tuple) and key.elts:
+        key = key.elts[-1]
+    if isinstance(key, ast.Constant) and isinstance(key.value, str):
+        return key.value
+    return None
+
+
+def _bool_typed_columns(tree):
+    """Column names the file itself assigns a bare `True`/`False` literal to
+    at least once - the author's own declaration that the column is a flag,
+    not merely a name that looks like one. Established once per file, not
+    per assignment, so a column set to `False` for initialisation and later
+    to `1` for a specific candle is still recognised as the same column.
+    """
+    found = set()
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Assign):
+            continue
+        if not (isinstance(node.value, ast.Constant)
+                and isinstance(node.value.value, bool)):
+            continue
+        for target in node.targets:
+            name = _column_name(target)
+            if name:
+                found.add(name)
+    return found
+
+
+def _is_int01(node):
+    return (isinstance(node, ast.Constant)
+            and isinstance(node.value, int)
+            and not isinstance(node.value, bool)
+            and node.value in (0, 1))
+
+
+def _int_literal_assignments(tree, bool_columns):
+    """Every literal-0/1 AST node that a column in `bool_columns` receives -
+    either a freqtrade signal column (always eligible) or one this same file
+    proved bool-typed itself via `_bool_typed_columns`. Two assignment
+    shapes, both common in this corpus's pre-2021 strategies:
+
+    * single column: `df['col'] = 1`, `df.loc[cond, 'col'] = 1` - the
+      literal is the whole right-hand side.
+    * several columns at once: `df.loc[cond, ['col', 'tag']] = (1, 'text')` -
+      only the position paired with a bool-proven column name is a hit;
+      the row's other elements (an entry tag, say) are untouched, and a
+      length mismatch between the column list and the value tuple is
+      skipped rather than guessed at.
+    """
+    hits = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Assign):
+            continue
+        for target in node.targets:
+            if not isinstance(target, ast.Subscript):
+                continue
+            key = target.slice
+            if isinstance(key, ast.Tuple) and key.elts:
+                key = key.elts[-1]
+            if isinstance(key, ast.Constant) and isinstance(key.value, str):
+                if key.value in bool_columns and _is_int01(node.value):
+                    hits.append(node.value)
+            elif (isinstance(key, (ast.List, ast.Tuple))
+                  and isinstance(node.value, (ast.List, ast.Tuple))
+                  and len(key.elts) == len(node.value.elts)):
+                for col, val in zip(key.elts, node.value.elts):
+                    if (isinstance(col, ast.Constant)
+                            and isinstance(col.value, str)
+                            and col.value in bool_columns
+                            and _is_int01(val)):
+                        hits.append(val)
+    return hits
+
+
+def pre_signal_int_literal(src, path):
+    """A strategy written before pandas enforced a column's declared dtype
+    assigns the literal 1/0 it always meant as a flag - into freqtrade's own
+    signal columns, or into a column the file's own code elsewhere assigns
+    `True`/`False` to, which is the author stating the same thing about
+    their own column. `True`/`False` are the exact same value as `1`/`0`
+    under Python's own `bool <: int` (`1 == True` unconditionally), so which
+    literal spells "flagged" cannot change which candles freqtrade decides
+    to enter or exit on, or what a custom flag column reads as downstream.
+    Scoped to columns proven bool one way or the other, by the AST, not by
+    file: an integer written anywhere else, in a column with no bool
+    declaration on record, is left untouched.
+    """
+    try:
+        tree = ast.parse(src)
+    except SyntaxError as e:
+        return False, "cannot parse file: %s" % str(e)[:60]
+    bool_columns = SIGNAL_COLUMNS | _bool_typed_columns(tree)
+    hits = _int_literal_assignments(tree, bool_columns)
+    if not hits:
+        return False, "no bare 0/1 literal assigned to a column proven bool-typed"
+    return True, ("%d assignment(s) of a literal 0/1 into a column this file "
+                  "itself declares bool (signal column, or assigned True/"
+                  "False elsewhere in the same file) - the same value under "
+                  "a different spelling" % len(hits))
+
+
+def apply_signal_int_literal(src):
+    tree = ast.parse(src)
+    bool_columns = SIGNAL_COLUMNS | _bool_typed_columns(tree)
+    hits = _int_literal_assignments(tree, bool_columns)
+    lines = src.splitlines(keepends=True)
+    # Highest position first so an earlier replacement cannot shift the
+    # recorded line/column of a node still to be applied.
+    for node in sorted(hits, key=lambda n: (n.lineno, n.col_offset),
+                       reverse=True):
+        replacement = "True" if node.value == 1 else "False"
+        line = lines[node.lineno - 1]
+        lines[node.lineno - 1] = (
+            line[:node.col_offset] + replacement + line[node.end_col_offset:])
+    return "".join(lines)
+
+
 RULES = [
     ("restore_commented_feature_source", pre_restore_feature_source,
      apply_restore_feature_source),
@@ -410,6 +548,8 @@ RULES = [
     ("param_missing_space", pre_space, apply_space),
     ("rolling_any_masked", pre_rolling_any_masked, apply_rolling_any_masked),
     ("rolling_any_detect_only", pre_rolling_any, None),
+    ("legacy_signal_int_literal", pre_signal_int_literal,
+     apply_signal_int_literal),
 ]
 
 
@@ -436,8 +576,29 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
+    # The report is read by evidence/execution_profiles.py to decide which
+    # strategies get their patched overlay selected as canonical, and this
+    # driver has always been run against whatever ledger the moment called
+    # for - the default, or a one-off custom one for a single family like
+    # dtype_drift. A plain overwrite here means the SECOND kind erases every
+    # strategy the FIRST kind ever patched: a dtype_drift-only ledger run on
+    # 2026-09-09 silently dropped 58 already-patched strategies (`BBRSIS`
+    # among them) from this file, and evidence/execution_profiles.py just as
+    # silently stopped selecting their overlays - the files stayed on disk
+    # under repair/patched/, only the record of them existed nowhere this
+    # driver, or anything downstream of it, still read. Carrying forward
+    # every strategy this run does not itself touch is what makes a custom
+    # ledger additive instead of destructive.
+    report_path = os.path.join(ROOT, "repair", "patch_class2_report.json")
+    previous_by_strategy = {}
+    if os.path.exists(report_path):
+        for entry in json.loads(io.open(report_path, encoding="utf-8").read()):
+            previous_by_strategy.setdefault(entry["strategy"], []).append(entry)
+
     report, patched = [], 0
+    seen_this_run = set()
     for name, repo, rel in targets_from_ledger(args.ledger):
+        seen_this_run.add(name)
         path = os.path.join(AUD, rel)
         if not os.path.exists(path):
             continue
@@ -482,14 +643,22 @@ def main():
         io.open(os.path.join(DIFFS, name.replace("/", "_") + ".diff"),
                 "w", encoding="utf-8").write("".join(diff))
 
-    dst = os.path.join(ROOT, "repair", "patch_class2_report.json")
+    carried = 0
+    for strategy, entries in previous_by_strategy.items():
+        if strategy in seen_this_run:
+            continue
+        report.extend(entries)
+        carried += 1
+
     if not args.dry_run:
-        io.open(dst, "w", encoding="utf-8").write(
+        io.open(report_path, "w", encoding="utf-8").write(
             json.dumps(report, ensure_ascii=False, indent=1))
     acted = [r for r in report if r["action"] == "patched"]
     refused = [r for r in report if r["action"] == "refused"]
-    print("patched %d strategies | refused %d | %s"
-          % (len(acted), len(refused), "DRY RUN" if args.dry_run else "written to " + OVERLAY))
+    print("patched %d strategies | refused %d | %d carried forward from "
+          "earlier ledgers | %s"
+          % (len(acted), len(refused), carried,
+             "DRY RUN" if args.dry_run else "written to " + OVERLAY))
     for r in acted[:15]:
         print("  + %-34s %s" % (r["strategy"][:34], ",".join(r["rule"])))
     if refused:

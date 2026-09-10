@@ -9,3 +9,19 @@
  
          return dataframe
  
+@@ -57,7 +57,7 @@
+                 (dataframe['sma5'] >= dataframe['sma200']) &
+                 (dataframe['rsi'] < (dataframe['resample_{}_rsi'.format(self.get_ticker_indicator() * 8)] - 20))
+             ),
+-            'buy'] = 1
++            'buy'] = True
+         return dataframe
+ 
+     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+@@ -66,5 +66,5 @@
+                 (dataframe['rsi'] > dataframe['resample_{}_rsi'.format(self.get_ticker_indicator()*2)]) &
+                 (dataframe['rsi'] > dataframe['resample_{}_rsi'.format(self.get_ticker_indicator()*8)])
+             ),
+-            'sell'] = 1
++            'sell'] = True
+         return dataframe

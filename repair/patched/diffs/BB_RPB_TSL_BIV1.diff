@@ -10,6 +10,22 @@
      ## Sell params
  
      sell_btc_safe = IntParameter(-400, -300, default=-365, optimize = False)
+@@ -871,13 +870,13 @@
+                             &
+                             reduce(lambda x, y: x | y, conditions)
+ 
+-                        , 'buy' ] = 1
++                        , 'buy' ] = True
+ 
+         return dataframe
+ 
+     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+ 
+-        dataframe.loc[ (dataframe['volume'] > 0), 'sell' ] = 0
++        dataframe.loc[ (dataframe['volume'] > 0), 'sell' ] = False
+ 
+         return dataframe
+ 
 @@ -968,7 +967,7 @@
      pm = Series(pm_arr)
  

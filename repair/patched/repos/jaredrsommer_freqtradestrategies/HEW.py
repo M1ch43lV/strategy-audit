@@ -792,11 +792,11 @@ class HEW(IStrategy):
         self.detect_wave_patterns(dataframe)
         dataframe['is_down_pattern'] = dataframe['wave_pattern'].isin(['zigzag_down', 'flat_down']).astype(int)
         dataframe['is_up_pattern'] = dataframe['wave_pattern'].isin(['zigzag_up', 'flat_up']).astype(int)
-        dataframe['enter_long'] = 0
-        dataframe['enter_short'] = 0
+        dataframe['enter_long'] = False
+        dataframe['enter_short'] = False
         dataframe['enter_tag'] = ''
-        dataframe['exit_long'] = 0
-        dataframe['exit_short'] = 0
+        dataframe['exit_long'] = False
+        dataframe['exit_short'] = False
 
         return dataframe
 

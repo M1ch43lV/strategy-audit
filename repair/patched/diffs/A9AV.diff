@@ -1,6 +1,6 @@
 --- original/repos/jaredrsommer_freqtradestrategies/A9AV.py
 +++ patched/repos/jaredrsommer_freqtradestrategies/A9AV.py
-@@ -87,7 +87,7 @@
+@@ -87,12 +87,12 @@
          dataframe.loc[
              (dataframe['volume'] > dataframe['SMA_9']) &
              (dataframe['close'].shift(1) < dataframe['close']) &
@@ -9,7 +9,13 @@
              'buy_signal'
          ] = 1
  
-@@ -103,7 +103,7 @@
+         # Set buy signal in the `buy` column
+-        dataframe.loc[dataframe['buy_signal'] == 1, 'buy'] = 1
++        dataframe.loc[dataframe['buy_signal'] == 1, 'buy'] = True
+ 
+         return dataframe
+ 
+@@ -103,11 +103,11 @@
          dataframe.loc[
              (dataframe['volume'] > dataframe['SMA_9']) &
              (dataframe['close'].shift(1) > dataframe['close']) &
@@ -18,3 +24,8 @@
              'sell_signal'
          ] = 1
  
+         # Set sell signal in the `sell` column
+-        dataframe.loc[dataframe['sell_signal'] == 1, 'sell'] = 1
++        dataframe.loc[dataframe['sell_signal'] == 1, 'sell'] = True
+ 
+         return dataframe

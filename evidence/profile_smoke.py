@@ -23,6 +23,7 @@ import zipfile
 
 
 from runtime import runlog
+from repair.overrides import repair_overrides
 
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -455,7 +456,7 @@ def selftest():
     saved_identity, saved_run_one = _identity, run_one
     calls = []
     _identity = lambda row: {"canonical_sha256": row["_sha"]}
-    run_one = lambda row, timerange, timeout: (
+    run_one = lambda row, timerange, timeout, config_overrides=None: (
         calls.append(row["strategy_id"]) or {"status": "measured", "trades": 1})
     try:
         with tempfile.TemporaryDirectory() as directory:
@@ -528,14 +529,33 @@ def _run(args, rows, claim):
     data = read_results(args.output)
     data["timerange"] = args.timerange
     data["config"] = os.path.basename(FUTURES_CONFIG)
+    # A repair-store override (a recovered timeframe, most often) has to
+    # reach this run the same way it already reaches regime/full_backtest.py
+    # and eligibility_timeframe_repair.py's own specialised runner - without
+    # it, this plain CLI re-fails a row a repair store already answered.
+    # `BBRSIS` measured 110 trades under `eligibility_timeframe_repair.py`
+    # (its own `ticker_interval = '5m'`, recovered as a config override) and
+    # then failed here, on the identical row, for want of the same value
+    # this call never asked for.
+    overrides = repair_overrides()
     print("profile smoke candidates: %d" % len(rows), flush=True)
     for index, row in enumerate(rows, 1):
         name = row["strategy_id"]
         previous = data["results"].get(name)
+        settings = overrides.get(name) or None
         try:
             identity = _identity(row)
         except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
             identity = {"identity_error": "%s: %s" % (type(exc).__name__, exc)}
+        # Folded in only when an override actually exists for this row: a
+        # row with none keeps exactly today's comparison, so this cannot
+        # read the rest of the corpus as changed just because the field now
+        # exists. A row that DOES have one and never carried it before -
+        # every row measured before this fix - is, correctly, read as
+        # changed exactly once.
+        if settings:
+            identity = dict(identity)
+            identity["config_overrides"] = settings
         # A stored record is only current if it was measured under this
         # exact file and config - not merely "some record exists". Checking
         # only presence let three rows updated by an upstream `git pull`
@@ -551,7 +571,7 @@ def _run(args, rows, claim):
             write_results(data, args.output)
             print("[%d/%d] %-38s skip" % (index, len(rows), name), flush=True)
             continue
-        result = run_one(row, args.timerange, args.timeout)
+        result = run_one(row, args.timerange, args.timeout, config_overrides=settings)
         result.update(identity)
         result["runtime_id"] = os.environ.get(
             "PROFILE_RUNTIME_ID", "native_unversioned")

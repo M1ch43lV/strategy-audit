@@ -323,7 +323,7 @@ class Matrix(IStrategy):
             (
                 (dataframe['buy_count'] >= self.buy_min_corr_pairs.value) &
                 (dataframe['volume'] > 0)
-            ),'buy'] = 1
+            ),'buy'] = True
 
         return dataframe
 
@@ -351,7 +351,7 @@ class Matrix(IStrategy):
             (
                 (dataframe['sell_count'] >= self.sell_min_corr_pairs.value) &
                 (dataframe['volume'] > 0)
-            ),'sell'] = 1
+            ),'sell'] = True
 
         return dataframe
 

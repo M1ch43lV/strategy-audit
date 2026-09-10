@@ -1,5 +1,14 @@
 --- original/repos/PeetCrypto_freqtrade-stuff/NFIXMod1.3_TraNz (3).py
 +++ patched/repos/PeetCrypto_freqtrade-stuff/NFIXMod1.3_TraNz (3).py
+@@ -8325,7 +8325,7 @@
+         return dataframe
+ 
+     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+-        dataframe.loc[:, 'sell'] = 0
++        dataframe.loc[:, 'sell'] = False
+ 
+         return dataframe
+ 
 @@ -8630,7 +8630,7 @@
      pm = Series(pm_arr)
  

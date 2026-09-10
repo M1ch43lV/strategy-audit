@@ -9,3 +9,20 @@
          dataframe['tk_cross_up'].fillna(value=0, inplace=True)
  
          # dataframe['rsi_ok'] = (dataframe['rsi'] < 75).astype('int')
+@@ -155,7 +155,7 @@
+ 
+         dataframe.loc[
+             reduce(lambda x, y: x & y, conditions),
+-            'buy'] = 1
++            'buy'] = True
+ 
+         return dataframe
+ 
+@@ -172,6 +172,6 @@
+ 
+         dataframe.loc[
+             reduce(lambda x, y: x & y, conditions),
+-            'sell'] = 1
++            'sell'] = True
+ 
+         return dataframe

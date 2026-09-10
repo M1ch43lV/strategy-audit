@@ -647,7 +647,7 @@ class HurstCycleV5RSI(IStrategy):
                 (dataframe['close'].rolling(5).min() < dataframe['vtl_up']) &
                 (dataframe['close'] > dataframe['vtl_up'])
             ),
-            ['enter_long', 'enter_tag']] = (1, 'Minima Full Send')
+            ['enter_long', 'enter_tag']] = (True, 'Minima Full Send')
 
 
         if self.can_short == True:
@@ -656,7 +656,7 @@ class HurstCycleV5RSI(IStrategy):
                 (dataframe['trend_location'] > self.sell_thres.value) &
                 (dataframe['close'].rolling(5).max() > dataframe['vtl_down']) &
                 (dataframe['close'] < dataframe['vtl_down']),
-                'enter_short'] = 1
+                'enter_short'] = True
 
         return dataframe
 

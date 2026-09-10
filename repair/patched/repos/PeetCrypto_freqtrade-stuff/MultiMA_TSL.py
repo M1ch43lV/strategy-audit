@@ -346,7 +346,7 @@ class MultiMA_TSL3(IStrategy):
 
         dataframe.loc[:, 'buy_tag'] = ''
         dataframe.loc[:, 'buy_copy'] = 0
-        dataframe.loc[:, 'buy'] = 0
+        dataframe.loc[:, 'buy'] = False
 
         if (self.buy_condition_trima_enable.value):
             dataframe['trima_offset_buy'] = ta.TRIMA(dataframe,
@@ -480,12 +480,12 @@ class MultiMA_TSL3(IStrategy):
             dataframe.loc[
                 (add_check & reduce(lambda x, y: x | y, conditions)),
                 ['buy_copy', 'buy']
-            ] = (1, 1)
+            ] = (1, True)
 
         return dataframe
 
     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        dataframe.loc[:, 'sell'] = 0
+        dataframe.loc[:, 'sell'] = False
 
         return dataframe
 
@@ -631,7 +631,7 @@ class MultiMA_TSL3a(MultiMA_TSL3):
 
         dataframe.loc[:, 'buy_tag'] = ''
         dataframe.loc[:, 'buy_copy'] = 0
-        dataframe.loc[:, 'buy'] = 0
+        dataframe.loc[:, 'buy'] = False
 
         if (self.buy_condition_trima_enable.value):
             dataframe['trima_offset_buy'] = ta.TRIMA(dataframe,
@@ -767,7 +767,7 @@ class MultiMA_TSL3a(MultiMA_TSL3):
             dataframe.loc[
                 (add_check & reduce(lambda x, y: x | y, conditions)),
                 ['buy_copy', 'buy']
-            ] = (1, 1)
+            ] = (1, True)
 
         return dataframe
 

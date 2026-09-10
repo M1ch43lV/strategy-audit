@@ -2,8 +2,8 @@
 
 This report inventories the unversioned Freqtrade candle files used by the
 native execution profiles. The machine-readable result is
-`REGIME_COVERAGE.csv`; its policy is frozen in
-`REGIME_COVERAGE_POLICY.json`.
+`evidence/REGIME_COVERAGE.csv`; its policy is frozen in
+`evidence/REGIME_COVERAGE_POLICY.json`.
 
 The checked window is `2020-03-01T00:00:00Z` through `2026-08-21T00:00:00Z` (exclusive end). A documented
 listing/delisting boundary is valid available history. Exchange-wide gaps
@@ -18,19 +18,19 @@ each result to file size, temporal edges, row count, and duplicate count.
 
 | Status | Strategy profiles |
 |---|---:|
-| `PASS` | 1006 |
-| `PENDING` | 44 |
+| `PASS` | 1012 |
+| `PENDING` | 38 |
 
 ## Run profiles
 
 | Run profile / status | Strategies |
 |---|---:|
 | `futures_long / PASS` | 45 |
-| `futures_long_short / PASS` | 96 |
-| `futures_long_short / PENDING` | 7 |
+| `futures_long_short / PASS` | 97 |
+| `futures_long_short / PENDING` | 6 |
 | `futures_short / PASS` | 5 |
-| `spot_long / PASS` | 860 |
-| `spot_long / PENDING` | 35 |
+| `spot_long / PASS` | 865 |
+| `spot_long / PENDING` | 30 |
 | `unknown / PENDING` | 2 |
 
 ## Pending data conditions
@@ -39,7 +39,7 @@ Counts are row counts and may overlap.
 
 | Condition | Rows |
 |---|---:|
-| Unsupported, missing, or unknown timeframe/profile | 43 |
+| Unsupported, missing, or unknown timeframe/profile | 37 |
 | One or more required pair files missing | 0 |
 | One or more temporal edges incomplete | 1 |
 | Futures mark/funding feed incomplete | 0 |

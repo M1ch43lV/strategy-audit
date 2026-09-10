@@ -869,13 +869,13 @@ class BB_RPB_TSL_BI(IStrategy):
                             &
                             reduce(lambda x, y: x | y, conditions)
 
-                        , 'buy' ] = 1
+                        , 'buy' ] = True
 
         return dataframe
 
     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
 
-        dataframe.loc[ (dataframe['volume'] > 0), 'sell' ] = 0
+        dataframe.loc[ (dataframe['volume'] > 0), 'sell' ] = False
 
         return dataframe
 

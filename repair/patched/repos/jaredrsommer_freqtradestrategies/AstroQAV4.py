@@ -408,7 +408,7 @@ class AstroQAV4(IStrategy):
                 (df['balsamic_moon'] == 0) &  # Avoid consolidation
                 (df['volume'] > 0)
             ),
-            ['enter_long', 'enter_tag']] = (1, 'Minima with Harmonious Aspect')
+            ['enter_long', 'enter_tag']] = (True, 'Minima with Harmonious Aspect')
 
         # Entry with minima check, no challenging aspects
         challenging_aspects = [col for col in df.columns if any(
@@ -423,7 +423,7 @@ class AstroQAV4(IStrategy):
                 (df[challenging_aspects].sum(axis=1) == 0) &  # No challenging aspects
                 (df['volume'] > 0)
             ),
-            ['enter_long', 'enter_tag']] = (1, 'Minima Check Clear')
+            ['enter_long', 'enter_tag']] = (True, 'Minima Check Clear')
         return df
 
     def populate_exit_trend(self, df: DataFrame, metadata: dict) -> DataFrame:
@@ -438,7 +438,7 @@ class AstroQAV4(IStrategy):
                 (df[challenging_aspects].sum(axis=1) > 0) &  # At least one challenging aspect
                 (df['volume'] > 0)
             ),
-            ['exit_long', 'exit_tag']] = (1, 'Challenging Aspect')
+            ['exit_long', 'exit_tag']] = (True, 'Challenging Aspect')
 
         # Standard exit with maxima
         df.loc[
@@ -449,7 +449,7 @@ class AstroQAV4(IStrategy):
                 (df["maxima"].shift(1) == 1) &
                 (df['volume'] > 0)
             ),
-            ['exit_long', 'exit_tag']] = (1, 'Maxima')
+            ['exit_long', 'exit_tag']] = (True, 'Maxima')
         return df
 
 # Helper Functions

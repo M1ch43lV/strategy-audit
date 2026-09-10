@@ -36,7 +36,10 @@ PYTHON = os.environ.get("PROFILE_PYTHON", sys.executable)
 FT_WRAPPER = os.path.join(ROOT, "evidence/profile_freqtrade.py")
 LOG_DIR = os.path.join(ROOT, "user_data", "profile_bias_logs")
 ISOLATED_DIR = os.path.join(ROOT, "user_data", "profile_bias_strategies")
-WINDOWS = {"spot": "20190101-20190401", "futures": "20200301-20200401"}
+# Owner decision 2026-09-09: both native-mode recursion gates observe three
+# calendar months. Futures starts after the available Jan-Feb 2020 prefix, so
+# its diagnostic interval is March through May (exclusive end 1 June).
+WINDOWS = {"spot": "20190101-20190401", "futures": "20200301-20200601"}
 INTERMEDIATE_WINDOW = "20200101-20220101"
 FALLBACK_WINDOW = "20200301-20260820"
 

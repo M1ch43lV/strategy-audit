@@ -4892,12 +4892,12 @@ class NfiNextModded(IStrategy):
                     (dataframe["close"] <= dataframe["low"].shift().rolling(288).min()) &  # Guard: tema is raising
                     (dataframe['volume'] > 0)  # Make sure Volume is not 0
             ),
-            'buy'] = 1
+            'buy'] = True
 
         return dataframe
 
     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        dataframe.loc[:, 'sell'] = 0
+        dataframe.loc[:, 'sell'] = False
 
         return dataframe
 

@@ -155,7 +155,7 @@ class ObeliskIM_v1_1(IStrategy):
 
         dataframe.loc[
             reduce(lambda x, y: x & y, conditions),
-            'buy'] = 1
+            'buy'] = True
 
         return dataframe
 
@@ -172,6 +172,6 @@ class ObeliskIM_v1_1(IStrategy):
 
         dataframe.loc[
             reduce(lambda x, y: x & y, conditions),
-            'sell'] = 1
+            'sell'] = True
 
         return dataframe

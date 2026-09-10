@@ -1,0 +1,16 @@
+--- original/repos/nateemma_strategies/Basket/MomentumRegimeBasket15m.py
++++ patched/repos/nateemma_strategies/Basket/MomentumRegimeBasket15m.py
+@@ -869,11 +869,11 @@
+         return dataframe
+ 
+     def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+-        dataframe.loc[dataframe["hold"] & (dataframe["volume"] > 0), "enter_long"] = 1
++        dataframe.loc[dataframe["hold"] & (dataframe["volume"] > 0), "enter_long"] = True
+         return dataframe
+ 
+     def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+-        dataframe.loc[~dataframe["hold"], "exit_long"] = 1   # exit when out of top-N or risk-off
++        dataframe.loc[~dataframe["hold"], "exit_long"] = True   # exit when out of top-N or risk-off
+         return dataframe
+ 
+     def _quote_volume(self, df) -> float:

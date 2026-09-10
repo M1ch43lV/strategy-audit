@@ -1,0 +1,11 @@
+--- original/repos/TheoBrigitte_freqtrade/strategies/danke/Danke.py
++++ patched/repos/TheoBrigitte_freqtrade/strategies/danke/Danke.py
+@@ -2246,7 +2246,7 @@
+         return dataframe
+ 
+     def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+-        dataframe.loc[:, 'exit_long'] = 0
++        dataframe.loc[:, 'exit_long'] = False
+         return dataframe
+ 
+     def confirm_trade_exit(self, pair: str, trade: 'Trade', order_type: str, amount: float, rate: float, time_in_force: str, exit_reason: str, **kwargs) -> bool:

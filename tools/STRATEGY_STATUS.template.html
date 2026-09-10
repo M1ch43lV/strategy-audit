@@ -70,6 +70,22 @@
   .stat.is-cand b{color:var(--cand)}
   .stat.is-fail b{color:var(--fail)}
   .stat.is-hold b{color:var(--hold)}
+  .stat-sub{margin-top:10px; padding-top:10px; border-top:1px solid var(--line-soft);
+    display:flex; flex-direction:column; gap:2px}
+  .stat-sub b{font-family:"IBM Plex Mono",ui-monospace,monospace; font-weight:600;
+    font-size:16px; letter-spacing:-.01em; font-variant-numeric:tabular-nums;
+    color:var(--fail); line-height:1.05}
+  .stat-sub span{font-size:10px; font-weight:600; letter-spacing:.05em;
+    text-transform:uppercase; color:var(--muted)}
+  .stat-sub.is-hold b{color:var(--hold)}
+  .stat-sub + .stat-sub{margin-top:8px; padding-top:8px}
+  .stat-breakdown{list-style:none; margin:6px 0 0; padding:0; display:flex;
+    flex-direction:column; gap:2px}
+  .stat-breakdown li{display:flex; justify-content:space-between; gap:8px;
+    font-size:10.5px; color:var(--muted)}
+  .stat-breakdown b{font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:10.5px; font-weight:600; color:var(--ink);
+    font-variant-numeric:tabular-nums; letter-spacing:0}
 
   section{display:flex; flex-direction:column; gap:14px}
   h2{font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
@@ -117,6 +133,16 @@
     border-bottom:1px solid var(--line); cursor:pointer; user-select:none}
   thead th.n{text-align:right}
   thead th:hover{color:var(--ink)}
+  .sort-ind{color:var(--accent); font-size:9px; letter-spacing:0}
+  .sort-ind sup{font-size:8px}
+  .th-filter{display:inline-block; margin-left:6px; font-family:"IBM Plex Mono",
+    ui-monospace,monospace; font-size:9px; font-weight:700; letter-spacing:0;
+    text-transform:none; padding:1px 3px; border-radius:3px; max-width:52px;
+    border:1px solid var(--line); background:var(--surface); color:var(--faint);
+    cursor:pointer; vertical-align:1px}
+  .th-filter:hover{color:var(--ink); border-color:var(--faint)}
+  .th-filter.is-active{background:var(--accent-soft);
+    border-color:var(--accent); color:var(--accent)}
   tbody tr{border-bottom:1px solid var(--line-soft)}
   tbody tr:last-child{border-bottom:0}
   td{padding:8px 12px; vertical-align:middle; font-size:13.5px}
@@ -274,33 +300,14 @@
 
   <section>
     <h2>What excludes a strategy</h2>
-    <p class="note">Three things, and nothing else. Each is a result this
+    <p class="note">__CRITERIA_COUNT__ things, and nothing else. Each is a result this
     audit produced itself, on this data, in this runtime.</p>
     <div class="legend">
-      <div>
-        <h3>C1 &middot; Look-ahead found</h3>
-        <p class="lead"><code>lookahead = FOUND</code> from a run of ours. The
-        strategy reads data it could not have had at the time, and no repair
-        undoes that without rewriting what the author wrote.</p>
-      </div>
-      <div>
-        <h3>C2 &middot; Recursion found</h3>
-        <p class="lead"><code>recursive_evidence = convergence:not_settled</code>.
-        The ladder supplied up to a year of warm-up and an indicator still
-        moved by 1&nbsp;% or more at every rung, so its value depends on where
-        the backtest starts.</p>
-      </div>
-      <div>
-        <h3>C3 &middot; Never trades</h3>
-        <p class="lead">Ran <code>20200301-20260821</code> over all eight
-        pairs and opened nothing. There is nothing to classify by market
-        phase. Only when nothing on our side stopped it &mdash; four of the
-        eleven turned out to be our setup, not the strategy.</p>
-      </div>
+__CRITERIA__
     </div>
     <p class="note"><strong>A strategy satisfying none of these is not
     excluded.</strong> It is unfinished, and <code>open_work</code> says what
-    is missing. Five things have at one time or another excluded strategies
+    is missing. __NOT_CRITERIA_COUNT__ things have at one time or another excluded strategies
     here and have been withdrawn: the source-code trap heuristic, a verdict
     inherited from the original sweep, an <code>NA</code>, the analyzer
     refusing for want of a warm-up, and a failed trial run. Three of them had
@@ -360,9 +367,6 @@
     <div class="controls">
       <input type="search" id="q" placeholder="Search anything shown: name, status, reason, error, gate…" aria-label="Search">
       <div class="chips" id="cohortChips"></div>
-      <select id="wave" aria-label="Wave">
-        <option value="">all waves</option>
-      </select>
       <span class="count" id="count"></span>
     </div>
     <div class="scroller">
@@ -371,12 +375,11 @@
           <tr>
             <th data-k="s">Strategy</th>
             <th data-k="c">Status</th>
-            <th data-k="w">Wave</th>
             <th>Origin</th>
-            <th data-k="tf">Timeframe</th>
+            <th data-k="tf"><span class="th-label">Timeframe</span><select class="th-filter" id="tfFilter" title="Filter by timeframe"><option value="">all</option><option value="NA">NA</option></select></th>
             <th data-k="ty">Type</th>
             <th data-k="amr">Phase</th>
-            <th data-k="t" class="n">Trades</th>
+            <th data-k="t" class="n" title="Plain: the pooled run, all eight pairs together. † : summed from eight separate single-pair full-window runs instead. * : no full-window run yet, this is the one-month trial-run count.">Trades</th>
             <th data-k="td" class="n">Duration</th>
             <th data-k="l">Look-ahead</th>
             <th data-k="r">Recursion</th>
@@ -389,29 +392,21 @@
       </table>
       <div class="empty" id="empty" hidden>No row matches these filters.</div>
     </div>
-    <p class="note"><strong>A convergence candidate has cleared both gates, not merely failed neither.</strong> 35 rows were candidates on a look-ahead <code>NA</code> — the gate ran and returned nothing, for eleven different reasons — and each was queued for the paired full-window run: hours of computation for a row that could not be admitted whatever that run showed. They are held now until the gate is re-measured, and the paired queue drops from 389 to 354.</p>
-    <p class="note"><strong>A finding at either gate is disqualifying, and the table cannot say otherwise.</strong> The selftest refuses to let a row with a look-ahead or recursion <code>FOUND</code> sit among the admitted or the convergence candidates, and a recursion finding the ladder confirmed — every rung run, the drift still there — must be an excluded row, never an open one. <code>NA</code> is a different thing entirely: the gate ran and returned nothing, and the reason is printed under the row.</p>
     <p class="note">Click a column header to sort. A gate reads <code>–</code> when there is <em>no verdict bound to this implementation</em>: either it has not been re-measured, or the only verdict available comes from the original sweep. Hover any cell for the detail.</p>
-    <p class="note"><strong>The 152 rows that never ran, and what has become of them.</strong> Freqtrade reports most load failures as <code>Impossible to load Strategy 'X'</code>, which names none of the three things it could be, so each file was imported directly in the pinned runtime and the real exception recorded. Two repair routes have run since. <b>40 are repaired</b> and now produce measurements — 38 declared their timeframe under freqtrade's pre-2021.4 name, 2 needed only their own helper module put back on the import path. <b>6</b> were repaired past their original obstacle and now fail on something else, which is its own message rather than a mask. <b>4</b> repairs were <b>withdrawn</b>: the only corpus copy of their helper sits in a directory carrying its own <code>freqtrade/</code>, which shadows the installed package. <b>28</b> remain to be fixed, <b>59</b> need a look — chiefly 20 importing a third-party package absent from the pinned image — and <b>15</b> are refused, either because the strategy declares no stoploss or no exit logic, or because no timeframe can be recovered without inventing one. The full list is <code>REPAIR_LIST.md</code>.</p>
-    <p class="note"><strong>Excluded is a verdict, and it is not issued on somebody else's measurement or on the absence of one.</strong> Going through all 377 rows that carried it: <b>110</b> rest on a disqualifying result measured here from that implementation, and <b>152</b> never ran at all, so nothing about them was judged. The other <b>115</b> — <b>43</b> on a verdict inherited from the original sweep, <b>72</b> on no disqualifying result whatever — have been moved to <b>exclusion unconfirmed</b> and are held there until a measurement of ours settles them. Nothing is hidden by the change of name: the decisive reason and the badge stay on the row, and the work that would settle it is queued. The selftest now fails if anything reaches <code>excluded</code> on borrowed or absent evidence.</p>
     <p class="note">This is not a softening. Many held rows will end up excluded — the 38 on an inherited look-ahead finding probably will, since a limited environment does not invent bias. They will end up there on our own evidence or not at all.</p>
-    <p class="note"><strong>Three things the reader got wrong, and what each cost.</strong> The analyzer prints one column per warm-up and sorts them by value, so the strategy's own column moves; reading the first numeric column instead measured drift at somebody else's warm-up. It printed <code>nan</code> where an indicator was not yet defined, and those cells were skipped, which turned "nothing could be compared" into "nothing deviated". And when every indicator matches the full-history run exactly it prints no table at all, just a sentence saying so — which was read as a missing measurement rather than as the strongest available pass. Each was found by re-reading stored logs, and each is now a rule with a test behind it.</p>
-    <p class="note"><strong>Where a log survived, it has been read again.</strong> Of 124 recursion records with their log, 55 said something other than what this table showed: 40 have no verdict at all, one is clean, and 14 keep their verdict with corrected numbers. Seventeen ladder runs recorded as inconclusive were in fact clean at the first rung. What each replaced is kept on the record. The 76 records that kept no log cannot be checked and stay queued.</p>
-    <p class="note"><strong>Recursion shows the current state, not the original one.</strong> <code>PASS @ 14d</code> means no indicator drifts once fourteen days of warm-up are supplied, so the earlier exclusion was a measurement question rather than a property of the strategy. <code>PASS*</code> marks the few rows that only meet the 1 % band and not the original 0.01 %.</p>
-    <p class="note"><strong>Every row carries the commands it was produced by — one per gate.</strong> <code>bt</code> is the backtest, <code>la</code> the look-ahead analysis, <code>rec</code> the recursion analysis. They are listed separately because they differ in more than their subcommand: the bias gates run against a config that forces <code>price_side=other</code>, since look-ahead analysis forces market orders and freqtrade will not evaluate a signal without it, while a backtest uses the plain config and adds <code>--fee 0.001 --export trades --cache none</code>. A single column could only ever have shown one of the three. Hover any line for the full command.</p>
-    <p class="note"><strong>A repaired row carries what a later run has to reproduce.</strong> Its <code>settings</code> line names the rules, the config, the model and the environment the repair needs — the parts that cannot appear on a command line, such as <code>PYTHONPATH</code> additions or <code>PROFILE_COMPAT_SIGNATURES</code>, and the recovered timeframe that lives in a generated config nobody could guess. The reconstructed gate commands are built from those same facts and point at <code>user_data/profile_bias_strategies/&lt;strategy&gt;</code>, the directory holding that strategy alone: freqtrade's resolver imports every file beside the one it wants, and a neighbour that raises at import time takes the run with it. The table's selftest fails if a repaired row states neither its settings nor a recorded call.</p>
     <p class="note">A plain line was recorded as it ran; one with an amber rule is <em>reconstructed</em> from the run profile and window, because nothing stored the call before 2026-09-01 — a reconstruction is a different claim from a recording. The full-window backtest is eight calls, one per pair; the cell leaves the pair as a placeholder and states the count, while every individual call with its own console output is appended to <code>user_data/freqtrade_runs.log</code>.</p>
-    <p class="note"><strong>A row that failed here is not a row that never ran.</strong> 152 strategies were attempted in this runtime, on the date shown, and stopped with an error; the message is under the reason. Forty-eight of them are blocked on nothing but a missing timeframe declaration.</p>
   </section>
 
   <section>
-    <h2>Where strategies stop</h2>
+    <h2>Reasons of Excluded Strategies</h2>
     <div class="reasons" id="reasons"></div>
   </section>
 
   <section>
     <h2>Runtime failures, grouped by message</h2>
-    <p class="note">One shared message usually means one shared fix. This is the list to read before deciding what to repair.</p>
+    <p class="note">This is the list to read before deciding what to repair. Only shown once
+    more than one strategy shares the exact message — a message nothing else carries is
+    listed on the row itself instead.</p>
     <div class="scroller" style="max-height:none">
       <table style="min-width:640px">
         <thead><tr><th>Failure</th><th class="n">Strategies</th></tr></thead>
@@ -433,8 +428,7 @@
   var rows = payload.rows;
 
   var COHORT = {
-    E0_strict67:      {label:"frozen baseline", cls:"k-pass"},
-    E1_expanded:      {label:"admitted since", cls:"k-pass"},
+    E1_expanded:      {label:"admitted", cls:"k-pass"},
     convergence_candidate:{label:"convergence candidate", cls:"k-cand"},
     exclusion_unconfirmed:{label:"exclusion unconfirmed", cls:"k-hold"},
     pending:          {label:"open", cls:"k-hold"},
@@ -443,7 +437,7 @@
     too_few_trades:{label:"too few trades", cls:"k-none"},
     excluded:         {label:"excluded", cls:"k-fail"}
   };
-  var ORDER = ["E0_strict67","E1_expanded","convergence_candidate",
+  var ORDER = ["E1_expanded","convergence_candidate",
                "exclusion_unconfirmed","pending",
                "not_tested_in_current_runtime","too_few_trades",
                "not_a_strategy",
@@ -489,20 +483,113 @@
   };
 
   function count(k){ return rows.filter(function(r){return r.c===k;}).length; }
-  var passing = count("E1_expanded");  // E0_strict67 retired 2026-09-03, always 0
-  var inherited = rows.filter(function(r){return r.g;}).length;
 
-  document.getElementById("stats").innerHTML = [
-    ["in the manifest", rows.length, ""],
-    ["usable today", passing, "is-pass"],
-    ["convergence candidates", count("convergence_candidate"), "is-cand"],
-    ["will not start", rows.filter(function(r){return r.n==="strategy_does_not_run";}).length, "is-fail"],
-    ["look-ahead measured here", rows.filter(function(r){return r.ls==="native";}).length, ""],
-    ["exclusion unconfirmed", count("exclusion_unconfirmed"), "is-hold"],
-    ["inherited verdicts", inherited, ""]
-  ].map(function(s){
-    return '<div class="stat '+s[2]+'"><b>'+s[1]+'</b><span>'+s[0]+'</span></div>';
-  }).join("");
+  // The funnel, stage by stage - and each stage's population is the stage
+  // before it's OWN "passed" rows, not the whole corpus again. That is not
+  // cosmetic: read independently (a row's own recursion verdict, checked
+  // on its own regardless of whether it has a smoke record at all), the
+  // three counts per stage do not sum back to the stage before, because a
+  // handful of rows carry a later-stage verdict without an earlier one -
+  // 2026-09-09's own 35-row gap was exactly this shape. Nesting the
+  // population is what makes "passed + excluded + other" a true partition,
+  // checked here: it must equal the previous stage's "passed" exactly, and
+  // does, for all four stages, only once two further gaps were closed -
+  // `MostOfAll` counts as smoke-passed even though it is ALSO excluded
+  // under C8 (it ran and produced a full-window trade count; the C8
+  // exclusion is about its broken column, not about whether it measured),
+  // and recursion/look-ahead each accept a plain `native` evidence source
+  // alongside a settled `convergence:` one - `profile_bias.py`'s own
+  // single-shot diagnostic, not the warm-up ladder, but just as native a
+  // measurement, and the reason three already-admitted rows
+  // (`NowoIchimoku5mV2`, `ObeliskIM_v1_1`, `simple_patterns`) were
+  // otherwise invisible to a check that only recognised the ladder's own
+  // evidence string.
+  function smokeOk(r){ return r.te === "smoke" || r.te === "full_window" || r.pft != null; }
+  var NO_REPAIR_REASONS = ["repair_refused_would_invent_strategy",
+    "local_module_repair_exhausted", "third_party_package_declined",
+    "shared_runtime_change_declined"];
+  function smokeExcl(r){
+    return r.c === "excluded" && NO_REPAIR_REASONS.indexOf(r.n) >= 0 && !smokeOk(r);
+  }
+  function recursionOk(r){
+    if(r.r === "WARMUP_NEEDED") return false;
+    if(r.rs && r.rs.indexOf("wave_b:") === 0) return false;
+    if(r.n === "recursive_bias_unverified") return false;
+    if(!r.rs || r.rs === "missing" || r.rs.indexOf("historical") === 0) return false;
+    return r.r === "PASS" || r.r === "PASS_1PCT";
+  }
+  function recursionExcl(r){
+    return r.c === "excluded" && (r.n === "recursive_bias_found" ||
+      r.n === "recursive_check_incomplete_at_longest_rungs") && !recursionOk(r);
+  }
+  function lookaheadOk(r){
+    return r.l === "PASS" && (r.ls === "native" || r.ls === "reviewed_indicator_only");
+  }
+  function lookaheadExcl(r){
+    return r.c === "excluded" && r.n === "lookahead_found" && !lookaheadOk(r);
+  }
+  function fullbacktestOk(r){ return r.pft != null; }
+  // Only the three hand-curated give-ups (see evidence/POOLED_BACKTEST_
+  // PERFORMANCE_LIMIT.json / _OOM_LIMIT.json / _STAKE_OVERFLOW.json) count
+  // here. A bare `failed` or `resource_inconclusive` from the pooled run
+  // is retried on its own next pass unless nothing about the row has
+  // moved since - still open, not yet a verdict.
+  function fullbacktestExcl(r){ return !!r.pfr && !fullbacktestOk(r); }
+
+  var downloaded = rows;
+  var suitable = downloaded.filter(function(r){ return r.c !== "not_a_strategy"; });
+  var smokePassed = suitable.filter(smokeOk);
+  var smokeExcluded = suitable.filter(smokeExcl);
+  var smokeOther = suitable.filter(function(r){ return !smokeOk(r) && !smokeExcl(r); });
+  var recPassed = smokePassed.filter(recursionOk);
+  var recExcluded = smokePassed.filter(recursionExcl);
+  var recOther = smokePassed.filter(function(r){ return !recursionOk(r) && !recursionExcl(r); });
+  var laPassed = recPassed.filter(lookaheadOk);
+  var laExcluded = recPassed.filter(lookaheadExcl);
+  var laOther = recPassed.filter(function(r){ return !lookaheadOk(r) && !lookaheadExcl(r); });
+  var fbPassed = laPassed.filter(fullbacktestOk);
+  var fbExcluded = laPassed.filter(fullbacktestExcl);
+  var fbOther = laPassed.filter(function(r){ return !fullbacktestOk(r) && !fullbacktestExcl(r); });
+
+  // "Other reasons" is not one thing - it is every row this stage neither
+  // passed nor excluded, and what it actually holds differs stage by
+  // stage (mostly `pending` at the smoke stage, mostly a different gate's
+  // own exclusion further down the funnel). Grouped by cohort, the same
+  // grouping the rest of the page already uses, rather than left as a
+  // single opaque count.
+  var OTHER_LABEL = {
+    excluded: "excluded, different reason", pending: "open",
+    exclusion_unconfirmed: "exclusion unconfirmed",
+    too_few_trades: "too few trades", E1_expanded: "admitted",
+    convergence_candidate: "convergence candidate",
+    not_tested_in_current_runtime: "not run here yet",
+    not_a_strategy: "not a strategy"
+  };
+  function breakdown(list){
+    var counts = {};
+    list.forEach(function(r){ counts[r.c] = (counts[r.c] || 0) + 1; });
+    var keys = Object.keys(counts).sort(function(a, b){ return counts[b] - counts[a]; });
+    return '<ul class="stat-breakdown">' + keys.map(function(k){
+      return '<li><span>' + (OTHER_LABEL[k] || k) + '</span><b>' + counts[k] + '</b></li>';
+    }).join("") + '</ul>';
+  }
+
+  document.getElementById("stats").innerHTML =
+    '<div class="stat"><b>'+downloaded.length+'</b><span>strategies downloaded</span>'+
+    '<div class="stat-sub is-hold"><b>'+suitable.length+'</b>'+
+    '<span>strategies suitable for a smoke run</span></div></div>'+
+    [
+      ["smoke run", smokePassed, smokeExcluded, "excluded — smoke run failed", smokeOther],
+      ["recursion-bias", recPassed, recExcluded, "excluded — recursion bias found", recOther],
+      ["look-ahead-bias", laPassed, laExcluded, "excluded — look-ahead bias found", laOther],
+      ["full-backtest", fbPassed, fbExcluded, "excluded — full-backtest failed", fbOther]
+    ].map(function(s){
+      var label = s[0], passed = s[1], excluded = s[2], excludedLabel = s[3], other = s[4];
+      return '<div class="stat is-pass"><b>'+passed.length+'</b><span>'+label+' passed</span>'+
+        '<div class="stat-sub"><b>'+excluded.length+'</b><span>'+excludedLabel+'</span></div>'+
+        '<div class="stat-sub is-hold"><b>'+other.length+
+        '</b><span>other reasons</span>'+breakdown(other)+'</div></div>';
+    }).join("");
 
   /* Counts that describe the rows are read from the rows. Typed in, they
      survive the thing they describe: this paragraph said 443 usable for a
@@ -549,7 +636,37 @@
            COHORT[c].label+' <b>'+n+'</b></div>';
   }).join("");
 
-  var active = null, waveSel = "", query = "", sortKey = "s", sortDir = 1;
+  var active = null, query = "";
+  // Multi-column sort, in click order: sortKeys[0] is the primary key,
+  // sortKeys[1] breaks ties within it, and so on - "the order you started
+  // sorting in". A plain click replaces the whole stack with just that
+  // column; a shift-click appends it (or flips its direction if it is
+  // already in the stack), so a second and third key are opt-in rather than
+  // the default.
+  var sortKeys = [{key:"s", dir:1}];
+  var COLUMN_LABEL = {};
+  document.querySelectorAll("thead th[data-k]").forEach(function(th){
+    // A header carrying its own control (the Timeframe th-filter button)
+    // reads its text via .th-label instead of the whole cell, or the
+    // button's own label would be folded into the sort-header text.
+    var labelEl = th.querySelector(".th-label") || th;
+    COLUMN_LABEL[th.dataset.k] = labelEl.textContent.trim();
+  });
+  function renderHeaders(){
+    document.querySelectorAll("thead th[data-k]").forEach(function(th){
+      var k = th.dataset.k;
+      var idx = sortKeys.findIndex(function(sk){ return sk.key === k; });
+      var mark = "";
+      if(idx >= 0){
+        var arrow = sortKeys[idx].dir === 1 ? "▲" : "▼";
+        var rank = sortKeys.length > 1 ? "<sup>"+(idx+1)+"</sup>" : "";
+        mark = ' <span class="sort-ind">'+arrow+rank+'</span>';
+      }
+      var labelEl = th.querySelector(".th-label");
+      if(labelEl){ labelEl.innerHTML = esc(COLUMN_LABEL[k]) + mark; return; }
+      th.innerHTML = esc(COLUMN_LABEL[k]) + mark;
+    });
+  }
   var chips = document.getElementById("cohortChips");
   chips.innerHTML = ORDER.map(function(c){
     return '<button class="chip" data-c="'+c+'" aria-pressed="false">'+
@@ -564,24 +681,59 @@
     render();
   });
 
-  var waves = [];
-  rows.forEach(function(r){ if(r.w && waves.indexOf(r.w)<0) waves.push(r.w); });
-  var sel = document.getElementById("wave");
-  waves.sort().forEach(function(w){
-    var o = document.createElement("option"); o.value = w; o.textContent = w;
-    sel.appendChild(o);
-  });
-  sel.addEventListener("change", function(){ waveSel = sel.value; render(); });
   document.getElementById("q").addEventListener("input", function(e){
     query = e.target.value.toLowerCase().trim(); render();
   });
   document.querySelectorAll("thead th[data-k]").forEach(function(th){
-    th.addEventListener("click", function(){
+    th.addEventListener("click", function(ev){
       var k = th.dataset.k;
-      if(sortKey === k){ sortDir = -sortDir; } else { sortKey = k; sortDir = 1; }
+      var idx = sortKeys.findIndex(function(sk){ return sk.key === k; });
+      if(ev.shiftKey){
+        if(idx >= 0){ sortKeys[idx].dir = -sortKeys[idx].dir; }
+        else { sortKeys.push({key:k, dir:1}); }
+      } else if(sortKeys.length === 1 && sortKeys[0].key === k){
+        sortKeys[0].dir = -sortKeys[0].dir;
+      } else {
+        sortKeys = [{key:k, dir:1}];
+      }
+      renderHeaders();
       render();
     });
   });
+
+  // A minifilter, Excel-style: independent of sort and of the other
+  // filters, combined with all of them by AND. Sorting alone cannot put NA
+  // at either end of the Timeframe column, because NA is not a timeframe -
+  // it means none was found - so it has no ordinal place among "1h"/"5m"/
+  // etc.; a filter answers the actual question ("which rows are these")
+  // instead of asking sort order to answer it. Options are the timeframes
+  // this table actually has, not a typed-in list - freqtrade's own order
+  // (1m up to 1M) for the ones present, so "5m" and "15m" read as neighbours
+  // rather than falling apart alphabetically.
+  var TIMEFRAME_ORDER = ["1m","3m","5m","15m","30m","1h","2h","4h","6h","8h",
+                         "12h","1d","3d","1w","1M"];
+  var tfFilterValue = "";
+  (function(){
+    var present = [];
+    rows.forEach(function(r){ if(r.tf && present.indexOf(r.tf) < 0) present.push(r.tf); });
+    present.sort(function(a,b){
+      var ia = TIMEFRAME_ORDER.indexOf(a), ib = TIMEFRAME_ORDER.indexOf(b);
+      if(ia < 0) ia = TIMEFRAME_ORDER.length;
+      if(ib < 0) ib = TIMEFRAME_ORDER.length;
+      return ia !== ib ? ia - ib : (a < b ? -1 : 1);
+    });
+    var sel = document.getElementById("tfFilter");
+    present.forEach(function(tf){
+      var o = document.createElement("option"); o.value = tf; o.textContent = tf;
+      sel.appendChild(o);
+    });
+    sel.addEventListener("click", function(ev){ ev.stopPropagation(); });
+    sel.addEventListener("change", function(){
+      tfFilterValue = sel.value;
+      sel.classList.toggle("is-active", tfFilterValue !== "");
+      render();
+    });
+  })();
 
   function esc(s){
     return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;")
@@ -660,7 +812,6 @@
      render:function(k){ var o = COHORT[k]||{label:k,cls:"k-none"};
        return '<span class="pill '+o.cls+'">'+o.label+'</span>'; },
      text:{
-       E0_strict67:"Retired 3 September 2026. The 67 of the original frozen baseline are no longer a separate cohort - each is now decided by the same criteria as every other row. This label is kept only so the count (always zero) is visibly accounted for, not silently dropped.",
        E1_expanded:"Admitted since the freeze, on gates measured here: look-ahead PASS, recursion settled by the warm-up ladder, coverage PASS, trap-free. The warm-up each was measured at is on the row.",
        convergence_candidate:"A warm-up exists at which no indicator drifts any more AND look-ahead has returned a PASS measured here. Both are required: a candidate is a row on its way to admission, so it needs to have cleared each gate rather than merely failed neither. Still not admission — the paired full-window run has to produce an identical trade list first.",
        exclusion_unconfirmed:"Would have been excluded on an inherited verdict or on no verdict at all. Held here until a measurement of ours settles it either way.",
@@ -669,18 +820,6 @@
        too_few_trades:"Fewer than ten trades over 20200301-20260820 across all eight pairs. Neither excluded nor usable: nothing was found against these strategies, so calling them excluded would claim a verdict nobody reached — and they cannot be ranked either, because three trades in six and a half years distribute across no market phase. Ten is freqtrade's own floor for a look-ahead verdict, not a number of ours. A row that trades rarely because OUR setup stopped it is open instead, and ZERO_TRADE_TRIAGE.json says why.",
        not_a_strategy:"Not a trading strategy at all: eleven fixtures that freqtrade and NostalgiaForInfinity ship to test their own code, and three templates with nothing filled in. No measurement can admit one, so none is asked for. StrategyTestV2 clears both bias checks with 26,070 trades behind it and is still a fixture. What happened when each ran is kept in its reason.",
        excluded:"Either a disqualifying result measured here, or a strategy that never ran at all."
-     }},
-    {title:"Why an exclusion stands, or does not", field:"xb",
-     lead:"The decisive reason names the gate that stopped a row. It says "+
-          "nothing about whether that gate produced evidence, and that is "+
-          "what decides whether the row is finished with or waiting on us.",
-     render:function(k){ return '<span class="basis b-'+k+'">'+
-       (BASIS_LABEL[k]||k.replace(/_/g," "))+'</span>'; },
-     text:{
-       own_measurement:"A disqualifying result measured here, from this implementation. The only closed case.",
-       inherited:BASIS.inherited,
-       no_finding:BASIS.no_finding,
-       blocked:BASIS.blocked
      }},
     {title:"What became of a row that would not start", field:"rv",
      lead:"For these the question is not whether the strategy is sound "+
@@ -734,10 +873,44 @@
 
   var body = document.getElementById("body"), empty = document.getElementById("empty");
   var TRADE_WINDOW = {
-    full_window:"2020–2026, this audit's own full-window run",
-    smoke:"2020-03-01–2020-04-01, one month, this audit's trial run",
-    baseline:"2018–2026, inherited from the original author's own sweep, a different and uncontrolled environment"
+    pooled:"2020–2026, regime/full_backtest.py's pooled run: all eight pairs together, sharing one open-trade budget - the real portfolio number",
+    full_window:"2020–2026, evidence/profile_full_window.py: all eight pairs, each run and counted separately then summed - a full-window count, not a pooled one",
+    smoke:"2020-03-01–2020-04-01, one month, this audit's trial run, all eight pairs"
   };
+  /* Three tiers, ranked by what the number can actually claim. The pooled
+     run (`pft`, from results/regime/full_backtest_manifest.json) is the real
+     portfolio trade count - all eight pairs together, sharing one
+     max_open_trades budget - and is shown plain. Short of that, the sharded
+     full-window count (`full_window`) is still six and a half years of real
+     measurement, just eight independent single-pair runs summed rather than
+     one shared-budget run, and is marked † so the two are never read as
+     the same claim. Short of that, the trial run (profile_smoke) is shown
+     starred - still this audit's own measurement, just one month rather than
+     the full window. A "baseline" count is none of these: it is the original
+     author's, from a different and uncontrolled environment, carried only
+     because this row's own trial run did not produce a clean measurement
+     here - so it is not shown as if it were this audit's. */
+  function tradeValue(r){
+    if(r.pft != null) return +r.pft;
+    if(r.te === "full_window" || r.te === "smoke") return +r.t || 0;
+    return null;
+  }
+  function tradesCell(r){
+    if(r.pft != null){
+      return '<td class="num" title="'+esc(TRADE_WINDOW.pooled)+'">'+
+        esc(r.pft)+'</td>';
+    }
+    if(r.te === "full_window"){
+      return '<td class="num" title="'+esc(TRADE_WINDOW.full_window)+'">'+
+        esc(r.t||"0")+'†</td>';
+    }
+    if(r.te === "smoke"){
+      return '<td class="num" title="'+esc(TRADE_WINDOW.smoke)+
+        ' — no full-window run yet; the trial-run count is shown in its '+
+        'place.">'+esc(r.t||"0")+'*</td>';
+    }
+    return '<td class="num" title="no pooled, full-window or trial-run trade count for this row">–</td>';
+  }
   var PHASE = {
     bull_trend:"bull", bear_trend:"bear",
     range_quiet:"range quiet", range_choppy:"range choppy",
@@ -765,14 +938,15 @@
   function render(){
     var list = rows.filter(function(r){
       if(active && r.c !== active) return false;
-      if(waveSel && r.w !== waveSel) return false;
+      if(tfFilterValue === "NA" && r.tf) return false;
+      if(tfFilterValue && tfFilterValue !== "NA" && r.tf !== tfFilterValue) return false;
       if(query){
         /* Search what the reader can see. The old haystack held the raw keys
            only, so "blocked" and "reads data it could not have had" - both
            printed on screen - matched nothing, while "strategy_does_not_run",
            which is printed nowhere, matched. Built once per row and kept. */
         if(r._hay === undefined){
-          r._hay = [r.s, r.w, r.c, (COHORT[r.c]||{}).label, r.n,
+          r._hay = [r.s, r.c, (COHORT[r.c]||{}).label, r.n,
                     REASON_TEXT[r.n], r.f, r.xb, BASIS_LABEL[r.xb],
                     r.l, r.r, r.ls, r.rs, r.o, r.rp, r.tf, r.ty, r.te, r.amr]
                    .filter(Boolean).join(" ").toLowerCase();
@@ -782,10 +956,15 @@
       return true;
     });
     list.sort(function(a,b){
-      var x = a[sortKey], y = b[sortKey];
-      if(sortKey === "t" || sortKey === "td"){ x = +x||0; y = +y||0; }
-      if(x === y) return a.s < b.s ? -1 : 1;
-      return (x > y ? 1 : -1) * sortDir;
+      for(var i=0;i<sortKeys.length;i++){
+        var k = sortKeys[i].key, dir = sortKeys[i].dir;
+        var x = a[k], y = b[k];
+        if(k === "t"){ x = tradeValue(a); y = tradeValue(b);
+          if(x === null) x = -1; if(y === null) y = -1; }
+        else if(k === "td"){ x = +x||0; y = +y||0; }
+        if(x !== y) return (x > y ? 1 : -1) * dir;
+      }
+      return a.s < b.s ? -1 : 1;
     });
     document.getElementById("count").textContent = list.length + " of " + rows.length;
     empty.hidden = list.length > 0;
@@ -816,12 +995,11 @@
       return '<tr>'+
         '<td class="name">'+esc(r.s)+'</td>'+
         '<td><span class="pill '+co.cls+'">'+co.label+'</span>'+flag+'</td>'+
-        '<td class="small">'+esc(r.w||"–")+'</td>'+
         '<td class="small">'+originLink(r)+'</td>'+
-        '<td class="small">'+esc(r.tf||"–")+'</td>'+
+        '<td class="small" title="'+(r.tf?"":"could not be determined or reconstructed for this row")+'">'+esc(r.tf||"NA")+'</td>'+
         '<td class="small">'+esc((r.ty||"").split(";").join(", ")||"–")+'</td>'+
         '<td class="small" title="'+esc(r.amre||"")+'">'+esc(phaseText(r))+'</td>'+
-        '<td class="num" title="'+(TRADE_WINDOW[r.te]||"source not recorded")+'">'+(r.t||"–")+'</td>'+
+        tradesCell(r)+
         '<td class="num" title="'+esc(r.tde||"no timed run recorded")+'">'+fmtDuration(r.td)+'</td>'+
         '<td>'+bound(r.l, r.ls)+'</td>'+
         '<td>'+recursion(r)+'</td>'+
@@ -831,12 +1009,12 @@
       '</tr>';
     }).join("");
   }
+  renderHeaders();
   render();
 
   var tally = {};
   rows.forEach(function(r){
-    if(["E0_strict67","E1_expanded","convergence_candidate",
-        "exclusion_unconfirmed"].indexOf(r.c) >= 0) return;
+    if(r.c !== "excluded") return;
     if(!r.n) return;
     tally[r.n] = (tally[r.n]||0) + 1;
   });
@@ -855,6 +1033,7 @@
     (byMessage[m] = byMessage[m] || []).push(r.s);
   });
   document.getElementById("failures").innerHTML = Object.keys(byMessage)
+    .filter(function(m){ return byMessage[m].length > 1; })
     .sort(function(a,b){ return byMessage[b].length - byMessage[a].length; })
     .map(function(m){
       return '<tr><td class="reason" style="max-width:none">'+esc(m)+

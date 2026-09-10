@@ -1,5 +1,14 @@
 --- original/repos/PeetCrypto_freqtrade-stuff/NostalgiaForInfinityNext_ChangeToTower_V5_2.py
 +++ patched/repos/PeetCrypto_freqtrade-stuff/NostalgiaForInfinityNext_ChangeToTower_V5_2.py
+@@ -3479,7 +3479,7 @@
+         return dataframe
+ 
+     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+-        dataframe.loc[:, 'sell'] = 0
++        dataframe.loc[:, 'sell'] = False
+ 
+         return dataframe
+ 
 @@ -3724,7 +3724,7 @@
      pm = Series(pm_arr)
  

@@ -9,3 +9,19 @@
  
          return dataframe
  
+@@ -138,7 +138,7 @@
+                 (dataframe['close'] < dataframe['resample_{}_bbg_lowerband'.format(self.get_ticker_indicator()*self.timescale)])
+                 #((dataframe['resample_60_crossed_above'].shift(1) == True) | (dataframe['resample_60_crossed_above'].shift(2)==True) | (dataframe['resample_60_crossed_above'] == True))
+             ),
+-            'buy'] = 1
++            'buy'] = True
+ 
+         return dataframe
+ 
+@@ -146,5 +146,5 @@
+         dataframe.loc[
+             (
+             ),
+-            'sell'] = 1
++            'sell'] = True
+         return dataframe

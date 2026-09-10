@@ -704,28 +704,57 @@ DEFECTIVE = ("freqtrade refused startup",
              "Timeframe needs to be set")
 
 
-def redo_defective(cohort_name):
+def redo_defective(cohort_name, selected=None):
     """Drop records a known defect produced, so the row is measured again.
 
     The record is not deleted: it moves under `superseded` with the reason, in
     the same file. A measurement that was wrong is still evidence about what we
     did, and three corrections this week were only findable because the old
     reading was still there to compare against.
+
+    Two shapes are retired here. `inconclusive` records carrying a `DEFECTIVE`
+    marker were made by code that could not have got the answer. Separately,
+    `no_usable_ladder` records whose reason was "no declared timeframe" were
+    made before this row's timeframe existed anywhere - `Hammer` and
+    `KeltnerBounce` (hamidreza07/freqai-strategy) declared none of their own
+    and had no sibling Config.py either, until `repair/local_modules.py`'s
+    `restore_copied_local_module` resolution (2026-09-09) started reading the
+    timeframe from the exact copy it already proved these two rows import.
+    Once a repair store carries that value, the old record is not evidence
+    about the strategy any more, only about the gap that has since closed.
     """
     data = _load(OUTPUT)
-    wanted = {row["strategy_id"] for row in cohort(cohort_name)}
+    cohort_ids = {row["strategy_id"] for row in cohort(cohort_name)}
+    overrides = repair_overrides()
     superseded = data.setdefault("superseded", {})
     moved = []
-    for strategy in sorted(wanted):
+    for strategy in sorted(cohort_ids):
+        if selected is not None and strategy not in selected:
+            continue
         record = data["results"].get(strategy)
-        if not record or record.get("state") != "inconclusive":
+        if not record:
             continue
+        state = record.get("state")
         why = record.get("why") or ""
-        if not any(marker in why for marker in DEFECTIVE):
+        expected_window = profile_bias.WINDOWS[
+            "futures" if record.get("run_profile", "").startswith("futures_")
+            else "spot"]
+        if record.get("timerange") and record.get("timerange") != expected_window:
+            reason = ("recorded under superseded diagnostic window %s; re-run "
+                      "under frozen window %s"
+                      % (record["timerange"], expected_window))
+        elif state == "inconclusive" and any(marker in why for marker in DEFECTIVE):
+            reason = ("recorded before the ladder trimmed an over-large top "
+                      "rung and dropped an uncomputable bottom rung; re-run "
+                      "under the fix")
+        elif (state == "no_usable_ladder" and why == "no declared timeframe"
+              and (overrides.get(strategy) or {}).get("timeframe")):
+            reason = ("recorded before a repair store carried this row's "
+                      "timeframe; re-run now that %s is on record"
+                      % overrides[strategy]["timeframe"])
+        else:
             continue
-        record["superseded_because"] = (
-            "recorded before the ladder trimmed an over-large top rung and "
-            "dropped an uncomputable bottom rung; re-run under the fix")
+        record["superseded_because"] = reason
         superseded.setdefault(strategy, []).append(record)
         del data["results"][strategy]
         moved.append((strategy, why[:60]))
@@ -836,7 +865,7 @@ def main(argv=None):
         selftest()
         return 0
     if args.redo:
-        moved = redo_defective(args.cohort)
+        moved = redo_defective(args.cohort, set(args.strategy) or None)
         print("moved %d defective records aside" % len(moved))
         for strategy, why in moved:
             print("   %-30s %s" % (strategy, why))

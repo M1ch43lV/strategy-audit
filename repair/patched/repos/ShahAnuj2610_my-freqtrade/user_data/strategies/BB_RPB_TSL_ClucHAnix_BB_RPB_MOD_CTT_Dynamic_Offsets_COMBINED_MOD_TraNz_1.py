@@ -1301,7 +1301,7 @@ class ClucHAnix_BB_RPB_TraNz(IStrategy):
                             &
                             reduce(lambda x, y: x | y, conditions)
 
-                        , 'buy' ] = 1
+                        , 'buy' ] = True
 
         return dataframe     
         
@@ -1326,7 +1326,7 @@ def EWO(dataframe, ema_length=5, ema2_length=35):
 
     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
 
-        dataframe.loc[ (dataframe['volume'] > 0), 'sell' ] = 0
+        dataframe.loc[ (dataframe['volume'] > 0), 'sell' ] = False
 
         return dataframe
 
@@ -1688,7 +1688,7 @@ class ClucHAnix_BB_RPB_MOD(ClucHAnix_BB_RPB_TraNz):
             else:
                 if (trailing_buy['trailing_buy_order_started'] == True):
                     logger.info(f"Continue trailing for {metadata['pair']}. Manually trigger buy signal!!")
-                    dataframe.loc[:,'buy'] = 1
+                    dataframe.loc[:,'buy'] = True
                     dataframe.loc[:, 'buy_tag'] = trailing_buy['buy_tag']
                     # dataframe['buy'] = 1
 
@@ -1907,7 +1907,7 @@ class ClucHAnix_BB_RPB_MOD_CTT_DTB(ClucHAnix_BB_RPB_MOD):
             else:
                 if (trailing_buy['trailing_buy_order_started'] == True):
                     logger.info(f"Continue trailing for {metadata['pair']}. Manually trigger buy signal!!")
-                    dataframe.loc[:,'buy'] = 1
+                    dataframe.loc[:,'buy'] = True
                     dataframe.loc[:, 'buy_tag'] = trailing_buy['buy_tag']
                     # dataframe['buy'] = 1
 

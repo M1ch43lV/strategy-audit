@@ -1,0 +1,32 @@
+--- original/repos/TheoBrigitte_freqtrade/strategies/turtle/new_turtle_roi.py
++++ patched/repos/TheoBrigitte_freqtrade/strategies/turtle/new_turtle_roi.py
+@@ -237,12 +237,12 @@
+             (
+                 dataframe['enterLong']==True
+             ),
+-            'enter_long'] = 1
++            'enter_long'] = True
+         dataframe.loc[
+             (
+                 dataframe['enterShort']==True
+             ),
+-            'enter_short'] = 1
++            'enter_short'] = True
+         return dataframe
+ 
+     def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+@@ -255,12 +255,12 @@
+             (
+                  (dataframe['Long_exit']==True)
+             ),
+-            'exit_long'] = 1
++            'exit_long'] = True
+         dataframe.loc[
+             (
+                  (dataframe['Short_exit']==True)
+             ),
+-            'exit_short'] = 1
++            'exit_short'] = True
+         return dataframe
+ 
+     class HyperOpt:

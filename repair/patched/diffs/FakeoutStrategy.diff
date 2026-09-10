@@ -18,3 +18,19 @@
              dataframe[f'count_lower_peak_{val}'] = dataframe.apply( lambda x: self._count_under_level(x['low'], x[f'lower_peak_{val}']), axis=1 )
  
          return dataframe
+@@ -98,13 +98,13 @@
+             (
+                 reduce(lambda x, y: x & y, conditions_long)
+             ),
+-            'enter_long'] = 1
++            'enter_long'] = True
+ 
+         dataframe.loc[
+             (
+                 reduce(lambda x, y: x & y, conditions_short)
+             ),
+-            'enter_short'] = 1
++            'enter_short'] = True
+ 
+         return dataframe
+ 

@@ -1,0 +1,34 @@
+--- original/repos/jaredrsommer_freqtradestrategies/GPR.py
++++ patched/repos/jaredrsommer_freqtradestrategies/GPR.py
+@@ -232,13 +232,13 @@
+             dataframe.loc[
+                 reduce(lambda x, y: x & y, conditions_long),
+                 'enter_long'
+-            ] = 1
++            ] = True
+ 
+         if conditions_short and self.can_short:
+             dataframe.loc[
+                 reduce(lambda x, y: x & y, conditions_short),
+                 'enter_short'
+-            ] = 1
++            ] = True
+ 
+         return dataframe
+ 
+@@ -262,13 +262,13 @@
+             dataframe.loc[
+                 reduce(lambda x, y: x | y, conditions_exit_long),
+                 'exit_long'
+-            ] = 1
++            ] = True
+ 
+         if conditions_exit_short and self.can_short:
+             dataframe.loc[
+                 reduce(lambda x, y: x | y, conditions_exit_short),
+                 'exit_short'
+-            ] = 1
++            ] = True
+ 
+         return dataframe
+ 

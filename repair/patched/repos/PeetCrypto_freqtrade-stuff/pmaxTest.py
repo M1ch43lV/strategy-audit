@@ -136,14 +136,14 @@ class pmaxTest(IStrategy):
                 (dataframe['rsi_112'] < 60) &
                 (dataframe['volume'] > 0)
             ) 
-            ,'buy'] = 1
+            ,'buy'] = True
         return dataframe
 
     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         dataframe.loc[
             (
                 (dataframe['volume'] > 0) # Make sure Volume is not 0
-            ),'sell'] = 0
+            ),'sell'] = False
         return dataframe
     
 

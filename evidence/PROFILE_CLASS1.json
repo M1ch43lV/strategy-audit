@@ -74,6 +74,27 @@
       ],
       "status": "applied"
     },
+    "BBBHold": {
+      "family": "local_module_incomplete",
+      "note": "local-module search resolved and applied (NSeq/Config.py satisfies the import), but the strategy also reads ignore_roi_if_buy_signal from Config, which NSeq/Config.py does not define. Checked every Config.py in the corpus and in the origin repository (hamidreza07/freqai-strategy) by function/attribute grep - none defines it. A confirmed gap in what the author ever published, not a search gap; inventing the value would be authorship.",
+      "python_paths": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/NSeq"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "refused"
+    },
+    "BBKCBounce": {
+      "note": "the strategy does *from user_data.strategies import Config*, an absolute dotted import - a plain sys.path directory named Config.py does not satisfy it, it needs an importable user_data.strategies package. tools/harvest.py only pulls files containing IStrategy, so this sibling Config.py was never harvested even though it lives in the same directory (webclinic017/strategies-freqtrade-/archived/Config.py on GitHub). Fetched from there and placed at repair/compat_helpers/webclinic017_config/user_data/strategies/Config.py - both user_data and strategies stay import-namespace packages (no __init__.py), so this merges via PEP 420 with the audit's own real (empty) user_data/strategies/ instead of shadowing it. Confirmed every attribute the strategy reads from Config (minimal_roi, trailing_stop*, stoploss, timeframe, process_only_new_candles, use_sell_signal, sell_profit_only, ignore_roi_if_buy_signal, order_types) is defined in the fetched file before applying.",
+      "python_paths": [
+        "repair/compat_helpers/webclinic017_config"
+      ],
+      "rules": [
+        "restore_fetched_local_module"
+      ],
+      "status": "applied"
+    },
     "BBMod": {
       "note": "same RMI() helper as BinHV27_short: df.fillna(0, inplace=True) on a frame whose informative-merge date column has leading NaT; same shim.",
       "rules": [
@@ -162,6 +183,26 @@
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
       "rules": [
         "startup_candles_not_limited_by_call_budget"
+      ],
+      "status": "applied"
+    },
+    "BTCMACDCross": {
+      "note": "the strategy does *from user_data.strategies import Config*, an absolute dotted import - a plain sys.path directory named Config.py does not satisfy it, it needs an importable user_data.strategies package. tools/harvest.py only pulls files containing IStrategy, so this sibling Config.py was never harvested even though it lives in the same directory (webclinic017/strategies-freqtrade-/archived/Config.py on GitHub). Fetched from there and placed at repair/compat_helpers/webclinic017_config/user_data/strategies/Config.py - both user_data and strategies stay import-namespace packages (no __init__.py), so this merges via PEP 420 with the audit's own real (empty) user_data/strategies/ instead of shadowing it. Confirmed every attribute the strategy reads from Config (minimal_roi, trailing_stop*, stoploss, timeframe, process_only_new_candles, use_sell_signal, sell_profit_only, ignore_roi_if_buy_signal, order_types) is defined in the fetched file before applying.",
+      "python_paths": [
+        "repair/compat_helpers/webclinic017_config"
+      ],
+      "rules": [
+        "restore_fetched_local_module"
+      ],
+      "status": "applied"
+    },
+    "BaseStrategy": {
+      "note": "imports utils.DataframePopulator/DataframeUtils/Environment - a repo-root package (repos/nateemma_strategies/utils), sibling of Framework/ where BaseStrategy.py lives, not per-strategy. Was also blocked on pkg_resources (setuptools 82 dropped it by default; pinned setuptools==80.10.2, see requirements-audit-runtime.txt) - same shared fix as NNPredict/NNTC.",
+      "python_paths": [
+        "repos/nateemma_strategies"
+      ],
+      "rules": [
+        "restore_copied_local_module"
       ],
       "status": "applied"
     },
@@ -260,6 +301,13 @@
       "note": "defines its own min_roi_reached_entry(self, trade_dur) in the pre-2022 shape freqtrade's own hook has since grown past. The instance gets an adapter that accepts the current three-argument call and passes trade_dur through to the author's own function unchanged. No strategy source is touched.",
       "rules": [
         "legacy_min_roi_reached_entry_override"
+      ],
+      "status": "applied"
+    },
+    "BinanceStream": {
+      "note": "two independent blockers, both fixed. (1) from binance import Client - python-binance, a real PyPI package the corpus search mistook for a missing local module (repair/local_modules.py already warns about this exact collision by name). Verified in isolation (pip install --dry-run with numpy/scipy/pandas pinned) it resolves cleanly, no core-stack shift. (2) from freqtrade.strategy.interface import SellCheckTuple, SellType - freqtrade's sell-to-exit rename moved both to freqtrade.enums under new names (ExitCheckTuple, ExitType); SellType is a straight alias, SellCheckTuple also renamed its constructor keyword (sell_type -> exit_type), so it needs a translating wrapper, not a bare alias - added as repair/compat_signature.py:install_legacy_sell_check_tuple.",
+      "rules": [
+        "legacy_sell_check_tuple"
       ],
       "status": "applied"
     },
@@ -560,6 +608,16 @@
       ],
       "status": "applied"
     },
+    "DonchianBounce": {
+      "note": "the strategy does *from user_data.strategies import Config*, an absolute dotted import - a plain sys.path directory named Config.py does not satisfy it, it needs an importable user_data.strategies package. tools/harvest.py only pulls files containing IStrategy, so this sibling Config.py was never harvested even though it lives in the same directory (webclinic017/strategies-freqtrade-/archived/Config.py on GitHub). Fetched from there and placed at repair/compat_helpers/webclinic017_config/user_data/strategies/Config.py - both user_data and strategies stay import-namespace packages (no __init__.py), so this merges via PEP 420 with the audit's own real (empty) user_data/strategies/ instead of shadowing it. Confirmed every attribute the strategy reads from Config (minimal_roi, trailing_stop*, stoploss, timeframe, process_only_new_candles, use_sell_signal, sell_profit_only, ignore_roi_if_buy_signal, order_types) is defined in the fetched file before applying.",
+      "python_paths": [
+        "repair/compat_helpers/webclinic017_config"
+      ],
+      "rules": [
+        "restore_fetched_local_module"
+      ],
+      "status": "applied"
+    },
     "Dracula": {
       "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
       "rules": [
@@ -568,10 +626,14 @@
       "status": "applied"
     },
     "DualModelPolymarketPortfolio": {
-      "note": "repair withdrawn 2026-09-01: the only corpus copy of `alpha` is in repos/mlsys-io_PortfolioBench, which carries its own freqtrade/ and shadows the installed package the moment it goes on sys.path. The run then fails with \"cannot import name '__version__' from 'freqtrade' (unknown location)\", which names neither the path nor the cause. Deleting the entry would have deleted the finding too.",
-      "rules": [],
-      "status": "withdrawn",
-      "withdrawn_path": "repos/mlsys-io_PortfolioBench"
+      "note": "imports from alpha.<Module>, a sibling package in mlsys-io/PortfolioBench that tools/harvest.py never pulled - only files containing IStrategy are harvested, so the alpha/ package (pure pandas/numpy/talib, no heavy deps) was missing from the corpus, not from the original repo. Fetched the exact files this row imports (transitively) from GitHub and placed them under repair/compat_helpers/mlsys_io_portfoliobench/alpha/. DualModelPolymarketPortfolio additionally imports polymarket.contracts (ContractMetadata, load_contracts), a second sibling package, fetched the same way into repair/compat_helpers/mlsys_io_portfoliobench/polymarket/.",
+      "python_paths": [
+        "repair/compat_helpers/mlsys_io_portfoliobench"
+      ],
+      "rules": [
+        "restore_fetched_local_module"
+      ],
+      "status": "applied"
     },
     "Dyna_opti": {
       "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement Also calls min_roi_reached_entry(trade_dur) in the pre-2022 one-argument form against the base class; use_custom_roi is not set. Also caches per-candle series under self.dp.runmode.value in ('backtest', 'hyperopt'), the same CryptoFrog-family guard; needs the runmode shim for lookahead-analysis too.",
@@ -585,11 +647,20 @@
       ],
       "status": "applied"
     },
+    "E0V1EAI": {
+      "family": "freqai_no_model_named",
+      "note": "declares its own timeframe (5m) directly in source, so the usual freqai_not_enabled family (\"needs a look\") does not describe what actually blocks it: enabling freqai still needs a freqaimodel, and no model is named anywhere in repos/hamidreza07_freqai-strategy - no config, no comment, no docstring. Choosing one ourselves would be inventing the strategy, not repairing it.",
+      "status": "refused"
+    },
     "EmaCrossStrategy": {
-      "note": "repair withdrawn 2026-09-01: the only corpus copy of `alpha` is in repos/mlsys-io_PortfolioBench, which carries its own freqtrade/ and shadows the installed package the moment it goes on sys.path. The run then fails with \"cannot import name '__version__' from 'freqtrade' (unknown location)\", which names neither the path nor the cause. Deleting the entry would have deleted the finding too.",
-      "rules": [],
-      "status": "withdrawn",
-      "withdrawn_path": "repos/mlsys-io_PortfolioBench"
+      "note": "imports from alpha.<Module>, a sibling package in mlsys-io/PortfolioBench that tools/harvest.py never pulled - only files containing IStrategy are harvested, so the alpha/ package (pure pandas/numpy/talib, no heavy deps) was missing from the corpus, not from the original repo. Fetched the exact files this row imports (transitively) from GitHub and placed them under repair/compat_helpers/mlsys_io_portfoliobench/alpha/.",
+      "python_paths": [
+        "repair/compat_helpers/mlsys_io_portfoliobench"
+      ],
+      "rules": [
+        "restore_fetched_local_module"
+      ],
+      "status": "applied"
     },
     "FBB_2": {
       "note": "3 differing copies satisfy the import and none is in the strategy's own repository; repos/werkkrew_freqtrade-strategies/strategies/solipsis is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
@@ -669,6 +740,19 @@
       ],
       "status": "refused"
     },
+    "FreqaiExampleStrategy": {
+      "config_keys": [
+        "timeframe",
+        "freqai"
+      ],
+      "config_source": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/config_examples/config_freqai.example.json",
+      "freqaimodel": "LightGBMRegressor",
+      "note": "freqtrade's own official FreqAI example template (confirmed by diffing the canonical corpus copy against ftenv/Lib/site-packages/freqtrade/templates/FreqaiExampleStrategy.py - identical apart from a pre-2026 typing/doc-link diff). Blocked only by the missing timeframe/freqai config, which freqtrade itself ships and documents at config_examples/config_freqai.example.json in the same source repository (trading_mode futures, timeframe 3m, full feature_parameters block). freqaimodel is LightGBMRegressor, a freqtrade-bundled model requiring no extra package. Verified: measured, 361 trades over the smoke window (spot config refused with \"Short strategies cannot run in spot markets\" - the author's own config already declares futures, used as-is).",
+      "rules": [
+        "freqai_config_from_author_block"
+      ],
+      "status": "applied"
+    },
     "GKD_CT": {
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
       "rules": [
@@ -711,6 +795,12 @@
       ],
       "status": "applied"
     },
+    "GymStrategy": {
+      "family": "missing_author_data_file",
+      "image": "strategy-audit-runtime-rl:2026.7",
+      "note": "from stable_baselines3 import PPO - genuinely just the PyPI package, already present in strategy-audit-runtime-rl:2026.7 (freqtrade's own RL extras pull it in). Its own timeframe is also recoverable (ticker_interval = '5m', the standard pre-2021.4 form). Neither is the real blocker: self.model = PPO.load('/freqtrade/user_data/model.gym') needs a pre-trained model checkpoint that does not exist anywhere in PeetCrypto/freqtrade-stuff (checked the tree directly) or anywhere else in the corpus. Training one ourselves would be choosing the strategy's actual behaviour, not restoring it - the same standard as any other missing_author_data_file row.",
+      "status": "refused"
+    },
     "HSI": {
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
       "rules": [
@@ -722,6 +812,16 @@
       "note": "confirm_trade_entry reads self.dp.orderbook(pair, 1)['asks'][0][0] to get the current price; a live backtest exchange call returns an empty book (no historical L2 order book exists to replay), so the index raises IndexError before the strategy's own logic runs. Reproduced on a second, independent pooled-backtest run (2026-09-07). The order book is replaced by a synthetic single-level one from the last (look-ahead-guarded) close, only when the real call comes back empty. No strategy source is touched.",
       "rules": [
         "synthetic_orderbook_from_last_close"
+      ],
+      "status": "applied"
+    },
+    "Hammer": {
+      "note": "18 copies satisfy the import and all are the same file, so the choice carries no risk",
+      "python_paths": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/BuyDips"
+      ],
+      "rules": [
+        "restore_copied_local_module"
       ],
       "status": "applied"
     },
@@ -778,6 +878,16 @@
       "note": "Not executed: source embeds an API credential and requires a networked OpenAI client.",
       "rules": [],
       "status": "blocked_security"
+    },
+    "KeltnerBounce": {
+      "note": "18 copies satisfy the import and all are the same file, so the choice carries no risk",
+      "python_paths": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/BuyDips"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
     },
     "KitchenSink": {
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
@@ -1091,6 +1201,26 @@
       ],
       "status": "applied"
     },
+    "NNPredict": {
+      "image": "strategy-audit-tensorflow-runtime:2026.7",
+      "note": "imports NNPredictor_LSTM0 (bare, sibling import) and utils.* (DataframePopulator, DataframeUtils, Environment, profiler, and transitively many Classifier* model wrappers) from its own per-strategy directory in hamidreza07/freqai-strategy - none of it ever harvested since tools/harvest.py only pulled IStrategy files. Fetched via tools.harvest dependency_closure() (sibling-directory resolution added specifically for this per-strategy-folder repo layout). Module resolution confirmed complete: imports cleanly and reaches real training under strategy-audit-tensorflow-runtime:2026.7 with tqdm and setuptools==80.10.2 (pkg_resources) added. Fails past that on tf.compat.v1.keras.backend.set_session, a TF1 session API Keras 3 does not restore - a separate, deeper compat gap, not attempted.",
+      "rules": [
+        "restore_fetched_local_module"
+      ],
+      "status": "applied"
+    },
+    "NNTC": {
+      "image": "strategy-audit-tensorflow-runtime:2026.7",
+      "note": "imports NNTClassifier and TCN (siblings in NNTC/, fetched) plus utils.custom_indicators/DataframeUtils/DataframePopulator/TrainingSignals/Environment/profiler/ClassifierKerasTrinary, which sit at this repo's root utils/ package, not per-strategy - needs the repo root on python_paths. Module resolution confirmed complete. Also needed a new Class 1 shim, tf_keras_saving_reexport: @tf.keras.saving.register_keras_serializable at NNTClassifier.py import time - tf.keras (Keras 3's compat namespace) is missing the saving submodule; keras.saving.register_keras_serializable is the same function, reached through the name that works. Reaches real training under strategy-audit-tensorflow-runtime:2026.7 with tqdm and setuptools==80.10.2 (pkg_resources) added, fails past that on a pandas-3 copy-on-write read-only array in NNTC.py's own train_models (blabels[np.where(slabels > 0)] = 0.0) - the same class of issue already on record for DWT, a separate, deeper compat gap, not attempted.",
+      "python_paths": [
+        "repos/webclinic017_strategies-freqtrade-"
+      ],
+      "rules": [
+        "restore_fetched_local_module",
+        "tf_keras_saving_reexport"
+      ],
+      "status": "applied"
+    },
     "NOTankAi_15": {
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
       "rules": [
@@ -1218,16 +1348,24 @@
       "status": "applied"
     },
     "PolymarketMeanReversionStrategy": {
-      "note": "repair withdrawn 2026-09-01: the only corpus copy of `alpha` is in repos/mlsys-io_PortfolioBench, which carries its own freqtrade/ and shadows the installed package the moment it goes on sys.path. The run then fails with \"cannot import name '__version__' from 'freqtrade' (unknown location)\", which names neither the path nor the cause. Deleting the entry would have deleted the finding too.",
-      "rules": [],
-      "status": "withdrawn",
-      "withdrawn_path": "repos/mlsys-io_PortfolioBench"
+      "note": "imports from alpha.<Module>, a sibling package in mlsys-io/PortfolioBench that tools/harvest.py never pulled - only files containing IStrategy are harvested, so the alpha/ package (pure pandas/numpy/talib, no heavy deps) was missing from the corpus, not from the original repo. Fetched the exact files this row imports (transitively) from GitHub and placed them under repair/compat_helpers/mlsys_io_portfoliobench/alpha/.",
+      "python_paths": [
+        "repair/compat_helpers/mlsys_io_portfoliobench"
+      ],
+      "rules": [
+        "restore_fetched_local_module"
+      ],
+      "status": "applied"
     },
     "PolymarketMomentumStrategy": {
-      "note": "repair withdrawn 2026-09-01: the only corpus copy of `alpha` is in repos/mlsys-io_PortfolioBench, which carries its own freqtrade/ and shadows the installed package the moment it goes on sys.path. The run then fails with \"cannot import name '__version__' from 'freqtrade' (unknown location)\", which names neither the path nor the cause. Deleting the entry would have deleted the finding too.",
-      "rules": [],
-      "status": "withdrawn",
-      "withdrawn_path": "repos/mlsys-io_PortfolioBench"
+      "note": "imports from alpha.<Module>, a sibling package in mlsys-io/PortfolioBench that tools/harvest.py never pulled - only files containing IStrategy are harvested, so the alpha/ package (pure pandas/numpy/talib, no heavy deps) was missing from the corpus, not from the original repo. Fetched the exact files this row imports (transitively) from GitHub and placed them under repair/compat_helpers/mlsys_io_portfoliobench/alpha/.",
+      "python_paths": [
+        "repair/compat_helpers/mlsys_io_portfoliobench"
+      ],
+      "rules": [
+        "restore_fetched_local_module"
+      ],
+      "status": "applied"
     },
     "PrawnstarOBV": {
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
@@ -1379,6 +1517,16 @@
         "legacy_min_roi_reached_entry_override",
         "legacy_bid_ask_strategy_price_side",
         "synthetic_orderbook_from_last_close"
+      ],
+      "status": "applied"
+    },
+    "TEMABounce": {
+      "note": "the strategy does *from user_data.strategies import Config*, an absolute dotted import - a plain sys.path directory named Config.py does not satisfy it, it needs an importable user_data.strategies package. tools/harvest.py only pulls files containing IStrategy, so this sibling Config.py was never harvested even though it lives in the same directory (webclinic017/strategies-freqtrade-/archived/Config.py on GitHub). Fetched from there and placed at repair/compat_helpers/webclinic017_config/user_data/strategies/Config.py - both user_data and strategies stay import-namespace packages (no __init__.py), so this merges via PEP 420 with the audit's own real (empty) user_data/strategies/ instead of shadowing it. Confirmed every attribute the strategy reads from Config (minimal_roi, trailing_stop*, stoploss, timeframe, process_only_new_candles, use_sell_signal, sell_profit_only, ignore_roi_if_buy_signal, order_types) is defined in the fetched file before applying.",
+      "python_paths": [
+        "repair/compat_helpers/webclinic017_config"
+      ],
+      "rules": [
+        "restore_fetched_local_module"
       ],
       "status": "applied"
     },

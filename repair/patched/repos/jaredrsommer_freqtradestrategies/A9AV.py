@@ -92,7 +92,7 @@ class A9AV(IStrategy):
         ] = 1
 
         # Set buy signal in the `buy` column
-        dataframe.loc[dataframe['buy_signal'] == 1, 'buy'] = 1
+        dataframe.loc[dataframe['buy_signal'] == 1, 'buy'] = True
 
         return dataframe
 
@@ -108,6 +108,6 @@ class A9AV(IStrategy):
         ] = 1
 
         # Set sell signal in the `sell` column
-        dataframe.loc[dataframe['sell_signal'] == 1, 'sell'] = 1
+        dataframe.loc[dataframe['sell_signal'] == 1, 'sell'] = True
 
         return dataframe

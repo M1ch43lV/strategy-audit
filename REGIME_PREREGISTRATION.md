@@ -130,6 +130,25 @@ entry-only and original exits remain authoritative.
   `EXPLORATORY`.
 - Phase-A attribution is descriptive and is never called gated performance.
 
+## Amendment 2026-09-09: three-month Futures recursion window
+
+**Owner's decision**, before the affected Futures recursion exclusions were
+retested. The native Futures recursive-bias diagnostic and the warm-up
+convergence ladder now use `20200301-20200601`, three calendar months, instead
+of `20200301-20200401`. Spot remains `20190101-20190401`, also three months.
+
+The earlier asymmetry was inherited mechanically: the Spot window came from
+the predecessor bias harness, while Futures reused its one-month smoke-test
+window. No methodological justification for applying a shorter recursion
+observation interval to Futures was recorded. Local BTC perpetual candles begin
+on 2020-01-01, leaving two months of prefix history before the new interval.
+
+Stored one-month Futures recursion and convergence records remain provenance,
+but cannot satisfy the amended gate. A rerun moves each superseded record under
+`superseded` before writing the three-month result. The affected set is selected
+only by the pre-existing technical exclusion `recursive_bias_found`, never by
+profit or regime performance.
+
 ## Frozen warm-up convergence amendment
 
 Authorized by the owner on 2026-09-01, before any strategy-by-regime ranking

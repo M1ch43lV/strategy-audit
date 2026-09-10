@@ -1,5 +1,29 @@
 --- original/repos/davidzr_freqtrade-strategies/strategies/MultiMA_TSL3_Mod/MultiMA_TSL3_Mod.py
 +++ patched/repos/davidzr_freqtrade-strategies/strategies/MultiMA_TSL3_Mod/MultiMA_TSL3_Mod.py
+@@ -368,7 +368,7 @@
+         
+         dataframe.loc[:, 'buy_tag'] = ''
+         dataframe.loc[:, 'buy_copy'] = 0
+-        dataframe.loc[:, 'buy'] = 0
++        dataframe.loc[:, 'buy'] = False
+ 
+         if (self.buy_condition_ema_enable.value):
+ 
+@@ -529,12 +529,12 @@
+             dataframe.loc[
+                 (add_check & reduce(lambda x, y: x | y, conditions)),
+                 ['buy_copy','buy']
+-            ]=(1,1)
++            ]=(1,True)
+ 
+         return dataframe
+ 
+     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+-        dataframe.loc[:, 'sell'] = 0
++        dataframe.loc[:, 'sell'] = False
+ 
+         return dataframe
+ 
 @@ -632,7 +632,7 @@
      pm = Series(pm_arr)
  

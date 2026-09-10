@@ -1,5 +1,14 @@
 --- original/repos/Foxel05_freqtrade-stuff/strategies/NostalgiaForInfinityNext.py
 +++ patched/repos/Foxel05_freqtrade-stuff/strategies/NostalgiaForInfinityNext.py
+@@ -4472,7 +4472,7 @@
+         return dataframe
+ 
+     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+-        dataframe.loc[:, 'sell'] = 0
++        dataframe.loc[:, 'sell'] = False
+ 
+         return dataframe
+ 
 @@ -4771,7 +4771,7 @@
      pm = Series(pm_arr)
  

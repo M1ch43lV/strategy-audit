@@ -4302,7 +4302,7 @@ class NFI731_BUSD(IStrategy):
         return dataframe
 
     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        dataframe.loc[:, 'sell'] = 0
+        dataframe.loc[:, 'sell'] = False
         return dataframe
 
     def confirm_trade_exit(self, pair: str, trade: "Trade", order_type: str, amount: float,

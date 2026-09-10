@@ -97,7 +97,7 @@ class BBRSIS(IStrategy):
                 (dataframe['rsi'] < (dataframe['resample_{}_rsi'.format(self.get_ticker_indicator() * 3)] - 5)) &
                 (dataframe['volume'] > 0)
             ),
-            'buy'] = 1
+            'buy'] = True
 
         return dataframe
 
@@ -116,5 +116,5 @@ class BBRSIS(IStrategy):
                 (dataframe['rsi'] > dataframe['resample_{}_rsi'.format(self.get_ticker_indicator()*10)]) &
                 (dataframe['volume'] > 0)
             ),
-            'sell'] = 1
+            'sell'] = True
         return dataframe

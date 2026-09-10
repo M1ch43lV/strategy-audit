@@ -82,6 +82,29 @@ MANUAL = {
         "repos/hamidreza07_freqai-strategy/classic/Argrelextrema.py:62, "
         "\"# timeframe = '5m'\" under \"Optimal timeframe for the strategy\" - "
         "not ticker_interval, so _TICKER does not match it"),
+    # mlsys-io/PortfolioBench's strategy source files declare no timeframe at
+    # all; the repo carries it in per-strategy pipeline configs instead
+    # (tools/harvest.py only pulls IStrategy files, so these never reached
+    # the corpus). EmaCrossStrategy has a pipeline config named after it -
+    # not a generic fallback - stating its timeframe outright in prose.
+    "EmaCrossStrategy": (
+        "4h", "corpus_twin",
+        "mlsys-io/PortfolioBench pipelines/simple_ema_cross.json (GitHub, not "
+        "harvested): \"description\": \"Basic EMA crossover strategy on "
+        "crypto pairs with 4-hour timeframe\", backtest.timeframe = \"4h\" - "
+        "the pipeline is named for this exact strategy (strategies[0].type == "
+        "\"ema_cross\")"),
+    "PolymarketMeanReversionStrategy": (
+        "4h", "corpus_twin",
+        "mlsys-io/PortfolioBench user_data/config_polymarket.json (GitHub, not "
+        "harvested): timeframe = \"4h\" - the repo's dedicated config for its "
+        "Polymarket-strategy family, distinct from user_data/config.json's 5m "
+        "default used by the non-Polymarket strategies"),
+    "PolymarketMomentumStrategy": (
+        "4h", "corpus_twin",
+        "mlsys-io/PortfolioBench user_data/config_polymarket.json (GitHub, not "
+        "harvested): timeframe = \"4h\", same evidence as "
+        "PolymarketMeanReversionStrategy"),
 }
 
 

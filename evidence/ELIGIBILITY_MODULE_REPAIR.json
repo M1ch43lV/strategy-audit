@@ -86,54 +86,6 @@
       "timerange": "20200301-20200401",
       "why": "IStrategy.min_roi_reached_entry() missing 2 required positional arguments: 'trade_dur' and 'current_time'"
     },
-    "EmaCrossStrategy": {
-      "canonical_sha256": "sha256_d0fbe1247f197cb33bbaee4501b578b2e1822fb256ed5f769f70688030f9fb62",
-      "class1_rules": [
-        "restore_copied_local_module"
-      ],
-      "debug_log": "user_data/profile_smoke_logs/EmaCrossStrategy.log",
-      "elapsed_s": 1.0,
-      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy EmaCrossStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/EmaCrossStrategy --cache none",
-      "mode": "spot",
-      "run_profile": "spot_long",
-      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "status": "failed",
-      "timerange": "20200301-20200401",
-      "why": "cannot import name '__version__' from 'freqtrade' (unknown location)"
-    },
-    "PolymarketMeanReversionStrategy": {
-      "canonical_sha256": "sha256_6d6e2dbac397771da11626e702d9c0c48c5870d4ee053c1325544004ee43263c",
-      "class1_rules": [
-        "restore_copied_local_module"
-      ],
-      "debug_log": "user_data/profile_smoke_logs/PolymarketMeanReversionStrategy.log",
-      "elapsed_s": 1.1,
-      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy PolymarketMeanReversionStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/PolymarketMeanReversionStrategy --cache none",
-      "mode": "spot",
-      "run_profile": "spot_long",
-      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "status": "failed",
-      "timerange": "20200301-20200401",
-      "why": "cannot import name '__version__' from 'freqtrade' (unknown location)"
-    },
-    "PolymarketMomentumStrategy": {
-      "canonical_sha256": "sha256_2575d1935f956ed00f57338bc1f7c8abbbfa014ef6783f5a0c8899de076b74e9",
-      "class1_rules": [
-        "restore_copied_local_module"
-      ],
-      "debug_log": "user_data/profile_smoke_logs/PolymarketMomentumStrategy.log",
-      "elapsed_s": 1.1,
-      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy PolymarketMomentumStrategy --strategy-path repos/mlsys-io_PortfolioBench/strategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/PolymarketMomentumStrategy --cache none",
-      "mode": "spot",
-      "run_profile": "spot_long",
-      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "status": "failed",
-      "timerange": "20200301-20200401",
-      "why": "cannot import name '__version__' from 'freqtrade' (unknown location)"
-    },
     "Solipsis": {
       "archive": "user_data/profile_smoke/Solipsis-2026-09-01_19-59-05.zip",
       "archive_sha256": "sha256_745492946a635216dbc78a148fbf5f9470d0543c69435bd47b8e40c70d44a2ff",

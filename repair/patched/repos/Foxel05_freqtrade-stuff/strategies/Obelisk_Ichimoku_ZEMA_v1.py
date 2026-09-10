@@ -225,7 +225,7 @@ class Obelisk_Ichimoku_ZEMA_v1(IStrategy):
             (dataframe['ichimoku_valid'] > 0)
             & (dataframe['bear_trending'] == 0)
             & (dataframe['close'] < (dataframe[zema] * self.low_offset.value))
-        , 'buy'] = 1
+        , 'buy'] = True
         return dataframe
 
     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
@@ -235,7 +235,7 @@ class Obelisk_Ichimoku_ZEMA_v1(IStrategy):
             (
                 (dataframe['close'] > (dataframe[zema] * self.high_offset.value))
             )
-        , 'sell'] = 1
+        , 'sell'] = True
 
         return dataframe
 

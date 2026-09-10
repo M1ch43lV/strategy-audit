@@ -74,13 +74,13 @@ class BreakoutStrategy(IStrategy):
             (
                 reduce(lambda x, y: x & y, conditions_long)
             ),
-            'enter_long'] = 1
+            'enter_long'] = True
 
         dataframe.loc[
             (
                 reduce(lambda x, y: x & y, conditions_short)
             ),
-            'enter_short'] = 1
+            'enter_short'] = True
 
         return dataframe
 
