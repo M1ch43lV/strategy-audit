@@ -81,6 +81,15 @@ einen Monat oder ein Spot-Lauf über `20190101-20190401` ist historische
 Provenienz und muss vor einer neuen Entscheidung supersediert und erneut
 gemessen werden.
 
+Eine Ausnahme gilt für die Arbeits-Queue: Ein erfolgreicher kanonischer
+gepoolter Stage-7-Full-Backtest schließt die ihm vorangehende technische
+Prüfkette für genau dieselbe Implementierung. `evidence/strategy_status.py`
+zeigt dies als `technical_chain_complete=true` und setzt dann kein `open_work`,
+wenn Source-Hash und Run-Profil mit
+`results/regime/full_backtest_manifest.json` übereinstimmen. Das ist kein
+nachträglicher E1-Zugang und hebt keinen dokumentierten Ausschluss auf;
+fehlgeschlagene, OOM- oder Timeout-Stage-7-Versuche zählen nicht als Abschluss.
+
 ## Stufe 3 — Bias-Ausschlussprüfung: Look-Ahead-Bias
 
 | Programm | Liest | Schreibt |

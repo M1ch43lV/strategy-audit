@@ -1,11 +1,17 @@
 # Strategy status - current evidence for all 1050 rows
 
-**Generated 2026-09-10 17:29:07 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-10 19:52:26 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
 already been decided, collected from the smoke, bias, full-window,
 adjudication and convergence stores.
+
+**Completed full-backtest closure.** 583 rows carry an exact, successful
+canonical pooled Stage-7 full-backtest identity (source hash, run profile and
+mode timerange). Their `technical_chain_complete=true` closes the technical
+work queue, even if a later diagnostic-window amendment made earlier evidence
+historical. This does not grant admission or overwrite an exclusion finding.
 
 `evidence/REGIME_ELIGIBILITY.csv` remains a frozen file and is never
 regenerated - but as of 2026-09-03 this table no longer treats its
@@ -4947,8 +4953,8 @@ Wave `-` - 13:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 193 |
-| `convergence_not_converged_within_ladder` | 77 |
+| `recursive_ladder_pending` | 192 |
+| `convergence_not_converged_within_ladder` | 76 |
 | `lookahead_remeasure_pending` | 51 |
 | `convergence_inconclusive` | 23 |
 | `needs_a_look` | 7 |

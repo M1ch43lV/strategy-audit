@@ -3,13 +3,15 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-10T17:30:15+02:00
-- Stopped because: Spot and Futures now share the exact three-month bias and
-  convergence window in code, binding documentation, and the generated status
-  artifact; no diagnostic rerun or other writer was started
-- Next agent should: treat `20200301-20200601` as the only current native bias
-  window for both modes. Before eligibility work, supersede and rerun obsolete
-  Spot diagnostics only if the owner asks to execute that measurement queue.
+- Last update: 2026-09-10T19:52:37+02:00
+- Stopped because: the owner clarified that a completed canonical pooled
+  Full-Backtest closes the preceding technical chain even after the Spot
+  diagnostic-window shift; the status generator and generated artifacts now
+  implement that rule, without starting a measurement writer
+- Next agent should: never queue an identity-matching `measured` canonical
+  pooled Full-Backtest row merely because an earlier Spot/Futures diagnostic
+  used a superseded window. Work only the remaining identity-incomplete rows
+  if the owner explicitly continues the measurement queue.
 
 ## Objective
 
@@ -56,6 +58,9 @@ entry; do not reread the roughly 2,000-line file end to end.
   `2026-09-10: identical Spot and Futures bias windows`, plus
   `evidence/profile_bias.py`, `evidence/warmup_convergence.py`, and
   `PIPELINE.md`, Stages 2-3.
+- Full-backtest technical closure: `REGIME_PREREGISTRATION.md`, amendment
+  `2026-09-10: completed full backtest closes technical work`, plus
+  `evidence/strategy_status.py` and `PIPELINE.md`, Stage 7.
 
 ## Machine state - authoritative
 
@@ -94,17 +99,24 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-10T17:30:15+02:00 after equalizing the bias windows:
+Observed 2026-09-10T19:52:37+02:00 after recording full-backtest technical
+closure:
 
 - No Docker benchmark/analyzer or evidence writer is active.
 - `STRATEGY_STATUS.csv` is current with 1,050 rows: 675 `E1_expanded`, 263
   excluded, 53 exclusion-unconfirmed, 30 too-few-trades, 10 pending and 19
-  not-a-strategy.
+  not-a-strategy. 583 current source/profile identities have a successful
+  canonical pooled Full-Backtest and therefore `technical_chain_complete=true`;
+  none is in `open_work`.
 - GRID measured 8 trades at one month then timed out at three months; ONS
   measured 8 at one and three months then timed out at one year. Both exhausted
   the 1,800-second recovery budget and need no repeat.
 - `evidence/SMOKE_FUNNEL_REVIEW_2026-09-10.md` records all five work packages.
   `strategy_status.html` was regenerated from the current CSV.
+- `strategy_status.html` and `tools/STRATEGY_STATUS.template.html` have
+  concurrent, uncommitted ready-to-run display edits. Preserve them; they are
+  outside the full-backtest closure commit but the regenerated HTML already
+  carries the current CSV data.
 - The old Spot diagnostic window occurs in 218 `PROFILE_BIAS` rows (174
   look-ahead and 161 recursive diagnostics) and 790 convergence rows. These
   are provenance, not current-window evidence; no measurement rerun started.
@@ -328,20 +340,18 @@ only bias diagnostic.
 2. For the ten recovered at-least-ten-trade rows, run any required output-
    equivalence proof first, then native look-ahead and recursive gates. Only
    rows passing every frozen technical gate may receive a new E1 adjudication.
-3. Supersede obsolete Spot bias/convergence records and rerun them under
-   `20200301-20200601` when this measurement queue is explicitly continued.
-   The pre-run inventory is 218 Spot bias-store rows and 790 convergence rows;
-   derive the actual target set from current identities at execution time.
-4. Derive the 24 Futures recursion targets from the current status and execute
-   the already-authorized three-month superseding ladder when no other writer
-   is active. Preserve the original target denominator.
-5. Complete remaining Model 0 rows resumably and adjudicate resource-
+3. If the owner explicitly continues the measurement queue, derive targets
+   from current identities and exclude every
+   `technical_chain_complete=true` row. Supersede obsolete Spot/Futures
+   diagnostic records only for the remaining rows; do not use the old 218/790
+   inventory as a queue because it includes completed Full-Backtests.
+4. Complete remaining Model 0 rows resumably and adjudicate resource-
    inconclusive failures under the existing attempt rules.
-6. Resolve the eight OPEN preregistration choices before producing a discovery
+5. Resolve the eight OPEN preregistration choices before producing a discovery
    candidate spec or any ranked output. At minimum the owner must decide the
    discovery/validation split, minimum trade/episode evidence, and the
    exposure-matched benchmark construction.
-7. Once those choices are frozen, write and hash one explicit candidate spec,
+6. Once those choices are frozen, write and hash one explicit candidate spec,
    run the 5-10 strategy pilot, then Model 1, Model 2, Model 3, gated
    attribution, and the non-ranked comparison in the order in `PIPELINE.md`.
 
@@ -358,12 +368,10 @@ only bias diagnostic.
   stronger than every rung of the new smoke cascade, so a shorter rerun cannot
   rescue them. Revisit only if the strategy/runtime identity or frozen rule
   changes.
-- Exception authorized 2026-09-09: supersede and rerun the 24 Futures
-  `recursive_bias_found` ladder records because their one-month timerange is no
-  longer the frozen rule. Do not broaden that Futures target set.
-- Amendment authorized 2026-09-10: Spot records over `20190101-20190401` are
-  obsolete for new decisions. Preserve them under `superseded`; do not rerun
-  them in parallel with another writer or mistake the queue for a benchmark.
+- Identity-matching canonical pooled Full-Backtest rows with `status=measured`:
+  they have already completed the technical chain. A later diagnostic-window
+  change must not requeue them; preserve their earlier diagnostic records as
+  provenance. The sole current identity mismatch is `NostalgiaForInfinityX`.
 - The 5-profile ungated adapter equivalence suite.
 - Regime feature generation unless its hashed candle inputs or frozen formula
   change.
@@ -412,8 +420,11 @@ only bias diagnostic.
   Docker wrapper exit 125 or an unresponsive VM is not a completed attempt.
 - Results are identity-bound, atomic, and resumable. Every new runner records
   its invocation and non-command environment/config provenance.
+- `technical_chain_complete=true` requires a `measured`, canonical pooled
+  Full-Backtest whose source hash and run profile still match the current
+  execution profile. It clears `open_work` only, not cohort/adjudication.
 - E0 is invalid historical provenance only. The current usable population is
-  the latest active E1 adjudication set; currently 659 rows, including 66
+  the latest active E1 adjudication set; currently 675 rows, including 66
   independently re-admitted former E0 members.
 - The prior long Wave A-C handoff remains recoverable in Git before commit
   `548be09`; current artifacts and this file supersede its stale counts.

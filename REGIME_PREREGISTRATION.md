@@ -186,6 +186,23 @@ cannot satisfy a new decision under this amendment. They must be superseded and
 rerun under `20200301-20200601`; selection for rerun is based on the obsolete
 timerange, not on profitability or regime performance.
 
+## Amendment 2026-09-10: completed full backtest closes technical work
+
+**Owner's decision.** A successful canonical pooled Stage-7 full backtest is
+evidence that the exact strategy implementation completed the technical chain
+which precedes that run. A subsequent change to a Spot or Futures diagnostic
+calendar window must therefore not return that implementation to the
+measurement queue.
+
+The closure is identity-bound: the recorded Stage-7 result must be `measured`,
+have the canonical pooled scope, and match the current source hash and run
+profile. Its recorded full-backtest timerange remains visible as provenance;
+the later Spot diagnostic-window shift does not invalidate this closure. It is exposed as
+`technical_chain_complete=true` in `STRATEGY_STATUS.csv`. It closes only
+`open_work`; it does not retrospectively admit a strategy, reverse an existing
+exclusion finding, or treat an OOM, timeout, failed, or identity-mismatched run
+as completed.
+
 ## Frozen warm-up convergence amendment
 
 Authorized by the owner on 2026-09-01, before any strategy-by-regime ranking

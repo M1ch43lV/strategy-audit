@@ -42,6 +42,8 @@ ADJUDICATION = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.c
 SMOKE = os.path.join(ROOT, "evidence/PROFILE_SMOKE.json")
 BIAS = os.path.join(ROOT, "evidence/PROFILE_BIAS.json")
 FULL_WINDOW = os.path.join(ROOT, "evidence/PROFILE_FULL_WINDOW.json")
+FULL_BACKTEST_MANIFEST = os.path.join(
+    ROOT, "results", "regime", "full_backtest_manifest.json")
 CONVERGENCE = os.path.join(ROOT, "evidence/WARMUP_CONVERGENCE.json")
 # Wave B supplied a warm-up to strategies the analyzer had refused and
 # re-ran the gate. Those verdicts were produced before the drift table was
@@ -126,6 +128,7 @@ FIELDS = [
     "observed_trades", "trade_evidence", "test_duration_s",
     "test_duration_evidence", "lookahead", "lookahead_evidence",
     "recursive", "recursive_evidence", "coverage_status", "coverage_evidence",
+    "full_backtest_status", "technical_chain_complete",
     "traps_n", "artifact_role",
     "baseline_status", "primary_reason", "exclusion_basis",
     "repair_family", "repair_verdict", "repair_settings", "required_image",
@@ -442,6 +445,26 @@ def _json(path, key="results"):
     return json.load(io.open(path, encoding="utf-8")).get(key, {})
 
 
+def _full_backtest_document():
+    """Read the pooled Stage-7 store without treating a partial write as proof."""
+    if not os.path.exists(FULL_BACKTEST_MANIFEST):
+        return {"results": {}, "timerange": {}}
+    document = json.load(io.open(FULL_BACKTEST_MANIFEST, encoding="utf-8"))
+    return {"results": document.get("results") or {},
+            "timerange": document.get("timerange") or {}}
+
+
+def completed_full_backtest(profile, record):
+    """Whether this exact implementation completed the canonical pooled run."""
+    if not record or record.get("status") != "measured":
+        return False
+    return (
+        record.get("measurement_scope") == "canonical_pooled_native_pair_universe"
+        and record.get("run_profile") == profile.get("run_profile")
+        and record.get("canonical_sha256") == profile.get("source_sha256")
+    )
+
+
 def _integer(value):
     try:
         return int(value)
@@ -646,6 +669,8 @@ def rows():
     smoke = dict(_json(SMOKE))
     bias = _json(BIAS)
     full = _json(FULL_WINDOW)
+    full_backtest_document = _full_backtest_document()
+    full_backtests = full_backtest_document["results"]
     convergence = _json(CONVERGENCE)
     wave_b = _json(WAVE_B_WARMUP)
     triage = _json(BLOCKED_TRIAGE)
@@ -763,6 +788,8 @@ def rows():
     out = []
     for strategy in sorted(profiles):
         profile = profiles[strategy]
+        full_backtest = full_backtests.get(strategy) or {}
+        full_backtest_complete = completed_full_backtest(profile, full_backtest)
         base = baseline.get(strategy, {})
         wave = waves.get(strategy, {}).get("expansion_wave", "")
         measurement = smoke.get(strategy) or {}
@@ -1499,6 +1526,16 @@ def rows():
                     and source != "full_window":
                 open_work.append("full_window_measurement_pending")
 
+        # Owner decision 2026-09-10: a successful, identity-bound canonical
+        # pooled full backtest proves that this implementation already passed
+        # the technical chain leading into Stage 7.  A later diagnostic-window
+        # amendment must not put that completed implementation back in the
+        # work queue.  This is deliberately a queue/provenance rule only: it
+        # does not rewrite its historical cohort or exclusion decision.
+        if full_backtest_complete:
+            open_work = []
+            gaps = []
+
         records = [measurement, diagnostics, window, settled,
                    fresh or {}, (diagnostics.get("lookahead") or {}),
                    (diagnostics.get("recursive") or {}), attempt]
@@ -1576,6 +1613,8 @@ def rows():
             "recursive_evidence": recursive_evidence,
             "coverage_status": coverage_status,
             "coverage_evidence": coverage_evidence,
+            "full_backtest_status": full_backtest.get("status", ""),
+            "technical_chain_complete": "true" if full_backtest_complete else "false",
             "traps_n": base.get("traps_n", ""),
             "artifact_role": profile.get("artifact_role", ""),
             "baseline_status": base.get("eligibility_status", ""),
@@ -1772,6 +1811,8 @@ def _report(data):
     measured = sum(1 for row in data if row["measured"] == "true")
     traded = sum(1 for row in data if _integer(row["observed_trades"]) > 0)
     stamped = sum(1 for row in data if row["last_tested_at"])
+    completed_full = sum(1 for row in data
+                         if row["technical_chain_complete"] == "true")
     passing = [r for r in data if r["cohort"] == "E1_expanded"]
     candidates = [r for r in data if r["cohort"] == "convergence_candidate"]
     pending = [r for r in data if r["cohort"] == "pending"]
@@ -1788,6 +1829,12 @@ def _report(data):
         "`evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has",
         "already been decided, collected from the smoke, bias, full-window,",
         "adjudication and convergence stores.", "",
+        "**Completed full-backtest closure.** %d rows carry an exact, successful"
+        % completed_full,
+        "canonical pooled Stage-7 full-backtest identity (source hash, run profile and",
+        "mode timerange). Their `technical_chain_complete=true` closes the technical",
+        "work queue, even if a later diagnostic-window amendment made earlier evidence",
+        "historical. This does not grant admission or overwrite an exclusion finding.", "",
         "`evidence/REGIME_ELIGIBILITY.csv` remains a frozen file and is never",
         "regenerated - but as of 2026-09-03 this table no longer treats its",
         "`regime_eligible=true` rows as automatically usable. The recursion",
@@ -2287,6 +2334,11 @@ def selftest():
                 if r["adjudication_status"] == "admitted_E1"}
     assert {row["strategy_id"] for row in data
             if row["cohort"] == "E1_expanded"} == admitted
+    completed = [row for row in data
+                 if row["technical_chain_complete"] == "true"]
+    assert completed, "expected current canonical full-backtest completions"
+    assert all(not row["open_work"] for row in completed), \
+        "completed full backtests must not be queued again"
 
     # Every row invariant belongs in one loop. This block was split in two by
     # a bad patch on 2026-09-01: half of it ended up inside the store
