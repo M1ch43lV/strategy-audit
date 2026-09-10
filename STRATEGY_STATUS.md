@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1050 rows
 
-**Generated 2026-09-10 17:12:45 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-10 17:29:07 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -238,7 +238,7 @@ pair set either.
 | Check | Window | Pairs |
 |---|---|---|
 | Trial run (`profile_smoke`) | 1 month -> 3 months -> 1 year; stop at 10 trades | all 8 |
-| Bias check, spot | `20190101-20190401`, three months | `BTC/USDT` only |
+| Bias check, spot | `20200301-20200601`, three months | `BTC/USDT` only |
 | Bias check, futures | `20200301-20200601`, three months | `BTC/USDT:USDT` only |
 | Look-ahead, first fallback | `20200101-20220101` | BTC only |
 | Look-ahead, second fallback | `20200301-20260820` | BTC only |
@@ -3839,7 +3839,7 @@ The calls behind each, one per gate:
 - `SimpleHopt1Along`
   ```
   backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy SimpleHopt1Along --strategy-path "repos/MelvynClark_Freqtrade-Strategy/Simple Strategy" --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SimpleHopt1Along-df7ee9ca --cache none
-  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SimpleHopt1Along --strategy-path user_data/profile_bias_strategies/SimpleHopt1Along --timerange 20190101-20190401 --no-color
+  lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SimpleHopt1Along --strategy-path user_data/profile_bias_strategies/SimpleHopt1Along --timerange 20200301-20200601 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/SimpleHopt1Along_startup_6.json --strategy SimpleHopt1Along --strategy-path user_data/profile_bias_strategies/SimpleHopt1Along --timerange 20190101-20190401 --no-color --startup-candle 6 12 42 84 180 540
   ```
 - `SlowPotato`

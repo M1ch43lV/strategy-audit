@@ -75,11 +75,11 @@ Leiter aus `REGIME_PREREGISTRATION.md`s eingefrorener Konvergenz-Regel: 1, 2,
 Strategie. Eine Zeile ist `converged`, `not_converged_within_ladder` oder
 `inconclusive` (technisches Hindernis, kein Befund).
 
-Das Diagnoseintervall umfasst in beiden Modi drei Kalendermonate: Spot
-`20190101-20190401`, Futures seit dem Amendment vom 2026-09-09
-`20200301-20200601`. Ein gespeicherter Futures-Leiterlauf über nur einen Monat
-ist historische Provenienz und muss vor einer neuen Entscheidung supersediert
-und erneut gemessen werden.
+Das Diagnoseintervall ist seit dem Amendment vom 2026-09-10 in beiden Modi
+identisch: `20200301-20200601`. Ein gespeicherter Futures-Leiterlauf über nur
+einen Monat oder ein Spot-Lauf über `20190101-20190401` ist historische
+Provenienz und muss vor einer neuen Entscheidung supersediert und erneut
+gemessen werden.
 
 ## Stufe 3 — Bias-Ausschlussprüfung: Look-Ahead-Bias
 

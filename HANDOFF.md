@@ -3,13 +3,13 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-10T15:12:00+02:00
-- Stopped because: smoke-funnel work packages 1-5 are complete, documented,
-  validated, and the generated status page is current; no writer is active
-- Next agent should: do not repeat these smoke or resource attempts. If the
-  owner continues eligibility work, run the applicable equivalence,
-  look-ahead, recursive, and admission gates for the ten newly measurable
-  at-least-ten-trade strategies listed in the smoke review.
+- Last update: 2026-09-10T17:30:15+02:00
+- Stopped because: Spot and Futures now share the exact three-month bias and
+  convergence window in code, binding documentation, and the generated status
+  artifact; no diagnostic rerun or other writer was started
+- Next agent should: treat `20200301-20200601` as the only current native bias
+  window for both modes. Before eligibility work, supersede and rerun obsolete
+  Spot diagnostics only if the owner asks to execute that measurement queue.
 
 ## Objective
 
@@ -52,6 +52,10 @@ entry; do not reread the roughly 2,000-line file end to end.
 - Smoke trade-count escalation: `REGIME_PREREGISTRATION.md`, amendment
   `2026-09-10: fixed smoke trade-count cascade`, plus
   `evidence/profile_smoke.py` and `PIPELINE.md`, Stage 1.
+- Equal bias windows: `REGIME_PREREGISTRATION.md`, amendment
+  `2026-09-10: identical Spot and Futures bias windows`, plus
+  `evidence/profile_bias.py`, `evidence/warmup_convergence.py`, and
+  `PIPELINE.md`, Stages 2-3.
 
 ## Machine state - authoritative
 
@@ -90,7 +94,7 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-10T15:12:00+02:00 after completing work packages 1-5:
+Observed 2026-09-10T17:30:15+02:00 after equalizing the bias windows:
 
 - No Docker benchmark/analyzer or evidence writer is active.
 - `STRATEGY_STATUS.csv` is current with 1,050 rows: 675 `E1_expanded`, 263
@@ -101,6 +105,9 @@ Observed 2026-09-10T15:12:00+02:00 after completing work packages 1-5:
   the 1,800-second recovery budget and need no repeat.
 - `evidence/SMOKE_FUNNEL_REVIEW_2026-09-10.md` records all five work packages.
   `strategy_status.html` was regenerated from the current CSV.
+- The old Spot diagnostic window occurs in 218 `PROFILE_BIAS` rows (174
+  look-ahead and 161 recursive diagnostics) and 790 convergence rows. These
+  are provenance, not current-window evidence; no measurement rerun started.
 
 ## Current implementation checkpoint
 
@@ -291,6 +298,11 @@ compileall including the archive; active-tree AST parse (94 files); secret-gate
 selftest; and `git diff --check` PASS. The status page still contains 1,050
 rows. No benchmark or analyzer was started.
 
+Equal-window validation: profile-bias, convergence, strategy-status, and HTML-
+page selftests PASS; status freshness, targeted compileall, Graphify AST update,
+and `git diff --check` PASS. The generated Markdown/HTML window table now shows
+`20200301-20200601` for both modes; no measurement store was modified.
+
 Futures recursion-window change: `profile_bias.WINDOWS['futures']` is now
 `20200301-20200601`; Spot remains `20190101-20190401`. The preregistration and
 pipeline record the owner's prospective decision and why the old one-month
@@ -300,6 +312,15 @@ mode window under `superseded`, and accepts the CLI's explicit strategy filter.
 Profile-bias and convergence selftests plus targeted compileall PASS. The
 productive rerun has not started because Model 0 is still active.
 
+The 2026-09-10 follow-up supersedes the remaining calendar asymmetry:
+`profile_bias.WINDOWS` is now `20200301-20200601` for both Spot and Futures.
+`profile_bias` archives a stale per-diagnostic result under `superseded` before
+rerunning it, so a current PASS cannot silently overwrite its provenance.
+`strategy_status.py`, `PIPELINE.md`, the HTML template, generated status files,
+and preregistration use the same window. The separate full-analysis windows
+remain unchanged because their pair-history/warm-up constraint is not a BTC-
+only bias diagnostic.
+
 ## Next concrete steps
 
 1. Treat the five smoke-funnel packages as complete; do not repeat their smoke
@@ -307,16 +328,20 @@ productive rerun has not started because Model 0 is still active.
 2. For the ten recovered at-least-ten-trade rows, run any required output-
    equivalence proof first, then native look-ahead and recursive gates. Only
    rows passing every frozen technical gate may receive a new E1 adjudication.
-3. Derive the 24 Futures recursion targets from the current status and execute
+3. Supersede obsolete Spot bias/convergence records and rerun them under
+   `20200301-20200601` when this measurement queue is explicitly continued.
+   The pre-run inventory is 218 Spot bias-store rows and 790 convergence rows;
+   derive the actual target set from current identities at execution time.
+4. Derive the 24 Futures recursion targets from the current status and execute
    the already-authorized three-month superseding ladder when no other writer
    is active. Preserve the original target denominator.
-4. Complete remaining Model 0 rows resumably and adjudicate resource-
+5. Complete remaining Model 0 rows resumably and adjudicate resource-
    inconclusive failures under the existing attempt rules.
-5. Resolve the eight OPEN preregistration choices before producing a discovery
+6. Resolve the eight OPEN preregistration choices before producing a discovery
    candidate spec or any ranked output. At minimum the owner must decide the
    discovery/validation split, minimum trade/episode evidence, and the
    exposure-matched benchmark construction.
-6. Once those choices are frozen, write and hash one explicit candidate spec,
+7. Once those choices are frozen, write and hash one explicit candidate spec,
    run the 5-10 strategy pilot, then Model 1, Model 2, Model 3, gated
    attribution, and the non-ranked comparison in the order in `PIPELINE.md`.
 
@@ -335,7 +360,10 @@ productive rerun has not started because Model 0 is still active.
   changes.
 - Exception authorized 2026-09-09: supersede and rerun the 24 Futures
   `recursive_bias_found` ladder records because their one-month timerange is no
-  longer the frozen rule. Do not rerun unaffected Spot rows.
+  longer the frozen rule. Do not broaden that Futures target set.
+- Amendment authorized 2026-09-10: Spot records over `20190101-20190401` are
+  obsolete for new decisions. Preserve them under `superseded`; do not rerun
+  them in parallel with another writer or mistake the queue for a benchmark.
 - The 5-profile ungated adapter equivalence suite.
 - Regime feature generation unless its hashed candle inputs or frozen formula
   change.
@@ -363,8 +391,8 @@ productive rerun has not started because Model 0 is still active.
 
 - Spot analysis window: `20200401-20260821`.
 - Futures analysis window: `20200301-20260821`.
-- Bias/convergence diagnostic windows: Spot `20190101-20190401`; Futures
-  `20200301-20200601` after the prospective 2026-09-09 amendment.
+- Bias/convergence diagnostic window for both Spot and Futures:
+  `20200301-20200601`.
 - Smoke diagnostic cascade: `20200301-20200401`, `20200301-20200601`, then
   `20200301-20210301`, stopping at the first measured rung with at least 10
   trades.

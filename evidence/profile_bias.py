@@ -36,10 +36,11 @@ PYTHON = os.environ.get("PROFILE_PYTHON", sys.executable)
 FT_WRAPPER = os.path.join(ROOT, "evidence/profile_freqtrade.py")
 LOG_DIR = os.path.join(ROOT, "user_data", "profile_bias_logs")
 ISOLATED_DIR = os.path.join(ROOT, "user_data", "profile_bias_strategies")
-# Owner decision 2026-09-09: both native-mode recursion gates observe three
-# calendar months. Futures starts after the available Jan-Feb 2020 prefix, so
-# its diagnostic interval is March through May (exclusive end 1 June).
-WINDOWS = {"spot": "20190101-20190401", "futures": "20200301-20200601"}
+# Owner decisions 2026-09-09 and 2026-09-10: both native-mode bias gates use
+# the same three-month calendar interval. This removes mode as a source of
+# diagnostic-window variation while retaining Jan-Feb 2020 as prefix history.
+WINDOWS = {"spot": "20200301-20200601", "futures": "20200301-20200601"}
+SUPERSEDED_PRIMARY_WINDOWS = {"20190101-20190401", "20200301-20200401"}
 INTERMEDIATE_WINDOW = "20200101-20220101"
 FALLBACK_WINDOW = "20200301-20260820"
 
@@ -69,6 +70,30 @@ def _write(data, path):
         json.dump(data, handle, ensure_ascii=False, indent=2, sort_keys=True)
         handle.write("\n")
     os.replace(tmp, path)
+
+
+def _supersede_stale_windows(data, strategy, record, expected_window):
+    """Retire completed diagnostics measured outside the frozen mode window."""
+    moved = []
+    history = data.setdefault("superseded", {}).setdefault(strategy, [])
+    for diagnostic in ("lookahead", "recursive"):
+        result = record.get(diagnostic) or {}
+        measured_window = result.get("timerange")
+        # Longer look-ahead fallback windows remain valid by design. Retire
+        # only the two primary windows explicitly superseded by amendments.
+        if (measured_window in SUPERSEDED_PRIMARY_WINDOWS
+                and measured_window != expected_window):
+            retired = dict(result)
+            retired["diagnostic"] = diagnostic
+            retired["superseded_because"] = (
+                "diagnostic window %s was replaced by frozen window %s"
+                % (measured_window, expected_window))
+            history.append(retired)
+            del record[diagnostic]
+            moved.append(diagnostic)
+    if not history:
+        del data["superseded"][strategy]
+    return moved
 
 
 def _runtime(row):
@@ -528,6 +553,22 @@ def candidates(profile_path, eligibility_path):
 
 
 def selftest():
+    assert WINDOWS["spot"] == WINDOWS["futures"] == "20200301-20200601"
+    sample_data = {"results": {}, "superseded": {}}
+    sample = {
+        "lookahead": {"status": "PASS", "timerange": "20190101-20190401"},
+        "recursive": {"status": "PASS", "timerange": "20200301-20200601"},
+    }
+    assert _supersede_stale_windows(
+        sample_data, "sample", sample, WINDOWS["spot"]) == ["lookahead"]
+    assert "lookahead" not in sample and "recursive" in sample
+    assert sample_data["superseded"]["sample"][0]["diagnostic"] == "lookahead"
+    fallback_data = {"results": {}, "superseded": {}}
+    fallback = {"lookahead": {
+        "status": "PASS", "timerange": INTERMEDIATE_WINDOW}}
+    assert not _supersede_stale_windows(
+        fallback_data, "fallback", fallback, WINDOWS["spot"])
+    assert "lookahead" in fallback
     border = "\u2502"
     found = "%s Yes %s 20 %s 0 %s 0 %s rsi_gra, enter_long %s" % (
         border, border, border, border, border, border)
@@ -714,6 +755,7 @@ def main(argv=None):
                if key in previous):
             previous = {}
         previous.update(current_identity)
+        _supersede_stale_windows(data, strategy, previous, WINDOWS[mode])
         for diagnostic in ("lookahead", "recursive"):
             if diagnostic not in wanted or (not args.force and
                     previous.get(diagnostic, {}).get("status") in ("PASS", "FOUND")):

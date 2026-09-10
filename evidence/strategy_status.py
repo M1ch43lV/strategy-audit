@@ -233,8 +233,7 @@ _RECONSTRUCTED = {
 
 def profile_bias_window(run_profile):
     """The frozen diagnostic window for a run profile."""
-    return ("20200301-20200401" if (run_profile or "").startswith("futures_")
-            else "20190101-20190401")
+    return "20200301-20200601"
 
 
 def repair_settings(entry, run=None):
@@ -1984,7 +1983,7 @@ def _report(data):
         "| Check | Window | Pairs |",
         "|---|---|---|",
         "| Trial run (`profile_smoke`) | 1 month -> 3 months -> 1 year; stop at 10 trades | all 8 |",
-        "| Bias check, spot | `20190101-20190401`, three months | `BTC/USDT` only |",
+        "| Bias check, spot | `20200301-20200601`, three months | `BTC/USDT` only |",
         "| Bias check, futures | `20200301-20200601`, three months | `BTC/USDT:USDT` only |",
         "| Look-ahead, first fallback | `20200101-20220101` | BTC only |",
         "| Look-ahead, second fallback | `20200301-20260820` | BTC only |",
@@ -2265,6 +2264,8 @@ def _write(path, content):
 
 
 def selftest():
+    assert profile_bias_window("spot_long") == "20200301-20200601"
+    assert profile_bias_window("futures_longshort") == "20200301-20200601"
     data = rows()
     corpus_size = len(_csv(PROFILES))
     assert len(data) == corpus_size, (len(data), corpus_size)

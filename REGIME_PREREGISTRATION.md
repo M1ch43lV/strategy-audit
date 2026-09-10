@@ -168,6 +168,24 @@ window. In particular, a look-ahead analysis that remains below ten trades
 after its 6.5-year fallback, or a full-window backtest with zero trades, is not
 rerun on these shorter smoke rungs.
 
+## Amendment 2026-09-10: identical Spot and Futures bias windows
+
+**Owner's decision**, before any Spot diagnostic was rerun under this change.
+The native look-ahead, recursive-bias, and warm-up-convergence diagnostics now
+use the identical calendar interval `20200301-20200601` for Spot and Futures.
+This supersedes only the sentence in the 2026-09-09 amendment that retained
+Spot at `20190101-20190401`; its three-month duration remains unchanged.
+
+Using the same calendar dates removes the sampled market period as a difference
+between the two execution modes. Both diagnostics use BTC only, so the later
+listing dates of the other seven pooled pairs do not constrain this interval.
+January and February 2020 remain available as prefix history for both modes.
+
+Stored Spot records over `20190101-20190401` remain immutable provenance but
+cannot satisfy a new decision under this amendment. They must be superseded and
+rerun under `20200301-20200601`; selection for rerun is based on the obsolete
+timerange, not on profitability or regime performance.
+
 ## Frozen warm-up convergence amendment
 
 Authorized by the owner on 2026-09-01, before any strategy-by-regime ranking
