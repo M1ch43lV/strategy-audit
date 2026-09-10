@@ -1526,6 +1526,14 @@ def rows():
                     and source != "full_window":
                 open_work.append("full_window_measurement_pending")
 
+        # An actual exclusion is terminal for the work queue.  Preserve its
+        # evidence and reason, but do not promise a new measurement merely
+        # because a supporting gate record is historical or incomplete.
+        # `exclusion_unconfirmed` is intentionally not covered: it is not an
+        # earned exclusion and must retain the work needed to decide it.
+        if cohort == "excluded":
+            open_work = []
+
         # Owner decision 2026-09-10: a successful, identity-bound canonical
         # pooled full backtest proves that this implementation already passed
         # the technical chain leading into Stage 7.  A later diagnostic-window
@@ -1835,6 +1843,9 @@ def _report(data):
         "mode timerange). Their `technical_chain_complete=true` closes the technical",
         "work queue, even if a later diagnostic-window amendment made earlier evidence",
         "historical. This does not grant admission or overwrite an exclusion finding.", "",
+        "**Terminal exclusions.** Every row in the `excluded` cohort is closed and",
+        "therefore has no `open_work`. `exclusion_unconfirmed` is a distinct, unfinished",
+        "cohort: it remains queued because the audit has not earned an exclusion verdict.", "",
         "`evidence/REGIME_ELIGIBILITY.csv` remains a frozen file and is never",
         "regenerated - but as of 2026-09-03 this table no longer treats its",
         "`regime_eligible=true` rows as automatically usable. The recursion",
@@ -2469,10 +2480,13 @@ def selftest():
         if row["cohort"] == "excluded":
             assert row["exclusion_basis"] in ("own_measurement", "blocked"), \
                 (row["strategy_id"], row["exclusion_basis"])
-        if row["cohort"] in ("excluded", "exclusion_unconfirmed") \
+            assert not row["open_work"], \
+                "an excluded strategy must not remain in the work queue: %s" % \
+                row["strategy_id"]
+        if row["cohort"] == "exclusion_unconfirmed" \
                 and row["exclusion_basis"] != "own_measurement":
             assert row["open_work"], \
-                "%s: excluded on %s with no work queued" % (
+                "%s: unconfirmed exclusion on %s with no work queued" % (
                     row["strategy_id"], row["exclusion_basis"])
         # A recovered timestamp always names where it came from.
         assert bool(row["last_tested_at"]) == bool(row["last_tested_source"]), \

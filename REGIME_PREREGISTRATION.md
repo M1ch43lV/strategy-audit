@@ -203,6 +203,15 @@ the later Spot diagnostic-window shift does not invalidate this closure. It is e
 exclusion finding, or treat an OOM, timeout, failed, or identity-mismatched run
 as completed.
 
+## Amendment 2026-09-10: exclusions close the work queue
+
+**Owner's decision.** A strategy recorded in the final `excluded` cohort is a
+completed audit case. Its exclusion reason and evidence remain visible, but it
+must never retain an `open_work` item merely because a supporting diagnostic is
+historical or an ancillary recursion ladder did not finish. This does not apply
+to `exclusion_unconfirmed`: that separate cohort has not earned an exclusion
+verdict and remains open until its evidence gap is resolved.
+
 ## Frozen warm-up convergence amendment
 
 Authorized by the owner on 2026-09-01, before any strategy-by-regime ranking

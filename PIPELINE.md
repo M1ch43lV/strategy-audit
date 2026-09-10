@@ -90,6 +90,12 @@ wenn Source-Hash und Run-Profil mit
 nachträglicher E1-Zugang und hebt keinen dokumentierten Ausschluss auf;
 fehlgeschlagene, OOM- oder Timeout-Stage-7-Versuche zählen nicht als Abschluss.
 
+Unabhängig davon ist jede Zeile im Kohortenwert `excluded` ein abgeschlossener
+Arbeitsfall: Sie bleibt mit Ausschlussgrund und Belegen sichtbar, erhält aber
+kein `open_work`. `exclusion_unconfirmed` ist ausdrücklich nicht synonym dazu;
+diese noch nicht verdienten Ausschlüsse bleiben offen, bis die fehlende
+Entscheidungsevidenz vorliegt.
+
 ## Stufe 3 — Bias-Ausschlussprüfung: Look-Ahead-Bias
 
 | Programm | Liest | Schreibt |

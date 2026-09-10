@@ -3,15 +3,13 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-10T19:52:37+02:00
-- Stopped because: the owner clarified that a completed canonical pooled
-  Full-Backtest closes the preceding technical chain even after the Spot
-  diagnostic-window shift; the status generator and generated artifacts now
-  implement that rule, without starting a measurement writer
-- Next agent should: never queue an identity-matching `measured` canonical
-  pooled Full-Backtest row merely because an earlier Spot/Futures diagnostic
-  used a superseded window. Work only the remaining identity-incomplete rows
-  if the owner explicitly continues the measurement queue.
+- Last update: 2026-09-10T20:05:40+02:00
+- Stopped because: the owner additionally declared final `excluded` rows
+  closed; the generator now removes all their `open_work` while retaining
+  `exclusion_unconfirmed` as the distinct, evidence-incomplete queue
+- Next agent should: never queue a final `excluded` row or an identity-matching
+  `measured` canonical pooled Full-Backtest row. If measurements resume, target
+  only `pending` and `exclusion_unconfirmed` rows after identity filtering.
 
 ## Objective
 
@@ -61,6 +59,9 @@ entry; do not reread the roughly 2,000-line file end to end.
 - Full-backtest technical closure: `REGIME_PREREGISTRATION.md`, amendment
   `2026-09-10: completed full backtest closes technical work`, plus
   `evidence/strategy_status.py` and `PIPELINE.md`, Stage 7.
+- Terminal-exclusion closure: `REGIME_PREREGISTRATION.md`, amendment
+  `2026-09-10: exclusions close the work queue`, plus
+  `evidence/strategy_status.py` and `PIPELINE.md`.
 
 ## Machine state - authoritative
 
@@ -99,15 +100,16 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-10T19:52:37+02:00 after recording full-backtest technical
-closure:
+Observed 2026-09-10T20:05:40+02:00 after recording terminal-exclusion closure:
 
 - No Docker benchmark/analyzer or evidence writer is active.
 - `STRATEGY_STATUS.csv` is current with 1,050 rows: 675 `E1_expanded`, 263
   excluded, 53 exclusion-unconfirmed, 30 too-few-trades, 10 pending and 19
   not-a-strategy. 583 current source/profile identities have a successful
   canonical pooled Full-Backtest and therefore `technical_chain_complete=true`;
-  none is in `open_work`.
+  none is in `open_work`. All 263 final `excluded` rows now also have empty
+  `open_work`; the remaining queue contains 53 `exclusion_unconfirmed` and 10
+  `pending` rows only.
 - GRID measured 8 trades at one month then timed out at three months; ONS
   measured 8 at one and three months then timed out at one year. Both exhausted
   the 1,800-second recovery budget and need no repeat.
@@ -341,10 +343,9 @@ only bias diagnostic.
    equivalence proof first, then native look-ahead and recursive gates. Only
    rows passing every frozen technical gate may receive a new E1 adjudication.
 3. If the owner explicitly continues the measurement queue, derive targets
-   from current identities and exclude every
-   `technical_chain_complete=true` row. Supersede obsolete Spot/Futures
-   diagnostic records only for the remaining rows; do not use the old 218/790
-   inventory as a queue because it includes completed Full-Backtests.
+   only from `pending` and `exclusion_unconfirmed` current identities. Exclude
+   every final `excluded` and every `technical_chain_complete=true` row; do not
+   use the old 218/790 inventory as a queue because it includes closed cases.
 4. Complete remaining Model 0 rows resumably and adjudicate resource-
    inconclusive failures under the existing attempt rules.
 5. Resolve the eight OPEN preregistration choices before producing a discovery
@@ -372,6 +373,10 @@ only bias diagnostic.
   they have already completed the technical chain. A later diagnostic-window
   change must not requeue them; preserve their earlier diagnostic records as
   provenance. The sole current identity mismatch is `NostalgiaForInfinityX`.
+- Final `excluded` cohort rows: they are closed work cases. Preserve their
+  exclusion evidence and reason, but never recreate `open_work` for them.
+  `exclusion_unconfirmed` remains a separate unresolved cohort and is not
+  covered by this closure rule.
 - The 5-profile ungated adapter equivalence suite.
 - Regime feature generation unless its hashed candle inputs or frozen formula
   change.
@@ -423,6 +428,8 @@ only bias diagnostic.
 - `technical_chain_complete=true` requires a `measured`, canonical pooled
   Full-Backtest whose source hash and run profile still match the current
   execution profile. It clears `open_work` only, not cohort/adjudication.
+- A final `excluded` cohort also clears `open_work`; it does not erase its
+  exclusion reason/evidence. `exclusion_unconfirmed` must retain its queue.
 - E0 is invalid historical provenance only. The current usable population is
   the latest active E1 adjudication set; currently 675 rows, including 66
   independently re-admitted former E0 members.
