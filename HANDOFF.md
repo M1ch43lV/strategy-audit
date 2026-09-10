@@ -3,15 +3,14 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-09T03:05:00+02:00
-- Stopped because: the owner froze a three-month Futures recursion window, but
-  the productive Model 0 container is still active and the one-heavy-writer
-  rule forbids starting the 24 requested Futures ladder reruns concurrently
-- Next agent should: let the current Model 0 writer finish, then supersede and
-  rerun exactly the 24 Futures rows whose current `primary_reason` is
-  `recursive_bias_found`; regenerate/adjudicate status afterward. Do not include
-  the 8 `recursive_check_incomplete_at_longest_rungs` rows in that count: they
-  have no positive recursion-bias finding.
+- Last update: 2026-09-10T07:12:00+02:00
+- Stopped because: the requested smoke cascade is implemented, validated and
+  committed; no strategy was rerun because every current `too_few_trades` row
+  already has stronger 6.5-year low-trade evidence
+- Next agent should: use the new default smoke cascade for future or genuinely
+  unresolved low-trade trial runs. Do not rerun the 30 current
+  `too_few_trades` rows on its shorter windows. Continue the remaining Model 0
+  and Futures-recursion work only after repeating the writer checks.
 
 ## Objective
 
@@ -51,6 +50,9 @@ entry; do not reread the roughly 2,000-line file end to end.
 - Futures recursion retest: `REGIME_PREREGISTRATION.md`, amendment
   `2026-09-09: three-month Futures recursion window`, plus
   `evidence/profile_bias.py` and `evidence/warmup_convergence.py`.
+- Smoke trade-count escalation: `REGIME_PREREGISTRATION.md`, amendment
+  `2026-09-10: fixed smoke trade-count cascade`, plus
+  `evidence/profile_smoke.py` and `PIPELINE.md`, Stage 1.
 
 ## Machine state - authoritative
 
@@ -89,15 +91,16 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-09T02:33:18+02:00 after the final cleanup commit at HEAD `a1b7ecc`:
+Observed 2026-09-10T07:12:00+02:00 after commit `8e435f5`:
 
-- No Docker benchmark container or Model 0 writer is active. Only shell/session
-  processes matched the broad process expression.
-- `STRATEGY_STATUS.csv` is current with 1,050 rows: 659 `E1_expanded`, 256
-  excluded, 46 pending, 39 exclusion-unconfirmed, 29 too-few-trades, 19
-  not-a-strategy, and 2 convergence candidates.
-- Against current E1, the Model 0 manifest has 550 measured, 52 OOM-confirmed,
-  5 performance-limited, 1 stake-overflow-confirmed, and 51 missing rows.
+- No Docker benchmark/analyzer or evidence writer is active. Only this session's
+  shell matched the broad process expression.
+- `STRATEGY_STATUS.csv` is current with 1,050 rows: 675 `E1_expanded`, 255
+  excluded, 38 exclusion-unconfirmed, 33 pending, 30 too-few-trades and 19
+  not-a-strategy.
+- The 30 too-few rows all carry look-ahead evidence through
+  `20200301-20260820`: 29 ended at 0/10 trades and `Cluckie` at 9/10. Seven
+  separate zero-trade exclusions have completed full-window evidence.
 - Root contains 22 files and no Python programs. The current status and HTML
   page regenerate cleanly; no benchmark or measurement artifact changed.
 - The post-commit hook refreshed Graphify AST-only to 1,363 nodes, 2,205 edges,
@@ -109,6 +112,14 @@ Observed 2026-09-09T02:33:18+02:00 after the final cleanup commit at HEAD `a1b7e
   `recursive_check_incomplete_at_longest_rungs` rows.
 
 ## Current implementation checkpoint
+
+Smoke cascade commit `8e435f5` freezes Stage 1 at one month, then three months,
+then one year while the completed run remains below ten trades. It stops on the
+first rung reaching ten, retains every attempt and unique archive identity, and
+does not widen runtime failures. Legacy low-trade smoke records are stale under
+this policy; existing results at or above ten trades remain current. The status
+Markdown and HTML template describe the cascade and the corrected three-month
+Futures bias window. No measurement store changed in that commit.
 
 Base implementation was `0de5829`; the four-model redesign is committed as
 `b40ad60` (`Separate coin-only and combined regime gates`).
@@ -306,6 +317,10 @@ productive rerun has not started because Model 0 is still active.
 - Corpus intake and the completed eligibility expansion waves.
 - Warm-up ladders, native bias diagnostics, or admission decisions already
   represented in current stores.
+- The 30 current `too_few_trades` rows: their 6.5-year look-ahead fallback is
+  stronger than every rung of the new smoke cascade, so a shorter rerun cannot
+  rescue them. Revisit only if the strategy/runtime identity or frozen rule
+  changes.
 - Exception authorized 2026-09-09: supersede and rerun the 24 Futures
   `recursive_bias_found` ladder records because their one-month timerange is no
   longer the frozen rule. Do not rerun unaffected Spot rows.
@@ -336,6 +351,9 @@ productive rerun has not started because Model 0 is still active.
 - Futures analysis window: `20200301-20260821`.
 - Bias/convergence diagnostic windows: Spot `20190101-20190401`; Futures
   `20200301-20200601` after the prospective 2026-09-09 amendment.
+- Smoke diagnostic cascade: `20200301-20200401`, `20200301-20200601`, then
+  `20200301-20210301`, stopping at the first measured rung with at least 10
+  trades.
 - Eight-pair pooled canonical universe; pairwise shards are supporting trade
   evidence and do not replace pooled shared-capital mechanics.
 - Primary state model: Wilder DMI/ADX(14), causal one-day lag, four states.
