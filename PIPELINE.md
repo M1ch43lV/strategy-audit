@@ -96,6 +96,12 @@ kein `open_work`. `exclusion_unconfirmed` ist ausdrücklich nicht synonym dazu;
 diese noch nicht verdienten Ausschlüsse bleiben offen, bis die fehlende
 Entscheidungsevidenz vorliegt.
 
+Zusätzlich hat der Owner am 2026-09-10 für Stufe 7 entschieden: Eine zuvor
+zugelassene Strategie mit `full_backtest_status` `failed`,
+`resource_inconclusive` oder `timeout` ist für diesen Benchmark nicht testbar
+und wird als C10 `full_backtest_not_testable` final ausgeschlossen. Diese drei
+Zustände werden nicht erneut in den Full-Backtest eingeplant.
+
 ## Stufe 3 — Bias-Ausschlussprüfung: Look-Ahead-Bias
 
 | Programm | Liest | Schreibt |

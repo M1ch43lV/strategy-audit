@@ -121,7 +121,8 @@ FIELDS = {
 }
 
 
-POOLED_RETIRED = ("performance_limited", "oom_confirmed", "stake_overflow_confirmed")
+POOLED_RETIRED = ("failed", "resource_inconclusive", "timeout",
+                  "performance_limited", "oom_confirmed", "stake_overflow_confirmed")
 
 
 def pooled_results():
@@ -133,25 +134,21 @@ def pooled_results():
 def pooled_trades(results):
     """strategy_id -> pooled trade count, for rows the pooled run measured.
 
-    Only `status == "measured"` counts - `oom_confirmed`/`performance_limited`/
-    `stake_overflow_confirmed` are the run giving up on a row, not a trade
-    count for it.
+    Only `status == "measured"` counts. Every other listed terminal status is
+    a non-testable result, not a trade count.
     """
     return {strategy: record["trades"] for strategy, record in results.items()
             if record.get("status") == "measured"}
 
 
 def pooled_retired(results):
-    """strategy_id -> True, for rows regime/full_backtest.py has confirmed it
-    cannot measure under the best conditions this runner offers (see
+    """strategy_id -> True for rows confirmed not testable under this
+    benchmark's fixed conditions by regime/full_backtest.py (see
     evidence/POOLED_BACKTEST_PERFORMANCE_LIMIT.json /
     evidence/POOLED_BACKTEST_OOM_LIMIT.json / _STAKE_OVERFLOW.json).
 
-    Deliberately not `failed`/`resource_inconclusive`: those are retried on
-    the runner's own next pass unless nothing about the row's file, config,
-    repair state or runtime image has moved since - they are still open,
-    not yet a verdict, the same distinction this table draws everywhere else
-    between an unfinished row and an excluded one.
+    The owner added `failed`, `resource_inconclusive`, and `timeout` on
+    2026-09-10: they are final non-testable outcomes for this benchmark.
     """
     return {strategy for strategy, record in results.items()
             if record.get("status") in POOLED_RETIRED}

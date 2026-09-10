@@ -3,13 +3,14 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-10T20:05:40+02:00
-- Stopped because: the owner additionally declared final `excluded` rows
-  closed; the generator now removes all their `open_work` while retaining
-  `exclusion_unconfirmed` as the distinct, evidence-incomplete queue
-- Next agent should: never queue a final `excluded` row or an identity-matching
-  `measured` canonical pooled Full-Backtest row. If measurements resume, target
-  only `pending` and `exclusion_unconfirmed` rows after identity filtering.
+- Last update: 2026-09-10T20:22:17+02:00
+- Stopped because: the owner made `failed`, `resource_inconclusive`, and
+  `timeout` canonical pooled Full-Backtests final non-testable C10 exclusions;
+  the generator, criteria, CSV, status page, and binding documents implement it
+- Next agent should: never queue a C10 row. The current E1 cohort excludes all
+  final Full-Backtest non-testable rows; if measurements resume, target only
+  the remaining `pending` and `exclusion_unconfirmed` rows after identity
+  filtering.
 
 ## Objective
 
@@ -62,6 +63,9 @@ entry; do not reread the roughly 2,000-line file end to end.
 - Terminal-exclusion closure: `REGIME_PREREGISTRATION.md`, amendment
   `2026-09-10: exclusions close the work queue`, plus
   `evidence/strategy_status.py` and `PIPELINE.md`.
+- Full-backtest non-testability: `REGIME_PREREGISTRATION.md`, amendment
+  `2026-09-10: non-testable canonical full backtests are excluded`, plus C10
+  in `evidence/exclusion_criteria.py` and `evidence/strategy_status.py`.
 
 ## Machine state - authoritative
 
@@ -100,12 +104,14 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-10T20:05:40+02:00 after recording terminal-exclusion closure:
+Observed 2026-09-10T20:22:17+02:00 after recording Full-Backtest C10 closure:
 
 - No Docker benchmark/analyzer or evidence writer is active.
-- `STRATEGY_STATUS.csv` is current with 1,050 rows: 675 `E1_expanded`, 263
+- `STRATEGY_STATUS.csv` is current with 1,050 rows: 641 `E1_expanded`, 297
   excluded, 53 exclusion-unconfirmed, 30 too-few-trades, 10 pending and 19
-  not-a-strategy. 583 current source/profile identities have a successful
+  not-a-strategy. C10 moves 34 formerly E1 rows to excluded: 21 `failed`, 12
+  `resource_inconclusive`, and 1 `timeout` in the canonical pooled runner.
+  583 current source/profile identities have a successful
   canonical pooled Full-Backtest and therefore `technical_chain_complete=true`;
   none is in `open_work`. All 263 final `excluded` rows now also have empty
   `open_work`; the remaining queue contains 53 `exclusion_unconfirmed` and 10
@@ -344,7 +350,7 @@ only bias diagnostic.
    rows passing every frozen technical gate may receive a new E1 adjudication.
 3. If the owner explicitly continues the measurement queue, derive targets
    only from `pending` and `exclusion_unconfirmed` current identities. Exclude
-   every final `excluded` and every `technical_chain_complete=true` row; do not
+   every final `excluded`, C10, and `technical_chain_complete=true` row; do not
    use the old 218/790 inventory as a queue because it includes closed cases.
 4. Complete remaining Model 0 rows resumably and adjudicate resource-
    inconclusive failures under the existing attempt rules.
@@ -377,6 +383,10 @@ only bias diagnostic.
   exclusion evidence and reason, but never recreate `open_work` for them.
   `exclusion_unconfirmed` remains a separate unresolved cohort and is not
   covered by this closure rule.
+- C10 `full_backtest_not_testable`: the recorded Stage-7 `failed`,
+  `resource_inconclusive`, or `timeout` outcome is final by the owner's
+  2026-09-10 decision. Do not retry or admit these rows without a new owner
+  decision that supersedes the amendment.
 - The 5-profile ungated adapter equivalence suite.
 - Regime feature generation unless its hashed candle inputs or frozen formula
   change.
@@ -430,8 +440,11 @@ only bias diagnostic.
   execution profile. It clears `open_work` only, not cohort/adjudication.
 - A final `excluded` cohort also clears `open_work`; it does not erase its
   exclusion reason/evidence. `exclusion_unconfirmed` must retain its queue.
+- C10 contains exactly the owner-declared canonical Full-Backtest statuses
+  `failed`, `resource_inconclusive`, and `timeout`; status or cohort is never
+  hand-edited in `STRATEGY_STATUS.csv`.
 - E0 is invalid historical provenance only. The current usable population is
-  the latest active E1 adjudication set; currently 675 rows, including 66
+  the latest active E1 adjudication set after C10; currently 641 rows, including 66
   independently re-admitted former E0 members.
 - The prior long Wave A-C handoff remains recoverable in Git before commit
   `548be09`; current artifacts and this file supersede its stale counts.

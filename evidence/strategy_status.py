@@ -171,6 +171,9 @@ REASON_ORDER = (
      "trades fewer than ten times over the full window and all eight pairs, "
      "which is below what any check or ranking can work with"),
     ("no_trades_in_full_measurement", "never trades over the full window"),
+    ("full_backtest_not_testable",
+     "the canonical pooled full backtest did not complete under the fixed "
+     "runtime budget"),
     ("repair_refused_would_invent_strategy",
      "declares no timeframe, no stoploss, no exit logic, or names a model "
      "that no longer exists and cannot be restored; supplying one would "
@@ -465,6 +468,11 @@ def completed_full_backtest(profile, record):
     )
 
 
+FULL_BACKTEST_NOT_TESTABLE = frozenset((
+    "failed", "resource_inconclusive", "timeout",
+))
+
+
 def _integer(value):
     try:
         return int(value)
@@ -560,6 +568,8 @@ def exclusion_basis(reason, lookahead_evidence, trade_evidence,
         return "own_measurement"
     if reason == "no_trades_in_full_measurement":
         return "own_measurement" if trade_evidence == "full_window" else "inherited"
+    if reason == "full_backtest_not_testable":
+        return "own_measurement"
     # `recursive_bias_found` is our own only when our ladder produced it. A
     # FOUND carried over from the baseline is inherited evidence and says so,
     # whatever else the row carries: 15 rows sat under `own_measurement`
@@ -1509,6 +1519,17 @@ def rows():
             reason = "shared_runtime_change_declined"
             basis = "own_measurement"
             open_work = []
+        # Owner decision 2026-09-10: a strategy that passed the earlier
+        # eligibility gates but whose canonical pooled Stage-7 run ended in
+        # one of these terminal non-testable states is excluded from this
+        # benchmark. This intentionally retains the recorded Stage-7 outcome
+        # even when a later source revision no longer has the same hash.
+        if cohort == "E1_expanded" \
+                and full_backtest.get("status") in FULL_BACKTEST_NOT_TESTABLE:
+            cohort = "excluded"
+            reason = "full_backtest_not_testable"
+            basis = "own_measurement"
+            open_work = []
         if basis == "blocked" and not repair.get("verdict"):
             repair["verdict"] = "to_be_fixed"
         if basis == "blocked":
@@ -1999,10 +2020,12 @@ def _report(data):
         "over all eight pairs, at the warm-up the ladder settled on. It is the",
         "most expensive step by a wide margin, which is why it comes last and",
         "only for strategies whose numbers can be trusted. Admission follows",
-        "from it, and the market-phase work is built on it.", "",
+        "from the recorded adjudication; this step decides whether an admitted",
+        "strategy is testable for the pooled market-phase benchmark.", "",
         "## What excludes a strategy", "",
-        "Three things, and nothing else. Each is a result this audit produced",
-        "itself, on this data, in this runtime.", "",
+        "The complete machine-readable list is generated in",
+        "`evidence/exclusion_criteria_list.md`. Each criterion rests on evidence",
+        "from this audit's recorded runtime.", "",
         "| | Criterion | Machine test |",
         "|---|---|---|",
         "| C1 | Look-ahead found | `lookahead == \"FOUND\"` and "
@@ -2010,8 +2033,10 @@ def _report(data):
         "| C2 | Recursion found | `recursive_evidence == "
         "\"convergence:not_settled\"` |",
         "| C3 | Never trades | `no_trades_in_full_measurement` with "
-        "`trade_evidence == \"full_window\"` |", "",
-        "**A strategy satisfying none of these is not excluded.** It is",
+        "`trade_evidence == \"full_window\"` |",
+        "| C10 | Canonical pooled full backtest not testable |",
+        "`full_backtest_status in {failed, resource_inconclusive, timeout}` |", "",
+        "**A strategy satisfying none of the applicable criteria is not excluded.** It is",
         "unfinished, and `open_work` names what is missing. Five things have",
         "at one time or another excluded strategies here and have been",
         "withdrawn: the source-code trap heuristic, a verdict inherited from",
@@ -2343,8 +2368,16 @@ def selftest():
     assert noted == frozen, sorted(noted ^ frozen)
     admitted = {r["strategy_id"] for r in _csv(ADJUDICATION)
                 if r["adjudication_status"] == "admitted_E1"}
+    c10 = {row["strategy_id"] for row in data
+           if row["primary_reason"] == "full_backtest_not_testable"}
+    full_backtests = _full_backtest_document()["results"]
+    expected_c10 = {strategy for strategy in admitted
+                    if (full_backtests.get(strategy) or {}).get("status")
+                    in FULL_BACKTEST_NOT_TESTABLE}
+    assert c10 == expected_c10, (sorted(c10 ^ expected_c10),
+                                 len(c10), len(expected_c10))
     assert {row["strategy_id"] for row in data
-            if row["cohort"] == "E1_expanded"} == admitted
+            if row["cohort"] == "E1_expanded"} == admitted - c10
     completed = [row for row in data
                  if row["technical_chain_complete"] == "true"]
     assert completed, "expected current canonical full-backtest completions"
@@ -2381,6 +2414,7 @@ def selftest():
                 or row["recursive_evidence"] == "convergence:not_settled"
                 or row["recursive_evidence"] == "convergence:crash_exhausted"
                 or row["primary_reason"] == "no_trades_in_full_measurement"
+                or row["primary_reason"] == "full_backtest_not_testable"
                 or row["primary_reason"] == "repair_refused_would_invent_strategy"
                 or row["primary_reason"] == "local_module_repair_exhausted"
                 or row["primary_reason"] == "measured_only_in_freqai_arm"

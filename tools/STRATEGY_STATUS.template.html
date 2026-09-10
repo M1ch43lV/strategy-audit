@@ -533,11 +533,9 @@ __CRITERIA__
     return r.c === "excluded" && r.n === "lookahead_found" && !lookaheadOk(r);
   }
   function fullbacktestOk(r){ return r.pft != null; }
-  // Only the three hand-curated give-ups (see evidence/POOLED_BACKTEST_
-  // PERFORMANCE_LIMIT.json / _OOM_LIMIT.json / _STAKE_OVERFLOW.json) count
-  // here. A bare `failed` or `resource_inconclusive` from the pooled run
-  // is retried on its own next pass unless nothing about the row has
-  // moved since - still open, not yet a verdict.
+  // The curated performance/OOM/stake limits count here, as do the owner's
+  // 2026-09-10 final non-testable outcomes: failed, resource_inconclusive,
+  // and timeout. None is retried by the canonical pooled runner.
   function fullbacktestExcl(r){ return !!r.pfr && !fullbacktestOk(r); }
 
   var downloaded = rows;

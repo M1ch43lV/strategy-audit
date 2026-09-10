@@ -212,6 +212,16 @@ historical or an ancillary recursion ladder did not finish. This does not apply
 to `exclusion_unconfirmed`: that separate cohort has not earned an exclusion
 verdict and remains open until its evidence gap is resolved.
 
+## Amendment 2026-09-10: non-testable canonical full backtests are excluded
+
+**Owner's decision.** A strategy that reached Stage 7 but has a canonical
+pooled full-backtest status of `failed`, `resource_inconclusive`, or `timeout`
+is not testable for this benchmark and is final `excluded` under C10
+`full_backtest_not_testable`. The recorded outcome is retained as provenance;
+it is not requeued or retried. This rule applies to the 34 previously E1
+admitted rows with those statuses, and does not infer anything about their
+profitability.
+
 ## Frozen warm-up convergence amendment
 
 Authorized by the owner on 2026-09-01, before any strategy-by-regime ranking

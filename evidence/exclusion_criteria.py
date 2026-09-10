@@ -76,6 +76,12 @@ def _never_trades(row):
             and row["trade_evidence"] == "full_window")
 
 
+def _full_backtest_not_testable(row):
+    return (row["primary_reason"] == "full_backtest_not_testable"
+            and row["full_backtest_status"] in (
+                "failed", "resource_inconclusive", "timeout"))
+
+
 def _no_repair_possible(row):
     return row["primary_reason"] == "repair_refused_would_invent_strategy"
 
@@ -185,6 +191,27 @@ CRITERIA = [
                  "because it was given the wrong profile - a futures strategy "
                  "run on spot, a short-only strategy with `can_short` unset - "
                  "is a setup fault of ours, not this criterion.",
+    },
+    {
+        "id": "C10",
+        "name": "Canonical pooled full backtest is not testable",
+        "test": _full_backtest_not_testable,
+        "columns": 'primary_reason == "full_backtest_not_testable" and '
+                   'full_backtest_status in {"failed", "resource_inconclusive", "timeout"}',
+        "what": "The strategy cleared the preceding technical gates, but its "
+                "canonical all-eight-pairs pooled Stage-7 run did not finish: "
+                "it failed, exhausted the available resource envelope, or timed out.",
+        "why_final": "Owner's decision, 2026-09-10: these outcomes mean the "
+                     "strategy is not testable for this benchmark. Repeating "
+                     "the same fixed full-run setup would not create a regime "
+                     "comparison comparable with the completed rows.",
+        "evidence": "`results/regime/full_backtest_manifest.json` records the "
+                    "status for the canonical pooled run; the status is also "
+                    "copied to `STRATEGY_STATUS.csv` as `full_backtest_status`.",
+        "watch": "This criterion is limited to the three owner-declared "
+                 "non-testable statuses. A successful `measured` record is not "
+                 "a finding, and the separately curated performance/OOM/stake "
+                 "limits retain their existing provenance.",
     },
     {
         "id": "C4",
