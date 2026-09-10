@@ -258,8 +258,9 @@
     <div class="legend">
       <div>
         <h3>1 &middot; Trial run</h3>
-        <p class="lead">One month over eight pairs: does the strategy start, and
-        does it trade. <strong>A strategy that fails here is <span class="pill k-hold">open</span>,
+        <p class="lead">One month over eight pairs, widened to three months and
+        then one year while fewer than ten trades are observed: does the strategy
+        start, and does it trade. <strong>A strategy that fails here is <span class="pill k-hold">open</span>,
         never excluded</strong> &mdash; no check has seen it, so nothing about it
         has been judged. It is labelled <span class="basis v-to_be_fixed">to be fixed</span>
         until the obstacle is either removed or shown to be the strategy's own.
@@ -328,9 +329,9 @@ __CRITERIA__
       <table style="min-width:640px">
         <thead><tr><th>Check</th><th>Window</th><th>Pairs</th></tr></thead>
         <tbody>
-          <tr><td>Trial run <code>profile_smoke</code></td><td><code>20200301-20200401</code><span class="msg">one month</span></td><td>all 8</td></tr>
+          <tr><td>Trial run <code>profile_smoke</code></td><td><code>20200301-20200401</code> &rarr; <code>20200301-20200601</code> &rarr; <code>20200301-20210301</code><span class="msg">stop at 10 trades; at most one year</span></td><td>all 8</td></tr>
           <tr><td>Bias check, spot</td><td><code>20190101-20190401</code><span class="msg">three months</span></td><td><code>BTC/USDT</code> only</td></tr>
-          <tr><td>Bias check, futures</td><td><code>20200301-20200401</code><span class="msg">one month</span></td><td><code>BTC/USDT:USDT</code> only</td></tr>
+          <tr><td>Bias check, futures</td><td><code>20200301-20200601</code><span class="msg">three months</span></td><td><code>BTC/USDT:USDT</code> only</td></tr>
           <tr><td>Look-ahead, first fallback</td><td><code>20200101-20220101</code><span class="msg">used when the frozen window yields fewer than ten trades</span></td><td>BTC only</td></tr>
           <tr><td>Look-ahead, second fallback</td><td><code>20200301-20260820</code></td><td>BTC only</td></tr>
           <tr><td>Full run <code>profile_full_window</code></td><td><code>20200301-20260821</code><span class="msg">6.5 years</span></td><td>all 8</td></tr>
@@ -875,7 +876,7 @@ __CRITERIA__
   var TRADE_WINDOW = {
     pooled:"2020–2026, regime/full_backtest.py's pooled run: all eight pairs together, sharing one open-trade budget - the real portfolio number",
     full_window:"2020–2026, evidence/profile_full_window.py: all eight pairs, each run and counted separately then summed - a full-window count, not a pooled one",
-    smoke:"2020-03-01–2020-04-01, one month, this audit's trial run, all eight pairs"
+    smoke:"this audit's trial run over all eight pairs: one month, widened to three months and then one year while below ten trades"
   };
   /* Three tiers, ranked by what the number can actually claim. The pooled
      run (`pft`, from results/regime/full_backtest_manifest.json) is the real
@@ -885,7 +886,7 @@ __CRITERIA__
      measurement, just eight independent single-pair runs summed rather than
      one shared-budget run, and is marked † so the two are never read as
      the same claim. Short of that, the trial run (profile_smoke) is shown
-     starred - still this audit's own measurement, just one month rather than
+     starred - still this audit's own measurement, at most one year rather than
      the full window. A "baseline" count is none of these: it is the original
      author's, from a different and uncontrolled environment, carried only
      because this row's own trial run did not produce a clean measurement

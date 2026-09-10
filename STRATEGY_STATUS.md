@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1050 rows
 
-**Generated 2026-09-10 06:33:07 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-10 07:05:11 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -162,8 +162,9 @@ Summed across the 1046 rows that do: **68.5 hours** of this audit's own compute 
 The order is not arbitrary; each step needs what the one before it
 produces.
 
-**1. Trial run.** One month over eight pairs: does the strategy start,
-and does it trade. A strategy that fails here is `open`, never
+**1. Trial run.** One month over eight pairs, widened to three months
+and then one year while fewer than ten trades are observed: does the
+strategy start, and does it trade. A strategy that fails here is `open`, never
 `excluded` - no check has seen it, so nothing about it has been
 judged. It is labelled `to_be_fixed` until the obstacle is either
 removed or shown to be the strategy's own; `repair_verdict` then says
@@ -236,9 +237,9 @@ pair set either.
 
 | Check | Window | Pairs |
 |---|---|---|
-| Trial run (`profile_smoke`) | `20200301-20200401`, one month | all 8 |
+| Trial run (`profile_smoke`) | 1 month -> 3 months -> 1 year; stop at 10 trades | all 8 |
 | Bias check, spot | `20190101-20190401`, three months | `BTC/USDT` only |
-| Bias check, futures | `20200301-20200401`, one month | `BTC/USDT:USDT` only |
+| Bias check, futures | `20200301-20200601`, three months | `BTC/USDT:USDT` only |
 | Look-ahead, first fallback | `20200101-20220101` | BTC only |
 | Look-ahead, second fallback | `20200301-20260820` | BTC only |
 | Full run (`profile_full_window`) | `20200301-20260821`, 6.5 years | all 8 |
@@ -259,8 +260,9 @@ that strategy's verdict, but it was not reached over the same span as
 its neighbour's.
 
 **The trial run answers one question:** does the strategy start and
-trade. One month over eight pairs is enough for that and cheap. What it
-earns is measured later, over the full window.
+trade. It begins with one month and, below ten trades, follows the
+fixed three-month and one-year rungs. What it earns is measured later,
+over the full window.
 
 The warm-up ladder steps in days - 1, 2, 7, 14, 30, 90, 365 - converted
 to each strategy's own timeframe, and accepts a rung once every

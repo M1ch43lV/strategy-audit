@@ -34,6 +34,13 @@ Kette).
 |---|---|---|
 | `evidence/profile_smoke.py` | `evidence/EXECUTION_PROFILES.csv`, `evidence/PROFILE_CLASS1.json` (Reparatur-Regeln) | `evidence/PROFILE_SMOKE.json` |
 
+Seit dem prospektiven Amendment vom 2026-09-10 ist der Probelauf eine feste
+Kaskade: `20200301-20200401` (1 Monat), bei weniger als 10 Trades
+`20200301-20200601` (3 Monate), danach `20200301-20210301` (1 Jahr). Er stoppt
+beim ersten Ergebnis mit mindestens 10 Trades und speichert alle Versuche.
+Fehler/Timeouts werden nicht durch ein längeres Fenster als bestanden
+umgedeutet. Bereits vorhandene Vollfenster-Evidenz bleibt vorrangig.
+
 **2026-09-06, erledigt:** `ELIGIBILITY_NEVER_RUN.json` und
 `ELIGIBILITY_TRAP_SMOKE.json` waren einmalige Fallback-Stores früherer
 Wellen (kein Runner im aktuellen Repo schrieb sie neu) — 65 der 83 Zeilen

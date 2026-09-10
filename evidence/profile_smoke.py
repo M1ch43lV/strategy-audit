@@ -29,6 +29,13 @@ from repair.overrides import repair_overrides
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MANIFEST = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
 OUTPUT = os.path.join(ROOT, "evidence/PROFILE_SMOKE.json")
+SMOKE_TIMERANGES = (
+    "20200301-20200401",
+    "20200301-20200601",
+    "20200301-20210301",
+)
+SMOKE_TRADE_FLOOR = 10
+SMOKE_POLICY_ID = "fixed_1m_3m_1y_until_10_trades_v1"
 FUTURES_CONFIG = os.path.join(ROOT, "runtime", "profile_futures_config.json")
 SPOT_CONFIG = os.path.join(ROOT, "runtime", "profile_spot_config.json")
 # Use the interpreter running this pipeline. PROFILE_PYTHON remains available
@@ -431,6 +438,67 @@ def select(rows, strategies, profiles, limit):
     return chosen[:limit] if limit else chosen
 
 
+def _policy_id(timeranges, trade_floor):
+    if (tuple(timeranges) == SMOKE_TIMERANGES
+            and trade_floor == SMOKE_TRADE_FLOOR):
+        return SMOKE_POLICY_ID
+    semantic = json.dumps({"timeranges": list(timeranges),
+                           "trade_floor": trade_floor}, sort_keys=True)
+    return "custom_" + hashlib.sha256(semantic.encode("utf-8")).hexdigest()[:12]
+
+
+def run_cascade(row, timeranges, trade_floor, timeout, config_overrides=None,
+                policy_id=None):
+    """Widen a successful but trade-poor smoke run by a frozen rule.
+
+    Runtime failures are not evidence that a longer market interval helps, so
+    only a measured result below the floor advances to the next rung.  Every
+    attempt is retained; the last attempted rung remains the top-level result
+    consumed by the existing status and adjudication readers.
+    """
+    policy_id = policy_id or _policy_id(timeranges, trade_floor)
+    attempts = []
+    final = None
+    for timerange in timeranges:
+        result = run_one(
+            row, timerange, timeout, config_overrides=config_overrides,
+            artifact_key="smoke_%s" % timerange.replace("-", "_"),
+            run_context={"smoke_policy_id": policy_id,
+                         "trade_floor": trade_floor,
+                         "rung": len(attempts) + 1},
+        )
+        attempts.append(result)
+        final = result
+        if result.get("status") != "measured":
+            break
+        if int(result.get("trades", 0)) >= trade_floor:
+            break
+    final = dict(final or {})
+    final["smoke_policy_id"] = policy_id
+    final["trade_floor"] = trade_floor
+    final["attempted_timeranges"] = [item.get("timerange") for item in attempts]
+    final["attempts"] = attempts
+    return final
+
+
+def _result_is_current(previous, identity, timeranges, trade_floor,
+                       policy_id=None):
+    policy_id = policy_id or _policy_id(timeranges, trade_floor)
+    if not previous or not all(previous.get(key) == value
+                               for key, value in identity.items()):
+        return False
+    # A prior failure is unrelated to interval length, and a prior result that
+    # already reached the floor needs no wider diagnostic window.
+    if previous.get("status") != "measured":
+        return True
+    if int(previous.get("trades", 0)) >= trade_floor:
+        return True
+    # Legacy one-month low-trade results are deliberately stale under the new
+    # policy.  A low result is current only after every frozen rung was tried.
+    return (previous.get("smoke_policy_id") == policy_id
+            and previous.get("attempted_timeranges") == list(timeranges))
+
+
 def selftest():
     assert _safe("A/B C").startswith("A_B_C-")
     # The whole point: two names differing only in case must never collide,
@@ -456,22 +524,38 @@ def selftest():
     saved_identity, saved_run_one = _identity, run_one
     calls = []
     _identity = lambda row: {"canonical_sha256": row["_sha"]}
-    run_one = lambda row, timerange, timeout, config_overrides=None: (
-        calls.append(row["strategy_id"]) or {"status": "measured", "trades": 1})
+    counts = {"a": 1, "b": 7, "c": 12}
+    run_one = lambda row, timerange, timeout, **kwargs: (
+        calls.append((row["strategy_id"], timerange)) or
+        {"status": "measured", "timerange": timerange,
+         "trades": counts[timerange]})
     try:
         with tempfile.TemporaryDirectory() as directory:
             output = os.path.join(directory, "smoke.json")
-            args = _argparse.Namespace(output=output, timerange="x", force=False,
-                                       timeout=1)
+            args = _argparse.Namespace(output=output,
+                                       timeranges=["a", "b", "c"],
+                                       trade_floor=10, force=False, timeout=1)
             row = {"strategy_id": "S", "_sha": "sha_v1"}
             _run(args, [row], None)
-            assert calls == ["S"], "first sight must measure"
+            assert calls == [("S", "a"), ("S", "b"), ("S", "c")]
+            stored = read_results(output)["results"]["S"]
+            assert stored["trades"] == 12
+            assert stored["attempted_timeranges"] == ["a", "b", "c"]
             _run(args, [row], None)
-            assert calls == ["S"], "identical identity must skip, not re-measure"
+            assert len(calls) == 3, "completed cascade must skip"
             row = {"strategy_id": "S", "_sha": "sha_v2"}
             _run(args, [row], None)
-            assert calls == ["S", "S"], \
+            assert len(calls) == 6, \
                 "changed identity must re-measure, not stamp and skip"
+            legacy = dict(stored, canonical_sha256="sha_v3", trades=1)
+            legacy.pop("smoke_policy_id")
+            legacy.pop("attempted_timeranges")
+            data = read_results(output)
+            data["results"]["S"] = legacy
+            write_results(data, output)
+            row = {"strategy_id": "S", "_sha": "sha_v3"}
+            _run(args, [row], None)
+            assert len(calls) == 9, "legacy low-trade smoke must cascade"
     finally:
         _identity, run_one = saved_identity, saved_run_one
     print("profile_smoke selftest: PASS")
@@ -484,7 +568,11 @@ def main(argv=None):
     parser.add_argument("--strategy", action="append", default=[])
     parser.add_argument("--profiles", nargs="+", default=[
         "futures_long", "futures_short", "futures_long_short"])
-    parser.add_argument("--timerange", default="20200301-20200401")
+    parser.add_argument("--timerange", default="",
+                        help="single-window compatibility override; disables cascade")
+    parser.add_argument("--timeranges", nargs="+", default=list(SMOKE_TIMERANGES),
+                        help="fixed smoke cascade, shortest to longest")
+    parser.add_argument("--trade-floor", type=int, default=SMOKE_TRADE_FLOOR)
     parser.add_argument("--timeout", type=int, default=300)
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--force", action="store_true")
@@ -494,6 +582,10 @@ def main(argv=None):
         selftest()
         return 0
 
+    if args.timerange:
+        args.timeranges = [args.timerange]
+    if not args.timeranges or args.trade_floor < 1:
+        raise SystemExit("at least one timerange and a positive trade floor are required")
     rows = select(read_manifest(args.manifest), args.strategy, set(args.profiles), args.limit)
     # A second runner on the same store loses whatever the first wrote after it
     # started: each holds the whole file in memory and rewrites it. That
@@ -527,7 +619,11 @@ def main(argv=None):
 
 def _run(args, rows, claim):
     data = read_results(args.output)
-    data["timerange"] = args.timerange
+    policy_id = _policy_id(args.timeranges, args.trade_floor)
+    data["timerange"] = args.timeranges[0]
+    data["timeranges"] = list(args.timeranges)
+    data["trade_floor"] = args.trade_floor
+    data["smoke_policy_id"] = policy_id
     data["config"] = os.path.basename(FUTURES_CONFIG)
     # A repair-store override (a recovered timeframe, most often) has to
     # reach this run the same way it already reaches regime/full_backtest.py
@@ -565,13 +661,15 @@ def _run(args, rows, claim):
         # of the new file was ever run - `regime/full_backtest.py` already
         # gets this right the same way, one identity comparison before
         # deciding to skip.
-        if (previous and not args.force
-                and all(previous.get(key) == value
-                        for key, value in identity.items())):
+        if (not args.force and _result_is_current(
+                previous, identity, args.timeranges, args.trade_floor,
+                policy_id=policy_id)):
             write_results(data, args.output)
             print("[%d/%d] %-38s skip" % (index, len(rows), name), flush=True)
             continue
-        result = run_one(row, args.timerange, args.timeout, config_overrides=settings)
+        result = run_cascade(row, args.timeranges, args.trade_floor,
+                             args.timeout, config_overrides=settings,
+                             policy_id=policy_id)
         result.update(identity)
         result["runtime_id"] = os.environ.get(
             "PROFILE_RUNTIME_ID", "native_unversioned")

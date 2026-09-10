@@ -149,6 +149,25 @@ but cannot satisfy the amended gate. A rerun moves each superseded record under
 only by the pre-existing technical exclusion `recursive_bias_found`, never by
 profit or regime performance.
 
+## Amendment 2026-09-10: fixed smoke trade-count cascade
+
+**Owner's decision**, recorded before rechecking the low-trade smoke records.
+The canonical trial run starts with `20200301-20200401`. If that run completes
+but produces fewer than ten trades, the same unchanged strategy and runtime
+are tested over `20200301-20200601`, then `20200301-20210301`. The cascade
+stops at the first rung with at least ten trades. A runtime failure does not
+become a trade-count verdict and is not repaired by merely widening the date
+range. Every attempted rung, archive identity, and trade count is retained.
+
+This is a prospective, result-blind diagnostic rule: the rungs and threshold
+were fixed before the rerun and do not depend on profitability or market-regime
+performance. It prevents a quiet calendar month from being mistaken for a
+strategy that does not trade. It does not relax the eligibility gates and it
+does not supersede stronger evidence already obtained over the complete frozen
+window. In particular, a look-ahead analysis that remains below ten trades
+after its 6.5-year fallback, or a full-window backtest with zero trades, is not
+rerun on these shorter smoke rungs.
+
 ## Frozen warm-up convergence amendment
 
 Authorized by the owner on 2026-09-01, before any strategy-by-regime ranking
