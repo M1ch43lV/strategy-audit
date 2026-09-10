@@ -3,14 +3,15 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-10T07:12:00+02:00
-- Stopped because: the requested smoke cascade is implemented, validated and
-  committed; no strategy was rerun because every current `too_few_trades` row
-  already has stronger 6.5-year low-trade evidence
-- Next agent should: use the new default smoke cascade for future or genuinely
-  unresolved low-trade trial runs. Do not rerun the 30 current
-  `too_few_trades` rows on its shorter windows. Continue the remaining Model 0
-  and Futures-recursion work only after repeating the writer checks.
+- Last update: 2026-09-10T07:50:00+02:00
+- Stopped because: the smoke-funnel discrepancy is reconciled and documented;
+  the sole admitted exception `Hacklemore3` now has a successful current smoke
+  result, while the remaining repair/reclassification queue requires bounded
+  per-family work rather than a blanket status change
+- Next agent should: read `evidence/SMOKE_FUNNEL_REVIEW_2026-09-10.md`, then
+  process its 9 reopen candidates and 4 known open repairs before the bounded
+  resource/data/provenance groups. Do not reopen the other 65 smoke-stage
+  exclusions or mass-exclude all 32 open rows.
 
 ## Objective
 
@@ -91,13 +92,16 @@ locks, artifact timestamps, and the run log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-10T07:12:00+02:00 after commit `8e435f5`:
+Observed 2026-09-10T07:50:00+02:00 after the targeted `Hacklemore3` rerun:
 
 - No Docker benchmark/analyzer or evidence writer is active. Only this session's
   shell matched the broad process expression.
 - `STRATEGY_STATUS.csv` is current with 1,050 rows: 675 `E1_expanded`, 255
   excluded, 38 exclusion-unconfirmed, 33 pending, 30 too-few-trades and 19
   not-a-strategy.
+- The smoke funnel is now 906 passed, 74 excluded at that stage, and 51 other:
+  32 open plus 19 excluded for a different reason. Its former `admitted=1`
+  anomaly is gone.
 - The 30 too-few rows all carry look-ahead evidence through
   `20200301-20260820`: 29 ended at 0/10 trades and `Cluckie` at 9/10. Seven
   separate zero-trade exclusions have completed full-window evidence.
@@ -112,6 +116,19 @@ Observed 2026-09-10T07:12:00+02:00 after commit `8e435f5`:
   `recursive_check_incomplete_at_longest_rungs` rows.
 
 ## Current implementation checkpoint
+
+`Hacklemore3` completed a targeted forced Docker smoke rerun under the frozen
+cascade: 11 long trades in the first rung `20200301-20200401`, 857.1 seconds,
+with canonical/config/archive/trade hashes recorded in `PROFILE_SMOKE.json`.
+Status and HTML were regenerated; it remains admitted and now carries
+`trade_evidence=smoke` rather than the older Class-1 result-card fallback.
+
+`evidence/SMOKE_FUNNEL_REVIEW_2026-09-10.md` records the complete disposition.
+Of the 74 smoke-stage exclusions, 65 remain terminal on current evidence and 9
+C8 string/NaN dtype rows match an existing file-local repair exactly and should
+be reopened as bounded repair candidates. Of 32 open rows, 4 have known narrow
+repairs, 6 require final resource adjudication, 8 bounded data/dependency/
+harness checks, and 14 exact author-provenance checks before likely C4 closure.
 
 Smoke cascade commit `8e435f5` freezes Stage 1 at one month, then three months,
 then one year while the completed run remains below ten trades. It stops on the
@@ -328,6 +345,8 @@ productive rerun has not started because Model 0 is still active.
 - Regime feature generation unless its hashed candle inputs or frozen formula
   change.
 - Any measured Model 0 identity-matching archive. The runner is resumable.
+- The `Hacklemore3` smoke rerun completed on 2026-09-10; do not repeat it while
+  its canonical/config identities match.
 - Any live Claude runner or its output store.
 - Strategy Type classification and the `a7259ad` artifact regeneration; do not
   hand-edit `STRATEGY_STATUS.csv` or infer per-strategy Type from repo prose.

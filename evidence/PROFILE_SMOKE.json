@@ -4999,19 +4999,54 @@
       "trades_sha256": "sha256_df53416e7c8bd276f9a269c3c70f0e23ee53fca82533956852968f222f4fb687"
     },
     "Hacklemore3": {
+      "archive": "user_data/profile_smoke/Hacklemore3-ec775e72-smoke_20200301_20200401-b4807b77-2026-09-10_05-42-59.zip",
+      "archive_sha256": "sha256_f6aa5bb4da2f1dfb8049465519fff2c1b8cdff4b5c4d9e7c62fe2e164fea6f72",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/Hacklemore3-ec775e72-smoke_20200301_20200401-b4807b77-2026-09-10_05-42-59.zip",
+          "archive_sha256": "sha256_f6aa5bb4da2f1dfb8049465519fff2c1b8cdff4b5c4d9e7c62fe2e164fea6f72",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [
+            "synthetic_orderbook_from_last_close"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 857.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Hacklemore3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/Hacklemore3 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Hacklemore3-ec775e72-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 11,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 11,
+          "trades_sha256": "sha256_01c4ac0acaad75013e9e898e4dbc0646e49afecd7f5e94cf58542e31089f223d"
+        }
+      ],
       "canonical_sha256": "sha256_212cb501946658afc3a6df39f69545087390846bd83761df2bc1f9a906ddb15e",
       "class1_rules": [
         "synthetic_orderbook_from_last_close"
       ],
-      "elapsed_s": 300.0,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Hacklemore3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/Hacklemore3 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Hacklemore3-ec775e72 --cache none",
+      "config_overrides": {},
+      "elapsed_s": 857.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Hacklemore3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/Hacklemore3 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Hacklemore3-ec775e72-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 11,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
-      "status": "timeout",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
       "timerange": "20200301-20200401",
-      "why": "timeout after 300 seconds"
+      "trade_floor": 10,
+      "trades": 11,
+      "trades_sha256": "sha256_01c4ac0acaad75013e9e898e4dbc0646e49afecd7f5e94cf58542e31089f223d"
     },
     "Hammer": {
       "archive": "user_data/profile_smoke/Hammer-c157cbf6-2026-09-09_07-32-38.zip",
@@ -10987,5 +11022,12 @@
     }
   },
   "schema_version": 1,
-  "timerange": "20200301-20200401"
+  "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+  "timerange": "20200301-20200401",
+  "timeranges": [
+    "20200301-20200401",
+    "20200301-20200601",
+    "20200301-20210301"
+  ],
+  "trade_floor": 10
 }

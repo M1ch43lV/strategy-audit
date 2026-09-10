@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1050 rows
 
-**Generated 2026-09-10 07:05:11 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-10 07:43:29 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -135,7 +135,7 @@ than a pick-one-source figure. 4 of 1050 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 1046 rows that do: **68.5 hours** of this audit's own compute so far.
+Summed across the 1046 rows that do: **68.6 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -143,8 +143,8 @@ Summed across the 1046 rows that do: **68.5 hours** of this audit's own compute 
 |---|---:|---|
 | `MostOfAll` | 10954.7s | backtest=45.1s; full_window=6406.0s; lookahead_remeasured=4470.1s; recursive_ladder=33.5s |
 | `ARIMASTR` | 8061.6s | backtest=317.7s; lookahead=1200.0s; lookahead_remeasured=6185.3s; recursive=113.4s; recursive_ladder=245.2s |
+| `Hacklemore3` | 7839.3s | backtest=857.1s; lookahead_remeasured=6934.8s; recursive_ladder=47.4s |
 | `Hacklemore` | 7729.0s | backtest=464.1s; lookahead=1200.0s; lookahead_remeasured=6014.3s; recursive=24.0s; recursive_ladder=26.6s |
-| `Hacklemore3` | 7282.2s | backtest=300.0s; lookahead_remeasured=6934.8s; recursive_ladder=47.4s |
 | `epretrace` | 5780.4s | backtest=65.5s; lookahead=471.6s; lookahead_remeasured=5130.3s; recursive=22.3s; recursive_ladder=61.2s; recursive_wave_b=29.5s |
 | `ExponentialGradientPortfolio` | 4622.4s | backtest=165.6s; lookahead=586.7s; lookahead_remeasured=3837.0s; recursive_ladder=33.1s |
 | `ONS_Portfolio` | 4412.3s | backtest=300.0s; lookahead_remeasured=4048.1s; recursive_ladder=64.2s |
@@ -580,7 +580,7 @@ coverage, no published trap.
 | `HEAD_SHOULDER` | `futures_long_short` | `E1_expanded` | 3 | `convergence:96` | 2026-09-06 18:13:56 | [archive](user_data/profile_smoke/HEAD_SHOULDER-3272caf5-2026-09-06_18-13-56.zip) [log](user_data/convergence_logs/HEAD_SHOULDER-3272caf5-ladder.log) |
 | `Hacklemore` | `spot_long` | `E1_expanded` | 135 | `convergence:288:warmup_supplied` | 2026-08-31 16:39:41 | [archive](user_data/profile_smoke/Hacklemore-2026-08-31_16-39-41.zip) [log](user_data/convergence_logs/Hacklemore-ladder.log) |
 | `Hacklemore2` | `spot_long` | `E1_expanded` | 643 | `convergence:192:warmup_supplied` | 2026-09-01 14:06:05 | [log](user_data/convergence_logs/Hacklemore2-ladder.log) |
-| `Hacklemore3` | `spot_long` | `E1_expanded` | 34 | `convergence:288:warmup_supplied` | 2026-09-01 14:06:53 | [log](user_data/convergence_logs/Hacklemore3-ladder.log) |
+| `Hacklemore3` | `spot_long` | `E1_expanded` | 11 | `convergence:288:warmup_supplied` | 2026-09-10 05:42:59 | [archive](user_data/profile_smoke/Hacklemore3-ec775e72-smoke_20200301_20200401-b4807b77-2026-09-10_05-42-59.zip) [log](user_data/convergence_logs/Hacklemore3-ladder.log) |
 | `Hacklemost` | `spot_long` | `E1_expanded` | 168 | `convergence:288:warmup_supplied` | 2026-09-01 14:07:44 | [log](user_data/convergence_logs/Hacklemost-ladder.log) |
 | `Hammer` | `spot_long` | `E1_expanded` | 36 | `convergence:288:warmup_supplied` | 2026-09-09 07:32:38 | [archive](user_data/profile_smoke/Hammer-c157cbf6-2026-09-09_07-32-38.zip) [log](user_data/convergence_logs/Hammer-c157cbf6-ladder.log) |
 | `HansenSmaOffsetV1` | `spot_long` | `E1_expanded` | 119 | `convergence:96:warmup_supplied` | 2026-09-01 14:08:31 | [log](user_data/convergence_logs/HansenSmaOffsetV1-ladder.log) |
@@ -2501,7 +2501,7 @@ The calls behind each, one per gate:
   ```
 - `Hacklemore3`
   ```
-  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy Hacklemore3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/Hacklemore3 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Hacklemore3-ec775e72 --cache none
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy Hacklemore3 --strategy-path repos/davidzr_freqtrade-strategies/strategies/Hacklemore3 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Hacklemore3-ec775e72-smoke_20200301_20200401-b4807b77 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/Hacklemore3_gate.json --strategy Hacklemore3 --strategy-path user_data/profile_bias_strategies/Hacklemore3 --timerange 20190101-20190401 --no-color
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Hacklemore3 --strategy-path user_data/profile_bias_strategies/Hacklemore3 --timerange 20190101-20190401 --no-color
   ```

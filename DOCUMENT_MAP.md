@@ -140,6 +140,11 @@ trusting an old run of it.
 `evidence/EXPANSION_WAVE_C_RESULTS.md`, `evidence/EXPANSION_STATIC_PROOF_FINDINGS.md`,
 `evidence/EXPANSION_WAVE_C_BIAS_RESULTS.md`, `TRAILING_SENSITIVITY_FINDINGS.md`.
 
+`evidence/SMOKE_FUNNEL_REVIEW_2026-09-10.md` reconciles the first funnel stage,
+records the completed `Hacklemore3` rerun, and freezes the bounded disposition
+queue for the 74 smoke-stage exclusions and 32 open rows. Read it before
+reclassifying or rerunning any of those rows.
+
 `HANDOFF.md` is the shared live baton, not a result store. Trust the Machine
 state commands it prescribes over even its most recent prose counts; its
 cold-session checklist remains mandatory because another runner may have
