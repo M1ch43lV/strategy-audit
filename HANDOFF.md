@@ -3,7 +3,32 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-11T18:50:00+02:00
+- Last update: 2026-09-11T20:05:00+02:00
+- Ran `regime/specialist_evaluation.py` a second time, no `--strategies`
+  filter, over the full population currently attributed in Model 0's
+  `trade_regime_attribution.csv`: 589 strategies (of 647 eligible - 58 are
+  missing from that attribution for reasons `attribution_manifest.json`
+  already logs, e.g. archive-hash or canonical-identity mismatch; not
+  excluded by this evaluation). Overwrites the pilot-only output directory
+  (`results/regime/specialist_evaluation/`) - the pilot's 7 strategies are a
+  subset of this run, nothing from it is lost. 36s warm-cache runtime.
+  3,459,380 trades; 1,828 `VALIDATION`-tier rows (BTC-regime), 1,770
+  (coin-regime); 379 universal candidates (cover all four coin regimes at
+  `VALIDATION` tier), of which 44 have `regime_consistency == 1.0` (beat the
+  exposure-matched benchmark in every one of their four coin regimes - e.g.
+  `wavetrend`, `cryptotank`, `NowoIchimoku1hV2`, `simple_vwap_v1`,
+  `SimpleHopt1Along`, `hlhb`, `NASOSv5_mod3`). 92 of 589 strategies produce
+  zero rows in either table - no validation-window trade at all, the same
+  mechanical reason `ASDTSRockwellTrading` was excluded in the pilot, now at
+  scale. Note for reading this output: with ~450-480 `VALIDATION`-tier
+  candidates competing per regime column, a rank-1 finish is no longer a
+  meaningful "best overall" signal (it's decided by a handful of thin-sample
+  strategies with few trades but a lucky mean) - read this per-regime and via
+  `universal_strategies.csv`'s `regime_consistency`/`median_regime_excess_return`,
+  not by scanning `*_specialist_ranking.csv` for repeat #1s.
+  Only remaining open follow-up: the same evaluation against the Model
+  1/2/3 gated candidate attributions instead of Model 0's natural trades -
+  not yet requested, not done.
 - New module `regime/specialist_evaluation.py` (PIPELINE.md Stufe 13) applies
   the 2026-09-11 amendment's rules to an already-produced attribution:
   discovery/validation split, the 5-episode/10-trade specialist floor, and

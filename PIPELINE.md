@@ -432,9 +432,25 @@ ausgeschlossen statt mit Discovery-Daten aufgefüllt. `ADXMomentum` hat genug
 Episoden, aber zu wenige Trades je Regime (3-7, unter der 10er-Schwelle) —
 `EXPLORATORY`, nicht gerankt.
 
-Noch nicht produktiv gelaufen: dieselbe Auswertung über den vollen
-647-Zeilen-Modell-0-Bestand statt nur die 7 Piloten, und über die
-Modell-1/2/3-Kandidaten-Attribution statt nur Modell 0.
+Zweiter Lauf (2026-09-11), ohne `--strategies`-Filter: alle 589 Strategien,
+die in `trade_regime_attribution.csv` überhaupt eine Modell-0-Attribution
+haben (von 647 grundsätzlich eligiblen — 58 fehlen dort aus in
+`attribution_manifest.json` protokollierten Gründen, z. B. Archiv-Hash- oder
+Identity-Mismatch, nicht weil sie hier ausgeschlossen wurden). Laufzeit
+36s (warmer Cache, vektorisiert). 3.459.380 Trades, 1.828 `VALIDATION`-Zeilen
+BTC-Regime / 1.770 Coin-Regime, 379 Universal-Kandidaten (alle vier
+Coin-Regime auf `VALIDATION`-Tier abgedeckt), davon 44 mit
+`regime_consistency == 1.0` (schlagen den Benchmark in jedem der vier
+Coin-Regime). 92 der 589 Strategien liefern keine einzige Zeile in beiden
+Tabellen — kein Trade im Validation-Fenster, analog zum
+`ASDTSRockwellTrading`-Fall aus dem Pilotlauf. Bei ~450-480 gerankten
+Kandidaten je Regime-Spalte ist ein einzelner Rang-1-Platz nicht mehr
+aussagekräftig für "beste Strategie" im Ganzen; die Auswertung soll pro
+Regime gelesen werden, nicht als Gesamt-Leaderboard.
+
+Noch nicht produktiv gelaufen: dieselbe Auswertung über die
+Modell-1/2/3-Kandidaten-Attribution (gegatet) statt Modell 0s natürlichem
+Handelsverhalten.
 
 ## Wo Docker statt nativem Python steht
 
