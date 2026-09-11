@@ -406,6 +406,36 @@ damit freigegeben. Portfolio-Allokation bei mehreren gleichzeitig
 qualifizierenden Kandidaten ist dabei bewusst für Version 1 zurückgestellt,
 nicht entschieden.
 
+## Stufe 13 — Specialist-/Universal-Auswertung
+
+| Programm | Liest | Schreibt |
+|---|---|---|
+| `regime/specialist_evaluation.py` | eine `trade_regime_attribution.csv` (Modell 0 kanonisch, oder eine `modelN_attribution/`-Datei), Kerzendaten unter `user_data/data/binance` | `results/regime/specialist_evaluation/`: `btc_specialist_table.csv`, `coin_specialist_table.csv`, `btc_specialist_ranking.csv`, `coin_specialist_ranking.csv`, `universal_strategies.csv`, `evaluation_manifest.json` |
+
+Wendet die im Amendment 2026-09-11 eingefrorenen Regeln auf eine bereits
+vorhandene Attribution an: Discovery/Validation-Split, die 5-Episoden-/
+10-Trade-Specialist-Schwelle, und den Exposure-matched Benchmark (Coin-eigene
+Spot-Buy&Hold-Rendite über genau das Handelsintervall jedes einzelnen
+Trades, per `merge_asof` gegen 1-Minuten-Kerzen). Rankt ausschließlich
+`VALIDATION`-Tier-Zeilen; alles andere wird berichtet, aber nie gerankt.
+`worst_regime_drawdown` aus §19 fehlt bewusst — bräuchte eine
+Equity-Kurven-Rekonstruktion je Strategie und Regime, ein deutlich größeres
+Feature als der Rest des Moduls.
+
+Erster produktiver Lauf (2026-09-11) auf den 7 Piloten-Kandidaten aus Stufe
+12s Kandidaten-Spec, gegen deren Modell-0-Attribution (ihr natürliches,
+ungegatetes Handelsverhalten): 5 von 7 Strategien erreichen mindestens eine
+`VALIDATION`-Tier-Zeile, 5 erfüllen die Schwelle in allen vier
+Coin-Regimen gleichzeitig (Universal-Kandidaten). `ASDTSRockwellTrading` hat
+alle 13.402 Trades vor 2024-01-01 — keine einzige Validation-Zeile, korrekt
+ausgeschlossen statt mit Discovery-Daten aufgefüllt. `ADXMomentum` hat genug
+Episoden, aber zu wenige Trades je Regime (3-7, unter der 10er-Schwelle) —
+`EXPLORATORY`, nicht gerankt.
+
+Noch nicht produktiv gelaufen: dieselbe Auswertung über den vollen
+647-Zeilen-Modell-0-Bestand statt nur die 7 Piloten, und über die
+Modell-1/2/3-Kandidaten-Attribution statt nur Modell 0.
+
 ## Wo Docker statt nativem Python steht
 
 Stufen 1–3 (Probelauf, beide Bias-Prüfungen) laufen sowohl nativ als auch in

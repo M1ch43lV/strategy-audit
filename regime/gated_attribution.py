@@ -180,8 +180,10 @@ def main(argv=None) -> int:
     attribution._write(_candidate_output(trades), outdir / "trade_regime_attribution.csv")
     outputs = {
         "candidate_btc_regime_summary.csv": attribution.summarize_btc(trades),
+        "candidate_coin_regime_summary.csv": attribution.summarize_coin(trades),
         "candidate_regime_summary.csv": attribution.summarize(trades),
         "candidate_episode_summary.csv": attribution.summarize_episodes(trades),
+        "candidate_coin_episode_summary.csv": attribution.summarize_coin_episodes(trades),
         "candidate_phase_summary.csv": attribution.summarize_phase(trades),
         "candidate_phase_episode_summary.csv": attribution.summarize_phase_episodes(trades),
     }

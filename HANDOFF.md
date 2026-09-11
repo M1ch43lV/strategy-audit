@@ -3,7 +3,40 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-11T18:25:00+02:00
+- Last update: 2026-09-11T18:50:00+02:00
+- New module `regime/specialist_evaluation.py` (PIPELINE.md Stufe 13) applies
+  the 2026-09-11 amendment's rules to an already-produced attribution:
+  discovery/validation split, the 5-episode/10-trade specialist floor, and
+  the exposure-matched benchmark (coin's own spot buy-and-hold return over
+  each trade's own open-to-close interval, via `merge_asof` against 1-minute
+  candles). Ranks `VALIDATION`-tier rows only, per regime and per BTC/coin
+  source separately, plus a "universal strategy" table (maximin across all
+  four coin regimes, only for a strategy that clears the floor in every one
+  of them). `worst_regime_drawdown` from `REGIME_AUDIT_PLAN.md` §19 is
+  deliberately not produced - it needs an equity-curve reconstruction per
+  strategy per regime, a materially bigger feature; documented as a gap, not
+  silently dropped. Added two small library additions this needed and
+  `regime.attribution`/`regime.gated_attribution` didn't have:
+  `summarize_coin()` and `summarize_coin_episodes()`, mirroring the existing
+  `summarize_btc()`/`summarize_episodes()` for the coin's own regime instead
+  of BTC's - now also written by both modules' `main()` for consistency
+  (`strategy_coin_regime_summary.csv`, `strategy_coin_episode_summary.csv`,
+  `candidate_coin_regime_summary.csv`, `candidate_coin_episode_summary.csv`).
+- First real application: ran against the 7 pilot strategies' Model 0
+  (ungated, natural) attribution. Result:
+  `results/regime/specialist_evaluation/` - 5 of 7 strategies clear the
+  floor for at least one BTC or coin regime, 5 clear it in all four coin
+  regimes simultaneously (universal candidates). Two exclusions, both
+  correctly mechanical rather than judgment calls: `ASDTSRockwellTrading`
+  has all 13,402 trades before 2024-01-01 - zero validation-window trades,
+  zero ranking rows, not padded with discovery data. `ADXMomentum` has
+  enough episodes (6-12 per regime) but too few trades (3-7, under the
+  10-trade floor) - `EXPLORATORY` tier, correctly never ranked despite
+  occasionally the largest raw excess return of the seven. Neither was
+  special-cased; both are the floor doing exactly what it was frozen to do.
+  Not yet run: the same evaluation over the full 647-strategy Model 0
+  population, or over the Model 1/2/3 gated candidate attributions instead
+  of Model 0's natural trades - both still open follow-ups, not done here.
 - First productive Model 1/2/3 run is complete: a PILOT candidate spec
   (`results/regime/candidate_spec_pilot_v1.json`, `candidate_set_id
   pilot_v1_stratified_trend_gate`) with 7 candidates, one per major

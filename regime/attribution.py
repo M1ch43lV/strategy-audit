@@ -375,43 +375,63 @@ def summarize_phase(trades: pd.DataFrame) -> pd.DataFrame:
     return _summarize(trades, ["strategy_id", "coin_phase"], "coin_regime_match")
 
 
+def _episode_summary(trades: pd.DataFrame, match_column: str, regime_column: str,
+                     episode_column: str, extra_filter=None) -> pd.DataFrame:
+    """Shared body behind every per-episode summary below: one row per
+    independent regime/phase episode's total profit, then aggregated so a
+    strategy profitable across 3000 adjacent days of one uninterrupted
+    episode counts as one data point, not 3000 - the whole reason episode
+    counts exist alongside trade counts."""
+    matched = trades[trades[match_column]]
+    if extra_filter is not None:
+        matched = matched[extra_filter(matched)]
+    matched = matched.copy()
+    if matched.empty:
+        return pd.DataFrame(columns=["strategy_id", regime_column, "episodes"])
+    by_episode = (matched.groupby(["strategy_id", regime_column, episode_column])
+                  ["profit_abs"].sum().rename("episode_profit").reset_index())
+    return (by_episode.groupby(["strategy_id", regime_column])
+            .agg(episodes=(episode_column, "nunique"),
+                 positive_episodes=("episode_profit", lambda x: int((x > 0).sum())),
+                 negative_episodes=("episode_profit", lambda x: int((x < 0).sum())),
+                 median_episode_profit=("episode_profit", "median"),
+                 worst_episode_profit=("episode_profit", "min"),
+                 best_episode_profit=("episode_profit", "max"))
+            .reset_index().assign(
+                episode_win_rate=lambda x: x["positive_episodes"] / x["episodes"]))
+
+
 def summarize_phase_episodes(trades: pd.DataFrame) -> pd.DataFrame:
     """Independent-evidence view of `summarize_phase`: a strategy profitable
     across 3000 adjacent days of one uninterrupted phase episode has one
     data point, not 3000. `coin_phase_episode_id` gives every trade the
     episode it actually happened in, so this can say how many separate
     episodes contributed and whether most of them agreed."""
-    matched = trades[trades["coin_regime_match"] & trades["coin_phase"].astype(bool)].copy()
-    if matched.empty:
-        return pd.DataFrame(columns=["strategy_id", "coin_phase", "episodes"])
-    by_episode = (matched.groupby(["strategy_id", "coin_phase", "coin_phase_episode_id"])
-                  ["profit_abs"].sum().rename("episode_profit").reset_index())
-    return (by_episode.groupby(["strategy_id", "coin_phase"])
-            .agg(episodes=("coin_phase_episode_id", "nunique"),
-                 positive_episodes=("episode_profit", lambda x: int((x > 0).sum())),
-                 negative_episodes=("episode_profit", lambda x: int((x < 0).sum())),
-                 median_episode_profit=("episode_profit", "median"),
-                 worst_episode_profit=("episode_profit", "min"),
-                 best_episode_profit=("episode_profit", "max"))
-            .reset_index().assign(
-                episode_win_rate=lambda x: x["positive_episodes"] / x["episodes"]))
+    return _episode_summary(trades, "coin_regime_match", "coin_phase",
+                            "coin_phase_episode_id",
+                            extra_filter=lambda m: m["coin_phase"].astype(bool))
 
 
 def summarize_episodes(trades: pd.DataFrame) -> pd.DataFrame:
-    matched = trades[trades["btc_regime_match"]].copy()
-    if matched.empty:
-        return pd.DataFrame(columns=["strategy_id", "btc_regime", "episodes"])
-    by_episode = (matched.groupby(["strategy_id", "btc_regime", "btc_episode_id"])
-                  ["profit_abs"].sum().rename("episode_profit").reset_index())
-    return (by_episode.groupby(["strategy_id", "btc_regime"])
-            .agg(episodes=("btc_episode_id", "nunique"),
-                 positive_episodes=("episode_profit", lambda x: int((x > 0).sum())),
-                 negative_episodes=("episode_profit", lambda x: int((x < 0).sum())),
-                 median_episode_profit=("episode_profit", "median"),
-                 worst_episode_profit=("episode_profit", "min"),
-                 best_episode_profit=("episode_profit", "max"))
-            .reset_index().assign(
-                episode_win_rate=lambda x: x["positive_episodes"] / x["episodes"]))
+    return _episode_summary(trades, "btc_regime_match", "btc_regime", "btc_episode_id")
+
+
+def summarize_coin_episodes(trades: pd.DataFrame) -> pd.DataFrame:
+    """Same independent-evidence view as `summarize_episodes`, for the coin's
+    own DMI/ADX state instead of BTC's - the counterpart `summarize_btc` has
+    always had and `summarize_episodes` never did. Needed for a coin-regime
+    specialist claim (`REGIME_AUDIT_PLAN.md` §18) to rest on independent
+    episodes rather than raw trade count, the same requirement the BTC side
+    already had."""
+    return _episode_summary(trades, "coin_regime_match", "coin_regime", "coin_episode_id")
+
+
+def summarize_coin(trades: pd.DataFrame) -> pd.DataFrame:
+    """Coin-regime counterpart to `summarize_btc`, mirroring it exactly.
+    Existed for the combined `["btc_regime", "coin_regime"]` grouping
+    (`summarize`) and for phase (`summarize_phase`), never for the coin's
+    plain 4-state regime alone."""
+    return _summarize(trades, ["strategy_id", "coin_regime"], "coin_regime_match")
 
 
 def _write(frame: pd.DataFrame, path: Path) -> None:
@@ -467,8 +487,11 @@ def main(argv=None) -> int:
     _save_cache(cache)
     _write(trades, args.outdir / "trade_regime_attribution.csv")
     _write(summarize_btc(trades), args.outdir / "strategy_btc_regime_summary.csv")
+    _write(summarize_coin(trades), args.outdir / "strategy_coin_regime_summary.csv")
     _write(summarize(trades), args.outdir / "strategy_regime_summary.csv")
     _write(summarize_episodes(trades), args.outdir / "strategy_episode_summary.csv")
+    _write(summarize_coin_episodes(trades),
+          args.outdir / "strategy_coin_episode_summary.csv")
     _write(summarize_phase(trades), args.outdir / "strategy_phase_summary.csv")
     _write(summarize_phase_episodes(trades),
           args.outdir / "strategy_phase_episode_summary.csv")
@@ -574,7 +597,13 @@ def selftest() -> None:
         assert rows["btc_regime_match"].all()
         assert rows["coin_regime_match"].tolist() == [True, False, True, True]
         assert int(summarize_btc(rows)["trades"].sum()) == 4
+        assert int(summarize_coin(rows)["trades"].sum()) == 3
         assert int(summarize(rows)["trades"].sum()) == 3
+        # BTC and coin-regime episode counts agree on this fixture: every
+        # matched trade is on BTC/USDT itself, so btc_episode_id and
+        # coin_episode_id carry the same values.
+        coin_episodes = summarize_coin_episodes(rows)
+        assert coin_episodes["episodes"].to_dict() == summarize_episodes(rows)["episodes"].to_dict()
         phase_summary = summarize_phase(rows)
         quiet_row = phase_summary[phase_summary["coin_phase"] == "range_quiet"].iloc[0]
         assert int(quiet_row["trades"]) == 2, quiet_row
