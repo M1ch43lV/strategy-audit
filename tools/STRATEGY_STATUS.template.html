@@ -330,10 +330,12 @@ __CRITERIA__
         <thead><tr><th>Check</th><th>Window</th><th>Pairs</th></tr></thead>
         <tbody>
           <tr><td>Trial run <code>profile_smoke</code></td><td><code>20200301-20200401</code> &rarr; <code>20200301-20200601</code> &rarr; <code>20200301-20210301</code><span class="msg">stop at 10 trades; at most one year</span></td><td>all 8</td></tr>
-          <tr><td>Bias check, spot</td><td><code>20200301-20200601</code><span class="msg">three months</span></td><td><code>BTC/USDT</code> only</td></tr>
-          <tr><td>Bias check, futures</td><td><code>20200301-20200601</code><span class="msg">three months</span></td><td><code>BTC/USDT:USDT</code> only</td></tr>
-          <tr><td>Look-ahead, first fallback</td><td><code>20200101-20220101</code><span class="msg">used when the frozen window yields fewer than ten trades</span></td><td>BTC only</td></tr>
-          <tr><td>Look-ahead, second fallback</td><td><code>20200301-20260820</code></td><td>BTC only</td></tr>
+          <tr><td>Look-ahead-bias check, first fallback</td><td><code>20200101-20220101</code><span class="msg">used when the frozen window yields fewer than ten trades</span></td><td>BTC only</td></tr>
+          <tr><td>Look-ahead-bias check, second fallback</td><td><code>20200301-20260820</code></td><td>BTC only</td></tr>
+          <tr><td>Warm-up convergence ladder, spot</td><td><code>20200301-20200601</code><span class="msg">three months; rungs at 1, 2, 7, 14, 30, 90, 365 days of startup, converted to the strategy's own timeframe</span></td><td><code>BTC/USDT</code> only</td></tr>
+          <tr><td>Warm-up convergence ladder, futures</td><td><code>20200301-20200601</code><span class="msg">three months; rungs at 1, 2, 7, 14, 30, 90, 365 days of startup, converted to the strategy's own timeframe</span></td><td><code>BTC/USDT:USDT</code> only</td></tr>
+          <tr><td>Recursion-bias check, spot</td><td><code>20200301-20200601</code><span class="msg">three months, at the ladder's settled startup</span></td><td><code>BTC/USDT</code> only</td></tr>
+          <tr><td>Recursion-bias check, futures</td><td><code>20200301-20200601</code><span class="msg">three months, at the ladder's settled startup</span></td><td><code>BTC/USDT:USDT</code> only</td></tr>
           <tr><td>Full run <code>profile_full_window</code></td><td><code>20200301-20260821</code><span class="msg">6.5 years</span></td><td>all 8</td></tr>
         </tbody>
       </table>
