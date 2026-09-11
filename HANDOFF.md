@@ -3,7 +3,43 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-11T21:15:00+02:00
+- Last update: 2026-09-11T22:20:00+02:00
+- Ran `regime/specialist_evaluation.py` against the Model 1/2/3 gated
+  candidate attributions (`results/regime/model{1,2,3}_attribution/
+  trade_regime_attribution.csv`), the last open follow-up from this
+  module's own docstring. Two real bugs found and fixed getting there:
+  (1) `load_trades()` hardcoded a `strategy_id` column and raised on
+  `gated_attribution.py`'s output, which names the same slot
+  `candidate_id` - fixed with `_detect_id_column()`, auto-detects and
+  normalizes to `strategy_id` internally, records which one it found as
+  `source_id_column` in the manifest. (2) `universal_table()` raised
+  `KeyError: 'worst_regime_return'` whenever a non-empty `coin_table`
+  produced zero rows that cover all four coin regimes (the empty-`coin_table`
+  guard didn't cover this case) - hit immediately on Model 2 and Model 3,
+  where the tighter gate leaves too few trades per regime for any of the 7
+  pilot candidates to clear the floor in all four at once. Both fixed with
+  selftest coverage (candidate_id round-trip; a non-empty coin_table that
+  yields zero universal rows must return an empty, correctly-columned frame,
+  not raise). Also fixed a second-order `.gitignore` gap this uncovered:
+  `results/regime/specialist_evaluation/model{1,2,3}/*.csv` is three levels
+  under `results/regime/`, past both existing `!results/regime/*.csv` and
+  `!results/regime/*/*.csv` exceptions - added `!results/regime/*/*/*.csv`.
+  Results written to `results/regime/specialist_evaluation/model{1,2,3}/`
+  (same 7 pilot candidates as always, `ASDTSRockwellTrading-trend` still
+  produces zero validation trades everywhere). Model 1 (BTC-gate): 4/7
+  universal candidates, none fully consistent. Model 2 (coin-gate) and
+  Model 3 (combined gate): 0 universal candidates - fewer trades per regime
+  under tighter gating make clearing the floor in all four simultaneously
+  harder with only 7 candidates in the pool. Gated-vs-ungated dollar-gain
+  comparison for the 6 candidates with any validation trades: every gate
+  shrinks the loss for the three losing strategies (`ADXDM`,
+  `ADX_15M_USDT`, `AlmgrenChrissStrategy`), most under the combined Model 3
+  gate; every gate also shrinks the gain for the one strategy that was
+  already profitable ungated (`BBMod`) - the gate removes losing trades
+  outside the trend regime, but removes some winning ones too.
+  `AdaptiveRegime` stays roughly flat across all four variants. Added to
+  the `Regime-Spezialisten` artifact as a new closing section (tabs per
+  model, plus the gated-vs-ungated comparison table).
 - Added a dollar-terms view to `regime/specialist_evaluation.py`, on
   explicit user request: alongside the existing benchmark-relative excess
   return (a percentage), also report actual dollar profit/loss.

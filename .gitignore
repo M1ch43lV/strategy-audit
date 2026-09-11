@@ -45,6 +45,11 @@ data/
 # unnoticed until Model 1/2/3 ran for the first time - nothing had ever
 # written into these directories before.
 !results/regime/*/*.csv
+# Same reasoning, two directories deeper: specialist_evaluation.py's
+# per-model output (results/regime/specialist_evaluation/model{1,2,3}/*.csv)
+# now that it also runs against Model 1/2/3 gated attributions, not just
+# Model 0's canonical file at the top of specialist_evaluation/.
+!results/regime/*/*/*.csv
 # A live comparison against GitHub, regenerable but published for the same
 # reason as STRATEGY_STATUS.csv: it is the only place that answers "has a
 # source repo moved since we captured it".

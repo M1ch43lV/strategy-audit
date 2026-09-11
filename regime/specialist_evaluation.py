@@ -86,15 +86,37 @@ def _candle_series(pair: str, cache: dict) -> pd.DataFrame | None:
     return frame
 
 
+def _detect_id_column(path: Path) -> str:
+    """`regime.attribution`'s Model 0 output names the analysis unit
+    `strategy_id`; `regime.gated_attribution`'s Model 1/2/3 output renames
+    the same slot to `candidate_id` (one row per gated candidate, not per
+    strategy - a strategy can have more than one candidate). Both are valid
+    inputs here; detect which one this file has instead of requiring a
+    flag."""
+    header = pd.read_csv(path, nrows=0).columns
+    if "strategy_id" in header:
+        return "strategy_id"
+    if "candidate_id" in header:
+        return "candidate_id"
+    raise ValueError(f"{path} has neither a strategy_id nor candidate_id column")
+
+
 def load_trades(path: Path, strategies: set[str] | None = None,
                 chunksize: int = 500_000) -> pd.DataFrame:
     """Streamed, optionally strategy-filtered read of a (potentially very
-    large - the canonical Model 0 file is ~1.3 GB) trade attribution CSV."""
+    large - the canonical Model 0 file is ~1.3 GB) trade attribution CSV.
+    Accepts Model 0 (`strategy_id`) or Model 1/2/3 (`candidate_id`) input -
+    see `_detect_id_column()` - and always returns it as `strategy_id`, the
+    name every function past this point expects."""
+    id_column = _detect_id_column(path)
+    columns = [id_column if c == "strategy_id" else c for c in TRADE_COLUMNS]
+    dtypes = {id_column: "string", "pair": "string",
+              "btc_regime": "string", "coin_regime": "string",
+              "btc_episode_id": "string", "coin_episode_id": "string"}
     parts = []
-    for chunk in pd.read_csv(path, usecols=TRADE_COLUMNS, chunksize=chunksize,
-                             dtype={"strategy_id": "string", "pair": "string",
-                                    "btc_regime": "string", "coin_regime": "string",
-                                    "btc_episode_id": "string", "coin_episode_id": "string"}):
+    for chunk in pd.read_csv(path, usecols=columns, chunksize=chunksize, dtype=dtypes):
+        if id_column != "strategy_id":
+            chunk = chunk.rename(columns={id_column: "strategy_id"})
         if strategies is not None:
             chunk = chunk[chunk["strategy_id"].isin(strategies)]
         if not chunk.empty:
@@ -250,10 +272,10 @@ def universal_table(coin_table: pd.DataFrame) -> pd.DataFrame:
     - otherwise there is not enough validation-window evidence in one of
     them to make a maximin claim at all, and the row is left out rather than
     scored on partial coverage."""
+    columns = ["strategy_id", "regimes_covered", "worst_regime", "worst_regime_return",
+               "median_regime_excess_return", "regime_consistency"]
     if coin_table.empty:
-        return pd.DataFrame(columns=["strategy_id", "regimes_covered",
-                                     "worst_regime", "worst_regime_return",
-                                     "median_regime_excess_return", "regime_consistency"])
+        return pd.DataFrame(columns=columns)
     rows = []
     for strategy, group in coin_table.groupby("strategy_id"):
         covered = set(group.loc[group["tier"] == "VALIDATION", "coin_regime"])
@@ -269,6 +291,11 @@ def universal_table(coin_table: pd.DataFrame) -> pd.DataFrame:
             "median_regime_excess_return": qualified["excess_return"].median(),
             "regime_consistency": float((qualified["excess_return"] > 0).mean()),
         })
+    if not rows:
+        # None of this population's strategies clear the floor in all four
+        # coin regimes at once (e.g. a small, tightly-gated candidate set) -
+        # a real, reportable outcome, not the same case as coin_table.empty.
+        return pd.DataFrame(columns=columns)
     return pd.DataFrame(rows).sort_values("worst_regime_return", ascending=False).reset_index(drop=True)
 
 
@@ -379,6 +406,32 @@ def selftest() -> None:
             early = make("S2", "BULL", 0, pd.Timestamp("2023-06-01", tz="UTC"), 0.9, "EARLY-0")
             early_trades = split_discovery_validation(attach_benchmark(pd.DataFrame([early])))
             assert early_trades.iloc[0]["analysis_window"] == "discovery"
+
+            # universal_table() must not raise when no strategy covers all
+            # four coin regimes (S1 here only has BULL+BEAR) - a real,
+            # reportable "zero universal candidates" outcome, not an error.
+            # This is the bug a Model 2/3 gated-candidate run hit: an empty
+            # `rows` list produced a column-less DataFrame that KeyError'd
+            # on the sort_values() call below it.
+            coin_table = coin_specialist_table(trades)
+            empty_universal = universal_table(coin_table)
+            assert empty_universal.empty
+            assert list(empty_universal.columns) == [
+                "strategy_id", "regimes_covered", "worst_regime",
+                "worst_regime_return", "median_regime_excess_return", "regime_consistency"]
+
+            # regime.gated_attribution's Model 1/2/3 output names the same
+            # slot `candidate_id`, not `strategy_id` - load_trades() must
+            # detect and normalize it rather than raising a missing-column
+            # error (the bug this session found and fixed).
+            candidate_csv = directory_path / "gated_trades.csv"
+            gated = pd.DataFrame([make("C1", "BULL", 0, pd.Timestamp("2024-06-01", tz="UTC"), 0.02, "G-0")])
+            gated = gated.rename(columns={"strategy_id": "candidate_id"})
+            gated[["candidate_id"] + TRADE_COLUMNS[1:]].to_csv(candidate_csv, index=False)
+            assert _detect_id_column(candidate_csv) == "candidate_id"
+            loaded = load_trades(candidate_csv)
+            assert "strategy_id" in loaded.columns
+            assert list(loaded["strategy_id"]) == ["C1"]
         finally:
             CANDLE_DIR = saved_dir
     print("specialist evaluation selftest: PASS")
@@ -396,6 +449,7 @@ def main(argv=None) -> int:
         selftest()
         return 0
     strategies = {s.strip() for s in args.strategies.split(",") if s.strip()} or None
+    id_column = _detect_id_column(args.trades)
     trades = load_trades(args.trades, strategies)
     trades = attach_benchmark(trades)
     trades = split_discovery_validation(trades)
@@ -423,6 +477,7 @@ def main(argv=None) -> int:
         "min_episodes": MIN_EPISODES,
         "min_trades": MIN_TRADES,
         "start_capital_usd": START_CAPITAL,
+        "source_id_column": id_column,
         "strategies_evaluated": sorted(set(trades["strategy_id"])),
         "validation_tier_btc_rows": int((btc_table["tier"] == "VALIDATION").sum()),
         "validation_tier_coin_rows": int((coin_table["tier"] == "VALIDATION").sum()),

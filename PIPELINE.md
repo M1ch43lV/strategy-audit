@@ -473,9 +473,32 @@ größtenteils von GitHub gezogenen Bestand kein überraschendes Bild. Größter
 Gewinn: `FastSupertrend_optim_quick`, +$23.492 über 11.065 Trades. Größter
 Verlust: `CryptoFrogHO2`, &minus;$20.280 über 15.692 Trades.
 
-Noch nicht produktiv gelaufen: dieselbe Auswertung über die
-Modell-1/2/3-Kandidaten-Attribution (gegatet) statt Modell 0s natürlichem
-Handelsverhalten.
+Vierter Lauf (2026-09-11), gegen die Modell-1/2/3-Kandidaten-Attribution
+statt Modell 0s natürlichem Handelsverhalten (`--trades
+results/regime/modelN_attribution/trade_regime_attribution.csv --outdir
+results/regime/specialist_evaluation/modelN/`). Zwei Bugs dabei gefunden und
+behoben: `load_trades()` erwartete hart eine Spalte `strategy_id`, aber
+`gated_attribution.py`s Ausgabe nennt denselben Slot `candidate_id` — behoben
+mit `_detect_id_column()`, erkennt automatisch, welche Spalte vorliegt, und
+normalisiert intern auf `strategy_id` (protokolliert als
+`source_id_column` im Manifest). `universal_table()` warf `KeyError:
+'worst_regime_return'`, sobald eine nicht-leere `coin_table` null Zeilen
+lieferte, die alle vier Coin-Regime abdecken — traf sofort bei Modell 2 und
+3, wo das engere Gate zu wenige Trades je Regime übrig lässt, damit einer
+der 7 Piloten-Kandidaten in allen vieren gleichzeitig die Schwelle
+erreicht. Ergebnis: Modell 1 (BTC-Gate) 4/7 Universal-Kandidaten, keiner
+vollständig konsistent; Modell 2 (Coin-Gate) und Modell 3 (Kombi-Gate) 0
+Universal-Kandidaten. Gegatet-vs-ungegatet-Vergleich des Gesamtgewinns in
+Dollar (6 Kandidaten mit Validierungs-Trades): jedes Gate verkleinert den
+Verlust der drei Verlust-Strategien (`ADXDM`, `ADX_15M_USDT`,
+`AlmgrenChrissStrategy`), am stärksten Modell 3; jedes Gate verkleinert
+aber auch den Gewinn der einzigen ungegatet bereits profitablen Strategie
+(`BBMod`) — das Gate filtert eben auch profitable Trades außerhalb der
+Trendfolge-Regime heraus. `AdaptiveRegime` bleibt über alle vier Varianten
+in etwa gleich. Deckte zusätzlich eine dritte `.gitignore`-Lücke auf
+(`results/regime/specialist_evaluation/modelN/*.csv` liegt zwei statt eine
+Ebene unter dem ersten Ausnahme-Pattern) — behoben mit
+`!results/regime/*/*/*.csv`.
 
 ## Wo Docker statt nativem Python steht
 

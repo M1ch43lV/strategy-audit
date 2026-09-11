@@ -1,0 +1,8 @@
+btc_regime,rank,strategy_id,excess_return,trades,episodes
+BEAR,1,AlmgrenChrissStrategy-trend,-0.00264612638102,1747,45
+BEAR,2,AdaptiveRegime-trend,-0.00972000953348,30,15
+BULL,1,AlmgrenChrissStrategy-trend,0.00223746841521,1311,38
+BULL,2,ADX_15M_USDT-trend,-0.000375764551661,724,38
+BULL,3,ADXDM-trend,-0.000824621358363,63,30
+BULL,4,BBMod-trend,-0.00660542671503,508,31
+BULL,5,AdaptiveRegime-trend,-0.0502193801824,37,20
