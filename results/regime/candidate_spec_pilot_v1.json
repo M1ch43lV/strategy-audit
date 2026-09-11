@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "candidate_set_id": "pilot_v1_stratified_trend_gate",
+  "analysis_role": "PILOT",
+  "timerange": {
+    "spot": "20200401-20260821",
+    "futures": "20200301-20260821"
+  },
+  "candidates": [
+    {
+      "candidate_id": "ASDTSRockwellTrading-trend",
+      "strategy_id": "ASDTSRockwellTrading",
+      "long_btc_states": ["BULL"],
+      "short_btc_states": ["BEAR"],
+      "long_coin_states": ["BULL"],
+      "short_coin_states": ["BEAR"]
+    },
+    {
+      "candidate_id": "ADXDM-trend",
+      "strategy_id": "ADXDM",
+      "long_btc_states": ["BULL"],
+      "short_btc_states": ["BEAR"],
+      "long_coin_states": ["BULL"],
+      "short_coin_states": ["BEAR"]
+    },
+    {
+      "candidate_id": "ADXMomentum-trend",
+      "strategy_id": "ADXMomentum",
+      "long_btc_states": ["BULL"],
+      "short_btc_states": ["BEAR"],
+      "long_coin_states": ["BULL"],
+      "short_coin_states": ["BEAR"]
+    },
+    {
+      "candidate_id": "ADX_15M_USDT-trend",
+      "strategy_id": "ADX_15M_USDT",
+      "long_btc_states": ["BULL"],
+      "short_btc_states": ["BEAR"],
+      "long_coin_states": ["BULL"],
+      "short_coin_states": ["BEAR"]
+    },
+    {
+      "candidate_id": "AdaptiveRegime-trend",
+      "strategy_id": "AdaptiveRegime",
+      "long_btc_states": ["BULL"],
+      "short_btc_states": ["BEAR"],
+      "long_coin_states": ["BULL"],
+      "short_coin_states": ["BEAR"]
+    },
+    {
+      "candidate_id": "BBMod-trend",
+      "strategy_id": "BBMod",
+      "long_btc_states": ["BULL"],
+      "short_btc_states": ["BEAR"],
+      "long_coin_states": ["BULL"],
+      "short_coin_states": ["BEAR"]
+    },
+    {
+      "candidate_id": "AlmgrenChrissStrategy-trend",
+      "strategy_id": "AlmgrenChrissStrategy",
+      "long_btc_states": ["BULL"],
+      "short_btc_states": ["BEAR"],
+      "long_coin_states": ["BULL"],
+      "short_coin_states": ["BEAR"]
+    }
+  ]
+}

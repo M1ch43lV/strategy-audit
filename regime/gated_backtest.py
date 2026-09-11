@@ -20,6 +20,7 @@ from pathlib import Path
 
 from evidence import profile_smoke
 from regime.gate_adapter import STATE_SET
+from repair.overrides import repair_overrides
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -395,6 +396,16 @@ def main(argv=None) -> int:
         else:
             data = dict(expected, results={})
         data["runner_invocation"] = _runner_invocation(args, output)
+        # Loaded once so a run cannot half-apply it, same as
+        # `regime/full_backtest.py`. Without this a candidate whose strategy
+        # only runs under a repair-recovered setting - `ADX_15M_USDT` needs
+        # `timeframe=15m`, restored from `author_ticker_interval` evidence,
+        # not freqtrade's default - fails here for the same reason it once
+        # failed before repair, even though `profile_smoke.py`'s own CLI and
+        # `regime/full_backtest.py` already carry the fix. Found by a real
+        # pilot run: `model1 pooled gated backtests measured: 6/7`, the one
+        # failure being exactly this strategy.
+        overrides = repair_overrides()
 
         def refresh_runtime_ids() -> None:
             data["runtime_ids"] = sorted({
@@ -425,9 +436,11 @@ def main(argv=None) -> int:
             if (not args.force and previous.get("status") == "measured" and
                     all(previous.get(key) == value for key, value in bindings.items())):
                 return candidate_id, previous, True
+            settings = overrides.get(candidate["strategy_id"]) or None
             result = profile_smoke.run_one(
                 row, selected_timerange, args.timeout,
                 extra_env={"REGIME_GATE_CONFIG": str(gate_path.resolve())},
+                config_overrides=settings,
                 artifact_key=f"{args.model}-{candidate_id}",
                 run_context={"model": args.model, "candidate_id": candidate_id,
                              "analysis_role": spec["analysis_role"]},

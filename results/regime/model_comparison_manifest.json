@@ -1,0 +1,43 @@
+{
+  "analysis_role": "PILOT",
+  "candidate_ids": [
+    "ASDTSRockwellTrading-trend",
+    "ADXDM-trend",
+    "ADXMomentum-trend",
+    "ADX_15M_USDT-trend",
+    "AdaptiveRegime-trend",
+    "BBMod-trend",
+    "AlmgrenChrissStrategy-trend"
+  ],
+  "candidate_set_id": "pilot_v1_stratified_trend_gate",
+  "compared_candidate_ids": [
+    "ASDTSRockwellTrading-trend",
+    "ADXDM-trend",
+    "ADXMomentum-trend",
+    "ADX_15M_USDT-trend",
+    "AdaptiveRegime-trend",
+    "BBMod-trend",
+    "AlmgrenChrissStrategy-trend"
+  ],
+  "comparison_scope": "Non-ranked mechanical Model 0/1/2/3 metrics and deltas. No exposure-matched benchmark, specialist threshold, or alpha claim is included.",
+  "input_sha256": {
+    "model0": "sha256_20460cfde56278dec2f64590ec3c09e43bf447e04d2c1dd3cd643768b891fc6b",
+    "model1": "sha256_451a64ee65e937765f63de532049e6ee6a6b410d2dc0a110b742d83a997a4b5b",
+    "model2": "sha256_3b5f6476e78f00528a289cfa835b82df93c0aaf750d60c941a612ea2fcb1c90d",
+    "model3": "sha256_400b8f1357f292368d9ea6a0a4d08f3d20f5428efe60276e4a7abc30983ad05a",
+    "regime_daily": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0"
+  },
+  "missing_candidate_ids": [],
+  "model0_timerange": {
+    "futures": "20200301-20260821",
+    "spot": "20200401-20260821"
+  },
+  "partial": false,
+  "rejections": {
+    "model0": [],
+    "model1": [],
+    "model2": [],
+    "model3": []
+  },
+  "schema_version": 1
+}

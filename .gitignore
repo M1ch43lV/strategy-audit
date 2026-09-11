@@ -39,6 +39,12 @@ data/
 !STRATEGY_STATUS.csv
 !cluster/CLUSTERS.csv
 !results/regime/*.csv
+# Same reasoning, one directory deeper: regime/gated_attribution.py's
+# per-model candidate output (results/regime/modelN_attribution/*.csv).
+# The pattern above stops at the first level, so this went untracked and
+# unnoticed until Model 1/2/3 ran for the first time - nothing had ever
+# written into these directories before.
+!results/regime/*/*.csv
 # A live comparison against GitHub, regenerable but published for the same
 # reason as STRATEGY_STATUS.csv: it is the only place that answers "has a
 # source repo moved since we captured it".

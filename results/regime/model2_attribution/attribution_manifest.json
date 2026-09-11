@@ -1,0 +1,91 @@
+{
+  "accepted_archive_evidence": [
+    {
+      "archive": "user_data/profile_smoke/ASDTSRockwellTrading-a0a64ac9-model2-ASDTSRockwellTrading-trend-67459260-2026-09-11_17-55-38.zip",
+      "archive_sha256": "sha256_d3cb0e08d6c4e10af2c5b5c1e6e67813d37c2c0d98b22180ce3314f74ee8734d",
+      "candidate_id": "ASDTSRockwellTrading-trend",
+      "gate_rule_sha256": "sha256_9a7dadd5372d8b42cfd7bbba0eb124b8294a7bc67e0cf88c12080bf496e37091",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "ASDTSRockwellTrading",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/ADXDM-eef844db-model2-ADXDM-trend-ae3e3337-2026-09-11_17-55-27.zip",
+      "archive_sha256": "sha256_c8b7e867a487c7d3ea27e42dd0d2cc1df52b44ce287ac86ae009c8562fa27b29",
+      "candidate_id": "ADXDM-trend",
+      "gate_rule_sha256": "sha256_9a7dadd5372d8b42cfd7bbba0eb124b8294a7bc67e0cf88c12080bf496e37091",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "ADXDM",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/ADXMomentum-d748d610-model2-ADXMomentum-trend-a7823815-2026-09-11_17-55-37.zip",
+      "archive_sha256": "sha256_8c3e0b6931080c502e87ac883022ca70af10a251d26b65775f57056b945e8326",
+      "candidate_id": "ADXMomentum-trend",
+      "gate_rule_sha256": "sha256_9a7dadd5372d8b42cfd7bbba0eb124b8294a7bc67e0cf88c12080bf496e37091",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "ADXMomentum",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/ADX_15M_USDT-b331c6ee-model2-ADX_15M_USDT-trend-fb8076ab-2026-09-11_17-56-05.zip",
+      "archive_sha256": "sha256_f046cabc0b2b8b04079713694c79eaa77063eb3daf166f549000d501d4dc3f4f",
+      "candidate_id": "ADX_15M_USDT-trend",
+      "gate_rule_sha256": "sha256_9a7dadd5372d8b42cfd7bbba0eb124b8294a7bc67e0cf88c12080bf496e37091",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "ADX_15M_USDT",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/AdaptiveRegime-90b67ba4-model2-AdaptiveRegime-trend-56f1f308-2026-09-11_17-55-50.zip",
+      "archive_sha256": "sha256_c145239438b5db17b87e5e803b5cab4e1ffa25c53f3243e1524353a564e89d1a",
+      "candidate_id": "AdaptiveRegime-trend",
+      "gate_rule_sha256": "sha256_9a7dadd5372d8b42cfd7bbba0eb124b8294a7bc67e0cf88c12080bf496e37091",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "AdaptiveRegime",
+      "timerange": "20200301-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/BBMod-c3880bce-model2-BBMod-trend-d73395e4-2026-09-11_18-05-29.zip",
+      "archive_sha256": "sha256_d92da20f6910fb079e380510eae62c5c060feab23692fbd889c1329f342b0a7b",
+      "candidate_id": "BBMod-trend",
+      "gate_rule_sha256": "sha256_9a7dadd5372d8b42cfd7bbba0eb124b8294a7bc67e0cf88c12080bf496e37091",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "BBMod",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/AlmgrenChrissStrategy-d3ffcaad-model2-AlmgrenChrissStrategy-trend-d658dadf-2026-09-11_18-04-08.zip",
+      "archive_sha256": "sha256_5077ea842aec7607858268f7a1c6235a3c9c98900812638fe9adfc4ed49021e1",
+      "candidate_id": "AlmgrenChrissStrategy-trend",
+      "gate_rule_sha256": "sha256_9a7dadd5372d8b42cfd7bbba0eb124b8294a7bc67e0cf88c12080bf496e37091",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "AlmgrenChrissStrategy",
+      "timerange": "20200301-20260821"
+    }
+  ],
+  "analysis_role": "PILOT",
+  "attributed_candidate_ids": [
+    "ADXDM-trend",
+    "ADXMomentum-trend",
+    "ADX_15M_USDT-trend",
+    "ASDTSRockwellTrading-trend",
+    "AdaptiveRegime-trend",
+    "AlmgrenChrissStrategy-trend",
+    "BBMod-trend"
+  ],
+  "attributed_candidates": 7,
+  "candidate_set_id": "pilot_v1_stratified_trend_gate",
+  "candidate_spec_sha256": "sha256_f3d3fbb93f8f7895527ce9c73263ac7d339b03025ddddfe67787fbc49f4d2996",
+  "evidence_scope": "Causal entry-time attribution of true entry-gated backtests. This artifact does not rank candidates or resolve preregistration choices.",
+  "expected_candidates": 7,
+  "missing_candidate_ids": [],
+  "model": "model2",
+  "partial": false,
+  "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+  "rejected_candidates": [],
+  "schema_version": 1,
+  "source_manifest": "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\results\\regime\\model2_backtest_manifest.json",
+  "source_manifest_sha256": "sha256_3b5f6476e78f00528a289cfa835b82df93c0aaf750d60c941a612ea2fcb1c90d",
+  "trades": 26914
+}

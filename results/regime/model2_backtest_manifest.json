@@ -1,0 +1,448 @@
+{
+  "analysis_role": "PILOT",
+  "candidate_ids": [
+    "ASDTSRockwellTrading-trend",
+    "ADXDM-trend",
+    "ADXMomentum-trend",
+    "ADX_15M_USDT-trend",
+    "AdaptiveRegime-trend",
+    "BBMod-trend",
+    "AlmgrenChrissStrategy-trend"
+  ],
+  "candidate_set_id": "pilot_v1_stratified_trend_gate",
+  "candidate_spec_sha256": "sha256_f3d3fbb93f8f7895527ce9c73263ac7d339b03025ddddfe67787fbc49f4d2996",
+  "candidates": [
+    {
+      "candidate_id": "ASDTSRockwellTrading-trend",
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ],
+      "strategy_id": "ASDTSRockwellTrading"
+    },
+    {
+      "candidate_id": "ADXDM-trend",
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ],
+      "strategy_id": "ADXDM"
+    },
+    {
+      "candidate_id": "ADXMomentum-trend",
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ],
+      "strategy_id": "ADXMomentum"
+    },
+    {
+      "candidate_id": "ADX_15M_USDT-trend",
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ],
+      "strategy_id": "ADX_15M_USDT"
+    },
+    {
+      "candidate_id": "AdaptiveRegime-trend",
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ],
+      "strategy_id": "AdaptiveRegime"
+    },
+    {
+      "candidate_id": "BBMod-trend",
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ],
+      "strategy_id": "BBMod"
+    },
+    {
+      "candidate_id": "AlmgrenChrissStrategy-trend",
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ],
+      "strategy_id": "AlmgrenChrissStrategy"
+    }
+  ],
+  "eligibility_snapshot_sha256": "sha256_9dde39d145d7790966646aab34ec918d9e0eedf788b3c42234bd0db3eaf10d56",
+  "measurement_scope": "coin_entry_gated_pooled_native_pair_universe",
+  "model": "model2",
+  "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+  "results": {
+    "ADXDM-trend": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/ADXDM-eef844db-model2-ADXDM-trend-ae3e3337-2026-09-11_17-55-27.zip",
+      "archive_sha256": "sha256_c8b7e867a487c7d3ea27e42dd0d2cc1df52b44ce287ac86ae009c8562fa27b29",
+      "artifact_key": "model2-ADXDM-trend",
+      "candidate_id": "ADXDM-trend",
+      "canonical_sha256": "sha256_234460d194762a256557922775fc12e72c1cd1b53bb8a3d141ad6590115273cb",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 55.5,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_coin_states": [
+          "BULL"
+        ],
+        "mode": "coin",
+        "schema_version": 1,
+        "short_coin_states": [
+          "BEAR"
+        ]
+      },
+      "gate_rule_sha256": "sha256_9a7dadd5372d8b42cfd7bbba0eb124b8294a7bc67e0cf88c12080bf496e37091",
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ADXDM --strategy-path \"repos/hamidreza07_freqai-strategy/startegy test/5/_ADXDM\" --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ADXDM-eef844db-model2-ADXDM-trend-ae3e3337 --cache none",
+      "long_trades": 241,
+      "measurement_scope": "coin_entry_gated_pooled_native_pair_universe",
+      "mode": "spot",
+      "model": "model2",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/ADXDM-trend-f589425a-model2-9a7dadd5372d.json",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "ADXDM",
+      "timerange": "20200401-20260821",
+      "trades": 241,
+      "trades_sha256": "sha256_cbaf55e833792edb254759596d0bbae49b6a9df07ffa524f47652acc69138f3c"
+    },
+    "ADXMomentum-trend": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/ADXMomentum-d748d610-model2-ADXMomentum-trend-a7823815-2026-09-11_17-55-37.zip",
+      "archive_sha256": "sha256_8c3e0b6931080c502e87ac883022ca70af10a251d26b65775f57056b945e8326",
+      "artifact_key": "model2-ADXMomentum-trend",
+      "candidate_id": "ADXMomentum-trend",
+      "canonical_sha256": "sha256_bdbfd15a521c2dd93a04f8038a621f3613f3f51067564cad7e403dd8120f0587",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 8.5,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_coin_states": [
+          "BULL"
+        ],
+        "mode": "coin",
+        "schema_version": 1,
+        "short_coin_states": [
+          "BEAR"
+        ]
+      },
+      "gate_rule_sha256": "sha256_9a7dadd5372d8b42cfd7bbba0eb124b8294a7bc67e0cf88c12080bf496e37091",
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ADXMomentum --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ADXMomentum-d748d610-model2-ADXMomentum-trend-a7823815 --cache none",
+      "long_trades": 14,
+      "measurement_scope": "coin_entry_gated_pooled_native_pair_universe",
+      "mode": "spot",
+      "model": "model2",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/ADXMomentum-trend-1fbb624d-model2-9a7dadd5372d.json",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "ADXMomentum",
+      "timerange": "20200401-20260821",
+      "trades": 14,
+      "trades_sha256": "sha256_50ca982c0ce520890134cdbc65cd29b4cf24d3ed83ce3a87042f05d1d183b2e5"
+    },
+    "ADX_15M_USDT-trend": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/ADX_15M_USDT-b331c6ee-model2-ADX_15M_USDT-trend-fb8076ab-2026-09-11_17-56-05.zip",
+      "archive_sha256": "sha256_f046cabc0b2b8b04079713694c79eaa77063eb3daf166f549000d501d4dc3f4f",
+      "artifact_key": "model2-ADX_15M_USDT-trend",
+      "candidate_id": "ADX_15M_USDT-trend",
+      "canonical_sha256": "sha256_1cf6c1e674baf8352d60a80fbdea156cdefe4639900ba8160568d07b7cff03a7",
+      "class1_rules": [],
+      "config_overrides": {
+        "timeframe": "15m"
+      },
+      "elapsed_s": 28.5,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_coin_states": [
+          "BULL"
+        ],
+        "mode": "coin",
+        "schema_version": 1,
+        "short_coin_states": [
+          "BEAR"
+        ]
+      },
+      "gate_rule_sha256": "sha256_9a7dadd5372d8b42cfd7bbba0eb124b8294a7bc67e0cf88c12080bf496e37091",
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/ADX_15M_USDT-b331c6ee-override-c517447bf6b2.json --strategy ADX_15M_USDT --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ADX_15M_USDT-b331c6ee-model2-ADX_15M_USDT-trend-fb8076ab --cache none",
+      "long_trades": 2282,
+      "measurement_scope": "coin_entry_gated_pooled_native_pair_universe",
+      "mode": "spot",
+      "model": "model2",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/ADX_15M_USDT-trend-dd740f28-model2-9a7dadd5372d.json",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "ADX_15M_USDT",
+      "timerange": "20200401-20260821",
+      "trades": 2282,
+      "trades_sha256": "sha256_dd22690699cc3e7a87950a35818393737c400f65b7cf99dc70641c30c8cc0bcd"
+    },
+    "ASDTSRockwellTrading-trend": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/ASDTSRockwellTrading-a0a64ac9-model2-ASDTSRockwellTrading-trend-67459260-2026-09-11_17-55-38.zip",
+      "archive_sha256": "sha256_d3cb0e08d6c4e10af2c5b5c1e6e67813d37c2c0d98b22180ce3314f74ee8734d",
+      "artifact_key": "model2-ASDTSRockwellTrading-trend",
+      "candidate_id": "ASDTSRockwellTrading-trend",
+      "canonical_sha256": "sha256_a8bfcc43a306c293e0b774c4b1dd534bf380f962fa0a4f1e332a0b491bd5a969",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 67.5,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_coin_states": [
+          "BULL"
+        ],
+        "mode": "coin",
+        "schema_version": 1,
+        "short_coin_states": [
+          "BEAR"
+        ]
+      },
+      "gate_rule_sha256": "sha256_9a7dadd5372d8b42cfd7bbba0eb124b8294a7bc67e0cf88c12080bf496e37091",
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ASDTSRockwellTrading --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ASDTSRockwellTrading-a0a64ac9-model2-ASDTSRockwellTrading-trend-67459260 --cache none",
+      "long_trades": 14234,
+      "measurement_scope": "coin_entry_gated_pooled_native_pair_universe",
+      "mode": "spot",
+      "model": "model2",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/ASDTSRockwellTrading-trend-a46a387f-model2-9a7dadd5372d.json",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "ASDTSRockwellTrading",
+      "timerange": "20200401-20260821",
+      "trades": 14234,
+      "trades_sha256": "sha256_45f932df23475b640ee7854acabe25d1bb1a18f6657e8334a23c0b70736c2777"
+    },
+    "AdaptiveRegime-trend": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/AdaptiveRegime-90b67ba4-model2-AdaptiveRegime-trend-56f1f308-2026-09-11_17-55-50.zip",
+      "archive_sha256": "sha256_c145239438b5db17b87e5e803b5cab4e1ffa25c53f3243e1524353a564e89d1a",
+      "artifact_key": "model2-AdaptiveRegime-trend",
+      "candidate_id": "AdaptiveRegime-trend",
+      "canonical_sha256": "sha256_cf6478f765e4b95984227e64b11d72f44c14935bc13c8f5a84fa7499354b47bc",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 9.2,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_coin_states": [
+          "BULL"
+        ],
+        "mode": "coin",
+        "schema_version": 1,
+        "short_coin_states": [
+          "BEAR"
+        ]
+      },
+      "gate_rule_sha256": "sha256_9a7dadd5372d8b42cfd7bbba0eb124b8294a7bc67e0cf88c12080bf496e37091",
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AdaptiveRegime --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AdaptiveRegime-90b67ba4-model2-AdaptiveRegime-trend-56f1f308 --cache none",
+      "long_trades": 87,
+      "measurement_scope": "coin_entry_gated_pooled_native_pair_universe",
+      "mode": "futures",
+      "model": "model2",
+      "pairs": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/AdaptiveRegime-trend-2abd4490-model2-9a7dadd5372d.json",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 83,
+      "status": "measured",
+      "strategy_id": "AdaptiveRegime",
+      "timerange": "20200301-20260821",
+      "trades": 170,
+      "trades_sha256": "sha256_2ae032802407dea62724c7fde1f7254325a822404094bdd4016bdd97a7d1e287"
+    },
+    "AlmgrenChrissStrategy-trend": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/AlmgrenChrissStrategy-d3ffcaad-model2-AlmgrenChrissStrategy-trend-d658dadf-2026-09-11_18-04-08.zip",
+      "archive_sha256": "sha256_5077ea842aec7607858268f7a1c6235a3c9c98900812638fe9adfc4ed49021e1",
+      "artifact_key": "model2-AlmgrenChrissStrategy-trend",
+      "candidate_id": "AlmgrenChrissStrategy-trend",
+      "canonical_sha256": "sha256_29383b6d6a9d046e24fec53b25bcf30dae0fab4def62dbef19848191dab156f3",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 484.0,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_coin_states": [
+          "BULL"
+        ],
+        "mode": "coin",
+        "schema_version": 1,
+        "short_coin_states": [
+          "BEAR"
+        ]
+      },
+      "gate_rule_sha256": "sha256_9a7dadd5372d8b42cfd7bbba0eb124b8294a7bc67e0cf88c12080bf496e37091",
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlmgrenChrissStrategy --strategy-path repos/freqtrade_freqtrade-strategies/user_data/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlmgrenChrissStrategy-d3ffcaad-model2-AlmgrenChrissStrategy-trend-d658dadf --cache none",
+      "long_trades": 3858,
+      "measurement_scope": "coin_entry_gated_pooled_native_pair_universe",
+      "mode": "futures",
+      "model": "model2",
+      "pairs": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/AlmgrenChrissStrategy-trend-cc5d39be-model2-9a7dadd5372d.json",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 3961,
+      "status": "measured",
+      "strategy_id": "AlmgrenChrissStrategy",
+      "timerange": "20200301-20260821",
+      "trades": 7819,
+      "trades_sha256": "sha256_c882854a141ed4c8622b9ecee0305e39f431db34c40ce33a5f19387c5a8b651d"
+    },
+    "BBMod-trend": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/BBMod-c3880bce-model2-BBMod-trend-d73395e4-2026-09-11_18-05-29.zip",
+      "archive_sha256": "sha256_d92da20f6910fb079e380510eae62c5c060feab23692fbd889c1329f342b0a7b",
+      "artifact_key": "model2-BBMod-trend",
+      "candidate_id": "BBMod-trend",
+      "canonical_sha256": "sha256_20884e32203032c71bc6ced64761a57d03844ede19f6e5d1e5fd16804ed96da5",
+      "class1_rules": [
+        "legacy_fillna_skips_incompatible_dtype"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 581.2,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_coin_states": [
+          "BULL"
+        ],
+        "mode": "coin",
+        "schema_version": 1,
+        "short_coin_states": [
+          "BEAR"
+        ]
+      },
+      "gate_rule_sha256": "sha256_9a7dadd5372d8b42cfd7bbba0eb124b8294a7bc67e0cf88c12080bf496e37091",
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy BBMod --strategy-path repos/eovie_freqtrade_strs/binance/Archive --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBMod-c3880bce-model2-BBMod-trend-d73395e4 --cache none",
+      "long_trades": 2154,
+      "measurement_scope": "coin_entry_gated_pooled_native_pair_universe",
+      "mode": "spot",
+      "model": "model2",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/BBMod-trend-f3852051-model2-9a7dadd5372d.json",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "BBMod",
+      "timerange": "20200401-20260821",
+      "trades": 2154,
+      "trades_sha256": "sha256_a4f7ca2e93251c6b2bd5cde25634236ff1a8d76de42cb5ff9fa84e46465540a0"
+    }
+  },
+  "runner_invocation": "python -m regime.gated_backtest --model model2 --candidate-spec 'results\\regime\\candidate_spec_pilot_v1.json' --daily 'C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\results\\regime\\regime_daily.csv' --output 'C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\results\\regime\\model2_backtest_manifest.json' --timeout 3600 --workers 2",
+  "runtime_ids": [
+    "native_unversioned"
+  ],
+  "schema_version": 1,
+  "timerange": {
+    "futures": "20200301-20260821",
+    "spot": "20200401-20260821"
+  }
+}

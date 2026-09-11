@@ -3,7 +3,44 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-11T13:35:00+02:00
+- Last update: 2026-09-11T18:25:00+02:00
+- First productive Model 1/2/3 run is complete: a PILOT candidate spec
+  (`results/regime/candidate_spec_pilot_v1.json`, `candidate_set_id
+  pilot_v1_stratified_trend_gate`) with 7 candidates, one per major
+  strategy_type category (scalping, mean_reversion, momentum,
+  trend_following, volatility_breakout, volume_based, grid_dca), selected by
+  a neutral rule agreed with the owner before any candidate ran: within each
+  category, the alphabetically-first E1_expanded strategy not already used
+  by an earlier category. Every candidate carries the same uniform gate -
+  long only in BTC/coin BULL, short only in BTC/coin BEAR - also agreed with
+  the owner before running, never chosen after seeing performance.
+  `regime/gated_backtest.py --model model1/2/3`, `regime/gated_attribution.py
+  --model model1/2/3`, and `regime/model_compare` all ran to completion:
+  7/7 candidates measured in every model, `model_comparison.csv` written
+  (163 columns, all `SUMMARY_FIELDS` plus per-pair deltas for the 7
+  candidates).
+- Found and fixed one real bug during the pilot, the same shape as the
+  BBRSIS bug from earlier this session: `gated_backtest.py`'s `run()` called
+  `profile_smoke.run_one()` without `config_overrides`, so a candidate whose
+  strategy only runs under a repair-recovered setting failed outright.
+  `ADX_15M_USDT-trend` failed Model 1's first attempt this way (needs
+  `timeframe=15m`, recovered from `author_ticker_interval` evidence, not
+  freqtrade's default) - `profile_smoke.py`'s own CLI and
+  `regime/full_backtest.py` already carried this fix, `gated_backtest.py` was
+  a third, previously unaudited caller that did not. Fixed by loading
+  `repair.overrides.repair_overrides()` once in `main()` and passing
+  `config_overrides=overrides.get(strategy) or None` into `run_one()`, same
+  pattern as `full_backtest.py`. Re-running Model 1 afterward correctly
+  showed the other 6 candidates `cached` (identity-bound skip untouched) and
+  only the fixed one `measured` - live confirmation the existing skip logic
+  works, not just the new fix.
+- This is a `PILOT` role, seven strategies, explicitly not a `DISCOVERY` or
+  `VALIDATION` run and not ranked - `model_compare.py` still only places
+  mechanical deltas side by side, per its own docstring. Do not read
+  `model_comparison.csv`'s deltas as a specialist or universal finding; that
+  evaluation (the exposure-matched benchmark, the 5-episode/10-trade
+  specialist floor, discovery/validation split) is still unapplied to this
+  output and is the next real step, not this one.
 - Also done: extended the same incremental-cache and vectorisation fix from
   `regime/attribution.py` to the Model 1/2/3 path, proactively - neither had
   run productively yet, but both had the identical shape of problem waiting.
