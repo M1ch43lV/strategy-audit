@@ -393,6 +393,23 @@ def unsettled_rows():
     return wanted
 
 
+def lookahead_pass_rows():
+    """Current identities whose native Look-Ahead gate has passed.
+
+    This prospective route deliberately does not consult recursive outcomes:
+    the ladder determines the warm-up before the final recursive measurement.
+    """
+    profiles = {row["strategy_id"]: row for row in _csv(PROFILES)}
+    bias = profile_bias._load(profile_bias.OUTPUT)
+    wanted = []
+    for strategy, record in bias.get("results", {}).items():
+        row = profiles.get(strategy)
+        if (row and profile_bias.identity_matches(row, record)
+                and record.get("lookahead", {}).get("status") == "PASS"):
+            wanted.append(strategy)
+    return sorted(wanted)
+
+
 def cohort(name):
     """Rows this route may consider. Selection never reads an outcome."""
     profiles = {row["strategy_id"]: row for row in _csv(PROFILES)}
@@ -405,6 +422,8 @@ def cohort(name):
         wanted = unsettled_rows()
     elif name == "ladder_pending":
         wanted = ladder_pending_rows()
+    elif name == "lookahead_pass":
+        wanted = lookahead_pass_rows()
     elif name == "frozen_baseline":
         wanted = frozen_baseline_rows()
     elif name == "budget_capped":
@@ -762,6 +781,28 @@ def redo_defective(cohort_name, selected=None):
     return moved
 
 
+def supersede_selected(cohort_name, selected=None):
+    """Archive an explicitly requested current ladder before a clean rerun."""
+    data = _load(OUTPUT)
+    cohort_ids = {row["strategy_id"] for row in cohort(cohort_name)}
+    if selected is not None:
+        cohort_ids &= set(selected)
+    superseded = data.setdefault("superseded", {})
+    moved = []
+    for strategy in sorted(cohort_ids):
+        record = data["results"].get(strategy)
+        if not record:
+            continue
+        archived = dict(record)
+        archived["superseded_because"] = (
+            "explicit rerun under the 2026-09-11 diagnostic order")
+        superseded.setdefault(strategy, []).append(archived)
+        del data["results"][strategy]
+        moved.append(strategy)
+    _write(OUTPUT, data)
+    return moved
+
+
 def run(cohort_name, limit, timeout, wanted=None):
     rows = cohort(cohort_name)
     if wanted:
@@ -848,7 +889,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--cohort", default="recursion_only",
                         choices=("recursion_only", "wave_d", "wave_c_refusals",
-                                 "ladder_pending", "frozen_baseline",
+                                 "ladder_pending", "lookahead_pass", "frozen_baseline",
                                  "budget_capped", "window_thawed",
                                  "wave_b_static_rejected",
                                  "recursive_unsettled"))
@@ -859,6 +900,8 @@ def main(argv=None):
     parser.add_argument("--redo-defective", action="store_true",
                         dest="redo",
                         help="move records a known defect produced aside")
+    parser.add_argument("--force", action="store_true",
+                        help="archive selected current records before rerunning")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:
@@ -870,6 +913,9 @@ def main(argv=None):
         for strategy, why in moved:
             print("   %-30s %s" % (strategy, why))
         return 0
+    if args.force:
+        moved = supersede_selected(args.cohort, set(args.strategy) or None)
+        print("archived %d selected records for explicit rerun" % len(moved))
     return run(args.cohort, args.limit, args.timeout, set(args.strategy) or None)
 
 

@@ -28,6 +28,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
 ELIGIBILITY = os.path.join(ROOT, "evidence/REGIME_ELIGIBILITY.csv")
 OUTPUT = os.path.join(ROOT, "evidence/PROFILE_BIAS.json")
+CONVERGENCE = os.path.join(ROOT, "evidence/WARMUP_CONVERGENCE.json")
 SPOT_CONFIG = os.path.join(ROOT, "user_data", "config.json")
 CONFIG_DIR = os.path.join(ROOT, "user_data", "profile_configs")
 # Use the interpreter running this pipeline. This keeps the Windows venv and
@@ -451,7 +452,7 @@ def _window_too_small(status, why):
 
 
 def run_diagnostic(row, diagnostic, timeout, fallback_timeout,
-                   config_overrides=None):
+                   config_overrides=None, settled_startup=None):
     """Run one bias gate. `config_overrides` writes a per-strategy config.
 
     The spot gate config is one shared file, which is fine while every runner
@@ -463,9 +464,12 @@ def run_diagnostic(row, diagnostic, timeout, fallback_timeout,
     strategy = row["strategy_id"]
     canonical = os.path.join(ROOT, row["canonical_file"].replace("/", os.sep))
     mode, config, env, repair, extra = _runtime(row)
-    if config_overrides:
+    if config_overrides or settled_startup is not None:
         data = json.load(io.open(config, encoding="utf-8"))
-        data.update(config_overrides)
+        if config_overrides:
+            data.update(config_overrides)
+        if settled_startup is not None:
+            data["startup_candle_count"] = settled_startup
         os.makedirs(CONFIG_DIR, exist_ok=True)
         config = os.path.join(CONFIG_DIR, "%s_gate.json"
                               % profile_smoke._safe(strategy))
@@ -486,6 +490,8 @@ def run_diagnostic(row, diagnostic, timeout, fallback_timeout,
         command = [PYTHON, FT_WRAPPER, diagnostic + "-analysis", "--config", config,
                    "--strategy", strategy, "--strategy-path", strategy_path,
                    "--timerange", timerange, "--no-color"] + extra
+        if diagnostic == "recursive" and settled_startup is not None:
+            command.extend(["--startup-candle", str(settled_startup)])
         try:
             process = subprocess.run(command, capture_output=True,
                                      timeout=fallback_timeout if attempt else timeout,
@@ -510,13 +516,16 @@ def run_diagnostic(row, diagnostic, timeout, fallback_timeout,
                 "output_sha256": "sha256_" + hashlib.sha256(
                     output.encode("utf-8")).hexdigest(),
             }
-            if config_overrides:
-                result["config_overrides"] = dict(config_overrides)
+            if config_overrides or settled_startup is not None:
+                result["config_overrides"] = dict(config_overrides or {})
+                if settled_startup is not None:
+                    result["config_overrides"]["startup_candle_count"] = settled_startup
             if diagnostic == "recursive":
                 # The verdict is a threshold decision and throws the numbers
                 # away. Keeping them lets a later reader see how far a row was
                 # from the line without rerunning the analyzer.
                 result["drifts"] = recursive_drifts(output)
+                result["settled_startup_candle_count"] = settled_startup
             # Preserve inconclusive and positive findings for auditability.
             # PASS logs are omitted because their output hash is sufficient.
             if status in ("NA", "FOUND"):
@@ -552,8 +561,43 @@ def candidates(profile_path, eligibility_path):
              "recursive_bias_not_completed" in row["pending_reasons"])]
 
 
+def recursive_prerequisite(previous, strategy, mode, convergence=None):
+    """Return the settled warm-up required before the final recursive gate."""
+    if previous.get("lookahead", {}).get("status") != "PASS":
+        return None, "Look-Ahead is not PASS"
+    data = convergence if convergence is not None else _load(CONVERGENCE)
+    record = data.get("results", {}).get(strategy, {})
+    if record.get("state") != "converged":
+        return None, "Warm-up convergence is not complete"
+    if record.get("timerange") != WINDOWS[mode]:
+        return None, "Warm-up convergence used a superseded timerange"
+    startup = record.get("chosen_startup_candle_count")
+    if not isinstance(startup, int) or startup <= 0:
+        return None, "Warm-up convergence has no settled startup"
+    return startup, None
+
+
+def inherit_canonical_lookahead(previous, strategy, row, output_path):
+    """Give a recursive-only shard its identity-matching Look-Ahead gate."""
+    if output_path == OUTPUT or previous.get("lookahead"):
+        return previous
+    canonical = _load(OUTPUT).get("results", {}).get(strategy, {})
+    if identity_matches(row, canonical) and canonical.get("lookahead"):
+        previous["lookahead"] = canonical["lookahead"]
+    return previous
+
+
 def selftest():
     assert WINDOWS["spot"] == WINDOWS["futures"] == "20200301-20200601"
+    ready = {"results": {"sample": {
+        "state": "converged", "timerange": WINDOWS["spot"],
+        "chosen_startup_candle_count": 360}}}
+    assert recursive_prerequisite({"lookahead": {"status": "PASS"}},
+                                  "sample", "spot", ready) == (360, None)
+    assert recursive_prerequisite({"lookahead": {"status": "FOUND"}},
+                                  "sample", "spot", ready)[0] is None
+    assert recursive_prerequisite({"lookahead": {"status": "PASS"}},
+                                  "missing", "spot", ready)[0] is None
     sample_data = {"results": {}, "superseded": {}}
     sample = {
         "lookahead": {"status": "PASS", "timerange": "20190101-20190401"},
@@ -754,17 +798,30 @@ def main(argv=None):
         if any(previous.get(key) != value for key, value in current_identity.items()
                if key in previous):
             previous = {}
+        previous = inherit_canonical_lookahead(previous, strategy, row, args.output)
         previous.update(current_identity)
         _supersede_stale_windows(data, strategy, previous, WINDOWS[mode])
         for diagnostic in ("lookahead", "recursive"):
             if diagnostic not in wanted or (not args.force and
                     previous.get(diagnostic, {}).get("status") in ("PASS", "FOUND")):
                 continue
+            # The final recursive verdict is measured only after the fixed
+            # convergence ladder found the implementation's adequate warm-up.
+            # A look-ahead finding or an unfinished ladder cannot be repaired
+            # by this final gate, so defer it rather than spending a run.
+            settled_startup = None
+            if diagnostic == "recursive":
+                settled_startup, blocked = recursive_prerequisite(
+                    previous, strategy, mode)
+                if blocked:
+                    print("  recursive: deferred; %s" % blocked, flush=True)
+                    break
             print("[%d/%d] %s %s %s" %
                   (number, len(rows), strategy, mode, diagnostic), flush=True)
             previous[diagnostic] = run_diagnostic(
                 row, diagnostic, args.timeout, args.fallback_timeout,
-                config_overrides=overrides.get(strategy))
+                config_overrides=overrides.get(strategy),
+                settled_startup=settled_startup)
             data["results"][strategy] = previous
             _write(data, args.output)
             print("  %s: %s" % (previous[diagnostic]["status"],

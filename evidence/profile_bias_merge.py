@@ -14,6 +14,16 @@ def _load(path):
         return json.load(handle)
 
 
+def merge_record(existing, record):
+    """Combine disjoint diagnostic shards without discarding an earlier gate."""
+    merged = dict(existing or {})
+    merged.update(record)
+    for diagnostic in ("lookahead", "recursive"):
+        if diagnostic not in record and existing and diagnostic in existing:
+            merged[diagnostic] = existing[diagnostic]
+    return merged
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--target", default=profile_bias.OUTPUT)
@@ -34,7 +44,7 @@ def main(argv=None):
                     new = record.get(diagnostic, {}).get("status")
                     if old in ("PASS", "FOUND") and new in ("PASS", "FOUND") and old != new:
                         raise SystemExit("conflicting %s result for %s" % (diagnostic, strategy))
-            target["results"][strategy] = record
+            target["results"][strategy] = merge_record(existing, record)
             merged += 1
     profile_bias._write(target, args.target)
     print("merged %d shard records; canonical records %d" %

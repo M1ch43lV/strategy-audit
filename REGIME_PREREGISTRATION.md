@@ -212,6 +212,25 @@ historical or an ancillary recursion ladder did not finish. This does not apply
 to `exclusion_unconfirmed`: that separate cohort has not earned an exclusion
 verdict and remains open until its evidence gap is resolved.
 
+## Amendment 2026-09-11: warm-up convergence precedes final recursive-bias
+
+**Owner's decision**, applied prospectively to every strategy that still has
+technical gate work. The diagnostic sequence is now: native look-ahead first;
+only after a `PASS`, the frozen warm-up convergence ladder; only after a
+current `converged` ladder result, final native recursive-bias using that
+ladder's selected startup-candle count. A native look-ahead `FOUND` is a final
+information-leak exclusion, so neither later measurement is useful or
+permitted for that implementation. `NA` is not a pass and likewise blocks
+follow-up work until its technical cause is resolved.
+
+This changes workload order, not an admission threshold, timerange, strategy
+implementation, or any existing measurement. It prevents an author's declared
+or Freqtrade default warm-up from deciding the final recursion verdict when the
+fixed ladder demonstrates that it is too short. The runner defers recursive
+work until the prerequisite exists and passes the settled value explicitly;
+`PIPELINE.md` documents the same order for future work. Older recursive records
+remain provenance and are not silently reclassified by this prospective change.
+
 ## Amendment 2026-09-10: non-testable canonical full backtests are excluded
 
 **Owner's decision.** A strategy that reached Stage 7 but has a canonical

@@ -3,14 +3,16 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-10T20:22:17+02:00
-- Stopped because: the owner made `failed`, `resource_inconclusive`, and
-  `timeout` canonical pooled Full-Backtests final non-testable C10 exclusions;
-  the generator, criteria, CSV, status page, and binding documents implement it
-- Next agent should: never queue a C10 row. The current E1 cohort excludes all
-  final Full-Backtest non-testable rows; if measurements resume, target only
-  the remaining `pending` and `exclusion_unconfirmed` rows after identity
-  filtering.
+- Last update: 2026-09-11T07:41:00+02:00
+- Stopped because: the requested pooled Full-Backtest is still actively
+  measuring `MultiMA_TSL3b`; do not start a second full-backtest or attribution
+  writer.
+- Next agent should: wait for PID `9796` and its Freqtrade child to finish,
+  then inspect the six manifest results. Five are already `measured`:
+  `SMAOPv1_TTF`, `QuickBuyStrategy`, `FastSupertrendOpt`, `WTHO`, and
+  `multi_tf`. If `MultiMA_TSL3b` is also measured, run `regime.attribution`
+  against the canonical full manifest to refresh Model-0 market-regime
+  attribution for the expanded E1 cohort. Do not inspect rankings.
 
 ## Objective
 
@@ -57,6 +59,9 @@ entry; do not reread the roughly 2,000-line file end to end.
   `2026-09-10: identical Spot and Futures bias windows`, plus
   `evidence/profile_bias.py`, `evidence/warmup_convergence.py`, and
   `PIPELINE.md`, Stages 2-3.
+- Diagnostic order: `REGIME_PREREGISTRATION.md`, amendment
+  `2026-09-11: warm-up convergence precedes final recursive-bias`, plus
+  `evidence/profile_bias.py` and `PIPELINE.md`, Stages 2-3.
 - Full-backtest technical closure: `REGIME_PREREGISTRATION.md`, amendment
   `2026-09-10: completed full backtest closes technical work`, plus
   `evidence/strategy_status.py` and `PIPELINE.md`, Stage 7.
@@ -66,6 +71,9 @@ entry; do not reread the roughly 2,000-line file end to end.
 - Full-backtest non-testability: `REGIME_PREREGISTRATION.md`, amendment
   `2026-09-10: non-testable canonical full backtests are excluded`, plus C10
   in `evidence/exclusion_criteria.py` and `evidence/strategy_status.py`.
+- Stage-9 Model-0 attribution: `PIPELINE.md`, Stages 8-9;
+  `REGIME_PREREGISTRATION.md`, `Analysis order` and `OPEN before Stage 9
+  ranking`; `regime/attribution.py`.
 
 ## Machine state - authoritative
 
@@ -98,15 +106,52 @@ Get-ChildItem evidence/PROFILE_SMOKE.json,evidence/PROFILE_FULL_WINDOW*.json,res
 Get-ChildItem -Force *.running,results\regime\*.running -ErrorAction SilentlyContinue
 ```
 
-One writer per output store. Heavy measurements run one at a time. A Docker
-CLI timeout is not evidence that no container exists. Inspect processes,
-locks, artifact timestamps, and the run log before deciding.
+One writer per output store. Separate-output shards may run in parallel only
+when identities are disjoint and `evidence.profile_bias_merge` will merge them
+after all writers finish. A Docker CLI timeout is not evidence that no
+container exists. Inspect processes, locks, artifact timestamps, and the run
+log before deciding.
 
 ## Last observed machine state
 
-Observed 2026-09-10T20:22:17+02:00 after recording Full-Backtest C10 closure:
+Observed 2026-09-11T07:05:44+02:00 while recovering the ten strategy gates:
 
-- No Docker benchmark/analyzer or evidence writer is active.
+- The isolated canonical `Schism5` Look-Ahead process remains active through
+  `profile_freqtrade.py`; its worker CPU counters continue increasing with
+  about 768 MB working set. Canonical `PROFILE_BIAS.json` writes only after a
+  completed diagnostic, so its `06:18:26+02:00` write time is expected. The
+  completed disjoint shards are `FastSupertrend=FOUND`,
+  `FastSupertrendOpt=PASS`, `MultiMA_TSL3b=PASS`, `WTHO=PASS`, `multi_tf=PASS`,
+  and `Solipsis_v4=NA`; merge only after `Schism5` ends.
+- The owner ordered Look-Ahead before Recursive-Bias for future work.
+  `profile_bias.py` prevents recursive execution after `FOUND`, and `NA` also
+  blocks follow-up. The selftest and targeted compile passed; `PIPELINE.md` and
+  preregistration amendment 2026-09-11 now record the same rule.
+- The owner refined that rule: the prospective chain is Look-Ahead PASS, then
+  the fixed warm-up convergence ladder, then final Recursive-Bias using the
+  ladder's selected startup value. `profile_bias.py` defers final recursion
+  until both prerequisites exist; `warmup_convergence.py` has a
+  `lookahead_pass` cohort and explicit reruns archive old ladder evidence.
+- The six recovered rows were repeated in the corrected order. Each now has a
+  current three-month ladder and final Recursive PASS: `SMAOPv1_TTF=2016`,
+  `QuickBuyStrategy=168`, `FastSupertrendOpt=24`, `WTHO=360`, `multi_tf=288`,
+  `MultiMA_TSL3b=2016` startup candles. All are `convergence_candidate`; no
+  admission was inferred from this technical result alone.
+- The owner then directed their admission. `evidence.eligibility_admit_converged
+  --apply` admitted exactly those six under `converged_clean_gates_v1`; status
+  regenerated to 647 E1 rows. A canonical pooled six-strategy Full-Backtest
+  began at `2026-09-11T07:30:54+02:00` with two workers. Five records are
+  `measured`; the final `MultiMA_TSL3b` native worker remains CPU-active at
+  about 2.8 GB, well below the 14 GB ceiling. No attribution writer is active.
+
+- The previous targeted `NostalgiaForInfinityX` current-overlay pooled
+  Full-Backtest completed `measured` in 674.1 seconds with 259 trades. Its
+  manifest source/config identity now matches the current repair overlay.
+- The former ten-row look-ahead batch ended unexpectedly. Persisted look-ahead
+  records are `SMAOPv1_TTF=PASS`, `QuickBuyStrategy=PASS`, and
+  `MultiMA_TSL5=NA`; the other seven have no record. Its last artifact write
+  was `06:18:26+02:00`; no freqtrade error was recorded after the last normal
+  analyzer log. A single-strategy `Schism5` look-ahead writer is now active.
 - `STRATEGY_STATUS.csv` is current with 1,050 rows: 641 `E1_expanded`, 297
   excluded, 53 exclusion-unconfirmed, 30 too-few-trades, 10 pending and 19
   not-a-strategy. C10 moves 34 formerly E1 rows to excluded: 21 `failed`, 12
@@ -116,6 +161,19 @@ Observed 2026-09-10T20:22:17+02:00 after recording Full-Backtest C10 closure:
   none is in `open_work`. All 263 final `excluded` rows now also have empty
   `open_work`; the remaining queue contains 53 `exclusion_unconfirmed` and 10
   `pending` rows only.
+- No Docker benchmark/analyzer or Stage-9 writer is active. The completed
+  Model-0 attribution atomically wrote its current artifacts: 641 eligible E1
+  profiles, 582 accepted/attributed canonical archives, and 3,436,335 trades.
+  All BTC-state matches are present; 10,918 of 3,436,335 trades lack pair-local
+  state evidence. Fifty-nine eligible profiles lack an accepted archive (52
+  `oom_confirmed`, 5 `performance_limited`, 1 `stake_overflow_confirmed`, and
+  1 measured); that row was `NostalgiaForInfinityX`, now rerun with its current
+  overlay and pending a later attribution refresh. These are coverage facts,
+  not profitability results.
+- The owner rejected a temporary attribution-only identity-continuity proposal
+  and instead ordered the successful current-overlay full rerun above. The
+  stopped attribution process never atomically wrote output; visible Stage-9
+  artifacts remain the earlier 582-archive run pending a later clean rerun.
 - GRID measured 8 trades at one month then timed out at three months; ONS
   measured 8 at one and three months then timed out at one year. Both exhausted
   the 1,800-second recovery budget and need no repeat.
@@ -273,6 +331,10 @@ that historical mismatch.
 
 The historical 5-profile ungated equivalence artifact remains 5/5 exact at
 `results/regime/gate_equivalence.json`; do not rerun it without a reason.
+At 2026-09-10T21:02:00+02:00, `regime.validate_regime` and the gate-adapter
+selftest both PASS; the retained equivalence artifact is structurally current
+and reports 5/5 exact trade matches. No expensive duplicate equivalence run was
+started.
 
 Classification validation at `a7259ad`: classifier selftest/check, phase
 hypothesis selftest, status selftest/check, status-page selftest, targeted
@@ -346,8 +408,9 @@ only bias diagnostic.
 1. Treat the five smoke-funnel packages as complete; do not repeat their smoke
    or resource attempts while identities and rules match.
 2. For the ten recovered at-least-ten-trade rows, run any required output-
-   equivalence proof first, then native look-ahead and recursive gates. Only
-   rows passing every frozen technical gate may receive a new E1 adjudication.
+   equivalence proof first, then native Look-Ahead. Run Recursive-Bias and its
+   Warm-up route only after Look-Ahead `PASS`. Only rows passing every frozen
+   technical gate may receive a new E1 adjudication.
 3. If the owner explicitly continues the measurement queue, derive targets
    only from `pending` and `exclusion_unconfirmed` current identities. Exclude
    every final `excluded`, C10, and `technical_chain_complete=true` row; do not
@@ -378,7 +441,8 @@ only bias diagnostic.
 - Identity-matching canonical pooled Full-Backtest rows with `status=measured`:
   they have already completed the technical chain. A later diagnostic-window
   change must not requeue them; preserve their earlier diagnostic records as
-  provenance. The sole current identity mismatch is `NostalgiaForInfinityX`.
+  provenance. `NostalgiaForInfinityX` completed its current-overlay rerun and
+  is no longer an identity exception.
 - Final `excluded` cohort rows: they are closed work cases. Preserve their
   exclusion evidence and reason, but never recreate `open_work` for them.
   `exclusion_unconfirmed` remains a separate unresolved cohort and is not

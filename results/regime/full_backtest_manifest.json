@@ -7129,6 +7129,44 @@
       "trades": 329,
       "trades_sha256": "sha256_4427cbc9964459a91fe1222320ee7cdcfa083e3e017b18d3619c95f9f74c8132"
     },
+    "FastSupertrendOpt": {
+      "archive": "user_data/profile_smoke/FastSupertrendOpt-fc13211c-2026-09-11_07-32-09.zip",
+      "archive_sha256": "sha256_8222d248f0384fd8c7b91b02e5b7870f7017e2364ad181e4ba3dd0cd5dced59d",
+      "artifact_key": "",
+      "attempted_at": "2026-09-11T05:32:11+00:00",
+      "canonical_sha256": "sha256_fd703b89d54d63eb37bfed7d10fe69d273ecea0c793b3f32c190cf58df3c92f4",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 24.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy FastSupertrendOpt --strategy-path user_data/profile_repairs --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FastSupertrendOpt-fc13211c --cache none",
+      "long_trades": 5591,
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "spot",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200401-20260821",
+      "trades": 5591,
+      "trades_sha256": "sha256_89e488c338fb020dabad83ebcce35146dfc4e7eb8aebfb579e981eef5e96e439"
+    },
     "FastSupertrend_optim3": {
       "archive": "user_data/profile_smoke/FastSupertrend_optim3-ce00c933-2026-09-06_00-59-32.zip",
       "archive_sha256": "sha256_a536e9516e7b82f6f1f9d1d37f7ee76eb270ec9a1c2c122e3908948ccbf5ebfc",
@@ -11422,6 +11460,44 @@
       "timerange": "20200401-20260821",
       "why": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given"
     },
+    "MultiMA_TSL3b": {
+      "archive": "user_data/profile_smoke/MultiMA_TSL3b-394a8370-2026-09-11_07-41-25.zip",
+      "archive_sha256": "sha256_ac3a7cdadb6ace9f2052c6b5adc6360e5d31a4b8c8fb90ff6a5b431470b6df53",
+      "artifact_key": "",
+      "attempted_at": "2026-09-11T05:41:27+00:00",
+      "canonical_sha256": "sha256_2b284b733c3e4d7dadb1156c7b6e69a4f378d081de4293ef3ea1c570b1914ad5",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 542.4,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MultiMA_TSL3b --strategy-path user_data/profile_repairs --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiMA_TSL3b-394a8370 --cache none",
+      "long_trades": 115,
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "spot",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200401-20260821",
+      "trades": 115,
+      "trades_sha256": "sha256_2e38dc87d37ce3996d5452ffaedfc2f3acc359bd6f16c55697c49a122456e945"
+    },
     "MultiOffsetLamboV0": {
       "archive": "user_data/profile_smoke/MultiOffsetLamboV0-0dfa7f19-2026-09-05_12-16-40.zip",
       "archive_sha256": "sha256_fed33317acc40ff1e8370cc3464fd7802d08e44204c2d5e284ac28e9f28add40",
@@ -13261,10 +13337,10 @@
       "trades_sha256": "sha256_bad4582f66abb496922f6e549820c622e2883b619e510464883327a0b4f90767"
     },
     "NostalgiaForInfinityX": {
-      "archive": "user_data/profile_smoke/NostalgiaForInfinityX-3059216f-2026-09-09_19-38-02.zip",
-      "archive_sha256": "sha256_e53a4f7b4d2c555bc74822f9d8c97a05334b03d20e4f446c5f5edde77718ba53",
+      "archive": "user_data/profile_smoke/NostalgiaForInfinityX-3059216f-2026-09-10_22-40-31.zip",
+      "archive_sha256": "sha256_34a134e55b3ccfe88b751c4c9475a30028c8d887ae6668781a4b4a951950522d",
       "artifact_key": "",
-      "attempted_at": "2026-09-09T19:38:08+00:00",
+      "attempted_at": "2026-09-10T20:40:35+00:00",
       "attempts": [
         {
           "attempted_at": null,
@@ -13277,14 +13353,20 @@
           "elapsed_s": 709.1,
           "status": "measured",
           "why": null
+        },
+        {
+          "attempted_at": "2026-09-09T19:38:08+00:00",
+          "elapsed_s": 1147.5,
+          "status": "measured",
+          "why": null
         }
       ],
-      "canonical_sha256": "sha256_6be9b5ef74c62ea24609e384719f9b681ac980b8a3cbd2aff22e191e397004f4",
+      "canonical_sha256": "sha256_cff780775191aa9ffaa14ec3fac7c581eb283448c7a145d2c4d0c08d8a3e0592",
       "class1_rules": [],
       "config_overrides": {},
-      "elapsed_s": 1147.5,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NostalgiaForInfinityX --strategy-path repos/MelvynClark_Freqtrade-Strategy --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NostalgiaForInfinityX-3059216f --cache none",
-      "long_trades": 276,
+      "elapsed_s": 674.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NostalgiaForInfinityX --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NostalgiaForInfinityX-3059216f --cache none",
+      "long_trades": 259,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -13297,14 +13379,20 @@
         "XMR/USDT",
         "DASH/USDT"
       ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "python_paths": [],
+        "rules": []
+      },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
       "status": "measured",
       "timerange": "20200401-20260821",
-      "trades": 276,
-      "trades_sha256": "sha256_9d9ff038f8f8673f83a25752c34f01985f4d443c31c5f49324cc98836ad6dbcd"
+      "trades": 259,
+      "trades_sha256": "sha256_851bc60dd7ca5cd79cb4a93e32d659744c4a12ec28afb842066163007a822b76"
     },
     "NotAnotherSMAOffsetStrategy": {
       "archive": "user_data/profile_smoke/NotAnotherSMAOffsetStrategy-7155ba0b-2026-09-05_12-40-37.zip",
@@ -14476,6 +14564,44 @@
       "trades": 20538,
       "trades_sha256": "sha256_9f5818e0070f9b4d48d313aa7e768ed42229d2053bbc0d0b1b035061cf0c43a3"
     },
+    "QuickBuyStrategy": {
+      "archive": "user_data/profile_smoke/QuickBuyStrategy-e4bfe3e8-2026-09-11_07-31-15.zip",
+      "archive_sha256": "sha256_94b5cde56654bdce78549d6b71fd9ac1b9fbe58ea90c95679ccb582c04178aaa",
+      "artifact_key": "",
+      "attempted_at": "2026-09-11T05:31:17+00:00",
+      "canonical_sha256": "sha256_776e43f9937398aa4acc843edffc4ba47d421b887fd5bbd2f16eef8dce072ed7",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 22.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy QuickBuyStrategy --strategy-path user_data/profile_repairs --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/QuickBuyStrategy-e4bfe3e8 --cache none",
+      "long_trades": 9631,
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "spot",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200401-20260821",
+      "trades": 9631,
+      "trades_sha256": "sha256_125db58c5bfde29bc17343b2739f65c495d951d110ddab139aa79a0262fcd6fd"
+    },
     "Quickie": {
       "archive": "user_data/profile_smoke/Quickie-dab280e0-2026-09-05_20-57-52.zip",
       "archive_sha256": "sha256_03f3fd84d4a356a51afda13e55a3aa782424d306f1b06e4a9bf88ff39f455de8",
@@ -15267,6 +15393,44 @@
       "timerange": "20200401-20260821",
       "trades": 440,
       "trades_sha256": "sha256_768dccbb3b617433eb95705e144ee165cfbc2765c136027bd88ee9d46ae6f3c9"
+    },
+    "SMAOPv1_TTF": {
+      "archive": "user_data/profile_smoke/SMAOPv1_TTF-fd792764-2026-09-11_07-31-44.zip",
+      "archive_sha256": "sha256_23afa1e6d74bcef22aa983326b544def96505daabde232d241cef10ff5bf672d",
+      "artifact_key": "",
+      "attempted_at": "2026-09-11T05:31:46+00:00",
+      "canonical_sha256": "sha256_06d6d41f4aa59878846e52b8b19d9c673f0dc5b9f6bec2794b8b19ca1f5ad900",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 51.7,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SMAOPv1_TTF --strategy-path user_data/profile_repairs --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SMAOPv1_TTF-fd792764 --cache none",
+      "long_trades": 204,
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "spot",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200401-20260821",
+      "trades": 204,
+      "trades_sha256": "sha256_f4003c1301a0412093f4d79dd8675f04b1aa88c59748c4908fbc824cd6e75eec"
     },
     "SMAOffset": {
       "archive": "user_data/profile_smoke/SMAOffset-2a5b3c73-2026-09-05_21-02-04.zip",
@@ -18576,6 +18740,44 @@
       "timerange": "20200401-20260821",
       "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
     },
+    "WTHO": {
+      "archive": "user_data/profile_smoke/WTHO-4257b426-2026-09-11_07-32-24.zip",
+      "archive_sha256": "sha256_0c7f98d90c008f691f52ef30f79bf612f78fc67f950288142ec28ed6add5a93a",
+      "artifact_key": "",
+      "attempted_at": "2026-09-11T05:32:25+00:00",
+      "canonical_sha256": "sha256_ca6d8e6c5661d320d68c4160444bf354b5de8bace72e1e8e2d7dba460940cac2",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 13.8,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy WTHO --strategy-path user_data/profile_repairs --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/WTHO-4257b426 --cache none",
+      "long_trades": 4124,
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "spot",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200401-20260821",
+      "trades": 4124,
+      "trades_sha256": "sha256_ab049440512250c3b087838fc6b7b3072e0ccfe326acd7adbb71d84ce12241b8"
+    },
     "WTX3": {
       "archive": "user_data/profile_smoke/WTX3-61d3d92c-2026-09-06_03-35-15.zip",
       "archive_sha256": "sha256_8796b23d105796dfa00cde0c02ca659607f36d123ed4640773ad0a658dacc785",
@@ -20158,6 +20360,48 @@
       "timerange": "20200401-20260821",
       "trades": 90,
       "trades_sha256": "sha256_fe6ba262fc6534d0d264b0980fc575cbb79716028a060e151d15f76b267645a5"
+    },
+    "multi_tf": {
+      "archive": "user_data/profile_smoke/multi_tf-1362b53b-2026-09-11_07-32-29.zip",
+      "archive_sha256": "sha256_285d007cd4186ff125edcbe20804c6cc4b57a07880a677ae72c38c68bb518aa8",
+      "artifact_key": "",
+      "attempted_at": "2026-09-11T05:32:32+00:00",
+      "canonical_sha256": "sha256_eb182eaecb785864496023f26be7932857b1e495805c37bddd562d6b1100683b",
+      "class1_rules": [
+        "whitespace_tolerant_class_scan"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 75.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy multi_tf --strategy-path repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/multi_tf-1362b53b --cache none",
+      "long_trades": 3121,
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "spot",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "python_paths": [],
+        "rules": [
+          "whitespace_tolerant_class_scan"
+        ]
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200401-20260821",
+      "trades": 3121,
+      "trades_sha256": "sha256_6ab3400d80d6c535ef6807c2dcdcd79872f196ea96f2e5ffc678fb55e24b2df7"
     },
     "pmaxTest": {
       "attempted_at": "2026-09-09T19:45:23+00:00",

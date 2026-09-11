@@ -64,16 +64,17 @@ diese Zeile erneut:
 | `repair/patch_class2.py`-artige Signatur-Reparaturen | `evidence/ELIGIBILITY_SIGNATURE_REPAIR.json` |
 | `repair/compat_signature.py` (17 Shims, automatisch über `evidence/profile_freqtrade.py` geladen) | kein eigener Store — wirkt zur Laufzeit, protokolliert in `evidence/PROFILE_CLASS1.json` |
 
-## Stufe 2 — Bias-Ausschlussprüfung: Recursive-Bias zuerst
+## Stufe 2 — Bias-Ausschlussprüfung: Look-Ahead zuerst
 
 | Programm | Liest | Schreibt |
 |---|---|---|
-| `evidence/warmup_convergence.py` | `evidence/EXECUTION_PROFILES.csv`, `STRATEGY_STATUS.csv` (für die Kohorten-Auswahl), Reparatur-Stores | `evidence/WARMUP_CONVERGENCE.json` |
+| `evidence/profile_bias.py` (`run_diagnostic`, native oder Docker) | `evidence/EXECUTION_PROFILES.csv`, Reparatur-Stores | `evidence/PROFILE_BIAS.json` |
+| `evidence/eligibility_lookahead_backfill.py` | `STRATEGY_STATUS.csv`, `evidence/EXECUTION_PROFILES.csv`, `evidence/WARMUP_CONVERGENCE.json`, `evidence/PROFILE_CLASS1.json` | `evidence/ELIGIBILITY_LOOKAHEAD_BACKFILL.json` |
+| `evidence/profile_bias_merge.py` | disjunkte Shard-Dateien (bei parallelen Läufen) | die kanonische `evidence/PROFILE_BIAS.json` |
 
-Leiter aus `REGIME_PREREGISTRATION.md`s eingefrorener Konvergenz-Regel: 1, 2,
-7, 14, 30, 90, 365 Tage, umgerechnet in Kerzen über den eigenen Zeitrahmen der
-Strategie. Eine Zeile ist `converged`, `not_converged_within_ladder` oder
-`inconclusive` (technisches Hindernis, kein Befund).
+Ein nativer Look-Ahead-Befund `FOUND` ist ein finaler Informationsleck-Ausschluss.
+Dann laufen weder Warm-up-Leiter noch Recursive-Bias: Sie können ein
+Informationsleck nicht reparieren.
 
 Das Diagnoseintervall ist seit dem Amendment vom 2026-09-10 in beiden Modi
 identisch: `20200301-20200601`. Ein gespeicherter Futures-Leiterlauf über nur
@@ -82,13 +83,13 @@ Provenienz und muss vor einer neuen Entscheidung supersediert und erneut
 gemessen werden.
 
 Eine Ausnahme gilt für die Arbeits-Queue: Ein erfolgreicher kanonischer
-gepoolter Stage-7-Full-Backtest schließt die ihm vorangehende technische
+gepoolter Stage-8-Full-Backtest schließt die ihm vorangehende technische
 Prüfkette für genau dieselbe Implementierung. `evidence/strategy_status.py`
 zeigt dies als `technical_chain_complete=true` und setzt dann kein `open_work`,
 wenn Source-Hash und Run-Profil mit
 `results/regime/full_backtest_manifest.json` übereinstimmen. Das ist kein
 nachträglicher E1-Zugang und hebt keinen dokumentierten Ausschluss auf;
-fehlgeschlagene, OOM- oder Timeout-Stage-7-Versuche zählen nicht als Abschluss.
+fehlgeschlagene, OOM- oder Timeout-Stage-8-Versuche zählen nicht als Abschluss.
 
 Unabhängig davon ist jede Zeile im Kohortenwert `excluded` ein abgeschlossener
 Arbeitsfall: Sie bleibt mit Ausschlussgrund und Belegen sichtbar, erhält aber
@@ -96,28 +97,37 @@ kein `open_work`. `exclusion_unconfirmed` ist ausdrücklich nicht synonym dazu;
 diese noch nicht verdienten Ausschlüsse bleiben offen, bis die fehlende
 Entscheidungsevidenz vorliegt.
 
-Zusätzlich hat der Owner am 2026-09-10 für Stufe 7 entschieden: Eine zuvor
+Zusätzlich hat der Owner am 2026-09-10 für Stufe 8 entschieden: Eine zuvor
 zugelassene Strategie mit `full_backtest_status` `failed`,
 `resource_inconclusive` oder `timeout` ist für diesen Benchmark nicht testbar
 und wird als C10 `full_backtest_not_testable` final ausgeschlossen. Diese drei
 Zustände werden nicht erneut in den Full-Backtest eingeplant.
 
-## Stufe 3 — Bias-Ausschlussprüfung: Look-Ahead-Bias
+## Stufe 3 — Warm-up-Konvergenzleiter nach bestandenem Look-Ahead
 
 | Programm | Liest | Schreibt |
 |---|---|---|
-| `evidence/profile_bias.py` (`run_diagnostic`, native oder Docker) | `evidence/EXECUTION_PROFILES.csv`, Reparatur-Stores | `evidence/PROFILE_BIAS.json` |
-| `evidence/eligibility_lookahead_backfill.py` | `STRATEGY_STATUS.csv`, `evidence/EXECUTION_PROFILES.csv`, `evidence/WARMUP_CONVERGENCE.json`, `evidence/PROFILE_CLASS1.json`, für Zeilen ohne native Messung aus der ursprünglichen Sichtung | `evidence/ELIGIBILITY_LOOKAHEAD_BACKFILL.json` |
-| `evidence/profile_bias_merge.py` | disjunkte Shard-Dateien (bei parallelen Läufen) | die kanonische `evidence/PROFILE_BIAS.json` |
+| `evidence/warmup_convergence.py` (`lookahead_pass`) | `evidence/EXECUTION_PROFILES.csv`, identitätsgebundener Look-Ahead-PASS, Reparatur-Stores | `evidence/WARMUP_CONVERGENCE.json` |
 
-`evidence/LOOKAHEAD_INDICATOR_REVIEW.json` ist kein Skript-Ausgang, sondern eine von
-Hand geprüfte, an `canonical_sha256` gebundene Ausnahmeliste: Zeilen, bei
-denen freqtrades `lookahead-analysis` nur eine Zwischenspalte markiert (0
-verfälschte Entries/Exits), nachweislich weil die Spalte nie unverändert in
-die Signal-Logik einfließt. `evidence/strategy_status.py` liest sie mit derselben
-Präzedenz wie eine native Messung.
+Nur eine Look-Ahead-Zeile mit `PASS` kann diese Stufe erreichen. `NA` ist kein
+Pass und erhält keine Folgemessung, bis die technische Ursache geklärt ist. Die
+eingefrorene Konvergenzleiter ist 1, 2, 7, 14, 30, 90, 365 Tage, umgerechnet in
+Kerzen über den eigenen Zeitrahmen. Eine Zeile ist `converged`,
+`not_converged_within_ladder` oder `inconclusive`.
 
-## Stufe 4 — Datenabdeckung (Coverage)
+## Stufe 4 — Finaler Recursive-Bias nach konvergiertem Warm-up
+
+| Programm | Liest | Schreibt |
+|---|---|---|
+| `evidence/profile_bias.py` (`recursive`, native oder Docker) | `evidence/EXECUTION_PROFILES.csv`, gespeicherter Look-Ahead-PASS und konvergierte Leiter mit gewähltem Startwert | `evidence/PROFILE_BIAS.json` |
+
+Der finale Recursive-Lauf erhält den kleinsten konvergierten
+`chosen_startup_candle_count` der Leiter explizit als `--startup-candle`. Ohne
+Look-Ahead-`PASS` und aktuelle konvergierte Leiter wird er durch den Runner
+deferiert. Damit kann weder eine zu kurze Autorenangabe noch Freqtrades
+Standard-Warm-up den finalen Befund bestimmen.
+
+## Stufe 5 — Datenabdeckung (Coverage)
 
 | Programm | Liest | Schreibt |
 |---|---|---|
@@ -127,11 +137,11 @@ Reine Dateisystem-Prüfung (keine Freqtrade-Ausführung), pro `(mode,
 timeframe)` gecacht — günstig, jederzeit sicher neu zu erzeugen. Deckt aktuell
 alle 1.050 Zeilen ab; der historische Stand vom 2026-09-06 betrug 919.
 
-## Stufe 5 — Zusammenführung
+## Stufe 6 — Zusammenführung
 
 | Programm | Liest | Schreibt |
 |---|---|---|
-| `evidence/strategy_status.py` | **alles** aus Stufe 0–4 plus `evidence/REGIME_ELIGIBILITY.csv` (invalidierter historischer E0-Snapshot, ausschließlich Provenienz), `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` (aktive E1-Entscheidungen), `evidence/STRATEGY_CLASSIFICATION.json`, `evidence/MARKET_PHASE_HYPOTHESIS.json`, `evidence/BLOCKED_TRIAGE.json` | `STRATEGY_STATUS.csv`, `STRATEGY_STATUS.md`, **im selben Lauf automatisch**: `evidence/exclusion_criteria_list.md`, `evidence/repair_measures_list.md`, `RUNTIME_ENVIRONMENTS.md` |
+| `evidence/strategy_status.py` | **alles** aus Stufe 0–5 plus `evidence/REGIME_ELIGIBILITY.csv` (invalidierter historischer E0-Snapshot, ausschließlich Provenienz), `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` (aktive E1-Entscheidungen), `evidence/STRATEGY_CLASSIFICATION.json`, `evidence/MARKET_PHASE_HYPOTHESIS.json`, `evidence/BLOCKED_TRIAGE.json` | `STRATEGY_STATUS.csv`, `STRATEGY_STATUS.md`, **im selben Lauf automatisch**: `evidence/exclusion_criteria_list.md`, `evidence/repair_measures_list.md`, `RUNTIME_ENVIRONMENTS.md` |
 
 Ein einziger Aufruf (`python -m evidence.strategy_status`) schreibt alle fünf Dateien.
 `--check` prüft nur, ob sie noch aktuell sind (schreibt nichts); `--selftest`
@@ -142,27 +152,27 @@ keinen Check ersetzen und keine Zeile zulassen. Nur eine aktive
 `admitted_E1`-Entscheidung erzeugt `cohort=E1_expanded`; die alte E0-
 Mitgliedschaft erscheint lediglich in `gate_notes`.
 
-## Stufe 6 — Zulassung (Admission)
+## Stufe 7 — Zulassung (Admission)
 
 | Programm | Liest | Schreibt |
 |---|---|---|
 | `evidence/eligibility_admit_converged.py` (aktuelle Regel, `converged_clean_gates_v1`) | `STRATEGY_STATUS.csv`, `evidence/WARMUP_CONVERGENCE.json` | hängt neue `admitted_E1`-Zeilen an `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` an |
 | `evidence/eligibility_expansion_adjudicate.py` (ältere Wave-B/C-Regeln, `zero_warmup_analyzer_adapter_v1` / `native_gate_pass_v1`) | `evidence/ELIGIBILITY_EXPANSION_PROOFS.json`, `evidence/ELIGIBILITY_EXPANSION_WARMUP.json`, `evidence/ELIGIBILITY_EXPANSION_LOOKAHEAD.json`, `evidence/ELIGIBILITY_EXPANSION_EQUIVALENCE.json` | dieselbe `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv`, plus `.md`-Bericht |
 
-**Danach zwingend zurück zu Stufe 5.** Die Zulassungs-Entscheidung steht erst
+**Danach zwingend zurück zu Stufe 6.** Die Zulassungs-Entscheidung steht erst
 in `STRATEGY_STATUS.csv`, wenn `evidence/strategy_status.py` erneut läuft und die
 erweiterte `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` zurückliest. Ein Lauf
-von Stufe 6 ohne anschließende Stufe 5 zeigt in `STRATEGY_STATUS.csv` noch
+von Stufe 7 ohne anschließende Stufe 6 zeigt in `STRATEGY_STATUS.csv` noch
 den alten Stand.
 
-## Stufe 7 — Backtest über das volle Fenster
+## Stufe 8 — Backtest über das volle Fenster
 
 Zwei strukturell verschiedene, beide nötige Messungen (siehe
 `REGIME_AUDIT_PLAN.md` §28.1) — keine ersetzt die andere:
 
 | Programm | Zweck | Liest | Schreibt |
 |---|---|---|---|
-| `evidence/profile_full_window.py` (paarweise sharded) | Stage-6-Bestätigung: handelt die Strategie über das ganze Fenster, pro Paar | `evidence/EXECUTION_PROFILES.csv` | `evidence/PROFILE_FULL_WINDOW.json` (oder Shard-Dateien bei parallelen Containern) |
+| `evidence/profile_full_window.py` (paarweise sharded) | Stage-7-Bestätigung: handelt die Strategie über das ganze Fenster, pro Paar | `evidence/EXECUTION_PROFILES.csv` | `evidence/PROFILE_FULL_WINDOW.json` (oder Shard-Dateien bei parallelen Containern) |
 | `evidence/merge_full_window_shards.py` | führt Shards zusammen | `evidence/PROFILE_FULL_WINDOW_shardA.json`, `_shardB.json`, `_shardTF.json` | die kanonische `evidence/PROFILE_FULL_WINDOW.json` |
 | `regime/full_backtest.py` (gepoolt, `canonical_pooled_native_pair_universe`) | Phase A: tatsächlicher Performance-Backtest über alle 8 Paare gepoolt | `STRATEGY_STATUS.csv` (E1-Kohorte) | `results/regime/full_backtest_manifest.json`, `full_backtest_native.json` |
 
@@ -265,7 +275,7 @@ lohnt sich vorher genau diese Prüfung (`observed_trades == 0` in
 `STRATEGY_STATUS.csv`), bevor `evidence/profile_full_window.py` erneut für die
 ganze Kohorte statt nur die Zero-Trade-Teilmenge gestartet wird.
 
-## Stufe 8 — Marktregime-Klassifikation
+## Stufe 9 — Marktregime-Klassifikation
 
 | Programm | Liest | Schreibt |
 |---|---|---|
@@ -278,7 +288,7 @@ DMI(14)/ADX(14)) plus die Rohdaten, aus denen die Sechs-Phasen-Erweiterung
 (`bull_trend`/`bear_trend`/`range_quiet`/`range_choppy`/`transition`/
 `high_vol_shock`) in Stufe 9 abgeleitet wird.
 
-## Stufe 9 — Attribution (pro Strategie/Kandidat, pro Regime/Phase)
+## Stufe 10 — Attribution (pro Strategie/Kandidat, pro Regime/Phase)
 
 | Programm | Liest | Schreibt |
 |---|---|---|
@@ -294,7 +304,7 @@ Die gegatete Attribution verweigert standardmäßig einen unvollständigen
 Kandidatensatz; `--allow-partial` erzeugt nur einen ausdrücklich als partiell
 markierten technischen Zwischenstand und ist keine Ranking-Freigabe.
 
-## Stufe 10 — Hypothese (unabhängig, vor jeder Auswertung einzufrieren)
+## Stufe 11 — Hypothese (unabhängig, vor jeder Auswertung einzufrieren)
 
 | Programm | Liest | Schreibt |
 |---|---|---|
@@ -305,7 +315,7 @@ ansieht — sonst ist es keine Vorhersage mehr (`REGIME_AUDIT_PLAN.md` §28.3).
 Bereits durchgelaufen; wird von `evidence/strategy_status.py` (Stufe 5) nur gelesen,
 nie neu entschieden.
 
-## Stufe 11 — Benchmark: Modell 0/1/2/3
+## Stufe 12 — Benchmark: Modell 0/1/2/3
 
 Nach der am 2026-09-07 vor jedem produktiven Gate-Lauf eingefrorenen
 Erweiterung, vier Vergleichsebenen pro Strategie:
