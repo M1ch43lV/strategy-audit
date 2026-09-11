@@ -238,7 +238,7 @@
 
 <div class="wrap">
   <header>
-    <div class="eyebrow">Strategy Audit &middot; snapshot 2026-09-11 10:56</div>
+    <div class="eyebrow">Strategy Audit &middot; snapshot 2026-09-11 11:15</div>
     <h1>Strategy Test Bench</h1>
     <p class="lede">What is known today about each of the 1050 Freqtrade strategies: which cleared every gate, which did not, and exactly where each one stopped.</p>
   </header>
@@ -249,9 +249,6 @@
     <h2>Distribution</h2>
     <div class="dist" id="dist"></div>
     <div class="distkey" id="distkey"></div>
-    <p class="note" id="usable-note"></p>
-    <p class="note"><strong>What that costs, stated plainly.</strong> The retired paired run was the only test separating a repaired row from a reconfigured one. Of the 26 it had already decided, 13 produced an identical trade list and 13 did not — <code>SlowPotato</code> 1,835 against 1,899, <code>JuicyTrend</code> 13,698 against 13,607. So a market-phase number here cannot be assumed to be what the author's own configuration would have produced. Every admitted row therefore records the warm-up it was measured at and whether that value is at or below the author's own<span id="warmup-note"></span>.</p>
-    <p class="note"><strong>Nothing here is untested, and nothing here is cleared by the original sweep.</strong> The audit's first pass ran in an environment that did not establish the preconditions this one requires, so its verdicts are provenance and hints, never evidence. Rows marked <span class="flag">inherited</span> are admitted on a look-ahead verdict from that sweep and are queued for native re-measurement.</p>
   </section>
 
   <section>
@@ -320,10 +317,6 @@
         <p class="lead">The strategy started, ran <code>20200301-20260821</code> across all eight pairs, and opened no position at all.</p>
       </div>
       <div>
-        <h3>C10 &middot; Canonical pooled full backtest is not testable</h3>
-        <p class="lead">The strategy cleared the preceding technical gates, but its canonical all-eight-pairs pooled Stage-7 run did not finish: it failed, exhausted the available resource envelope, or timed out.</p>
-      </div>
-      <div>
         <h3>C4 &middot; No repair exists that would not invent the strategy</h3>
         <p class="lead">The strategy declares no timeframe anywhere, no stoploss or an explicit stoploss of 0, no exit logic, no <code>populate_indicators</code> at all, names a prediction model that no longer exists and that this repository holds no copy of, opens a data file (a pre-trained model, a lookup table) the author's own repository never included, or declares two config values in a combination freqtrade refuses (<code>trailing_stop_positive_offset</code> below <code>trailing_stop_positive</code>). A repair route read the file looking for the author's own value and found none to restore, or found two declared values that cannot both be honoured without guessing which one the author meant.</p>
       </div>
@@ -346,6 +339,10 @@
       <div>
         <h3>C9 &middot; Recursion check cannot complete even at the longest rungs</h3>
         <p class="lead">The ladder's shortest rungs raise inside the strategy's own indicator code rather than reporting a drift table - <code>TRIX_LS</code> (<code>rsi_.rolling(length)</code> on <code>None</code> inside a custom <code>custom_stochRSI</code> helper) and <code>kijun_cross_strong_s</code> (a <code>NoneType</code> subscript). Both already pass a real Probelauf on full history, so this is not the strategy failing under real use - it is an indicator that cannot handle the ladder's deliberately extreme short warm-ups. <code>evidence/warmup_convergence.py</code>'s <code>resolve()</code> answers that directly: on a crash it drops the shortest rung and retries, continuing until only the 3 longest remain, giving every rung short of those a chance to be the reason before it stops trying. Both rows still crash with only the 3 longest left.</p>
+      </div>
+      <div>
+        <h3>C10 &middot; Canonical pooled full backtest is not testable</h3>
+        <p class="lead">The strategy cleared the preceding technical gates, but its canonical all-eight-pairs pooled Stage-7 run did not finish: it failed, exhausted the available resource envelope, or timed out.</p>
       </div>
     </div>
     <p class="note"><strong>A strategy satisfying none of these is not
@@ -502,7 +499,8 @@
     no_verdict_on_lookahead:"Measured, recursion clean — look-ahead has no verdict.",
     no_verdict_on_recursive:"Measured, look-ahead clean — recursion has no verdict.",
     no_verdict_on_lookahead_and_recursive:"Measured, but neither gate returned a verdict.",
-    pending_diagnostics:"No hard failure and no verdict."
+    pending_diagnostics:"No hard failure and no verdict.",
+    full_backtest_not_testable:"Cleared every technical gate, but the canonical pooled full-backtest failed, exhausted its resource envelope, or timed out — C10."
   };
 
   /* The decisive reason names the gate that stopped a row. Whether that gate
@@ -653,40 +651,6 @@
         '<div class="stat-sub is-hold"><b>'+other.length+
         '</b><span>other reasons</span>'+breakdown(other)+'</div></div>';
     }).join("");
-
-  /* Counts that describe the rows are read from the rows. Typed in, they
-     survive the thing they describe: this paragraph said 443 usable for a
-     day after the answer was 449, and called admitted rows trap-free for
-     hours after the trap stopped deciding anything. */
-  (function(){
-    var e1 = count("E1_expanded");
-    var cand = count("convergence_candidate");
-    document.getElementById("usable-note").innerHTML =
-      "<strong>" + (e1 + cand) + " strategies are usable today</strong> \u2014 " +
-      e1 + " admitted, and " + cand +
-      " convergence candidate" + (cand === 1 ? "" : "s") +
-      ". A row is admitted when it clears both bias checks at a warm-up that " +
-      "settles its indicators: look-ahead <code>PASS</code> measured here, " +
-      "recursion settled by the ladder, coverage <code>PASS</code>. The " +
-      "preregistration previously routed a settled row whose trade list " +
-      "changed under that warm-up to exploratory rather than admitted; that " +
-      "requirement was retired on 2 September 2026, because the aim is the " +
-      "mathematically clean result under the current freqtrade rather than a " +
-      "reproduction of what an author once ran. Fewer trades, or more, is the " +
-      "consequence of measuring properly. The frozen 67 (E0) were retired as " +
-      "a separate cohort on 3 September 2026: their own recursion check had " +
-      "used freqtrade's hardcoded defaults rather than this ladder, and " +
-      "measured properly for the first time, 64 of 67 held up and one " +
-      "(<code>MacdStrategy</code>) did not. All 67 are now decided by the " +
-      "same criteria as every other row and counted in the total above.";
-    var admitted = rows.filter(function(r){
-      return r.c === "E1_expanded"; });
-    var own = admitted.filter(function(r){ return r.no === "true"; }).length;
-    var none = admitted.filter(function(r){ return !r.cs; }).length;
-    document.getElementById("warmup-note").innerHTML =
-      ": " + own + " needed no supplied warm-up, and " + none +
-      " carry no settled value at all yet";
-  })();
 
   document.getElementById("dist").innerHTML = ORDER.map(function(c){
     var n = count(c); if(!n) return "";

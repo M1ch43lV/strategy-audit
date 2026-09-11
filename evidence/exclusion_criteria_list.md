@@ -11,13 +11,13 @@ Currently 298 of 1050 strategies are excluded. The criteria are not exclusive - 
 | C1 | Look-ahead bias found | 83 |
 | C2 | Recursion bias found by our own ladder | 77 |
 | C3 | Ran the whole window and never traded | 7 |
-| C10 | Canonical pooled full backtest is not testable | 34 |
 | C4 | No repair exists that would not invent the strategy | 52 |
 | C5 | Local module repair exhausted every candidate | 6 |
 | C6 | Measured only in the separate FreqAI arm | 6 |
 | C7 | A missing package with no safe way found to supply it | 18 |
 | C8 | The fix would touch every strategy's column writes | 7 |
 | C9 | Recursion check cannot complete even at the longest rungs | 13 |
+| C10 | Canonical pooled full backtest is not testable | 34 |
 
 ## The criteria in full
 
@@ -64,20 +64,6 @@ Currently 298 of 1050 strategies are excluded. The criteria are not exclusive - 
 **What this is not.** `trade_evidence` must read `full_window`. Zero trades in the one-month trial run means nothing - the window is too short to expect any. And a strategy that trades nothing because it was given the wrong profile - a futures strategy run on spot, a short-only strategy with `can_short` unset - is a setup fault of ours, not this criterion.
 
 7 strategies, among them `BreakEven`, `DoesNothingStrategy`, `Miku_PP_v3`, `MyStrategyTemplate`, `Obelisk_3EMA_StochRSI_ATR`, `ViN`.
-
-### C10 &middot; Canonical pooled full backtest is not testable
-
-**Machine test.** `primary_reason == "full_backtest_not_testable" and full_backtest_status in {"failed", "resource_inconclusive", "timeout"}`, together with `exclusion_basis == "own_measurement"`.
-
-**What it means.** The strategy cleared the preceding technical gates, but its canonical all-eight-pairs pooled Stage-7 run did not finish: it failed, exhausted the available resource envelope, or timed out.
-
-**Why it is final.** Owner's decision, 2026-09-10: these outcomes mean the strategy is not testable for this benchmark. Repeating the same fixed full-run setup would not create a regime comparison comparable with the completed rows.
-
-**What stands behind it.** `results/regime/full_backtest_manifest.json` records the status for the canonical pooled run; the status is also copied to `STRATEGY_STATUS.csv` as `full_backtest_status`.
-
-**What this is not.** This criterion is limited to the three owner-declared non-testable statuses. A successful `measured` record is not a finding, and the separately curated performance/OOM/stake limits retain their existing provenance.
-
-34 strategies, among them `A9AV`, `BBRSIS`, `BTCBigDrop`, `BTCJump`, `BTCNDrop`, `BTCNSeq`.
 
 ### C4 &middot; No repair exists that would not invent the strategy
 
@@ -162,6 +148,20 @@ Currently 298 of 1050 strategies are excluded. The criteria are not exclusive - 
 **What this is not.** Distinct from `not_converged_within_ladder` (C2): that is a confirmed finding, an indicator that ran and kept drifting. This is the ladder never producing a verdict at all, at any rung it could still offer. A row that crashes at the shortest rungs but converges once the shortest are dropped is `converged`, not this - only persistent failure through to the 3 longest rungs qualifies.
 
 13 strategies, among them `AlexStrategyFinalV8`, `AlexStrategyFinalV9`, `AntigravityStrategy`, `AntigravityStrategyV3`, `Bins`, `DWTHO`.
+
+### C10 &middot; Canonical pooled full backtest is not testable
+
+**Machine test.** `primary_reason == "full_backtest_not_testable" and full_backtest_status in {"failed", "resource_inconclusive", "timeout"}`, together with `exclusion_basis == "own_measurement"`.
+
+**What it means.** The strategy cleared the preceding technical gates, but its canonical all-eight-pairs pooled Stage-7 run did not finish: it failed, exhausted the available resource envelope, or timed out.
+
+**Why it is final.** Owner's decision, 2026-09-10: these outcomes mean the strategy is not testable for this benchmark. Repeating the same fixed full-run setup would not create a regime comparison comparable with the completed rows.
+
+**What stands behind it.** `results/regime/full_backtest_manifest.json` records the status for the canonical pooled run; the status is also copied to `STRATEGY_STATUS.csv` as `full_backtest_status`.
+
+**What this is not.** This criterion is limited to the three owner-declared non-testable statuses. A successful `measured` record is not a finding, and the separately curated performance/OOM/stake limits retain their existing provenance.
+
+34 strategies, among them `A9AV`, `BBRSIS`, `BTCBigDrop`, `BTCJump`, `BTCNDrop`, `BTCNSeq`.
 
 ## Before the criteria: is it a strategy at all
 
