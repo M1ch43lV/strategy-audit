@@ -3,7 +3,30 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-11T20:05:00+02:00
+- Last update: 2026-09-11T21:15:00+02:00
+- Added a dollar-terms view to `regime/specialist_evaluation.py`, on
+  explicit user request: alongside the existing benchmark-relative excess
+  return (a percentage), also report actual dollar profit/loss.
+  `dollar_gain_usd`/`benchmark_dollar_gain_usd`/`excess_dollar_gain_usd` in
+  both `btc_specialist_table.csv`/`coin_specialist_table.csv`, plus a new
+  regime-agnostic `strategy_total_dollar_gain.csv` (one row per strategy,
+  not gated by the specialist floor). First implementation used sequential
+  $1000-start reinvestment (each trade multiplying a running balance,
+  ordered by `close_date`) - tried, measured against the 7 pilots, and
+  dropped: at a few hundred trades the result is dominated by exponential
+  math, not strategy quality (one pilot's $1000 became $0.006 over ~3,000
+  trades), and it implies a single-position account none of these
+  strategies ran (they trade up to 8 pairs concurrently). Replaced with a
+  fixed $1000 stake per trade, summed rather than compounded - the total
+  dollar P&L if every one of a group's trades had gotten its own fresh
+  $1000, never a claim about compounded capital growth. Both choices
+  documented in `_fixed_stake_gain()`'s docstring and `PIPELINE.md`'s
+  Stufe 13. Re-ran over the full 589-strategy population: 497 get a
+  `strategy_total_dollar_gain.csv` row (589 minus the same 92 with zero
+  validation-window trades already known from the earlier run), 239/497
+  with positive `dollar_gain_usd`, 186/497 beat the benchmark in dollar
+  terms too. Largest gain `FastSupertrend_optim_quick` (+$23,492 / 11,065
+  trades), largest loss `CryptoFrogHO2` (-$20,280 / 15,692 trades).
 - Ran `regime/specialist_evaluation.py` a second time, no `--strategies`
   filter, over the full population currently attributed in Model 0's
   `trade_regime_attribution.csv`: 589 strategies (of 647 eligible - 58 are

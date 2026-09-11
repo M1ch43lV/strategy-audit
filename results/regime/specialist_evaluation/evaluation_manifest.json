@@ -1,9 +1,11 @@
 {
-  "evidence_scope": "PILOT-scope specialist/universal evaluation. Ranks only VALIDATION-tier rows (>= 5 validation-window episodes and >= 10 trades together); everything else is reported but never ranked. Excess return is always against the exposure-matched benchmark (coin's own spot buy-and-hold over the same trade intervals), never raw profit. worst_regime_drawdown is not produced - see this module's docstring.",
+  "dollar_gain_scope": "dollar_gain_usd/benchmark_dollar_gain_usd (per-regime tables) and strategy_total_dollar_gain.csv (regime-agnostic) price each validation-window trade as its own fresh $1000 stake and sum the result - not compounded/reinvested. A descriptive dollar view, never used for ranking or the specialist floor; see _fixed_stake_gain()'s docstring for why compounding was tried and dropped.",
+  "evidence_scope": "Specialist/universal evaluation, strategy_filter above defines its population (null = every strategy in source_trades). Ranks only VALIDATION-tier rows (>= 5 validation-window episodes and >= 10 trades together); everything else is reported but never ranked. Excess return is always against the exposure-matched benchmark (coin's own spot buy-and-hold over the same trade intervals), never raw profit. worst_regime_drawdown is not produced - see this module's docstring.",
   "min_episodes": 5,
   "min_trades": 10,
   "schema_version": 1,
   "source_trades": "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\results\\regime\\trade_regime_attribution.csv",
+  "start_capital_usd": 1000.0,
   "strategies_evaluated": [
     "ADXDM",
     "ADXMomentum",
@@ -595,6 +597,7 @@
     "wavetrend",
     "wavetrend_rsi"
   ],
+  "strategies_with_total_dollar_gain": 497,
   "strategy_filter": null,
   "universal_candidates": 379,
   "validation_start": "2024-01-01T00:00:00+00:00",

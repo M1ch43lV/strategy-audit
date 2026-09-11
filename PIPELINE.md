@@ -410,7 +410,7 @@ nicht entschieden.
 
 | Programm | Liest | Schreibt |
 |---|---|---|
-| `regime/specialist_evaluation.py` | eine `trade_regime_attribution.csv` (Modell 0 kanonisch, oder eine `modelN_attribution/`-Datei), Kerzendaten unter `user_data/data/binance` | `results/regime/specialist_evaluation/`: `btc_specialist_table.csv`, `coin_specialist_table.csv`, `btc_specialist_ranking.csv`, `coin_specialist_ranking.csv`, `universal_strategies.csv`, `evaluation_manifest.json` |
+| `regime/specialist_evaluation.py` | eine `trade_regime_attribution.csv` (Modell 0 kanonisch, oder eine `modelN_attribution/`-Datei), Kerzendaten unter `user_data/data/binance` | `results/regime/specialist_evaluation/`: `btc_specialist_table.csv`, `coin_specialist_table.csv`, `btc_specialist_ranking.csv`, `coin_specialist_ranking.csv`, `universal_strategies.csv`, `strategy_total_dollar_gain.csv`, `evaluation_manifest.json` |
 
 Wendet die im Amendment 2026-09-11 eingefrorenen Regeln auf eine bereits
 vorhandene Attribution an: Discovery/Validation-Split, die 5-Episoden-/
@@ -421,6 +421,21 @@ Trades, per `merge_asof` gegen 1-Minuten-Kerzen). Rankt ausschließlich
 `worst_regime_drawdown` aus §19 fehlt bewusst — bräuchte eine
 Equity-Kurven-Rekonstruktion je Strategie und Regime, ein deutlich größeres
 Feature als der Rest des Moduls.
+
+Dollar-Ansicht (2026-09-11, auf expliziten Nutzerwunsch): zusätzlich zur
+Benchmark-relativen Excess-Return-Prozentzahl ein Dollar-Betrag —
+`dollar_gain_usd`/`benchmark_dollar_gain_usd`/`excess_dollar_gain_usd` in
+den Regime-Tabellen, sowie regime-unabhängig je Strategie in
+`strategy_total_dollar_gain.csv`. Erste Implementierung kompoundierte
+sequenziell ($1000 Start, jeder Trade multipliziert den laufenden
+Kontostand, sortiert nach `close_date`) — verworfen, weil das Ergebnis ab
+einigen hundert Trades von der Exponentialrechnung dominiert wird statt von
+der Strategiequalität (eine Pilotstrategie: $1000 → $0,006 über ~3.000
+Trades) und weil es ein Konto mit genau einer offenen Position suggeriert,
+das keine der Strategien je hatte (sie laufen auf bis zu 8 Paaren
+gleichzeitig). Stattdessen: fixer $1000-Einsatz je Trade, keine
+Wiederanlage, einfache Summe — robust, aber kein Aussage über
+Kapitalwachstum bei echtem Reinvestment.
 
 Erster produktiver Lauf (2026-09-11) auf den 7 Piloten-Kandidaten aus Stufe
 12s Kandidaten-Spec, gegen deren Modell-0-Attribution (ihr natürliches,
@@ -447,6 +462,16 @@ Tabellen — kein Trade im Validation-Fenster, analog zum
 Kandidaten je Regime-Spalte ist ein einzelner Rang-1-Platz nicht mehr
 aussagekräftig für "beste Strategie" im Ganzen; die Auswertung soll pro
 Regime gelesen werden, nicht als Gesamt-Leaderboard.
+
+Dritter Lauf (2026-09-11), mit der Dollar-Ansicht: 497 von 589 Strategien
+(die mit &ge;1 Validation-Fenster-Trade) bekommen eine Zeile in
+`strategy_total_dollar_gain.csv`. 239/497 mit positivem `dollar_gain_usd`,
+186/497 schlagen den Benchmark auch in Dollar (`excess_dollar_gain_usd`
+&gt; 0). Median `dollar_gain_usd` liegt bei &minus;$81, Median
+`excess_dollar_gain_usd` bei &minus;$297 — für diesen unkuratierten,
+größtenteils von GitHub gezogenen Bestand kein überraschendes Bild. Größter
+Gewinn: `FastSupertrend_optim_quick`, +$23.492 über 11.065 Trades. Größter
+Verlust: `CryptoFrogHO2`, &minus;$20.280 über 15.692 Trades.
 
 Noch nicht produktiv gelaufen: dieselbe Auswertung über die
 Modell-1/2/3-Kandidaten-Attribution (gegatet) statt Modell 0s natürlichem
