@@ -50,6 +50,11 @@ def _load_archives(manifest: dict, model: str, daily_path: Path):
     accepted = []
     rejected = []
     candidate_evidence = []
+    # Shared with regime.attribution and model_compare: keyed on (archive
+    # path, strategy) plus that archive's own size/mtime, so re-running this
+    # after adding candidates does not re-hash every already-verified
+    # archive - only a new or genuinely changed one pays for a fresh read.
+    cache = attribution._load_cache()
     definitions = {row.get("candidate_id"): row for row in manifest.get("candidates", [])}
     for candidate_id in manifest["candidate_ids"]:
         result = (manifest.get("results") or {}).get(candidate_id)
@@ -79,14 +84,14 @@ def _load_archives(manifest: dict, model: str, daily_path: Path):
             reason = "canonical_identity_mismatch"
         elif not result.get("archive") or not archive_path.is_file():
             reason = "archive_missing"
-        elif attribution._file_sha(archive_path) != result.get("archive_sha256"):
+        elif attribution._cached_file_sha(archive_path, cache) != result.get("archive_sha256"):
             reason = "archive_hash_mismatch"
         if reason:
             rejected.append({"candidate_id": candidate_id,
                              "strategy_id": source_strategy, "reason": reason})
             continue
         rows, archive_rejections = attribution.archive_inventory(
-            ROOT, {source_strategy: profile}, [archive_path])
+            ROOT, {source_strategy: profile}, [archive_path], cache)
         if archive_rejections or len(rows) != 1:
             rejected.append({
                 "candidate_id": candidate_id,
@@ -107,6 +112,7 @@ def _load_archives(manifest: dict, model: str, daily_path: Path):
             "timerange": result["timerange"],
             "runtime_id": result.get("runtime_id", "native_unversioned"),
         })
+    attribution._save_cache(cache)
     return accepted, rejected, candidate_evidence
 
 

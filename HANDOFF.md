@@ -3,7 +3,29 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-11T13:15:00+02:00
+- Last update: 2026-09-11T13:35:00+02:00
+- Also done: extended the same incremental-cache and vectorisation fix from
+  `regime/attribution.py` to the Model 1/2/3 path, proactively - neither had
+  run productively yet, but both had the identical shape of problem waiting.
+  `regime/gated_attribution.py`'s `_load_archives()` and
+  `regime/model_compare.py`'s `_load_model0()` both called
+  `attribution._file_sha`/`attribution.archive_inventory` with no cache, so
+  every candidate's archive would have been re-hashed on every run even
+  though `regime.attribution` now shares one persistent
+  `ATTRIBUTION_ARCHIVE_CACHE.json` for exactly this; both now load and save
+  that same cache. `model_compare.py`'s `_metrics()` also had its own scalar
+  per-trade Python loop (summing position time and stake*leverage*duration)
+  independent of `attribution.attribute()`'s, run once per candidate per
+  model - pulled out into `_trade_exposure_seconds()`, vectorised the same
+  way. `gated_backtest.py` (the actual Model 1/2/3 Freqtrade runner) already
+  had identity-bound skip-if-unchanged logic before this session touched
+  anything; it needed no change. Verified: all four modules'
+  `--selftest`s pass, plus a hand-built scalar-vs-vectorised comparison
+  across edge cases (zero stake, zero leverage, missing keys, negative
+  values, multiple trades) for `_trade_exposure_seconds()` - exact match on
+  every case. Not yet exercised at production scale, since no candidate spec
+  exists yet; correctness rests on the selftest and edge-case checks, not a
+  before/after production run like the Model 0 fix had.
 - Also done since the attribution note below: the owner and Claude walked
   through all nine `OPEN before Stage 9 ranking` entries in
   `REGIME_PREREGISTRATION.md` together and decided every one. See

@@ -80,6 +80,11 @@ def _load_model0(path: Path, source_strategies: set[str], expected_timerange: di
     profiles = attribution.eligible_profiles()
     accepted = {}
     rejected = []
+    # Same shared archive cache as regime.attribution and
+    # regime.gated_attribution: a strategy's Model 0 archive does not move
+    # once measured, so comparing more candidates over time should not mean
+    # re-hashing every earlier strategy's archive again.
+    cache = attribution._load_cache()
     for strategy in sorted(source_strategies):
         profile = profiles.get(strategy)
         result = (manifest.get("results") or {}).get(strategy)
@@ -102,13 +107,13 @@ def _load_model0(path: Path, source_strategies: set[str], expected_timerange: di
             reason = "model0_identity_mismatch"
         elif not result.get("archive") or not archive_path.is_file():
             reason = "model0_archive_missing"
-        elif attribution._file_sha(archive_path) != result.get("archive_sha256"):
+        elif attribution._cached_file_sha(archive_path, cache) != result.get("archive_sha256"):
             reason = "model0_archive_hash_mismatch"
         if reason:
             rejected.append({"strategy_id": strategy, "reason": reason})
             continue
         rows, archive_rejections = attribution.archive_inventory(
-            ROOT, {strategy: profile}, [archive_path])
+            ROOT, {strategy: profile}, [archive_path], cache)
         if archive_rejections or len(rows) != 1:
             rejected.append({
                 "strategy_id": strategy,
@@ -117,7 +122,39 @@ def _load_model0(path: Path, source_strategies: set[str], expected_timerange: di
             })
             continue
         accepted[strategy] = rows[0]
+    attribution._save_cache(cache)
     return manifest, accepted, rejected
+
+
+def _trade_exposure_seconds(trades_list: list) -> tuple[float, float]:
+    """Total position time and stake*leverage*duration, vectorised.
+
+    Same figures a per-trade Python loop would sum, but as one DataFrame
+    pass instead of one Python-level iteration per trade - the same fix
+    `regime.attribution.attribute()` needed, here because `_metrics()` runs
+    this once per candidate per model, and a canonical pooled archive can
+    hold tens of thousands of trades.
+    """
+    if not trades_list:
+        return 0.0, 0.0
+    trades = pd.DataFrame(trades_list)
+    opened = pd.to_datetime(trades["open_date"], utc=True)
+    closed = pd.to_datetime(trades["close_date"], utc=True)
+    duration = (closed - opened).dt.total_seconds().clip(lower=0.0)
+    # `trade.get("stake_amount") or 0.0` / `... or 1.0`: any falsy value
+    # (missing, None, 0) falls back to the default, not just a genuinely
+    # absent key - replicated here rather than a plain `fillna`.
+    if "stake_amount" in trades:
+        stake = pd.to_numeric(trades["stake_amount"], errors="coerce")
+    else:
+        stake = pd.Series(np.nan, index=trades.index)
+    stake = stake.mask(stake.isna() | (stake == 0), 0.0).abs()
+    if "leverage" in trades:
+        leverage = pd.to_numeric(trades["leverage"], errors="coerce")
+    else:
+        leverage = pd.Series(np.nan, index=trades.index)
+    leverage = leverage.mask(leverage.isna() | (leverage == 0), 1.0).abs()
+    return float(duration.sum()), float((stake * leverage * duration).sum())
 
 
 def _metrics(record: dict) -> dict:
@@ -126,16 +163,8 @@ def _metrics(record: dict) -> dict:
     start = pd.to_datetime(summary.get("backtest_start"), utc=True)
     end = pd.to_datetime(summary.get("backtest_end"), utc=True)
     window_seconds = max((end - start).total_seconds(), 0.0)
-    position_seconds = 0.0
-    weighted_capital_seconds = 0.0
-    for trade in summary.get("trades") or []:
-        opened = pd.to_datetime(trade.get("open_date"), utc=True)
-        closed = pd.to_datetime(trade.get("close_date"), utc=True)
-        duration = max((closed - opened).total_seconds(), 0.0)
-        position_seconds += duration
-        stake = abs(float(trade.get("stake_amount") or 0.0))
-        leverage = abs(float(trade.get("leverage") or 1.0))
-        weighted_capital_seconds += stake * leverage * duration
+    position_seconds, weighted_capital_seconds = _trade_exposure_seconds(
+        summary.get("trades") or [])
     starting_balance = float(summary.get("starting_balance") or 0.0)
     mean_open_positions = position_seconds / window_seconds if window_seconds else np.nan
     capital_exposure = (weighted_capital_seconds / (starting_balance * window_seconds)
