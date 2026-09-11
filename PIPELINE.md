@@ -399,9 +399,12 @@ python -m regime.model_compare
 
 Die noch offene Auswertungsstufe ist nicht das mechanische Nebeneinanderstellen,
 sondern die präregistrierte Bewertung: Exposure-Match, Spezialisten-Schwellen,
-Discovery/Validation und Portfolioregel. Acht offene Preregistration-Fragen
-(siehe `DOCUMENT_MAP.md`) verhindern weiterhin eine Rangfolge und vor allem
-das Erzeugen eines ergebnisgetriebenen Kandidaten-Specs.
+Discovery/Validation und Portfolioregel. Alle neun Preregistration-Fragen
+(`REGIME_PREREGISTRATION.md`, Amendment 2026-09-11) sind seit 2026-09-11
+entschieden — ein Kandidaten-Spec und ein produktiver Modell-1/2/3-Lauf sind
+damit freigegeben. Portfolio-Allokation bei mehreren gleichzeitig
+qualifizierenden Kandidaten ist dabei bewusst für Version 1 zurückgestellt,
+nicht entschieden.
 
 ## Wo Docker statt nativem Python steht
 

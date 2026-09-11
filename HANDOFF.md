@@ -3,7 +3,23 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-11T12:50:00+02:00
+- Last update: 2026-09-11T13:15:00+02:00
+- Also done since the attribution note below: the owner and Claude walked
+  through all nine `OPEN before Stage 9 ranking` entries in
+  `REGIME_PREREGISTRATION.md` together and decided every one. See
+  `Amendment 2026-09-11: the eight OPEN pre-Stage-9 choices are resolved` in
+  that file for each decision and its reasoning. Summary: discovery/validation
+  split frozen as proposed (through 2023-12-31 / from 2024-01-01); specialist
+  status needs 5 validation-window episodes and 10 trades together; the
+  exposure-matched benchmark is invested only during the strategy's own
+  exposure intervals; SER stays continuous, no hard categories; the 90-day
+  return classifier is frozen at +/-20 percent; breadth stays the 8-pair
+  universe with an availability-aware denominator; forced exit on regime
+  change stays out of Model 1/2/3, sensitivity-test only; portfolio-level
+  allocation is explicitly deferred, not decided, for version 1.
+  `PIPELINE.md`'s Stufe-12 note is updated to match. A candidate spec and a
+  productive Model 1/2/3 run are now unblocked by preregistration; nothing
+  about admission, technical eligibility, or measured data changed.
 - Stopped because: work item complete, not a live blocker. The owner asked
   Codex to hold off on `regime/attribution.py` and everything under
   `regime/` that reads its output while this was in progress; that hold is

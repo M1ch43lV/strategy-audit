@@ -579,22 +579,131 @@ per-strategy prediction this split exists to make testable
 `STRATEGY_STATUS.csv`). That prediction is not part of the frozen model and
 decides nothing; it is written down now so the benchmark can refute it.
 
+## Amendment 2026-09-11: the eight OPEN pre-Stage-9 choices are resolved
+
+**Owner's decision**, recorded before any Model 1, Model 2, or Model 3 run,
+before a candidate gate specification was written, and before any
+strategy-by-regime performance was inspected - the same provenance guarantee
+every other amendment in this document relies on. Reached by walking through
+each entry of the `OPEN before Stage 9 ranking` list below in order, with a
+recommendation checked against the corpus's own data (episode counts, return
+distributions) where one was available, never against strategy performance.
+
+1. **Discovery/validation split.** Frozen at the proposed calendar boundary:
+   discovery `2020-03-01`-`2023-12-31`, validation `2024-01-01` through the
+   analysis window's end (`2026-08-21`). Reason: `REGIME_AUDIT_PLAN.md` §20's
+   own concern - hundreds of strategies times many regimes is a large
+   data-snooping surface - and no sharper boundary was proposed or checked
+   against any outcome.
+
+2. **Minimum trade/independent-episode evidence for specialist status.**
+   Frozen at **5 independent regime episodes within the validation window**
+   plus **10 trades total** across them, required together for a
+   `VALIDATION`-tier specialist claim; short of either, the row is reported
+   only as `EXPLORATORY`, never as a validated specialist. Reason: the
+   corpus's own BTC episode counts in the validation window
+   (`results/regime/regime_btc_episodes.csv`, `start >= 2024-01-01`) are
+   BULL=15, BEAR=16, SIDEWAYS=20, TRANSITION=36 - a floor above roughly a
+   third of the smallest of these would make a validated bull or bear
+   specialist claim nearly unreachable for any strategy. The 10-trade figure
+   is not new: it reuses the floor `STRATEGY_STATUS.csv`'s `too_few_trades`
+   cohort already applies, freqtrade's own minimum for a look-ahead verdict.
+
+3. **Exposure-matched benchmark construction.** Frozen as the third option
+   `REGIME_AUDIT_PLAN.md` §16.4 lists: invested only during the strategy's
+   own exposure intervals - for each trade, the coin's own buy-and-hold
+   return over that same open-to-close interval, summed. Reason: deterministic
+   and reproducible (no sampling seed, unlike "randomly sampled exposure"),
+   and it answers the README's original concern precisely - what a passive
+   holder would have earned during exactly the windows the strategy itself
+   was in the market, not an arbitrary exposure-percentage abstraction.
+
+4. **SER: continuous or categorical.** Frozen as continuous only - no
+   preregistered SER categories in version 1. Reason: SER's role
+   (`REGIME_AUDIT_PLAN.md` §6) is to check whether DMI/ADX findings survive
+   under an independent trend concept, which a continuous comparison already
+   answers (distribution-by-regime, monotonicity of specialist rankings).
+   Manufacturing a second categorical regime from SER would only reopen the
+   threshold-choice risk the plan itself warns against ("do not choose
+   whichever method gives the nicest strategy rankings after the fact")
+   without serving a need the continuous form does not already meet.
+
+5. **90-day return classifier threshold.** Frozen at the proposed
+   +/-20 percent. Reason: checked against the corpus's own BTC 90-day return
+   distribution (`results/regime/regime_daily.csv`, 2,364 days) - 36 percent
+   of days exceed +20 percent, 18 percent fall below -20 percent, 46 percent
+   sit between, none of the three buckets empty or dominant, and the median
+   (+6 percent) and interquartile range (-14 percent to +34 percent) place
+   +/-20 percent well inside the natural spread rather than at a degenerate
+   edge. This check used only price data, never a strategy's trades or
+   returns.
+
+6. Volatility as a reporting label - already decided 2026-09-05; unchanged
+   here. See that amendment above.
+
+7. **Breadth denominator.** Frozen as the eight-pair audit universe with an
+   availability-aware denominator - the count of pairs with a valid daily
+   candle that day, not a fixed 8. Reason: `XMR/USDT` has had no spot candles
+   since its documented 2024-02-20 Binance delisting
+   (`evidence/REGIME_COVERAGE.md`); a fixed denominator of 8 would silently
+   depress every breadth reading after that date for a data-availability
+   reason having nothing to do with actual market breadth. This mirrors the
+   availability-aware handling `regime/attribution.py` already applies to
+   the same gap rather than introducing a new rule for it.
+
+8. **Forced exit on regime change.** Confirmed excluded from the primary
+   entry-only gate model in version 1; may be examined later only as an
+   explicitly labelled sensitivity test, never folded into Model 1/2/3
+   themselves. Reason: this was already the plan's own draft position
+   (`REGIME_AUDIT_PLAN.md` §14, "Forced regime exits may be examined later as
+   a separate sensitivity test"), and keeping Model 1/2/3 to a single changed
+   degree of freedom - which entries are permitted - is what makes their
+   deltas against Model 0 and against each other attributable to the entry
+   gate alone.
+
+9. **Portfolio-level allocation across qualifying candidates.** Explicitly
+   deferred, not decided, for version 1. Reason: the plan itself leaves this
+   open with the same warning as every other entry here (do not resolve by
+   which answer performs best), the existing runners
+   (`regime/gated_backtest.py`, `regime/model_compare.py`) operate on one
+   candidate at a time, not a capital-constrained portfolio, and per-strategy
+   specialist/universal ranking already answers the question this round of
+   work is for. Portfolio-level selection is a materially different problem
+   - capital constraints, cross-strategy correlation, `max_open_trades`
+   interaction - better scoped once it is visible how often multiple
+   candidates qualify at once, which nothing in the corpus can show yet.
+
 ## OPEN before Stage 9 ranking
 
-The following choices are intentionally not inferred from strategy outcomes:
+The following choices are intentionally not inferred from strategy outcomes.
+All nine are now resolved; see the amendment directly above for the decision
+and reasoning behind each.
 
-1. Exact discovery/validation split (calendar proposal: discovery through
-   2023-12-31, validation from 2024-01-01).
-2. Minimum trade and independent-episode evidence for specialist status.
-3. Exact exposure-matched benchmark construction.
-4. Whether SER stays continuous or receives preregistered categories.
-5. Whether the 90-day return robustness classifier freezes at +/-20 percent.
+1. ~~Exact discovery/validation split (calendar proposal: discovery through
+   2023-12-31, validation from 2024-01-01).~~ **DECIDED 2026-09-11**: frozen
+   as proposed.
+2. ~~Minimum trade and independent-episode evidence for specialist
+   status.~~ **DECIDED 2026-09-11**: 5 validation-window episodes and 10
+   trades, together, for `VALIDATION`-tier specialist status.
+3. ~~Exact exposure-matched benchmark construction.~~ **DECIDED
+   2026-09-11**: invested only during the strategy's own exposure intervals.
+4. ~~Whether SER stays continuous or receives preregistered categories.~~
+   **DECIDED 2026-09-11**: continuous only.
+5. ~~Whether the 90-day return robustness classifier freezes at +/-20
+   percent.~~ **DECIDED 2026-09-11**: yes, +/-20 percent.
 6. ~~Whether volatility stays descriptive in version 1.~~ **DECIDED
    2026-09-05**: it becomes a reporting label at the two frozen thresholds,
    splitting `SIDEWAYS` and adding `high_vol_shock`. The primary DMI/ADX model
    is unchanged. See the amendment above.
-7. Whether breadth remains the eight-pair, availability-aware audit universe.
-8. Whether forced exit is included only as a later sensitivity test.
-9. Portfolio allocation when multiple strategy/pair candidates qualify.
+7. ~~Whether breadth remains the eight-pair, availability-aware audit
+   universe.~~ **DECIDED 2026-09-11**: yes, denominator is pairs with valid
+   data that day, not a fixed 8.
+8. ~~Whether forced exit is included only as a later sensitivity test.~~
+   **DECIDED 2026-09-11**: yes, excluded from Model 1/2/3, sensitivity test
+   only.
+9. ~~Portfolio allocation when multiple strategy/pair candidates qualify.~~
+   **DECIDED 2026-09-11**: explicitly deferred, out of scope for version 1.
 
 No ranked discovery output may be generated while these entries remain `OPEN`.
+All are now decided; a candidate spec and a productive Model 1/2/3 run may
+proceed under the choices recorded above.
