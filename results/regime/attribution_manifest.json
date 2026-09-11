@@ -4581,6 +4581,26 @@
       "timeframe": "1h"
     },
     {
+      "archive": "user_data\\profile_smoke\\FastSupertrendOpt-fc13211c-2026-09-11_07-32-09.zip",
+      "config_sha256": "sha256_98c7b5ee44353b8d4149b946f241ab70d368a044c860d5f04720d5d80c7cdabc",
+      "end": "2026-08-20T23:00:00+00:00",
+      "mode": "spot",
+      "pairlist": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "source_sha256": "sha256_fd703b89d54d63eb37bfed7d10fe69d273ecea0c793b3f32c190cf58df3c92f4",
+      "start": "2020-04-01T00:00:00+00:00",
+      "strategy_id": "FastSupertrendOpt",
+      "timeframe": "1h"
+    },
+    {
       "archive": "user_data\\profile_smoke\\FBB_DWT-a8f9de02-2026-09-09_20-35-42.zip",
       "config_sha256": "sha256_8ed6f7ba92957af02671150490a1180e1a0f923f020f6046ff0cd674839de023",
       "end": "2026-08-20T23:55:00+00:00",
@@ -7161,6 +7181,26 @@
       "timeframe": "1d"
     },
     {
+      "archive": "user_data\\profile_smoke\\multi_tf-1362b53b-2026-09-11_07-32-29.zip",
+      "config_sha256": "sha256_98c7b5ee44353b8d4149b946f241ab70d368a044c860d5f04720d5d80c7cdabc",
+      "end": "2026-08-20T23:55:00+00:00",
+      "mode": "spot",
+      "pairlist": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "source_sha256": "sha256_eb182eaecb785864496023f26be7932857b1e495805c37bddd562d6b1100683b",
+      "start": "2020-04-01T00:00:00+00:00",
+      "strategy_id": "multi_tf",
+      "timeframe": "5m"
+    },
+    {
       "archive": "user_data\\profile_smoke\\MultiActionZone-179b96b7-2026-09-09_20-55-48.zip",
       "config_sha256": "sha256_8ed6f7ba92957af02671150490a1180e1a0f923f020f6046ff0cd674839de023",
       "end": "2026-08-20T20:00:00+00:00",
@@ -7218,6 +7258,26 @@
       "source_sha256": "sha256_7e8f8a956c7fe5b67eb28a462b8901fa9c42300e9f2e2f19d11509b7c31d948d",
       "start": "2020-04-01T00:00:00+00:00",
       "strategy_id": "MultiMA_TSL",
+      "timeframe": "5m"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\MultiMA_TSL3b-394a8370-2026-09-11_07-41-25.zip",
+      "config_sha256": "sha256_98c7b5ee44353b8d4149b946f241ab70d368a044c860d5f04720d5d80c7cdabc",
+      "end": "2026-08-20T23:55:00+00:00",
+      "mode": "spot",
+      "pairlist": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "source_sha256": "sha256_2b284b733c3e4d7dadb1156c7b6e69a4f378d081de4293ef3ea1c570b1914ad5",
+      "start": "2020-04-01T00:00:00+00:00",
+      "strategy_id": "MultiMA_TSL3b",
       "timeframe": "5m"
     },
     {
@@ -8141,6 +8201,26 @@
       "timeframe": "5m"
     },
     {
+      "archive": "user_data\\profile_smoke\\NostalgiaForInfinityX-3059216f-2026-09-10_22-40-31.zip",
+      "config_sha256": "sha256_98c7b5ee44353b8d4149b946f241ab70d368a044c860d5f04720d5d80c7cdabc",
+      "end": "2026-08-20T23:55:00+00:00",
+      "mode": "spot",
+      "pairlist": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "source_sha256": "sha256_cff780775191aa9ffaa14ec3fac7c581eb283448c7a145d2c4d0c08d8a3e0592",
+      "start": "2020-04-01T00:00:00+00:00",
+      "strategy_id": "NostalgiaForInfinityX",
+      "timeframe": "5m"
+    },
+    {
       "archive": "user_data\\profile_smoke\\NotAnotherSMAOffsetStrategy-7155ba0b-2026-09-05_12-40-37.zip",
       "config_sha256": "sha256_c329e2ac8f473c22bdf7cd0351d9c7eb1222d0a025d26ca4c38f4373977fad22",
       "end": "2026-08-20T23:55:00+00:00",
@@ -8819,6 +8899,26 @@
       "start": "2020-04-01T00:00:00+00:00",
       "strategy_id": "quantumfirst",
       "timeframe": "5m"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\QuickBuyStrategy-e4bfe3e8-2026-09-11_07-31-15.zip",
+      "config_sha256": "sha256_98c7b5ee44353b8d4149b946f241ab70d368a044c860d5f04720d5d80c7cdabc",
+      "end": "2026-08-20T23:00:00+00:00",
+      "mode": "spot",
+      "pairlist": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "source_sha256": "sha256_776e43f9937398aa4acc843edffc4ba47d421b887fd5bbd2f16eef8dce072ed7",
+      "start": "2020-04-01T00:00:00+00:00",
+      "strategy_id": "QuickBuyStrategy",
+      "timeframe": "1h"
     },
     {
       "archive": "user_data\\profile_smoke\\Quickie-dab280e0-2026-09-05_20-57-52.zip",
@@ -9918,6 +10018,26 @@
       "source_sha256": "sha256_5909c02736a7ef61b0092ab9ab54511563725485ef218e3355a3f5571d746a18",
       "start": "2020-04-01T00:00:00+00:00",
       "strategy_id": "SMAOG",
+      "timeframe": "5m"
+    },
+    {
+      "archive": "user_data\\profile_smoke\\SMAOPv1_TTF-fd792764-2026-09-11_07-31-44.zip",
+      "config_sha256": "sha256_98c7b5ee44353b8d4149b946f241ab70d368a044c860d5f04720d5d80c7cdabc",
+      "end": "2026-08-20T23:55:00+00:00",
+      "mode": "spot",
+      "pairlist": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "source_sha256": "sha256_06d6d41f4aa59878846e52b8b19d9c673f0dc5b9f6bec2794b8b19ca1f5ad900",
+      "start": "2020-04-01T00:00:00+00:00",
+      "strategy_id": "SMAOPv1_TTF",
       "timeframe": "5m"
     },
     {
@@ -11521,6 +11641,26 @@
       "timeframe": "5m"
     },
     {
+      "archive": "user_data\\profile_smoke\\WTHO-4257b426-2026-09-11_07-32-24.zip",
+      "config_sha256": "sha256_98c7b5ee44353b8d4149b946f241ab70d368a044c860d5f04720d5d80c7cdabc",
+      "end": "2026-08-20T22:00:00+00:00",
+      "mode": "spot",
+      "pairlist": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "source_sha256": "sha256_ca6d8e6c5661d320d68c4160444bf354b5de8bace72e1e8e2d7dba460940cac2",
+      "start": "2020-04-01T00:00:00+00:00",
+      "strategy_id": "WTHO",
+      "timeframe": "2h"
+    },
+    {
       "archive": "user_data\\profile_smoke\\WTX3-61d3d92c-2026-09-06_03-35-15.zip",
       "config_sha256": "sha256_cc7ff91514ddec6655a86e3e5a74c7df74afae846ad46e0d224099d3bcff904e",
       "end": "2026-08-20T23:55:00+00:00",
@@ -11641,9 +11781,9 @@
       "timeframe": "4h"
     }
   ],
-  "accepted_archives": 582,
+  "accepted_archives": 589,
   "archive_selection_source": "results\\regime\\full_backtest_manifest.json",
-  "attributed_profiles": 582,
+  "attributed_profiles": 589,
   "attributed_strategies": [
     "ADXDM",
     "ADXMomentum",
@@ -11845,6 +11985,7 @@
     "FTT_DWT_FBB_FUTURES",
     "FVGChannel",
     "Fakebuy",
+    "FastSupertrendOpt",
     "FastSupertrend_optim3",
     "FastSupertrend_optim3_rsi_70",
     "FastSupertrend_optim3_rsi_75",
@@ -11968,6 +12109,7 @@
     "MultiActionZone",
     "MultiFactorConfluenceStrategy",
     "MultiMA_TSL",
+    "MultiMA_TSL3b",
     "MultiOffsetLamboV0",
     "MyStratV1",
     "NASOSv4",
@@ -12016,6 +12158,7 @@
     "NostalgiaForInfinityV7_SMA",
     "NostalgiaForInfinityV7_SMAv2",
     "NostalgiaForInfinityV7_SMAv2_1",
+    "NostalgiaForInfinityX",
     "NotAnotherSMAOffsetStrategy",
     "NotAnotherSMAOffsetStrategyHO",
     "NotAnotherSMAOffsetStrategyHOv3",
@@ -12047,6 +12190,7 @@
     "PriceActionCandleStrategy",
     "PriceChannelStrategy",
     "PumpDetector",
+    "QuickBuyStrategy",
     "Quickie",
     "RSI",
     "RSIBB02",
@@ -12071,6 +12215,7 @@
     "SMAIP3",
     "SMAIP3v2",
     "SMAOG",
+    "SMAOPv1_TTF",
     "SMAOffset",
     "SMAOffsetProtectOpt",
     "SMAOffsetProtectOptV0",
@@ -12167,6 +12312,7 @@
     "VortexStrategy",
     "VwapReversionStrategy",
     "WTDMIPRICEDCAStrategyFuture",
+    "WTHO",
     "WTX3",
     "WaveTrendStra",
     "WilliamsRStrategy",
@@ -12213,6 +12359,7 @@
     "momentum_rsi",
     "momentum_wick",
     "moonhouse",
+    "multi_tf",
     "quantumfirst",
     "redditMA",
     "simple_vwap_v1",
@@ -12228,13 +12375,13 @@
     "wavetrend",
     "wavetrend_rsi"
   ],
-  "btc_regime_matched_trades": 3436335,
-  "coin_regime_matched_trades": 3425417,
+  "btc_regime_matched_trades": 3459380,
+  "coin_regime_matched_trades": 3448462,
   "coin_regime_unmatched_by_pair": {
     "XMR/USDT:USDT": 10918
   },
   "coin_regime_unmatched_trades": 10918,
-  "eligible_profiles": 641,
+  "eligible_profiles": 647,
   "evidence_scope": "Phase A descriptive attribution; source, native mode, and timeframe plus manifest source/config identity and archive digest are verified. Stage 9+ runs require a separately locked runtime/config/data manifest.",
   "missing_strategies": [
     "BBRSI2",
@@ -12276,7 +12423,6 @@
     "NostalgiaForInfinityNextV7155",
     "NostalgiaForInfinityNext_maximizer",
     "NostalgiaForInfinityV7_7_2",
-    "NostalgiaForInfinityX",
     "NowoIchimoku5mV2",
     "SRsi",
     "Scalp",
@@ -12297,13 +12443,7 @@
     "simple_patterns",
     "strato"
   ],
-  "rejected_archives": [
-    {
-      "archive": "user_data/profile_smoke/NostalgiaForInfinityX-3059216f-2026-09-09_19-38-02.zip",
-      "reason": "manifest_identity_mismatch",
-      "strategy_id": "NostalgiaForInfinityX"
-    }
-  ],
+  "rejected_archives": [],
   "schema_version": 1,
-  "trades": 3436335
+  "trades": 3459380
 }

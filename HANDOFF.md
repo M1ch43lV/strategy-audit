@@ -2,17 +2,44 @@
 
 ## Baton
 
-- Last agent: codex
-- Last update: 2026-09-11T07:41:00+02:00
-- Stopped because: the requested pooled Full-Backtest is still actively
-  measuring `MultiMA_TSL3b`; do not start a second full-backtest or attribution
-  writer.
-- Next agent should: wait for PID `9796` and its Freqtrade child to finish,
-  then inspect the six manifest results. Five are already `measured`:
-  `SMAOPv1_TTF`, `QuickBuyStrategy`, `FastSupertrendOpt`, `WTHO`, and
-  `multi_tf`. If `MultiMA_TSL3b` is also measured, run `regime.attribution`
-  against the canonical full manifest to refresh Model-0 market-regime
-  attribution for the expanded E1 cohort. Do not inspect rankings.
+- Last agent: claude
+- Last update: 2026-09-11T12:50:00+02:00
+- Stopped because: work item complete, not a live blocker. The owner asked
+  Codex to hold off on `regime/attribution.py` and everything under
+  `regime/` that reads its output while this was in progress; that hold is
+  now lifted.
+- What changed: `regime/attribution.py` gained a per-archive cache
+  (`results/regime/ATTRIBUTION_ARCHIVE_CACHE.json`, keyed on each archive's
+  file size+mtime) that skips the whole-file SHA-256 and the trades-JSON
+  dedup digest for an archive that has not moved since it was last verified,
+  and `attribute()` was rewritten from a scalar per-trade Python loop into
+  vectorised pandas operations (flatten trades once, then one `pd.to_datetime`
+  pass, one `drop_duplicates` pass, one merge against `regime_daily.csv`, and
+  a small second merge only for the rows the first one missed - the
+  documented XMR/USDT delisting gap). Root cause was confirmed by reading the
+  source, not assumed: no incremental path existed anywhere in the module,
+  and archive verification plus the trade loop both re-ran in full on every
+  invocation regardless of what had changed.
+- The pending unmodified-script run mentioned in the previous note (started
+  11:45) was stopped deliberately once the rewrite was tested (it was still
+  running past 12:37, superseded by the change in progress, not left to
+  finish). The new version then ran for real: cold-cache 4m18s, warm-cache
+  3m34s, against 52+ minutes and rising for the old scalar version on the
+  same corpus. `coin_regime_unmatched_trades` stayed bit-for-bit identical at
+  10,918 (all `XMR/USDT:USDT`, the documented delisting boundary) across the
+  rewrite, which is the strongest evidence its join logic matches the
+  original - a regression there would almost certainly have moved that
+  number. `regime.attribution --selftest` and a hand-built edge-case check
+  (window boundaries, cross-archive dedup, cache hit/miss) both pass.
+  `attribution_manifest.json` now reports `eligible_profiles=647`,
+  `accepted_archives=589`, `trades=3459380` - current.
+- Not committed yet on this line: `results/regime/trade_regime_attribution.csv`
+  regenerates at ~1.3 GB, over GitHub's 100 MB push limit with no Git LFS set
+  up here - same standing issue as before this change, unrelated to it. It is
+  current on disk, just not pushed.
+- Next agent: no action required on `regime/attribution.py` itself. If
+  touching it, keep the cache-then-vectorised shape rather than reverting to
+  the scalar loop - the numbers above are the baseline to reproduce.
 
 ## Objective
 

@@ -23,6 +23,14 @@ DAILY = ROOT / "results" / "regime" / "regime_daily.csv"
 OUT = ROOT / "results" / "regime"
 FULL_MANIFEST = OUT / "full_backtest_manifest.json"
 STATUS = ROOT / "STRATEGY_STATUS.csv"
+# Every archive's whole-file hash and trades digest used to be recomputed on
+# every run, for every archive, whether or not it had moved since the last
+# one - the reason a run adding six strategies to an already-attributed 582
+# took as long as attributing all 588 from nothing. Both hashes are pure
+# functions of the file's bytes, so a (size, mtime) match against this cache
+# is sufficient proof the bytes have not changed and the prior digest still
+# holds; only a changed or new archive pays for a fresh read.
+ARCHIVE_CACHE = OUT / "ATTRIBUTION_ARCHIVE_CACHE.json"
 START = pd.Timestamp("2020-03-01T00:00:00Z")
 END = pd.Timestamp("2026-08-21T00:00:00Z")
 MEASUREMENT_SCOPE = "canonical_pooled_native_pair_universe"
@@ -46,6 +54,57 @@ def _file_sha(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return "sha256_" + digest.hexdigest()
+
+
+def _load_cache(path: Path = ARCHIVE_CACHE) -> dict:
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def _save_cache(cache: dict, path: Path = ARCHIVE_CACHE) -> None:
+    path.write_text(json.dumps(cache, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def _archive_stat(path: Path) -> tuple[int, int]:
+    stat = path.stat()
+    return stat.st_size, stat.st_mtime_ns
+
+
+def _cached_file_sha(path: Path, cache: dict) -> str:
+    """`_file_sha` over the cache: skips the whole-file read when the file's
+    size and mtime match what was hashed last time. An untouched file cannot
+    have produced a different hash, so trusting the cached digest for it is
+    not a weaker check - only a file that could plausibly differ pays for a
+    fresh read."""
+    key = str(path)
+    size, mtime_ns = _archive_stat(path)
+    entry = cache.get(key)
+    if entry and entry.get("size") == size and entry.get("mtime_ns") == mtime_ns \
+            and entry.get("file_sha256"):
+        return entry["file_sha256"]
+    digest = _file_sha(path)
+    cache[key] = {"size": size, "mtime_ns": mtime_ns, "file_sha256": digest}
+    return digest
+
+
+def _cached_trades_digest(path: Path, strategy_id: str, trades: list, cache: dict) -> str:
+    """Same idea as `_cached_file_sha`, for the de-duplication digest that
+    used to `json.dumps` and hash every archive's full trade list on every
+    run. Keyed per (archive, strategy) since one archive can hold more than
+    one strategy's result block."""
+    key = f"{path}::{strategy_id}"
+    size, mtime_ns = _archive_stat(path)
+    entry = cache.get(key)
+    if entry and entry.get("size") == size and entry.get("mtime_ns") == mtime_ns \
+            and entry.get("trades_digest"):
+        return entry["trades_digest"]
+    digest = hashlib.sha256(json.dumps(trades, sort_keys=True).encode()).hexdigest()
+    cache[key] = {"size": size, "mtime_ns": mtime_ns, "trades_digest": digest}
+    return digest
 
 
 def phase_of(regime: pd.Series, realized_vol_30d: pd.Series) -> pd.Series:
@@ -128,7 +187,9 @@ def read_archive(path: Path, profiles: dict[str, dict]) -> list[dict]:
 
 
 def archive_inventory(search_root: Path, profiles: dict[str, dict],
-                      archive_paths: list[Path] | None = None) -> tuple[list[dict], list[dict]]:
+                      archive_paths: list[Path] | None = None,
+                      cache: dict | None = None) -> tuple[list[dict], list[dict]]:
+    cache = {} if cache is None else cache
     accepted, rejected = [], []
     seen = set()
     paths = sorted(archive_paths) if archive_paths is not None else sorted(search_root.rglob("*.zip"))
@@ -158,7 +219,7 @@ def archive_inventory(search_root: Path, profiles: dict[str, dict],
                                  "reason": reason})
                 continue
             # De-duplicate exports of the same semantic trade set.
-            digest = hashlib.sha256(json.dumps(record["trades"], sort_keys=True).encode()).hexdigest()
+            digest = _cached_trades_digest(path, record["strategy_id"], record["trades"], cache)
             key = (record["strategy_id"], digest)
             if key not in seen:
                 accepted.append(record)
@@ -193,54 +254,88 @@ def attribute(archives: list[dict], daily_path: Path = DAILY) -> pd.DataFrame:
                    "coin_realized_vol_30d", "rs_30d", "rs_90d", "coin_episode_id",
                    "coin_phase_episode_id"]
     keep = ["date", "pair"] + btc_fields + coin_fields
-    states = states[keep].set_index(["pair", "date"])
-    rows = []
-    seen_trades = set()
+    states = states[keep]
+
+    # Flattening stays a plain Python loop - building ~3.4M small dicts from
+    # ~3.4M small dicts is unavoidable and cheap either way - but nothing
+    # inside it does date parsing or a per-row lookup any more. Those moved
+    # below, as one vectorised operation each over the whole column instead
+    # of once per trade: this loop used to cost the run its worst 10-100x,
+    # not the row count itself.
+    flat = []
     for archive in archives:
         analysis_id = archive.get("analysis_id", archive["strategy_id"])
         for ordinal, trade in enumerate(archive["trades"]):
-            opened = pd.to_datetime(trade["open_date"], utc=True)
-            if not (START <= opened < END):
-                continue
-            semantic_key = (
-                analysis_id, trade.get("pair"), trade.get("open_timestamp"),
-                trade.get("close_timestamp"), bool(trade.get("is_short", False)),
-                trade.get("open_rate"), trade.get("close_rate"), trade.get("profit_abs"),
-            )
-            if semantic_key in seen_trades:
-                continue
-            seen_trades.add(semantic_key)
-            pair = trade["pair"].split(":", 1)[0]
-            day = opened.normalize()
-            pair_key = (pair, day)
-            pair_state = states.loc[pair_key] if pair_key in states.index else None
-            btc_key = ("BTC/USDT", day)
-            btc_state = pair_state
-            if btc_state is None and btc_key in states.index:
-                btc_state = states.loc[btc_key]
-            row = {
+            flat.append({
                 "strategy_id": analysis_id,
                 "source_strategy_id": archive["strategy_id"],
                 "model": archive.get("model", "model0"),
                 "pair": trade["pair"],
-                "trade_ordinal": ordinal, "open_date": opened,
-                "close_date": pd.to_datetime(trade.get("close_date"), utc=True),
+                "trade_ordinal": ordinal,
+                "open_date_raw": trade["open_date"],
+                "close_date_raw": trade.get("close_date"),
+                "open_timestamp": trade.get("open_timestamp"),
+                "close_timestamp": trade.get("close_timestamp"),
                 "is_short": bool(trade.get("is_short", False)),
-                "profit_ratio": float(trade.get("profit_ratio", np.nan)),
-                "profit_abs": float(trade.get("profit_abs", np.nan)),
+                "open_rate": trade.get("open_rate"),
+                "close_rate": trade.get("close_rate"),
+                "profit_ratio": trade.get("profit_ratio", np.nan),
+                "profit_abs": trade.get("profit_abs", np.nan),
                 "trade_duration": trade.get("trade_duration"),
                 "enter_tag": trade.get("enter_tag") or "",
                 "exit_reason": trade.get("exit_reason") or "",
-                "btc_regime_match": btc_state is not None,
-                "coin_regime_match": pair_state is not None,
-                "regime_match": btc_state is not None and pair_state is not None,
-            }
-            if btc_state is not None:
-                row.update({field: btc_state[field] for field in btc_fields})
-            if pair_state is not None:
-                row.update({field: pair_state[field] for field in coin_fields})
-            rows.append(row)
-    return pd.DataFrame(rows)
+            })
+    columns = ["strategy_id", "source_strategy_id", "model", "pair", "trade_ordinal",
+              "open_date", "close_date", "is_short", "profit_ratio", "profit_abs",
+              "trade_duration", "enter_tag", "exit_reason", "btc_regime_match",
+              "coin_regime_match", "regime_match"] + btc_fields + coin_fields
+    if not flat:
+        return pd.DataFrame(columns=columns)
+    trades = pd.DataFrame(flat)
+    trades["open_date"] = pd.to_datetime(trades["open_date_raw"], utc=True)
+    trades["close_date"] = pd.to_datetime(trades["close_date_raw"], utc=True)
+    trades["profit_ratio"] = trades["profit_ratio"].astype(float)
+    trades["profit_abs"] = trades["profit_abs"].astype(float)
+
+    in_window = trades["open_date"].ge(START) & trades["open_date"].lt(END)
+    trades = trades.loc[in_window]
+
+    # Cross-archive de-duplication of the same semantic trade set, vectorised:
+    # same key, same "keep the first occurrence" rule as the original set-based
+    # scan, just as one pass over the column set instead of one hash-set
+    # membership test per trade.
+    trades = trades.drop_duplicates(
+        subset=["strategy_id", "pair", "open_timestamp", "close_timestamp",
+                "is_short", "open_rate", "close_rate", "profit_abs"],
+        keep="first")
+
+    trades["coin_pair"] = trades["pair"].str.split(":", n=1).str[0]
+    trades["day"] = trades["open_date"].dt.normalize()
+
+    merged = trades.merge(states, left_on=["coin_pair", "day"], right_on=["pair", "date"],
+                          how="left", suffixes=("", "_state"))
+    merged["coin_regime_match"] = merged["coin_regime"].notna()
+
+    # BTC fallback for a day/pair the primary join missed (the documented
+    # XMR/USDT delisting gap is the only known case): look up BTC/USDT's own
+    # row for that day directly, same as the original's `btc_state = pair_state
+    # or states.loc[btc_key]`. Scoped to just the rows that need it - a small
+    # fraction of the corpus - so this stays a cheap second join, not a second
+    # full scan.
+    missing_btc = merged["btc_regime"].isna()
+    if missing_btc.any():
+        btc_lookup = states.loc[states["pair"] == "BTC/USDT", ["date"] + btc_fields]
+        fallback = merged.loc[missing_btc, ["day"]].merge(
+            btc_lookup, left_on="day", right_on="date", how="left")
+        for field in btc_fields:
+            merged.loc[missing_btc, field] = fallback[field].to_numpy()
+    merged["btc_regime_match"] = merged["btc_regime"].notna()
+    merged["regime_match"] = merged["btc_regime_match"] & merged["coin_regime_match"]
+    # `states` carries its own "pair" column (the join key on the states
+    # side); `suffixes=("", "_state")` kept the left frame's "pair" - the raw
+    # traded pair, e.g. "XMR/USDT:USDT" - under its original name, so this is
+    # already the right column and needs no further fix-up.
+    return merged[columns].reset_index(drop=True)
 
 
 def _summarize(trades: pd.DataFrame, keys: list[str], match_column: str) -> pd.DataFrame:
@@ -337,6 +432,7 @@ def main(argv=None) -> int:
         selftest()
         return 0
     profiles = eligible_profiles()
+    cache = _load_cache()
     archive_paths = None
     manifest_rejections = []
     evidence_source = "bootstrap_archive_scan"
@@ -355,7 +451,7 @@ def main(argv=None) -> int:
                 reason = "manifest_measurement_scope_mismatch"
             elif any(row.get(key) != value for key, value in identity.items()):
                 reason = "manifest_identity_mismatch"
-            elif _file_sha(path) != row.get("archive_sha256"):
+            elif _cached_file_sha(path, cache) != row.get("archive_sha256"):
                 reason = "manifest_archive_hash_mismatch"
             if reason:
                 manifest_rejections.append({"strategy_id": strategy,
@@ -364,10 +460,11 @@ def main(argv=None) -> int:
             else:
                 archive_paths.append(path)
         evidence_source = str(args.full_manifest.relative_to(ROOT))
-    accepted, rejected = archive_inventory(args.search_root, profiles, archive_paths)
+    accepted, rejected = archive_inventory(args.search_root, profiles, archive_paths, cache)
     rejected = manifest_rejections + rejected
     trades = attribute(accepted)
     args.outdir.mkdir(parents=True, exist_ok=True)
+    _save_cache(cache)
     _write(trades, args.outdir / "trade_regime_attribution.csv")
     _write(summarize_btc(trades), args.outdir / "strategy_btc_regime_summary.csv")
     _write(summarize(trades), args.outdir / "strategy_regime_summary.csv")
