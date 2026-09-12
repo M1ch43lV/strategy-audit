@@ -1,5 +1,5 @@
 strategy_id,regimes_covered,worst_regime,worst_regime_return,median_regime_excess_return,regime_consistency
-AdaptiveRegime-trend,4,BULL,-0.293947143952,-0.0908507040642,0.5
-ADX_15M_USDT-trend,4,BULL,-0.434568146676,-0.0684534961722,0.25
-AlmgrenChrissStrategy-trend,4,BULL,-0.575673485312,0.00966497162984,0.75
-BBMod-trend,4,BULL,-0.929201372433,-0.0613804361099,0.25
+AlmgrenChrissStrategy-trend,4,BULL,-0.0681950709626,-0.0200727490668,0.25
+ADX_15M_USDT-trend,4,BULL,-0.123281375714,-0.0534341118612,0.25
+AdaptiveRegime-trend,4,SIDEWAYS,-0.201230348643,-0.0516510393158,0.5
+BBMod-trend,4,BULL,-0.202181916716,-0.0480274178779,0

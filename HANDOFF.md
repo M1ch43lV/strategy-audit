@@ -3,7 +3,40 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-12T00:00:00+02:00
+- Last update: 2026-09-12T01:00:00+02:00
+- Fixed a real bug in the episode-benchmark change below, caught by the user
+  directly in the published artifact: `_specialist_table()` computed
+  `benchmark_dollar_gain_usd`/`mean_benchmark_return` by summing/averaging
+  over every validated *trade*, but `attach_benchmark()` assigns the same
+  episode-level benchmark value to every trade inside that episode - so a
+  strategy trading many times within a few episodes counted the same
+  buy-and-hold phase once per trade instead of once per episode.
+  `Obelisk_TradePro_Ichi_v2_2` (1,230 trades, 40 episodes) showed a
+  "B&H-Gewinn" of +$94,882 in the artifact; the real figure is about
+  $4,800, roughly 20x smaller. Fixed by deduplicating to one row per
+  `(strategy_id, regime_column, coin_pair, episode_id)` before aggregating
+  the benchmark column - `coin_pair` is part of the key because a
+  BTC-regime episode is one global calendar window shared by all 8 pairs,
+  and each pair's own price move over it is a genuinely different
+  buy-and-hold stake, not a duplicate. Fixes both the dollar sum and the
+  percentage mean (hence `excess_return`) the same way. Added a selftest
+  case with two trades sharing one episode, asserting the benchmark dollar
+  figure counts it once. Re-ran all four evaluations (Model 0 full
+  population, Model 1/2/3 gated) - row/episode/trade counts unchanged (the
+  specialist floor never depended on the benchmark), excess-return and
+  dollar figures shifted, sometimes by a lot for high-trade/few-episode
+  strategies. The "0 of 379 universal candidates still fully consistent"
+  headline from the episode-benchmark change survives (BULL is still the
+  near-universal weak regime, 372/379 now vs 375/379 before this fix - the
+  magnitude changed, the conclusion didn't). Re-exported the artifact's
+  data and updated the BULL-callout's specific numbers (strongest candidate
+  is now `Hammer`, not `BuyOrDie`). Published as artifact Version 16.
+  Also replaced the "Top 5 per regime" card grid with a full sortable/
+  filterable/searchable table of every VALIDATION-tier row (1,828 BTC-regime
+  rows and 1,770 coin-regime rows) per explicit user request, sortable by
+  excess-return, dollar-gain, and benchmark-dollar-gain, filterable by ADX
+  state chips - this was Version 15, done just before the bug was caught in
+  it (which is exactly how the user spotted the inflated B&H figures).
 - Changed `attach_benchmark()`'s benchmark definition in
   `regime/specialist_evaluation.py`, on explicit user request: the coin's
   own spot buy-and-hold is now measured over the *entire* ADX-classified

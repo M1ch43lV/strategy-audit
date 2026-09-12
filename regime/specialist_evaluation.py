@@ -272,7 +272,8 @@ def _fixed_stake_gain(df: pd.DataFrame, value_column: str,
 
 
 def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: str,
-                      benchmark_column: str, episode_summary: pd.DataFrame) -> pd.DataFrame:
+                      benchmark_column: str, episode_column: str,
+                      episode_summary: pd.DataFrame) -> pd.DataFrame:
     validation = trades[(trades["analysis_window"] == "validation") &
                         trades[match_column]]
     if validation.empty:
@@ -281,25 +282,45 @@ def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: st
                                      "mean_benchmark_return", "excess_return", "tier",
                                      "dollar_gain_usd", "benchmark_dollar_gain_usd",
                                      "excess_dollar_gain_usd"])
-    grouped = validation.groupby(["strategy_id", regime_column], dropna=False)
+    group_cols = ["strategy_id", regime_column]
+    grouped = validation.groupby(group_cols, dropna=False)
     table = grouped.agg(
         trades=("profit_ratio", "size"),
         mean_profit_ratio=("profit_ratio", "mean"),
-        mean_benchmark_return=(benchmark_column, "mean"),
-        benchmark_matched_trades=(benchmark_column, "count"),
     ).reset_index()
     table = table.merge(episode_summary[["strategy_id", regime_column, "episodes"]],
                         on=["strategy_id", regime_column], how="left")
     table["episodes"] = table["episodes"].fillna(0).astype(int)
+
+    # The benchmark is one $1000 stake per distinct (coin, episode) a
+    # strategy actually traded in - never one per trade. Every trade inside
+    # the same episode carries the identical episode-level benchmark_return
+    # (attach_benchmark() broadcasts it), so summing/averaging over trades
+    # directly would count that one phase's buy-and-hold once per trade
+    # inside it - a strategy with 1,230 trades across 40 episodes would have
+    # its benchmark dollar figure inflated roughly 30x (confirmed in the
+    # published artifact: `Obelisk_TradePro_Ichi_v2_2` showed a +$94,882
+    # ADX-Sideways "B&H-Gewinn" this way). Deduplicating first fixes both
+    # the dollar sum and the mean (and hence excess_return) at once - both
+    # now weight each episode once, matching "$1000 at the start of the
+    # phase", not "$1000 per trade taken during the phase". `coin_pair` is
+    # part of the key because a BTC-regime episode is one global calendar
+    # window shared by all 8 pairs, but each pair's own price move over it
+    # differs - two different coins traded within the same BTC episode are
+    # two genuinely different buy-and-hold stakes, not duplicates.
+    episode_level = (validation.dropna(subset=[benchmark_column])
+                     .drop_duplicates(subset=["strategy_id", regime_column,
+                                              "coin_pair", episode_column]))
+    bench_stats = episode_level.groupby(group_cols, dropna=False)[benchmark_column].agg(
+        mean_benchmark_return="mean", benchmark_matched_episodes="count")
+    table = table.merge(bench_stats.reset_index(), on=group_cols, how="left")
     table["excess_return"] = table["mean_profit_ratio"] - table["mean_benchmark_return"]
     table["tier"] = np.where(
         (table["episodes"] >= MIN_EPISODES) & (table["trades"] >= MIN_TRADES),
         "VALIDATION", "EXPLORATORY")
 
-    group_cols = ["strategy_id", regime_column]
     dollar_gain = _fixed_stake_gain(validation, "profit_ratio", group_cols)
-    benchmark_dollar_gain = _fixed_stake_gain(
-        validation.dropna(subset=[benchmark_column]), benchmark_column, group_cols)
+    benchmark_dollar_gain = _fixed_stake_gain(episode_level, benchmark_column, group_cols)
     table = table.set_index(group_cols)
     table["dollar_gain_usd"] = dollar_gain
     table["benchmark_dollar_gain_usd"] = benchmark_dollar_gain
@@ -311,13 +332,13 @@ def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: st
 
 def btc_specialist_table(trades: pd.DataFrame) -> pd.DataFrame:
     return _specialist_table(trades, "btc_regime", "btc_regime_match",
-                             "btc_episode_benchmark_return",
+                             "btc_episode_benchmark_return", "btc_episode_id",
                              attribution.summarize_episodes(trades))
 
 
 def coin_specialist_table(trades: pd.DataFrame) -> pd.DataFrame:
     return _specialist_table(trades, "coin_regime", "coin_regime_match",
-                             "coin_episode_benchmark_return",
+                             "coin_episode_benchmark_return", "coin_episode_id",
                              attribution.summarize_coin_episodes(trades))
 
 
@@ -490,6 +511,44 @@ def selftest() -> None:
             # benchmark above cannot see at all.
             assert abs(ep_row["btc_episode_benchmark_return"] - 0.30) < 1e-9
             assert abs(ep_row["coin_episode_benchmark_return"] - 0.30) < 1e-9
+
+            # Regression: benchmark_dollar_gain_usd/mean_benchmark_return must
+            # count each distinct (coin, episode) once, not once per trade
+            # inside it - the bug a user caught in the published artifact (a
+            # 1,230-trade/40-episode strategy showed a +$94,882 "B&H-Gewinn",
+            # roughly 30x too high, because the same episode's 30% benchmark
+            # return was summed once per trade instead of once per episode).
+            ep2_trades = pd.DataFrame([
+                {"strategy_id": "EP2", "pair": "BTC/USDT:USDT",
+                 "open_date": pd.Timestamp("2020-01-01T06:00:00Z"),
+                 "close_date": pd.Timestamp("2020-01-01T18:00:00Z"),
+                 "is_short": False, "profit_ratio": 0.02, "profit_abs": 2.0,
+                 "trade_duration": 720,
+                 "btc_regime_match": True, "coin_regime_match": True,
+                 "btc_regime": "BULL", "btc_episode_id": "EP-BULL-0",
+                 "coin_regime": "BULL", "coin_episode_id": "EP-BULL-0"},
+                {"strategy_id": "EP2", "pair": "BTC/USDT:USDT",
+                 "open_date": pd.Timestamp("2020-01-02T06:00:00Z"),
+                 "close_date": pd.Timestamp("2020-01-02T18:00:00Z"),
+                 "is_short": False, "profit_ratio": 0.03, "profit_abs": 3.0,
+                 "trade_duration": 720,
+                 "btc_regime_match": True, "coin_regime_match": True,
+                 "btc_regime": "BULL", "btc_episode_id": "EP-BULL-0",
+                 "coin_regime": "BULL", "coin_episode_id": "EP-BULL-0"},
+            ])
+            ep2_trades = attach_benchmark(ep2_trades, daily=ep_daily)
+            ep2_trades["analysis_window"] = "validation"  # bypass the date
+            # split - VALIDATION_START postdates this fixture's 2020 dates,
+            # and only the aggregation under test matters here.
+            ep2_table = btc_specialist_table(ep2_trades)
+            ep2_row = ep2_table[(ep2_table["strategy_id"] == "EP2") &
+                                (ep2_table["btc_regime"] == "BULL")].iloc[0]
+            assert ep2_row["trades"] == 2
+            assert abs(ep2_row["benchmark_dollar_gain_usd"] - 300.0) < 1e-6
+            assert abs(ep2_row["mean_benchmark_return"] - 0.30) < 1e-9
+            # The strategy's own dollar gain is unaffected - each trade is
+            # still its own fresh $1000 stake, summed rather than deduped.
+            assert abs(ep2_row["dollar_gain_usd"] - 1000.0 * (0.02 + 0.03)) < 1e-6
 
             btc_table = btc_specialist_table(trades)
             bull_row = btc_table[(btc_table["strategy_id"] == "S1") &

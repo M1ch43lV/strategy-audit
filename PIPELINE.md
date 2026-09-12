@@ -525,6 +525,27 @@ erwartete Antwort auf die Ausgangsfrage ("gibt es ungehebelte Long-Strategien,
 die eine Bull-Phase besser timen als Buy-and-Hold") — mit dieser strengeren
 Messlatte praktisch nein, im Rahmen dieses Bestands.
 
+Bug in genau dieser Änderung gefunden und behoben (2026-09-12, vom Nutzer im
+veröffentlichten Artefakt entdeckt): `_specialist_table()` summierte/mittelte
+`benchmark_dollar_gain_usd`/`mean_benchmark_return` über jeden validierten
+Trade statt über jede eindeutige Episode. Da `attach_benchmark()` allen
+Trades einer Episode denselben Episoden-Benchmarkwert zuweist, zählte eine
+Strategie mit vielen Trades in wenigen Episoden dieselbe Buy-and-Hold-Phase
+mehrfach — Symptom im Artefakt: `Obelisk_TradePro_Ichi_v2_2` zeigte bei 1.230
+Trades über nur 40 Episoden einen "B&H-Gewinn" von +$94.882 (real rund
+$4.800, Faktor ~20 zu hoch). Fix: vor der Aggregation wird auf eindeutige
+`(strategy_id, regime, coin_pair, episode_id)`-Kombinationen dedupliziert —
+`coin_pair` ist Teil des Schlüssels, weil eine BTC-Regime-Episode ein
+global geteiltes Kalenderfenster ist, in dem verschiedene Coins verschiedene
+eigene Kursverläufe haben, also verschiedene Buy-and-Hold-Einsätze sind.
+Betrifft sowohl die Dollar-Summe als auch den Prozent-Mittelwert (und damit
+`excess_return`) gleichermaßen. Alle vier Läufe neu gerechnet — Zeilen-/
+Episoden-/Trade-Zahlen unverändert (der Floor hängt nicht vom Benchmark ab),
+Excess-Return- und Dollar-Werte teils deutlich verschoben; die "0 von 379
+vollständig konsistent"-Kernaussage bleibt bestehen (BULL bleibt bei 372/379
+das schwächste Regime, vorher 375/379 — die Größenordnung der Grundaussage
+ändert sich nicht, nur einzelne Kandidatenwerte).
+
 ## Wo Docker statt nativem Python steht
 
 Stufen 1–3 (Probelauf, beide Bias-Prüfungen) laufen sowohl nativ als auch in
