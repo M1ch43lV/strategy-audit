@@ -42,6 +42,7 @@ from regime import attribution
 ROOT = Path(__file__).resolve().parents[1]
 CANDLE_DIR = ROOT / "user_data" / "data" / "binance"
 DEFAULT_TRADES = ROOT / "results" / "regime" / "trade_regime_attribution.csv"
+REGIME_DAILY = ROOT / "results" / "regime" / "regime_daily.csv"
 OUT = ROOT / "results" / "regime" / "specialist_evaluation"
 
 # Frozen 2026-09-11: REGIME_PREREGISTRATION.md, "Amendment 2026-09-11: the
@@ -129,17 +130,53 @@ def load_trades(path: Path, strategies: set[str] | None = None,
     return trades
 
 
-def attach_benchmark(trades: pd.DataFrame) -> pd.DataFrame:
-    """Exposure-matched benchmark return per trade: the coin's own spot
-    buy-and-hold return over exactly the trade's own open-to-close interval
-    (`REGIME_PREREGISTRATION.md` amendment, entry 3). NaN wherever the coin
-    has no candle coverage for that interval - the documented XMR/USDT
-    post-delisting gap is the only known case in the current corpus, and is
-    left as a gap rather than imputed, the same choice `regime.attribution`
-    already makes for regime state itself."""
+def _episode_price_bounds(daily: pd.DataFrame, episode_column: str,
+                          group_cols: list[str]) -> pd.DataFrame:
+    """One row per distinct episode (grouped by `group_cols + [episode_column]`
+    - `[]` for the market-wide BTC episode id, `["coin_pair"]` for the
+    pair-specific coin episode id): the timestamp of its first classified day
+    (`episode_start`) and one day past its last classified day (`episode_end_ts`,
+    not the last day's own midnight - that would sample the price at the
+    *start* of the phase's last day and silently drop that whole day's move)."""
+    bounds = (daily.groupby(group_cols + [episode_column])["date"]
+              .agg(episode_start="min", episode_end="max").reset_index())
+    bounds["episode_end_ts"] = bounds["episode_end"] + pd.Timedelta(days=1)
+    return bounds
+
+
+def attach_benchmark(trades: pd.DataFrame, daily: pd.DataFrame | None = None,
+                     daily_path: Path = REGIME_DAILY) -> pd.DataFrame:
+    """Three exposure-matched benchmark columns, all the coin's own spot
+    buy-and-hold - never BTC's price, even for the BTC-regime column, and
+    never leveraged: an opportunity-cost reference for the asset itself.
+
+    - `benchmark_return`: over exactly the trade's own open-to-close interval
+      (`REGIME_PREREGISTRATION.md` amendment, entry 3). Used only by
+      `total_dollar_gain_table`'s regime-agnostic total, which has no single
+      market phase to measure against.
+    - `btc_episode_benchmark_return` / `coin_episode_benchmark_return`: over
+      the *entire* BTC-regime / coin-regime episode the trade fell in - from
+      the episode's first classified day to its last (`regime_daily.csv`'s
+      `btc_episode_id`/`coin_episode_id`), regardless of when within it the
+      trade itself opened or closed. Added 2026-09-12 per explicit user
+      request: the trade-duration benchmark can only ever be beaten by an
+      unleveraged long trade through fee drag or price-timing noise (a long,
+      1x trade's own return is mechanically ~ the same interval's spot
+      return), so it cannot answer "does this strategy time a market phase
+      better than simply holding through it" - only a benchmark spanning the
+      whole phase can. Used by `btc_specialist_table`/`coin_specialist_table`
+      and everything downstream of them (rankings, universal candidates).
+
+    All three are NaN wherever the coin has no candle coverage for the
+    relevant interval - the documented XMR/USDT post-delisting gap is the
+    only known case in the current corpus, and is left as a gap rather than
+    imputed, the same choice `regime.attribution` already makes for regime
+    state itself."""
     trades = trades.copy()
     trades["coin_pair"] = trades["pair"].str.split(":", n=1).str[0]
     trades["benchmark_return"] = np.nan
+    trades["btc_episode_benchmark_return"] = np.nan
+    trades["coin_episode_benchmark_return"] = np.nan
     unit = "datetime64[us, UTC]"
     cache: dict = {}
 
@@ -157,16 +194,52 @@ def attach_benchmark(trades: pd.DataFrame) -> pd.DataFrame:
                                direction="backward")
         return merged.set_index("__row__")["close"].reindex(dates.index)
 
+    if daily is None:
+        daily = pd.read_csv(daily_path, usecols=["date", "pair", "btc_episode_id",
+                                                 "coin_episode_id"],
+                           dtype={"btc_episode_id": "string", "coin_episode_id": "string"})
+        daily["date"] = pd.to_datetime(daily["date"], utc=True)
+    btc_bounds = _episode_price_bounds(daily, "btc_episode_id", [])
+    coin_bounds = _episode_price_bounds(daily.rename(columns={"pair": "coin_pair"}),
+                                        "coin_episode_id", ["coin_pair"])
+
+    def _episode_return(sub_bounds: pd.DataFrame, unit_candles: pd.DataFrame) -> pd.Series:
+        start_price = _asof_price(pd.Series(sub_bounds["episode_start"].to_numpy(),
+                                            index=sub_bounds.index), unit_candles)
+        end_price = _asof_price(pd.Series(sub_bounds["episode_end_ts"].to_numpy(),
+                                          index=sub_bounds.index), unit_candles)
+        with np.errstate(invalid="ignore", divide="ignore"):
+            return (end_price.reindex(sub_bounds.index) /
+                    start_price.reindex(sub_bounds.index) - 1.0)
+
     for pair, group in trades.groupby("coin_pair", sort=False):
         candles = _candle_series(pair, cache)
         if candles is None or candles.empty:
             continue
         unit_candles = candles.assign(date=candles["date"].astype(unit))
+
         open_price = _asof_price(group["open_date"], unit_candles).to_numpy()
         close_price = _asof_price(group["close_date"], unit_candles).to_numpy()
         with np.errstate(invalid="ignore", divide="ignore"):
-            benchmark = close_price / open_price - 1.0
-        trades.loc[group.index, "benchmark_return"] = benchmark
+            trades.loc[group.index, "benchmark_return"] = close_price / open_price - 1.0
+
+        btc_ids = group["btc_episode_id"].dropna().unique()
+        if len(btc_ids):
+            sub = btc_bounds[btc_bounds["btc_episode_id"].isin(btc_ids)].copy()
+            sub["_ret"] = _episode_return(sub, unit_candles).to_numpy()
+            lookup = sub.set_index("btc_episode_id")["_ret"]
+            trades.loc[group.index, "btc_episode_benchmark_return"] = \
+                group["btc_episode_id"].map(lookup).to_numpy()
+
+        coin_ids = group["coin_episode_id"].dropna().unique()
+        if len(coin_ids):
+            sub = coin_bounds[(coin_bounds["coin_pair"] == pair) &
+                             (coin_bounds["coin_episode_id"].isin(coin_ids))].copy()
+            sub["_ret"] = _episode_return(sub, unit_candles).to_numpy()
+            lookup = sub.set_index("coin_episode_id")["_ret"]
+            trades.loc[group.index, "coin_episode_benchmark_return"] = \
+                group["coin_episode_id"].map(lookup).to_numpy()
+
     return trades
 
 
@@ -199,7 +272,7 @@ def _fixed_stake_gain(df: pd.DataFrame, value_column: str,
 
 
 def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: str,
-                      episode_summary: pd.DataFrame) -> pd.DataFrame:
+                      benchmark_column: str, episode_summary: pd.DataFrame) -> pd.DataFrame:
     validation = trades[(trades["analysis_window"] == "validation") &
                         trades[match_column]]
     if validation.empty:
@@ -212,8 +285,8 @@ def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: st
     table = grouped.agg(
         trades=("profit_ratio", "size"),
         mean_profit_ratio=("profit_ratio", "mean"),
-        mean_benchmark_return=("benchmark_return", "mean"),
-        benchmark_matched_trades=("benchmark_return", "count"),
+        mean_benchmark_return=(benchmark_column, "mean"),
+        benchmark_matched_trades=(benchmark_column, "count"),
     ).reset_index()
     table = table.merge(episode_summary[["strategy_id", regime_column, "episodes"]],
                         on=["strategy_id", regime_column], how="left")
@@ -226,7 +299,7 @@ def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: st
     group_cols = ["strategy_id", regime_column]
     dollar_gain = _fixed_stake_gain(validation, "profit_ratio", group_cols)
     benchmark_dollar_gain = _fixed_stake_gain(
-        validation.dropna(subset=["benchmark_return"]), "benchmark_return", group_cols)
+        validation.dropna(subset=[benchmark_column]), benchmark_column, group_cols)
     table = table.set_index(group_cols)
     table["dollar_gain_usd"] = dollar_gain
     table["benchmark_dollar_gain_usd"] = benchmark_dollar_gain
@@ -238,11 +311,13 @@ def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: st
 
 def btc_specialist_table(trades: pd.DataFrame) -> pd.DataFrame:
     return _specialist_table(trades, "btc_regime", "btc_regime_match",
+                             "btc_episode_benchmark_return",
                              attribution.summarize_episodes(trades))
 
 
 def coin_specialist_table(trades: pd.DataFrame) -> pd.DataFrame:
     return _specialist_table(trades, "coin_regime", "coin_regime_match",
+                             "coin_episode_benchmark_return",
                              attribution.summarize_coin_episodes(trades))
 
 
@@ -355,22 +430,66 @@ def selftest() -> None:
                     "btc_regime": regime, "btc_episode_id": episode,
                     "coin_regime": regime, "coin_episode_id": episode,
                 }
+            def daily_row(day, episode):
+                return {"date": pd.Timestamp(day).tz_localize("UTC").normalize()
+                        if pd.Timestamp(day).tzinfo is None else pd.Timestamp(day).normalize(),
+                        "pair": "BTC/USDT", "btc_episode_id": episode, "coin_episode_id": episode}
+
             rows = []
+            daily_rows = []
             # 6 independent BULL episodes, 2 trades each, all in validation
             # window - clears both the episode and trade floor.
             for i in range(6):
                 day = pd.Timestamp("2024-02-01", tz="UTC") + pd.Timedelta(days=i * 7)
                 rows.append(make("S1", "BULL", i, day, 0.05, f"BULL-{i}"))
                 rows.append(make("S1", "BULL", i, day + pd.Timedelta(hours=1), 0.03, f"BULL-{i}"))
+                daily_rows.append(daily_row(day, f"BULL-{i}"))
             # Only 2 BEAR episodes for S1 - below the 5-episode floor.
             for i in range(2):
                 day = pd.Timestamp("2024-05-01", tz="UTC") + pd.Timedelta(days=i * 7)
                 rows.append(make("S1", "BEAR", i, day, -0.02, f"BEAR-{i}"))
+                daily_rows.append(daily_row(day, f"BEAR-{i}"))
+            daily_rows.append(daily_row(pd.Timestamp("2023-06-01", tz="UTC"), "EARLY-0"))
+            synthetic_daily = pd.DataFrame(daily_rows)
+
             trades = pd.DataFrame(rows)
-            trades = attach_benchmark(trades)
+            trades = attach_benchmark(trades, daily=synthetic_daily)
             trades = split_discovery_validation(trades)
             assert (trades["analysis_window"] == "validation").all()
             assert trades["benchmark_return"].notna().all()
+            assert trades["btc_episode_benchmark_return"].notna().all()
+            assert trades["coin_episode_benchmark_return"].notna().all()
+
+            # Dedicated check that the episode benchmark spans the whole
+            # regime episode, not just the trade's own interval, using the
+            # real 2020-01-01..05 candle range (100/110/121/108.9/130) instead
+            # of the flat 2024 tail every other fixture trade lands on.
+            ep_trades = pd.DataFrame([{
+                "strategy_id": "EP1", "pair": "BTC/USDT:USDT",
+                "open_date": pd.Timestamp("2020-01-01T12:00:00Z"),
+                "close_date": pd.Timestamp("2020-01-02T12:00:00Z"),
+                "is_short": False, "profit_ratio": 0.01, "profit_abs": 1.0,
+                "trade_duration": 1440,
+                "btc_regime_match": True, "coin_regime_match": True,
+                "btc_regime": "BULL", "btc_episode_id": "EP-BULL-0",
+                "coin_regime": "BULL", "coin_episode_id": "EP-BULL-0",
+            }])
+            ep_daily = pd.DataFrame([
+                {"date": pd.Timestamp("2020-01-01", tz="UTC"), "pair": "BTC/USDT",
+                 "btc_episode_id": "EP-BULL-0", "coin_episode_id": "EP-BULL-0"},
+                {"date": pd.Timestamp("2020-01-04", tz="UTC"), "pair": "BTC/USDT",
+                 "btc_episode_id": "EP-BULL-0", "coin_episode_id": "EP-BULL-0"},
+            ])
+            ep_row = attach_benchmark(ep_trades, daily=ep_daily).iloc[0]
+            # Trade's own interval (Jan 1 12:00 -> Jan 2 12:00): backward-asof
+            # lands on the Jan 1 and Jan 2 candles, 110/100 - 1 = 10%.
+            assert abs(ep_row["benchmark_return"] - 0.10) < 1e-9
+            # Full episode (first classified day Jan 1 through last classified
+            # day Jan 4, i.e. through the close of Jan 4/start of Jan 5):
+            # 130/100 - 1 = 30% - the day-3 and day-4 moves the trade-duration
+            # benchmark above cannot see at all.
+            assert abs(ep_row["btc_episode_benchmark_return"] - 0.30) < 1e-9
+            assert abs(ep_row["coin_episode_benchmark_return"] - 0.30) < 1e-9
 
             btc_table = btc_specialist_table(trades)
             bull_row = btc_table[(btc_table["strategy_id"] == "S1") &
@@ -404,7 +523,8 @@ def selftest() -> None:
             # A pre-2024 trade must land in discovery, not validation, and
             # not count toward the specialist floor.
             early = make("S2", "BULL", 0, pd.Timestamp("2023-06-01", tz="UTC"), 0.9, "EARLY-0")
-            early_trades = split_discovery_validation(attach_benchmark(pd.DataFrame([early])))
+            early_trades = split_discovery_validation(
+                attach_benchmark(pd.DataFrame([early]), daily=synthetic_daily))
             assert early_trades.iloc[0]["analysis_window"] == "discovery"
 
             # universal_table() must not raise when no strategy covers all
@@ -489,8 +609,11 @@ def main(argv=None) -> int:
             "only VALIDATION-tier rows (>= %d validation-window episodes "
             "and >= %d trades together); everything else is reported but "
             "never ranked. Excess return is always against the "
-            "exposure-matched benchmark (coin's own spot buy-and-hold over "
-            "the same trade intervals), never raw profit. "
+            "exposure-matched benchmark - the coin's own spot buy-and-hold, "
+            "but over the *entire* BTC-/coin-regime episode a trade fell "
+            "in, not just that trade's own open-to-close interval (changed "
+            "2026-09-12; see attach_benchmark()'s docstring for why), "
+            "never raw profit. "
             "worst_regime_drawdown is not produced - see this module's "
             "docstring." % (MIN_EPISODES, MIN_TRADES)
         ),

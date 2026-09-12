@@ -500,6 +500,31 @@ in etwa gleich. Deckte zusätzlich eine dritte `.gitignore`-Lücke auf
 Ebene unter dem ersten Ausnahme-Pattern) — behoben mit
 `!results/regime/*/*/*.csv`.
 
+`attach_benchmark()`'s Benchmark-Definition geändert (2026-09-12, expliziter
+Nutzerwunsch): statt Buy-and-Hold nur über das Open-Close-Intervall des
+einzelnen Trades jetzt Buy-and-Hold über die *gesamte* ADX-Regime-Episode
+(erster bis letzter klassifizierter Tag, aus `regime_daily.csv`s
+`btc_episode_id`/`coin_episode_id`). Grund: die Trade-Intervall-Definition
+konnte ein ungehebelter 1x-Long-Trade praktisch nie schlagen (seine eigene
+Rendite *ist* näherungsweise die Intervall-Rendite, minus Gebühren) — sie
+konnte also nie beantworten, ob eine Strategie eine Marktphase besser timt
+als simples Halten. Zwei neue Spalten (`btc_episode_benchmark_return`,
+`coin_episode_benchmark_return`) ersetzen die alte `benchmark_return` in
+`_specialist_table()`; `benchmark_return` selbst bleibt unverändert und wird
+weiterhin nur von `total_dollar_gain_table()`s regime-unabhängigem
+Gesamtwert benutzt, der keine einzelne Marktphase hat, gegen die er messen
+könnte. Alle drei Läufe (Modell 0 voll, Modell 1/2/3 gegen die
+Piloten-Kandidaten) mit identischen Zeilen-/Episoden-/Trade-Zahlen wie zuvor
+neu gerechnet — nur die Excess-Return-Werte selbst ändern sich, keine
+Tier-/Floor-Zuordnung. Ergebnis bei Modell 0: von den 379 Universal-Kandidaten
+schlägt jetzt **keiner** (vorher 44) den Benchmark noch in allen vier
+Coin-Regimen gleichzeitig — 375 von 379 (99%) haben BULL als schwächstes
+Regime, weil praktisch jede aktiv tradende Strategie einen Teil einer langen
+Rally verpasst, den simples Durchhalten nicht verpasst. Das ist die direkte,
+erwartete Antwort auf die Ausgangsfrage ("gibt es ungehebelte Long-Strategien,
+die eine Bull-Phase besser timen als Buy-and-Hold") — mit dieser strengeren
+Messlatte praktisch nein, im Rahmen dieses Bestands.
+
 ## Wo Docker statt nativem Python steht
 
 Stufen 1–3 (Probelauf, beide Bias-Prüfungen) laufen sowohl nativ als auch in

@@ -3,7 +3,54 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-11T22:20:00+02:00
+- Last update: 2026-09-12T00:00:00+02:00
+- Changed `attach_benchmark()`'s benchmark definition in
+  `regime/specialist_evaluation.py`, on explicit user request: the coin's
+  own spot buy-and-hold is now measured over the *entire* ADX-classified
+  regime episode (first classified day through last, from
+  `regime_daily.csv`'s `btc_episode_id`/`coin_episode_id`), not just the
+  individual trade's own open-to-close interval. Reason given: the
+  trade-interval benchmark could not answer "does this strategy time a
+  market phase better than simply holding through it" - an unleveraged,
+  never-short 1x long trade's own return is mechanically ~ that same
+  interval's spot return (minus fees), so it could win only through fee
+  drag or asof-timing noise, never through genuine phase-timing skill.
+  Implementation: two new columns, `btc_episode_benchmark_return` and
+  `coin_episode_benchmark_return`, computed once per distinct (pair,
+  episode) rather than per trade (a real efficiency win too - far fewer
+  unique episodes than trades). `_specialist_table()` takes a
+  `benchmark_column` parameter now; `btc_specialist_table`/
+  `coin_specialist_table` pass the new columns. The old `benchmark_return`
+  (trade-interval) is kept as-is and still feeds
+  `total_dollar_gain_table()`'s regime-agnostic total, which has no single
+  market phase to measure against - that output is unchanged (confirmed:
+  `strategy_total_dollar_gain.csv` came back byte-for-byte, so `git status`
+  doesn't even list it as modified). Selftest extended with a dedicated
+  case using the real 2020-01-01..05 candle fixture (100/110/121/108.9/130)
+  instead of the flat 2024 tail every other fixture trade lands on, to
+  actually distinguish the two benchmarks' math (10% trade-interval vs 30%
+  full-episode on the same trade) rather than just checking non-NaN.
+  Re-ran all four prior evaluations (Model 0 full population, Model 1/2/3
+  gated) - identical row/episode/trade counts throughout (tier assignment
+  depends only on episode/trade counts, never on the benchmark), only
+  `excess_return` and anything derived from it changed. Headline result:
+  of the 379 universal candidates, **0** (was 44) still beat the benchmark
+  in all four coin regimes at once - 375/379 (99%) now have BULL as their
+  weakest regime, because holding a coin through an entire bull episode is
+  a much harder bar than beating its price move over one trade's own
+  duration; almost every active strategy misses part of the rally that
+  plain holding does not. Regenerated `top5.json`/`universal.json`/
+  `gated_detail.json` for the artifact (`gated_compare.json`/
+  `total_gain.json`/`ft_stats.json`'s old source data were untouched by
+  this change, except `ft_stats.json` was deliberately repointed - see
+  below). Updated the `Regime-Spezialisten` artifact throughout: funnel
+  counts, a new callout on the BULL finding, an honest empty state for the
+  now-zero "vollständig konsistent" table (kept the same 1.0 threshold,
+  did not lower the bar to keep a non-empty table), and repointed the
+  "Freqtrade-eigene Kennzahlen" section from the now-empty 44-candidate
+  cohort to the 10 top dollar-gain winners (data for this was already
+  sitting unused in the scratchpad's `winner_ft_stats.json` from an earlier
+  turn). Published as artifact Version 10.
 - Ran `regime/specialist_evaluation.py` against the Model 1/2/3 gated
   candidate attributions (`results/regime/model{1,2,3}_attribution/
   trade_regime_attribution.csv`), the last open follow-up from this
