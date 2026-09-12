@@ -3,7 +3,34 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-12T01:00:00+02:00
+- Last update: 2026-09-12T02:00:00+02:00
+- Added `joint_episode_benchmark_return` to `attach_benchmark()` and a new
+  `joint_specialist_table()` (behind a `--joint` CLI flag, since it is only
+  meaningful for an AND-gated attribution) in `regime/specialist_evaluation.py`,
+  on explicit user request: Model 3 (BTC-regime AND coin-regime gate) was
+  showing two separate marginal tables (BTC-regime, coin-regime) even though
+  both dimensions are gated at once. Trades/dollar-gain were already
+  identical between the two tables (same trades); episodes/excess-return
+  differed only because BTC-episode and coin-episode are different time
+  windows. The new benchmark uses the true overlap of a trade's BTC episode
+  and coin episode - the actual condition the AND-gate requires - computed
+  per unique (btc_episode_id, coin_episode_id) pair rather than per trade
+  (same efficiency pattern as the other two episode benchmarks).
+  `joint_specialist_table()` groups by `coin_regime` (not `btc_regime`):
+  building it, found that `btc_regime`/`coin_regime` are almost always
+  identical for a gated trade but not quite always - 7 of ~22,000 Model 3
+  trades disagree (a one-candle signal-vs-fill lag lets either dimension
+  advance independently; none reach VALIDATION tier). Not a bug, so not
+  asserted away - just resolved by picking one label rather than requiring
+  agreement. Selftest covers both the overlap-window math (three distinct
+  benchmark values for the same trade: BTC-episode, coin-episode, and their
+  intersection) and the mismatched-label case (must not raise). Re-ran
+  Model 3 with `--joint`; Model 0/1/2 unaffected (rerun anyway to pick up
+  the always-computed-but-unused new column, no output changed except each
+  manifest gaining a null `validation_tier_joint_rows` field). Rewired the
+  artifact's Model 3 tab to render the one combined table (`GATE_LAYERS.model3
+  = ['joint']`) instead of two (`['btc','coin']`); Model 1/2 unchanged.
+  Published as artifact Version 20.
 - Fixed a real bug in the episode-benchmark change below, caught by the user
   directly in the published artifact: `_specialist_table()` computed
   `benchmark_dollar_gain_usd`/`mean_benchmark_return` by summing/averaging

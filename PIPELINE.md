@@ -546,6 +546,28 @@ vollständig konsistent"-Kernaussage bleibt bestehen (BULL bleibt bei 372/379
 das schwächste Regime, vorher 375/379 — die Größenordnung der Grundaussage
 ändert sich nicht, nur einzelne Kandidatenwerte).
 
+Modell 3 zeigte bislang zwei getrennte Tabellen (BTC-Regime, Coin-Regime),
+obwohl das Gate beide Dimensionen gleichzeitig verlangt — auf Nutzerwunsch
+zu einer kombinierten Tabelle zusammengeführt. Trades und Dollar-Gewinn
+waren zwischen beiden Tabellen bereits identisch (dieselben Trades), aber
+Episodenzahl und Excess-Return unterschieden sich, weil BTC-Episode und
+Coin-Episode unterschiedliche Zeitfenster sind. Neue vierte Benchmark-Spalte
+`joint_episode_benchmark_return` in `attach_benchmark()`: die echte
+Schnittmenge aus BTC-Episode und Coin-Episode eines Trades (nicht eine der
+beiden allein) — das ist die tatsächliche Bedingung, die Modell 3s
+UND-Gate verlangt. Neue Funktion `joint_specialist_table()`, hinter
+`--joint` (nur explizit angefordert, da sie nur für ein UND-gegatetes
+Modell sinnvoll ist — auf Modell 0/1/2 angewandt ergäbe eine bedeutungslose
+Tabelle). Beim Bau entdeckt: `btc_regime`/`coin_regime` stimmen bei
+gegateten Trades fast immer überein, aber nicht ausnahmslos — 7 von rund
+22.000 Modell-3-Trades weichen ab (Signal-Kerze und Fill-Kerze können je
+einen Tag auseinanderliegen, in dem sich eine der beiden Regime-Dimensionen
+unabhängig von der anderen weiterbewegt; keiner erreicht VALIDATION-Tier).
+Kein Bug, also nicht als Fehler behandelt: `joint_specialist_table()` nimmt
+`coin_regime` als alleinige Anzeige-Bezeichnung statt Übereinstimmung
+vorauszusetzen. Modell 1/2 unverändert (nur eine Dimension gegatet, kein
+kombiniertes Regime sinnvoll).
+
 ## Wo Docker statt nativem Python steht
 
 Stufen 1–3 (Probelauf, beide Bias-Prüfungen) laufen sowohl nativ als auch in

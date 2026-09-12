@@ -603,5 +603,6 @@
   "universal_candidates": 379,
   "validation_start": "2024-01-01T00:00:00+00:00",
   "validation_tier_btc_rows": 1828,
-  "validation_tier_coin_rows": 1770
+  "validation_tier_coin_rows": 1770,
+  "validation_tier_joint_rows": null
 }

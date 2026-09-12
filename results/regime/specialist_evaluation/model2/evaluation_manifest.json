@@ -21,5 +21,6 @@
   "universal_candidates": 0,
   "validation_start": "2024-01-01T00:00:00+00:00",
   "validation_tier_btc_rows": 15,
-  "validation_tier_coin_rows": 7
+  "validation_tier_coin_rows": 7,
+  "validation_tier_joint_rows": null
 }

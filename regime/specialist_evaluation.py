@@ -146,7 +146,7 @@ def _episode_price_bounds(daily: pd.DataFrame, episode_column: str,
 
 def attach_benchmark(trades: pd.DataFrame, daily: pd.DataFrame | None = None,
                      daily_path: Path = REGIME_DAILY) -> pd.DataFrame:
-    """Three exposure-matched benchmark columns, all the coin's own spot
+    """Four exposure-matched benchmark columns, all the coin's own spot
     buy-and-hold - never BTC's price, even for the BTC-regime column, and
     never leveraged: an opportunity-cost reference for the asset itself.
 
@@ -166,8 +166,16 @@ def attach_benchmark(trades: pd.DataFrame, daily: pd.DataFrame | None = None,
       better than simply holding through it" - only a benchmark spanning the
       whole phase can. Used by `btc_specialist_table`/`coin_specialist_table`
       and everything downstream of them (rankings, universal candidates).
+    - `joint_episode_benchmark_return`: over the *overlap* of the trade's BTC
+      episode and its coin episode - the true condition Model 3's AND-gate
+      actually requires (both states matched at once), which neither
+      marginal episode alone represents. Added 2026-09-12 per explicit user
+      request to present Model 3's gated result as one combined table rather
+      than two separate BTC-/coin-regime breakdowns that necessarily agree on
+      every trade's regime label but disagree on episode length and hence on
+      excess-return. Used only by `joint_specialist_table`.
 
-    All three are NaN wherever the coin has no candle coverage for the
+    All four are NaN wherever the coin has no candle coverage for the
     relevant interval - the documented XMR/USDT post-delisting gap is the
     only known case in the current corpus, and is left as a gap rather than
     imputed, the same choice `regime.attribution` already makes for regime
@@ -177,6 +185,14 @@ def attach_benchmark(trades: pd.DataFrame, daily: pd.DataFrame | None = None,
     trades["benchmark_return"] = np.nan
     trades["btc_episode_benchmark_return"] = np.nan
     trades["coin_episode_benchmark_return"] = np.nan
+    trades["joint_episode_benchmark_return"] = np.nan
+    # Composite key identifying the actual overlap window between a trade's
+    # BTC episode and its coin episode - Model 3's real gate condition (both
+    # states matched at once), which the two marginal episodes alone cannot
+    # represent. Well-defined string even where episode ids are missing;
+    # only rows with a resolvable benchmark below ever get looked up by it.
+    trades["joint_episode_id"] = (trades["btc_episode_id"].astype(str) + "|" +
+                                  trades["coin_episode_id"].astype(str))
     unit = "datetime64[us, UTC]"
     cache: dict = {}
 
@@ -202,6 +218,10 @@ def attach_benchmark(trades: pd.DataFrame, daily: pd.DataFrame | None = None,
     btc_bounds = _episode_price_bounds(daily, "btc_episode_id", [])
     coin_bounds = _episode_price_bounds(daily.rename(columns={"pair": "coin_pair"}),
                                         "coin_episode_id", ["coin_pair"])
+    btc_bounds_j = btc_bounds.rename(columns={"episode_start": "btc_start",
+                                              "episode_end_ts": "btc_end_ts"})
+    coin_bounds_j = coin_bounds.rename(columns={"episode_start": "coin_start",
+                                                "episode_end_ts": "coin_end_ts"})
 
     def _episode_return(sub_bounds: pd.DataFrame, unit_candles: pd.DataFrame) -> pd.Series:
         start_price = _asof_price(pd.Series(sub_bounds["episode_start"].to_numpy(),
@@ -239,6 +259,25 @@ def attach_benchmark(trades: pd.DataFrame, daily: pd.DataFrame | None = None,
             lookup = sub.set_index("coin_episode_id")["_ret"]
             trades.loc[group.index, "coin_episode_benchmark_return"] = \
                 group["coin_episode_id"].map(lookup).to_numpy()
+
+        # Model 3's actual joint condition: the overlap of this trade's BTC
+        # episode and its coin episode, not either alone - non-empty by
+        # construction for any trade at all (the day it opened lies in both).
+        joint_keys = group[["btc_episode_id", "coin_episode_id"]].dropna().drop_duplicates()
+        if len(joint_keys):
+            sub = joint_keys.merge(btc_bounds_j[["btc_episode_id", "btc_start", "btc_end_ts"]],
+                                   on="btc_episode_id", how="left")
+            sub = sub.merge(
+                coin_bounds_j.loc[coin_bounds_j["coin_pair"] == pair,
+                                  ["coin_episode_id", "coin_start", "coin_end_ts"]],
+                on="coin_episode_id", how="left")
+            sub["episode_start"] = sub[["btc_start", "coin_start"]].max(axis=1)
+            sub["episode_end_ts"] = sub[["btc_end_ts", "coin_end_ts"]].min(axis=1)
+            sub["_ret"] = _episode_return(sub, unit_candles).to_numpy()
+            sub["_key"] = sub["btc_episode_id"].astype(str) + "|" + sub["coin_episode_id"].astype(str)
+            lookup = sub.set_index("_key")["_ret"]
+            trades.loc[group.index, "joint_episode_benchmark_return"] = \
+                group["joint_episode_id"].map(lookup).to_numpy()
 
     return trades
 
@@ -340,6 +379,37 @@ def coin_specialist_table(trades: pd.DataFrame) -> pd.DataFrame:
     return _specialist_table(trades, "coin_regime", "coin_regime_match",
                              "coin_episode_benchmark_return", "coin_episode_id",
                              attribution.summarize_coin_episodes(trades))
+
+
+def joint_specialist_table(trades: pd.DataFrame) -> pd.DataFrame:
+    """Model 3's real gated dimension: the entry gate requires BTC state AND
+    coin state to both be allowed *at the signal candle*, so almost every
+    admitted trade's recorded `btc_regime` and `coin_regime` (looked up at
+    `open_date`, one candle later) agree too - but not quite all: either
+    side can flip state on the fill candle independently of the other,
+    so a small number of trades (7 of ~22,000 in Model 3's pilot
+    attribution, none reaching VALIDATION tier) legitimately disagree. This
+    is a one-candle signal-vs-fill lag, not a bug, so it is not asserted
+    away - `coin_regime` (the specific asset the benchmark is actually
+    priced against) is used as the single display label rather than
+    requiring agreement. One combined table, instead of
+    `btc_specialist_table`/`coin_specialist_table` shown side by side, which
+    almost always agree on the label anyway but disagree on episode length
+    and excess-return (different episode definitions). Added 2026-09-12 per
+    explicit user request; benchmarked against
+    `joint_episode_benchmark_return` (the true overlap of the BTC episode
+    and the coin episode a trade fell in, not either marginal one).
+    Meaningless for Model 0/1/2 trades, where nothing requires the two
+    dimensions to be related at all - only call this on an AND-gated
+    (Model 3) attribution."""
+    trades = trades.copy()
+    trades["joint_regime_match"] = trades["btc_regime_match"] & trades["coin_regime_match"]
+    matched = trades[trades["joint_regime_match"]]
+    episode_summary = (matched.groupby(["strategy_id", "coin_regime"])["joint_episode_id"]
+                       .nunique().rename("episodes").reset_index())
+    return _specialist_table(trades, "coin_regime", "joint_regime_match",
+                             "joint_episode_benchmark_return", "joint_episode_id",
+                             episode_summary)
 
 
 def rank_specialists(table: pd.DataFrame, regime_column: str) -> pd.DataFrame:
@@ -550,6 +620,66 @@ def selftest() -> None:
             # still its own fresh $1000 stake, summed rather than deduped.
             assert abs(ep2_row["dollar_gain_usd"] - 1000.0 * (0.02 + 0.03)) < 1e-6
 
+            # joint_specialist_table(): the BTC episode (Jan 1-3, price
+            # 100->108.9, +8.9%) and coin episode (Jan 2-4, price 110->130,
+            # +18.18%) only partially overlap - the true joint window is
+            # Jan 2-4's *start* through Jan 3's *end* (Jan 2 through Jan 4
+            # exclusive-of-Jan-5, i.e. 110 -> 108.9, -1%). All three figures
+            # must differ, and joint_specialist_table() must use the third,
+            # not either marginal one.
+            ej_daily = pd.DataFrame([
+                {"date": pd.Timestamp("2020-01-01", tz="UTC"), "pair": "BTC/USDT",
+                 "btc_episode_id": "EP-BTC-J", "coin_episode_id": "OTHER-COIN"},
+                {"date": pd.Timestamp("2020-01-02", tz="UTC"), "pair": "BTC/USDT",
+                 "btc_episode_id": "EP-BTC-J", "coin_episode_id": "EP-COIN-J"},
+                {"date": pd.Timestamp("2020-01-03", tz="UTC"), "pair": "BTC/USDT",
+                 "btc_episode_id": "EP-BTC-J", "coin_episode_id": "EP-COIN-J"},
+                {"date": pd.Timestamp("2020-01-04", tz="UTC"), "pair": "BTC/USDT",
+                 "btc_episode_id": "OTHER-BTC", "coin_episode_id": "EP-COIN-J"},
+            ])
+            ej_trades = pd.DataFrame([{
+                "strategy_id": "EJ1", "pair": "BTC/USDT:USDT",
+                "open_date": pd.Timestamp("2020-01-02T12:00:00Z"),
+                "close_date": pd.Timestamp("2020-01-02T18:00:00Z"),
+                "is_short": False, "profit_ratio": 0.01, "profit_abs": 1.0,
+                "trade_duration": 360,
+                "btc_regime_match": True, "coin_regime_match": True,
+                "btc_regime": "BULL", "btc_episode_id": "EP-BTC-J",
+                "coin_regime": "BULL", "coin_episode_id": "EP-COIN-J",
+            }])
+            ej_trades = attach_benchmark(ej_trades, daily=ej_daily)
+            ej_row = ej_trades.iloc[0]
+            assert abs(ej_row["btc_episode_benchmark_return"] - 0.089) < 1e-9
+            assert abs(ej_row["coin_episode_benchmark_return"] - 0.181818181818) < 1e-9
+            assert abs(ej_row["joint_episode_benchmark_return"] - (-0.01)) < 1e-9
+
+            ej_trades["analysis_window"] = "validation"
+            joint_table = joint_specialist_table(ej_trades)
+            joint_row = joint_table[(joint_table["strategy_id"] == "EJ1") &
+                                    (joint_table["coin_regime"] == "BULL")].iloc[0]
+            assert abs(joint_row["excess_return"] - (0.01 - (-0.01))) < 1e-9
+            assert abs(joint_row["benchmark_dollar_gain_usd"] - (-10.0)) < 1e-6
+
+            # Real Model 3 data has a handful of trades (signal-vs-fill
+            # one-candle lag) where btc_regime_match and coin_regime_match
+            # are both True but btc_regime != coin_regime - must not raise,
+            # and must group under coin_regime rather than assert agreement.
+            mismatched = pd.DataFrame([{
+                "strategy_id": "EJ1", "pair": "BTC/USDT:USDT",
+                "open_date": pd.Timestamp("2020-01-02T12:00:00Z"),
+                "close_date": pd.Timestamp("2020-01-02T18:00:00Z"),
+                "is_short": False, "profit_ratio": 0.01, "profit_abs": 1.0,
+                "trade_duration": 360,
+                "btc_regime_match": True, "coin_regime_match": True,
+                "btc_regime": "BEAR", "btc_episode_id": "EP-BTC-J",
+                "coin_regime": "BULL", "coin_episode_id": "EP-COIN-J",
+            }])
+            mismatched = attach_benchmark(mismatched, daily=ej_daily)
+            mismatched["analysis_window"] = "validation"
+            mismatched_table = joint_specialist_table(mismatched)
+            assert set(mismatched_table["coin_regime"]) == {"BULL"}
+            assert mismatched_table.iloc[0]["trades"] == 1
+
             btc_table = btc_specialist_table(trades)
             bull_row = btc_table[(btc_table["strategy_id"] == "S1") &
                                  (btc_table["btc_regime"] == "BULL")].iloc[0]
@@ -622,6 +752,11 @@ def main(argv=None) -> int:
     parser.add_argument("--strategies", type=str, default="",
                         help="comma-separated strategy_id filter")
     parser.add_argument("--outdir", type=Path, default=OUT)
+    parser.add_argument("--joint", action="store_true",
+                        help="also compute joint_specialist_table() - only "
+                             "valid for an AND-gated trades file (Model 3) "
+                             "where btc_regime always equals coin_regime "
+                             "whenever both matched; raises otherwise")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:
@@ -648,6 +783,13 @@ def main(argv=None) -> int:
     _write(universal, args.outdir / "universal_strategies.csv")
     _write(total_gain, args.outdir / "strategy_total_dollar_gain.csv")
 
+    joint_table = None
+    if args.joint:
+        joint_table = joint_specialist_table(trades)
+        joint_ranking = rank_specialists(joint_table, "coin_regime")
+        _write(joint_table, args.outdir / "joint_specialist_table.csv")
+        _write(joint_ranking, args.outdir / "joint_specialist_ranking.csv")
+
     manifest = {
         "schema_version": 1,
         "source_trades": str(args.trades),
@@ -662,6 +804,8 @@ def main(argv=None) -> int:
         "validation_tier_coin_rows": int((coin_table["tier"] == "VALIDATION").sum()),
         "universal_candidates": int(len(universal)),
         "strategies_with_total_dollar_gain": int(len(total_gain)),
+        "validation_tier_joint_rows": (
+            int((joint_table["tier"] == "VALIDATION").sum()) if joint_table is not None else None),
         "evidence_scope": (
             "Specialist/universal evaluation, strategy_filter above defines "
             "its population (null = every strategy in source_trades). Ranks "
@@ -691,8 +835,9 @@ def main(argv=None) -> int:
     print(f"evaluated {len(set(trades['strategy_id']))} strategies, "
           f"{len(trades)} trades; VALIDATION-tier rows: "
           f"btc={manifest['validation_tier_btc_rows']} "
-          f"coin={manifest['validation_tier_coin_rows']}; "
-          f"universal candidates: {manifest['universal_candidates']}; "
+          f"coin={manifest['validation_tier_coin_rows']}"
+          + (f" joint={manifest['validation_tier_joint_rows']}" if joint_table is not None else "")
+          + f"; universal candidates: {manifest['universal_candidates']}; "
           f"strategies with a total-dollar-gain row: "
           f"{manifest['strategies_with_total_dollar_gain']}")
     return 0
