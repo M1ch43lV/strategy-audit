@@ -3,7 +3,38 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-12T02:00:00+02:00
+- Last update: 2026-09-12T04:30:00+02:00
+- Implemented `max_drawdown` (§19's `worst_regime_drawdown`, the one
+  regime-fingerprint field the module's docstring previously flagged as a
+  known gap) in `regime/specialist_evaluation.py`: new `_regime_drawdown()`
+  builds a per-(strategy, regime) fixed-$1000-stake equity curve from that
+  group's own matched trades ordered by `close_date`, and reports the worst
+  peak-to-trough relative drop - same no-compounding convention as
+  `_fixed_stake_gain()`, same reason (compounding a regime's own trades
+  reproduces the exponential-math distortion that function already dropped).
+  Wired into `_specialist_table()`, so it is on every btc/coin/joint
+  specialist-table row for Model 0 and gated Model 1/2/3 alike; the
+  Universal-Kandidaten view gets it for free via the existing
+  worst-regime-row merge in `export_v9.py` (`DETAIL_COLS`). Selftest adds a
+  hand-computed 4-trade case (+10/-5/-10/+20% -> worst drawdown
+  (1100-950)/1100) plus a zero-drawdown case (an all-gains regime never
+  dips below its own starting capital). Re-ran all four evaluations (Model 0
+  full population + Model 1/2/3 gated, `--joint` for Model 3) to populate
+  the new column; row/episode/trade counts and every other column are
+  unchanged (drawdown was additive only, not a threshold input). Added a
+  "Max Drawdown" column to every strategy-listing table in the artifact
+  (BTC-/Coin-Regime-Spezialisten, Universal-Kandidaten - both the
+  fully-consistent and full sortable views -, and the gated Model 1/2/3
+  tables); the pre-existing whole-period `max_drawdown_account` in the
+  separate top-10 ft-stats table is untouched (different metric, different
+  table, was already there). Also extended the "ADX-Regime: Definition und
+  Zeiträume" section with the six volatility-refined reporting phases
+  (`bull_trend`/`bear_trend`/`transition`/`range_quiet`/`range_choppy`/
+  `high_vol_shock`, Amendment 2026-09-05) - descriptive text only, per
+  explicit user choice: the specialist/universal/gated tables keep grouping
+  by the frozen four-state model, since the preregistration itself defines
+  the six phases as a reporting layer that "decides nothing." Published as
+  artifact Version 22.
 - Added `joint_episode_benchmark_return` to `attach_benchmark()` and a new
   `joint_specialist_table()` (behind a `--joint` CLI flag, since it is only
   meaningful for an AND-gated attribution) in `regime/specialist_evaluation.py`,

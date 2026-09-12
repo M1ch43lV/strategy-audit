@@ -418,9 +418,18 @@ vorhandene Attribution an: Discovery/Validation-Split, die 5-Episoden-/
 Spot-Buy&Hold-Rendite über genau das Handelsintervall jedes einzelnen
 Trades, per `merge_asof` gegen 1-Minuten-Kerzen). Rankt ausschließlich
 `VALIDATION`-Tier-Zeilen; alles andere wird berichtet, aber nie gerankt.
-`worst_regime_drawdown` aus §19 fehlt bewusst — bräuchte eine
-Equity-Kurven-Rekonstruktion je Strategie und Regime, ein deutlich größeres
-Feature als der Rest des Moduls.
+
+`max_drawdown` (§19 `worst_regime_drawdown`, 2026-09-12 auf expliziten
+Nutzerwunsch nachgezogen): pro (Strategie, Regime) der schlimmste
+Peak-to-Trough-Einbruch einer hypothetischen Kurve aus genau den in diesem
+Regime gematchten Trades, nach `close_date` geordnet — `_regime_drawdown()`.
+Dieselbe Fixed-$1000-je-Trade-Konvention wie die Dollar-Ansicht unten, aus
+demselben Grund: eine kompoundierende Kurve über die Regime-Trades einer
+Strategie reproduziert dieselbe Exponential-Verzerrung, die dort schon
+verworfen wurde. Für jede Zeile berechnet (VALIDATION wie EXPLORATORY), nie
+nur für die "schlimmste" Kombination — in der Universal-Kandidaten-Ansicht
+kommt der Wert einfach aus der Zeile, die `worst_regime` ohnehin schon
+referenziert.
 
 Dollar-Ansicht (2026-09-11, auf expliziten Nutzerwunsch): zusätzlich zur
 Benchmark-relativen Excess-Return-Prozentzahl ein Dollar-Betrag —

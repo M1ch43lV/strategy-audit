@@ -12,10 +12,12 @@ the exposure-matched benchmark, never absolute profit) and never collapses a
 strategy's regime profile into one composite score - both explicitly ruled
 out in sections 17 and 19 and the amendment itself.
 
-Known limitation: `worst_regime_drawdown` from section 19's regime
-fingerprint is not produced here. It needs an equity-curve reconstruction
-per strategy per regime slice, a materially bigger feature than the rest of
-this module; every other field in that fingerprint is.
+`max_drawdown` (section 19's `worst_regime_drawdown`) is a per-(strategy,
+regime) equity-curve reconstruction - see `_regime_drawdown()` - built on
+the same fixed-$1000-stake convention as the dollar-gain figures below, for
+the same reason: a compounding curve over a strategy's own regime-matched
+trades produces the identical exponential-math distortion `_fixed_stake_gain()`
+already documents dropping.
 
 Also reports a `$1000`-fixed-stake dollar total per (strategy, regime) and
 per strategy overall (`total_dollar_gain_table`) - descriptive only,
@@ -310,6 +312,37 @@ def _fixed_stake_gain(df: pd.DataFrame, value_column: str,
     return df.groupby(group_cols, dropna=False)[value_column].sum() * START_CAPITAL
 
 
+def _regime_drawdown(df: pd.DataFrame, group_cols: list[str]) -> pd.Series:
+    """Section 19's `worst_regime_drawdown`: the worst peak-to-trough drop of
+    a hypothetical equity curve built only from this group's own matched
+    trades, ordered by `close_date` - the largest relative loss the group's
+    trades alone would have inflicted on an account that only ever held
+    them.
+
+    Same fixed-$1000-per-trade convention as `_fixed_stake_gain()`, extended
+    into a running curve instead of a single sum, and for the same reason:
+    compounding a strategy's regime-matched trades sequentially reproduces
+    the exponential-math distortion that function's docstring already
+    documents dropping (a few hundred trades and the curve is dominated by
+    compounding, not strategy quality). This is a fixed-stake curve's own
+    drawdown, not a claim about the strategy's real, concurrently-positioned
+    account.
+
+    Returns 0.0 for a group whose curve never dips below its starting
+    capital (including a single-trade group)."""
+    if df.empty:
+        return pd.Series(dtype="float64")
+    def _worst(profit_ratios: pd.Series) -> float:
+        equity = START_CAPITAL + (profit_ratios.to_numpy() * START_CAPITAL).cumsum()
+        equity = np.concatenate([[START_CAPITAL], equity])
+        peak = np.maximum.accumulate(equity)
+        with np.errstate(invalid="ignore", divide="ignore"):
+            drawdown = np.where(peak > 0, (peak - equity) / peak, 0.0)
+        return float(drawdown.max())
+    ordered = df.sort_values("close_date")
+    return ordered.groupby(group_cols, dropna=False)["profit_ratio"].apply(_worst)
+
+
 def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: str,
                       benchmark_column: str, episode_column: str,
                       episode_summary: pd.DataFrame) -> pd.DataFrame:
@@ -320,7 +353,7 @@ def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: st
                                      "episodes", "mean_profit_ratio",
                                      "mean_benchmark_return", "excess_return", "tier",
                                      "dollar_gain_usd", "benchmark_dollar_gain_usd",
-                                     "excess_dollar_gain_usd"])
+                                     "excess_dollar_gain_usd", "max_drawdown"])
     group_cols = ["strategy_id", regime_column]
     grouped = validation.groupby(group_cols, dropna=False)
     table = grouped.agg(
@@ -360,9 +393,11 @@ def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: st
 
     dollar_gain = _fixed_stake_gain(validation, "profit_ratio", group_cols)
     benchmark_dollar_gain = _fixed_stake_gain(episode_level, benchmark_column, group_cols)
+    regime_drawdown = _regime_drawdown(validation, group_cols)
     table = table.set_index(group_cols)
     table["dollar_gain_usd"] = dollar_gain
     table["benchmark_dollar_gain_usd"] = benchmark_dollar_gain
+    table["max_drawdown"] = regime_drawdown
     table = table.reset_index()
     table["excess_dollar_gain_usd"] = table["dollar_gain_usd"] - table["benchmark_dollar_gain_usd"]
 
@@ -620,6 +655,23 @@ def selftest() -> None:
             # still its own fresh $1000 stake, summed rather than deduped.
             assert abs(ep2_row["dollar_gain_usd"] - 1000.0 * (0.02 + 0.03)) < 1e-6
 
+            # max_drawdown: a fixed-$1000-stake curve over four trades in
+            # close_date order, +10%/-5%/-10%/+20% -> equity 1000, 1100,
+            # 1050, 950, 1150. Peak so far at each step: 1000, 1100, 1100,
+            # 1100, 1150. Worst drawdown is at the trough (950 against the
+            # 1100 peak set by trade 1): (1100-950)/1100.
+            dd_days = [pd.Timestamp("2024-03-01", tz="UTC") + pd.Timedelta(days=i)
+                      for i in range(4)]
+            dd_rows = [make("DD1", "BULL", i, dd_days[i], ratio, "DD-0")
+                      for i, ratio in enumerate([0.10, -0.05, -0.10, 0.20])]
+            dd_daily = pd.DataFrame([daily_row(day, "DD-0") for day in dd_days])
+            dd_trades = attach_benchmark(pd.DataFrame(dd_rows), daily=dd_daily)
+            dd_trades["analysis_window"] = "validation"
+            dd_table = btc_specialist_table(dd_trades)
+            dd_row = dd_table[(dd_table["strategy_id"] == "DD1") &
+                              (dd_table["btc_regime"] == "BULL")].iloc[0]
+            assert abs(dd_row["max_drawdown"] - (150.0 / 1100.0)) < 1e-9
+
             # joint_specialist_table(): the BTC episode (Jan 1-3, price
             # 100->108.9, +8.9%) and coin episode (Jan 2-4, price 110->130,
             # +18.18%) only partially overlap - the true joint window is
@@ -686,6 +738,10 @@ def selftest() -> None:
             assert bull_row["episodes"] == 6
             assert bull_row["trades"] == 12
             assert bull_row["tier"] == "VALIDATION"
+            # All 12 trades are gains (+5%/+3% alternating) - the curve never
+            # dips below its own starting capital, so the worst drawdown is
+            # zero, not undefined or negative.
+            assert bull_row["max_drawdown"] == 0.0
             bear_row = btc_table[(btc_table["strategy_id"] == "S1") &
                                  (btc_table["btc_regime"] == "BEAR")].iloc[0]
             assert bear_row["episodes"] == 2
@@ -816,9 +872,10 @@ def main(argv=None) -> int:
             "but over the *entire* BTC-/coin-regime episode a trade fell "
             "in, not just that trade's own open-to-close interval (changed "
             "2026-09-12; see attach_benchmark()'s docstring for why), "
-            "never raw profit. "
-            "worst_regime_drawdown is not produced - see this module's "
-            "docstring." % (MIN_EPISODES, MIN_TRADES)
+            "never raw profit. max_drawdown is the worst peak-to-trough "
+            "drop of a fixed-$%g-stake curve built only from each row's own "
+            "matched trades, ordered by close_date - see "
+            "_regime_drawdown()'s docstring." % (MIN_EPISODES, MIN_TRADES, START_CAPITAL)
         ),
         "dollar_gain_scope": (
             "dollar_gain_usd/benchmark_dollar_gain_usd (per-regime tables) "
