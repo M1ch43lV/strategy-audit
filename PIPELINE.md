@@ -431,6 +431,22 @@ nur für die "schlimmste" Kombination — in der Universal-Kandidaten-Ansicht
 kommt der Wert einfach aus der Zeile, die `worst_regime` ohnehin schon
 referenziert.
 
+**Korrektur 2026-09-13** (Nutzerfrage: "Warum max. Drawdown > 100%? Gehebelt?"):
+die erste Implementierung normalisierte gegen den bisherigen Kurven-Höchststand
+statt gegen das tatsächlich eingesetzte Kapital. Bei vielen Trades in einem
+Regime bleibt der Höchststand klein, während sich viele gewöhnliche kleine
+Verluste zu einem großen Betrag summieren — `CryptoFrogHO2` zeigte 685%
+Drawdown in einem Regime, obwohl der schlechteste Einzeltrade nur −13% verlor
+(kein Short, kein Hebel; geprüft: nur 4 von 589 Strategien haben überhaupt
+einen Trade mit `profit_ratio < -1`). Behoben durch Normalisierung gegen das
+kumulierte Kapital (`Trades-so-far × $1000`) statt gegen den Höchststand —
+dadurch mathematisch nicht über 100% steigbar, solange kein Einzeltrade mehr
+als 100% seines eigenen Einsatzes verliert (echte Hebelwirkung oder ein
+Short-Verlust über den vollen Einsatz hinaus wäre genau das). Nach der
+Korrektur liegt aktuell keine Zeile in Modell 0 oder dem 7er-Piloten über
+100%; sollte das im vollen Modell-1/2/3-Lauf (in Arbeit) doch vorkommen, ist
+es ein echtes Hebel-/Short-Signal und wird dann markiert.
+
 Dollar-Ansicht (2026-09-11, auf expliziten Nutzerwunsch): zusätzlich zur
 Benchmark-relativen Excess-Return-Prozentzahl ein Dollar-Betrag —
 `dollar_gain_usd`/`benchmark_dollar_gain_usd`/`excess_dollar_gain_usd` in

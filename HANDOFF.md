@@ -3,7 +3,36 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-12T04:30:00+02:00
+- Last update: 2026-09-13T15:00:00+02:00
+- Fixed a real bug in `max_drawdown` (below), caught by a user question
+  about the published artifact showing drawdowns over 100% and asking if
+  those strategies were leveraged: mostly not - it was a normalization bug.
+  `_regime_drawdown()` divided the worst peak-to-trough dollar drop by the
+  curve's own running *peak*. With many independent $1000-stake trades in
+  one regime, the peak stays small while ordinary small losses accumulate
+  across hundreds/thousands of trades, so the ratio blew past 100% with no
+  leverage at all - `CryptoFrogHO2` (spot, never short) showed 685% regime
+  drawdown while its worst single trade ever lost 13%. Checked the whole
+  corpus: only 4 of 589 strategies (`VolatilitySystemV2`,
+  `WTDMIPRICEDCAStrategyFuture`, `VolatilitySystem`,
+  `SMAOffset_Hippocritical_dca_leverage`) have any trade with
+  `profit_ratio < -1` (the only way an unleveraged instrument can lose more
+  than its own stake) - the other 693/1962 BTC-table rows over 100% were all
+  this bug. Fixed by normalizing against capital committed so far
+  (`trades-so-far * $1000`) instead of the peak: proved this keeps the
+  ratio <= 1.0 whenever every trade's own `profit_ratio >= -1`, so a row
+  still over 100% after the fix is a real, precise leverage/over-100%-short
+  signal rather than an aggregation artifact. Added a 50-trades-at--5%-each
+  regression case (would have shown 250% under the old bug, correctly shows
+  5% now) alongside the existing 4-trade hand-computed case (value changed
+  from 150/1100 to 150/3000 under the new denominator). Re-ran Model 0 (full
+  population) and the Model 1/2/3 pilot; after the fix, zero rows exceed
+  100% in either. Added a "Korrektur 2026-09-13" callout to the artifact
+  explaining this the same way the 2026-09-12 B&H-dollar bug was disclosed.
+  Published as artifact Version 24. No asterisk-marking mechanism was added
+  since nothing currently exceeds 100% to mark - revisit once the full
+  Model 1/2/3 population run (in progress, see entry below) lands, since it
+  includes the 4 strategies above and may produce a genuine >100% row.
 - Implemented `max_drawdown` (§19's `worst_regime_drawdown`, the one
   regime-fingerprint field the module's docstring previously flagged as a
   known gap) in `regime/specialist_evaluation.py`: new `_regime_drawdown()`

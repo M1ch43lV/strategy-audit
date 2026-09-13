@@ -315,29 +315,47 @@ def _fixed_stake_gain(df: pd.DataFrame, value_column: str,
 def _regime_drawdown(df: pd.DataFrame, group_cols: list[str]) -> pd.Series:
     """Section 19's `worst_regime_drawdown`: the worst peak-to-trough drop of
     a hypothetical equity curve built only from this group's own matched
-    trades, ordered by `close_date` - the largest relative loss the group's
-    trades alone would have inflicted on an account that only ever held
-    them.
+    trades, ordered by `close_date`, normalized against the capital actually
+    committed by that point - not against the curve's own running peak.
 
-    Same fixed-$1000-per-trade convention as `_fixed_stake_gain()`, extended
-    into a running curve instead of a single sum, and for the same reason:
-    compounding a strategy's regime-matched trades sequentially reproduces
-    the exponential-math distortion that function's docstring already
-    documents dropping (a few hundred trades and the curve is dominated by
-    compounding, not strategy quality). This is a fixed-stake curve's own
-    drawdown, not a claim about the strategy's real, concurrently-positioned
-    account.
+    Same fixed-$1000-per-trade convention as `_fixed_stake_gain()`: each
+    trade contributes its own fresh $1000 stake's profit, summed rather than
+    compounded, for the same reason that function's docstring gives
+    (compounding reproduces an exponential-math distortion, not strategy
+    quality). Normalizing by the running *peak* instead of by capital
+    committed was tried first and was wrong (2026-09-13, caught by a user
+    reading the published artifact): with N independent $1000 stakes and no
+    shared depleting balance, a long run of many small, ordinary losses can
+    dwarf a peak that only rose a little - e.g. `CryptoFrogHO2`'s worst
+    single trade ever lost 13% (no leverage, `is_short` false throughout),
+    yet peak-normalized drawdown in one regime came out to 685%, purely from
+    summing ~4,500 trades' losses against a peak of a few hundred dollars.
+    That number answered "how many peak-dollars deep was the trough", which
+    for many independent stakes is not a percentage at all.
+
+    Normalizing by capital committed instead - `(i+1) * START_CAPITAL` after
+    i+1 trades, since each trade brought its own $1000 regardless of
+    profit/loss - makes the result a bounded, meaningful fraction: at most
+    k trades since the peak can each have lost at most 100% of their own
+    stake (unleveraged, `profit_ratio >= -1`), so their combined loss is at
+    most k * $1000, and capital committed by then is at least k * $1000 -
+    the ratio cannot exceed 1.0 unless at least one trade's own
+    `profit_ratio` fell below -1, which only happens with leverage or a
+    short whose loss exceeded the stake. A row still above 100% after this
+    fix is exactly that signal, not an aggregation artifact.
 
     Returns 0.0 for a group whose curve never dips below its starting
     capital (including a single-trade group)."""
     if df.empty:
         return pd.Series(dtype="float64")
     def _worst(profit_ratios: pd.Series) -> float:
+        n = len(profit_ratios)
         equity = START_CAPITAL + (profit_ratios.to_numpy() * START_CAPITAL).cumsum()
         equity = np.concatenate([[START_CAPITAL], equity])
         peak = np.maximum.accumulate(equity)
+        committed = START_CAPITAL * np.maximum(np.arange(n + 1), 1)
         with np.errstate(invalid="ignore", divide="ignore"):
-            drawdown = np.where(peak > 0, (peak - equity) / peak, 0.0)
+            drawdown = np.where(committed > 0, (peak - equity) / committed, 0.0)
         return float(drawdown.max())
     ordered = df.sort_values("close_date")
     return ordered.groupby(group_cols, dropna=False)["profit_ratio"].apply(_worst)
@@ -657,9 +675,12 @@ def selftest() -> None:
 
             # max_drawdown: a fixed-$1000-stake curve over four trades in
             # close_date order, +10%/-5%/-10%/+20% -> equity 1000, 1100,
-            # 1050, 950, 1150. Peak so far at each step: 1000, 1100, 1100,
-            # 1100, 1150. Worst drawdown is at the trough (950 against the
-            # 1100 peak set by trade 1): (1100-950)/1100.
+            # 1050, 950, 1150; peak so far at each step 1000, 1100, 1100,
+            # 1100, 1150; capital committed so far (i * $1000) 1000(floor),
+            # 1000, 2000, 3000, 4000. Normalized by capital committed, not by
+            # the peak (that was the 2026-09-13 bug - see _regime_drawdown()'s
+            # docstring): worst ratio is at trade 3 (1100-950)/3000, not
+            # trade 2's (1100-1050)/2000.
             dd_days = [pd.Timestamp("2024-03-01", tz="UTC") + pd.Timedelta(days=i)
                       for i in range(4)]
             dd_rows = [make("DD1", "BULL", i, dd_days[i], ratio, "DD-0")
@@ -670,7 +691,29 @@ def selftest() -> None:
             dd_table = btc_specialist_table(dd_trades)
             dd_row = dd_table[(dd_table["strategy_id"] == "DD1") &
                               (dd_table["btc_regime"] == "BULL")].iloc[0]
-            assert abs(dd_row["max_drawdown"] - (150.0 / 1100.0)) < 1e-9
+            assert abs(dd_row["max_drawdown"] - (150.0 / 3000.0)) < 1e-9
+
+            # Regression for the 2026-09-13 bug: 50 trades at -5% each, no
+            # winners, so the peak never rises above the $1000 starting
+            # capital. The old peak-normalized version divided a growing
+            # cumulative loss by that flat, tiny peak - here (1000-(1000-
+            # 50*50))/1000 = 250%, fifty small -5% trades reported as a
+            # worse-than-total-wipeout. Normalized by capital committed
+            # instead, losing a steady 5% of every stake is exactly a 5%
+            # drawdown, matching what actually happened - not an amount that
+            # grows with trade count for a constant per-trade loss.
+            many_days = [pd.Timestamp("2024-04-01", tz="UTC") + pd.Timedelta(days=i)
+                        for i in range(50)]
+            many_rows = [make("DD2", "BULL", i, many_days[i], -0.05, "DD2-0")
+                        for i in range(50)]
+            many_daily = pd.DataFrame([daily_row(day, "DD2-0") for day in many_days])
+            many_trades = attach_benchmark(pd.DataFrame(many_rows), daily=many_daily)
+            many_trades["analysis_window"] = "validation"
+            many_table = btc_specialist_table(many_trades)
+            many_row = many_table[(many_table["strategy_id"] == "DD2") &
+                                  (many_table["btc_regime"] == "BULL")].iloc[0]
+            assert many_row["max_drawdown"] <= 1.0
+            assert abs(many_row["max_drawdown"] - 0.05) < 1e-9
 
             # joint_specialist_table(): the BTC episode (Jan 1-3, price
             # 100->108.9, +8.9%) and coin episode (Jan 2-4, price 110->130,
