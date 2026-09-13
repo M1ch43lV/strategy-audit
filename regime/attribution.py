@@ -343,7 +343,13 @@ def _summarize(trades: pd.DataFrame, keys: list[str], match_column: str) -> pd.D
     if matched.empty:
         return pd.DataFrame(columns=keys + ["trades"])
     matched["win_profit"] = matched["profit_abs"].clip(lower=0)
-    matched["loss_profit"] = -matched["profit_abs"].clip(upper=0)
+    # abs(), not a bare negation: negating a genuinely empty clip (0.0)
+    # produces -0.0 for every winning row, and summing many -0.0 values
+    # stays -0.0 - so a group with zero losing trades used to divide by
+    # -0.0 (=-inf) below, silently caught only by the .replace(0.0, np.nan)
+    # that followed. Same class of sign bug already fixed in
+    # specialist_evaluation.py's _freqforge_metrics() (2026-09-14).
+    matched["loss_profit"] = matched["profit_abs"].clip(upper=0).abs()
     grouped = matched.groupby(keys, dropna=False)
     result = grouped.agg(
         trades=("profit_abs", "size"), long_trades=("is_short", lambda x: int((~x).sum())),
@@ -353,7 +359,13 @@ def _summarize(trades: pd.DataFrame, keys: list[str], match_column: str) -> pd.D
         mean_duration_minutes=("trade_duration", "mean"),
         active_dates=("open_date", lambda x: x.dt.normalize().nunique()),
     ).reset_index()
-    result["profit_factor"] = result["gross_profit"] / result["gross_loss"].replace(0.0, np.nan)
+    # No .replace(0.0, np.nan): a group with zero losing trades now
+    # produces +inf (gross_loss is a true, non-negative 0.0), the same
+    # "perfect win rate" convention specialist_evaluation.py's
+    # _profit_factor_points() already treats as best-in-class - unified
+    # 2026-09-14 after a DeepSeek-v4-pro review found the two modules
+    # disagreed (NaN here, +inf there) for the identical case.
+    result["profit_factor"] = result["gross_profit"] / result["gross_loss"]
     result["win_rate"] = result["wins"] / result["trades"]
     return result
 
@@ -599,6 +611,12 @@ def selftest() -> None:
         assert int(summarize_btc(rows)["trades"].sum()) == 4
         assert int(summarize_coin(rows)["trades"].sum()) == 3
         assert int(summarize(rows)["trades"].sum()) == 3
+        # Every fixture trade is a win (profit_abs > 0): gross_loss is a true
+        # 0.0, so profit_factor must be +inf (2026-09-14 fix) - not NaN
+        # (the old .replace(0.0, np.nan) behavior) and not -inf (the sign
+        # bug a bare negation of a clipped 0.0 would reintroduce).
+        btc_pf = summarize_btc(rows)["profit_factor"]
+        assert btc_pf.gt(0).all() and np.isposinf(btc_pf.to_numpy()).all(), btc_pf
         # BTC and coin-regime episode counts agree on this fixture: every
         # matched trade is on BTC/USDT itself, so btc_episode_id and
         # coin_episode_id carry the same values.

@@ -3,7 +3,72 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-14T09:30:00+02:00
+- Last update: 2026-09-14T11:00:00+02:00
+- User asked for a from-scratch DeepSeek-v4-pro code review of the metric
+  code (`regime/specialist_evaluation.py`) and the Model 0/1/2/3
+  construction code (`regime/attribution.py`, `regime/gate_adapter.py`,
+  `regime/gated_backtest.py`, `regime/gated_attribution.py`,
+  `regime/model_compare.py`) while the sideways/transition backtest (see
+  entry below) ran in the background - conversation
+  "regime-code-audit-2026-09-14". Every fix proposal was checked back with
+  DeepSeek before implementing (explicit user instruction), not just the
+  first critique taken at face value. Found and fixed:
+  1. **Tier-episode-window bug (most consequential):**
+     `btc_specialist_table()`/`coin_specialist_table()`/
+     `joint_specialist_table()` counted a row's episodes from the
+     strategy's *entire* history, not "within the validation window" as
+     `REGIME_PREREGISTRATION.md`'s 2026-09-11 amendment explicitly
+     requires - verified by grepping that file, not assumed. Only the
+     trade count was already validation-scoped. Fixed by filtering to
+     `analysis_window == "validation"` before the episode count reaches
+     each table. Model 0 re-run: BTC VALIDATION rows 1,828 -> 1,671 (coin
+     1,770 -> 1,757); universal-candidate count held at 379 (not
+     re-verified row-by-row).
+  2. **Sortino mixed time scales** (per-day numerator vs per-trade-level
+     denominator, annualized by `sqrt(365)` as if both were daily) - fixed
+     to keep both sides trade-level (`ddof=1` downside std) and annualize
+     by `sqrt(trades_per_year)`.
+  3. **CAGR was worse than the first fix**: `dollar_gain_usd/START_CAPITAL`
+     summed many independent $1000 stakes, not one compounding position,
+     yet was exponentiated as if it were - observed up to 139,000,000%
+     "CAGR" in the full Model 0 corpus. Replaced with a linear,
+     non-compounding `annualized_return = mean_profit_ratio *
+     trades_per_year`; renamed everywhere (column, function, artifact
+     label "CAGR" -> "Rendite p.a.") so it can't be mistaken for a real
+     CAGR; new point-scale anchors (0%/20%/100%/300%+) frozen before
+     inspecting any value.
+  4. **profit_factor convention disagreed between modules** (NaN in
+     `attribution.py`'s `_summarize()` vs +inf in
+     `specialist_evaluation.py`'s `_freqforge_metrics()` for the identical
+     zero-losing-trades case) - unified on +inf; this also surfaced and
+     fixed a masked sign bug (`-clip(upper=0)` produces `-0.0`, which would
+     have given `-inf` once the `.replace(0.0, np.nan)` mask was removed,
+     had it not also been switched to `.clip(upper=0).abs()`).
+  5. **"Liquidation-Safety" counted harmless `force_exit`s** (e.g. backtest
+     window end), not just true liquidations - split into a strict,
+     score-relevant `liquidation_rate` (`exit_reason == "liquidation"`
+     only) and a new, purely descriptive `forced_exit_rate` (the old,
+     broader definition).
+  All five covered by new/updated selftest assertions in
+  `regime/specialist_evaluation.py` (a new `TIERBUG` fixture: 6
+  pre-2024 episodes vs 2 real validation-window ones, must stay
+  `EXPLORATORY`; a new `LIQ1` fixture for the liquidation/forced-exit
+  split; rewritten Sortino/CAGR fixtures with directly-computed expected
+  values rather than hand-derived literals). Every module's selftest
+  passes (`attribution`, `specialist_evaluation`, `gate_adapter`,
+  `gated_backtest`, `gated_attribution`, `model_compare`).
+  Model 0's full 589-strategy `specialist_evaluation` re-run already done
+  (47s). **Still outstanding when this baton is picked up:** rerun
+  `export_v9.py` (needs its `cagr`->`annualized_return` rename, already
+  done in the scratchpad copy) and the template (renames done: "CAGR"
+  column -> "Rendite p.a." everywhere EXCEPT the "Freqtrade-eigene
+  Kennzahlen" section, which is a genuinely different, real freqtrade-
+  native CAGR field from `model_compare.py` and must stay untouched -
+  don't rename `fmtCagr()`/its call site, only `fmtCagrRaw()` which was
+  renamed to `fmtAnnualizedReturn()`); then merge the sideways/transition
+  data (see entry below) and rebuild/republish the artifact; then update
+  `MANUAL_TRADES_TOTAL` in `export_v9.py` (currently hardcoded, will be
+  stale once new candidates are merged in) to a computed value instead.
 - User asked to extend Model 1/2/3 (BTC-/coin-state gated pooled backtests)
   with ADX SIDEWAYS and ADX TRANSITION gate variants, explicitly flagged as
   a deviation from `REGIME_AUDIT_PLAN.md`'s frozen preregistration (every

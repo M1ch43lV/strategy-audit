@@ -1169,9 +1169,32 @@ rankings, Top-N selection, universal-candidate counts) across every row in
 the corpus; re-derived every specific number the published artifact's
 prose quotes.
 
----
+**Addendum 2026-09-14 (full-module DeepSeek-v4-pro code review, conversation
+"regime-code-audit-2026-09-14", user-requested):** a from-scratch review of
+`regime/specialist_evaluation.py`, `regime/attribution.py`,
+`regime/gate_adapter.py`, `regime/gated_backtest.py`,
+`regime/gated_attribution.py`, and `regime/model_compare.py` for bugs,
+independent of any specific fix already made. Found one defect in this
+section's own tier rule and four in `freqforge_score`'s inputs (§17);
+every proposed fix was itself checked back with DeepSeek-v4-pro before
+implementing, per explicit user instruction, not implemented on the first
+critique alone.
 
-# 19. Define universal strategies
+**Tier-episode-window bug (the most consequential finding):**
+`btc_specialist_table()`/`coin_specialist_table()`/`joint_specialist_table()`
+counted a row's episodes from the strategy's *entire* history
+(2020-03-01 onward), not from "5 independent regime episodes **within the
+validation window**" as this document's amendment above and
+`REGIME_PREREGISTRATION.md`'s 2026-09-11 amendment both already required in
+words - only the *trade* count was correctly validation-window-scoped. A
+row with, say, 6 pre-2024 episodes but only 2 real validation-window ones
+could be wrongly promoted to `VALIDATION` on evidence its own trade count
+never actually supported. Fixed by filtering each table's episode count to
+`analysis_window == "validation"` before it ever reaches the tier
+comparison - the same window `_specialist_table()` already applies to
+trades. Model 0's re-run after the fix: BTC VALIDATION-tier rows
+1,828 -> 1,671 (coin: 1,770 -> 1,757); universal candidates held at 379
+(count coincidentally stable, membership not re-verified row-by-row).
 
 Universal strategies are not necessarily top-return strategies.
 

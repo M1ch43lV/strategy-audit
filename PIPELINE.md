@@ -535,6 +535,61 @@ wurden neu hergeleitet (u. a. "ADX Uptrend schwächstes Regime" 372→359 von
 379, vollständig konsistente Kandidaten 0→8). Modell 0 und der 7er-Pilot
 neu gerechnet, Selftest um Regressionsfälle für beides ergänzt.
 
+**Voller Code-Review durch DeepSeek-v4-pro (2026-09-14, auf expliziten
+Nutzerwunsch, Konversation "regime-code-audit-2026-09-14"):** `regime/
+specialist_evaluation.py`, `regime/attribution.py`, `regime/gate_adapter.py`,
+`regime/gated_backtest.py`, `regime/gated_attribution.py` und `regime/
+model_compare.py` komplett auf Bugs durchsucht, unabhängig von bereits
+bekannten Fixes. Jeder Korrekturvorschlag wurde vor der Umsetzung erneut mit
+DeepSeek gegengecheckt (nicht nur der erste Befund übernommen). Fünf echte
+Fehler bestätigt und behoben:
+
+1. **Tier-Einstufung zählte Episoden über die volle Historie, nicht nur das
+   Validierungsfenster** — der schwerwiegendste Fund, siehe
+   `REGIME_AUDIT_PLAN.md` §18-Addendum für Details und die genaue
+   Gegenprobe gegen `REGIME_PREREGISTRATION.md`s "within the validation
+   window"-Formulierung. Modell 0 neu gerechnet: BTC-VALIDATION-Zeilen
+   1.828→1.671, Coin 1.770→1.757.
+2. **Sortino mischte Zeitskalen** — Zähler war eine Tagesrate
+   (`sum_profit/total_days`), Nenner die Streuung roher Trade-Level-
+   Verluste, multipliziert mit `sqrt(365)` als wären beide Seiten täglich.
+   Behoben: beide Seiten konsequent auf Trade-Ebene (Mittelwert und
+   Stichproben-Streuung, `ddof=1`, von `profit_ratio` direkt), annualisiert
+   mit `sqrt(Trades pro Jahr)` statt `sqrt(365)` — die übliche Methode für
+   eine Kennzahl aus unregelmäßig getakteten Beobachtungen.
+3. **CAGR war noch fehlerhafter** — `dollar_gain_usd/START_CAPITAL` ist die
+   Summe vieler unabhängiger $1000-Einsätze, keine einzelne kompoundierende
+   Position; die Formel potenzierte diese Summe trotzdem, als wäre sie
+   eine. Konkret beobachtet im vollen Modell-0-Bestand: bis zu 139 Mio. %
+   "CAGR" bei kurzen, handelsreichen Episoden (siehe oben) — mathematisch
+   folgerichtig aus der Formel, aber keine sinnvolle Kennzahl. Ersetzt durch
+   `annualized_return = mean_profit_ratio × Trades pro Jahr`, eine lineare
+   (nicht kompoundierende) Jahreshochrechnung, konsistent mit der
+   Fixed-Stake-Buchführung, die dieses Modul überall sonst verwendet.
+   Umbenannt (`cagr`→`annualized_return`, `_cagr_points()`→
+   `_annualized_return_points()`, Artefakt-Spalte "CAGR"→"Rendite p.a."),
+   damit die Spalte nie mit einer echten Zinseszins-CAGR verwechselt werden
+   kann; Punkte-Skala neu auf die kleinere typische Größenordnung dieser
+   Kennzahl kalibriert (0%→0, 20%→50, 100%→90, 300%+→100 Punkte — vor jeder
+   Sichtung eines Strategiewerts festgelegt).
+4. **Profit-Factor-Konvention uneinheitlich** — `attribution.py`s
+   `_summarize()` gab bei null Verlust-Trades `NaN` (über ein
+   `.replace(0.0, np.nan)`), `_freqforge_metrics()` gab `+inf` (Bestwert).
+   Vereinheitlicht auf `+inf`: das `.replace()` entfernt und zugleich einen
+   verwandten, bis dahin durch das `.replace()` verdeckten Vorzeichenfehler
+   behoben (`-matched["profit_abs"].clip(upper=0)` erzeugt bei lauter
+   Gewinn-Trades `-0.0` statt `0.0`, was `gross_profit/-0.0 = -inf` ergeben
+   hätte, nicht `+inf` — jetzt mit `.clip(upper=0).abs()` vermieden).
+5. **"Liquidation-Safety" zählte auch harmlose `force_exit`-Ausstiege**
+   (z. B. Backtest-Fensterende), nicht nur echte Zwangsliquidationen.
+   Aufgeteilt: `liquidation_rate` (score-relevant, nur `exit_reason ==
+   "liquidation"`) und `forced_exit_rate` (neue, rein deskriptive Spalte,
+   die alte, breitere Definition — nie im Score).
+
+Alle fünf Fixes durch neue bzw. angepasste Selftest-Fälle abgesichert
+(`specialist_evaluation.py`), inklusive einer eigenen `TIERBUG`-Fixtur, die
+gezielt 6 Vor-2024-Episoden gegen nur 2 echte Validierungs-Episoden stellt.
+
 **ADX-Sideways-/Transition-Gate für Modell 1/2/3 (2026-09-14, auf
 expliziten Nutzerwunsch, bewusste Abweichung vom eingefrorenen Plan — siehe
 Addendum in `REGIME_AUDIT_PLAN.md` §15):** bisher gatete jeder Kandidat nur

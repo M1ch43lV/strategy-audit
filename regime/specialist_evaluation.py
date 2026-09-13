@@ -67,13 +67,18 @@ TRADE_COLUMNS = [
     "coin_regime", "coin_episode_id",
 ]
 
-# 2026-09-14, FreqForge-inspired scoring (github.com/baxr6/FreqForge):
-# exit reasons that mean the position was closed by force, not by the
-# strategy's own signal - "liquidation-safety" below is the rate of these,
-# not a leverage estimate. Checked against the corpus: 900 of 3,459,380
-# trades (~0.026%), so this rarely differs from 100/100 in practice - kept
-# for parity with FreqForge's six categories, not because it is expected to
-# discriminate between strategies here.
+# 2026-09-14, FreqForge-inspired scoring (github.com/baxr6/FreqForge).
+# Split 2026-09-14 (DeepSeek-v4-pro review, conversation
+# "regime-code-audit-2026-09-14") after the first version scored FreqForge's
+# "Liquidation-Safety" category off `FORCED_EXIT_REASONS`, which also
+# contains `force_exit` - a harmless, common exit (e.g. the backtest window
+# simply ending) with nothing to do with a margin call. `LIQUIDATION_EXIT_REASONS`
+# is the strict, score-relevant rate; `FORCED_EXIT_REASONS` remains for the
+# separate, purely descriptive `forced_exit_rate` column (never scored).
+# Checked against the corpus: 900 of 3,459,380 trades (~0.026%) are
+# `force_exit`/`liquidation` combined, so even the descriptive rate rarely
+# differs from 0 in practice.
+LIQUIDATION_EXIT_REASONS = {"liquidation"}
 FORCED_EXIT_REASONS = {"force_exit", "liquidation"}
 
 
@@ -422,6 +427,54 @@ def _regime_drawdown(df: pd.DataFrame, group_cols: list[str]) -> pd.Series:
 #    denominator every time the curve makes a new high, so the same
 #    loss scores the same regardless of its position in the sequence.
 #
+# Second round, 2026-09-14, after a full-module DeepSeek-v4-pro code review
+# (conversation "regime-code-audit-2026-09-14", both the review and the
+# fix proposals below checked with it before implementing) found four more
+# defects in this section, all fixed:
+#
+# 3. Sortino mixed time scales: the numerator (`sum_profit / total_days`)
+#    was a per-day rate, the denominator (`np.std` of raw trade-level
+#    negative `profit_ratio`) was not - dividing them and multiplying by
+#    `sqrt(365)` produced a number that looked annualized but wasn't
+#    dimensionally a Sortino ratio at all. Fixed by moving both sides to
+#    the same (trade) level - mean and downside-std of `profit_ratio`
+#    directly - and annualizing with `sqrt(trades_per_year)` instead of
+#    `sqrt(365)`, the standard way to annualize a ratio built from
+#    irregularly-spaced observations (trades here, instead of days).
+#    Downside-std now uses `ddof=1` (sample, not population, standard
+#    deviation - matching `_episode_excess_lcb()`), defined only from two
+#    or more losing trades; fewer routes to the same -100/best-case
+#    sentinel branch as zero losing trades already did, so this changes no
+#    existing behavior for that edge, only the >=2-losses case.
+# 4. CAGR was even more wrong: `dollar_gain_usd / START_CAPITAL` is the
+#    *sum* of many independent $1000 stakes' returns, not the growth of one
+#    compounding position, yet the formula raised `(1 + that sum)` to a
+#    power as if it were - 50 trades at +2% over 100 days produced a
+#    "CAGR" over 1000%. Fixed by dropping the compounding claim entirely:
+#    `annualized_return = mean_profit_ratio * trades_per_year`, a linear
+#    (non-compounding) annualized rate, consistent with the fixed-stake,
+#    never-compounded accounting this whole module already uses everywhere
+#    else (`_fixed_stake_gain()`'s docstring explains why compounding was
+#    rejected). Renamed throughout (`cagr` -> `annualized_return`,
+#    `_cagr_points()` -> `_annualized_return_points()`) so the column can
+#    never be mistaken for a true compound annual growth rate; point-scale
+#    anchors re-picked for this metric's much smaller typical range (frozen
+#    before inspecting any strategy's value, same discipline as every other
+#    threshold here).
+# 5. `_freqforge_metrics()`'s `profit_factor` (+inf on zero losing trades,
+#    scored 100 by `_profit_factor_points()`) disagreed with
+#    `attribution.py`'s `_summarize()`, which turned the identical case into
+#    NaN via a `.replace(0.0, np.nan)`. Unified on +inf (see
+#    `regime/attribution.py`'s `_summarize()`).
+# 6. `liquidation_rate` (FreqForge's "Liquidation-Safety" category) was
+#    computed from `FORCED_EXIT_REASONS = {"force_exit", "liquidation"}` -
+#    but `force_exit` also fires for reasons that have nothing to do with a
+#    margin call (most commonly the backtest window simply ending), so the
+#    category measured something broader than its name claimed. Split: the
+#    score now uses `LIQUIDATION_EXIT_REASONS = {"liquidation"}` only;
+#    `forced_exit_rate` (the old, broader definition) is kept as a separate,
+#    purely descriptive column, never scored.
+#
 # FreqForge itself never resolves the frozen "do not rely on a single
 # composite score" question `REGIME_AUDIT_PLAN.md` section 17 already
 # settled for this audit's own ranking rule - `freqforge_score` here is
@@ -504,19 +557,16 @@ def _drawdown_points(drawdown: float) -> float:
     return _scale_points(drawdown, [(0.0, 100.0), (0.10, 90.0), (0.20, 50.0), (0.40, 0.0)])
 
 
-def _cagr_points(cagr: float) -> float:
-    # Log-scaled per FreqForge's own description (100%->50pts,
-    # 10000%+->100pts); the 0%->0pts anchor is this module's own extension
-    # to complete the curve, since FreqForge's single always-profitable
-    # strategy never needed one. Negative CAGR (net loss over the regime)
-    # clamps to 0, same as any value below the lowest anchor.
-    if cagr is None or np.isnan(cagr) or cagr <= 0:
-        return 0.0
-    if cagr <= 1.0:
-        return 50.0 * np.log1p(cagr) / np.log(2.0)
-    if cagr >= 100.0:
-        return 100.0
-    return 50.0 + 50.0 * np.log((1.0 + cagr) / 2.0) / np.log(101.0 / 2.0)
+def _annualized_return_points(value: float) -> float:
+    # Piecewise-linear, not FreqForge's log-scaled CAGR curve: `value` here
+    # is `annualized_return` (see the module note above), a linear/
+    # non-compounding rate, so it lives on a much smaller typical scale than
+    # a true compounding CAGR ever would. Anchors chosen directly from what
+    # a linear annualized rate ought to mean (0% -> 0pts, +20%/yr -> 50pts
+    # decent, +100%/yr -> 90pts very good, +300%/yr and beyond -> 100pts
+    # excellent) - frozen before inspecting any strategy's value, not fitted
+    # to this corpus's distribution.
+    return _scale_points(value, [(0.0, 0.0), (0.20, 50.0), (1.0, 90.0), (3.0, 100.0)])
 
 
 def _liquidation_points(rate: float) -> float:
@@ -548,7 +598,7 @@ def _worst_trade_points(worst_trade: float) -> float:
 
 
 FREQFORGE_WEIGHTS = {
-    "sortino": 0.25, "drawdown": 0.25, "cagr": 0.15,
+    "sortino": 0.25, "drawdown": 0.25, "annualized_return": 0.15,
     "liquidation": 0.15, "profit_factor": 0.10, "worst_trade": 0.10,
 }
 
@@ -556,9 +606,10 @@ FREQFORGE_WEIGHTS = {
 def _freqforge_metrics(validation: pd.DataFrame, episode_level: pd.DataFrame,
                        group_cols: list[str], episode_days_column: str) -> pd.DataFrame:
     """The six FreqForge categories (profit_factor, worst_trade,
-    liquidation_rate, sortino, cagr, drawdown_since_peak) plus their
-    point-scores and the weighted `freqforge_score`, per (strategy, regime)
-    group. Descriptive only - see the module note above this section."""
+    liquidation_rate, sortino, annualized_return, drawdown_since_peak) plus
+    their point-scores and the weighted `freqforge_score`, per (strategy,
+    regime) group. Descriptive only - see the module note above this
+    section."""
     gross_profit = validation.groupby(group_cols, dropna=False)["profit_ratio"].apply(
         lambda s: s[s > 0].sum() * START_CAPITAL)
     gross_loss = validation.groupby(group_cols, dropna=False)["profit_ratio"].apply(
@@ -573,29 +624,40 @@ def _freqforge_metrics(validation: pd.DataFrame, episode_level: pd.DataFrame,
         profit_factor = gross_profit / gross_loss
     worst_trade = validation.groupby(group_cols, dropna=False)["profit_ratio"].min()
     liquidation_rate = validation.groupby(group_cols, dropna=False)["exit_reason"].apply(
+        lambda s: float(s.isin(LIQUIDATION_EXIT_REASONS).mean()))
+    forced_exit_rate = validation.groupby(group_cols, dropna=False)["exit_reason"].apply(
         lambda s: float(s.isin(FORCED_EXIT_REASONS).mean()))
 
     total_days = _regime_days(episode_level, group_cols, episode_days_column)
-    sum_profit = validation.groupby(group_cols, dropna=False)["profit_ratio"].sum()
-    dollar_gain = sum_profit * START_CAPITAL
+    trade_count = validation.groupby(group_cols, dropna=False)["profit_ratio"].size()
+    mean_trade_return = validation.groupby(group_cols, dropna=False)["profit_ratio"].mean()
+    # ddof=1 (sample std), and only from >=2 losing trades - matches
+    # _episode_excess_lcb()'s convention. Exactly 0 or 1 losing trades both
+    # fall through to the -100/best-case sentinel below (a single loss has
+    # no defined sample spread either), same behavior this had before for
+    # the zero-losses case.
     downside_std = validation.groupby(group_cols, dropna=False)["profit_ratio"].apply(
-        lambda s: float(np.std(s[s < 0])) if (s < 0).any() else np.nan)
+        lambda s: float(np.std(s[s < 0], ddof=1)) if (s < 0).sum() >= 2 else np.nan)
     with np.errstate(invalid="ignore", divide="ignore"):
-        mean_daily_return = sum_profit / total_days
-        aligned_downside = downside_std.reindex(mean_daily_return.index)
+        trades_per_year = trade_count / (total_days / 365.0)
+        # Sortino: both sides of the ratio are now trade-level (mean and
+        # downside-std of profit_ratio directly), annualized by
+        # sqrt(trades per year) - the standard way to annualize a ratio
+        # built from irregularly-spaced observations - instead of mixing a
+        # per-day rate against a per-trade spread (see module note above).
+        aligned_downside = downside_std.reindex(mean_trade_return.index)
         sortino = np.where(
             aligned_downside.notna() & (aligned_downside != 0),
-            mean_daily_return / aligned_downside.replace(0, np.nan) * np.sqrt(365.0),
+            mean_trade_return / aligned_downside.replace(0, np.nan) *
+            np.sqrt(trades_per_year.reindex(mean_trade_return.index)),
             -100.0)
-        sortino = pd.Series(sortino, index=mean_daily_return.index)
-        # CAGR compounds the group's TOTAL fixed-stake return
-        # (dollar_gain_usd / START_CAPITAL), not the per-trade mean - see
-        # the module note above for the concrete counterexample that ruled
-        # the mean-based version out.
-        total_return_fraction = dollar_gain / START_CAPITAL
-        base = 1.0 + total_return_fraction
-        cagr = np.where(base > 0, base ** (365.0 / total_days) - 1.0, -1.0)
-        cagr = pd.Series(cagr, index=mean_daily_return.index)
+        sortino = pd.Series(sortino, index=mean_trade_return.index)
+        # annualized_return: a linear (non-compounding) annualized rate -
+        # mean per-trade return times how many such trades happen per year
+        # - not a compound growth rate (see module note above for why a
+        # true CAGR is incompatible with this module's fixed-stake,
+        # never-compounded accounting).
+        annualized_return = mean_trade_return * trades_per_year
 
     drawdown_since_peak = _regime_drawdown_since_peak(validation, group_cols)
 
@@ -603,21 +665,22 @@ def _freqforge_metrics(validation: pd.DataFrame, episode_level: pd.DataFrame,
         "profit_factor": profit_factor,
         "worst_trade": worst_trade,
         "liquidation_rate": liquidation_rate,
+        "forced_exit_rate": forced_exit_rate,
         "total_regime_days": total_days,
         "sortino": sortino,
-        "cagr": cagr,
+        "annualized_return": annualized_return,
         "drawdown_since_peak": drawdown_since_peak,
     })
     table["sortino_pts"] = table["sortino"].apply(_sortino_points)
     table["drawdown_pts"] = table["drawdown_since_peak"].apply(_drawdown_points)
-    table["cagr_pts"] = table["cagr"].apply(_cagr_points)
+    table["annualized_return_pts"] = table["annualized_return"].apply(_annualized_return_points)
     table["liquidation_pts"] = table["liquidation_rate"].apply(_liquidation_points)
     table["profit_factor_pts"] = table["profit_factor"].apply(_profit_factor_points)
     table["worst_trade_pts"] = table["worst_trade"].apply(_worst_trade_points)
     table["freqforge_score"] = (
         table["sortino_pts"] * FREQFORGE_WEIGHTS["sortino"] +
         table["drawdown_pts"] * FREQFORGE_WEIGHTS["drawdown"] +
-        table["cagr_pts"] * FREQFORGE_WEIGHTS["cagr"] +
+        table["annualized_return_pts"] * FREQFORGE_WEIGHTS["annualized_return"] +
         table["liquidation_pts"] * FREQFORGE_WEIGHTS["liquidation"] +
         table["profit_factor_pts"] * FREQFORGE_WEIGHTS["profit_factor"] +
         table["worst_trade_pts"] * FREQFORGE_WEIGHTS["worst_trade"])
@@ -730,9 +793,10 @@ def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: st
                                      "dollar_gain_usd", "benchmark_dollar_gain_usd",
                                      "excess_dollar_gain_usd", "max_drawdown",
                                      "profit_factor", "worst_trade", "liquidation_rate",
-                                     "total_regime_days", "sortino", "cagr",
-                                     "drawdown_since_peak", "sortino_pts", "drawdown_pts",
-                                     "cagr_pts", "liquidation_pts", "profit_factor_pts",
+                                     "forced_exit_rate", "total_regime_days", "sortino",
+                                     "annualized_return", "drawdown_since_peak",
+                                     "sortino_pts", "drawdown_pts", "annualized_return_pts",
+                                     "liquidation_pts", "profit_factor_pts",
                                      "worst_trade_pts", "freqforge_score",
                                      "episode_excess_lcb", "lcb_grade"])
     group_cols = ["strategy_id", regime_column]
@@ -799,16 +863,32 @@ def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: st
     return table.sort_values(["strategy_id", regime_column]).reset_index(drop=True)
 
 
+# Both table builders below only count episodes from the VALIDATION window
+# before handing them to _specialist_table() - a real bug a DeepSeek-v4-pro
+# code review found 2026-09-14 (conversation "regime-code-audit-2026-09-14"):
+# they used to pass the full, unfiltered `trades` (2020-03-01 onward) to
+# attribution.summarize_episodes()/summarize_coin_episodes(), so the
+# "episodes" count feeding the VALIDATION/EXPLORATORY tier split included
+# discovery-window episodes too, while "trades" (aggregated inside
+# _specialist_table() from its own already-validation-filtered `validation`)
+# never did. REGIME_PREREGISTRATION.md's amendment is explicit - "5
+# independent regime episodes within the validation window" - so a
+# strategy with, say, 6 episodes before 2024 but only 2 after could be
+# wrongly promoted to VALIDATION on pre-2024 evidence its trade count
+# didn't share. Fixed by filtering to analysis_window == "validation" here,
+# matching what _specialist_table() already does internally for trades.
 def btc_specialist_table(trades: pd.DataFrame) -> pd.DataFrame:
+    validation = trades[trades["analysis_window"] == "validation"]
     return _specialist_table(trades, "btc_regime", "btc_regime_match",
                              "btc_episode_benchmark_return", "btc_episode_id",
-                             attribution.summarize_episodes(trades), "btc_episode_days")
+                             attribution.summarize_episodes(validation), "btc_episode_days")
 
 
 def coin_specialist_table(trades: pd.DataFrame) -> pd.DataFrame:
+    validation = trades[trades["analysis_window"] == "validation"]
     return _specialist_table(trades, "coin_regime", "coin_regime_match",
                              "coin_episode_benchmark_return", "coin_episode_id",
-                             attribution.summarize_coin_episodes(trades), "coin_episode_days")
+                             attribution.summarize_coin_episodes(validation), "coin_episode_days")
 
 
 def joint_specialist_table(trades: pd.DataFrame) -> pd.DataFrame:
@@ -834,7 +914,12 @@ def joint_specialist_table(trades: pd.DataFrame) -> pd.DataFrame:
     (Model 3) attribution."""
     trades = trades.copy()
     trades["joint_regime_match"] = trades["btc_regime_match"] & trades["coin_regime_match"]
-    matched = trades[trades["joint_regime_match"]]
+    # analysis_window == "validation" here too (same fix and reason as
+    # btc_specialist_table()/coin_specialist_table() above) - otherwise
+    # this table's own episode count would include discovery-window
+    # episodes the tier split must not.
+    matched = trades[trades["joint_regime_match"] &
+                     (trades["analysis_window"] == "validation")]
     episode_summary = (matched.groupby(["strategy_id", "coin_regime"])["joint_episode_id"]
                        .nunique().rename("episodes").reset_index())
     return _specialist_table(trades, "coin_regime", "joint_regime_match",
@@ -1271,26 +1356,104 @@ def selftest() -> None:
             assert "strategy_id" in loaded.columns
             assert list(loaded["strategy_id"]) == ["C1"]
 
+            # Tier-episode-window regression (2026-09-14, DeepSeek-v4-pro
+            # review, conversation "regime-code-audit-2026-09-14"):
+            # btc_specialist_table()/coin_specialist_table() used to pass the
+            # FULL, unfiltered trades history to
+            # attribution.summarize_episodes()/summarize_coin_episodes(), so
+            # the "episodes" count feeding the VALIDATION/EXPLORATORY tier
+            # split included discovery-window episodes the frozen rule
+            # explicitly excludes ("5 independent regime episodes within the
+            # validation window", REGIME_PREREGISTRATION.md's 2026-09-11
+            # amendment). TIERBUG has 6 discovery-window BULL episodes (1
+            # trade each, well before 2024) plus only 2 validation-window
+            # BULL episodes (5 trades each, 10 trades total - clears
+            # MIN_TRADES on its own). The old code would have seen 8 total
+            # episodes (>= MIN_EPISODES) and wrongly promoted this to
+            # VALIDATION; the fix must see only the 2 real ones and keep it
+            # EXPLORATORY.
+            tier_discovery_days = [pd.Timestamp("2020-06-01", tz="UTC") + pd.Timedelta(days=60 * i)
+                                   for i in range(6)]
+            tier_discovery_rows = [
+                make("TIERBUG", "BULL", i, tier_discovery_days[i], 0.01, f"TBDISC-{i}")
+                for i in range(6)
+            ]
+            # Discovery episodes need a resolvable daily row too - not for
+            # the episode-count fix under test, but because attach_benchmark()
+            # always computes the joint BTC/coin episode overlap for every
+            # trade regardless of which table will use it, and a joint key
+            # with no daily match on either side left-joins to NaN bounds,
+            # which then crashes merge_asof rather than merely leaving the
+            # benchmark column NaN.
+            tier_daily_rows = [daily_row(day, f"TBDISC-{i}")
+                              for i, day in enumerate(tier_discovery_days)]
+            tier_validation_rows = []
+            for ep in range(2):
+                for offset in range(5):
+                    day = (pd.Timestamp("2024-02-01", tz="UTC") +
+                          pd.Timedelta(days=30 * ep + offset))
+                    tier_validation_rows.append(make("TIERBUG", "BULL", offset, day, 0.01, f"TBVAL-{ep}"))
+                    tier_daily_rows.append(daily_row(day, f"TBVAL-{ep}"))
+            tier_trades = attach_benchmark(
+                pd.DataFrame(tier_discovery_rows + tier_validation_rows),
+                daily=pd.DataFrame(tier_daily_rows))
+            tier_trades = split_discovery_validation(tier_trades)
+            assert (tier_trades["analysis_window"] == "discovery").sum() == 6
+            assert (tier_trades["analysis_window"] == "validation").sum() == 10
+            tier_table = btc_specialist_table(tier_trades)
+            tier_row = tier_table[(tier_table["strategy_id"] == "TIERBUG") &
+                                  (tier_table["btc_regime"] == "BULL")].iloc[0]
+            assert tier_row["trades"] == 10
+            assert tier_row["episodes"] == 2
+            assert tier_row["tier"] == "EXPLORATORY"
+
             # FreqForge-inspired scoring (2026-09-14): profit_factor,
             # worst_trade, liquidation_rate on the DD1 fixture from the
             # max_drawdown test above (+10%/-5%/-10%/+20%, all exit_signal).
             assert abs(dd_row["profit_factor"] - 2.0) < 1e-9  # 300 gross / 150 gross
             assert abs(dd_row["worst_trade"] - (-0.10)) < 1e-9
             assert dd_row["liquidation_rate"] == 0.0
+            assert dd_row["forced_exit_rate"] == 0.0
+
+            # Liquidation/forced-exit split (2026-09-14, DeepSeek-v4-pro
+            # review): the old single `liquidation_rate` counted both real
+            # liquidations and plain `force_exit` (which also fires for
+            # harmless reasons, e.g. the backtest window simply ending) -
+            # LIQ1 has one real "liquidation" exit and one "force_exit",
+            # so liquidation_rate must count only the former (0.5) while
+            # forced_exit_rate counts both (1.0).
+            liq_day = pd.Timestamp("2024-08-01", tz="UTC")
+            liq_rows = [
+                dict(make("LIQ1", "BULL", 0, liq_day, -0.10, "LIQ-0"), exit_reason="liquidation"),
+                dict(make("LIQ1", "BULL", 1, liq_day + pd.Timedelta(hours=12), 0.05, "LIQ-0"),
+                     exit_reason="force_exit"),
+            ]
+            liq_daily = pd.DataFrame([daily_row(liq_day, "LIQ-0")])
+            liq_trades = attach_benchmark(pd.DataFrame(liq_rows), daily=liq_daily)
+            liq_trades["analysis_window"] = "validation"
+            liq_table = btc_specialist_table(liq_trades)
+            liq_row = liq_table[(liq_table["strategy_id"] == "LIQ1") &
+                                (liq_table["btc_regime"] == "BULL")].iloc[0]
+            assert abs(liq_row["liquidation_rate"] - 0.5) < 1e-9
+            assert abs(liq_row["forced_exit_rate"] - 1.0) < 1e-9
 
             # Sortino sentinel: DD2's 50 trades are all -5%, so the losing
-            # subset has zero variance (std=0) - freqtrade's own
-            # calculate_sortino() treats a zero/NaN denominator as the
-            # broken "-100.0" sentinel, and FreqForge scores that sentinel
-            # 100 (best-in-class), not worst, since there is nothing to be
-            # downside-punished for.
+            # subset has zero variance (std=0 regardless of ddof, all values
+            # identical) - freqtrade's own calculate_sortino() treats a
+            # zero/NaN denominator as the broken "-100.0" sentinel, and
+            # FreqForge scores that sentinel 100 (best-in-class), not worst,
+            # since there is nothing to be downside-punished for.
             assert many_row["sortino"] <= -99.99
             assert _sortino_points(many_row["sortino"]) == 100.0
 
-            # Sortino with genuine downside variance: 4 trades in one
-            # 4-day episode, +10/-5/-15/+5%, ordered by close_date.
-            # mean_daily_return = sum(profit_ratio)/days = -0.05/4 = -0.0125.
-            # downside_std = population std of [-0.05, -0.15] = 0.05.
+            # Sortino corrected (2026-09-14, DeepSeek-v4-pro review): the
+            # first draft mixed a per-day mean (sum(profit_ratio)/days)
+            # against a per-trade downside-std, then annualized with
+            # sqrt(365) as if both were daily. Fixed to keep both sides of
+            # the ratio on the trade level and annualize by
+            # sqrt(trades_per_year) instead - the standard way to annualize
+            # a ratio built from irregularly-spaced observations. 4 trades
+            # in one 4-day episode, +10/-5/-15/+5%, ordered by close_date.
             sortino_days = [pd.Timestamp("2024-05-01", tz="UTC") + pd.Timedelta(days=i)
                            for i in range(4)]
             sortino_rows = [make("DD3", "BULL", i, sortino_days[i], ratio, "DD3-0")
@@ -1302,17 +1465,29 @@ def selftest() -> None:
             sortino_row = sortino_table[(sortino_table["strategy_id"] == "DD3") &
                                         (sortino_table["btc_regime"] == "BULL")].iloc[0]
             assert sortino_row["total_regime_days"] == 4
-            expected_sortino = (-0.05 / 4) / 0.05 * (365.0 ** 0.5)
+            expected_mean_trade = np.mean([0.10, -0.05, -0.15, 0.05])
+            expected_downside_std = np.std([-0.05, -0.15], ddof=1)
+            expected_trades_per_year = 4 / (4 / 365.0)
+            expected_sortino = (expected_mean_trade / expected_downside_std *
+                                np.sqrt(expected_trades_per_year))
             assert abs(sortino_row["sortino"] - expected_sortino) < 1e-6
 
-            # CAGR regression for the bug DeepSeek-v4-pro caught: the first
-            # draft compounded mean_profit_ratio, which is blind to trade
-            # count (10 trades and 50 trades at the same +2% each, over the
-            # same days, produced identical CAGR despite 5x the real
-            # profit). Fixed by compounding the group's TOTAL fixed-stake
-            # return (dollar_gain_usd / START_CAPITAL) instead. Both
-            # fixtures span the same single 10-day episode; only the trade
-            # count (and hence total profit) differs.
+            # annualized_return regression (2026-09-14, DeepSeek-v4-pro
+            # review): the original CAGR bug was blind to trade count (10
+            # trades and 50 trades at the same +2% each, over the same days,
+            # produced identical CAGR despite 5x the real profit); the first
+            # fix ("compound the group's total fixed-stake return") went too
+            # far the other way - compounding many independent $1000 stakes
+            # as if they were one reinvested position exploded to absurd
+            # values at high trade counts (this exact fixture used to assert
+            # >1000% CAGR). Replaced with a linear (non-compounding)
+            # `annualized_return = mean_profit_ratio * trades_per_year`,
+            # consistent with the fixed-stake, never-compounded accounting
+            # this module uses everywhere else. Both fixtures span the same
+            # single 10-day episode at the same +2%/trade; only trade count
+            # (5x) differs, so annualized_return must now scale by EXACTLY
+            # 5x - neither blind to trade count (the original bug) nor
+            # exploding from it (the compounding "fix"'s own bug).
             cagr_days = [pd.Timestamp("2024-06-01", tz="UTC") + pd.Timedelta(days=i)
                         for i in range(10)]
             cagr_a_rows = [make("CAGRA", "BULL", i, cagr_days[i], 0.02, "CAGRA-0")
@@ -1333,14 +1508,12 @@ def selftest() -> None:
                                     (cagr_table["btc_regime"] == "BULL")].iloc[0]
             assert cagr_a_row["total_regime_days"] == 10
             assert cagr_b_row["total_regime_days"] == 10
-            expected_cagr_a = (1.0 + 10 * 0.02) ** (365.0 / 10.0) - 1.0
-            expected_cagr_b = (1.0 + 50 * 0.02) ** (365.0 / 10.0) - 1.0
-            assert abs(cagr_a_row["cagr"] - expected_cagr_a) / expected_cagr_a < 1e-9
-            assert abs(cagr_b_row["cagr"] - expected_cagr_b) / expected_cagr_b < 1e-9
-            # The old, buggy formula gave both the SAME value here (equal
-            # mean_profit_ratio); the fix must make them differ, and by a
-            # lot, since CAGRB earned 5x CAGRA's total profit.
-            assert cagr_b_row["cagr"] > cagr_a_row["cagr"] * 10
+            expected_return_a = 0.02 * (10 / (10 / 365.0))
+            expected_return_b = 0.02 * (50 / (10 / 365.0))
+            assert abs(cagr_a_row["annualized_return"] - expected_return_a) / expected_return_a < 1e-9
+            assert abs(cagr_b_row["annualized_return"] - expected_return_b) / expected_return_b < 1e-9
+            assert abs(cagr_b_row["annualized_return"] -
+                      cagr_a_row["annualized_return"] * 5.0) < 1e-9
 
             # Drawdown-since-peak position-independence: the exact
             # counterexample DeepSeek-v4-pro gave against the first draft,
@@ -1390,11 +1563,12 @@ def selftest() -> None:
             assert _drawdown_points(0.0) == 100.0
             assert _drawdown_points(0.40) == 0.0
             assert _drawdown_points(0.60) == 0.0
-            assert _cagr_points(0.0) == 0.0
-            assert abs(_cagr_points(1.0) - 50.0) < 1e-9
-            assert _cagr_points(100.0) == 100.0
-            assert _cagr_points(500.0) == 100.0
-            assert _cagr_points(-0.5) == 0.0
+            assert _annualized_return_points(0.0) == 0.0
+            assert _annualized_return_points(0.20) == 50.0
+            assert _annualized_return_points(1.0) == 90.0
+            assert _annualized_return_points(3.0) == 100.0
+            assert _annualized_return_points(10.0) == 100.0
+            assert _annualized_return_points(-0.5) == 0.0
             assert _liquidation_points(0.0) == 100.0
             assert _liquidation_points(0.10) == 0.0
             assert _liquidation_points(0.50) == 0.0
