@@ -3,7 +3,59 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-13T15:00:00+02:00
+- Last update: 2026-09-14T02:00:00+02:00
+- Added six FreqForge-inspired scoring metrics (github.com/baxr6/FreqForge)
+  to `regime/specialist_evaluation.py`, per (strategy, regime): `profit_factor`,
+  `worst_trade`, `liquidation_rate`, `sortino`, `cagr`, `drawdown_since_peak`,
+  their six point-scores, and a weighted `freqforge_score` (0-100; Sortino
+  25%, Drawdown-control 25%, CAGR 15%, Liquidation-safety 15%, Profit-Factor
+  10%, Worst-trade 10%). Purely descriptive - `REGIME_AUDIT_PLAN.md` §17's
+  "do not rely on a single composite score" still governs the actual
+  ranking rule everywhere else in this module.
+  User asked before implementing whether Sortino/Sharpe/Calmar were worth
+  adding at all; I gave a multi-hour estimate, the user pointed at
+  FreqForge's weighted-category approach as a possible model, and asked me
+  to consult `mcp__deepseek-mcp__critique` (deepseek-v4-pro) before writing
+  any code. That critique caught two real defects in the plan, not just
+  caveats:
+  1. The originally-planned CAGR formula compounded `mean_profit_ratio`
+     (per-trade average), which is blind to trade count - 10 trades and 50
+     trades at +2% each over the same day-span would have produced
+     identical CAGR despite 5x the real profit. Fixed: compounds the
+     group's actual total return (`dollar_gain_usd / START_CAPITAL`)
+     instead.
+  2. The plan was to reuse the already-shipped `_regime_drawdown()` (which
+     normalizes against capital committed since the *group's first trade*)
+     for FreqForge's drawdown-control category. DeepSeek showed this is
+     positionally biased: the same -40% trade scores 40% drawdown as a
+     group's 1st trade but ~0.4% as its 100th, purely because unrelated
+     prior trades inflate the denominator. `_regime_drawdown()` itself is
+     untouched (correct for the leverage-detection bound it already
+     shipped for); added a separate `_regime_drawdown_since_peak()` that
+     resets the committed-capital denominator at every new equity high,
+     making the same loss score identically regardless of its position in
+     the sequence - verified with DeepSeek's own counterexample as a
+     selftest case.
+  My own selftest then caught a third bug before anything shipped: a
+  perfect-win-rate group (zero losing trades) computed `profit_factor` as
+  `-inf` instead of `+inf`, because `-empty_sum.sum()` produces `-0.0` and
+  `x / -0.0 == -inf` in IEEE-754 - fixed with `abs()` instead of negation;
+  `+inf` now correctly scores 100 (FreqForge's own documented "perfect win
+  rate broke the ratio" handling), not 0.
+  Sortino/CAGR annualize against `total_regime_days` - the sum of a
+  group's own *distinct* episode day-spans (`_regime_days()`, from new
+  `btc_episode_days`/`coin_episode_days`/`joint_episode_days` columns
+  `attach_benchmark()` now broadcasts from the same episode bounds the
+  benchmark returns already use) - not the calendar span between a group's
+  first and last matched trade, which would count years of out-of-regime
+  gaps as in-regime time. Confirmed with the user before implementing.
+  CAGR can still reach extreme values for short episodes (max seen in the
+  full Model 0 population: 139,000,000%) - known, accepted, why FreqForge's
+  own log-scaling is used for the point-score. Re-ran Model 0 (full 589)
+  and the Model 1/2/3 7-candidate pilot; row/tier counts unchanged (purely
+  additive columns). NOT yet wired into the artifact - the user's real goal
+  (choosing which criterion re-selects the Top-10-per-regime population for
+  a full Model 1/2/3 run) is still an open, separate decision.
 - Fixed a real bug in `max_drawdown` (below), caught by a user question
   about the published artifact showing drawdowns over 100% and asking if
   those strategies were leveraged: mostly not - it was a normalization bug.

@@ -61,10 +61,19 @@ START_CAPITAL = 1000.0
 
 TRADE_COLUMNS = [
     "strategy_id", "pair", "open_date", "close_date", "is_short",
-    "profit_ratio", "profit_abs", "trade_duration",
+    "profit_ratio", "profit_abs", "trade_duration", "exit_reason",
     "btc_regime_match", "coin_regime_match", "btc_regime", "btc_episode_id",
     "coin_regime", "coin_episode_id",
 ]
+
+# 2026-09-14, FreqForge-inspired scoring (github.com/baxr6/FreqForge):
+# exit reasons that mean the position was closed by force, not by the
+# strategy's own signal - "liquidation-safety" below is the rate of these,
+# not a leverage estimate. Checked against the corpus: 900 of 3,459,380
+# trades (~0.026%), so this rarely differs from 100/100 in practice - kept
+# for parity with FreqForge's six categories, not because it is expected to
+# discriminate between strategies here.
+FORCED_EXIT_REASONS = {"force_exit", "liquidation"}
 
 
 def _candle_path(pair: str) -> Path:
@@ -113,7 +122,7 @@ def load_trades(path: Path, strategies: set[str] | None = None,
     name every function past this point expects."""
     id_column = _detect_id_column(path)
     columns = [id_column if c == "strategy_id" else c for c in TRADE_COLUMNS]
-    dtypes = {id_column: "string", "pair": "string",
+    dtypes = {id_column: "string", "pair": "string", "exit_reason": "string",
               "btc_regime": "string", "coin_regime": "string",
               "btc_episode_id": "string", "coin_episode_id": "string"}
     parts = []
@@ -181,13 +190,24 @@ def attach_benchmark(trades: pd.DataFrame, daily: pd.DataFrame | None = None,
     relevant interval - the documented XMR/USDT post-delisting gap is the
     only known case in the current corpus, and is left as a gap rather than
     imputed, the same choice `regime.attribution` already makes for regime
-    state itself."""
+    state itself.
+
+    Also attaches `btc_episode_days`/`coin_episode_days`/`joint_episode_days`
+    (2026-09-14, FreqForge-inspired scoring): the calendar-day span of the
+    episode each trade fell in, broadcast from the same episode bounds the
+    benchmark returns above already use - needs no candle lookup, just
+    `episode_end_ts - episode_start`. Used to annualize Sortino/CAGR against
+    the days a strategy was actually *in* this regime (summed across its own
+    scattered episodes), not the calendar span between its first and last
+    matched trade, which would count years of out-of-regime gaps as if they
+    were in-regime time."""
     trades = trades.copy()
     trades["coin_pair"] = trades["pair"].str.split(":", n=1).str[0]
     trades["benchmark_return"] = np.nan
     trades["btc_episode_benchmark_return"] = np.nan
     trades["coin_episode_benchmark_return"] = np.nan
     trades["joint_episode_benchmark_return"] = np.nan
+    trades["joint_episode_days"] = np.nan
     # Composite key identifying the actual overlap window between a trade's
     # BTC episode and its coin episode - Model 3's real gate condition (both
     # states matched at once), which the two marginal episodes alone cannot
@@ -224,6 +244,18 @@ def attach_benchmark(trades: pd.DataFrame, daily: pd.DataFrame | None = None,
                                               "episode_end_ts": "btc_end_ts"})
     coin_bounds_j = coin_bounds.rename(columns={"episode_start": "coin_start",
                                                 "episode_end_ts": "coin_end_ts"})
+
+    # Episode day-spans need no price data, so broadcast them globally (no
+    # per-pair loop) rather than duplicating this inside it.
+    btc_bounds["btc_episode_days"] = (
+        btc_bounds["episode_end_ts"] - btc_bounds["episode_start"]).dt.days
+    coin_bounds["coin_episode_days"] = (
+        coin_bounds["episode_end_ts"] - coin_bounds["episode_start"]).dt.days
+    trades["btc_episode_days"] = trades["btc_episode_id"].map(
+        btc_bounds.set_index("btc_episode_id")["btc_episode_days"])
+    coin_days_lookup = coin_bounds.set_index(["coin_pair", "coin_episode_id"])["coin_episode_days"]
+    trades["coin_episode_days"] = pd.MultiIndex.from_frame(
+        trades[["coin_pair", "coin_episode_id"]]).map(coin_days_lookup)
 
     def _episode_return(sub_bounds: pd.DataFrame, unit_candles: pd.DataFrame) -> pd.Series:
         start_price = _asof_price(pd.Series(sub_bounds["episode_start"].to_numpy(),
@@ -276,10 +308,14 @@ def attach_benchmark(trades: pd.DataFrame, daily: pd.DataFrame | None = None,
             sub["episode_start"] = sub[["btc_start", "coin_start"]].max(axis=1)
             sub["episode_end_ts"] = sub[["btc_end_ts", "coin_end_ts"]].min(axis=1)
             sub["_ret"] = _episode_return(sub, unit_candles).to_numpy()
+            sub["_days"] = (sub["episode_end_ts"] - sub["episode_start"]).dt.days
             sub["_key"] = sub["btc_episode_id"].astype(str) + "|" + sub["coin_episode_id"].astype(str)
             lookup = sub.set_index("_key")["_ret"]
             trades.loc[group.index, "joint_episode_benchmark_return"] = \
                 group["joint_episode_id"].map(lookup).to_numpy()
+            days_lookup = sub.set_index("_key")["_days"]
+            trades.loc[group.index, "joint_episode_days"] = \
+                group["joint_episode_id"].map(days_lookup).to_numpy()
 
     return trades
 
@@ -361,9 +397,236 @@ def _regime_drawdown(df: pd.DataFrame, group_cols: list[str]) -> pd.Series:
     return ordered.groupby(group_cols, dropna=False)["profit_ratio"].apply(_worst)
 
 
+# ---------------------------------------------------------------------------
+# FreqForge-inspired scoring (github.com/baxr6/FreqForge), added 2026-09-14
+# on explicit user request after a DeepSeek-v4-pro critique of the first
+# draft caught two real defects, both fixed below - not merely caveated:
+#
+# 1. CAGR must compound the group's *total* return, not its mean per-trade
+#    return - `(1+mean_profit_ratio)^(365/days)` is blind to trade count
+#    (10 trades at +2% and 50 trades at +2% over the same days produced the
+#    same figure despite a 5x difference in actual profit). Fixed by
+#    compounding `dollar_gain_usd / START_CAPITAL` (the group's total
+#    fixed-stake return) instead of the per-trade mean.
+# 2. The FreqForge "drawdown control" score must not depend on *when* in a
+#    group's history a loss happened. `_regime_drawdown()`'s existing
+#    capital-committed-since-group-start normalization is positionally
+#    biased for that purpose: the same -40% trade scores 40% drawdown as
+#    the group's 1st trade but ~0.4% as its 100th, purely because 99
+#    unrelated prior trades inflated the denominator. `_regime_drawdown()`
+#    itself is untouched (it answers a different, already-shipped question
+#    - a leverage-detection bound over the whole regime history - and nothing
+#    about it was wrong for that purpose). This section instead adds
+#    `_regime_drawdown_since_peak()`, which resets the committed-capital
+#    denominator every time the curve makes a new high, so the same
+#    loss scores the same regardless of its position in the sequence.
+#
+# FreqForge itself never resolves the frozen "do not rely on a single
+# composite score" question `REGIME_AUDIT_PLAN.md` section 17 already
+# settled for this audit's own ranking rule - `freqforge_score` here is
+# reported as one more descriptive column, alongside its six inputs, never
+# a replacement for the tier/excess-return ranking used everywhere else in
+# this module.
+# ---------------------------------------------------------------------------
+
+def _regime_drawdown_since_peak(df: pd.DataFrame, group_cols: list[str]) -> pd.Series:
+    """Same fixed-$1000-stake equity curve as `_regime_drawdown()`, but the
+    capital-committed denominator resets at every new high instead of
+    accumulating from the group's first trade - see the module-level note
+    above for why `_regime_drawdown()` itself is wrong for this specific
+    use (FreqForge's drawdown-control category), even though it is correct
+    for the leverage-bound it was built for."""
+    if df.empty:
+        return pd.Series(dtype="float64")
+    def _worst(profit_ratios: pd.Series) -> float:
+        n = len(profit_ratios)
+        equity = START_CAPITAL + (profit_ratios.to_numpy() * START_CAPITAL).cumsum()
+        equity = np.concatenate([[START_CAPITAL], equity])
+        peak = np.maximum.accumulate(equity)
+        at_peak = equity >= peak - 1e-9
+        # Index of the most recent new-high point at or before each step.
+        last_peak_idx = np.where(at_peak, np.arange(n + 1), -1)
+        last_peak_idx = np.maximum.accumulate(last_peak_idx)
+        committed_since_peak = np.maximum(np.arange(n + 1) - last_peak_idx, 1) * START_CAPITAL
+        with np.errstate(invalid="ignore", divide="ignore"):
+            drawdown = np.where(committed_since_peak > 0,
+                               (peak - equity) / committed_since_peak, 0.0)
+        return float(drawdown.max())
+    ordered = df.sort_values("close_date")
+    return ordered.groupby(group_cols, dropna=False)["profit_ratio"].apply(_worst)
+
+
+def _regime_days(episode_level: pd.DataFrame, group_cols: list[str],
+                 episode_days_column: str) -> pd.Series:
+    """Total calendar days a group actually spent in this regime: the sum of
+    its own distinct episodes' day-spans (`episode_level` is already
+    deduplicated to one row per (strategy, regime, coin_pair, episode) by
+    the caller), not the span between its first and last matched trade -
+    which would count years of out-of-regime gaps between scattered
+    episodes as if they were in-regime time."""
+    if episode_level.empty:
+        return pd.Series(dtype="float64")
+    return episode_level.groupby(group_cols, dropna=False)[episode_days_column].sum()
+
+
+def _scale_points(value: float, anchors: list[tuple[float, float]]) -> float:
+    """Piecewise-linear interpolation through `anchors` ((x, points) pairs,
+    x ascending), clamped to the first/last point outside that range. Shared
+    interpolator for every FreqForge point-scale below - only the anchor
+    table differs per category."""
+    if value is None or (isinstance(value, float) and np.isnan(value)):
+        return np.nan
+    xs = [a[0] for a in anchors]
+    ys = [a[1] for a in anchors]
+    if value <= xs[0]:
+        return ys[0]
+    if value >= xs[-1]:
+        return ys[-1]
+    for i in range(len(xs) - 1):
+        if xs[i] <= value <= xs[i + 1]:
+            frac = (value - xs[i]) / (xs[i + 1] - xs[i])
+            return ys[i] + frac * (ys[i + 1] - ys[i])
+    return ys[-1]
+
+
+def _sortino_points(sortino: float) -> float:
+    # FreqForge treats freqtrade's own "-100.0" broken-Sortino sentinel (no
+    # losing trades at all - the denominator freqtrade's own
+    # calculate_sortino() would divide by is zero/NaN) as best-in-class, not
+    # worst, since it means nothing to be downside-punished for.
+    if sortino is not None and not np.isnan(sortino) and sortino <= -99.99:
+        return 100.0
+    return _scale_points(sortino, [(0.0, 0.0), (1.5, 50.0), (3.0, 100.0)])
+
+
+def _drawdown_points(drawdown: float) -> float:
+    return _scale_points(drawdown, [(0.0, 100.0), (0.10, 90.0), (0.20, 50.0), (0.40, 0.0)])
+
+
+def _cagr_points(cagr: float) -> float:
+    # Log-scaled per FreqForge's own description (100%->50pts,
+    # 10000%+->100pts); the 0%->0pts anchor is this module's own extension
+    # to complete the curve, since FreqForge's single always-profitable
+    # strategy never needed one. Negative CAGR (net loss over the regime)
+    # clamps to 0, same as any value below the lowest anchor.
+    if cagr is None or np.isnan(cagr) or cagr <= 0:
+        return 0.0
+    if cagr <= 1.0:
+        return 50.0 * np.log1p(cagr) / np.log(2.0)
+    if cagr >= 100.0:
+        return 100.0
+    return 50.0 + 50.0 * np.log((1.0 + cagr) / 2.0) / np.log(101.0 / 2.0)
+
+
+def _liquidation_points(rate: float) -> float:
+    return _scale_points(rate, [(0.0, 100.0), (0.10, 0.0)])
+
+
+def _profit_factor_points(pf: float) -> float:
+    # FreqForge's own strategy was never below 1.0 (profitable overall), so
+    # it never defined that region; extending the (1.0, 20) anchor linearly
+    # down to (0, 0) is this module's own choice, not FreqForge's.
+    #
+    # +inf (no losing trades at all - gross_loss is zero) is FreqForge's own
+    # documented special case: "usually means a perfect win rate broke the
+    # ratio's division, not that the run was bad" - scored 100, not 0.
+    if pf is not None and np.isposinf(pf):
+        return 100.0
+    if pf is None or np.isnan(pf):
+        return 0.0
+    return _scale_points(pf, [(0.0, 0.0), (1.0, 20.0), (2.0, 70.0), (10.0, 100.0)])
+
+
+def _worst_trade_points(worst_trade: float) -> float:
+    if worst_trade is None or np.isnan(worst_trade):
+        return np.nan
+    # FreqForge's own formula (100 + worst_trade_pct) is unbounded below for
+    # a loss beyond -100% (leverage/short past full stake) - clamped at 0
+    # here rather than left to swing the composite arbitrarily negative.
+    return float(np.clip(100.0 + worst_trade * 100.0, 0.0, 100.0))
+
+
+FREQFORGE_WEIGHTS = {
+    "sortino": 0.25, "drawdown": 0.25, "cagr": 0.15,
+    "liquidation": 0.15, "profit_factor": 0.10, "worst_trade": 0.10,
+}
+
+
+def _freqforge_metrics(validation: pd.DataFrame, episode_level: pd.DataFrame,
+                       group_cols: list[str], episode_days_column: str) -> pd.DataFrame:
+    """The six FreqForge categories (profit_factor, worst_trade,
+    liquidation_rate, sortino, cagr, drawdown_since_peak) plus their
+    point-scores and the weighted `freqforge_score`, per (strategy, regime)
+    group. Descriptive only - see the module note above this section."""
+    gross_profit = validation.groupby(group_cols, dropna=False)["profit_ratio"].apply(
+        lambda s: s[s > 0].sum() * START_CAPITAL)
+    gross_loss = validation.groupby(group_cols, dropna=False)["profit_ratio"].apply(
+        # abs(), not a bare negation: negating a genuinely empty sum (0.0)
+        # produces -0.0, and positive/-0.0 is -inf, not the +inf
+        # _profit_factor_points()'s "no losing trades" case checks for.
+        lambda s: abs(s[s < 0].sum()) * START_CAPITAL)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        # gross_profit/gross_loss are both >= 0 by construction, so this is
+        # +inf (no losing trades - see _profit_factor_points' FreqForge
+        # special case) or NaN (no trades either way), never -inf.
+        profit_factor = gross_profit / gross_loss
+    worst_trade = validation.groupby(group_cols, dropna=False)["profit_ratio"].min()
+    liquidation_rate = validation.groupby(group_cols, dropna=False)["exit_reason"].apply(
+        lambda s: float(s.isin(FORCED_EXIT_REASONS).mean()))
+
+    total_days = _regime_days(episode_level, group_cols, episode_days_column)
+    sum_profit = validation.groupby(group_cols, dropna=False)["profit_ratio"].sum()
+    dollar_gain = sum_profit * START_CAPITAL
+    downside_std = validation.groupby(group_cols, dropna=False)["profit_ratio"].apply(
+        lambda s: float(np.std(s[s < 0])) if (s < 0).any() else np.nan)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        mean_daily_return = sum_profit / total_days
+        aligned_downside = downside_std.reindex(mean_daily_return.index)
+        sortino = np.where(
+            aligned_downside.notna() & (aligned_downside != 0),
+            mean_daily_return / aligned_downside.replace(0, np.nan) * np.sqrt(365.0),
+            -100.0)
+        sortino = pd.Series(sortino, index=mean_daily_return.index)
+        # CAGR compounds the group's TOTAL fixed-stake return
+        # (dollar_gain_usd / START_CAPITAL), not the per-trade mean - see
+        # the module note above for the concrete counterexample that ruled
+        # the mean-based version out.
+        total_return_fraction = dollar_gain / START_CAPITAL
+        base = 1.0 + total_return_fraction
+        cagr = np.where(base > 0, base ** (365.0 / total_days) - 1.0, -1.0)
+        cagr = pd.Series(cagr, index=mean_daily_return.index)
+
+    drawdown_since_peak = _regime_drawdown_since_peak(validation, group_cols)
+
+    table = pd.DataFrame({
+        "profit_factor": profit_factor,
+        "worst_trade": worst_trade,
+        "liquidation_rate": liquidation_rate,
+        "total_regime_days": total_days,
+        "sortino": sortino,
+        "cagr": cagr,
+        "drawdown_since_peak": drawdown_since_peak,
+    })
+    table["sortino_pts"] = table["sortino"].apply(_sortino_points)
+    table["drawdown_pts"] = table["drawdown_since_peak"].apply(_drawdown_points)
+    table["cagr_pts"] = table["cagr"].apply(_cagr_points)
+    table["liquidation_pts"] = table["liquidation_rate"].apply(_liquidation_points)
+    table["profit_factor_pts"] = table["profit_factor"].apply(_profit_factor_points)
+    table["worst_trade_pts"] = table["worst_trade"].apply(_worst_trade_points)
+    table["freqforge_score"] = (
+        table["sortino_pts"] * FREQFORGE_WEIGHTS["sortino"] +
+        table["drawdown_pts"] * FREQFORGE_WEIGHTS["drawdown"] +
+        table["cagr_pts"] * FREQFORGE_WEIGHTS["cagr"] +
+        table["liquidation_pts"] * FREQFORGE_WEIGHTS["liquidation"] +
+        table["profit_factor_pts"] * FREQFORGE_WEIGHTS["profit_factor"] +
+        table["worst_trade_pts"] * FREQFORGE_WEIGHTS["worst_trade"])
+    return table.reset_index()
+
+
 def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: str,
                       benchmark_column: str, episode_column: str,
-                      episode_summary: pd.DataFrame) -> pd.DataFrame:
+                      episode_summary: pd.DataFrame,
+                      episode_days_column: str) -> pd.DataFrame:
     validation = trades[(trades["analysis_window"] == "validation") &
                         trades[match_column]]
     if validation.empty:
@@ -371,7 +634,12 @@ def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: st
                                      "episodes", "mean_profit_ratio",
                                      "mean_benchmark_return", "excess_return", "tier",
                                      "dollar_gain_usd", "benchmark_dollar_gain_usd",
-                                     "excess_dollar_gain_usd", "max_drawdown"])
+                                     "excess_dollar_gain_usd", "max_drawdown",
+                                     "profit_factor", "worst_trade", "liquidation_rate",
+                                     "total_regime_days", "sortino", "cagr",
+                                     "drawdown_since_peak", "sortino_pts", "drawdown_pts",
+                                     "cagr_pts", "liquidation_pts", "profit_factor_pts",
+                                     "worst_trade_pts", "freqforge_score"])
     group_cols = ["strategy_id", regime_column]
     grouped = validation.groupby(group_cols, dropna=False)
     table = grouped.agg(
@@ -419,19 +687,22 @@ def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: st
     table = table.reset_index()
     table["excess_dollar_gain_usd"] = table["dollar_gain_usd"] - table["benchmark_dollar_gain_usd"]
 
+    freqforge = _freqforge_metrics(validation, episode_level, group_cols, episode_days_column)
+    table = table.merge(freqforge, on=group_cols, how="left")
+
     return table.sort_values(["strategy_id", regime_column]).reset_index(drop=True)
 
 
 def btc_specialist_table(trades: pd.DataFrame) -> pd.DataFrame:
     return _specialist_table(trades, "btc_regime", "btc_regime_match",
                              "btc_episode_benchmark_return", "btc_episode_id",
-                             attribution.summarize_episodes(trades))
+                             attribution.summarize_episodes(trades), "btc_episode_days")
 
 
 def coin_specialist_table(trades: pd.DataFrame) -> pd.DataFrame:
     return _specialist_table(trades, "coin_regime", "coin_regime_match",
                              "coin_episode_benchmark_return", "coin_episode_id",
-                             attribution.summarize_coin_episodes(trades))
+                             attribution.summarize_coin_episodes(trades), "coin_episode_days")
 
 
 def joint_specialist_table(trades: pd.DataFrame) -> pd.DataFrame:
@@ -462,7 +733,7 @@ def joint_specialist_table(trades: pd.DataFrame) -> pd.DataFrame:
                        .nunique().rename("episodes").reset_index())
     return _specialist_table(trades, "coin_regime", "joint_regime_match",
                              "joint_episode_benchmark_return", "joint_episode_id",
-                             episode_summary)
+                             episode_summary, "joint_episode_days")
 
 
 def rank_specialists(table: pd.DataFrame, regime_column: str) -> pd.DataFrame:
@@ -569,7 +840,7 @@ def selftest() -> None:
                     "open_date": pd.Timestamp(open_day),
                     "close_date": pd.Timestamp(open_day) + pd.Timedelta(hours=6),
                     "is_short": False, "profit_ratio": ratio, "profit_abs": ratio * 100,
-                    "trade_duration": 360,
+                    "trade_duration": 360, "exit_reason": "exit_signal",
                     "btc_regime_match": True, "coin_regime_match": True,
                     "btc_regime": regime, "btc_episode_id": episode,
                     "coin_regime": regime, "coin_episode_id": episode,
@@ -646,7 +917,7 @@ def selftest() -> None:
                  "open_date": pd.Timestamp("2020-01-01T06:00:00Z"),
                  "close_date": pd.Timestamp("2020-01-01T18:00:00Z"),
                  "is_short": False, "profit_ratio": 0.02, "profit_abs": 2.0,
-                 "trade_duration": 720,
+                 "trade_duration": 720, "exit_reason": "exit_signal",
                  "btc_regime_match": True, "coin_regime_match": True,
                  "btc_regime": "BULL", "btc_episode_id": "EP-BULL-0",
                  "coin_regime": "BULL", "coin_episode_id": "EP-BULL-0"},
@@ -654,7 +925,7 @@ def selftest() -> None:
                  "open_date": pd.Timestamp("2020-01-02T06:00:00Z"),
                  "close_date": pd.Timestamp("2020-01-02T18:00:00Z"),
                  "is_short": False, "profit_ratio": 0.03, "profit_abs": 3.0,
-                 "trade_duration": 720,
+                 "trade_duration": 720, "exit_reason": "exit_signal",
                  "btc_regime_match": True, "coin_regime_match": True,
                  "btc_regime": "BULL", "btc_episode_id": "EP-BULL-0",
                  "coin_regime": "BULL", "coin_episode_id": "EP-BULL-0"},
@@ -737,7 +1008,7 @@ def selftest() -> None:
                 "open_date": pd.Timestamp("2020-01-02T12:00:00Z"),
                 "close_date": pd.Timestamp("2020-01-02T18:00:00Z"),
                 "is_short": False, "profit_ratio": 0.01, "profit_abs": 1.0,
-                "trade_duration": 360,
+                "trade_duration": 360, "exit_reason": "exit_signal",
                 "btc_regime_match": True, "coin_regime_match": True,
                 "btc_regime": "BULL", "btc_episode_id": "EP-BTC-J",
                 "coin_regime": "BULL", "coin_episode_id": "EP-COIN-J",
@@ -764,7 +1035,7 @@ def selftest() -> None:
                 "open_date": pd.Timestamp("2020-01-02T12:00:00Z"),
                 "close_date": pd.Timestamp("2020-01-02T18:00:00Z"),
                 "is_short": False, "profit_ratio": 0.01, "profit_abs": 1.0,
-                "trade_duration": 360,
+                "trade_duration": 360, "exit_reason": "exit_signal",
                 "btc_regime_match": True, "coin_regime_match": True,
                 "btc_regime": "BEAR", "btc_episode_id": "EP-BTC-J",
                 "coin_regime": "BULL", "coin_episode_id": "EP-COIN-J",
@@ -840,6 +1111,151 @@ def selftest() -> None:
             loaded = load_trades(candidate_csv)
             assert "strategy_id" in loaded.columns
             assert list(loaded["strategy_id"]) == ["C1"]
+
+            # FreqForge-inspired scoring (2026-09-14): profit_factor,
+            # worst_trade, liquidation_rate on the DD1 fixture from the
+            # max_drawdown test above (+10%/-5%/-10%/+20%, all exit_signal).
+            assert abs(dd_row["profit_factor"] - 2.0) < 1e-9  # 300 gross / 150 gross
+            assert abs(dd_row["worst_trade"] - (-0.10)) < 1e-9
+            assert dd_row["liquidation_rate"] == 0.0
+
+            # Sortino sentinel: DD2's 50 trades are all -5%, so the losing
+            # subset has zero variance (std=0) - freqtrade's own
+            # calculate_sortino() treats a zero/NaN denominator as the
+            # broken "-100.0" sentinel, and FreqForge scores that sentinel
+            # 100 (best-in-class), not worst, since there is nothing to be
+            # downside-punished for.
+            assert many_row["sortino"] <= -99.99
+            assert _sortino_points(many_row["sortino"]) == 100.0
+
+            # Sortino with genuine downside variance: 4 trades in one
+            # 4-day episode, +10/-5/-15/+5%, ordered by close_date.
+            # mean_daily_return = sum(profit_ratio)/days = -0.05/4 = -0.0125.
+            # downside_std = population std of [-0.05, -0.15] = 0.05.
+            sortino_days = [pd.Timestamp("2024-05-01", tz="UTC") + pd.Timedelta(days=i)
+                           for i in range(4)]
+            sortino_rows = [make("DD3", "BULL", i, sortino_days[i], ratio, "DD3-0")
+                           for i, ratio in enumerate([0.10, -0.05, -0.15, 0.05])]
+            sortino_daily = pd.DataFrame([daily_row(day, "DD3-0") for day in sortino_days])
+            sortino_trades = attach_benchmark(pd.DataFrame(sortino_rows), daily=sortino_daily)
+            sortino_trades["analysis_window"] = "validation"
+            sortino_table = btc_specialist_table(sortino_trades)
+            sortino_row = sortino_table[(sortino_table["strategy_id"] == "DD3") &
+                                        (sortino_table["btc_regime"] == "BULL")].iloc[0]
+            assert sortino_row["total_regime_days"] == 4
+            expected_sortino = (-0.05 / 4) / 0.05 * (365.0 ** 0.5)
+            assert abs(sortino_row["sortino"] - expected_sortino) < 1e-6
+
+            # CAGR regression for the bug DeepSeek-v4-pro caught: the first
+            # draft compounded mean_profit_ratio, which is blind to trade
+            # count (10 trades and 50 trades at the same +2% each, over the
+            # same days, produced identical CAGR despite 5x the real
+            # profit). Fixed by compounding the group's TOTAL fixed-stake
+            # return (dollar_gain_usd / START_CAPITAL) instead. Both
+            # fixtures span the same single 10-day episode; only the trade
+            # count (and hence total profit) differs.
+            cagr_days = [pd.Timestamp("2024-06-01", tz="UTC") + pd.Timedelta(days=i)
+                        for i in range(10)]
+            cagr_a_rows = [make("CAGRA", "BULL", i, cagr_days[i], 0.02, "CAGRA-0")
+                          for i in range(10)]
+            cagr_b_rows = [make("CAGRB", "BULL", i * 10 + j, cagr_days[i], 0.02, "CAGRB-0")
+                          for i in range(10) for j in range(5)]
+            cagr_daily = pd.DataFrame([daily_row(day, "CAGRA-0") for day in cagr_days] +
+                                      [daily_row(day, "CAGRB-0") for day in cagr_days])
+            cagr_trades = attach_benchmark(
+                pd.concat([pd.DataFrame(cagr_a_rows), pd.DataFrame(cagr_b_rows)],
+                         ignore_index=True),
+                daily=cagr_daily)
+            cagr_trades["analysis_window"] = "validation"
+            cagr_table = btc_specialist_table(cagr_trades)
+            cagr_a_row = cagr_table[(cagr_table["strategy_id"] == "CAGRA") &
+                                    (cagr_table["btc_regime"] == "BULL")].iloc[0]
+            cagr_b_row = cagr_table[(cagr_table["strategy_id"] == "CAGRB") &
+                                    (cagr_table["btc_regime"] == "BULL")].iloc[0]
+            assert cagr_a_row["total_regime_days"] == 10
+            assert cagr_b_row["total_regime_days"] == 10
+            expected_cagr_a = (1.0 + 10 * 0.02) ** (365.0 / 10.0) - 1.0
+            expected_cagr_b = (1.0 + 50 * 0.02) ** (365.0 / 10.0) - 1.0
+            assert abs(cagr_a_row["cagr"] - expected_cagr_a) / expected_cagr_a < 1e-9
+            assert abs(cagr_b_row["cagr"] - expected_cagr_b) / expected_cagr_b < 1e-9
+            # The old, buggy formula gave both the SAME value here (equal
+            # mean_profit_ratio); the fix must make them differ, and by a
+            # lot, since CAGRB earned 5x CAGRA's total profit.
+            assert cagr_b_row["cagr"] > cagr_a_row["cagr"] * 10
+
+            # Drawdown-since-peak position-independence: the exact
+            # counterexample DeepSeek-v4-pro gave against the first draft,
+            # which reused _regime_drawdown()'s capital-committed-since-
+            # GROUP-START normalization (positionally biased - the same
+            # loss scored 40% as the group's 1st trade but ~0.4% as its
+            # 100th). A -40% trade must score the same drawdown-since-peak
+            # whether it is the group's only trade or its 100th, as long as
+            # every prior trade only tied (never exceeded) the peak.
+            peak_early_days = [pd.Timestamp("2024-07-01", tz="UTC")]
+            peak_early_rows = [make("PEAKEARLY", "BULL", 0, peak_early_days[0], -0.40, "PE-0")]
+            peak_early_daily = pd.DataFrame([daily_row(peak_early_days[0], "PE-0")])
+            peak_early_trades = attach_benchmark(pd.DataFrame(peak_early_rows), daily=peak_early_daily)
+            peak_early_trades["analysis_window"] = "validation"
+            peak_early_table = btc_specialist_table(peak_early_trades)
+            peak_early_row = peak_early_table[
+                (peak_early_table["strategy_id"] == "PEAKEARLY") &
+                (peak_early_table["btc_regime"] == "BULL")].iloc[0]
+
+            peak_late_days = [pd.Timestamp("2024-07-01", tz="UTC") + pd.Timedelta(days=i)
+                              for i in range(100)]
+            peak_late_rows = ([make("PEAKLATE", "BULL", i, peak_late_days[i], 0.0, "PL-0")
+                              for i in range(99)] +
+                             [make("PEAKLATE", "BULL", 99, peak_late_days[99], -0.40, "PL-0")])
+            peak_late_daily = pd.DataFrame([daily_row(day, "PL-0") for day in peak_late_days])
+            peak_late_trades = attach_benchmark(pd.DataFrame(peak_late_rows), daily=peak_late_daily)
+            peak_late_trades["analysis_window"] = "validation"
+            peak_late_table = btc_specialist_table(peak_late_trades)
+            peak_late_row = peak_late_table[
+                (peak_late_table["strategy_id"] == "PEAKLATE") &
+                (peak_late_table["btc_regime"] == "BULL")].iloc[0]
+
+            assert abs(peak_early_row["drawdown_since_peak"] - 0.40) < 1e-9
+            assert abs(peak_late_row["drawdown_since_peak"] - 0.40) < 1e-9
+            # _regime_drawdown() (the OTHER, already-shipped metric) is
+            # exactly the positionally-biased one - confirms the two
+            # metrics are genuinely different, not accidentally identical.
+            assert peak_late_row["max_drawdown"] < 0.01
+
+            # Point-scale boundary checks - anchors and clamping, not full
+            # pipeline runs.
+            assert _sortino_points(0.0) == 0.0
+            assert _sortino_points(1.5) == 50.0
+            assert _sortino_points(3.0) == 100.0
+            assert _sortino_points(10.0) == 100.0
+            assert _sortino_points(-5.0) == 0.0
+            assert _drawdown_points(0.0) == 100.0
+            assert _drawdown_points(0.40) == 0.0
+            assert _drawdown_points(0.60) == 0.0
+            assert _cagr_points(0.0) == 0.0
+            assert abs(_cagr_points(1.0) - 50.0) < 1e-9
+            assert _cagr_points(100.0) == 100.0
+            assert _cagr_points(500.0) == 100.0
+            assert _cagr_points(-0.5) == 0.0
+            assert _liquidation_points(0.0) == 100.0
+            assert _liquidation_points(0.10) == 0.0
+            assert _liquidation_points(0.50) == 0.0
+            assert _profit_factor_points(1.0) == 20.0
+            assert _profit_factor_points(2.0) == 70.0
+            assert _profit_factor_points(10.0) == 100.0
+            assert _profit_factor_points(0.0) == 0.0
+            assert _profit_factor_points(float("inf")) == 100.0
+            # bull_row (S1, BULL) is all 12 trades positive - no losing
+            # trades at all, so profit_factor is +inf (division by a zero
+            # gross_loss), which FreqForge scores 100 (best-in-class), not
+            # the 0 a naive NaN/inf fallback would give.
+            assert np.isposinf(bull_row["profit_factor"])
+            assert _profit_factor_points(bull_row["profit_factor"]) == 100.0
+            # Worst-trade severity clamps at 0 for a loss beyond -100%
+            # (leverage/short past full stake) rather than swinging
+            # arbitrarily negative.
+            assert _worst_trade_points(-0.13) == 87.0
+            assert _worst_trade_points(-1.0) == 0.0
+            assert _worst_trade_points(-2.0) == 0.0
         finally:
             CANDLE_DIR = saved_dir
     print("specialist evaluation selftest: PASS")

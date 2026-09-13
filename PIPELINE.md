@@ -447,6 +447,57 @@ Korrektur liegt aktuell keine Zeile in Modell 0 oder dem 7er-Piloten über
 100%; sollte das im vollen Modell-1/2/3-Lauf (in Arbeit) doch vorkommen, ist
 es ein echtes Hebel-/Short-Signal und wird dann markiert.
 
+**FreqForge-inspirierte Zusatzmetriken (2026-09-14, auf expliziten
+Nutzerwunsch, nach Diskussion mit DeepSeek-v4-pro):** sechs weitere Spalten
+je (Strategie, Regime) — `profit_factor`, `worst_trade`, `liquidation_rate`,
+`sortino`, `cagr`, `drawdown_since_peak` —, plus die sechs zugehörigen
+Punktwerte und ein gewichteter `freqforge_score` (0-100), nachgebildet nach
+den sechs Kategorien von [github.com/baxr6/FreqForge](https://github.com/baxr6/FreqForge)
+(Sortino 25%, Drawdown-Control 25%, CAGR 15%, Liquidation-Safety 15%,
+Profit-Factor 10%, Worst-Trade-Severity 10%). Ausdrücklich nur eine weitere
+Berichtsspalte, keine Ablösung der Tier-/Excess-Return-Rangfolge — §17
+("Do not rely on a single composite score") bleibt für das eigentliche
+Ranking in Kraft.
+
+Zwei echte Fehler im ersten Entwurf, von DeepSeek-v4-pro vor der Umsetzung
+gefunden (`mcp__deepseek-mcp__critique`, nicht nachträglich):
+1. *CAGR* kompoundierte ursprünglich `mean_profit_ratio` (Durchschnitt pro
+   Trade), was die Trade-Zahl komplett ignoriert — 10 Trades und 50 Trades
+   zu je +2% über denselben Tage-Zeitraum hätten identisches CAGR ergeben,
+   obwohl der tatsächliche Gewinn fünffach verschieden ist. Behoben: CAGR
+   kompoundiert jetzt die tatsächliche Gesamtrendite der Gruppe
+   (`dollar_gain_usd / START_CAPITAL`), nicht den Mittelwert.
+2. Die Wiederverwendung von `_regime_drawdown()` für die Drawdown-Control-
+   Kategorie war positionsabhängig verzerrt: derselbe −40%-Trade ergab als
+   1. Trade der Gruppe 40% Drawdown, als 100. Trade nur ~0,4%, weil das
+   bisher committete Kapital seit Gruppenbeginn akkumuliert statt seit dem
+   letzten Hoch zurückgesetzt wird. Neue, separate Funktion
+   `_regime_drawdown_since_peak()` behoben — normalisiert gegen das Kapital
+   seit dem letzten Hoch, nicht seit Gruppenbeginn. `_regime_drawdown()`
+   selbst (die bestehende `max_drawdown`-Spalte) bleibt unverändert, sie
+   beantwortet weiterhin korrekt die andere, bereits ausgelieferte Frage
+   (Hebel-Nachweis über die ganze Regime-Historie).
+
+Eigener Fund beim Selftest (Perfect-Win-Rate-Fall): `profit_factor` bei
+null Verlust-Trades ergab `-inf` statt `+inf`, weil `-leere_Summe.sum()`
+`-0.0` statt `0.0` liefert und `x/-0.0 = -inf` (IEEE-754-Vorzeichen-Null-
+Falle). Behoben mit `abs()` statt Negation; `+inf` wird jetzt wie von
+FreqForge dokumentiert als Bestwert (100 Punkte) behandelt, nicht als
+Fehlerfall.
+
+Annualisierung von Sortino/CAGR läuft gegen `total_regime_days` — die Summe
+der tatsächlichen Tage-Spannen der eigenen (deduplizierten) Episoden einer
+Gruppe (`_regime_days()`, aus neuen `btc_episode_days`/`coin_episode_days`/
+`joint_episode_days`-Spalten in `attach_benchmark()`), nicht die
+Kalenderspanne zwischen erstem und letztem gematchten Trade — sonst zählten
+Jahre außerhalb des Regimes zwischen verstreuten Episoden als Regime-Zeit
+mit. CAGR kann bei kurzen Episoden extreme Werte annehmen (Maximum im
+kompletten Modell-0-Bestand: 139 Mio. %) — bekannte, akzeptierte
+Einschränkung, deshalb die Log-Skalierung beim Scoring. Bisher nur für
+Modell 0 (589 Strategien) und den 7er-Piloten berechnet, noch nicht ins
+Artefakt verdrahtet; welches Kriterium die Top-10-Neuauswahl für Modell 1/2/3
+nutzt, ist eine offene, separate Entscheidung.
+
 Dollar-Ansicht (2026-09-11, auf expliziten Nutzerwunsch): zusätzlich zur
 Benchmark-relativen Excess-Return-Prozentzahl ein Dollar-Betrag —
 `dollar_gain_usd`/`benchmark_dollar_gain_usd`/`excess_dollar_gain_usd` in
