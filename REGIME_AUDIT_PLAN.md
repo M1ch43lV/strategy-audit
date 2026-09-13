@@ -1078,6 +1078,63 @@ Best BTC Bear + Coin Bear defensive specialist
 
 Minimum trade/episode requirements should be discussed and frozen before final ranking.
 
+**Addendum 2026-09-14 (episode-excess LCB, DeepSeek-v4-pro consultation
+"regime-audit-reliability-score"):** implements this section's own repeated
+warning ("do not select by maximum return alone") in a form that combines
+effect size and sample reliability into one bounded number, without
+becoming a second composite score. The user's stated goal: identify
+strategies where trading genuinely and *reliably* beats simple buy-and-hold
+in a regime - not one that merely got lucky on a handful of trades. Raw
+Profit-Factor was the first candidate but rejected: it can be very high on
+very few trades with little dollar profit, indistinguishable from a large,
+reliable edge on many trades without also weighting by evidence.
+
+**Metric:** `episode_excess_lcb` - a one-sided 95% lower confidence bound
+on the mean *episode* excess return (`_episode_excess_lcb()` in
+`regime/specialist_evaluation.py`):
+
+```text
+x_i = strategy's own summed return in episode i minus that episode's
+      buy-and-hold return (i = 1..n independent episodes, never trades -
+      trades inside one episode are correlated, not independent draws)
+LCB  = mean(x_i) - t(0.95, n-1) * stdev(x_i)/sqrt(n)
+```
+
+Few or highly variable episodes widen the interval and pull the bound down
+automatically - no separate minimum-episode rule bolted on; the reliability
+is already inside the formula. NaN below n=2 episodes (a sample standard
+deviation needs at least two points). `lcb_grade` maps the same bound to a
+Gainium-style A-F letter through fixed thresholds (A: >+2%, B: 0 to +2%,
+C: -2% to 0, D: -5% to -2%, F: below), frozen before any strategy's grade
+was inspected - the same discipline every other threshold in this plan
+already follows. Both are reported as additional descriptive columns,
+never a replacement for the tier/excess-return ranking rule above or for
+`freqforge_score` (2026-09-14 addendum, §17) - two separate composites
+would violate this section's own rule twice over.
+
+Two alternatives DeepSeek raised and the reasoning for not using them
+instead: Bayesian hierarchical shrinkage (pools evidence across
+strategies/regimes, better guards against the multiple-testing problem a
+plain per-regime LCB does not solve, but meaningfully more complex to
+implement and explain for a version-1 audit); Wilson-score bound on the
+binary "beat B&H this episode, yes/no" (simple and robust, but discards
+the *size* of the outperformance entirely - unacceptable for a "how much
+better" question).
+
+**Fixed alongside, a real defect this discussion surfaced:**
+`excess_return` itself averaged `profit_ratio` per *trade*, not per
+episode - the same uneven-weighting bug the dollar-figure fix (§13 of
+`PIPELINE.md`) already fixed once, just smaller in magnitude since it
+distorts a mean rather than inflating a sum. A 50-trade episode counted
+25x as much toward the mean as a 2-trade episode despite both being
+exactly one independent observation. Fixed by summing each episode's own
+trades first (`_episode_pairs()`), then averaging that sum across
+episodes - symmetric with how `mean_benchmark_return` was already
+computed. This shifted excess_return (and everything derived from it -
+rankings, Top-N selection, universal-candidate counts) across every row in
+the corpus; re-derived every specific number the published artifact's
+prose quotes.
+
 ---
 
 # 19. Define universal strategies

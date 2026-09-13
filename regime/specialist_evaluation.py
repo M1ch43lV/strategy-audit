@@ -37,6 +37,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from scipy import stats as scipy_stats
 
 from regime import attribution
 
@@ -623,6 +624,99 @@ def _freqforge_metrics(validation: pd.DataFrame, episode_level: pd.DataFrame,
     return table.reset_index()
 
 
+# ---------------------------------------------------------------------------
+# Episode-weighted excess return and its confidence bound, added 2026-09-14
+# on explicit user request after a DeepSeek-v4-pro discussion
+# (conversation "regime-audit-reliability-score") about combining effect
+# size (how much better than buy-and-hold) with sample reliability
+# (episodes, not trades) into one number, Gainium-style A-F grade included.
+#
+# That discussion surfaced a real, separate defect while designing the new
+# metric: `excess_return` itself averaged `profit_ratio` per *trade*, while
+# `mean_benchmark_return` already averaged per *episode* - the same
+# uneven-weighting bug this module already fixed once for the dollar
+# figures (2026-09-13), just smaller in magnitude here since it distorts a
+# mean, not a sum. A strategy with 50 trades in one episode and 2 in
+# another had the 50-trade episode count 25x as much toward
+# `mean_profit_ratio` as the 2-trade one, even though both are exactly one
+# independent data point. Fixed by summing each episode's own trades'
+# profit_ratio first (matching the fixed-$1000-per-trade convention used
+# everywhere else - this is the same quantity `dollar_gain_usd` sums, just
+# not yet multiplied by START_CAPITAL), then averaging *that* across
+# episodes - both `mean_profit_ratio` and `mean_benchmark_return` are now
+# one-vote-per-episode, and every downstream user of `excess_return` (tier
+# is unaffected - it never used excess_return - but ranking, Top-N
+# selection, and every specific percentage quoted in the artifact's prose
+# changed and needed re-deriving).
+# ---------------------------------------------------------------------------
+
+def _episode_pairs(validation: pd.DataFrame, regime_column: str,
+                   benchmark_column: str, episode_column: str) -> pd.DataFrame:
+    """One row per (strategy, regime, coin_pair, episode) that has a
+    resolvable benchmark: that episode's own strategy return (its trades'
+    `profit_ratio` summed, not averaged - the same fixed-stake convention
+    `dollar_gain_usd` already uses) paired with its benchmark_column value
+    (identical for every trade in the episode, so any one of them is the
+    episode's value). This is the single source both the corrected
+    `excess_return` and the new episode-excess LCB are built from."""
+    key = ["strategy_id", regime_column, "coin_pair", episode_column]
+    episode_strategy = (validation.groupby(key, dropna=False)["profit_ratio"]
+                        .sum().rename("episode_profit_ratio").reset_index())
+    episode_benchmark = (validation.dropna(subset=[benchmark_column])
+                         .drop_duplicates(subset=key)[key + [benchmark_column]])
+    pairs = episode_benchmark.merge(episode_strategy, on=key, how="left")
+    pairs["episode_excess"] = pairs["episode_profit_ratio"] - pairs[benchmark_column]
+    return pairs
+
+
+def _episode_excess_lcb(pairs: pd.DataFrame, group_cols: list[str]) -> pd.Series:
+    """One-sided 95% lower confidence bound on the mean episode excess
+    return: mean(x) - t(0.95, n-1) * s/sqrt(n), x = each episode's own
+    excess return, n = independent episodes (never trades - trades inside
+    one episode are correlated, not independent draws). NaN below n=2:
+    a sample standard deviation needs at least two points, and this
+    project's own VALIDATION floor already requires 5 anyway - an
+    EXPLORATORY row with 0-1 episodes has nothing to bound.
+
+    Deliberately conservative: few episodes -> wide interval -> low bound,
+    with no separate minimum-episode rule bolted on - the bound already
+    encodes reliability. Assumes approximately normal episode returns
+    (Student-t); genuinely skewed/fat-tailed episode distributions would
+    need a bootstrap LCB instead, not implemented here."""
+    if pairs.empty:
+        return pd.Series(dtype="float64")
+    def _lcb(x: pd.Series) -> float:
+        x = x.dropna()
+        n = len(x)
+        if n < 2:
+            return np.nan
+        mean = x.mean()
+        se = x.std(ddof=1) / np.sqrt(n)
+        if se == 0:
+            return mean
+        t_crit = scipy_stats.t.ppf(0.95, n - 1)
+        return float(mean - t_crit * se)
+    return pairs.groupby(group_cols, dropna=False)["episode_excess"].apply(_lcb)
+
+
+def _lcb_grade(lcb: float) -> str:
+    """Gainium-style A-F letter grade from the episode-excess LCB alone -
+    thresholds are round numbers chosen for legibility, not derived from
+    the data (frozen before any strategy's grade was inspected, same
+    discipline as every other threshold in this project)."""
+    if lcb is None or (isinstance(lcb, float) and np.isnan(lcb)):
+        return ""
+    if lcb > 0.02:
+        return "A"
+    if lcb > 0.0:
+        return "B"
+    if lcb > -0.02:
+        return "C"
+    if lcb > -0.05:
+        return "D"
+    return "F"
+
+
 def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: str,
                       benchmark_column: str, episode_column: str,
                       episode_summary: pd.DataFrame,
@@ -639,12 +733,12 @@ def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: st
                                      "total_regime_days", "sortino", "cagr",
                                      "drawdown_since_peak", "sortino_pts", "drawdown_pts",
                                      "cagr_pts", "liquidation_pts", "profit_factor_pts",
-                                     "worst_trade_pts", "freqforge_score"])
+                                     "worst_trade_pts", "freqforge_score",
+                                     "episode_excess_lcb", "lcb_grade"])
     group_cols = ["strategy_id", regime_column]
     grouped = validation.groupby(group_cols, dropna=False)
     table = grouped.agg(
         trades=("profit_ratio", "size"),
-        mean_profit_ratio=("profit_ratio", "mean"),
     ).reset_index()
     table = table.merge(episode_summary[["strategy_id", regime_column, "episodes"]],
                         on=["strategy_id", regime_column], how="left")
@@ -669,13 +763,23 @@ def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: st
     episode_level = (validation.dropna(subset=[benchmark_column])
                      .drop_duplicates(subset=["strategy_id", regime_column,
                                               "coin_pair", episode_column]))
-    bench_stats = episode_level.groupby(group_cols, dropna=False)[benchmark_column].agg(
-        mean_benchmark_return="mean", benchmark_matched_episodes="count")
+
+    # episode_pairs carries the SAME episodes as episode_level (one
+    # resolvable-benchmark row each) but with the strategy's own summed
+    # per-episode return alongside it - see the module note above for why
+    # mean_profit_ratio moved from a per-trade to a per-episode average.
+    episode_pairs = _episode_pairs(validation, regime_column, benchmark_column, episode_column)
+    bench_stats = episode_pairs.groupby(group_cols, dropna=False).agg(
+        mean_profit_ratio=("episode_profit_ratio", "mean"),
+        mean_benchmark_return=(benchmark_column, "mean"),
+        benchmark_matched_episodes=(benchmark_column, "count"))
     table = table.merge(bench_stats.reset_index(), on=group_cols, how="left")
     table["excess_return"] = table["mean_profit_ratio"] - table["mean_benchmark_return"]
     table["tier"] = np.where(
         (table["episodes"] >= MIN_EPISODES) & (table["trades"] >= MIN_TRADES),
         "VALIDATION", "EXPLORATORY")
+
+    episode_excess_lcb = _episode_excess_lcb(episode_pairs, group_cols)
 
     dollar_gain = _fixed_stake_gain(validation, "profit_ratio", group_cols)
     benchmark_dollar_gain = _fixed_stake_gain(episode_level, benchmark_column, group_cols)
@@ -684,8 +788,10 @@ def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: st
     table["dollar_gain_usd"] = dollar_gain
     table["benchmark_dollar_gain_usd"] = benchmark_dollar_gain
     table["max_drawdown"] = regime_drawdown
+    table["episode_excess_lcb"] = episode_excess_lcb
     table = table.reset_index()
     table["excess_dollar_gain_usd"] = table["dollar_gain_usd"] - table["benchmark_dollar_gain_usd"]
+    table["lcb_grade"] = table["episode_excess_lcb"].apply(_lcb_grade)
 
     freqforge = _freqforge_metrics(validation, episode_level, group_cols, episode_days_column)
     table = table.merge(freqforge, on=group_cols, how="left")
@@ -1056,10 +1162,63 @@ def selftest() -> None:
             # dips below its own starting capital, so the worst drawdown is
             # zero, not undefined or negative.
             assert bull_row["max_drawdown"] == 0.0
+            # Episode-weighted mean_profit_ratio regression (2026-09-14):
+            # each of the 6 BULL episodes sums to +5%+3%=+8%; averaged over
+            # 6 EQUAL episodes that is 8%, not the 4% a per-TRADE mean over
+            # all 12 trades would give ((0.05+0.03)/2, since every episode
+            # repeats the same two trades). The two only coincide when
+            # every episode has the same trade count, which is exactly why
+            # this fixture alone couldn't have caught the original bug -
+            # see the EPW fixture below for a fixture that can.
+            assert abs(bull_row["mean_profit_ratio"] - 0.08) < 1e-9
+            # Candle coverage for these 2024 dates falls outside the 2020
+            # fixture's 5-day price series, so backward-asof pins both ends
+            # of every episode to the same last known price - benchmark is
+            # a flat 0% here, making excess_return equal mean_profit_ratio.
+            assert abs(bull_row["excess_return"] - 0.08) < 1e-9
+            # All 6 episodes have IDENTICAL excess (zero variance across
+            # episodes), so the LCB collapses to the mean itself (se=0
+            # short-circuits the t-widened bound) - confident because
+            # consistent, not because n is large.
+            assert abs(bull_row["episode_excess_lcb"] - 0.08) < 1e-9
+            assert bull_row["lcb_grade"] == "A"
             bear_row = btc_table[(btc_table["strategy_id"] == "S1") &
                                  (btc_table["btc_regime"] == "BEAR")].iloc[0]
             assert bear_row["episodes"] == 2
             assert bear_row["tier"] == "EXPLORATORY"
+
+            # Episode-weighting regression this fixture couldn't have
+            # caught: two BULL episodes, 3 trades of +30% each vs. 1 trade
+            # of -10%. A per-trade mean over all 4 trades gives
+            # (0.30*3-0.10)/4 = 20% - the bug. Weighting by episode instead
+            # (each episode sums its own trades first) gives
+            # (0.90 + (-0.10))/2 = 40%, the correct value.
+            epw_days_a = [pd.Timestamp("2024-08-01", tz="UTC") + pd.Timedelta(days=i)
+                         for i in range(3)]
+            epw_rows = ([make("EPW", "BULL", i, epw_days_a[i], 0.30, "EPW-A") for i in range(3)] +
+                       [make("EPW", "BULL", 3, pd.Timestamp("2024-08-10", tz="UTC"), -0.10, "EPW-B")])
+            epw_daily = pd.DataFrame(
+                [daily_row(day, "EPW-A") for day in epw_days_a] +
+                [daily_row(pd.Timestamp("2024-08-10", tz="UTC"), "EPW-B")])
+            epw_trades = attach_benchmark(pd.DataFrame(epw_rows), daily=epw_daily)
+            epw_trades["analysis_window"] = "validation"
+            epw_table = btc_specialist_table(epw_trades)
+            epw_row = epw_table[(epw_table["strategy_id"] == "EPW") &
+                                (epw_table["btc_regime"] == "BULL")].iloc[0]
+            assert epw_row["episodes"] == 2
+            assert epw_row["trades"] == 4
+            assert abs(epw_row["mean_profit_ratio"] - 0.40) < 1e-9
+            assert abs(epw_row["excess_return"] - 0.40) < 1e-9
+            # LCB from n=2 wildly divergent episodes (+90%, -10%): mean=40%,
+            # s=std([0.90,-0.10], ddof=1)=1/sqrt(2), se=s/sqrt(2)=0.5,
+            # t(0.95, 1 df) is large (~6.31) - the bound swings deeply
+            # negative despite the good-looking point estimate, exactly the
+            # "don't trust two episodes" signal this metric exists for.
+            expected_epw_t = scipy_stats.t.ppf(0.95, 1)
+            expected_epw_lcb = 0.40 - expected_epw_t * 0.5
+            assert expected_epw_lcb < -1.0
+            assert abs(epw_row["episode_excess_lcb"] - expected_epw_lcb) < 1e-6
+            assert epw_row["lcb_grade"] == "F"
 
             ranking = rank_specialists(btc_table, "btc_regime")
             assert set(ranking["btc_regime"]) == {"BULL"}
@@ -1256,6 +1415,19 @@ def selftest() -> None:
             assert _worst_trade_points(-0.13) == 87.0
             assert _worst_trade_points(-1.0) == 0.0
             assert _worst_trade_points(-2.0) == 0.0
+
+            # LCB letter-grade boundaries.
+            assert _lcb_grade(0.021) == "A"
+            assert _lcb_grade(0.02) == "B"  # boundary itself is exclusive on the A side
+            assert _lcb_grade(0.01) == "B"
+            assert _lcb_grade(0.0) == "C"
+            assert _lcb_grade(-0.019) == "C"
+            assert _lcb_grade(-0.02) == "D"
+            assert _lcb_grade(-0.049) == "D"
+            assert _lcb_grade(-0.05) == "F"
+            assert _lcb_grade(-1.0) == "F"
+            assert _lcb_grade(float("nan")) == ""
+            assert _lcb_grade(None) == ""
         finally:
             CANDLE_DIR = saved_dir
     print("specialist evaluation selftest: PASS")
@@ -1331,7 +1503,18 @@ def main(argv=None) -> int:
             "but over the *entire* BTC-/coin-regime episode a trade fell "
             "in, not just that trade's own open-to-close interval (changed "
             "2026-09-12; see attach_benchmark()'s docstring for why), "
-            "never raw profit. max_drawdown is the worst peak-to-trough "
+            "never raw profit, and (2026-09-14) averaged one-vote-per-"
+            "episode - each episode's own trades summed first, then that "
+            "sum averaged across episodes - not a raw per-trade mean, "
+            "which let episodes with more trades outweigh others despite "
+            "being equally one independent observation; see "
+            "_episode_pairs()'s docstring. episode_excess_lcb is a "
+            "one-sided 95%% lower confidence bound on that same "
+            "per-episode excess return (t-distribution, n=episodes); "
+            "lcb_grade is a Gainium-style A-F letter from fixed thresholds "
+            "on that bound - see _episode_excess_lcb()/_lcb_grade()'s "
+            "docstrings. Both descriptive, not the ranking rule. "
+            "max_drawdown is the worst peak-to-trough "
             "drop of a fixed-$%g-stake curve built only from each row's own "
             "matched trades, ordered by close_date - see "
             "_regime_drawdown()'s docstring." % (MIN_EPISODES, MIN_TRADES, START_CAPITAL)

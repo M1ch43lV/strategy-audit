@@ -3,7 +3,53 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-14T02:00:00+02:00
+- Last update: 2026-09-14T05:00:00+02:00
+- Added `episode_excess_lcb`/`lcb_grade` to `regime/specialist_evaluation.py`
+  (`_episode_excess_lcb()`, `_lcb_grade()`) after the user asked for a
+  metric answering "does trading reliably beat B&H, not just get lucky on
+  few trades" (rejected raw Profit-Factor: high on very few trades, lower
+  but more trustworthy on many, with nothing showing the difference) and
+  asked to consult `mcp__deepseek-mcp__ask` (conversation
+  "regime-audit-reliability-score", deepseek-v4-pro) before implementing.
+  DeepSeek recommended a one-sided 95% lower confidence bound on the mean
+  *episode* excess return (`LCB = mean(x_i) - t(0.95,n-1)*se`, x_i = each
+  independent episode's own excess return, n = episodes never trades -
+  trades inside one episode are correlated draws, not independent ones),
+  kept as a metric fully separate from `freqforge_score` so the project's
+  "no single composite" rule (`REGIME_AUDIT_PLAN.md` §17) isn't violated
+  twice; `lcb_grade` is a Gainium-style A-F letter from fixed thresholds on
+  that same bound (A: >+2%, B: 0-2%, C: -2%-0, D: -5%--2%, F: below),
+  frozen before any strategy's grade was inspected. Considered and
+  rejected: Bayesian hierarchical shrinkage (better multiple-testing
+  behavior, meaningfully more complex) and Wilson-score on binary
+  beat/no-beat (too simple, discards effect size).
+  That discussion surfaced a real, separate bug while designing the
+  episode-level input the LCB needs: the *existing* `excess_return`
+  averaged `profit_ratio` per **trade**, not per episode - a 50-trade
+  episode counted 25x as much toward the mean as a 2-trade one despite
+  both being exactly one independent observation. Same class of bug as the
+  2026-09-13 dollar-figure fix, just distorting a mean instead of
+  inflating a sum. Fixed in new `_episode_pairs()`: sum each episode's own
+  trades first, then average that sum across episodes - symmetric with the
+  already-correct `mean_benchmark_return`. This changed `excess_return`
+  (and everything derived from it: ranking order, Top-N selection,
+  universal-candidate counts) across the entire corpus - re-derived every
+  specific number the artifact's prose quotes rather than leaving stale
+  figures next to fresh data (e.g. "ADX Uptrend weakest regime" 372/379
+  (98%) -> 359/379 (94.7%); fully-consistent universal candidates 0 -> 8,
+  all eight `FastSupertrend` variants whose actual weakest regime is
+  TRANSITION, not BULL; the dollar-vs-percent "paradox" callout's example
+  no longer applies - checked the whole Model 0 population, zero rows now
+  show dollar-gain-exceeds-B&H-but-negative-excess-return, versus at least
+  one before the fix). Added regression selftest cases for both the LCB
+  formula and the episode-weighted mean (a 2-episode, wildly divergent
+  fixture and a 6-episode uniform one), re-ran Model 0 (full 589) + the
+  Model 1/2/3 7-candidate pilot, wired both new columns into all four
+  artifact tables plus a dedicated explanatory callout (kept separate from
+  the FreqForge-score callout per DeepSeek's advice). Published as artifact
+  Version 31. Documented in `REGIME_AUDIT_PLAN.md` §18 addendum (the user
+  explicitly asked for plan documentation, not just PIPELINE.md) and
+  `PIPELINE.md` Stufe 13.
 - Added six FreqForge-inspired scoring metrics (github.com/baxr6/FreqForge)
   to `regime/specialist_evaluation.py`, per (strategy, regime): `profit_factor`,
   `worst_trade`, `liquidation_rate`, `sortino`, `cagr`, `drawdown_since_peak`,

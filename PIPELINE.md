@@ -493,10 +493,47 @@ Kalenderspanne zwischen erstem und letztem gematchten Trade — sonst zählten
 Jahre außerhalb des Regimes zwischen verstreuten Episoden als Regime-Zeit
 mit. CAGR kann bei kurzen Episoden extreme Werte annehmen (Maximum im
 kompletten Modell-0-Bestand: 139 Mio. %) — bekannte, akzeptierte
-Einschränkung, deshalb die Log-Skalierung beim Scoring. Bisher nur für
-Modell 0 (589 Strategien) und den 7er-Piloten berechnet, noch nicht ins
-Artefakt verdrahtet; welches Kriterium die Top-10-Neuauswahl für Modell 1/2/3
+Einschränkung, deshalb die Log-Skalierung beim Scoring. Modell 0 (589
+Strategien) und der 7er-Pilot berechnet und im Artefakt verdrahtet
+(Version 30); welches Kriterium die Top-10-Neuauswahl für Modell 1/2/3
 nutzt, ist eine offene, separate Entscheidung.
+
+**Episoden-Excess-LCB und Korrektur des Excess-Return-Mittelwerts
+(2026-09-14, auf expliziten Nutzerwunsch nach DeepSeek-v4-pro-Rücksprache
+"regime-audit-reliability-score"):** Nutzerziel war eine Kennzahl für
+"schlägt Trading B&H, UND ist das statistisch verlässlich (viele
+Episoden), nicht nur zufällig gut bei wenigen Trades" — Profit-Factor
+allein wurde verworfen, weil er bei sehr wenigen Trades sehr hoch und bei
+vielen Trades niedriger, aber verlässlicher ausfallen kann, ohne dass das
+sichtbar wird. DeepSeek empfahl eine einseitige 95%-Lower-Confidence-Bound
+auf den mittleren **episodischen** Excess-Return (`_episode_excess_lcb()`):
+`LCB = Mittelwert(x_i) − t(0,95, n−1) × Standardfehler(x_i)`, `x_i` = die
+Excess-Rendite der i-ten unabhängigen Episode, `n` = Episoden, nie Trades.
+Wenige/stark schwankende Episoden drücken die Grenze automatisch ins
+Negative — keine separate Mindest-Trade-Regel nötig, die Verlässlichkeit
+steckt schon in der Formel. `lcb_grade` bildet daraus ein Gainium-artiges
+A-F-Rating über feste, vor jeder Ergebnis-Sichtung eingefrorene Schwellen
+(A: LCB>+2%, B: 0 bis +2%, C: −2% bis 0, D: −5% bis −2%, F: darunter).
+Verworfene Alternativen: Bayes'sches Hierarchie-Shrinkage (eleganter bei
+vielen Strategien, deutlich aufwändiger) und Wilson-Score auf ein binäres
+"schlägt B&H ja/nein" (zu einfach, verwirft die Größe der Überrendite).
+Beide neuen Spalten rein deskriptiv, kein Ersatz für Tier/Ranking oder den
+`freqforge_score` — separat gehalten, damit die "kein Einzelscore"-Regel
+(§17) nicht zweimal verletzt wird.
+
+Bei der Umsetzung fiel ein echter, eigenständiger Fehler auf:
+`excess_return` mittelte bislang über **Trades**, nicht über Episoden —
+dieselbe Schieflage, die die Dollar-Korrektur oben schon einmal behoben
+hat, nur als Mittelwert statt als Summe (eine Episode mit 50 Trades zählte
+25-mal so stark wie eine mit 2 Trades, obwohl beide nur eine unabhängige
+Beobachtung sind). Behoben in `_episode_pairs()`: jede Episode wird zuerst
+für sich aufsummiert, dann erst über die Episoden gemittelt — symmetrisch
+zum längst korrekten `mean_benchmark_return`. Das verschiebt Excess-Return
+(und alles Abgeleitete — Ranking, Top-N-Auswahl, Universal-Kandidaten-
+Zahlen) über den ganzen Bestand; alle konkreten Zahlen im Artefakt-Text
+wurden neu hergeleitet (u. a. "ADX Uptrend schwächstes Regime" 372→359 von
+379, vollständig konsistente Kandidaten 0→8). Modell 0 und der 7er-Pilot
+neu gerechnet, Selftest um Regressionsfälle für beides ergänzt.
 
 Dollar-Ansicht (2026-09-11, auf expliziten Nutzerwunsch): zusätzlich zur
 Benchmark-relativen Excess-Return-Prozentzahl ein Dollar-Betrag —
