@@ -606,10 +606,23 @@ Richtung die Strategie dabei tatsächlich eintritt. Läuft durch dieselbe
 unveränderte Kette (`gated_backtest.py` → `gated_attribution.py` →
 `specialist_evaluation.py`); die neuen Kandidaten erscheinen als
 zusätzliche Zeilen in denselben Modell-1/2/3-Tabellen (eigene candidate_id,
-z. B. `ADXDM-sideways`), nicht als separate Tabelle. Backtest lief zum
-Zeitpunkt dieses Eintrags noch (`--workers 1`, sequenziell über alle drei
-Modelle wegen des 16-GB-Speicherwächters); Ergebniszahlen folgen nach
-Abschluss.
+z. B. `ADXDM-sideways`), nicht als separate Tabelle. Backtest abgeschlossen
+(`--workers 1`, sequenziell über alle drei Modelle wegen des
+16-GB-Speicherwächters, alle 14/14 Kandidaten je Modell gemessen).
+`gated_attribution.py` lief zusätzlich gegen das neue Manifest, in ein
+eigenes `modelN_attribution_sideways_transition/`; per Python mit der
+bestehenden `modelN_attribution/trade_regime_attribution.csv`
+zusammengeführt (`modelN_attribution_merged/`, disjunkte candidate_ids
+vorher geprüft — 70.804/69.592/53.620 Trades für Modell 1/2/3 gesamt).
+`specialist_evaluation.py` darüber neu gerechnet (`--joint` für Modell 3),
+`export_v9.py`/`build_v8.py` neu gelaufen, Artefakt veröffentlicht
+(Version 33). Ergebnis: Modell 1 bekommt dadurch 10 Universal-Kandidaten
+(vorher 0 mit nur der Trendfolge-Variante — durch die BTC-only-Gate-Logik
+kann ein einzelner, nur auf ein Coin-Regime-Zustand fixierter Kandidat wie
+`X-sideways` trotzdem alle vier Coin-Regime erreichen, weil Modell 1 den
+Coin-Zustand gar nicht einschränkt); Modell 2/3 bleiben bei 0
+Universal-Kandidaten, weil deren Coin-Gate `X-sideways`/`X-transition`
+strukturell auf genau einen Coin-Regime-Zustand festlegt.
 
 Dollar-Ansicht (2026-09-11, auf expliziten Nutzerwunsch): zusätzlich zur
 Benchmark-relativen Excess-Return-Prozentzahl ein Dollar-Betrag —

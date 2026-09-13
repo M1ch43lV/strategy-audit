@@ -3,7 +3,40 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-14T11:00:00+02:00
+- Last update: 2026-09-14T13:00:00+02:00
+- **Both items below are now fully done, merged, and published (artifact
+  Version 33)** - superseding their own "still outstanding"/"still running"
+  notes further down (left in place for the reasoning trail, not as an
+  open TODO). Final state: `export_v9.py` computes `trades_total` from
+  each model's merged attribution CSV (`MERGED_ATTRIBUTION` dict) instead
+  of the old hardcoded `MANUAL_TRADES_TOTAL`; the template's
+  `GATED_REGIME_LIST` is all four states; a real, independent bug was
+  found and fixed along the way (`futuresLabel()` did an exact-match
+  lookup against a gated row's full `candidate_id`, e.g.
+  `"AdaptiveRegime-trend"`, which can never match the bare `strategy_id`
+  list `FUTURESSTRATEGIES` is keyed on - the futures asterisk had
+  silently never rendered in any Modell-1/2/3 row; fixed with a
+  `baseStrategyId()` suffix-stripper). Pipeline steps actually run, in
+  order: `gated_attribution.py` for each model against the new
+  sideways/transition manifest into `modelN_attribution_sideways_transition/`
+  (41,874 / 42,678 / 31,282 trades for model1/2/3); concatenated with the
+  existing `modelN_attribution/trade_regime_attribution.csv` into a new
+  `modelN_attribution_merged/` (70,804 / 69,592 / 53,620 trades - no
+  candidate_id overlap, verified before concatenating); re-ran
+  `specialist_evaluation.py` against each merged file (`--joint` for
+  model3) so `results/regime/specialist_evaluation/model{1,2,3}/` now
+  covers all 21 candidates; re-ran `export_v9.py` and `build_v8.py`;
+  published. Model 0 also fully re-run with the fixed code (see below):
+  BTC VALIDATION rows 1,828 -> 1,671, coin 1,770 -> 1,757; universal
+  candidates held at 379, "ADX Uptrend weakest regime" held at 359/379,
+  and the 8 fully-consistent `FastSupertrend_*` candidates are the exact
+  same 8 strategies as before the tier fix - none of Model 0's most-quoted
+  headline numbers actually moved, only the raw VALIDATION row counts and
+  whichever individual non-universal rows flipped tier. Committed in two
+  commits: `b7b44c8` (the five code fixes + Model 0 data) and a second
+  commit for the sideways/transition merge + gated model 1/2/3 data
+  (candidate_spec already committed earlier as `results/regime/
+  candidate_spec_pilot_v1_sideways_transition.json`).
 - User asked for a from-scratch DeepSeek-v4-pro code review of the metric
   code (`regime/specialist_evaluation.py`) and the Model 0/1/2/3
   construction code (`regime/attribution.py`, `regime/gate_adapter.py`,

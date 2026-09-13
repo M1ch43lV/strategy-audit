@@ -1,0 +1,1040 @@
+{
+  "analysis_role": "PILOT",
+  "candidate_ids": [
+    "ASDTSRockwellTrading-sideways",
+    "ASDTSRockwellTrading-transition",
+    "ADXDM-sideways",
+    "ADXDM-transition",
+    "ADXMomentum-sideways",
+    "ADXMomentum-transition",
+    "ADX_15M_USDT-sideways",
+    "ADX_15M_USDT-transition",
+    "AdaptiveRegime-sideways",
+    "AdaptiveRegime-transition",
+    "BBMod-sideways",
+    "BBMod-transition",
+    "AlmgrenChrissStrategy-sideways",
+    "AlmgrenChrissStrategy-transition"
+  ],
+  "candidate_set_id": "pilot_v1_stratified_sideways_transition_gate",
+  "candidate_spec_sha256": "sha256_0db7a98dd5fc618b1256c5bf54120dfbd5005d57d8c6d5dcd005307b01d38a7e",
+  "candidates": [
+    {
+      "candidate_id": "ASDTSRockwellTrading-sideways",
+      "long_btc_states": [
+        "SIDEWAYS"
+      ],
+      "long_coin_states": [
+        "SIDEWAYS"
+      ],
+      "short_btc_states": [
+        "SIDEWAYS"
+      ],
+      "short_coin_states": [
+        "SIDEWAYS"
+      ],
+      "strategy_id": "ASDTSRockwellTrading"
+    },
+    {
+      "candidate_id": "ASDTSRockwellTrading-transition",
+      "long_btc_states": [
+        "TRANSITION"
+      ],
+      "long_coin_states": [
+        "TRANSITION"
+      ],
+      "short_btc_states": [
+        "TRANSITION"
+      ],
+      "short_coin_states": [
+        "TRANSITION"
+      ],
+      "strategy_id": "ASDTSRockwellTrading"
+    },
+    {
+      "candidate_id": "ADXDM-sideways",
+      "long_btc_states": [
+        "SIDEWAYS"
+      ],
+      "long_coin_states": [
+        "SIDEWAYS"
+      ],
+      "short_btc_states": [
+        "SIDEWAYS"
+      ],
+      "short_coin_states": [
+        "SIDEWAYS"
+      ],
+      "strategy_id": "ADXDM"
+    },
+    {
+      "candidate_id": "ADXDM-transition",
+      "long_btc_states": [
+        "TRANSITION"
+      ],
+      "long_coin_states": [
+        "TRANSITION"
+      ],
+      "short_btc_states": [
+        "TRANSITION"
+      ],
+      "short_coin_states": [
+        "TRANSITION"
+      ],
+      "strategy_id": "ADXDM"
+    },
+    {
+      "candidate_id": "ADXMomentum-sideways",
+      "long_btc_states": [
+        "SIDEWAYS"
+      ],
+      "long_coin_states": [
+        "SIDEWAYS"
+      ],
+      "short_btc_states": [
+        "SIDEWAYS"
+      ],
+      "short_coin_states": [
+        "SIDEWAYS"
+      ],
+      "strategy_id": "ADXMomentum"
+    },
+    {
+      "candidate_id": "ADXMomentum-transition",
+      "long_btc_states": [
+        "TRANSITION"
+      ],
+      "long_coin_states": [
+        "TRANSITION"
+      ],
+      "short_btc_states": [
+        "TRANSITION"
+      ],
+      "short_coin_states": [
+        "TRANSITION"
+      ],
+      "strategy_id": "ADXMomentum"
+    },
+    {
+      "candidate_id": "ADX_15M_USDT-sideways",
+      "long_btc_states": [
+        "SIDEWAYS"
+      ],
+      "long_coin_states": [
+        "SIDEWAYS"
+      ],
+      "short_btc_states": [
+        "SIDEWAYS"
+      ],
+      "short_coin_states": [
+        "SIDEWAYS"
+      ],
+      "strategy_id": "ADX_15M_USDT"
+    },
+    {
+      "candidate_id": "ADX_15M_USDT-transition",
+      "long_btc_states": [
+        "TRANSITION"
+      ],
+      "long_coin_states": [
+        "TRANSITION"
+      ],
+      "short_btc_states": [
+        "TRANSITION"
+      ],
+      "short_coin_states": [
+        "TRANSITION"
+      ],
+      "strategy_id": "ADX_15M_USDT"
+    },
+    {
+      "candidate_id": "AdaptiveRegime-sideways",
+      "long_btc_states": [
+        "SIDEWAYS"
+      ],
+      "long_coin_states": [
+        "SIDEWAYS"
+      ],
+      "short_btc_states": [
+        "SIDEWAYS"
+      ],
+      "short_coin_states": [
+        "SIDEWAYS"
+      ],
+      "strategy_id": "AdaptiveRegime"
+    },
+    {
+      "candidate_id": "AdaptiveRegime-transition",
+      "long_btc_states": [
+        "TRANSITION"
+      ],
+      "long_coin_states": [
+        "TRANSITION"
+      ],
+      "short_btc_states": [
+        "TRANSITION"
+      ],
+      "short_coin_states": [
+        "TRANSITION"
+      ],
+      "strategy_id": "AdaptiveRegime"
+    },
+    {
+      "candidate_id": "BBMod-sideways",
+      "long_btc_states": [
+        "SIDEWAYS"
+      ],
+      "long_coin_states": [
+        "SIDEWAYS"
+      ],
+      "short_btc_states": [
+        "SIDEWAYS"
+      ],
+      "short_coin_states": [
+        "SIDEWAYS"
+      ],
+      "strategy_id": "BBMod"
+    },
+    {
+      "candidate_id": "BBMod-transition",
+      "long_btc_states": [
+        "TRANSITION"
+      ],
+      "long_coin_states": [
+        "TRANSITION"
+      ],
+      "short_btc_states": [
+        "TRANSITION"
+      ],
+      "short_coin_states": [
+        "TRANSITION"
+      ],
+      "strategy_id": "BBMod"
+    },
+    {
+      "candidate_id": "AlmgrenChrissStrategy-sideways",
+      "long_btc_states": [
+        "SIDEWAYS"
+      ],
+      "long_coin_states": [
+        "SIDEWAYS"
+      ],
+      "short_btc_states": [
+        "SIDEWAYS"
+      ],
+      "short_coin_states": [
+        "SIDEWAYS"
+      ],
+      "strategy_id": "AlmgrenChrissStrategy"
+    },
+    {
+      "candidate_id": "AlmgrenChrissStrategy-transition",
+      "long_btc_states": [
+        "TRANSITION"
+      ],
+      "long_coin_states": [
+        "TRANSITION"
+      ],
+      "short_btc_states": [
+        "TRANSITION"
+      ],
+      "short_coin_states": [
+        "TRANSITION"
+      ],
+      "strategy_id": "AlmgrenChrissStrategy"
+    }
+  ],
+  "eligibility_snapshot_sha256": "sha256_9dde39d145d7790966646aab34ec918d9e0eedf788b3c42234bd0db3eaf10d56",
+  "measurement_scope": "btc_coin_entry_gated_pooled_native_pair_universe",
+  "model": "model3",
+  "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+  "results": {
+    "ADXDM-sideways": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/ADXDM-eef844db-model3-ADXDM-sideways-44714891-2026-09-13_23-35-27.zip",
+      "archive_sha256": "sha256_75640e33ad658212b71778ef9aba6f8475705d296277b205bb3dcd23f4d23ebf",
+      "artifact_key": "model3-ADXDM-sideways",
+      "candidate_id": "ADXDM-sideways",
+      "canonical_sha256": "sha256_234460d194762a256557922775fc12e72c1cd1b53bb8a3d141ad6590115273cb",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 54.8,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_btc_states": [
+          "SIDEWAYS"
+        ],
+        "long_coin_states": [
+          "SIDEWAYS"
+        ],
+        "mode": "btc_coin",
+        "schema_version": 1,
+        "short_btc_states": [
+          "SIDEWAYS"
+        ],
+        "short_coin_states": [
+          "SIDEWAYS"
+        ]
+      },
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ADXDM --strategy-path \"repos/hamidreza07_freqai-strategy/startegy test/5/_ADXDM\" --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ADXDM-eef844db-model3-ADXDM-sideways-44714891 --cache none",
+      "long_trades": 139,
+      "measurement_scope": "btc_coin_entry_gated_pooled_native_pair_universe",
+      "mode": "spot",
+      "model": "model3",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/ADXDM-sideways-531f55da-model3-228834bc89c0.json",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "ADXDM",
+      "timerange": "20200401-20260821",
+      "trades": 139,
+      "trades_sha256": "sha256_b2fc647679accf4735e0fca99c1593dbf5d38d4841c9509836e69b955092507f"
+    },
+    "ADXDM-transition": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/ADXDM-eef844db-model3-ADXDM-transition-d16db5ca-2026-09-13_23-36-22.zip",
+      "archive_sha256": "sha256_40cd976ece2566bc2eb90ccb1152d8edc41b1dc861f623231a1313c9fb2b2143",
+      "artifact_key": "model3-ADXDM-transition",
+      "candidate_id": "ADXDM-transition",
+      "canonical_sha256": "sha256_234460d194762a256557922775fc12e72c1cd1b53bb8a3d141ad6590115273cb",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 54.6,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_btc_states": [
+          "TRANSITION"
+        ],
+        "long_coin_states": [
+          "TRANSITION"
+        ],
+        "mode": "btc_coin",
+        "schema_version": 1,
+        "short_btc_states": [
+          "TRANSITION"
+        ],
+        "short_coin_states": [
+          "TRANSITION"
+        ]
+      },
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ADXDM --strategy-path \"repos/hamidreza07_freqai-strategy/startegy test/5/_ADXDM\" --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ADXDM-eef844db-model3-ADXDM-transition-d16db5ca --cache none",
+      "long_trades": 124,
+      "measurement_scope": "btc_coin_entry_gated_pooled_native_pair_universe",
+      "mode": "spot",
+      "model": "model3",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/ADXDM-transition-8ad56288-model3-a4be69cf7bcf.json",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "ADXDM",
+      "timerange": "20200401-20260821",
+      "trades": 124,
+      "trades_sha256": "sha256_7edd7f17ac71c5db736a90752a97eb1ded086ca003c1a3418b29952489f4e37f"
+    },
+    "ADXMomentum-sideways": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/ADXMomentum-d748d610-model3-ADXMomentum-sideways-01240f5a-2026-09-13_23-36-32.zip",
+      "archive_sha256": "sha256_2cac52ca78bac2eab15d5d2396eb1787c8fdcca124b3759c2e29f861d62c427e",
+      "artifact_key": "model3-ADXMomentum-sideways",
+      "candidate_id": "ADXMomentum-sideways",
+      "canonical_sha256": "sha256_bdbfd15a521c2dd93a04f8038a621f3613f3f51067564cad7e403dd8120f0587",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 8.7,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_btc_states": [
+          "SIDEWAYS"
+        ],
+        "long_coin_states": [
+          "SIDEWAYS"
+        ],
+        "mode": "btc_coin",
+        "schema_version": 1,
+        "short_btc_states": [
+          "SIDEWAYS"
+        ],
+        "short_coin_states": [
+          "SIDEWAYS"
+        ]
+      },
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ADXMomentum --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ADXMomentum-d748d610-model3-ADXMomentum-sideways-01240f5a --cache none",
+      "long_trades": 7,
+      "measurement_scope": "btc_coin_entry_gated_pooled_native_pair_universe",
+      "mode": "spot",
+      "model": "model3",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/ADXMomentum-sideways-7813f2f3-model3-228834bc89c0.json",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "ADXMomentum",
+      "timerange": "20200401-20260821",
+      "trades": 7,
+      "trades_sha256": "sha256_b29e0e10e4b63fe1e09e4adf7fe43bec7ae7279b3d1ad2da8c7bafcc5b672d3e"
+    },
+    "ADXMomentum-transition": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/ADXMomentum-d748d610-model3-ADXMomentum-transition-b00154da-2026-09-13_23-36-41.zip",
+      "archive_sha256": "sha256_0939d12bdb9a965234e12b2ce58db64eb8f2a18e68e7c5050ec7aacc5b16c7da",
+      "artifact_key": "model3-ADXMomentum-transition",
+      "candidate_id": "ADXMomentum-transition",
+      "canonical_sha256": "sha256_bdbfd15a521c2dd93a04f8038a621f3613f3f51067564cad7e403dd8120f0587",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 8.1,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_btc_states": [
+          "TRANSITION"
+        ],
+        "long_coin_states": [
+          "TRANSITION"
+        ],
+        "mode": "btc_coin",
+        "schema_version": 1,
+        "short_btc_states": [
+          "TRANSITION"
+        ],
+        "short_coin_states": [
+          "TRANSITION"
+        ]
+      },
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ADXMomentum --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ADXMomentum-d748d610-model3-ADXMomentum-transition-b00154da --cache none",
+      "long_trades": 3,
+      "measurement_scope": "btc_coin_entry_gated_pooled_native_pair_universe",
+      "mode": "spot",
+      "model": "model3",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/ADXMomentum-transition-84c55cc5-model3-a4be69cf7bcf.json",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "ADXMomentum",
+      "timerange": "20200401-20260821",
+      "trades": 3,
+      "trades_sha256": "sha256_1f81ef24df0e1cf68054c92ba0dc75dc9ea250bb4f12e8159e6d24f0441648be"
+    },
+    "ADX_15M_USDT-sideways": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/ADX_15M_USDT-b331c6ee-model3-ADX_15M_USDT-sideways-25087879-2026-09-13_23-37-05.zip",
+      "archive_sha256": "sha256_6ba7fbe957645a151c1e0058b59909d2f60e09dfc1a838dc8fd094bfa3c6ea04",
+      "artifact_key": "model3-ADX_15M_USDT-sideways",
+      "candidate_id": "ADX_15M_USDT-sideways",
+      "canonical_sha256": "sha256_1cf6c1e674baf8352d60a80fbdea156cdefe4639900ba8160568d07b7cff03a7",
+      "class1_rules": [],
+      "config_overrides": {
+        "timeframe": "15m"
+      },
+      "elapsed_s": 25.6,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_btc_states": [
+          "SIDEWAYS"
+        ],
+        "long_coin_states": [
+          "SIDEWAYS"
+        ],
+        "mode": "btc_coin",
+        "schema_version": 1,
+        "short_btc_states": [
+          "SIDEWAYS"
+        ],
+        "short_coin_states": [
+          "SIDEWAYS"
+        ]
+      },
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/ADX_15M_USDT-b331c6ee-override-c517447bf6b2.json --strategy ADX_15M_USDT --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ADX_15M_USDT-b331c6ee-model3-ADX_15M_USDT-sideways-25087879 --cache none",
+      "long_trades": 1209,
+      "measurement_scope": "btc_coin_entry_gated_pooled_native_pair_universe",
+      "mode": "spot",
+      "model": "model3",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/ADX_15M_USDT-sideways-60a0fbd3-model3-228834bc89c0.json",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "ADX_15M_USDT",
+      "timerange": "20200401-20260821",
+      "trades": 1209,
+      "trades_sha256": "sha256_4cff71ea79e22de1aad4ed2284b250afb72ef97482e139f1478b24ab84f75558"
+    },
+    "ADX_15M_USDT-transition": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/ADX_15M_USDT-b331c6ee-model3-ADX_15M_USDT-transition-affb23a7-2026-09-13_23-37-30.zip",
+      "archive_sha256": "sha256_98a04f1f091b52371483108f5be39dc0765a55f606b917f79f88c571149e9aec",
+      "artifact_key": "model3-ADX_15M_USDT-transition",
+      "candidate_id": "ADX_15M_USDT-transition",
+      "canonical_sha256": "sha256_1cf6c1e674baf8352d60a80fbdea156cdefe4639900ba8160568d07b7cff03a7",
+      "class1_rules": [],
+      "config_overrides": {
+        "timeframe": "15m"
+      },
+      "elapsed_s": 23.9,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_btc_states": [
+          "TRANSITION"
+        ],
+        "long_coin_states": [
+          "TRANSITION"
+        ],
+        "mode": "btc_coin",
+        "schema_version": 1,
+        "short_btc_states": [
+          "TRANSITION"
+        ],
+        "short_coin_states": [
+          "TRANSITION"
+        ]
+      },
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/ADX_15M_USDT-b331c6ee-override-c517447bf6b2.json --strategy ADX_15M_USDT --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ADX_15M_USDT-b331c6ee-model3-ADX_15M_USDT-transition-affb23a7 --cache none",
+      "long_trades": 731,
+      "measurement_scope": "btc_coin_entry_gated_pooled_native_pair_universe",
+      "mode": "spot",
+      "model": "model3",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/ADX_15M_USDT-transition-48ef247c-model3-a4be69cf7bcf.json",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "ADX_15M_USDT",
+      "timerange": "20200401-20260821",
+      "trades": 731,
+      "trades_sha256": "sha256_6639cd0f7fc020ac91333c1b01d9818b56146e54a220bfd2175ab8e0218cd869"
+    },
+    "ASDTSRockwellTrading-sideways": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/ASDTSRockwellTrading-a0a64ac9-model3-ASDTSRockwellTrading-sideways-eec5d268-2026-09-13_23-33-31.zip",
+      "archive_sha256": "sha256_a60bf0571bbc1d499dc9df8ee2586b508fb45ad37b207c75a276a6b45d7f241a",
+      "artifact_key": "model3-ASDTSRockwellTrading-sideways",
+      "candidate_id": "ASDTSRockwellTrading-sideways",
+      "canonical_sha256": "sha256_a8bfcc43a306c293e0b774c4b1dd534bf380f962fa0a4f1e332a0b491bd5a969",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 64.7,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_btc_states": [
+          "SIDEWAYS"
+        ],
+        "long_coin_states": [
+          "SIDEWAYS"
+        ],
+        "mode": "btc_coin",
+        "schema_version": 1,
+        "short_btc_states": [
+          "SIDEWAYS"
+        ],
+        "short_coin_states": [
+          "SIDEWAYS"
+        ]
+      },
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ASDTSRockwellTrading --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ASDTSRockwellTrading-a0a64ac9-model3-ASDTSRockwellTrading-sideways-eec5d268 --cache none",
+      "long_trades": 13498,
+      "measurement_scope": "btc_coin_entry_gated_pooled_native_pair_universe",
+      "mode": "spot",
+      "model": "model3",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/ASDTSRockwellTrading-sideways-c249042a-model3-228834bc89c0.json",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "ASDTSRockwellTrading",
+      "timerange": "20200401-20260821",
+      "trades": 13498,
+      "trades_sha256": "sha256_6118caf66627f516e571bf9e4c0071d5e897e9e71e0e38a60cdb620c70bd8c0c"
+    },
+    "ASDTSRockwellTrading-transition": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/ASDTSRockwellTrading-a0a64ac9-model3-ASDTSRockwellTrading-transition-f4b97411-2026-09-13_23-34-32.zip",
+      "archive_sha256": "sha256_199c3797b731586a07d70212aea3a843c0d6c6415a7ea130985961dd58f58435",
+      "artifact_key": "model3-ASDTSRockwellTrading-transition",
+      "candidate_id": "ASDTSRockwellTrading-transition",
+      "canonical_sha256": "sha256_a8bfcc43a306c293e0b774c4b1dd534bf380f962fa0a4f1e332a0b491bd5a969",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 60.3,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_btc_states": [
+          "TRANSITION"
+        ],
+        "long_coin_states": [
+          "TRANSITION"
+        ],
+        "mode": "btc_coin",
+        "schema_version": 1,
+        "short_btc_states": [
+          "TRANSITION"
+        ],
+        "short_coin_states": [
+          "TRANSITION"
+        ]
+      },
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ASDTSRockwellTrading --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ASDTSRockwellTrading-a0a64ac9-model3-ASDTSRockwellTrading-transition-f4b97411 --cache none",
+      "long_trades": 11835,
+      "measurement_scope": "btc_coin_entry_gated_pooled_native_pair_universe",
+      "mode": "spot",
+      "model": "model3",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/ASDTSRockwellTrading-transition-6104fc48-model3-a4be69cf7bcf.json",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "ASDTSRockwellTrading",
+      "timerange": "20200401-20260821",
+      "trades": 11835,
+      "trades_sha256": "sha256_87b0eaa0f446940e1cd1e2f1b455c41c297d54cf595321303c3a3c1b50e3c821"
+    },
+    "AdaptiveRegime-sideways": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/AdaptiveRegime-90b67ba4-model3-AdaptiveRegime-sideways-6e9ef299-2026-09-13_23-37-37.zip",
+      "archive_sha256": "sha256_45054986a8a7d5f306f93a84ba94338661c81690e31d5e3f63cfeb40505ef628",
+      "artifact_key": "model3-AdaptiveRegime-sideways",
+      "candidate_id": "AdaptiveRegime-sideways",
+      "canonical_sha256": "sha256_cf6478f765e4b95984227e64b11d72f44c14935bc13c8f5a84fa7499354b47bc",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 6.8,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_btc_states": [
+          "SIDEWAYS"
+        ],
+        "long_coin_states": [
+          "SIDEWAYS"
+        ],
+        "mode": "btc_coin",
+        "schema_version": 1,
+        "short_btc_states": [
+          "SIDEWAYS"
+        ],
+        "short_coin_states": [
+          "SIDEWAYS"
+        ]
+      },
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AdaptiveRegime --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AdaptiveRegime-90b67ba4-model3-AdaptiveRegime-sideways-6e9ef299 --cache none",
+      "long_trades": 27,
+      "measurement_scope": "btc_coin_entry_gated_pooled_native_pair_universe",
+      "mode": "futures",
+      "model": "model3",
+      "pairs": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/AdaptiveRegime-sideways-3efaa0a0-model3-228834bc89c0.json",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 25,
+      "status": "measured",
+      "strategy_id": "AdaptiveRegime",
+      "timerange": "20200301-20260821",
+      "trades": 52,
+      "trades_sha256": "sha256_49b8410f6741dc09345aa6f5f4046984cb9f75e649bf51662c74375950e7e631"
+    },
+    "AdaptiveRegime-transition": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/AdaptiveRegime-90b67ba4-model3-AdaptiveRegime-transition-7db3dce6-2026-09-13_23-37-44.zip",
+      "archive_sha256": "sha256_354e53943d5744b7746386ac48956471378b84659df926c43f14fe1b45f438b6",
+      "artifact_key": "model3-AdaptiveRegime-transition",
+      "candidate_id": "AdaptiveRegime-transition",
+      "canonical_sha256": "sha256_cf6478f765e4b95984227e64b11d72f44c14935bc13c8f5a84fa7499354b47bc",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 6.5,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_btc_states": [
+          "TRANSITION"
+        ],
+        "long_coin_states": [
+          "TRANSITION"
+        ],
+        "mode": "btc_coin",
+        "schema_version": 1,
+        "short_btc_states": [
+          "TRANSITION"
+        ],
+        "short_coin_states": [
+          "TRANSITION"
+        ]
+      },
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AdaptiveRegime --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AdaptiveRegime-90b67ba4-model3-AdaptiveRegime-transition-7db3dce6 --cache none",
+      "long_trades": 16,
+      "measurement_scope": "btc_coin_entry_gated_pooled_native_pair_universe",
+      "mode": "futures",
+      "model": "model3",
+      "pairs": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/AdaptiveRegime-transition-0187170c-model3-a4be69cf7bcf.json",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 31,
+      "status": "measured",
+      "strategy_id": "AdaptiveRegime",
+      "timerange": "20200301-20260821",
+      "trades": 47,
+      "trades_sha256": "sha256_b5d6089cac25aeb41ee7ae6a6a9360dc7eb25262e6524fc1bf92e36613f744b5"
+    },
+    "AlmgrenChrissStrategy-sideways": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/AlmgrenChrissStrategy-d3ffcaad-model3-AlmgrenChrissStrategy-sideways-6db070cd-2026-09-14_00-00-04.zip",
+      "archive_sha256": "sha256_454ed933b47ac7940ec7b56f8bb334c8cce31e8a5ca65bc786c7a632c94c1817",
+      "artifact_key": "model3-AlmgrenChrissStrategy-sideways",
+      "candidate_id": "AlmgrenChrissStrategy-sideways",
+      "canonical_sha256": "sha256_29383b6d6a9d046e24fec53b25bcf30dae0fab4def62dbef19848191dab156f3",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 186.7,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_btc_states": [
+          "SIDEWAYS"
+        ],
+        "long_coin_states": [
+          "SIDEWAYS"
+        ],
+        "mode": "btc_coin",
+        "schema_version": 1,
+        "short_btc_states": [
+          "SIDEWAYS"
+        ],
+        "short_coin_states": [
+          "SIDEWAYS"
+        ]
+      },
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlmgrenChrissStrategy --strategy-path repos/freqtrade_freqtrade-strategies/user_data/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlmgrenChrissStrategy-d3ffcaad-model3-AlmgrenChrissStrategy-sideways-6db070cd --cache none",
+      "long_trades": 789,
+      "measurement_scope": "btc_coin_entry_gated_pooled_native_pair_universe",
+      "mode": "futures",
+      "model": "model3",
+      "pairs": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/AlmgrenChrissStrategy-sideways-583ec13d-model3-228834bc89c0.json",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 804,
+      "status": "measured",
+      "strategy_id": "AlmgrenChrissStrategy",
+      "timerange": "20200301-20260821",
+      "trades": 1593,
+      "trades_sha256": "sha256_f448a46f4580740df9b7d550dc36f9dab9db4650d7d0a3432794f33eaa36fe0f"
+    },
+    "AlmgrenChrissStrategy-transition": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/AlmgrenChrissStrategy-d3ffcaad-model3-AlmgrenChrissStrategy-transition-20999784-2026-09-14_00-02-23.zip",
+      "archive_sha256": "sha256_a014758a20821c69caafc26a0fec93ed057afc9151c7fdf1da53b6c912cc261a",
+      "artifact_key": "model3-AlmgrenChrissStrategy-transition",
+      "candidate_id": "AlmgrenChrissStrategy-transition",
+      "canonical_sha256": "sha256_29383b6d6a9d046e24fec53b25bcf30dae0fab4def62dbef19848191dab156f3",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 139.1,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_btc_states": [
+          "TRANSITION"
+        ],
+        "long_coin_states": [
+          "TRANSITION"
+        ],
+        "mode": "btc_coin",
+        "schema_version": 1,
+        "short_btc_states": [
+          "TRANSITION"
+        ],
+        "short_coin_states": [
+          "TRANSITION"
+        ]
+      },
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlmgrenChrissStrategy --strategy-path repos/freqtrade_freqtrade-strategies/user_data/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlmgrenChrissStrategy-d3ffcaad-model3-AlmgrenChrissStrategy-transition-20999784 --cache none",
+      "long_trades": 763,
+      "measurement_scope": "btc_coin_entry_gated_pooled_native_pair_universe",
+      "mode": "futures",
+      "model": "model3",
+      "pairs": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/AlmgrenChrissStrategy-transition-2e012cee-model3-a4be69cf7bcf.json",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 660,
+      "status": "measured",
+      "strategy_id": "AlmgrenChrissStrategy",
+      "timerange": "20200301-20260821",
+      "trades": 1423,
+      "trades_sha256": "sha256_e92bb2e735bc82997faa445820bfd5d4c4e6f04e271016129757d3ab0408873a"
+    },
+    "BBMod-sideways": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/BBMod-c3880bce-model3-BBMod-sideways-7cfa5c50-2026-09-13_23-47-14.zip",
+      "archive_sha256": "sha256_90f52a2e236407561f9c2fb9eee24e0ccd7e20e4a16a51013c87947d2e805775",
+      "artifact_key": "model3-BBMod-sideways",
+      "candidate_id": "BBMod-sideways",
+      "canonical_sha256": "sha256_20884e32203032c71bc6ced64761a57d03844ede19f6e5d1e5fd16804ed96da5",
+      "class1_rules": [
+        "legacy_fillna_skips_incompatible_dtype"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 572.5,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_btc_states": [
+          "SIDEWAYS"
+        ],
+        "long_coin_states": [
+          "SIDEWAYS"
+        ],
+        "mode": "btc_coin",
+        "schema_version": 1,
+        "short_btc_states": [
+          "SIDEWAYS"
+        ],
+        "short_coin_states": [
+          "SIDEWAYS"
+        ]
+      },
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy BBMod --strategy-path repos/eovie_freqtrade_strs/binance/Archive --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBMod-c3880bce-model3-BBMod-sideways-7cfa5c50 --cache none",
+      "long_trades": 308,
+      "measurement_scope": "btc_coin_entry_gated_pooled_native_pair_universe",
+      "mode": "spot",
+      "model": "model3",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/BBMod-sideways-08256b87-model3-228834bc89c0.json",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "BBMod",
+      "timerange": "20200401-20260821",
+      "trades": 308,
+      "trades_sha256": "sha256_e0526bf579afb0b79560bebcd031b16a4ff11fa1d9d5e04b615718fc47091ac1"
+    },
+    "BBMod-transition": {
+      "analysis_role": "PILOT",
+      "archive": "user_data/profile_smoke/BBMod-c3880bce-model3-BBMod-transition-3c5f5b28-2026-09-13_23-56-56.zip",
+      "archive_sha256": "sha256_ab5043b5d250d8879e581a1df9de7198cc810eff589abd0827eb1aab05a70cfd",
+      "artifact_key": "model3-BBMod-transition",
+      "candidate_id": "BBMod-transition",
+      "canonical_sha256": "sha256_20884e32203032c71bc6ced64761a57d03844ede19f6e5d1e5fd16804ed96da5",
+      "class1_rules": [
+        "legacy_fillna_skips_incompatible_dtype"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 581.8,
+      "gate_config": {
+        "daily_path": "results/regime/regime_daily.csv",
+        "long_btc_states": [
+          "TRANSITION"
+        ],
+        "long_coin_states": [
+          "TRANSITION"
+        ],
+        "mode": "btc_coin",
+        "schema_version": 1,
+        "short_btc_states": [
+          "TRANSITION"
+        ],
+        "short_coin_states": [
+          "TRANSITION"
+        ]
+      },
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy BBMod --strategy-path repos/eovie_freqtrade_strs/binance/Archive --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBMod-c3880bce-model3-BBMod-transition-3c5f5b28 --cache none",
+      "long_trades": 313,
+      "measurement_scope": "btc_coin_entry_gated_pooled_native_pair_universe",
+      "mode": "spot",
+      "model": "model3",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+      "regime_gate_config": "user_data/regime_gate_configs/BBMod-transition-a9c149af-model3-a4be69cf7bcf.json",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "status": "measured",
+      "strategy_id": "BBMod",
+      "timerange": "20200401-20260821",
+      "trades": 313,
+      "trades_sha256": "sha256_601c637c6bf6eb1152c9d7c41fcce5377b2cc2bdb8f29dba7ddb0bac7ac9114b"
+    }
+  },
+  "runner_invocation": "python -m regime.gated_backtest --model model3 --candidate-spec 'results\\regime\\candidate_spec_pilot_v1_sideways_transition.json' --daily 'C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\results\\regime\\regime_daily.csv' --output 'results\\regime\\model3_backtest_manifest_sideways_transition.json' --timeout 3600 --workers 1",
+  "runtime_ids": [
+    "native_unversioned"
+  ],
+  "schema_version": 1,
+  "timerange": {
+    "futures": "20200301-20260821",
+    "spot": "20200401-20260821"
+  }
+}

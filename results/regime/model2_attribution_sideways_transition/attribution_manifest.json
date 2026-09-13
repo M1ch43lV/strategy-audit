@@ -1,0 +1,161 @@
+{
+  "accepted_archive_evidence": [
+    {
+      "archive": "user_data/profile_smoke/ASDTSRockwellTrading-a0a64ac9-model2-ASDTSRockwellTrading-sideways-bbb0c8c9-2026-09-13_22-55-35.zip",
+      "archive_sha256": "sha256_c46b7c2df1f97269c355c851c7bd5db295f8f572f2ab6f69bf16df5dcf61215f",
+      "candidate_id": "ASDTSRockwellTrading-sideways",
+      "gate_rule_sha256": "sha256_2959eb0b437bfd21584148df25467571605c7ab8bf5d693aaee91e274da907ba",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "ASDTSRockwellTrading",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/ASDTSRockwellTrading-a0a64ac9-model2-ASDTSRockwellTrading-transition-620257cc-2026-09-13_22-56-47.zip",
+      "archive_sha256": "sha256_b53ba0c520f24e60ee98e3720bf7ed712bcc33a07d944f4f43ffcfd4a759e8d9",
+      "candidate_id": "ASDTSRockwellTrading-transition",
+      "gate_rule_sha256": "sha256_c7dad9f789893aefa8918b252fec04400175a9c4c3e4fc217ca86af5e44b2bd9",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "ASDTSRockwellTrading",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/ADXDM-eef844db-model2-ADXDM-sideways-b545d1a5-2026-09-13_22-57-54.zip",
+      "archive_sha256": "sha256_98aa63b108f42665a5c05d83d06c6c016357fd729b02467790382b78526508d0",
+      "candidate_id": "ADXDM-sideways",
+      "gate_rule_sha256": "sha256_2959eb0b437bfd21584148df25467571605c7ab8bf5d693aaee91e274da907ba",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "ADXDM",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/ADXDM-eef844db-model2-ADXDM-transition-66531336-2026-09-13_22-58-54.zip",
+      "archive_sha256": "sha256_4fc3e7a64826ede5cacca4c4db7372c94d5f7ba2b638b582be9052a44745a071",
+      "candidate_id": "ADXDM-transition",
+      "gate_rule_sha256": "sha256_c7dad9f789893aefa8918b252fec04400175a9c4c3e4fc217ca86af5e44b2bd9",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "ADXDM",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/ADXMomentum-d748d610-model2-ADXMomentum-sideways-dee182bb-2026-09-13_22-59-05.zip",
+      "archive_sha256": "sha256_bf954b2aeec6d397fe71c193f69d989dd4c3fd59cbbac721fca102f554df5acc",
+      "candidate_id": "ADXMomentum-sideways",
+      "gate_rule_sha256": "sha256_2959eb0b437bfd21584148df25467571605c7ab8bf5d693aaee91e274da907ba",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "ADXMomentum",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/ADXMomentum-d748d610-model2-ADXMomentum-transition-92308e38-2026-09-13_22-59-14.zip",
+      "archive_sha256": "sha256_54019d0ac2047c48fee13f8c49af02f84e9f86f1646096318de2a1fe12d5d289",
+      "candidate_id": "ADXMomentum-transition",
+      "gate_rule_sha256": "sha256_c7dad9f789893aefa8918b252fec04400175a9c4c3e4fc217ca86af5e44b2bd9",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "ADXMomentum",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/ADX_15M_USDT-b331c6ee-model2-ADX_15M_USDT-sideways-16556a8c-2026-09-13_22-59-52.zip",
+      "archive_sha256": "sha256_0cd71fc88cb4f2c248a791fc1cc386143bb529bb4f8253658bcde9506e249150",
+      "candidate_id": "ADX_15M_USDT-sideways",
+      "gate_rule_sha256": "sha256_2959eb0b437bfd21584148df25467571605c7ab8bf5d693aaee91e274da907ba",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "ADX_15M_USDT",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/ADX_15M_USDT-b331c6ee-model2-ADX_15M_USDT-transition-d66c4149-2026-09-13_23-00-27.zip",
+      "archive_sha256": "sha256_7b597da86e008644543f236c0234d5615cd1799ffc3cf46344fff53337906b32",
+      "candidate_id": "ADX_15M_USDT-transition",
+      "gate_rule_sha256": "sha256_c7dad9f789893aefa8918b252fec04400175a9c4c3e4fc217ca86af5e44b2bd9",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "ADX_15M_USDT",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/AdaptiveRegime-90b67ba4-model2-AdaptiveRegime-sideways-1d9e5656-2026-09-13_23-00-40.zip",
+      "archive_sha256": "sha256_b5c6eb43f9a0a5fd379ed904c02c464b8d4f3d1df14f4b49c6d7845baeb35461",
+      "candidate_id": "AdaptiveRegime-sideways",
+      "gate_rule_sha256": "sha256_2959eb0b437bfd21584148df25467571605c7ab8bf5d693aaee91e274da907ba",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "AdaptiveRegime",
+      "timerange": "20200301-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/AdaptiveRegime-90b67ba4-model2-AdaptiveRegime-transition-fe8fb266-2026-09-13_23-00-50.zip",
+      "archive_sha256": "sha256_8a1bbd4e28ec2820ea805f20d17e814fd039367888593cb47e16dbee88354d75",
+      "candidate_id": "AdaptiveRegime-transition",
+      "gate_rule_sha256": "sha256_c7dad9f789893aefa8918b252fec04400175a9c4c3e4fc217ca86af5e44b2bd9",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "AdaptiveRegime",
+      "timerange": "20200301-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/BBMod-c3880bce-model2-BBMod-sideways-547dc122-2026-09-13_23-12-24.zip",
+      "archive_sha256": "sha256_39a25e6c2d13fb06c012cfd10e190cf7bef2277a52774bd618e21e81a0ee1680",
+      "candidate_id": "BBMod-sideways",
+      "gate_rule_sha256": "sha256_2959eb0b437bfd21584148df25467571605c7ab8bf5d693aaee91e274da907ba",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "BBMod",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/BBMod-c3880bce-model2-BBMod-transition-f2308c83-2026-09-13_23-22-02.zip",
+      "archive_sha256": "sha256_83c643d839bd70db093859629627defd19b2e960bc5eec85eb905e2f42dc29fd",
+      "candidate_id": "BBMod-transition",
+      "gate_rule_sha256": "sha256_c7dad9f789893aefa8918b252fec04400175a9c4c3e4fc217ca86af5e44b2bd9",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "BBMod",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/AlmgrenChrissStrategy-d3ffcaad-model2-AlmgrenChrissStrategy-sideways-d4ee786e-2026-09-13_23-27-10.zip",
+      "archive_sha256": "sha256_4c466895378ea0d1d4ecfff605447967545f21f2c40513ea55ad92f83e7e0c4f",
+      "candidate_id": "AlmgrenChrissStrategy-sideways",
+      "gate_rule_sha256": "sha256_2959eb0b437bfd21584148df25467571605c7ab8bf5d693aaee91e274da907ba",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "AlmgrenChrissStrategy",
+      "timerange": "20200301-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/AlmgrenChrissStrategy-d3ffcaad-model2-AlmgrenChrissStrategy-transition-f0186023-2026-09-13_23-32-27.zip",
+      "archive_sha256": "sha256_60b2f8670e45c6f95294595370e2d0f1d3d9370152815b440fc85a100492e655",
+      "candidate_id": "AlmgrenChrissStrategy-transition",
+      "gate_rule_sha256": "sha256_c7dad9f789893aefa8918b252fec04400175a9c4c3e4fc217ca86af5e44b2bd9",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "AlmgrenChrissStrategy",
+      "timerange": "20200301-20260821"
+    }
+  ],
+  "analysis_role": "PILOT",
+  "attributed_candidate_ids": [
+    "ADXDM-sideways",
+    "ADXDM-transition",
+    "ADXMomentum-sideways",
+    "ADXMomentum-transition",
+    "ADX_15M_USDT-sideways",
+    "ADX_15M_USDT-transition",
+    "ASDTSRockwellTrading-sideways",
+    "ASDTSRockwellTrading-transition",
+    "AdaptiveRegime-sideways",
+    "AdaptiveRegime-transition",
+    "AlmgrenChrissStrategy-sideways",
+    "AlmgrenChrissStrategy-transition",
+    "BBMod-sideways",
+    "BBMod-transition"
+  ],
+  "attributed_candidates": 14,
+  "candidate_set_id": "pilot_v1_stratified_sideways_transition_gate",
+  "candidate_spec_sha256": "sha256_0db7a98dd5fc618b1256c5bf54120dfbd5005d57d8c6d5dcd005307b01d38a7e",
+  "evidence_scope": "Causal entry-time attribution of true entry-gated backtests. This artifact does not rank candidates or resolve preregistration choices.",
+  "expected_candidates": 14,
+  "missing_candidate_ids": [],
+  "model": "model2",
+  "partial": false,
+  "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+  "rejected_candidates": [],
+  "schema_version": 1,
+  "source_manifest": "results\\regime\\model2_backtest_manifest_sideways_transition.json",
+  "source_manifest_sha256": "sha256_321ec19942c4504e8048fefb90b7345e8f25d4533610cdb8d0cbbcc7ede324bf",
+  "trades": 42678
+}
