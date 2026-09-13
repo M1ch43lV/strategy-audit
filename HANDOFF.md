@@ -3,7 +3,54 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-14T05:00:00+02:00
+- Last update: 2026-09-14T09:30:00+02:00
+- User asked to extend Model 1/2/3 (BTC-/coin-state gated pooled backtests)
+  with ADX SIDEWAYS and ADX TRANSITION gate variants, explicitly flagged as
+  a deviation from `REGIME_AUDIT_PLAN.md`'s frozen preregistration (every
+  candidate spec so far only gates long->BULL/short->BEAR, a trend-following
+  assumption). New candidate spec
+  `results/regime/candidate_spec_pilot_v1_sideways_transition.json`: the
+  same 7 pilot strategies, each with a new `-sideways` and `-transition`
+  candidate_id (14 candidates total), alongside their existing untouched
+  `-trend` candidate_id. Unlike BULL/BEAR, SIDEWAYS/TRANSITION carry no
+  direction assumption, so the new gates are symmetric - long and short
+  both restricted to the same single state
+  (`long_btc_states == short_btc_states == long_coin_states ==
+  short_coin_states == ["SIDEWAYS"]`, respectively `["TRANSITION"]`), not a
+  long/short split. Design frozen and written into `REGIME_AUDIT_PLAN.md`
+  §15 addendum and `PIPELINE.md` Stufe 13 *before* any result was inspected,
+  same discipline as every other threshold in this project. No code changes
+  needed - `regime/gated_backtest.py`, `gated_attribution.py` and
+  `specialist_evaluation.py` are already fully regime-value-agnostic (only
+  the trend-only candidate specs ever restricted the data to 2 states); the
+  new candidates will simply appear as additional rows in the existing
+  Model 1/2/3 tables.
+  Launched as a background job at 2026-09-14T09:xx (see this repo's
+  `run_gated_memwatch.py`-wrapped `python -m regime.gated_backtest` for
+  model1, then model2, then model3, sequentially - `--workers 1` each, to
+  stay under the 16 GB watchdog cap used for every prior gated run) writing
+  to `model{1,2,3}_backtest_manifest_sideways_transition.json`. Still
+  running as of this handoff; **whoever picks this up next should check
+  whether it finished before doing anything else with it** (`ls -la
+  results/regime/model*_backtest_manifest_sideways_transition.json` and
+  check for the matching `.running` claim directories under the same
+  path). Once complete, the remaining steps are: run
+  `gated_attribution.py` for each model against the new manifest into a
+  separate `modelN_attribution_sideways_transition/` outdir, concatenate its
+  `trade_regime_attribution.csv` with the existing
+  `modelN_attribution/trade_regime_attribution.csv` (both already use the
+  `candidate_id` column, disjoint IDs, safe to concat), rerun
+  `specialist_evaluation.py --trades <concatenated file> --outdir
+  results/regime/specialist_evaluation/modelN` (`--joint` for model3) so it
+  overwrites the same tables with the enlarged candidate population, then
+  update `export_v9.py` (recompute `MANUAL_TRADES_TOTAL` from the merged
+  file instead of the hardcoded dict) and the template's
+  `GATED_REGIME_LIST` (currently hardcoded to `['BULL', 'BEAR']` at
+  `regime_specialists_template.html` with a comment claiming SIDEWAYS/
+  TRANSITION rows "never exist in this gated population" - no longer true,
+  must become all four states) plus the "Konsistenz" gated-table callout
+  (currently says "at most two rows" per candidate, no longer true for the
+  new symmetric-gate candidates, which get exactly one row each).
 - Added `episode_excess_lcb`/`lcb_grade` to `regime/specialist_evaluation.py`
   (`_episode_excess_lcb()`, `_lcb_grade()`) after the user asked for a
   metric answering "does trading reliably beat B&H, not just get lucky on

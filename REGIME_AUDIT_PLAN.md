@@ -965,6 +965,40 @@ build the router itself.
 
 This should be evaluated out of sample, not assumed.
 
+**Addendum 2026-09-14 (SIDEWAYS/TRANSITION gate variants, explicit deviation
+from this plan, ordered by the user):** every candidate spec used so far
+(`candidate_spec_pilot_v1.json`, `_full_v1.json`, `_top10_v1.json`) only ever
+gates long entries to BULL and short entries to BEAR - a trend-following
+gate, on the assumption that a strategy's own presumed favorable direction
+tracks the trend. The user judged this incomplete: a targeted gate to the
+two non-trending states could still help some strategies (for example a
+mean-reversion strategy that specifically wants chop, not trend). Frozen
+design, before any result exists:
+
+- New candidate spec `candidate_spec_pilot_v1_sideways_transition.json`,
+  `candidate_set_id = pilot_v1_stratified_sideways_transition_gate`,
+  `analysis_role = PILOT`, same timerange as the existing pilot spec.
+- 14 new candidates: the same 7 pilot strategies, each with a `-sideways`
+  and a `-transition` candidate_id, alongside their existing `-trend`
+  candidate_id (unchanged, untouched, still gated to BULL/BEAR).
+- Unlike the trend gate, SIDEWAYS and TRANSITION carry no directional
+  assumption, so both new gate variants are **symmetric**: long and short
+  are both restricted to the *same* single state -
+  `long_btc_states = short_btc_states = long_coin_states =
+  short_coin_states = ["SIDEWAYS"]` (respectively `["TRANSITION"]`) - not a
+  long/short split as BULL/BEAR uses. This tests "does restricting this
+  strategy to fire only during chop/uncertainty help, in whichever
+  direction it would have fired anyway", not a presumed trend direction.
+- Run through the same unmodified `regime/gated_backtest.py` ->
+  `regime/gated_attribution.py` -> `regime/specialist_evaluation.py` chain
+  as every other candidate; the new candidates are additional rows in the
+  existing Model 1/2/3 tables (their own candidate_id, e.g.
+  `ADXDM-sideways`), not a separate table or a separate pipeline path.
+- Explicitly a PILOT-scale, hypothesis-generating deviation, not a
+  replacement for or an amendment to the frozen VALIDATION trend-gate
+  candidate sets above - both coexist side by side in the same tables,
+  distinguishable by their candidate_id suffix.
+
 ---
 
 # 16. Benchmarks

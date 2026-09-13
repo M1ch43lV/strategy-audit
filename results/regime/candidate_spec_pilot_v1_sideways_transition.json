@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "candidate_set_id": "pilot_v1_stratified_sideways_transition_gate",
+  "analysis_role": "PILOT",
+  "timerange": {
+    "spot": "20200401-20260821",
+    "futures": "20200301-20260821"
+  },
+  "candidates": [
+    {
+      "candidate_id": "ASDTSRockwellTrading-sideways",
+      "strategy_id": "ASDTSRockwellTrading",
+      "long_btc_states": [
+        "SIDEWAYS"
+      ],
+      "short_btc_states": [
+        "SIDEWAYS"
+      ],
+      "long_coin_states": [
+        "SIDEWAYS"
+      ],
+      "short_coin_states": [
+        "SIDEWAYS"
+      ]
+    },
+    {
+      "candidate_id": "ASDTSRockwellTrading-transition",
+      "strategy_id": "ASDTSRockwellTrading",
+      "long_btc_states": [
+        "TRANSITION"
+      ],
+      "short_btc_states": [
+        "TRANSITION"
+      ],
+      "long_coin_states": [
+        "TRANSITION"
+      ],
+      "short_coin_states": [
+        "TRANSITION"
+      ]
+    },
+    {
+      "candidate_id": "ADXDM-sideways",
+      "strategy_id": "ADXDM",
+      "long_btc_states": [
+        "SIDEWAYS"
+      ],
+      "short_btc_states": [
+        "SIDEWAYS"
+      ],
+      "long_coin_states": [
+        "SIDEWAYS"
+      ],
+      "short_coin_states": [
+        "SIDEWAYS"
+      ]
+    },
+    {
+      "candidate_id": "ADXDM-transition",
+      "strategy_id": "ADXDM",
+      "long_btc_states": [
+        "TRANSITION"
+      ],
+      "short_btc_states": [
+        "TRANSITION"
+      ],
+      "long_coin_states": [
+        "TRANSITION"
+      ],
+      "short_coin_states": [
+        "TRANSITION"
+      ]
+    },
+    {
+      "candidate_id": "ADXMomentum-sideways",
+      "strategy_id": "ADXMomentum",
+      "long_btc_states": [
+        "SIDEWAYS"
+      ],
+      "short_btc_states": [
+        "SIDEWAYS"
+      ],
+      "long_coin_states": [
+        "SIDEWAYS"
+      ],
+      "short_coin_states": [
+        "SIDEWAYS"
+      ]
+    },
+    {
+      "candidate_id": "ADXMomentum-transition",
+      "strategy_id": "ADXMomentum",
+      "long_btc_states": [
+        "TRANSITION"
+      ],
+      "short_btc_states": [
+        "TRANSITION"
+      ],
+      "long_coin_states": [
+        "TRANSITION"
+      ],
+      "short_coin_states": [
+        "TRANSITION"
+      ]
+    },
+    {
+      "candidate_id": "ADX_15M_USDT-sideways",
+      "strategy_id": "ADX_15M_USDT",
+      "long_btc_states": [
+        "SIDEWAYS"
+      ],
+      "short_btc_states": [
+        "SIDEWAYS"
+      ],
+      "long_coin_states": [
+        "SIDEWAYS"
+      ],
+      "short_coin_states": [
+        "SIDEWAYS"
+      ]
+    },
+    {
+      "candidate_id": "ADX_15M_USDT-transition",
+      "strategy_id": "ADX_15M_USDT",
+      "long_btc_states": [
+        "TRANSITION"
+      ],
+      "short_btc_states": [
+        "TRANSITION"
+      ],
+      "long_coin_states": [
+        "TRANSITION"
+      ],
+      "short_coin_states": [
+        "TRANSITION"
+      ]
+    },
+    {
+      "candidate_id": "AdaptiveRegime-sideways",
+      "strategy_id": "AdaptiveRegime",
+      "long_btc_states": [
+        "SIDEWAYS"
+      ],
+      "short_btc_states": [
+        "SIDEWAYS"
+      ],
+      "long_coin_states": [
+        "SIDEWAYS"
+      ],
+      "short_coin_states": [
+        "SIDEWAYS"
+      ]
+    },
+    {
+      "candidate_id": "AdaptiveRegime-transition",
+      "strategy_id": "AdaptiveRegime",
+      "long_btc_states": [
+        "TRANSITION"
+      ],
+      "short_btc_states": [
+        "TRANSITION"
+      ],
+      "long_coin_states": [
+        "TRANSITION"
+      ],
+      "short_coin_states": [
+        "TRANSITION"
+      ]
+    },
+    {
+      "candidate_id": "BBMod-sideways",
+      "strategy_id": "BBMod",
+      "long_btc_states": [
+        "SIDEWAYS"
+      ],
+      "short_btc_states": [
+        "SIDEWAYS"
+      ],
+      "long_coin_states": [
+        "SIDEWAYS"
+      ],
+      "short_coin_states": [
+        "SIDEWAYS"
+      ]
+    },
+    {
+      "candidate_id": "BBMod-transition",
+      "strategy_id": "BBMod",
+      "long_btc_states": [
+        "TRANSITION"
+      ],
+      "short_btc_states": [
+        "TRANSITION"
+      ],
+      "long_coin_states": [
+        "TRANSITION"
+      ],
+      "short_coin_states": [
+        "TRANSITION"
+      ]
+    },
+    {
+      "candidate_id": "AlmgrenChrissStrategy-sideways",
+      "strategy_id": "AlmgrenChrissStrategy",
+      "long_btc_states": [
+        "SIDEWAYS"
+      ],
+      "short_btc_states": [
+        "SIDEWAYS"
+      ],
+      "long_coin_states": [
+        "SIDEWAYS"
+      ],
+      "short_coin_states": [
+        "SIDEWAYS"
+      ]
+    },
+    {
+      "candidate_id": "AlmgrenChrissStrategy-transition",
+      "strategy_id": "AlmgrenChrissStrategy",
+      "long_btc_states": [
+        "TRANSITION"
+      ],
+      "short_btc_states": [
+        "TRANSITION"
+      ],
+      "long_coin_states": [
+        "TRANSITION"
+      ],
+      "short_coin_states": [
+        "TRANSITION"
+      ]
+    }
+  ]
+}

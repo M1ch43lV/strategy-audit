@@ -535,6 +535,27 @@ wurden neu hergeleitet (u. a. "ADX Uptrend schwächstes Regime" 372→359 von
 379, vollständig konsistente Kandidaten 0→8). Modell 0 und der 7er-Pilot
 neu gerechnet, Selftest um Regressionsfälle für beides ergänzt.
 
+**ADX-Sideways-/Transition-Gate für Modell 1/2/3 (2026-09-14, auf
+expliziten Nutzerwunsch, bewusste Abweichung vom eingefrorenen Plan — siehe
+Addendum in `REGIME_AUDIT_PLAN.md` §15):** bisher gatete jeder Kandidat nur
+Long auf BULL / Short auf BEAR (Trendfolge-Annahme). Neuer Kandidaten-Spec
+`results/regime/candidate_spec_pilot_v1_sideways_transition.json` (14
+Kandidaten: die 7 Piloten-Strategien je einmal mit `-sideways`- und einmal
+mit `-transition`-Suffix, `candidate_set_id =
+pilot_v1_stratified_sideways_transition_gate`, `analysis_role = PILOT`).
+Anders als BULL/BEAR haben SIDEWAYS/TRANSITION keine Richtungsannahme, daher
+symmetrisches Gate: `long_btc_states = short_btc_states = long_coin_states =
+short_coin_states = ["SIDEWAYS"]` bzw. `["TRANSITION"]` — testet, ob ein
+Gate auf reine Seitwärts-/Übergangsphasen hilft, unabhängig davon in welche
+Richtung die Strategie dabei tatsächlich eintritt. Läuft durch dieselbe
+unveränderte Kette (`gated_backtest.py` → `gated_attribution.py` →
+`specialist_evaluation.py`); die neuen Kandidaten erscheinen als
+zusätzliche Zeilen in denselben Modell-1/2/3-Tabellen (eigene candidate_id,
+z. B. `ADXDM-sideways`), nicht als separate Tabelle. Backtest lief zum
+Zeitpunkt dieses Eintrags noch (`--workers 1`, sequenziell über alle drei
+Modelle wegen des 16-GB-Speicherwächters); Ergebniszahlen folgen nach
+Abschluss.
+
 Dollar-Ansicht (2026-09-11, auf expliziten Nutzerwunsch): zusätzlich zur
 Benchmark-relativen Excess-Return-Prozentzahl ein Dollar-Betrag —
 `dollar_gain_usd`/`benchmark_dollar_gain_usd`/`excess_dollar_gain_usd` in
