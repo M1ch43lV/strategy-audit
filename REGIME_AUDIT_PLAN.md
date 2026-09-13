@@ -949,6 +949,20 @@ Central research questions:
 > What does each state source contribute independently, and does their
 > intersection add value beyond either gate alone?
 
+**Clarification (added 2026-09-13, after a user question about why gating
+only ever produces long/short, not a choice between several specialist
+bots):** Models 1/2/3 answer *"does strategy X improve if its own entries
+are restricted to its presumed favorable direction-regime?"* - one strategy,
+its own two entry-signal columns masked by regime, nothing more. This is
+deliberately narrower than the long-term live-system hypothesis sketched in
+§2 (BTC regime + coin state -> a *strategy-selection layer* -> whichever
+specialist strategy is active) - that is a router between several different
+strategies, still unbuilt; Models 1/2/3 are a single strategy gated against
+itself. Stage 13's specialist/universal evaluation (Top-5-per-regime,
+Universal-Kandidaten) is the prerequisite that identifies *which* strategy
+would be each regime's specialist for such a router - Models 1/2/3 do not
+build the router itself.
+
 This should be evaluated out of sample, not assumed.
 
 ---
