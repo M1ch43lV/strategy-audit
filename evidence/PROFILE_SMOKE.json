@@ -9349,16 +9349,50 @@
       "why": "assignment destination is read-only"
     },
     "NOTankAi_15": {
+      "archive": "user_data/profile_smoke/NOTankAi_15-59bf1e39-smoke_20200301_20200401-b4807b77-2026-09-14_23-00-04.zip",
+      "archive_sha256": "sha256_4516abb2c10fb94fba52faf0ebe06f69d517235fea19f9ac196d1a6066302ca7",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/NOTankAi_15-59bf1e39-smoke_20200301_20200401-b4807b77-2026-09-14_23-00-04.zip",
+          "archive_sha256": "sha256_4516abb2c10fb94fba52faf0ebe06f69d517235fea19f9ac196d1a6066302ca7",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 27.5,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/NOTankAi_15-59bf1e39.json --strategy NOTankAi_15 --strategy-path repos/TheoBrigitte_freqtrade/strategies/notankai --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NOTankAi_15-59bf1e39-smoke_20200301_20200401-b4807b77 --cache none --freqaimodel LightGBMRegressor",
+          "long_trades": 132,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_config_sha256": "sha256_fc812b98c3e3951eb8d50b83cba999e916645894e6d34d76ca2b9680b54d7192",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 132,
+          "trades_sha256": "sha256_3e17970e80d1d0afa4b3e7325c4f5f9011d1d1391ff4f3ca8b32468836ab925c"
+        }
+      ],
       "canonical_sha256": "sha256_93b90bd991a15601d11c88a20cf6d395eaca143289ee6df96399f809052573a3",
-      "elapsed_s": 15.9,
-      "long_trades": 139,
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 27.5,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/NOTankAi_15-59bf1e39.json --strategy NOTankAi_15 --strategy-path repos/TheoBrigitte_freqtrade/strategies/notankai --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NOTankAi_15-59bf1e39-smoke_20200301_20200401-b4807b77 --cache none --freqaimodel LightGBMRegressor",
+      "long_trades": 132,
       "mode": "futures",
       "run_profile": "futures_long",
-      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_config_sha256": "sha256_fc812b98c3e3951eb8d50b83cba999e916645894e6d34d76ca2b9680b54d7192",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
       "status": "measured",
       "timerange": "20200301-20200401",
-      "trades": 139
+      "trade_floor": 10,
+      "trades": 132,
+      "trades_sha256": "sha256_3e17970e80d1d0afa4b3e7325c4f5f9011d1d1391ff4f3ca8b32468836ab925c"
     },
     "NOTankAi_15_Cleaned": {
       "canonical_sha256": "sha256_04db46ad4b4f0e46a069069fbe81417e8b6565df467887cfb240f3eb6133e69e",
@@ -9385,28 +9419,96 @@
       "trades": 207
     },
     "NOTankAi_17": {
+      "archive": "user_data/profile_smoke/NOTankAi_17-f143dff8-smoke_20200301_20200401-b4807b77-2026-09-14_23-00-28.zip",
+      "archive_sha256": "sha256_608d89a2621221ff6d60dfacb6eaca42fd86f2f5d5d6d30db1bd734848809d3f",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/NOTankAi_17-f143dff8-smoke_20200301_20200401-b4807b77-2026-09-14_23-00-28.zip",
+          "archive_sha256": "sha256_608d89a2621221ff6d60dfacb6eaca42fd86f2f5d5d6d30db1bd734848809d3f",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 23.0,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/NOTankAi_17-f143dff8.json --strategy NOTankAi_17 --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NOTankAi_17-f143dff8-smoke_20200301_20200401-b4807b77 --cache none --freqaimodel LightGBMRegressor",
+          "long_trades": 23,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_f6b49be124e0b8ce78b343cde5cf8b2ce7801f7ffb1423de84f5fd61b1caca00",
+          "runtime_id": "native_unversioned",
+          "short_trades": 18,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 41,
+          "trades_sha256": "sha256_efae6218187dbd1a76c81da571bc1add1c1339a8849f427946dd12311280d66d"
+        }
+      ],
       "canonical_sha256": "sha256_d1d72095cae0bc356106af96667d74f8871c1327dfc91af49298c1bdd650649f",
-      "elapsed_s": 13.5,
-      "long_trades": 30,
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 23.0,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/NOTankAi_17-f143dff8.json --strategy NOTankAi_17 --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NOTankAi_17-f143dff8-smoke_20200301_20200401-b4807b77 --cache none --freqaimodel LightGBMRegressor",
+      "long_trades": 23,
       "mode": "futures",
       "run_profile": "futures_long_short",
-      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
-      "short_trades": 21,
+      "runtime_config_sha256": "sha256_f6b49be124e0b8ce78b343cde5cf8b2ce7801f7ffb1423de84f5fd61b1caca00",
+      "runtime_id": "native_unversioned",
+      "short_trades": 18,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
       "status": "measured",
       "timerange": "20200301-20200401",
-      "trades": 51
+      "trade_floor": 10,
+      "trades": 41,
+      "trades_sha256": "sha256_efae6218187dbd1a76c81da571bc1add1c1339a8849f427946dd12311280d66d"
     },
     "NOTankAi_19": {
+      "archive": "user_data/profile_smoke/NOTankAi_19-b935a4d8-smoke_20200301_20200401-b4807b77-2026-09-14_23-00-57.zip",
+      "archive_sha256": "sha256_cd09c8f939afed3b9e77c835a96dc470ddcad36dfb3eabc7b1d89790ce7954c2",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/NOTankAi_19-b935a4d8-smoke_20200301_20200401-b4807b77-2026-09-14_23-00-57.zip",
+          "archive_sha256": "sha256_cd09c8f939afed3b9e77c835a96dc470ddcad36dfb3eabc7b1d89790ce7954c2",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 28.5,
+          "invocation": "freqtrade backtesting --config user_data/profile_configs/NOTankAi_19-b935a4d8.json --strategy NOTankAi_19 --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NOTankAi_19-b935a4d8-smoke_20200301_20200401-b4807b77 --cache none --freqaimodel LightGBMRegressor",
+          "long_trades": 101,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_f54e04c4595c385da778ce08615ebd6d25a2d352a2abe60a8fb32debf852c9b7",
+          "runtime_id": "native_unversioned",
+          "short_trades": 42,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 143,
+          "trades_sha256": "sha256_338a0190f6ecbd09d4613017101c6cf8b42c6ff38dde60aa15ad62841ef4190e"
+        }
+      ],
       "canonical_sha256": "sha256_09c6d6c3812bef5bb3b4bb78b897cfb47b0ae1103e4380c0344aede708ced569",
-      "elapsed_s": 16.1,
-      "long_trades": 105,
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 28.5,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/NOTankAi_19-b935a4d8.json --strategy NOTankAi_19 --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NOTankAi_19-b935a4d8-smoke_20200301_20200401-b4807b77 --cache none --freqaimodel LightGBMRegressor",
+      "long_trades": 101,
       "mode": "futures",
       "run_profile": "futures_long_short",
-      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
-      "short_trades": 44,
+      "runtime_config_sha256": "sha256_f54e04c4595c385da778ce08615ebd6d25a2d352a2abe60a8fb32debf852c9b7",
+      "runtime_id": "native_unversioned",
+      "short_trades": 42,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
       "status": "measured",
       "timerange": "20200301-20200401",
-      "trades": 149
+      "trade_floor": 10,
+      "trades": 143,
+      "trades_sha256": "sha256_338a0190f6ecbd09d4613017101c6cf8b42c6ff38dde60aa15ad62841ef4190e"
     },
     "NSeq": {
       "archive": "user_data/profile_smoke/NSeq-b0a87061-2026-09-06_18-27-29.zip",
@@ -12854,18 +12956,18 @@
       "attempts": [
         {
           "class1_rules": [],
-          "elapsed_s": 1200.0,
+          "elapsed_s": 3600.3,
           "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy UltraSmartStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Lmao --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/UltraSmartStrategy-6b46243d-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "futures",
           "run_profile": "futures_long_short",
           "status": "timeout",
           "timerange": "20200301-20200401",
-          "why": "timeout after 1200 seconds"
+          "why": "timeout after 3600 seconds"
         }
       ],
       "canonical_sha256": "sha256_bb82ee42e486fdef71cd7c0131a43de9c1257eb6de8693cb28450c5f07eda328",
       "class1_rules": [],
-      "elapsed_s": 1200.0,
+      "elapsed_s": 3600.3,
       "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy UltraSmartStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Lmao --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/UltraSmartStrategy-6b46243d-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "futures",
       "run_profile": "futures_long_short",
@@ -12875,7 +12977,7 @@
       "status": "timeout",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "timeout after 1200 seconds"
+      "why": "timeout after 3600 seconds"
     },
     "UpSliceStrategy": {
       "canonical_sha256": "sha256_cf3e9ea5f4f0c3ebb2dd061ec1abb57e1039be82d7c34e15fc42b9ad54c15a6c",
