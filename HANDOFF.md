@@ -3,7 +3,32 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-14T19:15:00+02:00
+- Last update: 2026-09-14T20:00:00+02:00
+- **Artifact Version 38: added a "Fazit: Bringt das Gating etwas?" section**
+  answering the user's direct question whether the regime gating actually
+  helps. Same-regime, apples-to-apples comparison (Modell 0 in exactly the
+  candidate's own target regime vs. Modell 1/2/3) over the 31 single-state
+  candidates: Modell 1 16/31 improved (median delta +0.11pp), Modell 2
+  9/31 improved (median &asymp;0, 4/31 bit-for-bit identical to Modell 0),
+  Modell 3 14/31 improved (median -0.55pp). Modell 2 is near-tautological
+  for this candidate pool - they were selected in the first place for
+  having an edge in exactly that coin-regime state, so gating on the same
+  dimension barely changes anything (real finding, not a bug; does not
+  generalize to unselected strategies). Modell 1/3 gate on BTC-regime,
+  measured its actual correlation with coin-regime rather than assuming it
+  (`regime_daily.csv`, 18,000 rows: 53% label agreement, Cohen's kappa
+  0.38 - "fair", not "high") - explains why gating there roughly halves
+  the trade count without a coherent payoff, landing near a coin flip.
+  DeepSeek-v4-pro critique (`mcp__deepseek-mcp__critique`) of the initial
+  assessment found real weaknesses, all incorporated into the final
+  write-up: n=31 is too small to claim "no effect" (only "no significant
+  effect"), means are outlier-sensitive (FreqForge-score delta median
+  &asymp;0 but mean +6 for Modell 1/3, wide IQR), the 31 candidates aren't
+  independent (25 base strategies, some covering multiple target regimes),
+  and the whole pool is pre-selected on a coin-regime edge so results don't
+  generalize to arbitrary strategies. All caveats kept in the artifact
+  callout, not just the headline conclusion. No result-data pipeline
+  changes - analysis only, using the already-existing Model 0/1/2/3 tables.
 - **Artifact Version 37 (on top of Version 36 below), two explicit user
   requests:** (1) the "Freqtrade-eigene Kennzahlen" table now covers all
   379 Universal-Kandidaten instead of the old fixed 10-dollar-winner cut -
