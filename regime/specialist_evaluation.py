@@ -104,6 +104,25 @@ def _candle_series(pair: str, cache: dict) -> pd.DataFrame | None:
     return frame
 
 
+def duplicate_excluded_ids() -> set[str]:
+    """strategy_ids `evidence.semantic_duplicates` confirmed redundant - same
+    normalized executable source as a retained representative, and (where
+    both were measured) an identical canonical full-backtest trade hash. Read
+    here rather than re-derived, so this module's notion of "duplicate" never
+    drifts from `evidence/exclusion_criteria.py`'s C11 and
+    `evidence.strategy_status`'s `duplicate_implementation` rows - the same
+    evidence file backs both. Filtered out unconditionally, before any
+    ranking: counting one trading implementation twice under two names would
+    inflate the Universal-Kandidaten/consistent-candidate counts and give a
+    redundant row its own leaderboard entry next to its representative."""
+    path = ROOT / "evidence" / "SEMANTIC_DUPLICATE_ADJUDICATION.json"
+    if not path.is_file():
+        return set()
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return {row["strategy_id"] for row in data.get("decisions", [])
+            if row.get("decision") == "excluded_duplicate_implementation"}
+
+
 def _detect_id_column(path: Path) -> str:
     """`regime.attribution`'s Model 0 output names the analysis unit
     `strategy_id`; `regime.gated_attribution`'s Model 1/2/3 output renames
@@ -1626,6 +1645,11 @@ def main(argv=None) -> int:
     strategies = {s.strip() for s in args.strategies.split(",") if s.strip()} or None
     id_column = _detect_id_column(args.trades)
     trades = load_trades(args.trades, strategies)
+    duplicates = duplicate_excluded_ids() & set(trades["strategy_id"])
+    if duplicates:
+        trades = trades[~trades["strategy_id"].isin(duplicates)]
+        print(f"dropped {len(duplicates)} duplicate-implementation strategy_id(s): "
+              f"{', '.join(sorted(duplicates))}")
     trades = attach_benchmark(trades)
     trades = split_discovery_validation(trades)
 
@@ -1655,6 +1679,7 @@ def main(argv=None) -> int:
         "schema_version": 1,
         "source_trades": str(args.trades),
         "strategy_filter": sorted(strategies) if strategies else None,
+        "duplicate_strategies_excluded": sorted(duplicates),
         "validation_start": VALIDATION_START.isoformat(),
         "min_episodes": MIN_EPISODES,
         "min_trades": MIN_TRADES,

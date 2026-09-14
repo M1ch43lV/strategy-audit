@@ -1,5 +1,12 @@
 {
   "dollar_gain_scope": "dollar_gain_usd/benchmark_dollar_gain_usd (per-regime tables) and strategy_total_dollar_gain.csv (regime-agnostic) price each validation-window trade as its own fresh $1000 stake and sum the result - not compounded/reinvested. A descriptive dollar view, never used for ranking or the specialist floor; see _fixed_stake_gain()'s docstring for why compounding was tried and dropped.",
+  "duplicate_strategies_excluded": [
+    "Combined_NFIv7_SMA_bAdBoY_20211204",
+    "FastSupertrend_optim3_rsi_75fix",
+    "NostalgiaForInfinityV7",
+    "NostalgiaForInfinityV7_SMAv2",
+    "chispei"
+  ],
   "evidence_scope": "Specialist/universal evaluation, strategy_filter above defines its population (null = every strategy in source_trades). Ranks only VALIDATION-tier rows (>= 5 validation-window episodes and >= 10 trades together); everything else is reported but never ranked. Excess return is always against the exposure-matched benchmark - the coin's own spot buy-and-hold, but over the *entire* BTC-/coin-regime episode a trade fell in, not just that trade's own open-to-close interval (changed 2026-09-12; see attach_benchmark()'s docstring for why), never raw profit, and (2026-09-14) averaged one-vote-per-episode - each episode's own trades summed first, then that sum averaged across episodes - not a raw per-trade mean, which let episodes with more trades outweigh others despite being equally one independent observation; see _episode_pairs()'s docstring. episode_excess_lcb is a one-sided 95% lower confidence bound on that same per-episode excess return (t-distribution, n=episodes); lcb_grade is a Gainium-style A-F letter from fixed thresholds on that bound - see _episode_excess_lcb()/_lcb_grade()'s docstrings. Both descriptive, not the ranking rule. max_drawdown is the worst peak-to-trough drop of a fixed-$1000-stake curve built only from each row's own matched trades, ordered by close_date - see _regime_drawdown()'s docstring.",
   "min_episodes": 5,
   "min_trades": 10,
@@ -130,7 +137,6 @@
     "CombinedBinHClucAndMADV9",
     "Combined_NFIv6_SMA",
     "Combined_NFIv7_SMA",
-    "Combined_NFIv7_SMA_bAdBoY_20211204",
     "CompositeScoreStrategy",
     "ConsensusShort",
     "CoppockCurveStrategy",
@@ -213,7 +219,6 @@
     "FastSupertrend_optim3_rsi_70",
     "FastSupertrend_optim3_rsi_75",
     "FastSupertrend_optim3_rsi_752",
-    "FastSupertrend_optim3_rsi_75fix",
     "FastSupertrend_optim3_rsi_75fix_signal",
     "FastSupertrend_optim3_rsi_75sell",
     "FastSupertrend_optim3_rsi_80",
@@ -377,9 +382,7 @@
     "NostalgiaForInfinityV5MultiOffsetAndHO2",
     "NostalgiaForInfinityV6",
     "NostalgiaForInfinityV6HO",
-    "NostalgiaForInfinityV7",
     "NostalgiaForInfinityV7_SMA",
-    "NostalgiaForInfinityV7_SMAv2",
     "NostalgiaForInfinityV7_SMAv2_1",
     "NostalgiaForInfinityX",
     "NotAnotherSMAOffsetStrategy",
@@ -555,7 +558,6 @@
     "bestV2",
     "botbaby",
     "chatgpt",
-    "chispei",
     "conny",
     "cryptohassle",
     "cryptotank",
@@ -598,11 +600,11 @@
     "wavetrend",
     "wavetrend_rsi"
   ],
-  "strategies_with_total_dollar_gain": 497,
+  "strategies_with_total_dollar_gain": 492,
   "strategy_filter": null,
-  "universal_candidates": 379,
+  "universal_candidates": 374,
   "validation_start": "2024-01-01T00:00:00+00:00",
-  "validation_tier_btc_rows": 1671,
-  "validation_tier_coin_rows": 1757,
+  "validation_tier_btc_rows": 1651,
+  "validation_tier_coin_rows": 1737,
   "validation_tier_joint_rows": null
 }

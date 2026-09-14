@@ -21,6 +21,8 @@ import sys
 import tokenize
 from collections import defaultdict
 
+from evidence import execution_profiles
+
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROFILES = os.path.join(ROOT, "evidence", "EXECUTION_PROFILES.csv")
@@ -95,20 +97,79 @@ def _full_results(path=FULL_MANIFEST):
         return (json.load(handle).get("results") or {})
 
 
+def _pure_inheritance_bases():
+    """child -> immediate base, for `EXTRA_SUBCLASS_STRATEGIES` rows whose own
+    class body writes no entry/exit column at all - the same condition
+    `execution_profiles._inherit_subclass_profiles()` uses to decide whether
+    a child's behavioral profile is copied from its base (NFIX7Risk and most
+    thin wrappers), never a child that defines its own populate_entry_trend
+    (BBRSITV1..5). Re-derived from the child's own source here rather than
+    read off `EXECUTION_PROFILES.csv`'s `signal_capability` column: by the
+    time that CSV is written, inheritance has already overwritten a matching
+    child's `signal_capability` with its base's value, so the column alone
+    can no longer tell a true pure-inheritance child apart from one whose own
+    (independently computed) profile just happens to match its base's.
+    """
+    bases = {}
+    for rel_path, strategy in execution_profiles.EXTRA_SUBCLASS_STRATEGIES:
+        base = execution_profiles.INHERIT_PROFILE_FROM.get(strategy)
+        if not base:
+            continue
+        path = os.path.join(ROOT, "repos", *rel_path.split("/"))
+        if not os.path.isfile(path):
+            continue
+        try:
+            node = execution_profiles.strategy_node(path, strategy)
+        except (ValueError, SyntaxError, RecursionError):
+            continue
+        long_entry, short_entry, _methods, _writes = execution_profiles.entry_writes(node)
+        if not long_entry and not short_entry:
+            bases[strategy] = base
+    return bases
+
+
+def _resolve_digest_key(strategy_id, inherited_from, own_digest):
+    """A pure-inheritance child's own file never textually repeats the
+    entry/exit logic it inherits, so its own normalized digest cannot match
+    a sibling wrapper of the same base - the two would silently sit in
+    separate one-member groups forever. Walk up to the nearest ancestor that
+    is not itself a pure-inheritance child (a chain resolves in one pass,
+    matching `_inherit_subclass_profiles()`'s own chain handling) and group
+    under THAT ancestor's own digest instead - the code that actually runs
+    for this child. Falls back to the child's own digest if the ancestor is
+    unreadable or missing."""
+    seen = set()
+    current = strategy_id
+    while current in inherited_from and current not in seen:
+        seen.add(current)
+        current = inherited_from[current]
+    return own_digest.get(current) or own_digest.get(strategy_id)
+
+
 def build(profile_path=PROFILES, full_manifest_path=FULL_MANIFEST):
     """Return only code-equivalent groups, enriched with measured evidence."""
     sys.setrecursionlimit(max(sys.getrecursionlimit(), 20000))
-    groups = defaultdict(list)
+    profiles = _read_csv(profile_path)
+    inherited_from = _pure_inheritance_bases()
+
+    own_digest = {}
     unreadable = []
-    for profile in _read_csv(profile_path):
+    for profile in profiles:
         path = os.path.join(ROOT, profile["canonical_file"].replace("/", os.sep))
         try:
             with io.open(path, encoding="utf-8") as handle:
-                digest = normalized_ast_digest(handle.read(), profile["strategy_id"])
+                own_digest[profile["strategy_id"]] = normalized_ast_digest(
+                    handle.read(), profile["strategy_id"])
         except (OSError, SyntaxError, RecursionError) as exc:
             unreadable.append({"strategy_id": profile["strategy_id"], "error": type(exc).__name__})
+
+    groups = defaultdict(list)
+    for profile in profiles:
+        strategy_id = profile["strategy_id"]
+        if strategy_id not in own_digest:
             continue
-        groups[digest].append(profile)
+        key = _resolve_digest_key(strategy_id, inherited_from, own_digest)
+        groups[key].append(profile)
 
     full = _full_results(full_manifest_path)
     result = []
