@@ -932,25 +932,22 @@ REPAIRS = [
                  "freqtrade itself. They are recorded as `repair_withdrawn`, "
                  "and the withdrawn entries stay in `evidence/PROFILE_CLASS1.json` "
                  "with `status: withdrawn` - deleting them had deleted the "
-                 "finding.",
-        "tool": "repair/local_modules.py",
-    },
-    {
-        "family": "local_module_incomplete",
-        "name": "Refused: the author's own module doesn't define what's read",
-        "error": "module 'Config' has no attribute 'ignore_roi_if_buy_signal'",
-        "cause": "A different situation from `local_module_off_path`, reached "
-                 "only after that repair already applied: the missing module "
-                 "was found and put back on the path, and the import now "
-                 "succeeds, but the strategy also reads an attribute the "
-                 "found copy never defines.",
-        "fix": "None. Checked every copy of the module anywhere in the "
-               "corpus, by attribute grep, not by name - and the strategy's "
-               "own origin repository directly, not only the harvested "
-               "copy. No copy anywhere defines the attribute (`BBBHold`, "
-               "`ignore_roi_if_buy_signal`).",
-        "limit": "`refuse_repair`. A real gap in what the author published, "
-                 "not a search gap; inventing the value would be authorship.",
+                 "finding. A withdrawn family entry, by contrast, does not stay "
+                 "here: `local_module_incomplete` (below, until 2026-09-14) "
+                 "named `BBBHold` as its one example - a copy of `Config` was "
+                 "found and put back on the path, but that copy never defined "
+                 "the attribute (`ignore_roi_if_buy_signal`) the strategy "
+                 "reads, and no other copy anywhere did either, so it was "
+                 "`refuse_repair`. Re-running `repair/local_modules.py --apply` "
+                 "while onboarding `NFIX7Risk` re-triaged every blocked row, "
+                 "`BBBHold` included, and this time found a different, complete "
+                 "copy (`repos/hamidreza07_freqai-strategy/startegy test/5/NSeq`) "
+                 "that does define the attribute - `BBBHold` is `local_module_"
+                 "off_path` now, same as this entry, and no row is left in "
+                 "`local_module_incomplete` to document. The pattern itself "
+                 "(module found, attribute missing) can still recur on a "
+                 "different strategy; if it does, this entry's shape is the "
+                 "template to restore, not a mistake to avoid repeating.",
         "tool": "repair/local_modules.py",
     },
     {
@@ -1164,6 +1161,33 @@ REPAIRS = [
         "limit": "`needs_a_look`. Installing an arbitrary package into the "
                  "runtime changes the runtime for every other strategy, so "
                  "each one needs a decision rather than a reflex.",
+        "tool": "blocked_triage.py",
+    },
+    {
+        "family": "class_not_loaded",
+        "name": "Open: import raises, and it isn't one of the named shapes above",
+        "error": "Impossible to load Strategy '<Name>'. This class does not "
+                 "exist or contains Python code errors.",
+        "cause": "`tools/blocked_triage.py`'s catch-all for an import-time "
+                 "exception that doesn't match a `ModuleNotFoundError: No "
+                 "module named '<X>'` shape (that one gets its own, more "
+                 "specific family - `local_module_off_path` if a copy of "
+                 "`<X>` turns up elsewhere in the corpus, `third_party_"
+                 "package` otherwise). Whether the real cause is installable "
+                 "or a genuine code defect depends entirely on the "
+                 "exception, so this family has no single fix.",
+        "fix": "One case examined (`NewsHeliusBitqueryML`, 2026-09-14): "
+               "`ImportError: attempted relative import with no known "
+               "parent package` from `from .indicators import "
+               "calculate_all_indicators`. Checked the author's own "
+               "upstream repository directly, not only the harvested copy - "
+               "`indicators.py` does not exist anywhere in it. The strategy "
+               "as published cannot run; there is nothing to restore.",
+        "limit": "`refuse_repair` for that case - a genuine gap in what the "
+                 "author published, the same shape as `local_module_"
+                 "incomplete` above but at import time instead of runtime. "
+                 "Every other row in this family is still `needs_a_look`, "
+                 "one at a time, for the reason given in `cause`.",
         "tool": "blocked_triage.py",
     },
     {

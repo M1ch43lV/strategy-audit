@@ -1,6 +1,6 @@
-# Strategy status - current evidence for all 1101 rows
+# Strategy status - current evidence for all 1369 rows
 
-**Generated 2026-09-14 19:36:26 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-14 21:05:59 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -33,44 +33,45 @@ check.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 10 of 1101 rows
+file's time and is labelled `log_mtime` for that reason. 277 of 1369 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
 
 | | Strategies |
 |---|---:|
-| in the manifest | 1101 |
-| measured at all | 957 |
-| produced trades | 902 |
-| carrying a run time | 1091 |
+| in the manifest | 1369 |
+| measured at all | 962 |
+| produced trades | 905 |
+| carrying a run time | 1092 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 647 |
-| `excluded` | 298 |
-| `exclusion_unconfirmed` | 86 |
-| `too_few_trades` | 30 |
-| `pending` | 21 |
-| `not_a_strategy` | 19 |
+| `excluded` | 303 |
+| `not_tested_in_current_runtime` | 259 |
+| `exclusion_unconfirmed` | 84 |
+| `too_few_trades` | 32 |
+| `not_a_strategy` | 28 |
+| `pending` | 16 |
 
 ## Timeframe and signal family
 
 Both read from the strategy's own source by `strategy_classification.py`,
 not measured - see that module's docstring for the marker table and its
-limits. `timeframe` is blank on 35 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 51 rows where no marker matched at all, so its counts below add up to more than 1101.
+limits. `timeframe` is blank on 103 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 319 rows where no marker matched at all, so its counts below add up to more than 1369.
 
 ### Timeframe
 
 | Timeframe | Strategies |
 |---|---:|
-| `5m` | 601 |
+| `5m` | 774 |
 | `1h` | 170 |
-| `15m` | 100 |
-| `1m` | 75 |
-| `4h` | 51 |
+| `15m` | 105 |
+| `1m` | 90 |
+| `4h` | 58 |
 | `1d` | 33 |
 | `3m` | 18 |
 | `30m` | 9 |
@@ -129,9 +130,9 @@ preregistration OPEN item 6; the amendment records it.
 | `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 318 |
 | `transition` | `20 <= coin_adx < 25` | 52 |
 
-A row may carry more than one phase, and 173 carry none: 70 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 103 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
+A row may carry more than one phase, and 441 carry none: 70 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 371 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
 
-`bear_trend` is rare by construction: 955 of 1101 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
+`bear_trend` is rare by construction: 1215 of 1369 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
 
 ## Test duration
 
@@ -141,11 +142,11 @@ look-ahead/recursion pair, a later native look-ahead
 re-measurement, the warm-up ladder, a wave B recursion attempt, and
 the eight-pair full-window backtest actually ran for it - see
 `test_duration` in evidence/strategy_status.py for why this is a sum rather
-than a pick-one-source figure. 4 of 1101 rows carry no stamp at all,
+than a pick-one-source figure. 272 of 1369 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 1097 rows that do: **71.2 hours** of this audit's own compute so far.
+Summed across the 1097 rows that do: **72.1 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -289,7 +290,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1732 of 2902 commands are recorded so far, and every new run
+recording. 1750 of 3438 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -4456,19 +4457,288 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Pending - 21 strategies
+## Pending - 16 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
 
-`AIAgentTradingStrategy`, `AlexBandSniperV10AI`, `AlexNexusForgeV8AIV2`, `AlexNexusForgeV8AIV4_SPOT`
-`BaseStrategy`, `Danke`, `FreqAIHybridStrategy`, `GRIDDMIPRICEStrategyFutureV4`
-`Guacamole`, `Kamaflage`, `NFIX7Risk`, `NNPredict`
-`NewsHeliusBitqueryML`, `ONS_Portfolio`, `Proton`, `RebalanceStrategySpot`
-`TM3MultiClass`, `TripleSuperTrendADXRSI`, `UltraSmartStrategy`, `el_extrema_RL`
-`haGradient`
+`AlexBandSniperV10AI`, `BBBHold`, `BaseStrategy`, `Danke`
+`FreqAIHybridStrategy`, `GRIDDMIPRICEStrategyFutureV4`, `Guacamole`, `Kamaflage`
+`NNPredict`, `NewsHeliusBitqueryML`, `ONS_Portfolio`, `Proton`
+`RebalanceStrategySpot`, `UltraSmartStrategy`, `el_extrema_RL`, `haGradient`
 
-## Exclusion unconfirmed - 86 strategies
+## Attempted, no measurement - 259 strategies
+
+No run under the current pipeline is recorded for these. The
+original corpus sweep did attempt every row, but it ran in an
+environment that did not establish the preconditions this audit
+requires - which is the whole reason the pre-checks are being
+redone - so its outcome is a hint about what to expect and never a
+verdict. Where such a hint exists it is shown in brackets.
+
+| Strategy | Wave | Status |
+|---|---|---|
+| `ARIMA_5` | `-` | `no run under the current runtime` |
+| `AdaptiveRegimeLong` | `-` | `no run under the current runtime` |
+| `Anomaly_adx` | `-` | `no run under the current runtime` |
+| `Anomaly_all` | `-` | `no run under the current runtime` |
+| `Anomaly_aroon` | `-` | `no run under the current runtime` |
+| `Anomaly_bbw` | `-` | `no run under the current runtime` |
+| `Anomaly_dwt` | `-` | `no run under the current runtime` |
+| `Anomaly_fbb` | `-` | `no run under the current runtime` |
+| `Anomaly_fwr` | `-` | `no run under the current runtime` |
+| `Anomaly_highlow` | `-` | `no run under the current runtime` |
+| `Anomaly_jump` | `-` | `no run under the current runtime` |
+| `Anomaly_macd` | `-` | `no run under the current runtime` |
+| `Anomaly_mfi` | `-` | `no run under the current runtime` |
+| `Anomaly_minmax` | `-` | `no run under the current runtime` |
+| `Anomaly_nseq` | `-` | `no run under the current runtime` |
+| `Anomaly_over` | `-` | `no run under the current runtime` |
+| `Anomaly_profit` | `-` | `no run under the current runtime` |
+| `Anomaly_pv` | `-` | `no run under the current runtime` |
+| `Anomaly_slope` | `-` | `no run under the current runtime` |
+| `Anomaly_smooth` | `-` | `no run under the current runtime` |
+| `Anomaly_stochastic` | `-` | `no run under the current runtime` |
+| `Anomaly_swing` | `-` | `no run under the current runtime` |
+| `BBMod1DCA` | `-` | `no run under the current runtime` |
+| `BBRSITV1` | `-` | `no run under the current runtime` |
+| `BBRSITV2` | `-` | `no run under the current runtime` |
+| `BBRSITV3` | `-` | `no run under the current runtime` |
+| `BBRSITV4` | `-` | `no run under the current runtime` |
+| `BBRSITV5` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_Trailing` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_Tranz_TrailingBuy` | `-` | `no run under the current runtime` |
+| `BB_RTR_dca` | `-` | `no run under the current runtime` |
+| `BaseNNStrategy` | `-` | `no run under the current runtime` |
+| `BinClucMadSMAv1` | `-` | `no run under the current runtime` |
+| `BinClucMadSMAv2` | `-` | `no run under the current runtime` |
+| `BinClucMadv1` | `-` | `no run under the current runtime` |
+| `BinClucMadv2` | `-` | `no run under the current runtime` |
+| `BlendBasket` | `-` | `no run under the current runtime` |
+| `BuyHoldBasket` | `-` | `no run under the current runtime` |
+| `Cluc4werk_ETH` | `-` | `no run under the current runtime` |
+| `Cluc5mDCA` | `-` | `no run under the current runtime` |
+| `Cluc5werk_BTC` | `-` | `no run under the current runtime` |
+| `Cluc5werk_ETH` | `-` | `no run under the current runtime` |
+| `Cluc5werk_USD` | `-` | `no run under the current runtime` |
+| `ClucCrypROI_BTC` | `-` | `no run under the current runtime` |
+| `ClucCrypROI_ETH` | `-` | `no run under the current runtime` |
+| `ClucCrypSlow_BTC` | `-` | `no run under the current runtime` |
+| `ClucCrypSlow_ETH` | `-` | `no run under the current runtime` |
+| `ClucDCA` | `-` | `no run under the current runtime` |
+| `ClucDCAV2` | `-` | `no run under the current runtime` |
+| `ClucHAnix_5M_E0V1E_DYNAMIC_TB` | `-` | `no run under the current runtime` |
+| `ClucHAnix_5mTB1` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BB_RPB_MOD2_ROI_DYNAMIC_TB` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BB_RPB_MOD_CTT_DTB` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BB_RPB_MOD_CTT_STB` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BB_RPB_MOD_E0V1E_ROI_DYNAMIC_TB` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BTC` | `-` | `no run under the current runtime` |
+| `ClucHAnix_ETH` | `-` | `no run under the current runtime` |
+| `ClucHAnix_USD` | `-` | `no run under the current runtime` |
+| `ClucHAnix_hhll_TB` | `-` | `no run under the current runtime` |
+| `ClucHAwerk_BTC` | `-` | `no run under the current runtime` |
+| `ClucHAwerk_ETH` | `-` | `no run under the current runtime` |
+| `ClucHAwerk_USD` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndClucV4WS` | `-` | `no run under the current runtime` |
+| `ConstantMixBasket` | `-` | `no run under the current runtime` |
+| `CppiBasket` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_dca_green` | `-` | `no run under the current runtime` |
+| `Enchilada_Slow` | `-` | `no run under the current runtime` |
+| `Hacklemore_Slow` | `-` | `no run under the current runtime` |
+| `InverseVolBasket` | `-` | `no run under the current runtime` |
+| `Lateralus_Slow` | `-` | `no run under the current runtime` |
+| `LitmusBBStrategy` | `-` | `no run under the current runtime` |
+| `LitmusBBTrendStrategy` | `-` | `no run under the current runtime` |
+| `LitmusClucStrategy` | `-` | `no run under the current runtime` |
+| `LitmusSARStrategy` | `-` | `no run under the current runtime` |
+| `LitmusScalpStrategy` | `-` | `no run under the current runtime` |
+| `LitmusTrendScalpStrategy` | `-` | `no run under the current runtime` |
+| `LitmusVulcanStrategy` | `-` | `no run under the current runtime` |
+| `LmaoStoplossClusterOpt` | `-` | `no run under the current runtime` |
+| `MASlopeStrategy` | `-` | `no run under the current runtime` |
+| `MAStopLossStrategy` | `-` | `no run under the current runtime` |
+| `MATrailingStopLossStrategy` | `-` | `no run under the current runtime` |
+| `MinVarianceBasket` | `-` | `no run under the current runtime` |
+| `MiniLambo_TBS` | `-` | `no run under the current runtime` |
+| `MomentumBasket` | `-` | `no run under the current runtime` |
+| `MomentumRegimeBasket15mFast` | `-` | `no run under the current runtime` |
+| `MoniGoManiHyperStrategy` | `-` | `no run under the current runtime` |
+| `MultiMA_TSL3a` | `-` | `no run under the current runtime` |
+| `NASOSv5HO` | `-` | `no run under the current runtime` |
+| `NASOSv5PD` | `-` | `no run under the current runtime` |
+| `NASOSv5SL` | `-` | `no run under the current runtime` |
+| `NASOSv5_antipump` | `-` | `no run under the current runtime` |
+| `NNPredict_AdditiveAttention` | `-` | `no run under the current runtime` |
+| `NNPredict_Attention` | `-` | `no run under the current runtime` |
+| `NNPredict_CNN` | `-` | `no run under the current runtime` |
+| `NNPredict_GRU` | `-` | `no run under the current runtime` |
+| `NNPredict_LSTM` | `-` | `no run under the current runtime` |
+| `NNPredict_LSTM0` | `-` | `no run under the current runtime` |
+| `NNPredict_LSTM2` | `-` | `no run under the current runtime` |
+| `NNPredict_LSTM3` | `-` | `no run under the current runtime` |
+| `NNPredict_MLP` | `-` | `no run under the current runtime` |
+| `NNPredict_Multihead` | `-` | `no run under the current runtime` |
+| `NNPredict_NBeats` | `-` | `no run under the current runtime` |
+| `NNPredict_NHiTS` | `-` | `no run under the current runtime` |
+| `NNPredict_NLinear` | `-` | `no run under the current runtime` |
+| `NNPredict_Ray` | `-` | `no run under the current runtime` |
+| `NNPredict_TCN` | `-` | `no run under the current runtime` |
+| `NNPredict_TFT` | `-` | `no run under the current runtime` |
+| `NNPredict_Transformer` | `-` | `no run under the current runtime` |
+| `NNPredict_Wavenet` | `-` | `no run under the current runtime` |
+| `NNPredict_Wavenet2` | `-` | `no run under the current runtime` |
+| `NNPredict_dTransformer` | `-` | `no run under the current runtime` |
+| `NNPredict_kTFT` | `-` | `no run under the current runtime` |
+| `NNTC_adx2_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_adx3_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_adx_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_all_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_aroon_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_bbw_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_bbw_Transformer` | `-` | `no run under the current runtime` |
+| `NNTC_dwt2_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_dwt_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_fbb_AdditiveAttention` | `-` | `no run under the current runtime` |
+| `NNTC_fbb_Attention` | `-` | `no run under the current runtime` |
+| `NNTC_fbb_Ensemble` | `-` | `no run under the current runtime` |
+| `NNTC_fbb_GRU` | `-` | `no run under the current runtime` |
+| `NNTC_fbb_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_fbb_Multihead` | `-` | `no run under the current runtime` |
+| `NNTC_fbb_Transformer` | `-` | `no run under the current runtime` |
+| `NNTC_fbb_Wavenet` | `-` | `no run under the current runtime` |
+| `NNTC_fwr_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_highlow_Ensemble` | `-` | `no run under the current runtime` |
+| `NNTC_highlow_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_jump_Ensemble` | `-` | `no run under the current runtime` |
+| `NNTC_jump_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_jump_Transformer` | `-` | `no run under the current runtime` |
+| `NNTC_macd2_Attention` | `-` | `no run under the current runtime` |
+| `NNTC_macd3_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_macd_Attention` | `-` | `no run under the current runtime` |
+| `NNTC_macd_Ensemble` | `-` | `no run under the current runtime` |
+| `NNTC_macd_GRU` | `-` | `no run under the current runtime` |
+| `NNTC_macd_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_macd_Multihead` | `-` | `no run under the current runtime` |
+| `NNTC_macd_TCN` | `-` | `no run under the current runtime` |
+| `NNTC_macd_Transformer` | `-` | `no run under the current runtime` |
+| `NNTC_mfi_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_minmax_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_nseq_Attention` | `-` | `no run under the current runtime` |
+| `NNTC_nseq_Ensemble` | `-` | `no run under the current runtime` |
+| `NNTC_nseq_GRU` | `-` | `no run under the current runtime` |
+| `NNTC_nseq_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_nseq_Transformer` | `-` | `no run under the current runtime` |
+| `NNTC_nseq_Wavenet` | `-` | `no run under the current runtime` |
+| `NNTC_over_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_profit_AdditiveAttention` | `-` | `no run under the current runtime` |
+| `NNTC_profit_Attention` | `-` | `no run under the current runtime` |
+| `NNTC_profit_CNN` | `-` | `no run under the current runtime` |
+| `NNTC_profit_Ensemble` | `-` | `no run under the current runtime` |
+| `NNTC_profit_GRU` | `-` | `no run under the current runtime` |
+| `NNTC_profit_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_profit_LSTM2` | `-` | `no run under the current runtime` |
+| `NNTC_profit_LSTM3` | `-` | `no run under the current runtime` |
+| `NNTC_profit_MLP` | `-` | `no run under the current runtime` |
+| `NNTC_profit_Multihead` | `-` | `no run under the current runtime` |
+| `NNTC_profit_TCN` | `-` | `no run under the current runtime` |
+| `NNTC_profit_Transformer` | `-` | `no run under the current runtime` |
+| `NNTC_profit_Wavenet` | `-` | `no run under the current runtime` |
+| `NNTC_profit_Wavenet2` | `-` | `no run under the current runtime` |
+| `NNTC_profit_Wavenet3` | `-` | `no run under the current runtime` |
+| `NNTC_pv_Ensemble` | `-` | `no run under the current runtime` |
+| `NNTC_pv_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_pv_MLP` | `-` | `no run under the current runtime` |
+| `NNTC_pv_Multihead` | `-` | `no run under the current runtime` |
+| `NNTC_pv_Wavenet` | `-` | `no run under the current runtime` |
+| `NNTC_slope_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_smooth_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_stochastic_LSTM` | `-` | `no run under the current runtime` |
+| `NNTC_swing_LSTM` | `-` | `no run under the current runtime` |
+| `OBOnlyWSv2bband` | `-` | `no run under the current runtime` |
+| `PCA_dwt` | `-` | `no run under the current runtime` |
+| `PCA_fbb` | `-` | `no run under the current runtime` |
+| `PCA_fwr` | `-` | `no run under the current runtime` |
+| `PCA_highlow` | `-` | `no run under the current runtime` |
+| `PCA_jump` | `-` | `no run under the current runtime` |
+| `PCA_macd` | `-` | `no run under the current runtime` |
+| `PCA_mfi` | `-` | `no run under the current runtime` |
+| `PCA_minmax` | `-` | `no run under the current runtime` |
+| `PCA_nseq` | `-` | `no run under the current runtime` |
+| `PCA_over` | `-` | `no run under the current runtime` |
+| `PCA_profit` | `-` | `no run under the current runtime` |
+| `PCA_pv` | `-` | `no run under the current runtime` |
+| `PCA_stochastic` | `-` | `no run under the current runtime` |
+| `PCA_swing` | `-` | `no run under the current runtime` |
+| `SMAOffsetProtectOptV1Mod2_antipump` | `-` | `no run under the current runtime` |
+| `SMAOffsetProtectOptV1_1` | `-` | `no run under the current runtime` |
+| `SMAoffset_antipump_div` | `-` | `no run under the current runtime` |
+| `Schism2_BTC` | `-` | `no run under the current runtime` |
+| `Schism2_ETH` | `-` | `no run under the current runtime` |
+| `Schism3_BTC` | `-` | `no run under the current runtime` |
+| `Schism3_ETH` | `-` | `no run under the current runtime` |
+| `Schism4_BTC` | `-` | `no run under the current runtime` |
+| `Schism4_ETH` | `-` | `no run under the current runtime` |
+| `Schism5_BTC` | `-` | `no run under the current runtime` |
+| `Schism5_ETH` | `-` | `no run under the current runtime` |
+| `Schism6_BTC` | `-` | `no run under the current runtime` |
+| `Schism6_ETH` | `-` | `no run under the current runtime` |
+| `Schism_BTC` | `-` | `no run under the current runtime` |
+| `Schism_ETH` | `-` | `no run under the current runtime` |
+| `SimpleStrategy` | `-` | `no run under the current runtime` |
+| `Solipsis3_BTC` | `-` | `no run under the current runtime` |
+| `Solipsis3_ETH` | `-` | `no run under the current runtime` |
+| `Solipsis4_BTC` | `-` | `no run under the current runtime` |
+| `Solipsis4_ETH` | `-` | `no run under the current runtime` |
+| `Solipsis5_BTC` | `-` | `no run under the current runtime` |
+| `Solipsis5_ETH` | `-` | `no run under the current runtime` |
+| `Solipsis6_BTC` | `-` | `no run under the current runtime` |
+| `Solipsis6_ETH` | `-` | `no run under the current runtime` |
+| `SolipsisCon_BTC` | `-` | `no run under the current runtime` |
+| `SolipsisMM_BTC` | `-` | `no run under the current runtime` |
+| `SolipsisMM_ETH` | `-` | `no run under the current runtime` |
+| `Solipsis_BTC` | `-` | `no run under the current runtime` |
+| `Solipsis_ETH` | `-` | `no run under the current runtime` |
+| `Solipsis_USD` | `-` | `no run under the current runtime` |
+| `StarRise_V2` | `-` | `no run under the current runtime` |
+| `StarRise_V3` | `-` | `no run under the current runtime` |
+| `StarRise_dca` | `-` | `no run under the current runtime` |
+| `Stinkfist_BTC` | `-` | `no run under the current runtime` |
+| `Stinkfist_ETH` | `-` | `no run under the current runtime` |
+| `StopLossStrategy` | `-` | `no run under the current runtime` |
+| `SuperBuy` | `-` | `no run under the current runtime` |
+| `SuperHV27_BTC` | `-` | `no run under the current runtime` |
+| `SuperHV27_ETH` | `-` | `no run under the current runtime` |
+| `SuperReversal_mtf_5min` | `-` | `no run under the current runtime` |
+| `TPActivatingTSLwithInitialTSLStrategy` | `-` | `no run under the current runtime` |
+| `TPActivatingTSLwithSLStrategy` | `-` | `no run under the current runtime` |
+| `TS_Coeff` | `-` | `no run under the current runtime` |
+| `TS_Gain` | `-` | `no run under the current runtime` |
+| `TS_Wavelet` | `-` | `no run under the current runtime` |
+| `TrailingBuySellStrat` | `-` | `no run under the current runtime` |
+| `TrailingBuyStrat` | `-` | `no run under the current runtime` |
+| `TrailingBuyStrat2` | `-` | `no run under the current runtime` |
+| `TrailingBuyStrat2a` | `-` | `no run under the current runtime` |
+| `TrailingBuyStratCluc` | `-` | `no run under the current runtime` |
+| `TrailingBuyStratCluc5m` | `-` | `no run under the current runtime` |
+| `TrailingBuyStratClucBBRPBMODE` | `-` | `no run under the current runtime` |
+| `TrailingStopLossStrategy` | `-` | `no run under the current runtime` |
+| `UziChanTB` | `-` | `no run under the current runtime` |
+| `UziChanTB2` | `-` | `no run under the current runtime` |
+| `ViNBuyLc2` | `-` | `no run under the current runtime` |
+| `ViNBuyPct` | `-` | `no run under the current runtime` |
+| `ViNBuyPctLc2` | `-` | `no run under the current runtime` |
+| `ViNBuyVws` | `-` | `no run under the current runtime` |
+| `ViNSellCorr` | `-` | `no run under the current runtime` |
+| `ViNSellEps` | `-` | `no run under the current runtime` |
+| `ViNSellRiseCorrFall` | `-` | `no run under the current runtime` |
+| `ViNSellRiseFall` | `-` | `no run under the current runtime` |
+| `VolTargetBasket` | `-` | `no run under the current runtime` |
+| `_Strat` | `-` | `no run under the current runtime` |
+| `strat_dca` | `-` | `no run under the current runtime` |
+| `tbedit` | `-` | `no run under the current runtime` |
+
+## Exclusion unconfirmed - 84 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -4480,8 +4750,8 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `unclassified` | `no_finding` | 43 |
-| `no_verdict_on_lookahead` | `no_finding` | 34 |
+| `unclassified` | `no_finding` | 39 |
+| `no_verdict_on_lookahead` | `no_finding` | 36 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 7 |
 | `recursive_bias_unverified` | `no_finding` | 1 |
 | `recursive_warmup_refused` | `no_finding` | 1 |
@@ -4491,7 +4761,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 298 strategies, by decisive reason
+## Not passing - 303 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -4539,7 +4809,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 298 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 303 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -4547,14 +4817,14 @@ one of them carries none.
 
 | Reason | Meaning | Strategies |
 |---|---|---:|
-| `lookahead_found` | reads data it could not have had at the time | 78 |
+| `lookahead_found` | reads data it could not have had at the time | 83 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 77 |
 | `no_trades_in_full_measurement` | never trades over the full window | 7 |
 | `full_backtest_not_testable` | the canonical pooled full backtest did not complete under the fixed runtime budget | 34 |
-| `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 52 |
+| `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 51 |
 | `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 6 |
 | `measured_only_in_freqai_arm` | runs only under its author's own FreqAI configuration, measured separately in that arm; not comparable with the ordinary spot audit | 6 |
-| `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 18 |
+| `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 19 |
 | `shared_runtime_change_declined` | the fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04 | 7 |
 | `recursive_check_incomplete_at_longest_rungs` | - | 13 |
 
@@ -4563,24 +4833,25 @@ one of them carries none.
 
 | Reason | `-` | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `E0_strict67` | `not_scheduled` |
 |---|---|---|---|---|---|---|---|
-| `lookahead_found` | 3 | 2 | 0 | 12 | 0 | 0 | 61 |
+| `lookahead_found` | 8 | 2 | 0 | 12 | 0 | 0 | 61 |
 | `recursive_bias_found` | 15 | 0 | 3 | 18 | 14 | 1 | 26 |
 | `no_trades_in_full_measurement` | 0 | 0 | 0 | 7 | 0 | 0 | 0 |
 | `full_backtest_not_testable` | 18 | 0 | 0 | 15 | 0 | 0 | 1 |
-| `repair_refused_would_invent_strategy` | 10 | 1 | 0 | 37 | 0 | 0 | 4 |
+| `repair_refused_would_invent_strategy` | 9 | 1 | 0 | 37 | 0 | 0 | 4 |
 | `local_module_repair_exhausted` | 0 | 0 | 0 | 6 | 0 | 0 | 0 |
 | `measured_only_in_freqai_arm` | 0 | 0 | 0 | 5 | 0 | 0 | 1 |
-| `third_party_package_declined` | 6 | 0 | 0 | 12 | 0 | 0 | 0 |
+| `third_party_package_declined` | 7 | 0 | 0 | 12 | 0 | 0 | 0 |
 | `shared_runtime_change_declined` | 0 | 0 | 0 | 6 | 0 | 0 | 1 |
 | `recursive_check_incomplete_at_longest_rungs` | 13 | 0 | 0 | 0 | 0 | 0 | 0 |
 
-### `lookahead_found` - 78
+### `lookahead_found` - 83
 
 Reads data it could not have had at the time.
 
-Wave `-` - 3:
+Wave `-` - 8:
 
-`CsMom`, `DonchianChannel`, `LiquiditySweep`
+`AdvancedFuturesSwingStrategy`, `AlexBattleTankKillerV4`, `AlexNexusForgeV8AIV2`, `AwesomeEWOLambo`
+`AwesomeEWOLambo_Shorts`, `CsMom`, `DonchianChannel`, `LiquiditySweep`
 
 Wave `A_pending_diagnostics` - 2:
 
@@ -4687,15 +4958,15 @@ Wave `not_scheduled` - 1:
 
 `A9AV`
 
-### `repair_refused_would_invent_strategy` - 52
+### `repair_refused_would_invent_strategy` - 51
 
 Declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy.
 
-Wave `-` - 10:
+Wave `-` - 9:
 
-`BBBHold`, `DELTA_NEUTRAL`, `E0V1EAI`, `EMA003`
-`FBB_2`, `FBB_ROI`, `FreqaiBinaryClassStrategy`, `FreqaiStrategy_v2`
-`TaSearchLevelG15m`, `TrendMomoClassifier`
+`DELTA_NEUTRAL`, `E0V1EAI`, `EMA003`, `FBB_2`
+`FBB_ROI`, `FreqaiBinaryClassStrategy`, `FreqaiStrategy_v2`, `TaSearchLevelG15m`
+`TrendMomoClassifier`
 
 Wave `A_pending_diagnostics` - 1:
 
@@ -4740,14 +5011,14 @@ Wave `not_scheduled` - 1:
 
 `AstroQAV4`
 
-### `third_party_package_declined` - 18
+### `third_party_package_declined` - 19
 
 Needs a python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04.
 
-Wave `-` - 6:
+Wave `-` - 7:
 
 `CME`, `Cenderawasih_freqai`, `HMMv3`, `QuatreMousquetaires`
-`kac_index_v1`, `kac_index_v2`
+`TM3MultiClass`, `kac_index_v1`, `kac_index_v2`
 
 Wave `C_measurement_recovery` - 12:
 
@@ -4781,9 +5052,9 @@ Wave `-` - 13:
 
 | Wave | Strategies |
 |---|---:|
+| `(none)` | 469 |
 | `not_scheduled` | 390 |
 | `C_measurement_recovery` | 230 |
-| `(none)` | 201 |
 | `D_recursive_drift` | 124 |
 | `B_warmup_refusal` | 82 |
 | `E0_strict67` | 67 |
@@ -4793,12 +5064,13 @@ Wave `-` - 13:
 
 | Item | Strategies |
 |---|---:|
-| `lookahead_remeasure_pending` | 84 |
-| `recursive_ladder_pending` | 75 |
+| `recursive_ladder_pending` | 329 |
+| `first_measurement_in_current_runtime` | 259 |
+| `lookahead_remeasure_pending` | 73 |
 | `convergence_inconclusive` | 14 |
-| `to_be_fixed` | 10 |
-| `needs_a_look` | 7 |
+| `needs_a_look` | 10 |
 | `repair_attempted` | 3 |
+| `to_be_fixed` | 2 |
 
 Per-row detail, including every evidence path, is in
 `STRATEGY_STATUS.csv`.

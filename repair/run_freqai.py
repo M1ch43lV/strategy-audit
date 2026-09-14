@@ -46,9 +46,26 @@ CFG_DIR = os.path.join(AUD, "user_data", "freqai_configs")
 
 LADDER = ["1m", "3m", "5m", "15m", "30m", "1h", "2h", "4h", "6h", "12h", "1d"]
 RX_TF = re.compile(r"""^\s*timeframe\s*[:=]\s*['"]([^'"]+)['"]""", re.M)
+RX_CAN_SHORT = re.compile(r"""^\s*can_short\s*(?::\s*bool\s*)?=\s*True\b""", re.M)
+# Same futures base config the rest of the audit uses (evidence/profile_smoke.py's
+# FUTURES_CONFIG) - reused here rather than a second copy, so "futures" means
+# the same trading_mode/margin_mode/pair suffix everywhere in the audit, not
+# a FreqAI-specific variant of it. The spot side keeps using the original
+# user_data/config.json this module always used (see build_config()).
+FUTURES_BASE_CONFIG = os.path.join(AUD, "runtime", "profile_futures_config.json")
 
 IN_RANGE = "20180301-20200301"
 OUT_RANGE = "20200301-20260820"
+
+
+def declared_can_short(source):
+    """Same literal-True check as evidence.execution_profiles.declared_can_short(),
+    as a source-text regex instead of an AST class-node lookup - this module
+    does not otherwise parse the file, and a strategy declaring can_short is
+    already how the rest of the audit tells a futures-capable row from a
+    spot-only one (see EXECUTION_PROFILES.csv's own declared_can_short
+    column, computed the same way)."""
+    return bool(RX_CAN_SHORT.search(source))
 
 
 def available_timeframes():
@@ -58,10 +75,23 @@ def available_timeframes():
     return out
 
 
-def build_config(name, base_tf, have):
-    """One config per strategy: include_timeframes must start at its own."""
-    base = json.load(io.open(os.path.join(AUD, "user_data", "config.json"),
-                             encoding="utf-8"))
+def build_config(name, base_tf, have, can_short=False):
+    """One config per strategy: include_timeframes must start at its own.
+
+    can_short=True switches the base config to futures/isolated (same
+    trading_mode/margin_mode/pair suffix as the rest of the audit's own
+    futures runs) instead of the spot default - freqtrade refuses to run a
+    can_short=True strategy in a spot market at all ("Short strategies
+    cannot run in spot markets"), which is why FreqAIHybridStrategy and
+    el_extrema_RL never even reached model training before. Nothing below
+    this - the freqai block itself, its training window, model, feature
+    parameters - changes with it. The spot base stays the original
+    user_data/config.json exactly as before this branch existed, so no
+    already-measured spot-only card is affected.
+    """
+    base_config_path = (FUTURES_BASE_CONFIG if can_short
+                        else os.path.join(AUD, "user_data", "config.json"))
+    base = json.load(io.open(base_config_path, encoding="utf-8"))
     idx = LADDER.index(base_tf) if base_tf in LADDER else 0
     tfs = [t for t in LADDER[idx:idx + 3] if t in have] or [base_tf]
     base["freqai"] = {
@@ -109,11 +139,11 @@ def strategy_dir(path):
 
 
 def run_one(job):
-    name, path, base_tf, have = job
-    cfg = build_config(name, base_tf, have)
+    name, path, base_tf, have, can_short = job
+    cfg = build_config(name, base_tf, have, can_short)
     sdir, which = strategy_dir(path)
     res = {"strategy": name, "file": path, "run_class": "freqai",
-           "source_tree": which,
+           "source_tree": which, "mode": "futures" if can_short else "spot",
            "config": os.path.relpath(cfg, AUD), "runs": {}}
     for label, rng in (("in_sample", IN_RANGE), ("out_sample", OUT_RANGE)):
         t0 = time.time()
@@ -148,7 +178,7 @@ def run_one(job):
             if mm and not res.get("_tf_retried"):
                 res["_tf_retried"] = True
                 res["main_timeframe_from_engine"] = mm.group(1)
-                cfg = build_config(name, mm.group(1), have)
+                cfg = build_config(name, mm.group(1), have, can_short)
                 cmd[cmd.index("--config") + 1] = cfg
                 try:
                     r = subprocess.run(cmd, capture_output=True, timeout=10800,
@@ -199,7 +229,8 @@ def main():
         name, rel = line.split("\t")
         src = io.open(os.path.join(AUD, rel), encoding="utf-8", errors="replace").read()
         m = RX_TF.search(src)
-        targets.append((name, rel, m.group(1) if m else "5m", have))
+        targets.append((name, rel, m.group(1) if m else "5m", have,
+                        declared_can_short(src)))
     workers = int(os.environ.get("FREQAI_WORKERS", "3"))
     print("freqai strategies %d | workers %d | timeframes present %s"
           % (len(targets), workers, ",".join(sorted(have))), flush=True)

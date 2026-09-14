@@ -4,6 +4,14 @@
 
 - Last agent: claude
 - Last update: 2026-09-14T21:00:00+02:00
+- Codex analysis 2026-09-14: `FastSupertrend_optim3_rsi_75fix` is a semantic
+  duplicate of `FastSupertrend_optim3_rsi_75`. Canonical normalized executable
+  ASTs match after renaming the class and removing the unused `typing` import;
+  the identity-bound canonical full backtests have the same 15,898 trades and
+  identical `trades_sha256` under the same 20200301-20260821 universe. Keep
+  the un-suffixed original and, if the owner confirms the operational change,
+  implement an evidence-produced duplicate exclusion for the `fix` variant;
+  do not hand-edit generated status or result CSVs, and no rerun is needed.
 - **Artifact Version 40: three Model 0 archives refreshed, DCA marker added
   (Version 39).** `BuyRegions`, `ClucHAnix_5M_E0V1E`, `FlawlessVictory` had a
   stored native archive from before the canonical timerange last changed -

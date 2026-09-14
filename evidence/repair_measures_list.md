@@ -10,10 +10,10 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 |---|---:|---|
 | `repaired` | 146 | runs now, and the run is recorded |
 | `repair_attempted` | 14 | a route was applied and did not finish the job |
-| `to_be_fixed` | 15 | the route is known, the run has not happened yet |
-| `needs_a_look` | 31 | no route yet; the obstacle has been identified |
+| `to_be_fixed` | 17 | the route is known, the run has not happened yet |
+| `needs_a_look` | 39 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 2 | the repair made things worse and was undone |
-| `refuse_repair` | 63 | repairing it would mean inventing the strategy |
+| `refuse_repair` | 62 | repairing it would mean inventing the strategy |
 | `-` | 27 |  |
 
 ## Routes taken
@@ -98,7 +98,7 @@ For example: `ARIMASTR`, `Apollo11`, `BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB
 
 ### The author's own module put back on the path
 
-`repair_family: local_module_off_path` &mdash; 40 strategies (repaired 2, repair_attempted 7, to_be_fixed 1, needs_a_look 1, repair_withdrawn 2, - 27)
+`repair_family: local_module_off_path` &mdash; 42 strategies (repaired 2, repair_attempted 7, to_be_fixed 3, needs_a_look 1, repair_withdrawn 2, - 27)
 
 **The message.**
 
@@ -110,31 +110,11 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 **The repair.** `repair/local_modules.py` finds copies of the missing module in the corpus and decides between them by testing the import, not by name. `shadows_a_package()` rejects any directory containing `freqtrade/`, `numpy/` and the like.
 
-**Where it stops.** That guard exists because four repairs made things worse: adding `repos/mlsys-io_PortfolioBench` to the path shadowed freqtrade itself. They are recorded as `repair_withdrawn`, and the withdrawn entries stay in `evidence/PROFILE_CLASS1.json` with `status: withdrawn` - deleting them had deleted the finding.
+**Where it stops.** That guard exists because four repairs made things worse: adding `repos/mlsys-io_PortfolioBench` to the path shadowed freqtrade itself. They are recorded as `repair_withdrawn`, and the withdrawn entries stay in `evidence/PROFILE_CLASS1.json` with `status: withdrawn` - deleting them had deleted the finding. A withdrawn family entry, by contrast, does not stay here: `local_module_incomplete` (below, until 2026-09-14) named `BBBHold` as its one example - a copy of `Config` was found and put back on the path, but that copy never defined the attribute (`ignore_roi_if_buy_signal`) the strategy reads, and no other copy anywhere did either, so it was `refuse_repair`. Re-running `repair/local_modules.py --apply` while onboarding `NFIX7Risk` re-triaged every blocked row, `BBBHold` included, and this time found a different, complete copy (`repos/hamidreza07_freqai-strategy/startegy test/5/NSeq`) that does define the attribute - `BBBHold` is `local_module_off_path` now, same as this entry, and no row is left in `local_module_incomplete` to document. The pattern itself (module found, attribute missing) can still recur on a different strategy; if it does, this entry's shape is the template to restore, not a mistake to avoid repeating.
 
 Tool: `repair/local_modules.py`.
 
-For example: `AdvancedRiskFilterStrategy`, `BBKCBounce`, `BB_RPB_3c`, `BTCMACDCross`, `BaseStrategy`, `BuyRegions`.
-
-### Refused: the author's own module doesn't define what's read
-
-`repair_family: local_module_incomplete` &mdash; 1 strategies (refuse_repair 1)
-
-**The message.**
-
-```
-module 'Config' has no attribute 'ignore_roi_if_buy_signal'
-```
-
-**What it actually was.** A different situation from `local_module_off_path`, reached only after that repair already applied: the missing module was found and put back on the path, and the import now succeeds, but the strategy also reads an attribute the found copy never defines.
-
-**The repair.** None. Checked every copy of the module anywhere in the corpus, by attribute grep, not by name - and the strategy's own origin repository directly, not only the harvested copy. No copy anywhere defines the attribute (`BBBHold`, `ignore_roi_if_buy_signal`).
-
-**Where it stops.** `refuse_repair`. A real gap in what the author published, not a search gap; inventing the value would be authorship.
-
-Tool: `repair/local_modules.py`.
-
-For example: `BBBHold`.
+For example: `AdvancedRiskFilterStrategy`, `BBBHold`, `BBKCBounce`, `BB_RPB_3c`, `BTCMACDCross`, `BaseStrategy`.
 
 ### FreqAI strategies given the author's own configuration
 
@@ -361,7 +341,7 @@ For example: `Chained`, `EMA003`, `EnsembleStrategy`, `EnsembleStrategyV1`, `Ens
 
 ### Open: pandas and numpy have moved under the strategy
 
-`repair_family: dtype_drift` &mdash; 7 strategies (to_be_fixed 1, needs_a_look 6)
+`repair_family: dtype_drift` &mdash; 8 strategies (to_be_fixed 1, needs_a_look 7)
 
 **The message.**
 
@@ -378,11 +358,11 @@ Invalid value 'False' for dtype 'float64'
 
 Tool: `blocked_triage.py`.
 
-For example: `DIV_v1`, `GPR`, `MomentumRegimeBasket15m`, `MostOfAll`, `PnF`, `new_turtle`.
+For example: `DIV_v1`, `GPR`, `MomentumRegimeBasket15m`, `MostOfAll`, `PnF`, `TripleSuperTrendADXRSI`.
 
 ### Open: a package the author depended on
 
-`repair_family: third_party_package` &mdash; 18 strategies (needs_a_look 18)
+`repair_family: third_party_package` &mdash; 20 strategies (needs_a_look 20)
 
 **The message.**
 
@@ -398,11 +378,31 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `blocked_triage.py`.
 
-For example: `CME`, `Cenderawasih_freqai`, `CopyLitmusMinMaxBroadClassificationStrategy`, `Enchilada`, `HMMv3`, `KMM`.
+For example: `AIAgentTradingStrategy`, `CME`, `Cenderawasih_freqai`, `CopyLitmusMinMaxBroadClassificationStrategy`, `Enchilada`, `HMMv3`.
+
+### Open: import raises, and it isn't one of the named shapes above
+
+`repair_family: class_not_loaded` &mdash; 1 strategies (needs_a_look 1)
+
+**The message.**
+
+```
+Impossible to load Strategy '<Name>'. This class does not exist or contains Python code errors.
+```
+
+**What it actually was.** `tools/blocked_triage.py`'s catch-all for an import-time exception that doesn't match a `ModuleNotFoundError: No module named '<X>'` shape (that one gets its own, more specific family - `local_module_off_path` if a copy of `<X>` turns up elsewhere in the corpus, `third_party_package` otherwise). Whether the real cause is installable or a genuine code defect depends entirely on the exception, so this family has no single fix.
+
+**The repair.** One case examined (`NewsHeliusBitqueryML`, 2026-09-14): `ImportError: attempted relative import with no known parent package` from `from .indicators import calculate_all_indicators`. Checked the author's own upstream repository directly, not only the harvested copy - `indicators.py` does not exist anywhere in it. The strategy as published cannot run; there is nothing to restore.
+
+**Where it stops.** `refuse_repair` for that case - a genuine gap in what the author published, the same shape as `local_module_incomplete` above but at import time instead of runtime. Every other row in this family is still `needs_a_look`, one at a time, for the reason given in `cause`.
+
+Tool: `blocked_triage.py`.
+
+For example: `NewsHeliusBitqueryML`.
 
 ### Open: one of a kind
 
-`repair_family: individual` &mdash; 6 strategies (needs_a_look 6)
+`repair_family: individual` &mdash; 10 strategies (needs_a_look 10)
 
 **The message.**
 
@@ -420,7 +420,7 @@ Remora API key missing. Set REMORA_API_KEY env var.
 
 Tool: `blocked_triage.py`.
 
-For example: `Danke`, `GRIDDMIPRICEStrategyFutureV4`, `Guacamole`, `Kamaflage`, `ONS_Portfolio`, `RebalanceStrategySpot`.
+For example: `AlexBandSniperV10AI`, `AlexNexusForgeV8AIV2`, `AlexNexusForgeV8AIV4_SPOT`, `Danke`, `GRIDDMIPRICEStrategyFutureV4`, `Guacamole`.
 
 ### Refused: FreqAI strategy, but no model named anywhere
 
@@ -609,7 +609,7 @@ For example: `BlueEyes_MPP_v1`.
 | Rule | Strategies |
 |---|---:|
 | `startup_candles_not_limited_by_call_budget` | 62 |
-| `restore_copied_local_module` | 32 |
+| `restore_copied_local_module` | 34 |
 | `idempotent_entry_tag_initialisation` | 23 |
 | `legacy_min_roi_reached_entry_signature` | 21 |
 | `lookahead_runmode_reports_backtest` | 21 |
@@ -619,8 +619,8 @@ For example: `BlueEyes_MPP_v1`.
 | `whitespace_tolerant_class_scan` | 6 |
 | `freqai_config_from_author_block` | 5 |
 | `legacy_min_roi_reached_entry_override` | 5 |
+| `legacy_fillna_skips_incompatible_dtype` | 4 |
 | `legacy_fillna_method_kwarg` | 4 |
-| `legacy_fillna_skips_incompatible_dtype` | 3 |
 | `datetime_safe_rmi_fillna` | 3 |
 | `synthetic_orderbook_from_last_close` | 2 |
 | `restore_accumulation_distribution` | 2 |

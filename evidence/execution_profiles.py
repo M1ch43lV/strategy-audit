@@ -67,17 +67,39 @@ def _read(path):
 # A class that subclasses an already-discovered LOCAL strategy class instead
 # of IStrategy directly - a thin external wrapper, e.g. NFIX7Risk(Nostalgia-
 # ForInfinityX7) in beanbocchi/money-generator - never matches `_is_strategy()`
-# below, which only recognizes a literal `class X(IStrategy)`. A general
-# transitive-subclass pass (tried 2026-09-14) found 269 such rows across the
-# whole corpus in one run - real variant families in other repos, but far
-# outside this specific onboarding's scope and not vetted one by one - so
-# this stays a small, explicit, individually-reviewed allowlist instead:
-# (path relative to `repos/`, class name) added here only when a strategy is
-# being deliberately onboarded and this is the reason `discover()` alone
-# would have missed it.
-EXTRA_SUBCLASS_STRATEGIES = (
-    ("beanbocchi_money-generator/overlay/NFIX7Risk.py", "NFIX7Risk"),
-)
+# below, which only recognizes a literal `class X(IStrategy)`. A general,
+# always-on transitive-subclass pass was tried 2026-09-14 and reverted the
+# same day: it found 269 such rows across the whole corpus in one run,
+# unvetted. Read back out and reviewed on explicit user instruction the same
+# day - sampled across the largest source repos (webclinic017, PeetCrypto,
+# and others), cross-checked by whole-file sha256 against every already-
+# registered strategy (83/269 share a file with one - e.g. BBRSITV1..5 sit
+# in BBRSITV.py alongside the already-known BBRSITV, each with its own
+# hyperopt-tuned buy_params/stoploss/trailing_stop, not a copy-paste no-op -
+# so "same file" is not "same backtest" and none were dropped on that basis
+# alone) - then adopted as a reviewed, versioned allowlist instead of an
+# always-on heuristic: `evidence/EXTRA_SUBCLASS_STRATEGIES.tsv`, one
+# (path relative to `repos/`, class name, immediate base class name) row per
+# line. Loaded once at import time so a `discover()` call never has to touch
+# the file itself.
+def _load_extra_subclass_strategies():
+    path = os.path.join(ROOT, "evidence", "EXTRA_SUBCLASS_STRATEGIES.tsv")
+    if not os.path.isfile(path):
+        return (), {}
+    entries = []
+    bases = {}
+    with io.open(path, encoding="utf-8") as handle:
+        for line in handle:
+            line = line.rstrip("\n")
+            if not line or line.startswith("#"):
+                continue
+            rel_path, strategy, base = line.split("\t")
+            entries.append((rel_path, strategy))
+            bases[strategy] = base
+    return tuple(entries), bases
+
+
+EXTRA_SUBCLASS_STRATEGIES, INHERIT_PROFILE_FROM = _load_extra_subclass_strategies()
 
 
 def discover(repos=REPOS):
@@ -644,18 +666,21 @@ def build(repair_root=DEFAULT_REPAIR):
     return rows
 
 
-# Paired with EXTRA_SUBCLASS_STRATEGIES above: a class discovered only because
-# it subclasses another LOCAL strategy has no entry/exit code of its own for
-# the static analysis above to read, so every behavioral field it computed
-# (signal_capability, run_profile, timeframe, ...) reflects an empty class
-# body, not what the strategy actually does at runtime - it inherits ALL of
-# that from its parent. Overwritten here with the parent's already-built row
-# instead of guessed at, keeping only the child's own identity (path, repo,
-# hash, measurement history). Runs once, after every row exists, so parent
-# and child order in `discover()`'s output never matters.
-INHERIT_PROFILE_FROM = {
-    "NFIX7Risk": "NostalgiaForInfinityX7",
-}
+# Paired with EXTRA_SUBCLASS_STRATEGIES above (INHERIT_PROFILE_FROM is
+# loaded from the same TSV, child -> immediate base class). A class
+# discovered only because it subclasses another LOCAL strategy CAN have its
+# own entry/exit code - BBRSITV1..5 (found in the 269-row review) each carry
+# their own hyperopt-tuned buy_params/stoploss, not empty bodies - so
+# inheritance is conditional: only a child whose own static analysis found
+# no entry/exit write at all (signal_capability == "unknown", e.g. NFIX7Risk
+# and most thin wrappers) gets its behavioral fields replaced with the
+# parent's; a child that DOES define its own populate_entry_trend keeps the
+# profile already correctly computed from its own class body. Only the
+# child's own identity (path, repo, hash, measurement history) is ever kept
+# either way. Runs once, after every row exists (both the discover() pass
+# and every EXTRA_SUBCLASS_STRATEGIES row), in the TSV's own order, which is
+# parent-before-child by construction - a chain (child of a child) resolves
+# correctly without a second pass.
 _CHILD_OWN_FIELDS = (
     "strategy_id", "implementation_id", "strategy", "repo", "original_file",
     "canonical_file", "canonical_population", "source_tree", "variant",
@@ -675,6 +700,11 @@ def _inherit_subclass_profiles(rows):
         child_row = by_id.get(child)
         parent_row = by_id.get(parent)
         if child_row is None or parent_row is None:
+            continue
+        if child_row.get("signal_capability") != "unknown":
+            # The child's own class body already gave the static analysis
+            # something real to read (BBRSITV1's own buy_params/stoploss,
+            # for instance) - its already-computed profile stands.
             continue
         own = {key: child_row[key] for key in _CHILD_OWN_FIELDS if key in child_row}
         child_row.clear()
