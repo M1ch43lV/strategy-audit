@@ -64,6 +64,22 @@ def _read(path):
     return io.open(path, encoding="utf-8", errors="replace").read()
 
 
+# A class that subclasses an already-discovered LOCAL strategy class instead
+# of IStrategy directly - a thin external wrapper, e.g. NFIX7Risk(Nostalgia-
+# ForInfinityX7) in beanbocchi/money-generator - never matches `_is_strategy()`
+# below, which only recognizes a literal `class X(IStrategy)`. A general
+# transitive-subclass pass (tried 2026-09-14) found 269 such rows across the
+# whole corpus in one run - real variant families in other repos, but far
+# outside this specific onboarding's scope and not vetted one by one - so
+# this stays a small, explicit, individually-reviewed allowlist instead:
+# (path relative to `repos/`, class name) added here only when a strategy is
+# being deliberately onboarded and this is the reason `discover()` alone
+# would have missed it.
+EXTRA_SUBCLASS_STRATEGIES = (
+    ("beanbocchi_money-generator/overlay/NFIX7Risk.py", "NFIX7Risk"),
+)
+
+
 def discover(repos=REPOS):
     """Return the same first-by-class-name corpus used by corpus.py."""
     seen = set()
@@ -100,16 +116,33 @@ def discover(repos=REPOS):
                 continue
             seen.add(strategy)
             rows.append({"repo": repo, "path": path, "strategy": strategy})
+    for rel_path, strategy in EXTRA_SUBCLASS_STRATEGIES:
+        if strategy in seen:
+            continue
+        path = os.path.join(repos, *rel_path.split("/"))
+        if not os.path.isfile(path):
+            continue
+        repo = rel_path.split("/", 1)[0].replace("_", "/", 1)
+        seen.add(strategy)
+        rows.append({"repo": repo, "path": path, "strategy": strategy})
     return rows
 
 
 def strategy_node(path, strategy, source=None):
-    """Parse only the selected implementation; do not retain corpus-wide ASTs."""
+    """Parse only the selected implementation; do not retain corpus-wide ASTs.
+
+    Matches by class name alone, not `_is_strategy()` - a class named in
+    `EXTRA_SUBCLASS_STRATEGIES` above has a base that is another local
+    strategy class rather than IStrategy directly, and by the time this is
+    called `discover()` has already established that `(path, strategy)` is a
+    real strategy; re-demanding a literal IStrategy base here would just
+    make that row unparseable again.
+    """
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", SyntaxWarning)
         tree = ast.parse(source if source is not None else _read(path), filename=path)
     for node in ast.walk(tree):
-        if _is_strategy(node) and node.name == strategy:
+        if isinstance(node, ast.ClassDef) and node.name == strategy:
             return node
     raise ValueError("strategy class not found: %s in %s" % (strategy, path))
 
@@ -607,7 +640,46 @@ def build(repair_root=DEFAULT_REPAIR):
         }
         row.update(profile)
         rows.append(row)
+    _inherit_subclass_profiles(rows)
     return rows
+
+
+# Paired with EXTRA_SUBCLASS_STRATEGIES above: a class discovered only because
+# it subclasses another LOCAL strategy has no entry/exit code of its own for
+# the static analysis above to read, so every behavioral field it computed
+# (signal_capability, run_profile, timeframe, ...) reflects an empty class
+# body, not what the strategy actually does at runtime - it inherits ALL of
+# that from its parent. Overwritten here with the parent's already-built row
+# instead of guessed at, keeping only the child's own identity (path, repo,
+# hash, measurement history). Runs once, after every row exists, so parent
+# and child order in `discover()`'s output never matters.
+INHERIT_PROFILE_FROM = {
+    "NFIX7Risk": "NostalgiaForInfinityX7",
+}
+_CHILD_OWN_FIELDS = (
+    "strategy_id", "implementation_id", "strategy", "repo", "original_file",
+    "canonical_file", "canonical_population", "source_tree", "variant",
+    "repair_class", "repair_rules", "environment_repair_status",
+    "environment_repair_rules", "equivalence_status",
+    "ledger_present", "original_measured_spot", "historical_is_trades",
+    "historical_os_trades", "historical_full_measured", "canonical_measured",
+    "runtime_smoke_status", "runtime_smoke_timerange", "observed_long_trades",
+    "observed_short_trades", "canonical_observed_trades",
+    "trade_evidence_source", "runtime_config_sha256", "source_sha256",
+)
+
+
+def _inherit_subclass_profiles(rows):
+    by_id = {row["strategy_id"]: row for row in rows}
+    for child, parent in INHERIT_PROFILE_FROM.items():
+        child_row = by_id.get(child)
+        parent_row = by_id.get(parent)
+        if child_row is None or parent_row is None:
+            continue
+        own = {key: child_row[key] for key in _CHILD_OWN_FIELDS if key in child_row}
+        child_row.clear()
+        child_row.update(parent_row)
+        child_row.update(own)
 
 
 def write_csv(rows, path):

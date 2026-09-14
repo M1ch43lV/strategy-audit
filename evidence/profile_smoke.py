@@ -174,6 +174,11 @@ def _runtime(strategy, mode="futures"):
         os.replace(tmp, config_path)
 
     env = os.environ.copy()
+    # Windows' console default (cp1252) cannot encode plain author output
+    # (an ASCII-art banner in AlexBandSniperV10AI's own __init__, found
+    # 2026-09-14) - UnicodeEncodeError before backtesting even starts, not a
+    # strategy problem. setdefault so an already-set encoding is respected.
+    env.setdefault("PYTHONIOENCODING", "utf-8")
     python_paths = [os.path.join(ROOT, value.replace("/", os.sep))
                     for value in repair.get("python_paths", [])]
     if python_paths:

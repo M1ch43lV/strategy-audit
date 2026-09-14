@@ -87,6 +87,92 @@
       "timerange": "20200301-20200401",
       "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
+    "AIAgentTradingStrategy": {
+      "archive": "user_data/profile_smoke/AIAgentTradingStrategy-23352b91-smoke_20200301_20210301-fca63e6f-2026-09-14_19-40-19.zip",
+      "archive_sha256": "sha256_1ee68aba7717814bf5ddabe71017ec1f2d472017a7b8ec0aab7a165e8f2abdeb",
+      "artifact_key": "smoke_20200301_20210301",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601",
+        "20200301-20210301"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/AIAgentTradingStrategy-23352b91-smoke_20200301_20200401-b4807b77-2026-09-14_19-40-02.zip",
+          "archive_sha256": "sha256_141913b9a73753021f38caac3c1629f366ede97d2ccc085c9e617f477b6a842b",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 5.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AIAgentTradingStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AIAgentTradingStrategy-23352b91-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/AIAgentTradingStrategy-23352b91-smoke_20200301_20200601-9c543975-2026-09-14_19-40-08.zip",
+          "archive_sha256": "sha256_780327c50f4c40a469b3cc55bb76a6467698a5f6ed690f33c3939f0e56393c4f",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 6.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AIAgentTradingStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AIAgentTradingStrategy-23352b91-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/AIAgentTradingStrategy-23352b91-smoke_20200301_20210301-fca63e6f-2026-09-14_19-40-19.zip",
+          "archive_sha256": "sha256_1ee68aba7717814bf5ddabe71017ec1f2d472017a7b8ec0aab7a165e8f2abdeb",
+          "artifact_key": "smoke_20200301_20210301",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 10.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AIAgentTradingStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AIAgentTradingStrategy-23352b91-smoke_20200301_20210301-fca63e6f --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20210301",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
+      "canonical_sha256": "sha256_c35af2e38abf6d8382013c4a6714e2612609c6971760758f2033aa2cd6b9f9a0",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 10.8,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AIAgentTradingStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AIAgentTradingStrategy-23352b91-smoke_20200301_20210301-fca63e6f --cache none",
+      "long_trades": 0,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20210301",
+      "trade_floor": 10,
+      "trades": 0,
+      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
     "ARIMASTR": {
       "archive": "user_data/profile_smoke/ARIMASTR-2026-08-31_15-47-49.zip",
       "archive_sha256": "sha256_3cd98ee48244e526cab3499ccb29165904661bf96d01681eda97192382cd5070",
@@ -156,6 +242,92 @@
       "timerange": "20200301-20200401",
       "why": "Configuration error: 'stoploss' is a required property"
     },
+    "AdvancedFuturesSwingStrategy": {
+      "archive": "user_data/profile_smoke/AdvancedFuturesSwingStrategy-97a6da29-smoke_20200301_20210301-fca63e6f-2026-09-14_19-03-33.zip",
+      "archive_sha256": "sha256_660887ad764396b872873cce34e168f2c7fbbd83c036545df38ed3e36c9f9670",
+      "artifact_key": "smoke_20200301_20210301",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601",
+        "20200301-20210301"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/AdvancedFuturesSwingStrategy-97a6da29-smoke_20200301_20200401-b4807b77-2026-09-14_19-03-19.zip",
+          "archive_sha256": "sha256_0da0cee8edf179d8500a53feabf1a7164af5da297777cb1ea11c4f5a5ceb345a",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 5.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AdvancedFuturesSwingStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AdvancedFuturesSwingStrategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AdvancedFuturesSwingStrategy-97a6da29-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/AdvancedFuturesSwingStrategy-97a6da29-smoke_20200301_20200601-9c543975-2026-09-14_19-03-25.zip",
+          "archive_sha256": "sha256_c7393dad2a30c3636989d63fa09a83678b6f4489bdc8278ed7d31c9734f4949e",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 5.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AdvancedFuturesSwingStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AdvancedFuturesSwingStrategy --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AdvancedFuturesSwingStrategy-97a6da29-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 1,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 1,
+          "trades_sha256": "sha256_103587aebe599813f48658d26c6d4e902eb0fc87dae39ddf63043370bf5263ba"
+        },
+        {
+          "archive": "user_data/profile_smoke/AdvancedFuturesSwingStrategy-97a6da29-smoke_20200301_20210301-fca63e6f-2026-09-14_19-03-33.zip",
+          "archive_sha256": "sha256_660887ad764396b872873cce34e168f2c7fbbd83c036545df38ed3e36c9f9670",
+          "artifact_key": "smoke_20200301_20210301",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 8.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AdvancedFuturesSwingStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AdvancedFuturesSwingStrategy --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AdvancedFuturesSwingStrategy-97a6da29-smoke_20200301_20210301-fca63e6f --cache none",
+          "long_trades": 8,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20210301",
+          "trades": 8,
+          "trades_sha256": "sha256_9a001353c0bbfc755b0a9c18f4719b5304eba33c0b03e7464bb0194d3de2f15c"
+        }
+      ],
+      "canonical_sha256": "sha256_3226c6ea9409e5989a38dd1d560bade183b769bd1016a7cee477ce90bf5dce93",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 8.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AdvancedFuturesSwingStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AdvancedFuturesSwingStrategy --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AdvancedFuturesSwingStrategy-97a6da29-smoke_20200301_20210301-fca63e6f --cache none",
+      "long_trades": 8,
+      "mode": "futures",
+      "run_profile": "futures_long",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20210301",
+      "trade_floor": 10,
+      "trades": 8,
+      "trades_sha256": "sha256_9a001353c0bbfc755b0a9c18f4719b5304eba33c0b03e7464bb0194d3de2f15c"
+    },
     "AdvancedRiskFilterStrategy": {
       "canonical_sha256": "sha256_bcb660284ad4c60c18008f6019034cfa452b51415222de7f6a2376b8f3848015",
       "class1_rules": [],
@@ -193,6 +365,82 @@
       "timerange": "20200301-20200401",
       "trades": 48
     },
+    "AlexBandSniperV10AI": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "elapsed_s": 300.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexBandSniperV10AI --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexBandSniperV10AI-2adb86cf-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "status": "timeout",
+          "timerange": "20200301-20200401",
+          "why": "timeout after 300 seconds"
+        }
+      ],
+      "canonical_sha256": "sha256_8cc2443ab8162af9521f85174859f81f5c72384751fa2449d49d5e7cec880e1e",
+      "class1_rules": [],
+      "elapsed_s": 300.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexBandSniperV10AI --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexBandSniperV10AI-2adb86cf-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "timeout",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "timeout after 300 seconds"
+    },
+    "AlexBandSniperV58COptuna": {
+      "archive": "user_data/profile_smoke/AlexBandSniperV58COptuna-28f20120-smoke_20200301_20200401-b4807b77-2026-09-14_19-05-09.zip",
+      "archive_sha256": "sha256_b95420a3a192dd892f6cfc3d00dd161d1bd250a4c4ab1ac74d2e08e714668167",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/AlexBandSniperV58COptuna-28f20120-smoke_20200301_20200401-b4807b77-2026-09-14_19-05-09.zip",
+          "archive_sha256": "sha256_b95420a3a192dd892f6cfc3d00dd161d1bd250a4c4ab1ac74d2e08e714668167",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 34.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexBandSniperV58COptuna --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexBandSniperV58COptuna-28f20120-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 848,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 846,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 1694,
+          "trades_sha256": "sha256_91d6f15d7c49b94c6515b0f572a21567198f10544385d72a9b0b176603ba6951"
+        }
+      ],
+      "canonical_sha256": "sha256_ea74116e04267f9882295fed2e4223ad6ab0245194939690ad3b917e49a97435",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 34.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexBandSniperV58COptuna --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexBandSniperV58COptuna-28f20120-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 848,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 846,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 1694,
+      "trades_sha256": "sha256_91d6f15d7c49b94c6515b0f572a21567198f10544385d72a9b0b176603ba6951"
+    },
     "AlexBattleTankKiller": {
       "canonical_sha256": "sha256_cb7bcf7bc825208caba5c43db602ba2942b0c88cc8f250b5ba0017cdcf6cda3e",
       "elapsed_s": 16.7,
@@ -217,6 +465,72 @@
       "timerange": "20200301-20200401",
       "trades": 169
     },
+    "AlexBattleTankKillerV4": {
+      "archive": "user_data/profile_smoke/AlexBattleTankKillerV4-88a56c7e-smoke_20200301_20200601-9c543975-2026-09-14_19-05-28.zip",
+      "archive_sha256": "sha256_851f7600ef490e72eb04bde48bd73f5ea6351ad33f6c7b2aff8134a98a05cdb7",
+      "artifact_key": "smoke_20200301_20200601",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/AlexBattleTankKillerV4-88a56c7e-smoke_20200301_20200401-b4807b77-2026-09-14_19-05-16.zip",
+          "archive_sha256": "sha256_29faeb763da442527d86934f4d2b6cbc68bc44edb485ee83b4126ab90ac7eab7",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 6.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexBattleTankKillerV4 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexBattleTankKillerV4-88a56c7e-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/AlexBattleTankKillerV4-88a56c7e-smoke_20200301_20200601-9c543975-2026-09-14_19-05-28.zip",
+          "archive_sha256": "sha256_851f7600ef490e72eb04bde48bd73f5ea6351ad33f6c7b2aff8134a98a05cdb7",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 12.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexBattleTankKillerV4 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexBattleTankKillerV4-88a56c7e-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 270,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 270,
+          "trades_sha256": "sha256_51f6f0c602e4a212f4d3f53fd0986717869c59bf150f6663e3f1b45e595fad74"
+        }
+      ],
+      "canonical_sha256": "sha256_d078de97b65b738c4d9061dadab27d341d7f8f6c2f889f83d996be0eaa5fa01c",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 12.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexBattleTankKillerV4 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexBattleTankKillerV4-88a56c7e-smoke_20200301_20200601-9c543975 --cache none",
+      "long_trades": 270,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200601",
+      "trade_floor": 10,
+      "trades": 270,
+      "trades_sha256": "sha256_51f6f0c602e4a212f4d3f53fd0986717869c59bf150f6663e3f1b45e595fad74"
+    },
     "AlexBattleTankKillerV40H": {
       "canonical_sha256": "sha256_d79aa03fad7653f729d5959483224c1152878e8e3ca765ae209c8fd6c8f7f1c9",
       "elapsed_s": 7.6,
@@ -228,6 +542,66 @@
       "status": "measured",
       "timerange": "20200301-20200401",
       "trades": 0
+    },
+    "AlexNexusForgeV8AIV2": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "elapsed_s": 630.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexNexusForgeV8AIV2 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexNexusForgeV8AIV2-5113034c-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "status": "timeout",
+          "timerange": "20200301-20200401",
+          "why": "timeout after 300 seconds"
+        }
+      ],
+      "canonical_sha256": "sha256_b5765c6c2f93a355bb6d2292d1cbe181c4fbfd88a22db84dc6eb19384a27a3aa",
+      "class1_rules": [],
+      "elapsed_s": 630.8,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexNexusForgeV8AIV2 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexNexusForgeV8AIV2-5113034c-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "timeout",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "timeout after 300 seconds"
+    },
+    "AlexNexusForgeV8AIV4_SPOT": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "elapsed_s": 300.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexNexusForgeV8AIV4_SPOT --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexNexusForgeV8AIV4_SPOT-be7975a3-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "status": "timeout",
+          "timerange": "20200301-20200401",
+          "why": "timeout after 300 seconds"
+        }
+      ],
+      "canonical_sha256": "sha256_2cd004cc2af0ef0d2de66fa0287bb5d83b00000c0b163f7471640d9817e330ee",
+      "class1_rules": [],
+      "elapsed_s": 300.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexNexusForgeV8AIV4_SPOT --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexNexusForgeV8AIV4_SPOT-be7975a3-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "futures",
+      "run_profile": "futures_long",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "timeout",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "timeout after 300 seconds"
     },
     "AlexStrategyFinalV8": {
       "canonical_sha256": "sha256_7c58e48fd19d16ea6d60428bff4517529264eb0e42e9c6cfab90f4a9384402a0",
@@ -483,6 +857,144 @@
       "timerange": "20200301-20200401",
       "trades": 66,
       "trades_sha256": "sha256_83fe86088f0290a17538b5cb8832a0b5d2594bb9b55e78260b9558dd9f50428b"
+    },
+    "Auto_EI_t4c0s_Shorts": {
+      "archive": "user_data/profile_smoke/Auto_EI_t4c0s_Shorts-4fc4306c-smoke_20200301_20200401-b4807b77-2026-09-14_19-22-51.zip",
+      "archive_sha256": "sha256_e1eddd9dcf8d66e5287ce2965acda266cd4f646518ee560885812d18d2d46da2",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/Auto_EI_t4c0s_Shorts-4fc4306c-smoke_20200301_20200401-b4807b77-2026-09-14_19-22-51.zip",
+          "archive_sha256": "sha256_e1eddd9dcf8d66e5287ce2965acda266cd4f646518ee560885812d18d2d46da2",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 33.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy Auto_EI_t4c0s_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/El --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Auto_EI_t4c0s_Shorts-4fc4306c-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 165,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 165,
+          "trades_sha256": "sha256_44de107b0040e7de770aae7e945357359429c6bcbf7feef741ee2f6dd476f782"
+        }
+      ],
+      "canonical_sha256": "sha256_33596e1d6ea20499a43b155f2b4e5d8eee155bddfbef98dda763afa23b1e05c2",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 33.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy Auto_EI_t4c0s_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/El --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Auto_EI_t4c0s_Shorts-4fc4306c-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 0,
+      "mode": "futures",
+      "run_profile": "futures_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 165,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 165,
+      "trades_sha256": "sha256_44de107b0040e7de770aae7e945357359429c6bcbf7feef741ee2f6dd476f782"
+    },
+    "AwesomeEWOLambo": {
+      "archive": "user_data/profile_smoke/AwesomeEWOLambo-42e4a1b5-smoke_20200301_20200401-b4807b77-2026-09-14_19-21-17.zip",
+      "archive_sha256": "sha256_a15829efe306f01ca45885541c482379d5045485f8778c989957c285500f99da",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/AwesomeEWOLambo-42e4a1b5-smoke_20200301_20200401-b4807b77-2026-09-14_19-21-17.zip",
+          "archive_sha256": "sha256_a15829efe306f01ca45885541c482379d5045485f8778c989957c285500f99da",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 17.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy AwesomeEWOLambo --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AwesomeEWOLambo --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AwesomeEWOLambo-42e4a1b5-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 354,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 354,
+          "trades_sha256": "sha256_b1756b3aa9ad0958187bb5965d2b009344974be60bf262a216c428eae1a7c561"
+        }
+      ],
+      "canonical_sha256": "sha256_218b2f6211100429e7fe23af6f31888d6af4e40ccff89b63ae47869dccdb5596",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 17.8,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy AwesomeEWOLambo --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AwesomeEWOLambo --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AwesomeEWOLambo-42e4a1b5-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 354,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 354,
+      "trades_sha256": "sha256_b1756b3aa9ad0958187bb5965d2b009344974be60bf262a216c428eae1a7c561"
+    },
+    "AwesomeEWOLambo_Shorts": {
+      "archive": "user_data/profile_smoke/AwesomeEWOLambo_Shorts-a120484e-smoke_20200301_20200401-b4807b77-2026-09-14_19-21-32.zip",
+      "archive_sha256": "sha256_8c4ec0e4f4a6d6378be0f8efda22548bbf16fd29f6595bf6b77a3977db07ea8e",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/AwesomeEWOLambo_Shorts-a120484e-smoke_20200301_20200401-b4807b77-2026-09-14_19-21-32.zip",
+          "archive_sha256": "sha256_8c4ec0e4f4a6d6378be0f8efda22548bbf16fd29f6595bf6b77a3977db07ea8e",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 14.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AwesomeEWOLambo_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AwesomeEWOLambo --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AwesomeEWOLambo_Shorts-a120484e-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 369,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 369,
+          "trades_sha256": "sha256_06c9f2351ed08c717187c2ccf6d7f1f43a1a233c1175895062ce8c2d373c2e40"
+        }
+      ],
+      "canonical_sha256": "sha256_b4108b779478f8faceaacecf9d7dc0af27b15f1d88cd6e3d4985a8ee17d9b13e",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 14.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AwesomeEWOLambo_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AwesomeEWOLambo --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AwesomeEWOLambo_Shorts-a120484e-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 0,
+      "mode": "futures",
+      "run_profile": "futures_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 369,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 369,
+      "trades_sha256": "sha256_06c9f2351ed08c717187c2ccf6d7f1f43a1a233c1175895062ce8c2d373c2e40"
     },
     "AwesomeMacdS": {
       "archive": "user_data/profile_smoke/AwesomeMacdS-71f4054e-2026-09-06_14-47-31.zip",
@@ -1194,6 +1706,52 @@
       "trades": 23,
       "trades_sha256": "sha256_ce144edf3d2858ba08a3f9783f85da2c26b761479e9e2c01efba6a8e15e64dfe"
     },
+    "Best5m": {
+      "archive": "user_data/profile_smoke/Best5m-b4504e64-smoke_20200301_20200401-b4807b77-2026-09-14_19-21-44.zip",
+      "archive_sha256": "sha256_5971a15cc5a945b14d6105b3171a5bc6a928d8e31072cb79bd2df396b993b43e",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/Best5m-b4504e64-smoke_20200301_20200401-b4807b77-2026-09-14_19-21-44.zip",
+          "archive_sha256": "sha256_5971a15cc5a945b14d6105b3171a5bc6a928d8e31072cb79bd2df396b993b43e",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 5.7,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy Best5m --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Best5m --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Best5m-b4504e64-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 13,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 20,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 33,
+          "trades_sha256": "sha256_b327cce7c48993c01a774d35e64cdbdee208738f1275b311d88574df541c6362"
+        }
+      ],
+      "canonical_sha256": "sha256_8f0da579372af581fefbbdb4ccf94ae933a051038261816e12d2e7d05a612c10",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 5.7,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy Best5m --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Best5m --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Best5m-b4504e64-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 13,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 20,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 33,
+      "trades_sha256": "sha256_b327cce7c48993c01a774d35e64cdbdee208738f1275b311d88574df541c6362"
+    },
     "BestSingleAssetPortfolio": {
       "archive": "user_data/profile_smoke/BestSingleAssetPortfolio-f1b03915-smoke_20200301_20210301-fca63e6f-2026-09-10_10-23-53.zip",
       "archive_sha256": "sha256_04d7bd98b8d6701a29ec2530ff7e1b8d73b7fb2ae2e5dfb5d14606f0c34efe5c",
@@ -1568,6 +2126,52 @@
       "timerange": "20200301-20200401",
       "trades": 154
     },
+    "BinHV27_combined": {
+      "archive": "user_data/profile_smoke/BinHV27_combined-9aaca5ac-smoke_20200301_20200401-b4807b77-2026-09-14_19-21-50.zip",
+      "archive_sha256": "sha256_fc3a3cf58f7a03796f25a4c289ce08339ae880f60256d1398171255bdf5be9a9",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/BinHV27_combined-9aaca5ac-smoke_20200301_20200401-b4807b77-2026-09-14_19-21-50.zip",
+          "archive_sha256": "sha256_fc3a3cf58f7a03796f25a4c289ce08339ae880f60256d1398171255bdf5be9a9",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 6.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy BinHV27_combined --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/BinClucMadV1 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinHV27_combined-9aaca5ac-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 20,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 37,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 57,
+          "trades_sha256": "sha256_b260b895371cb034f080160f754e39637569965c14bf23c3c54841becd91d8c5"
+        }
+      ],
+      "canonical_sha256": "sha256_cfc2e3b98097baba982b04bc4e27b47a750ddd5c3d5e3134d076061d64663b0d",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 6.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy BinHV27_combined --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/BinClucMadV1 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinHV27_combined-9aaca5ac-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 20,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 37,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 57,
+      "trades_sha256": "sha256_b260b895371cb034f080160f754e39637569965c14bf23c3c54841becd91d8c5"
+    },
     "BinHV27_short": {
       "canonical_sha256": "sha256_123093f3a1ce763c65fc9ebaadddc4bf50f9187d0924c4a1ee21e31ecc4778be",
       "class1_rules": [],
@@ -1732,6 +2336,92 @@
       "timerange": "20200301-20200401",
       "why": "Informative dataframe for (BTC/USDT, 1h, futures) is empty. Can't populate informative indicators."
     },
+    "BitcoinMLStrategy": {
+      "archive": "user_data/profile_smoke/BitcoinMLStrategy-471a2849-smoke_20200301_20210301-fca63e6f-2026-09-14_19-03-49.zip",
+      "archive_sha256": "sha256_2651043614b63ee02573368f5a380cbf3b48a5e1ad1c8062964ac67d27741527",
+      "artifact_key": "smoke_20200301_20210301",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601",
+        "20200301-20210301"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/BitcoinMLStrategy-471a2849-smoke_20200301_20200401-b4807b77-2026-09-14_19-03-40.zip",
+          "archive_sha256": "sha256_922a0dcfe2d3d56239e5ded6dc2d1a5ed995906904b51e32ec4cac36f68e880e",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 3.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy BitcoinMLStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BitcoinMLStrategy-471a2849-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/BitcoinMLStrategy-471a2849-smoke_20200301_20200601-9c543975-2026-09-14_19-03-44.zip",
+          "archive_sha256": "sha256_b92727bc55718918808dc9e392809add1f5b3fd2a6d9bf49921329e1f4201611",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 3.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy BitcoinMLStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BitcoinMLStrategy-471a2849-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/BitcoinMLStrategy-471a2849-smoke_20200301_20210301-fca63e6f-2026-09-14_19-03-49.zip",
+          "archive_sha256": "sha256_2651043614b63ee02573368f5a380cbf3b48a5e1ad1c8062964ac67d27741527",
+          "artifact_key": "smoke_20200301_20210301",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 4.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy BitcoinMLStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BitcoinMLStrategy-471a2849-smoke_20200301_20210301-fca63e6f --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20210301",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
+      "canonical_sha256": "sha256_c85d2cc65c774d150a8b4f5362f71af904f30247f78e872386ea53cb4b2c2fa9",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 4.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy BitcoinMLStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BitcoinMLStrategy-471a2849-smoke_20200301_20210301-fca63e6f --cache none",
+      "long_trades": 0,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20210301",
+      "trade_floor": 10,
+      "trades": 0,
+      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
     "BlueEyes_MPP_v1": {
       "attempted_timeranges": [
         "20200301-20200401"
@@ -1783,6 +2473,52 @@
       "timerange": "20200301-20200401",
       "trades": 60,
       "trades_sha256": "sha256_035712f5dde291e0e20e7040c694a58e54e7947b7aea5f6c7bbadc93a50090a2"
+    },
+    "BollingerBounce_Shorts": {
+      "archive": "user_data/profile_smoke/BollingerBounce_Shorts-2011edaf-smoke_20200301_20200401-b4807b77-2026-09-14_19-21-55.zip",
+      "archive_sha256": "sha256_9a6c75e081d80b615d7d9aa0936f760f05f20f844d07fb01d6e351835d835fb5",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/BollingerBounce_Shorts-2011edaf-smoke_20200301_20200401-b4807b77-2026-09-14_19-21-55.zip",
+          "archive_sha256": "sha256_9a6c75e081d80b615d7d9aa0936f760f05f20f844d07fb01d6e351835d835fb5",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 5.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy BollingerBounce_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Bounce --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BollingerBounce_Shorts-2011edaf-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 76,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 76,
+          "trades_sha256": "sha256_e724069591c7d40f39bc004b681ada0c9c588e17cd672797f6b3b000f48c0c61"
+        }
+      ],
+      "canonical_sha256": "sha256_c6d33e46eecb7a64b9599cabed0404a8e86daae53395b3f977ec0e7539590dff",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 5.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy BollingerBounce_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Bounce --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BollingerBounce_Shorts-2011edaf-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 0,
+      "mode": "futures",
+      "run_profile": "futures_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 76,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 76,
+      "trades_sha256": "sha256_e724069591c7d40f39bc004b681ada0c9c588e17cd672797f6b3b000f48c0c61"
     },
     "BreakEven": {
       "archive": "user_data/profile_smoke/BreakEven-2026-08-31_14-56-18.zip",
@@ -2529,6 +3265,52 @@
       "trades": 233,
       "trades_sha256": "sha256_a2cc22ee1b25606784d9915575e0ecfde40763b6e2c4c4f76183946e6e9925bc"
     },
+    "CompleteIndicatorStrategy2": {
+      "archive": "user_data/profile_smoke/CompleteIndicatorStrategy2-cc7c80ef-smoke_20200301_20200401-b4807b77-2026-09-14_19-21-38.zip",
+      "archive_sha256": "sha256_b2e35411563a1fe8958c00a2d0edd4e02c9c54e15a0ead8bd7a8b35314bef46e",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/CompleteIndicatorStrategy2-cc7c80ef-smoke_20200301_20200401-b4807b77-2026-09-14_19-21-38.zip",
+          "archive_sha256": "sha256_b2e35411563a1fe8958c00a2d0edd4e02c9c54e15a0ead8bd7a8b35314bef46e",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 6.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy CompleteIndicatorStrategy2 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Best5m --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CompleteIndicatorStrategy2-cc7c80ef-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 38,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 1004,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 1042,
+          "trades_sha256": "sha256_bb725f0ef4521061017a5ed1244a12d458db9febc3a14aee93fc036c39e62138"
+        }
+      ],
+      "canonical_sha256": "sha256_c3084440b51a85d50e8eeae9051e14e2f9bbbbd582bd3321aac577e42fd48661",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 6.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy CompleteIndicatorStrategy2 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Best5m --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CompleteIndicatorStrategy2-cc7c80ef-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 38,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 1004,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 1042,
+      "trades_sha256": "sha256_bb725f0ef4521061017a5ed1244a12d458db9febc3a14aee93fc036c39e62138"
+    },
     "ConsensusShort": {
       "canonical_sha256": "sha256_4e8ceeaec14c13bb5dfcd5f42971e3375635c496a76f90ab13f90883aee527a6",
       "elapsed_s": 51.8,
@@ -3262,6 +4044,52 @@
       "trade_floor": 10,
       "why": "timeout after 900 seconds"
     },
+    "DevDsl2Approx": {
+      "archive": "user_data/profile_smoke/DevDsl2Approx-f1627c83-smoke_20200301_20200401-b4807b77-2026-09-14_19-22-13.zip",
+      "archive_sha256": "sha256_f279fd6e37fba7834c618d1851956e75cd27e330468e7986f63704f3bf81d873",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/DevDsl2Approx-f1627c83-smoke_20200301_20200401-b4807b77-2026-09-14_19-22-13.zip",
+          "archive_sha256": "sha256_f279fd6e37fba7834c618d1851956e75cd27e330468e7986f63704f3bf81d873",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 13.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy DevDsl2Approx --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/DevDsl2Approx --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DevDsl2Approx-f1627c83-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 19,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 19,
+          "trades_sha256": "sha256_167b0d87471815c6d1006da7dfbc059b6016113edf57e4dd6003a39480dfc113"
+        }
+      ],
+      "canonical_sha256": "sha256_a0be832845f3e8474446e9ffcfa90426c8bdda3c9f1085e9c60c885ae07c35c4",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 13.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy DevDsl2Approx --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/DevDsl2Approx --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DevDsl2Approx-f1627c83-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 19,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 19,
+      "trades_sha256": "sha256_167b0d87471815c6d1006da7dfbc059b6016113edf57e4dd6003a39480dfc113"
+    },
     "DevilStra": {
       "archive": "user_data/profile_smoke/DevilStra-c0790e53-2026-09-09_20-59-49.zip",
       "archive_sha256": "sha256_66105392ba2b61f134c61ef933c2eaa8aad365af8b943217a9c2bce388c88934",
@@ -3462,6 +4290,144 @@
       "trades": 25,
       "trades_sha256": "sha256_a3a12be74441939539031fbd4c834940ee4636db9bff799f75da1d1f2383bb22"
     },
+    "E0V1E_3": {
+      "archive": "user_data/profile_smoke/E0V1E_3-5c053f76-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-23.zip",
+      "archive_sha256": "sha256_b889864f3a85167c08fcb28b84245103cb2f18295b77e46ced9469ec6d234cc0",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/E0V1E_3-5c053f76-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-23.zip",
+          "archive_sha256": "sha256_b889864f3a85167c08fcb28b84245103cb2f18295b77e46ced9469ec6d234cc0",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 4.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy E0V1E_3 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/e0v1e --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/E0V1E_3-5c053f76-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 10,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 10,
+          "trades_sha256": "sha256_77e60a1219641dcd7e6680bad4660b41b42f36cc807f562233278e80f37d5943"
+        }
+      ],
+      "canonical_sha256": "sha256_1f5bc48ab8fc90778fb85b02f837983587a2607e56dc3e4154a61c3c4b84b8f9",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 4.8,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy E0V1E_3 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/e0v1e --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/E0V1E_3-5c053f76-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 10,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 10,
+      "trades_sha256": "sha256_77e60a1219641dcd7e6680bad4660b41b42f36cc807f562233278e80f37d5943"
+    },
+    "E0V1E_Shorts": {
+      "archive": "user_data/profile_smoke/E0V1E_Shorts-75162add-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-28.zip",
+      "archive_sha256": "sha256_4792e2d46a761c56cbe7d4f832b570bbdcfc0099c87a15a34c1c91ced4d7b6fb",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/E0V1E_Shorts-75162add-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-28.zip",
+          "archive_sha256": "sha256_4792e2d46a761c56cbe7d4f832b570bbdcfc0099c87a15a34c1c91ced4d7b6fb",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 4.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy E0V1E_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/e0v1e --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/E0V1E_Shorts-75162add-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 11,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 11,
+          "trades_sha256": "sha256_3e271c973581b1eeb80598b76943314e9e43d9bb18de3276e417744327df2da1"
+        }
+      ],
+      "canonical_sha256": "sha256_7f7b8e692da3c9edffacbcd19042c928cd18d5c74c511877fe778e9ee8416a87",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 4.8,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy E0V1E_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/e0v1e --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/E0V1E_Shorts-75162add-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 0,
+      "mode": "futures",
+      "run_profile": "futures_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 11,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 11,
+      "trades_sha256": "sha256_3e271c973581b1eeb80598b76943314e9e43d9bb18de3276e417744327df2da1"
+    },
+    "EDTMA_Long_Short_prot_CE_1h_3Lev_3mt_March": {
+      "archive": "user_data/profile_smoke/EDTMA_Long_Short_prot_CE_1h_3Lev_3mt_March-a6438d1f-smoke_20200301_20200401-b4807b77-2026-09-14_19-30-10.zip",
+      "archive_sha256": "sha256_b8ba7725b20845c894277969a88651d7794a11732c3c3df1c0db2403cf4788db",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/EDTMA_Long_Short_prot_CE_1h_3Lev_3mt_March-a6438d1f-smoke_20200301_20200401-b4807b77-2026-09-14_19-30-10.zip",
+          "archive_sha256": "sha256_b8ba7725b20845c894277969a88651d7794a11732c3c3df1c0db2403cf4788db",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 5.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy EDTMA_Long_Short_prot_CE_1h_3Lev_3mt_March --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Picasso --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/EDTMA_Long_Short_prot_CE_1h_3Lev_3mt_March-a6438d1f-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 26,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 328,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 354,
+          "trades_sha256": "sha256_b9cd11fca56dd81763117d0f1679b56c990a8b867d2c6667e331b2b434596d32"
+        }
+      ],
+      "canonical_sha256": "sha256_bbe48186ea6f27ae6d76d7d577002c264b0fbe00d09cc4b274676b6e26314c12",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 5.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy EDTMA_Long_Short_prot_CE_1h_3Lev_3mt_March --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Picasso --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/EDTMA_Long_Short_prot_CE_1h_3Lev_3mt_March-a6438d1f-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 26,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 328,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 354,
+      "trades_sha256": "sha256_b9cd11fca56dd81763117d0f1679b56c990a8b867d2c6667e331b2b434596d32"
+    },
     "EI1_t4c0s_V4": {
       "archive": "user_data/profile_smoke/EI1_t4c0s_V4-17d1fdf6-2026-09-09_21-19-18.zip",
       "archive_sha256": "sha256_b905571d4605c23bc0d321f9a83a770ce5a91f24086eac0e09694ef6776dc7e5",
@@ -3541,6 +4507,52 @@
       "timerange": "20200301-20200401",
       "trades": 62,
       "trades_sha256": "sha256_9df92d3e4db13186f6f5c9935e3b8d82302bd195bdf19182cb0b58b2c3a61dc7"
+    },
+    "EI4_t4c0s_V2_2_Shorts": {
+      "archive": "user_data/profile_smoke/EI4_t4c0s_V2_2_Shorts-cecdaa69-smoke_20200301_20200401-b4807b77-2026-09-14_19-23-01.zip",
+      "archive_sha256": "sha256_9f5193a5374ab8d6bcf9337f4366218d34f0da86efbb64fc000280855500d93a",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/EI4_t4c0s_V2_2_Shorts-cecdaa69-smoke_20200301_20200401-b4807b77-2026-09-14_19-23-01.zip",
+          "archive_sha256": "sha256_9f5193a5374ab8d6bcf9337f4366218d34f0da86efbb64fc000280855500d93a",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 9.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy EI4_t4c0s_V2_2_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/El --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/EI4_t4c0s_V2_2_Shorts-cecdaa69-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 21,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 21,
+          "trades_sha256": "sha256_08742dd61f8d5ce13b48148a6acce5d6c241f5d1402b4b37329775bf56cc5649"
+        }
+      ],
+      "canonical_sha256": "sha256_2736de5b7abf10f4028c6efc9b903cd28be15ee28f3dfdf601adb7a5283b70ed",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 9.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy EI4_t4c0s_V2_2_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/El --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/EI4_t4c0s_V2_2_Shorts-cecdaa69-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 0,
+      "mode": "futures",
+      "run_profile": "futures_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 21,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 21,
+      "trades_sha256": "sha256_08742dd61f8d5ce13b48148a6acce5d6c241f5d1402b4b37329775bf56cc5649"
     },
     "EMA003": {
       "canonical_sha256": "sha256_caaa43b381eefc5f190727d7694612f406e94b31103b514bdf5248df174ff50b",
@@ -3659,6 +4671,52 @@
       "timerange": "20200301-20200401",
       "trades": 463,
       "trades_sha256": "sha256_679e02bc9adeae736e5c1433bd1478f92ff2d5f4c706c46c223787825e449391"
+    },
+    "ETCG_Shorts": {
+      "archive": "user_data/profile_smoke/ETCG_Shorts-7a38345a-smoke_20200301_20200401-b4807b77-2026-09-14_19-22-18.zip",
+      "archive_sha256": "sha256_fbcfb4ecdc6e6c42247a837c85850537963ee80904fe12019e432354448682a3",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/ETCG_Shorts-7a38345a-smoke_20200301_20200401-b4807b77-2026-09-14_19-22-18.zip",
+          "archive_sha256": "sha256_fbcfb4ecdc6e6c42247a837c85850537963ee80904fe12019e432354448682a3",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 5.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy ETCG_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/ETCG --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ETCG_Shorts-7a38345a-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 67,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 67,
+          "trades_sha256": "sha256_9c8498b3dfb774523f470caa2bf68480f3a91d39ae2ac464ea41f0bd74240a79"
+        }
+      ],
+      "canonical_sha256": "sha256_e32dac708e1ae42c413bb108564920ef6460056d20fa711538efb7ff0709ce93",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 5.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy ETCG_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/ETCG --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ETCG_Shorts-7a38345a-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 0,
+      "mode": "futures",
+      "run_profile": "futures_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 67,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 67,
+      "trades_sha256": "sha256_9c8498b3dfb774523f470caa2bf68480f3a91d39ae2ac464ea41f0bd74240a79"
     },
     "EXPERIMENTAL_STRATEGY": {
       "canonical_sha256": "sha256_7f83965a528de9d8061c94d8a0b58048d119cb5fcc673da277c24c86899ef16e",
@@ -4580,6 +5638,184 @@
       "timerange": "20200301-20200401",
       "trades": 53
     },
+    "FenixTopProfit": {
+      "archive": "user_data/profile_smoke/FenixTopProfit-82637b6e-smoke_20200301_20200401-b4807b77-2026-09-14_19-23-05.zip",
+      "archive_sha256": "sha256_d40086ff4c12cc013dd19ed3480c9d0e1d2b1a75a2cfdd9e618ea75ee980383a",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/FenixTopProfit-82637b6e-smoke_20200301_20200401-b4807b77-2026-09-14_19-23-05.zip",
+          "archive_sha256": "sha256_d40086ff4c12cc013dd19ed3480c9d0e1d2b1a75a2cfdd9e618ea75ee980383a",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 4.7,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy FenixTopProfit --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Fenix --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FenixTopProfit-82637b6e-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 15,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 13,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 28,
+          "trades_sha256": "sha256_751cd6ca2e3280f5faac5068aa849c7da38b7190c36fc686f87d77538f3ee029"
+        }
+      ],
+      "canonical_sha256": "sha256_086f65a3868c7f3cd15663cdd6137f6965b1755fe22c691139ffbf29a16c1c3a",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 4.7,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy FenixTopProfit --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Fenix --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FenixTopProfit-82637b6e-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 15,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 13,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 28,
+      "trades_sha256": "sha256_751cd6ca2e3280f5faac5068aa849c7da38b7190c36fc686f87d77538f3ee029"
+    },
+    "Fibbo": {
+      "archive": "user_data/profile_smoke/Fibbo-558454bf-smoke_20200301_20210301-fca63e6f-2026-09-14_19-04-31.zip",
+      "archive_sha256": "sha256_d374fa447d0eeba114fc0431f19eb72519ec6506858c3a69b31c1b851aeccce7",
+      "artifact_key": "smoke_20200301_20210301",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601",
+        "20200301-20210301"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/Fibbo-558454bf-smoke_20200301_20200401-b4807b77-2026-09-14_19-04-18.zip",
+          "archive_sha256": "sha256_97882e8a172e68c77406c14d59594f602c2d3abbba8aaea35b6b5e5ed9873d9b",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 5.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy Fibbo --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Fibbo-558454bf-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/Fibbo-558454bf-smoke_20200301_20200601-9c543975-2026-09-14_19-04-23.zip",
+          "archive_sha256": "sha256_49c9900d47421d9e374e0404e382c325ff11245ae03f75dc6ea360aef936c028",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 4.7,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy Fibbo --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Fibbo-558454bf-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/Fibbo-558454bf-smoke_20200301_20210301-fca63e6f-2026-09-14_19-04-31.zip",
+          "archive_sha256": "sha256_d374fa447d0eeba114fc0431f19eb72519ec6506858c3a69b31c1b851aeccce7",
+          "artifact_key": "smoke_20200301_20210301",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 8.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy Fibbo --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Fibbo-558454bf-smoke_20200301_20210301-fca63e6f --cache none",
+          "long_trades": 11,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20210301",
+          "trades": 11,
+          "trades_sha256": "sha256_ddcc639b42ebddab2de724621799c9da616438b9528cbb411ac44f27e46341bb"
+        }
+      ],
+      "canonical_sha256": "sha256_b78fad498ac73b512482dd7224f9b7318e5083bf7ef077f77004047b9ab4e736",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 8.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy Fibbo --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Fibbo-558454bf-smoke_20200301_20210301-fca63e6f --cache none",
+      "long_trades": 11,
+      "mode": "futures",
+      "run_profile": "futures_long",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20210301",
+      "trade_floor": 10,
+      "trades": 11,
+      "trades_sha256": "sha256_ddcc639b42ebddab2de724621799c9da616438b9528cbb411ac44f27e46341bb"
+    },
+    "FibonacciEMATrendStrategy": {
+      "archive": "user_data/profile_smoke/FibonacciEMATrendStrategy-83084414-smoke_20200301_20200401-b4807b77-2026-09-14_19-23-15.zip",
+      "archive_sha256": "sha256_751219a6290a048f98036a9d4d80423e141319166a35d6ee143ecfc7f8c496ff",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/FibonacciEMATrendStrategy-83084414-smoke_20200301_20200401-b4807b77-2026-09-14_19-23-15.zip",
+          "archive_sha256": "sha256_751219a6290a048f98036a9d4d80423e141319166a35d6ee143ecfc7f8c496ff",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 9.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy FibonacciEMATrendStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Fibbo --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FibonacciEMATrendStrategy-83084414-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 35,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 56,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 91,
+          "trades_sha256": "sha256_4ec137caea32337fedc3630e9f3339ba56e44fb86c59948c68314b24df59c290"
+        }
+      ],
+      "canonical_sha256": "sha256_f6b72347b89de97f2bd4bd4f948e28d8216c318fb36066d2754b8ad44bd80ce7",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 9.5,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy FibonacciEMATrendStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Fibbo --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FibonacciEMATrendStrategy-83084414-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 35,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 56,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 91,
+      "trades_sha256": "sha256_4ec137caea32337fedc3630e9f3339ba56e44fb86c59948c68314b24df59c290"
+    },
     "FileLoadingStrategy": {
       "canonical_sha256": "sha256_b284635634ec6135c83f53ae797e0c622abf02b07ff05a7f1ff4fa4d1209eb1b",
       "class1_rules": [
@@ -4692,6 +5928,38 @@
       "timerange": "20200301-20200401",
       "trades": 168,
       "trades_sha256": "sha256_839d9202f6af6840e9530e67b0633348db4c713d8ca6d7b8214b6c9e8f9d0fa2"
+    },
+    "FreqAIHybridStrategy": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/FreqAIHybridStrategy-e7bc671a-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy FreqAIHybridStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FreqAIHybridStrategy-e7bc671a-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "freqAI is not enabled. Please enable it in your config to use this strategy."
+        }
+      ],
+      "canonical_sha256": "sha256_338bc43e72caa7ace3c1b29ae9ee53df9f0a569a6f238fcbb0e3ff2c065f2041",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/FreqAIHybridStrategy-e7bc671a-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy FreqAIHybridStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FreqAIHybridStrategy-e7bc671a-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "freqAI is not enabled. Please enable it in your config to use this strategy."
     },
     "FreqaiBinaryClassStrategy": {
       "canonical_sha256": "sha256_1052fcba609d3b5e3c2a17e964a4b16265af3576c8972909f7acd0ff8de85b68",
@@ -4855,6 +6123,72 @@
       "timerange": "20200301-20200401",
       "trades": 58,
       "trades_sha256": "sha256_bb66c37405b5ad0f2a4e37481375d18bae8baa0188df927a4fe4c19a71b80773"
+    },
+    "GKD_FisherTransformV4_ML": {
+      "archive": "user_data/profile_smoke/GKD_FisherTransformV4_ML-cf6ba655-smoke_20200301_20200601-9c543975-2026-09-14_19-23-32.zip",
+      "archive_sha256": "sha256_3a73deb7d29fb0b25ed773168b35d5eed6a555ad753bb0c3dd803eb57d6daadf",
+      "artifact_key": "smoke_20200301_20200601",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/GKD_FisherTransformV4_ML-cf6ba655-smoke_20200301_20200401-b4807b77-2026-09-14_19-23-20.zip",
+          "archive_sha256": "sha256_3b3b997bc623408753ef93974247b4b0d60e8fd95a96611b9930a8a3c77a1ec8",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 4.7,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy GKD_FisherTransformV4_ML --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/GKD_TRANSFORMV55_ML --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/GKD_FisherTransformV4_ML-cf6ba655-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/GKD_FisherTransformV4_ML-cf6ba655-smoke_20200301_20200601-9c543975-2026-09-14_19-23-32.zip",
+          "archive_sha256": "sha256_3a73deb7d29fb0b25ed773168b35d5eed6a555ad753bb0c3dd803eb57d6daadf",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 12.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy GKD_FisherTransformV4_ML --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/GKD_TRANSFORMV55_ML --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/GKD_FisherTransformV4_ML-cf6ba655-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 8,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 4,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 12,
+          "trades_sha256": "sha256_967fa9ba3cf2f593c97d985eba9d4d17fbbbb15a1a73fa86b0af565d2bd84c44"
+        }
+      ],
+      "canonical_sha256": "sha256_da7a37cf3ac6770757517238a09f3bd43c578df5757dac62ae90cea332e6f701",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 12.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy GKD_FisherTransformV4_ML --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/GKD_TRANSFORMV55_ML --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/GKD_FisherTransformV4_ML-cf6ba655-smoke_20200301_20200601-9c543975 --cache none",
+      "long_trades": 8,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 4,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200601",
+      "trade_floor": 10,
+      "trades": 12,
+      "trades_sha256": "sha256_967fa9ba3cf2f593c97d985eba9d4d17fbbbb15a1a73fa86b0af565d2bd84c44"
     },
     "GPR": {
       "canonical_sha256": "sha256_b2731d32853fc5b3b38d35bc89bbcbf1b3aad7654bc80221da2825330a0ab51f",
@@ -5252,6 +6586,52 @@
       "trades": 33,
       "trades_sha256": "sha256_b0ef5e2082112ed7d580d93bb17f8e0d5a59859f2e622848404936b831d417da"
     },
+    "GnF_V2": {
+      "archive": "user_data/profile_smoke/GnF_V2-0f3ac6fa-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-56.zip",
+      "archive_sha256": "sha256_b88d60914cc938b0b41bf07f69096cef72905cc342903c0b347cff94c0c18677",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/GnF_V2-0f3ac6fa-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-56.zip",
+          "archive_sha256": "sha256_b88d60914cc938b0b41bf07f69096cef72905cc342903c0b347cff94c0c18677",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 5.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy GnF_V2 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/remiotore --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/GnF_V2-0f3ac6fa-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 130,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 110,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 240,
+          "trades_sha256": "sha256_adac753e420621778ece538d4cf35e79664c2e60df643b3fea82c7b30fff795f"
+        }
+      ],
+      "canonical_sha256": "sha256_3e095a5da824d1b9c58351f19265f79adc3bad47daea258b190caca6289d456d",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 5.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy GnF_V2 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/remiotore --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/GnF_V2-0f3ac6fa-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 130,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 110,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 240,
+      "trades_sha256": "sha256_adac753e420621778ece538d4cf35e79664c2e60df643b3fea82c7b30fff795f"
+    },
     "GodStra": {
       "canonical_sha256": "sha256_1ac32a523ed4d69935db5bab2800565a636c5fe9c41e85edcdc9f7e959db4808",
       "class1_rules": [],
@@ -5421,6 +6801,52 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "why": "Impossible to load Strategy 'HMMv3'. This class does not exist or contains Python code errors."
+    },
+    "HPStrategy_12_27": {
+      "archive": "user_data/profile_smoke/HPStrategy_12_27-4a594983-smoke_20200301_20200401-b4807b77-2026-09-14_19-30-44.zip",
+      "archive_sha256": "sha256_657502523b689386734d935cf60050d01d4fb163422d9ededcc74bec2e84c87c",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/HPStrategy_12_27-4a594983-smoke_20200301_20200401-b4807b77-2026-09-14_19-30-44.zip",
+          "archive_sha256": "sha256_657502523b689386734d935cf60050d01d4fb163422d9ededcc74bec2e84c87c",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 34.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy HPStrategy_12_27 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Picasso --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/HPStrategy_12_27-4a594983-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 91,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 91,
+          "trades_sha256": "sha256_75ae0b82c88c28b8ab4344bbd19f21c6f31878630579e0483f40da0516f2fa8d"
+        }
+      ],
+      "canonical_sha256": "sha256_b1003b1374b00c33484625fac1391991ae95424e454f45ee03c827dfbce2cdbe",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 34.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy HPStrategy_12_27 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Picasso --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/HPStrategy_12_27-4a594983-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 91,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 91,
+      "trades_sha256": "sha256_75ae0b82c88c28b8ab4344bbd19f21c6f31878630579e0483f40da0516f2fa8d"
     },
     "HSI": {
       "archive": "user_data/profile_smoke/HSI-67d9cc40-2026-09-09_21-50-43.zip",
@@ -5769,6 +7195,52 @@
       "timerange": "20200301-20200401",
       "trades": 257
     },
+    "IchimokuCloudBreakoutStrategy": {
+      "archive": "user_data/profile_smoke/IchimokuCloudBreakoutStrategy-8a53a90c-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-43.zip",
+      "archive_sha256": "sha256_f5cfac29241b8b55256e6576f657e341a34952c7b6cfd44758afb4ac4e841e4c",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/IchimokuCloudBreakoutStrategy-8a53a90c-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-43.zip",
+          "archive_sha256": "sha256_f5cfac29241b8b55256e6576f657e341a34952c7b6cfd44758afb4ac4e841e4c",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 4.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy IchimokuCloudBreakoutStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/ichiv1_plus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/IchimokuCloudBreakoutStrategy-8a53a90c-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 41,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 149,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 190,
+          "trades_sha256": "sha256_6b9df24d2f305ca62cd0cb106c111f59ce833f0c28f8758ce21dadd35a3ae46b"
+        }
+      ],
+      "canonical_sha256": "sha256_785613de9f740dbe788081cda2534a6d1baff6ba93933e877bcd023e87913a9c",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 4.5,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy IchimokuCloudBreakoutStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/ichiv1_plus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/IchimokuCloudBreakoutStrategy-8a53a90c-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 41,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 149,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 190,
+      "trades_sha256": "sha256_6b9df24d2f305ca62cd0cb106c111f59ce833f0c28f8758ce21dadd35a3ae46b"
+    },
     "IchimokuStrategy": {
       "canonical_sha256": "sha256_3aa8e3a1a618d49d6df3c094f7745f889b48391e662b5c6bba7b8a895b0a0a56",
       "class1_rules": [
@@ -6020,6 +7492,52 @@
       "trades": 111,
       "trades_sha256": "sha256_b06a2d62f41d52894c187918212e0c147939fe7ec5eb302118304442a5378ae7"
     },
+    "KamaFama_2_20250115": {
+      "archive": "user_data/profile_smoke/KamaFama_2_20250115-5ad5321a-smoke_20200301_20200401-b4807b77-2026-09-14_19-23-37.zip",
+      "archive_sha256": "sha256_8d9670340f43a386f9a240c3716677e6726e534a2f611f17c6b87da57bcc051f",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/KamaFama_2_20250115-5ad5321a-smoke_20200301_20200401-b4807b77-2026-09-14_19-23-37.zip",
+          "archive_sha256": "sha256_8d9670340f43a386f9a240c3716677e6726e534a2f611f17c6b87da57bcc051f",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 5.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy KamaFama_2_20250115 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/KamaFama --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/KamaFama_2_20250115-5ad5321a-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 50,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 50,
+          "trades_sha256": "sha256_dc83583f39f106029709bcc9612c19473c69618371498a067548d63ea1161802"
+        }
+      ],
+      "canonical_sha256": "sha256_e02d04b4dc40da5335e562ac01617632db2230c7e2d47fa77eb75fc15046fd43",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 5.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy KamaFama_2_20250115 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/KamaFama --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/KamaFama_2_20250115-5ad5321a-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 50,
+      "mode": "futures",
+      "run_profile": "futures_long",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 50,
+      "trades_sha256": "sha256_dc83583f39f106029709bcc9612c19473c69618371498a067548d63ea1161802"
+    },
     "Kamaflage": {
       "canonical_sha256": "sha256_7bbb3db17a366343e89aac29cc3a879d6a7fc3e585555bd9f5c70e663e46be7b",
       "class1_rules": [],
@@ -6054,6 +7572,52 @@
       "timerange": "20200301-20200401",
       "trades": 1,
       "trades_sha256": "sha256_cd6fa3332a069b57376f106ccf8bc2698545a1d4b9fcc2bd4affec1aaa85924c"
+    },
+    "KeltnerBounce_Shorts": {
+      "archive": "user_data/profile_smoke/KeltnerBounce_Shorts-008d9c62-smoke_20200301_20200401-b4807b77-2026-09-14_19-22-00.zip",
+      "archive_sha256": "sha256_78bf5ee65fcc78d00285e7b9b18afd059265db08182b9957a9c4ddba46ca89a0",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/KeltnerBounce_Shorts-008d9c62-smoke_20200301_20200401-b4807b77-2026-09-14_19-22-00.zip",
+          "archive_sha256": "sha256_78bf5ee65fcc78d00285e7b9b18afd059265db08182b9957a9c4ddba46ca89a0",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 5.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy KeltnerBounce_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Bounce --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/KeltnerBounce_Shorts-008d9c62-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 102,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 102,
+          "trades_sha256": "sha256_9a5c47f1e94b3b61825a51e21c980cec62cd1fb6a300835a4a76402c969070f2"
+        }
+      ],
+      "canonical_sha256": "sha256_8a9f4a0c14f7ab4e0959c38e2e29e388f0ad275facdbafa9db25e77b3e2e3afd",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 5.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy KeltnerBounce_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Bounce --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/KeltnerBounce_Shorts-008d9c62-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 0,
+      "mode": "futures",
+      "run_profile": "futures_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 102,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 102,
+      "trades_sha256": "sha256_9a5c47f1e94b3b61825a51e21c980cec62cd1fb6a300835a4a76402c969070f2"
     },
     "KeltnerChannels": {
       "archive": "user_data/profile_smoke/KeltnerChannels-1628032a-2026-09-06_18-26-48.zip",
@@ -6294,6 +7858,52 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "why": "Impossible to load Strategy 'LitmusSimpleStrategy'. This class does not exist or contains Python code errors."
+    },
+    "Lmao": {
+      "archive": "user_data/profile_smoke/Lmao-364e38ba-smoke_20200301_20200401-b4807b77-2026-09-14_19-24-22.zip",
+      "archive_sha256": "sha256_34dcb0799d9a122fe6cdd85bf55eee4d3048f75813365851c19e93c18484e5fd",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/Lmao-364e38ba-smoke_20200301_20200401-b4807b77-2026-09-14_19-24-22.zip",
+          "archive_sha256": "sha256_34dcb0799d9a122fe6cdd85bf55eee4d3048f75813365851c19e93c18484e5fd",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 44.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Lmao --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Lmao --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Lmao-364e38ba-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 2916,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 2916,
+          "trades_sha256": "sha256_231df748c9dd534f1046127077e661a04e6e67e6a4b2cf22dc598de871afd57d"
+        }
+      ],
+      "canonical_sha256": "sha256_3df15e64392b77bb0b517fb98d75215956ba2766150b2fc1a3a02d43f342fcfd",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 44.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Lmao --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Lmao --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Lmao-364e38ba-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 2916,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 2916,
+      "trades_sha256": "sha256_231df748c9dd534f1046127077e661a04e6e67e6a4b2cf22dc598de871afd57d"
     },
     "LongShortRangeTradingMachetesV1": {
       "archive": "user_data/profile_smoke/LongShortRangeTradingMachetesV1-547b224f-2026-09-04_11-18-43.zip",
@@ -6850,6 +8460,72 @@
       "timerange": "20200301-20200401",
       "why": "Impossible to load Strategy 'MlpSpeculativeStrategy'. This class does not exist or contains Python code errors."
     },
+    "MomentumCCITrendStrategy": {
+      "archive": "user_data/profile_smoke/MomentumCCITrendStrategy-f0099a2a-smoke_20200301_20200601-9c543975-2026-09-14_19-29-31.zip",
+      "archive_sha256": "sha256_5adf78e210d985121353a7d0c02b00cfd8c5f4349e6ca310d0bc8517f70404ea",
+      "artifact_key": "smoke_20200301_20200601",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/MomentumCCITrendStrategy-f0099a2a-smoke_20200301_20200401-b4807b77-2026-09-14_19-29-26.zip",
+          "archive_sha256": "sha256_44bbea1107f2cb8330232e3008189c420c0e480fcccd765240440bfce2614fb5",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 4.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy MomentumCCITrendStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/MomentumCCITrendStrategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MomentumCCITrendStrategy-f0099a2a-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/MomentumCCITrendStrategy-f0099a2a-smoke_20200301_20200601-9c543975-2026-09-14_19-29-31.zip",
+          "archive_sha256": "sha256_5adf78e210d985121353a7d0c02b00cfd8c5f4349e6ca310d0bc8517f70404ea",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 4.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy MomentumCCITrendStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/MomentumCCITrendStrategy --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MomentumCCITrendStrategy-f0099a2a-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 8,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 2,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 10,
+          "trades_sha256": "sha256_ed73bc6469221d2abd926ffb433310ac4413380d6a4e9fcf3586f2a06068cde0"
+        }
+      ],
+      "canonical_sha256": "sha256_066a46aa955134fc839f9113da472736909c11c7897c8ed2fffd5f47708bae9a",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 4.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy MomentumCCITrendStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/MomentumCCITrendStrategy --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MomentumCCITrendStrategy-f0099a2a-smoke_20200301_20200601-9c543975 --cache none",
+      "long_trades": 8,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 2,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200601",
+      "trade_floor": 10,
+      "trades": 10,
+      "trades_sha256": "sha256_ed73bc6469221d2abd926ffb433310ac4413380d6a4e9fcf3586f2a06068cde0"
+    },
     "MomentumRegimeBasket": {
       "archive": "user_data/profile_smoke/MomentumRegimeBasket-b749de55-2026-09-09_22-04-30.zip",
       "archive_sha256": "sha256_d45d6936c854fc995111aeae31e547ef50f5a17bc1faf0fd82fa56f4f2c679c7",
@@ -6901,6 +8577,52 @@
       "timerange": "20200301-20200401",
       "trades": 0,
       "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "MtfScalper": {
+      "archive": "user_data/profile_smoke/MtfScalper-7032f449-smoke_20200301_20200401-b4807b77-2026-09-14_19-29-38.zip",
+      "archive_sha256": "sha256_ceac1dae9f8347a102c80f5d20cebb5d26412a6921af361bad28ca730f00de84",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/MtfScalper-7032f449-smoke_20200301_20200401-b4807b77-2026-09-14_19-29-38.zip",
+          "archive_sha256": "sha256_ceac1dae9f8347a102c80f5d20cebb5d26412a6921af361bad28ca730f00de84",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 7.4,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy MtfScalper --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/MtfScalper --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MtfScalper-7032f449-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 259,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 730,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 989,
+          "trades_sha256": "sha256_63ce8db599fdef6efaff2c6caab71d5c3952ca11396816227566c8beb6de6daa"
+        }
+      ],
+      "canonical_sha256": "sha256_b315c824a3a656ab8f791f8d31734244d1c12b011860388f0a17bad972b6048f",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 7.4,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy MtfScalper --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/MtfScalper --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MtfScalper-7032f449-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 259,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 730,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 989,
+      "trades_sha256": "sha256_63ce8db599fdef6efaff2c6caab71d5c3952ca11396816227566c8beb6de6daa"
     },
     "MultiActionZone": {
       "archive": "user_data/profile_smoke/MultiActionZone-179b96b7-2026-09-05_15-21-02.zip",
@@ -7437,6 +9159,56 @@
       "trades": 34,
       "trades_sha256": "sha256_c53e3d4cd13560d24d2331b3b4dd01241e7516897f793e4f66de1a03b4f2d54c"
     },
+    "NFIX7Risk": {
+      "archive": "user_data/profile_smoke/NFIX7Risk-48c1b1b6-smoke_20200301_20200401-b4807b77-2026-09-14_19-45-40.zip",
+      "archive_sha256": "sha256_9379945b5c6fae93b4839b5ab3ab5c0ab0cd865e93f61426b181567ad4ae024a",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/NFIX7Risk-48c1b1b6-smoke_20200301_20200401-b4807b77-2026-09-14_19-45-40.zip",
+          "archive_sha256": "sha256_9379945b5c6fae93b4839b5ab3ab5c0ab0cd865e93f61426b181567ad4ae024a",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 11.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy NFIX7Risk --strategy-path repos/beanbocchi_money-generator/overlay --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NFIX7Risk-48c1b1b6-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 15,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 1,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 16,
+          "trades_sha256": "sha256_a18888e1a322e4fa8a155e2cc52d33d34f0ae0a6303c62307417e07a95c86dcd"
+        }
+      ],
+      "canonical_sha256": "sha256_b63b814680bf681017071e211de16504dc342335c7f496e4c2dc32f3601fc479",
+      "class1_rules": [
+        "restore_copied_local_module"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 11.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy NFIX7Risk --strategy-path repos/beanbocchi_money-generator/overlay --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NFIX7Risk-48c1b1b6-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 15,
+      "mode": "futures",
+      "run_profile": "futures_long",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 1,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 16,
+      "trades_sha256": "sha256_a18888e1a322e4fa8a155e2cc52d33d34f0ae0a6303c62307417e07a95c86dcd"
+    },
     "NFIX_BB_RPB": {
       "archive": "user_data/profile_smoke/NFIX_BB_RPB-2026-08-31_15-14-55.zip",
       "archive_sha256": "sha256_ea3b57b76cd1080d4ff16b03708664cff492b3a415737f292548140ac6aaacdf",
@@ -7624,6 +9396,38 @@
       "trades": 107,
       "trades_sha256": "sha256_c5f94cd1d52addbc5cd3aaccfc2b9a60d7337b64ad57a41b891ecfbd890a8d32"
     },
+    "NewsHeliusBitqueryML": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/NewsHeliusBitqueryML-5ecce2de-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 3.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy NewsHeliusBitqueryML --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/NewsHeliusBitqueryML --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NewsHeliusBitqueryML-5ecce2de-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'NewsHeliusBitqueryML'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_fd6bd292db194d2754641228a62469e8f3558378538c7d3cdcab2740fd118574",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/NewsHeliusBitqueryML-5ecce2de-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 3.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy NewsHeliusBitqueryML --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/NewsHeliusBitqueryML --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NewsHeliusBitqueryML-5ecce2de-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'NewsHeliusBitqueryML'. This class does not exist or contains Python code errors."
+    },
     "NfiNextModded": {
       "archive": "user_data/profile_smoke/NfiNextModded-2026-08-31_15-15-48.zip",
       "archive_sha256": "sha256_19139e450123dce37d6140eee8f448863cb4fc6c7e9969f92bf7590a6ca6b33a",
@@ -7781,6 +9585,52 @@
       "trades": 28,
       "trades_sha256": "sha256_fa93d6cd50b73ac6e0c9ae3dba9ddf1313033fc6ff9194ccf2b26c5886592e29"
     },
+    "NostalgiaForInfinityNext_ChangeToTower_V6_Short": {
+      "archive": "user_data/profile_smoke/NostalgiaForInfinityNext_ChangeToTower_V6_Short-f39c2e96-smoke_20200301_20200401-b4807b77-2026-09-14_19-29-48.zip",
+      "archive_sha256": "sha256_af41edc7ac962558f702c30f6202c6e166daba84aac8b917d24d718c31cf1806",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/NostalgiaForInfinityNext_ChangeToTower_V6_Short-f39c2e96-smoke_20200301_20200401-b4807b77-2026-09-14_19-29-48.zip",
+          "archive_sha256": "sha256_af41edc7ac962558f702c30f6202c6e166daba84aac8b917d24d718c31cf1806",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 6.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy NostalgiaForInfinityNext_ChangeToTower_V6_Short --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/NostalgiaForInfinityNext_ChangeToTower --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NostalgiaForInfinityNext_ChangeToTower_V6_Short-f39c2e96-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 27,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 27,
+          "trades_sha256": "sha256_dcd745a29b4dcb599df1403439bccb0c169f40baa413584248e0cbb582622967"
+        }
+      ],
+      "canonical_sha256": "sha256_0994d0804f26ef474e86edf2618d58d5ea6f614446821f3da0f5f1aad51a53ae",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 6.5,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy NostalgiaForInfinityNext_ChangeToTower_V6_Short --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/NostalgiaForInfinityNext_ChangeToTower --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NostalgiaForInfinityNext_ChangeToTower_V6_Short-f39c2e96-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 0,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 27,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 27,
+      "trades_sha256": "sha256_dcd745a29b4dcb599df1403439bccb0c169f40baa413584248e0cbb582622967"
+    },
     "NostalgiaForInfinityNext_maximizer": {
       "archive": "user_data/profile_smoke/NostalgiaForInfinityNext_maximizer-2026-08-31_16-05-16.zip",
       "archive_sha256": "sha256_ebcf99444bdbdf6bdb49262948384d079fc02e1c9b6e0dc34e8f32a29f8e6044",
@@ -7915,6 +9765,52 @@
       "timerange": "20200301-20200401",
       "trades": 18,
       "trades_sha256": "sha256_21eb8aa7cb59b8f1e2aff3502b9e3048d5a5a90b56ffa7c0b7c9662b8ec85b95"
+    },
+    "NostalgiaForInfinityX8": {
+      "archive": "user_data/profile_smoke/NostalgiaForInfinityX8-c85c10c6-smoke_20200301_20200401-b4807b77-2026-09-14_19-03-14.zip",
+      "archive_sha256": "sha256_1baad6c23a3cce70b571b1a3264e796d4c12550efeb74709f3167db5f6828325",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/NostalgiaForInfinityX8-c85c10c6-smoke_20200301_20200401-b4807b77-2026-09-14_19-03-14.zip",
+          "archive_sha256": "sha256_1baad6c23a3cce70b571b1a3264e796d4c12550efeb74709f3167db5f6828325",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 14.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy NostalgiaForInfinityX8 --strategy-path repos/iterativv_NostalgiaForInfinity --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NostalgiaForInfinityX8-c85c10c6-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 18,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 18,
+          "trades_sha256": "sha256_a8f498faa7447ba1532404a91e5a8a4d16ff822d0c52003711bfe58a8d71adcb"
+        }
+      ],
+      "canonical_sha256": "sha256_14762b0c6bddd77d61bb035c4ec351de0db49b21adba1b2a486d35d715032e85",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 14.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy NostalgiaForInfinityX8 --strategy-path repos/iterativv_NostalgiaForInfinity --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NostalgiaForInfinityX8-c85c10c6-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 18,
+      "mode": "futures",
+      "run_profile": "futures_long",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 18,
+      "trades_sha256": "sha256_a8f498faa7447ba1532404a91e5a8a4d16ff822d0c52003711bfe58a8d71adcb"
     },
     "NostalgiaForInfinityXw": {
       "archive": "user_data/profile_smoke/NostalgiaForInfinityXw-2026-08-31_15-18-50.zip",
@@ -8079,6 +9975,52 @@
       "timerange": "20200301-20210301",
       "trade_floor": 10,
       "why": "timeout after 1800 seconds"
+    },
+    "ORBAlgo": {
+      "archive": "user_data/profile_smoke/ORBAlgo-091aa388-smoke_20200301_20200401-b4807b77-2026-09-14_19-29-58.zip",
+      "archive_sha256": "sha256_8f59beb7a6bbfe6d2e43b1a205150080fd80d57baf648e75fc079832a4ba2825",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/ORBAlgo-091aa388-smoke_20200301_20200401-b4807b77-2026-09-14_19-29-58.zip",
+          "archive_sha256": "sha256_8f59beb7a6bbfe6d2e43b1a205150080fd80d57baf648e75fc079832a4ba2825",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 9.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy ORBAlgo --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/ORB --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ORBAlgo-091aa388-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 103,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 125,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 228,
+          "trades_sha256": "sha256_4f2ad0693ecc73bd1a5370341f63e0e4b68e789ce92812dabaa4f26a20376bc6"
+        }
+      ],
+      "canonical_sha256": "sha256_a44c2265920e2c0c70354a4723919ec7c2b803ce583df84e7cc4c3af36699a0d",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 9.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy ORBAlgo --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/ORB --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ORBAlgo-091aa388-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 103,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 125,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 228,
+      "trades_sha256": "sha256_4f2ad0693ecc73bd1a5370341f63e0e4b68e789ce92812dabaa4f26a20376bc6"
     },
     "ObeliskIM_v1_1": {
       "archive": "user_data/profile_smoke/ObeliskIM_v1_1-2026-08-31_15-20-09.zip",
@@ -8292,6 +10234,52 @@
       "timerange": "20200301-20200401",
       "trades": 2786,
       "trades_sha256": "sha256_dc8791dd4f62daa1fd3cda19a0472587085c829cd546d9895d34bf6d931e7beb"
+    },
+    "OsirisXRSI": {
+      "archive": "user_data/profile_smoke/OsirisXRSI-7cc6c273-smoke_20200301_20200401-b4807b77-2026-09-14_19-30-04.zip",
+      "archive_sha256": "sha256_f75e2500a38908a84ed8a6cafc458aef77bd677d8479241d8d3c4a7ba9516626",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/OsirisXRSI-7cc6c273-smoke_20200301_20200401-b4807b77-2026-09-14_19-30-04.zip",
+          "archive_sha256": "sha256_f75e2500a38908a84ed8a6cafc458aef77bd677d8479241d8d3c4a7ba9516626",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 6.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy OsirisXRSI --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Osiris --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/OsirisXRSI-7cc6c273-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 21,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 2,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 23,
+          "trades_sha256": "sha256_ab402e7c82f3c9ceec6e177c6391c415b79595df69f199ac81f245cb1cb3f0d5"
+        }
+      ],
+      "canonical_sha256": "sha256_799b220098f4240db14d187093c95b019b7552fd6a7b799c3d2a707a99462e60",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 6.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy OsirisXRSI --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Osiris --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/OsirisXRSI-7cc6c273-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 21,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 2,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 23,
+      "trades_sha256": "sha256_ab402e7c82f3c9ceec6e177c6391c415b79595df69f199ac81f245cb1cb3f0d5"
     },
     "OversoldReversion": {
       "archive": "user_data/profile_smoke/OversoldReversion-dcb09e33-2026-09-05_15-08-45.zip",
@@ -8733,6 +10721,52 @@
       "timerange": "20200301-20200401",
       "trades": 255,
       "trades_sha256": "sha256_257dc6061a9f21e0742dfb82dddddb881496cf39c78b5463df3a9590e4a98736"
+    },
+    "RSI_BB_MACD_Nov_2023_1h_2_Dec": {
+      "archive": "user_data/profile_smoke/RSI_BB_MACD_Nov_2023_1h_2_Dec-87700a43-smoke_20200301_20200401-b4807b77-2026-09-14_19-30-50.zip",
+      "archive_sha256": "sha256_086e8796a21bffdaadc04839165125f5e366c65d086f85d109193c183babeb40",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/RSI_BB_MACD_Nov_2023_1h_2_Dec-87700a43-smoke_20200301_20200401-b4807b77-2026-09-14_19-30-50.zip",
+          "archive_sha256": "sha256_086e8796a21bffdaadc04839165125f5e366c65d086f85d109193c183babeb40",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 5.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy RSI_BB_MACD_Nov_2023_1h_2_Dec --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Picasso --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/RSI_BB_MACD_Nov_2023_1h_2_Dec-87700a43-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 53,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 577,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 630,
+          "trades_sha256": "sha256_12796e822296e4e9cee74d268ef97ce66fdfbca4bfc059131689b994852d714d"
+        }
+      ],
+      "canonical_sha256": "sha256_74943580a566758ce28f9f6ef7a57d15ae6053c1d798b875ac2a307fa7937a7a",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 5.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy RSI_BB_MACD_Nov_2023_1h_2_Dec --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Picasso --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/RSI_BB_MACD_Nov_2023_1h_2_Dec-87700a43-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 53,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 577,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 630,
+      "trades_sha256": "sha256_12796e822296e4e9cee74d268ef97ce66fdfbca4bfc059131689b994852d714d"
     },
     "RaposaDivergenceV1": {
       "archive": "user_data/profile_smoke/RaposaDivergenceV1-22a8a17b-2026-09-06_14-47-05.zip",
@@ -9383,6 +11417,92 @@
       "timerange": "20200301-20200401",
       "trades": 0,
       "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "SimpleRSI_Shorts": {
+      "archive": "user_data/profile_smoke/SimpleRSI_Shorts-f0dec165-smoke_20200301_20210301-fca63e6f-2026-09-14_19-31-02.zip",
+      "archive_sha256": "sha256_abeff608c7a6762619b820490a2ebcf0df6f89517b37caec8fc2a17f286a442f",
+      "artifact_key": "smoke_20200301_20210301",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601",
+        "20200301-20210301"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/SimpleRSI_Shorts-f0dec165-smoke_20200301_20200401-b4807b77-2026-09-14_19-30-54.zip",
+          "archive_sha256": "sha256_1eef3db283bc378854c9f068fe505aadf113b5085f69e7ee4e8051954deb2fa0",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 3.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy SimpleRSI_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/SimpleRSI --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SimpleRSI_Shorts-f0dec165-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 2,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 2,
+          "trades_sha256": "sha256_5293ecdb054e351fa8a51afe5d2f5615e32a710021ff9490519caa5aa2b21af7"
+        },
+        {
+          "archive": "user_data/profile_smoke/SimpleRSI_Shorts-f0dec165-smoke_20200301_20200601-9c543975-2026-09-14_19-30-58.zip",
+          "archive_sha256": "sha256_2f399909a958ca153cedf935ba82ab8c908006b3bba5429fc52ba9f950bd61b4",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 3.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy SimpleRSI_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/SimpleRSI --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SimpleRSI_Shorts-f0dec165-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 2,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 2,
+          "trades_sha256": "sha256_5293ecdb054e351fa8a51afe5d2f5615e32a710021ff9490519caa5aa2b21af7"
+        },
+        {
+          "archive": "user_data/profile_smoke/SimpleRSI_Shorts-f0dec165-smoke_20200301_20210301-fca63e6f-2026-09-14_19-31-02.zip",
+          "archive_sha256": "sha256_abeff608c7a6762619b820490a2ebcf0df6f89517b37caec8fc2a17f286a442f",
+          "artifact_key": "smoke_20200301_20210301",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 3.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy SimpleRSI_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/SimpleRSI --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SimpleRSI_Shorts-f0dec165-smoke_20200301_20210301-fca63e6f --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 2,
+          "status": "measured",
+          "timerange": "20200301-20210301",
+          "trades": 2,
+          "trades_sha256": "sha256_5293ecdb054e351fa8a51afe5d2f5615e32a710021ff9490519caa5aa2b21af7"
+        }
+      ],
+      "canonical_sha256": "sha256_3158b4254edadbfc9344fc93abaab0d67beee4e3c0f2db8c7f5a5c201d6e48b2",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 3.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy SimpleRSI_Shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/SimpleRSI --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SimpleRSI_Shorts-f0dec165-smoke_20200301_20210301-fca63e6f --cache none",
+      "long_trades": 0,
+      "mode": "futures",
+      "run_profile": "futures_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 2,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20210301",
+      "trade_floor": 10,
+      "trades": 2,
+      "trades_sha256": "sha256_5293ecdb054e351fa8a51afe5d2f5615e32a710021ff9490519caa5aa2b21af7"
     },
     "SimpleRiskFilterStrategy": {
       "canonical_sha256": "sha256_349288612da4ad5db19a8819bfb30079ead8fc79d0d4b291abd78867cac0e0eb",
@@ -10134,6 +12254,38 @@
       "trades": 0,
       "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
+    "TM3MultiClass": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/TM3MultiClass-365ca3c8-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 3.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy TM3MultiClass --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TM3MultiClass-365ca3c8-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'TM3MultiClass'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_01c8ad9ff4ea3b308f01f664fa6dae3969932b46fed50abba445425282148944",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/TM3MultiClass-365ca3c8-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 3.5,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy TM3MultiClass --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TM3MultiClass-365ca3c8-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'TM3MultiClass'. This class does not exist or contains Python code errors."
+    },
     "TRIX_LS": {
       "archive": "user_data/profile_smoke/TRIX_LS-1f89b909-2026-09-06_18-23-16.zip",
       "archive_sha256": "sha256_1eeaff3a4a68bc9a816cf125f1bb9d2db34c4f4ac3ae6a098402eba1162f3001",
@@ -10481,6 +12633,56 @@
       "timerange": "20200301-20200401",
       "trades": 37
     },
+    "TripleSuperTrendADXRSI": {
+      "archive": "user_data/profile_smoke/TripleSuperTrendADXRSI-6eecbc1c-smoke_20200301_20200401-b4807b77-2026-09-14_19-45-29.zip",
+      "archive_sha256": "sha256_d0d6d06566b6a904547c35523b99c2cd84059ca3289b2604ac426831aefaf593",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/TripleSuperTrendADXRSI-6eecbc1c-smoke_20200301_20200401-b4807b77-2026-09-14_19-45-29.zip",
+          "archive_sha256": "sha256_d0d6d06566b6a904547c35523b99c2cd84059ca3289b2604ac426831aefaf593",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [
+            "legacy_fillna_skips_incompatible_dtype"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 10.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy TripleSuperTrendADXRSI --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/TripleSuperTrendADXRSI --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TripleSuperTrendADXRSI-6eecbc1c-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 75,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 117,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 192,
+          "trades_sha256": "sha256_9ac7b893717a683e037fc6e7434cb15ff36d9018eed89a6fb0c5c723069796b7"
+        }
+      ],
+      "canonical_sha256": "sha256_76fd19def46a4c2d84d71223480ea35ea067c08ccd012203089ed2ddd6c06a2e",
+      "class1_rules": [
+        "legacy_fillna_skips_incompatible_dtype"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 10.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy TripleSuperTrendADXRSI --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/TripleSuperTrendADXRSI --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TripleSuperTrendADXRSI-6eecbc1c-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 75,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 117,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 192,
+      "trades_sha256": "sha256_9ac7b893717a683e037fc6e7434cb15ff36d9018eed89a6fb0c5c723069796b7"
+    },
     "Trump_LIM": {
       "archive": "user_data/profile_smoke/Trump_LIM-4f331b98-2026-09-06_18-17-16.zip",
       "archive_sha256": "sha256_dc98eb48fd86ff81e98cf420643a805b6b054532eebd6133ea83dee955db349e",
@@ -10572,6 +12774,36 @@
       "timerange": "20200301-20200401",
       "trades": 2,
       "trades_sha256": "sha256_37dd1eadf60fd05bb197ec1377a1464e544913507baa21d1c99769eec9b78446"
+    },
+    "UltraSmartStrategy": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "elapsed_s": 300.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy UltraSmartStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Lmao --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/UltraSmartStrategy-6b46243d-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "status": "timeout",
+          "timerange": "20200301-20200401",
+          "why": "timeout after 300 seconds"
+        }
+      ],
+      "canonical_sha256": "sha256_bb82ee42e486fdef71cd7c0131a43de9c1257eb6de8693cb28450c5f07eda328",
+      "class1_rules": [],
+      "elapsed_s": 300.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy UltraSmartStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Lmao --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/UltraSmartStrategy-6b46243d-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "timeout",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "timeout after 300 seconds"
     },
     "UpSliceStrategy": {
       "canonical_sha256": "sha256_cf3e9ea5f4f0c3ebb2dd061ec1abb57e1039be82d7c34e15fc42b9ad54c15a6c",
@@ -10888,6 +13120,52 @@
       "timerange": "20200301-20200401",
       "trades": 233
     },
+    "ZaratustraV31": {
+      "archive": "user_data/profile_smoke/ZaratustraV31-17f3529d-smoke_20200301_20200401-b4807b77-2026-09-14_19-32-07.zip",
+      "archive_sha256": "sha256_bacdfb7e410c9d2ed9df5bcea8facef67f0f2359593ad9866c5ec99dc15b6a96",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/ZaratustraV31-17f3529d-smoke_20200301_20200401-b4807b77-2026-09-14_19-32-07.zip",
+          "archive_sha256": "sha256_bacdfb7e410c9d2ed9df5bcea8facef67f0f2359593ad9866c5ec99dc15b6a96",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 11.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy ZaratustraV31 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/remiotore --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ZaratustraV31-17f3529d-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 2600,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 2321,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 4921,
+          "trades_sha256": "sha256_14cd9c9dc5c71d0bb10fecd16547370c0e4ba3e6b7c9f7f0e87ce21dbdc9fc33"
+        }
+      ],
+      "canonical_sha256": "sha256_2860cc0ae18f5d1e8d8857275c0646a1bba53598ae01be4262a1f62df071e205",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 11.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy ZaratustraV31 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/remiotore --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ZaratustraV31-17f3529d-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 2600,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 2321,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 4921,
+      "trades_sha256": "sha256_14cd9c9dc5c71d0bb10fecd16547370c0e4ba3e6b7c9f7f0e87ce21dbdc9fc33"
+    },
     "Zeus": {
       "archive": "user_data/profile_smoke/Zeus-0ff0ef09-2026-09-09_21-14-19.zip",
       "archive_sha256": "sha256_a024a775aeabe34095613ad55e328f03d242c5d2d900ee00a0d7ce4ae08d6882",
@@ -11032,6 +13310,98 @@
       "trades": 331,
       "trades_sha256": "sha256_c7660e5dafd133f52d07f8c8694b6ec63b64292d4fa9850979079a38d014475a"
     },
+    "binance": {
+      "archive": "user_data/profile_smoke/binance-59bba357-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-33.zip",
+      "archive_sha256": "sha256_676725d232609162ed188787b7c40b9fb2e1f13c55dbd681a91f96c0c9e802f0",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/binance-59bba357-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-33.zip",
+          "archive_sha256": "sha256_676725d232609162ed188787b7c40b9fb2e1f13c55dbd681a91f96c0c9e802f0",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 4.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy binance --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/e0v1e --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/binance-59bba357-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 36,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 36,
+          "trades_sha256": "sha256_8af409c0f4d211a490c1d3ab1a792431c6b14c5802568b90ff093ad7daf29a0a"
+        }
+      ],
+      "canonical_sha256": "sha256_6a509820785852e65b077ef42b8b2f31389ca60d1fb5736b152ab878a2a90277",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 4.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy binance --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/e0v1e --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/binance-59bba357-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 36,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 36,
+      "trades_sha256": "sha256_8af409c0f4d211a490c1d3ab1a792431c6b14c5802568b90ff093ad7daf29a0a"
+    },
+    "binance_shorts": {
+      "archive": "user_data/profile_smoke/binance_shorts-2d7eb835-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-38.zip",
+      "archive_sha256": "sha256_dafe58721aa16ddcec2a791d7afcc35f4f19a5c4f707883188728591b50e513e",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/binance_shorts-2d7eb835-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-38.zip",
+          "archive_sha256": "sha256_dafe58721aa16ddcec2a791d7afcc35f4f19a5c4f707883188728591b50e513e",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 4.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy binance_shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/e0v1e --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/binance_shorts-2d7eb835-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 11,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 11,
+          "trades_sha256": "sha256_093bb9a32edc95e6eda87fb56def94d5b747f93b2544c500aada67cd598eaf22"
+        }
+      ],
+      "canonical_sha256": "sha256_9688c1598fc0c9555a0e9a8fc579e8c3be4e420ebcbedb955635e1896f9d10e5",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 4.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy binance_shorts --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/e0v1e --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/binance_shorts-2d7eb835-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 0,
+      "mode": "futures",
+      "run_profile": "futures_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 11,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 11,
+      "trades_sha256": "sha256_093bb9a32edc95e6eda87fb56def94d5b747f93b2544c500aada67cd598eaf22"
+    },
     "chatgpt": {
       "archive": "user_data/profile_smoke/chatgpt-60965168-2026-09-06_18-23-33.zip",
       "archive_sha256": "sha256_97d4f97f8e1022b25bc56509ebe4ba7b1c9ce46b0e2198bc088bb36098074659",
@@ -11149,6 +13519,38 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "why": "Impossible to load Strategy 'delist_shorter_strategy'. This class does not exist or contains Python code errors."
+    },
+    "el_extrema_RL": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/el_extrema_RL-c9f37552-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 16.4,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy el_extrema_RL --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/el_extrema_RL-c9f37552-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "freqAI is not enabled. Please enable it in your config to use this strategy."
+        }
+      ],
+      "canonical_sha256": "sha256_bd6f4caea8676854a15751834d91578be585d96f5e57893a76d1eeb52c715b50",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/el_extrema_RL-c9f37552-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 16.4,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy el_extrema_RL --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/el_extrema_RL-c9f37552-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "freqAI is not enabled. Please enable it in your config to use this strategy."
     },
     "ep3mas2": {
       "archive": "user_data/profile_smoke/ep3mas2-2026-08-31_15-30-45.zip",
@@ -11405,6 +13807,52 @@
       "timerange": "20200301-20200401",
       "trades": 63,
       "trades_sha256": "sha256_ebf157ccd8165dd2014735655da049af482b27e303f683c1eb668a0749f1671a"
+    },
+    "ichiV1_plus": {
+      "archive": "user_data/profile_smoke/ichiV1_plus-2064a257-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-50.zip",
+      "archive_sha256": "sha256_0139d17ec026e1ca1a4cbfea45cbfa50bd33dd0404b6decffeb3c53b437a1413",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/ichiV1_plus-2064a257-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-50.zip",
+          "archive_sha256": "sha256_0139d17ec026e1ca1a4cbfea45cbfa50bd33dd0404b6decffeb3c53b437a1413",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 7.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy ichiV1_plus --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/ichiv1_plus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ichiV1_plus-2064a257-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 608,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 608,
+          "trades_sha256": "sha256_e1b064f015c0782c6950eb25d9c95cecd774fdcc842874427ac7e977f2f0f8b3"
+        }
+      ],
+      "canonical_sha256": "sha256_3fd130a94f71d5a08574ac688757ea70f6827a73442ab6abba36d161739045cd",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 7.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy ichiV1_plus --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/ichiv1_plus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ichiV1_plus-2064a257-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 608,
+      "mode": "futures",
+      "run_profile": "futures_long",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 608,
+      "trades_sha256": "sha256_e1b064f015c0782c6950eb25d9c95cecd774fdcc842874427ac7e977f2f0f8b3"
     },
     "kac_index_v1": {
       "canonical_sha256": "sha256_d53256e06dce47da0882cdf49ceb5b7f35c1d37d0046b649b780ffe6beb905d1",
@@ -11688,6 +14136,52 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "why": "Invalid value 'False' for dtype 'float64'"
+    },
+    "newstrategy4": {
+      "archive": "user_data/profile_smoke/newstrategy4-15de330f-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-18.zip",
+      "archive_sha256": "sha256_6bd18227ccbb981ed97ff30fe4260d61f7dde1cc791adb6cdda5541e38ca7aa9",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/newstrategy4-15de330f-smoke_20200301_20200401-b4807b77-2026-09-14_19-31-18.zip",
+          "archive_sha256": "sha256_6bd18227ccbb981ed97ff30fe4260d61f7dde1cc791adb6cdda5541e38ca7aa9",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 12.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy newstrategy4 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Zaratustra --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/newstrategy4-15de330f-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 51,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 51,
+          "trades_sha256": "sha256_48e9667895d9c9633110eef3955d1db5cf200e93e9a678d10cc2fc6dd87a357f"
+        }
+      ],
+      "canonical_sha256": "sha256_6422df0d6ac579da580e1766bf326abb23af67ed70824d4beea6063caae84c14",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 12.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy newstrategy4 --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Zaratustra --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/newstrategy4-15de330f-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 51,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 51,
+      "trades_sha256": "sha256_48e9667895d9c9633110eef3955d1db5cf200e93e9a678d10cc2fc6dd87a357f"
     },
     "newstrategy53": {
       "archive": "user_data/profile_smoke/newstrategy53-2026-08-31_15-40-12.zip",

@@ -1,6 +1,6 @@
-# Strategy status - current evidence for all 1050 rows
+# Strategy status - current evidence for all 1101 rows
 
-**Generated 2026-09-11 10:56:02 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-14 19:36:26 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -33,17 +33,17 @@ check.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 7 of 1050 rows
+file's time and is labelled `log_mtime` for that reason. 10 of 1101 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
 
 | | Strategies |
 |---|---:|
-| in the manifest | 1050 |
-| measured at all | 917 |
-| produced trades | 863 |
-| carrying a run time | 1043 |
+| in the manifest | 1101 |
+| measured at all | 957 |
+| produced trades | 902 |
+| carrying a run time | 1091 |
 
 ## Cohort
 
@@ -51,27 +51,27 @@ have neither and are left empty rather than given an invented time.
 |---|---:|
 | `E1_expanded` | 647 |
 | `excluded` | 298 |
-| `exclusion_unconfirmed` | 46 |
+| `exclusion_unconfirmed` | 86 |
 | `too_few_trades` | 30 |
+| `pending` | 21 |
 | `not_a_strategy` | 19 |
-| `pending` | 10 |
 
 ## Timeframe and signal family
 
 Both read from the strategy's own source by `strategy_classification.py`,
 not measured - see that module's docstring for the marker table and its
-limits. `timeframe` is blank on 34 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 0 rows where no marker matched at all, so its counts below add up to more than 1050.
+limits. `timeframe` is blank on 35 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 51 rows where no marker matched at all, so its counts below add up to more than 1101.
 
 ### Timeframe
 
 | Timeframe | Strategies |
 |---|---:|
-| `5m` | 574 |
-| `1h` | 157 |
-| `15m` | 94 |
-| `1m` | 74 |
-| `4h` | 50 |
-| `1d` | 31 |
+| `5m` | 601 |
+| `1h` | 170 |
+| `15m` | 100 |
+| `1m` | 75 |
+| `4h` | 51 |
+| `1d` | 33 |
 | `3m` | 18 |
 | `30m` | 9 |
 | `6h` | 3 |
@@ -129,9 +129,9 @@ preregistration OPEN item 6; the amendment records it.
 | `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 318 |
 | `transition` | `20 <= coin_adx < 25` | 52 |
 
-A row may carry more than one phase, and 122 carry none: 70 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 52 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
+A row may carry more than one phase, and 173 carry none: 70 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 103 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
 
-`bear_trend` is rare by construction: 942 of 1050 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
+`bear_trend` is rare by construction: 955 of 1101 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
 
 ## Test duration
 
@@ -141,11 +141,11 @@ look-ahead/recursion pair, a later native look-ahead
 re-measurement, the warm-up ladder, a wave B recursion attempt, and
 the eight-pair full-window backtest actually ran for it - see
 `test_duration` in evidence/strategy_status.py for why this is a sum rather
-than a pick-one-source figure. 4 of 1050 rows carry no stamp at all,
+than a pick-one-source figure. 4 of 1101 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 1046 rows that do: **70.7 hours** of this audit's own compute so far.
+Summed across the 1097 rows that do: **71.2 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -289,7 +289,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1681 of 2749 commands are recorded so far, and every new run
+recording. 1732 of 2902 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -4456,16 +4456,19 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Pending - 10 strategies
+## Pending - 21 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
 
-`BaseStrategy`, `Danke`, `GRIDDMIPRICEStrategyFutureV4`, `Guacamole`
-`Kamaflage`, `NNPredict`, `ONS_Portfolio`, `Proton`
-`RebalanceStrategySpot`, `haGradient`
+`AIAgentTradingStrategy`, `AlexBandSniperV10AI`, `AlexNexusForgeV8AIV2`, `AlexNexusForgeV8AIV4_SPOT`
+`BaseStrategy`, `Danke`, `FreqAIHybridStrategy`, `GRIDDMIPRICEStrategyFutureV4`
+`Guacamole`, `Kamaflage`, `NFIX7Risk`, `NNPredict`
+`NewsHeliusBitqueryML`, `ONS_Portfolio`, `Proton`, `RebalanceStrategySpot`
+`TM3MultiClass`, `TripleSuperTrendADXRSI`, `UltraSmartStrategy`, `el_extrema_RL`
+`haGradient`
 
-## Exclusion unconfirmed - 46 strategies
+## Exclusion unconfirmed - 86 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -4477,9 +4480,9 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
+| `unclassified` | `no_finding` | 43 |
 | `no_verdict_on_lookahead` | `no_finding` | 34 |
 | `no_verdict_on_lookahead_and_recursive` | `no_finding` | 7 |
-| `unclassified` | `no_finding` | 3 |
 | `recursive_bias_unverified` | `no_finding` | 1 |
 | `recursive_warmup_refused` | `no_finding` | 1 |
 
@@ -4780,7 +4783,7 @@ Wave `-` - 13:
 |---|---:|
 | `not_scheduled` | 390 |
 | `C_measurement_recovery` | 230 |
-| `(none)` | 150 |
+| `(none)` | 201 |
 | `D_recursive_drift` | 124 |
 | `B_warmup_refusal` | 82 |
 | `E0_strict67` | 67 |
@@ -4790,12 +4793,12 @@ Wave `-` - 13:
 
 | Item | Strategies |
 |---|---:|
-| `lookahead_remeasure_pending` | 44 |
-| `recursive_ladder_pending` | 24 |
+| `lookahead_remeasure_pending` | 84 |
+| `recursive_ladder_pending` | 75 |
 | `convergence_inconclusive` | 14 |
+| `to_be_fixed` | 10 |
 | `needs_a_look` | 7 |
-| `to_be_fixed` | 1 |
-| `repair_attempted` | 1 |
+| `repair_attempted` | 3 |
 
 Per-row detail, including every evidence path, is in
 `STRATEGY_STATUS.csv`.

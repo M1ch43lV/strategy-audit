@@ -130,8 +130,14 @@
         },
         {
           "imports": false,
+          "path": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Bounce",
+          "sha256_16": "63b2192964b5538d",
+          "why": "AttributeError: module 'Config' has no attribute 'ignore_roi_if_buy_signal'"
+        },
+        {
+          "imports": false,
           "path": "repos/webclinic017_strategies-freqtrade-/archived",
-          "sha256_16": "2d32765f71c56d77",
+          "sha256_16": "17e232212e1d5c31",
           "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
         }
       ],
@@ -167,386 +173,6 @@
       "status": "unresolved",
       "strategy_id": "BB_RPB_3c",
       "why": "no copy of user_data.freqtrade3cw in the corpus makes BB_RPB_3c import; the import failure is not only this module"
-    },
-    "BinanceStream": {
-      "candidates": [
-        {
-          "imports": false,
-          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/exchange",
-          "sha256_16": "e0e9b762fe7789d0",
-          "why": "ModuleNotFoundError: No module named 'freqtrade.exchange.types'"
-        }
-      ],
-      "missing_module": "binance",
-      "rule": "restore_copied_local_module",
-      "source_file": "repos/TomtomEh_freqtrade-websocket/user_data/strategies/BinanceStream.py",
-      "status": "unresolved",
-      "strategy_id": "BinanceStream",
-      "why": "no copy of binance in the corpus makes BinanceStream import; the import failure is not only this module"
-    },
-    "DualModelPolymarketPortfolio": {
-      "candidates": [
-        {
-          "imports": false,
-          "path": "repos/mlsys-io_PortfolioBench",
-          "sha256_16": "e3b0c44298fc1c14",
-          "why": "would shadow the installed freqtrade package"
-        }
-      ],
-      "missing_module": "alpha",
-      "rule": "restore_copied_local_module",
-      "source_file": "repos/mlsys-io_PortfolioBench/user_data/strategies/DualModelPolymarketPortfolio.py",
-      "status": "unresolved",
-      "strategy_id": "DualModelPolymarketPortfolio",
-      "why": "no copy of alpha in the corpus makes DualModelPolymarketPortfolio import; the import failure is not only this module"
-    },
-    "EmaCrossStrategy": {
-      "candidates": [
-        {
-          "imports": false,
-          "path": "repos/mlsys-io_PortfolioBench",
-          "sha256_16": "e3b0c44298fc1c14",
-          "why": "would shadow the installed freqtrade package"
-        }
-      ],
-      "missing_module": "alpha",
-      "rule": "restore_copied_local_module",
-      "source_file": "repos/mlsys-io_PortfolioBench/strategy/EmaCrossStrategy.py",
-      "status": "unresolved",
-      "strategy_id": "EmaCrossStrategy",
-      "why": "no copy of alpha in the corpus makes EmaCrossStrategy import; the import failure is not only this module"
-    },
-    "Hammer": {
-      "candidates": [
-        {
-          "imports": false,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/BigDrop",
-          "sha256_16": "af4e8f6419d1ebc7",
-          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/BuyDips",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/DCBBBounce",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/DonchianChannel",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/KeltnerChannels",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/MFI2",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/NDrop",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": false,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/NSeq",
-          "sha256_16": "60374d762b85edac",
-          "why": "AttributeError: module 'Config' has no attribute 'ignore_roi_if_entry_signal'"
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/Patterns2",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/SARCross",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/SimpleBollinger",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/Squeeze001",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": false,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_ADXDM",
-          "sha256_16": "af4e8f6419d1ebc7",
-          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_BBBHold",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_MFIRSICross",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Strategy003",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__BollingerBounce",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__MACDCross",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__MACDTurn",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__Squeeze002",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__SqueezeMomentum",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": false,
-          "path": "repos/webclinic017_strategies-freqtrade-/archived",
-          "sha256_16": "17e232212e1d5c31",
-          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
-        }
-      ],
-      "config_overrides": {
-        "timeframe": "5m"
-      },
-      "copies_that_work": [
-        "repos/hamidreza07_freqai-strategy/startegy test/5/BuyDips",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/DCBBBounce",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/DonchianChannel",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/KeltnerChannels",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/MFI2",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/NDrop",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/Patterns2",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/SARCross",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/SimpleBollinger",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/Squeeze001",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/_BBBHold",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/_MFIRSICross",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/_Strategy003",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/__BollingerBounce",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/__MACDCross",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/__MACDTurn",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/__Squeeze002",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/__SqueezeMomentum"
-      ],
-      "missing_module": "Config",
-      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/BuyDips",
-      "rule": "restore_copied_local_module",
-      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/Hammer/Hammer.py",
-      "status": "resolved",
-      "strategy_id": "Hammer",
-      "why": "18 copies satisfy the import and all are the same file, so the choice carries no risk"
-    },
-    "KeltnerBounce": {
-      "candidates": [
-        {
-          "imports": false,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/BigDrop",
-          "sha256_16": "af4e8f6419d1ebc7",
-          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/BuyDips",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/DCBBBounce",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/DonchianChannel",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/KeltnerChannels",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/MFI2",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/NDrop",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": false,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/NSeq",
-          "sha256_16": "60374d762b85edac",
-          "why": "AttributeError: module 'Config' has no attribute 'ignore_roi_if_entry_signal'"
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/Patterns2",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/SARCross",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/SimpleBollinger",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/Squeeze001",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": false,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_ADXDM",
-          "sha256_16": "af4e8f6419d1ebc7",
-          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_BBBHold",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_MFIRSICross",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Strategy003",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__BollingerBounce",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__MACDCross",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__MACDTurn",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__Squeeze002",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": true,
-          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__SqueezeMomentum",
-          "sha256_16": "b1f72f74822e78ca",
-          "why": ""
-        },
-        {
-          "imports": false,
-          "path": "repos/webclinic017_strategies-freqtrade-/archived",
-          "sha256_16": "17e232212e1d5c31",
-          "why": "AttributeError: module 'Config' has no attribute 'use_exit_signal'"
-        }
-      ],
-      "config_overrides": {
-        "timeframe": "5m"
-      },
-      "copies_that_work": [
-        "repos/hamidreza07_freqai-strategy/startegy test/5/BuyDips",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/DCBBBounce",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/DonchianChannel",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/KeltnerChannels",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/MFI2",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/NDrop",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/Patterns2",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/SARCross",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/SimpleBollinger",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/Squeeze001",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/_BBBHold",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/_MFIRSICross",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/_Strategy003",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/__BollingerBounce",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/__MACDCross",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/__MACDTurn",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/__Squeeze002",
-        "repos/hamidreza07_freqai-strategy/startegy test/5/__SqueezeMomentum"
-      ],
-      "missing_module": "Config",
-      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/BuyDips",
-      "rule": "restore_copied_local_module",
-      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/__KeltnerBounce/KeltnerBounce.py",
-      "status": "resolved",
-      "strategy_id": "KeltnerBounce",
-      "why": "18 copies satisfy the import and all are the same file, so the choice carries no risk"
     },
     "MlpSpeculativeStrategy": {
       "candidates": [
@@ -612,37 +238,87 @@
       "strategy_id": "MlpSpeculativeStrategy",
       "why": "no copy of strategy in the corpus makes MlpSpeculativeStrategy import; the import failure is not only this module"
     },
-    "PolymarketMeanReversionStrategy": {
+    "NFIX7Risk": {
       "candidates": [
         {
+          "imports": true,
+          "path": "repos/iterativv_NostalgiaForInfinity",
+          "sha256_16": "9b409a8a13d45756",
+          "why": ""
+        },
+        {
           "imports": false,
-          "path": "repos/mlsys-io_PortfolioBench",
-          "sha256_16": "e3b0c44298fc1c14",
-          "why": "would shadow the installed freqtrade package"
+          "path": "repos/iterativv_NostalgiaForInfinity/user_data/strategies",
+          "sha256_16": "b528e036c59027e3",
+          "why": "SyntaxError: '(' was never closed (NostalgiaForInfinityX7.py, line 22651)"
+        },
+        {
+          "imports": false,
+          "path": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies",
+          "sha256_16": "e0d4f7b5b7778ace",
+          "why": "SyntaxError: '(' was never closed (NostalgiaForInfinityX7.py, line 22842)"
         }
       ],
-      "missing_module": "alpha",
+      "copies_that_work": [
+        "repos/iterativv_NostalgiaForInfinity"
+      ],
+      "missing_module": "NostalgiaForInfinityX7",
+      "python_path": "repos/iterativv_NostalgiaForInfinity",
       "rule": "restore_copied_local_module",
-      "source_file": "repos/mlsys-io_PortfolioBench/strategy/PolymarketMeanReversionStrategy.py",
-      "status": "unresolved",
-      "strategy_id": "PolymarketMeanReversionStrategy",
-      "why": "no copy of alpha in the corpus makes PolymarketMeanReversionStrategy import; the import failure is not only this module"
+      "source_file": "repos/beanbocchi_money-generator/overlay/NFIX7Risk.py",
+      "status": "resolved",
+      "strategy_id": "NFIX7Risk",
+      "why": "1 copies satisfy the import and all are the same file, so the choice carries no risk"
     },
-    "PolymarketMomentumStrategy": {
+    "NNPredict": {
       "candidates": [
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'NNPredictor_LSTM0'"
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.profiler'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.profiler'; 'utils' is not a package"
+        },
         {
           "imports": false,
           "path": "repos/mlsys-io_PortfolioBench",
           "sha256_16": "e3b0c44298fc1c14",
           "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
         }
       ],
-      "missing_module": "alpha",
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
       "rule": "restore_copied_local_module",
-      "source_file": "repos/mlsys-io_PortfolioBench/strategy/PolymarketMomentumStrategy.py",
-      "status": "unresolved",
-      "strategy_id": "PolymarketMomentumStrategy",
-      "why": "no copy of alpha in the corpus makes PolymarketMomentumStrategy import; the import failure is not only this module"
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/NNPredict.py",
+      "status": "resolved",
+      "strategy_id": "NNPredict",
+      "why": "1 copies satisfy the import and all are the same file, so the choice carries no risk"
     }
   },
   "rule": "restore_copied_local_module",

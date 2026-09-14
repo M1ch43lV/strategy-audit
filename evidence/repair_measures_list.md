@@ -9,7 +9,7 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 | Verdict | Strategies | Meaning |
 |---|---:|---|
 | `repaired` | 146 | runs now, and the run is recorded |
-| `repair_attempted` | 12 | a route was applied and did not finish the job |
+| `repair_attempted` | 14 | a route was applied and did not finish the job |
 | `to_be_fixed` | 15 | the route is known, the run has not happened yet |
 | `needs_a_look` | 31 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 2 | the repair made things worse and was undone |
@@ -138,7 +138,7 @@ For example: `BBBHold`.
 
 ### FreqAI strategies given the author's own configuration
 
-`repair_family: freqai_arm` &mdash; 8 strategies (repaired 1, repair_attempted 3, refuse_repair 4)
+`repair_family: freqai_arm` &mdash; 10 strategies (repaired 1, repair_attempted 5, refuse_repair 4)
 
 **The message.**
 
@@ -155,7 +155,7 @@ Impossible to load FreqaiModel '<Name>'.
 
 Tool: `repair/freqai_config_wtai.py, eligibility_freqai_repair.py`.
 
-For example: `AstroQAV4`, `NOTankAi_15`, `NOTankAi_17`, `NOTankAi_19`, `Proton`, `RLStrategy`.
+For example: `AstroQAV4`, `FreqAIHybridStrategy`, `NOTankAi_15`, `NOTankAi_17`, `NOTankAi_19`, `Proton`.
 
 ### FreqAI: the author's model class is gone
 

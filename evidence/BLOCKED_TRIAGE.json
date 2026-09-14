@@ -1,6 +1,18 @@
 {
   "probed": true,
   "results": {
+    "AIAgentTradingStrategy": {
+      "family": "third_party_package",
+      "missing_module": "dotenv",
+      "module_found_at": "",
+      "note": "Imports dotenv, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'dotenv' at AIAgentTradingStrategy.py:20",
+      "runtime_failure": "Impossible to load Strategy 'AIAgentTradingStrategy'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai/AIAgentTradingStrategy.py",
+      "strategy_id": "AIAgentTradingStrategy",
+      "verdict": "needs_a_look"
+    },
     "AdaptiveRenkoStrategy": {
       "family": "no_stoploss",
       "note": "The strategy declares no stoploss. Supplying one does not restore anything the author wrote; it invents the risk management and then measures the invention.",
@@ -15,6 +27,30 @@
       "runtime_failure": "Remora API key missing. Set REMORA_API_KEY env var.",
       "source_file": "repos/DonaldSimpson_remora-freqtrade/examples/advanced_risk_filter_strategy.py",
       "strategy_id": "AdvancedRiskFilterStrategy",
+      "verdict": "needs_a_look"
+    },
+    "AlexBandSniperV10AI": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "'charmap' codec can't encode characters in position 6-127: character maps to <undefined>",
+      "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus/AlexBAndSniperV10MLAI.py",
+      "strategy_id": "AlexBandSniperV10AI",
+      "verdict": "needs_a_look"
+    },
+    "AlexNexusForgeV8AIV2": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "timeout after 300 seconds",
+      "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus/AlexNexusForgeV8AIV2.py",
+      "strategy_id": "AlexNexusForgeV8AIV2",
+      "verdict": "needs_a_look"
+    },
+    "AlexNexusForgeV8AIV4_SPOT": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "timeout after 300 seconds",
+      "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus/AlexNexusForgeV8AIV4_SPOT.py",
+      "strategy_id": "AlexNexusForgeV8AIV4_SPOT",
       "verdict": "needs_a_look"
     },
     "Astro": {
@@ -271,6 +307,14 @@
       "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
       "source_file": "repos/keithorange_FreqTradeCustomOrders/file_loading_strategy.py",
       "strategy_id": "FileLoadingStrategy",
+      "verdict": "to_be_fixed"
+    },
+    "FreqAIHybridStrategy": {
+      "family": "freqai_not_enabled",
+      "note": "A runtime matter, not a strategy defect: the image needs torch and the config needs a freqai block. Already queued as the FreqAI arm.",
+      "runtime_failure": "freqAI is not enabled. Please enable it in your config to use this strategy.",
+      "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai/FreqAIHybridStrategy.py",
+      "strategy_id": "FreqAIHybridStrategy",
       "verdict": "to_be_fixed"
     },
     "FreqaiBinaryClassStrategy": {
@@ -573,6 +617,18 @@
       "strategy_id": "MyStrategyNew10",
       "verdict": "refuse_repair"
     },
+    "NFIX7Risk": {
+      "family": "local_module_off_path",
+      "missing_module": "NostalgiaForInfinityX7",
+      "module_found_at": "repos/iterativv_NostalgiaForInfinity/NostalgiaForInfinityX7.py",
+      "note": "The module the author imports is in the corpus at repos/iterativv_NostalgiaForInfinity/NostalgiaForInfinityX7.py. Nothing is wrong with the strategy; our import path does not include it.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'NostalgiaForInfinityX7' at NFIX7Risk.py:33",
+      "runtime_failure": "Impossible to load Strategy 'NFIX7Risk'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/beanbocchi_money-generator/overlay/NFIX7Risk.py",
+      "strategy_id": "NFIX7Risk",
+      "verdict": "to_be_fixed"
+    },
     "NNPredict": {
       "family": "local_module_off_path",
       "missing_module": "utils",
@@ -584,6 +640,16 @@
       "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/NNPredict.py",
       "strategy_id": "NNPredict",
       "verdict": "to_be_fixed"
+    },
+    "NewsHeliusBitqueryML": {
+      "family": "class_not_loaded",
+      "note": "The file raises on import. Whether that is a missing dependency we can install or code that no longer runs depends on the exception.",
+      "probe": "import_raises",
+      "probe_detail": "ImportError: attempted relative import with no known parent package at NewsHeliusBitqueryML.py:12",
+      "runtime_failure": "Impossible to load Strategy 'NewsHeliusBitqueryML'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/NewsHeliusBitqueryML/NewsHeliusBitqueryML.py",
+      "strategy_id": "NewsHeliusBitqueryML",
+      "verdict": "needs_a_look"
     },
     "NoLost": {
       "family": "no_stoploss",
@@ -733,6 +799,18 @@
       "strategy_id": "TGMA",
       "verdict": "needs_a_look"
     },
+    "TM3MultiClass": {
+      "family": "third_party_package",
+      "missing_module": "lib",
+      "module_found_at": "",
+      "note": "Imports lib, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'lib' at TM3MultiClass.py:11",
+      "runtime_failure": "Impossible to load Strategy 'TM3MultiClass'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai/TM3MultiClass.py",
+      "strategy_id": "TM3MultiClass",
+      "verdict": "needs_a_look"
+    },
     "TaSearchLevelG15m": {
       "family": "no_stoploss",
       "note": "The strategy declares no stoploss. Supplying one does not restore anything the author wrote; it invents the risk management and then measures the invention.",
@@ -757,6 +835,14 @@
       "strategy_id": "TrendMomoClassifier",
       "verdict": "to_be_fixed"
     },
+    "TripleSuperTrendADXRSI": {
+      "family": "dtype_drift",
+      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
+      "runtime_failure": "Invalid value '0' for dtype 'str'. Value should be a string or missing value, got 'int' instead.",
+      "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/TripleSuperTrendADXRSI/TripleSuperTrendADXRSI.py",
+      "strategy_id": "TripleSuperTrendADXRSI",
+      "verdict": "needs_a_look"
+    },
     "TuplaBollinger": {
       "family": "unsupported_exchange_timeframe",
       "note": "TuplaBollinger declares 5h, which Binance does not publish. Resampling another interval would introduce a new candle construction and change the measured strategy.",
@@ -765,6 +851,14 @@
       "strategy_id": "TuplaBollinger",
       "verdict": "refuse_repair"
     },
+    "UltraSmartStrategy": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "timeout after 300 seconds",
+      "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Lmao/UltraSmartStrategy.py",
+      "strategy_id": "UltraSmartStrategy",
+      "verdict": "needs_a_look"
+    },
     "UpSliceStrategy": {
       "family": "author_logic_incomplete",
       "note": "UpSliceStrategy compares a price to a method object. Selecting a call, property, or different operand would repair trading logic rather than compatibility.",
@@ -772,6 +866,14 @@
       "source_file": "repos/PeetCrypto_freqtrade-stuff/UpSliceStrategy.py",
       "strategy_id": "UpSliceStrategy",
       "verdict": "refuse_repair"
+    },
+    "el_extrema_RL": {
+      "family": "freqai_not_enabled",
+      "note": "A runtime matter, not a strategy defect: the image needs torch and the config needs a freqai block. Already queued as the FreqAI arm.",
+      "runtime_failure": "freqAI is not enabled. Please enable it in your config to use this strategy.",
+      "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai/el_extrema_RL.py",
+      "strategy_id": "el_extrema_RL",
+      "verdict": "to_be_fixed"
     },
     "kac_index_v1": {
       "family": "third_party_package",
@@ -795,14 +897,6 @@
       "runtime_failure": "Impossible to load Strategy 'kac_index_v2'. This class does not exist or contains Python code errors.",
       "source_file": "repos/titouannwtt_freqtrade-france-strategies-kac-index/freqtrade/user_data/strategies/kac_index_v2.py",
       "strategy_id": "kac_index_v2",
-      "verdict": "needs_a_look"
-    },
-    "multi_tf": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "Informative dataframe for (ETH/BTC, 1h, spot) is empty. Can't populate informative indicators.",
-      "source_file": "repos/TheoBrigitte_freqtrade/strategies/freqtrade-strategies/multi_tf.py",
-      "strategy_id": "multi_tf",
       "verdict": "needs_a_look"
     },
     "new_turtle": {

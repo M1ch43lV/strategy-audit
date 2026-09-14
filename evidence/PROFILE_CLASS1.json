@@ -76,14 +76,14 @@
     },
     "BBBHold": {
       "family": "local_module_incomplete",
-      "note": "local-module search resolved and applied (NSeq/Config.py satisfies the import), but the strategy also reads ignore_roi_if_buy_signal from Config, which NSeq/Config.py does not define. Checked every Config.py in the corpus and in the origin repository (hamidreza07/freqai-strategy) by function/attribute grep - none defines it. A confirmed gap in what the author ever published, not a search gap; inventing the value would be authorship.",
+      "note": "1 copies satisfy the import and all are the same file, so the choice carries no risk",
       "python_paths": [
         "repos/hamidreza07_freqai-strategy/startegy test/5/NSeq"
       ],
       "rules": [
         "restore_copied_local_module"
       ],
-      "status": "refused"
+      "status": "applied"
     },
     "BBKCBounce": {
       "note": "the strategy does *from user_data.strategies import Config*, an absolute dotted import - a plain sys.path directory named Config.py does not satisfy it, it needs an importable user_data.strategies package. tools/harvest.py only pulls files containing IStrategy, so this sibling Config.py was never harvested even though it lives in the same directory (webclinic017/strategies-freqtrade-/archived/Config.py on GitHub). Fetched from there and placed at repair/compat_helpers/webclinic017_config/user_data/strategies/Config.py - both user_data and strategies stay import-namespace packages (no __init__.py), so this merges via PEP 420 with the audit's own real (empty) user_data/strategies/ instead of shadowing it. Confirmed every attribute the strategy reads from Config (minimal_roi, trailing_stop*, stoploss, timeframe, process_only_new_candles, use_sell_signal, sell_profit_only, ignore_roi_if_buy_signal, order_types) is defined in the fetched file before applying.",
@@ -1201,11 +1201,25 @@
       ],
       "status": "applied"
     },
+    "NFIX7Risk": {
+      "note": "1 copies satisfy the import and all are the same file, so the choice carries no risk",
+      "python_paths": [
+        "repos/iterativv_NostalgiaForInfinity"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
+    },
     "NNPredict": {
       "image": "strategy-audit-tensorflow-runtime:2026.7",
-      "note": "imports NNPredictor_LSTM0 (bare, sibling import) and utils.* (DataframePopulator, DataframeUtils, Environment, profiler, and transitively many Classifier* model wrappers) from its own per-strategy directory in hamidreza07/freqai-strategy - none of it ever harvested since tools/harvest.py only pulled IStrategy files. Fetched via tools.harvest dependency_closure() (sibling-directory resolution added specifically for this per-strategy-folder repo layout). Module resolution confirmed complete: imports cleanly and reaches real training under strategy-audit-tensorflow-runtime:2026.7 with tqdm and setuptools==80.10.2 (pkg_resources) added. Fails past that on tf.compat.v1.keras.backend.set_session, a TF1 session API Keras 3 does not restore - a separate, deeper compat gap, not attempted.",
+      "note": "1 copies satisfy the import and all are the same file, so the choice carries no risk",
+      "python_paths": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+      ],
       "rules": [
-        "restore_fetched_local_module"
+        "restore_fetched_local_module",
+        "restore_copied_local_module"
       ],
       "status": "applied"
     },
@@ -1563,6 +1577,13 @@
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
       "rules": [
         "startup_candles_not_limited_by_call_budget"
+      ],
+      "status": "applied"
+    },
+    "TripleSuperTrendADXRSI": {
+      "note": "df.fillna(0, inplace=True) at TripleSuperTrendADXRSI.py:280 fills the whole dataframe including an Arrow-backed string-dtype column (enter_tag/exit_tag), which newer pandas refuses to fill with an int - exactly the shape legacy_fillna_skips_incompatible_dtype exists for (see its docstring, same error message verbatim). No strategy source touched.",
+      "rules": [
+        "legacy_fillna_skips_incompatible_dtype"
       ],
       "status": "applied"
     },
