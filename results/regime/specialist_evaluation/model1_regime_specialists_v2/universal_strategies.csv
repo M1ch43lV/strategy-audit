@@ -1,0 +1,9 @@
+strategy_id,regimes_covered,worst_regime,worst_regime_return,median_regime_excess_return,regime_consistency
+FastSupertrend_optim3_rsi_80-uptrend,4,BULL,-0.00764059720726,-0.00580107166551,0.25
+FastSupertrend_optim3_rsi_80-trend,4,BULL,-0.00936409237077,-0.00669855625474,0.25
+eltoro1_4-transition,4,BULL,-0.0618063806213,0.0263135351679,0.75
+CryptoFrog_nateema-transition,4,BULL,-0.0624993360469,0.0355426220051,0.75
+eltoro1_4_simple-downtrend,4,BULL,-0.118872434758,0.0544463356824,0.75
+cryptotank-transition,4,BULL,-0.171081777292,0.0406381739892,0.5
+FSampleStrategy-trend,4,BULL,-0.215607799248,0.00546984041508,0.75
+cryptotank-downtrend,4,BULL,-0.222449921466,0.0779513863911,0.75

@@ -3,40 +3,58 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-14T15:30:00+02:00
-- **IN PROGRESS — regime-specialist Top-10 pilot, gated backtest running in
-  the background.** User ordered the old 7-strategy/21-candidate pilot
-  (below) discarded entirely (it was just the first 7 strategies
-  alphabetically, not a curated selection) and replaced with a
-  DeepSeek-v4-pro-checked, LCB-ranked, family-deduplicated Top-10-per-ADX-
-  state selection. Full design frozen in `REGIME_AUDIT_PLAN.md` (addendum
-  after the tier-episode-window addendum) and `PIPELINE.md` (addendum after
-  the sideways/transition section) BEFORE this backtest was started - read
-  those two addenda for the complete reasoning (gate design, DeepSeek
-  critiques, selection metric, exact candidate list). Short version: 4
-  symmetric single-state gates (`-uptrend`/`-downtrend`/`-sideways`/
-  `-transition`) replace the old coupled `-trend` gate as the default,
-  `-trend` kept as an optional 5th gate only for futures candidates with
-  real long AND short trades; selection is direct `episode_excess_lcb`
-  ranking per ADX state (not a best-worst spread - DeepSeek found that
-  measures contrast, not target-regime quality), over the full per-regime
-  VALIDATION pool (not the 379-candidate Universal subset, to avoid
-  survivorship bias), deduplicated to one candidate per strategy family.
-  25 unique strategies, 33 gate-variant candidates:
-  `results/regime/candidate_spec_regime_specialists_v2.json`.
-  **Currently running:** `regime/gated_backtest.py` for model1 → model2 →
-  model3 sequentially (`--workers 1`, 16 GB memory guard, same as every
-  prior gated run), output to
-  `results/regime/model{1,2,3}_backtest_manifest_regime_specialists_v2.json`,
-  logs in the scratchpad (`backtest_model{1,2,3}_v2.log`). Once all three
-  finish: run `gated_attribution.py` per model, `specialist_evaluation.py`
-  per model, then rebuild `export_v9.py`/the HTML template - remove the old
-  pilot's tables (`Gesamtgewinn: gegatet vs. ungegatet`, the old Modell
-  1/2/3 tabs) and add four new "Top 10 je ADX-Zustand" selection tables plus
-  new Modell-1/2/3 result tables built from this run. Do NOT touch the old
-  pilot's result files on disk (`model{1,2,3}_attribution_merged/`,
-  `candidate_spec_pilot_v1*.json`, etc.) - left as historical trail per
-  explicit instruction, just no longer referenced anywhere new.
+- Last update: 2026-09-14T18:00:00+02:00
+- **DONE — regime-specialist Top-10 pilot fully replaces the old
+  7-strategy/21-candidate pilot, published as artifact Version 36.** Full
+  design reasoning (gate design, both DeepSeek-v4-pro critiques, selection
+  metric) in `REGIME_AUDIT_PLAN.md`'s addendum after the tier-episode-window
+  one; operational detail (exact commands, row counts) in `PIPELINE.md`'s
+  addendum after the sideways/transition section - read those two first for
+  anything below that needs more context. Short version: 4 symmetric
+  single-state gates (`-uptrend`/`-downtrend`/`-sideways`/`-transition`)
+  replace the old coupled `-trend` gate as the default, `-trend` kept as an
+  optional 5th gate only for the 2 candidates that are both futures-capable
+  and have real long AND short trades (`FastSupertrend_optim3_rsi_80`,
+  `FSampleStrategy`); selection is direct `episode_excess_lcb` ranking per
+  ADX state (not a best-worst spread), over the full per-regime VALIDATION
+  pool, deduplicated to one candidate per strategy family. 25 strategies, 33
+  candidates - `results/regime/candidate_spec_regime_specialists_v2.json`.
+  ADX Uptrend has exactly 1 statistically real specialist in the whole
+  589-strategy corpus (`FastSupertrend_optim3_rsi_80`); Downtrend/Sideways/
+  Transition each filled a full Top 10.
+  **A second, independent bug was found and fixed along the way**:
+  `NostalgiaForInfinityX` emits bool-dtype `enter_long`/`enter_short`
+  columns instead of the usual int 0/1, and `regime/gate_adapter.py`'s
+  `mask()` crashed trying to write a plain `0` into a bool column
+  (`TypeError: Invalid value '0' for dtype 'bool'`) - fixed by matching the
+  "off" value to the column's own dtype (`False` for bool, `0` otherwise),
+  with a selftest case added. Full pipeline run: `gated_backtest.py`
+  (33/33 measured per model, `results/regime/model{1,2,3}_backtest_manifest_
+  regime_specialists_v2.json`) → `gated_attribution.py`
+  (`model{1,2,3}_attribution_regime_specialists_v2/`, 18,638 / 16,994 /
+  10,169 trades) → `specialist_evaluation.py`
+  (`specialist_evaluation/model{1,2,3}_regime_specialists_v2/`, `--joint`
+  for model3; universal candidates 8/0/0 - same BTC-gate-leaves-coin-free
+  asymmetry documented for the previous pilot). New export script
+  `export_v2_regime_specialists.py` (scratchpad, not `export_v9.py`)
+  produces `top10_by_regime.json` (the frozen selection, reproduced from
+  Model 0 data, not hand-copied), `gated_compare_v2.json`, and
+  `gated_detail_v2.json` - same shape as the old `gated_compare.json`/
+  `gated_detail.json`, so the template's existing render functions
+  (`renderGatedRegimeTable`, `refreshGatedTables`, `buildChipBar`, etc.)
+  needed no changes, only `build_v8.py`'s two placeholder targets moved to
+  the new files, plus a new `__TOP10BYREGIME_JSON__` placeholder and a new
+  `renderTop10Tables()` function for the four selection tables. Template
+  changes: old "Modell 1/2/3 — gegatete Piloten-Kandidaten" section replaced
+  wholesale (new heading, callouts explaining the new gate design/selection
+  metric/Uptrend-has-only-1-specialist finding); "Gesamtgewinn: gegatet vs.
+  ungegatet" table gained a Ziel-Regime column and now reads `candidate_id`/
+  `target_regime` directly instead of the old `strategy_id + '-trend'`
+  string-concat hack; `CANDIDATE_SUFFIXES` gained `-uptrend`/`-downtrend` so
+  the futures asterisk keeps working. Old pilot's result files
+  (`model{1,2,3}_attribution_merged/`, `candidate_spec_pilot_v1*.json`,
+  `specialist_evaluation/model{1,2,3}/`) intentionally left on disk,
+  untouched, no longer referenced anywhere in the artifact.
 - **Both items below are now fully done, merged, and published (artifact
   Version 33)** - superseding their own "still outstanding"/"still running"
   notes further down (left in place for the reasoning trail, not as an

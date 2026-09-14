@@ -83,7 +83,14 @@ class RegimeGate:
                 allowed &= btc_states.isin(self.allowed[(side, "btc")])
             if coin_states is not None:
                 allowed &= coin_states.isin(self.allowed[(side, "coin")])
-            result.loc[~allowed.to_numpy(), column] = 0
+            # Most strategies' entry columns are int (0/1), but some (found
+            # 2026-09-14 via NostalgiaForInfinityX, which raised
+            # `TypeError: Invalid value '0' for dtype 'bool'` here) produce a
+            # bool-dtype column - pandas refuses to widen a bool Series with
+            # a plain int 0 through .loc assignment. Match the "off" value to
+            # the column's own dtype instead of assuming int.
+            off = False if pd.api.types.is_bool_dtype(result[column]) else 0
+            result.loc[~allowed.to_numpy(), column] = off
         return result
 
 
@@ -132,6 +139,22 @@ def selftest() -> None:
         assert result["enter_long"].tolist() == [1, 0]
         assert result["enter_short"].tolist() == [0, 1]
         assert result["exit_long"].tolist() == [1, 1]
+
+        # Some strategies (found via NostalgiaForInfinityX) emit bool-dtype
+        # entry columns instead of the usual int 0/1. Assigning a plain int 0
+        # into a bool column through .loc used to raise
+        # `TypeError: Invalid value '0' for dtype 'bool'`.
+        bool_source = pd.DataFrame({
+            "date": ["2024-01-01T01:00:00Z", "2024-01-02T23:00:00Z"],
+            "enter_long": pd.array([True, True], dtype="bool"),
+            "enter_short": pd.array([True, True], dtype="bool"),
+            "exit_long": [1, 1],
+        })
+        bool_result = gate.mask(bool_source, {"pair": "BTC/USDT:USDT"})
+        assert bool_result["enter_long"].tolist() == [True, False]
+        assert bool_result["enter_short"].tolist() == [False, True]
+        assert bool_result["enter_long"].dtype == bool
+        assert bool_result["enter_short"].dtype == bool
 
         # Coin-only gating is independent of the BTC state.  The second row
         # is allowed by its local SIDEWAYS state even though BTC is BEAR.

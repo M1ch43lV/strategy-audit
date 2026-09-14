@@ -677,10 +677,34 @@ Piloten-Spec). Läuft durch dieselbe unveränderte Kette
 (`gated_backtest.py` → `gated_attribution.py` → `specialist_evaluation.py`)
 — keine Code-Änderung nötig, `regime/gate_adapter.py` war bereits generisch
 über beliebige `long/short_btc/coin_states`-Listen, `-uptrend`/`-downtrend`
-brauchten nur neue Spec-Einträge. Backtest läuft (`--workers 1`,
+brauchten nur neue Spec-Einträge. Backtest gelaufen (`--workers 1`,
 sequenziell über alle drei Modelle, `--output
-results/regime/modelN_backtest_manifest_regime_specialists_v2.json`) —
-Ergebniszahlen folgen nach Abschluss.
+results/regime/modelN_backtest_manifest_regime_specialists_v2.json`,
+33/33 je Modell gemessen). Dabei einen zweiten, unabhängigen Bug gefunden:
+`NostalgiaForInfinityX` liefert `enter_long`/`enter_short` als bool-Spalten
+statt der sonst üblichen int-0/1-Spalten; `RegimeGate.mask()` versuchte dort
+eine `0` reinzuschreiben, was Pandas mit `TypeError: Invalid value '0' for
+dtype 'bool'` verweigert (`regime/gate_adapter.py`, betrifft jede Strategie
+mit bool-typisierten Entry-Spalten, nicht nur diesen einen Kandidaten).
+Behoben: `off`-Wert wird jetzt an den Spaltentyp angepasst (`False` bei
+bool-Spalten, sonst weiterhin `0`), Selftest-Fall mit einer bool-Spalte
+ergänzt. `gated_attribution.py` (`--outdir
+results/regime/modelN_attribution_regime_specialists_v2/`, 18.638 / 16.994 /
+10.169 Trades für Modell 1/2/3) und `specialist_evaluation.py` (`--outdir
+results/regime/specialist_evaluation/modelN_regime_specialists_v2/`,
+`--joint` für Modell 3) darüber neu gerechnet: VALIDATION-Zeilen Modell 1
+btc=25/coin=58 (8 Universal-Kandidaten &mdash; wie beim vorigen Piloten
+entsteht das, weil Modell 1 nur BTC gatet und die Coin-Regime-Dimension
+dadurch frei bleibt), Modell 2 btc=54/coin=35 (0 Universal), Modell 3
+btc=21/coin=24/joint=24 (0 Universal). `export_v2_regime_specialists.py`
+(neues Skript, nicht `export_v9.py`s alte `MERGED_ATTRIBUTION`-Logik)
+erzeugt drei JSON-Blobs: `top10_by_regime.json` (die eingefrorene Auswahl
+selbst, aus `coin_specialist_table.csv` reproduziert, nicht von Hand
+kopiert), `gated_compare_v2.json` und `gated_detail_v2.json` (gleiche Form
+wie die alten `gated_compare.json`/`gated_detail.json`, sodass
+`regime_specialists_template.html`s bestehende Render-Funktionen
+unverändert weiterlaufen &mdash; nur die beiden `build_v8.py`-Platzhalter
+zeigen jetzt auf die neuen Dateien). Artefakt veröffentlicht (Version 36).
 
 Dollar-Ansicht (2026-09-11, auf expliziten Nutzerwunsch): zusätzlich zur
 Benchmark-relativen Excess-Return-Prozentzahl ein Dollar-Betrag —

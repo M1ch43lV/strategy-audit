@@ -1,0 +1,351 @@
+{
+  "accepted_archive_evidence": [
+    {
+      "archive": "user_data/profile_smoke/ADXDM-eef844db-model3-ADXDM-downtrend-7df2d0cc-2026-09-14_11-21-21.zip",
+      "archive_sha256": "sha256_3c9296c81a8f13394d3878f4aa99854ed978c606a0e22f14b1181e4f881b447c",
+      "candidate_id": "ADXDM-downtrend",
+      "gate_rule_sha256": "sha256_f257470b0397f003a725e35c11db1a9608a6f3cf3a80b456d62ab1302bf7d9aa",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "ADXDM",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/BB_RPB_TSL_RNG_2-e03b9f25-model3-BB_RPB_TSL_RNG_2-transition-53112127-2026-09-14_11-22-36.zip",
+      "archive_sha256": "sha256_b6bb2809b88ab03e1295f55f31177dd6f24bc5e3743af59d9325b7cc05ce5af1",
+      "candidate_id": "BB_RPB_TSL_RNG_2-transition",
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "BB_RPB_TSL_RNG_2",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/BB_RTR-847a19ce-model3-BB_RTR-sideways-95e54e5e-2026-09-14_11-31-43.zip",
+      "archive_sha256": "sha256_3db37e92379d4d67262de5924d3adcabcafefc338397aa4cd27a0ab91860ad27",
+      "candidate_id": "BB_RTR-sideways",
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "BB_RTR",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/BB_RTR-847a19ce-model3-BB_RTR-transition-0d016161-2026-09-14_11-40-47.zip",
+      "archive_sha256": "sha256_e2dc8fd55d3bf244eb15472f625a15e5a4606a0dcb9ba26ed47e16f2d30e71f3",
+      "candidate_id": "BB_RTR-transition",
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "BB_RTR",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/BigTrader-fc53f0ba-model3-BigTrader-sideways-9dc35115-2026-09-14_11-41-33.zip",
+      "archive_sha256": "sha256_adbc54bd8533657b9cadeab1c63c49a13a814f61b6c9e54bcf8a66cb47618acb",
+      "candidate_id": "BigTrader-sideways",
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "BigTrader",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/BigTrader-fc53f0ba-model3-BigTrader-transition-c548211b-2026-09-14_11-42-20.zip",
+      "archive_sha256": "sha256_c693dc5681d5f591ac13dc6586d334001736a7bdc780a5ba82cb3f252a156a83",
+      "candidate_id": "BigTrader-transition",
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "BigTrader",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/Cenderawasih_3_kucoin-1bd22e18-model3-Cenderawasih_3_kucoin-sideways-25ebbfc8-2026-09-14_11-43-09.zip",
+      "archive_sha256": "sha256_6393949312de5aaa2b592da1974e2306ec4a5e3922bdaa418454070a5e757e0f",
+      "candidate_id": "Cenderawasih_3_kucoin-sideways",
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "Cenderawasih_3_kucoin",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/CryptoFrog_nateema-bf5c956c-model3-CryptoFrog_nateema-transition-43d6d7a3-2026-09-14_11-44-27.zip",
+      "archive_sha256": "sha256_3556f35fccd1f685e07c3eec56b338bd45557f798e67a5e8717e5f67094ce01b",
+      "candidate_id": "CryptoFrog_nateema-transition",
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "CryptoFrog_nateema",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/CustomStoplossWithPSAR-3c86d8a0-model3-CustomStoplossWithPSAR-downtrend-19c7b6bf-2026-09-14_11-46-20.zip",
+      "archive_sha256": "sha256_4f9103e0338523e63fd15b605649e7bfd6b083cf5e6564b9a33ec73a26e261df",
+      "candidate_id": "CustomStoplossWithPSAR-downtrend",
+      "gate_rule_sha256": "sha256_f257470b0397f003a725e35c11db1a9608a6f3cf3a80b456d62ab1302bf7d9aa",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "CustomStoplossWithPSAR",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/E0V1E_protections-add87501-model3-E0V1E_protections-sideways-bc98db02-2026-09-14_11-47-27.zip",
+      "archive_sha256": "sha256_ebd332ea3bbdd0a0148dc9c1722d6c6ee1b552643fa952e1b4ac8c32aa604ffb",
+      "candidate_id": "E0V1E_protections-sideways",
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "E0V1E_protections",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/FSampleStrategy-7008500c-model3-FSampleStrategy-sideways-c3dedf85-2026-09-14_11-48-06.zip",
+      "archive_sha256": "sha256_e481e1d66b8ac18edeabeb56e7fad7dc42d826fb012df610dcfec168fb3fb608",
+      "candidate_id": "FSampleStrategy-sideways",
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "FSampleStrategy",
+      "timerange": "20200301-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/FSampleStrategy-7008500c-model3-FSampleStrategy-trend-768f5362-2026-09-14_11-48-33.zip",
+      "archive_sha256": "sha256_550dcab714d2ae5eb11048130cb546993bb991a35400c8f8d3361a9cbe8041e2",
+      "candidate_id": "FSampleStrategy-trend",
+      "gate_rule_sha256": "sha256_5192cdbe0a3a8a63ef7c3d3f49832086aafedec81e8ca638e785cacb21662398",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "FSampleStrategy",
+      "timerange": "20200301-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/FastSupertrend_optim3_rsi_80-f7cbbcb1-model3-FastSupertrend_optim3_rsi_80-uptrend-a6e0bdf7-2026-09-14_11-49-03.zip",
+      "archive_sha256": "sha256_1802a944fffab319dee8ab8e31bdbf51d4c4d37fe2fd89a88c0f8b6e1f4432c2",
+      "candidate_id": "FastSupertrend_optim3_rsi_80-uptrend",
+      "gate_rule_sha256": "sha256_decc212a7163f826f0424058043e10818c809999a3b21bb476a16f824daf8532",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "FastSupertrend_optim3_rsi_80",
+      "timerange": "20200301-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/FastSupertrend_optim3_rsi_80-f7cbbcb1-model3-FastSupertrend_optim3_rsi_80-trend-4b122975-2026-09-14_11-49-42.zip",
+      "archive_sha256": "sha256_a85b52048638d7119e21d0815cd1028479fc29b06e279134c295a408b9e37fff",
+      "candidate_id": "FastSupertrend_optim3_rsi_80-trend",
+      "gate_rule_sha256": "sha256_5192cdbe0a3a8a63ef7c3d3f49832086aafedec81e8ca638e785cacb21662398",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "FastSupertrend_optim3_rsi_80",
+      "timerange": "20200301-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/GodCard-e992df91-model3-GodCard-downtrend-081b344b-2026-09-14_11-50-29.zip",
+      "archive_sha256": "sha256_dbe30d4064f85e466215b5b8cb5d79392600189779a457344dfabfba81eda967",
+      "candidate_id": "GodCard-downtrend",
+      "gate_rule_sha256": "sha256_f257470b0397f003a725e35c11db1a9608a6f3cf3a80b456d62ab1302bf7d9aa",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "GodCard",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/GodCard-e992df91-model3-GodCard-sideways-755cb65d-2026-09-14_11-51-18.zip",
+      "archive_sha256": "sha256_1c2580b06baf1ad11bd21cdd6d14bbb30d9dbb1b7674f9d6f06b83825ab30575",
+      "candidate_id": "GodCard-sideways",
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "GodCard",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/Hacklemost-f578e820-model3-Hacklemost-sideways-546f5ebb-2026-09-14_11-59-06.zip",
+      "archive_sha256": "sha256_0d260c8cd8d117b0cf1c25797b69d7f2441e252e269cc0920bdf3cfa4931aeee",
+      "candidate_id": "Hacklemost-sideways",
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "Hacklemost",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/Hammer-c157cbf6-model3-Hammer-transition-b4024c6c-2026-09-14_11-59-59.zip",
+      "archive_sha256": "sha256_c95a7c7eae1c200e97def05dbc724333ab3d72bc7cc849dbabf55c7f5bb89cd5",
+      "candidate_id": "Hammer-transition",
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "Hammer",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/MFI2-9083ee50-model3-MFI2-downtrend-6e1952f4-2026-09-14_12-00-50.zip",
+      "archive_sha256": "sha256_c30ad59db92eadf65fa378e94d8b47b9bfedc1dc40bcc9ec4bc68c342a47583a",
+      "candidate_id": "MFI2-downtrend",
+      "gate_rule_sha256": "sha256_f257470b0397f003a725e35c11db1a9608a6f3cf3a80b456d62ab1302bf7d9aa",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "MFI2",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/NFI46Z-8a414576-model3-NFI46Z-downtrend-3509e73e-2026-09-14_12-01-56.zip",
+      "archive_sha256": "sha256_f480178e56ff1cc42119c84fee9d7ffa92aff73f3d3f61097e06fd4ef447105b",
+      "candidate_id": "NFI46Z-downtrend",
+      "gate_rule_sha256": "sha256_f257470b0397f003a725e35c11db1a9608a6f3cf3a80b456d62ab1302bf7d9aa",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "NFI46Z",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/NostalgiaForInfinityX-3059216f-model3-NostalgiaForInfinityX-transition-194b4126-2026-09-14_12-11-12.zip",
+      "archive_sha256": "sha256_f02f3eb19b93ad65f8a90f1e18834c1c6ada561700ee009dc165a277990e1a1a",
+      "candidate_id": "NostalgiaForInfinityX-transition",
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "NostalgiaForInfinityX",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/OversoldReversion-dcb09e33-model3-OversoldReversion-downtrend-c4a54027-2026-09-14_12-11-27.zip",
+      "archive_sha256": "sha256_928e19bf0ba63390341def2c98af413978dcefdaf96e40a2ca493e1d3520c226",
+      "candidate_id": "OversoldReversion-downtrend",
+      "gate_rule_sha256": "sha256_f257470b0397f003a725e35c11db1a9608a6f3cf3a80b456d62ab1302bf7d9aa",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "OversoldReversion",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/SARCross-0c09ed9a-model3-SARCross-sideways-92afac46-2026-09-14_12-12-16.zip",
+      "archive_sha256": "sha256_6da7104de27badcf7275561101a9de9fddf1b19c99ec6026e32fb1aff0fda455",
+      "candidate_id": "SARCross-sideways",
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "SARCross",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/SARCross-0c09ed9a-model3-SARCross-transition-19ffdde9-2026-09-14_12-13-07.zip",
+      "archive_sha256": "sha256_308a6514b7316a42abb8314bb27f0aefa54141e6a45ccf4d56dd164cb7f28ff6",
+      "candidate_id": "SARCross-transition",
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "SARCross",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/SimpleBollinger-3b182c17-model3-SimpleBollinger-downtrend-ee2ff4c8-2026-09-14_12-13-57.zip",
+      "archive_sha256": "sha256_036adfd2431896d97137a4fa1cdbfa199d1b3434da747d07321171b295a2872e",
+      "candidate_id": "SimpleBollinger-downtrend",
+      "gate_rule_sha256": "sha256_f257470b0397f003a725e35c11db1a9608a6f3cf3a80b456d62ab1302bf7d9aa",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "SimpleBollinger",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/Squeeze001-f1de728b-model3-Squeeze001-downtrend-d920ce70-2026-09-14_12-14-48.zip",
+      "archive_sha256": "sha256_82c5de9f4c1075d8a0cb2a6f23af515ff9e651aab7242924b8b4d361cac4009b",
+      "candidate_id": "Squeeze001-downtrend",
+      "gate_rule_sha256": "sha256_f257470b0397f003a725e35c11db1a9608a6f3cf3a80b456d62ab1302bf7d9aa",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "Squeeze001",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/TheRealPullbackV2-6b84aa55-model3-TheRealPullbackV2-sideways-52c7178b-2026-09-14_12-15-39.zip",
+      "archive_sha256": "sha256_48a71b3556546b5e0450e126d2a44e8711713c7fc3bc6c24387d71f7405148f3",
+      "candidate_id": "TheRealPullbackV2-sideways",
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "TheRealPullbackV2",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/adxbbrsi2-ab42fd07-model3-adxbbrsi2-transition-f87d3fbf-2026-09-14_12-15-49.zip",
+      "archive_sha256": "sha256_6525ef6a3d02c4160c69f9a60510e96534c05a8d901c31bb508ae0bf6c2f48e4",
+      "candidate_id": "adxbbrsi2-transition",
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "adxbbrsi2",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/cryptotank-c9c1afb9-model3-cryptotank-downtrend-1cef1949-2026-09-14_12-16-01.zip",
+      "archive_sha256": "sha256_ec9f67c8003ffa969322b38d7a5aa4457f8f1a3da3920f618dfb4c6116bd1ccb",
+      "candidate_id": "cryptotank-downtrend",
+      "gate_rule_sha256": "sha256_f257470b0397f003a725e35c11db1a9608a6f3cf3a80b456d62ab1302bf7d9aa",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "cryptotank",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/cryptotank-c9c1afb9-model3-cryptotank-sideways-d241ca25-2026-09-14_12-16-12.zip",
+      "archive_sha256": "sha256_2fdce35d5825b8d85b771b7918ef833e1137f47192e637eab2828a795ee12fe6",
+      "candidate_id": "cryptotank-sideways",
+      "gate_rule_sha256": "sha256_228834bc89c01b951bbb152c2226408bb00ee7365511e334ed08d9192a84ea2e",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "cryptotank",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/cryptotank-c9c1afb9-model3-cryptotank-transition-27304e24-2026-09-14_12-16-23.zip",
+      "archive_sha256": "sha256_07f158f7c9869962814c198dfe97bc55c8824e620a9c87fe30236238f9f32a29",
+      "candidate_id": "cryptotank-transition",
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "cryptotank",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/eltoro1_4-9577fac2-model3-eltoro1_4-transition-214d1ada-2026-09-14_12-16-38.zip",
+      "archive_sha256": "sha256_ac8b47a82caee905de7bbaeeed0faf6145c7fadd381c26701f0948b1aac3dc01",
+      "candidate_id": "eltoro1_4-transition",
+      "gate_rule_sha256": "sha256_a4be69cf7bcfbab48c1fc8ef93cbe1a88b2a7be6ee6d5775f5b2fa606ead6a18",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "eltoro1_4",
+      "timerange": "20200401-20260821"
+    },
+    {
+      "archive": "user_data/profile_smoke/eltoro1_4_simple-8a1dc3d9-model3-eltoro1_4_simple-downtrend-e88bba9a-2026-09-14_12-17-45.zip",
+      "archive_sha256": "sha256_26da366ace023060c613b8e1b7266b2ea4d1fc7cdc9f88bacefa5b46eb1ef2f0",
+      "candidate_id": "eltoro1_4_simple-downtrend",
+      "gate_rule_sha256": "sha256_f257470b0397f003a725e35c11db1a9608a6f3cf3a80b456d62ab1302bf7d9aa",
+      "runtime_id": "native_unversioned",
+      "strategy_id": "eltoro1_4_simple",
+      "timerange": "20200401-20260821"
+    }
+  ],
+  "analysis_role": "PILOT",
+  "attributed_candidate_ids": [
+    "ADXDM-downtrend",
+    "BB_RPB_TSL_RNG_2-transition",
+    "BB_RTR-sideways",
+    "BB_RTR-transition",
+    "BigTrader-sideways",
+    "BigTrader-transition",
+    "Cenderawasih_3_kucoin-sideways",
+    "CryptoFrog_nateema-transition",
+    "CustomStoplossWithPSAR-downtrend",
+    "E0V1E_protections-sideways",
+    "FSampleStrategy-sideways",
+    "FSampleStrategy-trend",
+    "FastSupertrend_optim3_rsi_80-trend",
+    "FastSupertrend_optim3_rsi_80-uptrend",
+    "GodCard-downtrend",
+    "GodCard-sideways",
+    "Hacklemost-sideways",
+    "Hammer-transition",
+    "MFI2-downtrend",
+    "NFI46Z-downtrend",
+    "NostalgiaForInfinityX-transition",
+    "OversoldReversion-downtrend",
+    "SARCross-sideways",
+    "SARCross-transition",
+    "SimpleBollinger-downtrend",
+    "Squeeze001-downtrend",
+    "TheRealPullbackV2-sideways",
+    "adxbbrsi2-transition",
+    "cryptotank-downtrend",
+    "cryptotank-sideways",
+    "cryptotank-transition",
+    "eltoro1_4-transition",
+    "eltoro1_4_simple-downtrend"
+  ],
+  "attributed_candidates": 33,
+  "candidate_set_id": "regime_specialists_v2_lcb_ranked_deduplicated",
+  "candidate_spec_sha256": "sha256_d561f8a0b1d5e31cec467f5f62c9789158809be5db7fa8f45e27191a3f0dd211",
+  "evidence_scope": "Causal entry-time attribution of true entry-gated backtests. This artifact does not rank candidates or resolve preregistration choices.",
+  "expected_candidates": 33,
+  "missing_candidate_ids": [],
+  "model": "model3",
+  "partial": false,
+  "regime_daily_sha256": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
+  "rejected_candidates": [],
+  "schema_version": 1,
+  "source_manifest": "results\\regime\\model3_backtest_manifest_regime_specialists_v2.json",
+  "source_manifest_sha256": "sha256_d59df6d895dd0ae283b3e8ac012d00da19a00b550521dce1c13eeb3a076e4606",
+  "trades": 10169
+}
