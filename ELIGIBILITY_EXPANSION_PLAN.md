@@ -1,7 +1,8 @@
 # Eligibility expansion protocol
 
 **Status:** accepted and frozen on 2026-08-30, before Stage 9 ranking; all E0
-admission/reporting clauses superseded on 2026-09-03
+admission/reporting clauses superseded on 2026-09-03; FreqAI runtime
+restoration added as a permitted repair class on 2026-09-14 (see §4.1)
 **Purpose:** maximize the number of strategies that can be evaluated across
 market regimes without admitting future leakage, unresolved evidence, duplicate
 implementations, or behavior-changing repairs into confirmatory claims.
@@ -139,6 +140,77 @@ If a new compatibility failure class is discovered, work stops for that class.
 A written amendment must define one deterministic rule for every matching row
 before any of those rows resume. No repair rule may depend on profit or regime
 performance.
+
+### 4.1 FreqAI runtime restoration (2026-09-14 amendment)
+
+A newly discovered compatibility failure class: a strategy whose own source
+requires `freqai.enabled=true` to load at all fails immediately with
+`freqAI is not enabled. Please enable it in your config to use this strategy.`
+- an `ImportError` before a single indicator runs, not a trading-decision
+question. `repair/run_freqai.py` had measured these strategies since before
+this amendment, but on a separate, explicitly non-comparable track
+(`run_class="freqai"`, "NOT A CLASS 1 REPAIR", never entering E1) - on the
+reasoning that the `freqai` config block (training window, model, feature
+engineering) is not something the strategy file supplies. On owner review
+(2026-09-14) that reasoning does not survive contact with how every other
+Freqtrade strategy in this corpus is already run: `stake_amount`,
+`pair_whitelist`, `fee`, `dry_run_wallet` and the rest of the base runtime
+config are never supplied by the strategy file either, for any of the 1,369
+canonical strategies - they are audit infrastructure every strategy already
+receives to run at all. A `freqai` block is the same kind of missing
+infrastructure for the narrower class of strategies whose own code declares
+it needs one, not evidence about what the strategy does. Restoring it is
+`environment and dependency restoration` under §4, on these conditions:
+
+- **The configuration is fixed and uniform, never per-strategy-tuned.**
+  Exactly the block `repair/run_freqai.py` already defines and states
+  plainly in its own docstring - `train_period_days=30`,
+  `backtest_period_days=7`, `purge_old_models=2`,
+  `fit_live_predictions_candles=300`, `DI_threshold=0.9`,
+  `weight_factor=0.9`, `principal_component_analysis=False`,
+  `use_SVM_to_remove_outliers=False`, `indicator_periods_candles=[10, 20]`,
+  `data_split_parameters={test_size: 0.33, random_state: 1}`,
+  `model_training_parameters={n_estimators: 100, verbosity: -1}`,
+  model `LightGBMRegressor` - applied identically to every strategy in this
+  class. `include_timeframes` and `include_corr_pairlist` are the only
+  per-strategy-derived values, both by a fixed algorithmic rule (the
+  strategy's own declared timeframe plus the next locally-available ones;
+  correlated pairs deliberately left empty - see the module docstring), not
+  chosen per strategy to change what it produces. No repair row in this
+  class may set a value the docstring does not already name for every row.
+- **Execution mode is not part of this repair.** Spot vs. futures for a
+  FreqAI-repaired strategy is decided exactly the way it already is for
+  every one of the other 1,369 canonical strategies: by the strategy's own
+  `can_short` declaration, read by the same AST check
+  (`evidence/execution_profiles.py`'s `declared_can_short()`) that sets
+  `run_profile` for the whole corpus. This is not `accepting a different
+  execution mode merely because it runs` (§4's prohibition on that remains
+  in force) - nothing about the mode is chosen because it happens to let
+  the strategy execute; it is the same author-declared classification every
+  other row already receives before this amendment existed. A strategy that
+  declares `can_short=True` was always going to run in futures mode in this
+  audit; a FreqAI strategy is no exception and gets no separate choice.
+- **The original source-of-record is untouched.** The `freqai` block is
+  injected as a `config_source`/`config_keys` overlay in
+  `evidence/PROFILE_CLASS1.json` - the same overlay mechanism §4 already
+  permits for other config-sourced repairs - naming
+  `user_data/freqai_configs/<strategy>.json` (the exact file
+  `repair/run_freqai.py` already writes) and `config_keys: ["freqai"]`.
+  `--freqaimodel LightGBMRegressor` is passed as a CLI flag the same way,
+  via the existing `freqaimodel` field `evidence/profile_smoke.py`'s
+  `_runtime()` already reads.
+- **A FreqAI-repaired row is not exempt from anything else in this
+  document.** It still needs canonical lookahead `PASS`, canonical
+  recursive-bias `PASS`, coverage `PASS`, at least one trade in the frozen
+  window, and every other §2 requirement before E1. `run_class="freqai"` on
+  a result card now means "this row's config includes a restored `freqai`
+  block", not "excluded from confirmatory analysis" - the two-population
+  design `repair/run_freqai.py`'s original docstring described is retired
+  by this amendment, not narrowed.
+
+This amendment resolves exactly one compatibility failure class
+(`freqAI is not enabled`) for exactly the rows whose own source requires it.
+It does not reopen or relax any other clause in §4.
 
 ## 5. Equivalence and decision-invariance evidence
 

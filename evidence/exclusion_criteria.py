@@ -102,6 +102,10 @@ def _shared_runtime_change_declined(row):
     return row["primary_reason"] == "shared_runtime_change_declined"
 
 
+def _duplicate_implementation(row):
+    return row["primary_reason"] == "duplicate_implementation"
+
+
 CRITERIA = [
     {
         "id": "C1",
@@ -464,6 +468,21 @@ CRITERIA = [
                  "non-testable statuses. A successful `measured` record is not "
                  "a finding, and the separately curated performance/OOM/stake "
                  "limits retain their existing provenance.",
+    },
+    {
+        "id": "C11",
+        "name": "Duplicate implementation with identical canonical trades",
+        "test": _duplicate_implementation,
+        "columns": 'primary_reason == "duplicate_implementation"',
+        "what": "The normalized executable source is identical to a retained "
+                "canonical representative and at least two canonical pooled "
+                "full backtests have the same trade hash.",
+        "why_final": "Counting both rows would count one trading implementation "
+                     "twice. The original measurement remains preserved as provenance.",
+        "evidence": "`evidence/SEMANTIC_DUPLICATE_ADJUDICATION.json` binds every "
+                    "redundant row to its retained representative, code hash, and trade hash.",
+        "watch": "Code-equivalent-only groups are not covered. Different runtime "
+                 "results or absent confirming trade hashes remain unresolved evidence.",
     },
 ]
 

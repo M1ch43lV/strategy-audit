@@ -1,0 +1,28 @@
+{
+  "results": {
+    "multi_tf": {
+      "canonical_sha256": "sha256_eb182eaecb785864496023f26be7932857b1e495805c37bddd562d6b1100683b",
+      "class1_rules": [
+        "whitespace_tolerant_class_scan",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "elapsed_s": 24.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy multi_tf --strategy-path user_data/profile_bias_strategies/multi_tf-1362b53b --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_1f82c8b26adad84724028457c4f7561e9dcdb83a2ac6ae68542b331a6462eaac",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20200301-20200601",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    }
+  },
+  "schema_version": 1,
+  "superseded": {}
+}

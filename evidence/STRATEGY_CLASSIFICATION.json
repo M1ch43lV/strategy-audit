@@ -26,6 +26,11 @@
       "timeframe": "15m",
       "timeframe_evidence": "repair:author_ticker_interval"
     },
+    "AIAgentTradingStrategy": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "ARIMASTR": {
       "strategy_type": "ml_ai;scalping",
       "timeframe": "5m",
@@ -35,6 +40,11 @@
       "strategy_type": "ml_ai",
       "timeframe": "15m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "ARIMA_5": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "ASDTSRockwellTrading": {
       "strategy_type": "momentum;scalping",
@@ -56,9 +66,19 @@
       "timeframe": "1d",
       "timeframe_evidence": "timeframe_attr"
     },
+    "AdaptiveRegimeLong": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "AdaptiveRenkoStrategy": {
       "strategy_type": "ml_ai;scalping",
       "timeframe": "3m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AdvancedFuturesSwingStrategy": {
+      "strategy_type": "momentum;volatility_breakout;volume_based",
+      "timeframe": "15m",
       "timeframe_evidence": "timeframe_attr"
     },
     "AdvancedRiskFilterStrategy": {
@@ -86,6 +106,16 @@
       "timeframe": "15m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "AlexBandSniperV10AI": {
+      "strategy_type": "ml_ai",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AlexBandSniperV58COptuna": {
+      "strategy_type": "mean_reversion;momentum;volatility_breakout;volume_based",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "AlexBattleTankKiller": {
       "strategy_type": "grid_dca;momentum;stat_arb;volatility_breakout",
       "timeframe": "15m",
@@ -96,8 +126,23 @@
       "timeframe": "15m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "AlexBattleTankKillerV4": {
+      "strategy_type": "grid_dca;momentum;stat_arb;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "AlexBattleTankKillerV40H": {
       "strategy_type": "grid_dca;momentum;stat_arb;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AlexNexusForgeV8AIV2": {
+      "strategy_type": "ml_ai",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AlexNexusForgeV8AIV4_SPOT": {
+      "strategy_type": "ml_ai",
       "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
     },
@@ -145,6 +190,106 @@
       "strategy_type": "ml_ai;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "Anomaly_adx": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_all": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_aroon": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_bbw": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_dwt": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_fbb": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_fwr": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_highlow": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_jump": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_macd": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_mfi": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_minmax": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_nseq": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_over": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_profit": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_pv": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_slope": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_smooth": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_stochastic": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Anomaly_swing": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "AntigravityGridStrategy": {
       "strategy_type": "ml_ai",
@@ -201,9 +346,24 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "Auto_EI_t4c0s_Shorts": {
+      "strategy_type": "grid_dca;mean_reversion;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "AverageStrategy": {
       "strategy_type": "momentum",
       "timeframe": "4h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AwesomeEWOLambo": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "AwesomeEWOLambo_Shorts": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping",
+      "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
     "AwesomeMacd": {
@@ -245,6 +405,11 @@
       "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "BBMod1DCA": {
+      "strategy_type": "grid_dca",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "BBRSI": {
       "strategy_type": "mean_reversion",
@@ -305,6 +470,31 @@
       "strategy_type": "mean_reversion;momentum;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "BBRSITV1": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "BBRSITV2": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "BBRSITV3": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "BBRSITV4": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "BBRSITV5": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "BBRSIoriginal": {
       "strategy_type": "mean_reversion",
@@ -381,10 +571,20 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "BB_RPB_TSL_Trailing": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "BB_RPB_TSL_Tranz": {
       "strategy_type": "mean_reversion;momentum;scalping;volume_based",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL_Tranz_TrailingBuy": {
+      "strategy_type": "volatility_breakout;volume_based",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "BB_RPB_TSL_c7c477d_20211030": {
       "strategy_type": "mean_reversion;scalping;trend_following;volume_based",
@@ -405,6 +605,11 @@
       "strategy_type": "grid_dca;mean_reversion;scalping;volume_based",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RTR_dca": {
+      "strategy_type": "grid_dca",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "BB_Strategy04": {
       "strategy_type": "mean_reversion",
@@ -466,6 +671,11 @@
       "timeframe": "15m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "BaseNNStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "BaseStrategy": {
       "strategy_type": "ml_ai",
       "timeframe": "15m",
@@ -513,6 +723,11 @@
     },
     "BeastBotXBLR7": {
       "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Best5m": {
+      "strategy_type": "mean_reversion;momentum;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
@@ -626,10 +841,30 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "BinClucMadSMAv1": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "BinClucMadSMAv2": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "BinClucMadV1": {
       "strategy_type": "mean_reversion;momentum;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "BinClucMadv1": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "BinClucMadv2": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "BinHV27": {
       "strategy_type": "momentum;scalping",
@@ -637,6 +872,11 @@
       "timeframe_evidence": "timeframe_attr"
     },
     "BinHV27F": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BinHV27_combined": {
       "strategy_type": "momentum;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
@@ -691,6 +931,16 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "BitcoinMLStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BlendBasket": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "BlueEyes_MPP_v1": {
       "strategy_type": "scalping;trend_following",
       "timeframe": "5m",
@@ -710,6 +960,11 @@
       "strategy_type": "mean_reversion;momentum;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "BollingerBounce_Shorts": {
+      "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "BopTrendStrategy": {
       "strategy_type": "mean_reversion;momentum;scalping;trend_following",
@@ -738,6 +993,11 @@
     },
     "BuyDips": {
       "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "BuyHoldBasket": {
+      "strategy_type": "always_in_market;portfolio_rotation",
       "timeframe": "",
       "timeframe_evidence": ""
     },
@@ -861,10 +1121,35 @@
       "timeframe": "1m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "Cluc4werk_ETH": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Cluc5mDCA": {
+      "strategy_type": "grid_dca",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "Cluc5werk": {
       "strategy_type": "mean_reversion;momentum;scalping",
       "timeframe": "1m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "Cluc5werk_BTC": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Cluc5werk_ETH": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Cluc5werk_USD": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "Cluc7werk": {
       "strategy_type": "mean_reversion;momentum;scalping",
@@ -876,8 +1161,38 @@
       "timeframe": "",
       "timeframe_evidence": ""
     },
+    "ClucCrypROI_BTC": {
+      "strategy_type": "trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucCrypROI_ETH": {
+      "strategy_type": "trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "ClucCrypSlow": {
       "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ClucCrypSlow_BTC": {
+      "strategy_type": "trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucCrypSlow_ETH": {
+      "strategy_type": "trend_following",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucDCA": {
+      "strategy_type": "grid_dca",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ClucDCAV2": {
+      "strategy_type": "grid_dca",
       "timeframe": "",
       "timeframe_evidence": ""
     },
@@ -911,6 +1226,11 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "ClucHAnix_5M_E0V1E_DYNAMIC_TB": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "ClucHAnix_5m": {
       "strategy_type": "mean_reversion;momentum;scalping",
       "timeframe": "5m",
@@ -920,6 +1240,11 @@
       "strategy_type": "mean_reversion;momentum;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix_5mTB1": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "ClucHAnix_5m_old": {
       "strategy_type": "mean_reversion;momentum;scalping",
@@ -946,15 +1271,35 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "ClucHAnix_BB_RPB_MOD2_ROI_DYNAMIC_TB": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "ClucHAnix_BB_RPB_MOD_CTT": {
       "strategy_type": "mean_reversion;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "ClucHAnix_BB_RPB_MOD_CTT_DTB": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ClucHAnix_BB_RPB_MOD_CTT_STB": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "ClucHAnix_BB_RPB_MOD_E0V1E_ROI": {
       "strategy_type": "mean_reversion;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAnix_BB_RPB_MOD_E0V1E_ROI_DYNAMIC_TB": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "ClucHAnix_BB_RPB_MOD_trailing_buy": {
       "strategy_type": "mean_reversion;scalping",
@@ -966,15 +1311,50 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "ClucHAnix_BTC": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ClucHAnix_ETH": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ClucHAnix_USD": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "ClucHAnix_hhll": {
       "strategy_type": "scalping;trend_following;volume_based",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "ClucHAnix_hhll_TB": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "ClucHAwerk": {
       "strategy_type": "mean_reversion;momentum;scalping",
       "timeframe": "1m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "ClucHAwerk_BTC": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ClucHAwerk_ETH": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ClucHAwerk_USD": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "ClucMay72018": {
       "strategy_type": "momentum;scalping",
@@ -1034,6 +1414,11 @@
     "CombinedBinHAndClucV4": {
       "strategy_type": "mean_reversion;momentum;scalping",
       "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "CombinedBinHAndClucV4WS": {
+      "strategy_type": "mean_reversion;momentum",
+      "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
     },
     "CombinedBinHAndClucV5": {
@@ -1131,6 +1516,11 @@
       "timeframe": "",
       "timeframe_evidence": ""
     },
+    "CompleteIndicatorStrategy2": {
+      "strategy_type": "mean_reversion;momentum;trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "CompositeScoreStrategy": {
       "strategy_type": "momentum;scalping",
       "timeframe": "5m",
@@ -1140,6 +1530,11 @@
       "strategy_type": "mean_reversion;momentum;scalping;trend_following",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "ConstantMixBasket": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "CoppockCurveStrategy": {
       "strategy_type": "momentum;scalping",
@@ -1155,6 +1550,11 @@
       "strategy_type": "mean_reversion;scalping;volatility_breakout",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "CppiBasket": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "CrossEMAStrategy": {
       "strategy_type": "mean_reversion",
@@ -1346,6 +1746,11 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "DevDsl2Approx": {
+      "strategy_type": "mean_reversion;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "DevilStra": {
       "strategy_type": "multi_indicator",
       "timeframe": "4h",
@@ -1426,8 +1831,18 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "E0V1E_3": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "E0V1E_DCA3": {
       "strategy_type": "grid_dca;mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "E0V1E_Shorts": {
+      "strategy_type": "mean_reversion;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
@@ -1446,10 +1861,20 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "EDTMA_Long_Short_prot_CE_1h_3Lev_3mt_March": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "EI1_t4c0s_V4": {
       "strategy_type": "grid_dca;mean_reversion;trend_following;volatility_breakout",
       "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "EI3v2_tag_cofi_dca_green": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "EI3v2_tag_cofi_green": {
       "strategy_type": "mean_reversion;scalping",
@@ -1462,6 +1887,11 @@
       "timeframe_evidence": "timeframe_attr"
     },
     "EI4_t4c0s_V2_2": {
+      "strategy_type": "grid_dca;mean_reversion;scalping;trend_following;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "EI4_t4c0s_V2_2_Shorts": {
       "strategy_type": "grid_dca;mean_reversion;scalping;trend_following;volatility_breakout",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
@@ -1528,6 +1958,11 @@
     },
     "EMA_Trailing_Stoploss_LessMagic": {
       "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ETCG_Shorts": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
@@ -1629,6 +2064,11 @@
     "Enchilada": {
       "strategy_type": "scalping;trend_following",
       "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Enchilada_Slow": {
+      "strategy_type": "unclassified",
+      "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
     },
     "EnsembleStrategy": {
@@ -1841,6 +2281,21 @@
       "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
     },
+    "FenixTopProfit": {
+      "strategy_type": "grid_dca;momentum;volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Fibbo": {
+      "strategy_type": "ml_ai",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FibonacciEMATrendStrategy": {
+      "strategy_type": "trend_following",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "FileLoadingStrategy": {
       "strategy_type": "trend_following",
       "timeframe": "",
@@ -1894,6 +2349,11 @@
     "FrayStratBTC": {
       "strategy_type": "mean_reversion;momentum;trend_following;volatility_breakout",
       "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "FreqAIHybridStrategy": {
+      "strategy_type": "ml_ai;scalping",
+      "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
     "FreqaiBinaryClassStrategy": {
@@ -1983,6 +2443,11 @@
     },
     "GKD_FisherTransformMTF": {
       "strategy_type": "volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "GKD_FisherTransformV4_ML": {
+      "strategy_type": "ml_ai",
       "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
     },
@@ -2091,6 +2556,11 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "GnF_V2": {
+      "strategy_type": "volatility_breakout",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "GodCard": {
       "strategy_type": "scalping;trend_following",
       "timeframe": "5m",
@@ -2161,6 +2631,11 @@
       "timeframe": "1d",
       "timeframe_evidence": "timeframe_attr"
     },
+    "HPStrategy_12_27": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;trend_following;volatility_breakout",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "HSI": {
       "strategy_type": "scalping",
       "timeframe": "5m",
@@ -2179,6 +2654,11 @@
     "Hacklemore3": {
       "strategy_type": "scalping;trend_following",
       "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Hacklemore_Slow": {
+      "strategy_type": "unclassified",
+      "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
     },
     "Hacklemost": {
@@ -2281,6 +2761,16 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "HyperoptableStrategy": {
+      "strategy_type": "not_applicable",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "HyperoptableStrategyV2": {
+      "strategy_type": "not_applicable",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "IFutures": {
       "strategy_type": "not_applicable",
       "timeframe": "",
@@ -2309,6 +2799,11 @@
     "Ichimoku": {
       "strategy_type": "scalping;trend_following",
       "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "IchimokuCloudBreakoutStrategy": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "4h",
       "timeframe_evidence": "timeframe_attr"
     },
     "IchimokuCloudStrategy": {
@@ -2396,6 +2891,11 @@
       "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
     },
+    "InverseVolBasket": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "InverseVolatilityPortfolio": {
       "strategy_type": "grid_dca",
       "timeframe": "1d",
@@ -2461,12 +2961,22 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "KamaFama_2_20250115": {
+      "strategy_type": "mean_reversion;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "Kamaflage": {
       "strategy_type": "momentum;scalping;trend_following",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
     "KeltnerBounce": {
+      "strategy_type": "mean_reversion;momentum;trend_following;volatility_breakout",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "KeltnerBounce_Shorts": {
       "strategy_type": "mean_reversion;momentum;trend_following;volatility_breakout",
       "timeframe": "",
       "timeframe_evidence": ""
@@ -2491,6 +3001,11 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "Lateralus_Slow": {
+      "strategy_type": "unclassified",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "LeoStrategy": {
       "strategy_type": "momentum",
       "timeframe": "4h",
@@ -2510,6 +3025,21 @@
       "strategy_type": "volatility_breakout",
       "timeframe": "15m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "LitmusBBStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "LitmusBBTrendStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "LitmusClucStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "LitmusEntryRollClassificationStrategy": {
       "strategy_type": "ml_ai",
@@ -2561,10 +3091,40 @@
       "timeframe": "",
       "timeframe_evidence": ""
     },
+    "LitmusSARStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "LitmusScalpStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "LitmusSimpleStrategy": {
       "strategy_type": "ml_ai;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "LitmusTrendScalpStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "LitmusVulcanStrategy": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "Lmao": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "LmaoStoplossClusterOpt": {
+      "strategy_type": "grid_dca;volatility_breakout;volume_based",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "LongShortRangeTradingMachetesV1": {
       "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout",
@@ -2711,6 +3271,21 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "MASlopeStrategy": {
+      "strategy_type": "trend_following",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "MAStopLossStrategy": {
+      "strategy_type": "trend_following",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "MATrailingStopLossStrategy": {
+      "strategy_type": "trend_following",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "MFI": {
       "strategy_type": "mean_reversion;scalping",
       "timeframe": "5m",
@@ -2826,10 +3401,20 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "MinVarianceBasket": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "MiniLambo": {
       "strategy_type": "mean_reversion;momentum;scalping",
       "timeframe": "1m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "MiniLambo_TBS": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "MinimumVariancePortfolio": {
       "strategy_type": "grid_dca",
@@ -2851,6 +3436,16 @@
       "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
     },
+    "MomentumBasket": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "MomentumCCITrendStrategy": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "MomentumRegimeBasket": {
       "strategy_type": "momentum;portfolio_rotation",
       "timeframe": "1d",
@@ -2860,6 +3455,11 @@
       "strategy_type": "grid_dca",
       "timeframe": "15m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "MomentumRegimeBasket15mFast": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "MomentumScoreStrategy": {
       "strategy_type": "momentum;scalping",
@@ -2876,6 +3476,11 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "MoniGoManiHyperStrategy": {
+      "strategy_type": "mean_reversion;momentum;trend_following;volume_based",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "MontrealStrategy": {
       "strategy_type": "mean_reversion",
       "timeframe": "15m",
@@ -2883,6 +3488,11 @@
     },
     "MostOfAll": {
       "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "MtfScalper": {
+      "strategy_type": "ml_ai;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
@@ -2910,6 +3520,11 @@
       "strategy_type": "scalping;trend_following;volatility_breakout;volume_based",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "MultiMA_TSL3a": {
+      "strategy_type": "trend_following;volatility_breakout;volume_based",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "MultiMA_TSL3b": {
       "strategy_type": "scalping;trend_following;volatility_breakout;volume_based",
@@ -2975,6 +3590,26 @@
       "strategy_type": "mean_reversion;momentum;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "NASOSv5HO": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NASOSv5PD": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NASOSv5SL": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NASOSv5_antipump": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "NASOSv5_mod1": {
       "strategy_type": "mean_reversion;momentum;scalping",
@@ -3101,6 +3736,11 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "NFIX7Risk": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "NFIX_BB_RPB": {
       "strategy_type": "mean_reversion;momentum;scalping;volatility_breakout;volume_based",
       "timeframe": "5m",
@@ -3116,10 +3756,440 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "NNPredict_AdditiveAttention": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_Attention": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_CNN": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_GRU": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_LSTM0": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_LSTM2": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_LSTM3": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_MLP": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_Multihead": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_NBeats": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_NHiTS": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_NLinear": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_Ray": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_TCN": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_TFT": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_Transformer": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_Wavenet": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_Wavenet2": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_dTransformer": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNPredict_kTFT": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "NNTC": {
       "strategy_type": "ml_ai;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "NNTC_adx2_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_adx3_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_adx_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_all_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_aroon_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_bbw_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_bbw_Transformer": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_dwt2_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_dwt_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_fbb_AdditiveAttention": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_fbb_Attention": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_fbb_Ensemble": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_fbb_GRU": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_fbb_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_fbb_Multihead": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_fbb_Transformer": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_fbb_Wavenet": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_fwr_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_highlow_Ensemble": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_highlow_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_jump_Ensemble": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_jump_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_jump_Transformer": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_macd2_Attention": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_macd3_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_macd_Attention": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_macd_Ensemble": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_macd_GRU": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_macd_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_macd_Multihead": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_macd_TCN": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_macd_Transformer": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_mfi_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_minmax_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_nseq_Attention": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_nseq_Ensemble": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_nseq_GRU": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_nseq_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_nseq_Transformer": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_nseq_Wavenet": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_over_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_profit_AdditiveAttention": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_profit_Attention": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_profit_CNN": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_profit_Ensemble": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_profit_GRU": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_profit_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_profit_LSTM2": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_profit_LSTM3": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_profit_MLP": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_profit_Multihead": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_profit_TCN": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_profit_Transformer": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_profit_Wavenet": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_profit_Wavenet2": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_profit_Wavenet3": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_pv_Ensemble": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_pv_LSTM": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_pv_MLP": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_pv_Multihead": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_pv_Wavenet": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_slope_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_smooth_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_stochastic_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "NNTC_swing_LSTM": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "NOTankAi_15": {
       "strategy_type": "grid_dca;mean_reversion;momentum;volatility_breakout;volume_based",
@@ -3164,6 +4234,11 @@
     "NeuroV1": {
       "strategy_type": "volatility_breakout",
       "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NewsHeliusBitqueryML": {
+      "strategy_type": "grid_dca;momentum;scalping;volatility_breakout",
+      "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
     "NfiNextModded": {
@@ -3233,6 +4308,11 @@
     },
     "NostalgiaForInfinityNext_ChangeToTower_V6": {
       "strategy_type": "mean_reversion;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "NostalgiaForInfinityNext_ChangeToTower_V6_Short": {
+      "strategy_type": "mean_reversion;scalping;volume_based",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
@@ -3351,6 +4431,11 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "NostalgiaForInfinityX8": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;trend_following;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "NostalgiaForInfinityXw": {
       "strategy_type": "mean_reversion;momentum;scalping;trend_following;volatility_breakout;volume_based",
       "timeframe": "5m",
@@ -3421,6 +4506,11 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "OBOnlyWSv2bband": {
+      "strategy_type": "momentum;scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "ONS_Portfolio": {
       "strategy_type": "grid_dca;scalping",
       "timeframe": "5m",
@@ -3429,6 +4519,11 @@
     "ONUR": {
       "strategy_type": "mean_reversion",
       "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "ORBAlgo": {
+      "strategy_type": "scalping;volatility_breakout",
+      "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
     "ObeliskIM_v1_1": {
@@ -3501,6 +4596,11 @@
       "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
     },
+    "OsirisXRSI": {
+      "strategy_type": "scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "OversoldReversion": {
       "strategy_type": "grid_dca",
       "timeframe": "1h",
@@ -3510,6 +4610,76 @@
       "strategy_type": "ml_ai;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "PCA_dwt": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "PCA_fbb": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "PCA_fwr": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "PCA_highlow": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "PCA_jump": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "PCA_macd": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "PCA_mfi": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "PCA_minmax": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "PCA_nseq": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "PCA_over": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "PCA_profit": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "PCA_pv": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "PCA_stochastic": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "PCA_swing": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "PRICEFOLLOWING": {
       "strategy_type": "mean_reversion;momentum;scalping;trend_following",
@@ -3684,6 +4854,11 @@
     "RSI_BB": {
       "strategy_type": "mean_reversion",
       "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "RSI_BB_MACD_Nov_2023_1h_2_Dec": {
+      "strategy_type": "momentum;trend_following;volatility_breakout",
+      "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
     },
     "RSI_EMA_strategy": {
@@ -3881,6 +5056,16 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "SMAOffsetProtectOptV1Mod2_antipump": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "SMAOffsetProtectOptV1_1": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "SMAOffsetProtectOptV1_kkeue_20210619": {
       "strategy_type": "mean_reversion;momentum;scalping",
       "timeframe": "5m",
@@ -3915,6 +5100,11 @@
       "strategy_type": "mean_reversion;scalping;volatility_breakout",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "SMAoffset_antipump_div": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "SRsi": {
       "strategy_type": "mean_reversion;scalping",
@@ -3981,9 +5171,29 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "Schism2_BTC": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Schism2_ETH": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "Schism3": {
       "strategy_type": "momentum;scalping",
       "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Schism3_BTC": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Schism3_ETH": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
     },
     "Schism4": {
@@ -3991,13 +5201,53 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "Schism4_BTC": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Schism4_ETH": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "Schism5": {
       "strategy_type": "mean_reversion;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "Schism5_BTC": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Schism5_ETH": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "Schism6": {
       "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Schism6_BTC": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Schism6_ETH": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Schism_BTC": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Schism_ETH": {
+      "strategy_type": "mean_reversion;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
@@ -4041,9 +5291,19 @@
       "timeframe": "1d",
       "timeframe_evidence": "timeframe_attr"
     },
+    "SimpleRSI_Shorts": {
+      "strategy_type": "grid_dca;volatility_breakout",
+      "timeframe": "1d",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "SimpleRiskFilterStrategy": {
       "strategy_type": "scalping",
       "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SimpleStrategy": {
+      "strategy_type": "momentum;volatility_breakout",
+      "timeframe": "15m",
       "timeframe_evidence": "timeframe_attr"
     },
     "SlowPotato": {
@@ -4091,8 +5351,28 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "Solipsis3_BTC": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Solipsis3_ETH": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "Solipsis4": {
       "strategy_type": "momentum;scalping;trend_following",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Solipsis4_BTC": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Solipsis4_ETH": {
+      "strategy_type": "scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
@@ -4101,9 +5381,29 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "Solipsis5_BTC": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Solipsis5_ETH": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "Solipsis6": {
       "strategy_type": "momentum;scalping;volatility_breakout",
       "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Solipsis6_BTC": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Solipsis6_ETH": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
     },
     "SolipsisCon": {
@@ -4111,8 +5411,38 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "SolipsisCon_BTC": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "SolipsisMM": {
       "strategy_type": "momentum;scalping;volatility_breakout",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SolipsisMM_BTC": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SolipsisMM_ETH": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Solipsis_BTC": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Solipsis_ETH": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Solipsis_USD": {
+      "strategy_type": "scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
@@ -4151,6 +5481,21 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "StarRise_V2": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "StarRise_V3": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "StarRise_dca": {
+      "strategy_type": "grid_dca",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "StarRise_strat": {
       "strategy_type": "grid_dca;mean_reversion;momentum;scalping",
       "timeframe": "5m",
@@ -4168,6 +5513,16 @@
     },
     "Stinkfist": {
       "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Stinkfist_BTC": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "Stinkfist_ETH": {
+      "strategy_type": "scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
@@ -4190,6 +5545,11 @@
       "strategy_type": "mean_reversion;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "StopLossStrategy": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "Strategy": {
       "strategy_type": "not_applicable",
@@ -4256,14 +5616,44 @@
       "timeframe": "",
       "timeframe_evidence": ""
     },
+    "StrategyTestV3CustomEntryPrice": {
+      "strategy_type": "not_applicable",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "StrategyTestV3Futures": {
+      "strategy_type": "not_applicable",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "SuperBuy": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "SuperHV27": {
       "strategy_type": "momentum;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SuperHV27_BTC": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SuperHV27_ETH": {
+      "strategy_type": "scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
     "SuperReversal_mtf": {
       "strategy_type": "trend_following",
       "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "SuperReversal_mtf_5min": {
+      "strategy_type": "scalping",
+      "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
     "SuperTrend": {
@@ -4321,6 +5711,21 @@
       "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
     },
+    "TM3MultiClass": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TPActivatingTSLwithInitialTSLStrategy": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TPActivatingTSLwithSLStrategy": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "TRIWAVE": {
       "strategy_type": "grid_dca;mean_reversion",
       "timeframe": "15m",
@@ -4340,6 +5745,21 @@
       "strategy_type": "ml_ai;scalping",
       "timeframe": "1m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "TS_Coeff": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TS_Gain": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TS_Wavelet": {
+      "strategy_type": "ml_ai",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "TWAPStrategy": {
       "strategy_type": "grid_dca",
@@ -4416,7 +5836,32 @@
       "timeframe": "15m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "TestStrategyImplementBuyTimeout": {
+      "strategy_type": "not_applicable",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TestStrategyImplementCustomSell": {
+      "strategy_type": "not_applicable",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TestStrategyImplementEmptyWorking": {
+      "strategy_type": "not_applicable",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TestStrategyImplementSellTimeout": {
+      "strategy_type": "not_applicable",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "TestStrategyLegacyV1": {
+      "strategy_type": "not_applicable",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TestStrategyNoImplementSell": {
       "strategy_type": "not_applicable",
       "timeframe": "",
       "timeframe_evidence": ""
@@ -4461,6 +5906,46 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "TrailingBuySellStrat": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TrailingBuyStrat": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TrailingBuyStrat2": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TrailingBuyStrat2a": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TrailingBuyStratCluc": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TrailingBuyStratCluc5m": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TrailingBuyStratClucBBRPBMODE": {
+      "strategy_type": "always_in_market",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "TrailingStopLossStrategy": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "TrainCatBoostStrategy": {
       "strategy_type": "ml_ai",
       "timeframe": "",
@@ -4504,6 +5989,11 @@
     "TripleEmaStrategy": {
       "strategy_type": "mean_reversion;momentum;scalping",
       "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "TripleSuperTrendADXRSI": {
+      "strategy_type": "trend_following;volatility_breakout",
+      "timeframe": "1h",
       "timeframe_evidence": "timeframe_attr"
     },
     "TrixSignalStrategy": {
@@ -4566,6 +6056,11 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "UltraSmartStrategy": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;stat_arb;trend_following;volatility_breakout;volume_based",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "UniversalMACD": {
       "strategy_type": "momentum;scalping",
       "timeframe": "5m",
@@ -4591,6 +6086,16 @@
       "timeframe": "1m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "UziChanTB": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "UziChanTB2": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "VWAP": {
       "strategy_type": "scalping;volume_based",
       "timeframe": "5m",
@@ -4600,6 +6105,51 @@
       "strategy_type": "scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "ViNBuyLc2": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ViNBuyPct": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ViNBuyPctLc2": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ViNBuyVws": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ViNSellCorr": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ViNSellEps": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ViNSellRiseCorrFall": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "ViNSellRiseFall": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "VolTargetBasket": {
+      "strategy_type": "unclassified",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "VolatilitySystem": {
       "strategy_type": "grid_dca;volatility_breakout",
@@ -4706,6 +6256,11 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "ZaratustraV31": {
+      "strategy_type": "mean_reversion",
+      "timeframe": "1h",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "Zeus": {
       "strategy_type": "trend_following",
       "timeframe": "4h",
@@ -4713,6 +6268,11 @@
     },
     "_Concrete": {
       "strategy_type": "not_applicable",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
+    "_Strat": {
+      "strategy_type": "ml_ai",
       "timeframe": "",
       "timeframe_evidence": ""
     },
@@ -4791,6 +6351,16 @@
       "timeframe": "1m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "binance": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "binance_shorts": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "botbaby": {
       "strategy_type": "momentum;trend_following",
       "timeframe": "30m",
@@ -4859,6 +6429,11 @@
     "e6v34": {
       "strategy_type": "mean_reversion;trend_following",
       "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "el_extrema_RL": {
+      "strategy_type": "ml_ai;scalping",
+      "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
     "eltoro": {
@@ -4981,6 +6556,11 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "ichiV1_plus": {
+      "strategy_type": "grid_dca;trend_following;volatility_breakout",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "kac_index_v1": {
       "strategy_type": "grid_dca;mean_reversion;volatility_breakout",
       "timeframe": "1h",
@@ -5081,6 +6661,11 @@
       "timeframe": "1d",
       "timeframe_evidence": "timeframe_attr"
     },
+    "newstrategy4": {
+      "strategy_type": "grid_dca;mean_reversion;momentum;scalping;volatility_breakout;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "newstrategy53": {
       "strategy_type": "grid_dca;mean_reversion;momentum;scalping;volatility_breakout;volume_based",
       "timeframe": "5m",
@@ -5141,6 +6726,11 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "strat_dca": {
+      "strategy_type": "grid_dca",
+      "timeframe": "",
+      "timeframe_evidence": ""
+    },
     "strategy_test_v3_recursive_issue": {
       "strategy_type": "not_applicable",
       "timeframe": "",
@@ -5170,6 +6760,11 @@
       "strategy_type": "momentum",
       "timeframe": "6h",
       "timeframe_evidence": "timeframe_attr"
+    },
+    "tbedit": {
+      "strategy_type": "momentum",
+      "timeframe": "",
+      "timeframe_evidence": ""
     },
     "tbtest": {
       "strategy_type": "mean_reversion;momentum;scalping",

@@ -1,0 +1,68 @@
+{
+  "results": {
+    "multi_tf": {
+      "canonical_sha256": "sha256_eb182eaecb785864496023f26be7932857b1e495805c37bddd562d6b1100683b",
+      "class1_rules": [
+        "whitespace_tolerant_class_scan",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "elapsed_s": 24.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy multi_tf --strategy-path user_data/profile_bias_strategies/multi_tf-1362b53b --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_1f82c8b26adad84724028457c4f7561e9dcdb83a2ac6ae68542b331a6462eaac",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20200301-20200601",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/multi_tf-1362b53b-recursive.log",
+        "drifts": [
+          [
+            "rsi_1h",
+            -0.014
+          ],
+          [
+            "rsi_30m",
+            0.005
+          ],
+          [
+            "btc_usdt_rsi_1h",
+            -0.014
+          ],
+          [
+            "BTC_rsi_fast_upper_1h",
+            0.0
+          ],
+          [
+            "eth_btc_rsi_1h",
+            0.009
+          ],
+          [
+            "rsi",
+            0.019
+          ]
+        ],
+        "elapsed_s": 5.2,
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy multi_tf --strategy-path user_data/profile_bias_strategies/multi_tf-1362b53b --timerange 20200301-20200601 --no-color --startup-candle 288",
+        "output_sha256": "sha256_21337162cdc7c3ce92bf06be304fadda940f1e7fab600ffa36eba6893194ad75",
+        "runtime_id": "native_unversioned",
+        "settled_startup_candle_count": 288,
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "recursive drift: rsi_1h -0.014%, btc_usdt_rsi_1h -0.014%, rsi 0.019%"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    }
+  },
+  "schema_version": 1,
+  "superseded": {}
+}

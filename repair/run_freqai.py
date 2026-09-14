@@ -6,14 +6,24 @@ Enabling it needs a `freqai` block, and that block is not something the strategy
 supplies - training window, retrain cadence, feature expansion and the model
 itself are all chosen by whoever runs it.
 
-THIS IS THEREFORE NOT A CLASS 1 REPAIR AND NOT COMPARABLE WITH THE SPOT RUN.
-Every number produced here says "this strategy under OUR training setup", not
-"this strategy". Cards are tagged `run_class="freqai"` and must be reported
-separately within the two-population design. The point is to establish that
-these strategies RUN and what they do when they do - not to place them on the
-audit's ladder or to create a third population.
+UNTIL 2026-09-14 THIS WAS THEREFORE TREATED AS NOT A CLASS 1 REPAIR: every
+number this module produces was tagged `run_class="freqai"` and reported on a
+separate, non-comparable track, never entering E1. `ELIGIBILITY_EXPANSION_PLAN.md`
+§4.1 (2026-09-14 amendment, on owner instruction) retired that framing: the
+`freqai` block is restored infrastructure a strategy's own code requires to
+load at all, the same kind of missing piece as `stake_amount`/`pair_whitelist`/
+every other base-config value no strategy file supplies either - not evidence
+about what the strategy does, as long as every value below stays fixed and
+uniform across every strategy in this class rather than tuned per strategy.
+Read §4.1 before changing anything in this file; the amendment's permission is
+conditional on the values below staying exactly this, applied identically to
+every row. A repaired row still needs every other E1 gate (lookahead,
+recursive, coverage, a trade in the frozen window) before admission - this
+module only restores the ability to load and backtest at all, same as any
+other environment repair.
 
-The choices below, stated so they can be disagreed with:
+The choices below, stated so they can be disagreed with - and, per §4.1, fixed
+for every strategy in this class, never varied to change what one produces:
 
   train_period_days      30   one month of training per model
   backtest_period_days    7   retrain weekly
@@ -54,7 +64,18 @@ RX_CAN_SHORT = re.compile(r"""^\s*can_short\s*(?::\s*bool\s*)?=\s*True\b""", re.
 # user_data/config.json this module always used (see build_config()).
 FUTURES_BASE_CONFIG = os.path.join(AUD, "runtime", "profile_futures_config.json")
 
+# IN_RANGE historically started at spot data's own first candle
+# (BTC_USDT-5m.feather: 2018-03-01). Futures candles only go back to
+# 2020-01-01 (BTC_USDT_USDT-5m-futures.feather) - the original range is 100%
+# NaN there, which is why FreqAIHybridStrategy/el_extrema_RL (both
+# can_short=True) failed with "all training data dropped due to NaNs" the
+# first time futures mode ran at all (2026-09-14). FREQAI_IN_RANGE_FUTURES
+# starts a month after that first candle, not at it, so the FIRST retrain
+# inside the window already has a full 30-day train_period_days of real data
+# behind it rather than a partial one - same train_period_days/
+# backtest_period_days as spot, just a start date that exists in the data.
 IN_RANGE = "20180301-20200301"
+FUTURES_IN_RANGE = "20200201-20200301"
 OUT_RANGE = "20200301-20260820"
 
 
@@ -145,7 +166,8 @@ def run_one(job):
     res = {"strategy": name, "file": path, "run_class": "freqai",
            "source_tree": which, "mode": "futures" if can_short else "spot",
            "config": os.path.relpath(cfg, AUD), "runs": {}}
-    for label, rng in (("in_sample", IN_RANGE), ("out_sample", OUT_RANGE)):
+    in_range = FUTURES_IN_RANGE if can_short else IN_RANGE
+    for label, rng in (("in_sample", in_range), ("out_sample", OUT_RANGE)):
         t0 = time.time()
         # Windows application control may block the generated freqtrade.exe
         # console launcher. Running the same installed package as a module uses

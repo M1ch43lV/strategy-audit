@@ -2,8 +2,27 @@
 
 ## Baton
 
-- Last agent: claude
-- Last update: 2026-09-14T21:00:00+02:00
+- Last agent: codex
+- Last update: 2026-09-14T21:45:37+02:00
+- Stopped because: prepared the complete current worktree for an owner-requested
+  checkpoint commit after verifying C11 in the generated status artifact.
+- Next agent should: preserve the generated duplicate decisions and the C11
+  artifact explanation; do not rerun backtests for the six redundant
+  implementations.
+- Artifact template: `tools/STRATEGY_STATUS.template.html` now explains
+  `duplicate_implementation` as C11. `strategy_status.html` was regenerated;
+  its dynamically generated criteria legend and row-detail prose both include
+  C11. `python -m tools.strategy_status_page --selftest` passes.
+- New active evidence feature: `python -m evidence.semantic_duplicates`
+  derives normalized-token duplicate groups from `EXECUTION_PROFILES.csv` and
+  confirms them with canonical Full-Backtest trade hashes where available.
+  It now also generates `SEMANTIC_DUPLICATE_ADJUDICATION.json`: only
+  `confirmed_same_trades` groups exclude redundant members, retaining one
+  deterministic measured representative. Six rows are now `excluded` with
+  `primary_reason=duplicate_implementation`; all six representatives remain
+  E1. C11 documents the criterion. `tools.harvest` automatically refreshes
+  profiles, classification, phase hypotheses, duplicate evidence/adjudication,
+  status and status page when new classes arrive; it starts no measurements.
 - Codex analysis 2026-09-14: `FastSupertrend_optim3_rsi_75fix` is a semantic
   duplicate of `FastSupertrend_optim3_rsi_75`. Canonical normalized executable
   ASTs match after renaming the class and removing the unused `typing` import;

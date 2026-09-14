@@ -53,13 +53,16 @@ import os
 import re
 import subprocess
 import sys
+import argparse
 
 _ROOT = (os.environ.get("AUDIT_ROOT") or
          os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, _ROOT)
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 from tools.harness import find_strategies
-from tools import malware_gate
+from tools import malware_gate, strategy_classification, strategy_status_page
+from evidence import (execution_profiles, market_phase_hypothesis,
+                      semantic_duplicates, strategy_status)
 
 REPOS = os.path.join(_ROOT, "repos")
 # Resolved from PATH rather than a fixed install location, which was specific
@@ -316,11 +319,34 @@ def harvest(full):
     return (full, got, len(names), err)
 
 
-def main():
-    targets = sys.argv[1:]
-    if not targets:
-        print(u"specify repositories separated by spaces")
-        return 2
+def refresh_intake_evidence():
+    """Refresh all source-derived intake artifacts, never measurements."""
+    print(u"refreshing canonical execution profiles...", flush=True)
+    if execution_profiles.main([]) != 0:
+        return 1
+    print(u"refreshing strategy classification...", flush=True)
+    if strategy_classification.main([]) != 0:
+        return 1
+    print(u"refreshing preregistered phase hypotheses...", flush=True)
+    if market_phase_hypothesis.main([]) != 0:
+        return 1
+    print(u"refreshing semantic duplicate evidence...", flush=True)
+    if semantic_duplicates.main([]) != 0:
+        return 1
+    print(u"refreshing generated status and status page...", flush=True)
+    if strategy_status.main([]) != 0:
+        return 1
+    return strategy_status_page.main([])
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(
+        description="Harvest strategy source files and refresh intake evidence.")
+    parser.add_argument("--no-refresh", action="store_true",
+                        help="download only; skip profile and duplicate evidence refresh")
+    parser.add_argument("targets", nargs="+", help="GitHub repositories as owner/repo")
+    args = parser.parse_args(argv)
+    targets = args.targets
     base = set()
     for x in sorted(os.listdir(REPOS)):
         p = os.path.join(REPOS, x)
@@ -328,6 +354,7 @@ def main():
             base |= {n for _f, n in find_strategies(p)}
     print(u"unique classes before fetch: %d" % len(base), flush=True)
     grand = set(base)
+    added = 0
     for full in targets:
         name, got, cls, err = harvest(full)
         if err and got == 0:
@@ -337,12 +364,22 @@ def main():
         names = {n for _f, n in find_strategies(p)}
         new = names - grand
         grand |= names
+        added += len(new)
         print(u"  %-46s files %3d · classes %3d · NEW %3d%s"
               % (name, got, len(names), len(new),
                  (u"  [%s]" % err) if err else u""), flush=True)
     print()
     print(u"unique classes now: %d (increase %d)"
           % (len(grand), len(grand) - len(base)))
+    if added and not args.no_refresh:
+        if refresh_intake_evidence() != 0:
+            print(u"harvest succeeded but intake evidence refresh failed", file=sys.stderr)
+            return 1
+    elif added:
+        print(u"new classes downloaded; evidence refresh skipped by --no-refresh")
+    else:
+        print(u"no new classes; intake evidence already remains current")
+    return 0
 
 
 if __name__ == "__main__":

@@ -82,6 +82,8 @@ CLASSIFICATION = os.path.join(ROOT, "evidence/STRATEGY_CLASSIFICATION.json")
 # and it is carried here so the benchmark reads it from the same table it
 # reports against rather than from a note somebody kept separately.
 PHASE_HYPOTHESIS = os.path.join(ROOT, "evidence/MARKET_PHASE_HYPOTHESIS.json")
+DUPLICATE_ADJUDICATION = os.path.join(
+    ROOT, "evidence/SEMANTIC_DUPLICATE_ADJUDICATION.json")
 
 # What has actually become of a row that could not start. The triage says what
 # ought to be done; these say what was done and what it achieved, which is a
@@ -194,6 +196,9 @@ REASON_ORDER = (
      "the fix is understood - pandas' or numpy's own type-coercion rules "
      "have tightened - but applying it would touch every strategy's column "
      "writes, not just this row's; declined, owner's call 2026-09-04"),
+    ("duplicate_implementation",
+     "duplicates the executable code and canonical full-backtest trade set "
+     "of a retained representative"),
     ("canonical_implementation_not_measured", "never ran"),
     ("no_verdict_on_lookahead_and_recursive", "measured; neither gate returned a verdict"),
     ("no_verdict_on_lookahead", "measured and recursion clean; look-ahead has no verdict"),
@@ -674,6 +679,11 @@ def rows():
     waves = {r["strategy_id"]: r for r in _csv(CANDIDATES)}
     admitted = {r["strategy_id"] for r in _csv(ADJUDICATION)
                 if r["adjudication_status"] == "admitted_E1"}
+    duplicate_decisions = {
+        row["strategy_id"]: row
+        for row in _json(DUPLICATE_ADJUDICATION, "decisions")
+        if row.get("decision") == "excluded_duplicate_implementation"
+    }
     classification = _json(CLASSIFICATION)
     phase_hypothesis = _json(PHASE_HYPOTHESIS)
     smoke = dict(_json(SMOKE))
@@ -999,12 +1009,16 @@ def rows():
             and "needs to be greater than trailing_stop_positive"
                in (gate_record.get("why") or ""))
         ran_here = bool(measurement or diagnostics or window or settled)
+        reason = ""
         if role != "strategy":
             # Decided before any measurement is consulted, because no
             # measurement can change it. `StrategyTestV2` clears both bias
             # checks with 26070 trades behind it and is still a fixture from
             # freqtrade's own test suite.
             cohort = "not_a_strategy"
+        elif strategy in duplicate_decisions:
+            cohort = "excluded"
+            reason = "duplicate_implementation"
         elif strategy in admitted:
             cohort = "E1_expanded"
         elif settled.get("state") == "converged" and lookahead == "PASS" \
@@ -1068,7 +1082,6 @@ def rows():
         else:
             cohort = "excluded"
 
-        reason = ""
         if cohort in ("excluded", "pending", "too_few_trades"):
             if cohort == "too_few_trades":
                 # Decided by the cohort, not by the frozen reason set: the
@@ -1281,6 +1294,8 @@ def rows():
         basis = exclusion_basis(reason, lookahead_evidence, source,
                                 recursive_evidence) \
             if cohort in ("excluded", "pending", "too_few_trades") else ""
+        if reason == "duplicate_implementation":
+            basis = "own_measurement"
         # `excluded` is a verdict, and this audit does not issue a verdict on
         # somebody else's measurement or on the absence of one. A row whose
         # exclusion rests on an inherited result, or on no result at all, is
@@ -2376,8 +2391,11 @@ def selftest():
                     in FULL_BACKTEST_NOT_TESTABLE}
     assert c10 == expected_c10, (sorted(c10 ^ expected_c10),
                                  len(c10), len(expected_c10))
+    duplicates = {row["strategy_id"] for row in
+                  _json(DUPLICATE_ADJUDICATION, "decisions")
+                  if row.get("decision") == "excluded_duplicate_implementation"}
     assert {row["strategy_id"] for row in data
-            if row["cohort"] == "E1_expanded"} == admitted - c10
+            if row["cohort"] == "E1_expanded"} == admitted - c10 - duplicates
     completed = [row for row in data
                  if row["technical_chain_complete"] == "true"]
     assert completed, "expected current canonical full-backtest completions"
@@ -2420,6 +2438,7 @@ def selftest():
                 or row["primary_reason"] == "measured_only_in_freqai_arm"
                 or row["primary_reason"] == "third_party_package_declined"
                 or row["primary_reason"] == "shared_runtime_change_declined"
+                or row["primary_reason"] == "duplicate_implementation"
             ), (row["strategy_id"], row["primary_reason"],
                 row["lookahead"], row["recursive_evidence"])
         # A trap is a fact about the source, never a verdict. It may sit on

@@ -1,0 +1,59 @@
+{
+  "results": {
+    "QuickBuyStrategy": {
+      "canonical_sha256": "sha256_776e43f9937398aa4acc843edffc4ba47d421b887fd5bbd2f16eef8dce072ed7",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "elapsed_s": 7.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy QuickBuyStrategy --strategy-path user_data/profile_bias_strategies/QuickBuyStrategy-e4bfe3e8 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_68a705ab010e475a4687907137741489f578ed13799b7fb04583a24daf4d0af1",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20200301-20200601",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/QuickBuyStrategy-e4bfe3e8-recursive.log",
+        "drifts": [
+          [
+            "rsi",
+            2.665
+          ],
+          [
+            "bb_upperband",
+            0.0
+          ],
+          [
+            "bb_lowerband",
+            -0.0
+          ],
+          [
+            "bb_midband",
+            0.0
+          ]
+        ],
+        "elapsed_s": 5.2,
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy QuickBuyStrategy --strategy-path user_data/profile_bias_strategies/QuickBuyStrategy-e4bfe3e8 --timerange 20200301-20200601 --no-color --startup-candle 168",
+        "output_sha256": "sha256_24621c26d35a44e03f986e133df3dd23e08ce4c4a494d45bf6a57b0e08359b53",
+        "runtime_id": "native_unversioned",
+        "settled_startup_candle_count": 168,
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "recursive drift: rsi 2.665%"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    }
+  },
+  "schema_version": 1,
+  "superseded": {}
+}

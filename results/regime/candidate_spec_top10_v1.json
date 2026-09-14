@@ -1,0 +1,891 @@
+{
+  "schema_version": 1,
+  "candidate_set_id": "top10_v1_regime_specialists_trend_gate",
+  "analysis_role": "VALIDATION",
+  "timerange": {
+    "spot": "20200401-20260821",
+    "futures": "20200301-20260821"
+  },
+  "candidates": [
+    {
+      "candidate_id": "ADXDM-trend",
+      "strategy_id": "ADXDM",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "AdaptiveRegime-trend",
+      "strategy_id": "AdaptiveRegime",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "AntigravityGridStrategy-trend",
+      "strategy_id": "AntigravityGridStrategy",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "BBRSIOptim2020Strategy-trend",
+      "strategy_id": "BBRSIOptim2020Strategy",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "BB_RPB_TSL_RNG-trend",
+      "strategy_id": "BB_RPB_TSL_RNG",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "BB_RPB_TSL_RNG_2-trend",
+      "strategy_id": "BB_RPB_TSL_RNG_2",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "BB_RPB_TSL_RNG_TBS-trend",
+      "strategy_id": "BB_RPB_TSL_RNG_TBS",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "BB_RPB_TSL_RNG_TBS_GOLD-trend",
+      "strategy_id": "BB_RPB_TSL_RNG_TBS_GOLD",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "BB_RTR-trend",
+      "strategy_id": "BB_RTR",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "BigTrader-trend",
+      "strategy_id": "BigTrader",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "BinHV27_short-trend",
+      "strategy_id": "BinHV27_short",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "BuyOrDie-trend",
+      "strategy_id": "BuyOrDie",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "Cenderawasih_3_kucoin-trend",
+      "strategy_id": "Cenderawasih_3_kucoin",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "CustomStoplossWithPSAR-trend",
+      "strategy_id": "CustomStoplossWithPSAR",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "E0V1E-trend",
+      "strategy_id": "E0V1E",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "E0V1E2-trend",
+      "strategy_id": "E0V1E2",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "E0V1E_protections-trend",
+      "strategy_id": "E0V1E_protections",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "FBB_DWT-trend",
+      "strategy_id": "FBB_DWT",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "FastSupertrend_optim_quick-trend",
+      "strategy_id": "FastSupertrend_optim_quick",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "GodCard-trend",
+      "strategy_id": "GodCard",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "Hacklemost-trend",
+      "strategy_id": "Hacklemost",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "Ichess-trend",
+      "strategy_id": "Ichess",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "Ichimoku_SenkouSpanCross-trend",
+      "strategy_id": "Ichimoku_SenkouSpanCross",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "Ichimoku_v30-trend",
+      "strategy_id": "Ichimoku_v30",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "Ichimoku_v32-trend",
+      "strategy_id": "Ichimoku_v32",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "Ichimoku_v37-trend",
+      "strategy_id": "Ichimoku_v37",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "KC_BB-trend",
+      "strategy_id": "KC_BB",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "MACD9fall-trend",
+      "strategy_id": "MACD9fall",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "MACD_TRIPLE_MA-trend",
+      "strategy_id": "MACD_TRIPLE_MA",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "MFI-trend",
+      "strategy_id": "MFI",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "MFI2-trend",
+      "strategy_id": "MFI2",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "NASOSv5_mod2-trend",
+      "strategy_id": "NASOSv5_mod2",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "NASOSv5_mod3-trend",
+      "strategy_id": "NASOSv5_mod3",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "NFI46Z-trend",
+      "strategy_id": "NFI46Z",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "Nostalgia-trend",
+      "strategy_id": "Nostalgia",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "NostalgiaForInfinityV7_SMAv2_1-trend",
+      "strategy_id": "NostalgiaForInfinityV7_SMAv2_1",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "NostalgiaForInfinityX-trend",
+      "strategy_id": "NostalgiaForInfinityX",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "NotAnotherSMAOffsetStrategyHO-trend",
+      "strategy_id": "NotAnotherSMAOffsetStrategyHO",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "OversoldReversion-trend",
+      "strategy_id": "OversoldReversion",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "PolymarketMeanReversionStrategy-trend",
+      "strategy_id": "PolymarketMeanReversionStrategy",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "SARCross-trend",
+      "strategy_id": "SARCross",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "SMAOffset_Hippocritical_dca_leverage-trend",
+      "strategy_id": "SMAOffset_Hippocritical_dca_leverage",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "STRATEGY_RSI_BB_CROSS-trend",
+      "strategy_id": "STRATEGY_RSI_BB_CROSS",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "SUPPORT_RESISTANCE-trend",
+      "strategy_id": "SUPPORT_RESISTANCE",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "SimpleBollinger-trend",
+      "strategy_id": "SimpleBollinger",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "Squeeze001-trend",
+      "strategy_id": "Squeeze001",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "StarRise-trend",
+      "strategy_id": "StarRise",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "TemaStrategy-trend",
+      "strategy_id": "TemaStrategy",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "TheRealPullbackV2-trend",
+      "strategy_id": "TheRealPullbackV2",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "TouchEmaStrategy-trend",
+      "strategy_id": "TouchEmaStrategy",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "VWAP-trend",
+      "strategy_id": "VWAP",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "VolatilitySystem-trend",
+      "strategy_id": "VolatilitySystem",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "adaptive_trend-trend",
+      "strategy_id": "adaptive_trend",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "adxbbrsi2-trend",
+      "strategy_id": "adxbbrsi2",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    },
+    {
+      "candidate_id": "eltoro1_4-trend",
+      "strategy_id": "eltoro1_4",
+      "long_btc_states": [
+        "BULL"
+      ],
+      "short_btc_states": [
+        "BEAR"
+      ],
+      "long_coin_states": [
+        "BULL"
+      ],
+      "short_coin_states": [
+        "BEAR"
+      ]
+    }
+  ]
+}

@@ -11,20 +11,13 @@ already narrow (31 hits) and a broader GitHub code search for
 `"populate_indicators" "IStrategy"` returns thousands of forks and copies
 with no signal beyond what a human already filtered for here.
 
-WHY NAME MATCH, NOT CONTENT MATCH. A byte-for-byte or AST-level duplicate
-check would catch a renamed copy pretending to be new; it would also cost one
-download and one parse per candidate file against all 900 canonical files,
-for a question this project answers differently everywhere else -
-`class_block`/`strategy_classification.py` already establishes that a
-strategy's identity is its class name, not its file. A name already in
-`STRATEGY_STATUS.csv` (case-insensitive - ten pairs there already collide only
-on case, `MabStra`/`mabStra` among them) is treated as the same strategy.
-That is a cheaper, coarser test than content hashing and it is the one this
-corpus already uses everywhere else; a `NEW`-flagged class is worth a human's
-look before being counted as a real addition, and this module hands over the
-list rather than deciding for them - it does not check whether a `NEW` name
-is itself a test fixture, an abstract mixin, or a template, only whether the
-name is unclaimed.
+NAME MATCH IS ONLY THE INTAKE CHECK. A name already in `STRATEGY_STATUS.csv`
+(case-insensitive) is treated as already known here because it avoids a remote
+download-and-parse of every candidate against the full local corpus.  A
+`NEW`-flagged class is not thereby a distinct trading implementation: after
+canonicalization, `evidence.semantic_duplicates` performs the local AST and
+full-trade-hash comparison.  The two tools answer different questions and
+neither silently excludes a strategy.
 """
 from __future__ import annotations
 

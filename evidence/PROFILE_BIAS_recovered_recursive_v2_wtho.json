@@ -1,0 +1,65 @@
+{
+  "results": {
+    "WTHO": {
+      "canonical_sha256": "sha256_ca6d8e6c5661d320d68c4160444bf354b5de8bace72e1e8e2d7dba460940cac2",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "elapsed_s": 9.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy WTHO --strategy-path user_data/profile_bias_strategies/WTHO-4257b426 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_e7bac504ac9a811b777e3ebdcd4dcdcd357091a1b3ea9a1ed1ddbb586e4c1d0b",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20200301-20200601",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 360
+        },
+        "drifts": [
+          [
+            "wave_t1_21",
+            0.0
+          ],
+          [
+            "wave_t2_4",
+            0.0
+          ],
+          [
+            "mfi_40",
+            0.0
+          ],
+          [
+            "mfi_sma15",
+            -0.0
+          ],
+          [
+            "sma25",
+            0.0
+          ]
+        ],
+        "elapsed_s": 4.1,
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/WTHO-4257b426_gate.json --strategy WTHO --strategy-path user_data/profile_bias_strategies/WTHO-4257b426 --timerange 20200301-20200601 --no-color --startup-candle 360",
+        "output_sha256": "sha256_e4df653bcda55de31aecee74d37c8f4d91ee893992fce2246aba69afd18b9755",
+        "runtime_id": "native_unversioned",
+        "settled_startup_candle_count": 360,
+        "status": "PASS",
+        "timerange": "20200301-20200601",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    }
+  },
+  "schema_version": 1,
+  "superseded": {}
+}

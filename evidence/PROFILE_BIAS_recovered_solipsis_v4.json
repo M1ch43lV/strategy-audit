@@ -1,0 +1,26 @@
+{
+  "results": {
+    "Solipsis_v4": {
+      "canonical_sha256": "sha256_b176c022c2a9d2236ab4d5aa87958ceba5be65ba0b0bb43ac071a29a6658a501",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/Solipsis_v4-9f45afff-lookahead.log",
+        "elapsed_s": 9.3,
+        "invocation": "freqtrade lookahead-analysis --config runtime/profile_futures_config.json --strategy Solipsis_v4 --strategy-path user_data/profile_bias_strategies/Solipsis_v4-9f45afff --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_d1c9891b2e14c15444855b2b8e9e727a0528292f896ce9113a93eb093857ea0b",
+        "runtime_id": "native_unversioned",
+        "status": "NA",
+        "timerange": "20200301-20200601",
+        "why": "'rmi-up-trend'"
+      },
+      "mode": "futures",
+      "run_profile": "futures_long",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    }
+  },
+  "schema_version": 1,
+  "superseded": {}
+}

@@ -372,18 +372,18 @@
       "attempts": [
         {
           "class1_rules": [],
-          "elapsed_s": 1200.0,
+          "elapsed_s": 3600.0,
           "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexBandSniperV10AI --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexBandSniperV10AI-2adb86cf-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "futures",
           "run_profile": "futures_long_short",
           "status": "timeout",
           "timerange": "20200301-20200401",
-          "why": "timeout after 1200 seconds"
+          "why": "timeout after 3600 seconds"
         }
       ],
       "canonical_sha256": "sha256_8cc2443ab8162af9521f85174859f81f5c72384751fa2449d49d5e7cec880e1e",
       "class1_rules": [],
-      "elapsed_s": 1200.0,
+      "elapsed_s": 3600.0,
       "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexBandSniperV10AI --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexBandSniperV10AI-2adb86cf-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "futures",
       "run_profile": "futures_long_short",
@@ -393,7 +393,7 @@
       "status": "timeout",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "timeout after 1200 seconds"
+      "why": "timeout after 3600 seconds"
     },
     "AlexBandSniperV58COptuna": {
       "archive": "user_data/profile_smoke/AlexBandSniperV58COptuna-28f20120-smoke_20200301_20200401-b4807b77-2026-09-14_19-05-09.zip",

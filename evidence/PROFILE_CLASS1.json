@@ -727,6 +727,16 @@
       ],
       "status": "applied"
     },
+    "FreqAIHybridStrategy": {
+      "config_keys": [
+        "freqai"
+      ],
+      "config_source": "user_data/freqai_configs/FreqAIHybridStrategy.json",
+      "freqaimodel": "LightGBMRegressor",
+      "note": "freqAI runtime restoration per ELIGIBILITY_EXPANSION_PLAN.md Sec.4.1 (2026-09-14 amendment) - this strategy requires freqai.enabled=true to load at all. The fixed freqai config block repair/run_freqai.py defines (train_period_days=30, LightGBMRegressor, etc., identical for every row in this class) is overlaid from the file it already writes; trading_mode/margin_mode/pairs still come from the normal futures base config, chosen by this strategy declaring can_short=True, the same as every other futures row.",
+      "rules": [],
+      "status": "applied"
+    },
     "FreqaiExampleHybridStrategy": {
       "config_keys": [
         "timeframe",
@@ -1631,6 +1641,16 @@
       "rules": [
         "idempotent_entry_tag_initialisation"
       ],
+      "status": "applied"
+    },
+    "el_extrema_RL": {
+      "config_keys": [
+        "freqai"
+      ],
+      "config_source": "user_data/freqai_configs/el_extrema_RL.json",
+      "freqaimodel": "LightGBMRegressor",
+      "note": "freqAI runtime restoration per ELIGIBILITY_EXPANSION_PLAN.md Sec.4.1 (2026-09-14 amendment) - this strategy requires freqai.enabled=true to load at all. The fixed freqai config block repair/run_freqai.py defines (train_period_days=30, LightGBMRegressor, etc., identical for every row in this class) is overlaid from the file it already writes; trading_mode/margin_mode/pairs still come from the normal futures base config, chosen by this strategy declaring can_short=True, the same as every other futures row.",
+      "rules": [],
       "status": "applied"
     },
     "falconTrader": {

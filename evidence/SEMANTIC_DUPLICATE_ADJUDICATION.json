@@ -1,0 +1,53 @@
+{
+  "decisions": [
+    {
+      "canonical_representative": "Chispei",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "normalized_ast_sha256": "sha256_137404e9fb73486b8c82e4fe609c17af005b7a205d32f622c75e867043ae07c4",
+      "strategy_id": "chispei",
+      "trades_sha256": "sha256_7933748efd6f41e4891df8e310450b4a136cef780be49c2c57005f42117735cb"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityV7_SMA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "normalized_ast_sha256": "sha256_a180ea20e36bd86c4a3f8beafa2260018a16a82adb18a456aa1ca0c90c683cff",
+      "strategy_id": "Combined_NFIv7_SMA_bAdBoY_20211204",
+      "trades_sha256": "sha256_85dce6cada742b6e1768f59e0daf70df041423f4e4a3f2cd9a21a3a4a5ae5145"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityV7_SMA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "normalized_ast_sha256": "sha256_a180ea20e36bd86c4a3f8beafa2260018a16a82adb18a456aa1ca0c90c683cff",
+      "strategy_id": "Combined_NFIv7_SMA_Rallipanos_20210707",
+      "trades_sha256": "sha256_85dce6cada742b6e1768f59e0daf70df041423f4e4a3f2cd9a21a3a4a5ae5145"
+    },
+    {
+      "canonical_representative": "FastSupertrend_optim3_rsi_75",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "normalized_ast_sha256": "sha256_2514f6d04ba3bdf251e5a8a4e6269425b4929b03224f98ddba4ed5c062cda1ba",
+      "strategy_id": "FastSupertrend_optim3_rsi_75fix",
+      "trades_sha256": "sha256_62f9e431504d88718ca6b96fe309cb0d72279aec92b3c53f7aa85fc51c31263b"
+    },
+    {
+      "canonical_representative": "MyStratV1",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "normalized_ast_sha256": "sha256_427f3a8e190fbd262c8a613406a269024effab1671b5913ce5f20e1d51a4409c",
+      "strategy_id": "NostalgiaForInfinityV7",
+      "trades_sha256": "sha256_3dcade4d19a21950f07bc4be313981dd6f8967b534b7e4085da2a3d4453374f9"
+    },
+    {
+      "canonical_representative": "Combined_NFIv7_SMA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "normalized_ast_sha256": "sha256_a9e258075a92b4c7ee510c3ccb16aaa8492a99506b4a71a40afeb4ecd43071cb",
+      "strategy_id": "NostalgiaForInfinityV7_SMAv2",
+      "trades_sha256": "sha256_85dce6cada742b6e1768f59e0daf70df041423f4e4a3f2cd9a21a3a4a5ae5145"
+    }
+  ],
+  "schema_version": 1
+}

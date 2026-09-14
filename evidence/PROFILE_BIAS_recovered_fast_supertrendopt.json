@@ -1,0 +1,27 @@
+{
+  "results": {
+    "FastSupertrendOpt": {
+      "canonical_sha256": "sha256_fd703b89d54d63eb37bfed7d10fe69d273ecea0c793b3f32c190cf58df3c92f4",
+      "class1_rules": [
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "elapsed_s": 13.6,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy FastSupertrendOpt --strategy-path user_data/profile_bias_strategies/FastSupertrendOpt-fc13211c --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_8b235fde8486c5cf2c79497ccbbde15a5a1e0a7afe73a261a55d5799d4bdfd2c",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20200301-20200601",
+        "why": "no bias detected"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    }
+  },
+  "schema_version": 1,
+  "superseded": {}
+}

@@ -17,6 +17,14 @@ im System-Python) — meist über die Umgebungsvariable `PROFILE_PYTHON`.
 
 ## Stufe 0 — Corpus-Erfassung (einmalig, oder wenn neue Repos dazukommen)
 
+`python -m tools.harvest owner/repo` is the complete source-intake command.
+When it finds at least one new class, it regenerates execution profiles,
+classification, preregistered phase hypotheses, semantic duplicate evidence,
+duplicate adjudication, strategy status, and the status page in dependency
+order. These are source/report transformations only: harvest never starts a
+smoke run, bias diagnostic, full backtest, or performance-based decision.
+`--no-refresh` is the explicit batch-download escape hatch.
+
 | Programm | Liest | Schreibt |
 |---|---|---|
 | `tools/harvest.py` | GitHub-API (nur `.py`-Dateien mit `IStrategy`) | Dateien unter `repos/<repo>/` |
