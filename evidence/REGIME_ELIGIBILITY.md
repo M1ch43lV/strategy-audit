@@ -1,12 +1,12 @@
 # Regime eligibility — technical Stage 6
 
-**Historical-invalidity warning:** this is the frozen Stage 6 E0
+**Historical-invalidity warning:** this generator reproduces the Stage 6 E0
 classification. E0 was retired on 2026-09-03 because its 67 rows had not all
 completed one uniform audit chain. A `regime_eligible=true` value here grants
 no current admission and must never be used as fallback evidence.
 
 This table is keyed by `strategy_id × run_profile` and uses the single
-canonical implementation selected in `EXECUTION_PROFILES.csv`. It is frozen
+canonical implementation selected in `evidence/EXECUTION_PROFILES.csv`. It is frozen
 before any regime-performance ranking. At the time, eligibility purported to
 mean admission to Stage 7; that interpretation is no longer valid.
 
@@ -30,15 +30,15 @@ from historical spot diagnostics.
 
 Coverage uses available pair history, matching the existing audit. Exact pair
 and candle coverage for the frozen regime window is a hard Stage 7 precondition.
-Until `REGIME_COVERAGE.csv` supplies a `PASS` for a strategy/run-profile row,
+Until `evidence/REGIME_COVERAGE.csv` supplies a `PASS` for a strategy/run-profile row,
 that row remains `pending_diagnostics` rather than being called eligible.
-In this historical classification, 67 rows pass all gates including coverage; 0 pass
+In this historical classification, 121 rows pass all gates including coverage; 0 pass
 every other gate and wait only for coverage.
 
-This report and its CSV are immutable provenance of the invalid E0
-classification and are deliberately not regenerated. Do not combine these 67
+The committed report and CSV are immutable provenance of the invalid E0
+classification and are deliberately not regenerated. Do not combine their 67
 rows with an expansion count. Quote usable strategies only from active
-`admitted_E1` decisions in `ELIGIBILITY_EXPANSION_ADJUDICATION.csv`, exposed as
+`admitted_E1` decisions in `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv`, exposed as
 `cohort=E1_expanded` in `STRATEGY_STATUS.csv`.
 
 The coverage input schema is `strategy_id,run_profile,coverage_status,coverage_evidence`.
@@ -49,19 +49,19 @@ pair/timerange completeness check that produced the status.
 
 | Status | Strategies |
 |---|---:|
-| `eligible` | 67 |
-| `ineligible` | 826 |
-| `pending_diagnostics` | 7 |
+| `eligible` | 121 |
+| `ineligible` | 969 |
+| `pending_diagnostics` | 279 |
 
 ## Native run profiles
 
 | Run profile | Strategies |
 |---|---:|
-| `futures_long` | 37 |
-| `futures_long_short` | 61 |
-| `futures_short` | 3 |
-| `spot_long` | 798 |
-| `unknown` | 1 |
+| `futures_long` | 56 |
+| `futures_long_short` | 140 |
+| `futures_short` | 14 |
+| `spot_long` | 1152 |
+| `unknown` | 7 |
 
 ## Exclusion reasons
 
@@ -70,11 +70,10 @@ Reasons are non-exclusive.
 | Reason | Strategies |
 |---|---:|
 | `behavior_changed_primary_exclusion` | 1 |
-| `canonical_implementation_not_measured` | 278 |
-| `lookahead_found` | 56 |
-| `no_trades_in_full_measurement` | 6 |
-| `recursive_bias_found` | 545 |
-| `technical_trap_found` | 42 |
+| `canonical_implementation_not_measured` | 150 |
+| `lookahead_found` | 68 |
+| `no_trades_in_full_measurement` | 321 |
+| `recursive_bias_found` | 468 |
 
 ## Pending reasons
 
@@ -85,14 +84,14 @@ cannot be both failed and pending on one row.
 
 | Reason | Strategies |
 |---|---:|
-| `artifact_role_requires_review` | 14 |
-| `exact_regime_window_coverage_not_verified` | 36 |
-| `execution_profile_unresolved` | 1 |
-| `futures_mode_bias_diagnostics_not_completed` | 51 |
-| `lookahead_not_completed` | 495 |
-| `native_mode_not_runtime_validated` | 278 |
-| `output_equivalent_requires_canonical_bias_rerun` | 4 |
-| `recursive_bias_not_completed` | 182 |
-| `zero_trades_in_smoke_requires_full_window` | 8 |
+| `artifact_role_requires_review` | 28 |
+| `exact_regime_window_coverage_not_verified` | 357 |
+| `execution_profile_unresolved` | 7 |
+| `futures_mode_bias_diagnostics_not_completed` | 177 |
+| `lookahead_not_completed` | 848 |
+| `native_mode_not_runtime_validated` | 203 |
+| `output_equivalent_requires_canonical_bias_rerun` | 5 |
+| `recursive_bias_not_completed` | 668 |
+| `zero_trades_in_smoke_requires_full_window` | 51 |
 
-The machine-readable row-level record is `REGIME_ELIGIBILITY.csv`.
+The machine-readable row-level record is `evidence/REGIME_ELIGIBILITY.csv`.
