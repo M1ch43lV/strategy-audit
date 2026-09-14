@@ -1,0 +1,754 @@
+{
+  "decisions": [
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_adx"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_all"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_aroon"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_bbw"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_dwt"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_fbb"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_fwr"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_highlow"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_jump"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_macd"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_mfi"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_minmax"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_nseq"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_over"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_profit"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_pv"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_slope"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_smooth"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_stochastic"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_swing"
+    },
+    {
+      "canonical_representative": "_Strat",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_aaab88b29e7c939e1d00894e0b2c18b5b751cc4eb6dddcc8bb8b2993f3b716ef",
+      "strategy_id": "BaseNNStrategy"
+    },
+    {
+      "canonical_representative": "CppiBasket",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
+      "strategy_id": "BasketStrategy"
+    },
+    {
+      "canonical_representative": "BB_RTR",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2e7546146e9d4c33cbdda0e095a1b04e7dc3d9864cbbd96cc6cdd6667d3b029f",
+      "strategy_id": "BB_RTR_dca"
+    },
+    {
+      "canonical_representative": "BBRSITV",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_a0d2c464e0dcd422ea3b71dd96adb61d94e10f8867995afea69a001499832301",
+      "strategy_id": "BBRSITV1"
+    },
+    {
+      "canonical_representative": "BBRSITV",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_a0d2c464e0dcd422ea3b71dd96adb61d94e10f8867995afea69a001499832301",
+      "strategy_id": "BBRSITV2"
+    },
+    {
+      "canonical_representative": "BBRSITV",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_a0d2c464e0dcd422ea3b71dd96adb61d94e10f8867995afea69a001499832301",
+      "strategy_id": "BBRSITV3"
+    },
+    {
+      "canonical_representative": "BinClucMadv1",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d450cae91dda12b397e93cfb8f7982e9042cb256aba3aa816e6270f3434db2f2",
+      "strategy_id": "BinClucMadSMAv1"
+    },
+    {
+      "canonical_representative": "BinClucMadv1",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d450cae91dda12b397e93cfb8f7982e9042cb256aba3aa816e6270f3434db2f2",
+      "strategy_id": "BinClucMadSMAv2"
+    },
+    {
+      "canonical_representative": "BinClucMadv1",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d450cae91dda12b397e93cfb8f7982e9042cb256aba3aa816e6270f3434db2f2",
+      "strategy_id": "BinClucMadv2"
+    },
+    {
+      "canonical_representative": "CppiBasket",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
+      "strategy_id": "BlendBasket"
+    },
+    {
+      "canonical_representative": "Cluc4werk",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_9761bd11bb0d19621cc4b6fa657bf9012b8dff70d000896bf09ac13230633699",
+      "strategy_id": "Cluc4werk_ETH"
+    },
+    {
+      "canonical_representative": "Cluc5werk",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_8e71274ea862bcdd43bf91db0b87833d674570d374d72c0fc4581a054fec4dad",
+      "strategy_id": "Cluc5werk_BTC"
+    },
+    {
+      "canonical_representative": "Cluc5werk",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_8e71274ea862bcdd43bf91db0b87833d674570d374d72c0fc4581a054fec4dad",
+      "strategy_id": "Cluc5werk_ETH"
+    },
+    {
+      "canonical_representative": "Cluc5werk",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_8e71274ea862bcdd43bf91db0b87833d674570d374d72c0fc4581a054fec4dad",
+      "strategy_id": "Cluc5werk_USD"
+    },
+    {
+      "canonical_representative": "ClucCrypROI",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_1c8673b7a300a2ed6de862a449147ced47d7b30c36dc1cc62343e7d34d624e68",
+      "strategy_id": "ClucCrypROI_BTC"
+    },
+    {
+      "canonical_representative": "ClucCrypROI",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_1c8673b7a300a2ed6de862a449147ced47d7b30c36dc1cc62343e7d34d624e68",
+      "strategy_id": "ClucCrypROI_ETH"
+    },
+    {
+      "canonical_representative": "ClucCrypSlow",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_468dc5afd517a8d34d12447ecb3aa0b3244dff6ee322510df7596b7d0fd217ef",
+      "strategy_id": "ClucCrypSlow_BTC"
+    },
+    {
+      "canonical_representative": "ClucCrypSlow",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_468dc5afd517a8d34d12447ecb3aa0b3244dff6ee322510df7596b7d0fd217ef",
+      "strategy_id": "ClucCrypSlow_ETH"
+    },
+    {
+      "canonical_representative": "ClucDCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_1f64631145a802f8e0bce79d7cbeadf6516e36bcb540729645986e4508bb9413",
+      "strategy_id": "ClucHAnix"
+    },
+    {
+      "canonical_representative": "ClucDCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_1f64631145a802f8e0bce79d7cbeadf6516e36bcb540729645986e4508bb9413",
+      "strategy_id": "ClucHAnix_BTC"
+    },
+    {
+      "canonical_representative": "ClucDCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_1f64631145a802f8e0bce79d7cbeadf6516e36bcb540729645986e4508bb9413",
+      "strategy_id": "ClucHAnix_ETH"
+    },
+    {
+      "canonical_representative": "ClucDCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_1f64631145a802f8e0bce79d7cbeadf6516e36bcb540729645986e4508bb9413",
+      "strategy_id": "ClucHAnix_USD"
+    },
+    {
+      "canonical_representative": "ClucDCAV2",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_a52d6fc29008c67d4c8b30db20a77c5edb5cca1ce312bf6e5e1ac9c330f0a73b",
+      "strategy_id": "ClucHAnixV2"
+    },
+    {
+      "canonical_representative": "ClucHAwerk",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_8f4e0dd6cf62fa6439e1629801c6b94bd153f0c5171d28e2abf50210d24e262a",
+      "strategy_id": "ClucHAwerk_BTC"
+    },
+    {
+      "canonical_representative": "ClucHAwerk",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_8f4e0dd6cf62fa6439e1629801c6b94bd153f0c5171d28e2abf50210d24e262a",
+      "strategy_id": "ClucHAwerk_ETH"
+    },
+    {
+      "canonical_representative": "ClucHAwerk",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_8f4e0dd6cf62fa6439e1629801c6b94bd153f0c5171d28e2abf50210d24e262a",
+      "strategy_id": "ClucHAwerk_USD"
+    },
+    {
+      "canonical_representative": "CppiBasket",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
+      "strategy_id": "ConstantMixBasket"
+    },
+    {
+      "canonical_representative": "EI3v2_tag_cofi_green",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_bab88fa24e387a47bc9e549a40ed44bdc41e771603fa5facc502986c642809bf",
+      "strategy_id": "EI3v2_tag_cofi_dca_green"
+    },
+    {
+      "canonical_representative": "Enchilada",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_c2081d5bd3c5fac013c8a0943d502149ce740d0f37656d713152b65c12f7e896",
+      "strategy_id": "Enchilada_Slow"
+    },
+    {
+      "canonical_representative": "FSupertrendStrategyBTC",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_1251db314cc4119a64a5de58d561a5b1ed336ea7fde858b419981bf6e3a892ac",
+      "strategy_id": "FSupertrendStrategyETH"
+    },
+    {
+      "canonical_representative": "Hacklemore",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_c3949e8d9c2f7f1b855654fbdb8a21e23dbafcd6b941eaf64294f47b31ad5abb",
+      "strategy_id": "Hacklemore_Slow"
+    },
+    {
+      "canonical_representative": "StrategyTestV2",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_349c61018b21c053190ee251d3af6fc6403835a7961b8ca362afce2ce567ea2d",
+      "strategy_id": "HyperoptableStrategyV2"
+    },
+    {
+      "canonical_representative": "HyperStra_SMAOnly",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_25b5c4a90ba8f1703cc6e539a56cd037a57303e554820dc11556f943ebb7d613",
+      "strategy_id": "HyperStra_GSN_SMAOnly"
+    },
+    {
+      "canonical_representative": "CppiBasket",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
+      "strategy_id": "InverseVolBasket"
+    },
+    {
+      "canonical_representative": "Lateralus",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_9e470b22ff859bb019d33311dbd82f617389746464ec5288a8403f66be3ceeb8",
+      "strategy_id": "Lateralus_Slow"
+    },
+    {
+      "canonical_representative": "LitmusBBStrategy",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2ad4be94fa52c5b729849ba6118a8f14985546847be6296fb998e04b644e1051",
+      "strategy_id": "LitmusBBTrendStrategy"
+    },
+    {
+      "canonical_representative": "LitmusBBStrategy",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2ad4be94fa52c5b729849ba6118a8f14985546847be6296fb998e04b644e1051",
+      "strategy_id": "LitmusClucStrategy"
+    },
+    {
+      "canonical_representative": "LitmusBBStrategy",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2ad4be94fa52c5b729849ba6118a8f14985546847be6296fb998e04b644e1051",
+      "strategy_id": "LitmusSARStrategy"
+    },
+    {
+      "canonical_representative": "LitmusBBStrategy",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2ad4be94fa52c5b729849ba6118a8f14985546847be6296fb998e04b644e1051",
+      "strategy_id": "LitmusScalpStrategy"
+    },
+    {
+      "canonical_representative": "LitmusBBStrategy",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2ad4be94fa52c5b729849ba6118a8f14985546847be6296fb998e04b644e1051",
+      "strategy_id": "LitmusTrendScalpStrategy"
+    },
+    {
+      "canonical_representative": "LitmusBBStrategy",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2ad4be94fa52c5b729849ba6118a8f14985546847be6296fb998e04b644e1051",
+      "strategy_id": "LitmusVulcanStrategy"
+    },
+    {
+      "canonical_representative": "Lmao",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2a86331a6ac229f4b3ddacae05fc2ea52b24bc13903a19376da2b5b4bc45fdd5",
+      "strategy_id": "LmaoStoplossClusterOpt"
+    },
+    {
+      "canonical_representative": "CppiBasket",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
+      "strategy_id": "MinVarianceBasket"
+    },
+    {
+      "canonical_representative": "CppiBasket",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
+      "strategy_id": "MomentumBasket"
+    },
+    {
+      "canonical_representative": "MomentumRegimeBasket15m",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_0cbd34f89d4aa0a2474ebd9e1ea22a497e395c85a71b3b4ffd1d791ba9783598",
+      "strategy_id": "MomentumRegimeBasket15mFast"
+    },
+    {
+      "canonical_representative": "NASOSv5HO",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_dc5d5595bf47375c8f125df709445c8f86265ab2b9539cc2bd8b8e92cf81ee20",
+      "strategy_id": "NASOSv5SL"
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_dwt"
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_fbb"
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_fwr"
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_highlow"
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_jump"
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_macd"
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_mfi"
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_minmax"
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_nseq"
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_over"
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_profit"
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_pv"
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_stochastic"
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_swing"
+    },
+    {
+      "canonical_representative": "Schism3",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_24e826bf3a953bb43f1974f8e40482c1a82b1b4219b0b59d56eb994450138ad3",
+      "strategy_id": "Schism3_BTC"
+    },
+    {
+      "canonical_representative": "Schism3",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_24e826bf3a953bb43f1974f8e40482c1a82b1b4219b0b59d56eb994450138ad3",
+      "strategy_id": "Schism3_ETH"
+    },
+    {
+      "canonical_representative": "Schism4",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_74d380aa240d44b18aac4f7327769e0010db32e07c023215bea790216ea92a59",
+      "strategy_id": "Schism4_BTC"
+    },
+    {
+      "canonical_representative": "Schism4",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_74d380aa240d44b18aac4f7327769e0010db32e07c023215bea790216ea92a59",
+      "strategy_id": "Schism4_ETH"
+    },
+    {
+      "canonical_representative": "Schism5",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_7bd5a70b718e03ad86334c76dde9c1f3f07b85273360f8ee68f04debbf71bb0b",
+      "strategy_id": "Schism5_BTC"
+    },
+    {
+      "canonical_representative": "Schism5",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_7bd5a70b718e03ad86334c76dde9c1f3f07b85273360f8ee68f04debbf71bb0b",
+      "strategy_id": "Schism5_ETH"
+    },
+    {
+      "canonical_representative": "Schism6",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_59d89b83950ce292d864eca19a7e77c64e1324b18dc3d0a1b93c0d649b5fb6e4",
+      "strategy_id": "Schism6_BTC"
+    },
+    {
+      "canonical_representative": "Schism6",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_59d89b83950ce292d864eca19a7e77c64e1324b18dc3d0a1b93c0d649b5fb6e4",
+      "strategy_id": "Schism6_ETH"
+    },
+    {
+      "canonical_representative": "_Strat",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_aaab88b29e7c939e1d00894e0b2c18b5b751cc4eb6dddcc8bb8b2993f3b716ef",
+      "strategy_id": "SimpleStrategy"
+    },
+    {
+      "canonical_representative": "StarRise",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_baa88b7b4fde8f51c81c10888b4cc0f3eee74ce6f3fef2d313d55a9e1e924b5a",
+      "strategy_id": "StarRise_dca"
+    },
+    {
+      "canonical_representative": "Stinkfist",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_3dc311837007edf3666a8a741c8803efa57d9314263a6a0f9064b145fe0108be",
+      "strategy_id": "Stinkfist_BTC"
+    },
+    {
+      "canonical_representative": "Stinkfist",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_3dc311837007edf3666a8a741c8803efa57d9314263a6a0f9064b145fe0108be",
+      "strategy_id": "Stinkfist_ETH"
+    },
+    {
+      "canonical_representative": "tbedit",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_617720878e36e009d4908dcfd5b39785d78b9ec35111bf5eed54eab4d781b375",
+      "strategy_id": "strat_dca"
+    },
+    {
+      "canonical_representative": "StrategyTestV3",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_aabc12d6f3569e9be6a07ef76f0a644daadb765fdbcc77f302824ee5ae7c4bd8",
+      "strategy_id": "StrategyTestV3Futures"
+    },
+    {
+      "canonical_representative": "SuperReversal_mtf",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_b5a1bebdf52e52189811b4871dae272aa79b9c696efbcfe59fcf11ea9f9822ad",
+      "strategy_id": "SuperReversal_mtf_5min"
+    },
+    {
+      "canonical_representative": "TestStrategyNoImplements",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_59259dd314c3b27e2091698c80f59241c4970a48ed8016f77d9352f3567dcfa9",
+      "strategy_id": "TestStrategyImplementBuyTimeout"
+    },
+    {
+      "canonical_representative": "TestStrategyNoImplements",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_59259dd314c3b27e2091698c80f59241c4970a48ed8016f77d9352f3567dcfa9",
+      "strategy_id": "TestStrategyImplementCustomSell"
+    },
+    {
+      "canonical_representative": "TestStrategyNoImplements",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_59259dd314c3b27e2091698c80f59241c4970a48ed8016f77d9352f3567dcfa9",
+      "strategy_id": "TestStrategyImplementEmptyWorking"
+    },
+    {
+      "canonical_representative": "TestStrategyNoImplements",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_59259dd314c3b27e2091698c80f59241c4970a48ed8016f77d9352f3567dcfa9",
+      "strategy_id": "TestStrategyImplementSellTimeout"
+    },
+    {
+      "canonical_representative": "TestStrategyNoImplements",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_59259dd314c3b27e2091698c80f59241c4970a48ed8016f77d9352f3567dcfa9",
+      "strategy_id": "TestStrategyNoImplementSell"
+    },
+    {
+      "canonical_representative": "TS_Gain",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2dec6c9e02c0b82930f449168435d921257be95c90a8d5298d5fde2a3fc53681",
+      "strategy_id": "TS_Coeff"
+    },
+    {
+      "canonical_representative": "TS_Gain",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2dec6c9e02c0b82930f449168435d921257be95c90a8d5298d5fde2a3fc53681",
+      "strategy_id": "TS_Wavelet"
+    },
+    {
+      "canonical_representative": "ViN",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_dfb1ff8c4d9226540c691208cb0951e03e3ae97889a10c643bf9a1a89163990e",
+      "strategy_id": "ViNSellCorr"
+    },
+    {
+      "canonical_representative": "ViN",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_dfb1ff8c4d9226540c691208cb0951e03e3ae97889a10c643bf9a1a89163990e",
+      "strategy_id": "ViNSellEps"
+    },
+    {
+      "canonical_representative": "ViN",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_dfb1ff8c4d9226540c691208cb0951e03e3ae97889a10c643bf9a1a89163990e",
+      "strategy_id": "ViNSellRiseCorrFall"
+    },
+    {
+      "canonical_representative": "ViN",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_dfb1ff8c4d9226540c691208cb0951e03e3ae97889a10c643bf9a1a89163990e",
+      "strategy_id": "ViNSellRiseFall"
+    },
+    {
+      "canonical_representative": "CppiBasket",
+      "decision": "hold_pending_representative_confirmation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
+      "strategy_id": "VolTargetBasket"
+    }
+  ],
+  "schema_version": 1
+}

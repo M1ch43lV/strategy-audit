@@ -30,6 +30,8 @@ FULL_MANIFEST = os.path.join(ROOT, "results", "regime", "full_backtest_manifest.
 OUTPUT_JSON = os.path.join(ROOT, "evidence", "SEMANTIC_DUPLICATES.json")
 OUTPUT_MD = os.path.join(ROOT, "evidence", "SEMANTIC_DUPLICATES.md")
 ADJUDICATION = os.path.join(ROOT, "evidence", "SEMANTIC_DUPLICATE_ADJUDICATION.json")
+HOLD = os.path.join(ROOT, "evidence", "SEMANTIC_DUPLICATE_HOLD.json")
+PROFILE_CLASS1 = os.path.join(ROOT, "evidence", "PROFILE_CLASS1.json")
 
 
 def _read_csv(path):
@@ -203,6 +205,111 @@ def build(profile_path=PROFILES, full_manifest_path=FULL_MANIFEST):
     return {"schema_version": 1, "groups": result, "unreadable": unreadable}
 
 
+def _load_profile_class1(path=PROFILE_CLASS1):
+    if not os.path.exists(path):
+        return {}
+    try:
+        with io.open(path, encoding="utf-8") as handle:
+            return json.load(handle).get("strategies") or {}
+    except (ValueError, OSError):
+        return {}
+
+
+def _has_own_config_overlay(strategy_id, canonical_file, class1):
+    """True if anything outside this strategy's own normalized source could
+    make it behave differently from a code-identical sibling, despite an
+    identical `normalized_ast_digest()`.
+
+    Two distinct mechanisms, both silent to a pure source-text comparison:
+
+    - `PROFILE_CLASS1.json` - this audit's own environment-repair overlay
+      (`config_source`/`config_keys`/`rules`). The literal check the owner
+      asked for.
+    - a companion `<file>.json` next to the strategy's own `.py` - freqtrade's
+      own auto-load convention (`HyperStrategyMixin.load_params_from_file()`:
+      `Path(self.__file__).with_suffix(".json")`), invisible to any source
+      read. This is not hypothetical: `MACDStrategyADA`/`MACDStrategyBTC` are
+      byte-identical after class-name normalization (`MACDStrategy - ADA.py`
+      vs `MACDStrategy - BTC.py`) yet measured 4031 vs 6162 trades - ADA has
+      a same-named `.json` with its own tuned `buy`/`sell`/`roi`/`stoploss`
+      values, BTC has none. Skipping ADA before measurement on code identity
+      alone would have been wrong.
+
+    Either one present on either side of a pair means "not provably the same
+    at runtime from source alone" - defer to the existing measured-trade-hash
+    gate in `adjudicate()`, same as any other unconfirmed group.
+    """
+    if strategy_id in class1:
+        return True
+    full_path = os.path.join(ROOT, canonical_file.replace("/", os.sep))
+    companion = os.path.splitext(full_path)[0] + ".json"
+    return os.path.isfile(companion)
+
+
+def _pick_representative(members):
+    """Same tie-break `adjudicate()` uses: shorter unsuffixed name wins,
+    casefold then exact string breaks a remaining tie. Applied to every
+    member here (not just measured ones) - a pre-measurement hold list has
+    no measured subset to restrict to yet."""
+    return min(members, key=lambda member: (
+        len(member["strategy_id"]), member["strategy_id"].casefold(), member["strategy_id"]))
+
+
+def pre_stage1_hold(data, class1=None):
+    """Candidates a Stage 1 batch can skip before spending any measurement on
+    them - not an exclusion, a deferral. A group only qualifies when it is
+    NOT already `confirmed_same_trades` (that case is `adjudicate()`'s job,
+    already excluded) and neither the candidate nor its representative carries
+    one of the two overlays `_has_own_config_overlay()` checks. Holding one
+    is a bet that the representative's own later measurement will confirm the
+    pair identical; if it does not (or the representative itself never gets
+    measured), the held row must still run its own Stage 1-7 - nothing here
+    removes a row from the corpus, it only reorders when its own measurement
+    happens. `evidence.strategy_status` does not read this file; only
+    `SEMANTIC_DUPLICATE_ADJUDICATION.json`'s measured-and-confirmed rows ever
+    exclude anything.
+    """
+    class1 = _load_profile_class1() if class1 is None else class1
+    decisions = []
+    for group in data["groups"]:
+        if group["evidence_status"] == "confirmed_same_trades":
+            continue
+        representative = _pick_representative(group["members"])
+        rep_overlay = _has_own_config_overlay(
+            representative["strategy_id"], representative["canonical_file"], class1)
+        for member in group["members"]:
+            if member["strategy_id"] == representative["strategy_id"]:
+                continue
+            if member["full_backtest_status"] == "measured":
+                continue  # already has its own measurement; nothing to defer
+            if rep_overlay or _has_own_config_overlay(
+                    member["strategy_id"], member["canonical_file"], class1):
+                continue
+            decisions.append({
+                "strategy_id": member["strategy_id"],
+                "decision": "hold_pending_representative_confirmation",
+                "canonical_representative": representative["strategy_id"],
+                "normalized_ast_sha256": group["normalized_ast_sha256"],
+                "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+            })
+    return {"schema_version": 1, "decisions": sorted(decisions, key=lambda row: row["strategy_id"].casefold())}
+
+
+def filter_targets(strategy_ids, hold_data=None):
+    """Split a Stage 1 target list into (proceed, held) using a fresh
+    `pre_stage1_hold()` run - the actual "explicit filter before Stage 1
+    starts" this is for. `proceed` keeps the input order; `held` carries each
+    dropped strategy's representative so the caller can report why."""
+    if hold_data is None:
+        hold_data = pre_stage1_hold(build())
+    held = {row["strategy_id"]: row["canonical_representative"] for row in hold_data["decisions"]}
+    wanted = set(strategy_ids)
+    proceed = [s for s in strategy_ids if s not in held]
+    dropped = [{"strategy_id": s, "canonical_representative": held[s]}
+              for s in strategy_ids if s in held and s in wanted]
+    return proceed, dropped
+
+
 def _json_bytes(data):
     return (json.dumps(data, indent=2, ensure_ascii=False, sort_keys=True) + "\n").encode("utf-8")
 
@@ -276,14 +383,35 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--selftest", action="store_true")
     parser.add_argument("--check", action="store_true", help="fail when generated evidence is stale")
+    parser.add_argument("--filter-file", metavar="PATH",
+                        help="Stage 1 target list (one strategy_id per line, "
+                             "or 'name<TAB>path' like repair/run_freqai.py's "
+                             "input) - print which names can be held back "
+                             "pending their representative's own measurement, "
+                             "write the rest to PATH.filtered untouched, and "
+                             "exit without regenerating any evidence file.")
     args = parser.parse_args(argv)
     if args.selftest:
         selftest()
         return 0
     data = build()
     decisions = adjudicate(data)
+    hold = pre_stage1_hold(data)
+    if args.filter_file:
+        lines = [line.rstrip("\n") for line in io.open(args.filter_file, encoding="utf-8")
+                if line.strip() and not line.startswith("#")]
+        names = [line.split("\t")[0] for line in lines]
+        proceed, dropped = filter_targets(names, hold)
+        by_name = dict(zip(names, lines))
+        out_path = args.filter_file + ".filtered"
+        with io.open(out_path, "w", encoding="utf-8") as handle:
+            handle.write("\n".join(by_name[name] for name in proceed) + ("\n" if proceed else ""))
+        print("%d of %d proceed to Stage 1 -> %s" % (len(proceed), len(names), out_path))
+        for row in dropped:
+            print("  held: %-30s pending %s" % (row["strategy_id"], row["canonical_representative"]))
+        return 0
     outputs = ((OUTPUT_JSON, _json_bytes(data)), (OUTPUT_MD, _report(data)),
-               (ADJUDICATION, _json_bytes(decisions)))
+               (ADJUDICATION, _json_bytes(decisions)), (HOLD, _json_bytes(hold)))
     if args.check:
         stale = [path for path, content in outputs if not os.path.exists(path) or open(path, "rb").read() != content]
         if stale:
@@ -293,8 +421,8 @@ def main(argv=None):
         return 0
     for path, content in outputs:
         _write(path, content)
-    print("semantic duplicates: %d groups, %d exclusions, %d unreadable" % (
-        len(data["groups"]), len(decisions["decisions"]), len(data["unreadable"])))
+    print("semantic duplicates: %d groups, %d exclusions, %d pre-stage1 holds, %d unreadable" % (
+        len(data["groups"]), len(decisions["decisions"]), len(hold["decisions"]), len(data["unreadable"])))
     return 0
 
 
