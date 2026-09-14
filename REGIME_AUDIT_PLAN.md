@@ -1196,6 +1196,88 @@ trades. Model 0's re-run after the fix: BTC VALIDATION-tier rows
 1,828 -> 1,671 (coin: 1,770 -> 1,757); universal candidates held at 379
 (count coincidentally stable, membership not re-verified row-by-row).
 
+**Addendum 2026-09-14 (regime-specialist Top-10 selection, 4 symmetric
+gates, discards the first-7-alphabetical pilot; DeepSeek-v4-pro consulted
+twice before implementing, conversation continuing
+"regime-code-audit-2026-09-14", user-ordered):** the original 7-strategy
+pilot (`ADXDM`, `ADXMomentum`, `ADX_15M_USDT`, `AdaptiveRegime`,
+`AlmgrenChrissStrategy`, `BBMod`, `FastSupertrend`) was never a principled
+selection - the user confirmed it was simply the first 7 strategies
+alphabetically, used only to see what the Model 1/2/3 pipeline output would
+look like. Discarded entirely (old candidate specs, backtests, and
+attribution left on disk as historical trail, not deleted; the artifact and
+the Model 1/2/3 tables no longer show them).
+
+**Gate design, frozen before any new result:** four fully symmetric
+single-state gates - `-uptrend`, `-downtrend`, `-sideways`, `-transition` -
+long AND short both restricted to exactly the one named ADX state
+(`-sideways`/`-transition` already worked this way; `-uptrend`/`-downtrend`
+are new and replace the old coupled `-trend` gate as the default). Reason:
+`-trend` (long only in Uptrend, short only in Downtrend, one combined
+candidate) is not an isolated single-state test - for a spot-only strategy
+it collapses to Uptrend-only trading regardless of where the strategy's
+actual edge sits, because its Downtrend allowance is short-only and a spot
+strategy has no shorts to use it. Confirmed concretely, not hypothetically:
+`NASOSv5_mod3` and `Squeeze001` both have a genuine Bear-regime edge (LCB
++1.7%/+5.8%) yet are 100% long trades in the raw attribution data, 0% short
+anywhere in their whole history - a `-trend` gate would block their entire
+Bear-regime activity outright. DeepSeek-v4-pro's critique of the symmetric
+design (`mcp__deepseek-mcp__critique`, kept as a documented trade-off, not
+acted on): mixing long and short within one regime's gate can blur
+interpretation for direction-capable (futures) strategies whose long and
+short legs have independent edges; the fully orthogonal alternative (8
+gates: long/short x 4 states) would fix that but reintroduces the
+information overload the redesign exists to avoid. Resolution: `-trend`
+is kept as an optional fifth gate, attached only to candidates that are
+both futures-capable and have real long AND short trades in their own
+ungated history (checked per candidate against the raw `is_short` column,
+not inferred from the spot/futures execution-profile label alone).
+
+**Selection metric, also DeepSeek-v4-pro-checked before implementing:**
+first proposed as the spread between a candidate's best and worst regime
+(Excess-Return or FreqForge-Score, best minus worst, VALIDATION rows only).
+DeepSeek's critique: this measures contrast, not target-regime quality - a
+candidate with only a mediocre, barely-significant target-regime edge but a
+catastrophic worst regime elsewhere can outrank a candidate with a far
+stronger, safer target-regime edge. Confirmed empirically on the Transition
+regime: only 4 of 10 candidates overlapped between the spread ranking and a
+direct target-regime ranking; the direct ranking surfaced clearly better
+specialists (`cryptotank`: Transition LCB +7.3%, worst case only -12.4%,
+versus the spread ranking's top pick `BuyOrDie` at LCB +2.3% but a -64%
+worst case). Second finding: restricting the pool to the 379
+Universal-Kandidaten (a valid VALIDATION row in all four regimes)
+introduces survivorship bias against genuine specialists that trade too
+rarely in the other three regimes to qualify; a direct target-regime
+ranking does not need that restriction and drops it for free. **Adopted
+metric:** per ADX state independently, rank every candidate with a
+VALIDATION-tier row in that one state (no requirement on the other three)
+directly by `episode_excess_lcb` in that state, descending, keep only
+`episode_excess_lcb > 0`, take the top 10, deduplicated to one candidate
+per strategy family (near-identical parameter-variant forks of the same
+underlying strategy, identified by name lineage and, where the numbers are
+literally identical, by matching trade/episode/LCB signatures - collapsed
+to their single best-ranked representative).
+
+**Result of applying this frozen methodology** to the Model 0 corpus (589
+strategies, `coin_specialist_table.csv`, VALIDATION tier): ADX Uptrend has
+exactly one statistically defensible specialist in the entire corpus
+(`FastSupertrend_optim3_rsi_80`; the only other LCB>0 Uptrend candidate is
+the same family and was deduplicated away) - consistent with the
+already-documented finding that Uptrend was the hardest regime to beat
+buy-and-hold in during the validation window. Downtrend, Sideways, and
+Transition each filled a full deduplicated Top 10. 25 unique strategies, 33
+gate-variant candidates total (31 single-state + 2 `-trend` additions, for
+the two qualifying futures candidates `FastSupertrend_optim3_rsi_80` and
+`FSampleStrategy`). New candidate spec:
+`candidate_spec_regime_specialists_v2.json`, `candidate_set_id =
+regime_specialists_v2_lcb_ranked_deduplicated`, `analysis_role = PILOT`,
+same timerange as every prior pilot spec. Runs through the same unmodified
+`gated_backtest.py -> gated_attribution.py -> specialist_evaluation.py`
+chain; no code changes were needed anywhere in it - `regime/gate_adapter.py`
+was already fully generic over arbitrary `long/short_btc/coin_states`
+lists, so `-uptrend`/`-downtrend` needed only new candidate-spec entries,
+no new code.
+
 Universal strategies are not necessarily top-return strategies.
 
 They should have no catastrophic regime.

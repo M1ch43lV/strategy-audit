@@ -624,6 +624,64 @@ Coin-Zustand gar nicht einschränkt); Modell 2/3 bleiben bei 0
 Universal-Kandidaten, weil deren Coin-Gate `X-sideways`/`X-transition`
 strukturell auf genau einen Coin-Regime-Zustand festlegt.
 
+**Regime-Spezialisten-Top-10 je ADX-Zustand, verwirft den 7er-Alphabet-Piloten
+(2026-09-14, auf expliziten Nutzerwunsch, DeepSeek-v4-pro zweimal
+gegengeprüft vor Umsetzung — siehe Addendum in `REGIME_AUDIT_PLAN.md`):**
+der bisherige 7-Strategien-Pilot war keine kuratierte Auswahl, sondern
+schlicht die ersten 7 Strategien alphabetisch (zur ersten Orientierung).
+Auf Nutzerwunsch verworfen — alte Kandidaten-Spec-, Backtest- und
+Attributionsdateien bleiben liegen, werden aber weder weiterverwendet noch
+im Artefakt gezeigt.
+
+*Gate-Design:* `-trend` (long nur Uptrend, short nur Downtrend, ein
+kombinierter Kandidat) ersetzt durch vier symmetrische Ein-Zustand-Gates
+`-uptrend`/`-downtrend`/`-sideways`/`-transition` (long UND short jeweils
+nur im genannten Zustand — `-sideways`/`-transition` liefen schon so,
+`-uptrend`/`-downtrend` sind neu). Konkreter Befund, der die alte
+Kopplung widerlegt: `NASOSv5_mod3` und `Squeeze001` haben laut
+`trade_regime_attribution.csv` (Spalte `is_short`) in ihrer gesamten
+Historie 0% Short-Trades, mit echtem Bear-Edge (LCB +1,7%/+5,8%) — ein
+`-trend`-Gate hätte ihre komplette Bear-Aktivität blockiert, weil dessen
+Bear-Erlaubnis rein auf Short beschränkt ist. `-trend` bleibt als optionales
+fünftes Gate erhalten, aber nur für Kandidaten, die futures-fähig sind UND
+in ihrer ungegateten Historie tatsächlich long- UND short-Trades haben
+(geprüft je Kandidat gegen die rohe `is_short`-Spalte): `
+FastSupertrend_optim3_rsi_80` (8.980 short / 8.318 long) und
+`FSampleStrategy` (1.007 long / 86 short).
+
+*Auswahlmetrik:* je ADX-Zustand unabhängig alle Kandidaten mit einer
+`VALIDATION`-Zeile in genau diesem einen Zustand (keine Anforderung an die
+übrigen drei — löst das Universal-Kandidaten-379-Pool-Survivorship-Problem,
+das eine frühere Spannen-basierte Variante gehabt hätte), direkt nach
+`episode_excess_lcb` in diesem Zustand absteigend sortiert,
+`episode_excess_lcb > 0` verlangt (statistisch echter Edge, kein Rauschen),
+Top 10, dedupliziert auf einen Kandidaten je Strategie-Familie (fast
+identische Parameter-Varianten — teils mit buchstäblich identischen
+Trade-/Episoden-/LCB-Werten, z. B. sechs `NostalgiaForInfinity`-Ableger mit
+exakt 18 Trades/14 Episoden/LCB 0,0300 — auf den bestplatzierten Vertreter
+reduziert).
+
+*Ergebnis der eingefrorenen Methode* gegen `coin_specialist_table.csv`
+(589 Strategien, VALIDATION-Tier): ADX Uptrend hat im gesamten Bestand nur
+einen einzigen statistisch abgesicherten Spezialisten
+(`FastSupertrend_optim3_rsi_80`; der einzige zweite Kandidat mit LCB&gt;0
+ist dieselbe Familie und fällt beim Dedup weg) — passend zum bereits
+dokumentierten Befund, dass Uptrend das schwerste Regime gegen Buy&amp;Hold
+war. Downtrend/Sideways/Transition füllen je eine volle deduplizierte
+Top 10. 25 einzelne Strategien, 33 Gate-Kandidaten insgesamt (31
+Ein-Zustand- + 2 `-trend`-Zusatzkandidaten). Neuer Kandidaten-Spec
+`results/regime/candidate_spec_regime_specialists_v2.json`
+(`candidate_set_id = regime_specialists_v2_lcb_ranked_deduplicated`,
+`analysis_role = PILOT`, gleicher Zeitraum wie jeder bisherige
+Piloten-Spec). Läuft durch dieselbe unveränderte Kette
+(`gated_backtest.py` → `gated_attribution.py` → `specialist_evaluation.py`)
+— keine Code-Änderung nötig, `regime/gate_adapter.py` war bereits generisch
+über beliebige `long/short_btc/coin_states`-Listen, `-uptrend`/`-downtrend`
+brauchten nur neue Spec-Einträge. Backtest läuft (`--workers 1`,
+sequenziell über alle drei Modelle, `--output
+results/regime/modelN_backtest_manifest_regime_specialists_v2.json`) —
+Ergebniszahlen folgen nach Abschluss.
+
 Dollar-Ansicht (2026-09-11, auf expliziten Nutzerwunsch): zusätzlich zur
 Benchmark-relativen Excess-Return-Prozentzahl ein Dollar-Betrag —
 `dollar_gain_usd`/`benchmark_dollar_gain_usd`/`excess_dollar_gain_usd` in
