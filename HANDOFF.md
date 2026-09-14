@@ -3,7 +3,30 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-14T18:00:00+02:00
+- Last update: 2026-09-14T19:15:00+02:00
+- **Artifact Version 37 (on top of Version 36 below), two explicit user
+  requests:** (1) the "Freqtrade-eigene Kennzahlen" table now covers all
+  379 Universal-Kandidaten instead of the old fixed 10-dollar-winner cut -
+  reused `regime.model_compare._load_model0()` (the same identity-checked
+  native-archive lookup the Model 0/1/2/3 comparison already uses) rather
+  than writing a new archive reader; 376/379 resolve, 3 rejected for
+  `model0_timerange_mismatch` (`BuyRegions`, `ClucHAnix_5M_E0V1E`,
+  `FlawlessVictory` - their stored native archive predates the current
+  canonical timerange and was never rerun). Real, not padded: only 160/376
+  (43%) stay profitable under freqtrade's own compounding over the full
+  window - very different from the old curated top-10 (10/10 profitable by
+  construction), replaced the stale callout that claimed otherwise. First
+  export attempt wrote a 178MB `ft_stats.json` (the raw per-strategy
+  summary carries `periodic_breakdown` at ~394KB/row and `daily_profit` at
+  ~53KB/row, harmless at 10 rows, not at 376) - fixed by whitelisting only
+  the fields the table actually renders (was: blacklist just `trades`);
+  final file 266KB. New script:
+  `export_ftstats_v2.py` (scratchpad). (2) The "Gesamtgewinn: gegatet vs.
+  ungegatet" table gained a Ziel-Regime chip filter (Uptrend/Downtrend/
+  Sideways/Transition + a 5th "kein Ziel-Regime" chip for the two `-trend`
+  candidates) and sortable Modell-0/1/2/3 columns (by each cell's
+  `dollar_gain_usd`, missing cells sort last) - previously fully static.
+  No result-data pipeline changes for this entry, template/export only.
 - **DONE — regime-specialist Top-10 pilot fully replaces the old
   7-strategy/21-candidate pilot, published as artifact Version 36.** Full
   design reasoning (gate design, both DeepSeek-v4-pro critiques, selection
