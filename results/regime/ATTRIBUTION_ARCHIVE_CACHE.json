@@ -1609,6 +1609,16 @@
     "size": 45907853,
     "trades_digest": "cb4f3bb4cc353f5c86929385e2710c7f29e47d44f903a398e795eb982f459b5e"
   },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\profile_smoke\\BuyRegions-dff7fcd2-2026-09-14_18-05-27.zip": {
+    "file_sha256": "sha256_fcbb0ccc34f361ad60df6b48fdba84a74995eca0809ef05204dfe7c353018d28",
+    "mtime_ns": 1789401932312804600,
+    "size": 46817056
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\profile_smoke\\BuyRegions-dff7fcd2-2026-09-14_18-05-27.zip::BuyRegions": {
+    "mtime_ns": 1789401932312804600,
+    "size": 46817056,
+    "trades_digest": "6fe365fd1c3dbd991c9ea911cf66bd9e4138552ecb3eabe435fce5c9741e57b4"
+  },
   "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\profile_smoke\\CBPete9-6ffadd4c-2026-09-06_05-16-28.zip": {
     "file_sha256": "sha256_95a561d8d210b246f7985c36bdd49eaee9c11c1663023d003648193bfc6b1df9",
     "mtime_ns": 1788671791637154200,
@@ -1788,6 +1798,16 @@
     "mtime_ns": 1788078383641091800,
     "size": 14994170,
     "trades_digest": "d2791351ecb92537ef73b564d6e3740fe362200c033defb9b751e9c7225caf1f"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\profile_smoke\\ClucHAnix_5M_E0V1E-eef9a366-2026-09-14_18-14-13.zip": {
+    "file_sha256": "sha256_15426c2255b5b9c10c143317e45d4480f8d8250f13710a250392a1f7e4ddd331",
+    "mtime_ns": 1789402454911244600,
+    "size": 14711888
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\profile_smoke\\ClucHAnix_5M_E0V1E-eef9a366-2026-09-14_18-14-13.zip::ClucHAnix_5M_E0V1E": {
+    "mtime_ns": 1789402454911244600,
+    "size": 14711888,
+    "trades_digest": "4b08c0bb501789d6f549437f3c7e0ee2b43bf001133c4fa003c4ec97e26c38af"
   },
   "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\profile_smoke\\ClucHAnix_5m-0d4d79f1-2026-09-06_18-51-06.zip": {
     "file_sha256": "sha256_2430655898b45db2e38c64d47b96ec52af81898d6d23a2f3577f810a4c4cf81d",
@@ -3218,6 +3238,16 @@
     "mtime_ns": 1788767196523919600,
     "size": 47415864,
     "trades_digest": "0d670120a0703be667c01a5b6afe4e80ca2b606c4a0a6c81b876aaf5d3c46401"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\profile_smoke\\FlawlessVictory-16bcd567-2026-09-14_18-15-10.zip": {
+    "file_sha256": "sha256_381403ac1d0f53f812ff2fc60b6049252a3e35530e9b9b44f451e04dfa49b67f",
+    "mtime_ns": 1789402511963158700,
+    "size": 18322344
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\profile_smoke\\FlawlessVictory-16bcd567-2026-09-14_18-15-10.zip::FlawlessVictory": {
+    "mtime_ns": 1789402511963158700,
+    "size": 18322344,
+    "trades_digest": "407a04e46629e44c53b60e2b3da1b48917b1ab00e8158185efca722eb93d16c2"
   },
   "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\profile_smoke\\FlawlessVictory-2026-08-30_08-28-05.zip": {
     "file_sha256": "sha256_8bba312f7db813a5f6ed7f5c1d42f14ae319867eaa387e37b87640f136d596b1",

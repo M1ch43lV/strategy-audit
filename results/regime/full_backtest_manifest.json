@@ -2853,14 +2853,26 @@
       "trades_sha256": "sha256_3c4f9680f9f8cf7bdc7953a1a00b5d0c72a28f86b2f57fcb3d63f9c3d386c80d"
     },
     "BuyRegions": {
-      "archive": "user_data/profile_smoke/BuyRegions-2026-08-30_11-01-03.zip",
-      "archive_sha256": "sha256_e396c90658e79b37c927c0cd47d01b225d5e3c018c32c09b0d5e689374d202a0",
+      "archive": "user_data/profile_smoke/BuyRegions-dff7fcd2-2026-09-14_18-05-27.zip",
+      "archive_sha256": "sha256_fcbb0ccc34f361ad60df6b48fdba84a74995eca0809ef05204dfe7c353018d28",
+      "artifact_key": "",
+      "attempted_at": "2026-09-14T16:05:34+00:00",
+      "attempts": [
+        {
+          "attempted_at": null,
+          "elapsed_s": 1506.6,
+          "status": "measured",
+          "why": null
+        }
+      ],
       "canonical_sha256": "sha256_837173d07b03ad4b83d9fd3520bac1ecc0c4494413f41c0b88b2c4e99924d6b9",
       "class1_rules": [
         "restore_copied_local_module"
       ],
-      "elapsed_s": 1506.6,
-      "long_trades": 15780,
+      "config_overrides": {},
+      "elapsed_s": 1524.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy BuyRegions --strategy-path repos/nateemma_strategies/TSPredict --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BuyRegions-dff7fcd2 --cache none",
+      "long_trades": 15764,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -2873,14 +2885,24 @@
         "XMR/USDT",
         "DASH/USDT"
       ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "python_paths": [
+          "repos/nateemma_strategies"
+        ],
+        "rules": [
+          "restore_copied_local_module"
+        ]
+      },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:4ff7fcaae9ee29d01320bac6ce39fb4d266a4c2defd23587f025d843a067c353",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
       "status": "measured",
-      "timerange": "20200301-20260821",
-      "trades": 15780,
-      "trades_sha256": "sha256_5f38696e69ecf6961364e8787e8143e38b864c59eeae82c80a1aef85e58f5d1c"
+      "timerange": "20200401-20260821",
+      "trades": 15764,
+      "trades_sha256": "sha256_70e4a10a2af58d88b483c131cff6427623d4f6602b61260f34c6d13b7dfeac38"
     },
     "CBPete9": {
       "archive": "user_data/profile_smoke/CBPete9-6ffadd4c-2026-09-06_05-16-28.zip",
@@ -3455,12 +3477,24 @@
       "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 2 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
     },
     "ClucHAnix_5M_E0V1E": {
-      "archive": "user_data/profile_smoke/ClucHAnix_5M_E0V1E-2026-08-30_08-26-21.zip",
-      "archive_sha256": "sha256_1c3163a6a58808b44cac5d2f8c2f2d18bd90172ba0ba70deb290d967297aae89",
+      "archive": "user_data/profile_smoke/ClucHAnix_5M_E0V1E-eef9a366-2026-09-14_18-14-13.zip",
+      "archive_sha256": "sha256_15426c2255b5b9c10c143317e45d4480f8d8250f13710a250392a1f7e4ddd331",
+      "artifact_key": "",
+      "attempted_at": "2026-09-14T16:14:15+00:00",
+      "attempts": [
+        {
+          "attempted_at": null,
+          "elapsed_s": 697.1,
+          "status": "measured",
+          "why": null
+        }
+      ],
       "canonical_sha256": "sha256_5ff6ead9232e02d8d39a855da7e393c4a812cc4c050499d168045faefcf61971",
       "class1_rules": [],
-      "elapsed_s": 697.1,
-      "long_trades": 4614,
+      "config_overrides": {},
+      "elapsed_s": 520.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ClucHAnix_5M_E0V1E --strategy-path repos/phuchust_freqtrade_strategy --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix_5M_E0V1E-eef9a366 --cache none",
+      "long_trades": 4421,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -3473,14 +3507,20 @@
         "XMR/USDT",
         "DASH/USDT"
       ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "python_paths": [],
+        "rules": []
+      },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
       "status": "measured",
-      "timerange": "20200301-20260821",
-      "trades": 4614,
-      "trades_sha256": "sha256_16f2a56d1f16f2dffa33e5a0fb4f0ac53a05638cc672203cabcc964a0687ac71"
+      "timerange": "20200401-20260821",
+      "trades": 4421,
+      "trades_sha256": "sha256_03b3de6fdd72da29c128be650ef8163e9bf797ed9676f16049b270b8c1aaa483"
     },
     "ClucHAnix_5m": {
       "archive": "user_data/profile_smoke/ClucHAnix_5m-0d4d79f1-2026-09-06_18-51-06.zip",
@@ -7691,12 +7731,24 @@
       "trades_sha256": "sha256_5bd1fb789c88ef78fa038072707f70e95870357c445c16f149b5c0cebef49af8"
     },
     "FlawlessVictory": {
-      "archive": "user_data/profile_smoke/FlawlessVictory-2026-08-30_08-28-05.zip",
-      "archive_sha256": "sha256_8bba312f7db813a5f6ed7f5c1d42f14ae319867eaa387e37b87640f136d596b1",
+      "archive": "user_data/profile_smoke/FlawlessVictory-16bcd567-2026-09-14_18-15-10.zip",
+      "archive_sha256": "sha256_381403ac1d0f53f812ff2fc60b6049252a3e35530e9b9b44f451e04dfa49b67f",
+      "artifact_key": "",
+      "attempted_at": "2026-09-14T16:15:13+00:00",
+      "attempts": [
+        {
+          "attempted_at": null,
+          "elapsed_s": 95.9,
+          "status": "measured",
+          "why": null
+        }
+      ],
       "canonical_sha256": "sha256_39a22333a9a7eb02c4ea537ea2e940820ca12e217ca614cf8fc2c5c955f55720",
       "class1_rules": [],
-      "elapsed_s": 95.9,
-      "long_trades": 10229,
+      "config_overrides": {},
+      "elapsed_s": 57.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy FlawlessVictory --strategy-path repos/seannowotny_FlawlessVictoryPort/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FlawlessVictory-16bcd567 --cache none",
+      "long_trades": 10096,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [
@@ -7709,14 +7761,20 @@
         "XMR/USDT",
         "DASH/USDT"
       ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "python_paths": [],
+        "rules": []
+      },
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
       "status": "measured",
-      "timerange": "20200301-20260821",
-      "trades": 10229,
-      "trades_sha256": "sha256_dfc392985805246b4806e960db9edf2a216c5afacbb10e1499945c0393cf33e3"
+      "timerange": "20200401-20260821",
+      "trades": 10096,
+      "trades_sha256": "sha256_ff92993e74f515f8fcced2af6fdcee25843eeba6328963910d3022bcb91faa66"
     },
     "ForexSignal": {
       "archive": "user_data/profile_smoke/ForexSignal-00154db2-2026-09-06_06-24-04.zip",
@@ -20940,8 +20998,6 @@
   },
   "runtime_ids": [
     "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
-    "docker:sha256:4ff7fcaae9ee29d01320bac6ce39fb4d266a4c2defd23587f025d843a067c353",
-    "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
     "native_unversioned",
     "windows-ftenv:freqtrade-2026.7-python-3.13"
   ],

@@ -3,7 +3,45 @@
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-14T20:00:00+02:00
+- Last update: 2026-09-14T21:00:00+02:00
+- **Artifact Version 40: three Model 0 archives refreshed, DCA marker added
+  (Version 39).** `BuyRegions`, `ClucHAnix_5M_E0V1E`, `FlawlessVictory` had a
+  stored native archive from before the canonical timerange last changed -
+  `regime/full_backtest.py` skips a strategy whose identity (source/config
+  hash) is unchanged regardless of timerange, so these three were silently
+  stuck on stale data. Re-ran with `--strategy <id> --force` for all three
+  (589/647 measured, unchanged). This mattered beyond the ft_stats.json gap
+  that surfaced it: `regime/attribution.py` has no timerange check at all
+  (only `measurement_scope` + identity), so these three strategies' regular
+  Model 0 regime-attribution rows had *also* been silently built from the
+  stale archive the whole time, not just their freqtrade-native summary.
+  Re-ran the full Model 0 chain (`attribution.py` -> `specialist_evaluation.py`)
+  to fix that: 3,459,380 -> 3,459,038 trades (the three strategies' own
+  counts shifted), but every headline figure already quoted throughout the
+  artifact held exactly - 1,671/1,757 VALIDATION rows, 379 universal
+  candidates. None of the three ever ranked into the regime-specialist
+  Top-10 pilot's candidate lists either (checked directly: best LCB among
+  them is 0.0094, the weakest already-selected pilot candidate is 0.0354),
+  so the frozen 25-strategy/33-candidate pilot and its backtest results are
+  untouched by this. `export_ftstats_v2.py` re-run: `ft_stats.json` now
+  379/379 (was 376/379), profitable-under-compounding count updated 161/379
+  (was 160/376, same ~43%). `export_v9.py` also re-run for
+  `regime_full.json`/`universal.json`/`futures_strategies.json` consistency
+  (its `gated_compare.json`/`gated_detail.json`/`top5.json` outputs are
+  legacy leftovers from the discarded pilot, not referenced by
+  `build_v8.py` since Version 36 - harmless that they got rewritten too).
+  **Separately, Version 39** added the DCA marker (`#`, same pattern as the
+  futures `*`): `position_adjustment_enable == True` AND
+  `adjust_trade_position()` actually implemented, checked directly against
+  each strategy's own source file (108/1050 verified this way, stricter
+  than `STRATEGY_STATUS.csv`'s `strategy_type=grid_dca` marker which is a
+  bare substring regex on "position_adjustment_enable"/"dca"/"grid" with no
+  True-check and no behavior check - that one hits 121). New file
+  `find_dca_strategies.py` (scratchpad) -> `dca_strategies.json`, wired into
+  `futuresLabel()` (now marks both symbols) and a new legend callout next
+  to the futures one. 35/589 Model 0 strategies, 23/379 universal
+  candidates, 5/25 pilot strategies (`BB_RTR`, `OversoldReversion`,
+  `cryptotank`, `eltoro1_4`, `eltoro1_4_simple`) are DCA-marked.
 - **Artifact Version 38: added a "Fazit: Bringt das Gating etwas?" section**
   answering the user's direct question whether the regime gating actually
   helps. Same-regime, apples-to-apples comparison (Modell 0 in exactly the

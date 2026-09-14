@@ -1781,8 +1781,8 @@
       "timeframe": "5m"
     },
     {
-      "archive": "user_data\\profile_smoke\\BuyRegions-2026-08-30_11-01-03.zip",
-      "config_sha256": "sha256_c329e2ac8f473c22bdf7cd0351d9c7eb1222d0a025d26ca4c38f4373977fad22",
+      "archive": "user_data\\profile_smoke\\BuyRegions-dff7fcd2-2026-09-14_18-05-27.zip",
+      "config_sha256": "sha256_98c7b5ee44353b8d4149b946f241ab70d368a044c860d5f04720d5d80c7cdabc",
       "end": "2026-08-20T23:55:00+00:00",
       "mode": "spot",
       "pairlist": [
@@ -1796,7 +1796,7 @@
         "DASH/USDT"
       ],
       "source_sha256": "sha256_837173d07b03ad4b83d9fd3520bac1ecc0c4494413f41c0b88b2c4e99924d6b9",
-      "start": "2020-03-01T00:00:00+00:00",
+      "start": "2020-04-01T00:00:00+00:00",
       "strategy_id": "BuyRegions",
       "timeframe": "5m"
     },
@@ -2121,8 +2121,8 @@
       "timeframe": "5m"
     },
     {
-      "archive": "user_data\\profile_smoke\\ClucHAnix_5M_E0V1E-2026-08-30_08-26-21.zip",
-      "config_sha256": "sha256_c329e2ac8f473c22bdf7cd0351d9c7eb1222d0a025d26ca4c38f4373977fad22",
+      "archive": "user_data\\profile_smoke\\ClucHAnix_5M_E0V1E-eef9a366-2026-09-14_18-14-13.zip",
+      "config_sha256": "sha256_98c7b5ee44353b8d4149b946f241ab70d368a044c860d5f04720d5d80c7cdabc",
       "end": "2026-08-20T23:55:00+00:00",
       "mode": "spot",
       "pairlist": [
@@ -2136,7 +2136,7 @@
         "DASH/USDT"
       ],
       "source_sha256": "sha256_5ff6ead9232e02d8d39a855da7e393c4a812cc4c050499d168045faefcf61971",
-      "start": "2020-03-01T00:00:00+00:00",
+      "start": "2020-04-01T00:00:00+00:00",
       "strategy_id": "ClucHAnix_5M_E0V1E",
       "timeframe": "5m"
     },
@@ -4701,8 +4701,8 @@
       "timeframe": "1h"
     },
     {
-      "archive": "user_data\\profile_smoke\\FlawlessVictory-2026-08-30_08-28-05.zip",
-      "config_sha256": "sha256_c329e2ac8f473c22bdf7cd0351d9c7eb1222d0a025d26ca4c38f4373977fad22",
+      "archive": "user_data\\profile_smoke\\FlawlessVictory-16bcd567-2026-09-14_18-15-10.zip",
+      "config_sha256": "sha256_98c7b5ee44353b8d4149b946f241ab70d368a044c860d5f04720d5d80c7cdabc",
       "end": "2026-08-20T23:45:00+00:00",
       "mode": "spot",
       "pairlist": [
@@ -4716,7 +4716,7 @@
         "DASH/USDT"
       ],
       "source_sha256": "sha256_39a22333a9a7eb02c4ea537ea2e940820ca12e217ca614cf8fc2c5c955f55720",
-      "start": "2020-03-01T00:00:00+00:00",
+      "start": "2020-04-01T00:00:00+00:00",
       "strategy_id": "FlawlessVictory",
       "timeframe": "15m"
     },
@@ -12375,8 +12375,8 @@
     "wavetrend",
     "wavetrend_rsi"
   ],
-  "btc_regime_matched_trades": 3459380,
-  "coin_regime_matched_trades": 3448462,
+  "btc_regime_matched_trades": 3459038,
+  "coin_regime_matched_trades": 3448120,
   "coin_regime_unmatched_by_pair": {
     "XMR/USDT:USDT": 10918
   },
@@ -12445,5 +12445,5 @@
   ],
   "rejected_archives": [],
   "schema_version": 1,
-  "trades": 3459380
+  "trades": 3459038
 }
