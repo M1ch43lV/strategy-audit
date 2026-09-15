@@ -6886,6 +6886,27 @@
       "run_profile": "futures_long",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
+    "NostalgiaForInfinityX7": {
+      "canonical_sha256": "sha256_9b409a8a13d4575686d998ced64f6e1731bf42c17afa99d3bbf45ac21143d574",
+      "class1_rules": [
+        "startup_candles_not_limited_by_call_budget"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "elapsed_s": 100.9,
+        "invocation": "freqtrade lookahead-analysis --config runtime/profile_futures_config.json --strategy NostalgiaForInfinityX7 --strategy-path user_data/profile_bias_strategies/NostalgiaForInfinityX7-5576d030 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_a680b1d1dd7695e76bbf4afe3926af6e8657dc6bdafa31b5d38d0df35a6a29f9",
+        "runtime_id": "native_unversioned",
+        "status": "PASS",
+        "timerange": "20200301-20200601",
+        "why": "no bias detected"
+      },
+      "mode": "futures",
+      "run_profile": "futures_long",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
     "NostalgiaForInfinityX8": {
       "canonical_sha256": "sha256_14762b0c6bddd77d61bb035c4ec351de0db49b21adba1b2a486d35d715032e85",
       "class1_rules": [],
