@@ -319,6 +319,1563 @@
       "status": "resolved",
       "strategy_id": "NNPredict",
       "why": "1 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "NNPredict_AdditiveAttention": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/3/Solipsis4",
+          "sha256_16": "889e8768504cef5c",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/utils",
+          "sha256_16": "0cab5e13312557af",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/utils",
+          "sha256_16": "0cab5e13312557af",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/kemplail_freqtrade-stuff/strategies",
+          "sha256_16": "c27fa4d81f09048e",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/webclinic017_strategies-freqtrade-/binanceus",
+          "sha256_16": "0cab5e13312557af",
+          "why": "AttributeError: module 'keras._tf_keras.keras.backend' has no attribute 'set_session'"
+        },
+        {
+          "imports": false,
+          "path": "repos/webclinic017_strategies-freqtrade-/utils",
+          "sha256_16": "0cab5e13312557af",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        }
+      ],
+      "missing_module": "custom_indicators",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNPredict/NNPredict_AdditiveAttention.py",
+      "status": "unresolved",
+      "strategy_id": "NNPredict_AdditiveAttention",
+      "why": "no copy of custom_indicators in the corpus makes NNPredict_AdditiveAttention import; the import failure is not only this module"
+    },
+    "NNPredict_Attention": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/3/Solipsis4",
+          "sha256_16": "889e8768504cef5c",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/utils",
+          "sha256_16": "0cab5e13312557af",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/utils",
+          "sha256_16": "0cab5e13312557af",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/kemplail_freqtrade-stuff/strategies",
+          "sha256_16": "c27fa4d81f09048e",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/webclinic017_strategies-freqtrade-/binanceus",
+          "sha256_16": "0cab5e13312557af",
+          "why": "AttributeError: module 'keras._tf_keras.keras.backend' has no attribute 'set_session'"
+        },
+        {
+          "imports": false,
+          "path": "repos/webclinic017_strategies-freqtrade-/utils",
+          "sha256_16": "0cab5e13312557af",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": "ModuleNotFoundError: No module named 'utils'"
+        }
+      ],
+      "missing_module": "custom_indicators",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNPredict/NNPredict_Attention.py",
+      "status": "unresolved",
+      "strategy_id": "NNPredict_Attention",
+      "why": "no copy of custom_indicators in the corpus makes NNPredict_Attention import; the import failure is not only this module"
+    },
+    "NNPredict_CNN": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "AttributeError: module 'keras._tf_keras.keras.backend' has no attribute 'set_session'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "AttributeError: module 'keras._tf_keras.keras.backend' has no attribute 'set_session'"
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframePopulator'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframePopulator'; 'utils' is not a package"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "missing_module": "utils",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNPredict/NNPredict_CNN.py",
+      "status": "unresolved",
+      "strategy_id": "NNPredict_CNN",
+      "why": "no copy of utils in the corpus makes NNPredict_CNN import; the import failure is not only this module"
+    },
+    "NNPredict_GRU": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": "AttributeError: module 'keras._tf_keras.keras.backend' has no attribute 'set_session'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/3/Solipsis4",
+          "sha256_16": "889e8768504cef5c",
+          "why": "AttributeError: module 'keras._tf_keras.keras.backend' has no attribute 'set_session'"
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/utils",
+          "sha256_16": "0cab5e13312557af",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/utils",
+          "sha256_16": "0cab5e13312557af",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/kemplail_freqtrade-stuff/strategies",
+          "sha256_16": "c27fa4d81f09048e",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/webclinic017_strategies-freqtrade-/binanceus",
+          "sha256_16": "0cab5e13312557af",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/webclinic017_strategies-freqtrade-/utils",
+          "sha256_16": "0cab5e13312557af",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/utils",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/utils",
+        "repos/kemplail_freqtrade-stuff/strategies",
+        "repos/nateemma_strategies/utils",
+        "repos/webclinic017_strategies-freqtrade-/binanceus",
+        "repos/webclinic017_strategies-freqtrade-/utils",
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "missing_module": "custom_indicators",
+      "python_path": "repos/webclinic017_strategies-freqtrade-/binanceus",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNPredict/NNPredict_GRU.py",
+      "status": "resolved",
+      "strategy_id": "NNPredict_GRU",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "7 differing copies satisfy the import; the one in the strategy's own repository is used"
+    },
+    "NNPredict_LSTM2": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/3/Solipsis4",
+          "sha256_16": "889e8768504cef5c",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/utils",
+          "sha256_16": "0cab5e13312557af",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/utils",
+          "sha256_16": "0cab5e13312557af",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/kemplail_freqtrade-stuff/strategies",
+          "sha256_16": "c27fa4d81f09048e",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/webclinic017_strategies-freqtrade-/binanceus",
+          "sha256_16": "0cab5e13312557af",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/webclinic017_strategies-freqtrade-/utils",
+          "sha256_16": "0cab5e13312557af",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/froggleston_cryptofrog-strategies",
+        "repos/hamidreza07_freqai-strategy/startegy test/3/Solipsis4",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/utils",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/utils",
+        "repos/kemplail_freqtrade-stuff/strategies",
+        "repos/nateemma_strategies/utils",
+        "repos/webclinic017_strategies-freqtrade-/binanceus",
+        "repos/webclinic017_strategies-freqtrade-/utils",
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "missing_module": "custom_indicators",
+      "python_path": "repos/webclinic017_strategies-freqtrade-/binanceus",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNPredict/NNPredict_LSTM2.py",
+      "status": "resolved",
+      "strategy_id": "NNPredict_LSTM2",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "9 differing copies satisfy the import; the one in the strategy's own repository is used"
+    },
+    "NNPredict_LSTM3": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/froggleston_cryptofrog-strategies",
+          "sha256_16": "64ffa04db3a0af9a",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/3/Solipsis4",
+          "sha256_16": "889e8768504cef5c",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/utils",
+          "sha256_16": "0cab5e13312557af",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/utils",
+          "sha256_16": "0cab5e13312557af",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/kemplail_freqtrade-stuff/strategies",
+          "sha256_16": "c27fa4d81f09048e",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/nateemma_strategies/utils",
+          "sha256_16": "e8bb76908ad0e26e",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/webclinic017_strategies-freqtrade-/binanceus",
+          "sha256_16": "0cab5e13312557af",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/webclinic017_strategies-freqtrade-/utils",
+          "sha256_16": "0cab5e13312557af",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/werkkrew_freqtrade-strategies/strategies/solipsis",
+          "sha256_16": "7c3043a6fcbbcd69",
+          "why": ""
+        }
+      ],
+      "copies_that_work": [
+        "repos/froggleston_cryptofrog-strategies",
+        "repos/hamidreza07_freqai-strategy/startegy test/3/Solipsis4",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/utils",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/utils",
+        "repos/kemplail_freqtrade-stuff/strategies",
+        "repos/nateemma_strategies/utils",
+        "repos/webclinic017_strategies-freqtrade-/binanceus",
+        "repos/webclinic017_strategies-freqtrade-/utils",
+        "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
+      ],
+      "missing_module": "custom_indicators",
+      "python_path": "repos/webclinic017_strategies-freqtrade-/binanceus",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNPredict/NNPredict_LSTM3.py",
+      "status": "resolved",
+      "strategy_id": "NNPredict_LSTM3",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "9 differing copies satisfy the import; the one in the strategy's own repository is used"
+    },
+    "NNPredict_MLP": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframePopulator'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframePopulator'; 'utils' is not a package"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNPredict/NNPredict_MLP.py",
+      "status": "resolved",
+      "strategy_id": "NNPredict_MLP",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "2 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "NNPredict_Multihead": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+        "repos/imsatoshi_GeneTrader",
+        "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNPredict/NNPredict_Multihead.py",
+      "status": "resolved",
+      "strategy_id": "NNPredict_Multihead",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "4 differing copies satisfy the import and none is in the strategy's own repository; repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
+    },
+    "NNPredict_NBeats": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'torch'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'torch'"
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'torch'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "missing_module": "utils",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_NBeats.py",
+      "status": "unresolved",
+      "strategy_id": "NNPredict_NBeats",
+      "why": "no copy of utils in the corpus makes NNPredict_NBeats import; the import failure is not only this module"
+    },
+    "NNPredict_NHiTS": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "missing_module": "utils",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_NHiTS.py",
+      "status": "unresolved",
+      "strategy_id": "NNPredict_NHiTS",
+      "why": "no copy of utils in the corpus makes NNPredict_NHiTS import; the import failure is not only this module"
+    },
+    "NNPredict_NLinear": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "missing_module": "utils",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_NLinear.py",
+      "status": "unresolved",
+      "strategy_id": "NNPredict_NLinear",
+      "why": "no copy of utils in the corpus makes NNPredict_NLinear import; the import failure is not only this module"
+    },
+    "NNPredict_Ray": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "missing_module": "utils",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_Ray.py",
+      "status": "unresolved",
+      "strategy_id": "NNPredict_Ray",
+      "why": "no copy of utils in the corpus makes NNPredict_Ray import; the import failure is not only this module"
+    },
+    "NNPredict_TCN": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframePopulator'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframePopulator'; 'utils' is not a package"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNPredict/NNPredict_TCN.py",
+      "status": "resolved",
+      "strategy_id": "NNPredict_TCN",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "2 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "NNPredict_TFT": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "missing_module": "utils",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_TFT.py",
+      "status": "unresolved",
+      "strategy_id": "NNPredict_TFT",
+      "why": "no copy of utils in the corpus makes NNPredict_TFT import; the import failure is not only this module"
+    },
+    "NNPredict_Transformer": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+        "repos/imsatoshi_GeneTrader",
+        "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_Transformer.py",
+      "status": "resolved",
+      "strategy_id": "NNPredict_Transformer",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "4 differing copies satisfy the import and none is in the strategy's own repository; repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
+    },
+    "NNPredict_Wavenet": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+        "repos/imsatoshi_GeneTrader",
+        "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNPredict/NNPredict_Wavenet.py",
+      "status": "resolved",
+      "strategy_id": "NNPredict_Wavenet",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "4 differing copies satisfy the import and none is in the strategy's own repository; repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
+    },
+    "NNPredict_Wavenet2": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframePopulator'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframePopulator'; 'utils' is not a package"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNPredict/NNPredict_Wavenet2.py",
+      "status": "resolved",
+      "strategy_id": "NNPredict_Wavenet2",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "2 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "NNPredict_dTransformer": {
+      "candidates": [
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'darts'"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "missing_module": "utils",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_dTransformer.py",
+      "status": "unresolved",
+      "strategy_id": "NNPredict_dTransformer",
+      "why": "no copy of utils in the corpus makes NNPredict_dTransformer import; the import failure is not only this module"
+    },
+    "NNPredict_kTFT": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+        "repos/imsatoshi_GeneTrader",
+        "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_kTFT.py",
+      "status": "resolved",
+      "strategy_id": "NNPredict_kTFT",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "4 differing copies satisfy the import and none is in the strategy's own repository; repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement"
+    },
+    "NNTC_adx2_LSTM": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'; 'utils' is not a package"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_adx2_LSTM.py",
+      "status": "resolved",
+      "strategy_id": "NNTC_adx2_LSTM",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "2 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "NNTC_adx3_LSTM": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'; 'utils' is not a package"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_adx3_LSTM.py",
+      "status": "resolved",
+      "strategy_id": "NNTC_adx3_LSTM",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "2 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "NNTC_adx_LSTM": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'; 'utils' is not a package"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_adx_LSTM.py",
+      "status": "resolved",
+      "strategy_id": "NNTC_adx_LSTM",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "2 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "NNTC_all_LSTM": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'; 'utils' is not a package"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_all_LSTM.py",
+      "status": "resolved",
+      "strategy_id": "NNTC_all_LSTM",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "2 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "NNTC_aroon_LSTM": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'; 'utils' is not a package"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_aroon_LSTM.py",
+      "status": "resolved",
+      "strategy_id": "NNTC_aroon_LSTM",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "2 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "NNTC_bbw_LSTM": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'; 'utils' is not a package"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_bbw_LSTM.py",
+      "status": "resolved",
+      "strategy_id": "NNTC_bbw_LSTM",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "2 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "NNTC_bbw_Transformer": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'; 'utils' is not a package"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_bbw_Transformer.py",
+      "status": "resolved",
+      "strategy_id": "NNTC_bbw_Transformer",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "2 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "NNTC_dwt2_LSTM": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'; 'utils' is not a package"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_dwt2_LSTM.py",
+      "status": "resolved",
+      "strategy_id": "NNTC_dwt2_LSTM",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "2 copies satisfy the import and all are the same file, so the choice carries no risk"
+    },
+    "NNTC_dwt_LSTM": {
+      "candidates": [
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": true,
+          "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": ""
+        },
+        {
+          "imports": false,
+          "path": "repos/imsatoshi_GeneTrader",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'"
+        },
+        {
+          "imports": false,
+          "path": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/freqtrade/freqai",
+          "sha256_16": "f3e97b60caa186a4",
+          "why": "ModuleNotFoundError: No module named 'utils.DataframeUtils'; 'utils' is not a package"
+        },
+        {
+          "imports": false,
+          "path": "repos/mlsys-io_PortfolioBench",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed freqtrade package"
+        },
+        {
+          "imports": false,
+          "path": "repos/nateemma_strategies",
+          "sha256_16": "e3b0c44298fc1c14",
+          "why": "would shadow the installed sklearn package"
+        }
+      ],
+      "copies_that_work": [
+        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+      ],
+      "missing_module": "utils",
+      "python_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly",
+      "rule": "restore_copied_local_module",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_dwt_LSTM.py",
+      "status": "resolved",
+      "strategy_id": "NNTC_dwt_LSTM",
+      "verification": "path_insufficient",
+      "verified_status": "failed",
+      "verified_why": "keras._tf_keras.keras[.backend] AttributeError (set_session / saving) - shared runtime version drift, not a path issue",
+      "why": "2 copies satisfy the import and all are the same file, so the choice carries no risk"
     }
   },
   "rule": "restore_copied_local_module",

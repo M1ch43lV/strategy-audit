@@ -1233,6 +1233,56 @@
       ],
       "status": "applied"
     },
+    "NNPredict_GRU": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/webclinic017_strategies-freqtrade-/binanceus"
+    },
+    "NNPredict_LSTM2": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/webclinic017_strategies-freqtrade-/binanceus"
+    },
+    "NNPredict_LSTM3": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/webclinic017_strategies-freqtrade-/binanceus"
+    },
+    "NNPredict_MLP": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
+    },
+    "NNPredict_Multihead": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+    },
+    "NNPredict_TCN": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
+    },
+    "NNPredict_Transformer": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+    },
+    "NNPredict_Wavenet": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+    },
+    "NNPredict_Wavenet2": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
+    },
+    "NNPredict_kTFT": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+    },
     "NNTC": {
       "image": "strategy-audit-tensorflow-runtime:2026.7",
       "note": "imports NNTClassifier and TCN (siblings in NNTC/, fetched) plus utils.custom_indicators/DataframeUtils/DataframePopulator/TrainingSignals/Environment/profiler/ClassifierKerasTrinary, which sit at this repo's root utils/ package, not per-strategy - needs the repo root on python_paths. Module resolution confirmed complete. Also needed a new Class 1 shim, tf_keras_saving_reexport: @tf.keras.saving.register_keras_serializable at NNTClassifier.py import time - tf.keras (Keras 3's compat namespace) is missing the saving submodule; keras.saving.register_keras_serializable is the same function, reached through the name that works. Reaches real training under strategy-audit-tensorflow-runtime:2026.7 with tqdm and setuptools==80.10.2 (pkg_resources) added, fails past that on a pandas-3 copy-on-write read-only array in NNTC.py's own train_models (blabels[np.where(slabels > 0)] = 0.0) - the same class of issue already on record for DWT, a separate, deeper compat gap, not attempted.",
@@ -1244,6 +1294,51 @@
         "tf_keras_saving_reexport"
       ],
       "status": "applied"
+    },
+    "NNTC_adx2_LSTM": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
+    },
+    "NNTC_adx3_LSTM": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
+    },
+    "NNTC_adx_LSTM": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
+    },
+    "NNTC_all_LSTM": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
+    },
+    "NNTC_aroon_LSTM": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
+    },
+    "NNTC_bbw_LSTM": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
+    },
+    "NNTC_bbw_Transformer": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
+    },
+    "NNTC_dwt2_LSTM": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
+    },
+    "NNTC_dwt_LSTM": {
+      "note": "the corpus copy makes the missing-module import succeed in isolation, but 2026-09-15 re-run of Stage 1 (evidence/profile_smoke.py, all three profiles, --force) still fails - all 19 now surface (visibly for 5, silently for 14) the same keras._tf_keras.keras[.backend] AttributeError (set_session / saving) that blocks the other 56 webclinic017 NNPredict_*/NNTC_* rows. The missing-module path was real but not the only blocker; withdrawn per the same standard repair/local_modules.py.verify() applies (a path that satisfies the import test is not yet a repair, only the run can tell) - this project just has no PROFILE_SMOKE.json-based verify() wired up yet, so this was done by hand against the same evidence a verify() run would use.",
+      "status": "withdrawn",
+      "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
     },
     "NOTankAi_15": {
       "config_keys": [
