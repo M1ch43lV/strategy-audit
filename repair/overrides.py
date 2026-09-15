@@ -51,7 +51,7 @@ def sibling_config_timeframe(canonical_file):
     stating it, which is why `evidence/execution_profiles.py`'s static source scan -
     looking for a literal `timeframe = ...` in the strategy file itself -
     finds nothing and `evidence/EXECUTION_PROFILES.csv` records `timeframe_source:
-    unresolved`. All 18 still ran a real Probelauf, so the value was never
+    unresolved`. All 18 still ran a real smoke test, so the value was never
     actually missing, only indirected through the author's own sibling
     file. This reads the same file the strategy imports at runtime; it is
     not a different or invented value.

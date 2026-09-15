@@ -960,7 +960,7 @@ def rows():
             # never produced a drift table to observe it in. TRIX_LS
             # (`rsi_.rolling(length)` on `None`) and kijun_cross_strong_s (a
             # `NoneType` subscript) both crash inside their own indicator
-            # code, and both already pass a real Probelauf on full history,
+            # code, and both already pass a real smoke test on full history,
             # so this is the ladder's extreme short rungs, not a defect
             # visible under real use. The shrinking-ladder retry (`resolve()`
             # in evidence/warmup_convergence.py) already gave every rung down to the 3

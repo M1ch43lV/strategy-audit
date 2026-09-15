@@ -140,7 +140,7 @@ Currently 314 of 1369 strategies are excluded. The criteria are not exclusive - 
 
 **Machine test.** `recursive_evidence == "convergence:crash_exhausted"`, together with `exclusion_basis == "own_measurement"`.
 
-**What it means.** The ladder's shortest rungs raise inside the strategy's own indicator code rather than reporting a drift table - `TRIX_LS` (`rsi_.rolling(length)` on `None` inside a custom `custom_stochRSI` helper) and `kijun_cross_strong_s` (a `NoneType` subscript). Both already pass a real Probelauf on full history, so this is not the strategy failing under real use - it is an indicator that cannot handle the ladder's deliberately extreme short warm-ups. `evidence/warmup_convergence.py`'s `resolve()` answers that directly: on a crash it drops the shortest rung and retries, continuing until only the 3 longest remain, giving every rung short of those a chance to be the reason before it stops trying. Both rows still crash with only the 3 longest left.
+**What it means.** The ladder's shortest rungs raise inside the strategy's own indicator code rather than reporting a drift table - `TRIX_LS` (`rsi_.rolling(length)` on `None` inside a custom `custom_stochRSI` helper) and `kijun_cross_strong_s` (a `NoneType` subscript). Both already pass a real smoke test on full history, so this is not the strategy failing under real use - it is an indicator that cannot handle the ladder's deliberately extreme short warm-ups. `evidence/warmup_convergence.py`'s `resolve()` answers that directly: on a crash it drops the shortest rung and retries, continuing until only the 3 longest remain, giving every rung short of those a chance to be the reason before it stops trying. Both rows still crash with only the 3 longest left.
 
 **Why it is final.** Not a finding - no drift was ever observed, because the row never produced a drift table to observe it in, so `recursive` stays `NA` rather than `FOUND`. But the recursive-bias check is not optional for any row admitted to this audit, and a row that cannot complete it even given the most generous warm-up this project's ladder offers has not passed it either. Decided on that basis, 2026-09-08.
 
@@ -332,4 +332,3 @@ For a strategy under `open` or `exclusion unconfirmed`, read the three criteria 
 5. Otherwise it is not excluded. `open_work` names what is missing, and the checks run in the order the status page sets out: trial run, recursion, look-ahead, backtest.
 
 Of the 95 unfinished strategies, 0 currently satisfy a criterion.
-

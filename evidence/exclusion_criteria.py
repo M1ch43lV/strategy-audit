@@ -416,7 +416,7 @@ CRITERIA = [
                 "indicator code rather than reporting a drift table - "
                 "`TRIX_LS` (`rsi_.rolling(length)` on `None` inside a custom "
                 "`custom_stochRSI` helper) and `kijun_cross_strong_s` (a "
-                "`NoneType` subscript). Both already pass a real Probelauf "
+                "`NoneType` subscript). Both already pass a real smoke test "
                 "on full history, so this is not the strategy failing under "
                 "real use - it is an indicator that cannot handle the "
                 "ladder's deliberately extreme short warm-ups. "

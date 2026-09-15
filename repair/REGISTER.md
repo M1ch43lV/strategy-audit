@@ -471,7 +471,7 @@ identity hash; it does not alter parsed configuration values or execution.
 
 ---
 
-# Phase 5 — the 32 `to_be_fixed` rows (Stufe 1), 2026-09-09
+# Phase 5 — the 32 `to_be_fixed` rows (Stage 1), 2026-09-09
 
 `REPAIR_LIST.md`'s `to_be_fixed` family (32 strategies that never ran) was
 worked row by row: could each be repaired mechanically, and is the evidence
@@ -1155,7 +1155,7 @@ file), and an outright dtype comparison rather than an assignment
 (`MomentumRegimeBasket15m`, `int64` vs `datetime64`). Each would need its
 own read and its own proof; none is guessed at here.
 
-# Phase 9 — Stufe 2/3 batch, and a timeframe traced through a repaired import
+# Phase 9 — Stage 2/3 batch, and a timeframe traced through a repaired import
 
 Ran the warm-up ladder (`evidence.warmup_convergence --cohort ladder_pending`)
 and the look-ahead gate (`evidence.profile_bias --diagnostics lookahead

@@ -576,7 +576,7 @@ def resolve(row, timeout, overrides=None):
     # higher: most of these failures are an indicator refusing a series
     # shorter than it needs (TRIX_LS: `rsi_.rolling(length)` on `None`;
     # kijun_cross_strong_s: a `NoneType` subscript) - both already pass a real
-    # Probelauf on full history, so the crash is the ladder's own extreme short
+    # smoke test on full history, so the crash is the ladder's own extreme short
     # rungs, not a defect the strategy shows under real use. So the bottom
     # rung is dropped and the ladder tried again, stopping once only the 3
     # longest rungs are left - not promoted to a pass or a fail either way,

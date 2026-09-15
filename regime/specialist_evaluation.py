@@ -835,7 +835,7 @@ def _specialist_table(trades: pd.DataFrame, regime_column: str, match_column: st
     # inside it - a strategy with 1,230 trades across 40 episodes would have
     # its benchmark dollar figure inflated roughly 30x (confirmed in the
     # published artifact: `Obelisk_TradePro_Ichi_v2_2` showed a +$94,882
-    # ADX-Sideways "B&H-Gewinn" this way). Deduplicating first fixes both
+    # ADX-Sideways "buy-and-hold gain" this way). Deduplicating first fixes both
     # the dollar sum and the mean (and hence excess_return) at once - both
     # now weight each episode once, matching "$1000 at the start of the
     # phase", not "$1000 per trade taken during the phase". `coin_pair` is
@@ -1119,7 +1119,7 @@ def selftest() -> None:
             # Regression: benchmark_dollar_gain_usd/mean_benchmark_return must
             # count each distinct (coin, episode) once, not once per trade
             # inside it - the bug a user caught in the published artifact (a
-            # 1,230-trade/40-episode strategy showed a +$94,882 "B&H-Gewinn",
+            # 1,230-trade/40-episode strategy showed a +$94,882 "buy-and-hold gain",
             # roughly 30x too high, because the same episode's 30% benchmark
             # return was summed once per trade instead of once per episode).
             ep2_trades = pd.DataFrame([

@@ -483,7 +483,7 @@ def build(repair_root=DEFAULT_REPAIR):
         # never opens (it only reads the strategy file itself).
         # evidence/warmup_convergence.py found this the hard way when its own candle
         # math had nothing to resolve against despite the row already
-        # running a real Probelauf - see sibling_config_timeframe()'s
+        # running a real smoke test - see sibling_config_timeframe()'s
         # docstring. Shared function, so this and the ladder can never end
         # up with two different answers for the same file.
         config_sibling_timeframe = (

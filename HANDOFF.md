@@ -3,9 +3,9 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-15T08:29:45+02:00
-- Stopped because: detached the GitHub repository from its fork network,
-  migrated the 1.3 GB attribution CSV to Git LFS, and pushed successfully.
+- Last update: 2026-09-15T09:28:58+02:00
+- Stopped because: translated all identified German project-owned comments and
+  text into English, including the complete `PIPELINE.md`; no benchmark ran.
 - Next agent should: preserve `.gitattributes` and never recommit
   `results/regime/trade_regime_attribution.csv` as an ordinary Git blob. The
   old-to-new hash map is `evidence/GIT_LFS_MIGRATION.md`; do not rederive it.
@@ -76,17 +76,17 @@
   to the futures one. 35/589 Model 0 strategies, 23/379 universal
   candidates, 5/25 pilot strategies (`BB_RTR`, `OversoldReversion`,
   `cryptotank`, `eltoro1_4`, `eltoro1_4_simple`) are DCA-marked.
-- **Artifact Version 38: added a "Fazit: Bringt das Gating etwas?" section**
+- **Artifact Version 38: added a "Conclusion: Does gating help?" section**
   answering the user's direct question whether the regime gating actually
-  helps. Same-regime, apples-to-apples comparison (Modell 0 in exactly the
-  candidate's own target regime vs. Modell 1/2/3) over the 31 single-state
-  candidates: Modell 1 16/31 improved (median delta +0.11pp), Modell 2
-  9/31 improved (median &asymp;0, 4/31 bit-for-bit identical to Modell 0),
-  Modell 3 14/31 improved (median -0.55pp). Modell 2 is near-tautological
+  helps. Same-regime, apples-to-apples comparison (Model 0 in exactly the
+  candidate's own target regime vs. Model 1/2/3) over the 31 single-state
+  candidates: Model 1 16/31 improved (median delta +0.11pp), Model 2
+  9/31 improved (median &asymp;0, 4/31 bit-for-bit identical to Model 0),
+  Model 3 14/31 improved (median -0.55pp). Model 2 is near-tautological
   for this candidate pool - they were selected in the first place for
   having an edge in exactly that coin-regime state, so gating on the same
   dimension barely changes anything (real finding, not a bug; does not
-  generalize to unselected strategies). Modell 1/3 gate on BTC-regime,
+  generalize to unselected strategies). Model 1/3 gate on BTC-regime,
   measured its actual correlation with coin-regime rather than assuming it
   (`regime_daily.csv`, 18,000 rows: 53% label agreement, Cohen's kappa
   0.38 - "fair", not "high") - explains why gating there roughly halves
@@ -95,15 +95,15 @@
   assessment found real weaknesses, all incorporated into the final
   write-up: n=31 is too small to claim "no effect" (only "no significant
   effect"), means are outlier-sensitive (FreqForge-score delta median
-  &asymp;0 but mean +6 for Modell 1/3, wide IQR), the 31 candidates aren't
+  &asymp;0 but mean +6 for Model 1/3, wide IQR), the 31 candidates aren't
   independent (25 base strategies, some covering multiple target regimes),
   and the whole pool is pre-selected on a coin-regime edge so results don't
   generalize to arbitrary strategies. All caveats kept in the artifact
   callout, not just the headline conclusion. No result-data pipeline
   changes - analysis only, using the already-existing Model 0/1/2/3 tables.
 - **Artifact Version 37 (on top of Version 36 below), two explicit user
-  requests:** (1) the "Freqtrade-eigene Kennzahlen" table now covers all
-  379 Universal-Kandidaten instead of the old fixed 10-dollar-winner cut -
+  requests:** (1) the "Freqtrade-native metrics" table now covers all
+  379 universal candidates instead of the old fixed 10-dollar-winner cut -
   reused `regime.model_compare._load_model0()` (the same identity-checked
   native-archive lookup the Model 0/1/2/3 comparison already uses) rather
   than writing a new archive reader; 376/379 resolve, 3 rejected for
@@ -118,10 +118,10 @@
   ~53KB/row, harmless at 10 rows, not at 376) - fixed by whitelisting only
   the fields the table actually renders (was: blacklist just `trades`);
   final file 266KB. New script:
-  `export_ftstats_v2.py` (scratchpad). (2) The "Gesamtgewinn: gegatet vs.
-  ungegatet" table gained a Ziel-Regime chip filter (Uptrend/Downtrend/
-  Sideways/Transition + a 5th "kein Ziel-Regime" chip for the two `-trend`
-  candidates) and sortable Modell-0/1/2/3 columns (by each cell's
+  `export_ftstats_v2.py` (scratchpad). (2) The "Total gain: gated vs.
+  ungated" table gained a target-regime chip filter (Uptrend/Downtrend/
+  Sideways/Transition + a 5th "no target regime" chip for the two `-trend`
+  candidates) and sortable Model-0/1/2/3 columns (by each cell's
   `dollar_gain_usd`, missing cells sort last) - previously fully static.
   No result-data pipeline changes for this entry, template/export only.
 - **DONE — regime-specialist Top-10 pilot fully replaces the old
@@ -165,10 +165,10 @@
   needed no changes, only `build_v8.py`'s two placeholder targets moved to
   the new files, plus a new `__TOP10BYREGIME_JSON__` placeholder and a new
   `renderTop10Tables()` function for the four selection tables. Template
-  changes: old "Modell 1/2/3 — gegatete Piloten-Kandidaten" section replaced
+  changes: old "Model 1/2/3 — gated pilot candidates" section replaced
   wholesale (new heading, callouts explaining the new gate design/selection
-  metric/Uptrend-has-only-1-specialist finding); "Gesamtgewinn: gegatet vs.
-  ungegatet" table gained a Ziel-Regime column and now reads `candidate_id`/
+  metric/Uptrend-has-only-1-specialist finding); "Total gain: gated vs.
+  ungated" table gained a target-regime column and now reads `candidate_id`/
   `target_regime` directly instead of the old `strategy_id + '-trend'`
   string-concat hack; `CANDIDATE_SUFFIXES` gained `-uptrend`/`-downtrend` so
   the futures asterisk keeps working. Old pilot's result files
@@ -186,7 +186,7 @@
   lookup against a gated row's full `candidate_id`, e.g.
   `"AdaptiveRegime-trend"`, which can never match the bare `strategy_id`
   list `FUTURESSTRATEGIES` is keyed on - the futures asterisk had
-  silently never rendered in any Modell-1/2/3 row; fixed with a
+  silently never rendered in any Model-1/2/3 row; fixed with a
   `baseStrategyId()` suffix-stripper). Pipeline steps actually run, in
   order: `gated_attribution.py` for each model against the new
   sideways/transition manifest into `modelN_attribution_sideways_transition/`
@@ -238,7 +238,7 @@
      "CAGR" in the full Model 0 corpus. Replaced with a linear,
      non-compounding `annualized_return = mean_profit_ratio *
      trades_per_year`; renamed everywhere (column, function, artifact
-     label "CAGR" -> "Rendite p.a.") so it can't be mistaken for a real
+     label "CAGR" -> "Annualized return") so it can't be mistaken for a real
      CAGR; new point-scale anchors (0%/20%/100%/300%+) frozen before
      inspecting any value.
   4. **profit_factor convention disagreed between modules** (NaN in
@@ -265,8 +265,8 @@
   (47s). **Still outstanding when this baton is picked up:** rerun
   `export_v9.py` (needs its `cagr`->`annualized_return` rename, already
   done in the scratchpad copy) and the template (renames done: "CAGR"
-  column -> "Rendite p.a." everywhere EXCEPT the "Freqtrade-eigene
-  Kennzahlen" section, which is a genuinely different, real freqtrade-
+  column -> "Annualized return" everywhere EXCEPT the "Freqtrade-native
+  metrics" section, which is a genuinely different, real freqtrade-
   native CAGR field from `model_compare.py` and must stay untouched -
   don't rename `fmtCagr()`/its call site, only `fmtCagrRaw()` which was
   renamed to `fmtAnnualizedReturn()`); then merge the sideways/transition
@@ -287,7 +287,7 @@
   (`long_btc_states == short_btc_states == long_coin_states ==
   short_coin_states == ["SIDEWAYS"]`, respectively `["TRANSITION"]`), not a
   long/short split. Design frozen and written into `REGIME_AUDIT_PLAN.md`
-  §15 addendum and `PIPELINE.md` Stufe 13 *before* any result was inspected,
+  §15 addendum and `PIPELINE.md` Stage 13 *before* any result was inspected,
   same discipline as every other threshold in this project. No code changes
   needed - `regime/gated_backtest.py`, `gated_attribution.py` and
   `specialist_evaluation.py` are already fully regime-value-agnostic (only
@@ -365,7 +365,7 @@
   the FreqForge-score callout per DeepSeek's advice). Published as artifact
   Version 31. Documented in `REGIME_AUDIT_PLAN.md` §18 addendum (the user
   explicitly asked for plan documentation, not just PIPELINE.md) and
-  `PIPELINE.md` Stufe 13.
+  `PIPELINE.md` Stage 13.
 - Added six FreqForge-inspired scoring metrics (github.com/baxr6/FreqForge)
   to `regime/specialist_evaluation.py`, per (strategy, regime): `profit_factor`,
   `worst_trade`, `liquidation_rate`, `sortino`, `cagr`, `drawdown_since_peak`,
@@ -470,8 +470,8 @@
   fully-consistent and full sortable views -, and the gated Model 1/2/3
   tables); the pre-existing whole-period `max_drawdown_account` in the
   separate top-10 ft-stats table is untouched (different metric, different
-  table, was already there). Also extended the "ADX-Regime: Definition und
-  Zeiträume" section with the six volatility-refined reporting phases
+  table, was already there). Also extended the "ADX regime: definition and
+  periods" section with the six volatility-refined reporting phases
   (`bull_trend`/`bear_trend`/`transition`/`range_quiet`/`range_choppy`/
   `high_vol_shock`, Amendment 2026-09-05) - descriptive text only, per
   explicit user choice: the specialist/universal/gated tables keep grouping
@@ -513,7 +513,7 @@
   strategy trading many times within a few episodes counted the same
   buy-and-hold phase once per trade instead of once per episode.
   `Obelisk_TradePro_Ichi_v2_2` (1,230 trades, 40 episodes) showed a
-  "B&H-Gewinn" of +$94,882 in the artifact; the real figure is about
+  "buy-and-hold gain" of +$94,882 in the artifact; the real figure is about
   $4,800, roughly 20x smaller. Fixed by deduplicating to one row per
   `(strategy_id, regime_column, coin_pair, episode_id)` before aggregating
   the benchmark column - `coin_pair` is part of the key because a
@@ -579,9 +579,9 @@
   this change, except `ft_stats.json` was deliberately repointed - see
   below). Updated the `Regime-Spezialisten` artifact throughout: funnel
   counts, a new callout on the BULL finding, an honest empty state for the
-  now-zero "vollständig konsistent" table (kept the same 1.0 threshold,
+  now-zero "fully consistent" table (kept the same 1.0 threshold,
   did not lower the bar to keep a non-empty table), and repointed the
-  "Freqtrade-eigene Kennzahlen" section from the now-empty 44-candidate
+  "Freqtrade-native metrics" section from the now-empty 44-candidate
   cohort to the 10 top dollar-gain winners (data for this was already
   sitting unused in the scratchpad's `winner_ft_stats.json` from an earlier
   turn). Published as artifact Version 10.
@@ -638,7 +638,7 @@
   dollar P&L if every one of a group's trades had gotten its own fresh
   $1000, never a claim about compounded capital growth. Both choices
   documented in `_fixed_stake_gain()`'s docstring and `PIPELINE.md`'s
-  Stufe 13. Re-ran over the full 589-strategy population: 497 get a
+  Stage 13. Re-ran over the full 589-strategy population: 497 get a
   `strategy_total_dollar_gain.csv` row (589 minus the same 92 with zero
   validation-window trades already known from the earlier run), 239/497
   with positive `dollar_gain_usd`, 186/497 beat the benchmark in dollar
@@ -669,7 +669,7 @@
   Only remaining open follow-up: the same evaluation against the Model
   1/2/3 gated candidate attributions instead of Model 0's natural trades -
   not yet requested, not done.
-- New module `regime/specialist_evaluation.py` (PIPELINE.md Stufe 13) applies
+- New module `regime/specialist_evaluation.py` (PIPELINE.md Stage 13) applies
   the 2026-09-11 amendment's rules to an already-produced attribution:
   discovery/validation split, the 5-episode/10-trade specialist floor, and
   the exposure-matched benchmark (coin's own spot buy-and-hold return over
@@ -774,7 +774,7 @@
   universe with an availability-aware denominator; forced exit on regime
   change stays out of Model 1/2/3, sensitivity-test only; portfolio-level
   allocation is explicitly deferred, not decided, for version 1.
-  `PIPELINE.md`'s Stufe-12 note is updated to match. A candidate spec and a
+  `PIPELINE.md`'s Stage-12 note is updated to match. A candidate spec and a
   productive Model 1/2/3 run are now unblocked by preregistration; nothing
   about admission, technical eligibility, or measured data changed.
 - Stopped because: work item complete, not a live blocker. The owner asked

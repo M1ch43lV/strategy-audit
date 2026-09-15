@@ -238,7 +238,7 @@
 
 <div class="wrap">
   <header>
-    <div class="eyebrow">Strategy Audit &middot; snapshot 2026-09-14 21:41</div>
+    <div class="eyebrow">Strategy Audit &middot; snapshot 2026-09-15 09:25</div>
     <h1>Strategy Test Bench</h1>
     <p class="lede">What is known today about each of the 1369 Freqtrade strategies: which cleared every gate, which did not, and exactly where each one stopped.</p>
   </header>
@@ -338,7 +338,7 @@
       </div>
       <div>
         <h3>C9 &middot; Recursion check cannot complete even at the longest rungs</h3>
-        <p class="lead">The ladder's shortest rungs raise inside the strategy's own indicator code rather than reporting a drift table - <code>TRIX_LS</code> (<code>rsi_.rolling(length)</code> on <code>None</code> inside a custom <code>custom_stochRSI</code> helper) and <code>kijun_cross_strong_s</code> (a <code>NoneType</code> subscript). Both already pass a real Probelauf on full history, so this is not the strategy failing under real use - it is an indicator that cannot handle the ladder's deliberately extreme short warm-ups. <code>evidence/warmup_convergence.py</code>'s <code>resolve()</code> answers that directly: on a crash it drops the shortest rung and retries, continuing until only the 3 longest remain, giving every rung short of those a chance to be the reason before it stops trying. Both rows still crash with only the 3 longest left.</p>
+        <p class="lead">The ladder's shortest rungs raise inside the strategy's own indicator code rather than reporting a drift table - <code>TRIX_LS</code> (<code>rsi_.rolling(length)</code> on <code>None</code> inside a custom <code>custom_stochRSI</code> helper) and <code>kijun_cross_strong_s</code> (a <code>NoneType</code> subscript). Both already pass a real smoke test on full history, so this is not the strategy failing under real use - it is an indicator that cannot handle the ladder's deliberately extreme short warm-ups. <code>evidence/warmup_convergence.py</code>'s <code>resolve()</code> answers that directly: on a crash it drops the shortest rung and retries, continuing until only the 3 longest remain, giving every rung short of those a chance to be the reason before it stops trying. Both rows still crash with only the 3 longest left.</p>
       </div>
       <div>
         <h3>C10 &middot; Canonical pooled full backtest is not testable</h3>

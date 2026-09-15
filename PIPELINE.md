@@ -1,373 +1,175 @@
-# Pipeline — welches Programm läuft wann, und was es anfasst
+# Pipeline — which program runs when, and what it touches
 
-Handgeschrieben, nicht generiert: anders als `STRATEGY_STATUS.csv` oder
-`RUNTIME_ENVIRONMENTS.md` ändert sich diese Abfolge nicht mit jeder Messung,
-sondern nur, wenn sich die Prüfkette selbst ändert. Wer eine neue Stufe
-einbaut oder eine bestehende umbaut, aktualisiert diese Datei von Hand.
+Handwritten, not generated: unlike `STRATEGY_STATUS.csv` or `RUNTIME_ENVIRONMENTS.md`, this sequence does not change with each measurement, but only when the test chain itself changes. Whoever installs a new stage or modifies an existing one updates this file by hand.
 
-Diese Datei beantwortet eine einzige Frage: **in welcher Reihenfolge laufen
-die Skripte, und welche Datei liest/schreibt welches?** Was jede Stufe
-inhaltlich bedeutet und warum sie so und nicht anders entschieden wurde,
-steht in `REGIME_PREREGISTRATION.md` (bindend) und `REGIME_AUDIT_PLAN.md`
-(Referenz) — siehe `DOCUMENT_MAP.md` für die Lesereihenfolge dorthin.
+This file answers a single question: **in which order do the scripts run, and which file reads/writes which one?** What each stage means content-wise and why it was decided this way and not otherwise is specified in `REGIME_PREREGISTRATION.md` (binding) and `REGIME_AUDIT_PLAN.md` (reference) — see `DOCUMENT_MAP.md` for the reading order to it.
 
-Alle nativen Läufe (nicht Docker) brauchen den Python-Interpreter aus
-`ftenv/Scripts/python.exe` (dort ist `freqtrade`/`pandas` installiert, nicht
-im System-Python) — meist über die Umgebungsvariable `PROFILE_PYTHON`.
+All native runs (not Docker) need the Python interpreter from `ftenv/Scripts/python.exe` (`freqtrade`/`pandas` is installed there, not in the system Python) — usually via the environment variable `PROFILE_PYTHON`.
 
-## Stufe 0 — Corpus-Erfassung (einmalig, oder wenn neue Repos dazukommen)
+## Stage 0 — Corpus Collection (once, or when new repositories are added)
 
-`python -m tools.harvest owner/repo` is the complete source-intake command.
-When it finds at least one new class, it regenerates execution profiles,
-classification, preregistered phase hypotheses, semantic duplicate evidence,
-duplicate adjudication, strategy status, and the status page in dependency
-order. These are source/report transformations only: harvest never starts a
-smoke run, bias diagnostic, full backtest, or performance-based decision.
-`--no-refresh` is the explicit batch-download escape hatch.
+`python -m tools.harvest owner/repo` is the complete source-intake command. When it finds at least one new class, it regenerates execution profiles, classification, preregistered phase hypotheses, semantic duplicate evidence, duplicate adjudication, strategy status, and the status page in dependency order. These are source/report transformations only: harvest never starts a smoke run, bias diagnostic, full backtest, or performance-based decision. `--no-refresh` is the explicit batch-download escape hatch.
 
-| Programm | Liest | Schreibt |
+| Program | Reads | Writes |
 |---|---|---|
-| `tools/harvest.py` | GitHub-API (nur `.py`-Dateien mit `IStrategy`) | Dateien unter `repos/<repo>/` |
-| `tools/census_repos.py` | `evidence/corpus_sources.json`, `repos/**` | Statistiken zu Kopie-Familien (Konsole/Referenz für `evidence/exclusion_criteria.py`s C-Text) |
-| `evidence/new_repo_candidates.py` | GitHub-Themensuche, `evidence/corpus_sources.json` | `evidence/NEW_REPO_CANDIDATES.json`, `evidence/NEW_REPO_CANDIDATES.md` |
-| `evidence/repo_freshness.py` | lokales `git log` je Repo, GitHub-Tip, `evidence/EXECUTION_PROFILES.csv` | `evidence/REPO_FRESHNESS.csv`, `evidence/REPO_FRESHNESS.md` |
+| `tools/harvest.py` | GitHub API (only `.py` files with `IStrategy`) | Files under `repos/<repo>/` |
+| `tools/census_repos.py` | `evidence/corpus_sources.json`, `repos/**` | Statistics on copy families (console/reference for `evidence/exclusion_criteria.py`s C-text) |
+| `evidence/new_repo_candidates.py` | GitHub topic search, `evidence/corpus_sources.json` | `evidence/NEW_REPO_CANDIDATES.json`, `evidence/NEW_REPO_CANDIDATES.md` |
+| `evidence/repo_freshness.py` | local `git log` per repo, GitHub tip, `evidence/EXECUTION_PROFILES.csv` | `evidence/REPO_FRESHNESS.csv`, `evidence/REPO_FRESHNESS.md` |
 
-Ergebnis dieser Stufe: neue Zeilen in `evidence/EXECUTION_PROFILES.csv` (eine Zeile pro
-Strategie-Implementierung, die kanonische Quelle für den ganzen Rest der
-Kette).
+Result of this stage: new rows in `evidence/EXECUTION_PROFILES.csv` (one row per strategy implementation, the canonical source for the rest of the chain).
 
-## Stufe 1 — Probelauf (lädt die Strategie, prüft ob überhaupt gehandelt wird)
+## Stage 1 — Test Run (loads the strategy, checks if trading is happening at all)
 
-| Programm | Liest | Schreibt |
+| Program | Reads | Writes |
 |---|---|---|
-| `evidence/profile_smoke.py` | `evidence/EXECUTION_PROFILES.csv`, `evidence/PROFILE_CLASS1.json` (Reparatur-Regeln) | `evidence/PROFILE_SMOKE.json` |
+| `evidence/profile_smoke.py` | `evidence/EXECUTION_PROFILES.csv`, `evidence/PROFILE_CLASS1.json` (Repair Rules) | `evidence/PROFILE_SMOKE.json` |
 
-Seit dem prospektiven Amendment vom 2026-09-10 ist der Probelauf eine feste
-Kaskade: `20200301-20200401` (1 Monat), bei weniger als 10 Trades
-`20200301-20200601` (3 Monate), danach `20200301-20210301` (1 Jahr). Er stoppt
-beim ersten Ergebnis mit mindestens 10 Trades und speichert alle Versuche.
-Fehler/Timeouts werden nicht durch ein längeres Fenster als bestanden
-umgedeutet. Bereits vorhandene Vollfenster-Evidenz bleibt vorrangig.
+Since the prospective amendment of 2026-09-10, the trial run is a fixed cascade: `20200301-20200401` (1 month), with fewer than 10 trades `20200301-20200601` (3 months), thereafter `20200301-20210301` (1 year). It stops at the first result with at least 10 trades and records all attempts. Errors/timeouts are not reinterpreted as passed through a longer window. Existing full-window evidence remains prioritized.
 
-**2026-09-06, erledigt:** `ELIGIBILITY_NEVER_RUN.json` und
-`ELIGIBILITY_TRAP_SMOKE.json` waren einmalige Fallback-Stores früherer
-Wellen (kein Runner im aktuellen Repo schrieb sie neu) — 65 der 83 Zeilen
-darin hatten keinen eigenen `evidence/PROFILE_SMOKE.json`-Eintrag, `evidence/strategy_status.py`
-fiel für sie auf diese beiden Dateien zurück. Per gezieltem
-`evidence/profile_smoke.py --strategy ... --profiles spot_long futures_long unknown`
-nachgeholt (empirisch geprüft: vorher änderten sich 65 von 83 Zeilen in
-`STRATEGY_STATUS.csv`, wenn man die Dateien wegließ, danach keine einzige
-mehr) und beide Dateien entfernt, inklusive der Fallback-Schleife in
-`evidence/strategy_status.py`.
+**2026-09-06, completed:** `ELIGIBILITY_NEVER_RUN.json` and `ELIGIBILITY_TRAP_SMOKE.json` were one-time fallback stores from previous waves (no runner in the current repo rewrote them) — 65 of the 83 lines in them had no separate `evidence/PROFILE_SMOKE.json` entry, `evidence/strategy_status.py` fell back to these two files for them. Caught up via targeted `evidence/profile_smoke.py --strategy ... --profiles spot_long futures_long unknown` (empirically checked: previously 65 of 83 lines in `STRATEGY_STATUS.csv` changed if the files were omitted, afterwards not a single one) and removed both files, including the fallback loop in `evidence/strategy_status.py`.
 
-Scheitert der Probelauf an einem benannten, behebbaren Hindernis (fehlender
-`timeframe`, fehlendes lokales Modul, Signatur-Änderung von freqtrade/pandas/
-numpy), greift eine der folgenden Reparaturrouten, danach läuft Stufe 1 für
-diese Zeile erneut:
+If the test run fails due to a specified, fixable obstacle (missing `timeframe`, missing local module, signature change of freqtrade/pandas/numpy), one of the following repair routes will take effect, after which stage 1 runs again for this line:
 
-| Reparaturroute | Schreibt |
+| Repair Route | Writes |
 |---|---|
 | `evidence/eligibility_timeframe_evidence.py` → `evidence/eligibility_timeframe_repair.py` | `evidence/ELIGIBILITY_TIMEFRAME_EVIDENCE.json`, `evidence/ELIGIBILITY_TIMEFRAME_REPAIR.json` |
 | `repair/local_modules.py` | `evidence/REPAIR_LOCAL_MODULES.json` |
-| `repair/patch_class2.py`-artige Signatur-Reparaturen | `evidence/ELIGIBILITY_SIGNATURE_REPAIR.json` |
-| `repair/compat_signature.py` (17 Shims, automatisch über `evidence/profile_freqtrade.py` geladen) | kein eigener Store — wirkt zur Laufzeit, protokolliert in `evidence/PROFILE_CLASS1.json` |
+| `repair/patch_class2.py`-type signature repairs | `evidence/ELIGIBILITY_SIGNATURE_REPAIR.json` |
+| `repair/compat_signature.py` (17 shims, loaded automatically via `evidence/profile_freqtrade.py`) | no own store — effective at runtime, logged in `evidence/PROFILE_CLASS1.json` |
 
-## Stufe 2 — Bias-Ausschlussprüfung: Look-Ahead zuerst
+## Stage 2 — Bias Exclusion Check: Look-Ahead First
 
-| Programm | Liest | Schreibt |
+| Program | Reads | Writes |
 |---|---|---|
-| `evidence/profile_bias.py` (`run_diagnostic`, native oder Docker) | `evidence/EXECUTION_PROFILES.csv`, Reparatur-Stores | `evidence/PROFILE_BIAS.json` |
+| `evidence/profile_bias.py` (`run_diagnostic`, native or Docker) | `evidence/EXECUTION_PROFILES.csv`, repair stores | `evidence/PROFILE_BIAS.json` |
 | `evidence/eligibility_lookahead_backfill.py` | `STRATEGY_STATUS.csv`, `evidence/EXECUTION_PROFILES.csv`, `evidence/WARMUP_CONVERGENCE.json`, `evidence/PROFILE_CLASS1.json` | `evidence/ELIGIBILITY_LOOKAHEAD_BACKFILL.json` |
-| `evidence/profile_bias_merge.py` | disjunkte Shard-Dateien (bei parallelen Läufen) | die kanonische `evidence/PROFILE_BIAS.json` |
+| `evidence/profile_bias_merge.py` | disjoint shard files (in parallel runs) | the canonical `evidence/PROFILE_BIAS.json` |
 
-Ein nativer Look-Ahead-Befund `FOUND` ist ein finaler Informationsleck-Ausschluss.
-Dann laufen weder Warm-up-Leiter noch Recursive-Bias: Sie können ein
-Informationsleck nicht reparieren.
+A native look-ahead finding of `FOUND` is a final information-leak exclusion. Neither the warm-up ladder nor Recursive-Bias runs afterward because they cannot repair an information leak.
 
-Das Diagnoseintervall ist seit dem Amendment vom 2026-09-10 in beiden Modi
-identisch: `20200301-20200601`. Ein gespeicherter Futures-Leiterlauf über nur
-einen Monat oder ein Spot-Lauf über `20190101-20190401` ist historische
-Provenienz und muss vor einer neuen Entscheidung supersediert und erneut
-gemessen werden.
+The diagnostic interval has been identical in both modes since the amendment of 2026-09-10: `20200301-20200601`. A stored futures run of only one month or a spot run over `20190101-20190401` is of historical provenance and must be superseded and measured again before a new decision.
 
-Eine Ausnahme gilt für die Arbeits-Queue: Ein erfolgreicher kanonischer
-gepoolter Stage-8-Full-Backtest schließt die ihm vorangehende technische
-Prüfkette für genau dieselbe Implementierung. `evidence/strategy_status.py`
-zeigt dies als `technical_chain_complete=true` und setzt dann kein `open_work`,
-wenn Source-Hash und Run-Profil mit
-`results/regime/full_backtest_manifest.json` übereinstimmen. Das ist kein
-nachträglicher E1-Zugang und hebt keinen dokumentierten Ausschluss auf;
-fehlgeschlagene, OOM- oder Timeout-Stage-8-Versuche zählen nicht als Abschluss.
+An exception applies to the work queue: A successful canonical pooled Stage-8 full backtest closes the preceding technical verification chain for exactly the same implementation. `evidence/strategy_status.py` shows this as `technical_chain_complete=true` and then does not set `open_work` if the source hash and run profile match `results/regime/full_backtest_manifest.json`. This is not a retrospective E1 admission and does not override any documented exclusion; failed, OOM, or timeout Stage-8 attempts do not count as completion.
 
-Unabhängig davon ist jede Zeile im Kohortenwert `excluded` ein abgeschlossener
-Arbeitsfall: Sie bleibt mit Ausschlussgrund und Belegen sichtbar, erhält aber
-kein `open_work`. `exclusion_unconfirmed` ist ausdrücklich nicht synonym dazu;
-diese noch nicht verdienten Ausschlüsse bleiben offen, bis die fehlende
-Entscheidungsevidenz vorliegt.
+Regardless, each row with the cohort value `excluded` is a completed work case: it remains visible with its exclusion reason and evidence, but does not receive `open_work`. `exclusion_unconfirmed` is explicitly not synonymous with this; these not-yet-confirmed exclusions remain open until the missing decision evidence is available.
 
-Zusätzlich hat der Owner am 2026-09-10 für Stufe 8 entschieden: Eine zuvor
-zugelassene Strategie mit `full_backtest_status` `failed`,
-`resource_inconclusive` oder `timeout` ist für diesen Benchmark nicht testbar
-und wird als C10 `full_backtest_not_testable` final ausgeschlossen. Diese drei
-Zustände werden nicht erneut in den Full-Backtest eingeplant.
+In addition, the owner decided on 2026-09-10 for level 8: A previously approved strategy with `full_backtest_status`, `failed`, `resource_inconclusive`, or `timeout` is not testable for this benchmark and is finally excluded as C10 `full_backtest_not_testable`. These three states will not be rescheduled in the full backtest.
 
-## Stufe 3 — Warm-up-Konvergenzleiter nach bestandenem Look-Ahead
+## Stage 3 — Warm-up Convergence Ladder after Passing Look-Ahead
 
-| Programm | Liest | Schreibt |
+| Program | Reads | Writes |
 |---|---|---|
-| `evidence/warmup_convergence.py` (`lookahead_pass`) | `evidence/EXECUTION_PROFILES.csv`, identitätsgebundener Look-Ahead-PASS, Reparatur-Stores | `evidence/WARMUP_CONVERGENCE.json` |
+| `evidence/warmup_convergence.py` (`lookahead_pass`) | `evidence/EXECUTION_PROFILES.csv`, identity-linked Look-Ahead-PASS, repair stores | `evidence/WARMUP_CONVERGENCE.json` |
 
-Nur eine Look-Ahead-Zeile mit `PASS` kann diese Stufe erreichen. `NA` ist kein
-Pass und erhält keine Folgemessung, bis die technische Ursache geklärt ist. Die
-eingefrorene Konvergenzleiter ist 1, 2, 7, 14, 30, 90, 365 Tage, umgerechnet in
-Kerzen über den eigenen Zeitrahmen. Eine Zeile ist `converged`,
-`not_converged_within_ladder` oder `inconclusive`.
+Only a look-ahead line with `PASS` can reach this stage. `NA` is not a pass and will not receive a follow-up measurement until the technical cause is clarified. The frozen convergence ladder is 1, 2, 7, 14, 30, 90, 365 days, converted into candles over its own timeframe. A line is `converged`, `not_converged_within_ladder`, or `inconclusive`.
 
-## Stufe 4 — Finaler Recursive-Bias nach konvergiertem Warm-up
+## Stage 4 — Final Recursive Bias after Converged Warm-up
 
-| Programm | Liest | Schreibt |
+| Program | Reads | Writes |
 |---|---|---|
-| `evidence/profile_bias.py` (`recursive`, native oder Docker) | `evidence/EXECUTION_PROFILES.csv`, gespeicherter Look-Ahead-PASS und konvergierte Leiter mit gewähltem Startwert | `evidence/PROFILE_BIAS.json` |
+| `evidence/profile_bias.py` (`recursive`, native or Docker) | `evidence/EXECUTION_PROFILES.csv`, stored Look-Ahead-PASS and converged ladder with chosen initial value | `evidence/PROFILE_BIAS.json` |
 
-Der finale Recursive-Lauf erhält den kleinsten konvergierten
-`chosen_startup_candle_count` der Leiter explizit als `--startup-candle`. Ohne
-Look-Ahead-`PASS` und aktuelle konvergierte Leiter wird er durch den Runner
-deferiert. Damit kann weder eine zu kurze Autorenangabe noch Freqtrades
-Standard-Warm-up den finalen Befund bestimmen.
+The final Recursive-Bias run explicitly receives the ladder's smallest converged `chosen_startup_candle_count` as `--startup-candle`. Without a Look-Ahead `PASS` and a current converged ladder, the runner defers it. Thus neither an author's overly short declared value nor Freqtrade's standard warm-up can determine the final finding.
 
-## Stufe 5 — Datenabdeckung (Coverage)
+## Stage 5 — Data Coverage
 
-| Programm | Liest | Schreibt |
+| Program | Reads | Writes |
 |---|---|---|
-| `evidence/regime_coverage.py` | `evidence/EXECUTION_PROFILES.csv`, Kerzendateien unter `user_data/data/binance` | `evidence/REGIME_COVERAGE.csv`, `evidence/REGIME_COVERAGE.md` |
+| `evidence/regime_coverage.py` | `evidence/EXECUTION_PROFILES.csv`, candle files under `user_data/data/binance` | `evidence/REGIME_COVERAGE.csv`, `evidence/REGIME_COVERAGE.md` |
 
-Reine Dateisystem-Prüfung (keine Freqtrade-Ausführung), pro `(mode,
-timeframe)` gecacht — günstig, jederzeit sicher neu zu erzeugen. Deckt aktuell
-alle 1.050 Zeilen ab; der historische Stand vom 2026-09-06 betrug 919.
+Pure file system check (no Freqtrade execution), cached per `(mode, timeframe)` — inexpensive, safely reproducible at any time. Currently covers all 1,050 lines; the historical count as of 2026-09-06 was 919.
 
-## Stufe 6 — Zusammenführung
+## Stage 6 — Merging
 
-| Programm | Liest | Schreibt |
+| Program | Reads | Writes |
 |---|---|---|
-| `evidence/strategy_status.py` | **alles** aus Stufe 0–5 plus `evidence/REGIME_ELIGIBILITY.csv` (invalidierter historischer E0-Snapshot, ausschließlich Provenienz), `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` (aktive E1-Entscheidungen), `evidence/STRATEGY_CLASSIFICATION.json`, `evidence/MARKET_PHASE_HYPOTHESIS.json`, `evidence/BLOCKED_TRIAGE.json` | `STRATEGY_STATUS.csv`, `STRATEGY_STATUS.md`, **im selben Lauf automatisch**: `evidence/exclusion_criteria_list.md`, `evidence/repair_measures_list.md`, `RUNTIME_ENVIRONMENTS.md` |
+| `evidence/strategy_status.py` | **everything** from level 0–5 plus `evidence/REGIME_ELIGIBILITY.csv` (invalidated historical E0 snapshot, exclusively provenance), `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` (active E1 decisions), `evidence/STRATEGY_CLASSIFICATION.json`, `evidence/MARKET_PHASE_HYPOTHESIS.json`, `evidence/BLOCKED_TRIAGE.json` | `STRATEGY_STATUS.csv`, `STRATEGY_STATUS.md`, **automatically in the same run**: `evidence/exclusion_criteria_list.md`, `evidence/repair_measures_list.md`, `RUNTIME_ENVIRONMENTS.md` |
 
-Ein einziger Aufruf (`python -m evidence.strategy_status`) schreibt alle fünf Dateien.
-`--check` prüft nur, ob sie noch aktuell sind (schreibt nichts); `--selftest`
-läuft die eingebauten Konsistenz-Prüfungen.
+A single call (`python -m evidence.strategy_status`) writes all five files. `--check` only checks whether they are still up to date (does not write anything); `--selftest` runs the built-in consistency checks.
 
-E0 ist keine Rückfalloption: seine 67 alten `regime_eligible=true`-Flags dürfen
-keinen Check ersetzen und keine Zeile zulassen. Nur eine aktive
-`admitted_E1`-Entscheidung erzeugt `cohort=E1_expanded`; die alte E0-
-Mitgliedschaft erscheint lediglich in `gate_notes`.
+E0 is not a fallback option: its 67 old `regime_eligible=true` flags may not replace any check and may not allow any line. Only an active `admitted_E1` decision generates `cohort=E1_expanded`; the old E0 membership appears only in `gate_notes`.
 
-## Stufe 7 — Zulassung (Admission)
+## Stage 7 — Admission (Admission)
 
-| Programm | Liest | Schreibt |
+| Program | Reads | Writes |
 |---|---|---|
-| `evidence/eligibility_admit_converged.py` (aktuelle Regel, `converged_clean_gates_v1`) | `STRATEGY_STATUS.csv`, `evidence/WARMUP_CONVERGENCE.json` | hängt neue `admitted_E1`-Zeilen an `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` an |
-| `evidence/eligibility_expansion_adjudicate.py` (ältere Wave-B/C-Regeln, `zero_warmup_analyzer_adapter_v1` / `native_gate_pass_v1`) | `evidence/ELIGIBILITY_EXPANSION_PROOFS.json`, `evidence/ELIGIBILITY_EXPANSION_WARMUP.json`, `evidence/ELIGIBILITY_EXPANSION_LOOKAHEAD.json`, `evidence/ELIGIBILITY_EXPANSION_EQUIVALENCE.json` | dieselbe `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv`, plus `.md`-Bericht |
+| `evidence/eligibility_admit_converged.py` (current rule, `converged_clean_gates_v1`) | `STRATEGY_STATUS.csv`, `evidence/WARMUP_CONVERGENCE.json` | appends new `admitted_E1` lines to `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` |
+| `evidence/eligibility_expansion_adjudicate.py` (older Wave-B/C rules, `zero_warmup_analyzer_adapter_v1` / `native_gate_pass_v1`) | `evidence/ELIGIBILITY_EXPANSION_PROOFS.json`, `evidence/ELIGIBILITY_EXPANSION_WARMUP.json`, `evidence/ELIGIBILITY_EXPANSION_LOOKAHEAD.json`, `evidence/ELIGIBILITY_EXPANSION_EQUIVALENCE.json` | same `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv`, plus `.md` report |
 
-**Danach zwingend zurück zu Stufe 6.** Die Zulassungs-Entscheidung steht erst
-in `STRATEGY_STATUS.csv`, wenn `evidence/strategy_status.py` erneut läuft und die
-erweiterte `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` zurückliest. Ein Lauf
-von Stufe 7 ohne anschließende Stufe 6 zeigt in `STRATEGY_STATUS.csv` noch
-den alten Stand.
+**Afterwards, mandatory back to level 6.** The admission decision is only available in `STRATEGY_STATUS.csv` when `evidence/strategy_status.py` runs again and reads back the extended `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv`. A run of level 7 without a subsequent level 6 still shows the old status in `STRATEGY_STATUS.csv`.
 
-## Stufe 8 — Backtest über das volle Fenster
+## Stage 8 — Backtest over the full window
 
-Zwei strukturell verschiedene, beide nötige Messungen (siehe
-`REGIME_AUDIT_PLAN.md` §28.1) — keine ersetzt die andere:
+Two structurally different, both necessary measurements (see `REGIME_AUDIT_PLAN.md` §28.1) — neither replaces the other:
 
-| Programm | Zweck | Liest | Schreibt |
+| Program | Purpose | Reads | Writes |
 |---|---|---|---|
-| `evidence/profile_full_window.py` (paarweise sharded) | Stage-7-Bestätigung: handelt die Strategie über das ganze Fenster, pro Paar | `evidence/EXECUTION_PROFILES.csv` | `evidence/PROFILE_FULL_WINDOW.json` (oder Shard-Dateien bei parallelen Containern) |
-| `evidence/merge_full_window_shards.py` | führt Shards zusammen | `evidence/PROFILE_FULL_WINDOW_shardA.json`, `_shardB.json`, `_shardTF.json` | die kanonische `evidence/PROFILE_FULL_WINDOW.json` |
-| `regime/full_backtest.py` (gepoolt, `canonical_pooled_native_pair_universe`) | Phase A: tatsächlicher Performance-Backtest über alle 8 Paare gepoolt | `STRATEGY_STATUS.csv` (E1-Kohorte) | `results/regime/full_backtest_manifest.json`, `full_backtest_native.json` |
+| `evidence/profile_full_window.py` (sharded in pairs) | Stage-7 Confirmation: does the strategy trade across the entire window, per pair | `evidence/EXECUTION_PROFILES.csv` | `evidence/PROFILE_FULL_WINDOW.json` (or shard files in parallel containers) |
+| `evidence/merge_full_window_shards.py` | merges shards | `evidence/PROFILE_FULL_WINDOW_shardA.json`, `_shardB.json`, `_shardTF.json` | the canonical `evidence/PROFILE_FULL_WINDOW.json` |
+| `regime/full_backtest.py` (pooled, `canonical_pooled_native_pair_universe`) | Phase A: actual performance backtest over all 8 pairs pooled | `STRATEGY_STATUS.csv` (E1 cohort) | `results/regime/full_backtest_manifest.json`, `full_backtest_native.json` |
 
-`evidence/PROFILE_FULL_WINDOW.json` fließt zurück in Stufe 5 (`evidence/strategy_status.py`
-liest es für `observed_trades`/`trade_evidence`). Die gepoolten
-Backtest-Ergebnisse aus `regime/full_backtest.py` fließen **nicht** in die
-Zulassung zurück — sie sind die Datengrundlage für Stufe 9.
+`evidence/PROFILE_FULL_WINDOW.json` flows back into Stage 5 (`evidence/strategy_status.py` reads it for `observed_trades`/`trade_evidence`). The pooled backtest results from `regime/full_backtest.py` **do not** flow back into the approval — they are the data basis for Stage 9.
 
-**Missverständnis, das sich anbietet: "Einzelpaar" heißt nicht "jedes Paar
-vollständig gemessen".** `evidence/profile_full_window.py` ist eine Ja/Nein-Schranke,
-keine Performance-Messung: Sie beantwortet nur "handelt die Strategie über
-das ganze Fenster überhaupt, bei mindestens einem Paar?" Sobald EIN Paar
-Trades produziert, ist die Frage beantwortet und der Rest der Paarliste
-wird für diese Strategie nicht mehr angefasst (Kommentar im Skriptkopf:
-"One positive pair is sufficient to resolve a zero-trade smoke as
-positive... Sharding does not replace pooled performance backtests"). Nur
-wenn ALLE konfigurierten Paare null Trades liefern, muss wirklich jedes
-einzelne durchgelaufen sein, um "0 Trades" zu bestätigen — deshalb zeigen
-`evidence/PROFILE_FULL_WINDOW_shardA.json`/`_shardB.json` bei vielen Strategien
-weniger abgeschlossene Paar-Messungen als konfigurierte Paare, obwohl die
-Strategie selbst schon als `measured` gilt.
+**Misunderstanding that suggests itself: 'Single pair' does not mean 'every pair fully measured.'** `evidence/profile_full_window.py` is a yes/no gate, not a performance measurement: it only answers 'does the strategy act over the entire window at all, for at least one pair?' As soon as ONE pair produces trades, the question is answered, and the rest of the pair list is no longer touched for this strategy (comment in the script header: 'One positive pair is sufficient to resolve a zero-trade smoke as positive... Sharding does not replace pooled performance backtests'). Only if ALL configured pairs produce zero trades does each one actually need to run through to confirm '0 trades' — which is why `evidence/PROFILE_FULL_WINDOW_shardA.json`/`_shardB.json` show fewer completed pair measurements for many strategies. as configured pairs, even though the strategy itself is already considered `measured`.
 
-Die tatsächliche Vollständigkeit — jedes Paar, über das komplette
-6,5-Jahres-Fenster, ohne Abbruch — liefert ausschließlich
-`regime/full_backtest.py` (Zeile darüber): der ruft freqtrade ohne
-`--pairs`-Filter auf, also mit der kompletten Paarliste gemeinsam in einem
-einzigen Backtest, und bricht nie früh ab.
+The actual completeness — every pair over the entire 6.5-year window, without interruption — is provided exclusively by `regime/full_backtest.py` (line above): it calls freqtrade without the `--pairs` filter, thus with the complete pair list together in a single backtest, and never terminates early.
 
-**Performance-Limit statt endlosem Retry.** Der 3600s-Timeout ist eine
-harte Grenze, nicht pro Strategie einstellbar. `SuperHV27` und `Schism`
-liefen je zweimal unabhängig exakt bis zur 3600s-Grenze, ohne Absturz und
-ohne OOM-Signatur — die Kompatibilitäts-Shims (`repair/compat_signature.py`)
-haben den ursprünglichen Absturz behoben, aber die verbleibenden
-Pro-Trade-Kosten über 8 Paare und 6,5 Jahre reichen dafür nicht.
-`evidence/POOLED_BACKTEST_PERFORMANCE_LIMIT.json` hält diese Bestätigung fest (Regel:
-mindestens zwei unabhängige Timeouts, keine andere Fehlerart dazwischen);
-`regime/full_backtest.py` liest sie und setzt den Status einmalig auf
-`performance_limited`, statt bei jedem Container-Durchlauf erneut eine
-volle Stunde zu verbrauchen. Die Strategie bleibt zugelassen
-(`E1_expanded`) — es fehlt ihr dauerhaft nur die gepoolte
-Performance-Kennzahl für Stufe 9.
+**Performance limit instead of endless retry.** The 3600s timeout is a hard limit, not adjustable per strategy. `SuperHV27` and `Schism` each ran twice independently exactly up to the 3600s limit, without crashing and without OOM signature — the compatibility shims (`repair/compat_signature.py`) fixed the original crash, but the remaining per-trade costs over 8 pairs and 6.5 years are not enough for that. `evidence/POOLED_BACKTEST_PERFORMANCE_LIMIT.json` records this confirmation (rule: at least two independent timeouts, no other type of error in between); `regime/full_backtest.py` reads it and sets the status once to `performance_limited`, instead of consuming a full hour again on each container run. The strategy remains approved (`E1_expanded`) — it permanently only lacks the pooled performance metric for Stage 9.
 
-**Dasselbe Prinzip für bestätigten Speichermangel.** 52 Strategien
-(BBRSI2/BBands/BinHV45-\*/Cluc\*-Familie u.a.) waren `resource_inconclusive`
-sowohl unter der ursprünglichen 13-14GB/`--workers 2`-Einstellung als auch
-danach, nach der Anhebung auf 16GB VM-Speicher mit `--workers 1` am
-2026-09-07 — ein einzelner Prozess mit dem vollen Speicherbudget, keine
-Nebenläufigkeit mehr, die die Schuld tragen könnte. Das entkräftet
-Ressourcenkonkurrenz als Ursache; übrig bleibt der eigene
-Speicherverbrauch der Strategie über 8 Paare und 6,5 Jahre.
-`evidence/POOLED_BACKTEST_OOM_LIMIT.json` hält die Bestätigung fest,
-`regime/full_backtest.py` setzt den Status einmalig auf `oom_confirmed`
-statt endlos erneut zu versuchen. Auch hier: weiterhin zugelassen, nur
-ohne Stufe-9-Kennzahl.
+**The same principle for confirmed memory shortage.** 52 strategies (BBRSI2/BBands/BinHV45-*/Cluc*-family, among others) were `resource_inconclusive` both under the original 13-14GB/`--workers 2` setting and afterwards, after increasing to 16GB VM memory with `--workers 1` on 2026-09-07 — a single process with the full memory budget, no concurrency left that could be blamed. This refutes resource contention as the cause; what remains is the strategy's own memory consumption over 8 pairs and 6.5 years. `evidence/POOLED_BACKTEST_OOM_LIMIT.json` records the confirmation, `regime/full_backtest.py` sets the status once to `oom_confirmed` instead of repeatedly trying endlessly. Here too: still allowed, just without the level-9 metric.
 
-**Dritte Kategorie: unbegrenztes Einsatzwachstum.** `FastSupertrend_optim3_rsi_75lev`
-scheiterte bei 37% des gepoolten Laufs mit `Stake amount 12570778.900608359
-too high for XMR/USDT:USDT`. Ursache: `runtime/profile_futures_config.json` setzt
-`stake_amount: unlimited`, die Strategie hält 5×-Hebel fest und lässt
-Gewinne laufen (`minimal_roi = {"0": 0.99}`) — über genug profitable Jahre
-wächst das Wallet exponentiell, bis der errechnete Einsatz jede reale
-Marktliquidität übersteigt. Anders als bei den ersten beiden Kategorien
-ist das zu 100% deterministisch: kein Zusammenhang mit Speicher, Workern
-oder Zeit, ein Retry reproduziert exakt denselben Fehler an derselben
-Stelle. Auch von keiner früheren Stufe erkennbar — der Probelauf nutzt
-dieselbe Config, aber nur ein Monat, viel zu kurz für diese Art
-Verzinsung, und Recursive-/Look-Ahead-Bias prüfen auf Informationslecks,
-nicht auf Kapitalskalierung. `evidence/POOLED_BACKTEST_STAKE_OVERFLOW.json` hält
-die Bestätigung fest, derselbe Mechanismus wie oben setzt
-`stake_overflow_confirmed`. Nicht geprüft: ob weitere gehebelte
-Strategien dasselbe Risiko tragen — bewusst offen gelassen.
+**Third category: unlimited stake growth.** `FastSupertrend_optim3_rsi_75lev` failed at 37% of the pooled run with `Stake amount 12570778.900608359 too high for XMR/USDT:USDT`. Cause: `runtime/profile_futures_config.json` sets `stake_amount: unlimited`; the strategy fixes leverage at 5× and lets profits run (`minimal_roi = {"0": 0.99}`). Over enough profitable years, the wallet grows exponentially until the calculated stake exceeds any real market liquidity. Unlike the first two categories, this is 100% deterministic: it is unrelated to memory, workers, or timing, and a retry reproduces exactly the same error at the same point. No earlier stage detects it: the smoke test uses the same configuration but only a one-month window, far too short for compounding to reach this scale, while Recursive-Bias and Look-Ahead-Bias test information leakage rather than capital scaling. `evidence/POOLED_BACKTEST_STAKE_OVERFLOW.json` records the confirmation; the same mechanism as above sets `stake_overflow_confirmed`. Whether other leveraged strategies carry the same risk was deliberately left open.
 
-**Korrektur 2026-09-07: `evidence/profile_full_window.py` ist nicht für die ganze
-E1-Kohorte nötig, nur für Zero-Trade-Kandidaten.** Die Zitation oben
-(`REGIME_AUDIT_PLAN.md` §28.1) trägt diese Behauptung nicht — §28.1 handelt
-von einem anderen Thema (Trade-Attribution vs. gegatete Performance,
-Phase A/B), nicht von Einzelpaar- vs. gepooltem Backtest. Der tatsächliche
-Grund, warum `evidence/profile_full_window.py` überhaupt existiert, steht in
-`evidence/strategy_status.py`: die Zulassung selbst braucht nur `observed_trades !=
-0` aus dem Probelauf (`evidence/eligibility_admit_converged.py`, keine
-Mindestanzahl — auch nicht 10, trotz anderslautender Erinnerung, geprüft
-und im ganzen Repo nicht gefunden). Das volle 6,5-Jahres-Fenster ist nur
-dann zwingend, wenn der Probelauf null Trades zeigte und eine Strategie
-deswegen ausgeschlossen werden soll (`full_window_measurement_pending`,
-nur für `reason == "no_trades_in_full_measurement"`) — sonst würde ein
-zufällig ruhiger Probelauf-Monat eine tatsächlich handelnde Strategie zu
-Unrecht verwerfen.
+**Correction 2026-09-07: `evidence/profile_full_window.py` is not required for the entire E1 cohort, only for zero-trade candidates.** The citation above (`REGIME_AUDIT_PLAN.md` §28.1) does not support this claim — §28.1 addresses trade attribution versus gated performance (Phase A/B), not single-pair versus pooled backtests. The actual reason `evidence/profile_full_window.py` exists is stated in `evidence/strategy_status.py`: admission itself requires only `observed_trades != 0` from the smoke test (`evidence/eligibility_admit_converged.py` specifies no minimum, not even 10; this was checked across the repository despite a contrary recollection). The full 6.5-year window is mandatory only when the smoke test showed zero trades and a strategy might therefore be excluded (`full_window_measurement_pending`, only for `reason == "no_trades_in_full_measurement"`). Otherwise, a randomly quiet smoke-test month could unjustly exclude a strategy that does trade.
 
-Stichprobe an diesem Datum: **0 von 608 `E1_expanded`-Strategien haben
-`observed_trades == 0`.** Der Bedarf, der diese Stufe rechtfertigt, bestand
-zu diesem Zeitpunkt für niemanden im zugelassenen Bestand — alle 571 den
-Containern `full-window-a`/`full-window-b` zugeteilten Strategien hatten
-bereits positive Probelauf-Evidenz und brauchten die Bestätigung nicht.
-`regime/full_backtest.py` (gepoolt, ohnehin für dieselbe Kohorte laufend)
-liefert für diese Mehrheit einen repräsentativeren Trade-Count obendrein
-(gemeinsame `max_open_trades`-Kapitalbindung über alle Paare, nicht pro
-Paar isoliert). Beide Container deshalb gestoppt (571/571 zugeteilt, davon
-0 mit echtem Zero-Trade-Bedarf) — bei einer künftigen Kohortenerweiterung
-lohnt sich vorher genau diese Prüfung (`observed_trades == 0` in
-`STRATEGY_STATUS.csv`), bevor `evidence/profile_full_window.py` erneut für die
-ganze Kohorte statt nur die Zero-Trade-Teilmenge gestartet wird.
+Sample on this date: **0 of 608 `E1_expanded` strategies have `observed_trades == 0`.** At that time, no admitted strategy needed this stage: all 571 strategies assigned to the `full-window-a`/`full-window-b` containers already had positive smoke-test evidence and needed no confirmation. `regime/full_backtest.py` (pooled and already running for the same cohort) also provides a more representative trade count for this majority because it shares the `max_open_trades` capital constraint across all pairs instead of isolating each pair. Both containers therefore stopped after all 571 assignments, with zero genuine zero-trade cases. Before any future cohort expansion starts `evidence/profile_full_window.py`, first check `observed_trades == 0` in `STRATEGY_STATUS.csv` and run it only for that subset.
 
-## Stufe 9 — Marktregime-Klassifikation
+## Stage 9 — Market Regime Classification
 
-| Programm | Liest | Schreibt |
+| Program | Reads | Writes |
 |---|---|---|
-| `regime/regime_engine.py` | lokale Kerzendateien | `results/regime/regime_daily.csv`, `regime_episodes.csv`, `regime_transitions.csv`, `regime_btc_episodes.csv`, `regime_state_summary.csv`, `regime_feature_distributions.csv`, `regime_manifest.json` |
-| `regime/validate_regime.py` | dieselben `results/regime/regime_*.csv` | nichts (reine Prüfung, Konsolenausgabe PASS/FAIL) |
-| `regime/report.py` | dieselben Dateien | `REGIME_DATA_REPORT.md` |
+| `regime/regime_engine.py` | local candle files | `results/regime/regime_daily.csv`, `regime_episodes.csv`, `regime_transitions.csv`, `regime_btc_episodes.csv`, `regime_state_summary.csv`, `regime_feature_distributions.csv`, `regime_manifest.json` |
+| `regime/validate_regime.py` | the same `results/regime/regime_*.csv` | nothing (pure test, console output PASS/FAIL) |
+| `regime/report.py` | the same files | `REGIME_DATA_REPORT.md` |
 
-Erzeugt das eingefrorene 4-Zustands-Modell (BULL/BEAR/SIDEWAYS/TRANSITION aus
-DMI(14)/ADX(14)) plus die Rohdaten, aus denen die Sechs-Phasen-Erweiterung
-(`bull_trend`/`bear_trend`/`range_quiet`/`range_choppy`/`transition`/
-`high_vol_shock`) in Stufe 9 abgeleitet wird.
+Generates the frozen 4-state model (BULL/BEAR/SIDEWAYS/TRANSITION from DMI(14)/ADX(14)) plus the raw data from which the six-phase extension (`bull_trend`/`bear_trend`/`range_quiet`/`range_choppy`/`transition`/`high_vol_shock`) in Stage 9 is derived.
 
-## Stufe 10 — Attribution (pro Strategie/Kandidat, pro Regime/Phase)
+## Stage 10 — Attribution (per strategy/candidate, per regime/phase)
 
-| Programm | Liest | Schreibt |
+| Program | Reads | Writes |
 |---|---|---|
-| `regime/attribution.py` | `results/regime/regime_daily.csv`, `full_backtest_manifest.json`, `STRATEGY_STATUS.csv` (E1-Kohorte) | `results/regime/trade_regime_attribution.csv`, `strategy_btc_regime_summary.csv`, `strategy_regime_summary.csv`, `strategy_episode_summary.csv`, `strategy_phase_summary.csv`, `strategy_phase_episode_summary.csv`, `attribution_manifest.json` |
-| `regime/gated_attribution.py` | `regime_daily.csv`, ein vollständiges `model1_backtest_manifest.json`, `model2_backtest_manifest.json` oder `model3_backtest_manifest.json`, aktuelle E1-Identitäten | je Modell in `results/regime/modelN_attribution/`: Trade-Attribution, fünf `candidate_*_summary.csv` und `attribution_manifest.json` |
+| `regime/attribution.py` | `results/regime/regime_daily.csv`, `full_backtest_manifest.json`, `STRATEGY_STATUS.csv` (E1 cohort) | `results/regime/trade_regime_attribution.csv`, `strategy_btc_regime_summary.csv`, `strategy_regime_summary.csv`, `strategy_episode_summary.csv`, `strategy_phase_summary.csv`, `strategy_phase_episode_summary.csv`, `attribution_manifest.json` |
+| `regime/gated_attribution.py` | `regime_daily.csv`, a complete `model1_backtest_manifest.json`, `model2_backtest_manifest.json` or `model3_backtest_manifest.json`, current E1 identities | per model in `results/regime/modelN_attribution/`: Trade attribution, five `candidate_*_summary.csv` and `attribution_manifest.json` |
 
-Die beiden `*_phase_*`-Dateien (Sechs-Phasen-Modell, Nachtrag 2026-09-05)
-existieren als Code bereits, wurden aber noch nicht produktiv durchlaufen —
-sie brauchen `regime/full_backtest.py`s vollständige Ergebnisse (Stufe 7).
-Ob dafür gerade ein Writer läuft, wird ausschließlich mit den Prüfungen in
-`HANDOFF.md` festgestellt; diese Pipeline-Datei ist kein Laufstatus.
-Die gegatete Attribution verweigert standardmäßig einen unvollständigen
-Kandidatensatz; `--allow-partial` erzeugt nur einen ausdrücklich als partiell
-markierten technischen Zwischenstand und ist keine Ranking-Freigabe.
+The two `*_phase_*` files (Six-Phase Model, Addendum 2026-09-05) already exist as code, but have not yet been run in production — they require `regime/full_backtest.py`'s complete results (Stage 7). Whether a writer is currently running for this is determined solely by the checks in `HANDOFF.md`; this pipeline file is not a run status. The gated attribution by default rejects an incomplete candidate set; `--allow-partial` only generates a technical intermediate state explicitly marked as partial and is not a ranking release.
 
-## Stufe 11 — Hypothese (unabhängig, vor jeder Auswertung einzufrieren)
+## Stage 11 — Hypothesis (independent, to be frozen before any evaluation)
 
-| Programm | Liest | Schreibt |
+| Program | Reads | Writes |
 |---|---|---|
 | `evidence/market_phase_hypothesis.py` | `evidence/EXECUTION_PROFILES.csv`, `evidence/STRATEGY_CLASSIFICATION.json`, `cluster/clusters.json` | `evidence/MARKET_PHASE_HYPOTHESIS.json` |
 
-Muss geschrieben sein, **bevor** irgendjemand die Ergebnisse aus Stufe 9
-ansieht — sonst ist es keine Vorhersage mehr (`REGIME_AUDIT_PLAN.md` §28.3).
-Bereits durchgelaufen; wird von `evidence/strategy_status.py` (Stufe 5) nur gelesen,
-nie neu entschieden.
+Must be written **before** anyone looks at the results from stage 9 — otherwise it is no longer a prediction (`REGIME_AUDIT_PLAN.md` §28.3). Already executed; is only read by `evidence/strategy_status.py` (stage 5), never decided anew.
 
-## Stufe 12 — Benchmark: Modell 0/1/2/3
+## Stage 12 — Benchmark: Model 0/1/2/3
 
-Nach der am 2026-09-07 vor jedem produktiven Gate-Lauf eingefrorenen
-Erweiterung, vier Vergleichsebenen pro Strategie:
+After the expansion frozen on 2026-09-07 before each productive gate run, four comparison levels per strategy:
 
-- **Modell 0 — teilweise gemessen.** "Original strategy, no regime filter" ist
-  genau das, was `regime/full_backtest.py` (Stufe 7) berechnet: der
-  ungegatete, gepoolte Backtest über alle 8 Paare. Der resumierbare Aufruf
-  `python -m regime.full_backtest` setzt diese Messung fort; laufende Writer
-  werden vorher gemäß `HANDOFF.md` ausgeschlossen. Es ist keine gesonderte,
-  noch zu bauende Stufe. **Korrektur gegenüber der Vorversion dieser Datei:** hier
-  stand fälschlich "kein Skript existiert" für die gesamte Stufe 11 — das
-  galt nur für Modell 1/2 und den Vergleich selbst, nicht für Modell 0.
-- **Modell 1 — implementiert, noch nicht produktiv gelaufen.**
-  `regime/gated_backtest.py --model model1` filtert Entries auf die im
-  Kandidaten-Spec ausdrücklich genannten BTC-Zustände. Globale BTC-Zustände
-  bleiben auch dann verfügbar, wenn für einen delisteten Coin keine lokale
-  Tageszeile mehr existiert.
-- **Modell 2 — implementiert, noch nicht produktiv gelaufen.**
-  `regime/gated_backtest.py --model model2` filtert Entries ausschließlich auf
-  die ausdrücklich genannten lokalen Coin-Zustände. Es liest und verlangt
-  keinen BTC-Zustand. Fehlt der lokale Zustand, schließt das Gate.
-- **Modell 3 — implementiert, noch nicht produktiv gelaufen.**
-  `regime/gated_backtest.py --model model3` ist die bisherige kombinierte
-  Modell-2-Logik: Entries brauchen sowohl einen erlaubten globalen BTC-Zustand
-  als auch einen erlaubten lokalen Coin-Zustand. Exits bleiben in allen drei
-  Gate-Modellen vollständig bei der Originalstrategie.
-- **Der technische Vergleich der vier Ebenen ist implementiert, noch nicht
-  produktiv gelaufen.** `regime/model_compare.py` prüft identische Kandidaten,
-  Modell-3s Übereinstimmung mit Modell 1s BTC-Gate und Modell 2s Coin-Gate,
-  Zeitfenster, Identitäten und Archive, bevor es die vier Laufmetriken
-  nebeneinanderstellt. Es schreibt `model_metrics_long.csv`,
-  `model_comparison.csv` und `model_comparison_manifest.json`, sortiert oder
-  rangiert aber keine Strategie. Die mechanischen Deltas sind Modell 1 minus
-  0, Modell 2 minus 0, Modell 3 minus 0, Modell 3 minus 1 und Modell 3 minus 2;
-  Modell 2 minus Modell 1 wird nicht als inkrementeller Effekt ausgegeben,
-  weil die beiden Einzel-Gates nicht ineinander verschachtelt sind.
+- **Model 0 — partially measured.** "Original strategy, no regime filter" is
+exactly what `regime/full_backtest.py` (level 7) calculates: the ungated, pooled backtest across all 8 pairs. The resumable call `python -m regime.full_backtest` continues this measurement; ongoing writers are previously excluded according to `HANDOFF.md`. It is not a separate, yet-to-be-built level. **Correction compared to the previous version of this file:** it incorrectly stated here "no script exists" for the entire level 11 — that only applied to model 1/2 and the comparison itself, not to model 0.
+- **Model 1 — implemented, not yet run in production.**
+`regime/gated_backtest.py --model model1` filters entries according to the BTC states explicitly mentioned in the candidate spec. Global BTC states remain available even if no local daily line exists for a delisted coin.
+- **Model 2 — implemented, not yet run in production.**
+`regime/gated_backtest.py --model model2` filters entries exclusively based on the explicitly specified local coin states. It does not read or require any BTC state. If the local state is missing, the gate closes.
+- **Model 3 — implemented, not yet run in production.**
+`regime/gated_backtest.py --model model3` is the previous combined Model-2 logic: Entries require both an allowed global BTC state and an allowed local coin state. Exits remain completely with the original strategy in all three gate models.
+- **The technical comparison of the four levels is implemented, not yet
+ran productively. ** `regime/model_compare.py` checks identical candidates, Model 3's agreement with Model 1's BTC-Gate and Model 2's Coin-Gate, time windows, identities, and archives before it places the four runtime metrics side by side. It writes `model_metrics_long.csv`, `model_comparison.csv`, and `model_comparison_manifest.json`, but does not sort or rank any strategy. The mechanical deltas are Model 1 minus 0, Model 2 minus 0, Model 3 minus 0, Model 3 minus 1, and Model 3 minus 2; Model 2 minus Model 1 is not output as an incremental effect because the two individual gates are not nested within each other.
 
-Der Runner schreibt nach jedem Kandidaten atomar, sperrt einen Ausgabestore
-gegen einen zweiten Writer und bindet jeden Lauf an Quell-/Config-Identität,
-Regime-Datenhash, Gate-Regel, Kandidaten-Spec, Timerange und Analyse-Rolle.
-Mehrere Gatevarianten derselben Strategie erhalten getrennte Archive.
+The runner writes atomically after each candidate, locks one output store against a second writer, and binds each run to source/config identity, regime data hash, gate rule, candidate spec, time range, and analysis role. Multiple gate variants of the same strategy receive separate archives.
 
-Das Kandidaten-Spec wird nicht aus Performance-Ergebnissen erzeugt. Es hat
-Schema-Version 1 und enthält:
+The candidate spec is not generated from performance results. It has schema version 1 and contains:
 
 ```json
 {
@@ -389,11 +191,7 @@ Schema-Version 1 und enthält:
 }
 ```
 
-Die BTC-Felder sind für Modell 1 und 3 Pflicht, die Coin-Felder für Modell 2
-und 3. Dasselbe eingefrorene Spec darf alle vier Felder tragen; jeder Runner
-liest ausschließlich die für sein Modell relevanten Felder. Auch leere Listen
-müssen explizit stehen; ein vergessenes Feld darf nie stillschweigend alle
-Zustände erlauben. Die drei Aufrufe gegen dasselbe eingefrorene Spec sind:
+The BTC fields are mandatory for Model 1 and 3, the Coin fields for Model 2 and 3. The same frozen spec may carry all four fields; each runner reads exclusively the fields relevant to its model. Even empty lists must be explicitly stated; a forgotten field may never silently allow all states. The three calls against the same frozen spec are:
 
 ```bash
 python -m regime.gated_backtest --model model1 --candidate-spec <spec.json>
@@ -405,532 +203,120 @@ python -m regime.gated_attribution --model model3
 python -m regime.model_compare
 ```
 
-Die noch offene Auswertungsstufe ist nicht das mechanische Nebeneinanderstellen,
-sondern die präregistrierte Bewertung: Exposure-Match, Spezialisten-Schwellen,
-Discovery/Validation und Portfolioregel. Alle neun Preregistration-Fragen
-(`REGIME_PREREGISTRATION.md`, Amendment 2026-09-11) sind seit 2026-09-11
-entschieden — ein Kandidaten-Spec und ein produktiver Modell-1/2/3-Lauf sind
-damit freigegeben. Portfolio-Allokation bei mehreren gleichzeitig
-qualifizierenden Kandidaten ist dabei bewusst für Version 1 zurückgestellt,
-nicht entschieden.
+The still pending evaluation stage is not the mechanical side-by-side comparison, but the preregistered assessment: Exposure-Match, specialist thresholds, Discovery/Validation, and portfolio rule. All nine preregistration questions (`REGIME_PREREGISTRATION.md`, Amendment 2026-09-11) have been decided since 2026-09-11 — one candidate spec and one productive Model-1/2/3 run are thus approved. Portfolio allocation for multiple simultaneously qualifying candidates is deliberately deferred for Version 1, not decided.
 
-## Stufe 13 — Specialist-/Universal-Auswertung
+## Stage 13 — Specialist/Universal Evaluation
 
-| Programm | Liest | Schreibt |
+| Program | Reads | Writes |
 |---|---|---|
-| `regime/specialist_evaluation.py` | eine `trade_regime_attribution.csv` (Modell 0 kanonisch, oder eine `modelN_attribution/`-Datei), Kerzendaten unter `user_data/data/binance` | `results/regime/specialist_evaluation/`: `btc_specialist_table.csv`, `coin_specialist_table.csv`, `btc_specialist_ranking.csv`, `coin_specialist_ranking.csv`, `universal_strategies.csv`, `strategy_total_dollar_gain.csv`, `evaluation_manifest.json` |
+| `regime/specialist_evaluation.py` | a `trade_regime_attribution.csv` (model 0 canonical, or a `modelN_attribution/` file), candle data under `user_data/data/binance` | `results/regime/specialist_evaluation/`: `btc_specialist_table.csv`, `coin_specialist_table.csv`, `btc_specialist_ranking.csv`, `coin_specialist_ranking.csv`, `universal_strategies.csv`, `strategy_total_dollar_gain.csv`, `evaluation_manifest.json` |
 
-Wendet die im Amendment 2026-09-11 eingefrorenen Regeln auf eine bereits
-vorhandene Attribution an: Discovery/Validation-Split, die 5-Episoden-/
-10-Trade-Specialist-Schwelle, und den Exposure-matched Benchmark (Coin-eigene
-Spot-Buy&Hold-Rendite über genau das Handelsintervall jedes einzelnen
-Trades, per `merge_asof` gegen 1-Minuten-Kerzen). Rankt ausschließlich
-`VALIDATION`-Tier-Zeilen; alles andere wird berichtet, aber nie gerankt.
+Apply the rules frozen in Amendment 2026-09-11 to an existing attribution: Discovery/Validation split, the 5-episode / 10-trade specialist threshold, and the exposure-matched benchmark (coin's own spot buy & hold return over exactly the trading interval of each individual trade, using `merge_asof` against 1-minute candles). Rank only `VALIDATION`-tier rows; everything else is reported but never ranked.
 
-`max_drawdown` (§19 `worst_regime_drawdown`, 2026-09-12 auf expliziten
-Nutzerwunsch nachgezogen): pro (Strategie, Regime) der schlimmste
-Peak-to-Trough-Einbruch einer hypothetischen Kurve aus genau den in diesem
-Regime gematchten Trades, nach `close_date` geordnet — `_regime_drawdown()`.
-Dieselbe Fixed-$1000-je-Trade-Konvention wie die Dollar-Ansicht unten, aus
-demselben Grund: eine kompoundierende Kurve über die Regime-Trades einer
-Strategie reproduziert dieselbe Exponential-Verzerrung, die dort schon
-verworfen wurde. Für jede Zeile berechnet (VALIDATION wie EXPLORATORY), nie
-nur für die "schlimmste" Kombination — in der Universal-Kandidaten-Ansicht
-kommt der Wert einfach aus der Zeile, die `worst_regime` ohnehin schon
-referenziert.
+`max_drawdown` (§19 `worst_regime_drawdown`, 2026-09-12 followed explicitly at the user's request): per (strategy, regime) the worst peak-to-trough decline of a hypothetical curve from exactly the trades matched in this regime, ordered according to `close_date` — `_regime_drawdown()`. The same fixed-$1000-per-trade convention as the dollar view below, for the same reason: a compounding curve over the regime trades of a strategy reproduces the same exponential distortion that was already discarded there. Calculated for each row (VALIDATION like EXPLORATORY), never just for the 'worst' combination — in the universal candidate view the value simply comes from the row that `worst_regime` already references anyway.
 
-**Korrektur 2026-09-13** (Nutzerfrage: "Warum max. Drawdown > 100%? Gehebelt?"):
-die erste Implementierung normalisierte gegen den bisherigen Kurven-Höchststand
-statt gegen das tatsächlich eingesetzte Kapital. Bei vielen Trades in einem
-Regime bleibt der Höchststand klein, während sich viele gewöhnliche kleine
-Verluste zu einem großen Betrag summieren — `CryptoFrogHO2` zeigte 685%
-Drawdown in einem Regime, obwohl der schlechteste Einzeltrade nur −13% verlor
-(kein Short, kein Hebel; geprüft: nur 4 von 589 Strategien haben überhaupt
-einen Trade mit `profit_ratio < -1`). Behoben durch Normalisierung gegen das
-kumulierte Kapital (`Trades-so-far × $1000`) statt gegen den Höchststand —
-dadurch mathematisch nicht über 100% steigbar, solange kein Einzeltrade mehr
-als 100% seines eigenen Einsatzes verliert (echte Hebelwirkung oder ein
-Short-Verlust über den vollen Einsatz hinaus wäre genau das). Nach der
-Korrektur liegt aktuell keine Zeile in Modell 0 oder dem 7er-Piloten über
-100%; sollte das im vollen Modell-1/2/3-Lauf (in Arbeit) doch vorkommen, ist
-es ein echtes Hebel-/Short-Signal und wird dann markiert.
+**Correction 2026-09-13** (User question: "Why max. drawdown > 100%? Leveraged?"): the first implementation normalized against the previous curve peak instead of against the actual capital used. With many trades in one regime, the peak remains small, while many ordinary small losses add up to a large amount — `CryptoFrogHO2` showed 685% drawdown in one regime, although the worst single trade lost only −13% (no short, no leverage; verified: only 4 out of 589 strategies had any trade with `profit_ratio < -1`). Fixed by normalizing against the accumulated capital (`Trades-so-far × $1000`) instead of against the peak — therefore mathematically cannot exceed 100% as long as no single trade loses more than 100% of its own stake (real Leverage or a short loss beyond the full stake would be exactly that). After the correction, no line currently in Model 0 or the 7-series pilot is above 100%; if it does occur in the full Model-1/2/3 run (in progress), it is a real leverage/short signal and will then be marked.
 
-**FreqForge-inspirierte Zusatzmetriken (2026-09-14, auf expliziten
-Nutzerwunsch, nach Diskussion mit DeepSeek-v4-pro):** sechs weitere Spalten
-je (Strategie, Regime) — `profit_factor`, `worst_trade`, `liquidation_rate`,
-`sortino`, `cagr`, `drawdown_since_peak` —, plus die sechs zugehörigen
-Punktwerte und ein gewichteter `freqforge_score` (0-100), nachgebildet nach
-den sechs Kategorien von [github.com/baxr6/FreqForge](https://github.com/baxr6/FreqForge)
-(Sortino 25%, Drawdown-Control 25%, CAGR 15%, Liquidation-Safety 15%,
-Profit-Factor 10%, Worst-Trade-Severity 10%). Ausdrücklich nur eine weitere
-Berichtsspalte, keine Ablösung der Tier-/Excess-Return-Rangfolge — §17
-("Do not rely on a single composite score") bleibt für das eigentliche
-Ranking in Kraft.
+**FreqForge-inspired additional metrics (2026-09-14, at explicit user request, after discussion with DeepSeek-v4-pro):** six additional columns per (strategy, regime) — `profit_factor`, `worst_trade`, `liquidation_rate`, `sortino`, `cagr`, `drawdown_since_peak` —, plus the six associated point values and a weighted `freqforge_score` (0-100), modeled on the six categories from [github.com/baxr6/FreqForge](https://github.com/baxr6/FreqForge) (Sortino 25%, Drawdown-Control 25%, CAGR 15%, Liquidation-Safety 15%, Profit-Factor 10%, Worst-Trade-Severity 10%). Explicitly only one additional reporting column, no replacement of the tier/excess-return ranking — §17 ('Do not rely on a single composite score') remains in effect for the actual ranking.
 
-Zwei echte Fehler im ersten Entwurf, von DeepSeek-v4-pro vor der Umsetzung
-gefunden (`mcp__deepseek-mcp__critique`, nicht nachträglich):
-1. *CAGR* kompoundierte ursprünglich `mean_profit_ratio` (Durchschnitt pro
-   Trade), was die Trade-Zahl komplett ignoriert — 10 Trades und 50 Trades
-   zu je +2% über denselben Tage-Zeitraum hätten identisches CAGR ergeben,
-   obwohl der tatsächliche Gewinn fünffach verschieden ist. Behoben: CAGR
-   kompoundiert jetzt die tatsächliche Gesamtrendite der Gruppe
-   (`dollar_gain_usd / START_CAPITAL`), nicht den Mittelwert.
-2. Die Wiederverwendung von `_regime_drawdown()` für die Drawdown-Control-
-   Kategorie war positionsabhängig verzerrt: derselbe −40%-Trade ergab als
-   1. Trade der Gruppe 40% Drawdown, als 100. Trade nur ~0,4%, weil das
-   bisher committete Kapital seit Gruppenbeginn akkumuliert statt seit dem
-   letzten Hoch zurückgesetzt wird. Neue, separate Funktion
-   `_regime_drawdown_since_peak()` behoben — normalisiert gegen das Kapital
-   seit dem letzten Hoch, nicht seit Gruppenbeginn. `_regime_drawdown()`
-   selbst (die bestehende `max_drawdown`-Spalte) bleibt unverändert, sie
-   beantwortet weiterhin korrekt die andere, bereits ausgelieferte Frage
-   (Hebel-Nachweis über die ganze Regime-Historie).
+Two real errors in the first draft, found by DeepSeek-v4-pro before implementation (`mcp__deepseek-mcp__critique`, not afterwards):
+1. *CAGR* originally compounded `mean_profit_ratio` (average per
+Trade), which completely ignores the trade number — 10 trades and 50 trades at +2% each over the same day period would have resulted in identical CAGR, even though the actual profit is five times different. Fixed: CAGR now compounds the actual total return of the group (`dollar_gain_usd / START_CAPITAL`), not the average.
+2. The reuse of `_regime_drawdown()` for the drawdown control-
+Category was position-dependent biased: the same −40% trade resulted in
+1. Trade of the group 40% drawdown, as the 100th trade only ~0.4%, because that
+Capital committed so far has been accumulating since the start of the group instead of being reset since the last peak. New, separate function `_regime_drawdown_since_peak()` fixed — normalizes against the capital since the last peak, not since the start of the group. `_regime_drawdown()` itself (the existing `max_drawdown` column) remains unchanged, it still correctly answers the other, previously delivered question (leverage proof over the entire regime history).
 
-Eigener Fund beim Selftest (Perfect-Win-Rate-Fall): `profit_factor` bei
-null Verlust-Trades ergab `-inf` statt `+inf`, weil `-leere_Summe.sum()`
-`-0.0` statt `0.0` liefert und `x/-0.0 = -inf` (IEEE-754-Vorzeichen-Null-
-Falle). Behoben mit `abs()` statt Negation; `+inf` wird jetzt wie von
-FreqForge dokumentiert als Bestwert (100 Punkte) behandelt, nicht als
-Fehlerfall.
+Own finding during the self-test (perfect win rate case): `profit_factor` with zero loss trades resulted in `-inf` instead of `+inf`, because `-leere_Summe.sum()` delivers `-0.0` instead of `0.0` and `x/-0.0 = -inf` (IEEE-754 signed zero issue). Fixed with `abs()` instead of negation; `+inf` is now treated as the best value (100 points) as documented by FreqForge, not as an error case.
 
-Annualisierung von Sortino/CAGR läuft gegen `total_regime_days` — die Summe
-der tatsächlichen Tage-Spannen der eigenen (deduplizierten) Episoden einer
-Gruppe (`_regime_days()`, aus neuen `btc_episode_days`/`coin_episode_days`/
-`joint_episode_days`-Spalten in `attach_benchmark()`), nicht die
-Kalenderspanne zwischen erstem und letztem gematchten Trade — sonst zählten
-Jahre außerhalb des Regimes zwischen verstreuten Episoden als Regime-Zeit
-mit. CAGR kann bei kurzen Episoden extreme Werte annehmen (Maximum im
-kompletten Modell-0-Bestand: 139 Mio. %) — bekannte, akzeptierte
-Einschränkung, deshalb die Log-Skalierung beim Scoring. Modell 0 (589
-Strategien) und der 7er-Pilot berechnet und im Artefakt verdrahtet
-(Version 30); welches Kriterium die Top-10-Neuauswahl für Modell 1/2/3
-nutzt, ist eine offene, separate Entscheidung.
+Annualization of Sortino/CAGR is calculated against `total_regime_days` — the sum of the actual day spans of the group's own (deduplicated) episodes (`_regime_days()`, from new `btc_episode_days`/`coin_episode_days`/ `joint_episode_days` columns in `attach_benchmark()`), not the calendar span between the first and last matched trade — otherwise, years outside the regime between scattered episodes would count as regime time. CAGR can take extreme values with short episodes (maximum in the entire Model-0 portfolio: 139 million %) — known, accepted limitation, hence the log scaling in the scoring. Model 0 (589 strategies) and the 7-series pilot were calculated and wired into the artifact (version 30); which criterion the top-10 new selection for Models 1/2/3 uses is an open, separate decision.
 
-**Episoden-Excess-LCB und Korrektur des Excess-Return-Mittelwerts
-(2026-09-14, auf expliziten Nutzerwunsch nach DeepSeek-v4-pro-Rücksprache
-"regime-audit-reliability-score"):** Nutzerziel war eine Kennzahl für
-"schlägt Trading B&H, UND ist das statistisch verlässlich (viele
-Episoden), nicht nur zufällig gut bei wenigen Trades" — Profit-Factor
-allein wurde verworfen, weil er bei sehr wenigen Trades sehr hoch und bei
-vielen Trades niedriger, aber verlässlicher ausfallen kann, ohne dass das
-sichtbar wird. DeepSeek empfahl eine einseitige 95%-Lower-Confidence-Bound
-auf den mittleren **episodischen** Excess-Return (`_episode_excess_lcb()`):
-`LCB = Mittelwert(x_i) − t(0,95, n−1) × Standardfehler(x_i)`, `x_i` = die
-Excess-Rendite der i-ten unabhängigen Episode, `n` = Episoden, nie Trades.
-Wenige/stark schwankende Episoden drücken die Grenze automatisch ins
-Negative — keine separate Mindest-Trade-Regel nötig, die Verlässlichkeit
-steckt schon in der Formel. `lcb_grade` bildet daraus ein Gainium-artiges
-A-F-Rating über feste, vor jeder Ergebnis-Sichtung eingefrorene Schwellen
-(A: LCB>+2%, B: 0 bis +2%, C: −2% bis 0, D: −5% bis −2%, F: darunter).
-Verworfene Alternativen: Bayes'sches Hierarchie-Shrinkage (eleganter bei
-vielen Strategien, deutlich aufwändiger) und Wilson-Score auf ein binäres
-"schlägt B&H ja/nein" (zu einfach, verwirft die Größe der Überrendite).
-Beide neuen Spalten rein deskriptiv, kein Ersatz für Tier/Ranking oder den
-`freqforge_score` — separat gehalten, damit die "kein Einzelscore"-Regel
-(§17) nicht zweimal verletzt wird.
+**Episode Excess LCB and Correction of the Excess Return Mean (2026-09-14, at explicit user request after DeepSeek-v4-pro consultation "regime-audit-reliability-score"):** User goal was a metric for "beats Trading B&H, AND is statistically reliable (many episodes), not just randomly good in a few trades" — Profit Factor alone was rejected because it can be very high with very few trades and lower but more reliable with many trades, without this being visible. DeepSeek recommended a one-sided 95% lower confidence bound on the mean **episodic** excess return (`_episode_excess_lcb()`): `LCB = Mittelwert(x_i) − t(0,95, n−1) × Standardfehler(x_i)`, `x_i` = the excess return of the i-th independent episode, `n` = episodes, never trades. Few/highly variable episodes lower the bound. automatically into the negative — no separate minimum-trade rule needed, the reliability is already built into the formula. `lcb_grade` derives a Gainium-like A-F rating from this over fixed thresholds frozen before each results review (A: LCB>+2%, B: 0 to +2%, C: −2% to 0, D: −5% to −2%, F: below). Discarded alternatives: Bayesian hierarchy shrinkage (more elegant with many strategies, significantly more complex) and Wilson score on a binary "beats B&H yes/no" (too simple, ignores the size of the excess return). Both new columns are purely descriptive, not a replacement for Tier/Ranking or `freqforge_score` — kept separate so the "no single score" rule (§17) is not violated twice.
 
-Bei der Umsetzung fiel ein echter, eigenständiger Fehler auf:
-`excess_return` mittelte bislang über **Trades**, nicht über Episoden —
-dieselbe Schieflage, die die Dollar-Korrektur oben schon einmal behoben
-hat, nur als Mittelwert statt als Summe (eine Episode mit 50 Trades zählte
-25-mal so stark wie eine mit 2 Trades, obwohl beide nur eine unabhängige
-Beobachtung sind). Behoben in `_episode_pairs()`: jede Episode wird zuerst
-für sich aufsummiert, dann erst über die Episoden gemittelt — symmetrisch
-zum längst korrekten `mean_benchmark_return`. Das verschiebt Excess-Return
-(und alles Abgeleitete — Ranking, Top-N-Auswahl, Universal-Kandidaten-
-Zahlen) über den ganzen Bestand; alle konkreten Zahlen im Artefakt-Text
-wurden neu hergeleitet (u. a. "ADX Uptrend schwächstes Regime" 372→359 von
-379, vollständig konsistente Kandidaten 0→8). Modell 0 und der 7er-Pilot
-neu gerechnet, Selftest um Regressionsfälle für beides ergänzt.
+During implementation, a real, independent error became apparent: `excess_return` had so far averaged over **trades**, not over episodes — the same misalignment that the dollar correction above had already fixed once, only as an average instead of as a sum (an episode with 50 trades counted 25 times as much as one with 2 trades, even though both are only a single independent observation). Fixed in `_episode_pairs()`: each episode is first summed individually, then averaged over the episodes — symmetrical to the long-correct `mean_benchmark_return`. This shifts excess return (and everything derived — ranking, top-N selection, universal candidate figures) across the entire dataset; all specific numbers in the artifact text were newly derived (including "ADX Uptrend weakest regime" 372→359 of 379, fully consistent Candidates 0→8). Model 0 and the 7-series pilot recalculated, self-test supplemented with regression cases for both.
 
-**Voller Code-Review durch DeepSeek-v4-pro (2026-09-14, auf expliziten
-Nutzerwunsch, Konversation "regime-code-audit-2026-09-14"):** `regime/
-specialist_evaluation.py`, `regime/attribution.py`, `regime/gate_adapter.py`,
-`regime/gated_backtest.py`, `regime/gated_attribution.py` und `regime/
-model_compare.py` komplett auf Bugs durchsucht, unabhängig von bereits
-bekannten Fixes. Jeder Korrekturvorschlag wurde vor der Umsetzung erneut mit
-DeepSeek gegengecheckt (nicht nur der erste Befund übernommen). Fünf echte
-Fehler bestätigt und behoben:
+**Full code review by DeepSeek-v4-pro (2026-09-14, at explicit user request, conversation "regime-code-audit-2026-09-14"):** `regime/ specialist_evaluation.py`, `regime/attribution.py`, `regime/gate_adapter.py`, `regime/gated_backtest.py`, `regime/gated_attribution.py`, and `regime/ model_compare.py` were completely checked for bugs, regardless of already known fixes. Each correction proposal was re-checked with DeepSeek before implementation (not just the first finding taken). Five real errors confirmed and fixed:
 
-1. **Tier-Einstufung zählte Episoden über die volle Historie, nicht nur das
-   Validierungsfenster** — der schwerwiegendste Fund, siehe
-   `REGIME_AUDIT_PLAN.md` §18-Addendum für Details und die genaue
-   Gegenprobe gegen `REGIME_PREREGISTRATION.md`s "within the validation
-   window"-Formulierung. Modell 0 neu gerechnet: BTC-VALIDATION-Zeilen
-   1.828→1.671, Coin 1.770→1.757.
-2. **Sortino mischte Zeitskalen** — Zähler war eine Tagesrate
-   (`sum_profit/total_days`), Nenner die Streuung roher Trade-Level-
-   Verluste, multipliziert mit `sqrt(365)` als wären beide Seiten täglich.
-   Behoben: beide Seiten konsequent auf Trade-Ebene (Mittelwert und
-   Stichproben-Streuung, `ddof=1`, von `profit_ratio` direkt), annualisiert
-   mit `sqrt(Trades pro Jahr)` statt `sqrt(365)` — die übliche Methode für
-   eine Kennzahl aus unregelmäßig getakteten Beobachtungen.
-3. **CAGR war noch fehlerhafter** — `dollar_gain_usd/START_CAPITAL` ist die
-   Summe vieler unabhängiger $1000-Einsätze, keine einzelne kompoundierende
-   Position; die Formel potenzierte diese Summe trotzdem, als wäre sie
-   eine. Konkret beobachtet im vollen Modell-0-Bestand: bis zu 139 Mio. %
-   "CAGR" bei kurzen, handelsreichen Episoden (siehe oben) — mathematisch
-   folgerichtig aus der Formel, aber keine sinnvolle Kennzahl. Ersetzt durch
-   `annualized_return = mean_profit_ratio × Trades pro Jahr`, eine lineare
-   (nicht kompoundierende) Jahreshochrechnung, konsistent mit der
-   Fixed-Stake-Buchführung, die dieses Modul überall sonst verwendet.
-   Umbenannt (`cagr`→`annualized_return`, `_cagr_points()`→
-   `_annualized_return_points()`, Artefakt-Spalte "CAGR"→"Rendite p.a."),
-   damit die Spalte nie mit einer echten Zinseszins-CAGR verwechselt werden
-   kann; Punkte-Skala neu auf die kleinere typische Größenordnung dieser
-   Kennzahl kalibriert (0%→0, 20%→50, 100%→90, 300%+→100 Punkte — vor jeder
-   Sichtung eines Strategiewerts festgelegt).
-4. **Profit-Factor-Konvention uneinheitlich** — `attribution.py`s
-   `_summarize()` gab bei null Verlust-Trades `NaN` (über ein
-   `.replace(0.0, np.nan)`), `_freqforge_metrics()` gab `+inf` (Bestwert).
-   Vereinheitlicht auf `+inf`: das `.replace()` entfernt und zugleich einen
-   verwandten, bis dahin durch das `.replace()` verdeckten Vorzeichenfehler
-   behoben (`-matched["profit_abs"].clip(upper=0)` erzeugt bei lauter
-   Gewinn-Trades `-0.0` statt `0.0`, was `gross_profit/-0.0 = -inf` ergeben
-   hätte, nicht `+inf` — jetzt mit `.clip(upper=0).abs()` vermieden).
-5. **"Liquidation-Safety" zählte auch harmlose `force_exit`-Ausstiege**
-   (z. B. Backtest-Fensterende), nicht nur echte Zwangsliquidationen.
-   Aufgeteilt: `liquidation_rate` (score-relevant, nur `exit_reason ==
-   "liquidation"`) und `forced_exit_rate` (neue, rein deskriptive Spalte,
-   die alte, breitere Definition — nie im Score).
+1. **Animal classification counted episodes over the full history, not just that
+Validation window** — the most serious finding, see `REGIME_AUDIT_PLAN.md` §18-Addendum for details and the exact counter-check against `REGIME_PREREGISTRATION.md`'s "within the validation window" formulation. Model 0 recalculated: BTC-VALIDATION lines 1,828→1,671, Coin 1,770→1,757.
+2. **Sortino mixed time scales** — the numerator was a daily rate
+(`sum_profit/total_days`), denominator the dispersion of raw trade-level losses, multiplied by `sqrt(365)` as if both sides were daily. Fixed: both sides consistently at the trade level (mean and sample standard deviation, `ddof=1`, directly from `profit_ratio`), annualized with `sqrt(Trades pro Jahr)` instead of `sqrt(365)` — the usual method for a metric from irregularly timed observations.
+3. **CAGR was even more faulty** — `dollar_gain_usd/START_CAPITAL` is the
+Sum of many independent $1000 stakes, no single compounding position; the formula nevertheless exponentiated this sum as if it were one. Specifically observed in the full Model-0 holdings: up to 139 million % "CAGR" in short, trade-heavy episodes (see above) — mathematically consistent from the formula, but not a meaningful metric. Replaced by `annualized_return = mean_profit_ratio × Trades pro Jahr`, a linear (non-compounding) annual projection, consistent with the fixed-stake accounting that this module uses everywhere else. Renamed (`cagr`→`annualized_return`, `_cagr_points()`→`_annualized_return_points()`, artifact column "CAGR"→"Annual Return") so that the column can never be confused with a real compound interest CAGR; point scale recalibrated to the smaller typical magnitude of this metric (0%→0, 20%→50, 100%→90, 300%+ → 100 points — set before each review of a strategy value).
+4. **Profit factor convention inconsistent** — `attribution.py`s
+`_summarize()` reported zero loss trades `NaN` (via a `.replace(0.0, np.nan)`), `_freqforge_metrics()` reported `+inf` (best value). Standardized to `+inf`: the `.replace()` was removed and at the same time a related, until then hidden by the `.replace()`, sign error was corrected (`-matched["profit_abs"].clip(upper=0)` produces `-0.0` for all profit trades instead of `0.0`, which would have resulted in `gross_profit/-0.0 = -inf`, not `+inf` — now avoided with `.clip(upper=0).abs()`).
+5. **"Liquidation safety" also included harmless `force_exit` exits**
+(e.g., backtest window end), not just actual forced liquidations. Split: `liquidation_rate` (score-relevant, only `exit_reason == "liquidation"`) and `forced_exit_rate` (new, purely descriptive column, the old, broader definition — never in the score).
 
-Alle fünf Fixes durch neue bzw. angepasste Selftest-Fälle abgesichert
-(`specialist_evaluation.py`), inklusive einer eigenen `TIERBUG`-Fixtur, die
-gezielt 6 Vor-2024-Episoden gegen nur 2 echte Validierungs-Episoden stellt.
+All five fixes secured through new or adjusted self-test cases (`specialist_evaluation.py`), including a dedicated `TIERBUG` fixture, which specifically pits 6 pre-2024 episodes against only 2 real validation episodes.
 
-**ADX-Sideways-/Transition-Gate für Modell 1/2/3 (2026-09-14, auf
-expliziten Nutzerwunsch, bewusste Abweichung vom eingefrorenen Plan — siehe
-Addendum in `REGIME_AUDIT_PLAN.md` §15):** bisher gatete jeder Kandidat nur
-Long auf BULL / Short auf BEAR (Trendfolge-Annahme). Neuer Kandidaten-Spec
-`results/regime/candidate_spec_pilot_v1_sideways_transition.json` (14
-Kandidaten: die 7 Piloten-Strategien je einmal mit `-sideways`- und einmal
-mit `-transition`-Suffix, `candidate_set_id =
-pilot_v1_stratified_sideways_transition_gate`, `analysis_role = PILOT`).
-Anders als BULL/BEAR haben SIDEWAYS/TRANSITION keine Richtungsannahme, daher
-symmetrisches Gate: `long_btc_states = short_btc_states = long_coin_states =
-short_coin_states = ["SIDEWAYS"]` bzw. `["TRANSITION"]` — testet, ob ein
-Gate auf reine Seitwärts-/Übergangsphasen hilft, unabhängig davon in welche
-Richtung die Strategie dabei tatsächlich eintritt. Läuft durch dieselbe
-unveränderte Kette (`gated_backtest.py` → `gated_attribution.py` →
-`specialist_evaluation.py`); die neuen Kandidaten erscheinen als
-zusätzliche Zeilen in denselben Modell-1/2/3-Tabellen (eigene candidate_id,
-z. B. `ADXDM-sideways`), nicht als separate Tabelle. Backtest abgeschlossen
-(`--workers 1`, sequenziell über alle drei Modelle wegen des
-16-GB-Speicherwächters, alle 14/14 Kandidaten je Modell gemessen).
-`gated_attribution.py` lief zusätzlich gegen das neue Manifest, in ein
-eigenes `modelN_attribution_sideways_transition/`; per Python mit der
-bestehenden `modelN_attribution/trade_regime_attribution.csv`
-zusammengeführt (`modelN_attribution_merged/`, disjunkte candidate_ids
-vorher geprüft — 70.804/69.592/53.620 Trades für Modell 1/2/3 gesamt).
-`specialist_evaluation.py` darüber neu gerechnet (`--joint` für Modell 3),
-`export_v9.py`/`build_v8.py` neu gelaufen, Artefakt veröffentlicht
-(Version 33). Ergebnis: Modell 1 bekommt dadurch 10 Universal-Kandidaten
-(vorher 0 mit nur der Trendfolge-Variante — durch die BTC-only-Gate-Logik
-kann ein einzelner, nur auf ein Coin-Regime-Zustand fixierter Kandidat wie
-`X-sideways` trotzdem alle vier Coin-Regime erreichen, weil Modell 1 den
-Coin-Zustand gar nicht einschränkt); Modell 2/3 bleiben bei 0
-Universal-Kandidaten, weil deren Coin-Gate `X-sideways`/`X-transition`
-strukturell auf genau einen Coin-Regime-Zustand festlegt.
+**ADX Sideways/Transition Gate for Model 1/2/3 (2026-09-14, at explicit user request, deliberate deviation from the frozen plan — see addendum in `REGIME_AUDIT_PLAN.md` §15):** Until now, each candidate gated only Long on BULL / Short on BEAR (trend-following assumption). New candidate spec `results/regime/candidate_spec_pilot_v1_sideways_transition.json` (14 candidates: the 7 pilot strategies each once with `-sideways`- and once with `-transition`-suffix, `candidate_set_id = pilot_v1_stratified_sideways_transition_gate`, `analysis_role = PILOT`). Unlike BULL/BEAR, SIDEWAYS/TRANSITION have no directional assumption, hence symmetrical gate: `long_btc_states = short_btc_states = long_coin_states = short_coin_states = ["SIDEWAYS"]` or `["TRANSITION"]` — tests whether a gate on pure sideways/transition phases is helpful, regardless of the direction the strategy actually takes. Runs through the same unchanged chain (`gated_backtest.py` → `gated_attribution.py` → `specialist_evaluation.py`); the new candidates appear as additional rows in the same Model-1/2/3 tables (own candidate_id, e.g., `ADXDM-sideways`), not as a separate table. Backtest completed (`--workers 1`, sequentially across all three models due to the 16-GB memory guard, all 14/14 candidates measured per model). `gated_attribution.py` additionally ran against the new manifest, into its own `modelN_attribution_sideways_transition/`; merged via Python with the existing `modelN_attribution/trade_regime_attribution.csv` (`modelN_attribution_merged/`, previously checked for disjoint candidate_ids — 70,804/69,592/53,620 trades for Model 1/2/3 total). `specialist_evaluation.py` recalculated over it (`--joint` for Model 3), `export_v9.py`/`build_v8.py` rerun, artifact published (Version 33). Result: Model 1 thereby gets 10 universal candidates (previously 0 with only the trend-following variant — due to the BTC-only gate logic a an individual candidate, fixed only on one coin-regime state like `X-sideways`, can still reach all four coin regimes, because model 1 does not restrict the coin state at all); models 2/3 remain at 0 universal candidates, because their coin gate `X-sideways`/`X-transition` structurally fixes it to exactly one coin-regime state.
 
-**Regime-Spezialisten-Top-10 je ADX-Zustand, verwirft den 7er-Alphabet-Piloten
-(2026-09-14, auf expliziten Nutzerwunsch, DeepSeek-v4-pro zweimal
-gegengeprüft vor Umsetzung — siehe Addendum in `REGIME_AUDIT_PLAN.md`):**
-der bisherige 7-Strategien-Pilot war keine kuratierte Auswahl, sondern
-schlicht die ersten 7 Strategien alphabetisch (zur ersten Orientierung).
-Auf Nutzerwunsch verworfen — alte Kandidaten-Spec-, Backtest- und
-Attributionsdateien bleiben liegen, werden aber weder weiterverwendet noch
-im Artefakt gezeigt.
+**Regime Specialists Top 10 per ADX Condition, discards the 7-alphabet pilot (2026-09-14, at explicit user request, double-checked with DeepSeek-v4-pro before implementation — see addendum in `REGIME_AUDIT_PLAN.md`):** the previous 7-strategy pilot was not a curated selection, but merely the first 7 strategies alphabetically (for initial orientation). Discarded at user request — old candidate spec, backtest, and attribution files remain, but will neither be reused nor shown in the artifact.
 
-*Gate-Design:* `-trend` (long nur Uptrend, short nur Downtrend, ein
-kombinierter Kandidat) ersetzt durch vier symmetrische Ein-Zustand-Gates
-`-uptrend`/`-downtrend`/`-sideways`/`-transition` (long UND short jeweils
-nur im genannten Zustand — `-sideways`/`-transition` liefen schon so,
-`-uptrend`/`-downtrend` sind neu). Konkreter Befund, der die alte
-Kopplung widerlegt: `NASOSv5_mod3` und `Squeeze001` haben laut
-`trade_regime_attribution.csv` (Spalte `is_short`) in ihrer gesamten
-Historie 0% Short-Trades, mit echtem Bear-Edge (LCB +1,7%/+5,8%) — ein
-`-trend`-Gate hätte ihre komplette Bear-Aktivität blockiert, weil dessen
-Bear-Erlaubnis rein auf Short beschränkt ist. `-trend` bleibt als optionales
-fünftes Gate erhalten, aber nur für Kandidaten, die futures-fähig sind UND
-in ihrer ungegateten Historie tatsächlich long- UND short-Trades haben
-(geprüft je Kandidat gegen die rohe `is_short`-Spalte): `
-FastSupertrend_optim3_rsi_80` (8.980 short / 8.318 long) und
-`FSampleStrategy` (1.007 long / 86 short).
+*Gate Design:* `-trend` (long only Uptrend, short only Downtrend, a combined candidate) replaced by four symmetric single-state gates `-uptrend`/`-downtrend`/`-sideways`/`-transition` (long AND short each only in the specified state — `-sideways`/`-transition` already operated this way, `-uptrend`/`-downtrend` are new). Specific finding that contradicts the old coupling: `NASOSv5_mod3` and `Squeeze001`, according to `trade_regime_attribution.csv` (column `is_short`), have 0% short trades in their entire history, with a real Bear Edge (LCB +1.7%/+5.8%) — a `-trend` gate would have blocked all their bear activity, because its bear permission is strictly limited to short. `-trend` remains as an optional fifth gate, but only for candidates that are futures-capable AND in their ungated history actually long AND have short trades (checked each candidate against the raw `is_short` column): ` FastSupertrend_optim3_rsi_80` (8,980 short / 8,318 long) and `FSampleStrategy` (1,007 long / 86 short).
 
-*Auswahlmetrik:* je ADX-Zustand unabhängig alle Kandidaten mit einer
-`VALIDATION`-Zeile in genau diesem einen Zustand (keine Anforderung an die
-übrigen drei — löst das Universal-Kandidaten-379-Pool-Survivorship-Problem,
-das eine frühere Spannen-basierte Variante gehabt hätte), direkt nach
-`episode_excess_lcb` in diesem Zustand absteigend sortiert,
-`episode_excess_lcb > 0` verlangt (statistisch echter Edge, kein Rauschen),
-Top 10, dedupliziert auf einen Kandidaten je Strategie-Familie (fast
-identische Parameter-Varianten — teils mit buchstäblich identischen
-Trade-/Episoden-/LCB-Werten, z. B. sechs `NostalgiaForInfinity`-Ableger mit
-exakt 18 Trades/14 Episoden/LCB 0,0300 — auf den bestplatzierten Vertreter
-reduziert).
+*Selection metric:* for each ADX state independently, all candidates with a `VALIDATION` row in exactly this one state (no requirement for the other three — solves the universal candidate-379 pool survivorship problem, which an earlier span-based version would have had), sorted descending immediately after `episode_excess_lcb` in this state, `episode_excess_lcb > 0` required (statistically true edge, no noise), top 10, deduplicated to one candidate per strategy family (almost identical parameter variants — sometimes with literally identical trade/episode/LCB values, e.g., six `NostalgiaForInfinity` derivatives with exactly 18 trades/14 episodes/LCB 0.0300 — reduced to the highest-ranked representative).
 
-*Ergebnis der eingefrorenen Methode* gegen `coin_specialist_table.csv`
-(589 Strategien, VALIDATION-Tier): ADX Uptrend hat im gesamten Bestand nur
-einen einzigen statistisch abgesicherten Spezialisten
-(`FastSupertrend_optim3_rsi_80`; der einzige zweite Kandidat mit LCB&gt;0
-ist dieselbe Familie und fällt beim Dedup weg) — passend zum bereits
-dokumentierten Befund, dass Uptrend das schwerste Regime gegen Buy&amp;Hold
-war. Downtrend/Sideways/Transition füllen je eine volle deduplizierte
-Top 10. 25 einzelne Strategien, 33 Gate-Kandidaten insgesamt (31
-Ein-Zustand- + 2 `-trend`-Zusatzkandidaten). Neuer Kandidaten-Spec
-`results/regime/candidate_spec_regime_specialists_v2.json`
-(`candidate_set_id = regime_specialists_v2_lcb_ranked_deduplicated`,
-`analysis_role = PILOT`, gleicher Zeitraum wie jeder bisherige
-Piloten-Spec). Läuft durch dieselbe unveränderte Kette
-(`gated_backtest.py` → `gated_attribution.py` → `specialist_evaluation.py`)
-— keine Code-Änderung nötig, `regime/gate_adapter.py` war bereits generisch
-über beliebige `long/short_btc/coin_states`-Listen, `-uptrend`/`-downtrend`
-brauchten nur neue Spec-Einträge. Backtest gelaufen (`--workers 1`,
-sequenziell über alle drei Modelle, `--output
-results/regime/modelN_backtest_manifest_regime_specialists_v2.json`,
-33/33 je Modell gemessen). Dabei einen zweiten, unabhängigen Bug gefunden:
-`NostalgiaForInfinityX` liefert `enter_long`/`enter_short` als bool-Spalten
-statt der sonst üblichen int-0/1-Spalten; `RegimeGate.mask()` versuchte dort
-eine `0` reinzuschreiben, was Pandas mit `TypeError: Invalid value '0' for
-dtype 'bool'` verweigert (`regime/gate_adapter.py`, betrifft jede Strategie
-mit bool-typisierten Entry-Spalten, nicht nur diesen einen Kandidaten).
-Behoben: `off`-Wert wird jetzt an den Spaltentyp angepasst (`False` bei
-bool-Spalten, sonst weiterhin `0`), Selftest-Fall mit einer bool-Spalte
-ergänzt. `gated_attribution.py` (`--outdir
-results/regime/modelN_attribution_regime_specialists_v2/`, 18.638 / 16.994 /
-10.169 Trades für Modell 1/2/3) und `specialist_evaluation.py` (`--outdir
-results/regime/specialist_evaluation/modelN_regime_specialists_v2/`,
-`--joint` für Modell 3) darüber neu gerechnet: VALIDATION-Zeilen Modell 1
-btc=25/coin=58 (8 Universal-Kandidaten &mdash; wie beim vorigen Piloten
-entsteht das, weil Modell 1 nur BTC gatet und die Coin-Regime-Dimension
-dadurch frei bleibt), Modell 2 btc=54/coin=35 (0 Universal), Modell 3
-btc=21/coin=24/joint=24 (0 Universal). `export_v2_regime_specialists.py`
-(neues Skript, nicht `export_v9.py`s alte `MERGED_ATTRIBUTION`-Logik)
-erzeugt drei JSON-Blobs: `top10_by_regime.json` (die eingefrorene Auswahl
-selbst, aus `coin_specialist_table.csv` reproduziert, nicht von Hand
-kopiert), `gated_compare_v2.json` und `gated_detail_v2.json` (gleiche Form
-wie die alten `gated_compare.json`/`gated_detail.json`, sodass
-`regime_specialists_template.html`s bestehende Render-Funktionen
-unverändert weiterlaufen &mdash; nur die beiden `build_v8.py`-Platzhalter
-zeigen jetzt auf die neuen Dateien). Artefakt veröffentlicht (Version 36).
+*Result of the frozen method* against `coin_specialist_table.csv` (589 strategies, VALIDATION tier): ADX Uptrend has only a single statistically validated specialist across the entire set (`FastSupertrend_optim3_rsi_80`; the only second candidate with LCB&gt;0 is the same family and drops out during deduplication) — consistent with the already documented finding that Uptrend was the toughest regime against Buy&amp;Hold. Downtrend/Sideways/Transition each fill a complete deduplicated Top 10. 25 individual strategies, 33 gate candidates in total (31 single-state + 2 `-trend` additional candidates). New candidate spec `results/regime/candidate_spec_regime_specialists_v2.json` (`candidate_set_id = regime_specialists_v2_lcb_ranked_deduplicated`, `analysis_role = PILOT`, same period as every previous pilot spec). Runs through the same unchanged chain (`gated_backtest.py` → `gated_attribution.py` → `specialist_evaluation.py`) — no code change needed. `regime/gate_adapter.py` was already generic across any `long/short_btc/coin_states` lists, `-uptrend`/`-downtrend` only needed new spec entries. Backtest run (`--workers 1`, sequentially over all three models, `--output results/regime/modelN_backtest_manifest_regime_specialists_v2.json`, 33/33 measured per model). In the process, a second, independent bug was found: `NostalgiaForInfinityX` delivers `enter_long`/`enter_short` as bool columns instead of the normally used int-0/1 columns; `RegimeGate.mask()` attempted to write a `0` there, which Pandas refuses with `TypeError: Invalid value '0' for dtype 'bool'` (`regime/gate_adapter.py`, affects any strategy with bool-typed entry columns, not just this one candidate). Fixed: `off` value is now adapted to the column type (`False` for bool columns, otherwise still `0`), self-test case with a bool column added. `gated_attribution.py` (`--outdir results/regime/modelN_attribution_regime_specialists_v2/`, 18,638 / 16,994 / 10,169 Trades for Model 1/2/3) and `specialist_evaluation.py` (`--outdir results/regime/specialist_evaluation/modelN_regime_specialists_v2/`, `--joint` for Model 3) recalculated above: VALIDATION lines Model 1 btc=25/coin=58 (8 universal candidates &mdash; like in the previous pilot this arises because Model 1 only gates BTC and the coin regime dimension therefore remains free), Model 2 btc=54/coin=35 (0 universal), Model 3 btc=21/coin=24/joint=24 (0 universal). `export_v2_regime_specialists.py` (new script, not `export_v9.py`’s old `MERGED_ATTRIBUTION` logic) generates three JSON blobs: `top10_by_regime.json` (the frozen selection itself, reproduced from `coin_specialist_table.csv`, not copied by hand), `gated_compare_v2.json` and `gated_detail_v2.json` (same form as the old `gated_compare.json`/`gated_detail.json`, so `regime_specialists_template.html`’s existing render functions continue to run unchanged &mdash; only the two `build_v8.py` placeholders now point to the new files). Artifact published (version 36).
 
-Dollar-Ansicht (2026-09-11, auf expliziten Nutzerwunsch): zusätzlich zur
-Benchmark-relativen Excess-Return-Prozentzahl ein Dollar-Betrag —
-`dollar_gain_usd`/`benchmark_dollar_gain_usd`/`excess_dollar_gain_usd` in
-den Regime-Tabellen, sowie regime-unabhängig je Strategie in
-`strategy_total_dollar_gain.csv`. Erste Implementierung kompoundierte
-sequenziell ($1000 Start, jeder Trade multipliziert den laufenden
-Kontostand, sortiert nach `close_date`) — verworfen, weil das Ergebnis ab
-einigen hundert Trades von der Exponentialrechnung dominiert wird statt von
-der Strategiequalität (eine Pilotstrategie: $1000 → $0,006 über ~3.000
-Trades) und weil es ein Konto mit genau einer offenen Position suggeriert,
-das keine der Strategien je hatte (sie laufen auf bis zu 8 Paaren
-gleichzeitig). Stattdessen: fixer $1000-Einsatz je Trade, keine
-Wiederanlage, einfache Summe — robust, aber kein Aussage über
-Kapitalwachstum bei echtem Reinvestment.
+Dollar view (2026-09-11, at explicit user request): in addition to the benchmark-relative excess return percentage, a dollar amount — `dollar_gain_usd`/`benchmark_dollar_gain_usd`/`excess_dollar_gain_usd` in the regime tables, as well as strategy-independent in `strategy_total_dollar_gain.csv`. First implementation compounded sequentially ($1000 start, each trade multiplied the current balance, sorted by `close_date`) — discarded because the result, after a few hundred trades, is dominated by the exponential calculation rather than the strategy quality (a pilot strategy: $1000 → $0.006 over ~3,000 trades) and because it suggests an account with exactly one open position, which none of the strategies ever had (they run on up to 8 pairs simultaneously). Instead: fixed $1000 stake per trade, no reinvestment, simple Total — robust, but no statement about capital growth with actual reinvestment.
 
-Erster produktiver Lauf (2026-09-11) auf den 7 Piloten-Kandidaten aus Stufe
-12s Kandidaten-Spec, gegen deren Modell-0-Attribution (ihr natürliches,
-ungegatetes Handelsverhalten): 5 von 7 Strategien erreichen mindestens eine
-`VALIDATION`-Tier-Zeile, 5 erfüllen die Schwelle in allen vier
-Coin-Regimen gleichzeitig (Universal-Kandidaten). `ASDTSRockwellTrading` hat
-alle 13.402 Trades vor 2024-01-01 — keine einzige Validation-Zeile, korrekt
-ausgeschlossen statt mit Discovery-Daten aufgefüllt. `ADXMomentum` hat genug
-Episoden, aber zu wenige Trades je Regime (3-7, unter der 10er-Schwelle) —
-`EXPLORATORY`, nicht gerankt.
+First productive run (2026-09-11) on the 7 pilot candidates from Stage 12's candidate spec, against their Model-0 attribution (their natural, ungated trading behavior): 5 out of 7 strategies reach at least one `VALIDATION`-tier line, 5 meet the threshold in all four coin regimes simultaneously (universal candidates). `ASDTSRockwellTrading` has all 13,402 trades before 2024-01-01 — not a single validation line, correctly excluded instead of filled with discovery data. `ADXMomentum` has enough episodes, but too few trades per regime (3-7, below the 10-threshold) — `EXPLORATORY`, not ranked.
 
-Zweiter Lauf (2026-09-11), ohne `--strategies`-Filter: alle 589 Strategien,
-die in `trade_regime_attribution.csv` überhaupt eine Modell-0-Attribution
-haben (von 647 grundsätzlich eligiblen — 58 fehlen dort aus in
-`attribution_manifest.json` protokollierten Gründen, z. B. Archiv-Hash- oder
-Identity-Mismatch, nicht weil sie hier ausgeschlossen wurden). Laufzeit
-36s (warmer Cache, vektorisiert). 3.459.380 Trades, 1.828 `VALIDATION`-Zeilen
-BTC-Regime / 1.770 Coin-Regime, 379 Universal-Kandidaten (alle vier
-Coin-Regime auf `VALIDATION`-Tier abgedeckt), davon 44 mit
-`regime_consistency == 1.0` (schlagen den Benchmark in jedem der vier
-Coin-Regime). 92 der 589 Strategien liefern keine einzige Zeile in beiden
-Tabellen — kein Trade im Validation-Fenster, analog zum
-`ASDTSRockwellTrading`-Fall aus dem Pilotlauf. Bei ~450-480 gerankten
-Kandidaten je Regime-Spalte ist ein einzelner Rang-1-Platz nicht mehr
-aussagekräftig für "beste Strategie" im Ganzen; die Auswertung soll pro
-Regime gelesen werden, nicht als Gesamt-Leaderboard.
+Second run (2026-09-11), without `--strategies` filter: all 589 strategies that have any model-0 attribution in `trade_regime_attribution.csv` (out of 647 fundamentally eligible — 58 are missing there due to reasons recorded in `attribution_manifest.json`, e.g., archive hash or identity mismatch, not because they were excluded here). Runtime 36s (warm cache, vectorized). 3,459,380 trades, 1,828 `VALIDATION` rows BTC regime / 1,770 coin regime, 379 universal candidates (all four coin regimes covered at `VALIDATION` tier), of which 44 with `regime_consistency == 1.0` (beat the benchmark in each of the four coin regimes). 92 of the 589 strategies yield not a single row in both tables — no trade in the validation window, analogous to the `ASDTSRockwellTrading` case from the pilot run. At ~450-480 ranked candidates per regime column is a A single rank-1 position is no longer meaningful for the 'best strategy' overall; the evaluation should be read per regime, not as an overall leaderboard.
 
-Dritter Lauf (2026-09-11), mit der Dollar-Ansicht: 497 von 589 Strategien
-(die mit &ge;1 Validation-Fenster-Trade) bekommen eine Zeile in
-`strategy_total_dollar_gain.csv`. 239/497 mit positivem `dollar_gain_usd`,
-186/497 schlagen den Benchmark auch in Dollar (`excess_dollar_gain_usd`
-&gt; 0). Median `dollar_gain_usd` liegt bei &minus;$81, Median
-`excess_dollar_gain_usd` bei &minus;$297 — für diesen unkuratierten,
-größtenteils von GitHub gezogenen Bestand kein überraschendes Bild. Größter
-Gewinn: `FastSupertrend_optim_quick`, +$23.492 über 11.065 Trades. Größter
-Verlust: `CryptoFrogHO2`, &minus;$20.280 über 15.692 Trades.
+Third run (2026-09-11), with the dollar view: 497 out of 589 strategies (those with &ge; validation window trade) get a row in `strategy_total_dollar_gain.csv`. 239/497 with positive `dollar_gain_usd`, 186/497 also beat the benchmark in dollars (`excess_dollar_gain_usd` &gt; 0). Median `dollar_gain_usd` is at &minus;$81, median `excess_dollar_gain_usd` at &minus;$297 — for this uncurated, mostly GitHub-sourced portfolio, not a surprising picture. Largest profit: `FastSupertrend_optim_quick`, +$23,492 over 11,065 trades. Largest loss: `CryptoFrogHO2`, &minus;$20,280 over 15,692 trades.
 
-Vierter Lauf (2026-09-11), gegen die Modell-1/2/3-Kandidaten-Attribution
-statt Modell 0s natürlichem Handelsverhalten (`--trades
-results/regime/modelN_attribution/trade_regime_attribution.csv --outdir
-results/regime/specialist_evaluation/modelN/`). Zwei Bugs dabei gefunden und
-behoben: `load_trades()` erwartete hart eine Spalte `strategy_id`, aber
-`gated_attribution.py`s Ausgabe nennt denselben Slot `candidate_id` — behoben
-mit `_detect_id_column()`, erkennt automatisch, welche Spalte vorliegt, und
-normalisiert intern auf `strategy_id` (protokolliert als
-`source_id_column` im Manifest). `universal_table()` warf `KeyError:
-'worst_regime_return'`, sobald eine nicht-leere `coin_table` null Zeilen
-lieferte, die alle vier Coin-Regime abdecken — traf sofort bei Modell 2 und
-3, wo das engere Gate zu wenige Trades je Regime übrig lässt, damit einer
-der 7 Piloten-Kandidaten in allen vieren gleichzeitig die Schwelle
-erreicht. Ergebnis: Modell 1 (BTC-Gate) 4/7 Universal-Kandidaten, keiner
-vollständig konsistent; Modell 2 (Coin-Gate) und Modell 3 (Kombi-Gate) 0
-Universal-Kandidaten. Gegatet-vs-ungegatet-Vergleich des Gesamtgewinns in
-Dollar (6 Kandidaten mit Validierungs-Trades): jedes Gate verkleinert den
-Verlust der drei Verlust-Strategien (`ADXDM`, `ADX_15M_USDT`,
-`AlmgrenChrissStrategy`), am stärksten Modell 3; jedes Gate verkleinert
-aber auch den Gewinn der einzigen ungegatet bereits profitablen Strategie
-(`BBMod`) — das Gate filtert eben auch profitable Trades außerhalb der
-Trendfolge-Regime heraus. `AdaptiveRegime` bleibt über alle vier Varianten
-in etwa gleich. Deckte zusätzlich eine dritte `.gitignore`-Lücke auf
-(`results/regime/specialist_evaluation/modelN/*.csv` liegt zwei statt eine
-Ebene unter dem ersten Ausnahme-Pattern) — behoben mit
-`!results/regime/*/*/*.csv`.
+Fourth run (2026-09-11), against the Model-1/2/3 candidate attribution instead of Model 0's natural trade behavior (`--trades results/regime/modelN_attribution/trade_regime_attribution.csv --outdir results/regime/specialist_evaluation/modelN/`). Two bugs were found and fixed: `load_trades()` was hard-expecting a column `strategy_id`, but `gated_attribution.py`'s output names the same slot `candidate_id` — fixed with `_detect_id_column()`, which automatically detects which column is present and internally normalizes to `strategy_id` (logged as `source_id_column` in the manifest). `universal_table()` threw `KeyError: 'worst_regime_return'` as soon as a non-empty `coin_table` produced zero rows, covering all four coin regimes — hit immediately on Model 2 and 3, where the tighter gate leaves too few trades per regime for any of the 7 pilot candidates to simultaneously reach the threshold in all four. Result: Model 1 (BTC-Gate) 4/7 universal candidates, none fully consistent; Model 2 (Coin-Gate) and Model 3 (Combo-Gate) 0 universal candidates. Gated vs ungated comparison of total profit in dollars (6 candidates with validation trades): each gate reduces the loss of the three losing strategies (`ADXDM`, `ADX_15M_USDT`, `AlmgrenChrissStrategy`), most strongly Model 3; however, each gate also reduces the profit of the only ungated already profitable strategy (`BBMod`) — the gate also filters out profitable trades outside the trend-following regimes. `AdaptiveRegime` remains roughly the same across all four variants. Additionally revealed a third `.gitignore` gap (`results/regime/specialist_evaluation/modelN/*.csv` is two levels instead of one below the first exception pattern) — fixed with `!results/regime/*/*/*.csv`.
 
-`attach_benchmark()`'s Benchmark-Definition geändert (2026-09-12, expliziter
-Nutzerwunsch): statt Buy-and-Hold nur über das Open-Close-Intervall des
-einzelnen Trades jetzt Buy-and-Hold über die *gesamte* ADX-Regime-Episode
-(erster bis letzter klassifizierter Tag, aus `regime_daily.csv`s
-`btc_episode_id`/`coin_episode_id`). Grund: die Trade-Intervall-Definition
-konnte ein ungehebelter 1x-Long-Trade praktisch nie schlagen (seine eigene
-Rendite *ist* näherungsweise die Intervall-Rendite, minus Gebühren) — sie
-konnte also nie beantworten, ob eine Strategie eine Marktphase besser timt
-als simples Halten. Zwei neue Spalten (`btc_episode_benchmark_return`,
-`coin_episode_benchmark_return`) ersetzen die alte `benchmark_return` in
-`_specialist_table()`; `benchmark_return` selbst bleibt unverändert und wird
-weiterhin nur von `total_dollar_gain_table()`s regime-unabhängigem
-Gesamtwert benutzt, der keine einzelne Marktphase hat, gegen die er messen
-könnte. Alle drei Läufe (Modell 0 voll, Modell 1/2/3 gegen die
-Piloten-Kandidaten) mit identischen Zeilen-/Episoden-/Trade-Zahlen wie zuvor
-neu gerechnet — nur die Excess-Return-Werte selbst ändern sich, keine
-Tier-/Floor-Zuordnung. Ergebnis bei Modell 0: von den 379 Universal-Kandidaten
-schlägt jetzt **keiner** (vorher 44) den Benchmark noch in allen vier
-Coin-Regimen gleichzeitig — 375 von 379 (99%) haben BULL als schwächstes
-Regime, weil praktisch jede aktiv tradende Strategie einen Teil einer langen
-Rally verpasst, den simples Durchhalten nicht verpasst. Das ist die direkte,
-erwartete Antwort auf die Ausgangsfrage ("gibt es ungehebelte Long-Strategien,
-die eine Bull-Phase besser timen als Buy-and-Hold") — mit dieser strengeren
-Messlatte praktisch nein, im Rahmen dieses Bestands.
+`attach_benchmark()`'s benchmark definition changed (2026-09-12, explicit user request): instead of Buy-and-Hold only over the open-close interval of the individual trade, now Buy-and-Hold over the *entire* ADX regime episode (first to last classified day, from `regime_daily.csv`'s `btc_episode_id`/`coin_episode_id`). Reason: the trade interval definition could practically never beat an unleveraged 1x long trade (its own return *is* approximately the interval return, minus fees) — so it could never answer whether a strategy times a market phase better than simple holding. Two new columns (`btc_episode_benchmark_return`, `coin_episode_benchmark_return`) replace the old `benchmark_return` in `_specialist_table()`; `benchmark_return` itself remains unchanged and continues to be used only by `total_dollar_gain_table()`'s regime-independent total value, which does not include any single Market phase to which it could be compared. All three runs (Model 0 fully, Model 1/2/3 against the pilot candidates) recalculated with identical row/episode/trade numbers as before — only the excess return values themselves change, no tier/floor allocation. Result for Model 0: of the 379 universal candidates, now **none** (previously 44) beat the benchmark in all four coin regimes simultaneously — 375 of 379 (99%) have BULL as the weakest regime, because practically every actively trading strategy misses part of a long rally that simple holding does not miss. This is the direct, expected answer to the original question ('are there unleveraged long strategies that time a bull phase better than buy-and-hold') — with this stricter standard, practically No, within the framework of this inventory.
 
-Bug in genau dieser Änderung gefunden und behoben (2026-09-12, vom Nutzer im
-veröffentlichten Artefakt entdeckt): `_specialist_table()` summierte/mittelte
-`benchmark_dollar_gain_usd`/`mean_benchmark_return` über jeden validierten
-Trade statt über jede eindeutige Episode. Da `attach_benchmark()` allen
-Trades einer Episode denselben Episoden-Benchmarkwert zuweist, zählte eine
-Strategie mit vielen Trades in wenigen Episoden dieselbe Buy-and-Hold-Phase
-mehrfach — Symptom im Artefakt: `Obelisk_TradePro_Ichi_v2_2` zeigte bei 1.230
-Trades über nur 40 Episoden einen "B&H-Gewinn" von +$94.882 (real rund
-$4.800, Faktor ~20 zu hoch). Fix: vor der Aggregation wird auf eindeutige
-`(strategy_id, regime, coin_pair, episode_id)`-Kombinationen dedupliziert —
-`coin_pair` ist Teil des Schlüssels, weil eine BTC-Regime-Episode ein
-global geteiltes Kalenderfenster ist, in dem verschiedene Coins verschiedene
-eigene Kursverläufe haben, also verschiedene Buy-and-Hold-Einsätze sind.
-Betrifft sowohl die Dollar-Summe als auch den Prozent-Mittelwert (und damit
-`excess_return`) gleichermaßen. Alle vier Läufe neu gerechnet — Zeilen-/
-Episoden-/Trade-Zahlen unverändert (der Floor hängt nicht vom Benchmark ab),
-Excess-Return- und Dollar-Werte teils deutlich verschoben; die "0 von 379
-vollständig konsistent"-Kernaussage bleibt bestehen (BULL bleibt bei 372/379
-das schwächste Regime, vorher 375/379 — die Größenordnung der Grundaussage
-ändert sich nicht, nur einzelne Kandidatenwerte).
+Bug found and fixed in exactly this change (2026-09-12, discovered by the user in the released artifact): `_specialist_table()` summed/averaged `benchmark_dollar_gain_usd`/`mean_benchmark_return` over every validated trade instead of over each unique episode. Since `attach_benchmark()` assigns the same episode benchmark value to all trades of an episode, a strategy with many trades in few episodes counted the same buy-and-hold phase multiple times — symptom in the artifact: `Obelisk_TradePro_Ichi_v2_2` showed a "B&H profit" of +$94,882 for 1,230 trades over only 40 episodes (actual around $4,800, factor ~20 too high). Fix: before aggregation, deduplicate by unique `(strategy_id, regime, coin_pair, episode_id)` combinations — `coin_pair` is part of the key because a BTC regime episode is a globally shared calendar window in which different coins have their own Course developments, that is, various buy-and-hold investments. Concerns both the dollar amount and the percentage average (and thus `excess_return`) equally. All four runs recalculated — row/episode/trade numbers unchanged (the floor does not depend on the benchmark), excess return and dollar values partially shifted significantly; the core statement '0 out of 379 fully consistent' remains (BULL remains the weakest regime at 372/379, previously 375/379 — the magnitude of the basic statement does not change, only individual candidate values).
 
-Modell 3 zeigte bislang zwei getrennte Tabellen (BTC-Regime, Coin-Regime),
-obwohl das Gate beide Dimensionen gleichzeitig verlangt — auf Nutzerwunsch
-zu einer kombinierten Tabelle zusammengeführt. Trades und Dollar-Gewinn
-waren zwischen beiden Tabellen bereits identisch (dieselben Trades), aber
-Episodenzahl und Excess-Return unterschieden sich, weil BTC-Episode und
-Coin-Episode unterschiedliche Zeitfenster sind. Neue vierte Benchmark-Spalte
-`joint_episode_benchmark_return` in `attach_benchmark()`: die echte
-Schnittmenge aus BTC-Episode und Coin-Episode eines Trades (nicht eine der
-beiden allein) — das ist die tatsächliche Bedingung, die Modell 3s
-UND-Gate verlangt. Neue Funktion `joint_specialist_table()`, hinter
-`--joint` (nur explizit angefordert, da sie nur für ein UND-gegatetes
-Modell sinnvoll ist — auf Modell 0/1/2 angewandt ergäbe eine bedeutungslose
-Tabelle). Beim Bau entdeckt: `btc_regime`/`coin_regime` stimmen bei
-gegateten Trades fast immer überein, aber nicht ausnahmslos — 7 von rund
-22.000 Modell-3-Trades weichen ab (Signal-Kerze und Fill-Kerze können je
-einen Tag auseinanderliegen, in dem sich eine der beiden Regime-Dimensionen
-unabhängig von der anderen weiterbewegt; keiner erreicht VALIDATION-Tier).
-Kein Bug, also nicht als Fehler behandelt: `joint_specialist_table()` nimmt
-`coin_regime` als alleinige Anzeige-Bezeichnung statt Übereinstimmung
-vorauszusetzen. Modell 1/2 unverändert (nur eine Dimension gegatet, kein
-kombiniertes Regime sinnvoll).
+Model 3 previously showed two separate tables (BTC regime, Coin regime), although the gate requires both dimensions simultaneously — merged into a combined table at the user's request. Trades and dollar profit were already identical between the two tables (the same trades), but the number of episodes and excess return differed because BTC episode and Coin episode are different time windows. New fourth benchmark column `joint_episode_benchmark_return` in `attach_benchmark()`: the actual intersection of BTC episode and Coin episode of a trade (not just one of the two alone) — this is the actual condition required by Model 3's AND gate. New function `joint_specialist_table()`, after `--joint` (explicitly requested only, since it only makes sense for an AND-gated model — applied to Model 0/1/2). would result in a meaningless table). Discovered during construction: `btc_regime`/`coin_regime` almost always match for gated trades, but not without exception — 7 out of around 22,000 Model 3 trades deviate (signal candle and fill candle can be one day apart, during which one of the two regime dimensions moves independently of the other; neither reaches VALIDATION tier). Not a bug, so not handled as an error: `joint_specialist_table()` takes `coin_regime` as the sole display label instead of assuming a match. Model 1/2 unchanged (only one dimension gated, no combined regime makes sense).
 
-## Wo Docker statt nativem Python steht
+## Where Docker stands instead of native Python
 
-Stufen 1–3 (Probelauf, beide Bias-Prüfungen) laufen sowohl nativ als auch in
-den gepinnten Docker-Images (`strategy-audit-runtime:2026.7` und Varianten),
-je nachdem welcher Runner sie aufruft — beide schreiben in dieselben
-JSON-Stores, unterschieden nur durch das Feld `runtime_id`
-(`native_unversioned` vs. `docker:sha256:...`). Stufe 7 (Vollfenster,
-gepoolt) läuft ausschließlich in Docker, weil sie stundenlang unbeaufsichtigt
-läuft.
+Stages 1–3 (trial run, both bias tests) run both natively and in the pinned Docker images (`strategy-audit-runtime:2026.7` and variants), depending on which runner calls them — both write to the same JSON stores, distinguished only by the field `runtime_id` (`native_unversioned` vs. `docker:sha256:...`). Stage 7 (full window, pooled) runs exclusively in Docker because it runs unattended for hours.
 
-## Alte Dateien, die nicht mehr gebraucht werden
+## Old files that are no longer needed
 
-Drei verschiedene Kategorien, nicht eine — wichtig, weil sie unterschiedlich
-behandelt werden.
+Three different categories, not one — important because they are treated differently.
 
-### 1. Vom ursprünglichen Autor der Vorgänger-Arbeit (895/900-Strategien-Sichtung, vor dieser Prüfkette)
+### 1. From the original author of the previous work (895/900 strategies review, before this verification chain)
 
-Publikations-Vorspann und Fallstudien einer früheren, weniger strengen
-Sichtung. Keine Datei hier wird von einem Skript aus Stufe 0–11 gelesen oder
-geschrieben; sie beschreiben einen Stand, den `STRATEGY_STATUS.csv` längst
-ersetzt hat.
+Publication preface and case studies of a previous, less strict review. No file here is read or written by a script from level 0–11; they describe a state that `STRATEGY_STATUS.csv` has long since replaced.
 
-| Datei/Verzeichnis | Erzeugt von | Ersetzt durch |
+| File/Directory | Created by | Replaced by |
 |---|---|---|
-| `old/predecessor_audit/README.md`, `LEDGER.csv`, `LEDGER.md` | archiviertes `ledger.py` | `STRATEGY_STATUS.md` |
-| `old/predecessor_audit/CORPUS.md`, `CORPUS_PLAN.md`, `corpus/INDEX.md` + 896 Karten unter `corpus/` | archiviertes Vorgänger-Tooling | `evidence/EXECUTION_PROFILES.csv`, `evidence/corpus_sources.json` |
-| `old/predecessor_audit/ANALYSIS.md`, `ANALYSIS.ru.md` | (Vorgänger-Tooling) | fünf handverlesene Fallstudien, keine Population — `STRATEGY_STATUS.csv` deckt die aktuelle Population |
-| `old/predecessor_audit/results/*.md` (`DoubleEMACrossoverWithTrend.md` u.a., `INDEX.md`) | (Vorgänger-Tooling) | dieselben fünf Fallstudien — **nicht zu verwechseln mit `results/regime/`**, das ist aktuell und wird von Stufe 7–9 beschrieben |
-| `old/predecessor_audit/DCA.md`, `DEPTH.md`, `RESOLVABLE.md` | (Vorgänger-Tooling) | eigenständige Seitenuntersuchungen ohne Regime-Bezug, nichts ersetzt sie, weil nichts in der aktuellen Kette dieselbe Frage stellt |
-| `old/**` (`corpus_repair`, `eligibility_zwischenstand_2026-08`, `hmm_prototype_2026-08`, `proxy_backtests_2026-08`, `root_prototypes_2026-08`, `translation_attempts_2026-08`, `vorueberlegungen`, eigenes `old/README.md`) | verschiedene, alle vor dieser Kette | bewusst archiviert, nicht gelöscht |
-| `.codex/CONTINUATION.md` | (Vorgänger-Tooling) | erklärt sich selbst durch `HANDOFF.md` ersetzt |
+| `old/predecessor_audit/README.md`, `LEDGER.csv`, `LEDGER.md` | archived `ledger.py` | `STRATEGY_STATUS.md` |
+| `old/predecessor_audit/CORPUS.md`, `CORPUS_PLAN.md`, `corpus/INDEX.md` + 896 cards under `corpus/` | archived predecessor tooling | `evidence/EXECUTION_PROFILES.csv`, `evidence/corpus_sources.json` |
+| `old/predecessor_audit/ANALYSIS.md`, `ANALYSIS.ru.md` | (predecessor tooling) | five handpicked case studies, no population — `STRATEGY_STATUS.csv` covers the current population |
+| `old/predecessor_audit/results/*.md` (`DoubleEMACrossoverWithTrend.md` et al., `INDEX.md`) | (Predecessor tooling) | the same five case studies — **not to be confused with `results/regime/`**, which is current and described from level 7–9 |
+| `old/predecessor_audit/DCA.md`, `DEPTH.md`, `RESOLVABLE.md` | (Predecessor Tooling) | independent page investigations without regime reference, nothing replaces them, because nothing in the current chain asks the same question |
+| `old/**` (`corpus_repair`, `eligibility_zwischenstand_2026-08`, `hmm_prototype_2026-08`, `proxy_backtests_2026-08`, `root_prototypes_2026-08`, `translation_attempts_2026-08`, `vorueberlegungen`, own `old/README.md`) | various, all before this chain | consciously archived, not deleted |
+| `.codex/CONTINUATION.md` | (predecessor tooling) | explained by itself replaced by `HANDOFF.md` |
 
-### 2. Eigene Dateien dieser Prüfkette, aber verwaist (kein Erzeugerskript mehr vorhanden)
+### 2. Own files of this test chain, but orphaned (no producer script anymore available)
 
-Anders als Kategorie 1: **unsere** Dateien, nicht die des ursprünglichen
-Autors — aber das Skript, das sie einmal schrieb, existiert nicht mehr im
-Repo. `ELIGIBILITY_NEVER_RUN.json` und `ELIGIBILITY_TRAP_SMOKE.json` waren
-die letzten beiden dieser Art und sind am 2026-09-06 entfernt worden (siehe
-Stufe 1) — aktuell keine Kandidaten in dieser Kategorie. Ein künftiger Fund
-würde genauso behandelt: erst per Diff bestätigen, dass keine Zeile mehr
-darauf angewiesen ist, dann committen, dann entfernen — nie umgekehrt.
+Unlike Category 1: **our** files, not those of the original author — but the script that they once wrote no longer exists in the repo. `ELIGIBILITY_NEVER_RUN.json` and `ELIGIBILITY_TRAP_SMOKE.json` were the last two of this kind and were removed on 2026-09-06 (see Stage 1) — currently no candidates in this category. Any future find would be treated the same way: first confirm via diff that no line depends on it anymore, then commit, then remove — never the other way around.
 
-### 3. `tools/` — eigene Werkzeuge, aber manuell, nicht Teil der automatischen Kette
+### 3. `tools/` — own tools, but manual, not part of the automatic chain
 
-Alle Dateien hier sind aktuell und nicht veraltet. Die meisten laufen auf
-Zuruf; Stufe 0 nutzt zusätzlich die Corpus-Werkzeuge in diesem Verzeichnis.
-Sie wurden aus dem Root hierher verschoben und ihre Root-Pfadannahmen angepasst.
-Die veralteten Vorgänger-Gates `sync_repo.py`, `freeze_guard.py`,
-`verify_ledger.py` und `totality.py` liegen dagegen unter
-`old/predecessor_audit/` und sind nicht mehr Teil der aktuellen CI. `totality.py`
-meldet auf der heutigen Pipeline 124 ungeprüfte Heuristiktreffer und eignet sich
-damit nicht als unveränderter Commit-Guard.
-`ROOT`-Pfadannahmen (`os.path.dirname(os.path.abspath(__file__))`) wurden um
-eine Ebene korrigiert; `warmup_reparse.py`s `from evidence import profile_bias` bekam einen
-`sys.path.insert` auf das Root-Verzeichnis, denselben Kniff, den `repair/*.py`
-schon vorher benutzte.
+All files here are current and not outdated. Most run on demand; Stage 0 additionally uses the corpus tools in this directory. They were moved here from the root and their root path assumptions were adjusted. The outdated predecessor gates `sync_repo.py`, `freeze_guard.py`, `verify_ledger.py`, and `totality.py`, on the other hand, are located under `old/predecessor_audit/` and are no longer part of the current CI. `totality.py` reports 124 unchecked heuristic hits on today's pipeline and is therefore not suitable as an unmodified commit guard. `ROOT` path assumptions (`os.path.dirname(os.path.abspath(__file__))`) were corrected by one level; `warmup_reparse.py`'s `from evidence import profile_bias` got a `sys.path.insert` on the root directory, the same trick that `repair/*.py` had used before.
 
-| Programm | Zweck | Wann laufen lassen |
+| Program | Purpose | When to run |
 |---|---|---|
-| `tools/secret_gate.py` | Verhindert, dass ein Commit ein Secret enthält (vier Schichten, siehe eigener Docstring) | vor jedem Commit, das neue Dateien einführt |
-| `tools/translation_repair.py` | Übersetzt russische Kommentare/Strings in Python-Dateien, AST-geprüft, übersetzt fehlgeschlagene Stellen nie stillschweigend | wenn `tools/harvest.py` (Stufe 0) ein Repo mit nicht-englischen Kommentaren einbringt |
-| `tools/blocked_triage.py` | Findet behebbare Ursachen für Zeilen, die der Probelauf nie erreicht (freqtrade startete sie gar nicht); schreibt `REPAIR_LIST.md` und `evidence/BLOCKED_TRIAGE.json`, das Stufe 5 liest | nach neuem Harvest oder wenn sich die Zahl blockierter Zeilen ändert (`--probe --list`) |
-| `tools/eligibility_expansion.py` | Friert das historische, ergebnisblinde Eligibility-Expansion-Inventar ein (nur technische Stage-6-Artefakte, keine Performance) | wenn `REGIME_PREREGISTRATION.md`/`ELIGIBILITY_EXPANSION_PLAN.md` geändert werden |
-| `tools/probe_double_advise.py` | Prüft, ob der doppelte `ft_advise_signals`-Aufruf in `lookahead-analysis` eine Spalte dupliziert | bei Verdacht, der `enter_tag`-Shim verfälsche das Ergebnis |
-| `tools/probe_shim_neutral.py` | Vergleicht Backtest-Ergebnisse mit/ohne `enter_tag`-Shim auf Neutralität | nach einer Änderung am Shim-Mechanismus |
-| `tools/probe_zero.py` | Unterscheidet bei einer Zeile ohne Trades, ob die Entry-Bedingung nie wahr wird oder der Indikator fehlt | wenn eine Zeile 0 Trades zeigt und die Ursache unklar ist |
-| `tools/strategy_classification.py` | Klassifiziert Typ/Timeframe je Zeile aus `evidence/EXECUTION_PROFILES.csv` und dem Strategie-Quellcode; schreibt `evidence/STRATEGY_CLASSIFICATION.json`, das Stufe 5 und Stufe 10 lesen. `strategy_type` ist immer explizit: erkannte Familie, `unclassified` oder für Test-/Template-Artefakte `not_applicable`. Reihenfolge: Klassifikation vor Phasenhypothese, Status und HTML-Seite. | nach neuem Harvest, wenn sich `evidence/EXECUTION_PROFILES.csv` ändert oder Klassifikationsregeln geändert wurden |
-| `tools/strategy_status_page.py` | Baut die veröffentlichte Seite aus `STRATEGY_STATUS.csv`, damit Seite und Tabelle nie auseinanderlaufen | nach jedem `evidence/strategy_status.py`-Lauf, vor Veröffentlichung |
-| `tools/warmup_reparse.py` | Liest gespeicherte Leiter-Logs mit dem aktuellen Parser erneut, ohne freqtrade neu laufen zu lassen | nach einer Korrektur am Drift-Tabellen-Parser |
+| `tools/secret_gate.py` | Prevents a commit from containing a secret (four layers, see separate docstring) | before each commit that introduces new files |
+| `tools/translation_repair.py` | Translates Russian comments/strings in Python files, AST-checked, never silently translates failed parts | when `tools/harvest.py` (Stage 0) brings in a repo with non-English comments |
+| `tools/blocked_triage.py` | Finds fixable causes for rows that the test run never reached (freqtrade didn't even start them); writes `REPAIR_LIST.md` and `evidence/BLOCKED_TRIAGE.json`, which Stage 5 reads | after new Harvest or when the number of blocked rows changes (`--probe --list`) |
+| `tools/eligibility_expansion.py` | Freezes the historical, result-blind eligibility expansion inventory (only technical stage-6 artifacts, no performance) | if `REGIME_PREREGISTRATION.md`/`ELIGIBILITY_EXPANSION_PLAN.md` are changed |
+| `tools/probe_double_advise.py` | Checks whether the double `ft_advise_signals` call in `lookahead-analysis` duplicates a column | if there is a suspicion that the `enter_tag` shim distorts the result |
+| `tools/probe_shim_neutral.py` | Compares backtest results with/without `enter_tag` shim on neutrality | after a change to the shim mechanism |
+| `tools/probe_zero.py` | Differentiates in a row without trades whether the entry condition never becomes true or the indicator is missing | when a row shows 0 trades and the cause is unclear |
+| `tools/strategy_classification.py` | Classifies type/timeframe per row from `evidence/EXECUTION_PROFILES.csv` and the strategy source code; writes `evidence/STRATEGY_CLASSIFICATION.json`, which is read by Stage 5 and Stage 10. `strategy_type` is always explicit: recognized family, `unclassified` or for test/template artifacts `not_applicable`. Order: classification before phase hypothesis, status, and HTML page. | after new harvest, if `evidence/EXECUTION_PROFILES.csv` changes or classification rules have been changed |
+| `tools/strategy_status_page.py` | Builds the published page from `STRATEGY_STATUS.csv`, so that page and table never get out of sync | after each `evidence/strategy_status.py` run, before publication |
+| `tools/warmup_reparse.py` | Reads stored leader logs again with the current parser without having to run freqtrade again | after a fix to the drift tables parser |
 
-`repair/FREQAI_RESULTS.md`, `repair/REGISTER.md`, `repair/TRANSLATION_AUDIT.md`
-sind ebenfalls eigene, aktuelle Dateien, aber Provenienz-Protokolle, keine
-Werkzeuge — nur relevant, wenn eine konkrete reparierte Implementierung zur
-Debatte steht (siehe `DOCUMENT_MAP.md`).
+`repair/FREQAI_RESULTS.md`, `repair/REGISTER.md`, `repair/TRANSLATION_AUDIT.md` are also separate, current files, but provenance logs, not tools — only relevant if a specific repaired implementation is under discussion (see `DOCUMENT_MAP.md`).

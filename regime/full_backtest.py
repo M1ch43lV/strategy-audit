@@ -66,7 +66,7 @@ def performance_limits() -> dict:
     """Strategies confirmed to reproducibly exceed the fixed 3600s budget.
 
     The 3600s timeout is a hard limit, not tuned per strategy (PIPELINE.md
-    Stufe 7), so a strategy that keeps landing exactly on it would otherwise
+    Stage 7), so a strategy that keeps landing exactly on it would otherwise
     retry forever - burning another full hour every container pass with no
     prospect of ever reaching `measured`. `evidence/POOLED_BACKTEST_PERFORMANCE_LIMIT.json`
     is the hand-curated confirmation (at least two independent timeouts, no

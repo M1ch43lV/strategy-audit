@@ -30,9 +30,9 @@ TABLE = os.path.join(ROOT, "STRATEGY_STATUS.csv")
 TEMPLATE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                         "STRATEGY_STATUS.template.html")
 # regime/full_backtest.py's pooled, all-eight-pairs-together run - PIPELINE.md
-# Stufe 7. Deliberately not read by evidence/strategy_status.py: its own
+# Stage 7. Deliberately not read by evidence/strategy_status.py: its own
 # docstring says a pooled result must never feed admission back (the pooled
-# run answers a different question, for Stufe 9, from the paired per-pair
+# run answers a different question, for Stage 9, from the paired per-pair
 # `evidence/PROFILE_FULL_WINDOW.json` Stage-6 gate that does feed it). That
 # boundary is about STRATEGY_STATUS.csv and the cohort it decides - reading
 # the pooled manifest here, for the page's own Trades column only, doesn't
