@@ -1791,3 +1791,54 @@ answer the question, and for most of these thirty-seven that has already
 run (that is how they reached `STRATEGY_STATUS.csv` with a recorded
 zero-trade exclusion in the first place).
 
+**Addendum, same day: Categories A, B, and F acted on.**
+
+Category A's fix (`populate_indicators_chained_writeback`, generalising
+Phase 10's `nnpredict_chained_iloc_writeback` beyond one named column) is
+its own commit and covered above. Two real bugs surfaced and were fixed
+before it landed: a first version wrapped `dataframe[col]` in a plain
+delegating class, which TA-Lib rejected outright
+(`ta.SMA(dataframe['close'], ...)` type-checks its argument) - rewritten as
+a genuine `pd.Series` subclass instead. Patching `pd.DataFrame.__getitem__`
+globally for the scope of one `populate_indicators` call also reaches
+freqtrade's OWN internal data loading:
+`Obelisk_3EMA_StochRSI_ATR`'s own `self.dp.get_pair_dataframe(...)` call
+for an informative pair triggered a resample-on-`date` deep in
+freqtrade/pandas internals, and wrapping ITS `date` column broke it
+(`KeyError: 'date'`, confirmed absent with the shim disabled). Fixed by
+excluding the six raw OHLCV column names outright - none of this cluster's
+own bugs ever target them. Verified end to end: 6 of 8 rows now measure
+real trades (`FSupertrendStrategyBTC`/`ETH` 89, `SuperTrendPure` 124,
+`Supertrend` 997, `HarmonicDivergence` 850, `Obelisk_3EMA_StochRSI_ATR` 8);
+`RaposaDivergenceV1`/`Insomnia_short` complete cleanly at zero trades in
+the smoke window - mechanically fixed, apparently just low-frequency here.
+
+**Category B.** `hurst==0.0.5` and `hyperliquid-python-sdk==0.24.0` added
+to `runtime/requirements-audit-runtime.txt`, verified in isolation against
+the numpy/pandas/scipy pins (no version conflicts; the eth-* family and
+websocket-client are hyperliquid-python-sdk's only new transitive
+dependencies). `AlexBattleTankKillerV40H` now measures 159 trades. `COPY_HL`
+now completes without the import crash but still measures zero - its own
+strategy logic mirrors a LIVE Hyperliquid perp account, which is empty by
+construction in a backtest; not a further-fixable row. `AIAgentTradingStrategy`
+left alone: `ai_agent` is not a published PyPI package and is not present
+anywhere in its own source repository either - genuinely unpublished
+author code, nothing to install or restore.
+
+**Category F, the 36 (of 37) rows that had never actually reached the
+smoke cascade's three-month rung** (`BitcoinMLStrategy`, already Category
+B, was the one row that had). Run through the unmodified cascade (now
+capped at three months, Phase 10's amendment): six changed from zero to a
+real trade count - `Macd` 20, `SimpleHopt1Ashort`/`SimpleHoptS` 13 shorts
+each, `GodStraNew` 3, `SimpleRSI` 1, `GoldHedgeZeroMACD` exactly 10,
+reaching the smoke floor outright. `zorkv7_0_0` surfaced a genuinely new,
+different failure only visible with three months of data behind it:
+`ValueError: The number of quantiles cannot be greater than the number of
+samples used. Got 26796 quantiles and 10000 samples` - an author
+parameter/data-size mismatch, not investigated further this phase. The
+remaining 28 measured zero again at three months - the strongest evidence
+yet available that most of Category F's original thirty-seven are
+genuinely low-frequency or non-trading in this market window, not merely
+under-tested, though a full 6.5-year window (already run for some rows
+elsewhere in this register) remains the more conclusive check.
+
