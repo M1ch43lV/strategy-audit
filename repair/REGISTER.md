@@ -1680,3 +1680,114 @@ the other nine rows in this cluster, and the suspiciously high win rate on
 one short window is exactly the kind of number a later, fuller measurement
 - not this fix's own job - should be the one to judge, not this note.
 
+---
+
+# Phase 11 - triaging every excluded zero-trade row outside the NNPredict
+cluster, 2026-09-15
+
+Widened the question the NNPredict investigation started with: every row in
+`STRATEGY_STATUS.csv` excluded on a directly trade-count-related basis
+(`too_few_trades_to_measure`, `no_trades_in_full_measurement` - 30 rows), plus
+every OTHER row anywhere in `evidence/PROFILE_SMOKE.json` that currently
+measures zero trades regardless of its own recorded exclusion reason (26
+more, after removing rows whose zero-trade record is simply superseded by a
+later, real measurement elsewhere - see the store-refresh note below), 56
+rows total. `MostOfAll` (already Phase 9's `shared_runtime_change_declined`)
+and one non-strategy row (`StrategyTestV3CustomEntryPrice`, its own recorded
+reason: "a fixture from somebody's test suite") were left out as already
+answered or not actually a strategy.
+
+**Method, and its own stated limit.** Each row's strategy was imported and
+backtested directly (bypassing `evidence/profile_smoke.py`'s own claim lock,
+read-only, no evidence store touched), over `20200301-20200315` - **fourteen
+days**, deliberately shorter than even the smoke cascade's own one-month
+first rung, because the goal was a fast exception/warning triage across 56
+rows, not a trade count. A row landing in the "clean" bucket below means no
+error surfaced in this fourteen-day probe - it is not a claim that the row
+would still measure zero trades over the smoke cascade's real one-month or
+three-month window, the way `DonchianBounce`/`TEMABounce`/`MeanReversionTrend`
+turned out to measure zero in a short window and real trades (32/10/56) over
+the full 6.5-year one earlier in Phase 10 - genuinely low frequency, not a
+bug in either direction.
+
+**First, a store-refresh.** Seven rows carried a zero-trade
+`evidence/PROFILE_SMOKE.json` record that `STRATEGY_STATUS.csv` already
+showed real trades for from elsewhere (`DonchianBounce` 32,
+`MeanReversionTrend` 56, `MultiActionZone` 290, `TEMABounce` 10, `TSPredict`
+17958, `TrendBreakout` 320, `tsp0chicken` 3675) - the stored smoke record was
+simply older than the policy amendment above and never got the chance to be
+recognised as current. Re-run through `evidence/profile_smoke.py --force`
+itself (not hand-edited): four came back with real trades in the shorter
+window too (`TrendBreakout` 13, `TSPredict` 959, `tsp0chicken` 150,
+`MultiActionZone` 9); three - `DonchianBounce`, `TEMABounce`,
+`MeanReversionTrend` - measured zero again even freshly re-run, which is the
+low-frequency-window case above, not a contradiction of the real trades
+they hold in the full window.
+
+**Category A - the exact `NNPredict_*` bug, in eight unrelated strategies.**
+`FSupertrendStrategyBTC`, `FSupertrendStrategyETH`, `HarmonicDivergence`,
+`Insomnia_short`, `Obelisk_3EMA_StochRSI_ATR`, `RaposaDivergenceV1`,
+`SuperTrendPure`, `Supertrend` all raise the identical pandas 3.0
+`ChainedAssignmentError` Phase 10 found and fixed for the webclinic017
+cluster - confirmed by grep against each row's own captured output, not
+assumed from the shared symptom. `repair/compat_signature.py`'s
+`nnpredict_chained_iloc_writeback` shim is scoped to `NNPredict.py`'s own
+`add_predictions` method by name, so it does not apply to these eight
+as-is; each would need the same shape of fix (a `StrategyResolver`-instance
+wrap around whichever of ITS OWN methods performs the chained
+`dataframe[col].iloc[...] = value` write) written and verified per strategy
+file, not installed for free. Not attempted this phase - flagged as the
+single highest-value next step, since it is a known, already-proven bug
+class rather than a new investigation.
+
+**Category B - a genuinely missing third-party Python package, three rows.**
+`AIAgentTradingStrategy` (`No module named 'ai_agent'`), `AlexBattleTankKillerV40H`
+(`No module named 'hurst'`, and separately missing informative-pair data for
+`BNB`/`SOL`/`AVAX`, none of which are in the eight-pair whitelist),
+`COPY_HL` (`No module named 'hyperliquid'`, a live perp-exchange API client -
+meaningless in a backtest regardless). Same class as `tools/blocked_triage.py`'s
+`third_party_package` family: installing the author's own declared
+dependency is legitimate, but it changes the pinned shared runtime for
+everyone, so it is one decision for all such rows, not a per-row repair -
+not decided here.
+
+**Category C - pair or informative-pair data outside the corpus's standard
+whitelist, five rows.** `AlexNexusForgeV8AIV4_SPOT`, `BTCEMABounce`,
+`BTCMACDCross`, `NostalgiaForInfinityX2` (each logging `No data found for
+(<pair>, ...)` for an informative pair this audit's eight-pair BTC/ETH/LTC/
+XRP/ADA/XLM/XMR/DASH set does not include), and `DualModelPolymarketPortfolio`
+(`Pair BTC/USDT not found in contract registry - skipping ML alpha`, its own
+multi-asset contract-mapping config not matching this runtime's pairs).
+Whether widening the pair set is legitimate restoration or scope creep
+depends on what each strategy's own author config actually declared - not
+established here.
+
+**Category D - a real indicator bug, unrelated to pandas CoW, one row.**
+`GKD_C`: `Error computing MA DSMA: The truth value of a Series is
+ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all` - an `if
+series:` where the author meant a reduction, the same shape of bug as the
+`legacy_fillna_*`/CoW shims address for a different framework change, but
+this one is a plain pre-existing bug in the author's own indicator code,
+not a framework version question. Not investigated further to a specific
+line.
+
+**Category E - a hard exception, two rows.** `HurstCycleV4`: `ValueError:
+Insufficient data points for FFT: 85` - plausibly just this investigation's
+own fourteen-day window being shorter than the Hurst-exponent FFT needs,
+not a real blocker; the smoke cascade's own three-month rung should be
+checked before assuming otherwise. `kijun_cross_strong_s`: `TypeError:
+'NoneType' object is not subscriptable` - a genuine crash, not yet traced
+to a specific line.
+
+**Category F - thirty-seven rows, no exception or informative warning found
+in the fourteen-day probe.** The loudest thing in most of these is
+freqtrade's own routine `DEPRECATED: 'sell_profit_only' moved to
+'exit_profit_only'` notice or the harmless `qtpylib.indicators` import
+warning already noted elsewhere in this register - neither explains a
+trade count. Per the method note above, this is not a confirmed "genuinely
+does not trade" verdict, only "nothing broke in two weeks" - the smoke
+cascade's own one-month/three-month rungs are the rows that would actually
+answer the question, and for most of these thirty-seven that has already
+run (that is how they reached `STRATEGY_STATUS.csv` with a recorded
+zero-trade exclusion in the first place).
+
