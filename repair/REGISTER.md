@@ -1898,3 +1898,87 @@ raised its own new error, `could not broadcast input array from shape
 investigated further this phase. None of the four are final; all four
 would need a rerun or a fix before Stage 2 can decide them.
 
+# Phase 13 - min_roi_reached_entry signature drift and an execution_profiles.py selection bug, 2026-09-16
+
+Six of the 269-batch's Stage-1 `failed` rows shared one error shape:
+`Schism_BTC`/`Schism_ETH` and `SuperHV27_BTC`/`ETH` ("... takes 2
+positional arguments but 4 were given"), `Schism2_BTC`/`ETH` ("... takes
+from 2 to 3 positional arguments but 4 were given"). All three files
+override `IStrategy.min_roi_reached_entry` with its pre-2024 shape
+(`self, trade_dur`, or `self, trade_dur, pair='backtest'` in Schism2's
+own case). The public hook, `min_roi_reached()`, is not the only caller:
+`freqtrade/optimize/backtesting.py` calls `strategy.min_roi_reached_entry(
+trade, trade_dur, current_time)` directly, bypassing `min_roi_reached()`
+entirely for backtest performance - confirmed by reading both call sites
+in the installed package, not assumed. Overriding the public hook (as
+Schism2 also does, consistently, with its own matching two-argument
+internal call) does not shield the private one from a call its author
+never knew existed.
+
+Two new `repair/patch_class2.py` rules, proven the same way every rule in
+that file is required to be. `legacy_min_roi_reached_entry_simple` widens
+the bare `(self, trade_dur)` shape to `(self, trade, trade_dur,
+current_time=None)`; safe because the body cannot already reference
+`trade` or `current_time` (neither existed in that scope before) - checked
+by AST, not assumed, and confirmed true for both `Schism-0318.py` and
+`SuperHV27.py`. `legacy_min_roi_reached_entry_pair` handles Schism2's own
+`(self, trade_dur, pair='backtest')` shape: the removed `pair` parameter
+becomes a local `pair = trade.pair` at the top of the body, and the file's
+own one internal call site (`self.min_roi_reached_entry(trade_dur,
+trade.pair)`, inside `min_roi_reached()`, which already has both `trade`
+and `current_time` in scope) is rewritten to `self.min_roi_reached_entry(
+trade, trade_dur, current_time)` - reconstructing the identical `pair`
+value the body always received, since `trade` is not mutated between the
+two calls. Applied via a one-off six-row ledger (these strategies have no
+row in `old/predecessor_audit/LEDGER.csv` to attach to the default one).
+All six now measure real trades: `Schism_BTC` 458, `Schism_ETH` 407,
+`Schism2_BTC` 225, `Schism2_ETH` 334, `SuperHV27_BTC`/`ETH` 137 each.
+
+**The patch initially had no effect at all** - `evidence/EXECUTION_PROFILES.csv`
+kept selecting each row's untouched original file even after a full
+regenerate, despite the written overlay, the correct report entry, and a
+passing precondition, all individually confirmed. Traced to
+`execution_profiles.py`'s own `historical_full` check:
+`ledger_row.get("is_trades") != ""` on a strategy with no row at all in
+the old predecessor ledger evaluates `None != ""`, which is `True` -
+silently marking every strategy the old audit never saw as though it had
+a complete historical measurement, which forces `original_ok = True`
+unconditionally and starves the "otherwise select the strongest
+documented repair" branch of ever being reached. This is not specific to
+these six rows: it is a standing gap for every `EXTRA_SUBCLASS_STRATEGIES`
+row (the entire 269-batch's subclass discoveries, by construction absent
+from the old ledger) that a class2 patch might ever be written for.
+Fixed with a default on the lookup itself (`ledger_row.get("is_trades",
+"")`), so a missing row behaves like an empty one instead of like a
+populated one. Verified corpus-wide, not just locally: comparing
+`EXECUTION_PROFILES.csv` before and after the fix, exactly these six rows
+changed `canonical_population` - the fix's practical effect today is
+scoped to precisely the rows it was meant to unblock, because no other
+269-batch row had a class2 patch waiting on it yet. That will not stay
+true as more of the 269-batch's Stage-1 failures get patched, which is
+the point of recording the fix here rather than treating it as a one-off.
+`review_required` also dropped 184 -> 95 in the same regenerate, all of
+it the same bug: strategies incorrectly marked `original_ok=True` with
+`mode_support=="futures"` were spuriously flagged "historical spot run
+succeeded despite futures intent" for a run that never happened.
+
+**The seven `Timeframe needs to be set` rows turned out not to be the
+same kind of mechanical fix.** None of `MASlopeStrategy`,
+`MAStopLossStrategy`, `MATrailingStopLossStrategy`, `StopLossStrategy`,
+`TPActivatingTSLwithInitialTSLStrategy`, `TPActivatingTSLwithSLStrategy`,
+or `TrailingStopLossStrategy` (all `keithorange/FreqTradeCustomOrders`)
+declare `ticker_interval` or `timeframe` anywhere in their own file, so
+`eligibility_timeframe_repair.py`'s established rename-recovery route
+does not apply. The repo does carry sibling config files with a
+`timeframe` key - but only `kraken_live_config.json`/
+`kraken_test_config.json` ("1m"); `binance_all_pairs_config.json` and
+`binance_test_config.json`, the ones this audit's own runtime actually
+uses, declare no timeframe at all. `repair/overrides.py`'s existing
+`sibling_config_timeframe()` only reads a same-directory `Config*.py`
+Python module by design, not a JSON file, so it does not reach either
+config here regardless. Carrying the Kraken value over for a Binance run
+would be inferring author intent across exchanges, not reading a literal
+the way every other timeframe recovery in this project has - left
+blocked rather than guessed, pending a decision on whether that
+inference is acceptable here.
+

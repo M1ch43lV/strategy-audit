@@ -1,5 +1,131 @@
 [
  {
+  "strategy": "Schism_BTC",
+  "rule": [
+   "legacy_signal_int_literal",
+   "legacy_min_roi_reached_entry_simple"
+  ],
+  "repair_rules": [
+   "legacy_signal_int_literal",
+   "legacy_min_roi_reached_entry_simple"
+  ],
+  "action": "patched",
+  "reason": [
+   "2 assignment(s) of a literal 0/1 into a column this file itself declares bool (signal column, or assigned True/False elsewhere in the same file) - the same value under a different spelling",
+   "bare (self, trade_dur) min_roi_reached_entry widened to accept freqtrade's direct backtesting.py call shape (trade, trade_dur, current_time); body reads neither new parameter"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/Schism-0318.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent"
+ },
+ {
+  "strategy": "Schism_ETH",
+  "rule": [
+   "legacy_signal_int_literal",
+   "legacy_min_roi_reached_entry_simple"
+  ],
+  "repair_rules": [
+   "legacy_signal_int_literal",
+   "legacy_min_roi_reached_entry_simple"
+  ],
+  "action": "patched",
+  "reason": [
+   "2 assignment(s) of a literal 0/1 into a column this file itself declares bool (signal column, or assigned True/False elsewhere in the same file) - the same value under a different spelling",
+   "bare (self, trade_dur) min_roi_reached_entry widened to accept freqtrade's direct backtesting.py call shape (trade, trade_dur, current_time); body reads neither new parameter"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/Schism-0318.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent"
+ },
+ {
+  "strategy": "Schism2_BTC",
+  "rule": [
+   "legacy_signal_int_literal",
+   "legacy_min_roi_reached_entry_pair"
+  ],
+  "repair_rules": [
+   "legacy_signal_int_literal",
+   "legacy_min_roi_reached_entry_pair"
+  ],
+  "action": "patched",
+  "reason": [
+   "2 assignment(s) of a literal 0/1 into a column this file itself declares bool (signal column, or assigned True/False elsewhere in the same file) - the same value under a different spelling",
+   "(self, trade_dur, pair='backtest') min_roi_reached_entry widened to (self, trade, trade_dur, current_time); pair now derived from trade.pair, the exact value the removed parameter always received from this file's own internal call site, which is rewritten to match"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/Schism-v2.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent"
+ },
+ {
+  "strategy": "Schism2_ETH",
+  "rule": [
+   "legacy_signal_int_literal",
+   "legacy_min_roi_reached_entry_pair"
+  ],
+  "repair_rules": [
+   "legacy_signal_int_literal",
+   "legacy_min_roi_reached_entry_pair"
+  ],
+  "action": "patched",
+  "reason": [
+   "2 assignment(s) of a literal 0/1 into a column this file itself declares bool (signal column, or assigned True/False elsewhere in the same file) - the same value under a different spelling",
+   "(self, trade_dur, pair='backtest') min_roi_reached_entry widened to (self, trade, trade_dur, current_time); pair now derived from trade.pair, the exact value the removed parameter always received from this file's own internal call site, which is rewritten to match"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/Schism-v2.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent"
+ },
+ {
+  "strategy": "SuperHV27_BTC",
+  "rule": [
+   "legacy_signal_int_literal",
+   "legacy_min_roi_reached_entry_simple"
+  ],
+  "repair_rules": [
+   "legacy_signal_int_literal",
+   "legacy_min_roi_reached_entry_simple"
+  ],
+  "action": "patched",
+  "reason": [
+   "2 assignment(s) of a literal 0/1 into a column this file itself declares bool (signal column, or assigned True/False elsewhere in the same file) - the same value under a different spelling",
+   "bare (self, trade_dur) min_roi_reached_entry widened to accept freqtrade's direct backtesting.py call shape (trade, trade_dur, current_time); body reads neither new parameter"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/SuperHV27.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent"
+ },
+ {
+  "strategy": "SuperHV27_ETH",
+  "rule": [
+   "legacy_signal_int_literal",
+   "legacy_min_roi_reached_entry_simple"
+  ],
+  "repair_rules": [
+   "legacy_signal_int_literal",
+   "legacy_min_roi_reached_entry_simple"
+  ],
+  "action": "patched",
+  "reason": [
+   "2 assignment(s) of a literal 0/1 into a column this file itself declares bool (signal column, or assigned True/False elsewhere in the same file) - the same value under a different spelling",
+   "bare (self, trade_dur) min_roi_reached_entry widened to accept freqtrade's direct backtesting.py call shape (trade, trade_dur, current_time); body reads neither new parameter"
+  ],
+  "file": "repos/PeetCrypto_freqtrade-stuff/SuperHV27.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent"
+ },
+ {
   "strategy": "A9AV",
   "rule": [
    "rolling_any_masked",

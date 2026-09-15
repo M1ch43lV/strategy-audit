@@ -1,0 +1,28 @@
+--- original/repos/PeetCrypto_freqtrade-stuff/SuperHV27.py
++++ patched/repos/PeetCrypto_freqtrade-stuff/SuperHV27.py
+@@ -165,7 +165,7 @@
+         if conditions:
+             dataframe.loc[
+                 reduce(lambda x, y: x & y, conditions),
+-                'buy'] = 1
++                'buy'] = True
+ 
+         return dataframe
+ 
+@@ -232,14 +232,14 @@
+         if conditions:
+             dataframe.loc[
+                 reduce(lambda x, y: x & y, conditions),
+-                'sell'] = 1
++                'sell'] = True
+ 
+         return dataframe
+ 
+     """
+     Override for default Freqtrade ROI table functionality
+     """
+-    def min_roi_reached_entry(self, trade_dur: int) -> Tuple[Optional[int], Optional[float]]:
++    def min_roi_reached_entry(self, trade, trade_dur: int, current_time=None) -> Tuple[Optional[int], Optional[float]]:
+         dynamic_roi = self.dynamic_roi
+ 
+         # if the dynamic_roi dict is defined and enabled, do it, otherwise fallback to default functionality

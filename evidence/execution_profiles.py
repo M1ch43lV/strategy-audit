@@ -518,8 +518,19 @@ def build(repair_root=DEFAULT_REPAIR):
             else "strategy"
         )
         ledger_row = ledger.get(strategy) or {}
-        historical_full = bool(ledger_row.get("is_trades") != "" and
-                               ledger_row.get("os_trades") != "")
+        # .get(key) on a strategy absent from the predecessor ledger returns
+        # None, and None != "" is True - silently marking every strategy the
+        # old audit never saw (the whole point of EXTRA_SUBCLASS_STRATEGIES)
+        # as though it had real historical trade counts. That forced
+        # original_ok True unconditionally, which starves the "otherwise
+        # select the strongest documented repair" branch below of every row
+        # a class2 patch was ever written for outside the old ledger - found
+        # via Schism_BTC/Schism2_BTC/SuperHV27_BTC/ETH's min_roi_reached_entry
+        # fix never getting selected despite a written, verified overlay.
+        # Defaulting the lookup itself to "" makes a missing row behave like
+        # an empty one, which is what "no historical measurement" means.
+        historical_full = bool(ledger_row.get("is_trades", "") != "" and
+                               ledger_row.get("os_trades", "") != "")
         original_ok = _measured(original_cards.get(strategy)) or historical_full
         class1_ok = _measured(class1_cards.get(strategy))
         freqai_ok = _measured(freqai_cards.get(strategy))
