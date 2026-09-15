@@ -209,6 +209,36 @@
       "trades": 12,
       "trades_sha256": "sha256_fd7237d6e2ae3a4e9be12b39d35d2b52778a5c328032ff0b518aecf10a86f59a"
     },
+    "ARIMA_5": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "elapsed_s": 300.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ARIMA_5 --strategy-path repos/TheoBrigitte_freqtrade/strategies/arima --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ARIMA_5-9b2664f8-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "timeout",
+          "timerange": "20200301-20200401",
+          "why": "timeout after 300 seconds"
+        }
+      ],
+      "canonical_sha256": "sha256_11e3b33787eca095a1ff206c2593f1e91e382b84207b30ea19beae1dc72015fd",
+      "class1_rules": [],
+      "elapsed_s": 300.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ARIMA_5 --strategy-path repos/TheoBrigitte_freqtrade/strategies/arima --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ARIMA_5-9b2664f8-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "timeout",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "timeout after 300 seconds"
+    },
     "AdaptiveRegime": {
       "archive": "user_data/profile_smoke/AdaptiveRegime-90b67ba4-2026-09-08_18-40-02.zip",
       "archive_sha256": "sha256_c9b1a4826b65d30c0ec000992a2227169ca71f8b243a8597cd72ccbf93ea7c62",
@@ -1669,6 +1699,38 @@
       "trades": 89,
       "trades_sha256": "sha256_16b4800717578cece4fa5a91ce372942cc1dab94c2adbdf367eb0add948ceefa"
     },
+    "BB_RPB_TSL_Tranz_TrailingBuy": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/BB_RPB_TSL_Tranz_TrailingBuy-3bce7d34-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 6.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy BB_RPB_TSL_Tranz_TrailingBuy --strategy-path repos/davidzr_freqtrade-strategies/strategies/BB_RPB_TSL_SMA_Tranz_TB_1_1_1 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BB_RPB_TSL_Tranz_TrailingBuy-3bce7d34-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given"
+        }
+      ],
+      "canonical_sha256": "sha256_3fd18fcbd7d67bd69f088570b29f0d555fffeb2132fb763cdc04e4b1da9c0482",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/BB_RPB_TSL_Tranz_TrailingBuy-3bce7d34-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 6.8,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy BB_RPB_TSL_Tranz_TrailingBuy --strategy-path repos/davidzr_freqtrade-strategies/strategies/BB_RPB_TSL_SMA_Tranz_TB_1_1_1 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BB_RPB_TSL_Tranz_TrailingBuy-3bce7d34-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given"
+    },
     "BB_RPB_TSLmeneguzzo": {
       "archive": "user_data/profile_smoke/BB_RPB_TSLmeneguzzo-2136c864-2026-09-06_15-07-50.zip",
       "archive_sha256": "sha256_22c61bee4748ee458fc14c86d2c3c411055cdaace43848fc1fbe265464e32bd6",
@@ -2926,6 +2988,92 @@
       "trades": 2,
       "trades_sha256": "sha256_bc9b99dd3fdc013b09944e935973978f56d82906f5fe2c8dae5b531c0e2d1ee8"
     },
+    "BuyHoldBasket": {
+      "archive": "user_data/profile_smoke/BuyHoldBasket-6482a372-smoke_20200301_20210301-fca63e6f-2026-09-15_00-05-41.zip",
+      "archive_sha256": "sha256_51de7aa8ba70e7c71a3644e8f4662e8614ab8b82319b342c7a6f7e2612085c2a",
+      "artifact_key": "smoke_20200301_20210301",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601",
+        "20200301-20210301"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/BuyHoldBasket-6482a372-smoke_20200301_20200401-b4807b77-2026-09-15_00-05-25.zip",
+          "archive_sha256": "sha256_c1a39722497a1056fa0165021c6928ddcc4d554a137809ea6b1c9376bd94c1ec",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 5.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy BuyHoldBasket --strategy-path repos/nateemma_strategies/Basket --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BuyHoldBasket-6482a372-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 8,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 8,
+          "trades_sha256": "sha256_d23982d96253076ea4df3d7988b9dfcec08574032e5bb0e7bd0f07ad2eaa2183"
+        },
+        {
+          "archive": "user_data/profile_smoke/BuyHoldBasket-6482a372-smoke_20200301_20200601-9c543975-2026-09-15_00-05-31.zip",
+          "archive_sha256": "sha256_9e5a6fdd7dd44196bb12ae2fee0a89d8c8345c2b5182c5b61ee495da79f5bc80",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 6.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy BuyHoldBasket --strategy-path repos/nateemma_strategies/Basket --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BuyHoldBasket-6482a372-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 8,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 8,
+          "trades_sha256": "sha256_9fa9f0c97b963d1cd6794768ba10bc0772dd592546f7ef1ce0a59709d872637b"
+        },
+        {
+          "archive": "user_data/profile_smoke/BuyHoldBasket-6482a372-smoke_20200301_20210301-fca63e6f-2026-09-15_00-05-41.zip",
+          "archive_sha256": "sha256_51de7aa8ba70e7c71a3644e8f4662e8614ab8b82319b342c7a6f7e2612085c2a",
+          "artifact_key": "smoke_20200301_20210301",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 10.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy BuyHoldBasket --strategy-path repos/nateemma_strategies/Basket --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BuyHoldBasket-6482a372-smoke_20200301_20210301-fca63e6f --cache none",
+          "long_trades": 8,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20210301",
+          "trades": 8,
+          "trades_sha256": "sha256_bce1dfcafa142d3b04f40df437d3f2cdad86686ce599e62fad5e65f0e93e142c"
+        }
+      ],
+      "canonical_sha256": "sha256_142793d4d3ada220a6722f1936a5477f8b685714b74ac0284fd2c423b12dffc7",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 10.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy BuyHoldBasket --strategy-path repos/nateemma_strategies/Basket --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BuyHoldBasket-6482a372-smoke_20200301_20210301-fca63e6f --cache none",
+      "long_trades": 8,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20210301",
+      "trade_floor": 10,
+      "trades": 8,
+      "trades_sha256": "sha256_bce1dfcafa142d3b04f40df437d3f2cdad86686ce599e62fad5e65f0e93e142c"
+    },
     "CBPete9": {
       "archive": "user_data/profile_smoke/CBPete9-6ffadd4c-2026-09-06_15-08-25.zip",
       "archive_sha256": "sha256_8a1956db88aa01052b4a205d0b91eb855a29b4c31621b053fcd5001578a5947a",
@@ -3138,6 +3286,52 @@
       "trades": 162,
       "trades_sha256": "sha256_6035705f7d1224a9176dd215019675e6fa61bc2c19577ece1d3c9117377b1fb7"
     },
+    "Cluc5mDCA": {
+      "archive": "user_data/profile_smoke/Cluc5mDCA-b924cc69-smoke_20200301_20200401-b4807b77-2026-09-15_00-03-06.zip",
+      "archive_sha256": "sha256_54612135467e615a4219952bfffd137df646dfd54e9b5238c53008048c690df5",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/Cluc5mDCA-b924cc69-smoke_20200301_20200401-b4807b77-2026-09-15_00-03-06.zip",
+          "archive_sha256": "sha256_54612135467e615a4219952bfffd137df646dfd54e9b5238c53008048c690df5",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 17.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Cluc5mDCA --strategy-path repos/eovie_freqtrade_strs/ClucHAnix --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Cluc5mDCA-b924cc69-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 60,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 60,
+          "trades_sha256": "sha256_5bd08fce62bbc568b2f48dd5918af5e763b00ae28caa7e4f3d424ac3878f1b0a"
+        }
+      ],
+      "canonical_sha256": "sha256_884c8fff60356964e46815bca4f1f76c774da1be6b745c24fda5b1274f21248b",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 17.5,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Cluc5mDCA --strategy-path repos/eovie_freqtrade_strs/ClucHAnix --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Cluc5mDCA-b924cc69-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 60,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 60,
+      "trades_sha256": "sha256_5bd08fce62bbc568b2f48dd5918af5e763b00ae28caa7e4f3d424ac3878f1b0a"
+    },
     "Cluc5werk": {
       "archive": "user_data/profile_smoke/Cluc5werk-12db1a87-2026-09-09_16-17-59.zip",
       "archive_sha256": "sha256_b6e94fffabe777a4b37ccbcf4653eeeb99bd5520099aabfb7f8b1faf79c0eb70",
@@ -3203,6 +3397,52 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "why": "Configuration error: 'stoploss' is a required property"
+    },
+    "ClucDCA": {
+      "archive": "user_data/profile_smoke/ClucDCA-7307f8c4-smoke_20200301_20200401-b4807b77-2026-09-15_00-02-48.zip",
+      "archive_sha256": "sha256_84cdb18778be73ff1f031e6decf7bb477f79ece1919011a5c7ba9d34d4193171",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/ClucDCA-7307f8c4-smoke_20200301_20200401-b4807b77-2026-09-15_00-02-48.zip",
+          "archive_sha256": "sha256_84cdb18778be73ff1f031e6decf7bb477f79ece1919011a5c7ba9d34d4193171",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 58.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ClucDCA --strategy-path repos/eovie_freqtrade_strs/ClucHAnix --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucDCA-7307f8c4-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 185,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 185,
+          "trades_sha256": "sha256_c02c210a63ae7d1572cadaf37066cbf0b6d8104aebd2b9da75643362fe4cb04a"
+        }
+      ],
+      "canonical_sha256": "sha256_dfeca134e9900529deec8afc8578d088dc6cd1437ee59510016ae1d12df03b72",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 58.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ClucDCA --strategy-path repos/eovie_freqtrade_strs/ClucHAnix --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucDCA-7307f8c4-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 185,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 185,
+      "trades_sha256": "sha256_c02c210a63ae7d1572cadaf37066cbf0b6d8104aebd2b9da75643362fe4cb04a"
     },
     "ClucHAnix": {
       "archive": "user_data/profile_smoke/ClucHAnix-895ff1e0-2026-09-09_16-19-54.zip",
@@ -3462,6 +3702,84 @@
       "trades": 231,
       "trades_sha256": "sha256_c6dad2aa283bf53fcc0e7824441a9f97c53386d0cadf1cb13ad8a1be3092f269"
     },
+    "ClucHAnix_BB_RPB_MOD_CTT_DTB": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/ClucHAnix_BB_RPB_MOD_CTT_DTB-96fb75ce-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ClucHAnix_BB_RPB_MOD_CTT_DTB --strategy-path repos/ShahAnuj2610_my-freqtrade/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix_BB_RPB_MOD_CTT_DTB-96fb75ce-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "`populate_exit_trend` or `populate_sell_trend` must be implemented."
+        }
+      ],
+      "canonical_sha256": "sha256_bfd38c83376dde5e23b864b343d23d9e41623235649819178fd54b72d1473aec",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/ClucHAnix_BB_RPB_MOD_CTT_DTB-96fb75ce-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.8,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ClucHAnix_BB_RPB_MOD_CTT_DTB --strategy-path repos/ShahAnuj2610_my-freqtrade/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix_BB_RPB_MOD_CTT_DTB-96fb75ce-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "`populate_exit_trend` or `populate_sell_trend` must be implemented."
+    },
+    "ClucHAnix_BB_RPB_MOD_CTT_STB": {
+      "archive": "user_data/profile_smoke/ClucHAnix_BB_RPB_MOD_CTT_STB-7f583eb5-smoke_20200301_20200401-b4807b77-2026-09-15_00-00-44.zip",
+      "archive_sha256": "sha256_b689ae66fb5ea58983c9fcd471dff0d768dbdb9de22fc859a67e165df8bd65af",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/ClucHAnix_BB_RPB_MOD_CTT_STB-7f583eb5-smoke_20200301_20200401-b4807b77-2026-09-15_00-00-44.zip",
+          "archive_sha256": "sha256_b689ae66fb5ea58983c9fcd471dff0d768dbdb9de22fc859a67e165df8bd65af",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 19.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ClucHAnix_BB_RPB_MOD_CTT_STB --strategy-path repos/davidzr_freqtrade-strategies/strategies/ClucHAnix_BB_RPB_MOD_CTT --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix_BB_RPB_MOD_CTT_STB-7f583eb5-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 231,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 231,
+          "trades_sha256": "sha256_c6dad2aa283bf53fcc0e7824441a9f97c53386d0cadf1cb13ad8a1be3092f269"
+        }
+      ],
+      "canonical_sha256": "sha256_dcb07a609ecfa7ffc45df934ca1c68eed221243334bd2ab932fd664064effc75",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 19.8,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ClucHAnix_BB_RPB_MOD_CTT_STB --strategy-path repos/davidzr_freqtrade-strategies/strategies/ClucHAnix_BB_RPB_MOD_CTT --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix_BB_RPB_MOD_CTT_STB-7f583eb5-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 231,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 231,
+      "trades_sha256": "sha256_c6dad2aa283bf53fcc0e7824441a9f97c53386d0cadf1cb13ad8a1be3092f269"
+    },
     "ClucHAnix_BB_RPB_MOD_E0V1E_ROI": {
       "archive": "user_data/profile_smoke/ClucHAnix_BB_RPB_MOD_E0V1E_ROI-155dd8e7-2026-09-09_21-35-37.zip",
       "archive_sha256": "sha256_5222d0430c08e11038abadfc8aafaac88c6889fb775a208750b793d179bd569a",
@@ -3481,6 +3799,52 @@
       "short_trades": 0,
       "status": "measured",
       "timerange": "20200301-20200401",
+      "trades": 340,
+      "trades_sha256": "sha256_b2f30dbf6dca29cb17a349c032f3ddb7526564daad29a1b299a429d122830563"
+    },
+    "ClucHAnix_BB_RPB_MOD_E0V1E_ROI_DYNAMIC_TB": {
+      "archive": "user_data/profile_smoke/ClucHAnix_BB_RPB_MOD_E0V1E_ROI_DYNAMIC_TB-2ff73776-smoke_20200301_20200401-b4807b77-2026-09-15_00-01-05.zip",
+      "archive_sha256": "sha256_feb50679561d3bd12481a053c8cd804d73a8f21a90e6ed0951555f4bf99bc0e0",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/ClucHAnix_BB_RPB_MOD_E0V1E_ROI_DYNAMIC_TB-2ff73776-smoke_20200301_20200401-b4807b77-2026-09-15_00-01-05.zip",
+          "archive_sha256": "sha256_feb50679561d3bd12481a053c8cd804d73a8f21a90e6ed0951555f4bf99bc0e0",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 20.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ClucHAnix_BB_RPB_MOD_E0V1E_ROI_DYNAMIC_TB --strategy-path repos/davidzr_freqtrade-strategies/strategies/ClucHAnix_BB_RPB_MOD_E0V1E_ROI --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix_BB_RPB_MOD_E0V1E_ROI_DYNAMIC_TB-2ff73776-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 340,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 340,
+          "trades_sha256": "sha256_b2f30dbf6dca29cb17a349c032f3ddb7526564daad29a1b299a429d122830563"
+        }
+      ],
+      "canonical_sha256": "sha256_e0cd48da619a01b903dfed6f3dc779e8e0dfa922e8fbe86fe3eb207451ef2e69",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 20.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ClucHAnix_BB_RPB_MOD_E0V1E_ROI_DYNAMIC_TB --strategy-path repos/davidzr_freqtrade-strategies/strategies/ClucHAnix_BB_RPB_MOD_E0V1E_ROI --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix_BB_RPB_MOD_E0V1E_ROI_DYNAMIC_TB-2ff73776-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 340,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
       "trades": 340,
       "trades_sha256": "sha256_b2f30dbf6dca29cb17a349c032f3ddb7526564daad29a1b299a429d122830563"
     },
@@ -3657,6 +4021,38 @@
       "trades": 180,
       "trades_sha256": "sha256_0b7559276ce5ddcf95b2051b4d1a8852a9e4d3562ce5860e3d0acb7727b08ce3"
     },
+    "CombinedBinHAndClucV4WS": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/CombinedBinHAndClucV4WS-7612eb65-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy CombinedBinHAndClucV4WS --strategy-path repos/TomtomEh_freqtrade-websocket/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CombinedBinHAndClucV4WS-7612eb65-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'CombinedBinHAndClucV4WS'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_cbe2a6d02165b05ee7b163cf14ad9db7ed8d279cde91dd3ce6413ab38f2789c1",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/CombinedBinHAndClucV4WS-7612eb65-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.5,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy CombinedBinHAndClucV4WS --strategy-path repos/TomtomEh_freqtrade-websocket/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CombinedBinHAndClucV4WS-7612eb65-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'CombinedBinHAndClucV4WS'. This class does not exist or contains Python code errors."
+    },
     "CombinedBinHAndClucV6H": {
       "archive": "user_data/profile_smoke/CombinedBinHAndClucV6H-88f6bcec-2026-09-09_09-28-22.zip",
       "archive_sha256": "sha256_e8619488e6755291ab5161061a67119696322cb99e3090c0dfa9c53f231dfda6",
@@ -3828,6 +4224,92 @@
       "timerange": "20200301-20200401",
       "trades": 40,
       "trades_sha256": "sha256_a25662f25a3eb44e4d3cb236f97cd42d77ba89b983d59c0c61bcaca021fb733b"
+    },
+    "CppiBasket": {
+      "archive": "user_data/profile_smoke/CppiBasket-93fea1d3-smoke_20200301_20210301-fca63e6f-2026-09-15_00-06-09.zip",
+      "archive_sha256": "sha256_f5ab4e925dafa0e6bdc0d16f27d1c683e8c013800bf5933f4eca2bbcbe8c38cb",
+      "artifact_key": "smoke_20200301_20210301",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601",
+        "20200301-20210301"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/CppiBasket-93fea1d3-smoke_20200301_20200401-b4807b77-2026-09-15_00-05-47.zip",
+          "archive_sha256": "sha256_399c8a81ba96533ff973bd4325a35b2cb0896890513bab5f4f1387706a4fadf9",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 5.7,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy CppiBasket --strategy-path repos/nateemma_strategies/Basket --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CppiBasket-93fea1d3-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 8,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 8,
+          "trades_sha256": "sha256_e950bbfbd0dd93b0b43fb8144a24cf978e8b18e2fd85e2e93b3e74b9bd34b69d"
+        },
+        {
+          "archive": "user_data/profile_smoke/CppiBasket-93fea1d3-smoke_20200301_20200601-9c543975-2026-09-15_00-05-54.zip",
+          "archive_sha256": "sha256_01d03c205555ac333232b6a2c788fda02f1e378e4436c5f66e9a595ca2e754ae",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 7.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy CppiBasket --strategy-path repos/nateemma_strategies/Basket --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CppiBasket-93fea1d3-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 8,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 8,
+          "trades_sha256": "sha256_101d6877eee1bbb772665368c296fdb0c0c34effdff7892602d33dbd3c9bd614"
+        },
+        {
+          "archive": "user_data/profile_smoke/CppiBasket-93fea1d3-smoke_20200301_20210301-fca63e6f-2026-09-15_00-06-09.zip",
+          "archive_sha256": "sha256_f5ab4e925dafa0e6bdc0d16f27d1c683e8c013800bf5933f4eca2bbcbe8c38cb",
+          "artifact_key": "smoke_20200301_20210301",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 15.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy CppiBasket --strategy-path repos/nateemma_strategies/Basket --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CppiBasket-93fea1d3-smoke_20200301_20210301-fca63e6f --cache none",
+          "long_trades": 8,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20210301",
+          "trades": 8,
+          "trades_sha256": "sha256_2edf4e6fbe9c7612158f56640b701e32f011a13ac15b6c6666613099f11f2847"
+        }
+      ],
+      "canonical_sha256": "sha256_4e2b9a433db32c91425a2e940d568e35666d5c7047f3a1be3daab7bd644ce973",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 15.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy CppiBasket --strategy-path repos/nateemma_strategies/Basket --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CppiBasket-93fea1d3-smoke_20200301_20210301-fca63e6f --cache none",
+      "long_trades": 8,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20210301",
+      "trade_floor": 10,
+      "trades": 8,
+      "trades_sha256": "sha256_2edf4e6fbe9c7612158f56640b701e32f011a13ac15b6c6666613099f11f2847"
     },
     "CryptoFrog": {
       "canonical_sha256": "sha256_9df6d7dfa478dae1194d2c04558ab9a1685ce0ed82b010b87f9e95350bbca7dd",
@@ -7621,6 +8103,52 @@
       "trades": 14,
       "trades_sha256": "sha256_e2ba905136b4c75d537d2eca8ffba96fc90e76afee49f8c42cad97b80710ecd4"
     },
+    "HyperoptableStrategy": {
+      "archive": "user_data/profile_smoke/HyperoptableStrategy-7c44f5de-smoke_20200301_20200401-b4807b77-2026-09-15_00-03-51.zip",
+      "archive_sha256": "sha256_6728a176bb1093dec04a0189bbbaf99b99e3c6790035f153992f9c8852546f67",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/HyperoptableStrategy-7c44f5de-smoke_20200301_20200401-b4807b77-2026-09-15_00-03-51.zip",
+          "archive_sha256": "sha256_6728a176bb1093dec04a0189bbbaf99b99e3c6790035f153992f9c8852546f67",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 13.7,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy HyperoptableStrategy --strategy-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/HyperoptableStrategy-7c44f5de-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 583,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 583,
+          "trades_sha256": "sha256_4532d760e0f8d241adb0324f04f0badd0a9e479e9b18d95bb66213eb0470ecfa"
+        }
+      ],
+      "canonical_sha256": "sha256_b6c0818850f363a3fb8c42314592706f7c3834cbb979fbacb49d11a40d500597",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 13.7,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy HyperoptableStrategy --strategy-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/HyperoptableStrategy-7c44f5de-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 583,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 583,
+      "trades_sha256": "sha256_4532d760e0f8d241adb0324f04f0badd0a9e479e9b18d95bb66213eb0470ecfa"
+    },
     "IFutures": {
       "canonical_sha256": "sha256_448ea3fc14d6be75d6904879ea238cf74867bd625cf64d35a289cb3a98c5d815",
       "class1_rules": [],
@@ -8189,6 +8717,38 @@
       "trades": 3,
       "trades_sha256": "sha256_b7ab5ec83abd8f3ffdafa9e75c52bc9991e16d5c975dda744ae680abc3b23e42"
     },
+    "LitmusBBStrategy": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/LitmusBBStrategy-b9c75bb7-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.4,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy LitmusBBStrategy --strategy-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/LitmusBBStrategy-b9c75bb7-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'LitmusBBStrategy'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_e08c7572991cc4ff5fd3491622932f57021f221787408e7e0aff6a47873b79bf",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/LitmusBBStrategy-b9c75bb7-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.4,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy LitmusBBStrategy --strategy-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/LitmusBBStrategy-b9c75bb7-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'LitmusBBStrategy'. This class does not exist or contains Python code errors."
+    },
     "LitmusEntryRollClassificationStrategy": {
       "canonical_sha256": "sha256_eed405eff84b0d1b5f16159ca79e7d131c3a2ea07cfaaf61936c8e44208d3d3e",
       "class1_rules": [
@@ -8586,6 +9146,102 @@
       "timerange": "20200301-20200401",
       "trades": 6,
       "trades_sha256": "sha256_5382ffd7403d894cd660224ee2d3a0ceeca799591a09ae40678204581905cf92"
+    },
+    "MASlopeStrategy": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/MASlopeStrategy-806a5703-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.4,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MASlopeStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MASlopeStrategy-806a5703-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+        }
+      ],
+      "canonical_sha256": "sha256_02e401ccf5fc59c363a9854d9c55e9fd603f254aff17cc7d0975edb0f4946c30",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/MASlopeStrategy-806a5703-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.4,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MASlopeStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MASlopeStrategy-806a5703-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+    },
+    "MAStopLossStrategy": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/MAStopLossStrategy-38f87396-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MAStopLossStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MAStopLossStrategy-38f87396-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+        }
+      ],
+      "canonical_sha256": "sha256_1c86421dacfa09ec74e9fee499e8c37fa4b2948b6d9da16cffbe4a3c1918d766",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/MAStopLossStrategy-38f87396-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MAStopLossStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MAStopLossStrategy-38f87396-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+    },
+    "MATrailingStopLossStrategy": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/MATrailingStopLossStrategy-6f3792ee-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 5.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MATrailingStopLossStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MATrailingStopLossStrategy-6f3792ee-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+        }
+      ],
+      "canonical_sha256": "sha256_e31a377ec655b9cf6daf7db9fd31b334c02f249eb50f7a7aa905920518a0d602",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/MATrailingStopLossStrategy-6f3792ee-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 5.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MATrailingStopLossStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MATrailingStopLossStrategy-6f3792ee-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "MFI2": {
       "archive": "user_data/profile_smoke/MFI2-9083ee50-2026-09-06_18-27-02.zip",
@@ -9077,6 +9733,38 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "why": "Cannot compare dtypes int64 and datetime64[ms, UTC]"
+    },
+    "MoniGoManiHyperStrategy": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/MoniGoManiHyperStrategy-739e2ece-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 5.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MoniGoManiHyperStrategy --strategy-path repos/Rikj000_MoniGoMani/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MoniGoManiHyperStrategy-739e2ece-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "process exit 0 without a readable backtest archive"
+        }
+      ],
+      "canonical_sha256": "sha256_cd084942f1c75257311423c7e769c55408002788335004a3689b7612683cada0",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/MoniGoManiHyperStrategy-739e2ece-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 5.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MoniGoManiHyperStrategy --strategy-path repos/Rikj000_MoniGoMani/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MoniGoManiHyperStrategy-739e2ece-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "process exit 0 without a readable backtest archive"
     },
     "MostOfAll": {
       "archive": "user_data/profile_smoke/MostOfAll-2026-08-31_16-03-20.zip",
@@ -12035,6 +12723,52 @@
       "trades": 83,
       "trades_sha256": "sha256_01ea0d5d6796eff7189fffb6783c72ae11d3cb949b13f0568ccc9751f4e7e79e"
     },
+    "SMAOffsetProtectOptV1_1": {
+      "archive": "user_data/profile_smoke/SMAOffsetProtectOptV1_1-9df1e223-smoke_20200301_20200401-b4807b77-2026-09-15_00-01-11.zip",
+      "archive_sha256": "sha256_c6a5fe5103829455bfb9b3d092baadbd5f2ff2a45507f73c1e7bf2f976ab8158",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/SMAOffsetProtectOptV1_1-9df1e223-smoke_20200301_20200401-b4807b77-2026-09-15_00-01-11.zip",
+          "archive_sha256": "sha256_c6a5fe5103829455bfb9b3d092baadbd5f2ff2a45507f73c1e7bf2f976ab8158",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 6.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SMAOffsetProtectOptV1_1 --strategy-path repos/davidzr_freqtrade-strategies/strategies/SMAOffsetProtectOptV1_kkeue_20210619 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SMAOffsetProtectOptV1_1-9df1e223-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 82,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 82,
+          "trades_sha256": "sha256_8c90b943caa4a6ca55d2be484c97f82ec68f6c76855ab5a1d30b4efc22fa8587"
+        }
+      ],
+      "canonical_sha256": "sha256_c249346c21dc7f25a54c06fd79a8d3088f910d893c88baddb6a87ef80ddd6e3d",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 6.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SMAOffsetProtectOptV1_1 --strategy-path repos/davidzr_freqtrade-strategies/strategies/SMAOffsetProtectOptV1_kkeue_20210619 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SMAOffsetProtectOptV1_1-9df1e223-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 82,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 82,
+      "trades_sha256": "sha256_8c90b943caa4a6ca55d2be484c97f82ec68f6c76855ab5a1d30b4efc22fa8587"
+    },
     "SMAOffset_Hippocritical_dca_leverage": {
       "canonical_sha256": "sha256_3e0741aa6ef01ed5a8908b078a53d06894a110ec112bfcf0133e097b5af66366",
       "elapsed_s": 5.3,
@@ -12046,6 +12780,92 @@
       "status": "measured",
       "timerange": "20200301-20200401",
       "trades": 18
+    },
+    "SMAoffset_antipump_div": {
+      "archive": "user_data/profile_smoke/SMAoffset_antipump_div-c506b0a5-smoke_20200301_20210301-fca63e6f-2026-09-15_00-01-49.zip",
+      "archive_sha256": "sha256_dc237ff33e662fdae68127598f23d98e181baa55aaf8db1086bde25e46f3e112",
+      "artifact_key": "smoke_20200301_20210301",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601",
+        "20200301-20210301"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/SMAoffset_antipump_div-c506b0a5-smoke_20200301_20200401-b4807b77-2026-09-15_00-01-18.zip",
+          "archive_sha256": "sha256_c3df9417c5b2e363f33cbb017169920267867d80ceed18d45525d7ee4901b8f0",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 7.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SMAoffset_antipump_div --strategy-path repos/davidzr_freqtrade-strategies/strategies/custom --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SMAoffset_antipump_div-c506b0a5-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 1,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 1,
+          "trades_sha256": "sha256_b2e4331377fde655f9585befa8b77de1a61d928772397820e502fd6ce5230797"
+        },
+        {
+          "archive": "user_data/profile_smoke/SMAoffset_antipump_div-c506b0a5-smoke_20200301_20200601-9c543975-2026-09-15_00-01-28.zip",
+          "archive_sha256": "sha256_f9d7fbc1a4d4bf32e820e9e46e197d6f8e895ac29c00346ecef30452771e0f8e",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 9.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SMAoffset_antipump_div --strategy-path repos/davidzr_freqtrade-strategies/strategies/custom --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SMAoffset_antipump_div-c506b0a5-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 1,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 1,
+          "trades_sha256": "sha256_b2e4331377fde655f9585befa8b77de1a61d928772397820e502fd6ce5230797"
+        },
+        {
+          "archive": "user_data/profile_smoke/SMAoffset_antipump_div-c506b0a5-smoke_20200301_20210301-fca63e6f-2026-09-15_00-01-49.zip",
+          "archive_sha256": "sha256_dc237ff33e662fdae68127598f23d98e181baa55aaf8db1086bde25e46f3e112",
+          "artifact_key": "smoke_20200301_20210301",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 21.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SMAoffset_antipump_div --strategy-path repos/davidzr_freqtrade-strategies/strategies/custom --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SMAoffset_antipump_div-c506b0a5-smoke_20200301_20210301-fca63e6f --cache none",
+          "long_trades": 8,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20210301",
+          "trades": 8,
+          "trades_sha256": "sha256_be847bceffffbc670dfa6f90e54d8dda43668034fc7bf2abbae8f9e0e224d4dd"
+        }
+      ],
+      "canonical_sha256": "sha256_3db98103885dc27814b41bac6e804aa84af3bd4833ab8a35ce52d978aaa1957f",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 21.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SMAoffset_antipump_div --strategy-path repos/davidzr_freqtrade-strategies/strategies/custom --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SMAoffset_antipump_div-c506b0a5-smoke_20200301_20210301-fca63e6f --cache none",
+      "long_trades": 8,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20210301",
+      "trade_floor": 10,
+      "trades": 8,
+      "trades_sha256": "sha256_be847bceffffbc670dfa6f90e54d8dda43668034fc7bf2abbae8f9e0e224d4dd"
     },
     "SRsi": {
       "archive": "user_data/profile_smoke/SRsi-6757d437-2026-09-09_16-39-56.zip",
@@ -12628,6 +13448,70 @@
       "trades": 278,
       "trades_sha256": "sha256_dae3f9bec7ed9b9a2f784f6fb67b66cba1ff4856bf38a2db2a93f847a7257478"
     },
+    "Solipsis3_BTC": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/Solipsis3_BTC-dda86a00-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 5.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis3_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis3_BTC-dda86a00-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'Solipsis3_BTC'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_983f75be391b7bcb69f2cfab6e35eca52545544006fc475e4f43bec85b43034d",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/Solipsis3_BTC-dda86a00-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 5.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis3_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis3_BTC-dda86a00-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'Solipsis3_BTC'. This class does not exist or contains Python code errors."
+    },
+    "Solipsis3_ETH": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/Solipsis3_ETH-a866b9fd-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 5.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis3_ETH --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis3_ETH-a866b9fd-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'Solipsis3_ETH'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_983f75be391b7bcb69f2cfab6e35eca52545544006fc475e4f43bec85b43034d",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/Solipsis3_ETH-a866b9fd-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 5.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis3_ETH --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis3_ETH-a866b9fd-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'Solipsis3_ETH'. This class does not exist or contains Python code errors."
+    },
     "Solipsis4": {
       "archive": "user_data/profile_smoke/Solipsis4-5bd23c38-2026-09-04_06-12-55.zip",
       "archive_sha256": "sha256_cf47eedda3e8a652464f57f65cd584fd0b88e67faee94072ae56f7f015f1f33a",
@@ -12649,6 +13533,70 @@
       "timerange": "20200301-20200401",
       "trades": 7,
       "trades_sha256": "sha256_220503a415648b3976898cb288422b9f77ebb0476c1c4137b8f8e74290365317"
+    },
+    "Solipsis4_BTC": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/Solipsis4_BTC-ecf1a8a2-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 5.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis4_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis4_BTC-ecf1a8a2-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'Solipsis4_BTC'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_f483e328f49a1f55415de3f1e0b020da9277686a4233dc127d3b8b732b115233",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/Solipsis4_BTC-ecf1a8a2-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 5.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis4_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis4_BTC-ecf1a8a2-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'Solipsis4_BTC'. This class does not exist or contains Python code errors."
+    },
+    "Solipsis4_ETH": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/Solipsis4_ETH-8802654b-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis4_ETH --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis4_ETH-8802654b-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'Solipsis4_ETH'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_f483e328f49a1f55415de3f1e0b020da9277686a4233dc127d3b8b732b115233",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/Solipsis4_ETH-8802654b-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis4_ETH --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis4_ETH-8802654b-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'Solipsis4_ETH'. This class does not exist or contains Python code errors."
     },
     "Solipsis5": {
       "archive": "user_data/profile_smoke/Solipsis5-1c959a70-2026-09-04_05-11-30.zip",
@@ -12672,6 +13620,70 @@
       "trades": 2703,
       "trades_sha256": "sha256_3fa88659d01375f73ba1ed14ee942f6aa8f99d9ae4b0d12b7b85b673d9d08836"
     },
+    "Solipsis5_BTC": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/Solipsis5_BTC-8e8ba272-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis5_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis5_BTC-8e8ba272-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'Solipsis5_BTC'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_8fa173b9732af996949f25e5d8af809b3e2fe4d8be29560ae1a43a91fef8cc83",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/Solipsis5_BTC-8e8ba272-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis5_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis5_BTC-8e8ba272-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'Solipsis5_BTC'. This class does not exist or contains Python code errors."
+    },
+    "Solipsis5_ETH": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/Solipsis5_ETH-5316ef9c-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 5.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis5_ETH --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis5_ETH-5316ef9c-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'Solipsis5_ETH'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_8fa173b9732af996949f25e5d8af809b3e2fe4d8be29560ae1a43a91fef8cc83",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/Solipsis5_ETH-5316ef9c-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 5.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis5_ETH --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis5_ETH-5316ef9c-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'Solipsis5_ETH'. This class does not exist or contains Python code errors."
+    },
     "Solipsis6": {
       "canonical_sha256": "sha256_10d3307231ad4c1c3189d1aaf69a303a98daeefc5f739e7321f2739d3f806899",
       "class1_rules": [
@@ -12687,6 +13699,70 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "why": "module 'custom_indicators' has no attribute 'bollinger_bands'"
+    },
+    "Solipsis6_BTC": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/Solipsis6_BTC-39f50bc5-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis6_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis6_BTC-39f50bc5-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'Solipsis6_BTC'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_10d3307231ad4c1c3189d1aaf69a303a98daeefc5f739e7321f2739d3f806899",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/Solipsis6_BTC-39f50bc5-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis6_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis6_BTC-39f50bc5-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'Solipsis6_BTC'. This class does not exist or contains Python code errors."
+    },
+    "Solipsis6_ETH": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/Solipsis6_ETH-bd4a6a4a-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis6_ETH --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis6_ETH-bd4a6a4a-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'Solipsis6_ETH'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_10d3307231ad4c1c3189d1aaf69a303a98daeefc5f739e7321f2739d3f806899",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/Solipsis6_ETH-bd4a6a4a-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis6_ETH --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis6_ETH-bd4a6a4a-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'Solipsis6_ETH'. This class does not exist or contains Python code errors."
     },
     "SolipsisCon": {
       "archive": "user_data/profile_smoke/SolipsisCon-12ab7e8b-2026-09-04_04-46-07.zip",
@@ -12709,6 +13785,38 @@
       "trades": 252,
       "trades_sha256": "sha256_7eee8e136af16fab7f056c101ed80cf3131fda11feba5dba59f5651db0af77b9"
     },
+    "SolipsisCon_BTC": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/SolipsisCon_BTC-e9b21b73-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 5.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SolipsisCon_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SolipsisCon_BTC-e9b21b73-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'SolipsisCon_BTC'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_4ce1ee4cb639a5183a74dbee26ab88fe5e00b0b88aeb9b564d85ff8311821986",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/SolipsisCon_BTC-e9b21b73-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 5.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SolipsisCon_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SolipsisCon_BTC-e9b21b73-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'SolipsisCon_BTC'. This class does not exist or contains Python code errors."
+    },
     "SolipsisMM": {
       "canonical_sha256": "sha256_32e2d5db21f4f692902babb0ed2803e5494dd921b8a7032900d63d57313bbddf",
       "class1_rules": [
@@ -12724,6 +13832,134 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "why": "module 'custom_indicators' has no attribute 'fib_ret'"
+    },
+    "SolipsisMM_BTC": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/SolipsisMM_BTC-6d7bfc6e-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 5.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SolipsisMM_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SolipsisMM_BTC-6d7bfc6e-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'SolipsisMM_BTC'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_32e2d5db21f4f692902babb0ed2803e5494dd921b8a7032900d63d57313bbddf",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/SolipsisMM_BTC-6d7bfc6e-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 5.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SolipsisMM_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SolipsisMM_BTC-6d7bfc6e-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'SolipsisMM_BTC'. This class does not exist or contains Python code errors."
+    },
+    "SolipsisMM_ETH": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/SolipsisMM_ETH-232a22ae-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 5.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SolipsisMM_ETH --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SolipsisMM_ETH-232a22ae-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'SolipsisMM_ETH'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_32e2d5db21f4f692902babb0ed2803e5494dd921b8a7032900d63d57313bbddf",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/SolipsisMM_ETH-232a22ae-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 5.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SolipsisMM_ETH --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SolipsisMM_ETH-232a22ae-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'SolipsisMM_ETH'. This class does not exist or contains Python code errors."
+    },
+    "Solipsis_BTC": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/Solipsis_BTC-4b455cc0-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 5.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis_BTC-4b455cc0-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'Solipsis_BTC'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_c995fcc9ccee23df67ffb775b16391f0f9ce0759160d40d67fbd44dca83df3eb",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/Solipsis_BTC-4b455cc0-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 5.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis_BTC-4b455cc0-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'Solipsis_BTC'. This class does not exist or contains Python code errors."
+    },
+    "Solipsis_ETH": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/Solipsis_ETH-c570a852-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 5.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis_ETH --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis_ETH-c570a852-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'Solipsis_ETH'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_4ce1ee4cb639a5183a74dbee26ab88fe5e00b0b88aeb9b564d85ff8311821986",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/Solipsis_ETH-c570a852-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 5.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Solipsis_ETH --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Solipsis_ETH-c570a852-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'Solipsis_ETH'. This class does not exist or contains Python code errors."
     },
     "Solipsis_v4": {
       "archive": "user_data/profile_smoke/Solipsis_v4-9f45afff-smoke_20200301_20200601-9c543975-2026-09-10_10-27-59.zip",
@@ -12871,6 +14107,118 @@
       "trades": 245,
       "trades_sha256": "sha256_aad47f7adad191a41e493400fe1d5680e0e9a5cd06f7ccb761f3b9ed43f44222"
     },
+    "StarRise_V2": {
+      "archive": "user_data/profile_smoke/StarRise_V2-b4e4e112-smoke_20200301_20200601-9c543975-2026-09-14_23-59-57.zip",
+      "archive_sha256": "sha256_481660b9447135206fc6bbf3a78ac193c563d80e2599c868cd29bb9e67807769",
+      "artifact_key": "smoke_20200301_20200601",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/StarRise_V2-b4e4e112-smoke_20200301_20200401-b4807b77-2026-09-14_23-59-45.zip",
+          "archive_sha256": "sha256_260fa5316ef7864663f0448c0613d094c27dfa964d18654e1b75221a51c88e18",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 7.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy StarRise_V2 --strategy-path repos/TheoBrigitte_freqtrade/strategies/starrise --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/StarRise_V2-b4e4e112-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 9,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 9,
+          "trades_sha256": "sha256_f6da7d26a788bf690ea5dee71b02c7e6640d4f66b771dbd02b945db3b8e81c8a"
+        },
+        {
+          "archive": "user_data/profile_smoke/StarRise_V2-b4e4e112-smoke_20200301_20200601-9c543975-2026-09-14_23-59-57.zip",
+          "archive_sha256": "sha256_481660b9447135206fc6bbf3a78ac193c563d80e2599c868cd29bb9e67807769",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 12.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy StarRise_V2 --strategy-path repos/TheoBrigitte_freqtrade/strategies/starrise --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/StarRise_V2-b4e4e112-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 12,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 12,
+          "trades_sha256": "sha256_ea0770c300e8037a78188aaa693cb396c57c2475ee3cebe3d72fc215a597e61e"
+        }
+      ],
+      "canonical_sha256": "sha256_dcb6b2744fc06b6521cdbf11a8d1c046a47041716ffe4ed5e71e824938be91cc",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 12.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy StarRise_V2 --strategy-path repos/TheoBrigitte_freqtrade/strategies/starrise --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/StarRise_V2-b4e4e112-smoke_20200301_20200601-9c543975 --cache none",
+      "long_trades": 12,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200601",
+      "trade_floor": 10,
+      "trades": 12,
+      "trades_sha256": "sha256_ea0770c300e8037a78188aaa693cb396c57c2475ee3cebe3d72fc215a597e61e"
+    },
+    "StarRise_V3": {
+      "archive": "user_data/profile_smoke/StarRise_V3-f4926567-smoke_20200301_20200401-b4807b77-2026-09-15_00-00-13.zip",
+      "archive_sha256": "sha256_3b2ec4df636590836de19eb9e203d383177835d0747c77a1e312da0122fdaff6",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/StarRise_V3-f4926567-smoke_20200301_20200401-b4807b77-2026-09-15_00-00-13.zip",
+          "archive_sha256": "sha256_3b2ec4df636590836de19eb9e203d383177835d0747c77a1e312da0122fdaff6",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 15.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy StarRise_V3 --strategy-path repos/TheoBrigitte_freqtrade/strategies/starrise --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/StarRise_V3-f4926567-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 25,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 25,
+          "trades_sha256": "sha256_00a3e35edb27156ed92869ed2ea9173fa39bc670d91779eb1845868e43beca87"
+        }
+      ],
+      "canonical_sha256": "sha256_2cad4ff2351c7548915033b3924ddd999a4ce07f42b171fc6ceedc93d5f53ff4",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 15.5,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy StarRise_V3 --strategy-path repos/TheoBrigitte_freqtrade/strategies/starrise --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/StarRise_V3-f4926567-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 25,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 25,
+      "trades_sha256": "sha256_00a3e35edb27156ed92869ed2ea9173fa39bc670d91779eb1845868e43beca87"
+    },
     "StarRise_strat3": {
       "archive": "user_data/profile_smoke/StarRise_strat3-c6422ff0-2026-09-09_21-21-45.zip",
       "archive_sha256": "sha256_de10d50e6af4743474a26279f280fd27d539e858bbd7e109e42b6b4f66be918a",
@@ -12921,6 +14269,38 @@
       "timerange": "20200301-20200401",
       "trades": 203,
       "trades_sha256": "sha256_1bdab296497a6a8018644c721f68a5586bf9f81904c14485c92b461f1b6376ab"
+    },
+    "StopLossStrategy": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/StopLossStrategy-6a8b552a-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy StopLossStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/StopLossStrategy-6a8b552a-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+        }
+      ],
+      "canonical_sha256": "sha256_83ecebd266d2162e9bbd88ac462a12dc023462e1f02aa6b0756e7307a8c59760",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/StopLossStrategy-6a8b552a-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy StopLossStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/StopLossStrategy-6a8b552a-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "Strategy": {
       "canonical_sha256": "sha256_5fdecf48d2e79668de637bfb66e23ca93dc80a2a275a3f292ad422c243eca932",
@@ -13002,6 +14382,124 @@
       "timerange": "20200301-20200401",
       "trades": 818
     },
+    "StrategyTestV3CustomEntryPrice": {
+      "archive": "user_data/profile_smoke/StrategyTestV3CustomEntryPrice-03016d76-smoke_20200301_20210301-fca63e6f-2026-09-15_00-05-15.zip",
+      "archive_sha256": "sha256_7392311cfd838aab8985cdc0e2e2e35447400e94fac663900c8405d6110738a1",
+      "artifact_key": "smoke_20200301_20210301",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601",
+        "20200301-20210301"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/StrategyTestV3CustomEntryPrice-03016d76-smoke_20200301_20200401-b4807b77-2026-09-15_00-04-01.zip",
+          "archive_sha256": "sha256_773aa7ca6749e2e4f6ce64b234c3b91533a5a143c109eed018335631e173a48c",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 9.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy StrategyTestV3CustomEntryPrice --strategy-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/StrategyTestV3CustomEntryPrice-03016d76-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/StrategyTestV3CustomEntryPrice-03016d76-smoke_20200301_20200601-9c543975-2026-09-15_00-04-20.zip",
+          "archive_sha256": "sha256_8eca9d1cdaa92d1382b6e74fe2591a00be79a835f76953cab5fd289b7a0c58fd",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 19.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy StrategyTestV3CustomEntryPrice --strategy-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/StrategyTestV3CustomEntryPrice-03016d76-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/StrategyTestV3CustomEntryPrice-03016d76-smoke_20200301_20210301-fca63e6f-2026-09-15_00-05-15.zip",
+          "archive_sha256": "sha256_7392311cfd838aab8985cdc0e2e2e35447400e94fac663900c8405d6110738a1",
+          "artifact_key": "smoke_20200301_20210301",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 55.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy StrategyTestV3CustomEntryPrice --strategy-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/StrategyTestV3CustomEntryPrice-03016d76-smoke_20200301_20210301-fca63e6f --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20210301",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
+      "canonical_sha256": "sha256_f791091f0bb08de93f19541a5466fa920f3c73496a2a81ed714d01374ad824df",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 55.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy StrategyTestV3CustomEntryPrice --strategy-path repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/StrategyTestV3CustomEntryPrice-03016d76-smoke_20200301_20210301-fca63e6f --cache none",
+      "long_trades": 0,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20210301",
+      "trade_floor": 10,
+      "trades": 0,
+      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "SuperBuy": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/SuperBuy-54165d2b-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 6.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SuperBuy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperBuy-54165d2b-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "list.remove(x): x not in list"
+        }
+      ],
+      "canonical_sha256": "sha256_db33d69c36222899fc489a2b77eca0f05c4e06969b26e9d205e272910e2dbd9f",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/SuperBuy-54165d2b-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 6.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SuperBuy --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperBuy-54165d2b-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "list.remove(x): x not in list"
+    },
     "SuperHV27": {
       "archive": "user_data/profile_smoke/SuperHV27-aefe004a-2026-09-03_21-02-15.zip",
       "archive_sha256": "sha256_10ba4ca249dcdcc376a1560c73eacaf14cf989ee4056265b4ac849c1f5b61093",
@@ -13022,6 +14520,70 @@
       "timerange": "20200301-20200401",
       "trades": 226,
       "trades_sha256": "sha256_4f226980701fdc426cfeb70d7af15ecb18667f0ff48d4c446536e90defbba0db"
+    },
+    "SuperHV27_BTC": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/SuperHV27_BTC-5bfe795f-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 6.7,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SuperHV27_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperHV27_BTC-5bfe795f-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "SuperHV27.min_roi_reached_entry() takes 2 positional arguments but 4 were given"
+        }
+      ],
+      "canonical_sha256": "sha256_e46029e72411f0393eb7c1382f939d0abc9db7d6b8a8412551585d9ed59f2f2b",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/SuperHV27_BTC-5bfe795f-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 6.7,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SuperHV27_BTC --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperHV27_BTC-5bfe795f-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "SuperHV27.min_roi_reached_entry() takes 2 positional arguments but 4 were given"
+    },
+    "SuperHV27_ETH": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/SuperHV27_ETH-4fc47acf-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 7.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SuperHV27_ETH --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperHV27_ETH-4fc47acf-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "SuperHV27.min_roi_reached_entry() takes 2 positional arguments but 4 were given"
+        }
+      ],
+      "canonical_sha256": "sha256_e46029e72411f0393eb7c1382f939d0abc9db7d6b8a8412551585d9ed59f2f2b",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/SuperHV27_ETH-4fc47acf-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 7.5,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SuperHV27_ETH --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperHV27_ETH-4fc47acf-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "SuperHV27.min_roi_reached_entry() takes 2 positional arguments but 4 were given"
     },
     "SuperReversal_mtf": {
       "archive": "user_data/profile_smoke/SuperReversal_mtf-ba2982c7-2026-09-06_18-23-04.zip",
@@ -13322,6 +14884,70 @@
       "trade_floor": 10,
       "why": "Impossible to load Strategy 'TM3MultiClass'. This class does not exist or contains Python code errors."
     },
+    "TPActivatingTSLwithInitialTSLStrategy": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/TPActivatingTSLwithInitialTSLStrategy-7f557eec-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TPActivatingTSLwithInitialTSLStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TPActivatingTSLwithInitialTSLStrategy-7f557eec-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+        }
+      ],
+      "canonical_sha256": "sha256_84132d2ce4743b497d9103f99954188d2c174931829f11b20b7c6105f7925c75",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/TPActivatingTSLwithInitialTSLStrategy-7f557eec-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TPActivatingTSLwithInitialTSLStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TPActivatingTSLwithInitialTSLStrategy-7f557eec-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+    },
+    "TPActivatingTSLwithSLStrategy": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/TPActivatingTSLwithSLStrategy-ef1aac51-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TPActivatingTSLwithSLStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TPActivatingTSLwithSLStrategy-ef1aac51-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+        }
+      ],
+      "canonical_sha256": "sha256_2a671efba8266c434fda9bde3b8d5d6d49bbea812540de3ba1c4336f359456e6",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/TPActivatingTSLwithSLStrategy-ef1aac51-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TPActivatingTSLwithSLStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TPActivatingTSLwithSLStrategy-ef1aac51-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+    },
     "TRIX_LS": {
       "archive": "user_data/profile_smoke/TRIX_LS-1f89b909-2026-09-06_18-23-16.zip",
       "archive_sha256": "sha256_1eeaff3a4a68bc9a816cf125f1bb9d2db34c4f4ac3ae6a098402eba1162f3001",
@@ -13376,6 +15002,38 @@
       "status": "measured",
       "timerange": "20200301-20200401",
       "trades": 0
+    },
+    "TS_Gain": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/TS_Gain-558959aa-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 9.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy TS_Gain --strategy-path repos/nateemma_strategies/TSPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TS_Gain-558959aa-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'TS_Gain'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_64f6615f896b0ef6e47882266198ea3455c0fffafa74382d0b2e03e63d6db472",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/TS_Gain-558959aa-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 9.5,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy TS_Gain --strategy-path repos/nateemma_strategies/TSPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TS_Gain-558959aa-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "futures",
+      "run_profile": "futures_long",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'TS_Gain'. This class does not exist or contains Python code errors."
     },
     "TWAPStrategy": {
       "canonical_sha256": "sha256_fa97ab1802e2508d2742cfdb01d607c0a41d1eb84b217cf6cb0567429620221d",
@@ -13577,6 +15235,38 @@
       "timerange": "20200301-20200401",
       "trades": 16
     },
+    "TrailingBuySellStrat": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/TrailingBuySellStrat-ba8e6918-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 5.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrailingBuySellStrat --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrailingBuySellStrat-ba8e6918-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'TrailingBuySellStrat'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_a8843e3f878198381e3e670871cf0fce48ab4917f8def92a386144080f0527ef",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/TrailingBuySellStrat-ba8e6918-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 5.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrailingBuySellStrat --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrailingBuySellStrat-ba8e6918-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'TrailingBuySellStrat'. This class does not exist or contains Python code errors."
+    },
     "TrailingBuyStrat": {
       "attempted_timeranges": [
         "20200301-20200401"
@@ -13654,6 +15344,176 @@
       "trade_floor": 10,
       "trades": 92,
       "trades_sha256": "sha256_05bfddeaa9be0f512ef0e8a5a440ff95e121de0189d72cb3c8164d6e238234b5"
+    },
+    "TrailingBuyStratCluc": {
+      "archive": "user_data/profile_smoke/TrailingBuyStratCluc-e73b2a7a-smoke_20200301_20200401-b4807b77-2026-09-14_23-47-43.zip",
+      "archive_sha256": "sha256_ac2ce5fd6a9c93e492830014c3dbf919e2fa4c3ee8975ea799c36e851ed225e6",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/TrailingBuyStratCluc-e73b2a7a-smoke_20200301_20200401-b4807b77-2026-09-14_23-47-43.zip",
+          "archive_sha256": "sha256_ac2ce5fd6a9c93e492830014c3dbf919e2fa4c3ee8975ea799c36e851ed225e6",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 57.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrailingBuyStratCluc --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrailingBuyStratCluc-e73b2a7a-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 143,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 143,
+          "trades_sha256": "sha256_6e4b89aba0f7cef82ff492dc4a26611d858917ddc3ff652d0996a7b715a7e082"
+        }
+      ],
+      "canonical_sha256": "sha256_d213d539f4a249ab634fbf9d91d8ca4f3ffdb2e1858dd04d14306450c6b62be8",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 57.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrailingBuyStratCluc --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrailingBuyStratCluc-e73b2a7a-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 143,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 143,
+      "trades_sha256": "sha256_6e4b89aba0f7cef82ff492dc4a26611d858917ddc3ff652d0996a7b715a7e082"
+    },
+    "TrailingBuyStratCluc5m": {
+      "archive": "user_data/profile_smoke/TrailingBuyStratCluc5m-2fa6e08a-smoke_20200301_20200401-b4807b77-2026-09-14_23-49-23.zip",
+      "archive_sha256": "sha256_8de7ee4807e2655b604ee842462c739270a0032261d76626ff56fb78ef828f23",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/TrailingBuyStratCluc5m-2fa6e08a-smoke_20200301_20200401-b4807b77-2026-09-14_23-49-23.zip",
+          "archive_sha256": "sha256_8de7ee4807e2655b604ee842462c739270a0032261d76626ff56fb78ef828f23",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 23.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrailingBuyStratCluc5m --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrailingBuyStratCluc5m-2fa6e08a-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 215,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 215,
+          "trades_sha256": "sha256_1cfcd7c1b1ee6b96a352075b2336ed79b530de5cbc619e950527fdf63faa3bec"
+        }
+      ],
+      "canonical_sha256": "sha256_f7679e390a6e7bb3840c6fef1e5a647d10ec1af426373a1e872da7138fc89bb7",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 23.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrailingBuyStratCluc5m --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrailingBuyStratCluc5m-2fa6e08a-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 215,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 215,
+      "trades_sha256": "sha256_1cfcd7c1b1ee6b96a352075b2336ed79b530de5cbc619e950527fdf63faa3bec"
+    },
+    "TrailingBuyStratClucBBRPBMODE": {
+      "archive": "user_data/profile_smoke/TrailingBuyStratClucBBRPBMODE-f004bdc0-smoke_20200301_20200401-b4807b77-2026-09-14_23-48-59.zip",
+      "archive_sha256": "sha256_e4c2f47dcc44787f00277dde4fe199645c7bbeaf18d94c1a5f889f4d0a3a7994",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/TrailingBuyStratClucBBRPBMODE-f004bdc0-smoke_20200301_20200401-b4807b77-2026-09-14_23-48-59.zip",
+          "archive_sha256": "sha256_e4c2f47dcc44787f00277dde4fe199645c7bbeaf18d94c1a5f889f4d0a3a7994",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 76.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrailingBuyStratClucBBRPBMODE --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrailingBuyStratClucBBRPBMODE-f004bdc0-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 217,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 217,
+          "trades_sha256": "sha256_18fa0f5e2f3e9af80064a2cfe05dd983e601f0d89927156410fcd0ff32056d25"
+        }
+      ],
+      "canonical_sha256": "sha256_43899d1cab442ebf2c42bc6ee2438b93696e2e099057d81ba6a6b08fc06de2a5",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 76.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrailingBuyStratClucBBRPBMODE --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrailingBuyStratClucBBRPBMODE-f004bdc0-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 217,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 217,
+      "trades_sha256": "sha256_18fa0f5e2f3e9af80064a2cfe05dd983e601f0d89927156410fcd0ff32056d25"
+    },
+    "TrailingStopLossStrategy": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/TrailingStopLossStrategy-f7ee1088-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrailingStopLossStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrailingStopLossStrategy-f7ee1088-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
+        }
+      ],
+      "canonical_sha256": "sha256_32382d2a32a0cc41a71ef3de56c98d3d056329e76bd32cf25228b2e8d75f362c",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/TrailingStopLossStrategy-f7ee1088-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrailingStopLossStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrailingStopLossStrategy-f7ee1088-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "TrainCatBoostStrategy": {
       "canonical_sha256": "sha256_5ff5c13b62e37bf9371f3cd84fc671bbd8c417ed757a8462ffd750987b133176",
@@ -13972,6 +15832,52 @@
       "trades": 3965,
       "trades_sha256": "sha256_c5c3410af7326a2a93f73cb74382a0721303e3a16c0793fcbcc1cd4b30db9f83"
     },
+    "UziChanTB": {
+      "archive": "user_data/profile_smoke/UziChanTB-1adf2c52-smoke_20200301_20200401-b4807b77-2026-09-14_23-49-43.zip",
+      "archive_sha256": "sha256_07c4317dfb14fe9c64a73d1be7a924354bd8a9905e383c7273ebcf5e1389abb7",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/UziChanTB-1adf2c52-smoke_20200301_20200401-b4807b77-2026-09-14_23-49-43.zip",
+          "archive_sha256": "sha256_07c4317dfb14fe9c64a73d1be7a924354bd8a9905e383c7273ebcf5e1389abb7",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 14.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy UziChanTB --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/UziChanTB-1adf2c52-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 695,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 695,
+          "trades_sha256": "sha256_a4c7a136260de0e12731adac042fe62139c3d12ca1573c749c20e70ba00f33f9"
+        }
+      ],
+      "canonical_sha256": "sha256_b89805d469908b4fb79f412713e65129717757b27c7e05e7f6287432131159cd",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 14.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy UziChanTB --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/UziChanTB-1adf2c52-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 695,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 695,
+      "trades_sha256": "sha256_a4c7a136260de0e12731adac042fe62139c3d12ca1573c749c20e70ba00f33f9"
+    },
     "UziChanTB2": {
       "archive": "user_data/profile_smoke/UziChanTB2-19d09656-smoke_20200301_20200401-b4807b77-2026-09-14_23-41-36.zip",
       "archive_sha256": "sha256_4d5a6bd4fccf67f4c3859800a80dbb2aa6a6e1c0b462b446409d2fd6256fe9a3",
@@ -14035,6 +15941,296 @@
       "timerange": "20200301-20200401",
       "trades": 0,
       "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "ViNBuyLc2": {
+      "archive": "user_data/profile_smoke/ViNBuyLc2-5dc4b8d6-smoke_20200301_20210301-fca63e6f-2026-09-14_23-51-01.zip",
+      "archive_sha256": "sha256_0375e75efa1581b40f7cdfb4e50e4c7b10ec4bc0a695b6b9f98e196a7a08eac0",
+      "artifact_key": "smoke_20200301_20210301",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601",
+        "20200301-20210301"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/ViNBuyLc2-5dc4b8d6-smoke_20200301_20200401-b4807b77-2026-09-14_23-50-01.zip",
+          "archive_sha256": "sha256_bddcb726d23cb05d1e82d84d4cb43fb81eb4af6d445427eeb194c1286e3e1a03",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 8.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ViNBuyLc2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ViNBuyLc2-5dc4b8d6-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 3,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 3,
+          "trades_sha256": "sha256_131152ed7ef021a0db20d35368cf6bf996d593202ee07f03e3da5434ec49ec0b"
+        },
+        {
+          "archive": "user_data/profile_smoke/ViNBuyLc2-5dc4b8d6-smoke_20200301_20200601-9c543975-2026-09-14_23-50-14.zip",
+          "archive_sha256": "sha256_d52f65f26dfa50810eabc23b5ecaf1432da65a3ddc048e7e39d8be13eaae70ad",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 13.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ViNBuyLc2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ViNBuyLc2-5dc4b8d6-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 4,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 4,
+          "trades_sha256": "sha256_0507600d9376944f171be6870fe211a28ad7476d37a869fb6e1894845e9cef23"
+        },
+        {
+          "archive": "user_data/profile_smoke/ViNBuyLc2-5dc4b8d6-smoke_20200301_20210301-fca63e6f-2026-09-14_23-51-01.zip",
+          "archive_sha256": "sha256_0375e75efa1581b40f7cdfb4e50e4c7b10ec4bc0a695b6b9f98e196a7a08eac0",
+          "artifact_key": "smoke_20200301_20210301",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 48.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ViNBuyLc2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ViNBuyLc2-5dc4b8d6-smoke_20200301_20210301-fca63e6f --cache none",
+          "long_trades": 8,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20210301",
+          "trades": 8,
+          "trades_sha256": "sha256_16b07a2d35b338a1eba03e8f4e8e0d5c4eb48c1f14589d37f048211f7d680e46"
+        }
+      ],
+      "canonical_sha256": "sha256_bee88cbc23310656aba1731f91d9df39fe80027795334c93a78a52fe04bfa01e",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 48.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ViNBuyLc2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ViNBuyLc2-5dc4b8d6-smoke_20200301_20210301-fca63e6f --cache none",
+      "long_trades": 8,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20210301",
+      "trade_floor": 10,
+      "trades": 8,
+      "trades_sha256": "sha256_16b07a2d35b338a1eba03e8f4e8e0d5c4eb48c1f14589d37f048211f7d680e46"
+    },
+    "ViNBuyPct": {
+      "archive": "user_data/profile_smoke/ViNBuyPct-a216b338-smoke_20200301_20210301-fca63e6f-2026-09-14_23-52-56.zip",
+      "archive_sha256": "sha256_37b64633fa2d5a87f913528a3840f7d39897f68136c7bdc275ea04f80358ec9b",
+      "artifact_key": "smoke_20200301_20210301",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601",
+        "20200301-20210301"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/ViNBuyPct-a216b338-smoke_20200301_20200401-b4807b77-2026-09-14_23-51-14.zip",
+          "archive_sha256": "sha256_1b7d7362a7571ac9ef76ba1f730f1dbef775ccf0e995995806c334457eceea09",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 11.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ViNBuyPct --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ViNBuyPct-a216b338-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 7,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 7,
+          "trades_sha256": "sha256_3e1e71034e51e01fcb640804229ccf5e5adc39fc696efb354e1817c90ef4cc22"
+        },
+        {
+          "archive": "user_data/profile_smoke/ViNBuyPct-a216b338-smoke_20200301_20200601-9c543975-2026-09-14_23-51-38.zip",
+          "archive_sha256": "sha256_d1d1da6ed6025e999959d01821a120e2fec4076c27b21477bee94556ac47993c",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 24.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ViNBuyPct --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ViNBuyPct-a216b338-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 8,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 8,
+          "trades_sha256": "sha256_88e340555a76ee4dc9bf817b327b710ab12c6da9499cef2e5d9ec9a615ce3db9"
+        },
+        {
+          "archive": "user_data/profile_smoke/ViNBuyPct-a216b338-smoke_20200301_20210301-fca63e6f-2026-09-14_23-52-56.zip",
+          "archive_sha256": "sha256_37b64633fa2d5a87f913528a3840f7d39897f68136c7bdc275ea04f80358ec9b",
+          "artifact_key": "smoke_20200301_20210301",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 79.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ViNBuyPct --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ViNBuyPct-a216b338-smoke_20200301_20210301-fca63e6f --cache none",
+          "long_trades": 8,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20210301",
+          "trades": 8,
+          "trades_sha256": "sha256_a7fec8950958cfed558b4b972954d83b4b5932404f11f864baf122e66625d769"
+        }
+      ],
+      "canonical_sha256": "sha256_bee88cbc23310656aba1731f91d9df39fe80027795334c93a78a52fe04bfa01e",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 79.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ViNBuyPct --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ViNBuyPct-a216b338-smoke_20200301_20210301-fca63e6f --cache none",
+      "long_trades": 8,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20210301",
+      "trade_floor": 10,
+      "trades": 8,
+      "trades_sha256": "sha256_a7fec8950958cfed558b4b972954d83b4b5932404f11f864baf122e66625d769"
+    },
+    "ViNBuyPctLc2": {
+      "archive": "user_data/profile_smoke/ViNBuyPctLc2-d6fe6184-smoke_20200301_20210301-fca63e6f-2026-09-14_23-54-21.zip",
+      "archive_sha256": "sha256_acf6c03457fa9c506392efcc318d66cb455c7aef5a051c207ffa898357d77a8f",
+      "artifact_key": "smoke_20200301_20210301",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601",
+        "20200301-20210301"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/ViNBuyPctLc2-d6fe6184-smoke_20200301_20200401-b4807b77-2026-09-14_23-53-07.zip",
+          "archive_sha256": "sha256_61ead7b3323805bf4cfc0d7df7f85ea8f1f54f14d8f4e314daf7ddd890014727",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 9.7,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ViNBuyPctLc2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ViNBuyPctLc2-d6fe6184-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 7,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 7,
+          "trades_sha256": "sha256_918907903153da45c1566b2f107de1319f51f32814556765b0bd79d331967ffd"
+        },
+        {
+          "archive": "user_data/profile_smoke/ViNBuyPctLc2-d6fe6184-smoke_20200301_20200601-9c543975-2026-09-14_23-53-25.zip",
+          "archive_sha256": "sha256_0d2b13e0cbb43b881cf32e9d96bb315b7a07ea9ce1b112d5f67035dd3c3fe705",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 17.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ViNBuyPctLc2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ViNBuyPctLc2-d6fe6184-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 8,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 8,
+          "trades_sha256": "sha256_94880d91ed1056652a316bd7128ebf89525227c3f63307aac5732dbe00ea1449"
+        },
+        {
+          "archive": "user_data/profile_smoke/ViNBuyPctLc2-d6fe6184-smoke_20200301_20210301-fca63e6f-2026-09-14_23-54-21.zip",
+          "archive_sha256": "sha256_acf6c03457fa9c506392efcc318d66cb455c7aef5a051c207ffa898357d77a8f",
+          "artifact_key": "smoke_20200301_20210301",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 56.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ViNBuyPctLc2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ViNBuyPctLc2-d6fe6184-smoke_20200301_20210301-fca63e6f --cache none",
+          "long_trades": 8,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20210301",
+          "trades": 8,
+          "trades_sha256": "sha256_f21dde72d1236384a899a672c64a4fc1c90e6ccee29193d054f4d478bddca46c"
+        }
+      ],
+      "canonical_sha256": "sha256_bee88cbc23310656aba1731f91d9df39fe80027795334c93a78a52fe04bfa01e",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 56.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ViNBuyPctLc2 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ViNBuyPctLc2-d6fe6184-smoke_20200301_20210301-fca63e6f --cache none",
+      "long_trades": 8,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20210301",
+      "trade_floor": 10,
+      "trades": 8,
+      "trades_sha256": "sha256_f21dde72d1236384a899a672c64a4fc1c90e6ccee29193d054f4d478bddca46c"
+    },
+    "ViNBuyVws": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/ViNBuyVws-3af78499-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 5.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ViNBuyVws --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ViNBuyVws-3af78499-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Rolling.corr() got an unexpected keyword argument 'method'"
+        }
+      ],
+      "canonical_sha256": "sha256_bee88cbc23310656aba1731f91d9df39fe80027795334c93a78a52fe04bfa01e",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/ViNBuyVws-3af78499-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 5.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ViNBuyVws --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ViNBuyVws-3af78499-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Rolling.corr() got an unexpected keyword argument 'method'"
     },
     "VolatilitySystem": {
       "canonical_sha256": "sha256_d62c96946f4b848857eee23f84f8a8988b2545dc7e7d2125a35bc891078e0ae0",
@@ -14345,6 +16541,38 @@
       "timerange": "20200301-20200401",
       "trades": 61,
       "trades_sha256": "sha256_7a1d9b3bcc35c7824a05c0ee974cd68fb544e0075a590638e4441baa6138a139"
+    },
+    "_Strat": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/_Strat-ca545fd4-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy _Strat --strategy-path repos/nateemma_strategies/Framework --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/_Strat-ca545fd4-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy '_Strat'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_8ecfc9b713b7d823b75ad283dc1dc6147d11fb0cb7c91988c164edd6b6afcea5",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/_Strat-ca545fd4-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy _Strat --strategy-path repos/nateemma_strategies/Framework --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/_Strat-ca545fd4-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy '_Strat'. This class does not exist or contains Python code errors."
     },
     "abbas": {
       "archive": "user_data/profile_smoke/abbas-66cc6f6a-2026-09-06_18-34-59.zip",
@@ -15596,6 +17824,52 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "why": "'tacos1' object has no attribute 'buy_ema_short'. Did you mean: 'buy_ema_long'?"
+    },
+    "tbedit": {
+      "archive": "user_data/profile_smoke/tbedit-264daa4c-smoke_20200301_20200401-b4807b77-2026-09-14_23-49-52.zip",
+      "archive_sha256": "sha256_87098eee1edca70eb81407927ec589aa071e2bcb64fbc1cb7ee13d631ed4edbc",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/tbedit-264daa4c-smoke_20200301_20200401-b4807b77-2026-09-14_23-49-52.zip",
+          "archive_sha256": "sha256_87098eee1edca70eb81407927ec589aa071e2bcb64fbc1cb7ee13d631ed4edbc",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 8.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy tbedit --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/tbedit-264daa4c-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 233,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 233,
+          "trades_sha256": "sha256_8d377833b369a1854f77aef1fab46d9c1899c45cadf7ac7543f1db2234885ed9"
+        }
+      ],
+      "canonical_sha256": "sha256_871e0e4e415fb0208495f89cb1d0eb2d193f5a7a9d77fcd4c8ca6e4aa795c08e",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 8.8,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy tbedit --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/tbedit-264daa4c-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 233,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 233,
+      "trades_sha256": "sha256_8d377833b369a1854f77aef1fab46d9c1899c45cadf7ac7543f1db2234885ed9"
     },
     "tesla4": {
       "archive": "user_data/profile_smoke/tesla4-89136f48-2026-09-06_14-47-22.zip",
