@@ -1842,3 +1842,59 @@ genuinely low-frequency or non-trading in this market window, not merely
 under-tested, though a full 6.5-year window (already run for some rows
 elsewhere in this register) remains the more conclusive check.
 
+# Phase 12 - Stage 2 look-ahead for the 20 mechanically-repaired rows, 2026-09-16
+
+The 23 rows mechanically fixed in Phase 10/11 (10 `NNPredict_*`, 6 of
+Category A, 1 of Category B, 6 of Category F) only ever had Stage 1
+(trade count) evidence. `zorkv7_0_0` was held back for its own
+unrelated quantile bug; `AlexBattleTankKillerV40H`, `Macd`, and
+`GoldHedgeZeroMACD` already carried a Stage 2/4 finding from before their
+repair and were held back pending a decision on whether to re-verify
+that finding against the fixed code (not decided this phase). The
+remaining 20 went through `evidence/profile_bias.py --diagnostics
+lookahead` (the standard `20200301-20200601` window).
+
+**All ten `NNPredict_*` rows came back `FOUND`** - a native look-ahead
+finding, final and unrepairable by definition (Stage 2 cannot be
+followed by the warm-up ladder or Recursive-Bias once look-ahead fails).
+Every one flags the same indicator family as the leak source: `gain`,
+`profit`, `loss`, and the `dwt_*` columns (`dwt_gain`, `dwt_profit`,
+`dwt_loss`, `dwt_profit_mean`, `dwt_profit_std`), plus - on
+`NNPredict_AdditiveAttention`, `NNPredict_CNN`, and `NNPredict_Wavenet2`
+specifically - `predicted_gain`, `%future_gain`, and `curr_target`
+directly. This lines up with what Phase 10 already knew about this
+family's design: `%future_gain` is a training label built from a
+forward-looking window, and `dwt_*` is a smoothed-and-detrended series
+computed over the full available window rather than causally per-candle.
+The chained-assignment fix in Phase 10 made the entry signal fire at
+all - it did not, and could not, touch whether the signal itself peeks
+at the future. Net result: the entire ten-strategy cluster this project
+spent two phases repairing is disqualified anyway, on a different and
+more fundamental defect than the one that was fixed. The repair was not
+wasted - a strategy that never traded could not have been Stage-2-tested
+in the first place, so this is the first time the cluster's own
+look-ahead question could be asked at all - but none of the ten reach
+Stage 3.
+
+**`SuperTrendPure` also came back `FOUND`**, though with a far smaller
+signal (1 entry, 0 exits, of 20) than the NNPredict cluster's
+near-unanimous bias - final exclusion regardless of magnitude, per the
+existing rule.
+
+**Five rows `PASS`ed cleanly**: `FSupertrendStrategyBTC`,
+`FSupertrendStrategyETH`, `SimpleHopt1Ashort`, `SimpleHoptS`,
+`Supertrend`. These are the only rows from this repair batch actually
+eligible to continue to Stage 3 (warm-up convergence ladder).
+
+**Four rows returned `NA`, not a verdict either way.**
+`GodStraNew` and `SimpleRSI` report "too few trades (0/10)" inside the
+diagnostic's own window, despite Phase 11 measuring 3 and 1 trades
+respectively at the smoke cascade's three-month rung over the same
+calendar dates - not yet reconciled; possibly a stricter internal
+signal-count floor in `profile_bias.py` than in `profile_smoke.py`, not
+confirmed. `Obelisk_3EMA_StochRSI_ATR` timed out. `HarmonicDivergence`
+raised its own new error, `could not broadcast input array from shape
+(0,) into shape (33,)` - a genuine bug in the diagnostic path, not
+investigated further this phase. None of the four are final; all four
+would need a rerun or a fix before Stage 2 can decide them.
+
