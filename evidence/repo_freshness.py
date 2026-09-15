@@ -266,7 +266,7 @@ def main(argv=None):
     parser.add_argument("--repo", action="append", default=[],
                         help="check only these repos, not the full corpus list")
     args = parser.parse_args(argv)
-    repos = args.repo or repos_in_use()
+    repos = args.repo or repos_from_original_file()
     rows = []
     for repo in repos:
         row = check_repo(repo)

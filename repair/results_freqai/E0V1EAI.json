@@ -1,0 +1,18 @@
+{
+  "strategy": "E0V1EAI",
+  "file": "repos/hamidreza07_freqai-strategy/startegy test/1/E0V1E/E0V1EAI.py",
+  "run_class": "freqai",
+  "source_tree": "original",
+  "mode": "futures",
+  "config": "user_data\\freqai_configs\\E0V1EAI.json",
+  "runs": {
+    "in_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "AssertionError: Something has gone wrong, please report a bug at https://github.com/pandas-dev/pandas/issues\r"
+    },
+    "out_sample": {
+      "level": "NOT-APPLICABLE",
+      "why": "freqtrade.exceptions.OperationalException: ETH/USDT:USDT: all training data dropped due to NaNs. You likely did not download enough training data prior to your "
+    }
+  }
+}

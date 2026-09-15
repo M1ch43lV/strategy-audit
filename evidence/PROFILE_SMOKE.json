@@ -1321,6 +1321,38 @@
       "trades": 164,
       "trades_sha256": "sha256_6c1027082fb8f0bbe13bcbdddbb6c41017c229db55575fbcbcd83a34ce10472a"
     },
+    "BBMod1DCA": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/BBMod1DCA-5a46c76c-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 5.4,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy BBMod1DCA --strategy-path repos/thinkong_freqtradestrategies/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBMod1DCA-5a46c76c-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given"
+        }
+      ],
+      "canonical_sha256": "sha256_12ea6e9bbbee8c851ad45b94c2a1f4e3a86e91dab209f1c84f77677bafdef395",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/BBMod1DCA-5a46c76c-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 5.4,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy BBMod1DCA --strategy-path repos/thinkong_freqtradestrategies/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBMod1DCA-5a46c76c-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given"
+    },
     "BBRSI": {
       "canonical_sha256": "sha256_8a5058ea5a2ef3b66265c01dd977a580222545edc1fbf63d9ed7fe12591d1f73",
       "class1_rules": [
@@ -3444,6 +3476,52 @@
       "trades": 185,
       "trades_sha256": "sha256_c02c210a63ae7d1572cadaf37066cbf0b6d8104aebd2b9da75643362fe4cb04a"
     },
+    "ClucDCAV2": {
+      "archive": "user_data/profile_smoke/ClucDCAV2-ffea7b3d-smoke_20200301_20200401-b4807b77-2026-09-15_06-51-42.zip",
+      "archive_sha256": "sha256_d94afb4c749264c95a38cad614e2c97b33392a4c7d48f86ee4a5a4c7b8ac937a",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/ClucDCAV2-ffea7b3d-smoke_20200301_20200401-b4807b77-2026-09-15_06-51-42.zip",
+          "archive_sha256": "sha256_d94afb4c749264c95a38cad614e2c97b33392a4c7d48f86ee4a5a4c7b8ac937a",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 39.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ClucDCAV2 --strategy-path repos/thinkong_freqtradestrategies/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucDCAV2-ffea7b3d-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 12,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 12,
+          "trades_sha256": "sha256_220de4399b72676dde06f0cd4563d8ba55bda02f8992045ee857713c8df66fd4"
+        }
+      ],
+      "canonical_sha256": "sha256_96f1f7b54eed633c873902221fdd51a1208de797b16e856cd26d05298bf20337",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 39.5,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ClucDCAV2 --strategy-path repos/thinkong_freqtradestrategies/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucDCAV2-ffea7b3d-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 12,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 12,
+      "trades_sha256": "sha256_220de4399b72676dde06f0cd4563d8ba55bda02f8992045ee857713c8df66fd4"
+    },
     "ClucHAnix": {
       "archive": "user_data/profile_smoke/ClucHAnix-895ff1e0-2026-09-09_16-19-54.zip",
       "archive_sha256": "sha256_8a5259c5a4153e5108685f87cbf81cb23a00dcf0bdd61651f633330ec2de19b4",
@@ -3505,6 +3583,52 @@
       "timerange": "20200301-20200401",
       "trades": 12,
       "trades_sha256": "sha256_07c00f43db81bcfdfb88907fe2fce2c84656372cacfb906f804dac042cb0a2c8"
+    },
+    "ClucHAnix_5M_E0V1E_DYNAMIC_TB": {
+      "archive": "user_data/profile_smoke/ClucHAnix_5M_E0V1E_DYNAMIC_TB-a98e4371-smoke_20200301_20200401-b4807b77-2026-09-15_06-50-57.zip",
+      "archive_sha256": "sha256_6e2df7e9ac9cb432c361946663044ad185591ba4e10dfa76b545ea5c62f7434d",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/ClucHAnix_5M_E0V1E_DYNAMIC_TB-a98e4371-smoke_20200301_20200401-b4807b77-2026-09-15_06-50-57.zip",
+          "archive_sha256": "sha256_6e2df7e9ac9cb432c361946663044ad185591ba4e10dfa76b545ea5c62f7434d",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 109.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ClucHAnix_5M_E0V1E_DYNAMIC_TB --strategy-path repos/phuchust_freqtrade_strategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix_5M_E0V1E_DYNAMIC_TB-a98e4371-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 193,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 193,
+          "trades_sha256": "sha256_0794df7ad0d744b723d8c2bae669ae4e9964c13db902ec160aeea6d0da5da633"
+        }
+      ],
+      "canonical_sha256": "sha256_5ff6ead9232e02d8d39a855da7e393c4a812cc4c050499d168045faefcf61971",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 109.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy ClucHAnix_5M_E0V1E_DYNAMIC_TB --strategy-path repos/phuchust_freqtrade_strategy --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/ClucHAnix_5M_E0V1E_DYNAMIC_TB-a98e4371-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 193,
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 193,
+      "trades_sha256": "sha256_0794df7ad0d744b723d8c2bae669ae4e9964c13db902ec160aeea6d0da5da633"
     },
     "ClucHAnix_5mTB1": {
       "archive": "user_data/profile_smoke/ClucHAnix_5mTB1-64f93719-smoke_20200301_20200401-b4807b77-2026-09-14_23-42-42.zip",
@@ -10635,6 +10759,204 @@
       "timerange": "20200301-20200401",
       "why": "Impossible to load Strategy 'NNPredict'. This class does not exist or contains Python code errors."
     },
+    "NNPredict_AdditiveAttention": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/NNPredict_AdditiveAttention-b8a95b3f-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'NNPredict_AdditiveAttention'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_c6791b6b740a44f562f5c8ee0f274deb3d0536fbe65c9789241eb246a3640946",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/NNPredict_AdditiveAttention-b8a95b3f-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.5,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'NNPredict_AdditiveAttention'. This class does not exist or contains Python code errors."
+    },
+    "NNPredict_Attention": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/NNPredict_Attention-5811787a-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Attention-5811787a-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'NNPredict_Attention'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_9e1ef268df5b94053c6b881257f9658f0f42ebb2879d766f5a35a847de4a3b69",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/NNPredict_Attention-5811787a-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.5,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Attention-5811787a-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'NNPredict_Attention'. This class does not exist or contains Python code errors."
+    },
+    "NNPredict_CNN": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/NNPredict_CNN-8176c806-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 7.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'NNPredict_CNN'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_dbefb09a984765af828a29b6261560ae8d5263b9c79a11d35cbefdd782cc2d64",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/NNPredict_CNN-8176c806-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 7.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'NNPredict_CNN'. This class does not exist or contains Python code errors."
+    },
+    "NNPredict_GRU": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/NNPredict_GRU-42be25c6-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Impossible to load Strategy 'NNPredict_GRU'. This class does not exist or contains Python code errors."
+        }
+      ],
+      "canonical_sha256": "sha256_a779526e29e4dc48ac7f77d6994a095ab8c1bfb9b03d13f821a59b41b55f4bc2",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/NNPredict_GRU-42be25c6-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Impossible to load Strategy 'NNPredict_GRU'. This class does not exist or contains Python code errors."
+    },
+    "NNPredict_LSTM": {
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601",
+        "20200301-20210301"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/NNPredict_LSTM-d4e9b45a-smoke_20200301_20200401-b4807b77-2026-09-15_06-54-13.zip",
+          "archive_sha256": "sha256_409787c680e8041a0ea23d7a15443624910207e1e98b8357d9da4fba70764a2a",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 125.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM-d4e9b45a-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_LSTM-d4e9b45a-smoke_20200301_20200601-9c543975-2026-09-15_06-57-48.zip",
+          "archive_sha256": "sha256_fee1e50c83aa44f0392e6e481d923a788ebb7cb936fd268532150f142a7c4a9e",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 215.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM-d4e9b45a-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "class1_rules": [],
+          "elapsed_s": 300.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM-d4e9b45a-smoke_20200301_20210301-fca63e6f --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "timeout",
+          "timerange": "20200301-20210301",
+          "why": "timeout after 300 seconds"
+        }
+      ],
+      "canonical_sha256": "sha256_31540507529e8916cce372bbefade15a5ec34c9d8aba5d2d7cb69487284a7e57",
+      "class1_rules": [],
+      "elapsed_s": 300.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM-d4e9b45a-smoke_20200301_20210301-fca63e6f --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "timeout",
+      "timerange": "20200301-20210301",
+      "trade_floor": 10,
+      "why": "timeout after 300 seconds"
+    },
     "NNTC": {
       "canonical_sha256": "sha256_a3698e006d25447e3ca688b91e6ab2de750d46542e064f1bf7afa4eafa497e5e",
       "class1_rules": [
@@ -15344,6 +15666,38 @@
       "trade_floor": 10,
       "trades": 92,
       "trades_sha256": "sha256_05bfddeaa9be0f512ef0e8a5a440ff95e121de0189d72cb3c8164d6e238234b5"
+    },
+    "TrailingBuyStrat2a": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/TrailingBuyStrat2a-a717f9a8-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrailingBuyStrat2a --strategy-path repos/thinkong_freqtradestrategies/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrailingBuyStrat2a-a717f9a8-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "Configuration error: 'stoploss' is a required property"
+        }
+      ],
+      "canonical_sha256": "sha256_d63905a3e57de321d769a8a65fa1348ac4b992311e8154df2722b315edb61ac7",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/TrailingBuyStrat2a-a717f9a8-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrailingBuyStrat2a --strategy-path repos/thinkong_freqtradestrategies/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrailingBuyStrat2a-a717f9a8-smoke_20200301_20200401-b4807b77 --cache none",
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "status": "failed",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "why": "Configuration error: 'stoploss' is a required property"
     },
     "TrailingBuyStratCluc": {
       "archive": "user_data/profile_smoke/TrailingBuyStratCluc-e73b2a7a-smoke_20200301_20200401-b4807b77-2026-09-14_23-47-43.zip",
