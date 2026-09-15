@@ -64,6 +64,12 @@ from __future__ import annotations
 
 import os
 
+# Needed eagerly, not lazily like keras/tensorflow elsewhere in this file:
+# _ColumnWritebackSeries below is a module-level pd.Series subclass, and
+# pandas is already an unconditional freqtrade dependency by the time this
+# module loads - unlike keras/tensorflow, importing it here adds nothing a
+# freqtrade backtest process was not already about to pay for.
+import pandas as pd
 
 RULE = "legacy_min_roi_reached_entry_signature"
 
@@ -1434,6 +1440,190 @@ def install_nnpredict_prediction_writeback():
     return True
 
 
+POPULATE_WRITEBACK_RULE = "populate_indicators_chained_writeback"
+
+
+# `pd.DataFrame.__getitem__` is patched globally for the process while
+# `populate_indicators` runs - it necessarily also sees any OTHER
+# dataframe pandas or freqtrade touches during that same call stack, not
+# only the strategy's own `dataframe` parameter. `Obelisk_3EMA_StochRSI_
+# ATR` calls `self.dp.get_pair_dataframe(...)` for an informative pair
+# mid-`populate_indicators`, which freqtrade loads fresh and resamples
+# through `dataframe.resample(interval, on="date")` - pandas' own
+# `TimeGrouper.__init__` then does `obj["date"]` as part of that, and
+# wrapping ITS return raised `KeyError: 'date'` where the unwrapped call
+# does not (confirmed directly: identical run with the shim disabled
+# completes cleanly). None of this cluster's own chained-assignment bugs
+# ever target `date`/`open`/`high`/`low`/`close`/`volume` - every one
+# writes into a custom indicator column the author's own snippet computed
+# - so excluding the six raw OHLCV names closes this exact collision
+# without narrowing what the shim was written to fix.
+_RAW_OHLCV_COLUMNS = frozenset(
+    {"date", "open", "high", "low", "close", "volume"})
+
+
+class _ColumnWritebackSeries(pd.Series):
+    """`dataframe[col]`'s actual return value, scoped to one
+    `populate_indicators` call - a genuine `Series` subclass, not a
+    delegating wrapper, because `ta.SMA(dataframe['close'], ...)` and
+    similar TA-Lib calls type-check their argument and reject anything that
+    is not really one (confirmed directly: a wrapper class raised "Argument
+    'real'/'high' has incorrect type" from inside the Supertrend/divergence
+    cluster's own indicator calls the first time this was tried). Every
+    normal Series operation - `.mean()`, arithmetic, slicing, being handed
+    to a C-extension that inspects the buffer protocol - behaves exactly
+    like the real Series it is, because it is one; only `.iloc`, `.iat`, a
+    bare `[key] =`, and `fillna(inplace=True)` are overridden, the four
+    write shapes a pre-Copy-on-Write snippet actually uses. `_constructor`
+    returns a plain `pd.Series` rather than this subclass, so a derived
+    result (`.rolling().mean()`, a slice, anything computed FROM this
+    column) is an ordinary Series with no writeback attached - the link to
+    the parent frame belongs only to the exact object `dataframe[col]`
+    itself returned, not to whatever gets computed from it.
+    """
+
+    _metadata = ["_wb_frame", "_wb_col"]
+
+    @property
+    def _constructor(self):
+        return pd.Series
+
+    def __setitem__(self, key, value):
+        # Bare `dataframe[col][key] = value` - the same chained shape as
+        # `.iloc`/`.iat`, one bracket pair shorter. `data[f'{key}_highs']
+        # [hh_idx] = 1` (RaposaDivergenceV1) reaches here with `hh_idx` an
+        # integer position array from a numpy peak-finder, which is exactly
+        # what a 2D positional `.iloc` set on the frame expects.
+        frame = object.__getattribute__(self, "_wb_frame")
+        col = object.__getattribute__(self, "_wb_col")
+        col_pos = frame.columns.get_loc(col)
+        frame.iloc[key, col_pos] = value
+
+    @property
+    def iloc(self):
+        return _ColumnWritebackIndexer(self)
+
+    @property
+    def iat(self):
+        # `.iat` takes only a scalar position, but a 2D positional `.iloc`
+        # set accepts one exactly the same way `.iloc` does with a scalar -
+        # no separate indexer shape needed.
+        return _ColumnWritebackIndexer(self)
+
+    def fillna(self, *args, **kwargs):
+        if not kwargs.get("inplace"):
+            return pd.Series(self).fillna(*args, **kwargs)
+        filled = pd.Series(self).fillna(
+            *args, **{k: v for k, v in kwargs.items() if k != "inplace"})
+        self[:] = filled
+        return None
+
+
+class _ColumnWritebackIndexer:
+    __slots__ = ("_series",)
+
+    def __init__(self, series):
+        self._series = series
+
+    def __getitem__(self, key):
+        return pd.Series(self._series).iloc[key]
+
+    def __setitem__(self, key, value):
+        self._series[key] = value
+
+
+def install_populate_indicators_chained_writeback():
+    """Make chained assignment inside `populate_indicators` reach the frame.
+
+    A cluster of unrelated strategies (Phase 11,
+    `repair/REGISTER.md`) - `Supertrend`/`SuperTrendPure`/
+    `FSupertrendStrategyBTC`/`FSupertrendStrategyETH`/`Insomnia_short`
+    (all the same widely-copied Supertrend snippet: `df['final_ub'].iat[i]
+    = ...` in a loop), `HarmonicDivergence` (`dataframe['total_bearish_
+    divergences'][index] = row.close`), `RaposaDivergenceV1`
+    (`data[f'{key}_highs'][hh_idx] = 1`, a numpy peak-finder's positions) -
+    each compute a real indicator value and then lose it the same way
+    `NNPredict.py` lost its predictions (`nnpredict_chained_iloc_writeback`,
+    above): `dataframe[col]` returns an object pandas 3.0's unconditional
+    Copy-on-Write has already disconnected from `dataframe`'s own data, so
+    assigning into it through `.iloc`, `.iat`, or a bare `[key]` mutates
+    only that disconnected copy. Confirmed directly against each row's own
+    captured output, not assumed from the shared symptom.
+
+    NOT a general chained-assignment fix - the same corpus-wide change
+    already investigated and declined for `MostOfAll`/`NNTC` as too
+    invasive. Narrower in the same two ways `nnpredict_chained_iloc_
+    writeback` is, adapted to a scope this shim shares across strategies
+    rather than one method name: IN TIME, `pd.DataFrame.__getitem__` is
+    only ever replaced for the duration of one `populate_indicators` call,
+    on the one strategy instance that opts in, restored in a `finally`
+    immediately after - never active during `populate_entry_trend`/
+    `populate_exit_trend`, which freqtrade always calls afterward, as
+    separate calls, once `populate_indicators` has already returned. IN
+    SHAPE, `dataframe[col]` still returns a genuine `Series` (`_ColumnWriteback
+    Series`, a real subclass, not a delegating stand-in - required because
+    TA-Lib type-checks its arguments and a non-Series wrapper broke `ta.SMA
+    (dataframe['close'], ...)` the first time this was tried) whose derived
+    results (`.rolling()`, arithmetic, slicing) are plain `Series` again, so
+    ordinary reads, comparisons, and indicator math elsewhere in the same
+    call are unaffected; only `.iloc`, `.iat`, a bare `[key] =`, and
+    `fillna(inplace=True)` on the column object ITSELF are rerouted.
+    `populate_indicators` itself is where this is safe to apply
+    broadly (every column, not one literal name): it is pure indicator
+    computation, entirely separate in time from the signal-generation
+    calls that follow, so there is no adjacent logic this could disturb by
+    also covering columns the shim was not written with in mind - unlike
+    `add_predictions`, which shares its base class across many rows and so
+    is scoped to the one column name that method actually breaks.
+
+    Same installation hook as `nnpredict_chained_iloc_writeback` and for
+    the same reason: `populate_indicators` may be overridden per strategy,
+    so the wrap has to find whichever version the resolved SUBCLASS
+    actually defines, on the instance, after real resolution.
+    """
+    from freqtrade.resolvers.strategy_resolver import StrategyResolver
+
+    if getattr(StrategyResolver, "_populate_writeback_installed", False):
+        return True
+
+    original_load = StrategyResolver.load_strategy
+
+    def load_strategy(config=None):
+        strategy = original_load(config)
+        cls = type(strategy)
+        own = getattr(cls, "populate_indicators", None)
+        if own is None:
+            return strategy
+
+        def populate_indicators(self, dataframe, metadata, _own=own):
+            import pandas as pd
+
+            original_getitem = pd.DataFrame.__getitem__
+
+            def patched_getitem(frame, key):
+                result = original_getitem(frame, key)
+                if (isinstance(key, str) and key not in _RAW_OHLCV_COLUMNS
+                        and isinstance(result, pd.Series)):
+                    wrapped = _ColumnWritebackSeries(result)
+                    object.__setattr__(wrapped, "_wb_frame", frame)
+                    object.__setattr__(wrapped, "_wb_col", key)
+                    return wrapped
+                return result
+
+            pd.DataFrame.__getitem__ = patched_getitem
+            try:
+                return _own(self, dataframe, metadata)
+            finally:
+                pd.DataFrame.__getitem__ = original_getitem
+
+        strategy.populate_indicators = populate_indicators.__get__(strategy, cls)
+        return strategy
+
+    StrategyResolver.load_strategy = staticmethod(load_strategy)
+    StrategyResolver._populate_writeback_installed = True
+    return True
+
+
 INSTALLERS = {RULE: install_min_roi_reached_entry,
               SCAN_RULE: install_tolerant_class_scan,
               ADVISE_RULE: install_idempotent_advise_entry,
@@ -1457,7 +1647,8 @@ INSTALLERS = {RULE: install_min_roi_reached_entry,
               TF_KERAS_SAVING_RULE: install_tf_keras_saving,
               SET_SESSION_RULE: install_tf_keras_backend_set_session_noop,
               BARE_SAVE_RULE: install_tf_keras_bare_save_redirect,
-              WRITEBACK_RULE: install_nnpredict_prediction_writeback}
+              WRITEBACK_RULE: install_nnpredict_prediction_writeback,
+              POPULATE_WRITEBACK_RULE: install_populate_indicators_chained_writeback}
 
 
 def install_from_environment():
@@ -2228,6 +2419,70 @@ def selftest():
         FakeResolver3._target = Plain
         plain = FakeResolver3.load_strategy()
         assert "add_predictions" not in vars(plain)
+    finally:
+        if saved_module is not None:
+            sys.modules["freqtrade.resolvers.strategy_resolver"] = saved_module
+        else:
+            sys.modules.pop("freqtrade.resolvers.strategy_resolver", None)
+
+    # The twenty-third shim: every chained shape (.iat, .iloc, bare [key],
+    # fillna(inplace=True)) reaches the real frame inside
+    # populate_indicators; the same shapes on an unrelated column called
+    # OUTSIDE that method (populate_entry_trend, called after it returns)
+    # are untouched, proving the patch is not left installed past its one
+    # call.
+    class FakeSupertrendStrategy(object):
+        def populate_indicators(self, dataframe, metadata):
+            dataframe["a"] = 0.0
+            for i in range(len(dataframe)):
+                dataframe["a"].iat[i] = float(i)          # .iat
+            dataframe["b"] = 0.0
+            dataframe["b"].iloc[1:3] = [10.0, 20.0]        # .iloc
+            dataframe["c"] = 0.0
+            dataframe["c"][[0, 2]] = 5.0                   # bare [key]
+            dataframe["d"] = pd.Series([1.0, None, 3.0, None, 5.0])
+            dataframe["d"].fillna(0.0, inplace=True)        # fillna(inplace)
+            # A raw OHLCV name is deliberately excluded - the fix that
+            # closed the Obelisk_3EMA_StochRSI_ATR collision - so this one
+            # must NOT be fixed even though it is the identical .iat shape
+            # column "a" above already proved works.
+            dataframe["close"].iat[0] = 999.0
+            return dataframe
+
+        def populate_entry_trend(self, dataframe, metadata):
+            # Same chained shape, but outside populate_indicators' scope -
+            # must behave exactly like bare pandas, i.e. NOT reach the frame.
+            dataframe["e"] = 0.0
+            dataframe["e"].iat[0] = 99.0
+            return dataframe
+
+    class FakeResolver4(object):
+        _target = None
+
+        @staticmethod
+        def load_strategy(config=None):
+            return FakeResolver4._target()
+
+    module = _types.ModuleType("freqtrade.resolvers.strategy_resolver")
+    module.StrategyResolver = FakeResolver4
+    saved_module = sys.modules.get("freqtrade.resolvers.strategy_resolver")
+    sys.modules["freqtrade.resolvers.strategy_resolver"] = module
+    try:
+        assert install_populate_indicators_chained_writeback()
+        FakeResolver4._target = FakeSupertrendStrategy
+        instance = FakeResolver4.load_strategy()
+        frame = pd.DataFrame({"close": [1.0] * 5})
+        result = instance.populate_indicators(frame, {"pair": "BTC/USDT"})
+        assert list(result["a"]) == [0.0, 1.0, 2.0, 3.0, 4.0], list(result["a"])
+        assert list(result["b"]) == [0.0, 10.0, 20.0, 0.0, 0.0], list(result["b"])
+        assert list(result["c"]) == [5.0, 0.0, 5.0, 0.0, 0.0], list(result["c"])
+        assert list(result["d"]) == [1.0, 0.0, 3.0, 0.0, 5.0], list(result["d"])
+        assert result["close"].iloc[0] == 1.0, \
+            "a raw OHLCV column must be excluded from the writeback, not fixed"
+
+        after = instance.populate_entry_trend(result, {"pair": "BTC/USDT"})
+        assert list(after["e"]) == [0.0] * 5, \
+            "the same chained shape outside populate_indicators must not be fixed"
     finally:
         if saved_module is not None:
             sys.modules["freqtrade.resolvers.strategy_resolver"] = saved_module

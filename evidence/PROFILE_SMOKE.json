@@ -5227,24 +5227,74 @@
       "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
     "DonchianBounce": {
-      "archive": "user_data/profile_smoke/DonchianBounce-9e62325a-2026-09-09_07-48-01.zip",
-      "archive_sha256": "sha256_542ad24c8b257358d43f1fb2d378c811b801452b338cd39a46d5f32dbf551ef7",
-      "artifact_key": "",
+      "archive": "user_data/profile_smoke/DonchianBounce-9e62325a-smoke_20200301_20200601-9c543975-2026-09-15_21-00-17.zip",
+      "archive_sha256": "sha256_d95494119d397ae5a9706fbf71a2c157d07cd0f924cefab306b1c03ca102af73",
+      "artifact_key": "smoke_20200301_20200601",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/DonchianBounce-9e62325a-smoke_20200301_20200401-b4807b77-2026-09-15_21-00-09.zip",
+          "archive_sha256": "sha256_cce93ed1bec68b41e2be86e7a21ee781b42c44e45ce5697901bcbeedde8e7034",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [
+            "restore_fetched_local_module"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 4.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy DonchianBounce --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DonchianBounce-9e62325a-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/DonchianBounce-9e62325a-smoke_20200301_20200601-9c543975-2026-09-15_21-00-17.zip",
+          "archive_sha256": "sha256_d95494119d397ae5a9706fbf71a2c157d07cd0f924cefab306b1c03ca102af73",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [
+            "restore_fetched_local_module"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 8.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy DonchianBounce --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DonchianBounce-9e62325a-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
       "canonical_sha256": "sha256_1f1dd01f712d4c7cd637e9614fbb6aa5b5b1d8101f5e1c624e260ba6a3a23c43",
       "class1_rules": [
         "restore_fetched_local_module"
       ],
       "config_overrides": {},
-      "elapsed_s": 4.7,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy DonchianBounce --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DonchianBounce-9e62325a --cache none",
+      "elapsed_s": 8.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy DonchianBounce --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DonchianBounce-9e62325a-smoke_20200301_20200601-9c543975 --cache none",
       "long_trades": 0,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
       "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "measured",
-      "timerange": "20200301-20200401",
+      "timerange": "20200301-20200601",
+      "trade_floor": 10,
       "trades": 0,
       "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
@@ -6214,176 +6264,104 @@
       "trades": 83
     },
     "FSupertrendStrategyBTC": {
-      "archive": "user_data/profile_smoke/FSupertrendStrategyBTC-a0068dde-smoke_20200301_20210301-fca63e6f-2026-09-10_07-25-09.zip",
-      "archive_sha256": "sha256_ed899ee051a37aaf96dda4f68b4ea29b7b4d579e8ac920978255208462324edd",
-      "artifact_key": "smoke_20200301_20210301",
+      "archive": "user_data/profile_smoke/FSupertrendStrategyBTC-a0068dde-smoke_20200301_20200401-b4807b77-2026-09-15_21-44-20.zip",
+      "archive_sha256": "sha256_848345ce989d5bbb6049b8b926c1522b31b90af97709a3fd9b47b6bbf9af943e",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
-        "20200301-20200401",
-        "20200301-20200601",
-        "20200301-20210301"
+        "20200301-20200401"
       ],
       "attempts": [
         {
-          "archive": "user_data/profile_smoke/FSupertrendStrategyBTC-a0068dde-smoke_20200301_20200401-b4807b77-2026-09-10_07-22-11.zip",
-          "archive_sha256": "sha256_acdfaa223ca12c755e3b1c754e756702401cfa17a8584aff98956ab0453d9299",
+          "archive": "user_data/profile_smoke/FSupertrendStrategyBTC-a0068dde-smoke_20200301_20200401-b4807b77-2026-09-15_21-44-20.zip",
+          "archive_sha256": "sha256_848345ce989d5bbb6049b8b926c1522b31b90af97709a3fd9b47b6bbf9af943e",
           "artifact_key": "smoke_20200301_20200401",
-          "class1_rules": [],
+          "class1_rules": [
+            "populate_indicators_chained_writeback"
+          ],
           "config_overrides": {},
-          "elapsed_s": 41.9,
+          "elapsed_s": 37.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy FSupertrendStrategyBTC --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FSupertrendStrategyBTC-a0068dde-smoke_20200301_20200401-b4807b77 --cache none",
-          "long_trades": 0,
+          "long_trades": 89,
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+          "runtime_id": "native_unversioned",
           "short_trades": 0,
           "status": "measured",
           "timerange": "20200301-20200401",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/FSupertrendStrategyBTC-a0068dde-smoke_20200301_20200601-9c543975-2026-09-10_07-23-08.zip",
-          "archive_sha256": "sha256_af9457340590f142cca079fc984217c5936f7720616335b467b8037224b95251",
-          "artifact_key": "smoke_20200301_20200601",
-          "class1_rules": [],
-          "config_overrides": {},
-          "elapsed_s": 56.7,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy FSupertrendStrategyBTC --strategy-path user_data/profile_repairs --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FSupertrendStrategyBTC-a0068dde-smoke_20200301_20200601-9c543975 --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20200301-20200601",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/FSupertrendStrategyBTC-a0068dde-smoke_20200301_20210301-fca63e6f-2026-09-10_07-25-09.zip",
-          "archive_sha256": "sha256_ed899ee051a37aaf96dda4f68b4ea29b7b4d579e8ac920978255208462324edd",
-          "artifact_key": "smoke_20200301_20210301",
-          "class1_rules": [],
-          "config_overrides": {},
-          "elapsed_s": 121.0,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy FSupertrendStrategyBTC --strategy-path user_data/profile_repairs --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FSupertrendStrategyBTC-a0068dde-smoke_20200301_20210301-fca63e6f --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20200301-20210301",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          "trades": 89,
+          "trades_sha256": "sha256_9665c9976a4f9af28ed053ae441f5565d6e7916a298497c62ea13f0144c45ff5"
         }
       ],
       "canonical_sha256": "sha256_a201f1e2cbb894e9d313446aa6b7a30026da3e36fddbb766ce290804ef29c0d0",
-      "class1_rules": [],
+      "class1_rules": [
+        "populate_indicators_chained_writeback"
+      ],
       "config_overrides": {},
-      "elapsed_s": 121.0,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy FSupertrendStrategyBTC --strategy-path user_data/profile_repairs --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FSupertrendStrategyBTC-a0068dde-smoke_20200301_20210301-fca63e6f --cache none",
-      "long_trades": 0,
+      "elapsed_s": 37.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy FSupertrendStrategyBTC --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FSupertrendStrategyBTC-a0068dde-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 89,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "measured",
-      "timerange": "20200301-20210301",
+      "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "trades": 0,
-      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "trades": 89,
+      "trades_sha256": "sha256_9665c9976a4f9af28ed053ae441f5565d6e7916a298497c62ea13f0144c45ff5"
     },
     "FSupertrendStrategyETH": {
-      "archive": "user_data/profile_smoke/FSupertrendStrategyETH-69f6617c-smoke_20200301_20210301-fca63e6f-2026-09-10_07-28-49.zip",
-      "archive_sha256": "sha256_9f0971d8f2a037da45cd37e616b1378cce5388e261c9108f3e3be35909a9895b",
-      "artifact_key": "smoke_20200301_20210301",
+      "archive": "user_data/profile_smoke/FSupertrendStrategyETH-69f6617c-smoke_20200301_20200401-b4807b77-2026-09-15_21-44-56.zip",
+      "archive_sha256": "sha256_28361f51e448e6d914c91be480f7092c3b32e66603f0c7712f355422f3c165dd",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
-        "20200301-20200401",
-        "20200301-20200601",
-        "20200301-20210301"
+        "20200301-20200401"
       ],
       "attempts": [
         {
-          "archive": "user_data/profile_smoke/FSupertrendStrategyETH-69f6617c-smoke_20200301_20200401-b4807b77-2026-09-10_07-25-52.zip",
-          "archive_sha256": "sha256_0394524237af51e8ed0818d21fce3a2dad09fe6fa59c6d1d9ceafce8256d3d2b",
+          "archive": "user_data/profile_smoke/FSupertrendStrategyETH-69f6617c-smoke_20200301_20200401-b4807b77-2026-09-15_21-44-56.zip",
+          "archive_sha256": "sha256_28361f51e448e6d914c91be480f7092c3b32e66603f0c7712f355422f3c165dd",
           "artifact_key": "smoke_20200301_20200401",
-          "class1_rules": [],
+          "class1_rules": [
+            "populate_indicators_chained_writeback"
+          ],
           "config_overrides": {},
-          "elapsed_s": 42.6,
+          "elapsed_s": 36.4,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy FSupertrendStrategyETH --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FSupertrendStrategyETH-69f6617c-smoke_20200301_20200401-b4807b77 --cache none",
-          "long_trades": 0,
+          "long_trades": 89,
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+          "runtime_id": "native_unversioned",
           "short_trades": 0,
           "status": "measured",
           "timerange": "20200301-20200401",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/FSupertrendStrategyETH-69f6617c-smoke_20200301_20200601-9c543975-2026-09-10_07-26-46.zip",
-          "archive_sha256": "sha256_0816da093095388adcb0e1ca2e9c995493ff2c64bb3458140fc201d47cd84aa7",
-          "artifact_key": "smoke_20200301_20200601",
-          "class1_rules": [],
-          "config_overrides": {},
-          "elapsed_s": 54.2,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy FSupertrendStrategyETH --strategy-path user_data/profile_repairs --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FSupertrendStrategyETH-69f6617c-smoke_20200301_20200601-9c543975 --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20200301-20200601",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/FSupertrendStrategyETH-69f6617c-smoke_20200301_20210301-fca63e6f-2026-09-10_07-28-49.zip",
-          "archive_sha256": "sha256_9f0971d8f2a037da45cd37e616b1378cce5388e261c9108f3e3be35909a9895b",
-          "artifact_key": "smoke_20200301_20210301",
-          "class1_rules": [],
-          "config_overrides": {},
-          "elapsed_s": 122.7,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy FSupertrendStrategyETH --strategy-path user_data/profile_repairs --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FSupertrendStrategyETH-69f6617c-smoke_20200301_20210301-fca63e6f --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20200301-20210301",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          "trades": 89,
+          "trades_sha256": "sha256_9665c9976a4f9af28ed053ae441f5565d6e7916a298497c62ea13f0144c45ff5"
         }
       ],
       "canonical_sha256": "sha256_99c2530e2edb785dc7c24748ea03a6eeea341f250286320ddcc1a1d908db4842",
-      "class1_rules": [],
+      "class1_rules": [
+        "populate_indicators_chained_writeback"
+      ],
       "config_overrides": {},
-      "elapsed_s": 122.7,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy FSupertrendStrategyETH --strategy-path user_data/profile_repairs --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FSupertrendStrategyETH-69f6617c-smoke_20200301_20210301-fca63e6f --cache none",
-      "long_trades": 0,
+      "elapsed_s": 36.4,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy FSupertrendStrategyETH --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FSupertrendStrategyETH-69f6617c-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 89,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "measured",
-      "timerange": "20200301-20210301",
+      "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "trades": 0,
-      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "trades": 89,
+      "trades_sha256": "sha256_9665c9976a4f9af28ed053ae441f5565d6e7916a298497c62ea13f0144c45ff5"
     },
     "FTT_DWT_FBB_FUTURES": {
       "canonical_sha256": "sha256_afe6cdaf156b32d542e3e49d150a7195b9632bd3ade0ba5693d6495471aaa3a7",
@@ -8039,22 +8017,54 @@
       "trades_sha256": "sha256_fe6a283b7c50a22c95a769c4fb484738b2ccf54fb2638838146edd2606613c17"
     },
     "HarmonicDivergence": {
-      "archive": "user_data/profile_smoke/HarmonicDivergence-2026-08-31_15-53-28.zip",
-      "archive_sha256": "sha256_ebfea2561a45f60d619d89c9a0a8491d0e1b9a26ff81507bbe7a7433bc2142bb",
+      "archive": "user_data/profile_smoke/HarmonicDivergence-03b97797-smoke_20200301_20200401-b4807b77-2026-09-15_21-51-28.zip",
+      "archive_sha256": "sha256_9d44e58e95b7bd4b01e9c3ee7bad675a283b8504d5177c6742a5c57d8a24df84",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/HarmonicDivergence-03b97797-smoke_20200301_20200401-b4807b77-2026-09-15_21-51-28.zip",
+          "archive_sha256": "sha256_9d44e58e95b7bd4b01e9c3ee7bad675a283b8504d5177c6742a5c57d8a24df84",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [
+            "populate_indicators_chained_writeback"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 148.4,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy HarmonicDivergence --strategy-path repos/TheoBrigitte_freqtrade/strategies/harmonic-divergence --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/HarmonicDivergence-03b97797-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 850,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 850,
+          "trades_sha256": "sha256_8b9c5ef5dddb30add5b57f0c8a73d46e71cb891313da65bce24bbe7204aa4bf1"
+        }
+      ],
       "canonical_sha256": "sha256_52da87214f7d26b179a743343405632bada1a90282b13276b3bf7444d142ff82",
-      "class1_rules": [],
+      "class1_rules": [
+        "populate_indicators_chained_writeback"
+      ],
       "config_overrides": {},
-      "elapsed_s": 51.3,
-      "long_trades": 0,
+      "elapsed_s": 148.4,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy HarmonicDivergence --strategy-path repos/TheoBrigitte_freqtrade/strategies/harmonic-divergence --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/HarmonicDivergence-03b97797-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 850,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "measured",
       "timerange": "20200301-20200401",
-      "trades": 0,
-      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "trade_floor": 10,
+      "trades": 850,
+      "trades_sha256": "sha256_8b9c5ef5dddb30add5b57f0c8a73d46e71cb891313da65bce24bbe7204aa4bf1"
     },
     "HarmonicDivergence_fix": {
       "archive": "user_data/profile_smoke/HarmonicDivergence_fix-2026-08-31_15-52-37.zip",
@@ -8477,16 +8487,76 @@
       "why": "Informative dataframe for (NEO/USDT, 30m, spot) is empty. Can't populate informative indicators."
     },
     "Insomnia_short": {
+      "archive": "user_data/profile_smoke/Insomnia_short-77424424-smoke_20200301_20200601-9c543975-2026-09-15_22-00-50.zip",
+      "archive_sha256": "sha256_8776947f3a3241f262a8d060b32b545dbcf43170d3b3b853c15fd5ffe3c21d42",
+      "artifact_key": "smoke_20200301_20200601",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/Insomnia_short-77424424-smoke_20200301_20200401-b4807b77-2026-09-15_22-00-43.zip",
+          "archive_sha256": "sha256_1e4e8bfc354d8a176285940287aee70bb432486d78b18fb6abe38276da2aa40c",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [
+            "populate_indicators_chained_writeback"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 6.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy Insomnia_short --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Insomnia_short-77424424-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/Insomnia_short-77424424-smoke_20200301_20200601-9c543975-2026-09-15_22-00-50.zip",
+          "archive_sha256": "sha256_8776947f3a3241f262a8d060b32b545dbcf43170d3b3b853c15fd5ffe3c21d42",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [
+            "populate_indicators_chained_writeback"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 7.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy Insomnia_short --strategy-path user_data/profile_repairs --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Insomnia_short-77424424-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 0,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
       "canonical_sha256": "sha256_7125fe8db9f08f1b3cee2b0d4a73cd3f64f074e323de6bb7d914cb051a7ecbcb",
-      "elapsed_s": 6.7,
+      "class1_rules": [
+        "populate_indicators_chained_writeback"
+      ],
+      "config_overrides": {},
+      "elapsed_s": 7.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy Insomnia_short --strategy-path user_data/profile_repairs --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Insomnia_short-77424424-smoke_20200301_20200601-9c543975 --cache none",
       "long_trades": 0,
       "mode": "futures",
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "measured",
-      "timerange": "20200301-20200401",
-      "trades": 0
+      "timerange": "20200301-20200601",
+      "trade_floor": 10,
+      "trades": 0,
+      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
     "InverseVolatilityPortfolio": {
       "archive": "user_data/profile_smoke/InverseVolatilityPortfolio-22acd1d3-2026-09-09_22-00-18.zip",
@@ -9622,22 +9692,68 @@
       "trades_sha256": "sha256_553846f36924d92f45e363dc990e4a87d451e9ae1b0d52733b1a2295b90cd947"
     },
     "MeanReversionTrend": {
-      "archive": "user_data/profile_smoke/MeanReversionTrend-9c6041b5-2026-09-08_17-21-22.zip",
-      "archive_sha256": "sha256_e69bc233e1175fda1183cd02a3deba33db46d668ec818c79cd6cd574e7ff5d0a",
-      "artifact_key": "",
+      "archive": "user_data/profile_smoke/MeanReversionTrend-9c6041b5-smoke_20200301_20200601-9c543975-2026-09-15_21-00-36.zip",
+      "archive_sha256": "sha256_ae404aa2c3a80036c937a83ab2c769b2a24ba0248827a95b2006fd9ce68592a4",
+      "artifact_key": "smoke_20200301_20200601",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/MeanReversionTrend-9c6041b5-smoke_20200301_20200401-b4807b77-2026-09-15_21-00-32.zip",
+          "archive_sha256": "sha256_15718beb6c089cfde280e676956454d173876bd83836a8bc3eb81e559cf7987b",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 4.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MeanReversionTrend --strategy-path repos/yeboster_liquidity-sweep-freqtrade/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MeanReversionTrend-9c6041b5-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/MeanReversionTrend-9c6041b5-smoke_20200301_20200601-9c543975-2026-09-15_21-00-36.zip",
+          "archive_sha256": "sha256_ae404aa2c3a80036c937a83ab2c769b2a24ba0248827a95b2006fd9ce68592a4",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 4.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MeanReversionTrend --strategy-path repos/yeboster_liquidity-sweep-freqtrade/strategies --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MeanReversionTrend-9c6041b5-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
       "canonical_sha256": "sha256_8970d13fe62a153642ffd4f644c36491f7fa92b1be077caadbea5be237b3efdb",
       "class1_rules": [],
       "config_overrides": {},
-      "elapsed_s": 40.8,
-      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy MeanReversionTrend --strategy-path repos/yeboster_liquidity-sweep-freqtrade/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MeanReversionTrend-9c6041b5 --cache none",
+      "elapsed_s": 4.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MeanReversionTrend --strategy-path repos/yeboster_liquidity-sweep-freqtrade/strategies --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MeanReversionTrend-9c6041b5-smoke_20200301_20200601-9c543975 --cache none",
       "long_trades": 0,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "measured",
-      "timerange": "20200301-20200401",
+      "timerange": "20200301-20200601",
+      "trade_floor": 10,
       "trades": 0,
       "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
@@ -9955,25 +10071,76 @@
       "trades_sha256": "sha256_63ce8db599fdef6efaff2c6caab71d5c3952ca11396816227566c8beb6de6daa"
     },
     "MultiActionZone": {
-      "archive": "user_data/profile_smoke/MultiActionZone-179b96b7-2026-09-05_15-21-02.zip",
-      "archive_sha256": "sha256_f19eaead97260272529b6d4377a4e1dfb9e9bcf7155194df885e3de174adfa77",
+      "archive": "user_data/profile_smoke/MultiActionZone-179b96b7-smoke_20200301_20200601-9c543975-2026-09-15_21-00-04.zip",
+      "archive_sha256": "sha256_cd06c46148a6918a439b6c7ad5cbf985d48b4fc4dd4ff2335190f6bcb75746e2",
+      "artifact_key": "smoke_20200301_20200601",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/MultiActionZone-179b96b7-smoke_20200301_20200401-b4807b77-2026-09-15_21-00-00.zip",
+          "archive_sha256": "sha256_dca0a553138d4ed0525892eb96c9444b3eef94185f706ced8e1ae2a1c330f5dd",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [
+            "legacy_fillna_method_kwarg"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 3.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MultiActionZone --strategy-path repos/miwtoo_ft-action-zone/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiActionZone-179b96b7-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/MultiActionZone-179b96b7-smoke_20200301_20200601-9c543975-2026-09-15_21-00-04.zip",
+          "archive_sha256": "sha256_cd06c46148a6918a439b6c7ad5cbf985d48b4fc4dd4ff2335190f6bcb75746e2",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [
+            "legacy_fillna_method_kwarg"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 4.4,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MultiActionZone --strategy-path repos/miwtoo_ft-action-zone/user_data/strategies --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiActionZone-179b96b7-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 9,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 9,
+          "trades_sha256": "sha256_be62101b79dc6c654fe3e8351025ef1f6e14f7ceeda1cc1eaa51922fa7aaca3a"
+        }
+      ],
       "canonical_sha256": "sha256_05288498308646163d89560bf12ece262b72c3ce4dcc2e8cfb6310e269518401",
       "class1_rules": [
         "legacy_fillna_method_kwarg"
       ],
       "config_overrides": {},
-      "elapsed_s": 57.7,
-      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy MultiActionZone --strategy-path repos/miwtoo_ft-action-zone/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiActionZone-179b96b7 --cache none",
-      "long_trades": 0,
+      "elapsed_s": 4.4,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MultiActionZone --strategy-path repos/miwtoo_ft-action-zone/user_data/strategies --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MultiActionZone-179b96b7-smoke_20200301_20200601-9c543975 --cache none",
+      "long_trades": 9,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
       "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "measured",
-      "timerange": "20200301-20200401",
-      "trades": 0,
-      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "timerange": "20200301-20200601",
+      "trade_floor": 10,
+      "trades": 9,
+      "trades_sha256": "sha256_be62101b79dc6c654fe3e8351025ef1f6e14f7ceeda1cc1eaa51922fa7aaca3a"
     },
     "MultiMA_TSL": {
       "archive": "user_data/profile_smoke/MultiMA_TSL-432f3842-2026-09-04_04-48-31.zip",
@@ -10760,28 +10927,27 @@
       "why": "Impossible to load Strategy 'NNPredict'. This class does not exist or contains Python code errors."
     },
     "NNPredict_AdditiveAttention": {
-      "archive": "user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20220401-c6a19533-2026-09-15_17-19-15.zip",
-      "archive_sha256": "sha256_f0c90942f29ec566532d726359bab8f27186ceef93ee092ce430a60598a385f2",
-      "artifact_key": "smoke_20210401_20220401",
+      "archive": "user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-42-20.zip",
+      "archive_sha256": "sha256_9aa6fa3f315d1fb7569fbaf3fef33d6fde28add2dbae1ebeabec1cd6fa836982",
+      "artifact_key": "smoke_20210401_20210501",
       "attempted_timeranges": [
-        "20210401-20210501",
-        "20210401-20210701",
-        "20210401-20220401"
+        "20210401-20210501"
       ],
       "attempts": [
         {
-          "archive": "user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20210501-5d9f1c4c-2026-09-15_17-01-04.zip",
-          "archive_sha256": "sha256_a8586feb31632849687298f2bafc8d8d4ec25fff424029870c3c206b0c1d0850",
+          "archive": "user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-42-20.zip",
+          "archive_sha256": "sha256_9aa6fa3f315d1fb7569fbaf3fef33d6fde28add2dbae1ebeabec1cd6fa836982",
           "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nnpredict_chained_iloc_writeback"
           ],
           "config_overrides": {},
-          "elapsed_s": 77.0,
+          "elapsed_s": 87.3,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20210501-5d9f1c4c --cache none",
-          "long_trades": 0,
+          "long_trades": 184,
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
@@ -10789,77 +10955,32 @@
           "short_trades": 0,
           "status": "measured",
           "timerange": "20210401-20210501",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20210701-b16b8c0d-2026-09-15_17-04-51.zip",
-          "archive_sha256": "sha256_cce386d150c65c9c6b7a594e6f1238dfc4314d7b268866d58f6d4862f4003fa7",
-          "artifact_key": "smoke_20210401_20210701",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 226.9,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20210701-b16b8c0d --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20210701",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20220401-c6a19533-2026-09-15_17-19-15.zip",
-          "archive_sha256": "sha256_f0c90942f29ec566532d726359bab8f27186ceef93ee092ce430a60598a385f2",
-          "artifact_key": "smoke_20210401_20220401",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 864.5,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20220401-c6a19533 --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20220401",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          "trades": 184,
+          "trades_sha256": "sha256_1a918375b9775fba4bf224491d9249b92dcbb778ad1fa3b604e962ea37aabbb0"
         }
       ],
       "canonical_sha256": "sha256_c6791b6b740a44f562f5c8ee0f274deb3d0536fbe65c9789241eb246a3640946",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nnpredict_chained_iloc_writeback"
       ],
       "config_overrides": {},
-      "elapsed_s": 864.5,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20220401-c6a19533 --cache none",
-      "long_trades": 0,
+      "elapsed_s": 87.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20210501-5d9f1c4c --cache none",
+      "long_trades": 184,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
       "short_trades": 0,
-      "smoke_policy_id": "custom_023e1cb46543",
+      "smoke_policy_id": "custom_2c2f6375aa85",
       "status": "measured",
-      "timerange": "20210401-20220401",
+      "timerange": "20210401-20210501",
       "trade_floor": 10,
-      "trades": 0,
-      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "trades": 184,
+      "trades_sha256": "sha256_1a918375b9775fba4bf224491d9249b92dcbb778ad1fa3b604e962ea37aabbb0"
     },
     "NNPredict_Attention": {
       "attempted_timeranges": [
@@ -10902,27 +11023,26 @@
       "why": "Impossible to load Strategy 'NNPredict_Attention'. This class does not exist or contains Python code errors."
     },
     "NNPredict_CNN": {
-      "archive": "user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20220401-c6a19533-2026-09-15_17-27-36.zip",
-      "archive_sha256": "sha256_3444464ddb5d9eea352ebeba9dc015ed3d8deb1f9540b9a18622aecebd8dc74f",
-      "artifact_key": "smoke_20210401_20220401",
+      "archive": "user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-43-05.zip",
+      "archive_sha256": "sha256_ef5b25af63a6db8d29b0be9583cb543f65acdd2fc9b92414a0c4e80df83aa9ad",
+      "artifact_key": "smoke_20210401_20210501",
       "attempted_timeranges": [
-        "20210401-20210501",
-        "20210401-20210701",
-        "20210401-20220401"
+        "20210401-20210501"
       ],
       "attempts": [
         {
-          "archive": "user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20210501-5d9f1c4c-2026-09-15_17-19-51.zip",
-          "archive_sha256": "sha256_bda7ac50a370050e648e762a16e3a20a85b31b80b5fc4cc7355cc70467e970a7",
+          "archive": "user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-43-05.zip",
+          "archive_sha256": "sha256_ef5b25af63a6db8d29b0be9583cb543f65acdd2fc9b92414a0c4e80df83aa9ad",
           "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
+            "tf_keras_bare_save_redirect",
+            "nnpredict_chained_iloc_writeback"
           ],
           "config_overrides": {},
-          "elapsed_s": 36.1,
+          "elapsed_s": 44.7,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20210501-5d9f1c4c --cache none",
-          "long_trades": 0,
+          "long_trades": 149,
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
@@ -10930,98 +11050,54 @@
           "short_trades": 0,
           "status": "measured",
           "timerange": "20210401-20210501",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20210701-b16b8c0d-2026-09-15_17-21-31.zip",
-          "archive_sha256": "sha256_b130a6826b5dff2f63b3b164b1952654237c0af6e9f59d3705406babb950c902",
-          "artifact_key": "smoke_20210401_20210701",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 99.3,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20210701-b16b8c0d --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20210701",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20220401-c6a19533-2026-09-15_17-27-36.zip",
-          "archive_sha256": "sha256_3444464ddb5d9eea352ebeba9dc015ed3d8deb1f9540b9a18622aecebd8dc74f",
-          "artifact_key": "smoke_20210401_20220401",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 365.6,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20220401-c6a19533 --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20220401",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          "trades": 149,
+          "trades_sha256": "sha256_7d13701a02ff74773bccedcd0fb5d0a751808c6669b31993e5b0112797340c3d"
         }
       ],
       "canonical_sha256": "sha256_dbefb09a984765af828a29b6261560ae8d5263b9c79a11d35cbefdd782cc2d64",
       "class1_rules": [
         "restore_copied_local_module",
-        "tf_keras_bare_save_redirect"
+        "tf_keras_bare_save_redirect",
+        "nnpredict_chained_iloc_writeback"
       ],
       "config_overrides": {},
-      "elapsed_s": 365.6,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20220401-c6a19533 --cache none",
-      "long_trades": 0,
+      "elapsed_s": 44.7,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20210501-5d9f1c4c --cache none",
+      "long_trades": 149,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
       "short_trades": 0,
-      "smoke_policy_id": "custom_023e1cb46543",
+      "smoke_policy_id": "custom_2c2f6375aa85",
       "status": "measured",
-      "timerange": "20210401-20220401",
+      "timerange": "20210401-20210501",
       "trade_floor": 10,
-      "trades": 0,
-      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "trades": 149,
+      "trades_sha256": "sha256_7d13701a02ff74773bccedcd0fb5d0a751808c6669b31993e5b0112797340c3d"
     },
     "NNPredict_GRU": {
-      "archive": "user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20220401-c6a19533-2026-09-15_17-45-36.zip",
-      "archive_sha256": "sha256_d99964f22c3212ae21d92533bff46387f5333c764b583dab421b68dc65165d66",
-      "artifact_key": "smoke_20210401_20220401",
+      "archive": "user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-44-26.zip",
+      "archive_sha256": "sha256_d39004e175e34cef7881faa68fd008a4a3b72ace7d49c49c5eec41be7583bc1e",
+      "artifact_key": "smoke_20210401_20210501",
       "attempted_timeranges": [
-        "20210401-20210501",
-        "20210401-20210701",
-        "20210401-20220401"
+        "20210401-20210501"
       ],
       "attempts": [
         {
-          "archive": "user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20210501-5d9f1c4c-2026-09-15_17-28-53.zip",
-          "archive_sha256": "sha256_40492ecd8a2569c31de5f2589133dfaf04ce3cdc75f20bb1aab2cb647f232f4c",
+          "archive": "user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-44-26.zip",
+          "archive_sha256": "sha256_d39004e175e34cef7881faa68fd008a4a3b72ace7d49c49c5eec41be7583bc1e",
           "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nnpredict_chained_iloc_writeback"
           ],
           "config_overrides": {},
-          "elapsed_s": 76.8,
+          "elapsed_s": 81.6,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20210501-5d9f1c4c --cache none",
-          "long_trades": 0,
+          "long_trades": 283,
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
@@ -11029,77 +11105,32 @@
           "short_trades": 0,
           "status": "measured",
           "timerange": "20210401-20210501",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20210701-b16b8c0d-2026-09-15_17-32-21.zip",
-          "archive_sha256": "sha256_0976c6342ecc408a0828587939b3a050cebda107961fc1b07870f04b4b69fb9c",
-          "artifact_key": "smoke_20210401_20210701",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 208.1,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20210701-b16b8c0d --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20210701",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20220401-c6a19533-2026-09-15_17-45-36.zip",
-          "archive_sha256": "sha256_d99964f22c3212ae21d92533bff46387f5333c764b583dab421b68dc65165d66",
-          "artifact_key": "smoke_20210401_20220401",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 794.4,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20220401-c6a19533 --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20220401",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          "trades": 283,
+          "trades_sha256": "sha256_70ad74cef7ceec6b16c1a0eb22df3c29b40b99d43bf78e35e8b30acc31522a5b"
         }
       ],
       "canonical_sha256": "sha256_a779526e29e4dc48ac7f77d6994a095ab8c1bfb9b03d13f821a59b41b55f4bc2",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nnpredict_chained_iloc_writeback"
       ],
       "config_overrides": {},
-      "elapsed_s": 794.4,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20220401-c6a19533 --cache none",
-      "long_trades": 0,
+      "elapsed_s": 81.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20210501-5d9f1c4c --cache none",
+      "long_trades": 283,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
       "short_trades": 0,
-      "smoke_policy_id": "custom_023e1cb46543",
+      "smoke_policy_id": "custom_2c2f6375aa85",
       "status": "measured",
-      "timerange": "20210401-20220401",
+      "timerange": "20210401-20210501",
       "trade_floor": 10,
-      "trades": 0,
-      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "trades": 283,
+      "trades_sha256": "sha256_70ad74cef7ceec6b16c1a0eb22df3c29b40b99d43bf78e35e8b30acc31522a5b"
     },
     "NNPredict_LSTM": {
       "attempted_timeranges": [
@@ -11242,28 +11273,27 @@
       "why": "timeout after 300 seconds"
     },
     "NNPredict_LSTM2": {
-      "archive": "user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20220401-c6a19533-2026-09-15_18-05-17.zip",
-      "archive_sha256": "sha256_08e404312c7540939a1a2bf302660418e6729f133fe7690892ee1649e7977574",
-      "artifact_key": "smoke_20210401_20220401",
+      "archive": "user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-45-53.zip",
+      "archive_sha256": "sha256_710aa2f6d6e0b3df4b9dfbd0917efab7ab8f415eae6addad2dc9683de378864e",
+      "artifact_key": "smoke_20210401_20210501",
       "attempted_timeranges": [
-        "20210401-20210501",
-        "20210401-20210701",
-        "20210401-20220401"
+        "20210401-20210501"
       ],
       "attempts": [
         {
-          "archive": "user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20210501-5d9f1c4c-2026-09-15_17-46-59.zip",
-          "archive_sha256": "sha256_14b7be6aee639f805931e0e8827cb7763a4594fb9fe886f839dbf592875e8a9d",
+          "archive": "user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-45-53.zip",
+          "archive_sha256": "sha256_710aa2f6d6e0b3df4b9dfbd0917efab7ab8f415eae6addad2dc9683de378864e",
           "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nnpredict_chained_iloc_writeback"
           ],
           "config_overrides": {},
-          "elapsed_s": 83.1,
+          "elapsed_s": 87.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20210501-5d9f1c4c --cache none",
-          "long_trades": 0,
+          "long_trades": 189,
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
@@ -11271,101 +11301,55 @@
           "short_trades": 0,
           "status": "measured",
           "timerange": "20210401-20210501",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20210701-b16b8c0d-2026-09-15_17-50-43.zip",
-          "archive_sha256": "sha256_47fdd541cf4c6e6e5cc466578e9e8bf61187262d8d0da4ceedfd8058f34229cd",
-          "artifact_key": "smoke_20210401_20210701",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 224.5,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20210701-b16b8c0d --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20210701",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20220401-c6a19533-2026-09-15_18-05-17.zip",
-          "archive_sha256": "sha256_08e404312c7540939a1a2bf302660418e6729f133fe7690892ee1649e7977574",
-          "artifact_key": "smoke_20210401_20220401",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 873.7,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20220401-c6a19533 --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20220401",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          "trades": 189,
+          "trades_sha256": "sha256_1b6cb2338f7680918090d28bb9baaddd0f2aa0f1b2a6f932debf364a6b04bb1e"
         }
       ],
       "canonical_sha256": "sha256_b9d859ecdc6c813a6c41f37923c10c663f769c877b8833f2228c0facff750972",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nnpredict_chained_iloc_writeback"
       ],
       "config_overrides": {},
-      "elapsed_s": 873.7,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20220401-c6a19533 --cache none",
-      "long_trades": 0,
+      "elapsed_s": 87.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20210501-5d9f1c4c --cache none",
+      "long_trades": 189,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
       "short_trades": 0,
-      "smoke_policy_id": "custom_023e1cb46543",
+      "smoke_policy_id": "custom_2c2f6375aa85",
       "status": "measured",
-      "timerange": "20210401-20220401",
+      "timerange": "20210401-20210501",
       "trade_floor": 10,
-      "trades": 0,
-      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "trades": 189,
+      "trades_sha256": "sha256_1b6cb2338f7680918090d28bb9baaddd0f2aa0f1b2a6f932debf364a6b04bb1e"
     },
     "NNPredict_LSTM3": {
-      "archive": "user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20220401-c6a19533-2026-09-15_18-31-37.zip",
-      "archive_sha256": "sha256_dd6cfd3f8e2c8546965b56c7dbbfe64be76b07c7c7dd94a2b5240430c726322f",
-      "artifact_key": "smoke_20210401_20220401",
+      "archive": "user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-47-36.zip",
+      "archive_sha256": "sha256_90b82519f6ae70623af499201ad9d71b4c2ecdd541f77b92eb1adf47985e1c13",
+      "artifact_key": "smoke_20210401_20210501",
       "attempted_timeranges": [
-        "20210401-20210501",
-        "20210401-20210701",
-        "20210401-20220401"
+        "20210401-20210501"
       ],
       "attempts": [
         {
-          "archive": "user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20210501-5d9f1c4c-2026-09-15_18-06-59.zip",
-          "archive_sha256": "sha256_e5e2333ec7f7bab821627566f185ceabef2b3e6d3bcca6a7a3c3ee99cb8270c1",
+          "archive": "user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-47-36.zip",
+          "archive_sha256": "sha256_90b82519f6ae70623af499201ad9d71b4c2ecdd541f77b92eb1adf47985e1c13",
           "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nnpredict_chained_iloc_writeback"
           ],
           "config_overrides": {},
-          "elapsed_s": 101.3,
+          "elapsed_s": 102.4,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20210501-5d9f1c4c --cache none",
-          "long_trades": 0,
+          "long_trades": 197,
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
@@ -11373,100 +11357,54 @@
           "short_trades": 0,
           "status": "measured",
           "timerange": "20210401-20210501",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20210701-b16b8c0d-2026-09-15_18-11-57.zip",
-          "archive_sha256": "sha256_666971fabc8c5f5b2053639222d99779a29a664e9531f2855b1809204b9a7754",
-          "artifact_key": "smoke_20210401_20210701",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 298.0,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20210701-b16b8c0d --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20210701",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20220401-c6a19533-2026-09-15_18-31-37.zip",
-          "archive_sha256": "sha256_dd6cfd3f8e2c8546965b56c7dbbfe64be76b07c7c7dd94a2b5240430c726322f",
-          "artifact_key": "smoke_20210401_20220401",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 1180.9,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20220401-c6a19533 --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20220401",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          "trades": 197,
+          "trades_sha256": "sha256_86661ce6568a58684e9e4d57f6d4f3ef7bd1e9b84c59599bcb732a0808355c95"
         }
       ],
       "canonical_sha256": "sha256_69bf88a43452c626edd8b01fbb5596afe5f5af079aed01d34fbe3587c4aef3d7",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nnpredict_chained_iloc_writeback"
       ],
       "config_overrides": {},
-      "elapsed_s": 1180.9,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20220401-c6a19533 --cache none",
-      "long_trades": 0,
+      "elapsed_s": 102.4,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20210501-5d9f1c4c --cache none",
+      "long_trades": 197,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
       "short_trades": 0,
-      "smoke_policy_id": "custom_023e1cb46543",
+      "smoke_policy_id": "custom_2c2f6375aa85",
       "status": "measured",
-      "timerange": "20210401-20220401",
+      "timerange": "20210401-20210501",
       "trade_floor": 10,
-      "trades": 0,
-      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "trades": 197,
+      "trades_sha256": "sha256_86661ce6568a58684e9e4d57f6d4f3ef7bd1e9b84c59599bcb732a0808355c95"
     },
     "NNPredict_MLP": {
-      "archive": "user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20220401-c6a19533-2026-09-15_18-46-13.zip",
-      "archive_sha256": "sha256_6f68dffa451cbc8e9590e0c3c27ad079c732017449af3c11411984b4a56cf87a",
-      "artifact_key": "smoke_20210401_20220401",
+      "archive": "user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-48-54.zip",
+      "archive_sha256": "sha256_e078db4f7d1099b776c171a88576d748945e36a28755daabf3129ab109048760",
+      "artifact_key": "smoke_20210401_20210501",
       "attempted_timeranges": [
-        "20210401-20210501",
-        "20210401-20210701",
-        "20210401-20220401"
+        "20210401-20210501"
       ],
       "attempts": [
         {
-          "archive": "user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20210501-5d9f1c4c-2026-09-15_18-32-46.zip",
-          "archive_sha256": "sha256_49dc2bdaf0683c6afa63427eeff004a68afc516f5d6443a9fa90fb13c8d9eea8",
+          "archive": "user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-48-54.zip",
+          "archive_sha256": "sha256_e078db4f7d1099b776c171a88576d748945e36a28755daabf3129ab109048760",
           "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
+            "tf_keras_bare_save_redirect",
+            "nnpredict_chained_iloc_writeback"
           ],
           "config_overrides": {},
-          "elapsed_s": 68.6,
+          "elapsed_s": 78.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20210501-5d9f1c4c --cache none",
-          "long_trades": 0,
+          "long_trades": 375,
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
@@ -11474,97 +11412,53 @@
           "short_trades": 0,
           "status": "measured",
           "timerange": "20210401-20210501",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20210701-b16b8c0d-2026-09-15_18-35-48.zip",
-          "archive_sha256": "sha256_4fd195be94a09b41a72a26f79b717598aac0a45971398fafcb92302ed376481b",
-          "artifact_key": "smoke_20210401_20210701",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 181.6,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20210701-b16b8c0d --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20210701",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20220401-c6a19533-2026-09-15_18-46-13.zip",
-          "archive_sha256": "sha256_6f68dffa451cbc8e9590e0c3c27ad079c732017449af3c11411984b4a56cf87a",
-          "artifact_key": "smoke_20210401_20220401",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 624.5,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20220401-c6a19533 --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20220401",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          "trades": 375,
+          "trades_sha256": "sha256_0d9fb6e1e2cbfb771f4a31ddd1c75ba9aa3c32c6f503ea4be158a6cf8a01b096"
         }
       ],
       "canonical_sha256": "sha256_28fb136d2bfe939b81f00710cfd0846525c80339f395e05f57f8abfd5a6928fd",
       "class1_rules": [
         "restore_copied_local_module",
-        "tf_keras_bare_save_redirect"
+        "tf_keras_bare_save_redirect",
+        "nnpredict_chained_iloc_writeback"
       ],
       "config_overrides": {},
-      "elapsed_s": 624.5,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20220401-c6a19533 --cache none",
-      "long_trades": 0,
+      "elapsed_s": 78.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20210501-5d9f1c4c --cache none",
+      "long_trades": 375,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
       "short_trades": 0,
-      "smoke_policy_id": "custom_023e1cb46543",
+      "smoke_policy_id": "custom_2c2f6375aa85",
       "status": "measured",
-      "timerange": "20210401-20220401",
+      "timerange": "20210401-20210501",
       "trade_floor": 10,
-      "trades": 0,
-      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "trades": 375,
+      "trades_sha256": "sha256_0d9fb6e1e2cbfb771f4a31ddd1c75ba9aa3c32c6f503ea4be158a6cf8a01b096"
     },
     "NNPredict_Multihead": {
-      "archive": "user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20220401-c6a19533-2026-09-15_19-02-19.zip",
-      "archive_sha256": "sha256_23b644cfd8451628ae8db127af57727b4ac533f1120cc196bc4c2d2061ceb5e0",
-      "artifact_key": "smoke_20210401_20220401",
+      "archive": "user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-50-20.zip",
+      "archive_sha256": "sha256_8a7a3d3ae78b7ba1bb8748133049a1ac564e0c8f9d01927bcd9a4943a10925fb",
+      "artifact_key": "smoke_20210401_20210501",
       "attempted_timeranges": [
-        "20210401-20210501",
-        "20210401-20210701",
-        "20210401-20220401"
+        "20210401-20210501"
       ],
       "attempts": [
         {
-          "archive": "user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20210501-5d9f1c4c-2026-09-15_18-47-20.zip",
-          "archive_sha256": "sha256_619b7fe8c65bef6c4cce4b1103f326f9f51c8382d525ed9ff3394f66c1e225ae",
+          "archive": "user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-50-20.zip",
+          "archive_sha256": "sha256_8a7a3d3ae78b7ba1bb8748133049a1ac564e0c8f9d01927bcd9a4943a10925fb",
           "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
+            "tf_keras_bare_save_redirect",
+            "nnpredict_chained_iloc_writeback"
           ],
           "config_overrides": {},
-          "elapsed_s": 66.6,
+          "elapsed_s": 86.3,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20210501-5d9f1c4c --cache none",
-          "long_trades": 0,
+          "long_trades": 260,
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
@@ -11572,74 +11466,31 @@
           "short_trades": 0,
           "status": "measured",
           "timerange": "20210401-20210501",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20210701-b16b8c0d-2026-09-15_18-50-24.zip",
-          "archive_sha256": "sha256_22811f973e9648bb9689861d682625db9891a05ebe57afd8a64f8f38a6ff0bdb",
-          "artifact_key": "smoke_20210401_20210701",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 184.2,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20210701-b16b8c0d --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20210701",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20220401-c6a19533-2026-09-15_19-02-19.zip",
-          "archive_sha256": "sha256_23b644cfd8451628ae8db127af57727b4ac533f1120cc196bc4c2d2061ceb5e0",
-          "artifact_key": "smoke_20210401_20220401",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 715.3,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20220401-c6a19533 --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20220401",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          "trades": 260,
+          "trades_sha256": "sha256_391d202e1d171678aa346cd32a86e67902f84642d3b85722cceed4a2e81b057f"
         }
       ],
       "canonical_sha256": "sha256_04ea2bdc5bc213c9e56709c81110f6c86cac6d750e3ce027e49c166a9af42c76",
       "class1_rules": [
         "restore_copied_local_module",
-        "tf_keras_bare_save_redirect"
+        "tf_keras_bare_save_redirect",
+        "nnpredict_chained_iloc_writeback"
       ],
       "config_overrides": {},
-      "elapsed_s": 715.3,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20220401-c6a19533 --cache none",
-      "long_trades": 0,
+      "elapsed_s": 86.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20210501-5d9f1c4c --cache none",
+      "long_trades": 260,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
       "short_trades": 0,
-      "smoke_policy_id": "custom_023e1cb46543",
+      "smoke_policy_id": "custom_2c2f6375aa85",
       "status": "measured",
-      "timerange": "20210401-20220401",
+      "timerange": "20210401-20210501",
       "trade_floor": 10,
-      "trades": 0,
-      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "trades": 260,
+      "trades_sha256": "sha256_391d202e1d171678aa346cd32a86e67902f84642d3b85722cceed4a2e81b057f"
     },
     "NNPredict_NBeats": {
       "attempted_timeranges": [
@@ -11770,24 +11621,26 @@
       "why": "Impossible to load Strategy 'NNPredict_Ray'. This class does not exist or contains Python code errors."
     },
     "NNPredict_TCN": {
+      "archive": "user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-54-54.zip",
+      "archive_sha256": "sha256_701a11dbe5eb7767fc11e88b8e4f50add1640ed59fedbe2b564e1f5fee2f9bd6",
+      "artifact_key": "smoke_20210401_20210501",
       "attempted_timeranges": [
-        "20210401-20210501",
-        "20210401-20210701",
-        "20210401-20220401"
+        "20210401-20210501"
       ],
       "attempts": [
         {
-          "archive": "user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20210401_20210501-5d9f1c4c-2026-09-15_19-06-32.zip",
-          "archive_sha256": "sha256_250ac285335a97894f3a8024435f43fe45f2cedf628f7f8e0b6258eead09a0cb",
+          "archive": "user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-54-54.zip",
+          "archive_sha256": "sha256_701a11dbe5eb7767fc11e88b8e4f50add1640ed59fedbe2b564e1f5fee2f9bd6",
           "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
+            "tf_keras_bare_save_redirect",
+            "nnpredict_chained_iloc_writeback"
           ],
           "config_overrides": {},
-          "elapsed_s": 253.2,
+          "elapsed_s": 273.6,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20210401_20210501-5d9f1c4c --cache none",
-          "long_trades": 0,
+          "long_trades": 303,
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
@@ -11795,61 +11648,31 @@
           "short_trades": 0,
           "status": "measured",
           "timerange": "20210401-20210501",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20210401_20210701-b16b8c0d-2026-09-15_19-19-38.zip",
-          "archive_sha256": "sha256_0ef4a3c606a1fabe91eb4d405b7188a30ad76e31d8838ba532742a39b31c04a4",
-          "artifact_key": "smoke_20210401_20210701",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 786.0,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20210401_20210701-b16b8c0d --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20210701",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
-          ],
-          "elapsed_s": 3600.1,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20210401_20220401-c6a19533 --cache none",
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "status": "timeout",
-          "timerange": "20210401-20220401",
-          "why": "timeout after 3600 seconds"
+          "trades": 303,
+          "trades_sha256": "sha256_bcd134045406673de51b779ae424f3404ea9d03fdfaf150241616ad2df2e28ca"
         }
       ],
       "canonical_sha256": "sha256_309fd0115e8c3af90f1b737be5f4c22edeb312025fbfddd39ccba4cc864ac1d1",
       "class1_rules": [
         "restore_copied_local_module",
-        "tf_keras_bare_save_redirect"
+        "tf_keras_bare_save_redirect",
+        "nnpredict_chained_iloc_writeback"
       ],
-      "elapsed_s": 3600.1,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20210401_20220401-c6a19533 --cache none",
+      "config_overrides": {},
+      "elapsed_s": 273.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20210401_20210501-5d9f1c4c --cache none",
+      "long_trades": 303,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "custom_023e1cb46543",
-      "status": "timeout",
-      "timerange": "20210401-20220401",
+      "short_trades": 0,
+      "smoke_policy_id": "custom_2c2f6375aa85",
+      "status": "measured",
+      "timerange": "20210401-20210501",
       "trade_floor": 10,
-      "why": "timeout after 3600 seconds"
+      "trades": 303,
+      "trades_sha256": "sha256_bcd134045406673de51b779ae424f3404ea9d03fdfaf150241616ad2df2e28ca"
     },
     "NNPredict_TFT": {
       "attempted_timeranges": [
@@ -11922,24 +11745,26 @@
       "why": "module 'tf_keras.api._v2.keras' has no attribute '__version__'"
     },
     "NNPredict_Wavenet": {
+      "archive": "user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-56-15.zip",
+      "archive_sha256": "sha256_1378360012135756c73138d4160a901f4c6d443b34b688c094263d6a78d9ef7b",
+      "artifact_key": "smoke_20210401_20210501",
       "attempted_timeranges": [
-        "20210401-20210501",
-        "20210401-20210701",
-        "20210401-20220401"
+        "20210401-20210501"
       ],
       "attempts": [
         {
-          "archive": "user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-22-16.zip",
-          "archive_sha256": "sha256_1f9a38932ab17c3c22b0165b77287e78f06d4ec55a264f0bbeb4feed50361863",
+          "archive": "user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-56-15.zip",
+          "archive_sha256": "sha256_1378360012135756c73138d4160a901f4c6d443b34b688c094263d6a78d9ef7b",
           "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
+            "tf_keras_bare_save_redirect",
+            "nnpredict_chained_iloc_writeback"
           ],
           "config_overrides": {},
-          "elapsed_s": 158.2,
+          "elapsed_s": 80.8,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20210401_20210501-5d9f1c4c --cache none",
-          "long_trades": 0,
+          "long_trades": 243,
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
@@ -11947,83 +11772,53 @@
           "short_trades": 0,
           "status": "measured",
           "timerange": "20210401-20210501",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20210401_20210701-b16b8c0d-2026-09-15_20-29-29.zip",
-          "archive_sha256": "sha256_722cd2302dbcadd3d5db7f2409a9ee3d33f15263558042053de5ded8ec485628",
-          "artifact_key": "smoke_20210401_20210701",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 433.0,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20210401_20210701-b16b8c0d --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20210701",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
-          ],
-          "debug_log": "user_data/profile_smoke_logs/NNPredict_Wavenet-b3f0797b-smoke_20210401_20220401-c6a19533.log",
-          "elapsed_s": 244.7,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20210401_20220401-c6a19533 --cache none",
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "status": "failed",
-          "timerange": "20210401-20220401",
-          "why": "A value is being set on a copy of a DataFrame or Series through chained assignment."
+          "trades": 243,
+          "trades_sha256": "sha256_6174409d26cf657b319054386bd59948d7ceeb56cd7146a4edeb760bb89c9d50"
         }
       ],
       "canonical_sha256": "sha256_b75bada16ae3574a9cc13764dea4c9fd1d61d252a160a8481d3532977edb7633",
       "class1_rules": [
         "restore_copied_local_module",
-        "tf_keras_bare_save_redirect"
+        "tf_keras_bare_save_redirect",
+        "nnpredict_chained_iloc_writeback"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNPredict_Wavenet-b3f0797b-smoke_20210401_20220401-c6a19533.log",
-      "elapsed_s": 244.7,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20210401_20220401-c6a19533 --cache none",
+      "config_overrides": {},
+      "elapsed_s": 80.8,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20210401_20210501-5d9f1c4c --cache none",
+      "long_trades": 243,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "custom_023e1cb46543",
-      "status": "failed",
-      "timerange": "20210401-20220401",
+      "short_trades": 0,
+      "smoke_policy_id": "custom_2c2f6375aa85",
+      "status": "measured",
+      "timerange": "20210401-20210501",
       "trade_floor": 10,
-      "why": "A value is being set on a copy of a DataFrame or Series through chained assignment."
+      "trades": 243,
+      "trades_sha256": "sha256_6174409d26cf657b319054386bd59948d7ceeb56cd7146a4edeb760bb89c9d50"
     },
     "NNPredict_Wavenet2": {
+      "archive": "user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-57-36.zip",
+      "archive_sha256": "sha256_4301e39889bfd810b92ac1eb573554d35a2f22454c5694666fcfca18f7687200",
+      "artifact_key": "smoke_20210401_20210501",
       "attempted_timeranges": [
-        "20210401-20210501",
-        "20210401-20210701",
-        "20210401-20220401"
+        "20210401-20210501"
       ],
       "attempts": [
         {
-          "archive": "user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20210401_20210501-5d9f1c4c-2026-09-15_15-41-44.zip",
-          "archive_sha256": "sha256_8c6b87df3d4500687eb54f110a55d8fc314d45bc40434ab4fd984dce60d1b59c",
+          "archive": "user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-57-36.zip",
+          "archive_sha256": "sha256_4301e39889bfd810b92ac1eb573554d35a2f22454c5694666fcfca18f7687200",
           "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
+            "tf_keras_bare_save_redirect",
+            "nnpredict_chained_iloc_writeback"
           ],
           "config_overrides": {},
-          "elapsed_s": 93.6,
+          "elapsed_s": 81.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20210401_20210501-5d9f1c4c --cache none",
-          "long_trades": 0,
+          "long_trades": 188,
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
@@ -12031,61 +11826,31 @@
           "short_trades": 0,
           "status": "measured",
           "timerange": "20210401-20210501",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20210401_20210701-b16b8c0d-2026-09-15_15-46-06.zip",
-          "archive_sha256": "sha256_a5ed20d9c3ef882b1cbdcf59d3443ddea09199f25c62b6fa5d9989d01892b776",
-          "artifact_key": "smoke_20210401_20210701",
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
-          ],
-          "config_overrides": {},
-          "elapsed_s": 261.8,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20210401_20210701-b16b8c0d --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "native_unversioned",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20210401-20210701",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "class1_rules": [
-            "restore_copied_local_module",
-            "tf_keras_bare_save_redirect"
-          ],
-          "elapsed_s": 600.0,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20210401_20220401-c6a19533 --cache none",
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "status": "timeout",
-          "timerange": "20210401-20220401",
-          "why": "timeout after 600 seconds"
+          "trades": 188,
+          "trades_sha256": "sha256_c3ad2686e0c3fe71423771de4f5901b3f8df1de90ca25df6148d356a669b52a3"
         }
       ],
       "canonical_sha256": "sha256_001bfd12b846c20c15b76d224fca4966115ab8e18eb6eec9339a4350300ae9b2",
       "class1_rules": [
         "restore_copied_local_module",
-        "tf_keras_bare_save_redirect"
+        "tf_keras_bare_save_redirect",
+        "nnpredict_chained_iloc_writeback"
       ],
-      "elapsed_s": 600.0,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20210401_20220401-c6a19533 --cache none",
+      "config_overrides": {},
+      "elapsed_s": 81.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20210401_20210501-5d9f1c4c --cache none",
+      "long_trades": 188,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "custom_023e1cb46543",
-      "status": "timeout",
-      "timerange": "20210401-20220401",
+      "short_trades": 0,
+      "smoke_policy_id": "custom_2c2f6375aa85",
+      "status": "measured",
+      "timerange": "20210401-20210501",
       "trade_floor": 10,
-      "why": "timeout after 600 seconds"
+      "trades": 188,
+      "trades_sha256": "sha256_c3ad2686e0c3fe71423771de4f5901b3f8df1de90ca25df6148d356a669b52a3"
     },
     "NNPredict_dTransformer": {
       "attempted_timeranges": [
@@ -15627,22 +15392,76 @@
       "trades_sha256": "sha256_1990e6a75e2d5de9124340e21ee8cfdd42a50264c314de38a819549ca0c4b6fe"
     },
     "Obelisk_3EMA_StochRSI_ATR": {
-      "archive": "user_data/profile_smoke/Obelisk_3EMA_StochRSI_ATR-2026-08-31_15-20-55.zip",
-      "archive_sha256": "sha256_99957e31120a61b80d2fef4bd4586dc34c4661acd9ed2a8dd4cbc2f06d90e528",
-      "canonical_sha256": "sha256_6f0512003fb91c2ee8ed4dbc7ef8affed797df278ca14359c36b96c62acd326c",
-      "class1_rules": [],
+      "archive": "user_data/profile_smoke/Obelisk_3EMA_StochRSI_ATR-8edf865b-smoke_20200301_20200601-9c543975-2026-09-15_22-00-34.zip",
+      "archive_sha256": "sha256_2b96304b42971dada7d365057564873ace80f7574fa5cd78a061e4c606dd12db",
+      "artifact_key": "smoke_20200301_20200601",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/Obelisk_3EMA_StochRSI_ATR-8edf865b-smoke_20200301_20200401-b4807b77-2026-09-15_21-56-37.zip",
+          "archive_sha256": "sha256_36991fa9b7c76b3517fd41b742eb7397c2c0cba5e15e82460a69fa92555ddb78",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [
+            "populate_indicators_chained_writeback"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 76.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Obelisk_3EMA_StochRSI_ATR --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Obelisk_3EMA_StochRSI_ATR-8edf865b-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 8,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 8,
+          "trades_sha256": "sha256_6ba890af32f4a97d90c312728e05b9463196d9aa292f3784b21dcb04d0c38faf"
+        },
+        {
+          "archive": "user_data/profile_smoke/Obelisk_3EMA_StochRSI_ATR-8edf865b-smoke_20200301_20200601-9c543975-2026-09-15_22-00-34.zip",
+          "archive_sha256": "sha256_2b96304b42971dada7d365057564873ace80f7574fa5cd78a061e4c606dd12db",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [
+            "populate_indicators_chained_writeback"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 239.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Obelisk_3EMA_StochRSI_ATR --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Obelisk_3EMA_StochRSI_ATR-8edf865b-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 8,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 8,
+          "trades_sha256": "sha256_2257bcc2622a98ac0715f91c9b731cad29f22aeff229ab97e8b488ae92002a6b"
+        }
+      ],
+      "canonical_sha256": "sha256_3af82c50cbe0d7d1b79070598c90ee72a99d8992eaace124b0d6b27efd193a63",
+      "class1_rules": [
+        "populate_indicators_chained_writeback"
+      ],
       "config_overrides": {},
-      "elapsed_s": 23.1,
-      "long_trades": 0,
+      "elapsed_s": 239.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Obelisk_3EMA_StochRSI_ATR --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Obelisk_3EMA_StochRSI_ATR-8edf865b-smoke_20200301_20200601-9c543975 --cache none",
+      "long_trades": 8,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "measured",
-      "timerange": "20200301-20200401",
-      "trades": 0,
-      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "timerange": "20200301-20200601",
+      "trade_floor": 10,
+      "trades": 8,
+      "trades_sha256": "sha256_2257bcc2622a98ac0715f91c9b731cad29f22aeff229ab97e8b488ae92002a6b"
     },
     "Obelisk_Ichimoku_Slow_v1": {
       "archive": "user_data/profile_smoke/Obelisk_Ichimoku_Slow_v1-933691c1-2026-09-05_15-15-09.zip",
@@ -16337,22 +16156,74 @@
       "trades_sha256": "sha256_12796e822296e4e9cee74d268ef97ce66fdfbca4bfc059131689b994852d714d"
     },
     "RaposaDivergenceV1": {
-      "archive": "user_data/profile_smoke/RaposaDivergenceV1-22a8a17b-2026-09-06_14-47-05.zip",
-      "archive_sha256": "sha256_efd09450a56cb85e52e0bfc02d1dd3ce8877e16b5d4cc4b5364f24a834af4cc1",
-      "artifact_key": "",
+      "archive": "user_data/profile_smoke/RaposaDivergenceV1-22a8a17b-smoke_20200301_20200601-9c543975-2026-09-15_21-55-21.zip",
+      "archive_sha256": "sha256_457c0a507f4f082df866f3d28d8b0dc520a0fb133d59ddfdeb1171d178b61b99",
+      "artifact_key": "smoke_20200301_20200601",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/RaposaDivergenceV1-22a8a17b-smoke_20200301_20200401-b4807b77-2026-09-15_21-55-14.zip",
+          "archive_sha256": "sha256_c64e756365ab36c2b9b34f28b0e4f022d79d1694366a9c8c9a9f97ed34d43964",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [
+            "populate_indicators_chained_writeback"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 6.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy RaposaDivergenceV1 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/RaposaDivergenceV1-22a8a17b-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/RaposaDivergenceV1-22a8a17b-smoke_20200301_20200601-9c543975-2026-09-15_21-55-21.zip",
+          "archive_sha256": "sha256_457c0a507f4f082df866f3d28d8b0dc520a0fb133d59ddfdeb1171d178b61b99",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [
+            "populate_indicators_chained_writeback"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 6.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy RaposaDivergenceV1 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/RaposaDivergenceV1-22a8a17b-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
       "canonical_sha256": "sha256_ee9a86daf6351ee1d70ec550ebf8e4b711648533609a9749e89ae1accfc8baf4",
-      "class1_rules": [],
+      "class1_rules": [
+        "populate_indicators_chained_writeback"
+      ],
       "config_overrides": {},
-      "elapsed_s": 8.3,
-      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy RaposaDivergenceV1 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/RaposaDivergenceV1-22a8a17b --cache none",
+      "elapsed_s": 6.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy RaposaDivergenceV1 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/RaposaDivergenceV1-22a8a17b-smoke_20200301_20200601-9c543975 --cache none",
       "long_trades": 0,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
       "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "measured",
-      "timerange": "20200301-20200401",
+      "timerange": "20200301-20200601",
+      "trade_floor": 10,
       "trades": 0,
       "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
@@ -18730,176 +18601,104 @@
       "trades_sha256": "sha256_49576c8beb08caf009db8aeb4f85f1d62fcdb4fb03af8678081ea7deb72fef8b"
     },
     "SuperTrendPure": {
-      "archive": "user_data/profile_smoke/SuperTrendPure-ef7e3ead-smoke_20200301_20210301-fca63e6f-2026-09-10_07-32-46.zip",
-      "archive_sha256": "sha256_d816c902ddb2168050585d58c27178d0ef58ec765c8819e322f58817d1ed6116",
-      "artifact_key": "smoke_20200301_20210301",
+      "archive": "user_data/profile_smoke/SuperTrendPure-ef7e3ead-smoke_20200301_20200401-b4807b77-2026-09-15_21-45-11.zip",
+      "archive_sha256": "sha256_72eb46ec228e66231bb8c80219b37a463e728796d85ffda3b66e427bb58a862e",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
-        "20200301-20200401",
-        "20200301-20200601",
-        "20200301-20210301"
+        "20200301-20200401"
       ],
       "attempts": [
         {
-          "archive": "user_data/profile_smoke/SuperTrendPure-ef7e3ead-smoke_20200301_20200401-b4807b77-2026-09-10_07-31-19.zip",
-          "archive_sha256": "sha256_41f7a65adc4ca503169733f449468dc7b4fc01af630dbe461258474bf44218dc",
+          "archive": "user_data/profile_smoke/SuperTrendPure-ef7e3ead-smoke_20200301_20200401-b4807b77-2026-09-15_21-45-11.zip",
+          "archive_sha256": "sha256_72eb46ec228e66231bb8c80219b37a463e728796d85ffda3b66e427bb58a862e",
           "artifact_key": "smoke_20200301_20200401",
-          "class1_rules": [],
+          "class1_rules": [
+            "populate_indicators_chained_writeback"
+          ],
           "config_overrides": {},
-          "elapsed_s": 37.0,
+          "elapsed_s": 9.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SuperTrendPure --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperTrendPure-ef7e3ead-smoke_20200301_20200401-b4807b77 --cache none",
-          "long_trades": 0,
+          "long_trades": 124,
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+          "runtime_id": "native_unversioned",
           "short_trades": 0,
           "status": "measured",
           "timerange": "20200301-20200401",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/SuperTrendPure-ef7e3ead-smoke_20200301_20200601-9c543975-2026-09-10_07-31-56.zip",
-          "archive_sha256": "sha256_841d96858b27a08e8f29ddaf39f13c29ebae0ca877ca1a747a87785574b54869",
-          "artifact_key": "smoke_20200301_20200601",
-          "class1_rules": [],
-          "config_overrides": {},
-          "elapsed_s": 36.8,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SuperTrendPure --strategy-path user_data/profile_repairs --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperTrendPure-ef7e3ead-smoke_20200301_20200601-9c543975 --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20200301-20200601",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/SuperTrendPure-ef7e3ead-smoke_20200301_20210301-fca63e6f-2026-09-10_07-32-46.zip",
-          "archive_sha256": "sha256_d816c902ddb2168050585d58c27178d0ef58ec765c8819e322f58817d1ed6116",
-          "artifact_key": "smoke_20200301_20210301",
-          "class1_rules": [],
-          "config_overrides": {},
-          "elapsed_s": 50.2,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SuperTrendPure --strategy-path user_data/profile_repairs --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperTrendPure-ef7e3ead-smoke_20200301_20210301-fca63e6f --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20200301-20210301",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          "trades": 124,
+          "trades_sha256": "sha256_f32cdf496a9f8b3058f8691a99015b71f55cab27aabf34ee647a7d6d23dab60d"
         }
       ],
       "canonical_sha256": "sha256_dddc980a2aa1bf29181999b2694f24d2c204a380074f3e0b4468e3cc699702ab",
-      "class1_rules": [],
+      "class1_rules": [
+        "populate_indicators_chained_writeback"
+      ],
       "config_overrides": {},
-      "elapsed_s": 50.2,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SuperTrendPure --strategy-path user_data/profile_repairs --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperTrendPure-ef7e3ead-smoke_20200301_20210301-fca63e6f --cache none",
-      "long_trades": 0,
+      "elapsed_s": 9.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SuperTrendPure --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperTrendPure-ef7e3ead-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 124,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "measured",
-      "timerange": "20200301-20210301",
+      "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "trades": 0,
-      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "trades": 124,
+      "trades_sha256": "sha256_f32cdf496a9f8b3058f8691a99015b71f55cab27aabf34ee647a7d6d23dab60d"
     },
     "Supertrend": {
-      "archive": "user_data/profile_smoke/Supertrend-6485b9cf-smoke_20200301_20210301-fca63e6f-2026-09-10_07-49-10.zip",
-      "archive_sha256": "sha256_47b269353f017e078ddb490658588933bda48a3b39be7dec6bc2ff6c65f29c22",
-      "artifact_key": "smoke_20200301_20210301",
+      "archive": "user_data/profile_smoke/Supertrend-6485b9cf-smoke_20200301_20200401-b4807b77-2026-09-15_21-48-59.zip",
+      "archive_sha256": "sha256_d0a6f5f30ef6c7ddcb0501a27e6b43e51bcc743a6a7c7e7c609ad12b4b683c71",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
-        "20200301-20200401",
-        "20200301-20200601",
-        "20200301-20210301"
+        "20200301-20200401"
       ],
       "attempts": [
         {
-          "archive": "user_data/profile_smoke/Supertrend-6485b9cf-smoke_20200301_20200401-b4807b77-2026-09-10_07-34-05.zip",
-          "archive_sha256": "sha256_cac3cb26e30db62f9aa6f94c57342a06ecfacc8441865e1cb40d017c1fe19db6",
+          "archive": "user_data/profile_smoke/Supertrend-6485b9cf-smoke_20200301_20200401-b4807b77-2026-09-15_21-48-59.zip",
+          "archive_sha256": "sha256_d0a6f5f30ef6c7ddcb0501a27e6b43e51bcc743a6a7c7e7c609ad12b4b683c71",
           "artifact_key": "smoke_20200301_20200401",
-          "class1_rules": [],
+          "class1_rules": [
+            "populate_indicators_chained_writeback"
+          ],
           "config_overrides": {},
-          "elapsed_s": 79.1,
+          "elapsed_s": 228.6,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Supertrend --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Supertrend-6485b9cf-smoke_20200301_20200401-b4807b77 --cache none",
-          "long_trades": 0,
+          "long_trades": 997,
           "mode": "spot",
           "run_profile": "spot_long",
           "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+          "runtime_id": "native_unversioned",
           "short_trades": 0,
           "status": "measured",
           "timerange": "20200301-20200401",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/Supertrend-6485b9cf-smoke_20200301_20200601-9c543975-2026-09-10_07-36-56.zip",
-          "archive_sha256": "sha256_92ad158ca10a19d2864ca478cb50af9daa6fe6e2481d4537dea518fa18fd85cb",
-          "artifact_key": "smoke_20200301_20200601",
-          "class1_rules": [],
-          "config_overrides": {},
-          "elapsed_s": 170.8,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Supertrend --strategy-path user_data/profile_repairs --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Supertrend-6485b9cf-smoke_20200301_20200601-9c543975 --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20200301-20200601",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-        },
-        {
-          "archive": "user_data/profile_smoke/Supertrend-6485b9cf-smoke_20200301_20210301-fca63e6f-2026-09-10_07-49-10.zip",
-          "archive_sha256": "sha256_47b269353f017e078ddb490658588933bda48a3b39be7dec6bc2ff6c65f29c22",
-          "artifact_key": "smoke_20200301_20210301",
-          "class1_rules": [],
-          "config_overrides": {},
-          "elapsed_s": 734.8,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Supertrend --strategy-path user_data/profile_repairs --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Supertrend-6485b9cf-smoke_20200301_20210301-fca63e6f --cache none",
-          "long_trades": 0,
-          "mode": "spot",
-          "run_profile": "spot_long",
-          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-          "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
-          "short_trades": 0,
-          "status": "measured",
-          "timerange": "20200301-20210301",
-          "trades": 0,
-          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          "trades": 997,
+          "trades_sha256": "sha256_fe9f43615197df87681063700f14ac816db1d188a0588f49a008c1b937630de2"
         }
       ],
       "canonical_sha256": "sha256_285ca67b1bac952011b87515cb5e01115ffe09d96870df30b07cd60ef12c41a4",
-      "class1_rules": [],
+      "class1_rules": [
+        "populate_indicators_chained_writeback"
+      ],
       "config_overrides": {},
-      "elapsed_s": 734.8,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Supertrend --strategy-path user_data/profile_repairs --timerange 20200301-20210301 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Supertrend-6485b9cf-smoke_20200301_20210301-fca63e6f --cache none",
-      "long_trades": 0,
+      "elapsed_s": 228.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Supertrend --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Supertrend-6485b9cf-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 997,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "measured",
-      "timerange": "20200301-20210301",
+      "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "trades": 0,
-      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "trades": 997,
+      "trades_sha256": "sha256_fe9f43615197df87681063700f14ac816db1d188a0588f49a008c1b937630de2"
     },
     "SwingHigh": {
       "canonical_sha256": "sha256_7a62b0ee70e70bbe2efbc58eefd81311139527db201f0c121b7d2b5aaf65597d",
@@ -18935,24 +18734,74 @@
       "trades_sha256": "sha256_e21f6bb490267acc2cef0228e3db3faec73d494d313bb4382e15ae7dd9f6c45c"
     },
     "TEMABounce": {
-      "archive": "user_data/profile_smoke/TEMABounce-9f6a881a-2026-09-09_07-48-05.zip",
-      "archive_sha256": "sha256_dfcfec84be8e14362a96f746e76e9475b265ae88e3fad1fb95f2621304537aa1",
-      "artifact_key": "",
+      "archive": "user_data/profile_smoke/TEMABounce-9f6a881a-smoke_20200301_20200601-9c543975-2026-09-15_21-00-27.zip",
+      "archive_sha256": "sha256_9e22b4c9e1f712dcd417b9b2d3d245c76830653c6380cc78f79f3fe36d6cac74",
+      "artifact_key": "smoke_20200301_20200601",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/TEMABounce-9f6a881a-smoke_20200301_20200401-b4807b77-2026-09-15_21-00-22.zip",
+          "archive_sha256": "sha256_ab1fab656fe4c6a83fb1fc7ffbbdfbe9da3ed090bc95753fcf122ffd47e1b5f3",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [
+            "restore_fetched_local_module"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 4.4,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TEMABounce --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TEMABounce-9f6a881a-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/TEMABounce-9f6a881a-smoke_20200301_20200601-9c543975-2026-09-15_21-00-27.zip",
+          "archive_sha256": "sha256_9e22b4c9e1f712dcd417b9b2d3d245c76830653c6380cc78f79f3fe36d6cac74",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [
+            "restore_fetched_local_module"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 5.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TEMABounce --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TEMABounce-9f6a881a-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
       "canonical_sha256": "sha256_0e2b74b766d5dbfc82587e1e561445de6d57a8f118704393f551fbf3940098da",
       "class1_rules": [
         "restore_fetched_local_module"
       ],
       "config_overrides": {},
-      "elapsed_s": 4.4,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TEMABounce --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TEMABounce-9f6a881a --cache none",
+      "elapsed_s": 5.8,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TEMABounce --strategy-path repos/webclinic017_strategies-freqtrade-/archived --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TEMABounce-9f6a881a-smoke_20200301_20200601-9c543975 --cache none",
       "long_trades": 0,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
       "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "measured",
-      "timerange": "20200301-20200401",
+      "timerange": "20200301-20200601",
+      "trade_floor": 10,
       "trades": 0,
       "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
@@ -19093,19 +18942,54 @@
       "trades_sha256": "sha256_de9bbd7215e19457788db983f854b35eba46e81d568a22bfc2a48e6e0de4bcd1"
     },
     "TSPredict": {
+      "archive": "user_data/profile_smoke/TSPredict-c954a8dd-smoke_20200301_20200401-b4807b77-2026-09-15_20-59-46.zip",
+      "archive_sha256": "sha256_95b345b541590a6c73c5c7af83dfbf0428510f1fbfc5ffcf5a6428c50806a0d8",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/TSPredict-c954a8dd-smoke_20200301_20200401-b4807b77-2026-09-15_20-59-46.zip",
+          "archive_sha256": "sha256_95b345b541590a6c73c5c7af83dfbf0428510f1fbfc5ffcf5a6428c50806a0d8",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 21.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy TSPredict --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TSPredict-c954a8dd-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 959,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 959,
+          "trades_sha256": "sha256_5deb2e9832a6c327842be42dbc66ac855f785734644e6dfe4ec8ec24029d789b"
+        }
+      ],
       "canonical_sha256": "sha256_c4169a4567fed0e84595fd4351124973acb36335cd4185707e8516cb29d1c08e",
       "class1_rules": [
         "restore_copied_local_module"
       ],
-      "elapsed_s": 13.2,
-      "long_trades": 0,
+      "config_overrides": {},
+      "elapsed_s": 21.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy TSPredict --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TSPredict-c954a8dd-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 959,
       "mode": "futures",
       "run_profile": "futures_long",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "measured",
       "timerange": "20200301-20200401",
-      "trades": 0
+      "trade_floor": 10,
+      "trades": 959,
+      "trades_sha256": "sha256_5deb2e9832a6c327842be42dbc66ac855f785734644e6dfe4ec8ec24029d789b"
     },
     "TS_Gain": {
       "attempted_timeranges": [
@@ -19666,24 +19550,70 @@
       "why": "Configuration error: 'stoploss' is a required property"
     },
     "TrendBreakout": {
-      "archive": "user_data/profile_smoke/TrendBreakout-9b18ab53-2026-09-08_17-15-05.zip",
-      "archive_sha256": "sha256_0740b4ed9c394d70be715248a8d1db6f1d214cdc4a6bca03cbd49e4c4e4b2b80",
-      "artifact_key": "",
+      "archive": "user_data/profile_smoke/TrendBreakout-9b18ab53-smoke_20200301_20200601-9c543975-2026-09-15_20-59-25.zip",
+      "archive_sha256": "sha256_a11264dc9e91a573b9512531b946ded6b61572aac2e69b6f0ba90e52cce4d75d",
+      "artifact_key": "smoke_20200301_20200601",
+      "attempted_timeranges": [
+        "20200301-20200401",
+        "20200301-20200601"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/TrendBreakout-9b18ab53-smoke_20200301_20200401-b4807b77-2026-09-15_20-59-20.zip",
+          "archive_sha256": "sha256_bdc37a00d9580953e09ecd1c3db9e477de1b6eb347b9e648600ed9d43e58915c",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 4.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrendBreakout --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrendBreakout-9b18ab53-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/TrendBreakout-9b18ab53-smoke_20200301_20200601-9c543975-2026-09-15_20-59-25.zip",
+          "archive_sha256": "sha256_a11264dc9e91a573b9512531b946ded6b61572aac2e69b6f0ba90e52cce4d75d",
+          "artifact_key": "smoke_20200301_20200601",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 4.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrendBreakout --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrendBreakout-9b18ab53-smoke_20200301_20200601-9c543975 --cache none",
+          "long_trades": 13,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200601",
+          "trades": 13,
+          "trades_sha256": "sha256_810ef0011d7bcf633f713c3809c08064a7952b708c40dfaafc7232811d80074d"
+        }
+      ],
       "canonical_sha256": "sha256_694ac356d779c955633cbb62579ee52cc6f18ce74c1d5b2e9a8634b3014eaaac",
       "class1_rules": [],
       "config_overrides": {},
-      "elapsed_s": 42.7,
-      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy TrendBreakout --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrendBreakout-9b18ab53 --cache none",
-      "long_trades": 0,
+      "elapsed_s": 4.8,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrendBreakout --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrendBreakout-9b18ab53-smoke_20200301_20200601-9c543975 --cache none",
+      "long_trades": 13,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:f1f643e4e71527b08adb30d1c2febbff39e2a145d678d78a8b3f26ec91c0e50d",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "measured",
-      "timerange": "20200301-20200401",
-      "trades": 0,
-      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      "timerange": "20200301-20200601",
+      "trade_floor": 10,
+      "trades": 13,
+      "trades_sha256": "sha256_810ef0011d7bcf633f713c3809c08064a7952b708c40dfaafc7232811d80074d"
     },
     "TrendFollowingStrategy": {
       "canonical_sha256": "sha256_5b587371c8710634642c52367f50e532de711a3ecca6a18523948d8013dc895b",
@@ -22065,19 +21995,54 @@
       "why": "Can't instantiate abstract class thetank2 without an implementation for abstract method 'populate_indicators'"
     },
     "tsp0chicken": {
+      "archive": "user_data/profile_smoke/tsp0chicken-c3202a35-smoke_20200301_20200401-b4807b77-2026-09-15_20-59-56.zip",
+      "archive_sha256": "sha256_db516c31b91b8167ead655606b096b5bdee658c1afad96c2caf47d99303f6e11",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/tsp0chicken-c3202a35-smoke_20200301_20200401-b4807b77-2026-09-15_20-59-56.zip",
+          "archive_sha256": "sha256_db516c31b91b8167ead655606b096b5bdee658c1afad96c2caf47d99303f6e11",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [
+            "restore_copied_local_module"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 9.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy tsp0chicken --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/tsp0chicken-c3202a35-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 150,
+          "mode": "futures",
+          "run_profile": "futures_long",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 150,
+          "trades_sha256": "sha256_f56b7e801e5f83bf1f8462c35b4c058da1175a6b9a4de54b293638e650cf1568"
+        }
+      ],
       "canonical_sha256": "sha256_9a34b8c859793b0577d22898005970549eee9f8d857328e68eec125ef4ee6e4b",
       "class1_rules": [
         "restore_copied_local_module"
       ],
-      "elapsed_s": 9.5,
-      "long_trades": 0,
+      "config_overrides": {},
+      "elapsed_s": 9.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy tsp0chicken --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/tsp0chicken-c3202a35-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 150,
       "mode": "futures",
       "run_profile": "futures_long",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
       "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "measured",
       "timerange": "20200301-20200401",
-      "trades": 0
+      "trade_floor": 10,
+      "trades": 150,
+      "trades_sha256": "sha256_f56b7e801e5f83bf1f8462c35b4c058da1175a6b9a4de54b293638e650cf1568"
     },
     "turbov8": {
       "archive": "user_data/profile_smoke/turbov8-fc4fff4c-2026-09-06_15-10-06.zip",
@@ -22139,12 +22104,11 @@
     }
   },
   "schema_version": 1,
-  "smoke_policy_id": "custom_023e1cb46543",
-  "timerange": "20210401-20210501",
+  "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+  "timerange": "20200301-20200401",
   "timeranges": [
-    "20210401-20210501",
-    "20210401-20210701",
-    "20210401-20220401"
+    "20200301-20200401",
+    "20200301-20200601"
   ],
   "trade_floor": 10
 }

@@ -86,3 +86,16 @@ prettytable==3.18.0
 # simdkalman: FBB_KalmanSIMD (nateemma/strategies) does `import simdkalman`
 # for a vectorised Kalman filter - verified in isolation against the pins.
 simdkalman==1.0.4
+# hurst: AlexBattleTankKillerV40H (jaredrsommer/freqtradestrategies) does
+# `from hurst import compute_Hc` directly for its own Hurst-exponent
+# indicator (Phase 11, repair/REGISTER.md). Verified in isolation it
+# resolves against the pins; no new transitive dependencies beyond pandas,
+# which is already pinned above.
+hurst==0.0.5
+# hyperliquid-python-sdk: COPY_HL (djienne/COPY_WALLET_HYPERLIQUID) does
+# `from hyperliquid.info import Info` / `from hyperliquid.utils import
+# constants` for its own Hyperliquid perp-account mirroring (Phase 11).
+# Verified in isolation it resolves against the pins; pulls in the eth-*
+# family (eth-account, eth-abi, eth-utils, ...) and websocket-client as new
+# transitive dependencies, none of which touch numpy/pandas/scipy.
+hyperliquid-python-sdk==0.24.0
