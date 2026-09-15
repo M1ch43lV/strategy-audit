@@ -1483,3 +1483,142 @@ by any admission or exclusion criterion); rows with a blank Timeframe
 dropped from 88 to 34, and all 34 remaining are genuinely undetermined -
 mostly C4 (`repair_refused_would_invent_strategy`) rows already excluded
 for exactly that reason.
+
+---
+
+# Phase 10 — the webclinic017 NNPredict_*/NNTC_* cluster: two Keras 3 shims,
+a wrong-sibling-copy bug class, and why a first run of any of these measures
+zero trades, 2026-09-15
+
+The 269-strategy transitive-subclass batch's Stage 1 turned up 103 rows
+reporting only `Impossible to load Strategy 'X'. This class does not exist
+or contains Python code errors.` - freqtrade's own catch-all for missing
+class, syntax error, or missing import, naming none of them (see
+`tools/blocked_triage.py`'s own docstring for the same complaint against an
+earlier round of these). 84 of the 103 share one repository,
+`webclinic017/strategies-freqtrade-` - the `NNPredict_*`/`NNTC_*` family.
+Importing each directly (`tools.blocked_triage.probe_import`) named the real
+exceptions.
+
+**Two genuinely new, reusable Class 1 shims, both in
+`repair/compat_signature.py`.** `tf_keras_backend_set_session_noop`:
+`ClassifierKeras.py`'s shared TF1 session boilerplate
+(`tf.compat.v1.keras.backend.set_session(sess)`) configures GPU memory
+allocation for a device the same four lines already force off
+(`device_count={'GPU': 0}`) and that this runtime does not have regardless
+(`tf.config.list_physical_devices('GPU') == []`); Keras 3's `tf.compat.v1`
+shim never re-added the attribute at all, so the call is a bare
+`AttributeError` before any strategy sees a row of data. No-opping it
+changes nothing about what gets computed. `tf_keras_bare_save_redirect`:
+`keras.optimizers.legacy` (a handful of these rows still call it) is gone
+outright in Keras 3 and needs `TF_USE_LEGACY_KERAS=1` plus the standalone
+`tf-keras` package (`runtime/requirements-audit-tensorflow.txt`,
+`evidence/profile_smoke.py`'s new `tf_use_legacy_keras` Class 1 flag) -
+which redirects every `tf.keras.*` call to real Keras 2 for that
+subprocess, but `ClassifierKeras.py` saves and reloads the model through
+BARE `keras.models.save_model`/`load_model`, a spelling the author never
+distinguished from `tf.keras.*` because before Keras 3 they were the same
+package. Under the redirect they are not: native Keras 3's `save_model`
+refuses a `tf_keras` model outright (`Expected object to be an instance of
+KerasSaveable`). The shim routes the two bare calls to `tf_keras`'s own
+versions instead - confirmed both directions are otherwise incompatible (a
+Keras 3 model cannot compile with a `tf_keras` legacy optimizer either) - and
+is opt-in only, since patching bare `keras.models` unconditionally would
+break every other Keras 3 strategy in the corpus.
+
+**A repeatable bug class in how a missing-module repair picks its copy:**
+`repair/local_modules.py`'s `resolve()` accepts any corpus copy whose
+directory makes the import succeed, preferring the strategy's own repository
+when several differ - but it only ever tests the ONE missing module named in
+the failure, never the other files sharing that same directory. This repo
+carries several divergent copies of the same shared classes (`utils/`,
+`binanceus/`, and two further copies fetched into
+`hamidreza07_freqai-strategy` under this project's own harvest). Two rows
+were caught by it here: `NNPredict_LSTM3`'s (and three siblings') assigned
+path, `binanceus/`, satisfies `custom_indicators` - byte-identical to
+`utils/custom_indicators.py` - but `binanceus/ClassifierKeras.py` is a
+56-line-shorter, older copy that only defines `get_model_path`, not
+`set_model_path`, which `NNPredict.py` calls
+(`'NNPredictor_LSTM3' object has no attribute 'set_model_path'`).
+Six further rows (`NNPredict_CNN`/`MLP`/`Multihead`/`TCN`/`Wavenet`/
+`Wavenet2`) were assigned a `hamidreza07` copy whose `DataframePopulator.py`
+never defines `guard_metric` at all, where `webclinic017`'s own does
+(`KeyError: 'guard_metric'` reading a dataframe column that was simply never
+populated). Both repaired by pointing every one of these ten rows at
+`webclinic017_strategies-freqtrade-/utils` specifically - the one copy
+confirmed complete - plus the repo root for the dotted `utils.X` imports
+this repository's own siblings also use. Not fixed generally: `resolve()`
+still only tests the named module, so a different row assigned a different
+repository's copy could hit the same class of gap; this was corrected by
+hand for the ten rows this phase actually touched, not by changing the
+resolver's own logic.
+
+**A confirmed non-bug that looks exactly like one: the first successful run
+of any of these strategies measures zero trades, by the author's own
+design.** `NNPredict.py`:
+
+    if self.curr_classifier.new_model_created():
+        self.training_mode = True
+
+and, in both `populate_entry_trend` and `populate_exit_trend`:
+
+    if self.training_mode:
+        return dataframe
+
+No model file on disk (the case for every row in this cluster, since none
+had ever loaded successfully in this environment before this phase) means
+the first run trains a fresh model, sets `training_mode = True` for the
+remainder of that same process, and `populate_entry_trend`/
+`populate_exit_trend` return an all-zero frame - the run completes, is
+correctly `measured`, and genuinely holds zero trades. This is not a
+smoke-test artifact: `NNPredict/README.md` documents the same two-phase
+workflow directly - `-n 360` (360 days) to train a model that does not yet
+exist, `-n 30` for ordinary testing once it does - and this project's own
+`fixed_1m_3m_1y_until_10_trades_v1` smoke cascade escalating a trade-poor
+window all the way to its one-year ceiling coincidentally lands on almost
+exactly the author's own recommended training length. A second run, now
+finding the model file present, is not just another attempt at the same
+question - it must ALSO use a time window with no overlap against the
+training window, or it measures the model against data it was already
+fitted on. Ten rows now have a cached model on disk for the first time
+(`NNPredict_AdditiveAttention/GRU/LSTM2/LSTM3/TCN/Wavenet2`, all trained on
+the smoke cascade's own `20200301-20210301` rung); their second-pass
+verification uses a custom, non-cascade timerange list anchored to start the
+day the training window ends (`20210401-...`), never `20200301`.
+
+**Separately confirmed: with `model_per_pair` at its documented default of
+`False`, exactly one pair is ever trained on - whichever is first in the
+configured pair whitelist (`BTC/USDT`, both smoke configs) - not all eight.**
+`ClassifierKeras.train()` only calls `load()` (and only trains fresh, absent
+a file) when `self.model is None`; the classifier instance and its `self.model`
+persist across freqtrade's own per-pair `populate_indicators` loop within one
+backtest process, so every pair after the first reuses the already-loaded
+model in memory without ever calling `load()`, `train()`, or seeing its own
+data. Confirmed directly: a full backtest over all eight whitelist pairs logs
+`Loading existing model (...)` exactly once, immediately after `BTC/USDT`,
+and never again for `ETH/USDT` through `DASH/USDT`. `NNPredict.py`'s own
+comment on `model_per_pair` calls the per-pair alternative "better" - the
+author is aware the shared default is a simplification. Not a repair
+target - restoring per-pair training would change what the strategy
+computes, not what our environment lets it compute - but a fact worth
+carrying into any read of these rows' trade counts: everything but BTC is
+evaluated on a model that has never seen that pair's own price behavior.
+
+**Left open, each for a distinct reason, none touched this phase.** 65
+`NNTC_*` rows fail training itself on `assignment destination is read-only`
+- the same pandas copy-on-write class already investigated and declined
+corpus-wide as too invasive (`MostOfAll`, `primary_reason
+shared_runtime_change_declined`, Phase 9's Trades-stat-card section above).
+Six `NNPredict_*` rows
+(`CNN`/`MLP`/`Multihead`/`TCN`/`Wavenet`/`Wavenet2`) need
+`keras.optimizers.legacy`, i.e. `tf_use_legacy_keras` plus
+`tf_keras_bare_save_redirect` together - applied, not yet independently
+re-verified past the training-then-second-pass sequence above. Six more
+`NNPredict_*` rows (`NBeats`/`NHiTS`/`NLinear`/`Ray`/`TFT`/`dTransformer`)
+need `torch`, a third-party runtime dependency this phase never decided on.
+`NNPredict_Attention` (a bare `Attention` import absent from the whole
+corpus), `NNPredict_Transformer` (`ModelCheckpoint` now requires a
+`.weights.h5` filepath), and `NNPredict_kTFT` (`KerasTensor.get_shape`
+removed in Keras 3) are three further, unrelated, one-row-each Keras 3
+breaks - noted, not chased.
+
