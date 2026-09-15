@@ -2301,5 +2301,152 @@
         "known": true
       }
     ]
+  },
+  {
+    "repo": "GoodyNick/FreqAI-LSTM-Strategy",
+    "status": "ok",
+    "pushed_at": "2026-09-10T15:17:09Z",
+    "py_files": 30,
+    "classes": [
+      {
+        "class": "LSTMStrategy_v44_5m",
+        "path": "strategies/LSTMStrategy_v44_5m.py",
+        "known": false
+      },
+      {
+        "class": "ExampleLSTMStrategy_v2",
+        "path": "strategies/ExampleLSTMStrategy_v2.py",
+        "known": false
+      },
+      {
+        "class": "ExampleLSTMStrategy_v1",
+        "path": "strategies/ExampleLSTMStrategy_v1.py",
+        "known": false
+      },
+      {
+        "class": "LSTMStrategy_v32",
+        "path": "strategies/LSTMStrategy_v32.py",
+        "known": false
+      },
+      {
+        "class": "LSTMStrategy_v30",
+        "path": "strategies/LSTMStrategy_v30.py",
+        "known": false
+      },
+      {
+        "class": "LSTMStrategy_v46_1h",
+        "path": "strategies/LSTMStrategy_v46_1h.py",
+        "known": false
+      },
+      {
+        "class": "LSTMStrategy_v43",
+        "path": "strategies/LSTMStrategy_v43.py",
+        "known": false
+      },
+      {
+        "class": "LSTMStrategy_v41",
+        "path": "strategies/LSTMStrategy_v41.py",
+        "known": false
+      },
+      {
+        "class": "LSTMStrategy_v3_experimental",
+        "path": "strategies/LSTMStrategy_v3_experimental.py",
+        "known": false
+      },
+      {
+        "class": "LSTMStrategy_v42",
+        "path": "strategies/LSTMStrategy_v42.py",
+        "known": false
+      },
+      {
+        "class": "LSTMStrategy_v50",
+        "path": "strategies/LSTMStrategy_v50.py",
+        "known": false
+      },
+      {
+        "class": "LSTMStrategy_v33",
+        "path": "strategies/LSTMStrategy_v33.py",
+        "known": false
+      },
+      {
+        "class": "ExampleLSTMStrategy_v3",
+        "path": "strategies/ExampleLSTMStrategy_v3.py",
+        "known": false
+      },
+      {
+        "class": "LSTMStrategy_v44_1h",
+        "path": "strategies/LSTMStrategy_v44_1h.py",
+        "known": false
+      },
+      {
+        "class": "HybridLSTMStrategy_v2",
+        "path": "strategies/HybridLSTMStrategy_v2.py",
+        "known": false
+      },
+      {
+        "class": "LSTMStrategy_v45_1h",
+        "path": "strategies/LSTMStrategy_v45_1h.py",
+        "known": false
+      },
+      {
+        "class": "LSTMStrategy_v34",
+        "path": "strategies/LSTMStrategy_v34.py",
+        "known": false
+      },
+      {
+        "class": "FreqaiStrategy",
+        "path": "strategies/FreqaiStrategy.py",
+        "known": false
+      }
+    ]
+  },
+  {
+    "repo": "BenPortz/freqtrade-strategy-research",
+    "status": "ok",
+    "pushed_at": "2026-09-08T08:23:21Z",
+    "py_files": 3,
+    "classes": [
+      {
+        "class": "RsiStrategy",
+        "path": "strategies/RsiStrategy.py",
+        "known": false
+      },
+      {
+        "class": "TrendFollowStrategy",
+        "path": "strategies/TrendFollowStrategy.py",
+        "known": false
+      },
+      {
+        "class": "XGBoostStrategy",
+        "path": "strategies/XGBoostStrategy.py",
+        "known": false
+      }
+    ]
+  },
+  {
+    "repo": "AleksNovo/freqai-3ai-strategy",
+    "status": "ok",
+    "pushed_at": "2026-09-09T09:04:07Z",
+    "py_files": 44,
+    "classes": [
+      {
+        "class": "FreqaiRLHybridStrategy",
+        "path": "user_data/strategies/FreqaiRLHybridStrategy.py",
+        "known": false
+      }
+    ]
+  },
+  {
+    "repo": "08madison/hydra7",
+    "status": "ok",
+    "pushed_at": "2026-07-13T09:49:16Z",
+    "py_files": 4,
+    "classes": [
+      {
+        "class": "Hydra7Strategy",
+        "path": "strategies/Hydra7Strategy.py",
+        "known": false
+      }
+    ]
   }
 ]

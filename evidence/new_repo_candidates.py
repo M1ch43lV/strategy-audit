@@ -47,7 +47,18 @@ CLASS_RE = re.compile(r"^class\s+(\w+)\s*\(([^)]*)\)", re.M)
 # empty repo (size 0, README only) and `LazyPigPig/freqtrade-grid` is a
 # freqtrade framework fork, not a strategy collection - both kept in this
 # list so neither is re-fetched believing it might hold something.
+#
+# 2026-09-15 additions: GitHub search for freqAI/ML-prediction strategies
+# pushed after 2025-01-01, cross-checked against corpus_sources.json (the
+# repo was not already a known source) - see the chat request that asked
+# for current (2025/2026) ML strategies not yet adopted. `hydra7` claims a
+# 31-model consensus ensemble but ships only 1 commit - check it actually
+# runs before queuing a wave.
 CANDIDATES = [
+    "GoodyNick/FreqAI-LSTM-Strategy",
+    "BenPortz/freqtrade-strategy-research",
+    "AleksNovo/freqai-3ai-strategy",
+    "08madison/hydra7",
     "hippocritical/delist_scraper",
     "Netanelshoshan/freqAI-LSTM",
     "AlexCryptoKing/freqailstm",
