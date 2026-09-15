@@ -168,6 +168,34 @@ window. In particular, a look-ahead analysis that remains below ten trades
 after its 6.5-year fallback, or a full-window backtest with zero trades, is not
 rerun on these shorter smoke rungs.
 
+## Amendment 2026-09-15: smoke cascade drops the one-year third rung
+
+**Owner's decision**, made investigating the webclinic017 NNPredict_*
+cluster's zero-trade smoke results. The cascade above now stops after
+`20200301-20200601` (3 months); `20200301-20210301` (1 year) is removed.
+
+The cluster's zero-trade result turned out not to be a quiet market period
+at all - the actual cause was a pandas 3.0 chained-assignment no-op
+(`repair/REGISTER.md`, Phase 10) that silently dropped every model
+prediction before it reached the dataframe, so the entry trigger could
+never fire on ANY window, three months or one year, until the underlying
+bug was fixed. The one-year rung bought an hour of retraining per strategy
+for a verdict the three-month rung already gave just as reliably in every
+case checked. A row that still measures zero trades after the three-month
+rung is now read as "something upstream of this window is broken or this
+strategy genuinely does not trade" - a question for the next diagnostic
+stage, not for a longer smoke window - rather than reflexively spending
+more runtime (or analyst time reading its log) on the same row before
+that question is even asked.
+
+This narrows, rather than removes, the guard the 2026-09-10 amendment
+describes: a quiet first month is still caught by the second rung: only
+the third rung - the expensive one, and the one this investigation showed
+adds a verdict the second rung already reliably gives - is gone. Everything
+else about the 2026-09-10 amendment (prospective, result-blind, does not
+relax eligibility gates, does not supersede stronger full-window evidence)
+is unchanged.
+
 ## Amendment 2026-09-10: identical Spot and Futures bias windows
 
 **Owner's decision**, before any Spot diagnostic was rerun under this change.

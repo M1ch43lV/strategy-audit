@@ -32,10 +32,21 @@ OUTPUT = os.path.join(ROOT, "evidence/PROFILE_SMOKE.json")
 SMOKE_TIMERANGES = (
     "20200301-20200401",
     "20200301-20200601",
-    "20200301-20210301",
 )
 SMOKE_TRADE_FLOOR = 10
-SMOKE_POLICY_ID = "fixed_1m_3m_1y_until_10_trades_v1"
+# The one-year third rung is gone (2026-09-15): the NNPredict_* cluster
+# showed it buys an hour of retraining per strategy for a verdict the
+# three-month rung already gives just as reliably - zero trades at three
+# months turned out to mean zero trades at one year too, every time it was
+# checked, once the actual bug (a pandas chained-assignment no-op, not a
+# short window) was found and fixed. A trade-poor row now stops at the
+# three-month rung; whether that is "the strategy genuinely does not trade"
+# or "something upstream of this window is broken" is the next stage's
+# question, not a longer smoke window's. The version bump means a low
+# result recorded under the old three-rung policy is deliberately stale -
+# see _result_is_current() below - and gets exactly this shorter cascade
+# the next time it is asked for, not silently reused.
+SMOKE_POLICY_ID = "fixed_1m_3m_until_10_trades_v2"
 FUTURES_CONFIG = os.path.join(ROOT, "runtime", "profile_futures_config.json")
 SPOT_CONFIG = os.path.join(ROOT, "runtime", "profile_spot_config.json")
 # Use the interpreter running this pipeline. PROFILE_PYTHON remains available

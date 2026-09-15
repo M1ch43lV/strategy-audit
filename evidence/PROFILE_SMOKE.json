@@ -10760,24 +10760,83 @@
       "why": "Impossible to load Strategy 'NNPredict'. This class does not exist or contains Python code errors."
     },
     "NNPredict_AdditiveAttention": {
+      "archive": "user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20220401-c6a19533-2026-09-15_17-19-15.zip",
+      "archive_sha256": "sha256_f0c90942f29ec566532d726359bab8f27186ceef93ee092ce430a60598a385f2",
+      "artifact_key": "smoke_20210401_20220401",
       "attempted_timeranges": [
-        "20200301-20200401"
+        "20210401-20210501",
+        "20210401-20210701",
+        "20210401-20220401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20210501-5d9f1c4c-2026-09-15_17-01-04.zip",
+          "archive_sha256": "sha256_a8586feb31632849687298f2bafc8d8d4ec25fff424029870c3c206b0c1d0850",
+          "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
             "tf_keras_backend_set_session_noop"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNPredict_AdditiveAttention-b8a95b3f-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 9.9,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20200301_20200401-b4807b77 --cache none",
+          "config_overrides": {},
+          "elapsed_s": 77.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20210501-5d9f1c4c --cache none",
+          "long_trades": 0,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
-          "timerange": "20200301-20200401",
-          "why": "'NNPredictor_AdditiveAttention' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210501",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20210701-b16b8c0d-2026-09-15_17-04-51.zip",
+          "archive_sha256": "sha256_cce386d150c65c9c6b7a594e6f1238dfc4314d7b268866d58f6d4862f4003fa7",
+          "artifact_key": "smoke_20210401_20210701",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 226.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20210701-b16b8c0d --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210701",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20220401-c6a19533-2026-09-15_17-19-15.zip",
+          "archive_sha256": "sha256_f0c90942f29ec566532d726359bab8f27186ceef93ee092ce430a60598a385f2",
+          "artifact_key": "smoke_20210401_20220401",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 864.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20220401-c6a19533 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20220401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
         }
       ],
       "canonical_sha256": "sha256_c6791b6b740a44f562f5c8ee0f274deb3d0536fbe65c9789241eb246a3640946",
@@ -10786,18 +10845,21 @@
         "tf_keras_saving_reexport",
         "tf_keras_backend_set_session_noop"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNPredict_AdditiveAttention-b8a95b3f-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 9.9,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20200301_20200401-b4807b77 --cache none",
+      "config_overrides": {},
+      "elapsed_s": 864.5,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20210401_20220401-c6a19533 --cache none",
+      "long_trades": 0,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
-      "timerange": "20200301-20200401",
+      "short_trades": 0,
+      "smoke_policy_id": "custom_023e1cb46543",
+      "status": "measured",
+      "timerange": "20210401-20220401",
       "trade_floor": 10,
-      "why": "'NNPredictor_AdditiveAttention' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
+      "trades": 0,
+      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
     "NNPredict_Attention": {
       "attempted_timeranges": [
@@ -10840,64 +10902,181 @@
       "why": "Impossible to load Strategy 'NNPredict_Attention'. This class does not exist or contains Python code errors."
     },
     "NNPredict_CNN": {
+      "archive": "user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20220401-c6a19533-2026-09-15_17-27-36.zip",
+      "archive_sha256": "sha256_3444464ddb5d9eea352ebeba9dc015ed3d8deb1f9540b9a18622aecebd8dc74f",
+      "artifact_key": "smoke_20210401_20220401",
       "attempted_timeranges": [
-        "20200301-20200401"
+        "20210401-20210501",
+        "20210401-20210701",
+        "20210401-20220401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20210501-5d9f1c4c-2026-09-15_17-19-51.zip",
+          "archive_sha256": "sha256_bda7ac50a370050e648e762a16e3a20a85b31b80b5fc4cc7355cc70467e970a7",
+          "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
-            "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_bare_save_redirect"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNPredict_CNN-8176c806-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 7.6,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20200301_20200401-b4807b77 --cache none",
+          "config_overrides": {},
+          "elapsed_s": 36.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20210501-5d9f1c4c --cache none",
+          "long_trades": 0,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
-          "timerange": "20200301-20200401",
-          "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210501",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20210701-b16b8c0d-2026-09-15_17-21-31.zip",
+          "archive_sha256": "sha256_b130a6826b5dff2f63b3b164b1952654237c0af6e9f59d3705406babb950c902",
+          "artifact_key": "smoke_20210401_20210701",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_bare_save_redirect"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 99.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20210701-b16b8c0d --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210701",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20220401-c6a19533-2026-09-15_17-27-36.zip",
+          "archive_sha256": "sha256_3444464ddb5d9eea352ebeba9dc015ed3d8deb1f9540b9a18622aecebd8dc74f",
+          "artifact_key": "smoke_20210401_20220401",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_bare_save_redirect"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 365.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20220401-c6a19533 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20220401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
         }
       ],
       "canonical_sha256": "sha256_dbefb09a984765af828a29b6261560ae8d5263b9c79a11d35cbefdd782cc2d64",
       "class1_rules": [
         "restore_copied_local_module",
-        "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_bare_save_redirect"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNPredict_CNN-8176c806-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 7.6,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20200301_20200401-b4807b77 --cache none",
+      "config_overrides": {},
+      "elapsed_s": 365.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20210401_20220401-c6a19533 --cache none",
+      "long_trades": 0,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
-      "timerange": "20200301-20200401",
+      "short_trades": 0,
+      "smoke_policy_id": "custom_023e1cb46543",
+      "status": "measured",
+      "timerange": "20210401-20220401",
       "trade_floor": 10,
-      "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
+      "trades": 0,
+      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
     "NNPredict_GRU": {
+      "archive": "user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20220401-c6a19533-2026-09-15_17-45-36.zip",
+      "archive_sha256": "sha256_d99964f22c3212ae21d92533bff46387f5333c764b583dab421b68dc65165d66",
+      "artifact_key": "smoke_20210401_20220401",
       "attempted_timeranges": [
-        "20200301-20200401"
+        "20210401-20210501",
+        "20210401-20210701",
+        "20210401-20220401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20210501-5d9f1c4c-2026-09-15_17-28-53.zip",
+          "archive_sha256": "sha256_40492ecd8a2569c31de5f2589133dfaf04ce3cdc75f20bb1aab2cb647f232f4c",
+          "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
             "tf_keras_backend_set_session_noop"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNPredict_GRU-42be25c6-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 9.8,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20200301_20200401-b4807b77 --cache none",
+          "config_overrides": {},
+          "elapsed_s": 76.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20210501-5d9f1c4c --cache none",
+          "long_trades": 0,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
-          "timerange": "20200301-20200401",
-          "why": "'NNPredictor_GRU' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210501",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20210701-b16b8c0d-2026-09-15_17-32-21.zip",
+          "archive_sha256": "sha256_0976c6342ecc408a0828587939b3a050cebda107961fc1b07870f04b4b69fb9c",
+          "artifact_key": "smoke_20210401_20210701",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 208.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20210701-b16b8c0d --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210701",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20220401-c6a19533-2026-09-15_17-45-36.zip",
+          "archive_sha256": "sha256_d99964f22c3212ae21d92533bff46387f5333c764b583dab421b68dc65165d66",
+          "artifact_key": "smoke_20210401_20220401",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 794.4,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20220401-c6a19533 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20220401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
         }
       ],
       "canonical_sha256": "sha256_a779526e29e4dc48ac7f77d6994a095ab8c1bfb9b03d13f821a59b41b55f4bc2",
@@ -10906,18 +11085,21 @@
         "tf_keras_saving_reexport",
         "tf_keras_backend_set_session_noop"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNPredict_GRU-42be25c6-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 9.8,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20200301_20200401-b4807b77 --cache none",
+      "config_overrides": {},
+      "elapsed_s": 794.4,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20210401_20220401-c6a19533 --cache none",
+      "long_trades": 0,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
-      "timerange": "20200301-20200401",
+      "short_trades": 0,
+      "smoke_policy_id": "custom_023e1cb46543",
+      "status": "measured",
+      "timerange": "20210401-20220401",
       "trade_floor": 10,
-      "why": "'NNPredictor_GRU' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
+      "trades": 0,
+      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
     "NNPredict_LSTM": {
       "attempted_timeranges": [
@@ -11060,24 +11242,83 @@
       "why": "timeout after 300 seconds"
     },
     "NNPredict_LSTM2": {
+      "archive": "user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20220401-c6a19533-2026-09-15_18-05-17.zip",
+      "archive_sha256": "sha256_08e404312c7540939a1a2bf302660418e6729f133fe7690892ee1649e7977574",
+      "artifact_key": "smoke_20210401_20220401",
       "attempted_timeranges": [
-        "20200301-20200401"
+        "20210401-20210501",
+        "20210401-20210701",
+        "20210401-20220401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20210501-5d9f1c4c-2026-09-15_17-46-59.zip",
+          "archive_sha256": "sha256_14b7be6aee639f805931e0e8827cb7763a4594fb9fe886f839dbf592875e8a9d",
+          "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
             "tf_keras_backend_set_session_noop"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNPredict_LSTM2-72af61c6-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 9.6,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20200301_20200401-b4807b77 --cache none",
+          "config_overrides": {},
+          "elapsed_s": 83.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20210501-5d9f1c4c --cache none",
+          "long_trades": 0,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
-          "timerange": "20200301-20200401",
-          "why": "'NNPredictor_LSTM2' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210501",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20210701-b16b8c0d-2026-09-15_17-50-43.zip",
+          "archive_sha256": "sha256_47fdd541cf4c6e6e5cc466578e9e8bf61187262d8d0da4ceedfd8058f34229cd",
+          "artifact_key": "smoke_20210401_20210701",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 224.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20210701-b16b8c0d --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210701",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20220401-c6a19533-2026-09-15_18-05-17.zip",
+          "archive_sha256": "sha256_08e404312c7540939a1a2bf302660418e6729f133fe7690892ee1649e7977574",
+          "artifact_key": "smoke_20210401_20220401",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 873.7,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20220401-c6a19533 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20220401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
         }
       ],
       "canonical_sha256": "sha256_b9d859ecdc6c813a6c41f37923c10c663f769c877b8833f2228c0facff750972",
@@ -11086,38 +11327,100 @@
         "tf_keras_saving_reexport",
         "tf_keras_backend_set_session_noop"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNPredict_LSTM2-72af61c6-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 9.6,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20200301_20200401-b4807b77 --cache none",
+      "config_overrides": {},
+      "elapsed_s": 873.7,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20210401_20220401-c6a19533 --cache none",
+      "long_trades": 0,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
-      "timerange": "20200301-20200401",
+      "short_trades": 0,
+      "smoke_policy_id": "custom_023e1cb46543",
+      "status": "measured",
+      "timerange": "20210401-20220401",
       "trade_floor": 10,
-      "why": "'NNPredictor_LSTM2' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
+      "trades": 0,
+      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
     "NNPredict_LSTM3": {
+      "archive": "user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20220401-c6a19533-2026-09-15_18-31-37.zip",
+      "archive_sha256": "sha256_dd6cfd3f8e2c8546965b56c7dbbfe64be76b07c7c7dd94a2b5240430c726322f",
+      "artifact_key": "smoke_20210401_20220401",
       "attempted_timeranges": [
-        "20200301-20200401"
+        "20210401-20210501",
+        "20210401-20210701",
+        "20210401-20220401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20210501-5d9f1c4c-2026-09-15_18-06-59.zip",
+          "archive_sha256": "sha256_e5e2333ec7f7bab821627566f185ceabef2b3e6d3bcca6a7a3c3ee99cb8270c1",
+          "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
             "tf_keras_backend_set_session_noop"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNPredict_LSTM3-9f7b2817-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 9.3,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20200301_20200401-b4807b77 --cache none",
+          "config_overrides": {},
+          "elapsed_s": 101.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20210501-5d9f1c4c --cache none",
+          "long_trades": 0,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
-          "timerange": "20200301-20200401",
-          "why": "'NNPredictor_LSTM3' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210501",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20210701-b16b8c0d-2026-09-15_18-11-57.zip",
+          "archive_sha256": "sha256_666971fabc8c5f5b2053639222d99779a29a664e9531f2855b1809204b9a7754",
+          "artifact_key": "smoke_20210401_20210701",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 298.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20210701-b16b8c0d --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210701",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20220401-c6a19533-2026-09-15_18-31-37.zip",
+          "archive_sha256": "sha256_dd6cfd3f8e2c8546965b56c7dbbfe64be76b07c7c7dd94a2b5240430c726322f",
+          "artifact_key": "smoke_20210401_20220401",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 1180.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20220401-c6a19533 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20220401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
         }
       ],
       "canonical_sha256": "sha256_69bf88a43452c626edd8b01fbb5596afe5f5af079aed01d34fbe3587c4aef3d7",
@@ -11126,98 +11429,217 @@
         "tf_keras_saving_reexport",
         "tf_keras_backend_set_session_noop"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNPredict_LSTM3-9f7b2817-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 9.3,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20200301_20200401-b4807b77 --cache none",
+      "config_overrides": {},
+      "elapsed_s": 1180.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20210401_20220401-c6a19533 --cache none",
+      "long_trades": 0,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
-      "timerange": "20200301-20200401",
+      "short_trades": 0,
+      "smoke_policy_id": "custom_023e1cb46543",
+      "status": "measured",
+      "timerange": "20210401-20220401",
       "trade_floor": 10,
-      "why": "'NNPredictor_LSTM3' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
+      "trades": 0,
+      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
     "NNPredict_MLP": {
+      "archive": "user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20220401-c6a19533-2026-09-15_18-46-13.zip",
+      "archive_sha256": "sha256_6f68dffa451cbc8e9590e0c3c27ad079c732017449af3c11411984b4a56cf87a",
+      "artifact_key": "smoke_20210401_20220401",
       "attempted_timeranges": [
-        "20200301-20200401"
+        "20210401-20210501",
+        "20210401-20210701",
+        "20210401-20220401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20210501-5d9f1c4c-2026-09-15_18-32-46.zip",
+          "archive_sha256": "sha256_49dc2bdaf0683c6afa63427eeff004a68afc516f5d6443a9fa90fb13c8d9eea8",
+          "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
-            "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_bare_save_redirect"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNPredict_MLP-1dbb7db7-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 11.5,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20200301_20200401-b4807b77 --cache none",
+          "config_overrides": {},
+          "elapsed_s": 68.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20210501-5d9f1c4c --cache none",
+          "long_trades": 0,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
-          "timerange": "20200301-20200401",
-          "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210501",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20210701-b16b8c0d-2026-09-15_18-35-48.zip",
+          "archive_sha256": "sha256_4fd195be94a09b41a72a26f79b717598aac0a45971398fafcb92302ed376481b",
+          "artifact_key": "smoke_20210401_20210701",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_bare_save_redirect"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 181.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20210701-b16b8c0d --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210701",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20220401-c6a19533-2026-09-15_18-46-13.zip",
+          "archive_sha256": "sha256_6f68dffa451cbc8e9590e0c3c27ad079c732017449af3c11411984b4a56cf87a",
+          "artifact_key": "smoke_20210401_20220401",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_bare_save_redirect"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 624.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20220401-c6a19533 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20220401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
         }
       ],
       "canonical_sha256": "sha256_28fb136d2bfe939b81f00710cfd0846525c80339f395e05f57f8abfd5a6928fd",
       "class1_rules": [
         "restore_copied_local_module",
-        "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_bare_save_redirect"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNPredict_MLP-1dbb7db7-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 11.5,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20200301_20200401-b4807b77 --cache none",
+      "config_overrides": {},
+      "elapsed_s": 624.5,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20210401_20220401-c6a19533 --cache none",
+      "long_trades": 0,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
-      "timerange": "20200301-20200401",
+      "short_trades": 0,
+      "smoke_policy_id": "custom_023e1cb46543",
+      "status": "measured",
+      "timerange": "20210401-20220401",
       "trade_floor": 10,
-      "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
+      "trades": 0,
+      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
     "NNPredict_Multihead": {
+      "archive": "user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20220401-c6a19533-2026-09-15_19-02-19.zip",
+      "archive_sha256": "sha256_23b644cfd8451628ae8db127af57727b4ac533f1120cc196bc4c2d2061ceb5e0",
+      "artifact_key": "smoke_20210401_20220401",
       "attempted_timeranges": [
-        "20200301-20200401"
+        "20210401-20210501",
+        "20210401-20210701",
+        "20210401-20220401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20210501-5d9f1c4c-2026-09-15_18-47-20.zip",
+          "archive_sha256": "sha256_619b7fe8c65bef6c4cce4b1103f326f9f51c8382d525ed9ff3394f66c1e225ae",
+          "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
-            "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_bare_save_redirect"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNPredict_Multihead-dcf9d081-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 11.8,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20200301_20200401-b4807b77 --cache none",
+          "config_overrides": {},
+          "elapsed_s": 66.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20210501-5d9f1c4c --cache none",
+          "long_trades": 0,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
-          "timerange": "20200301-20200401",
-          "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210501",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20210701-b16b8c0d-2026-09-15_18-50-24.zip",
+          "archive_sha256": "sha256_22811f973e9648bb9689861d682625db9891a05ebe57afd8a64f8f38a6ff0bdb",
+          "artifact_key": "smoke_20210401_20210701",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_bare_save_redirect"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 184.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20210701-b16b8c0d --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210701",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20220401-c6a19533-2026-09-15_19-02-19.zip",
+          "archive_sha256": "sha256_23b644cfd8451628ae8db127af57727b4ac533f1120cc196bc4c2d2061ceb5e0",
+          "artifact_key": "smoke_20210401_20220401",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_bare_save_redirect"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 715.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20220401-c6a19533 --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20220401",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
         }
       ],
       "canonical_sha256": "sha256_04ea2bdc5bc213c9e56709c81110f6c86cac6d750e3ce027e49c166a9af42c76",
       "class1_rules": [
         "restore_copied_local_module",
-        "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_bare_save_redirect"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNPredict_Multihead-dcf9d081-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 11.8,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20200301_20200401-b4807b77 --cache none",
+      "config_overrides": {},
+      "elapsed_s": 715.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20210401_20220401-c6a19533 --cache none",
+      "long_trades": 0,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
-      "timerange": "20200301-20200401",
+      "short_trades": 0,
+      "smoke_policy_id": "custom_023e1cb46543",
+      "status": "measured",
+      "timerange": "20210401-20220401",
       "trade_floor": 10,
-      "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
+      "trades": 0,
+      "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
     },
     "NNPredict_NBeats": {
       "attempted_timeranges": [
@@ -11349,43 +11771,85 @@
     },
     "NNPredict_TCN": {
       "attempted_timeranges": [
-        "20200301-20200401"
+        "20210401-20210501",
+        "20210401-20210701",
+        "20210401-20220401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20210401_20210501-5d9f1c4c-2026-09-15_19-06-32.zip",
+          "archive_sha256": "sha256_250ac285335a97894f3a8024435f43fe45f2cedf628f7f8e0b6258eead09a0cb",
+          "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
-            "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_bare_save_redirect"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNPredict_TCN-cf8797a2-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 11.7,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20200301_20200401-b4807b77 --cache none",
+          "config_overrides": {},
+          "elapsed_s": 253.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20210401_20210501-5d9f1c4c --cache none",
+          "long_trades": 0,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
-          "timerange": "20200301-20200401",
-          "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210501",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20210401_20210701-b16b8c0d-2026-09-15_19-19-38.zip",
+          "archive_sha256": "sha256_0ef4a3c606a1fabe91eb4d405b7188a30ad76e31d8838ba532742a39b31c04a4",
+          "artifact_key": "smoke_20210401_20210701",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_bare_save_redirect"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 786.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20210401_20210701-b16b8c0d --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210701",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_bare_save_redirect"
+          ],
+          "elapsed_s": 3600.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20210401_20220401-c6a19533 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "timeout",
+          "timerange": "20210401-20220401",
+          "why": "timeout after 3600 seconds"
         }
       ],
       "canonical_sha256": "sha256_309fd0115e8c3af90f1b737be5f4c22edeb312025fbfddd39ccba4cc864ac1d1",
       "class1_rules": [
         "restore_copied_local_module",
-        "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_bare_save_redirect"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNPredict_TCN-cf8797a2-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 11.7,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20200301_20200401-b4807b77 --cache none",
+      "elapsed_s": 3600.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20210401_20220401-c6a19533 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
-      "timerange": "20200301-20200401",
+      "smoke_policy_id": "custom_023e1cb46543",
+      "status": "timeout",
+      "timerange": "20210401-20220401",
       "trade_floor": 10,
-      "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
+      "why": "timeout after 3600 seconds"
     },
     "NNPredict_TFT": {
       "attempted_timeranges": [
@@ -11430,13 +11894,13 @@
             "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNPredict_Transformer-02c2542a-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.3,
+          "elapsed_s": 8.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/binanceus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Transformer-02c2542a-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "When using `save_weights_only=True` in `ModelCheckpoint`, the filepath provided must end in `.weights.h5` (Keras weights format). Received: filepath=/tmp/model.h5"
+          "why": "module 'tf_keras.api._v2.keras' has no attribute '__version__'"
         }
       ],
       "canonical_sha256": "sha256_d02a90ce51d66b5bf3f462f9ef7941e80dd0bbd787288f5243281aa1270ae49a",
@@ -11445,7 +11909,7 @@
         "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNPredict_Transformer-02c2542a-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.3,
+      "elapsed_s": 8.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/binanceus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Transformer-02c2542a-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11455,87 +11919,173 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "When using `save_weights_only=True` in `ModelCheckpoint`, the filepath provided must end in `.weights.h5` (Keras weights format). Received: filepath=/tmp/model.h5"
+      "why": "module 'tf_keras.api._v2.keras' has no attribute '__version__'"
     },
     "NNPredict_Wavenet": {
       "attempted_timeranges": [
-        "20200301-20200401"
+        "20210401-20210501",
+        "20210401-20210701",
+        "20210401-20220401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20210401_20210501-5d9f1c4c-2026-09-15_20-22-16.zip",
+          "archive_sha256": "sha256_1f9a38932ab17c3c22b0165b77287e78f06d4ec55a264f0bbeb4feed50361863",
+          "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
-            "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_bare_save_redirect"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNPredict_Wavenet-b3f0797b-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 11.9,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20200301_20200401-b4807b77 --cache none",
+          "config_overrides": {},
+          "elapsed_s": 158.2,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20210401_20210501-5d9f1c4c --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210501",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20210401_20210701-b16b8c0d-2026-09-15_20-29-29.zip",
+          "archive_sha256": "sha256_722cd2302dbcadd3d5db7f2409a9ee3d33f15263558042053de5ded8ec485628",
+          "artifact_key": "smoke_20210401_20210701",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_bare_save_redirect"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 433.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20210401_20210701-b16b8c0d --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210701",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_bare_save_redirect"
+          ],
+          "debug_log": "user_data/profile_smoke_logs/NNPredict_Wavenet-b3f0797b-smoke_20210401_20220401-c6a19533.log",
+          "elapsed_s": 244.7,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20210401_20220401-c6a19533 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
-          "timerange": "20200301-20200401",
-          "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
+          "timerange": "20210401-20220401",
+          "why": "A value is being set on a copy of a DataFrame or Series through chained assignment."
         }
       ],
       "canonical_sha256": "sha256_b75bada16ae3574a9cc13764dea4c9fd1d61d252a160a8481d3532977edb7633",
       "class1_rules": [
         "restore_copied_local_module",
-        "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_bare_save_redirect"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNPredict_Wavenet-b3f0797b-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 11.9,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20200301_20200401-b4807b77 --cache none",
+      "debug_log": "user_data/profile_smoke_logs/NNPredict_Wavenet-b3f0797b-smoke_20210401_20220401-c6a19533.log",
+      "elapsed_s": 244.7,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20210401_20220401-c6a19533 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "smoke_policy_id": "custom_023e1cb46543",
       "status": "failed",
-      "timerange": "20200301-20200401",
+      "timerange": "20210401-20220401",
       "trade_floor": 10,
-      "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
+      "why": "A value is being set on a copy of a DataFrame or Series through chained assignment."
     },
     "NNPredict_Wavenet2": {
       "attempted_timeranges": [
-        "20200301-20200401"
+        "20210401-20210501",
+        "20210401-20210701",
+        "20210401-20220401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20210401_20210501-5d9f1c4c-2026-09-15_15-41-44.zip",
+          "archive_sha256": "sha256_8c6b87df3d4500687eb54f110a55d8fc314d45bc40434ab4fd984dce60d1b59c",
+          "artifact_key": "smoke_20210401_20210501",
           "class1_rules": [
             "restore_copied_local_module",
-            "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_bare_save_redirect"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNPredict_Wavenet2-dc810ce2-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 8.0,
-          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20200301_20200401-b4807b77 --cache none",
+          "config_overrides": {},
+          "elapsed_s": 93.6,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210501 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20210401_20210501-5d9f1c4c --cache none",
+          "long_trades": 0,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
-          "timerange": "20200301-20200401",
-          "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210501",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "archive": "user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20210401_20210701-b16b8c0d-2026-09-15_15-46-06.zip",
+          "archive_sha256": "sha256_a5ed20d9c3ef882b1cbdcf59d3443ddea09199f25c62b6fa5d9989d01892b776",
+          "artifact_key": "smoke_20210401_20210701",
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_bare_save_redirect"
+          ],
+          "config_overrides": {},
+          "elapsed_s": 261.8,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20210701 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20210401_20210701-b16b8c0d --cache none",
+          "long_trades": 0,
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
+          "timerange": "20210401-20210701",
+          "trades": 0,
+          "trades_sha256": "sha256_4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_bare_save_redirect"
+          ],
+          "elapsed_s": 600.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20210401_20220401-c6a19533 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "timeout",
+          "timerange": "20210401-20220401",
+          "why": "timeout after 600 seconds"
         }
       ],
       "canonical_sha256": "sha256_001bfd12b846c20c15b76d224fca4966115ab8e18eb6eec9339a4350300ae9b2",
       "class1_rules": [
         "restore_copied_local_module",
-        "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_bare_save_redirect"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNPredict_Wavenet2-dc810ce2-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 8.0,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20200301_20200401-b4807b77 --cache none",
+      "elapsed_s": 600.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20210401-20220401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20210401_20220401-c6a19533 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
-      "timerange": "20200301-20200401",
+      "smoke_policy_id": "custom_023e1cb46543",
+      "status": "timeout",
+      "timerange": "20210401-20220401",
       "trade_floor": 10,
-      "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
+      "why": "timeout after 600 seconds"
     },
     "NNPredict_dTransformer": {
       "attempted_timeranges": [
@@ -11580,13 +12130,13 @@
             "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNPredict_kTFT-32c570be-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 9.8,
+          "elapsed_s": 7.4,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_kTFT --strategy-path repos/webclinic017_strategies-freqtrade-/binanceus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_kTFT-32c570be-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "'KerasTensor' object has no attribute 'get_shape'. Did you mean: 'reshape'?"
+          "why": "module 'tf_keras.api._v2.keras' has no attribute '__version__'"
         }
       ],
       "canonical_sha256": "sha256_a77e97d20562deead7e72a5429c965ed559ec7d374adc8e074973d6ae44ee75a",
@@ -11595,7 +12145,7 @@
         "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNPredict_kTFT-32c570be-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 9.8,
+      "elapsed_s": 7.4,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_kTFT --strategy-path repos/webclinic017_strategies-freqtrade-/binanceus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_kTFT-32c570be-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11605,7 +12155,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "'KerasTensor' object has no attribute 'get_shape'. Did you mean: 'reshape'?"
+      "why": "module 'tf_keras.api._v2.keras' has no attribute '__version__'"
     },
     "NNTC": {
       "canonical_sha256": "sha256_a3698e006d25447e3ca688b91e6ab2de750d46542e064f1bf7afa4eafa497e5e",
@@ -11716,7 +12266,7 @@
             "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_adx_LSTM-fce42341-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 11.7,
+          "elapsed_s": 12.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_adx_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_adx_LSTM-fce42341-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
@@ -11732,7 +12282,7 @@
         "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_adx_LSTM-fce42341-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 11.7,
+      "elapsed_s": 12.9,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_adx_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_adx_LSTM-fce42341-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -21589,12 +22139,12 @@
     }
   },
   "schema_version": 1,
-  "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-  "timerange": "20200301-20200401",
+  "smoke_policy_id": "custom_023e1cb46543",
+  "timerange": "20210401-20210501",
   "timeranges": [
-    "20200301-20200401",
-    "20200301-20200601",
-    "20200301-20210301"
+    "20210401-20210501",
+    "20210401-20210701",
+    "20210401-20220401"
   ],
   "trade_floor": 10
 }
