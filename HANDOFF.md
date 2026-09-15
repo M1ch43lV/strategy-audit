@@ -3,12 +3,19 @@
 ## Baton
 
 - Last agent: codex
-- Last update: 2026-09-14T21:45:37+02:00
-- Stopped because: prepared the complete current worktree for an owner-requested
-  checkpoint commit after verifying C11 in the generated status artifact.
-- Next agent should: preserve the generated duplicate decisions and the C11
-  artifact explanation; do not rerun backtests for the six redundant
-  implementations.
+- Last update: 2026-09-15T08:29:45+02:00
+- Stopped because: detached the GitHub repository from its fork network,
+  migrated the 1.3 GB attribution CSV to Git LFS, and pushed successfully.
+- Next agent should: preserve `.gitattributes` and never recommit
+  `results/regime/trade_regime_attribution.csv` as an ordinary Git blob. The
+  old-to-new hash map is `evidence/GIT_LFS_MIGRATION.md`; do not rederive it.
+- Git/LFS checkpoint: GitHub reports `fork=false`; remote `main` matched local
+  `0666ba4a0991a7d79246d6bf4b3c8b36b86cf5f8` after upload. The CSV is a
+  135-byte pointer to LFS object
+  `sha256:977486f94f97e51bf689189d2775632afd0ce039b37a090a0c7204a4d7bf7799`
+  (1,300,248,203 bytes). No ordinary blob over 100 MB remains in the pushed
+  `fork/main..main` range. A verified pre-migration bundle is stored at
+  `../strategy-audit-pre-lfs-20260915-074618.bundle`.
 - Artifact template: `tools/STRATEGY_STATUS.template.html` now explains
   `duplicate_implementation` as C11. `strategy_status.html` was regenerated;
   its dynamically generated criteria legend and row-detail prose both include

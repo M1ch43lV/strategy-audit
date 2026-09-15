@@ -69,6 +69,9 @@ rule is the most likely way to corrupt this study.
   answer. The exact current graph counts are recorded in its summary. Rebuild
   with `/graphify graphify-scope --update` after any of the
   scanned scripts or docs change materially.
+- `evidence/GIT_LFS_MIGRATION.md` - the immutable old-to-new commit mapping for
+  the 2026-09-15 migration of the 1.3 GB Model-0 attribution CSV to Git LFS.
+  Read it only when an old local log or transcript names a pre-migration hash.
 - `evidence/EXECUTION_PROFILES.md` - which implementation of a strategy is canonical, and
   whether it runs spot or futures. Relevant to the goal in a way the title
   hides: 940 of 1,050 strategies have a long-only execution profile, so bear-phase evidence is
