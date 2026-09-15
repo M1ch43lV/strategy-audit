@@ -1234,15 +1234,16 @@
       "status": "applied"
     },
     "NNPredict_AdditiveAttention": {
-      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 3 differing copies satisfy the import; the one in the strategy's own repository is used Corrected 2026-09-15: the single binanceus/ path satisfied custom_indicators but left a further from-utils.X import (reached deeper in the same chain) unsatisfied at real-run time even though an in-process probe missed it (same cross-candidate sys.modules risk repair/local_modules.py.try_import documents); repo root added alongside.",
+      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 3 differing copies satisfy the import; the one in the strategy's own repository is used Corrected 2026-09-15: the single binanceus/ path satisfied custom_indicators but left a further from-utils.X import (reached deeper in the same chain) unsatisfied at real-run time even though an in-process probe missed it (same cross-candidate sys.modules risk repair/local_modules.py.try_import documents); repo root added alongside. Corrected again 2026-09-15: binanceus/ custom_indicators.py is byte-identical to utils/custom_indicators.py, but binanceus/ClassifierKeras.py is a 56-line-shorter, older copy missing set_model_path (only get_model_path) - resolve()'s digest tie-break picked it anyway since it never inspects OTHER files sharing the same directory. Using utils/ instead satisfies the same custom_indicators import AND carries the complete ClassifierKeras with both methods NNPredict.py calls. 2026-09-15: added nnpredict_chained_iloc_writeback - the actual root cause of the 0-trades result across every window (in-sample and out-of-sample): predicted_gain never reaches the dataframe due to a pandas 3.0 chained-assignment CoW no-op, see repair/REGISTER.md Phase 10 and compat_signature.py's own docstring for this rule.",
       "python_paths": [
-        "repos/webclinic017_strategies-freqtrade-/binanceus",
+        "repos/webclinic017_strategies-freqtrade-/utils",
         "repos/webclinic017_strategies-freqtrade-"
       ],
       "rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nnpredict_chained_iloc_writeback"
       ],
       "status": "applied"
     },
@@ -1259,9 +1260,23 @@
       "status": "applied"
     },
     "NNPredict_CNN": {
-      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 2 copies satisfy the import and all are the same file, so the choice carries no risk",
+      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 2 copies satisfy the import and all are the same file, so the choice carries no risk Corrected 2026-09-15: keras.optimizers.legacy needs TF_USE_LEGACY_KERAS=1 (tf_keras package), which makes the model this file builds via tf.keras.* a tf_keras object; its own bare keras.models.save_model call (ClassifierKeras.py) then refuses it as not a native KerasSaveable, so tf_keras_bare_save_redirect routes that one call to tf_keras too. tf_keras_saving_reexport/tf_keras_backend_set_session_noop dropped here - under legacy keras both target functions already exist natively, and reasserting the Keras-3 ones (what tf_keras_saving_reexport does) reintroduced the same KerasSaveable clash. Path corrected once more 2026-09-15: the hamidreza07 _Anomaly/__NNPredict copies satisfy custom_indicators/utils but their own DataframePopulator.py never defines guard_metric (only webclinic017 utils/DataframePopulator.py does) - same wrong-sibling-copy risk as the earlier ClassifierKeras case, standardised on the one verified-complete copy instead of trusting another digest tie-break.",
       "python_paths": [
-        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
+        "repos/webclinic017_strategies-freqtrade-/utils",
+        "repos/webclinic017_strategies-freqtrade-"
+      ],
+      "rules": [
+        "restore_copied_local_module",
+        "tf_keras_bare_save_redirect"
+      ],
+      "status": "applied",
+      "tf_use_legacy_keras": true
+    },
+    "NNPredict_GRU": {
+      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 3 differing copies satisfy the import; the one in the strategy's own repository is used Corrected 2026-09-15: the single binanceus/ path satisfied custom_indicators but left a further from-utils.X import (reached deeper in the same chain) unsatisfied at real-run time even though an in-process probe missed it (same cross-candidate sys.modules risk repair/local_modules.py.try_import documents); repo root added alongside. Corrected again 2026-09-15: binanceus/ custom_indicators.py is byte-identical to utils/custom_indicators.py, but binanceus/ClassifierKeras.py is a 56-line-shorter, older copy missing set_model_path (only get_model_path) - resolve()'s digest tie-break picked it anyway since it never inspects OTHER files sharing the same directory. Using utils/ instead satisfies the same custom_indicators import AND carries the complete ClassifierKeras with both methods NNPredict.py calls.",
+      "python_paths": [
+        "repos/webclinic017_strategies-freqtrade-/utils",
+        "repos/webclinic017_strategies-freqtrade-"
       ],
       "rules": [
         "restore_copied_local_module",
@@ -1270,24 +1285,10 @@
       ],
       "status": "applied"
     },
-    "NNPredict_GRU": {
-      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 3 differing copies satisfy the import; the one in the strategy's own repository is used Corrected 2026-09-15: the single binanceus/ path satisfied custom_indicators but left a further from-utils.X import (reached deeper in the same chain) unsatisfied at real-run time even though an in-process probe missed it (same cross-candidate sys.modules risk repair/local_modules.py.try_import documents); repo root added alongside.",
-      "python_paths": [
-        "repos/webclinic017_strategies-freqtrade-/binanceus",
-        "repos/webclinic017_strategies-freqtrade-"
-      ],
-      "rules": [
-        "restore_copied_local_module",
-        "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
-      ],
-      "status": "applied",
-      "withdrawn_path": "repos/webclinic017_strategies-freqtrade-/binanceus"
-    },
     "NNPredict_LSTM2": {
-      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 3 differing copies satisfy the import; the one in the strategy's own repository is used Corrected 2026-09-15: the single binanceus/ path satisfied custom_indicators but left a further from-utils.X import (reached deeper in the same chain) unsatisfied at real-run time even though an in-process probe missed it (same cross-candidate sys.modules risk repair/local_modules.py.try_import documents); repo root added alongside.",
+      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 3 differing copies satisfy the import; the one in the strategy's own repository is used Corrected 2026-09-15: the single binanceus/ path satisfied custom_indicators but left a further from-utils.X import (reached deeper in the same chain) unsatisfied at real-run time even though an in-process probe missed it (same cross-candidate sys.modules risk repair/local_modules.py.try_import documents); repo root added alongside. Corrected again 2026-09-15: binanceus/ custom_indicators.py is byte-identical to utils/custom_indicators.py, but binanceus/ClassifierKeras.py is a 56-line-shorter, older copy missing set_model_path (only get_model_path) - resolve()'s digest tie-break picked it anyway since it never inspects OTHER files sharing the same directory. Using utils/ instead satisfies the same custom_indicators import AND carries the complete ClassifierKeras with both methods NNPredict.py calls.",
       "python_paths": [
-        "repos/webclinic017_strategies-freqtrade-/binanceus",
+        "repos/webclinic017_strategies-freqtrade-/utils",
         "repos/webclinic017_strategies-freqtrade-"
       ],
       "rules": [
@@ -1295,13 +1296,12 @@
         "tf_keras_saving_reexport",
         "tf_keras_backend_set_session_noop"
       ],
-      "status": "applied",
-      "withdrawn_path": "repos/webclinic017_strategies-freqtrade-/binanceus"
+      "status": "applied"
     },
     "NNPredict_LSTM3": {
-      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. binanceus/ satisfies the bare custom_indicators import; the repo root is additionally needed for a dotted utils.X import elsewhere in the same chain",
+      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. binanceus/ satisfies the bare custom_indicators import; the repo root is additionally needed for a dotted utils.X import elsewhere in the same chain Corrected again 2026-09-15: binanceus/ custom_indicators.py is byte-identical to utils/custom_indicators.py, but binanceus/ClassifierKeras.py is a 56-line-shorter, older copy missing set_model_path (only get_model_path) - resolve()'s digest tie-break picked it anyway since it never inspects OTHER files sharing the same directory. Using utils/ instead satisfies the same custom_indicators import AND carries the complete ClassifierKeras with both methods NNPredict.py calls.",
       "python_paths": [
-        "repos/webclinic017_strategies-freqtrade-/binanceus",
+        "repos/webclinic017_strategies-freqtrade-/utils",
         "repos/webclinic017_strategies-freqtrade-"
       ],
       "rules": [
@@ -1309,46 +1309,48 @@
         "tf_keras_saving_reexport",
         "tf_keras_backend_set_session_noop"
       ],
-      "status": "applied",
-      "withdrawn_path": "repos/webclinic017_strategies-freqtrade-/binanceus"
+      "status": "applied"
     },
     "NNPredict_MLP": {
-      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 2 copies satisfy the import and all are the same file, so the choice carries no risk",
+      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 2 copies satisfy the import and all are the same file, so the choice carries no risk Corrected 2026-09-15: keras.optimizers.legacy needs TF_USE_LEGACY_KERAS=1 (tf_keras package), which makes the model this file builds via tf.keras.* a tf_keras object; its own bare keras.models.save_model call (ClassifierKeras.py) then refuses it as not a native KerasSaveable, so tf_keras_bare_save_redirect routes that one call to tf_keras too. tf_keras_saving_reexport/tf_keras_backend_set_session_noop dropped here - under legacy keras both target functions already exist natively, and reasserting the Keras-3 ones (what tf_keras_saving_reexport does) reintroduced the same KerasSaveable clash. Path corrected once more 2026-09-15: the hamidreza07 _Anomaly/__NNPredict copies satisfy custom_indicators/utils but their own DataframePopulator.py never defines guard_metric (only webclinic017 utils/DataframePopulator.py does) - same wrong-sibling-copy risk as the earlier ClassifierKeras case, standardised on the one verified-complete copy instead of trusting another digest tie-break.",
       "python_paths": [
-        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
+        "repos/webclinic017_strategies-freqtrade-/utils",
+        "repos/webclinic017_strategies-freqtrade-"
       ],
       "rules": [
         "restore_copied_local_module",
-        "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_bare_save_redirect"
       ],
       "status": "applied",
+      "tf_use_legacy_keras": true,
       "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
     },
     "NNPredict_Multihead": {
-      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 4 differing copies satisfy the import and none is in the strategy's own repository; repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
+      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 4 differing copies satisfy the import and none is in the strategy's own repository; repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement Corrected 2026-09-15: keras.optimizers.legacy needs TF_USE_LEGACY_KERAS=1 (tf_keras package), which makes the model this file builds via tf.keras.* a tf_keras object; its own bare keras.models.save_model call (ClassifierKeras.py) then refuses it as not a native KerasSaveable, so tf_keras_bare_save_redirect routes that one call to tf_keras too. tf_keras_saving_reexport/tf_keras_backend_set_session_noop dropped here - under legacy keras both target functions already exist natively, and reasserting the Keras-3 ones (what tf_keras_saving_reexport does) reintroduced the same KerasSaveable clash. Path corrected once more 2026-09-15: the hamidreza07 _Anomaly/__NNPredict copies satisfy custom_indicators/utils but their own DataframePopulator.py never defines guard_metric (only webclinic017 utils/DataframePopulator.py does) - same wrong-sibling-copy risk as the earlier ClassifierKeras case, standardised on the one verified-complete copy instead of trusting another digest tie-break.",
       "python_paths": [
-        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+        "repos/webclinic017_strategies-freqtrade-/utils",
+        "repos/webclinic017_strategies-freqtrade-"
       ],
       "rules": [
         "restore_copied_local_module",
-        "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_bare_save_redirect"
       ],
       "status": "applied",
+      "tf_use_legacy_keras": true,
       "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
     },
     "NNPredict_TCN": {
-      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 2 copies satisfy the import and all are the same file, so the choice carries no risk",
+      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 2 copies satisfy the import and all are the same file, so the choice carries no risk Corrected 2026-09-15: keras.optimizers.legacy needs TF_USE_LEGACY_KERAS=1 (tf_keras package), which makes the model this file builds via tf.keras.* a tf_keras object; its own bare keras.models.save_model call (ClassifierKeras.py) then refuses it as not a native KerasSaveable, so tf_keras_bare_save_redirect routes that one call to tf_keras too. tf_keras_saving_reexport/tf_keras_backend_set_session_noop dropped here - under legacy keras both target functions already exist natively, and reasserting the Keras-3 ones (what tf_keras_saving_reexport does) reintroduced the same KerasSaveable clash. Path corrected once more 2026-09-15: the hamidreza07 _Anomaly/__NNPredict copies satisfy custom_indicators/utils but their own DataframePopulator.py never defines guard_metric (only webclinic017 utils/DataframePopulator.py does) - same wrong-sibling-copy risk as the earlier ClassifierKeras case, standardised on the one verified-complete copy instead of trusting another digest tie-break.",
       "python_paths": [
-        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
+        "repos/webclinic017_strategies-freqtrade-/utils",
+        "repos/webclinic017_strategies-freqtrade-"
       ],
       "rules": [
         "restore_copied_local_module",
-        "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_bare_save_redirect"
       ],
       "status": "applied",
+      "tf_use_legacy_keras": true,
       "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
     },
     "NNPredict_Transformer": {
@@ -1358,32 +1360,35 @@
         "tf_keras_backend_set_session_noop"
       ],
       "status": "applied",
+      "tf_use_legacy_keras": true,
       "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
     },
     "NNPredict_Wavenet": {
-      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 4 differing copies satisfy the import and none is in the strategy's own repository; repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement",
+      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 4 differing copies satisfy the import and none is in the strategy's own repository; repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict is the one this audit already chose for the same helper elsewhere, so following it is consistency rather than a new judgement Corrected 2026-09-15: keras.optimizers.legacy needs TF_USE_LEGACY_KERAS=1 (tf_keras package), which makes the model this file builds via tf.keras.* a tf_keras object; its own bare keras.models.save_model call (ClassifierKeras.py) then refuses it as not a native KerasSaveable, so tf_keras_bare_save_redirect routes that one call to tf_keras too. tf_keras_saving_reexport/tf_keras_backend_set_session_noop dropped here - under legacy keras both target functions already exist natively, and reasserting the Keras-3 ones (what tf_keras_saving_reexport does) reintroduced the same KerasSaveable clash. Path corrected once more 2026-09-15: the hamidreza07 _Anomaly/__NNPredict copies satisfy custom_indicators/utils but their own DataframePopulator.py never defines guard_metric (only webclinic017 utils/DataframePopulator.py does) - same wrong-sibling-copy risk as the earlier ClassifierKeras case, standardised on the one verified-complete copy instead of trusting another digest tie-break.",
       "python_paths": [
-        "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
+        "repos/webclinic017_strategies-freqtrade-/utils",
+        "repos/webclinic017_strategies-freqtrade-"
       ],
       "rules": [
         "restore_copied_local_module",
-        "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_bare_save_redirect"
       ],
       "status": "applied",
+      "tf_use_legacy_keras": true,
       "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
     },
     "NNPredict_Wavenet2": {
-      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 2 copies satisfy the import and all are the same file, so the choice carries no risk",
+      "note": "webclinic017 NNPredict_*/NNTC_* cluster (2026-09-15): keras compat shims (tf_keras_saving_reexport for tf.keras.saving, tf_keras_backend_set_session_noop for tf.compat.v1.keras.backend.set_session - both AttributeErrors under Keras 3, see repair/compat_signature.py docstrings) plus, where needed, restore_copied_local_module for an author sibling module (custom_indicators/utils.*) off our import path. 2 copies satisfy the import and all are the same file, so the choice carries no risk Corrected 2026-09-15: keras.optimizers.legacy needs TF_USE_LEGACY_KERAS=1 (tf_keras package), which makes the model this file builds via tf.keras.* a tf_keras object; its own bare keras.models.save_model call (ClassifierKeras.py) then refuses it as not a native KerasSaveable, so tf_keras_bare_save_redirect routes that one call to tf_keras too. tf_keras_saving_reexport/tf_keras_backend_set_session_noop dropped here - under legacy keras both target functions already exist natively, and reasserting the Keras-3 ones (what tf_keras_saving_reexport does) reintroduced the same KerasSaveable clash. Path corrected once more 2026-09-15: the hamidreza07 _Anomaly/__NNPredict copies satisfy custom_indicators/utils but their own DataframePopulator.py never defines guard_metric (only webclinic017 utils/DataframePopulator.py does) - same wrong-sibling-copy risk as the earlier ClassifierKeras case, standardised on the one verified-complete copy instead of trusting another digest tie-break.",
       "python_paths": [
-        "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
+        "repos/webclinic017_strategies-freqtrade-/utils",
+        "repos/webclinic017_strategies-freqtrade-"
       ],
       "rules": [
         "restore_copied_local_module",
-        "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_bare_save_redirect"
       ],
       "status": "applied",
+      "tf_use_legacy_keras": true,
       "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
     },
     "NNPredict_kTFT": {
@@ -1393,6 +1398,7 @@
         "tf_keras_backend_set_session_noop"
       ],
       "status": "applied",
+      "tf_use_legacy_keras": true,
       "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict"
     },
     "NNTC": {
@@ -1444,6 +1450,7 @@
         "tf_keras_backend_set_session_noop"
       ],
       "status": "applied",
+      "tf_use_legacy_keras": true,
       "withdrawn_path": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly"
     },
     "NNTC_all_LSTM": {

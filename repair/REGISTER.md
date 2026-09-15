@@ -1622,3 +1622,61 @@ corpus), `NNPredict_Transformer` (`ModelCheckpoint` now requires a
 removed in Keras 3) are three further, unrelated, one-row-each Keras 3
 breaks - noted, not chased.
 
+**Addendum, same day: the second-pass verification above also measured
+zero trades, on real out-of-sample data with a genuinely loaded model -
+and that turned out to be a second, independent bug, not the same one
+again.** Instrumented `add_predictions` directly (a temporary wrapper
+around `StrategyResolver.load_strategy`, read-only, no strategy file
+touched) and confirmed `predicted_gain` measures identically `0.0` across
+an entire 4161-row window: the model computes real, varied predictions
+(confirmed via the same instrumentation on the array `add_model_batch_predictions`
+builds locally - genuinely nonzero, correctly shaped), but the three
+places `NNPredict.py` writes them into the dataframe all use the same
+chained-assignment shape:
+
+    dataframe["predicted_gain"].iloc[-len(predictions):] = predictions.copy()
+
+which pandas 3.0's Copy-on-Write (unconditional since 3.0 -
+`pd.options.mode.copy_on_write` no longer has any effect at all) silently
+drops: `dataframe[col]` returns an object disconnected from `dataframe`'s
+own data, so the write lands on a copy nobody keeps, and pandas' own
+`ChainedAssignmentError` names the fix directly (`.loc[row_indexer,
+col_indexer] = value`, a single non-chained call). Since `predicted_gain`
+never moves off its `0.0` default, `qtpylib.crossed_above(predicted_gain,
+target_profit)` - this family's entire entry trigger - could not have fired
+on ANY window, in-sample or out, for any row in this cluster; the
+zero-trade result reported throughout this phase was this bug the whole
+time, not (only) the training-mode gate documented above.
+
+Same class of bug as `NNTC`'s read-only assignment and `MostOfAll`'s lost
+column (both already investigated and declined corpus-wide as too
+invasive) - but not the same fix. A general chained-assignment repair would
+still be that same overreach: every other strategy's every other column
+access would run through it too. New shim,
+`repair/compat_signature.py:install_nnpredict_prediction_writeback` (rule
+`nnpredict_chained_iloc_writeback`), narrower in two independent ways
+instead: IN TIME, `pd.DataFrame.__getitem__` is only ever replaced for the
+duration of one `add_predictions` call, on the one strategy instance that
+opts in, restored in a `finally` immediately after - never active during
+`populate_entry_trend`'s own later reads of the same column, never active
+for any other strategy's process at all. IN SHAPE, the replacement only
+ever treats the literal key `"predicted_gain"` specially; every other
+column access inside that one call reaches pandas' own real Series,
+completely untouched - checked directly against every site in
+`NNPredict.py` that reads `dataframe["predicted_gain"]` inside
+`add_predictions`'s own call tree, and the only operation found was
+`.clip(lower=, upper=)`, an ordinary method call the wrapper's
+`__getattr__` forwards unchanged.
+
+**Verified end to end on `NNPredict_AdditiveAttention`, the one row this
+addendum's fix was tried on so far**, real out-of-sample window
+(`20210401-20210415`, entirely after the `20200301-20210301` training
+window, model loaded from disk, not retrained): `predicted_gain` measures
+4033 of 4161 rows nonzero (range -3.23 to 3.21, matching the model's own
+clip bounds); `enter_long` fires 40 times for BTC alone; the full backtest
+across all eight pairs produced 80 trades, 79 wins / 0 draws / 1 loss
+(98.8%), +7.84% total profit over the fourteen days. Not yet applied to
+the other nine rows in this cluster, and the suspiciously high win rate on
+one short window is exactly the kind of number a later, fuller measurement
+- not this fix's own job - should be the one to judge, not this note.
+

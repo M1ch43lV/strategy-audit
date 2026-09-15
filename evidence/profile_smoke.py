@@ -193,6 +193,17 @@ def _runtime(strategy, mode="futures"):
                        for value in repair.get("freqtrade_paths", [])]
     if extension_paths:
         env["PROFILE_FREQTRADE_PATH"] = os.pathsep.join(extension_paths)
+    # TF_USE_LEGACY_KERAS is read by TensorFlow itself at its own first
+    # import, before any of this project's own compat shims get a chance to
+    # run inside the process - so it has to reach the subprocess as a real
+    # OS environment variable, not a patch applied from within. Redirects
+    # every `tf.keras.*` access to the standalone `tf_keras` package (Keras
+    # 2) for this one subprocess; a bare `import keras` elsewhere in the
+    # same strategy is untouched, since only `tf.keras` is redirected - see
+    # repair/compat_signature.py's tf_keras_bare_*_redirect shims for the
+    # narrow, opt-in fix for a strategy whose own code mixes both spellings.
+    if repair.get("tf_use_legacy_keras"):
+        env["TF_USE_LEGACY_KERAS"] = "1"
     extra_args = []
     if repair.get("freqaimodel"):
         extra_args.extend(["--freqaimodel", repair["freqaimodel"]])

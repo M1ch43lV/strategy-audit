@@ -1234,6 +1234,206 @@ def install_tf_keras_backend_set_session_noop():
     return True
 
 
+BARE_SAVE_RULE = "tf_keras_bare_save_redirect"
+
+
+def install_tf_keras_bare_save_redirect():
+    """Route bare `keras.models.save_model`/`load_model` to `tf_keras`.
+
+    `ClassifierKeras.py` (webclinic017 NNPredict_*/NNTC_* family) builds its
+    model through `tf.keras.Sequential`/`tf.keras.layers.*` throughout, but
+    saves and reloads it through bare `keras.models.save_model`/
+    `load_model` - two different spellings the author never distinguished
+    because, before Keras 3, `keras` and `tf.keras` were the same package.
+    They no longer are: under `TF_USE_LEGACY_KERAS=1` (set by
+    `evidence/profile_smoke.py` when a row's `tf_use_legacy_keras` flag is
+    on - REQUIRED for `keras.optimizers.legacy`, which Keras 3 dropped
+    outright), `tf.keras.*` resolves to the standalone `tf_keras` package
+    while bare `keras` stays native Keras 3. The model these strategies
+    build is then a `tf_keras` object handed to native Keras 3's
+    `save_model`, which refuses it outright:
+
+        ValueError: Expected object to be an instance of `KerasSaveable`,
+        but got <tf_keras.src.engine.functional.Functional object ...>
+
+    Confirmed by direct test: a Keras 3 model cannot be compiled with a
+    `tf_keras` legacy optimizer either (`Could not interpret optimizer
+    identifier`), so the reverse mix is equally broken - the two model
+    representations are not interchangeable at any point in the chain, and
+    everything downstream of `TF_USE_LEGACY_KERAS` has to agree throughout.
+    This shim makes the ONE place the author's own code did not (a bare
+    `keras.*` call, next to a model built with `tf.keras.*`) agree with the
+    rest: `keras.models.save_model`/`load_model` are redirected to
+    `tf_keras.models.save_model`/`load_model`, the functions that already
+    know how to walk a `tf_keras` model - not a reimplementation, and not a
+    silent behaviour change for anything that does not opt in.
+
+    Deliberately narrow and opt-in only (`PROFILE_COMPAT_SIGNATURES`, same
+    as every shim here): patching bare `keras.models` unconditionally would
+    break every OTHER strategy in the corpus that correctly relies on it
+    staying native Keras 3. It only ever matters together with
+    `tf_use_legacy_keras`, and is harmless without it - a Keras 3 model
+    saved through `tf_keras.models.save_model` still round-trips, since
+    `tf_keras.models.save_model` and `keras.models.save_model` differ only
+    in which model representation they were written to expect, not in
+    format - but there is no reason to install it for a row that never asks.
+    """
+    import tf_keras
+    import keras
+
+    if getattr(keras.models, "_tf_keras_bare_save_redirect", False):
+        return True
+
+    keras.models.save_model = tf_keras.models.save_model
+    keras.models.load_model = tf_keras.models.load_model
+    keras.models._tf_keras_bare_save_redirect = True
+    return True
+
+
+WRITEBACK_RULE = "nnpredict_chained_iloc_writeback"
+
+
+class _PredictionWritebackColumn:
+    """Stand-in for `dataframe["predicted_gain"]`, scoped to one call.
+
+    Every attribute other than `.iloc` delegates straight to the real
+    Series - a plain read, `.clip()`, whatever else the author's code does
+    with the column reaches pandas unchanged. Only `.iloc` returns
+    `_PredictionWritebackILoc` below, which is where the actual fix lives.
+    """
+
+    __slots__ = ("_series", "_frame", "_col")
+
+    def __init__(self, series, frame, col):
+        self._series = series
+        self._frame = frame
+        self._col = col
+
+    def __getattr__(self, name):
+        return getattr(self._series, name)
+
+
+class _PredictionWritebackILoc:
+    """`__setitem__` writes through to the parent frame; `__getitem__` does
+    not need to, since nothing in NNPredict.py's write sites ever reads
+    `dataframe["predicted_gain"].iloc[...]` back before returning."""
+
+    __slots__ = ("_series", "_frame", "_col")
+
+    def __init__(self, series, frame, col):
+        self._series = series
+        self._frame = frame
+        self._col = col
+
+    def __getitem__(self, key):
+        return self._series.iloc[key]
+
+    def __setitem__(self, key, value):
+        col_pos = self._frame.columns.get_loc(self._col)
+        # A single 2D positional set on the FRAME itself - not the detached
+        # Series `dataframe[col]` returned - is what pandas' own
+        # ChainedAssignmentError message names as the fix, and it is a
+        # genuinely different, non-chained operation: one call, one target,
+        # nothing in between for Copy-on-Write to disconnect.
+        self._frame.iloc[key, col_pos] = value
+
+
+_PredictionWritebackColumn.iloc = property(
+    lambda self: _PredictionWritebackILoc(self._series, self._frame, self._col))
+
+
+def install_nnpredict_prediction_writeback():
+    """Make `dataframe["predicted_gain"].iloc[...] = value` reach the frame.
+
+    `NNPredict.py` (webclinic017 NNPredict_* family) computes real
+    predictions and tries to write them in three places
+    (`update_predictions`, `add_model_batch_predictions`) through exactly
+    the chained-assignment shape pandas 3.0 silently drops:
+
+        dataframe["predicted_gain"].iloc[-len(predictions):] = predictions.copy()
+
+    Copy-on-Write - unconditional since pandas 3.0, `pd.options.mode.
+    copy_on_write` no longer has any effect - means `dataframe[col]` returns
+    an object disconnected from `dataframe`'s own data; assigning through
+    `.iloc` on it mutates only that disconnected copy. Confirmed directly:
+    `predicted_gain` measures identically `0.0` across an entire 4161-row
+    backtest window (`repair/REGISTER.md`, Phase 10), every write silently
+    lost, so `qtpylib.crossed_above(predicted_gain, target_profit)` - this
+    family's entire entry trigger - can never fire, in any window, on any
+    row of any of these strategies. Not a model or market question: a pure
+    pandas-version incompatibility upstream of anything the model computes.
+
+    THE SCOPE THIS SHIM DELIBERATELY DOES NOT TAKE. A general fix for
+    chained assignment - patching `pd.DataFrame.__getitem__` or
+    `pd.Series.__setitem__` for the whole process - is the same corpus-wide
+    change already investigated and declined for `MostOfAll`/`NNTC` as too
+    invasive: every other strategy's every other column access would run
+    through it too, for a class of bug this file otherwise treats one exact
+    call shape at a time. This shim is narrower in two ways at once. First,
+    IN TIME: `pd.DataFrame.__getitem__` is only ever replaced for the
+    duration of one call to `add_predictions` (the method wrapping all
+    three broken write sites), on the specific strategy instance that opts
+    in via `PROFILE_COMPAT_SIGNATURES`, and is put back immediately after
+    in a `finally` - never active during `populate_entry_trend`'s own later
+    `crossed_above` reads of the same column, and never active for any
+    other strategy's process at all. Second, IN SHAPE: the replacement
+    `__getitem__` only ever treats the literal key `"predicted_gain"`
+    specially; every other column access inside that one call - `dataframe
+    ["gain"]`, `dataframe[self.target_column]`, all of it - returns pandas'
+    own real Series, completely untouched. Checked directly against every
+    site in `NNPredict.py` that reads `dataframe["predicted_gain"]` inside
+    `add_predictions`'s own call tree: the only operation is `.clip(lower=,
+    upper=)`, an ordinary method call `_PredictionWritebackColumn.__getattr__`
+    forwards unchanged - nothing here needs comparison or arithmetic dunders,
+    so none are implemented, and the wrapper does not claim to be a general
+    Series substitute outside the one call shape it exists for.
+
+    Installed via `StrategyResolver.load_strategy`, the same hook
+    `install_legacy_price_side_config` uses and for a related reason:
+    `add_predictions` is defined once on the shared `NNPredict` base class,
+    never overridden per strategy, so `getattr(cls, "add_predictions")`
+    finds the same function for every row in the family and the instance
+    wrap applies it identically everywhere it installs.
+    """
+    from freqtrade.resolvers.strategy_resolver import StrategyResolver
+
+    if getattr(StrategyResolver, "_nnpredict_writeback_installed", False):
+        return True
+
+    original_load = StrategyResolver.load_strategy
+
+    def load_strategy(config=None):
+        strategy = original_load(config)
+        cls = type(strategy)
+        own = getattr(cls, "add_predictions", None)
+        if own is None:
+            return strategy
+
+        def add_predictions(self, dataframe, pair, _own=own):
+            import pandas as pd
+
+            original_getitem = pd.DataFrame.__getitem__
+
+            def patched_getitem(frame, key):
+                result = original_getitem(frame, key)
+                if key == "predicted_gain":
+                    return _PredictionWritebackColumn(result, frame, key)
+                return result
+
+            pd.DataFrame.__getitem__ = patched_getitem
+            try:
+                return _own(self, dataframe, pair)
+            finally:
+                pd.DataFrame.__getitem__ = original_getitem
+
+        strategy.add_predictions = add_predictions.__get__(strategy, cls)
+        return strategy
+
+    StrategyResolver.load_strategy = staticmethod(load_strategy)
+    StrategyResolver._nnpredict_writeback_installed = True
+    return True
+
+
 INSTALLERS = {RULE: install_min_roi_reached_entry,
               SCAN_RULE: install_tolerant_class_scan,
               ADVISE_RULE: install_idempotent_advise_entry,
@@ -1255,7 +1455,9 @@ INSTALLERS = {RULE: install_min_roi_reached_entry,
               PRICE_SIDE_RULE: install_legacy_price_side_config,
               SELL_CHECK_TUPLE_RULE: install_legacy_sell_check_tuple,
               TF_KERAS_SAVING_RULE: install_tf_keras_saving,
-              SET_SESSION_RULE: install_tf_keras_backend_set_session_noop}
+              SET_SESSION_RULE: install_tf_keras_backend_set_session_noop,
+              BARE_SAVE_RULE: install_tf_keras_bare_save_redirect,
+              WRITEBACK_RULE: install_nnpredict_prediction_writeback}
 
 
 def install_from_environment():
@@ -1931,6 +2133,106 @@ def selftest():
         del backend.set_session
         if had_set_session:
             backend.set_session = saved_set_session
+
+    # The twenty-first shim: bare `keras.models.save_model`/`load_model`
+    # redirect to `tf_keras`'s own, and a second install does not re-wrap.
+    # `tf_keras` is only on the TensorFlow companion image; skip rather than
+    # fail where it is not installed, same as the shims just above.
+    try:
+        import tf_keras as _tf_keras_probe
+    except Exception as exc:
+        print("compat_signature selftest: PASS "
+              "(tf_keras_bare_save_redirect NOT checked here: %s)"
+              % type(exc).__name__)
+        return
+    had_save = "save_model" in keras.models.__dict__
+    had_load = "load_model" in keras.models.__dict__
+    saved_save = keras.models.__dict__.get("save_model")
+    saved_load = keras.models.__dict__.get("load_model")
+    keras.models._tf_keras_bare_save_redirect = False
+    try:
+        assert install_tf_keras_bare_save_redirect()
+        assert keras.models.save_model is _tf_keras_probe.models.save_model
+        assert keras.models.load_model is _tf_keras_probe.models.load_model
+        sentinel = keras.models.save_model
+        assert install_tf_keras_bare_save_redirect()
+        assert keras.models.save_model is sentinel
+    finally:
+        if had_save:
+            keras.models.save_model = saved_save
+        else:
+            del keras.models.save_model
+        if had_load:
+            keras.models.load_model = saved_load
+        else:
+            del keras.models.load_model
+        keras.models._tf_keras_bare_save_redirect = False
+
+    # The twenty-second shim: `dataframe["predicted_gain"].iloc[...] = value`
+    # reaches the real frame once installed, an unrelated column's chained
+    # assignment on the same frame is untouched (the shim is scoped to one
+    # literal key), and a strategy with no `add_predictions` is left alone.
+    try:
+        from freqtrade.resolvers.strategy_resolver import StrategyResolver
+    except Exception as exc:
+        print("compat_signature selftest: PASS "
+              "(nnpredict_chained_iloc_writeback NOT checked here: %s)"
+              % type(exc).__name__)
+        return
+    import pandas as pd
+    import numpy as np
+
+    class FakeNNPredictBase(object):
+        def add_predictions(self, dataframe, pair):
+            dataframe["predicted_gain"].iloc[-3:] = np.array([1.0, 2.0, 3.0])
+            # An unrelated column's OWN chained assignment, in the same
+            # call: must still raise/no-op exactly as it does without the
+            # shim - only "predicted_gain" is special-cased.
+            try:
+                dataframe["other"].iloc[-1] = 999.0
+            except Exception:
+                pass
+            return dataframe
+
+    class FakeStrategy(FakeNNPredictBase):
+        pass
+
+    class FakeResolver3(object):
+        _target = None
+
+        @staticmethod
+        def load_strategy(config=None):
+            return FakeResolver3._target()
+
+    module = _types.ModuleType("freqtrade.resolvers.strategy_resolver")
+    module.StrategyResolver = FakeResolver3
+    saved_module = sys.modules.get("freqtrade.resolvers.strategy_resolver")
+    sys.modules["freqtrade.resolvers.strategy_resolver"] = module
+    try:
+        assert install_nnpredict_prediction_writeback()
+        FakeResolver3._target = FakeStrategy
+        instance = FakeResolver3.load_strategy()
+        frame = pd.DataFrame({"predicted_gain": [0.0] * 5, "other": [0.0] * 5})
+        result = instance.add_predictions(frame, "BTC/USDT")
+        assert list(result["predicted_gain"]) == [0.0, 0.0, 1.0, 2.0, 3.0], \
+            list(result["predicted_gain"])
+        # The unrelated column was never routed through the writeback path -
+        # its own chained assignment still behaves exactly as bare pandas
+        # does outside this shim (silently lost under CoW, not our concern).
+        assert list(result["other"]) == [0.0] * 5, list(result["other"])
+
+        # A class with no add_predictions at all is returned unwrapped.
+        class Plain(object):
+            pass
+
+        FakeResolver3._target = Plain
+        plain = FakeResolver3.load_strategy()
+        assert "add_predictions" not in vars(plain)
+    finally:
+        if saved_module is not None:
+            sys.modules["freqtrade.resolvers.strategy_resolver"] = saved_module
+        else:
+            sys.modules.pop("freqtrade.resolvers.strategy_resolver", None)
 
     print("compat_signature selftest: PASS")
 

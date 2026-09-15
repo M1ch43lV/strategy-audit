@@ -6,6 +6,17 @@
 tensorflow==2.21.0
 keras==3.15.1
 
+# webclinic017's NNPredict_*/NNTC_* family calls tf.keras.optimizers.legacy,
+# tf.keras.Sequential/layers/callbacks throughout (ClassifierKeras*.py) -
+# the Keras-2 API Keras 3 dropped outright. tf-keras is Google's own
+# standalone package restoring it; paired at the same version as tensorflow
+# above, per its own compatibility contract. Strategies that need it also
+# set TF_USE_LEGACY_KERAS=1 (evidence/profile_smoke.py, driven by
+# evidence/PROFILE_CLASS1.json's tf_use_legacy_keras flag), which redirects
+# tf.keras to this package for that one subprocess - bare `import keras`
+# elsewhere is untouched.
+tf-keras==2.21.0
+
 # CryptoPredictionTraining needs both keras and matplotlib; numpy/pandas/scipy
 # already satisfied at the pinned versions when checked alone (matches
 # requirements-audit-packages.txt's own check), so this does not change what
