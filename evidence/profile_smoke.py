@@ -508,9 +508,7 @@ def run_cascade(row, timeranges, trade_floor, timeout, config_overrides=None,
     return final
 
 
-def _result_is_current(previous, identity, timeranges, trade_floor,
-                       policy_id=None):
-    policy_id = policy_id or _policy_id(timeranges, trade_floor)
+def _result_is_current(previous, identity, timeranges, trade_floor):
     if not previous or not all(previous.get(key) == value
                                for key, value in identity.items()):
         return False
@@ -520,10 +518,21 @@ def _result_is_current(previous, identity, timeranges, trade_floor,
         return True
     if int(previous.get("trades", 0)) >= trade_floor:
         return True
-    # Legacy one-month low-trade results are deliberately stale under the new
-    # policy.  A low result is current only after every frozen rung was tried.
-    return (previous.get("smoke_policy_id") == policy_id
-            and previous.get("attempted_timeranges") == list(timeranges))
+    # A low-trade result is current once every rung the CURRENT policy would
+    # try was already attempted - not only when the two rung lists match
+    # exactly. Prefix, not equality: when a policy amendment only ever
+    # shortens the cascade (2026-09-15 dropped the one-year third rung), a
+    # row that already tried the dropped rung, and stayed under the floor
+    # anyway, has already answered every question the shorter policy would
+    # ask - it just also tried one rung further and got the same answer.
+    # Re-running it would repeat rungs, not learn anything the stored
+    # attempt does not already show. Confirmed against the 17 rows the
+    # 2026-09-15 amendment affects: every one of them had already reached
+    # the three-month rung (most the one-year rung too), none had tried only
+    # one month - re-running any of them under the shorter policy would have
+    # been pure waste, not new evidence.
+    attempted = previous.get("attempted_timeranges") or []
+    return attempted[:len(timeranges)] == list(timeranges)
 
 
 def selftest():
@@ -583,6 +592,40 @@ def selftest():
             row = {"strategy_id": "S", "_sha": "sha_v3"}
             _run(args, [row], None)
             assert len(calls) == 9, "legacy low-trade smoke must cascade"
+
+            # A row that already tried MORE rungs than a since-shortened
+            # policy now asks for, and stayed under the floor at all of
+            # them, is current - not stale merely because the stored rung
+            # list is longer than the new one. This is the 2026-09-15 fix:
+            # dropping a third rung must not force every row that already
+            # tried it, and still measured low, to be re-run for nothing.
+            counts["c"] = 3  # even the long-since-dropped rung stayed low
+            three_rung_record = dict(stored, canonical_sha256="sha_v4",
+                                     trades=3,
+                                     attempted_timeranges=["a", "b", "c"])
+            data = read_results(output)
+            data["results"]["S"] = three_rung_record
+            write_results(data, output)
+            short_args = _argparse.Namespace(output=output,
+                                             timeranges=["a", "b"],
+                                             trade_floor=10, force=False,
+                                             timeout=1)
+            row = {"strategy_id": "S", "_sha": "sha_v4"}
+            _run(short_args, [row], None)
+            assert len(calls) == 9, \
+                "a row already covering the shorter policy's rungs must skip"
+
+            # The genuinely uncovered case still cascades: only rung "a" was
+            # ever tried, so the shorter two-rung policy still owes rung "b".
+            one_rung_record = dict(stored, canonical_sha256="sha_v5",
+                                   trades=1, attempted_timeranges=["a"])
+            data = read_results(output)
+            data["results"]["S"] = one_rung_record
+            write_results(data, output)
+            row = {"strategy_id": "S", "_sha": "sha_v5"}
+            _run(short_args, [row], None)
+            assert len(calls) == 11, \
+                "a row covering only a prefix of the policy must still cascade"
     finally:
         _identity, run_one = saved_identity, saved_run_one
     print("profile_smoke selftest: PASS")
@@ -689,8 +732,7 @@ def _run(args, rows, claim):
         # gets this right the same way, one identity comparison before
         # deciding to skip.
         if (not args.force and _result_is_current(
-                previous, identity, args.timeranges, args.trade_floor,
-                policy_id=policy_id)):
+                previous, identity, args.timeranges, args.trade_floor)):
             write_results(data, args.output)
             print("[%d/%d] %-38s skip" % (index, len(rows), name), flush=True)
             continue
