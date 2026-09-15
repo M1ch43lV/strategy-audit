@@ -10765,21 +10765,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNPredict_AdditiveAttention-b8a95b3f-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 4.5,
+          "elapsed_s": 9.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNPredict_AdditiveAttention'. This class does not exist or contains Python code errors."
+          "why": "'NNPredictor_AdditiveAttention' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
         }
       ],
       "canonical_sha256": "sha256_c6791b6b740a44f562f5c8ee0f274deb3d0536fbe65c9789241eb246a3640946",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNPredict_AdditiveAttention-b8a95b3f-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 4.5,
+      "elapsed_s": 9.9,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_AdditiveAttention-b8a95b3f-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -10789,7 +10797,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNPredict_AdditiveAttention'. This class does not exist or contains Python code errors."
+      "why": "'NNPredictor_AdditiveAttention' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
     },
     "NNPredict_Attention": {
       "attempted_timeranges": [
@@ -10797,9 +10805,13 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNPredict_Attention-5811787a-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 4.5,
+          "elapsed_s": 5.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Attention-5811787a-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
@@ -10809,9 +10821,13 @@
         }
       ],
       "canonical_sha256": "sha256_9e1ef268df5b94053c6b881257f9658f0f42ebb2879d766f5a35a847de4a3b69",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNPredict_Attention-5811787a-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 4.5,
+      "elapsed_s": 5.9,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Attention-5811787a-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -10829,21 +10845,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNPredict_CNN-8176c806-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 7.9,
+          "elapsed_s": 7.6,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNPredict_CNN'. This class does not exist or contains Python code errors."
+          "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
         }
       ],
       "canonical_sha256": "sha256_dbefb09a984765af828a29b6261560ae8d5263b9c79a11d35cbefdd782cc2d64",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNPredict_CNN-8176c806-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 7.9,
+      "elapsed_s": 7.6,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_CNN-8176c806-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -10853,7 +10877,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNPredict_CNN'. This class does not exist or contains Python code errors."
+      "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
     },
     "NNPredict_GRU": {
       "attempted_timeranges": [
@@ -10862,24 +10886,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNPredict_GRU-42be25c6-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 5.7,
+          "elapsed_s": 9.8,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNPredict_GRU'. This class does not exist or contains Python code errors."
+          "why": "'NNPredictor_GRU' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
         }
       ],
       "canonical_sha256": "sha256_a779526e29e4dc48ac7f77d6994a095ab8c1bfb9b03d13f821a59b41b55f4bc2",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNPredict_GRU-42be25c6-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 5.7,
+      "elapsed_s": 9.8,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_GRU-42be25c6-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -10889,7 +10917,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNPredict_GRU'. This class does not exist or contains Python code errors."
+      "why": "'NNPredictor_GRU' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
     },
     "NNPredict_LSTM": {
       "attempted_timeranges": [
@@ -11038,24 +11066,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNPredict_LSTM2-72af61c6-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 5.5,
+          "elapsed_s": 9.6,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNPredict_LSTM2'. This class does not exist or contains Python code errors."
+          "why": "'NNPredictor_LSTM2' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
         }
       ],
       "canonical_sha256": "sha256_b9d859ecdc6c813a6c41f37923c10c663f769c877b8833f2228c0facff750972",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNPredict_LSTM2-72af61c6-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 5.5,
+      "elapsed_s": 9.6,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM2-72af61c6-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11065,7 +11097,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNPredict_LSTM2'. This class does not exist or contains Python code errors."
+      "why": "'NNPredictor_LSTM2' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
     },
     "NNPredict_LSTM3": {
       "attempted_timeranges": [
@@ -11074,24 +11106,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNPredict_LSTM3-9f7b2817-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.6,
+          "elapsed_s": 9.3,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNPredict_LSTM3'. This class does not exist or contains Python code errors."
+          "why": "'NNPredictor_LSTM3' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
         }
       ],
       "canonical_sha256": "sha256_69bf88a43452c626edd8b01fbb5596afe5f5af079aed01d34fbe3587c4aef3d7",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNPredict_LSTM3-9f7b2817-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.6,
+      "elapsed_s": 9.3,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_LSTM3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_LSTM3-9f7b2817-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11101,7 +11137,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNPredict_LSTM3'. This class does not exist or contains Python code errors."
+      "why": "'NNPredictor_LSTM3' object has no attribute 'set_model_path'. Did you mean: 'get_model_path'?"
     },
     "NNPredict_MLP": {
       "attempted_timeranges": [
@@ -11110,24 +11146,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNPredict_MLP-1dbb7db7-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.1,
+          "elapsed_s": 11.5,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "module 'keras._tf_keras.keras.backend' has no attribute 'set_session'. Did you mean: 'set_epsilon'?"
+          "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
         }
       ],
       "canonical_sha256": "sha256_28fb136d2bfe939b81f00710cfd0846525c80339f395e05f57f8abfd5a6928fd",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNPredict_MLP-1dbb7db7-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.1,
+      "elapsed_s": 11.5,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_MLP-1dbb7db7-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11137,7 +11177,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "module 'keras._tf_keras.keras.backend' has no attribute 'set_session'. Did you mean: 'set_epsilon'?"
+      "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
     },
     "NNPredict_Multihead": {
       "attempted_timeranges": [
@@ -11146,24 +11186,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNPredict_Multihead-dcf9d081-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.8,
+          "elapsed_s": 11.8,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "module 'keras._tf_keras.keras.backend' has no attribute 'set_session'. Did you mean: 'set_epsilon'?"
+          "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
         }
       ],
       "canonical_sha256": "sha256_04ea2bdc5bc213c9e56709c81110f6c86cac6d750e3ce027e49c166a9af42c76",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNPredict_Multihead-dcf9d081-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.8,
+      "elapsed_s": 11.8,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Multihead-dcf9d081-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11173,7 +11217,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "module 'keras._tf_keras.keras.backend' has no attribute 'set_session'. Did you mean: 'set_epsilon'?"
+      "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
     },
     "NNPredict_NBeats": {
       "attempted_timeranges": [
@@ -11310,24 +11354,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNPredict_TCN-cf8797a2-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.3,
+          "elapsed_s": 11.7,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "module 'keras._tf_keras.keras.backend' has no attribute 'set_session'. Did you mean: 'set_epsilon'?"
+          "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
         }
       ],
       "canonical_sha256": "sha256_309fd0115e8c3af90f1b737be5f4c22edeb312025fbfddd39ccba4cc864ac1d1",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNPredict_TCN-cf8797a2-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.3,
+      "elapsed_s": 11.7,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_TCN-cf8797a2-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11337,7 +11385,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "module 'keras._tf_keras.keras.backend' has no attribute 'set_session'. Did you mean: 'set_epsilon'?"
+      "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
     },
     "NNPredict_TFT": {
       "attempted_timeranges": [
@@ -11378,24 +11426,26 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNPredict_Transformer-02c2542a-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.8,
+          "elapsed_s": 10.3,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/binanceus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Transformer-02c2542a-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNPredict_Transformer'. This class does not exist or contains Python code errors."
+          "why": "When using `save_weights_only=True` in `ModelCheckpoint`, the filepath provided must end in `.weights.h5` (Keras weights format). Received: filepath=/tmp/model.h5"
         }
       ],
       "canonical_sha256": "sha256_d02a90ce51d66b5bf3f462f9ef7941e80dd0bbd787288f5243281aa1270ae49a",
       "class1_rules": [
-        "restore_copied_local_module"
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNPredict_Transformer-02c2542a-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.8,
+      "elapsed_s": 10.3,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/binanceus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Transformer-02c2542a-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11405,7 +11455,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNPredict_Transformer'. This class does not exist or contains Python code errors."
+      "why": "When using `save_weights_only=True` in `ModelCheckpoint`, the filepath provided must end in `.weights.h5` (Keras weights format). Received: filepath=/tmp/model.h5"
     },
     "NNPredict_Wavenet": {
       "attempted_timeranges": [
@@ -11414,24 +11464,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNPredict_Wavenet-b3f0797b-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.4,
+          "elapsed_s": 11.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "module 'keras._tf_keras.keras.backend' has no attribute 'set_session'. Did you mean: 'set_epsilon'?"
+          "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
         }
       ],
       "canonical_sha256": "sha256_b75bada16ae3574a9cc13764dea4c9fd1d61d252a160a8481d3532977edb7633",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNPredict_Wavenet-b3f0797b-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.4,
+      "elapsed_s": 11.9,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet-b3f0797b-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11441,7 +11495,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "module 'keras._tf_keras.keras.backend' has no attribute 'set_session'. Did you mean: 'set_epsilon'?"
+      "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
     },
     "NNPredict_Wavenet2": {
       "attempted_timeranges": [
@@ -11450,24 +11504,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNPredict_Wavenet2-dc810ce2-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 7.0,
+          "elapsed_s": 8.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "module 'keras._tf_keras.keras.backend' has no attribute 'set_session'. Did you mean: 'set_epsilon'?"
+          "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
         }
       ],
       "canonical_sha256": "sha256_001bfd12b846c20c15b76d224fca4966115ab8e18eb6eec9339a4350300ae9b2",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNPredict_Wavenet2-dc810ce2-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 7.0,
+      "elapsed_s": 8.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_Wavenet2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNPredict --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_Wavenet2-dc810ce2-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11477,7 +11535,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "module 'keras._tf_keras.keras.backend' has no attribute 'set_session'. Did you mean: 'set_epsilon'?"
+      "why": "`keras.optimizers.legacy` is not supported in Keras 3. When using `tf.keras`, to continue using a `tf.keras.optimizers.legacy` optimizer, you can install the `tf_keras` package (Keras 2)"
     },
     "NNPredict_dTransformer": {
       "attempted_timeranges": [
@@ -11518,24 +11576,26 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNPredict_kTFT-32c570be-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.9,
+          "elapsed_s": 9.8,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_kTFT --strategy-path repos/webclinic017_strategies-freqtrade-/binanceus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_kTFT-32c570be-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNPredict_kTFT'. This class does not exist or contains Python code errors."
+          "why": "'KerasTensor' object has no attribute 'get_shape'. Did you mean: 'reshape'?"
         }
       ],
       "canonical_sha256": "sha256_a77e97d20562deead7e72a5429c965ed559ec7d374adc8e074973d6ae44ee75a",
       "class1_rules": [
-        "restore_copied_local_module"
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNPredict_kTFT-32c570be-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.9,
+      "elapsed_s": 9.8,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNPredict_kTFT --strategy-path repos/webclinic017_strategies-freqtrade-/binanceus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNPredict_kTFT-32c570be-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11545,7 +11605,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNPredict_kTFT'. This class does not exist or contains Python code errors."
+      "why": "'KerasTensor' object has no attribute 'get_shape'. Did you mean: 'reshape'?"
     },
     "NNTC": {
       "canonical_sha256": "sha256_a3698e006d25447e3ca688b91e6ab2de750d46542e064f1bf7afa4eafa497e5e",
@@ -11571,24 +11631,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_adx2_LSTM-170f9693-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.4,
+          "elapsed_s": 12.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_adx2_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_adx2_LSTM-170f9693-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_adx2_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_31c88bd9200f59e3034913aca73627108d8882cf82366e4abc78e377289c5ef8",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_adx2_LSTM-170f9693-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.4,
+      "elapsed_s": 12.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_adx2_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_adx2_LSTM-170f9693-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11598,7 +11662,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_adx2_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_adx3_LSTM": {
       "attempted_timeranges": [
@@ -11607,24 +11671,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_adx3_LSTM-87b26844-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.3,
+          "elapsed_s": 11.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_adx3_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_adx3_LSTM-87b26844-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_adx3_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_5aa5dd409b8ca6f0f2f46abcd78bb0c5759632311015c3636e16dcac4fd46a20",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_adx3_LSTM-87b26844-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.3,
+      "elapsed_s": 11.9,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_adx3_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_adx3_LSTM-87b26844-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11634,7 +11702,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_adx3_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_adx_LSTM": {
       "attempted_timeranges": [
@@ -11643,24 +11711,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_adx_LSTM-fce42341-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.3,
+          "elapsed_s": 11.7,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_adx_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_adx_LSTM-fce42341-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_adx_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_643111ee8e61545e792fe1b6fa8212b2c9bbbf5d9e992d6928224b1a78379383",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_adx_LSTM-fce42341-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.3,
+      "elapsed_s": 11.7,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_adx_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_adx_LSTM-fce42341-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11670,7 +11742,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_adx_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_all_LSTM": {
       "attempted_timeranges": [
@@ -11679,24 +11751,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_all_LSTM-0b824419-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.4,
+          "elapsed_s": 11.8,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_all_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_all_LSTM-0b824419-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_all_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_2a7146b7ebd518a6028cb1b4944d2572b770fbbb6ec423524c0125853fe17523",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_all_LSTM-0b824419-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.4,
+      "elapsed_s": 11.8,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_all_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_all_LSTM-0b824419-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11706,7 +11782,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_all_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_aroon_LSTM": {
       "attempted_timeranges": [
@@ -11715,24 +11791,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_aroon_LSTM-793afcdc-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.6,
+          "elapsed_s": 12.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_aroon_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_aroon_LSTM-793afcdc-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_aroon_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_10c6eb270b647a369b5dd1a3836889d4521457d04234de435cc786f79d1ae510",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_aroon_LSTM-793afcdc-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.6,
+      "elapsed_s": 12.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_aroon_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_aroon_LSTM-793afcdc-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11742,7 +11822,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_aroon_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_bbw_LSTM": {
       "attempted_timeranges": [
@@ -11751,24 +11831,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_bbw_LSTM-aa63d2e2-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.4,
+          "elapsed_s": 11.8,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_bbw_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_bbw_LSTM-aa63d2e2-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_bbw_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_6ee11b2e4635a0f2b70ef860533aaa52d3f87fd09cc1268fb3ea54097d7f384b",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_bbw_LSTM-aa63d2e2-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.4,
+      "elapsed_s": 11.8,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_bbw_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_bbw_LSTM-aa63d2e2-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11778,7 +11862,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_bbw_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_bbw_Transformer": {
       "attempted_timeranges": [
@@ -11787,24 +11871,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_bbw_Transformer-ac572282-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.5,
+          "elapsed_s": 12.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_bbw_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_bbw_Transformer-ac572282-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_bbw_Transformer'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_3270e3f5ce915c1546f0ab44739d7dc9cddb6c3a36635f6c2101a39d81004f1e",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_bbw_Transformer-ac572282-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.5,
+      "elapsed_s": 12.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_bbw_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_bbw_Transformer-ac572282-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11814,7 +11902,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_bbw_Transformer'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_dwt2_LSTM": {
       "attempted_timeranges": [
@@ -11823,24 +11911,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_dwt2_LSTM-7b6fa822-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.5,
+          "elapsed_s": 12.3,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_dwt2_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_dwt2_LSTM-7b6fa822-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_dwt2_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_47be10774ca7c577786c89f997049dff5c49266d8b47b02000794fa5813cd840",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_dwt2_LSTM-7b6fa822-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.5,
+      "elapsed_s": 12.3,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_dwt2_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_dwt2_LSTM-7b6fa822-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11850,7 +11942,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_dwt2_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_dwt_LSTM": {
       "attempted_timeranges": [
@@ -11859,24 +11951,28 @@
       "attempts": [
         {
           "class1_rules": [
-            "restore_copied_local_module"
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_dwt_LSTM-bb3019cd-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.3,
+          "elapsed_s": 12.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_dwt_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_dwt_LSTM-bb3019cd-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_dwt_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_fd00de07e19ededa879911f704831583eb5b83a90fd671dcbf234812486f9cb6",
       "class1_rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_dwt_LSTM-bb3019cd-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.3,
+      "elapsed_s": 12.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_dwt_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_dwt_LSTM-bb3019cd-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11886,7 +11982,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_dwt_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_fbb_AdditiveAttention": {
       "attempted_timeranges": [
@@ -11894,21 +11990,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_AdditiveAttention-bc726eeb-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.2,
+          "elapsed_s": 11.8,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_AdditiveAttention-bc726eeb-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_fbb_AdditiveAttention'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_76db989e425598e2decea3d802fc72097c04094185fc9b3823a53847a3f8cb34",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_AdditiveAttention-bc726eeb-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.2,
+      "elapsed_s": 11.8,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_AdditiveAttention-bc726eeb-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11918,7 +12020,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_fbb_AdditiveAttention'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_fbb_Attention": {
       "attempted_timeranges": [
@@ -11926,21 +12028,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Attention-a7c6ffe0-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.7,
+          "elapsed_s": 11.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Attention-a7c6ffe0-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_fbb_Attention'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_0ac5f688520419d05ab07272138a5acef54ec29ecf72c175a5d26d7b881e2072",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Attention-a7c6ffe0-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.7,
+      "elapsed_s": 11.9,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Attention-a7c6ffe0-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11950,7 +12060,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_fbb_Attention'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_fbb_Ensemble": {
       "attempted_timeranges": [
@@ -11958,21 +12068,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Ensemble-25406b73-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.9,
+          "elapsed_s": 12.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Ensemble-25406b73-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_fbb_Ensemble'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_0b89ed6b6e96bc41d922d46b94eab43c083b740d09e25b3517b96d1deb1282e4",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Ensemble-25406b73-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.9,
+      "elapsed_s": 12.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Ensemble-25406b73-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -11982,7 +12100,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_fbb_Ensemble'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_fbb_GRU": {
       "attempted_timeranges": [
@@ -11990,21 +12108,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_GRU-ce8aa679-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 4.4,
+          "elapsed_s": 12.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_GRU-ce8aa679-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_fbb_GRU'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_0aebff36f1e2f1b2f46b695e1f0ba5fdebc7c06b26631f7e1e4ede5fee851b33",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_GRU-ce8aa679-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 4.4,
+      "elapsed_s": 12.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_GRU-ce8aa679-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12014,7 +12140,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_fbb_GRU'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_fbb_LSTM": {
       "attempted_timeranges": [
@@ -12022,21 +12148,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_LSTM-e7a95739-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.7,
+          "elapsed_s": 12.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_LSTM-e7a95739-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_fbb_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_4de180ca7c6138c5189cf2371ebddd0a1bf6934dc28edf3cc9c1250dc60dae71",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_LSTM-e7a95739-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.7,
+      "elapsed_s": 12.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_LSTM-e7a95739-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12046,7 +12180,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_fbb_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_fbb_Multihead": {
       "attempted_timeranges": [
@@ -12054,21 +12188,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Multihead-73c19268-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.7,
+          "elapsed_s": 12.4,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Multihead-73c19268-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_fbb_Multihead'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_e4c57ba8c6283969c717965c66545c9d2df33ff65452d458664b59d728259c67",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Multihead-73c19268-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.7,
+      "elapsed_s": 12.4,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Multihead-73c19268-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12078,7 +12220,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_fbb_Multihead'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_fbb_Transformer": {
       "attempted_timeranges": [
@@ -12086,21 +12228,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Transformer-220d2b87-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 4.9,
+          "elapsed_s": 12.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Transformer-220d2b87-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_fbb_Transformer'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_1cc66547fa5d6a2c5ae5639eec8aa10a7ff09fefe166580beed5fa0bf2527632",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Transformer-220d2b87-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 4.9,
+      "elapsed_s": 12.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Transformer-220d2b87-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12110,7 +12260,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_fbb_Transformer'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_fbb_Wavenet": {
       "attempted_timeranges": [
@@ -12118,21 +12268,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Wavenet-e69b4818-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.6,
+          "elapsed_s": 11.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Wavenet-e69b4818-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_fbb_Wavenet'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_73c436b1c3d9f570e8a4ae1eb6aa73143e4a7bf11ec263926c90f17897f29280",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Wavenet-e69b4818-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.6,
+      "elapsed_s": 11.9,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Wavenet-e69b4818-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12142,7 +12300,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_fbb_Wavenet'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_fwr_LSTM": {
       "attempted_timeranges": [
@@ -12150,21 +12308,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_fwr_LSTM-e5433bcd-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.7,
+          "elapsed_s": 12.3,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fwr_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fwr_LSTM-e5433bcd-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_fwr_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_0d6f510c973cf3926e2ed849c962537caa382d365659fedefb95500a54171270",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_fwr_LSTM-e5433bcd-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.7,
+      "elapsed_s": 12.3,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fwr_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fwr_LSTM-e5433bcd-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12174,7 +12340,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_fwr_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_highlow_Ensemble": {
       "attempted_timeranges": [
@@ -12182,21 +12348,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_highlow_Ensemble-73a07d50-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 4.1,
+          "elapsed_s": 11.8,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_highlow_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_highlow_Ensemble-73a07d50-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_highlow_Ensemble'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_19fb3dcdc55a538198888320d6086626950012deec0aaa377b7b1b8133d6f224",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_highlow_Ensemble-73a07d50-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 4.1,
+      "elapsed_s": 11.8,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_highlow_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_highlow_Ensemble-73a07d50-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12206,7 +12380,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_highlow_Ensemble'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_highlow_LSTM": {
       "attempted_timeranges": [
@@ -12214,21 +12388,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_highlow_LSTM-3a252c28-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 4.2,
+          "elapsed_s": 12.2,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_highlow_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_highlow_LSTM-3a252c28-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_highlow_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_60740124370fb4d85f8b2bc3cf159f550affe4b8da97b2796df8e93733fc9a37",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_highlow_LSTM-3a252c28-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 4.2,
+      "elapsed_s": 12.2,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_highlow_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_highlow_LSTM-3a252c28-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12238,7 +12420,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_highlow_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_jump_Ensemble": {
       "attempted_timeranges": [
@@ -12246,21 +12428,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_jump_Ensemble-f9064063-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 4.3,
+          "elapsed_s": 11.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_jump_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_jump_Ensemble-f9064063-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_jump_Ensemble'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_3590551cbdb09b925873c8a804651de53f2e3ad14ac293ddfbc032837d42536a",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_jump_Ensemble-f9064063-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 4.3,
+      "elapsed_s": 11.9,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_jump_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_jump_Ensemble-f9064063-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12270,7 +12460,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_jump_Ensemble'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_jump_LSTM": {
       "attempted_timeranges": [
@@ -12278,21 +12468,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_jump_LSTM-7fc9790d-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.5,
+          "elapsed_s": 12.4,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_jump_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_jump_LSTM-7fc9790d-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_jump_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_d7a88fbf3a9e9c8bb44818cf5166cf27c8ca264fa5741e8958718208f5e0cae2",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_jump_LSTM-7fc9790d-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.5,
+      "elapsed_s": 12.4,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_jump_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_jump_LSTM-7fc9790d-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12302,7 +12500,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_jump_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_jump_Transformer": {
       "attempted_timeranges": [
@@ -12310,21 +12508,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_jump_Transformer-d72030ec-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.5,
+          "elapsed_s": 11.5,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_jump_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_jump_Transformer-d72030ec-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_jump_Transformer'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_ec5c0834b7cce1bdb944abcbff619d44c96ddaed38086be5a91ffb9374b9b078",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_jump_Transformer-d72030ec-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.5,
+      "elapsed_s": 11.5,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_jump_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_jump_Transformer-d72030ec-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12334,7 +12540,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_jump_Transformer'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_macd2_Attention": {
       "attempted_timeranges": [
@@ -12342,21 +12548,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_macd2_Attention-80614ccc-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.5,
+          "elapsed_s": 10.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd2_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd2_Attention-80614ccc-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_macd2_Attention'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_7afb211cb8949fd00c9cd93cf6a93842b30aaf123a4ee1f1ac09f74567d527d0",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_macd2_Attention-80614ccc-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.5,
+      "elapsed_s": 10.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd2_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd2_Attention-80614ccc-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12366,7 +12580,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_macd2_Attention'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_macd3_LSTM": {
       "attempted_timeranges": [
@@ -12374,21 +12588,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_macd3_LSTM-b83622e3-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.5,
+          "elapsed_s": 10.2,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd3_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd3_LSTM-b83622e3-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_macd3_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_2ded17032f5de97d500a347f395cd27613d37c714b47ef7a89034b85b19e7a22",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_macd3_LSTM-b83622e3-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.5,
+      "elapsed_s": 10.2,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd3_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd3_LSTM-b83622e3-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12398,7 +12620,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_macd3_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_macd_Attention": {
       "attempted_timeranges": [
@@ -12406,21 +12628,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Attention-96cd374d-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.6,
+          "elapsed_s": 10.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Attention-96cd374d-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_macd_Attention'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_f2a460f769115e5d488816846247d7fecff8ab654fc4ed7a50884b16c991fd7d",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Attention-96cd374d-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.6,
+      "elapsed_s": 10.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Attention-96cd374d-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12430,7 +12660,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_macd_Attention'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_macd_Ensemble": {
       "attempted_timeranges": [
@@ -12438,21 +12668,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Ensemble-84b4a9b2-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.5,
+          "elapsed_s": 10.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Ensemble-84b4a9b2-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_macd_Ensemble'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_f0dbdc3cb5270521621d4938216d3ba5f928ab899b9e2eddb1544724b9c9898f",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Ensemble-84b4a9b2-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.5,
+      "elapsed_s": 10.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Ensemble-84b4a9b2-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12462,7 +12700,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_macd_Ensemble'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_macd_GRU": {
       "attempted_timeranges": [
@@ -12470,21 +12708,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_macd_GRU-b966f2ef-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.5,
+          "elapsed_s": 10.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_GRU-b966f2ef-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_macd_GRU'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_ceee8b0f860bbb23d9a0006e47bf57f4081b9b06bed5732a9c66c486f5e6eb0f",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_macd_GRU-b966f2ef-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.5,
+      "elapsed_s": 10.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_GRU-b966f2ef-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12494,7 +12740,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_macd_GRU'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_macd_LSTM": {
       "attempted_timeranges": [
@@ -12502,21 +12748,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_macd_LSTM-783f4316-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.5,
+          "elapsed_s": 10.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_LSTM-783f4316-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_macd_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_13ab7e6a9a98949187456c8c91acc1b53a24a2c9f195ad609aebab8f721f0b85",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_macd_LSTM-783f4316-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.5,
+      "elapsed_s": 10.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_LSTM-783f4316-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12526,7 +12780,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_macd_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_macd_Multihead": {
       "attempted_timeranges": [
@@ -12534,21 +12788,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Multihead-c21bbc27-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.7,
+          "elapsed_s": 10.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Multihead-c21bbc27-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_macd_Multihead'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_bc5a4dd907c510b81a7cb9761516f1aabb685f12b6d4c53262eb268cc3b6c139",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Multihead-c21bbc27-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.7,
+      "elapsed_s": 10.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Multihead-c21bbc27-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12558,7 +12820,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_macd_Multihead'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_macd_TCN": {
       "attempted_timeranges": [
@@ -12566,21 +12828,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_macd_TCN-6f0a4ec3-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.5,
+          "elapsed_s": 10.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_TCN-6f0a4ec3-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_macd_TCN'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_2b6201679bc470e117d3a0fb0a6479c0a166a1302d68b568777f49a25ada8ee5",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_macd_TCN-6f0a4ec3-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.5,
+      "elapsed_s": 10.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_TCN-6f0a4ec3-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12590,7 +12860,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_macd_TCN'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_macd_Transformer": {
       "attempted_timeranges": [
@@ -12598,21 +12868,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Transformer-8da0fee1-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.6,
+          "elapsed_s": 10.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Transformer-8da0fee1-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_macd_Transformer'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_4e5ccc8a976780c48f1bbebdd0d07fdc45c90416ace14a1fbee5395bc8c47f4a",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Transformer-8da0fee1-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.6,
+      "elapsed_s": 10.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Transformer-8da0fee1-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12622,7 +12900,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_macd_Transformer'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_mfi_LSTM": {
       "attempted_timeranges": [
@@ -12630,21 +12908,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_mfi_LSTM-781b3e20-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.5,
+          "elapsed_s": 10.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_mfi_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_mfi_LSTM-781b3e20-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_mfi_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_323686e1d46ca34e503e5eb2e6f28da07e1cf8a04b81c6d6049e9e71119757d8",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_mfi_LSTM-781b3e20-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.5,
+      "elapsed_s": 10.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_mfi_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_mfi_LSTM-781b3e20-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12654,7 +12940,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_mfi_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_minmax_LSTM": {
       "attempted_timeranges": [
@@ -12662,21 +12948,29 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "restore_copied_local_module",
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_minmax_LSTM-7e5aa761-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 3.5,
+          "elapsed_s": 10.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_minmax_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_minmax_LSTM-7e5aa761-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_minmax_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_e2f428e6a3ef82d0d2d0345fcf5eb83bd954dfe61e3433af8295e8d626a70449",
-      "class1_rules": [],
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_minmax_LSTM-7e5aa761-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 3.5,
+      "elapsed_s": 10.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_minmax_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_minmax_LSTM-7e5aa761-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12686,7 +12980,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_minmax_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_nseq_Attention": {
       "attempted_timeranges": [
@@ -12694,21 +12988,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_nseq_Attention-c9fee997-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 5.8,
+          "elapsed_s": 10.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_nseq_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_nseq_Attention-c9fee997-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_nseq_Attention'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_21e10733b0834c0cc9d9e900f27215c2762f5b2d655f454437cf3049919c191d",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_nseq_Attention-c9fee997-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 5.8,
+      "elapsed_s": 10.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_nseq_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_nseq_Attention-c9fee997-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12718,7 +13018,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_nseq_Attention'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_nseq_Ensemble": {
       "attempted_timeranges": [
@@ -12726,21 +13026,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_nseq_Ensemble-0d86a645-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 5.8,
+          "elapsed_s": 10.2,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_nseq_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_nseq_Ensemble-0d86a645-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_nseq_Ensemble'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_01d41a54dda1f4745c0db157eb852502b3277fa33e23c22310d63add47427c9b",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_nseq_Ensemble-0d86a645-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 5.8,
+      "elapsed_s": 10.2,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_nseq_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_nseq_Ensemble-0d86a645-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12750,7 +13056,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_nseq_Ensemble'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_nseq_GRU": {
       "attempted_timeranges": [
@@ -12758,21 +13064,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_nseq_GRU-bdc6b791-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 5.8,
+          "elapsed_s": 10.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_nseq_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_nseq_GRU-bdc6b791-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_nseq_GRU'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_68b2dbcde3cf44df8edbd51626671c8940d52ed7456625ebcb99b84d1ab8aeff",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_nseq_GRU-bdc6b791-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 5.8,
+      "elapsed_s": 10.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_nseq_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_nseq_GRU-bdc6b791-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12782,7 +13094,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_nseq_GRU'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_nseq_LSTM": {
       "attempted_timeranges": [
@@ -12790,21 +13102,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_nseq_LSTM-50b55aac-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.1,
+          "elapsed_s": 10.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_nseq_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_nseq_LSTM-50b55aac-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_nseq_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_89918c92d1772f17b7ffd8c57afc098f95a2c642e6ea924f524bf859ececd0db",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_nseq_LSTM-50b55aac-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.1,
+      "elapsed_s": 10.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_nseq_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_nseq_LSTM-50b55aac-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12814,7 +13132,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_nseq_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_nseq_Transformer": {
       "attempted_timeranges": [
@@ -12822,21 +13140,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_nseq_Transformer-a94cafde-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 5.9,
+          "elapsed_s": 10.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_nseq_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_nseq_Transformer-a94cafde-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_nseq_Transformer'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_f48cfd61cff1a27849ed0922761d40cf586ae348e6a2475a482362c43094ec08",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_nseq_Transformer-a94cafde-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 5.9,
+      "elapsed_s": 10.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_nseq_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_nseq_Transformer-a94cafde-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12846,7 +13170,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_nseq_Transformer'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_nseq_Wavenet": {
       "attempted_timeranges": [
@@ -12854,21 +13178,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_nseq_Wavenet-f97a22f2-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 5.9,
+          "elapsed_s": 10.4,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_nseq_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_nseq_Wavenet-f97a22f2-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_nseq_Wavenet'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_3f30c7cfc92b2882a87f7bea527ae30924dba02d4bd5a9277d9c6ab936cb79cf",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_nseq_Wavenet-f97a22f2-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 5.9,
+      "elapsed_s": 10.4,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_nseq_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_nseq_Wavenet-f97a22f2-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12878,7 +13208,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_nseq_Wavenet'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_over_LSTM": {
       "attempted_timeranges": [
@@ -12886,21 +13216,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_over_LSTM-01de3663-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 5.9,
+          "elapsed_s": 10.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_over_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_over_LSTM-01de3663-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_over_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_242332d23b29d8c831c966773726ecaeb6712d40c07b2775a5fce09721d28bd4",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_over_LSTM-01de3663-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 5.9,
+      "elapsed_s": 10.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_over_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_over_LSTM-01de3663-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12910,7 +13246,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_over_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_profit_AdditiveAttention": {
       "attempted_timeranges": [
@@ -12918,21 +13254,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_profit_AdditiveAttention-79209933-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 5.8,
+          "elapsed_s": 10.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_AdditiveAttention-79209933-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_profit_AdditiveAttention'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_6e91d73393437ebc7b77fbe1bf47801e879c448f2722d336e0170a888dbf35f3",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_profit_AdditiveAttention-79209933-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 5.8,
+      "elapsed_s": 10.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_AdditiveAttention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_AdditiveAttention-79209933-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12942,7 +13284,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_profit_AdditiveAttention'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_profit_Attention": {
       "attempted_timeranges": [
@@ -12950,21 +13292,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_profit_Attention-282bb461-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.0,
+          "elapsed_s": 10.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_Attention-282bb461-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_profit_Attention'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_ff90bcd26d6a5f56eaad3f5fbebf37cefc1ccceef110ecba8fcefe1944e6d02a",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_profit_Attention-282bb461-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.0,
+      "elapsed_s": 10.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_Attention-282bb461-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -12974,7 +13322,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_profit_Attention'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_profit_CNN": {
       "attempted_timeranges": [
@@ -12982,21 +13330,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_profit_CNN-4bd59aea-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.6,
+          "elapsed_s": 10.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_CNN-4bd59aea-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_profit_CNN'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_c88cca69c4e4f122fa5a38c72e62457e56730651fef2d4a75069a47cabb76c2d",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_profit_CNN-4bd59aea-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.6,
+      "elapsed_s": 10.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_CNN --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_CNN-4bd59aea-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13006,7 +13360,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_profit_CNN'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_profit_Ensemble": {
       "attempted_timeranges": [
@@ -13014,21 +13368,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_profit_Ensemble-390a18dc-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 5.9,
+          "elapsed_s": 10.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_Ensemble-390a18dc-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_profit_Ensemble'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_9c4be4a7835ea05bfcb85990d70c98ae311e23d8ef12d90bddc6881cd934bb27",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_profit_Ensemble-390a18dc-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 5.9,
+      "elapsed_s": 10.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_Ensemble-390a18dc-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13038,7 +13398,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_profit_Ensemble'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_profit_GRU": {
       "attempted_timeranges": [
@@ -13046,21 +13406,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_profit_GRU-d0ca526c-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.0,
+          "elapsed_s": 10.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_GRU-d0ca526c-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_profit_GRU'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_ca72598525e5d00ed622f708bb944ed44aea60b39b9761c1d347627b56e7c046",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_profit_GRU-d0ca526c-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.0,
+      "elapsed_s": 10.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_GRU-d0ca526c-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13070,7 +13436,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_profit_GRU'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_profit_LSTM": {
       "attempted_timeranges": [
@@ -13078,21 +13444,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_profit_LSTM-e5023ae4-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.1,
+          "elapsed_s": 10.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_LSTM-e5023ae4-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_profit_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_25adb3ab88b771760e4bd7a84bffddab84183be482cc8d337d8f74d14d604bd2",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_profit_LSTM-e5023ae4-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.1,
+      "elapsed_s": 10.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_LSTM-e5023ae4-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13102,7 +13474,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_profit_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_profit_LSTM2": {
       "attempted_timeranges": [
@@ -13110,21 +13482,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_profit_LSTM2-8fc950bf-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.0,
+          "elapsed_s": 10.7,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_LSTM2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_LSTM2-8fc950bf-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_profit_LSTM2'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_49c4770decad99b82b27023dcad5597da13a19abb0ea70553de47e30190a0733",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_profit_LSTM2-8fc950bf-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.0,
+      "elapsed_s": 10.7,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_LSTM2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_LSTM2-8fc950bf-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13134,7 +13512,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_profit_LSTM2'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_profit_LSTM3": {
       "attempted_timeranges": [
@@ -13142,21 +13520,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_profit_LSTM3-6ad57edf-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.2,
+          "elapsed_s": 10.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_LSTM3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_LSTM3-6ad57edf-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_profit_LSTM3'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_450a5d08abc820bba085980bba5189b96a51caad10f667e71403ae061f541c64",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_profit_LSTM3-6ad57edf-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.2,
+      "elapsed_s": 10.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_LSTM3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_LSTM3-6ad57edf-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13166,7 +13550,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_profit_LSTM3'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_profit_MLP": {
       "attempted_timeranges": [
@@ -13174,21 +13558,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_profit_MLP-c48fd130-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.0,
+          "elapsed_s": 10.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_MLP-c48fd130-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_profit_MLP'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_0e6694ab5c9621c9daef9d7b079de7d506d9b66ade3010901cb3b82ee844404c",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_profit_MLP-c48fd130-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.0,
+      "elapsed_s": 10.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_MLP-c48fd130-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13198,7 +13588,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_profit_MLP'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_profit_Multihead": {
       "attempted_timeranges": [
@@ -13206,21 +13596,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_profit_Multihead-9cfac7f3-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.2,
+          "elapsed_s": 10.5,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_Multihead-9cfac7f3-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_profit_Multihead'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_74bde6f8ad0330164bc90113b506936e61d085bcd3d6b28146ed9f6d684cdd47",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_profit_Multihead-9cfac7f3-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.2,
+      "elapsed_s": 10.5,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_Multihead-9cfac7f3-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13230,7 +13626,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_profit_Multihead'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_profit_TCN": {
       "attempted_timeranges": [
@@ -13238,21 +13634,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_profit_TCN-d7cf1893-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.1,
+          "elapsed_s": 10.4,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_TCN-d7cf1893-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_profit_TCN'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_9f391a5beb85077bed3ddc55ab39ede64874b40fd63505c409d0d103aa2e1fb9",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_profit_TCN-d7cf1893-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.1,
+      "elapsed_s": 10.4,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_TCN-d7cf1893-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13262,7 +13664,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_profit_TCN'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_profit_Transformer": {
       "attempted_timeranges": [
@@ -13270,21 +13672,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_profit_Transformer-bb6c85b9-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.3,
+          "elapsed_s": 10.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_Transformer-bb6c85b9-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_profit_Transformer'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_6bf08153fcb1d262075a0298f747702db4c623e1d392004c58830a1f3a6f9950",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_profit_Transformer-bb6c85b9-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.3,
+      "elapsed_s": 10.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_Transformer-bb6c85b9-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13294,7 +13702,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_profit_Transformer'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_profit_Wavenet": {
       "attempted_timeranges": [
@@ -13302,21 +13710,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_profit_Wavenet-262fd33b-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.2,
+          "elapsed_s": 10.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_Wavenet-262fd33b-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_profit_Wavenet'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_013a0d9ef684f975d8ffd67aab5a8270f701597e54b4cf2ecece1aa101a9db13",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_profit_Wavenet-262fd33b-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.2,
+      "elapsed_s": 10.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_Wavenet-262fd33b-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13326,7 +13740,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_profit_Wavenet'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_profit_Wavenet2": {
       "attempted_timeranges": [
@@ -13334,21 +13748,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_profit_Wavenet2-7fcf5068-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.3,
+          "elapsed_s": 10.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_Wavenet2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_Wavenet2-7fcf5068-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_profit_Wavenet2'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_7831c07028507c5d22fbf7d38988fa29a3f6e4327562ea83f83317db7f9f67bc",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_profit_Wavenet2-7fcf5068-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.3,
+      "elapsed_s": 10.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_Wavenet2 --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_Wavenet2-7fcf5068-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13358,7 +13778,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_profit_Wavenet2'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_profit_Wavenet3": {
       "attempted_timeranges": [
@@ -13366,21 +13786,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_profit_Wavenet3-f89a2865-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.2,
+          "elapsed_s": 10.3,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_Wavenet3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_Wavenet3-f89a2865-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_profit_Wavenet3'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_efc37f4bea3bc981caa3c1fbaf385bb102b1e7443bb79db419adfa7e0cc0a6f3",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_profit_Wavenet3-f89a2865-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.2,
+      "elapsed_s": 10.3,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_profit_Wavenet3 --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_profit_Wavenet3-f89a2865-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13390,7 +13816,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_profit_Wavenet3'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_pv_Ensemble": {
       "attempted_timeranges": [
@@ -13398,21 +13824,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_pv_Ensemble-23ad8dd6-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.7,
+          "elapsed_s": 9.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_pv_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_pv_Ensemble-23ad8dd6-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_pv_Ensemble'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_a5652ae28e0d8a5a51810d50c60bfd5038c79a4697625f5f492a7b5fee1170bd",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_pv_Ensemble-23ad8dd6-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.7,
+      "elapsed_s": 9.9,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_pv_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_pv_Ensemble-23ad8dd6-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13422,7 +13854,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_pv_Ensemble'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_pv_LSTM": {
       "attempted_timeranges": [
@@ -13430,21 +13862,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_pv_LSTM-72c868a3-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.1,
+          "elapsed_s": 9.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_pv_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_pv_LSTM-72c868a3-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_pv_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_d2cb86238481cb8149e8a3485063e3cff7e9d7f49b14e2011c50528c8e77ea7e",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_pv_LSTM-72c868a3-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.1,
+      "elapsed_s": 9.9,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_pv_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_pv_LSTM-72c868a3-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13454,7 +13892,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_pv_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_pv_MLP": {
       "attempted_timeranges": [
@@ -13462,21 +13900,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_pv_MLP-f598edf2-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.5,
+          "elapsed_s": 10.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_pv_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_pv_MLP-f598edf2-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_pv_MLP'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_3ebd58db1053ea4eccd72dea1414b91409447c3aff8360af3267d2c9720744b5",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_pv_MLP-f598edf2-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.5,
+      "elapsed_s": 10.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_pv_MLP --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_pv_MLP-f598edf2-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13486,7 +13930,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_pv_MLP'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_pv_Multihead": {
       "attempted_timeranges": [
@@ -13494,21 +13938,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_pv_Multihead-f356ce54-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.5,
+          "elapsed_s": 9.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_pv_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_pv_Multihead-f356ce54-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_pv_Multihead'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_64563f0986b9b7063253009c6f32b17fc5e8c15a4d9c94c1341bb2b217449582",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_pv_Multihead-f356ce54-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.5,
+      "elapsed_s": 9.9,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_pv_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_pv_Multihead-f356ce54-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13518,7 +13968,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_pv_Multihead'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_pv_Wavenet": {
       "attempted_timeranges": [
@@ -13526,21 +13976,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_pv_Wavenet-d369ad01-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.2,
+          "elapsed_s": 9.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_pv_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_pv_Wavenet-d369ad01-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_pv_Wavenet'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_e431e856a18bce2947a0b19cf1001143e7d2a0b5edba6c3e3fb6eb0ac034cd23",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_pv_Wavenet-d369ad01-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.2,
+      "elapsed_s": 9.9,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_pv_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_pv_Wavenet-d369ad01-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13550,7 +14006,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_pv_Wavenet'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_slope_LSTM": {
       "attempted_timeranges": [
@@ -13558,21 +14014,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_slope_LSTM-5b12794a-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.4,
+          "elapsed_s": 10.5,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_slope_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_slope_LSTM-5b12794a-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_slope_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_b4b49b5e1067dbbfe9a60fd2b32450d619de9745440cb2accc7c38ef084515b6",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_slope_LSTM-5b12794a-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.4,
+      "elapsed_s": 10.5,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_slope_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_slope_LSTM-5b12794a-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13582,7 +14044,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_slope_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_smooth_LSTM": {
       "attempted_timeranges": [
@@ -13590,21 +14052,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_smooth_LSTM-f352a0f8-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.2,
+          "elapsed_s": 10.7,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_smooth_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_smooth_LSTM-f352a0f8-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_smooth_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_925bf274a31279605f05989801fe566d83b937a13a5bc30d6de5123e2ddb9bff",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_smooth_LSTM-f352a0f8-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.2,
+      "elapsed_s": 10.7,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_smooth_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_smooth_LSTM-f352a0f8-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13614,7 +14082,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_smooth_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_stochastic_LSTM": {
       "attempted_timeranges": [
@@ -13622,21 +14090,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_stochastic_LSTM-3691248e-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 6.6,
+          "elapsed_s": 11.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_stochastic_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_stochastic_LSTM-3691248e-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_stochastic_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_9ab751e378b134a3e4dc66f884eca9bda37ad51896caf9b51b9f1afb78ff0c27",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_stochastic_LSTM-3691248e-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 6.6,
+      "elapsed_s": 11.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_stochastic_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_stochastic_LSTM-3691248e-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13646,7 +14120,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_stochastic_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NNTC_swing_LSTM": {
       "attempted_timeranges": [
@@ -13654,21 +14128,27 @@
       ],
       "attempts": [
         {
-          "class1_rules": [],
+          "class1_rules": [
+            "tf_keras_saving_reexport",
+            "tf_keras_backend_set_session_noop"
+          ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_swing_LSTM-efa18378-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 7.6,
+          "elapsed_s": 10.4,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_swing_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_swing_LSTM-efa18378-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "Impossible to load Strategy 'NNTC_swing_LSTM'. This class does not exist or contains Python code errors."
+          "why": "assignment destination is read-only"
         }
       ],
       "canonical_sha256": "sha256_faea33f79b19985075680905d97b99fb5c6eeb2c2de45dc4077a4ecbee694f92",
-      "class1_rules": [],
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop"
+      ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_swing_LSTM-efa18378-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 7.6,
+      "elapsed_s": 10.4,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_swing_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_swing_LSTM-efa18378-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
@@ -13678,7 +14158,7 @@
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "Impossible to load Strategy 'NNTC_swing_LSTM'. This class does not exist or contains Python code errors."
+      "why": "assignment destination is read-only"
     },
     "NOTankAi_15": {
       "archive": "user_data/profile_smoke/NOTankAi_15-59bf1e39-smoke_20200301_20200401-b4807b77-2026-09-14_23-00-04.zip",

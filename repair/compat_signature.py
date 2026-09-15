@@ -1186,6 +1186,54 @@ def install_synthetic_backtest_orderbook():
     return True
 
 
+SET_SESSION_RULE = "tf_keras_backend_set_session_noop"
+
+
+def install_tf_keras_backend_set_session_noop():
+    """No-op `tf.compat.v1.keras.backend.set_session`, absent from Keras 3.
+
+    The webclinic017 NNPredict/NNTC family's shared `ClassifierKeras.py`
+    opens with TF1-era session boilerplate:
+
+        config = tf.compat.v1.ConfigProto(device_count={'GPU': 0})
+        config.gpu_options.allow_growth = True
+        config.gpu_options.per_process_gpu_memory_fraction = mem_fraction
+        sess = tf.compat.v1.Session(config=config)
+        tf.compat.v1.keras.backend.set_session(sess)
+
+    All four `config`/`gpu_options` lines are GPU resource tuning -
+    `device_count={'GPU': 0}` disables the GPU outright, so `allow_growth`
+    and the memory-fraction cap govern a device that is never used, on this
+    machine or any other: `tf.config.list_physical_devices('GPU')` returns
+    `[]` here regardless of what the strategy asks for. `set_session` itself
+    is TF1's mechanism for telling Keras which graph-mode Session to
+    evaluate tensors in; under TF2's eager execution - the only mode Keras 3
+    runs in, with no session concept at all - there is nothing for it to
+    bind and no code path that would consult it. Keras 3's `tf.compat.v1`
+    shim simply never re-added the attribute, so the call is an
+    AttributeError at import time, before any of these strategies build a
+    model or see a row of data.
+
+    A no-op is not a guess here: the four lines it follows configure
+    resource allocation for hardware this run never has, through an API
+    whose only job (binding a session) has nothing left to do under eager
+    execution. Model architecture, weights, and training data are untouched
+    by removing it. An environment where Keras genuinely still defines
+    `set_session` is left alone - `hasattr` decides, not a version check.
+    """
+    import tensorflow as tf
+
+    backend = tf.compat.v1.keras.backend
+    if hasattr(backend, "set_session"):
+        return True
+
+    def set_session(session=None):
+        return None
+
+    backend.set_session = set_session
+    return True
+
+
 INSTALLERS = {RULE: install_min_roi_reached_entry,
               SCAN_RULE: install_tolerant_class_scan,
               ADVISE_RULE: install_idempotent_advise_entry,
@@ -1206,7 +1254,8 @@ INSTALLERS = {RULE: install_min_roi_reached_entry,
               ORDERBOOK_RULE: install_synthetic_backtest_orderbook,
               PRICE_SIDE_RULE: install_legacy_price_side_config,
               SELL_CHECK_TUPLE_RULE: install_legacy_sell_check_tuple,
-              TF_KERAS_SAVING_RULE: install_tf_keras_saving}
+              TF_KERAS_SAVING_RULE: install_tf_keras_saving,
+              SET_SESSION_RULE: install_tf_keras_backend_set_session_noop}
 
 
 def install_from_environment():
@@ -1850,6 +1899,38 @@ def selftest():
         sys.modules.pop("keras.utils.vis_utils", None)
         if saved is not None:
             sys.modules["keras.utils.vis_utils"] = saved
+
+    # The twentieth shim: `set_session` becomes a harmless no-op only where
+    # Keras does not already define one; a `set_session` an environment
+    # genuinely has (an older Keras, or this same test run a second time) is
+    # left standing rather than replaced. TensorFlow is only on the
+    # TensorFlow companion image; skip rather than fail where it is not
+    # installed, same as the vis_utils shim just above.
+    try:
+        import tensorflow as tf
+    except Exception as exc:
+        print("compat_signature selftest: PASS "
+              "(tf_keras_backend_set_session_noop NOT checked here: %s)"
+              % type(exc).__name__)
+        return
+    backend = tf.compat.v1.keras.backend
+    had_set_session = hasattr(backend, "set_session")
+    saved_set_session = backend.__dict__.get("set_session")
+    if had_set_session:
+        del backend.set_session
+    try:
+        assert install_tf_keras_backend_set_session_noop()
+        assert backend.set_session(object()) is None
+        assert backend.set_session() is None
+        # A real one already present is not overwritten.
+        del backend.set_session
+        backend.set_session = lambda session=None: "real"
+        assert install_tf_keras_backend_set_session_noop()
+        assert backend.set_session(None) == "real"
+    finally:
+        del backend.set_session
+        if had_set_session:
+            backend.set_session = saved_set_session
 
     print("compat_signature selftest: PASS")
 
