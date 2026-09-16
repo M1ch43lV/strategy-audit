@@ -2050,9 +2050,28 @@ hit their own new, distinct, architecture-specific errors, neither related
 to the two bugs just fixed: `NNTC_adx_LSTM` - `'Variable' object has no
 attribute '_distribute_strategy'`; `NNTC_macd_TCN` - `'tuple' object has
 no attribute 'as_list'`. The 32-row Group B (never had the wrong-copy
-symptom - no `restore_copied_local_module` in its rules to begin with) is
-running the same cascade now that the read-only-array bug is fixed for
-every row; results not yet in as this section is written.
+symptom - no `restore_copied_local_module` in its rules to begin with)
+needed only the `nntc_writable_labels` fix: 25 of 32 measure real trades
+(530-2115), 4 `*_Transformer`/`*_Wavenet2`/`*_Wavenet3` rows time out the
+same way Group A's did, and 3 more distinct new errors -
+`NNTC_profit_TCN` the same `'tuple' object has no attribute 'as_list'` as
+`NNTC_macd_TCN` (a TCN-architecture bug, not row-specific), and
+`NNTC_profit_Multihead`/`NNTC_pv_Multihead` both `Input 0 with name
+'input_layer' of layer 'NNTC_profit_MLP' is incompatible with the layer:
+expected shape=(None, 1, 64), found shape=(32, 8, 64)` - the layer name in
+the error belongs to a DIFFERENT strategy (`NNTC_profit_MLP`) than the one
+that raised it, suggesting a stale/shared Keras model or checkpoint being
+reloaded across rows rather than anything either shim touches; not
+investigated further this phase.
+
+**Cluster total: 65 of 65 `NNTC_*` rows now attempt training instead of
+crashing outright on the read-only-array bug every single one hit before
+today. 52 measure real trades, 8 time out (all `*_Transformer`/`*_Wavenet2`/
+`*_Wavenet3`, one consistent architecture-speed pattern), 5 hit one of two
+new, different, unrelated errors (`_distribute_strategy` once,
+`tuple.as_list` twice - the TCN architecture specifically, `input_layer`
+shape mismatch twice - the Multihead architecture specifically). None of
+the three remaining error shapes were touched this phase.**
 
 **The keithorange timeframe question, resolved.** None of the seven
 `MASlopeStrategy`/`MAStopLossStrategy`/`MATrailingStopLossStrategy`/
