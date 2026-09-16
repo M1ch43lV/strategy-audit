@@ -2395,3 +2395,120 @@ bug `__TOTAL__` was introduced to fix, one line lower. Both numbers now come
 from the rendered rows (`__LOOKAHEAD_NATIVE__`, `__WARMUP_SETTLED__`: 932 and
 753), and `strategy_status_page.selftest()` fails if either placeholder goes
 missing from the template.
+
+# Phase 19 - the look-ahead gap closed, and author data files staged, 2026-09-16
+
+**Owner's change of check order.** Look-ahead now precedes recursion in the
+funnel and in the page's prose, which is the order `profile_bias.py` has
+always run them in: its loop takes lookahead first, and
+`recursive_prerequisite()` returns *"Look-Ahead is not PASS"* and defers
+rather than spending a recursion run. The page described the reverse, so a
+row excluded on recursion was being counted at a stage the runner puts after
+the one it never reached.
+
+**63 rows were owed a look-ahead verdict and structurally unreachable.**
+`candidates()` drew only from `REGIME_ELIGIBILITY.csv`, which answers "what
+is still pending" - and a strategy the warm-up ladder excluded on a recursion
+finding is `ineligible` afterwards, so no pending row ever names it again.
+46 of the 63 were in exactly that state. A warm-up-convergence record is now
+a second source: if the ladder looked at a strategy, a missing look-ahead
+verdict is work owed, whatever its eligibility row says now.
+
+**Result of the run: 38 PASS, 10 FOUND, 15 NA.** The ten findings are the
+point of the exercise - each was excluded on recursion while carrying
+unmeasured look-ahead bias:
+
+| strategy | finding |
+| --- | --- |
+| `DWT_Predict2` | 18 of 20 entries, 17 exits move; `model_predict` |
+| `DWT_Predict` | 17 of 20 entries, 9 exits move; `model_predict` |
+| `NostalgiaForInfinityX5`, `X6` | 2 of 20 entries move; `CMF_20` |
+| `NOTankAi_15`, `_Cleaned`, `_Cleaned_v2` | `maxima`, `&s-extrema` |
+| `AlexStrategyFinalV8Hyper`, `V9Hyper` | `V_norm`, `&-target` |
+| `kijun_cross_strong_s` | `chikou` |
+
+The 15 NA are nine distinct causes, not one bucket: 5 TIMEOUT, 3 `'freqai'`
+(the author's FreqAI config is required and this path cannot supply it), and
+one each of a pandas-3 dtype refusal, a missing informative pair, a class
+freqtrade could not locate, a filter that met no frequencies, a read-only
+array, too few trades, and a missing `processed.json`.
+
+**harvest.py never fetched author data files.** It takes .py files containing
+IStrategy, READMEs and the import closure - not the CSV, JSON or pickle
+tables a strategy reads beside itself, so such a strategy has its code but
+not its input and fails on a missing file rather than on anything about
+itself. A scan of every harvested strategy's string literals found 72 naming
+an absent file; most are not blockers (f-string fragments like `".pkl"`,
+artifacts the strategy trains itself, the NFI family's optional
+`hold-trades.json`), and of the 35 left, 7 were shipped by the author and
+missing here. All 7 are now fetched through `malware_gate`. The other 38 were
+never in the author's repository at all - a trained model, a hyperopt result,
+a scraper's output shipped only as a 3-byte `.example`, a scratch path - and
+stay as they are, which is what C4 already says about them.
+
+**The `data_files` rule.** Fetching the file is not enough, because a
+strategy locates it in one of two ways and the difference is its own code:
+
+- **Relative to `__file__`.** The file is already beside the strategy under
+  `repos/`, so the smoke and full-window runners need nothing. The bias
+  runner isolates the strategy into
+  `user_data/profile_bias_strategies/<id>/` and the file does not come
+  along - `beta_factors_model` failed on exactly
+  `.../beta_factors_model-8dbb39af/Bitcoin_marketcap.csv`, a path nothing
+  ever wrote. `profile_bias._stage_data_files()` copies each source in,
+  deriving the destination as the source's position relative to the
+  strategy's OWN directory, reproduced relative to the copy. So a sibling
+  lands beside the copy and `CME`'s `Path(__file__).parent.parent /
+  "cme_data"` lands one level up, where its code looks.
+- **Relative to the working directory.** `QuatreMousquetaires` reads
+  `DEFAULT_DATA_DIR = "./user_data/tv_data"`, which every runner resolves
+  against ROOT. Such an entry names its `dest` explicitly and
+  `profile_smoke._stage_working_dir_data()` places it for every run.
+
+A source that is not on disk is reported and skipped, so the run fails on
+the strategy's own missing-file error rather than on a half-staged
+directory. `data_files` is folded into `class1_repair_signature`, so adding
+or changing one re-measures the row instead of reading as current forever
+(the Phase 15 mechanism).
+
+**A stub for `tvDatafeed`, and what it deliberately does not do.**
+`CME` and `QuatreMousquetaires` failed before any of the above, on an
+unconditional top-level `from tvDatafeed import TvDatafeed, Interval`.
+tvDatafeed installs from a GitHub URL and queries TradingView at runtime, so
+it is not a dependency this audit can supply and then call the author's own.
+`CME` needs it only when `self.dp.runmode.value` is `live` or `dry_run`; in
+a backtest it reads its CSV. `repair/compat_helpers/tvdatafeed_stub` satisfies
+the import, constructs (some strategies instantiate at module scope), and
+raises on every data call. So `kac_index_v1`/`v2`, which call `get_hist()`
+from their indicator path regardless of mode, still fail loudly instead of
+measuring against invented data - that refusal is what makes the stub
+falsifiable rather than a substitute.
+
+**What each of the four strategies does now.**
+
+- `beta_factors_model`: measured. Look-ahead **FOUND** (`pred_ret`), where
+  before there was only a missing-file NA. It also loads a
+  `beta_factors_model.joblib` that is no longer in the upstream tree but came
+  with the 2026-08-24 acquisition - the author's own artifact as captured,
+  same provenance as the .py, and the strategy only loads it, never trains.
+- `CME`: past the import and reading its CSV, now failing on its own pandas-3
+  incompatibility (`incompatible merge keys dtype('<M8[ms]') and
+  dtype('<M8[us]')`) - the C8 family, measured on its own merits.
+- `QuatreMousquetaires`: past the import, all four series staged, and it no
+  longer calls TradingView - its own 24-hour freshness cache accepts them.
+  It then fails with `"None of ['date'] are in the columns"`, because the
+  author ships `NASDAQ`/`SP500`/`DXY` as raw tvDatafeed exports headed
+  `datetime,symbol,...` while their own cache path expects the processed
+  `,date,symbol,...` shape that only their download branch writes - as
+  `M2_weekly_data.csv`, the one file they shipped post-processing, shows.
+  Making this run would mean rewriting the author's data, so it stops here:
+  the blocker is now named precisely instead of being a missing file.
+- `DELTA_NEUTRAL`: funding-rate table staged; the remaining `'NoneType'
+  object has no attribute 'columns'` is its own and now measured as such.
+
+**Three log entries corrected.** `ClucHAnix`, `ClucHAnix_5m` and
+`NostalgiaForInfinityV7` are the representatives their groups keep under the
+new `_pick_representative()`, so their `REMOVED_DUPLICATE_SOURCES.json`
+entries carry `recovered_at` - the removal recorded there no longer describes
+their status. `strategy_status.selftest()`'s E1_expanded equality, which is
+what surfaced this, passes again: 1355 rows, 681 E1, 0 unmeasured.

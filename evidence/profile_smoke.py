@@ -15,6 +15,7 @@ import io
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import threading
@@ -215,6 +216,7 @@ def _runtime(strategy, mode="futures"):
     # narrow, opt-in fix for a strategy whose own code mixes both spellings.
     if repair.get("tf_use_legacy_keras"):
         env["TF_USE_LEGACY_KERAS"] = "1"
+    _stage_working_dir_data(repair)
     extra_args = []
     if repair.get("freqaimodel"):
         extra_args.extend(["--freqaimodel", repair["freqaimodel"]])
@@ -222,6 +224,42 @@ def _runtime(strategy, mode="futures"):
         model_path = os.path.join(ROOT, repair["freqaimodel_path"].replace("/", os.sep))
         extra_args.extend(["--freqaimodel-path", model_path])
     return config_path, env, repair, extra_args
+
+
+def _stage_working_dir_data(repair):
+    """Place a `data_files` entry that names a `dest` into the run's cwd.
+
+    Two shapes of author-shipped input need two different destinations, and
+    the difference is the strategy's own code, not a preference. A strategy
+    that resolves its input from `__file__` wants the file beside itself,
+    which it already is under `repos/` - only the bias runner's isolated copy
+    needs it staged, and `profile_bias._stage_data_files` does that. A
+    strategy that resolves from a relative path instead wants it under the
+    working directory every runner uses (ROOT): `QuatreMousquetaires` reads
+    `./user_data/tv_data/NASDAQ_daily_data.csv` and its three siblings, so an
+    entry with an explicit `dest` is copied there for every run.
+
+    The copy's mtime is today's, which for this strategy means its own
+    24-hour freshness cache treats the series as current and never calls
+    TradingView. That is the author's caching logic reading the author's own
+    shipped file; the content is theirs, only the timestamp is ours, and the
+    series covers the measurement window. Recopied on every run rather than
+    once, because the file lands under `user_data/` - regenerable by design,
+    and cleared often.
+    """
+    for entry in repair.get("data_files", []):
+        if not isinstance(entry, dict) or not entry.get("dest"):
+            continue
+        source = os.path.join(ROOT, entry["source"].replace("/", os.sep))
+        target = os.path.join(ROOT, entry["dest"].replace("/", os.sep))
+        if not os.path.exists(source):
+            print("  data_files: source missing, not staged: %s" % entry["source"],
+                  flush=True)
+            continue
+        os.makedirs(os.path.dirname(target), exist_ok=True)
+        temporary = "%s.%d.tmp" % (target, os.getpid())
+        shutil.copyfile(source, temporary)
+        os.replace(temporary, target)
 
 
 def _override_config(strategy, config_path, overrides):
@@ -774,7 +812,7 @@ def _run(args, rows, claim):
                             if key in ("rules", "python_paths", "tf_use_legacy_keras",
                                        "freqaimodel", "freqaimodel_path",
                                        "config_source", "config_keys",
-                                       "freqtrade_paths") and value}
+                                       "freqtrade_paths", "data_files") and value}
         if repair_signature:
             identity = dict(identity)
             identity["class1_repair_signature"] = repair_signature

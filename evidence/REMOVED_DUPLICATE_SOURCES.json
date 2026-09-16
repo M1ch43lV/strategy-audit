@@ -487,6 +487,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "file_present_again_at": "2026-09-16",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix E01VE Offsets.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Kept again as of 2026-09-16: _pick_representative() now prefers a published corpus card, a measurement and a file named after its own class over the shorter name, and this strategy is the representative its group keeps. Its file is present and its row is a live cohort member, so the removal recorded above no longer describes its status. The historical fields are left as they were.",
       "removed_at": "2026-09-16T15:05:51.011635+00:00",
       "retained_reason": "source file defines no other class and returned via a repository re-download, not the recovery; deletion is safe and the next harvest removes it again.",
       "strategy_id": "ClucHAnix"
@@ -496,6 +498,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "file_present_again_at": "2026-09-16",
       "original_file": "repos/TheoBrigitte_freqtrade/strategies/cluc/ClucHAnix_5m.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Kept again as of 2026-09-16: _pick_representative() now prefers a published corpus card, a measurement and a file named after its own class over the shorter name, and this strategy is the representative its group keeps. Its file is present and its row is a live cohort member, so the removal recorded above no longer describes its status. The historical fields are left as they were.",
       "removed_at": "2026-09-16T15:05:51.011635+00:00",
       "retained_reason": "source file defines no other class and returned via a repository re-download, not the recovery; deletion is safe and the next harvest removes it again.",
       "strategy_id": "ClucHAnix_5m"
@@ -871,6 +875,8 @@
       "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
       "file_present_again_at": "2026-09-16",
       "original_file": "repos/davidzr_freqtrade-strategies/strategies/NostalgiaForInfinityV7/NostalgiaForInfinityV7.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Kept again as of 2026-09-16: _pick_representative() now prefers a published corpus card, a measurement and a file named after its own class over the shorter name, and this strategy is the representative its group keeps. Its file is present and its row is a live cohort member, so the removal recorded above no longer describes its status. The historical fields are left as they were.",
       "removed_at": "2026-09-16T15:05:51.011635+00:00",
       "retained_reason": "source file defines no other class and returned via a repository re-download, not the recovery; deletion is safe and the next harvest removes it again.",
       "strategy_id": "NostalgiaForInfinityV7"

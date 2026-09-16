@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1355 rows
 
-**Generated 2026-09-16 21:03:57 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-16 22:41:10 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -56,8 +56,8 @@ have neither and are left empty rather than given an invented time.
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 641 |
-| `excluded` | 418 |
-| `pending` | 130 |
+| `excluded` | 419 |
+| `pending` | 129 |
 | `exclusion_unconfirmed` | 111 |
 | `too_few_trades` | 32 |
 | `not_a_strategy` | 23 |
@@ -152,7 +152,7 @@ than a pick-one-source figure. 96 of 1355 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 1259 rows that do: **78.4 hours** of this audit's own compute so far.
+Summed across the 1259 rows that do: **79.8 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -296,7 +296,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1963 of 3574 commands are recorded so far, and every new run
+recording. 1993 of 3574 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -4424,7 +4424,7 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Pending - 130 strategies
+## Pending - 129 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
@@ -4459,9 +4459,9 @@ neither a pass nor a fail.
 `TPActivatingTSLwithInitialTSLStrategy`, `TPActivatingTSLwithSLStrategy`, `TS_Gain`, `TrailingBuySellStrat`
 `TrailingBuyStrat`, `TrailingBuyStrat2a`, `TrailingStopLossStrategy`, `TwoCandleTheory`
 `UltraSmartStrategy`, `ViNBuyVws`, `ZaratustraV31`, `_Strat`
-`abbas`, `beta_factors_model`, `binance`, `binance_shorts`
-`degen`, `el_extrema_RL`, `epretrace`, `haGradient`
-`newstrategy4`, `zorkv7_0_0`
+`abbas`, `binance`, `binance_shorts`, `degen`
+`el_extrema_RL`, `epretrace`, `haGradient`, `newstrategy4`
+`zorkv7_0_0`
 
 ## Exclusion unconfirmed - 111 strategies
 
@@ -4485,7 +4485,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 418 strategies, by decisive reason
+## Not passing - 419 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -4533,7 +4533,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 418 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 419 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -4541,7 +4541,7 @@ one of them carries none.
 
 | Reason | Meaning | Strategies |
 |---|---|---:|
-| `lookahead_found` | reads data it could not have had at the time | 98 |
+| `lookahead_found` | reads data it could not have had at the time | 99 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 77 |
 | `no_trades_in_full_measurement` | never trades over the full window | 6 |
 | `full_backtest_not_testable` | the canonical pooled full backtest did not complete under the fixed runtime budget | 34 |
@@ -4558,7 +4558,7 @@ one of them carries none.
 
 | Reason | `-` | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `E0_strict67` | `not_scheduled` |
 |---|---|---|---|---|---|---|---|
-| `lookahead_found` | 23 | 1 | 0 | 13 | 0 | 0 | 61 |
+| `lookahead_found` | 23 | 1 | 0 | 14 | 0 | 0 | 61 |
 | `recursive_bias_found` | 15 | 0 | 3 | 18 | 14 | 1 | 26 |
 | `no_trades_in_full_measurement` | 0 | 0 | 0 | 6 | 0 | 0 | 0 |
 | `full_backtest_not_testable` | 18 | 0 | 0 | 15 | 0 | 0 | 1 |
@@ -4570,7 +4570,7 @@ one of them carries none.
 | `duplicate_implementation` | 85 | 1 | 0 | 0 | 0 | 0 | 2 |
 | `recursive_check_incomplete_at_longest_rungs` | 13 | 0 | 0 | 0 | 0 | 0 | 0 |
 
-### `lookahead_found` - 98
+### `lookahead_found` - 99
 
 Reads data it could not have had at the time.
 
@@ -4587,12 +4587,12 @@ Wave `A_pending_diagnostics` - 1:
 
 `kalthetank`
 
-Wave `C_measurement_recovery` - 13:
+Wave `C_measurement_recovery` - 14:
 
 `ARIMASTR`, `ARIMA_15`, `FastSupertrend`, `FreqaiExampleStrategy`
 `MKR`, `NostalgiaForInfinityNext_ChangeToTower_V5_2`, `NostalgiaForInfinityNext_ChangeToTower_V5_3`, `NostalgiaForInfinityNext_ChangeToTower_V6`
 `NostalgiaForInfinityXw`, `Stinkfist`, `SuperTrendPure`, `bbema`
-`ichiV1_Marius`
+`beta_factors_model`, `ichiV1_Marius`
 
 Wave `not_scheduled` - 61:
 
@@ -4841,8 +4841,8 @@ Wave `-` - 13:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 212 |
-| `lookahead_remeasure_pending` | 138 |
+| `recursive_ladder_pending` | 211 |
+| `lookahead_remeasure_pending` | 137 |
 | `full_window_measurement_pending` | 98 |
 | `to_be_fixed` | 54 |
 | `needs_a_look` | 10 |

@@ -292,6 +292,19 @@ def repair_settings(entry, run=None):
                       ("freqtrade_paths", "PROFILE_FREQTRADE_PATH")):
         if entry.get(key):
             parts.append("%s+=%s" % (name, ":".join(entry[key])))
+    # A data_files entry is either a bare source path (staged beside the
+    # strategy, where its own __file__ lookup points) or {source, dest} for
+    # a strategy that reads a path relative to the run's working directory
+    # instead. Both are named by their destination, which is what a reader
+    # of this line wants to know.
+    staged = []
+    for value in entry.get("data_files", []):
+        if isinstance(value, dict):
+            staged.append(value.get("dest") or value.get("source", ""))
+        else:
+            staged.append(os.path.basename(value))
+    if staged:
+        parts.append("data_files=" + ":".join(staged))
     signatures = [rule for rule in rules
                   if rule in ("legacy_min_roi_reached_entry_signature",
                               "whitespace_tolerant_class_scan")]

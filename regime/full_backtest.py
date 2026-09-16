@@ -193,6 +193,7 @@ def main(argv=None) -> int:
         return {"rules": class1.get("rules", []),
                "python_paths": class1.get("python_paths", []),
                "config_source": class1.get("config_source", ""),
+               "data_files": class1.get("data_files", []),
                "config_overrides": overrides.get(strategy) or {}}
 
     def run(row):

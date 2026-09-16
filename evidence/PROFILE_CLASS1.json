@@ -322,6 +322,21 @@
       ],
       "status": "applied"
     },
+    "CME": {
+      "data_files": [
+        "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/CME/user_data/cme_data/BTC1_weekly_data.csv"
+      ],
+      "family": "author_data_file_not_harvested",
+      "note": "two separate blockers. It resolves Path(__file__).parent.parent / 'cme_data' / 'BTC1_weekly_data.csv', which harvest.py never fetched, and it fails before that on an unconditional top-level 'from tvDatafeed import TvDatafeed, Interval'. tvDatafeed installs from a GitHub URL and queries TradingView at runtime, but this strategy only uses it when self.dp.runmode.value is 'live' or 'dry_run' - in a backtest it reads the CSV. The stub satisfies the import and raises on any data call, so a strategy that really needs the feed fails loudly instead of measuring against invented data.",
+      "python_paths": [
+        "repair/compat_helpers/tvdatafeed_stub"
+      ],
+      "rules": [
+        "stage_author_data_file",
+        "tvdatafeed_import_stub"
+      ],
+      "status": "applied"
+    },
     "Cenderawasih_30m": {
       "note": "declares `class <Name> (IStrategy):` with a space. Freqtrade's resolver skips a file unless its text contains the literal `class <Name>(`, so it never imports the file at all and reports \"This class does not exist or contains Python code errors\", which is true of neither. The shim makes that pre-import scan tolerant of whitespace; every file it admits still has to pass the four real conditions. No strategy source is touched.",
       "rules": [
@@ -483,6 +498,17 @@
       "note": "imports keras.utils.vis_utils.plot_model (moved to keras.utils.plot_model in Keras 3) and matplotlib; its only call to plot_model is commented out. Runs on the TensorFlow companion image (needs keras for a separate, real import), plus matplotlib added to that image for this row.",
       "rules": [
         "restore_keras_vis_utils"
+      ],
+      "status": "applied"
+    },
+    "DELTA_NEUTRAL": {
+      "data_files": [
+        "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/DELTA_NEUTRAL/user_data/strategies/historical_funding_rates_DB.json"
+      ],
+      "family": "author_data_file_not_harvested",
+      "note": "reads Path(__file__).resolve().parent / 'historical_funding_rates_DB.json', a 199 KB funding-rate table the author ships beside the strategy and harvest.py did not take. Staging it does not by itself make the run succeed - the smoke run fails separately with \"'NoneType' object has no attribute 'columns'\" - so this rule supplies the author's input and that failure is measured on its own merits rather than on a missing file.",
+      "rules": [
+        "stage_author_data_file"
       ],
       "status": "applied"
     },
@@ -2404,6 +2430,36 @@
       "rules": [],
       "status": "blocked_missing_author_config"
     },
+    "QuatreMousquetaires": {
+      "data_files": [
+        {
+          "dest": "user_data/tv_data/NASDAQ_daily_data.csv",
+          "source": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/4Mousquetaires/NASDAQ_daily_data.csv"
+        },
+        {
+          "dest": "user_data/tv_data/SP500_daily_data.csv",
+          "source": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/4Mousquetaires/SP500_daily_data.csv"
+        },
+        {
+          "dest": "user_data/tv_data/DXY_daily_data.csv",
+          "source": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/4Mousquetaires/DXY_daily_data.csv"
+        },
+        {
+          "dest": "user_data/tv_data/M2_weekly_data.csv",
+          "source": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/4Mousquetaires/user_data/tv_data/M2_weekly_data.csv"
+        }
+      ],
+      "family": "author_data_file_not_harvested",
+      "note": "same two blockers as CME, with four TradingView series the author shipped (DXY, NASDAQ, SP500 daily and M2 weekly) instead of one. The four series resolve against DEFAULT_DATA_DIR=\"./user_data/tv_data\", relative to the run working directory, not to __file__, so each entry names its dest explicitly.",
+      "python_paths": [
+        "repair/compat_helpers/tvdatafeed_stub"
+      ],
+      "rules": [
+        "stage_author_data_file",
+        "tvdatafeed_import_stub"
+      ],
+      "status": "applied"
+    },
     "RLAgentStrategy": {
       "config_keys": [
         "timeframe",
@@ -2691,6 +2747,18 @@
       "note": "declares `class <Name> (IStrategy):` with a space. Freqtrade's resolver skips a file unless its text contains the literal `class <Name>(`, so it never imports the file at all and reports \"This class does not exist or contains Python code errors\", which is true of neither. The shim makes that pre-import scan tolerant of whitespace; every file it admits still has to pass the four real conditions. No strategy source is touched.",
       "rules": [
         "whitespace_tolerant_class_scan"
+      ],
+      "status": "applied"
+    },
+    "beta_factors_model": {
+      "data_files": [
+        "repos/mlsys-io_PortfolioBench/strategy/crypto_factors_regression/Bitcoin_marketcap.csv",
+        "repos/mlsys-io_PortfolioBench/strategy/crypto_factors_regression/beta_factors_model.joblib"
+      ],
+      "family": "author_data_file_not_harvested",
+      "note": "reads BASE_DIR / 'Bitcoin_marketcap.csv' with BASE_DIR the strategy's own directory. harvest.py fetches .py files with IStrategy, READMEs and the import closure, so the author's 97 KB marketcap series next to the code was never taken. Re-fetched from mlsys-io/PortfolioBench; the rule stages it beside the isolated copy the bias runner makes, which is where the strategy's own __file__ lookup points. It also loads MODEL_PATH = Path(__file__).parent / \"beta_factors_model.joblib\" and never trains, so without that file there is no strategy to measure. The .joblib came with the original 2026-08-24 acquisition (mtime and the Phase 17 commit both show it) and is no longer in the upstream tree, which the author appears to have pruned; it is the authors own artifact as captured, same provenance as the .py, not anything trained here.",
+      "rules": [
+        "stage_author_data_file"
       ],
       "status": "applied"
     },

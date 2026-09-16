@@ -152,7 +152,7 @@ def _error(output, returncode):
     return "process exit %d or unparsed output" % returncode
 
 
-def _isolated_strategy(row, canonical):
+def _isolated_strategy(row, canonical, repair=None):
     """Expose only the target file to analyzers that enumerate a whole path."""
     directory = os.path.join(ISOLATED_DIR, profile_smoke._safe(row["strategy_id"]))
     os.makedirs(directory, exist_ok=True)
@@ -160,7 +160,42 @@ def _isolated_strategy(row, canonical):
     temporary = target + ".tmp"
     shutil.copyfile(canonical, temporary)
     os.replace(temporary, target)
+    _stage_data_files(canonical, directory, repair or {})
     return directory
+
+
+def _stage_data_files(canonical, directory, repair):
+    """Copy a `data_files` rule's inputs in beside the isolated strategy.
+
+    Isolating the strategy moves it away from the files its author shipped
+    next to it, and a strategy that locates its own input relative to
+    `__file__` then looks for it beside the copy instead - `beta_factors_model`
+    failed on exactly
+    `user_data/profile_bias_strategies/beta_factors_model-.../Bitcoin_marketcap.csv`,
+    a path nothing ever wrote. The smoke and full-window runners point
+    `--strategy-path` at `repos/` directly and never see this.
+
+    The rule lists source paths only; each destination is derived, as the
+    source's position relative to the strategy's OWN directory, reproduced
+    relative to the copy. So a sibling file lands beside the copy, and
+    `CME`'s `../cme_data/BTC1_weekly_data.csv` - it resolves
+    `Path(__file__).parent.parent / "cme_data"` - lands one level up, where
+    its own code will look. Nothing invents content: a source that is not on
+    disk is reported and skipped, and the run then fails on the strategy's
+    own missing-file error rather than on a silently half-staged directory.
+    """
+    canonical_dir = os.path.dirname(canonical)
+    for value in repair.get("data_files", []):
+        source = os.path.join(ROOT, value.replace("/", os.sep))
+        if not os.path.exists(source):
+            print("  data_files: source missing, not staged: %s" % value, flush=True)
+            continue
+        target = os.path.normpath(os.path.join(
+            directory, os.path.relpath(source, canonical_dir)))
+        os.makedirs(os.path.dirname(target), exist_ok=True)
+        temporary = target + ".tmp"
+        shutil.copyfile(source, temporary)
+        os.replace(temporary, target)
 
 
 def _lookahead(output, returncode):
@@ -476,7 +511,7 @@ def run_diagnostic(row, diagnostic, timeout, fallback_timeout,
         with io.open(config, "w", encoding="utf-8", newline="\n") as handle:
             json.dump(data, handle, ensure_ascii=False, indent=2, sort_keys=True)
             handle.write("\n")
-    strategy_path = _isolated_strategy(row, canonical)
+    strategy_path = _isolated_strategy(row, canonical, repair)
     original_directory = os.path.dirname(canonical)
     existing_imports = env.get("PROFILE_STRATEGY_IMPORT_PATH", "")
     env["PROFILE_STRATEGY_IMPORT_PATH"] = os.pathsep.join(

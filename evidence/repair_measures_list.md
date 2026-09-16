@@ -626,8 +626,10 @@ For example: `BlueEyes_MPP_v1`.
 | `tf_keras_bare_save_redirect` | 6 |
 | `freqai_config_from_author_block` | 5 |
 | `legacy_fillna_skips_incompatible_dtype` | 4 |
+| `stage_author_data_file` | 4 |
 | `legacy_fillna_method_kwarg` | 4 |
 | `datetime_safe_rmi_fillna` | 3 |
+| `tvdatafeed_import_stub` | 2 |
 | `synthetic_orderbook_from_last_close` | 2 |
 | `restore_accumulation_distribution` | 2 |
 | `restore_declared_pypi_dependency` | 1 |

@@ -3377,18 +3377,54 @@
       "trades_sha256": "sha256_c80e68e37bae6409161d92382828ae5c79db8654a66a9b69d6e9040d7b556ab7"
     },
     "CME": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [
+            "stage_author_data_file",
+            "tvdatafeed_import_stub"
+          ],
+          "debug_log": "user_data/profile_smoke_logs/CME-e0671bd3-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.0,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy CME --strategy-path repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/CME/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CME-e0671bd3-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "incompatible merge keys [0] dtype('<M8[ms]') and dtype('<M8[us]'), must be the same type"
+        }
+      ],
       "canonical_sha256": "sha256_a7e1c79521143fb11c3c8a19cbf85413812c96320641082ddd69022b8825f4de",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/CME-e0671bd3.log",
-      "elapsed_s": 6.3,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy CME --strategy-path repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/CME/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CME-e0671bd3 --cache none",
+      "class1_repair_signature": {
+        "data_files": [
+          "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/CME/user_data/cme_data/BTC1_weekly_data.csv"
+        ],
+        "python_paths": [
+          "repair/compat_helpers/tvdatafeed_stub"
+        ],
+        "rules": [
+          "stage_author_data_file",
+          "tvdatafeed_import_stub"
+        ]
+      },
+      "class1_rules": [
+        "stage_author_data_file",
+        "tvdatafeed_import_stub"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/CME-e0671bd3-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy CME --strategy-path repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/CME/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CME-e0671bd3-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'CME'. This class does not exist or contains Python code errors."
+      "trade_floor": 10,
+      "why": "incompatible merge keys [0] dtype('<M8[ms]') and dtype('<M8[us]'), must be the same type"
     },
     "COPY_HL": {
       "archive": "user_data/profile_smoke/COPY_HL-8c22b978-smoke_20200301_20200601-9c543975-2026-09-15_22-01-52.zip",
@@ -5055,17 +5091,35 @@
       "trades_sha256": "sha256_e616d770d5f56bef1590d97509bd626c8a0e1a0d4ea84265fc57d6f8dca400bf"
     },
     "DELTA_NEUTRAL": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [],
+          "debug_log": "user_data/profile_smoke_logs/DELTA_NEUTRAL-ac636677-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 4.3,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy DELTA_NEUTRAL --strategy-path repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/DELTA_NEUTRAL/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DELTA_NEUTRAL-ac636677-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "futures",
+          "run_profile": "futures_short",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "'NoneType' object has no attribute 'columns'"
+        }
+      ],
       "canonical_sha256": "sha256_4f24960eddcc29e5631a5165bd9918a2445b40375de98058497be5f5af2d5d76",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/DELTA_NEUTRAL-ac636677.log",
-      "elapsed_s": 8.7,
-      "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy DELTA_NEUTRAL --strategy-path repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/DELTA_NEUTRAL/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DELTA_NEUTRAL-ac636677 --cache none",
+      "debug_log": "user_data/profile_smoke_logs/DELTA_NEUTRAL-ac636677-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 4.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy DELTA_NEUTRAL --strategy-path repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/DELTA_NEUTRAL/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/DELTA_NEUTRAL-ac636677-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "futures",
       "run_profile": "futures_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
       "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "failed",
       "timerange": "20200301-20200401",
+      "trade_floor": 10,
       "why": "'NoneType' object has no attribute 'columns'"
     },
     "DIV_v1": {
@@ -18060,18 +18114,69 @@
       "why": "'proton_parameters'"
     },
     "QuatreMousquetaires": {
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "class1_rules": [
+            "stage_author_data_file",
+            "tvdatafeed_import_stub"
+          ],
+          "debug_log": "user_data/profile_smoke_logs/QuatreMousquetaires-2b6944ab-smoke_20200301_20200401-b4807b77.log",
+          "elapsed_s": 3.9,
+          "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy QuatreMousquetaires --strategy-path repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/4Mousquetaires/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/QuatreMousquetaires-2b6944ab-smoke_20200301_20200401-b4807b77 --cache none",
+          "mode": "spot",
+          "run_profile": "spot_long",
+          "status": "failed",
+          "timerange": "20200301-20200401",
+          "why": "\"None of ['date'] are in the columns\""
+        }
+      ],
       "canonical_sha256": "sha256_ab92d26fbec3c985ea8c5d78cb2e4c14fce290ecffce64ee64e56151fc88faf1",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/QuatreMousquetaires-2b6944ab.log",
-      "elapsed_s": 6.0,
-      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy QuatreMousquetaires --strategy-path repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/4Mousquetaires/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/QuatreMousquetaires-2b6944ab --cache none",
+      "class1_repair_signature": {
+        "data_files": [
+          {
+            "dest": "user_data/tv_data/NASDAQ_daily_data.csv",
+            "source": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/4Mousquetaires/NASDAQ_daily_data.csv"
+          },
+          {
+            "dest": "user_data/tv_data/SP500_daily_data.csv",
+            "source": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/4Mousquetaires/SP500_daily_data.csv"
+          },
+          {
+            "dest": "user_data/tv_data/DXY_daily_data.csv",
+            "source": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/4Mousquetaires/DXY_daily_data.csv"
+          },
+          {
+            "dest": "user_data/tv_data/M2_weekly_data.csv",
+            "source": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/4Mousquetaires/user_data/tv_data/M2_weekly_data.csv"
+          }
+        ],
+        "python_paths": [
+          "repair/compat_helpers/tvdatafeed_stub"
+        ],
+        "rules": [
+          "stage_author_data_file",
+          "tvdatafeed_import_stub"
+        ]
+      },
+      "class1_rules": [
+        "stage_author_data_file",
+        "tvdatafeed_import_stub"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/QuatreMousquetaires-2b6944ab-smoke_20200301_20200401-b4807b77.log",
+      "elapsed_s": 3.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy QuatreMousquetaires --strategy-path repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/4Mousquetaires/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/QuatreMousquetaires-2b6944ab-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "failed",
       "timerange": "20200301-20200401",
-      "why": "Impossible to load Strategy 'QuatreMousquetaires'. This class does not exist or contains Python code errors."
+      "trade_floor": 10,
+      "why": "\"None of ['date'] are in the columns\""
     },
     "QuickAdapterV3": {
       "canonical_sha256": "sha256_da6bc13bd36923c8989057597dddeb83213f428292fbfaa1be70faf0bbc6bff5",
