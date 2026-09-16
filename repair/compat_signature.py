@@ -167,7 +167,22 @@ def install_legacy_min_roi_entry_override():
 
     def load_strategy(config=None):
         strategy = original(config)
-        own = type(strategy).__dict__.get("min_roi_reached_entry")
+        # `getattr`, not `type(strategy).__dict__.get(...)`: the Schism/
+        # SuperHV27 family (Phase 15) defines min_roi_reached_entry once on
+        # a base class (`Schism`, `SuperHV27`) and loads a thin per-pair
+        # subclass (`Schism_BTC(Schism)`) that overrides only config
+        # attributes - `.__dict__` on the resolved subclass never contained
+        # the method at all, so the shim silently never activated for any
+        # of the six rows it names in its own docstring above, despite
+        # matching the same failure this whole function exists to fix.
+        # Confirmed the fix does not widen who this reaches: `_is_legacy_
+        # override`'s own signature-shape check still correctly rejects
+        # freqtrade's own three/four-argument `IStrategy.min_roi_reached_
+        # entry`, which `getattr` now also reaches for every strategy that
+        # overrides nothing at all - `sig.bind(None, 0)` against that
+        # signature still raises, so `own` being found is not by itself
+        # enough to install anything.
+        own = getattr(type(strategy), "min_roi_reached_entry", None)
         if own is not None and _is_legacy_override(own):
             def min_roi_reached_entry(*args, _own=own, _self=strategy, **kwargs):
                 if len(args) == 3 and not kwargs:
@@ -1990,6 +2005,26 @@ def selftest():
         assert (modern_instance.min_roi_reached_entry("T", 30, "now")
                == ("modern", "T", 30, "now"))
         assert "min_roi_reached_entry" not in vars(modern_instance)
+
+        # The exact shape that shipped broken: Schism_BTC(Schism) defines no
+        # min_roi_reached_entry of its own at all - it inherits the base
+        # class's old-shape override. `type(strategy).__dict__.get(...)`
+        # never saw it (that dict only holds what the SUBCLASS itself
+        # defines), so the shim silently never installed for any of the six
+        # rows it names in its own docstring, though every one of them
+        # matches `_is_legacy_override` once actually reached.
+        class FakeStrategyBase(object):
+            def min_roi_reached_entry(self, trade_dur):
+                return ("inherited", trade_dur)
+
+        class FakeStrategySubclass(FakeStrategyBase):
+            pass
+
+        FakeResolver._target = FakeStrategySubclass
+        sub_instance = FakeResolver.load_strategy()
+        assert (sub_instance.min_roi_reached_entry("T", 30, "now")
+               == ("inherited", 30)), \
+            "an override inherited from a base class must be adapted too"
     finally:
         if saved is not None:
             sys.modules["freqtrade.resolvers.strategy_resolver"] = saved

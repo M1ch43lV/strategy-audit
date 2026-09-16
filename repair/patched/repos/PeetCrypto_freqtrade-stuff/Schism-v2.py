@@ -416,8 +416,7 @@ class Schism2(IStrategy):
     """
     ROI overrides for per-pair params
     """
-    def min_roi_reached_entry(self, trade, trade_dur: int, current_time=None) -> Tuple[Optional[int], Optional[float]]:
-        pair = trade.pair
+    def min_roi_reached_entry(self, trade_dur: int, pair: str = 'backtest') -> Tuple[Optional[int], Optional[float]]:
         minimal_roi = self.get_pair_params(pair, 'minimal_roi')
 
         roi_list = list(filter(lambda x: x <= trade_dur, minimal_roi.keys()))
@@ -429,7 +428,7 @@ class Schism2(IStrategy):
 
     def min_roi_reached(self, trade: Trade, current_profit: float, current_time: datetime) -> bool:  
         trade_dur = int((current_time.timestamp() - trade.open_date_utc.timestamp()) // 60)
-        _, roi = self.min_roi_reached_entry(trade, trade_dur, current_time)
+        _, roi = self.min_roi_reached_entry(trade_dur, trade.pair)
         if roi is None:
             return False
         else:

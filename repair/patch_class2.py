@@ -540,119 +540,6 @@ def apply_signal_int_literal(src):
     return "".join(lines)
 
 
-# ────────── rule: legacy min_roi_reached_entry signature drift ────────────
-#
-# freqtrade's backtester calls `strategy.min_roi_reached_entry(trade,
-# trade_dur, current_time)` directly from `optimize/backtesting.py`, bypassing
-# `min_roi_reached()` entirely - a call site distinct from, and in addition
-# to, the public `min_roi_reached()` hook (confirmed by reading both call
-# sites in the installed freqtrade package, not assumed). A strategy that
-# overrides `min_roi_reached_entry` with the pre-2024 shape crashes on this
-# direct call with a positional-argument TypeError, regardless of whether it
-# also overrides `min_roi_reached()` itself - overriding the public hook does
-# not shield the private one from a call the author never knew existed.
-
-def _find_method(tree, name):
-    for node in ast.walk(tree):
-        if isinstance(node, ast.FunctionDef) and node.name == name:
-            return node
-    return None
-
-
-RX_MRE_SIMPLE = re.compile(
-    r"def min_roi_reached_entry\(self,\s*trade_dur(:\s*int)?\)"
-)
-
-
-def pre_min_roi_reached_entry_simple(src, path):
-    """The single-argument override (`self, trade_dur`, nothing else). Safe
-    to widen only if the body never reads a name called `trade` or
-    `current_time` - it cannot legitimately do so yet (neither exists in
-    that scope), so a hit here means something unexpected, not this pattern.
-    Checked by AST. Adding both as new parameters the body never touches
-    cannot change what the function returns for any given `trade_dur`.
-    """
-    if not RX_MRE_SIMPLE.search(src):
-        return False, "no bare (self, trade_dur) min_roi_reached_entry override"
-    try:
-        tree = ast.parse(src)
-    except SyntaxError as e:
-        return False, "cannot parse file: %s" % str(e)[:60]
-    fn = _find_method(tree, "min_roi_reached_entry")
-    if fn is None:
-        return False, "min_roi_reached_entry not found as a parsed method"
-    names = {n.id for n in ast.walk(fn) if isinstance(n, ast.Name)}
-    if "trade" in names or "current_time" in names:
-        return False, ("NOT patched: body already references trade/"
-                        "current_time under some other meaning")
-    return True, ("bare (self, trade_dur) min_roi_reached_entry widened to "
-                  "accept freqtrade's direct backtesting.py call shape "
-                  "(trade, trade_dur, current_time); body reads neither "
-                  "new parameter")
-
-
-def apply_min_roi_reached_entry_simple(src):
-    def repl(m):
-        ann = m.group(1) or ""
-        return "def min_roi_reached_entry(self, trade, trade_dur%s, current_time=None)" % ann
-    return RX_MRE_SIMPLE.sub(repl, src, count=1)
-
-
-RX_MRE_PAIR = re.compile(
-    r"def min_roi_reached_entry\(self,\s*trade_dur(:\s*int)?,\s*pair"
-    r"(?::\s*str)?\s*=\s*'backtest'\)([^\n]*:\n)(\s*)"
-)
-RX_MRE_PAIR_CALL = re.compile(
-    r"self\.min_roi_reached_entry\(\s*trade_dur\s*,\s*trade\.pair\s*\)"
-)
-
-
-def pre_min_roi_reached_entry_pair(src, path):
-    """The two-argument `(self, trade_dur, pair='backtest')` override
-    (Schism2's own shape): the caller-side equivalent of the same drift,
-    one layer removed. The class's own `min_roi_reached()` already computes
-    `pair` as `trade.pair` before calling in - `self.min_roi_reached_entry(
-    trade_dur, trade.pair)` - so replacing the `pair` parameter with a local
-    `pair = trade.pair` at the top of the body, and passing `trade` itself
-    through both call sites, reconstructs the exact same value the body
-    always saw; `trade` is not mutated between the two calls. Both the
-    signature and the one internal call site must be present and match
-    exactly, checked by regex tied to the literal text read from the file,
-    not inferred.
-    """
-    if not (RX_MRE_PAIR.search(src) and RX_MRE_PAIR_CALL.search(src)):
-        return False, "no (self, trade_dur, pair='backtest') override with its own internal call"
-    try:
-        tree = ast.parse(src)
-    except SyntaxError as e:
-        return False, "cannot parse file: %s" % str(e)[:60]
-    fn = _find_method(tree, "min_roi_reached_entry")
-    if fn is None:
-        return False, "min_roi_reached_entry not found as a parsed method"
-    names = {n.id for n in ast.walk(fn) if isinstance(n, ast.Name)}
-    if "trade" in names or "current_time" in names:
-        return False, ("NOT patched: body already references trade/"
-                        "current_time under some other meaning")
-    return True, ("(self, trade_dur, pair='backtest') min_roi_reached_entry "
-                  "widened to (self, trade, trade_dur, current_time); pair "
-                  "now derived from trade.pair, the exact value the removed "
-                  "parameter always received from this file's own internal "
-                  "call site, which is rewritten to match")
-
-
-def apply_min_roi_reached_entry_pair(src):
-    def repl(m):
-        ann, rest, indent = m.group(1) or "", m.group(2), m.group(3)
-        return ("def min_roi_reached_entry(self, trade, trade_dur%s, "
-                "current_time=None)%s%spair = trade.pair\n%s"
-                % (ann, rest, indent, indent))
-    out = RX_MRE_PAIR.sub(repl, src, count=1)
-    out = RX_MRE_PAIR_CALL.sub(
-        "self.min_roi_reached_entry(trade, trade_dur, current_time)",
-        out, count=1)
-    return out
-
-
 RULES = [
     ("restore_commented_feature_source", pre_restore_feature_source,
      apply_restore_feature_source),
@@ -663,10 +550,6 @@ RULES = [
     ("rolling_any_detect_only", pre_rolling_any, None),
     ("legacy_signal_int_literal", pre_signal_int_literal,
      apply_signal_int_literal),
-    ("legacy_min_roi_reached_entry_pair", pre_min_roi_reached_entry_pair,
-     apply_min_roi_reached_entry_pair),
-    ("legacy_min_roi_reached_entry_simple", pre_min_roi_reached_entry_simple,
-     apply_min_roi_reached_entry_simple),
 ]
 
 

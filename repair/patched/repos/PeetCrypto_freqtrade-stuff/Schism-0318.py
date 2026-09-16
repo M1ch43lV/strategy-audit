@@ -380,7 +380,7 @@ class Schism(IStrategy):
     """
     Override for default Freqtrade ROI table functionality
     """
-    def min_roi_reached_entry(self, trade, trade_dur: int, current_time=None) -> Tuple[Optional[int], Optional[float]]:
+    def min_roi_reached_entry(self, trade_dur: int) -> Tuple[Optional[int], Optional[float]]:
         dynamic_roi = self.dynamic_roi
         minimal_roi = self.minimal_roi
         

@@ -556,8 +556,8 @@ def selftest():
     # onto a pre-upstream-update result before this was fixed.
     import argparse as _argparse
     import tempfile
-    global _identity, run_one
-    saved_identity, saved_run_one = _identity, run_one
+    global _identity, run_one, _class1
+    saved_identity, saved_run_one, saved_class1 = _identity, run_one, _class1
     calls = []
     _identity = lambda row: {"canonical_sha256": row["_sha"]}
     counts = {"a": 1, "b": 7, "c": 12}
@@ -626,8 +626,40 @@ def selftest():
             _run(short_args, [row], None)
             assert len(calls) == 11, \
                 "a row covering only a prefix of the policy must still cascade"
+
+            # A runtime shim (repair/compat_signature.py, wired in via
+            # PROFILE_CLASS1.json's rules/python_paths/etc.) changes strategy
+            # BEHAVIOUR without touching canonical_sha256 or runtime_config_
+            # sha256 at all, and a `failed` status short-circuits to "current"
+            # in _result_is_current regardless of identity content. Without
+            # folding the repair config into identity, a row recorded
+            # `failed` before its fix rule existed would read as current
+            # forever after the rule was added - found 2026-09-16 auditing
+            # this exact mechanism (the min_roi_reached_entry cleanup).
+            _class1 = lambda name: {}
+            run_one = lambda row, timerange, timeout, **kwargs: (
+                calls.append((row["strategy_id"], timerange)) or
+                {"status": "failed", "timerange": timerange, "why": "boom"})
+            row = {"strategy_id": "T", "_sha": "sha_fixed"}
+            _run(args, [row], None)
+            before = len(calls)
+            _run(args, [row], None)
+            assert len(calls) == before, "an unrepaired failure must stay skipped"
+            _class1 = lambda name: {"rules": ["some_new_fix"]}
+            _run(args, [row], None)
+            assert len(calls) == before + 1, \
+                "a repair rule added after a failed record must force a rerun"
+            _run(args, [row], None)
+            assert len(calls) == before + 1, \
+                "the same repair rule must not force a rerun a second time"
+            _class1 = lambda name: {"rules": ["some_new_fix"],
+                                    "python_paths": ["repos/x/utils"]}
+            _run(args, [row], None)
+            assert len(calls) == before + 2, \
+                ("a python_paths change with the SAME rules list must also "
+                 "force a rerun - rules alone is not the whole repair config")
     finally:
-        _identity, run_one = saved_identity, saved_run_one
+        _identity, run_one, _class1 = saved_identity, saved_run_one, saved_class1
     print("profile_smoke selftest: PASS")
 
 
@@ -722,6 +754,30 @@ def _run(args, rows, claim):
         if settings:
             identity = dict(identity)
             identity["config_overrides"] = settings
+        # Same reasoning, for a different way a row's evidence can go stale:
+        # a runtime shim (repair/compat_signature.py) changes what happens
+        # when the CANONICAL FILE runs, without touching the file's own
+        # bytes or the shared base config - `canonical_sha256`/`runtime_
+        # config_sha256` cannot see it. Found 2026-09-16 auditing this exact
+        # mechanism: a strategy recorded `failed` before a fix rule was
+        # added to its PROFILE_CLASS1.json entry stayed `failed` forever
+        # after, because `_result_is_current` returns True for any non-
+        # `measured` status once identity matches, and identity never
+        # changed. `python_paths`/`tf_use_legacy_keras`/`freqaimodel` are
+        # included alongside `rules` for the same reason `config_overrides`
+        # is handled separately from the file hashes above - repointing an
+        # import path (the NNTC_* wrong-sibling-copy fix, Phase 14) changes
+        # nothing `rules` alone would catch. Folded in only when non-empty,
+        # so the overwhelming majority of rows with no repair config at all
+        # see no change in behaviour here.
+        repair_signature = {key: value for key, value in _class1(name).items()
+                            if key in ("rules", "python_paths", "tf_use_legacy_keras",
+                                       "freqaimodel", "freqaimodel_path",
+                                       "config_source", "config_keys",
+                                       "freqtrade_paths") and value}
+        if repair_signature:
+            identity = dict(identity)
+            identity["class1_repair_signature"] = repair_signature
         # A stored record is only current if it was measured under this
         # exact file and config - not merely "some record exists". Checking
         # only presence let three rows updated by an upstream `git pull`

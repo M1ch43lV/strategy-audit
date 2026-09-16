@@ -2110,3 +2110,63 @@ Left as: timeframe question resolved, cause of non-measurement now known
 and different from the original one, still not measurable in this
 runtime.
 
+# Phase 15 - a real staleness-detection gap in profile_smoke.py, 2026-09-16
+
+The owner asked, while reviewing the min_roi duplication (Phase 14), to
+audit whether the pipeline actually re-flags a repaired strategy for a
+fresh Probelauf on its own - not only when someone remembers `--force`.
+It did not.
+
+`evidence/profile_smoke.py`'s `_result_is_current` decides whether a
+stored record can be skipped: identity must match (`canonical_sha256`,
+`runtime_config_sha256` - both derived from FILE BYTES), and a non-
+`measured` status (`failed`, `timeout`, `resource_inconclusive`) is then
+treated as current UNCONDITIONALLY once identity matches. A `repair/
+compat_signature.py` shim - every fix built in Phase 10-14 except the
+now-superseded Phase 13 file overlay - changes what happens when the
+canonical file runs by adding a name to `PROFILE_CLASS1.json`'s `rules`
+(or `python_paths`, or `tf_use_legacy_keras`), without touching the
+canonical file's own bytes or the shared base config at all. Neither hash
+can see it. A row recorded `failed` before such a rule existed would have
+read as current forever after the rule was added - the ONLY reason this
+session's own repairs (NNPredict, NNTC, Category A/F, the keithorange
+timeframe rows) all measured correctly is that `--force` was passed by
+hand, every time, not because the tool would have caught a missed one.
+
+Fixed in `_run()` (`evidence/profile_smoke.py`), following the exact
+precedent already on record there for `config_overrides` (the
+`NostalgiaForInfinityX7`/`RLAgentStrategy`/`MomentumRegimeBasket15m`
+upstream-`git pull` fix): a `class1_repair_signature` - `rules`,
+`python_paths`, `tf_use_legacy_keras`, `freqaimodel`, `freqaimodel_path`,
+`config_source`, `config_keys`, `freqtrade_paths`, whichever of these
+`PROFILE_CLASS1.json` currently sets for the row - is folded into
+`identity` ONLY when non-empty, so the overwhelming majority of rows with
+no repair config at all see no change in behaviour, and a row whose
+repair config is unchanged since its last attempt still skips. `rules`
+alone would have missed the NNTC_* wrong-sibling-copy fix (Phase 14),
+which changed `python_paths`'s VALUE without changing the `rules` LIST -
+covered by including python_paths itself, confirmed by a dedicated
+selftest case for exactly that shape. Three new `selftest()` cases via
+the same `_run()`-level harness already used for the cascade-coverage
+tests: an unrepaired failure stays skipped; a repair rule added after a
+failed record forces exactly one rerun, not one per subsequent check; a
+python_paths-only change with the same rules list also forces a rerun.
+
+Not touched this phase, noted for whoever picks this up: `evidence/
+profile_bias.py`'s own staleness check (skip once `status` is `PASS`/
+`FOUND`) and `eligibility_timeframe_repair.py --stage smoke`'s (skip once
+ANY result exists at all, never re-checked) are both simpler and do not
+share this mechanism - whether they need the same treatment depends on
+whether a look-ahead/recursive verdict or a timeframe-recovery result can
+ever change from a code fix the same way a trade count can, which was not
+established here.
+
+With the fix in place: `min_roi_reached_entry`'s duplication (Phase 13/14)
+was cleaned up next - the two now-superseded `patch_class2.py` rules and
+their `repair/patched/` overlays were removed, and the six rows switched
+to the pre-existing `legacy_min_roi_reached_entry_override` shim, exactly
+the way `BinHV27_werkkrew` already used it. All six re-measured identical
+trade counts (`Schism_BTC` 458, `Schism_ETH` 407, `Schism2_BTC` 225,
+`Schism2_ETH` 334, `SuperHV27_BTC`/`ETH` 137 each) confirming the two
+mechanisms really were equivalent, not just similarly-shaped.
+

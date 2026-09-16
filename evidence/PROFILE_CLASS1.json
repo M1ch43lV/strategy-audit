@@ -2457,6 +2457,34 @@
       ],
       "status": "applied"
     },
+    "Schism2_BTC": {
+      "note": "2026-09-16, Phase 15: uses the pre-existing legacy_min_roi_reached_entry_override shim (compat_signature.py, in production for BinHV27_werkkrew since 2026-09-03) instead of the Phase 13 patch_class2.py file-overlay rules, which duplicated it and have been removed. Re-measured identical trade counts under the shim, confirming equivalence.",
+      "rules": [
+        "legacy_min_roi_reached_entry_override"
+      ],
+      "status": "applied"
+    },
+    "Schism2_ETH": {
+      "note": "2026-09-16, Phase 15: uses the pre-existing legacy_min_roi_reached_entry_override shim (compat_signature.py, in production for BinHV27_werkkrew since 2026-09-03) instead of the Phase 13 patch_class2.py file-overlay rules, which duplicated it and have been removed. Re-measured identical trade counts under the shim, confirming equivalence.",
+      "rules": [
+        "legacy_min_roi_reached_entry_override"
+      ],
+      "status": "applied"
+    },
+    "Schism_BTC": {
+      "note": "2026-09-16, Phase 15: uses the pre-existing legacy_min_roi_reached_entry_override shim (compat_signature.py, in production for BinHV27_werkkrew since 2026-09-03) instead of the Phase 13 patch_class2.py file-overlay rules, which duplicated it and have been removed. Re-measured identical trade counts under the shim, confirming equivalence.",
+      "rules": [
+        "legacy_min_roi_reached_entry_override"
+      ],
+      "status": "applied"
+    },
+    "Schism_ETH": {
+      "note": "2026-09-16, Phase 15: uses the pre-existing legacy_min_roi_reached_entry_override shim (compat_signature.py, in production for BinHV27_werkkrew since 2026-09-03) instead of the Phase 13 patch_class2.py file-overlay rules, which duplicated it and have been removed. Re-measured identical trade counts under the shim, confirming equivalence.",
+      "rules": [
+        "legacy_min_roi_reached_entry_override"
+      ],
+      "status": "applied"
+    },
     "SimpleHopt1Ashort": {
       "note": "its convergence ladder was capped by freqtrade's OHLCV call budget - `validate_required_startup_candles` refuses a warm-up needing more than five calls per pair, 4999 candles on Binance, which at five minutes is fourteen days. The budget exists so a live bot does not hammer the exchange API; a backtest reads feather files and makes no such calls. The row was recorded as never settling without ever being offered the 30, 90 or 365-day rungs, with 337 days of history on disk. The shim lifts that guard and leaves the real ceiling in place: the history actually available, which the ladder already applies. No strategy source is touched.",
       "rules": [
@@ -2543,6 +2571,20 @@
         "legacy_min_roi_reached_entry_override",
         "legacy_bid_ask_strategy_price_side",
         "synthetic_orderbook_from_last_close"
+      ],
+      "status": "applied"
+    },
+    "SuperHV27_BTC": {
+      "note": "2026-09-16, Phase 15: uses the pre-existing legacy_min_roi_reached_entry_override shim (compat_signature.py, in production for BinHV27_werkkrew since 2026-09-03) instead of the Phase 13 patch_class2.py file-overlay rules, which duplicated it and have been removed. Re-measured identical trade counts under the shim, confirming equivalence.",
+      "rules": [
+        "legacy_min_roi_reached_entry_override"
+      ],
+      "status": "applied"
+    },
+    "SuperHV27_ETH": {
+      "note": "2026-09-16, Phase 15: uses the pre-existing legacy_min_roi_reached_entry_override shim (compat_signature.py, in production for BinHV27_werkkrew since 2026-09-03) instead of the Phase 13 patch_class2.py file-overlay rules, which duplicated it and have been removed. Re-measured identical trade counts under the shim, confirming equivalence.",
+      "rules": [
+        "legacy_min_roi_reached_entry_override"
       ],
       "status": "applied"
     },
