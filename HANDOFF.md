@@ -2,13 +2,25 @@
 
 ## Baton
 
+- Open work order for codex, added by claude 2026-09-16 without touching the
+  baton below: see `## Work order from claude, 2026-09-16 - one read path for
+  evidence stores` at the end of this file. It is a refactor with a
+  byte-identical-output acceptance test, not a change of any verdict. The
+  owner asked for it after two wrong answers came out of single-store reads.
 - Last agent: codex
-- Last update: 2026-09-15T09:28:58+02:00
-- Stopped because: translated all identified German project-owned comments and
-  text into English, including the complete `PIPELINE.md`; no benchmark ran.
-- Next agent should: preserve `.gitattributes` and never recommit
-  `results/regime/trade_regime_attribution.csv` as an ordinary Git blob. The
-  old-to-new hash map is `evidence/GIT_LFS_MIGRATION.md`; do not rederive it.
+- Last update: 2026-09-15T12:00:00+02:00
+- Stopped because: Claude's six-strategy native smoke/legacy-Keras run is still
+  active and owns `evidence/PROFILE_SMOKE.json`; starting or validating a
+  competing writer would corrupt or misread in-flight evidence.
+- Next agent should: monitor the existing `evidence.profile_smoke` process and
+  `legacy_keras_test6_full3600.log`. It has completed three of six strategies
+  and is currently running the one-year `NNPredict_LSTM3` rung after completing
+  its three-month rung below the ten-trade threshold. After the
+  writer exits, inspect all six final records and errors, run targeted tests for
+  the uncommitted compatibility changes, then regenerate strategy status. Do
+  not start another smoke or bias process while this writer exists. Preserve
+  `.gitattributes` and never recommit the LFS attribution CSV as an ordinary
+  Git blob.
 - Git/LFS checkpoint: GitHub reports `fork=false`; remote `main` matched local
   `0666ba4a0991a7d79246d6bf4b3c8b36b86cf5f8` after upload. The CSV is a
   135-byte pointer to LFS object
@@ -914,6 +926,35 @@ log before deciding.
 
 ## Last observed machine state
 
+Observed 2026-09-15T11:56:00+02:00 during Claude's webclinic017 compatibility
+recovery:
+
+- No Docker container is running. One native `evidence.profile_smoke` writer
+  started at 10:49 and owns the six-strategy batch
+  `NNPredict_AdditiveAttention`, `NNPredict_GRU`, `NNPredict_LSTM2`,
+  `NNPredict_LSTM3`, `NNPredict_TCN`, and `NNPredict_Wavenet2` across the Spot
+  and Futures profiles. Do not start a second analyzer.
+- The first three strategies completed with measured zero-trade records.
+  `NNPredict_LSTM3` advanced normally from its three-month rung to the one-year
+  rung at 11:56 after remaining below ten trades. Its prior worker was
+  CPU-active with about 1.2 GB working set; the batch log updates only between
+  completed strategies and therefore still shows 3/6.
+- The writer is changing `evidence/PROFILE_SMOKE.json` and
+  `evidence/PROFILE_CLASS1.json`. `evidence.strategy_status --check` reports
+  `STRATEGY_STATUS.csv` stale as expected; do not regenerate it until the
+  writer exits.
+- Six Claude-owned files are uncommitted: the two evidence stores plus
+  `evidence/profile_smoke.py`, `repair/compat_signature.py`,
+  `runtime/Dockerfile.audit-tensorflow`, and
+  `runtime/requirements-audit-tensorflow.txt`. The code adds opt-in legacy
+  `tf_keras` save/load redirection and its runtime dependency. Do not commit or
+  edit these files before the batch completes and the changes are validated.
+- Current HEAD is `98881e8` (`Translate public project text to English`). The
+  routine status CSV is not authoritative during this active writer.
+
+Earlier observations below are retained as historical context only and are
+superseded wherever they conflict with the current process and artifacts.
+
 Observed 2026-09-11T07:05:44+02:00 while recovering the ten strategy gates:
 
 - The isolated canonical `Schism5` Look-Ahead process remains active through
@@ -1227,6 +1268,12 @@ only bias diagnostic.
 
 ## Do not redo
 
+- Root `_sabotage/` was removed on 2026-09-15. Its tracked
+  `BrokenOnPurpose.py` was an orphaned fixture from the archived
+  `old/predecessor_audit/loadscan.py`; no active pipeline, status row, or
+  evidence manifest referenced it. The archived self-test creates its own
+  fixture directory if deliberately run. Graphify was refreshed after removal.
+
 - Smoke-funnel work packages 1-5 recorded in
   `evidence/SMOKE_FUNNEL_REVIEW_2026-09-10.md`, including GRID/ONS 1,800-second
   cascades and the bounded BlueEyes repair chain.
@@ -1312,3 +1359,90 @@ only bias diagnostic.
   independently re-admitted former E0 members.
 - The prior long Wave A-C handoff remains recoverable in Git before commit
   `548be09`; current artifacts and this file supersede its stale counts.
+
+## Work order from claude, 2026-09-16 - one read path for evidence stores
+
+Raised by the owner after this session answered the same question wrongly
+twice. Both answers came from reading one store where the audit keeps several.
+
+**What went wrong, concretely.** Asked how many strategies still need a
+look-ahead run, this session read only `evidence/PROFILE_BIAS.json` (451
+records) and reported 882 rows without a verdict. The real figure is 352:
+`evidence/ELIGIBILITY_LOOKAHEAD_BACKFILL.json` holds 588 more native records,
+`ELIGIBILITY_EVIDENCE_GAP.json` 30, `LOOKAHEAD_INDICATOR_REVIEW.json` 23
+reviewed exceptions, and the repair stores another 83. Asked how many of those
+are ready to run, it read only `evidence/PROFILE_SMOKE.json` and reported 253
+needing a trial run first. The real figure is 76: of the 352, 276 are
+`measured=true`, with the trade count coming from `baseline` (177), `smoke`
+(93) or `full_window` (6). Neither mistake is in the generated artifacts -
+`STRATEGY_STATUS.csv` is correct, because `evidence/strategy_status.py` does
+merge every store. The mistake is that its merge exists only inline, inside
+one 200-line loop, so every other caller re-derives the question and gets it
+wrong.
+
+**Scope.** Introduce a single, importable read path that answers, per
+strategy_id: does a look-ahead verdict exist, which store produced it, what is
+its provenance; same for the recursion verdict; and is there a measurement,
+from which of the three trade sources. Then route every consumer through it.
+Current readers, none of which sees the whole picture:
+
+- `PROFILE_SMOKE.json`: `eligibility_expansion_adjudicate`,
+  `eligibility_expansion_wave_c`, `exclusion_criteria`, `execution_profiles`,
+  `profile_repairs`, `profile_smoke`, `semantic_duplicates`,
+  `strategy_status`, `tools/harvest`.
+- `PROFILE_BIAS.json`: `eligibility_expansion_adjudicate`,
+  `eligibility_lookahead_backfill`, `eligibility_warmup`, `profile_bias`,
+  `regime_eligibility`, `strategy_status`, `tools/harvest`,
+  `tools/warmup_reparse`.
+- The backfill/gap stores: `eligibility_evidence_gap`,
+  `eligibility_lookahead_backfill`, `strategy_status`.
+
+The precedence to preserve is the one `strategy_status.py` already implements
+(`LOOKAHEAD_STORES` at line 116, the `repaired` chain at 789-799, the
+`remeasured`/`attempted_gate` split at 802-816, and the verdict/evidence
+resolution at 893-903). Read it as the specification; do not redesign it.
+
+**Semantics that must survive unchanged.** Each of these was a fix for a real
+misreport and is documented where it lives:
+
+- A native re-measurement outranks `PROFILE_BIAS` and the baseline.
+- `NA` is not a verdict, but it is not "never measured here" either. The
+  `attempted_gate` split exists because recording a completed run as `missing`
+  said the opposite of the truth for 22 convergence candidates.
+- `reviewed_indicator_only` counts exactly as `native` wherever a gate asks
+  whether evidence is current and trustworthy; the difference is provenance,
+  which stays visible.
+- `baseline` trade counts are inherited provenance from the original sweep in
+  another runtime. A caller must be able to tell them from our own
+  measurements; do not flatten the three trade sources into a boolean.
+
+**Non-goals.** Do not merge the JSON files on disk - they are append-only
+evidence with distinct provenance, and each runner owns its own writes. Do not
+change a single verdict, cohort or count. Do not hand-edit any generated file.
+
+**Acceptance.** The refactor is correct when `STRATEGY_STATUS.csv`,
+`STRATEGY_STATUS.md` and `strategy_status.html` regenerate byte-identical to
+their current committed content - that is the whole safety property. The
+baselines, taken at the commit that carries this work order:
+
+    STRATEGY_STATUS.csv    sha256 0c494614b7c90766732b8af91154aea2c358bc4c6bcc81e740b1a13d3a1591fc
+    STRATEGY_STATUS.md     sha256 00b61d32357a8afd421de1c23c9f0385452795b6ba79bdfe8d2e353697546f02
+    strategy_status.html   sha256 7e7ee1aedf6b1d79e51c7bf5b482b1ccb919032602f9a16ea725cf17a207fd08
+
+`strategy_status.html` carries a generation timestamp, so compare it after
+substituting the `__GEN__` line, or regenerate the pre-refactor file from the
+same commit and diff the two. Plus: every existing
+selftest passes (`evidence.strategy_status`, `evidence.profile_bias`,
+`evidence.profile_smoke`, `evidence.semantic_duplicates`,
+`tools.strategy_status_page`, `evidence.exclusion_criteria`), and the new
+accessor carries its own selftest asserting it agrees with the previous inline
+resolution for all 1355 rows, not a sample.
+
+**One caller is already fixed and shows the shape of the problem.**
+`evidence/profile_bias.py`'s `candidates()` drew only from
+`REGIME_ELIGIBILITY.csv`, so a strategy the warm-up ladder had excluded on a
+recursion finding was `ineligible` afterwards and no run could reach it again:
+63 rows sat unreachable, 46 of them in exactly that state. It now takes a
+warm-up-convergence record as a second source. That fix is deliberately narrow
+and should be folded into the general accessor rather than left as a special
+case.
