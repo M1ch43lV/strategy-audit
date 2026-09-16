@@ -179,65 +179,107 @@
     {
       "canonical_representative": "BB_RTR",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "BB_RTR"
+      ],
       "note": "",
       "original_file": "repos/ShahAnuj2610_my-freqtrade/user_data/strategies/BB_RTR.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) BB_RTR and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "BB_RTR_dca"
     },
     {
       "canonical_representative": "BBRSITV",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "BBRSITV"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/BBRSITV.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) BBRSITV and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "BBRSITV1"
     },
     {
       "canonical_representative": "BBRSITV",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "BBRSITV"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/BBRSITV.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) BBRSITV and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "BBRSITV2"
     },
     {
       "canonical_representative": "BBRSITV",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "BBRSITV"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/BBRSITV.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) BBRSITV and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "BBRSITV3"
     },
     {
       "canonical_representative": "",
       "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "BBRSITV"
+      ],
       "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/BBRSITV.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) BBRSITV and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "BBRSITV4"
     },
     {
       "canonical_representative": "",
       "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "BBRSITV"
+      ],
       "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/BBRSITV.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) BBRSITV and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "BBRSITV5"
     },
     {
       "canonical_representative": "BinClucMadv1",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "BinClucMadv1",
+        "CoreStrategy"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/BinClucMadSMACore.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) BinClucMadv1, CoreStrategy and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "BinClucMadSMAv1"
     },
     {
       "canonical_representative": "BinClucMadv1",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "BinClucMadv1",
+        "CoreStrategy"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/BinClucMadSMACore.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) BinClucMadv1, CoreStrategy and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "BinClucMadSMAv2"
     },
     {
@@ -253,9 +295,15 @@
     {
       "canonical_representative": "BinClucMadv1",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "BinClucMadv1",
+        "CoreStrategy"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/BinClucMadSMACore.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) BinClucMadv1, CoreStrategy and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "BinClucMadv2"
     },
     {
@@ -277,65 +325,105 @@
     {
       "canonical_representative": "Cluc4werk",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Cluc4werk"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/Cluc4werk.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Cluc4werk and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Cluc4werk_ETH"
     },
     {
       "canonical_representative": "Cluc5werk",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Cluc5werk"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/Cluc5werk.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Cluc5werk and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Cluc5werk_BTC"
     },
     {
       "canonical_representative": "Cluc5werk",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Cluc5werk"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/Cluc5werk.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Cluc5werk and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Cluc5werk_ETH"
     },
     {
       "canonical_representative": "Cluc5werk",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Cluc5werk"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/Cluc5werk.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Cluc5werk and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Cluc5werk_USD"
     },
     {
       "canonical_representative": "ClucCrypROI",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ClucCrypROI"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucCrypROI.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ClucCrypROI and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ClucCrypROI_BTC"
     },
     {
       "canonical_representative": "ClucCrypROI",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ClucCrypROI"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucCrypROI.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ClucCrypROI and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ClucCrypROI_ETH"
     },
     {
       "canonical_representative": "ClucCrypSlow",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ClucCrypSlow"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucCrypSlow (1).py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ClucCrypSlow and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ClucCrypSlow_BTC"
     },
     {
       "canonical_representative": "ClucCrypSlow",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ClucCrypSlow"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucCrypSlow (1).py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ClucCrypSlow and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ClucCrypSlow_ETH"
     },
     {
@@ -351,15 +439,19 @@
     {
       "canonical_representative": "ClucDCA",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix E01VE Offsets.py",
       "removed_at": "2026-09-16T15:05:51.011635+00:00",
+      "retained_reason": "source file defines no other class and returned via a repository re-download, not the recovery; deletion is safe and the next harvest removes it again.",
       "strategy_id": "ClucHAnix"
     },
     {
       "canonical_representative": "Cluc5mDCA",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
       "original_file": "repos/TheoBrigitte_freqtrade/strategies/cluc/ClucHAnix_5m.py",
       "removed_at": "2026-09-16T15:05:51.011635+00:00",
+      "retained_reason": "source file defines no other class and returned via a repository re-download, not the recovery; deletion is safe and the next harvest removes it again.",
       "strategy_id": "ClucHAnix_5m"
     },
     {
@@ -389,33 +481,53 @@
     {
       "canonical_representative": "ClucDCAV2",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ClucDCAV2"
+      ],
       "note": "",
       "original_file": "repos/thinkong_freqtradestrategies/user_data/strategies/ClucHAnixV2.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ClucDCAV2 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ClucHAnixV2"
     },
     {
       "canonical_representative": "ClucHAwerk",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ClucHAwerk"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAwerk.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ClucHAwerk and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ClucHAwerk_BTC"
     },
     {
       "canonical_representative": "ClucHAwerk",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ClucHAwerk"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAwerk.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ClucHAwerk and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ClucHAwerk_ETH"
     },
     {
       "canonical_representative": "ClucHAwerk",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ClucHAwerk"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAwerk.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ClucHAwerk and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ClucHAwerk_USD"
     },
     {
@@ -428,8 +540,10 @@
     {
       "canonical_representative": "NostalgiaForInfinityV7_SMA",
       "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "file_present_again_at": "2026-09-16",
       "original_file": "repos/jaredrsommer_freqtradestrategies/HUGE_FreqTrade_Strategy_Collection/Combined_NFIv7_SMA_Rallipanos_20210707.py",
       "removed_at": "2026-09-16T15:05:51.011635+00:00",
+      "retained_reason": "source file defines no other class and returned via a repository re-download, not the recovery; deletion is safe and the next harvest removes it again.",
       "strategy_id": "Combined_NFIv7_SMA_Rallipanos_20210707"
     },
     {
@@ -443,9 +557,14 @@
     {
       "canonical_representative": "EI3v2_tag_cofi_green",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "EI3v2_tag_cofi_green"
+      ],
       "note": "",
       "original_file": "repos/MMR-19_freqtrade-strategies/strategies/EI3v2_tag_cofi_green.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) EI3v2_tag_cofi_green and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "EI3v2_tag_cofi_dca_green"
     },
     {
@@ -461,9 +580,14 @@
     {
       "canonical_representative": "Enchilada",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Enchilada"
+      ],
       "note": "",
       "original_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Enchilada.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Enchilada and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Enchilada_Slow"
     },
     {
@@ -493,8 +617,10 @@
     {
       "canonical_representative": "HyperStra_SMAOnly",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
       "original_file": "repos/davidzr_freqtrade-strategies/strategies/HyperStra_GSN_SMAOnly/HyperStra_GSN_SMAOnly.py",
       "removed_at": "2026-09-16T15:05:51.011635+00:00",
+      "retained_reason": "source file defines no other class and returned via a repository re-download, not the recovery; deletion is safe and the next harvest removes it again.",
       "strategy_id": "HyperStra_GSN_SMAOnly"
     },
     {
@@ -518,9 +644,14 @@
     {
       "canonical_representative": "Lateralus",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Lateralus"
+      ],
       "note": "",
       "original_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Lateralus.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Lateralus and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Lateralus_Slow"
     },
     {
@@ -584,9 +715,14 @@
     {
       "canonical_representative": "Lmao",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Lmao"
+      ],
       "note": "",
       "original_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Lmao/Lmao.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Lmao and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "LmaoStoplossClusterOpt"
     },
     {
@@ -626,31 +762,47 @@
     {
       "canonical_representative": "",
       "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "NASOSv5HO",
+        "NASOSv5_mod1"
+      ],
       "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/NASOSv5_mod1 (1).py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) NASOSv5HO, NASOSv5_mod1 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "NASOSv5PD"
     },
     {
       "canonical_representative": "NASOSv5HO",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "NASOSv5HO",
+        "NASOSv5_mod1"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/NASOSv5_mod1 (1).py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) NASOSv5HO, NASOSv5_mod1 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "NASOSv5SL"
     },
     {
       "canonical_representative": "MyStratV1",
       "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "file_present_again_at": "2026-09-16",
       "original_file": "repos/davidzr_freqtrade-strategies/strategies/NostalgiaForInfinityV7/NostalgiaForInfinityV7.py",
       "removed_at": "2026-09-16T15:05:51.011635+00:00",
+      "retained_reason": "source file defines no other class and returned via a repository re-download, not the recovery; deletion is safe and the next harvest removes it again.",
       "strategy_id": "NostalgiaForInfinityV7"
     },
     {
       "canonical_representative": "Combined_NFIv7_SMA",
       "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "file_present_again_at": "2026-09-16",
       "original_file": "repos/davidzr_freqtrade-strategies/strategies/NostalgiaForInfinityV7_SMAv2/NostalgiaForInfinityV7_SMAv2.py",
       "removed_at": "2026-09-16T15:05:51.011635+00:00",
+      "retained_reason": "source file defines no other class and returned via a repository re-download, not the recovery; deletion is safe and the next harvest removes it again.",
       "strategy_id": "NostalgiaForInfinityV7_SMAv2"
     },
     {
@@ -768,65 +920,105 @@
     {
       "canonical_representative": "Schism3",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Schism3"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.3.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Schism3 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Schism3_BTC"
     },
     {
       "canonical_representative": "Schism3",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Schism3"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.3.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Schism3 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Schism3_ETH"
     },
     {
       "canonical_representative": "Schism4",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Schism4"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.4.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Schism4 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Schism4_BTC"
     },
     {
       "canonical_representative": "Schism4",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Schism4"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.4.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Schism4 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Schism4_ETH"
     },
     {
       "canonical_representative": "Schism5",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Schism5"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.5.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Schism5 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Schism5_BTC"
     },
     {
       "canonical_representative": "Schism5",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Schism5"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.5.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Schism5 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Schism5_ETH"
     },
     {
       "canonical_representative": "Schism6",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Schism6"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.6.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Schism6 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Schism6_BTC"
     },
     {
       "canonical_representative": "Schism6",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Schism6"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.6.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Schism6 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Schism6_ETH"
     },
     {
@@ -840,9 +1032,14 @@
     {
       "canonical_representative": "",
       "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "SMAOffsetProtectOptV1_kkeue_20210619"
+      ],
       "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
       "original_file": "repos/davidzr_freqtrade-strategies/strategies/SMAOffsetProtectOptV1_kkeue_20210619/SMAOffsetProtectOptV1_kkeue_20210619.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) SMAOffsetProtectOptV1_kkeue_20210619 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "SMAOffsetProtectOptV1_1"
     },
     {
@@ -856,17 +1053,27 @@
     {
       "canonical_representative": "Stinkfist",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Stinkfist"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/Stinkfist.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Stinkfist and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Stinkfist_BTC"
     },
     {
       "canonical_representative": "Stinkfist",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "Stinkfist"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/Stinkfist.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) Stinkfist and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Stinkfist_ETH"
     },
     {
@@ -880,9 +1087,14 @@
     {
       "canonical_representative": "StrategyTestV3",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "StrategyTestV3"
+      ],
       "note": "",
       "original_file": "repos/LazyPigPig_freqtrade-grid/tests/strategy/strats/strategy_test_v3.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) StrategyTestV3 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "StrategyTestV3Futures"
     },
     {
@@ -898,9 +1110,14 @@
     {
       "canonical_representative": "SuperReversal_mtf",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "SuperReversal_mtf"
+      ],
       "note": "",
       "original_file": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Strategies/SuperReversal_mtf.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) SuperReversal_mtf and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "SuperReversal_mtf_5min"
     },
     {
@@ -948,17 +1165,28 @@
     {
       "canonical_representative": "TestStrategyNoImplements",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "TestStrategyNoImplements"
+      ],
       "note": "",
       "original_file": "repos/LazyPigPig_freqtrade-grid/tests/strategy/strats/broken_strats/broken_futures_strategies.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) TestStrategyNoImplements and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "TestStrategyNoImplementSell"
     },
     {
       "canonical_representative": "",
       "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "NASOSv5HO",
+        "NASOSv5_mod1"
+      ],
       "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/NASOSv5_mod1 (1).py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) NASOSv5HO, NASOSv5_mod1 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "TrailingBuyStrat"
     },
     {
@@ -990,65 +1218,105 @@
     {
       "canonical_representative": "",
       "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ViN"
+      ],
       "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ViN and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ViNBuyLc2"
     },
     {
       "canonical_representative": "",
       "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ViN"
+      ],
       "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ViN and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ViNBuyPct"
     },
     {
       "canonical_representative": "",
       "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ViN"
+      ],
       "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ViN and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ViNBuyPctLc2"
     },
     {
       "canonical_representative": "",
       "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ViN"
+      ],
       "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ViN and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ViNBuyVws"
     },
     {
       "canonical_representative": "ViN",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ViN"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ViN and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ViNSellCorr"
     },
     {
       "canonical_representative": "ViN",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ViN"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ViN and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ViNSellEps"
     },
     {
       "canonical_representative": "ViN",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ViN"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ViN and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ViNSellRiseCorrFall"
     },
     {
       "canonical_representative": "ViN",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "file_present_again_at": "2026-09-16",
+      "live_classes_in_same_file": [
+        "ViN"
+      ],
       "note": "",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "retained_reason": "source file also defines live kept strategy class(es) ViN and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "ViNSellRiseFall"
     },
     {
