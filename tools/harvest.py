@@ -328,29 +328,84 @@ def harvest(full):
     return (full, got, len(names), err)
 
 
-def remove_semantic_duplicates():
-    """Delete the source file of every strategy semantic_duplicates.adjudicate()
-    excludes as a duplicate - owner's decision, 2026-09-16 (REGISTER.md
-    Phase 17): a downloaded file that duplicates an already-corpus
-    implementation's normalized code, with no config overlay on either side
-    and no measured trade-count disagreement between them, is removed at
-    intake rather than kept and held indefinitely (the previous design,
-    `pre_stage1_hold`, could never resolve a hold this way - a held row is
-    withheld from the Stage 1 measurement its own stronger confirmation
-    tier requires, so 102 269-batch rows sat unresolved). Only
-    `evidence.execution_profiles.discover()`'s own filesystem scan defines
-    the corpus, so deleting the file IS the removal - nothing else needs
-    editing, only regenerating, which the caller does next.
+def _already_checked():
+    """Every strategy_id any check has a record for, whatever it says.
 
-    Idempotent and safe to call on every harvest: a strategy already
-    removed (by an earlier harvest, or a prior run of this function) is
-    absent from `evidence.execution_profiles.build()`'s own output, so
-    `duplicate_source_files()` silently skips it rather than re-deleting or
-    erroring.
+    A failed trial run counts: it is still a look at the strategy, and the
+    row it produced is what a later repair is measured against.
+    """
+    checked = set()
+    for path, key in ((os.path.join(_ROOT, "evidence", "PROFILE_SMOKE.json"), "results"),
+                      (os.path.join(_ROOT, "evidence", "PROFILE_BIAS.json"), "results")):
+        if not os.path.exists(path):
+            continue
+        with io.open(path, encoding="utf-8") as handle:
+            checked |= set(json.load(handle).get(key, {}))
+    manifest = os.path.join(_ROOT, "results", "regime", "full_backtest_manifest.json")
+    if os.path.exists(manifest):
+        with io.open(manifest, encoding="utf-8") as handle:
+            data = json.load(handle)
+        entries = data.get("runs", data) if isinstance(data, dict) else data
+        if isinstance(entries, dict):
+            checked |= set(entries)
+        else:
+            checked |= {row.get("strategy_id") for row in entries if isinstance(row, dict)}
+    return {name for name in checked if name}
+
+
+def _deletable_ids(fresh_repos, profiles):
+    """The owner's rule of 2026-09-16, as a set of strategy_ids.
+
+    Only a strategy this harvest just downloaded, and that no check has yet
+    looked at, may lose its source file to a duplicate finding. Anything
+    already measured is excluded and left on disk: other strategies import
+    from these files, and an exclusion is a statement about a strategy, not
+    a licence to delete source. With no fresh repos - `refresh_intake_evidence`
+    called on its own, to regenerate evidence without downloading - the set
+    is empty and nothing is deleted at all.
+    """
+    if not fresh_repos:
+        return set()
+    prefixes = tuple("repos/%s/" % repo for repo in sorted(fresh_repos))
+    checked = _already_checked()
+    return {strategy_id for strategy_id, row in profiles.items()
+            if row["original_file"].startswith(prefixes) and strategy_id not in checked}
+
+
+def remove_semantic_duplicates(fresh_repos=None):
+    """Delete the source file of a duplicate this harvest just downloaded and
+    no check has looked at yet - owner's rule, 2026-09-16 (REGISTER.md Phase
+    18): deletion belongs at intake, so a copy never enters the corpus in the
+    first place, and nowhere else. A strategy that has already been measured
+    is excluded on the duplicate finding and keeps its file, because other
+    strategies import from these files and because the finding is a statement
+    about a strategy rather than a licence to remove source.
+
+    `fresh_repos` is the set of repo directory names (`owner_repo`, as they
+    appear under `repos/`) this run fetched. Without it nothing is deletable,
+    which is what `refresh_intake_evidence()` wants when it is called on its
+    own to regenerate evidence.
+
+    The first version of this function deleted every adjudicated duplicate
+    regardless of age, which removed 54 files that the rule above protects:
+    34 where the kept representative was a differently-named file in the
+    same author's own repo, and the 20-file `Anomaly_*` family, deleted out
+    of its own source repo while a copy in another repo's scratch directory
+    became the representative. All 54 were re-fetched.
+
+    Only `evidence.execution_profiles.discover()`'s own filesystem scan
+    defines the corpus, so deleting the file IS the removal - nothing else
+    needs editing, only regenerating, which the caller does next. Idempotent:
+    a strategy already removed is absent from the manifest, so
+    `duplicate_source_files()` skips it rather than re-deleting or erroring.
     """
     data = semantic_duplicates.build()
     decisions = semantic_duplicates.adjudicate(data)
-    resolved = semantic_duplicates.duplicate_source_files(decisions)
+    profiles = {row["strategy_id"]: row
+                for row in semantic_duplicates._read_csv(semantic_duplicates.PROFILES)}
+    deletable = _deletable_ids(fresh_repos, profiles)
+    resolved = semantic_duplicates.duplicate_source_files(
+        decisions, profiles=profiles, restrict_to=deletable)
     removed = []
     now = datetime.datetime.now(datetime.timezone.utc).isoformat()
     for row in resolved:
@@ -379,13 +434,13 @@ def remove_semantic_duplicates():
     return removed
 
 
-def refresh_intake_evidence():
+def refresh_intake_evidence(fresh_repos=None):
     """Refresh all source-derived intake artifacts, never measurements."""
     print(u"refreshing canonical execution profiles...", flush=True)
     if execution_profiles.main([]) != 0:
         return 1
     print(u"checking for and removing semantic duplicates...", flush=True)
-    if remove_semantic_duplicates():
+    if remove_semantic_duplicates(fresh_repos):
         print(u"refreshing canonical execution profiles (post-removal)...", flush=True)
         if execution_profiles.main([]) != 0:
             return 1
@@ -420,11 +475,13 @@ def main(argv=None):
     print(u"unique classes before fetch: %d" % len(base), flush=True)
     grand = set(base)
     added = 0
+    fetched = set()
     for full in targets:
         name, got, cls, err = harvest(full)
         if err and got == 0:
             print(u"  ✗ %-46s %s" % (name, err), flush=True)
             continue
+        fetched.add(full.replace("/", "_", 1))
         p = os.path.join(REPOS, full.replace("/", "_", 1))
         names = {n for _f, n in find_strategies(p)}
         new = names - grand
@@ -437,7 +494,7 @@ def main(argv=None):
     print(u"unique classes now: %d (increase %d)"
           % (len(grand), len(grand) - len(base)))
     if added and not args.no_refresh:
-        if refresh_intake_evidence() != 0:
+        if refresh_intake_evidence(fetched) != 0:
             print(u"harvest succeeded but intake evidence refresh failed", file=sys.stderr)
             return 1
     elif added:

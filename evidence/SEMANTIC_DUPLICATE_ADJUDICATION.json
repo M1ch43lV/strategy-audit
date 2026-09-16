@@ -1,6 +1,166 @@
 {
   "decisions": [
     {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_adx",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_all",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_aroon",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_bbw",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_dwt",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_fbb",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_fwr",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_highlow",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_jump",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_macd",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_mfi",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_minmax",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_nseq",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_over",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_profit",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_pv",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_slope",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_smooth",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_stochastic",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
+      "strategy_id": "Anomaly_swing",
+      "trades_sha256": ""
+    },
+    {
       "canonical_representative": "BB_RTR",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
@@ -62,6 +222,14 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "normalized_ast_sha256": "sha256_d450cae91dda12b397e93cfb8f7982e9042cb256aba3aa816e6270f3434db2f2",
       "strategy_id": "BinClucMadv2",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "BasketStrategy",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
+      "strategy_id": "BlendBasket",
       "trades_sha256": ""
     },
     {
@@ -177,6 +345,22 @@
       "trades_sha256": ""
     },
     {
+      "canonical_representative": "BasketStrategy",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
+      "strategy_id": "ConstantMixBasket",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "BasketStrategy",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
+      "strategy_id": "CppiBasket",
+      "trades_sha256": ""
+    },
+    {
       "canonical_representative": "EI3v2_tag_cofi_green",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
@@ -193,11 +377,35 @@
       "trades_sha256": ""
     },
     {
+      "canonical_representative": "FastSupertrend_optim3_rsi_75",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "normalized_ast_sha256": "sha256_2514f6d04ba3bdf251e5a8a4e6269425b4929b03224f98ddba4ed5c062cda1ba",
+      "strategy_id": "FastSupertrend_optim3_rsi_75fix",
+      "trades_sha256": "sha256_62f9e431504d88718ca6b96fe309cb0d72279aec92b3c53f7aa85fc51c31263b"
+    },
+    {
+      "canonical_representative": "Hacklemore",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_c3949e8d9c2f7f1b855654fbdb8a21e23dbafcd6b941eaf64294f47b31ad5abb",
+      "strategy_id": "Hacklemore_Slow",
+      "trades_sha256": ""
+    },
+    {
       "canonical_representative": "HyperStra_SMAOnly",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "normalized_ast_sha256": "sha256_25b5c4a90ba8f1703cc6e539a56cd037a57303e554820dc11556f943ebb7d613",
       "strategy_id": "HyperStra_GSN_SMAOnly",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "BasketStrategy",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
+      "strategy_id": "InverseVolBasket",
       "trades_sha256": ""
     },
     {
@@ -217,12 +425,148 @@
       "trades_sha256": ""
     },
     {
+      "canonical_representative": "BasketStrategy",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
+      "strategy_id": "MinVarianceBasket",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "BasketStrategy",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
+      "strategy_id": "MomentumBasket",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "MomentumRegimeBasket15m",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_0cbd34f89d4aa0a2474ebd9e1ea22a497e395c85a71b3b4ffd1d791ba9783598",
+      "strategy_id": "MomentumRegimeBasket15mFast",
+      "trades_sha256": ""
+    },
+    {
       "canonical_representative": "Combined_NFIv7_SMA",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
       "normalized_ast_sha256": "sha256_a9e258075a92b4c7ee510c3ccb16aaa8492a99506b4a71a40afeb4ecd43071cb",
       "strategy_id": "NostalgiaForInfinityV7_SMAv2",
       "trades_sha256": "sha256_85dce6cada742b6e1768f59e0daf70df041423f4e4a3f2cd9a21a3a4a5ae5145"
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_dwt",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_fbb",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_fwr",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_highlow",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_jump",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_macd",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_mfi",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_minmax",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_nseq",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_over",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_profit",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_pv",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_stochastic",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "PCA",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "strategy_id": "PCA_swing",
+      "trades_sha256": ""
     },
     {
       "canonical_representative": "Schism3",
@@ -366,6 +710,14 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "normalized_ast_sha256": "sha256_dfb1ff8c4d9226540c691208cb0951e03e3ae97889a10c643bf9a1a89163990e",
       "strategy_id": "ViNSellRiseFall",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "BasketStrategy",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
+      "strategy_id": "VolTargetBasket",
       "trades_sha256": ""
     }
   ],

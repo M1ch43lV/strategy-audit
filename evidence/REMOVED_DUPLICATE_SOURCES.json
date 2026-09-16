@@ -5,6 +5,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_adx.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_adx"
     },
@@ -13,6 +15,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_all.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_all"
     },
@@ -21,6 +25,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_aroon.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_aroon"
     },
@@ -29,6 +35,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_bbw.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_bbw"
     },
@@ -37,6 +45,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_dwt.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_dwt"
     },
@@ -45,6 +55,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_fbb.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_fbb"
     },
@@ -53,6 +65,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_fwr.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_fwr"
     },
@@ -61,6 +75,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_highlow.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_highlow"
     },
@@ -69,6 +85,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_jump.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_jump"
     },
@@ -77,6 +95,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_macd.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_macd"
     },
@@ -85,6 +105,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_mfi.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_mfi"
     },
@@ -93,6 +115,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_minmax.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_minmax"
     },
@@ -101,6 +125,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_nseq.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_nseq"
     },
@@ -109,6 +135,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_over.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_over"
     },
@@ -117,6 +145,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_profit.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_profit"
     },
@@ -125,6 +155,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_pv.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_pv"
     },
@@ -133,6 +165,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_slope.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_slope"
     },
@@ -141,6 +175,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_smooth.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_smooth"
     },
@@ -149,6 +185,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_stochastic.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_stochastic"
     },
@@ -157,6 +195,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_swing.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The file was removed from its own source repo while a copy of it in another repository became the representative, inverting the owner's rule. The exclusion may stand; the deletion may not.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Anomaly_swing"
     },
@@ -165,6 +205,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/nateemma_strategies/Framework/BaseNNStrategy.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "BaseNNStrategy"
     },
@@ -173,6 +215,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/nateemma_strategies/Basket/BasketStrategy.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "BasketStrategy"
     },
@@ -311,6 +355,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/nateemma_strategies/Basket/BlendBasket.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "BlendBasket"
     },
@@ -551,6 +597,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/nateemma_strategies/Basket/ConstantMixBasket.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "ConstantMixBasket"
     },
@@ -595,6 +643,8 @@
       "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
       "note": "",
       "original_file": "repos/TheoBrigitte_freqtrade/strategies/fastsupertrend/FastSupertrend_optim3_rsi_75fix.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "FastSupertrend_optim3_rsi_75fix"
     },
@@ -603,6 +653,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Hacklemore.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Hacklemore_Slow"
     },
@@ -628,6 +680,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/nateemma_strategies/Basket/InverseVolBasket.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "InverseVolBasket"
     },
@@ -659,6 +713,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusBBTrendStrategy.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "LitmusBBTrendStrategy"
     },
@@ -667,6 +723,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusClucStrategy.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "LitmusClucStrategy"
     },
@@ -675,6 +733,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusSARStrategy.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "LitmusSARStrategy"
     },
@@ -683,6 +743,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusScalpStrategy.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "LitmusScalpStrategy"
     },
@@ -691,6 +753,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusTrendScalpStrategy.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "LitmusTrendScalpStrategy"
     },
@@ -699,6 +763,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusVulcanStrategy.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "LitmusVulcanStrategy"
     },
@@ -730,6 +796,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/nateemma_strategies/Basket/MinVarianceBasket.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "MinVarianceBasket"
     },
@@ -738,6 +806,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/nateemma_strategies/Basket/MomentumBasket.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "MomentumBasket"
     },
@@ -746,6 +816,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/nateemma_strategies/Basket/MomentumRegimeBasket15mFast.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "MomentumRegimeBasket15mFast"
     },
@@ -817,6 +889,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_dwt.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "PCA_dwt"
     },
@@ -825,6 +899,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_fbb.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "PCA_fbb"
     },
@@ -833,6 +909,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_fwr.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "PCA_fwr"
     },
@@ -841,6 +919,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_highlow.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "PCA_highlow"
     },
@@ -849,6 +929,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_jump.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "PCA_jump"
     },
@@ -857,6 +939,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_macd.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "PCA_macd"
     },
@@ -865,6 +949,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_mfi.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "PCA_mfi"
     },
@@ -873,6 +959,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_minmax.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "PCA_minmax"
     },
@@ -881,6 +969,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_nseq.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "PCA_nseq"
     },
@@ -889,6 +979,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_over.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "PCA_over"
     },
@@ -897,6 +989,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_profit.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "PCA_profit"
     },
@@ -905,6 +999,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_pv.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "PCA_pv"
     },
@@ -913,6 +1009,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_stochastic.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "PCA_stochastic"
     },
@@ -921,6 +1019,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_swing.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "PCA_swing"
     },
@@ -1033,6 +1133,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/nateemma_strategies/SimpleStrategies/SimpleStrategy.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "SimpleStrategy"
     },
@@ -1201,6 +1303,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/nateemma_strategies/TSPredict/TS_Coeff.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "TS_Coeff"
     },
@@ -1209,6 +1313,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/nateemma_strategies/TSPredict/TS_Wavelet.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "TS_Wavelet"
     },
@@ -1331,6 +1437,8 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
       "original_file": "repos/nateemma_strategies/Basket/VolTargetBasket.py",
+      "recovered_at": "2026-09-16",
+      "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "VolTargetBasket"
     }

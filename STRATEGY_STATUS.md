@@ -1,13 +1,13 @@
-# Strategy status - current evidence for all 1301 rows
+# Strategy status - current evidence for all 1355 rows
 
-**Generated 2026-09-16 20:49:15 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-16 21:03:57 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
 already been decided, collected from the smoke, bias, full-window,
 adjudication and convergence stores.
 
-**Completed full-backtest closure.** 572 rows carry an exact, successful
+**Completed full-backtest closure.** 573 rows carry an exact, successful
 canonical pooled Stage-7 full-backtest identity (source hash, run profile and
 mode timerange). Their `technical_chain_complete=true` closes the technical
 work queue, even if a later diagnostic-window amendment made earlier evidence
@@ -39,44 +39,44 @@ reason to skip a check.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 60 of 1301 rows
+file's time and is labelled `log_mtime` for that reason. 112 of 1355 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
 
 | | Strategies |
 |---|---:|
-| in the manifest | 1301 |
-| measured at all | 1199 |
-| produced trades | 1015 |
-| carrying a run time | 1241 |
+| in the manifest | 1355 |
+| measured at all | 1253 |
+| produced trades | 1016 |
+| carrying a run time | 1243 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 641 |
-| `excluded` | 374 |
+| `excluded` | 418 |
 | `pending` | 130 |
-| `exclusion_unconfirmed` | 101 |
-| `too_few_trades` | 31 |
-| `not_a_strategy` | 24 |
+| `exclusion_unconfirmed` | 111 |
+| `too_few_trades` | 32 |
+| `not_a_strategy` | 23 |
 
 ## Timeframe and signal family
 
 Both read from the strategy's own source by `strategy_classification.py`,
 not measured - see that module's docstring for the marker table and its
-limits. `timeframe` is blank on 80 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 0 rows where no marker matched at all, so its counts below add up to more than 1301.
+limits. `timeframe` is blank on 85 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 0 rows where no marker matched at all, so its counts below add up to more than 1355.
 
 ### Timeframe
 
 | Timeframe | Strategies |
 |---|---:|
-| `5m` | 734 |
-| `1h` | 170 |
-| `15m` | 106 |
-| `1m` | 93 |
-| `4h` | 49 |
+| `5m` | 769 |
+| `1h` | 171 |
+| `15m` | 109 |
+| `1m` | 95 |
+| `4h` | 57 |
 | `1d` | 33 |
 | `3m` | 18 |
 | `30m` | 9 |
@@ -92,14 +92,14 @@ limits. `timeframe` is blank on 80 rows the source does not state it for. `strat
 |---|---:|
 | `scalping` | 656 |
 | `mean_reversion` | 575 |
-| `momentum` | 562 |
-| `trend_following` | 313 |
-| `volatility_breakout` | 250 |
-| `ml_ai` | 160 |
-| `grid_dca` | 140 |
+| `momentum` | 566 |
+| `trend_following` | 314 |
+| `volatility_breakout` | 251 |
+| `ml_ai` | 203 |
+| `grid_dca` | 141 |
 | `volume_based` | 139 |
-| `unclassified` | 29 |
-| `not_applicable` | 24 |
+| `unclassified` | 35 |
+| `not_applicable` | 23 |
 | `always_in_market` | 18 |
 | `stat_arb` | 12 |
 | `portfolio_rotation` | 4 |
@@ -129,16 +129,16 @@ preregistration OPEN item 6; the amendment records it.
 
 | Phase | Market-side rule | Strategies predicted |
 |---|---|---:|
-| `bear_trend` | `coin_adx >= 25 and coin_minus_di > coin_plus_di` | 77 |
-| `bull_trend` | `coin_adx >= 25 and coin_plus_di > coin_minus_di` | 673 |
-| `high_vol_shock` | `coin_realized_vol_30d >= 1.291, whatever the DMI state` | 96 |
-| `range_choppy` | `coin_adx < 20 and coin_realized_vol_30d >= 0.623` | 423 |
-| `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 374 |
-| `transition` | `20 <= coin_adx < 25` | 77 |
+| `bear_trend` | `coin_adx >= 25 and coin_minus_di > coin_plus_di` | 78 |
+| `bull_trend` | `coin_adx >= 25 and coin_plus_di > coin_minus_di` | 678 |
+| `high_vol_shock` | `coin_realized_vol_30d >= 1.291, whatever the DMI state` | 97 |
+| `range_choppy` | `coin_adx < 20 and coin_realized_vol_30d >= 0.623` | 424 |
+| `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 375 |
+| `transition` | `20 <= coin_adx < 25` | 78 |
 
-A row may carry more than one phase, and 281 carry none: 166 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 115 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
+A row may carry more than one phase, and 329 carry none: 209 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 120 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
 
-`bear_trend` is rare by construction: 1154 of 1301 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
+`bear_trend` is rare by construction: 1201 of 1355 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
 
 ## Test duration
 
@@ -148,11 +148,11 @@ look-ahead/recursion pair, a later native look-ahead
 re-measurement, the warm-up ladder, a wave B recursion attempt, and
 the eight-pair full-window backtest actually ran for it - see
 `test_duration` in evidence/strategy_status.py for why this is a sum rather
-than a pick-one-source figure. 44 of 1301 rows carry no stamp at all,
+than a pick-one-source figure. 96 of 1355 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 1257 rows that do: **78.3 hours** of this audit's own compute so far.
+Summed across the 1259 rows that do: **78.4 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -296,7 +296,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1960 of 3464 commands are recorded so far, and every new run
+recording. 1963 of 3574 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -4463,7 +4463,7 @@ neither a pass nor a fail.
 `degen`, `el_extrema_RL`, `epretrace`, `haGradient`
 `newstrategy4`, `zorkv7_0_0`
 
-## Exclusion unconfirmed - 101 strategies
+## Exclusion unconfirmed - 111 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -4475,7 +4475,7 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_trades_in_full_measurement` | `inherited` | 88 |
+| `no_trades_in_full_measurement` | `inherited` | 98 |
 | `no_verdict_on_lookahead` | `no_finding` | 11 |
 | `recursive_bias_unverified` | `no_finding` | 1 |
 | `unclassified` | `no_finding` | 1 |
@@ -4485,7 +4485,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 374 strategies, by decisive reason
+## Not passing - 418 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -4533,7 +4533,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 374 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 418 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -4550,7 +4550,7 @@ one of them carries none.
 | `measured_only_in_freqai_arm` | runs only under its author's own FreqAI configuration, measured separately in that arm; not comparable with the ordinary spot audit | 6 |
 | `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 19 |
 | `shared_runtime_change_declined` | the fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04 | 11 |
-| `duplicate_implementation` | duplicates the executable code of a retained representative - either confirmed further by an identical canonical full-backtest trade set, or, since 2026-09-16, by code identity alone once no config overlay and no measured disagreement stand against it (see evidence_rule in SEMANTIC_DUPLICATE_ADJUDICATION.json for which applied to a given row) | 44 |
+| `duplicate_implementation` | duplicates the executable code of a retained representative - either confirmed further by an identical canonical full-backtest trade set, or, since 2026-09-16, by code identity alone once no config overlay and no measured disagreement stand against it (see evidence_rule in SEMANTIC_DUPLICATE_ADJUDICATION.json for which applied to a given row) | 88 |
 | `recursive_check_incomplete_at_longest_rungs` | - | 13 |
 
 
@@ -4567,7 +4567,7 @@ one of them carries none.
 | `measured_only_in_freqai_arm` | 0 | 0 | 0 | 5 | 0 | 0 | 1 |
 | `third_party_package_declined` | 7 | 0 | 0 | 12 | 0 | 0 | 0 |
 | `shared_runtime_change_declined` | 4 | 0 | 0 | 6 | 0 | 0 | 1 |
-| `duplicate_implementation` | 42 | 1 | 0 | 0 | 0 | 0 | 1 |
+| `duplicate_implementation` | 85 | 1 | 0 | 0 | 0 | 0 | 2 |
 | `recursive_check_incomplete_at_longest_rungs` | 13 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 ### `lookahead_found` - 98
@@ -4779,31 +4779,42 @@ Wave `not_scheduled` - 1:
 
 `DIV_v1`
 
-### `duplicate_implementation` - 44
+### `duplicate_implementation` - 88
 
 Duplicates the executable code of a retained representative - either confirmed further by an identical canonical full-backtest trade set, or, since 2026-09-16, by code identity alone once no config overlay and no measured disagreement stand against it (see evidence_rule in semantic_duplicate_adjudication.json for which applied to a given row).
 
-Wave `-` - 42:
+Wave `-` - 85:
 
+`Anomaly_adx`, `Anomaly_all`, `Anomaly_aroon`, `Anomaly_bbw`
+`Anomaly_dwt`, `Anomaly_fbb`, `Anomaly_fwr`, `Anomaly_highlow`
+`Anomaly_jump`, `Anomaly_macd`, `Anomaly_mfi`, `Anomaly_minmax`
+`Anomaly_nseq`, `Anomaly_over`, `Anomaly_profit`, `Anomaly_pv`
+`Anomaly_slope`, `Anomaly_smooth`, `Anomaly_stochastic`, `Anomaly_swing`
 `BBRSITV1`, `BBRSITV2`, `BBRSITV3`, `BB_RTR_dca`
 `BinClucMadSMAv1`, `BinClucMadSMAv2`, `BinClucMadv1`, `BinClucMadv2`
-`Cluc4werk_ETH`, `Cluc5mDCA`, `Cluc5werk_BTC`, `Cluc5werk_ETH`
-`Cluc5werk_USD`, `ClucCrypROI_BTC`, `ClucCrypROI_ETH`, `ClucCrypSlow_BTC`
-`ClucCrypSlow_ETH`, `ClucDCA`, `ClucDCAV2`, `ClucHAwerk_BTC`
-`ClucHAwerk_ETH`, `ClucHAwerk_USD`, `EI3v2_tag_cofi_dca_green`, `Enchilada_Slow`
-`Lateralus_Slow`, `LmaoStoplossClusterOpt`, `SMAOffsetProtectOptV1_1`, `Schism3_BTC`
-`Schism3_ETH`, `Schism4_BTC`, `Schism4_ETH`, `Schism5_BTC`
-`Schism5_ETH`, `Schism6_BTC`, `Schism6_ETH`, `Stinkfist_BTC`
-`Stinkfist_ETH`, `SuperReversal_mtf_5min`, `ViNSellCorr`, `ViNSellEps`
-`ViNSellRiseCorrFall`, `ViNSellRiseFall`
+`BlendBasket`, `Cluc4werk_ETH`, `Cluc5mDCA`, `Cluc5werk_BTC`
+`Cluc5werk_ETH`, `Cluc5werk_USD`, `ClucCrypROI_BTC`, `ClucCrypROI_ETH`
+`ClucCrypSlow_BTC`, `ClucCrypSlow_ETH`, `ClucDCA`, `ClucDCAV2`
+`ClucHAwerk_BTC`, `ClucHAwerk_ETH`, `ClucHAwerk_USD`, `ConstantMixBasket`
+`CppiBasket`, `EI3v2_tag_cofi_dca_green`, `Enchilada_Slow`, `Hacklemore_Slow`
+`InverseVolBasket`, `Lateralus_Slow`, `LmaoStoplossClusterOpt`, `MinVarianceBasket`
+`MomentumBasket`, `MomentumRegimeBasket15mFast`, `PCA_dwt`, `PCA_fbb`
+`PCA_fwr`, `PCA_highlow`, `PCA_jump`, `PCA_macd`
+`PCA_mfi`, `PCA_minmax`, `PCA_nseq`, `PCA_over`
+`PCA_profit`, `PCA_pv`, `PCA_stochastic`, `PCA_swing`
+`SMAOffsetProtectOptV1_1`, `Schism3_BTC`, `Schism3_ETH`, `Schism4_BTC`
+`Schism4_ETH`, `Schism5_BTC`, `Schism5_ETH`, `Schism6_BTC`
+`Schism6_ETH`, `Stinkfist_BTC`, `Stinkfist_ETH`, `SuperReversal_mtf_5min`
+`ViNSellCorr`, `ViNSellEps`, `ViNSellRiseCorrFall`, `ViNSellRiseFall`
+`VolTargetBasket`
 
 Wave `A_pending_diagnostics` - 1:
 
 `HyperStra_GSN_SMAOnly`
 
-Wave `not_scheduled` - 1:
+Wave `not_scheduled` - 2:
 
-`NostalgiaForInfinityV7_SMAv2`
+`FastSupertrend_optim3_rsi_75fix`, `NostalgiaForInfinityV7_SMAv2`
 
 ### `recursive_check_incomplete_at_longest_rungs` - 13
 
@@ -4818,9 +4829,9 @@ Wave `-` - 13:
 
 | Wave | Strategies |
 |---|---:|
-| `(none)` | 407 |
-| `not_scheduled` | 389 |
-| `C_measurement_recovery` | 228 |
+| `(none)` | 459 |
+| `not_scheduled` | 390 |
+| `C_measurement_recovery` | 229 |
 | `D_recursive_drift` | 121 |
 | `B_warmup_refusal` | 82 |
 | `E0_strict67` | 67 |
@@ -4830,9 +4841,9 @@ Wave `-` - 13:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 202 |
-| `lookahead_remeasure_pending` | 128 |
-| `full_window_measurement_pending` | 88 |
+| `recursive_ladder_pending` | 212 |
+| `lookahead_remeasure_pending` | 138 |
+| `full_window_measurement_pending` | 98 |
 | `to_be_fixed` | 54 |
 | `needs_a_look` | 10 |
 | `repair_attempted` | 3 |

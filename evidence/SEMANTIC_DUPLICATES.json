@@ -33,6 +33,32 @@
       "measured_members": 0,
       "members": [
         {
+          "canonical_file": "repair/patched/repos/nateemma_strategies/Basket/MomentumRegimeBasket15m.py",
+          "full_backtest_status": "not_run",
+          "repo": "nateemma/strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "MomentumRegimeBasket15m",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/nateemma_strategies/Basket/MomentumRegimeBasket15mFast.py",
+          "full_backtest_status": "not_run",
+          "repo": "nateemma/strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "MomentumRegimeBasket15mFast",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_0cbd34f89d4aa0a2474ebd9e1ea22a497e395c85a71b3b4ffd1d791ba9783598",
+      "trade_hashes": []
+    },
+    {
+      "evidence_status": "code_equivalent_only",
+      "measured_members": 0,
+      "members": [
+        {
           "canonical_file": "repos/eovie_freqtrade_strs/ClucHAnix/ClucHAnix.py",
           "full_backtest_status": "not_run",
           "repo": "eovie/freqtrade_strs",
@@ -792,6 +818,34 @@
       ]
     },
     {
+      "evidence_status": "confirmed_same_trades",
+      "measured_members": 2,
+      "members": [
+        {
+          "canonical_file": "user_data/profile_repairs/FastSupertrend_optim3_rsi_75.py",
+          "full_backtest_status": "measured",
+          "repo": "TheoBrigitte/freqtrade",
+          "run_profile": "futures_long_short",
+          "strategy_id": "FastSupertrend_optim3_rsi_75",
+          "trades": 15898,
+          "trades_sha256": "sha256_62f9e431504d88718ca6b96fe309cb0d72279aec92b3c53f7aa85fc51c31263b"
+        },
+        {
+          "canonical_file": "user_data/profile_repairs/FastSupertrend_optim3_rsi_75fix.py",
+          "full_backtest_status": "measured",
+          "repo": "TheoBrigitte/freqtrade",
+          "run_profile": "futures_long_short",
+          "strategy_id": "FastSupertrend_optim3_rsi_75fix",
+          "trades": 15898,
+          "trades_sha256": "sha256_62f9e431504d88718ca6b96fe309cb0d72279aec92b3c53f7aa85fc51c31263b"
+        }
+      ],
+      "normalized_ast_sha256": "sha256_2514f6d04ba3bdf251e5a8a4e6269425b4929b03224f98ddba4ed5c062cda1ba",
+      "trade_hashes": [
+        "sha256_62f9e431504d88718ca6b96fe309cb0d72279aec92b3c53f7aa85fc51c31263b"
+      ]
+    },
+    {
       "evidence_status": "code_equivalent_only",
       "measured_members": 0,
       "members": [
@@ -857,11 +911,65 @@
           "trades_sha256": ""
         },
         {
+          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusBBTrendStrategy.py",
+          "full_backtest_status": "not_run",
+          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
+          "run_profile": "futures_long_short",
+          "strategy_id": "LitmusBBTrendStrategy",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusClucStrategy.py",
+          "full_backtest_status": "not_run",
+          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
+          "run_profile": "futures_long_short",
+          "strategy_id": "LitmusClucStrategy",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusSARStrategy.py",
+          "full_backtest_status": "not_run",
+          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
+          "run_profile": "futures_long_short",
+          "strategy_id": "LitmusSARStrategy",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusScalpStrategy.py",
+          "full_backtest_status": "not_run",
+          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
+          "run_profile": "futures_long_short",
+          "strategy_id": "LitmusScalpStrategy",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
           "canonical_file": "repair/patched/repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusSimpleStrategy.py",
           "full_backtest_status": "not_run",
           "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
           "run_profile": "futures_long_short",
           "strategy_id": "LitmusSimpleStrategy",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusTrendScalpStrategy.py",
+          "full_backtest_status": "not_run",
+          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
+          "run_profile": "futures_long_short",
+          "strategy_id": "LitmusTrendScalpStrategy",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusVulcanStrategy.py",
+          "full_backtest_status": "not_run",
+          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
+          "run_profile": "futures_long_short",
+          "strategy_id": "LitmusVulcanStrategy",
           "trades": "",
           "trades_sha256": ""
         }
@@ -874,11 +982,29 @@
       "measured_members": 0,
       "members": [
         {
+          "canonical_file": "repos/nateemma_strategies/TSPredict/TS_Coeff.py",
+          "full_backtest_status": "not_run",
+          "repo": "nateemma/strategies",
+          "run_profile": "futures_long",
+          "strategy_id": "TS_Coeff",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
           "canonical_file": "repos/nateemma_strategies/TSPredict/TS_Gain.py",
           "full_backtest_status": "not_run",
           "repo": "nateemma/strategies",
           "run_profile": "futures_long",
           "strategy_id": "TS_Gain",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/nateemma_strategies/TSPredict/TS_Wavelet.py",
+          "full_backtest_status": "not_run",
+          "repo": "nateemma/strategies",
+          "run_profile": "futures_long",
+          "strategy_id": "TS_Wavelet",
           "trades": "",
           "trades_sha256": ""
         },
@@ -922,6 +1048,149 @@
       "trade_hashes": [
         "sha256_454fe96eb823329bda1637cb8e136147fa7d2db933c7d076e66ed4451a71106e"
       ]
+    },
+    {
+      "evidence_status": "code_equivalent_only",
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "PCA",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_dwt.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "PCA_dwt",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_fbb.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "PCA_fbb",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_fwr.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "PCA_fwr",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_highlow.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "PCA_highlow",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_jump.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "PCA_jump",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_macd.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "PCA_macd",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_mfi.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "PCA_mfi",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_minmax.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "PCA_minmax",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_nseq.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "PCA_nseq",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_over.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "PCA_over",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_profit.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "PCA_profit",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_pv.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "PCA_pv",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_stochastic.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "PCA_stochastic",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_swing.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "PCA_swing",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
+      "trade_hashes": []
     },
     {
       "evidence_status": "code_equivalent_only",
@@ -1399,6 +1668,86 @@
         }
       ],
       "normalized_ast_sha256": "sha256_82a6db849b25eb2be2dc2a5b692c2ac5b5dceb49efb66e4f1ee2908a607fa13f",
+      "trade_hashes": []
+    },
+    {
+      "evidence_status": "code_equivalent_only",
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/nateemma_strategies/Basket/BasketStrategy.py",
+          "full_backtest_status": "not_run",
+          "repo": "nateemma/strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "BasketStrategy",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/nateemma_strategies/Basket/BlendBasket.py",
+          "full_backtest_status": "not_run",
+          "repo": "nateemma/strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "BlendBasket",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/nateemma_strategies/Basket/ConstantMixBasket.py",
+          "full_backtest_status": "not_run",
+          "repo": "nateemma/strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "ConstantMixBasket",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/nateemma_strategies/Basket/CppiBasket.py",
+          "full_backtest_status": "not_run",
+          "repo": "nateemma/strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "CppiBasket",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/nateemma_strategies/Basket/InverseVolBasket.py",
+          "full_backtest_status": "not_run",
+          "repo": "nateemma/strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "InverseVolBasket",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/nateemma_strategies/Basket/MinVarianceBasket.py",
+          "full_backtest_status": "not_run",
+          "repo": "nateemma/strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "MinVarianceBasket",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/nateemma_strategies/Basket/MomentumBasket.py",
+          "full_backtest_status": "not_run",
+          "repo": "nateemma/strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "MomentumBasket",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/nateemma_strategies/Basket/VolTargetBasket.py",
+          "full_backtest_status": "not_run",
+          "repo": "nateemma/strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "VolTargetBasket",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
       "trade_hashes": []
     },
     {
@@ -1955,6 +2304,32 @@
       "measured_members": 0,
       "members": [
         {
+          "canonical_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Hacklemore.py",
+          "full_backtest_status": "performance_limited",
+          "repo": "werkkrew/freqtrade-strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "Hacklemore",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Hacklemore.py",
+          "full_backtest_status": "not_run",
+          "repo": "werkkrew/freqtrade-strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "Hacklemore_Slow",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_c3949e8d9c2f7f1b855654fbdb8a21e23dbafcd6b941eaf64294f47b31ad5abb",
+      "trade_hashes": []
+    },
+    {
+      "evidence_status": "code_equivalent_only",
+      "measured_members": 0,
+      "members": [
+        {
           "canonical_file": "repos/nateemma_strategies/Framework/test_base_strategy.py",
           "full_backtest_status": "not_run",
           "repo": "nateemma/strategies",
@@ -1964,11 +2339,29 @@
           "trades_sha256": ""
         },
         {
+          "canonical_file": "repos/nateemma_strategies/Framework/BaseNNStrategy.py",
+          "full_backtest_status": "not_run",
+          "repo": "nateemma/strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "BaseNNStrategy",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
           "canonical_file": "repos/nateemma_strategies/Framework/BaseStrategy.py",
           "full_backtest_status": "not_run",
           "repo": "nateemma/strategies",
           "run_profile": "spot_long",
           "strategy_id": "BaseStrategy",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/nateemma_strategies/SimpleStrategies/SimpleStrategy.py",
+          "full_backtest_status": "not_run",
+          "repo": "nateemma/strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "SimpleStrategy",
           "trades": "",
           "trades_sha256": ""
         }
@@ -2009,6 +2402,203 @@
         }
       ],
       "normalized_ast_sha256": "sha256_c83c06d6be74b726eafbb53ad9ae00e992ea9c895bb9980111691f635d15f9e6",
+      "trade_hashes": []
+    },
+    {
+      "evidence_status": "code_equivalent_only",
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/Anomaly.py",
+          "full_backtest_status": "not_run",
+          "repo": "hamidreza07/freqai-strategy",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_adx.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_adx",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_all.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_all",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_aroon.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_aroon",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_bbw.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_bbw",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_dwt.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_dwt",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_fbb.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_fbb",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_fwr.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_fwr",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_highlow.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_highlow",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_jump.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_jump",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_macd.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_macd",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_mfi.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_mfi",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_minmax.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_minmax",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_nseq.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_nseq",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_over.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_over",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_profit.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_profit",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_pv.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_pv",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_slope.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_slope",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_smooth.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_smooth",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_stochastic.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_stochastic",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_swing.py",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "Anomaly_swing",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
       "trade_hashes": []
     },
     {

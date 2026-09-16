@@ -393,7 +393,7 @@ def _file_still_matches_decision(original_file, entry):
         return False
 
 
-def duplicate_source_files(decisions, profiles=None):
+def duplicate_source_files(decisions, profiles=None, restrict_to=None):
     """Resolve each excluded row to the source file harvest.py wrote,
     ready for a caller to delete - this module only computes, never
     deletes (`tools.harvest.remove_semantic_duplicates` and the retroactive
@@ -435,6 +435,16 @@ def duplicate_source_files(decisions, profiles=None):
     this check too (the digest came from the overlay, not the upstream file)
     and is skipped: erring toward keeping a file is recoverable, deleting one
     is not.
+
+    `restrict_to` is the owner's rule of 2026-09-16, and callers that delete
+    are expected to pass it: only a strategy that harvest.py has just
+    downloaded and that no check has looked at yet may lose its file. Once a
+    strategy has been measured, a later duplicate finding excludes it and
+    stops there, because other strategies may import from its file and
+    because an exclusion is a claim about a strategy, not a reason to remove
+    source anyone might re-read. Passing None resolves without that filter
+    and is for inspection only - it answers "what would be deletable",
+    which is why this module never deletes anything itself.
     """
     if profiles is None:
         profiles = {row["strategy_id"]: row for row in _read_csv(PROFILES)}
@@ -447,6 +457,8 @@ def duplicate_source_files(decisions, profiles=None):
     resolved = []
     for entry in decisions["decisions"]:
         strategy_id = entry["strategy_id"]
+        if restrict_to is not None and strategy_id not in restrict_to:
+            continue
         if strategy_id in protected_reps:
             continue
         row = profiles.get(strategy_id)
@@ -598,6 +610,13 @@ def selftest():
         gone = dict(profiles, Dup1={"original_file": "repos/does/not/exist.py"})
         resolved = {r["strategy_id"] for r in duplicate_source_files(decisions, gone)}
         assert resolved == {"Dup2Child"}, resolved
+
+        # restrict_to is the owner's intake-only rule: an empty set deletes
+        # nothing at all, and a set never widens what the guards allow.
+        assert duplicate_source_files(decisions, profiles, restrict_to=set()) == []
+        resolved = {r["strategy_id"] for r in duplicate_source_files(
+            decisions, profiles, restrict_to={"Dup1", "Dup3", "Drifted"})}
+        assert resolved == {"Dup1"}, resolved
     finally:
         shutil.rmtree(scratch, ignore_errors=True)
 

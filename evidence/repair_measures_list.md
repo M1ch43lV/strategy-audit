@@ -10,7 +10,7 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 |---|---:|---|
 | `repaired` | 145 | runs now, and the run is recorded |
 | `repair_attempted` | 23 | a route was applied and did not finish the job |
-| `to_be_fixed` | 35 | the route is known, the run has not happened yet |
+| `to_be_fixed` | 36 | the route is known, the run has not happened yet |
 | `needs_a_look` | 39 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 2 | the repair made things worse and was undone |
 | `refuse_repair` | 62 | repairing it would mean inventing the strategy |
@@ -201,7 +201,7 @@ For example: `FundingCarry`, `Insomnia_short`.
 
 ### Measured one pair at a time when it needs the whole basket
 
-`repair_family: measured_outside_its_design` &mdash; 0 strategies (none)
+`repair_family: measured_outside_its_design` &mdash; 1 strategies (to_be_fixed 1)
 
 **The message.**
 
@@ -216,6 +216,8 @@ For example: `FundingCarry`, `Insomnia_short`.
 **Where it stops.** Worth watching for beyond this one row: any strategy whose position sizing reads the portfolio rather than the pair will do the same thing, and it looks exactly like a strategy that never trades.
 
 Tool: `tools/probe_zero.py, evidence/ZERO_TRADE_TRIAGE.json`.
+
+For example: `BasketStrategy`.
 
 ### Refused: no stoploss declared
 

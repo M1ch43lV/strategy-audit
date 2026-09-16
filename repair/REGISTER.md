@@ -2303,3 +2303,95 @@ excluding those .git directories and the pre-existing `*.csv`/
 GitHub's 100 MB hard per-file limit that blocked this project's push
 once already (see the LFS migration history).
 
+
+# Phase 18 - deletion confined to intake, 54 files restored, 2026-09-16
+
+**Owner's rule.** Only a strategy `harvest.py` has just downloaded and that
+no check has looked at yet may lose its source file to a duplicate finding.
+Once a strategy has been checked, a later duplicate finding excludes it and
+stops there - other strategies may import from its file, and an exclusion is
+a statement about a strategy, not a licence to remove source anyone might
+re-read. Stated after Phase 17's deletion pass turned out to have removed
+files the rule protects.
+
+**What Phase 17's pass got wrong.** It deleted every adjudicated duplicate
+regardless of how long the strategy had been in the corpus, and 54 of those
+deletions inverted the rule above:
+
+- **34 where the kept representative was in the same repository.** These were
+  never copies of anything: `webclinic017/strategies-freqtrade-`'s 14 `PCA_*`
+  variants, `nateemma/strategies`'s 12 `Basket/*` and `TS_*` files,
+  `markdregan/FreqAI-Marcos-Lopez-De-Prado`'s 6 `Litmus*Strategy` files, and
+  one each from `TheoBrigitte/freqtrade` and `werkkrew/freqtrade-strategies`
+  - an author's own differently-named strategies, whose normalized code
+  matches because the differentiation lives in a config overlay or a thin
+  subclass body, deleted in favour of a sibling in the same repository.
+- **20 `Anomaly_*` files deleted out of their own source repository** while
+  the representative became `Anomaly` in
+  `hamidreza07/freqai-strategy/startegy test/5/_Anomaly/` - a copy in another
+  repo's scratch directory (the typo is the upstream path's own). The origin
+  was removed and the copy kept, exactly backwards.
+
+All 54 were re-fetched by exact path through `harvest.py`'s own `gh_json()`/
+`raw()`/`_write_scanned()` helpers rather than `harvest()`, which
+re-downloads every `IStrategy` file in a target repo on each call - the
+mistake that cost 28 minutes during the Phase 17 recovery. None of the 54
+were recoverable from git: they predate `repos/` being tracked, which is
+itself why that tracking exists now. Their log entries carry `recovered_at`
+and a note naming which of the two shapes applied; no entry was deleted.
+
+**The rule, in code.** `semantic_duplicates.duplicate_source_files()` gained
+a `restrict_to` parameter, and `harvest.remove_semantic_duplicates()` now
+computes it from `fresh_repos` (the repo directories this run fetched) minus
+`_already_checked()` (every strategy_id with a record in `PROFILE_SMOKE.json`,
+`PROFILE_BIAS.json` or the full-backtest manifest - a failed trial run counts,
+it is still a look at the strategy). `refresh_intake_evidence()` passes
+`fresh_repos` through and defaults it to nothing, so regenerating evidence
+without downloading deletes nothing at all: verified, 0 of 947 checked
+strategies resolvable for deletion on a bare refresh.
+
+**Three defects in the deletion path, found while removing the six files
+Phase 17's guards had cleared.** Each is a separate failure mode from the
+representative-chain bug those guards were added for:
+
+1. **A verdict outlived the file it was about.** A strategy_id is a class
+   name, and two unrelated files can define the same one; the manifest lists
+   whichever `discover()` picked. Deleting that file makes the id re-resolve
+   to the other file, whose different code was never compared with anything -
+   `ClucHAnix` and `ClucHAnix_5m` both did this, and a second pass would have
+   deleted a distinct implementation on the strength of a verdict about the
+   file already gone. `duplicate_source_files()` now requires the file's
+   current normalized digest to equal the digest the decision was made on.
+2. **The representative was chosen by name length alone**, so the measured
+   `ClucHAnix_5m` (2288 trades) was excluded in favour of its never-run twin
+   `Cluc5mDCA` - orphaning the measurement, since `PROFILE_SMOKE.json` is
+   keyed by strategy_id and survives a strategy the corpus no longer lists,
+   and leaving the kept twin owing the run just discarded.
+3. **The same key excluded `NostalgiaForInfinityV7`** in favour of
+   `MyStratV1`, a copy pasted into someone's `strategies/test.py`, which
+   would have left `corpus/NostalgiaForInfinityV7.md` describing a strategy
+   the corpus no longer holds.
+
+`_pick_representative()` now decides by published corpus card, then
+measurement, then whether the file is named after its own class, and only
+then by name length (still the right default for pair-suffixed derivatives:
+`Schism4` over `Schism4_BTC`). Tier 1 calls the same function instead of
+carrying its own inline copy of the old key. Two of the six deletions were
+restored on the same rule that produced the 54: `davidzr/freqtrade-strategies`'
+`HyperStra_GSN_SMAOnly.py` and `NostalgiaForInfinityV7_SMAv2.py`, each a
+distinct strategy excluded in favour of a copy in a collection repo.
+
+**Corpus after the restoration.** 1355 rows: E1_expanded 641, excluded 418,
+pending 130, exclusion_unconfirmed 111, too_few_trades 32, not_a_strategy 23.
+The 54 are back in the corpus and re-adjudicated normally - most are excluded
+again as duplicates, now without losing their files, which is the distinction
+the rule draws.
+
+**The status page's footer, corrected in passing.** It still described
+`REGIME_ELIGIBILITY.csv`'s E0 baseline as "frozen" and "never regenerated",
+the claim Phase 16 retired everywhere else, and carried a hand-typed
+"Snapshot of 2026-09-02 ... 588 rows ... 481 records, 418 settled" - the same
+bug `__TOTAL__` was introduced to fix, one line lower. Both numbers now come
+from the rendered rows (`__LOOKAHEAD_NATIVE__`, `__WARMUP_SETTLED__`: 932 and
+753), and `strategy_status_page.selftest()` fails if either placeholder goes
+missing from the template.
