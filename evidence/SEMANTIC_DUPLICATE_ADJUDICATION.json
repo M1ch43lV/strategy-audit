@@ -33,7 +33,7 @@
       "trades_sha256": ""
     },
     {
-      "canonical_representative": "BinClucMadv1",
+      "canonical_representative": "CoreStrategy",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "normalized_ast_sha256": "sha256_d450cae91dda12b397e93cfb8f7982e9042cb256aba3aa816e6270f3434db2f2",
@@ -41,7 +41,7 @@
       "trades_sha256": ""
     },
     {
-      "canonical_representative": "BinClucMadv1",
+      "canonical_representative": "CoreStrategy",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "normalized_ast_sha256": "sha256_d450cae91dda12b397e93cfb8f7982e9042cb256aba3aa816e6270f3434db2f2",
@@ -49,7 +49,15 @@
       "trades_sha256": ""
     },
     {
-      "canonical_representative": "BinClucMadv1",
+      "canonical_representative": "CoreStrategy",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_d450cae91dda12b397e93cfb8f7982e9042cb256aba3aa816e6270f3434db2f2",
+      "strategy_id": "BinClucMadv1",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "CoreStrategy",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "normalized_ast_sha256": "sha256_d450cae91dda12b397e93cfb8f7982e9042cb256aba3aa816e6270f3434db2f2",
@@ -62,6 +70,14 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "normalized_ast_sha256": "sha256_9761bd11bb0d19621cc4b6fa657bf9012b8dff70d000896bf09ac13230633699",
       "strategy_id": "Cluc4werk_ETH",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "ClucHAnix_5m",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_4b0da0ede8b47a94e6f589553517e9d1b2c3194e5ce062b266f0d31ac8f0d438",
+      "strategy_id": "Cluc5mDCA",
       "trades_sha256": ""
     },
     {
@@ -121,27 +137,19 @@
       "trades_sha256": ""
     },
     {
-      "canonical_representative": "ClucDCA",
+      "canonical_representative": "ClucHAnix",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
-      "normalized_ast_sha256": "sha256_764defd3dd4319a8ccadb18c8fdc98a5a95cd0cedb9be6a75d2638ec8b05c05d",
-      "strategy_id": "ClucHAnix",
+      "normalized_ast_sha256": "sha256_0ef442561e2b7f0fe43581f14362cea01cc62075ea6f634bef8fbfb119440712",
+      "strategy_id": "ClucDCA",
       "trades_sha256": ""
     },
     {
-      "canonical_representative": "Cluc5mDCA",
-      "decision": "excluded_duplicate_implementation",
-      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
-      "normalized_ast_sha256": "sha256_104912d51abdd1438d77a677dcdb7d2c4602b17e0678dbf233113eb56e58088d",
-      "strategy_id": "ClucHAnix_5m",
-      "trades_sha256": ""
-    },
-    {
-      "canonical_representative": "ClucDCAV2",
+      "canonical_representative": "ClucHAnixV2",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "normalized_ast_sha256": "sha256_a52d6fc29008c67d4c8b30db20a77c5edb5cca1ce312bf6e5e1ac9c330f0a73b",
-      "strategy_id": "ClucHAnixV2",
+      "strategy_id": "ClucDCAV2",
       "trades_sha256": ""
     },
     {
@@ -166,22 +174,6 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "normalized_ast_sha256": "sha256_8f4e0dd6cf62fa6439e1629801c6b94bd153f0c5171d28e2abf50210d24e262a",
       "strategy_id": "ClucHAwerk_USD",
-      "trades_sha256": ""
-    },
-    {
-      "canonical_representative": "NostalgiaForInfinityV7_SMA",
-      "decision": "excluded_duplicate_implementation",
-      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
-      "normalized_ast_sha256": "sha256_a180ea20e36bd86c4a3f8beafa2260018a16a82adb18a456aa1ca0c90c683cff",
-      "strategy_id": "Combined_NFIv7_SMA_Rallipanos_20210707",
-      "trades_sha256": ""
-    },
-    {
-      "canonical_representative": "BinClucMadv1",
-      "decision": "excluded_duplicate_implementation",
-      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
-      "normalized_ast_sha256": "sha256_d450cae91dda12b397e93cfb8f7982e9042cb256aba3aa816e6270f3434db2f2",
-      "strategy_id": "CoreStrategy",
       "trades_sha256": ""
     },
     {
@@ -223,22 +215,6 @@
       "normalized_ast_sha256": "sha256_2a86331a6ac229f4b3ddacae05fc2ea52b24bc13903a19376da2b5b4bc45fdd5",
       "strategy_id": "LmaoStoplossClusterOpt",
       "trades_sha256": ""
-    },
-    {
-      "canonical_representative": "NASOSv5HO",
-      "decision": "excluded_duplicate_implementation",
-      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
-      "normalized_ast_sha256": "sha256_dc5d5595bf47375c8f125df709445c8f86265ab2b9539cc2bd8b8e92cf81ee20",
-      "strategy_id": "NASOSv5SL",
-      "trades_sha256": ""
-    },
-    {
-      "canonical_representative": "MyStratV1",
-      "decision": "excluded_duplicate_implementation",
-      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
-      "normalized_ast_sha256": "sha256_427f3a8e190fbd262c8a613406a269024effab1671b5913ce5f20e1d51a4409c",
-      "strategy_id": "NostalgiaForInfinityV7",
-      "trades_sha256": "sha256_3dcade4d19a21950f07bc4be313981dd6f8967b534b7e4085da2a3d4453374f9"
     },
     {
       "canonical_representative": "Combined_NFIv7_SMA",
@@ -313,11 +289,11 @@
       "trades_sha256": ""
     },
     {
-      "canonical_representative": "SMAOffsetProtectOptV1_1",
+      "canonical_representative": "SMAOffsetProtectOptV1_kkeue_20210619",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "normalized_ast_sha256": "sha256_3f5097f32fab29b3ce5ffe1335fc4e6f491895d4ddb00c1d4d34c728e01ac15d",
-      "strategy_id": "SMAOffsetProtectOptV1_kkeue_20210619",
+      "strategy_id": "SMAOffsetProtectOptV1_1",
       "trades_sha256": ""
     },
     {

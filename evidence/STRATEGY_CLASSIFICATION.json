@@ -1371,11 +1371,6 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
-    "Combined_NFIv7_SMA_Rallipanos_20210707": {
-      "strategy_type": "mean_reversion;scalping;volume_based",
-      "timeframe": "5m",
-      "timeframe_evidence": "timeframe_attr"
-    },
     "ComboHold": {
       "strategy_type": "mean_reversion;momentum;trend_following",
       "timeframe": "",
@@ -3355,11 +3350,6 @@
       "strategy_type": "ml_ai",
       "timeframe": "",
       "timeframe_evidence": ""
-    },
-    "MyStratV1": {
-      "strategy_type": "mean_reversion;scalping;volume_based",
-      "timeframe": "5m",
-      "timeframe_evidence": "timeframe_attr"
     },
     "MyStrategyNew10": {
       "strategy_type": "multi_indicator",

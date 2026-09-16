@@ -21,7 +21,9 @@ import hashlib
 import io
 import json
 import os
+import shutil
 import sys
+import tempfile
 import tokenize
 from collections import defaultdict
 
@@ -249,12 +251,53 @@ def _has_own_config_overlay(strategy_id, canonical_file, class1):
     return os.path.isfile(companion)
 
 
+def _has_corpus_card(strategy_id):
+    return os.path.exists(os.path.join(ROOT, "corpus", strategy_id + ".md"))
+
+
+def _file_is_named_after_class(member):
+    stem = os.path.splitext(os.path.basename(member.get("canonical_file") or ""))[0]
+    return stem.casefold() == member["strategy_id"].casefold()
+
+
 def _pick_representative(members):
-    """Same tie-break `adjudicate()` uses: shorter unsuffixed name wins,
-    casefold then exact string breaks a remaining tie. Applied to every
-    member here (not just measured ones) - a pre-measurement hold list has
-    no measured subset to restrict to yet."""
+    """A member with a published corpus card wins, then one that has been
+    measured, then one whose file is named after its own class, then the
+    shorter name, with casefold and exact string breaking a remaining tie.
+
+    The filename key was added 2026-09-16, when the keys above it tied and
+    the name-length key then chose `MyStratV1` - a class sitting in someone's
+    `strategies/test.py` - over its byte-identical twin
+    `NostalgiaForInfinityV7` in `NostalgiaForInfinityV7.py`. Both are
+    measured and both have a corpus card, so nothing above could separate
+    them, yet one is plainly the upstream implementation and the other a
+    copy pasted into a scratch file: authors name a file after the strategy
+    it holds. Shorter-name-wins is the right default for pair-suffixed
+    derivatives (`Schism4` over `Schism4_BTC`), which is why this key sits
+    above it rather than replacing it.
+
+    The card preference was added 2026-09-16, after the keys below alone
+    chose `MyStratV1` - a class in someone's `strategies/test.py` - over its
+    byte-identical twin `NostalgiaForInfinityV7`, which has a published
+    `corpus/NostalgiaForInfinityV7.md` and an entry in `corpus/INDEX.md`.
+    Both carry the same 542-trade result, so the evidence is indifferent, but
+    excluding the named one orphans a published page and leaves the audit
+    reporting a well-known strategy family under a meaningless name.
+
+    The measurement preference was added the same day, after the name tie-break
+    alone chose the never-run `Cluc5mDCA` over its code-identical twin
+    `ClucHAnix_5m`, which had a measured 2288-trade backtest. Excluding the
+    measured member orphans its own result (PROFILE_SMOKE.json is keyed by
+    strategy_id, so the record survives a strategy the corpus no longer
+    lists) and leaves the kept twin still owing the very run that was just
+    discarded. Identical code measures identically, so which twin carries
+    the result is arbitrary evidence-wise - but only one of the two choices
+    throws work away.
+    """
     return min(members, key=lambda member: (
+        0 if _has_corpus_card(member["strategy_id"]) else 1,
+        0 if member.get("full_backtest_status") == "measured" else 1,
+        0 if _file_is_named_after_class(member) else 1,
         len(member["strategy_id"]), member["strategy_id"].casefold(), member["strategy_id"]))
 
 
@@ -291,20 +334,17 @@ def adjudicate(data, class1=None):
     of whether the mechanism is known, and is never excluded here even if
     every other tier-2 condition holds.
 
-    One measured member is retained when any exist (tier 1) or the same
-    shorter-unsuffixed-name tie-break `_pick_representative` uses otherwise
-    (tier 2, which may have no measurement to prefer at all). The final
-    lexical key makes regeneration deterministic.
+    Both tiers keep the member `_pick_representative` prefers, tier 1 out of
+    the measured subset its own evidence requires, tier 2 out of every member
+    (it may have no measurement to prefer at all). The final lexical key makes
+    regeneration deterministic.
     """
     class1 = _load_profile_class1() if class1 is None else class1
     decisions = []
     for group in data["groups"]:
         if group["evidence_status"] == "confirmed_same_trades":
             measured = [member for member in group["members"] if member["trades_sha256"]]
-            representative = min(
-                measured, key=lambda member: (len(member["strategy_id"]),
-                                               member["strategy_id"].casefold(),
-                                               member["strategy_id"]))
+            representative = _pick_representative(measured)
             for member in group["members"]:
                 if member["strategy_id"] == representative["strategy_id"]:
                     continue
@@ -339,6 +379,20 @@ def adjudicate(data, class1=None):
     return {"schema_version": 1, "decisions": sorted(decisions, key=lambda row: row["strategy_id"].casefold())}
 
 
+def _file_still_matches_decision(original_file, entry):
+    """Is the file on disk the one `entry`'s exclusion was decided on?"""
+    expected = entry.get("normalized_ast_sha256")
+    if not expected:
+        return False
+    path = os.path.join(ROOT, original_file.replace("/", os.sep))
+    try:
+        with io.open(path, encoding="utf-8") as handle:
+            source = handle.read()
+        return normalized_ast_digest(source, entry["strategy_id"]) == expected
+    except (IOError, OSError, SyntaxError, tokenize.TokenError, IndentationError):
+        return False
+
+
 def duplicate_source_files(decisions, profiles=None):
     """Resolve each excluded row to the source file harvest.py wrote,
     ready for a caller to delete - this module only computes, never
@@ -367,6 +421,20 @@ def duplicate_source_files(decisions, profiles=None):
     two classes sharing one physical file is not this corpus's common
     case, but silently deleting a live class alongside an excluded one in
     the same file would be the same shape of loss by a different route.
+
+    A third exclusion, found 2026-09-16 while removing the last six files
+    the first two guards had cleared: a strategy_id is a CLASS NAME, and two
+    unrelated files can define the same one, so EXECUTION_PROFILES.csv lists
+    whichever `discover()` picked. Deleting that file makes the id re-resolve
+    to the other file, which carries different code that was never compared
+    with anything - `ClucHAnix` and `ClucHAnix_5m` each did exactly this, and
+    a second pass would have deleted a distinct implementation on the
+    strength of a verdict about the file already gone. So require the file's
+    current normalized digest to equal the digest the decision was made on.
+    A strategy whose `canonical_file` is a `repair/patched/` overlay fails
+    this check too (the digest came from the overlay, not the upstream file)
+    and is skipped: erring toward keeping a file is recoverable, deleting one
+    is not.
     """
     if profiles is None:
         profiles = {row["strategy_id"]: row for row in _read_csv(PROFILES)}
@@ -385,6 +453,8 @@ def duplicate_source_files(decisions, profiles=None):
         if row is None:
             continue
         if row["original_file"] in live_files:
+            continue
+        if not _file_still_matches_decision(row["original_file"], entry):
             continue
         resolved.append({"strategy_id": strategy_id,
                          "canonical_representative": entry["canonical_representative"],
@@ -476,33 +546,60 @@ def selftest():
     }]}
     assert adjudicate(macd_like, class1={})["decisions"] == []
 
-    # duplicate_source_files()'s two safety guards, found necessary after an
-    # 11-strategy loss this way (REGISTER.md Phase 17 addendum).
-    decisions = {"decisions": [
-        # Ordinary case: excluded, own unique file, no conflict - resolves.
-        {"strategy_id": "Dup1", "canonical_representative": "Keep1",
-         "evidence_rule": "r"},
-        # BinClucMadv1 shape: Dup2 is EXCLUDED here (as someone else's
-        # duplicate) while ALSO being cited as the representative other
-        # entries depend on - must not be deleted despite its own exclusion.
-        {"strategy_id": "Dup2", "canonical_representative": "SomeoneElse",
-         "evidence_rule": "r"},
-        {"strategy_id": "Dup2Child", "canonical_representative": "Dup2",
-         "evidence_rule": "r"},
-        # Dup3 shares its physical file with Keep3, which is NOT excluded -
-        # deleting the file would take Keep3 down with it.
-        {"strategy_id": "Dup3", "canonical_representative": "Keep3",
-         "evidence_rule": "r"},
-    ]}
-    profiles = {
-        "Dup1": {"original_file": "repos/x/dup1.py"},
-        "Dup2": {"original_file": "repos/x/dup2.py"},
-        "Dup2Child": {"original_file": "repos/x/dup2child.py"},
-        "Dup3": {"original_file": "repos/x/shared.py"},
-        "Keep3": {"original_file": "repos/x/shared.py"},
-    }
-    resolved = {r["strategy_id"] for r in duplicate_source_files(decisions, profiles)}
-    assert resolved == {"Dup1", "Dup2Child"}, resolved
+    # duplicate_source_files()'s three safety guards, each found necessary
+    # after a real loss or near-loss (REGISTER.md Phase 17 addendum).
+    scratch = tempfile.mkdtemp(dir=ROOT, prefix=".selftest_dupfiles_")
+    try:
+        def _write(name, body):
+            path = os.path.join(scratch, name)
+            with io.open(path, "w", encoding="utf-8") as handle:
+                handle.write(body)
+            return os.path.relpath(path, ROOT).replace(os.sep, "/")
+
+        body = u"class %s:\n    timeframe = '5m'\n"
+        files = {name: _write(name + ".py", body % name)
+                 for name in ("Dup1", "Dup2", "Dup2Child", "Dup3", "Drifted")}
+
+        def _decision(strategy_id, representative, decided_on=None):
+            source = decided_on if decided_on is not None else body % strategy_id
+            return {"strategy_id": strategy_id,
+                    "canonical_representative": representative,
+                    "evidence_rule": "r",
+                    "normalized_ast_sha256": normalized_ast_digest(source, strategy_id)}
+
+        decisions = {"decisions": [
+            # Ordinary case: excluded, own unique file, no conflict - resolves.
+            _decision("Dup1", "Keep1"),
+            # BinClucMadv1 shape: Dup2 is EXCLUDED here (as someone else's
+            # duplicate) while ALSO being cited as the representative other
+            # entries depend on - must not be deleted despite its own exclusion.
+            _decision("Dup2", "SomeoneElse"),
+            _decision("Dup2Child", "Dup2"),
+            # Dup3 shares its physical file with Keep3, which is NOT excluded -
+            # deleting the file would take Keep3 down with it.
+            _decision("Dup3", "Keep3"),
+            # ClucHAnix shape: the id now resolves to a file whose code is not
+            # what the exclusion was decided on, so the verdict does not apply.
+            _decision("Drifted", "Keep4",
+                      decided_on=u"class Drifted:\n    timeframe = '1h'\n    stoploss = -0.1\n"),
+        ]}
+        profiles = {
+            "Dup1": {"original_file": files["Dup1"]},
+            "Dup2": {"original_file": files["Dup2"]},
+            "Dup2Child": {"original_file": files["Dup2Child"]},
+            "Dup3": {"original_file": files["Dup3"]},
+            "Keep3": {"original_file": files["Dup3"]},
+            "Drifted": {"original_file": files["Drifted"]},
+        }
+        resolved = {r["strategy_id"] for r in duplicate_source_files(decisions, profiles)}
+        assert resolved == {"Dup1", "Dup2Child"}, resolved
+
+        # A missing file is skipped, not raised on.
+        gone = dict(profiles, Dup1={"original_file": "repos/does/not/exist.py"})
+        resolved = {r["strategy_id"] for r in duplicate_source_files(decisions, gone)}
+        assert resolved == {"Dup2Child"}, resolved
+    finally:
+        shutil.rmtree(scratch, ignore_errors=True)
 
     print("semantic_duplicates selftest: PASS")
 

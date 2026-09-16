@@ -750,6 +750,13 @@
       "strategy_id": "MomentumRegimeBasket15mFast"
     },
     {
+      "canonical_representative": "NostalgiaForInfinityV7",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "original_file": "repos/Foxel05_freqtrade-stuff/strategies/test.py",
+      "removed_at": "2026-09-16T18:40:07.656613+00:00",
+      "strategy_id": "MyStratV1"
+    },
+    {
       "canonical_representative": "",
       "evidence_rule": "reconstructed_unattributed_2026-09-16",
       "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",

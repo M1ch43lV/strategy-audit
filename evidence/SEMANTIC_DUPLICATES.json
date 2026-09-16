@@ -33,6 +33,32 @@
       "measured_members": 0,
       "members": [
         {
+          "canonical_file": "repos/eovie_freqtrade_strs/ClucHAnix/ClucHAnix.py",
+          "full_backtest_status": "not_run",
+          "repo": "eovie/freqtrade_strs",
+          "run_profile": "spot_long",
+          "strategy_id": "ClucDCA",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix.py",
+          "full_backtest_status": "oom_confirmed",
+          "repo": "PeetCrypto/freqtrade-stuff",
+          "run_profile": "spot_long",
+          "strategy_id": "ClucHAnix",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_0ef442561e2b7f0fe43581f14362cea01cc62075ea6f634bef8fbfb119440712",
+      "trade_hashes": []
+    },
+    {
+      "evidence_status": "code_equivalent_only",
+      "measured_members": 0,
+      "members": [
+        {
           "canonical_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC.py",
           "full_backtest_status": "not_run",
           "repo": "webclinic017/strategies-freqtrade-",
@@ -669,34 +695,6 @@
     },
     {
       "evidence_status": "code_equivalent_only",
-      "measured_members": 1,
-      "members": [
-        {
-          "canonical_file": "repos/eovie_freqtrade_strs/ClucHAnix/ClucHAnix_5m.py",
-          "full_backtest_status": "not_run",
-          "repo": "eovie/freqtrade_strs",
-          "run_profile": "spot_long",
-          "strategy_id": "Cluc5mDCA",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/TheoBrigitte_freqtrade/strategies/cluc/ClucHAnix_5m.py",
-          "full_backtest_status": "measured",
-          "repo": "TheoBrigitte/freqtrade",
-          "run_profile": "spot_long",
-          "strategy_id": "ClucHAnix_5m",
-          "trades": 2288,
-          "trades_sha256": "sha256_c85f3537335d7aef47f01b8f7c91d9006b7089c097092ba57b703982fc09af35"
-        }
-      ],
-      "normalized_ast_sha256": "sha256_104912d51abdd1438d77a677dcdb7d2c4602b17e0678dbf233113eb56e58088d",
-      "trade_hashes": [
-        "sha256_c85f3537335d7aef47f01b8f7c91d9006b7089c097092ba57b703982fc09af35"
-      ]
-    },
-    {
-      "evidence_status": "code_equivalent_only",
       "measured_members": 0,
       "members": [
         {
@@ -989,34 +987,6 @@
       ]
     },
     {
-      "evidence_status": "confirmed_same_trades",
-      "measured_members": 2,
-      "members": [
-        {
-          "canonical_file": "repos/Foxel05_freqtrade-stuff/strategies/test.py",
-          "full_backtest_status": "measured",
-          "repo": "Foxel05/freqtrade-stuff",
-          "run_profile": "spot_long",
-          "strategy_id": "MyStratV1",
-          "trades": 542,
-          "trades_sha256": "sha256_3dcade4d19a21950f07bc4be313981dd6f8967b534b7e4085da2a3d4453374f9"
-        },
-        {
-          "canonical_file": "repos/ShahAnuj2610_my-freqtrade/user_data/strategies/NostalgiaForInfinityV7.py",
-          "full_backtest_status": "measured",
-          "repo": "ShahAnuj2610/my-freqtrade",
-          "run_profile": "spot_long",
-          "strategy_id": "NostalgiaForInfinityV7",
-          "trades": 542,
-          "trades_sha256": "sha256_3dcade4d19a21950f07bc4be313981dd6f8967b534b7e4085da2a3d4453374f9"
-        }
-      ],
-      "normalized_ast_sha256": "sha256_427f3a8e190fbd262c8a613406a269024effab1671b5913ce5f20e1d51a4409c",
-      "trade_hashes": [
-        "sha256_3dcade4d19a21950f07bc4be313981dd6f8967b534b7e4085da2a3d4453374f9"
-      ]
-    },
-    {
       "evidence_status": "code_equivalent_only",
       "measured_members": 0,
       "members": [
@@ -1163,6 +1133,34 @@
         "sha256_ef4136c6da327e013071148ddf6e762b405b88aa13b140613b68e5745ef42c1c",
         "sha256_f574f818e9184c5505af31dd4e2a543f932920b9addb22439680dae77102c37f",
         "sha256_fe1817e5834b9a1f987bd1346e33a47dbfddf27ce8242f7f938b41ae1c781e9c"
+      ]
+    },
+    {
+      "evidence_status": "code_equivalent_only",
+      "measured_members": 1,
+      "members": [
+        {
+          "canonical_file": "repos/eovie_freqtrade_strs/ClucHAnix/ClucHAnix_5m.py",
+          "full_backtest_status": "not_run",
+          "repo": "eovie/freqtrade_strs",
+          "run_profile": "spot_long",
+          "strategy_id": "Cluc5mDCA",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/davidzr_freqtrade-strategies/strategies/ClucHAnix_5m/ClucHAnix_5m.py",
+          "full_backtest_status": "measured",
+          "repo": "davidzr/freqtrade-strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "ClucHAnix_5m",
+          "trades": 2288,
+          "trades_sha256": "sha256_c85f3537335d7aef47f01b8f7c91d9006b7089c097092ba57b703982fc09af35"
+        }
+      ],
+      "normalized_ast_sha256": "sha256_4b0da0ede8b47a94e6f589553517e9d1b2c3194e5ce062b266f0d31ac8f0d438",
+      "trade_hashes": [
+        "sha256_c85f3537335d7aef47f01b8f7c91d9006b7089c097092ba57b703982fc09af35"
       ]
     },
     {
@@ -1332,32 +1330,6 @@
       "trade_hashes": [
         "sha256_8bdb31e7dee0a87d4e24663ef0db4acd41ea81af388c13a53f02060be914dff5"
       ]
-    },
-    {
-      "evidence_status": "code_equivalent_only",
-      "measured_members": 0,
-      "members": [
-        {
-          "canonical_file": "repos/eovie_freqtrade_strs/ClucHAnix/ClucHAnix.py",
-          "full_backtest_status": "not_run",
-          "repo": "eovie/freqtrade_strs",
-          "run_profile": "spot_long",
-          "strategy_id": "ClucDCA",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix E01VE Offsets.py",
-          "full_backtest_status": "oom_confirmed",
-          "repo": "PeetCrypto/freqtrade-stuff",
-          "run_profile": "spot_long",
-          "strategy_id": "ClucHAnix",
-          "trades": "",
-          "trades_sha256": ""
-        }
-      ],
-      "normalized_ast_sha256": "sha256_764defd3dd4319a8ccadb18c8fdc98a5a95cd0cedb9be6a75d2638ec8b05c05d",
-      "trade_hashes": []
     },
     {
       "evidence_status": "code_equivalent_only",
@@ -1720,34 +1692,6 @@
       "normalized_ast_sha256": "sha256_a0d2c464e0dcd422ea3b71dd96adb61d94e10f8867995afea69a001499832301",
       "trade_hashes": [
         "sha256_fe25a25ac735e44158c6e7ac5279d8cc19af38473b1c3b82e1f3d983aa7b465a"
-      ]
-    },
-    {
-      "evidence_status": "code_equivalent_only",
-      "measured_members": 1,
-      "members": [
-        {
-          "canonical_file": "repos/kemplail_freqtrade-stuff/strategies/Combined_NFIv7_SMA_Rallipanos.py",
-          "full_backtest_status": "oom_confirmed",
-          "repo": "kemplail/freqtrade-stuff",
-          "run_profile": "spot_long",
-          "strategy_id": "Combined_NFIv7_SMA_Rallipanos_20210707",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/NostalgiaForInfinityV7_SMA.py",
-          "full_backtest_status": "measured",
-          "repo": "PeetCrypto/freqtrade-stuff",
-          "run_profile": "spot_long",
-          "strategy_id": "NostalgiaForInfinityV7_SMA",
-          "trades": 722,
-          "trades_sha256": "sha256_85dce6cada742b6e1768f59e0daf70df041423f4e4a3f2cd9a21a3a4a5ae5145"
-        }
-      ],
-      "normalized_ast_sha256": "sha256_a180ea20e36bd86c4a3f8beafa2260018a16a82adb18a456aa1ca0c90c683cff",
-      "trade_hashes": [
-        "sha256_85dce6cada742b6e1768f59e0daf70df041423f4e4a3f2cd9a21a3a4a5ae5145"
       ]
     },
     {

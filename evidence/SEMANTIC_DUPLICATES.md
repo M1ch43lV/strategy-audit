@@ -11,6 +11,13 @@ additionally means two or more canonical full backtests share one trade hash.
 | `BBMod` | `measured` | 6101 | `sha256_158305dde7d52e116c4c7c5178d979a867e8293f68171207d9b55983437e797d` |
 | `BBMod1DCA` | `not_run` | - | `-` |
 
+## `sha256_0ef442561e2b7f0fe43581f14362cea01cc62075ea6f634bef8fbfb119440712` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Trade hash |
+|---|---|---:|---|
+| `ClucDCA` | `not_run` | - | `-` |
+| `ClucHAnix` | `oom_confirmed` | - | `-` |
+
 ## `sha256_0fa24cc21785a6b6ea98323c074dd61438ef00eb5379c2fe42f0aead59709480` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Trade hash |
@@ -90,13 +97,6 @@ additionally means two or more canonical full backtests share one trade hash.
 | `Schism2_BTC` | `not_run` | - | `-` |
 | `Schism2_ETH` | `not_run` | - | `-` |
 
-## `sha256_104912d51abdd1438d77a677dcdb7d2c4602b17e0678dbf233113eb56e58088d` - code_equivalent_only
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `Cluc5mDCA` | `not_run` | - | `-` |
-| `ClucHAnix_5m` | `measured` | 2288 | `sha256_c85f3537335d7aef47f01b8f7c91d9006b7089c097092ba57b703982fc09af35` |
-
 ## `sha256_1251db314cc4119a64a5de58d561a5b1ed336ea7fde858b419981bf6e3a892ac` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Trade hash |
@@ -170,13 +170,6 @@ additionally means two or more canonical full backtests share one trade hash.
 | `SMAOffsetProtectOptV1_1` | `not_run` | - | `-` |
 | `SMAOffsetProtectOptV1_kkeue_20210619` | `measured` | 180 | `sha256_dbdab5fe5b8283037a8a34d33275c45ef63a61608292fad7c3930538a9efa665` |
 
-## `sha256_427f3a8e190fbd262c8a613406a269024effab1671b5913ce5f20e1d51a4409c` - confirmed_same_trades
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `MyStratV1` | `measured` | 542 | `sha256_3dcade4d19a21950f07bc4be313981dd6f8967b534b7e4085da2a3d4453374f9` |
-| `NostalgiaForInfinityV7` | `measured` | 542 | `sha256_3dcade4d19a21950f07bc4be313981dd6f8967b534b7e4085da2a3d4453374f9` |
-
 ## `sha256_468dc5afd517a8d34d12447ecb3aa0b3244dff6ee322510df7596b7d0fd217ef` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Trade hash |
@@ -204,6 +197,13 @@ additionally means two or more canonical full backtests share one trade hash.
 | `MACDStrategyETC` | `measured` | 8682 | `sha256_21da8546510190d88cd169b7958b07f43524796dca1220d773b95f9f0086e6c3` |
 | `MACDStrategySOL` | `measured` | 1744 | `sha256_2398410a02d36f23fbc6a53d993df3ffe92db6b02afeacfc5ce2efa66ce524cb` |
 | `MACDStrategyXRP` | `measured` | 4147 | `sha256_f574f818e9184c5505af31dd4e2a543f932920b9addb22439680dae77102c37f` |
+
+## `sha256_4b0da0ede8b47a94e6f589553517e9d1b2c3194e5ce062b266f0d31ac8f0d438` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Trade hash |
+|---|---|---:|---|
+| `Cluc5mDCA` | `not_run` | - | `-` |
+| `ClucHAnix_5m` | `measured` | 2288 | `sha256_c85f3537335d7aef47f01b8f7c91d9006b7089c097092ba57b703982fc09af35` |
 
 ## `sha256_59259dd314c3b27e2091698c80f59241c4970a48ed8016f77d9352f3567dcfa9` - code_equivalent_only
 
@@ -243,13 +243,6 @@ additionally means two or more canonical full backtests share one trade hash.
 | `Schism4` | `measured` | 7932 | `sha256_8bdb31e7dee0a87d4e24663ef0db4acd41ea81af388c13a53f02060be914dff5` |
 | `Schism4_BTC` | `not_run` | - | `-` |
 | `Schism4_ETH` | `not_run` | - | `-` |
-
-## `sha256_764defd3dd4319a8ccadb18c8fdc98a5a95cd0cedb9be6a75d2638ec8b05c05d` - code_equivalent_only
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `ClucDCA` | `not_run` | - | `-` |
-| `ClucHAnix` | `oom_confirmed` | - | `-` |
 
 ## `sha256_7bd5a70b718e03ad86334c76dde9c1f3f07b85273360f8ee68f04debbf71bb0b` - code_equivalent_only
 
@@ -331,13 +324,6 @@ additionally means two or more canonical full backtests share one trade hash.
 | `BBRSITV1` | `not_run` | - | `-` |
 | `BBRSITV2` | `not_run` | - | `-` |
 | `BBRSITV3` | `not_run` | - | `-` |
-
-## `sha256_a180ea20e36bd86c4a3f8beafa2260018a16a82adb18a456aa1ca0c90c683cff` - code_equivalent_only
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `Combined_NFIv7_SMA_Rallipanos_20210707` | `oom_confirmed` | - | `-` |
-| `NostalgiaForInfinityV7_SMA` | `measured` | 722 | `sha256_85dce6cada742b6e1768f59e0daf70df041423f4e4a3f2cd9a21a3a4a5ae5145` |
 
 ## `sha256_a21feed3d0e91cd1051481e7598efb2f8a83876ae01a83bed3205a6ddddfbc10` - code_equivalent_only
 

@@ -1108,10 +1108,6 @@
       "assumed_market_regime": "bull_trend",
       "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"
     },
-    "Combined_NFIv7_SMA_Rallipanos_20210707": {
-      "assumed_market_regime": "bull_trend",
-      "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"
-    },
     "ComboHold": {
       "assumed_market_regime": "bull_trend;range_choppy;range_quiet",
       "assumed_market_regime_evidence": "logic(none) undecided, type(mean_reversion,momentum,trend_following); direction(long_only): bear excluded"
@@ -2695,10 +2691,6 @@
     "MultiTargetRegressorTestStrategy": {
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "MyStratV1": {
-      "assumed_market_regime": "bull_trend",
-      "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"
     },
     "MyStrategyNew10": {
       "assumed_market_regime": "",
