@@ -12999,84 +12999,116 @@
       "why": "assignment destination is read-only"
     },
     "NNTC_adx2_LSTM": {
+      "archive": "user_data/profile_smoke/NNTC_adx2_LSTM-170f9693-smoke_20200301_20200401-b4807b77-2026-09-16_07-29-31.zip",
+      "archive_sha256": "sha256_b08a7796fd978a2aa4077a9e2b85460e930320ed95549a5629217e74ac6222a3",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_adx2_LSTM-170f9693-smoke_20200301_20200401-b4807b77-2026-09-16_07-29-31.zip",
+          "archive_sha256": "sha256_b08a7796fd978a2aa4077a9e2b85460e930320ed95549a5629217e74ac6222a3",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_adx2_LSTM-170f9693-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 12.0,
+          "config_overrides": {},
+          "elapsed_s": 54.2,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_adx2_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_adx2_LSTM-170f9693-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 169,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 169,
+          "trades_sha256": "sha256_256d39282c7944e3f9741f7b111b7af2e19d96e894b913c1fd0145938c74f759"
         }
       ],
       "canonical_sha256": "sha256_31c88bd9200f59e3034913aca73627108d8882cf82366e4abc78e377289c5ef8",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_adx2_LSTM-170f9693-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 12.0,
+      "config_overrides": {},
+      "elapsed_s": 54.2,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_adx2_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_adx2_LSTM-170f9693-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 169,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 169,
+      "trades_sha256": "sha256_256d39282c7944e3f9741f7b111b7af2e19d96e894b913c1fd0145938c74f759"
     },
     "NNTC_adx3_LSTM": {
+      "archive": "user_data/profile_smoke/NNTC_adx3_LSTM-87b26844-smoke_20200301_20200401-b4807b77-2026-09-16_07-31-43.zip",
+      "archive_sha256": "sha256_a42d99b8fa592ccab4c0da0799e808e860dd2d0cd06abbc3cecfd04ede858f4f",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_adx3_LSTM-87b26844-smoke_20200301_20200401-b4807b77-2026-09-16_07-31-43.zip",
+          "archive_sha256": "sha256_a42d99b8fa592ccab4c0da0799e808e860dd2d0cd06abbc3cecfd04ede858f4f",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_adx3_LSTM-87b26844-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 11.9,
+          "config_overrides": {},
+          "elapsed_s": 131.5,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_adx3_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_adx3_LSTM-87b26844-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 1117,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 1117,
+          "trades_sha256": "sha256_cc3bc06fda73624d0d70ab077cee7ab494358b5f684b94799d15303eeb65bfe2"
         }
       ],
       "canonical_sha256": "sha256_5aa5dd409b8ca6f0f2f46abcd78bb0c5759632311015c3636e16dcac4fd46a20",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_adx3_LSTM-87b26844-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 11.9,
+      "config_overrides": {},
+      "elapsed_s": 131.5,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_adx3_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_adx3_LSTM-87b26844-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 1117,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 1117,
+      "trades_sha256": "sha256_cc3bc06fda73624d0d70ab077cee7ab494358b5f684b94799d15303eeb65bfe2"
     },
     "NNTC_adx_LSTM": {
       "attempted_timeranges": [
@@ -13087,156 +13119,206 @@
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_adx_LSTM-fce42341-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 12.9,
+          "elapsed_s": 14.7,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_adx_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_adx_LSTM-fce42341-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "why": "'Variable' object has no attribute '_distribute_strategy'"
         }
       ],
       "canonical_sha256": "sha256_643111ee8e61545e792fe1b6fa8212b2c9bbbf5d9e992d6928224b1a78379383",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_adx_LSTM-fce42341-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 12.9,
+      "elapsed_s": 14.7,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_adx_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_adx_LSTM-fce42341-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "why": "'Variable' object has no attribute '_distribute_strategy'"
     },
     "NNTC_all_LSTM": {
+      "archive": "user_data/profile_smoke/NNTC_all_LSTM-0b824419-smoke_20200301_20200401-b4807b77-2026-09-16_07-34-17.zip",
+      "archive_sha256": "sha256_2e303f27e215b3cdfa3668d6d5b5fd5a1f179e156b3fe1308178351e0b0e7bd5",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_all_LSTM-0b824419-smoke_20200301_20200401-b4807b77-2026-09-16_07-34-17.zip",
+          "archive_sha256": "sha256_2e303f27e215b3cdfa3668d6d5b5fd5a1f179e156b3fe1308178351e0b0e7bd5",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_all_LSTM-0b824419-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 11.8,
+          "config_overrides": {},
+          "elapsed_s": 139.2,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_all_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_all_LSTM-0b824419-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 1640,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 1640,
+          "trades_sha256": "sha256_a7621bf4e7b16651d82e691c6716fec08e922c9ac9b792acbefd6575861d9cdd"
         }
       ],
       "canonical_sha256": "sha256_2a7146b7ebd518a6028cb1b4944d2572b770fbbb6ec423524c0125853fe17523",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_all_LSTM-0b824419-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 11.8,
+      "config_overrides": {},
+      "elapsed_s": 139.2,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_all_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_all_LSTM-0b824419-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 1640,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 1640,
+      "trades_sha256": "sha256_a7621bf4e7b16651d82e691c6716fec08e922c9ac9b792acbefd6575861d9cdd"
     },
     "NNTC_aroon_LSTM": {
+      "archive": "user_data/profile_smoke/NNTC_aroon_LSTM-793afcdc-smoke_20200301_20200401-b4807b77-2026-09-16_07-35-59.zip",
+      "archive_sha256": "sha256_77f41b9048b48c3d32ad4d1c35ba0aea31bb3c26e1e49f9fb63d352b9f7cac85",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_aroon_LSTM-793afcdc-smoke_20200301_20200401-b4807b77-2026-09-16_07-35-59.zip",
+          "archive_sha256": "sha256_77f41b9048b48c3d32ad4d1c35ba0aea31bb3c26e1e49f9fb63d352b9f7cac85",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_aroon_LSTM-793afcdc-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 12.0,
+          "config_overrides": {},
+          "elapsed_s": 101.6,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_aroon_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_aroon_LSTM-793afcdc-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 24,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 24,
+          "trades_sha256": "sha256_3f657262b294f64b7aebee27bcefa03421b06701780053378d02550fc5189b75"
         }
       ],
       "canonical_sha256": "sha256_10c6eb270b647a369b5dd1a3836889d4521457d04234de435cc786f79d1ae510",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_aroon_LSTM-793afcdc-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 12.0,
+      "config_overrides": {},
+      "elapsed_s": 101.6,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_aroon_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_aroon_LSTM-793afcdc-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 24,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 24,
+      "trades_sha256": "sha256_3f657262b294f64b7aebee27bcefa03421b06701780053378d02550fc5189b75"
     },
     "NNTC_bbw_LSTM": {
+      "archive": "user_data/profile_smoke/NNTC_bbw_LSTM-aa63d2e2-smoke_20200301_20200401-b4807b77-2026-09-16_07-37-49.zip",
+      "archive_sha256": "sha256_3b01e9452135c403bb9b501b71b594fa0c117ccb0d9815cec183f5b14789617e",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_bbw_LSTM-aa63d2e2-smoke_20200301_20200401-b4807b77-2026-09-16_07-37-49.zip",
+          "archive_sha256": "sha256_3b01e9452135c403bb9b501b71b594fa0c117ccb0d9815cec183f5b14789617e",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_bbw_LSTM-aa63d2e2-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 11.8,
+          "config_overrides": {},
+          "elapsed_s": 109.8,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_bbw_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_bbw_LSTM-aa63d2e2-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 880,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 880,
+          "trades_sha256": "sha256_cf4b259a389a11e81fa981967ecc69764c2c3ae19918a12b13a786b2863de076"
         }
       ],
       "canonical_sha256": "sha256_6ee11b2e4635a0f2b70ef860533aaa52d3f87fd09cc1268fb3ea54097d7f384b",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_bbw_LSTM-aa63d2e2-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 11.8,
+      "config_overrides": {},
+      "elapsed_s": 109.8,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_bbw_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_bbw_LSTM-aa63d2e2-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 880,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 880,
+      "trades_sha256": "sha256_cf4b259a389a11e81fa981967ecc69764c2c3ae19918a12b13a786b2863de076"
     },
     "NNTC_bbw_Transformer": {
       "attempted_timeranges": [
@@ -13247,116 +13329,148 @@
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_bbw_Transformer-ac572282-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 12.0,
+          "elapsed_s": 300.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_bbw_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_bbw_Transformer-ac572282-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "status": "timeout",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "why": "timeout after 300 seconds"
         }
       ],
       "canonical_sha256": "sha256_3270e3f5ce915c1546f0ab44739d7dc9cddb6c3a36635f6c2101a39d81004f1e",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_bbw_Transformer-ac572282-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 12.0,
+      "elapsed_s": 300.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_bbw_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_bbw_Transformer-ac572282-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "timeout",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "why": "timeout after 300 seconds"
     },
     "NNTC_dwt2_LSTM": {
+      "archive": "user_data/profile_smoke/NNTC_dwt2_LSTM-7b6fa822-smoke_20200301_20200401-b4807b77-2026-09-16_07-44-44.zip",
+      "archive_sha256": "sha256_16afe006f77ba2d15cda4cc8ae3b30266e670d77c9c17241c921248bebd49148",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_dwt2_LSTM-7b6fa822-smoke_20200301_20200401-b4807b77-2026-09-16_07-44-44.zip",
+          "archive_sha256": "sha256_16afe006f77ba2d15cda4cc8ae3b30266e670d77c9c17241c921248bebd49148",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_dwt2_LSTM-7b6fa822-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 12.3,
+          "config_overrides": {},
+          "elapsed_s": 115.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_dwt2_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_dwt2_LSTM-7b6fa822-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 1336,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 1336,
+          "trades_sha256": "sha256_424524347298d62b6250ffb052591fa320f748196cd8c9134417d0145959aa04"
         }
       ],
       "canonical_sha256": "sha256_47be10774ca7c577786c89f997049dff5c49266d8b47b02000794fa5813cd840",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_dwt2_LSTM-7b6fa822-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 12.3,
+      "config_overrides": {},
+      "elapsed_s": 115.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_dwt2_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_dwt2_LSTM-7b6fa822-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 1336,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 1336,
+      "trades_sha256": "sha256_424524347298d62b6250ffb052591fa320f748196cd8c9134417d0145959aa04"
     },
     "NNTC_dwt_LSTM": {
+      "archive": "user_data/profile_smoke/NNTC_dwt_LSTM-bb3019cd-smoke_20200301_20200401-b4807b77-2026-09-16_07-46-47.zip",
+      "archive_sha256": "sha256_a28ba31a6005fbd557c954d7f5cd5fab7c42a61a7567815f15fa6b5002e6b46a",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_dwt_LSTM-bb3019cd-smoke_20200301_20200401-b4807b77-2026-09-16_07-46-47.zip",
+          "archive_sha256": "sha256_a28ba31a6005fbd557c954d7f5cd5fab7c42a61a7567815f15fa6b5002e6b46a",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_dwt_LSTM-bb3019cd-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 12.0,
+          "config_overrides": {},
+          "elapsed_s": 121.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_dwt_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_dwt_LSTM-bb3019cd-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 654,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 654,
+          "trades_sha256": "sha256_ae415f60d1284e814b51402d9ad687573ea941a226bb0c431fc8378659a95a58"
         }
       ],
       "canonical_sha256": "sha256_fd00de07e19ededa879911f704831583eb5b83a90fd671dcbf234812486f9cb6",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_dwt_LSTM-bb3019cd-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 12.0,
+      "config_overrides": {},
+      "elapsed_s": 121.9,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_dwt_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_dwt_LSTM-bb3019cd-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 654,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 654,
+      "trades_sha256": "sha256_ae415f60d1284e814b51402d9ad687573ea941a226bb0c431fc8378659a95a58"
     },
     "NNTC_fbb_AdditiveAttention": {
       "attempted_timeranges": [
@@ -13397,204 +13511,284 @@
       "why": "assignment destination is read-only"
     },
     "NNTC_fbb_Attention": {
+      "archive": "user_data/profile_smoke/NNTC_fbb_Attention-a7c6ffe0-smoke_20200301_20200401-b4807b77-2026-09-16_07-48-28.zip",
+      "archive_sha256": "sha256_d5c033020049468860f38149e4514f45dad8b49c1924c9a8de1696a66598e3c9",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_fbb_Attention-a7c6ffe0-smoke_20200301_20200401-b4807b77-2026-09-16_07-48-28.zip",
+          "archive_sha256": "sha256_d5c033020049468860f38149e4514f45dad8b49c1924c9a8de1696a66598e3c9",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Attention-a7c6ffe0-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 11.9,
+          "config_overrides": {},
+          "elapsed_s": 101.2,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Attention-a7c6ffe0-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 911,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 911,
+          "trades_sha256": "sha256_44fe584fe50e4151a5cac1ede467cf183947b02a25c2b7059aaa9ba7918a290a"
         }
       ],
       "canonical_sha256": "sha256_0ac5f688520419d05ab07272138a5acef54ec29ecf72c175a5d26d7b881e2072",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Attention-a7c6ffe0-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 11.9,
+      "config_overrides": {},
+      "elapsed_s": 101.2,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Attention-a7c6ffe0-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 911,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 911,
+      "trades_sha256": "sha256_44fe584fe50e4151a5cac1ede467cf183947b02a25c2b7059aaa9ba7918a290a"
     },
     "NNTC_fbb_Ensemble": {
+      "archive": "user_data/profile_smoke/NNTC_fbb_Ensemble-25406b73-smoke_20200301_20200401-b4807b77-2026-09-16_07-50-23.zip",
+      "archive_sha256": "sha256_8c42be5a87af0f50b557d1212bfe398307965de9f3885d381eb5a3f7346903d4",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_fbb_Ensemble-25406b73-smoke_20200301_20200401-b4807b77-2026-09-16_07-50-23.zip",
+          "archive_sha256": "sha256_8c42be5a87af0f50b557d1212bfe398307965de9f3885d381eb5a3f7346903d4",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Ensemble-25406b73-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 12.0,
+          "config_overrides": {},
+          "elapsed_s": 114.6,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Ensemble-25406b73-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 839,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 839,
+          "trades_sha256": "sha256_13b15267a26f4e39d72fa02bdf5a817d525f137562890e8bbb601393f63650f2"
         }
       ],
       "canonical_sha256": "sha256_0b89ed6b6e96bc41d922d46b94eab43c083b740d09e25b3517b96d1deb1282e4",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Ensemble-25406b73-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 12.0,
+      "config_overrides": {},
+      "elapsed_s": 114.6,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Ensemble-25406b73-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 839,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 839,
+      "trades_sha256": "sha256_13b15267a26f4e39d72fa02bdf5a817d525f137562890e8bbb601393f63650f2"
     },
     "NNTC_fbb_GRU": {
+      "archive": "user_data/profile_smoke/NNTC_fbb_GRU-ce8aa679-smoke_20200301_20200401-b4807b77-2026-09-16_07-51-33.zip",
+      "archive_sha256": "sha256_eb89c48e117f3dfb4641b1bebfaf491fc95f9d97bcfd5013935c0572b5cf7c11",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_fbb_GRU-ce8aa679-smoke_20200301_20200401-b4807b77-2026-09-16_07-51-33.zip",
+          "archive_sha256": "sha256_eb89c48e117f3dfb4641b1bebfaf491fc95f9d97bcfd5013935c0572b5cf7c11",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_GRU-ce8aa679-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 12.1,
+          "config_overrides": {},
+          "elapsed_s": 70.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_GRU-ce8aa679-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 579,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 579,
+          "trades_sha256": "sha256_2b9ba6b09d6d4fc603db9da1cd74314b4991cb9a110d0f5158889104fa13d52e"
         }
       ],
       "canonical_sha256": "sha256_0aebff36f1e2f1b2f46b695e1f0ba5fdebc7c06b26631f7e1e4ede5fee851b33",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_GRU-ce8aa679-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 12.1,
+      "config_overrides": {},
+      "elapsed_s": 70.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_GRU-ce8aa679-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 579,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 579,
+      "trades_sha256": "sha256_2b9ba6b09d6d4fc603db9da1cd74314b4991cb9a110d0f5158889104fa13d52e"
     },
     "NNTC_fbb_LSTM": {
+      "archive": "user_data/profile_smoke/NNTC_fbb_LSTM-e7a95739-smoke_20200301_20200401-b4807b77-2026-09-16_07-53-19.zip",
+      "archive_sha256": "sha256_9bf39e367e5c8ce5fb991ca31119c0fc38a5ad379e04b950df641bac94c8d408",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_fbb_LSTM-e7a95739-smoke_20200301_20200401-b4807b77-2026-09-16_07-53-19.zip",
+          "archive_sha256": "sha256_9bf39e367e5c8ce5fb991ca31119c0fc38a5ad379e04b950df641bac94c8d408",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_LSTM-e7a95739-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 12.0,
+          "config_overrides": {},
+          "elapsed_s": 105.7,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_LSTM-e7a95739-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 1132,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 1132,
+          "trades_sha256": "sha256_739524b1265001e204a7b91256bf6f0403033dd26effe4ca32a01b94f9d0873b"
         }
       ],
       "canonical_sha256": "sha256_4de180ca7c6138c5189cf2371ebddd0a1bf6934dc28edf3cc9c1250dc60dae71",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_LSTM-e7a95739-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 12.0,
+      "config_overrides": {},
+      "elapsed_s": 105.7,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_LSTM-e7a95739-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 1132,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 1132,
+      "trades_sha256": "sha256_739524b1265001e204a7b91256bf6f0403033dd26effe4ca32a01b94f9d0873b"
     },
     "NNTC_fbb_Multihead": {
+      "archive": "user_data/profile_smoke/NNTC_fbb_Multihead-73c19268-smoke_20200301_20200401-b4807b77-2026-09-16_07-54-33.zip",
+      "archive_sha256": "sha256_b849db061016f0c47b7363f21c24f41165c1e67cd8b4541efb90e984b029bd54",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_fbb_Multihead-73c19268-smoke_20200301_20200401-b4807b77-2026-09-16_07-54-33.zip",
+          "archive_sha256": "sha256_b849db061016f0c47b7363f21c24f41165c1e67cd8b4541efb90e984b029bd54",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Multihead-73c19268-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 12.4,
+          "config_overrides": {},
+          "elapsed_s": 74.2,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Multihead-73c19268-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 1254,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 1254,
+          "trades_sha256": "sha256_f30aba4f3cee85cc677564b0c9303364e70b3663b32db49f9c99894f4a1e1034"
         }
       ],
       "canonical_sha256": "sha256_e4c57ba8c6283969c717965c66545c9d2df33ff65452d458664b59d728259c67",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Multihead-73c19268-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 12.4,
+      "config_overrides": {},
+      "elapsed_s": 74.2,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Multihead-73c19268-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 1254,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 1254,
+      "trades_sha256": "sha256_f30aba4f3cee85cc677564b0c9303364e70b3663b32db49f9c99894f4a1e1034"
     },
     "NNTC_fbb_Transformer": {
       "attempted_timeranges": [
@@ -13605,276 +13799,372 @@
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Transformer-220d2b87-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 12.0,
+          "elapsed_s": 300.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Transformer-220d2b87-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "status": "timeout",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "why": "timeout after 300 seconds"
         }
       ],
       "canonical_sha256": "sha256_1cc66547fa5d6a2c5ae5639eec8aa10a7ff09fefe166580beed5fa0bf2527632",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Transformer-220d2b87-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 12.0,
+      "elapsed_s": 300.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Transformer-220d2b87-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "timeout",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "why": "timeout after 300 seconds"
     },
     "NNTC_fbb_Wavenet": {
+      "archive": "user_data/profile_smoke/NNTC_fbb_Wavenet-e69b4818-smoke_20200301_20200401-b4807b77-2026-09-16_08-00-39.zip",
+      "archive_sha256": "sha256_d1437af5d37fab83ed3edbaa477b3c021e35d731e82e59702604edcde6764e58",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_fbb_Wavenet-e69b4818-smoke_20200301_20200401-b4807b77-2026-09-16_08-00-39.zip",
+          "archive_sha256": "sha256_d1437af5d37fab83ed3edbaa477b3c021e35d731e82e59702604edcde6764e58",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Wavenet-e69b4818-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 11.9,
+          "config_overrides": {},
+          "elapsed_s": 65.5,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Wavenet-e69b4818-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 1141,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 1141,
+          "trades_sha256": "sha256_9452de9d655100db4cc5374b229866c5c1cb54c2d13b345d3d0c9904c997d1f2"
         }
       ],
       "canonical_sha256": "sha256_73c436b1c3d9f570e8a4ae1eb6aa73143e4a7bf11ec263926c90f17897f29280",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_fbb_Wavenet-e69b4818-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 11.9,
+      "config_overrides": {},
+      "elapsed_s": 65.5,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fbb_Wavenet --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fbb_Wavenet-e69b4818-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 1141,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 1141,
+      "trades_sha256": "sha256_9452de9d655100db4cc5374b229866c5c1cb54c2d13b345d3d0c9904c997d1f2"
     },
     "NNTC_fwr_LSTM": {
+      "archive": "user_data/profile_smoke/NNTC_fwr_LSTM-e5433bcd-smoke_20200301_20200401-b4807b77-2026-09-16_08-02-47.zip",
+      "archive_sha256": "sha256_f41f218ac58de17edf7da916bd89326110962e0250d115a920217f7cdb903fe5",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_fwr_LSTM-e5433bcd-smoke_20200301_20200401-b4807b77-2026-09-16_08-02-47.zip",
+          "archive_sha256": "sha256_f41f218ac58de17edf7da916bd89326110962e0250d115a920217f7cdb903fe5",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_fwr_LSTM-e5433bcd-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 12.3,
+          "config_overrides": {},
+          "elapsed_s": 127.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fwr_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fwr_LSTM-e5433bcd-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 1239,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 1239,
+          "trades_sha256": "sha256_89b1d06985c7d3a37ed57b61c33078befef41ee07223f10f3f58a12638697ef0"
         }
       ],
       "canonical_sha256": "sha256_0d6f510c973cf3926e2ed849c962537caa382d365659fedefb95500a54171270",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_fwr_LSTM-e5433bcd-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 12.3,
+      "config_overrides": {},
+      "elapsed_s": 127.9,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_fwr_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_fwr_LSTM-e5433bcd-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 1239,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 1239,
+      "trades_sha256": "sha256_89b1d06985c7d3a37ed57b61c33078befef41ee07223f10f3f58a12638697ef0"
     },
     "NNTC_highlow_Ensemble": {
+      "archive": "user_data/profile_smoke/NNTC_highlow_Ensemble-73a07d50-smoke_20200301_20200401-b4807b77-2026-09-16_08-04-51.zip",
+      "archive_sha256": "sha256_b6a8e0e11210ad8c61dfa7187acfaebf32c551ed036d9aedb2fe0a2077176f6d",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_highlow_Ensemble-73a07d50-smoke_20200301_20200401-b4807b77-2026-09-16_08-04-51.zip",
+          "archive_sha256": "sha256_b6a8e0e11210ad8c61dfa7187acfaebf32c551ed036d9aedb2fe0a2077176f6d",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_highlow_Ensemble-73a07d50-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 11.8,
+          "config_overrides": {},
+          "elapsed_s": 124.1,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_highlow_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_highlow_Ensemble-73a07d50-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 664,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 664,
+          "trades_sha256": "sha256_bdfeb30e97c7a111ebeb4758e93f78e2de4682ffa42a103698c169eaf9062799"
         }
       ],
       "canonical_sha256": "sha256_19fb3dcdc55a538198888320d6086626950012deec0aaa377b7b1b8133d6f224",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_highlow_Ensemble-73a07d50-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 11.8,
+      "config_overrides": {},
+      "elapsed_s": 124.1,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_highlow_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_highlow_Ensemble-73a07d50-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 664,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 664,
+      "trades_sha256": "sha256_bdfeb30e97c7a111ebeb4758e93f78e2de4682ffa42a103698c169eaf9062799"
     },
     "NNTC_highlow_LSTM": {
+      "archive": "user_data/profile_smoke/NNTC_highlow_LSTM-3a252c28-smoke_20200301_20200401-b4807b77-2026-09-16_08-06-38.zip",
+      "archive_sha256": "sha256_323515f4fd3559a4a04e7c24f01b530fd660b88ee0394c16f9dd6d4cffebeaba",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_highlow_LSTM-3a252c28-smoke_20200301_20200401-b4807b77-2026-09-16_08-06-38.zip",
+          "archive_sha256": "sha256_323515f4fd3559a4a04e7c24f01b530fd660b88ee0394c16f9dd6d4cffebeaba",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_highlow_LSTM-3a252c28-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 12.2,
+          "config_overrides": {},
+          "elapsed_s": 106.6,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_highlow_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_highlow_LSTM-3a252c28-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 960,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 960,
+          "trades_sha256": "sha256_7c16741722df2d62d0dd9a14ba4b154f1ec933ca40d3e65ae0709327f830ff9b"
         }
       ],
       "canonical_sha256": "sha256_60740124370fb4d85f8b2bc3cf159f550affe4b8da97b2796df8e93733fc9a37",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_highlow_LSTM-3a252c28-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 12.2,
+      "config_overrides": {},
+      "elapsed_s": 106.6,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_highlow_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_highlow_LSTM-3a252c28-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 960,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 960,
+      "trades_sha256": "sha256_7c16741722df2d62d0dd9a14ba4b154f1ec933ca40d3e65ae0709327f830ff9b"
     },
     "NNTC_jump_Ensemble": {
+      "archive": "user_data/profile_smoke/NNTC_jump_Ensemble-f9064063-smoke_20200301_20200401-b4807b77-2026-09-16_08-09-06.zip",
+      "archive_sha256": "sha256_cf2a3a1e21caf10767a4ea11a4468c52890ccef6e272d8b75e91f2260d6d0e7a",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_jump_Ensemble-f9064063-smoke_20200301_20200401-b4807b77-2026-09-16_08-09-06.zip",
+          "archive_sha256": "sha256_cf2a3a1e21caf10767a4ea11a4468c52890ccef6e272d8b75e91f2260d6d0e7a",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_jump_Ensemble-f9064063-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 11.9,
+          "config_overrides": {},
+          "elapsed_s": 147.8,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_jump_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_jump_Ensemble-f9064063-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 631,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 631,
+          "trades_sha256": "sha256_7540deeb95136acf2de7b2bca3d2c71dc6543f1ccc8c640b8477ae9a9809b08c"
         }
       ],
       "canonical_sha256": "sha256_3590551cbdb09b925873c8a804651de53f2e3ad14ac293ddfbc032837d42536a",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_jump_Ensemble-f9064063-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 11.9,
+      "config_overrides": {},
+      "elapsed_s": 147.8,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_jump_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_jump_Ensemble-f9064063-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 631,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 631,
+      "trades_sha256": "sha256_7540deeb95136acf2de7b2bca3d2c71dc6543f1ccc8c640b8477ae9a9809b08c"
     },
     "NNTC_jump_LSTM": {
+      "archive": "user_data/profile_smoke/NNTC_jump_LSTM-7fc9790d-smoke_20200301_20200401-b4807b77-2026-09-16_08-11-16.zip",
+      "archive_sha256": "sha256_a390e303154ef81b1fa72463cad3e024c852076efded5f67ac419d2afd4c3ba4",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_jump_LSTM-7fc9790d-smoke_20200301_20200401-b4807b77-2026-09-16_08-11-16.zip",
+          "archive_sha256": "sha256_a390e303154ef81b1fa72463cad3e024c852076efded5f67ac419d2afd4c3ba4",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_jump_LSTM-7fc9790d-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 12.4,
+          "config_overrides": {},
+          "elapsed_s": 129.7,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_jump_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_jump_LSTM-7fc9790d-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 828,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 828,
+          "trades_sha256": "sha256_78e7c1959154410f1525ae84d85e798270fbb88651e51968aa790be55964102b"
         }
       ],
       "canonical_sha256": "sha256_d7a88fbf3a9e9c8bb44818cf5166cf27c8ca264fa5741e8958718208f5e0cae2",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_jump_LSTM-7fc9790d-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 12.4,
+      "config_overrides": {},
+      "elapsed_s": 129.7,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_jump_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_jump_LSTM-7fc9790d-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 828,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 828,
+      "trades_sha256": "sha256_78e7c1959154410f1525ae84d85e798270fbb88651e51968aa790be55964102b"
     },
     "NNTC_jump_Transformer": {
       "attempted_timeranges": [
@@ -13885,316 +14175,428 @@
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_jump_Transformer-d72030ec-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 11.5,
+          "elapsed_s": 300.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_jump_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_jump_Transformer-d72030ec-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "status": "timeout",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "why": "timeout after 300 seconds"
         }
       ],
       "canonical_sha256": "sha256_ec5c0834b7cce1bdb944abcbff619d44c96ddaed38086be5a91ffb9374b9b078",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_jump_Transformer-d72030ec-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 11.5,
+      "elapsed_s": 300.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_jump_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_jump_Transformer-d72030ec-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "timeout",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "why": "timeout after 300 seconds"
     },
     "NNTC_macd2_Attention": {
+      "archive": "user_data/profile_smoke/NNTC_macd2_Attention-80614ccc-smoke_20200301_20200401-b4807b77-2026-09-16_08-18-09.zip",
+      "archive_sha256": "sha256_4b8ef329b7269a52a15e91519ac9ba42fa36127417f0cb6044a8a18f699906af",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_macd2_Attention-80614ccc-smoke_20200301_20200401-b4807b77-2026-09-16_08-18-09.zip",
+          "archive_sha256": "sha256_4b8ef329b7269a52a15e91519ac9ba42fa36127417f0cb6044a8a18f699906af",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_macd2_Attention-80614ccc-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.1,
+          "config_overrides": {},
+          "elapsed_s": 112.4,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd2_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd2_Attention-80614ccc-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 1104,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 1104,
+          "trades_sha256": "sha256_af74baec4205f00d65315d28186a564da9a149d3d43bdca391ceb0b798d53e3d"
         }
       ],
       "canonical_sha256": "sha256_7afb211cb8949fd00c9cd93cf6a93842b30aaf123a4ee1f1ac09f74567d527d0",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_macd2_Attention-80614ccc-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.1,
+      "config_overrides": {},
+      "elapsed_s": 112.4,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd2_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd2_Attention-80614ccc-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 1104,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 1104,
+      "trades_sha256": "sha256_af74baec4205f00d65315d28186a564da9a149d3d43bdca391ceb0b798d53e3d"
     },
     "NNTC_macd3_LSTM": {
+      "archive": "user_data/profile_smoke/NNTC_macd3_LSTM-b83622e3-smoke_20200301_20200401-b4807b77-2026-09-16_08-20-41.zip",
+      "archive_sha256": "sha256_7ad8cbc232bd006908654cef55a31a811b993eb36187ebc23d800c19f2a68cce",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_macd3_LSTM-b83622e3-smoke_20200301_20200401-b4807b77-2026-09-16_08-20-41.zip",
+          "archive_sha256": "sha256_7ad8cbc232bd006908654cef55a31a811b993eb36187ebc23d800c19f2a68cce",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_macd3_LSTM-b83622e3-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.2,
+          "config_overrides": {},
+          "elapsed_s": 152.6,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd3_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd3_LSTM-b83622e3-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 1607,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 1607,
+          "trades_sha256": "sha256_86733d1736df4e02ecc96fd4bc4b116e2024f4ae5af74d29046a58f23c04952a"
         }
       ],
       "canonical_sha256": "sha256_2ded17032f5de97d500a347f395cd27613d37c714b47ef7a89034b85b19e7a22",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_macd3_LSTM-b83622e3-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.2,
+      "config_overrides": {},
+      "elapsed_s": 152.6,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd3_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd3_LSTM-b83622e3-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 1607,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 1607,
+      "trades_sha256": "sha256_86733d1736df4e02ecc96fd4bc4b116e2024f4ae5af74d29046a58f23c04952a"
     },
     "NNTC_macd_Attention": {
+      "archive": "user_data/profile_smoke/NNTC_macd_Attention-96cd374d-smoke_20200301_20200401-b4807b77-2026-09-16_08-22-22.zip",
+      "archive_sha256": "sha256_76814b7911d9ccfaf23a049ff6a1a08ec475b26ac9c093f53ae7d005b59e0902",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_macd_Attention-96cd374d-smoke_20200301_20200401-b4807b77-2026-09-16_08-22-22.zip",
+          "archive_sha256": "sha256_76814b7911d9ccfaf23a049ff6a1a08ec475b26ac9c093f53ae7d005b59e0902",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Attention-96cd374d-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.1,
+          "config_overrides": {},
+          "elapsed_s": 100.3,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Attention-96cd374d-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 239,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 239,
+          "trades_sha256": "sha256_b2026d88a0d128cbbb20ed2643e6931a042ed64e88740ed0fd884d6f04f31248"
         }
       ],
       "canonical_sha256": "sha256_f2a460f769115e5d488816846247d7fecff8ab654fc4ed7a50884b16c991fd7d",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Attention-96cd374d-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.1,
+      "config_overrides": {},
+      "elapsed_s": 100.3,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Attention --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Attention-96cd374d-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 239,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 239,
+      "trades_sha256": "sha256_b2026d88a0d128cbbb20ed2643e6931a042ed64e88740ed0fd884d6f04f31248"
     },
     "NNTC_macd_Ensemble": {
+      "archive": "user_data/profile_smoke/NNTC_macd_Ensemble-84b4a9b2-smoke_20200301_20200401-b4807b77-2026-09-16_08-24-36.zip",
+      "archive_sha256": "sha256_d5e54e014e0c32eb4935415961ab0ab6562d2d7dc891880e7e7d5b50d859559e",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_macd_Ensemble-84b4a9b2-smoke_20200301_20200401-b4807b77-2026-09-16_08-24-36.zip",
+          "archive_sha256": "sha256_d5e54e014e0c32eb4935415961ab0ab6562d2d7dc891880e7e7d5b50d859559e",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Ensemble-84b4a9b2-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.0,
+          "config_overrides": {},
+          "elapsed_s": 133.9,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Ensemble-84b4a9b2-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 355,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 355,
+          "trades_sha256": "sha256_fbc3052e4f356f0322a6bbfb7048d91bab25504849b1d3d88eff8cc1712d8ffd"
         }
       ],
       "canonical_sha256": "sha256_f0dbdc3cb5270521621d4938216d3ba5f928ab899b9e2eddb1544724b9c9898f",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Ensemble-84b4a9b2-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.0,
+      "config_overrides": {},
+      "elapsed_s": 133.9,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Ensemble --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Ensemble-84b4a9b2-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 355,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 355,
+      "trades_sha256": "sha256_fbc3052e4f356f0322a6bbfb7048d91bab25504849b1d3d88eff8cc1712d8ffd"
     },
     "NNTC_macd_GRU": {
+      "archive": "user_data/profile_smoke/NNTC_macd_GRU-b966f2ef-smoke_20200301_20200401-b4807b77-2026-09-16_08-25-52.zip",
+      "archive_sha256": "sha256_241db2bf55d0fa13955d364cf39a9e010f78ebd9b1c2a8e538fc046d3e4aabdc",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_macd_GRU-b966f2ef-smoke_20200301_20200401-b4807b77-2026-09-16_08-25-52.zip",
+          "archive_sha256": "sha256_241db2bf55d0fa13955d364cf39a9e010f78ebd9b1c2a8e538fc046d3e4aabdc",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_macd_GRU-b966f2ef-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.0,
+          "config_overrides": {},
+          "elapsed_s": 75.7,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_GRU-b966f2ef-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 225,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 225,
+          "trades_sha256": "sha256_7402b8f38932e460fe6de35b6edcb46283c426639ea5ab93381c2d7dd7ae6e3b"
         }
       ],
       "canonical_sha256": "sha256_ceee8b0f860bbb23d9a0006e47bf57f4081b9b06bed5732a9c66c486f5e6eb0f",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_macd_GRU-b966f2ef-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.0,
+      "config_overrides": {},
+      "elapsed_s": 75.7,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_GRU --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_GRU-b966f2ef-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 225,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 225,
+      "trades_sha256": "sha256_7402b8f38932e460fe6de35b6edcb46283c426639ea5ab93381c2d7dd7ae6e3b"
     },
     "NNTC_macd_LSTM": {
+      "archive": "user_data/profile_smoke/NNTC_macd_LSTM-783f4316-smoke_20200301_20200401-b4807b77-2026-09-16_08-27-50.zip",
+      "archive_sha256": "sha256_38cc41b9b27bf32cbed117b47f5870b940f33d2fa42f9ca8252968fdaf1ff021",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_macd_LSTM-783f4316-smoke_20200301_20200401-b4807b77-2026-09-16_08-27-50.zip",
+          "archive_sha256": "sha256_38cc41b9b27bf32cbed117b47f5870b940f33d2fa42f9ca8252968fdaf1ff021",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_macd_LSTM-783f4316-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.1,
+          "config_overrides": {},
+          "elapsed_s": 118.4,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_LSTM-783f4316-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 284,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 284,
+          "trades_sha256": "sha256_c9ba38101a3a8c68d55fbef76d7761091441fed48655b7cce486ccf9f7a193da"
         }
       ],
       "canonical_sha256": "sha256_13ab7e6a9a98949187456c8c91acc1b53a24a2c9f195ad609aebab8f721f0b85",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_macd_LSTM-783f4316-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.1,
+      "config_overrides": {},
+      "elapsed_s": 118.4,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_LSTM-783f4316-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 284,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 284,
+      "trades_sha256": "sha256_c9ba38101a3a8c68d55fbef76d7761091441fed48655b7cce486ccf9f7a193da"
     },
     "NNTC_macd_Multihead": {
+      "archive": "user_data/profile_smoke/NNTC_macd_Multihead-c21bbc27-smoke_20200301_20200401-b4807b77-2026-09-16_08-28-57.zip",
+      "archive_sha256": "sha256_fd210f45e80fc985b0239291e87677a8317da54343fe0a91f46732a6082540ac",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_macd_Multihead-c21bbc27-smoke_20200301_20200401-b4807b77-2026-09-16_08-28-57.zip",
+          "archive_sha256": "sha256_fd210f45e80fc985b0239291e87677a8317da54343fe0a91f46732a6082540ac",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Multihead-c21bbc27-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.1,
+          "config_overrides": {},
+          "elapsed_s": 66.8,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Multihead-c21bbc27-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 1104,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 1104,
+          "trades_sha256": "sha256_3b008cb4011e800414362cb6e6908f02c9b66bf9e3df794b4d27c92cc922b3db"
         }
       ],
       "canonical_sha256": "sha256_bc5a4dd907c510b81a7cb9761516f1aabb685f12b6d4c53262eb268cc3b6c139",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Multihead-c21bbc27-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.1,
+      "config_overrides": {},
+      "elapsed_s": 66.8,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Multihead --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Multihead-c21bbc27-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 1104,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 1104,
+      "trades_sha256": "sha256_3b008cb4011e800414362cb6e6908f02c9b66bf9e3df794b4d27c92cc922b3db"
     },
     "NNTC_macd_TCN": {
       "attempted_timeranges": [
@@ -14205,36 +14607,38 @@
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
           "debug_log": "user_data/profile_smoke_logs/NNTC_macd_TCN-6f0a4ec3-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.1,
+          "elapsed_s": 11.5,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_TCN-6f0a4ec3-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
           "status": "failed",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "why": "'tuple' object has no attribute 'as_list'"
         }
       ],
       "canonical_sha256": "sha256_2b6201679bc470e117d3a0fb0a6479c0a166a1302d68b568777f49a25ada8ee5",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
       "debug_log": "user_data/profile_smoke_logs/NNTC_macd_TCN-6f0a4ec3-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.1,
+      "elapsed_s": 11.5,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_TCN --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_TCN-6f0a4ec3-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
       "status": "failed",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "why": "'tuple' object has no attribute 'as_list'"
     },
     "NNTC_macd_Transformer": {
       "attempted_timeranges": [
@@ -14245,116 +14649,148 @@
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Transformer-8da0fee1-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.0,
+          "elapsed_s": 300.0,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Transformer-8da0fee1-smoke_20200301_20200401-b4807b77 --cache none",
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "status": "timeout",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "why": "timeout after 300 seconds"
         }
       ],
       "canonical_sha256": "sha256_4e5ccc8a976780c48f1bbebdd0d07fdc45c90416ace14a1fbee5395bc8c47f4a",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_macd_Transformer-8da0fee1-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.0,
+      "elapsed_s": 300.0,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_macd_Transformer --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_macd_Transformer-8da0fee1-smoke_20200301_20200401-b4807b77 --cache none",
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "timeout",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "why": "timeout after 300 seconds"
     },
     "NNTC_mfi_LSTM": {
+      "archive": "user_data/profile_smoke/NNTC_mfi_LSTM-781b3e20-smoke_20200301_20200401-b4807b77-2026-09-16_08-35-39.zip",
+      "archive_sha256": "sha256_2bd70344e3fd5b3b7d52fab9a96c155e93057753a9de6aa8785e1980953e6c10",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_mfi_LSTM-781b3e20-smoke_20200301_20200401-b4807b77-2026-09-16_08-35-39.zip",
+          "archive_sha256": "sha256_2bd70344e3fd5b3b7d52fab9a96c155e93057753a9de6aa8785e1980953e6c10",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_mfi_LSTM-781b3e20-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.1,
+          "config_overrides": {},
+          "elapsed_s": 89.2,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_mfi_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_mfi_LSTM-781b3e20-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 687,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 687,
+          "trades_sha256": "sha256_f60ace109b11099a0549e10a7d9b95d83e835660f8a7394acf7dc039d923dad5"
         }
       ],
       "canonical_sha256": "sha256_323686e1d46ca34e503e5eb2e6f28da07e1cf8a04b81c6d6049e9e71119757d8",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_mfi_LSTM-781b3e20-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.1,
+      "config_overrides": {},
+      "elapsed_s": 89.2,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_mfi_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_mfi_LSTM-781b3e20-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 687,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 687,
+      "trades_sha256": "sha256_f60ace109b11099a0549e10a7d9b95d83e835660f8a7394acf7dc039d923dad5"
     },
     "NNTC_minmax_LSTM": {
+      "archive": "user_data/profile_smoke/NNTC_minmax_LSTM-7e5aa761-smoke_20200301_20200401-b4807b77-2026-09-16_08-37-49.zip",
+      "archive_sha256": "sha256_8ef83874a8dcacbbfadcaa5d818d3217a970095fffaf8e1c70e86567ebd82d04",
+      "artifact_key": "smoke_20200301_20200401",
       "attempted_timeranges": [
         "20200301-20200401"
       ],
       "attempts": [
         {
+          "archive": "user_data/profile_smoke/NNTC_minmax_LSTM-7e5aa761-smoke_20200301_20200401-b4807b77-2026-09-16_08-37-49.zip",
+          "archive_sha256": "sha256_8ef83874a8dcacbbfadcaa5d818d3217a970095fffaf8e1c70e86567ebd82d04",
+          "artifact_key": "smoke_20200301_20200401",
           "class1_rules": [
             "restore_copied_local_module",
             "tf_keras_saving_reexport",
-            "tf_keras_backend_set_session_noop"
+            "tf_keras_backend_set_session_noop",
+            "nntc_writable_labels"
           ],
-          "debug_log": "user_data/profile_smoke_logs/NNTC_minmax_LSTM-7e5aa761-smoke_20200301_20200401-b4807b77.log",
-          "elapsed_s": 10.1,
+          "config_overrides": {},
+          "elapsed_s": 98.6,
           "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_minmax_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_minmax_LSTM-7e5aa761-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 1033,
           "mode": "spot",
           "run_profile": "spot_long",
-          "status": "failed",
+          "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "runtime_id": "native_unversioned",
+          "short_trades": 0,
+          "status": "measured",
           "timerange": "20200301-20200401",
-          "why": "assignment destination is read-only"
+          "trades": 1033,
+          "trades_sha256": "sha256_f7fadef5b2bffd2801227a4fcc74acc33650c2298726bffed56e9b168432da58"
         }
       ],
       "canonical_sha256": "sha256_e2f428e6a3ef82d0d2d0345fcf5eb83bd954dfe61e3433af8295e8d626a70449",
       "class1_rules": [
         "restore_copied_local_module",
         "tf_keras_saving_reexport",
-        "tf_keras_backend_set_session_noop"
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels"
       ],
-      "debug_log": "user_data/profile_smoke_logs/NNTC_minmax_LSTM-7e5aa761-smoke_20200301_20200401-b4807b77.log",
-      "elapsed_s": 10.1,
+      "config_overrides": {},
+      "elapsed_s": 98.6,
       "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy NNTC_minmax_LSTM --strategy-path repos/webclinic017_strategies-freqtrade-/NNTC --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/NNTC_minmax_LSTM-7e5aa761-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 1033,
       "mode": "spot",
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
-      "smoke_policy_id": "fixed_1m_3m_1y_until_10_trades_v1",
-      "status": "failed",
+      "short_trades": 0,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
       "timerange": "20200301-20200401",
       "trade_floor": 10,
-      "why": "assignment destination is read-only"
+      "trades": 1033,
+      "trades_sha256": "sha256_f7fadef5b2bffd2801227a4fcc74acc33650c2298726bffed56e9b168432da58"
     },
     "NNTC_nseq_Attention": {
       "attempted_timeranges": [

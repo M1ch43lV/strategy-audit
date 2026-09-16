@@ -1982,3 +1982,112 @@ the way every other timeframe recovery in this project has - left
 blocked rather than guessed, pending a decision on whether that
 inference is acceptable here.
 
+# Phase 14 - NNTC_*'s real bug, a self-inflicted duplicate, and the keithorange timeframe resolved, 2026-09-16
+
+**A duplicate found before it caused any real harm.** The two new
+`patch_class2.py` rules in Phase 13 (`legacy_min_roi_reached_entry_simple`/
+`_pair`) turned out to reinvent an existing, already-selftested runtime
+shim: `repair/compat_signature.py`'s `install_legacy_min_roi_entry_override`
+(rule `legacy_min_roi_reached_entry_override`) names the same four
+strategies in its own docstring - `BinHV27_werkkrew`, `SuperHV27`,
+`Schism`, `Schism-v2` - and `BinHV27_werkkrew` has carried it successfully
+since 2026-09-03 (127 trades on record). The six Phase 13 rows simply never
+had this rule added to their own `PROFILE_CLASS1.json` entries (`rules`
+was absent, not `["legacy_min_roi_reached_entry_override"]`) - the whole
+gap was a missing config line, not a missing capability. Both fixes measure
+identical results where compared directly. The Phase 13 file-overlay rules
+and the `execution_profiles.py` `historical_full` fix are left in place
+(the latter is a real, independently-useful fix regardless of this
+duplication - see Phase 13); whether to remove the now-redundant
+`patch_class2.py` rules in favor of the existing shim is a cleanup decision
+for the owner, not made unilaterally here. Lesson carried forward:
+`grep compat_signature.py`/`PROFILE_CLASS1.json` for the error's own
+distinctive text before writing new repair machinery, not just REGISTER.md.
+
+**NNTC_*'s real bug, found from the existing run log with no rerun
+needed.** `user_data/freqtrade_runs.log.4` already held the full traceback
+for `NNTC_adx2_LSTM`'s "assignment destination is read-only" crash (Phase
+9/10 had only the summarized `PROFILE_SMOKE.json` line). It ends at
+`NNTC.py:635`, `train_models`: `blabels = buys.to_numpy(); ...
+blabels[np.where(slabels > 0)] = 0.0`. Under pandas 3.0's unconditional
+Copy-on-Write, `Series.to_numpy()` can hand back a non-writable view of
+the Series' own buffer rather than a copy - confirmed directly
+(`pd.Series([...]).to_numpy().flags.writeable` is `False` on this
+runtime's pandas 3.0.5, for a plain literal-constructed Series, not only a
+derived one). `slabels` is only ever read afterward; only `blabels` is
+written into. New shim, `nntc_writable_labels`: wraps `StrategyResolver.
+load_strategy`, finds the resolved class's own `train_models` (defined
+once on the shared `NNTC` base class, confirmed not overridden by any of
+the 65 subclasses), and forces `pd.Series.to_numpy(copy=True)` for the
+duration of that one call only. Provably safe in a way the earlier
+`__getitem__` writeback shims are not: `to_numpy(copy=True)` returns
+identical values in the identical dtype, merely guaranteed-writable -
+nothing anywhere could observe or depend on getting a read-only array
+back, so there is no adjacent behaviour this could disturb. Applied to
+all 65 `NNTC_*` rows' `PROFILE_CLASS1.json` entries.
+
+**A second, latent bug surfaced immediately once training could actually
+run: 33 of 65 rows import the wrong sibling copy of `ClassifierKeras.py`.**
+`python_paths` for these rows still pointed at
+`hamidreza07_freqai-strategy/.../_Anomaly` (from the local-modules
+resolution attempt commit `cc13f66` withdrew for an unrelated reason - the
+keras/tensorflow AttributeError that blocked the whole cluster at the
+time, fixed since by Phase 10's compat shims - never re-examined once that
+blocker cleared). That copy's `get_checkpoint_path()` still returns
+`"checkpoint." + self.model_ext` (`.keras`); Keras 3's `ModelCheckpoint(
+save_weights_only=True)` refuses any path not ending `.weights.h5`.
+webclinic017's own `utils/ClassifierKeras.py` - already the corrected,
+verified-complete copy NNPredict_* was standardised on - has the fix
+already. Repointed all 33 affected rows' `python_paths` to it. Confirmed
+directly: `NNTC_adx2_LSTM` 0 -> 168 trades with nothing else changed.
+
+**Verified end to end on the 33-row Group A that had the wrong-copy
+issue.** 27 of 33 now measure real trades (24-1640), one row per
+architecture family for the most part. Four
+`*_Transformer` rows time out at the smoke cascade's 300-second budget -
+plausibly just a slower architecture, not investigated further. Two rows
+hit their own new, distinct, architecture-specific errors, neither related
+to the two bugs just fixed: `NNTC_adx_LSTM` - `'Variable' object has no
+attribute '_distribute_strategy'`; `NNTC_macd_TCN` - `'tuple' object has
+no attribute 'as_list'`. The 32-row Group B (never had the wrong-copy
+symptom - no `restore_copied_local_module` in its rules to begin with) is
+running the same cascade now that the read-only-array bug is fixed for
+every row; results not yet in as this section is written.
+
+**The keithorange timeframe question, resolved.** None of the seven
+`MASlopeStrategy`/`MAStopLossStrategy`/`MATrailingStopLossStrategy`/
+`StopLossStrategy`/`TPActivatingTSLwithInitialTSLStrategy`/
+`TPActivatingTSLwithSLStrategy`/`TrailingStopLossStrategy` rows declare a
+timeframe in their own file. The repo's own `run_custom_order_freqtrade.sh` -
+the launch script named for exactly this custom-order strategy family,
+distinct from `launch_bunch_strategies.sh`'s unrelated strategies - wires
+in `user_data/kraken_live_config.json`, which declares `"timeframe": "1m"`;
+the repo's README independently names Kraken by name as the motivating
+exchange for this exact feature set ("particularly useful for day trading
+on exchanges with limited order types (e.g., Kraken only allows one limit
+sell order...)"). Registered as seven new `MANUAL` entries in
+`evidence/eligibility_timeframe_repair.py`, reading the author's own launch
+command rather than inferring a value across exchanges - selftest still
+passes (19 blocked, 1 recoverable, 18 refused, unchanged, since
+`STRATEGY_STATUS.csv` predates the 269-batch and does not list these seven
+yet; measured directly against `EXECUTION_PROFILES.csv` instead of waiting
+on a full corpus-wide status regeneration).
+
+**Resolving the timeframe uncovered a second, separate blocker: all seven
+time out, even at this route's own established 1800-second budget, not
+just the smoke cascade's shorter one.** Traced, not assumed: `custom_
+stoploss` (called once per open trade per candle in backtesting) reads
+`self.get_dfile_arg(...)` -> `self.order_handler.read_strategy_data()`
+(`file_loading_strategy.py`), a JSON file re-read from disk on every
+single call. At `1m` over even one month across eight pairs that is
+tens of thousands of disk reads for a design built around live trading,
+where the same call happens once per real-world minute, not once per
+simulated candle at full backtest speed. Not a bug to fix - rewriting the
+author's file-backed state handling into an in-memory one would be
+authorship, the same line this project already draws elsewhere - and not
+pursued further with a longer timeout past this route's own established
+budget, consistent with the standing rule that the timeout is not a lever.
+Left as: timeframe question resolved, cause of non-measurement now known
+and different from the original one, still not measurable in this
+runtime.
+

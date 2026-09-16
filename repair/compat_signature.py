@@ -1624,6 +1624,93 @@ def install_populate_indicators_chained_writeback():
     return True
 
 
+NNTC_WRITABLE_LABELS_RULE = "nntc_writable_labels"
+
+
+def install_nntc_writable_labels():
+    """Make `train_models`'s label arrays writable again.
+
+    `NNTC.py` (webclinic017 `NNTC_*` family, 65 rows, shared base class
+    `NNTC(IStrategy)`) crashes training itself, not indicator computation:
+    `blabels = buys.to_numpy(); ... blabels[np.where(slabels > 0)] = 0.0`
+    (`train_models`, line 635) raises `ValueError: assignment destination
+    is read-only`. Confirmed from the existing run log
+    (`user_data/freqtrade_runs.log.4`, no rerun needed) - the full
+    traceback ends at exactly that line, not anywhere in `populate_
+    indicators` or the Keras/TensorFlow layer underneath it. Under pandas
+    3.0's unconditional Copy-on-Write, `Series.to_numpy()` (and `.values`)
+    may hand back a read-only view of the Series' own buffer rather than a
+    copy, when returning a copy is not otherwise required - a `buys`/
+    `sells` Series built earlier in `populate_indicators` is exactly the
+    shape that triggers it. `slabels` is only ever read afterward
+    (`np.where(slabels > 0)`, `slabels == 0`); only `blabels` is written
+    into, so only the write site needs to change.
+
+    This is the same bug CLASS already declined corpus-wide for `NNTC`/
+    `MostOfAll` (Phase 9/10, too invasive as a blanket `__getitem__`
+    patch) - but not the same shape of fix, and not the same risk. Unlike
+    `populate_indicators_chained_writeback`, this does not change what any
+    read returns or what type any object is; `Series.to_numpy(copy=True)`
+    returns the identical values in the identical dtype, only guaranteed
+    writable instead of possibly not - nothing downstream can observe or
+    depend on getting a read-only array back, so forcing `copy=True` for
+    every `to_numpy()`/`.values` call during exactly one `train_models`
+    invocation cannot change any strategy's behaviour, on this row or any
+    other patched the same way. Scoped in time only, the same way the
+    writeback shims are: `pd.Series.to_numpy` is replaced immediately
+    before the wrapped call and restored in a `finally` immediately after,
+    active on no other call anywhere in the process.
+
+    `train_models` is defined once, on the shared `NNTC` base class, and
+    none of the 65 `NNTC_*` subclasses override it - confirmed by reading
+    every subclass's own body, not assumed - so wrapping the resolved
+    instance's own `train_models` (found via `getattr(cls, "train_models",
+    None)`, the same per-class lookup the two `populate_indicators`
+    writeback shims use) reaches every row through ordinary inheritance
+    without touching `NNTC.py` itself. A file-overlay repair would have
+    needed a copy of `NNTC.py` sitting next to every one of the 65
+    subclass files for Python's own `from NNTC import NNTC` to resolve to
+    the patched version - this runtime shim has no such sibling-file
+    problem, since it patches the loaded class in memory regardless of
+    which directory the subclass file was actually read from.
+    """
+    from freqtrade.resolvers.strategy_resolver import StrategyResolver
+
+    if getattr(StrategyResolver, "_nntc_writable_labels_installed", False):
+        return True
+
+    original_load = StrategyResolver.load_strategy
+
+    def load_strategy(config=None):
+        strategy = original_load(config)
+        cls = type(strategy)
+        own = getattr(cls, "train_models", None)
+        if own is None:
+            return strategy
+
+        def train_models(self, *args, _own=own, **kwargs):
+            import pandas as pd
+
+            original_to_numpy = pd.Series.to_numpy
+
+            def writable_to_numpy(series, *a, **kw):
+                kw["copy"] = True
+                return original_to_numpy(series, *a, **kw)
+
+            pd.Series.to_numpy = writable_to_numpy
+            try:
+                return _own(self, *args, **kwargs)
+            finally:
+                pd.Series.to_numpy = original_to_numpy
+
+        strategy.train_models = train_models.__get__(strategy, cls)
+        return strategy
+
+    StrategyResolver.load_strategy = staticmethod(load_strategy)
+    StrategyResolver._nntc_writable_labels_installed = True
+    return True
+
+
 INSTALLERS = {RULE: install_min_roi_reached_entry,
               SCAN_RULE: install_tolerant_class_scan,
               ADVISE_RULE: install_idempotent_advise_entry,
@@ -1648,7 +1735,8 @@ INSTALLERS = {RULE: install_min_roi_reached_entry,
               SET_SESSION_RULE: install_tf_keras_backend_set_session_noop,
               BARE_SAVE_RULE: install_tf_keras_bare_save_redirect,
               WRITEBACK_RULE: install_nnpredict_prediction_writeback,
-              POPULATE_WRITEBACK_RULE: install_populate_indicators_chained_writeback}
+              POPULATE_WRITEBACK_RULE: install_populate_indicators_chained_writeback,
+              NNTC_WRITABLE_LABELS_RULE: install_nntc_writable_labels}
 
 
 def install_from_environment():
@@ -2483,6 +2571,59 @@ def selftest():
         after = instance.populate_entry_trend(result, {"pair": "BTC/USDT"})
         assert list(after["e"]) == [0.0] * 5, \
             "the same chained shape outside populate_indicators must not be fixed"
+    finally:
+        if saved_module is not None:
+            sys.modules["freqtrade.resolvers.strategy_resolver"] = saved_module
+        else:
+            sys.modules.pop("freqtrade.resolvers.strategy_resolver", None)
+
+    # NNTC's own read-only-array crash: to_numpy() on a Series built inside
+    # populate_indicators can come back non-writable under Copy-on-Write, and
+    # writing into it must succeed exactly the way it always did once the
+    # shim forces a copy - the fix is invisible in every value, only the
+    # write itself changes from raising to succeeding.
+    class FakeNNTCBase(object):
+        def train_models(self, buys, sells):
+            blabels = buys.to_numpy()
+            slabels = sells.to_numpy()
+            blabels[np.where(slabels > 0)] = 0.0
+            return blabels
+
+    class FakeNNTCStrategy(FakeNNTCBase):
+        pass
+
+    class FakeResolver5(object):
+        _target = None
+
+        @staticmethod
+        def load_strategy(config=None):
+            return FakeResolver5._target()
+
+    buys = pd.Series([1.0, 0.0, 1.0, 0.0])
+    sells = pd.Series([0.0, 0.0, 1.0, 0.0])
+    # Confirm the fixture actually reproduces a read-only array without the
+    # shim installed - otherwise this test would pass for the wrong reason,
+    # e.g. if a future pandas release changes to_numpy()'s default.
+    assert not buys.to_numpy().flags.writeable, (
+        "fixture no longer reproduces a read-only to_numpy() result - this "
+        "test needs a different setup to still exercise the shim")
+    original_to_numpy = pd.Series.to_numpy
+
+    module = _types.ModuleType("freqtrade.resolvers.strategy_resolver")
+    module.StrategyResolver = FakeResolver5
+    saved_module = sys.modules.get("freqtrade.resolvers.strategy_resolver")
+    sys.modules["freqtrade.resolvers.strategy_resolver"] = module
+    try:
+        assert install_nntc_writable_labels()
+        FakeResolver5._target = FakeNNTCStrategy
+        instance = FakeResolver5.load_strategy()
+        result = instance.train_models(buys, sells)
+        assert list(result) == [1.0, 0.0, 0.0, 0.0], list(result)
+
+        # to_numpy() is back to its original, unpatched behaviour once the
+        # wrapped call returns - the shim must not leak past train_models.
+        assert pd.Series.to_numpy is original_to_numpy
+        assert not buys.to_numpy().flags.writeable
     finally:
         if saved_module is not None:
             sys.modules["freqtrade.resolvers.strategy_resolver"] = saved_module

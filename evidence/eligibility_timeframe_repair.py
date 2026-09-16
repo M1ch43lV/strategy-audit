@@ -105,6 +105,46 @@ MANUAL = {
         "mlsys-io/PortfolioBench user_data/config_polymarket.json (GitHub, not "
         "harvested): timeframe = \"4h\", same evidence as "
         "PolymarketMeanReversionStrategy"),
+    # keithorange/FreqTradeCustomOrders, 269-batch: none of these seven declare
+    # ticker_interval or timeframe anywhere in their own file. The repo carries
+    # two exchange configs side by side - kraken_live_config.json/
+    # kraken_test_config.json ("timeframe": "1m") and binance_all_pairs_config.
+    # json/binance_test_config.json (no timeframe key at all). The author's own
+    # run_custom_order_freqtrade.sh - the launch script named for exactly this
+    # custom-order strategy family, not the repo's other, unrelated strategies -
+    # wires in the Kraken config specifically, and the repo's own README names
+    # Kraken by name as the motivating exchange ("particularly useful for day
+    # trading on exchanges with limited order types (e.g., Kraken only allows
+    # one limit sell order...)"). Reading the author's own launch command for
+    # this exact family, not inferring a value across exchanges.
+    "MASlopeStrategy": (
+        "1m", "corpus_twin",
+        "repos/keithorange_FreqTradeCustomOrders/kraken_live_config.json, "
+        "wired in by run_custom_order_freqtrade.sh"),
+    "MAStopLossStrategy": (
+        "1m", "corpus_twin",
+        "repos/keithorange_FreqTradeCustomOrders/kraken_live_config.json, "
+        "wired in by run_custom_order_freqtrade.sh"),
+    "MATrailingStopLossStrategy": (
+        "1m", "corpus_twin",
+        "repos/keithorange_FreqTradeCustomOrders/kraken_live_config.json, "
+        "wired in by run_custom_order_freqtrade.sh"),
+    "StopLossStrategy": (
+        "1m", "corpus_twin",
+        "repos/keithorange_FreqTradeCustomOrders/kraken_live_config.json, "
+        "wired in by run_custom_order_freqtrade.sh"),
+    "TPActivatingTSLwithInitialTSLStrategy": (
+        "1m", "corpus_twin",
+        "repos/keithorange_FreqTradeCustomOrders/kraken_live_config.json, "
+        "wired in by run_custom_order_freqtrade.sh"),
+    "TPActivatingTSLwithSLStrategy": (
+        "1m", "corpus_twin",
+        "repos/keithorange_FreqTradeCustomOrders/kraken_live_config.json, "
+        "wired in by run_custom_order_freqtrade.sh"),
+    "TrailingStopLossStrategy": (
+        "1m", "corpus_twin",
+        "repos/keithorange_FreqTradeCustomOrders/kraken_live_config.json, "
+        "wired in by run_custom_order_freqtrade.sh"),
 }
 
 
