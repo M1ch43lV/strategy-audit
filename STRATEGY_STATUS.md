@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1355 rows
 
-**Generated 2026-09-16 22:41:10 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-17 00:59:30 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -56,9 +56,9 @@ have neither and are left empty rather than given an invented time.
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 641 |
-| `excluded` | 419 |
+| `excluded` | 470 |
 | `pending` | 129 |
-| `exclusion_unconfirmed` | 111 |
+| `exclusion_unconfirmed` | 60 |
 | `too_few_trades` | 32 |
 | `not_a_strategy` | 23 |
 
@@ -152,7 +152,7 @@ than a pick-one-source figure. 96 of 1355 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 1259 rows that do: **79.8 hours** of this audit's own compute so far.
+Summed across the 1259 rows that do: **81.9 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -296,7 +296,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1993 of 3574 commands are recorded so far, and every new run
+recording. 2045 of 3574 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -4463,7 +4463,7 @@ neither a pass nor a fail.
 `el_extrema_RL`, `epretrace`, `haGradient`, `newstrategy4`
 `zorkv7_0_0`
 
-## Exclusion unconfirmed - 111 strategies
+## Exclusion unconfirmed - 60 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -4475,7 +4475,7 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_trades_in_full_measurement` | `inherited` | 98 |
+| `no_trades_in_full_measurement` | `inherited` | 47 |
 | `no_verdict_on_lookahead` | `no_finding` | 11 |
 | `recursive_bias_unverified` | `no_finding` | 1 |
 | `unclassified` | `no_finding` | 1 |
@@ -4485,7 +4485,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 419 strategies, by decisive reason
+## Not passing - 470 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -4533,7 +4533,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 419 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 470 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -4541,7 +4541,7 @@ one of them carries none.
 
 | Reason | Meaning | Strategies |
 |---|---|---:|
-| `lookahead_found` | reads data it could not have had at the time | 99 |
+| `lookahead_found` | reads data it could not have had at the time | 150 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 77 |
 | `no_trades_in_full_measurement` | never trades over the full window | 6 |
 | `full_backtest_not_testable` | the canonical pooled full backtest did not complete under the fixed runtime budget | 34 |
@@ -4558,7 +4558,7 @@ one of them carries none.
 
 | Reason | `-` | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `E0_strict67` | `not_scheduled` |
 |---|---|---|---|---|---|---|---|
-| `lookahead_found` | 23 | 1 | 0 | 14 | 0 | 0 | 61 |
+| `lookahead_found` | 74 | 1 | 0 | 14 | 0 | 0 | 61 |
 | `recursive_bias_found` | 15 | 0 | 3 | 18 | 14 | 1 | 26 |
 | `no_trades_in_full_measurement` | 0 | 0 | 0 | 6 | 0 | 0 | 0 |
 | `full_backtest_not_testable` | 18 | 0 | 0 | 15 | 0 | 0 | 1 |
@@ -4570,18 +4570,31 @@ one of them carries none.
 | `duplicate_implementation` | 85 | 1 | 0 | 0 | 0 | 0 | 2 |
 | `recursive_check_incomplete_at_longest_rungs` | 13 | 0 | 0 | 0 | 0 | 0 | 0 |
 
-### `lookahead_found` - 99
+### `lookahead_found` - 150
 
 Reads data it could not have had at the time.
 
-Wave `-` - 23:
+Wave `-` - 74:
 
 `AdvancedFuturesSwingStrategy`, `AlexBattleTankKillerV4`, `AlexNexusForgeV8AIV2`, `Auto_EI_t4c0s_Shorts`
 `AwesomeEWOLambo`, `AwesomeEWOLambo_Shorts`, `CsMom`, `DonchianChannel`
 `EI4_t4c0s_V2_2_Shorts`, `GKD_FisherTransformV4_ML`, `LiquiditySweep`, `NNPredict_AdditiveAttention`
 `NNPredict_CNN`, `NNPredict_GRU`, `NNPredict_LSTM2`, `NNPredict_LSTM3`
 `NNPredict_MLP`, `NNPredict_Multihead`, `NNPredict_TCN`, `NNPredict_Wavenet`
-`NNPredict_Wavenet2`, `OsirisXRSI`, `ichiV1_plus`
+`NNPredict_Wavenet2`, `NNTC_adx2_LSTM`, `NNTC_adx3_LSTM`, `NNTC_all_LSTM`
+`NNTC_aroon_LSTM`, `NNTC_bbw_LSTM`, `NNTC_dwt2_LSTM`, `NNTC_dwt_LSTM`
+`NNTC_fbb_Attention`, `NNTC_fbb_Ensemble`, `NNTC_fbb_GRU`, `NNTC_fbb_LSTM`
+`NNTC_fbb_Multihead`, `NNTC_fbb_Wavenet`, `NNTC_fwr_LSTM`, `NNTC_highlow_Ensemble`
+`NNTC_highlow_LSTM`, `NNTC_jump_Ensemble`, `NNTC_jump_LSTM`, `NNTC_macd2_Attention`
+`NNTC_macd3_LSTM`, `NNTC_macd_Attention`, `NNTC_macd_Ensemble`, `NNTC_macd_GRU`
+`NNTC_macd_LSTM`, `NNTC_macd_Multihead`, `NNTC_mfi_LSTM`, `NNTC_minmax_LSTM`
+`NNTC_nseq_Attention`, `NNTC_nseq_Ensemble`, `NNTC_nseq_GRU`, `NNTC_nseq_LSTM`
+`NNTC_nseq_Wavenet`, `NNTC_over_LSTM`, `NNTC_profit_AdditiveAttention`, `NNTC_profit_Attention`
+`NNTC_profit_CNN`, `NNTC_profit_Ensemble`, `NNTC_profit_GRU`, `NNTC_profit_LSTM`
+`NNTC_profit_LSTM2`, `NNTC_profit_LSTM3`, `NNTC_profit_MLP`, `NNTC_profit_Wavenet`
+`NNTC_pv_Ensemble`, `NNTC_pv_LSTM`, `NNTC_pv_MLP`, `NNTC_pv_Wavenet`
+`NNTC_slope_LSTM`, `NNTC_smooth_LSTM`, `NNTC_stochastic_LSTM`, `NNTC_swing_LSTM`
+`OsirisXRSI`, `ichiV1_plus`
 
 Wave `A_pending_diagnostics` - 1:
 
@@ -4841,10 +4854,10 @@ Wave `-` - 13:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 211 |
-| `lookahead_remeasure_pending` | 137 |
-| `full_window_measurement_pending` | 98 |
+| `recursive_ladder_pending` | 160 |
+| `lookahead_remeasure_pending` | 86 |
 | `to_be_fixed` | 54 |
+| `full_window_measurement_pending` | 47 |
 | `needs_a_look` | 10 |
 | `repair_attempted` | 3 |
 | `convergence_inconclusive` | 1 |

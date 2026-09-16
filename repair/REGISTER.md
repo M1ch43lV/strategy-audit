@@ -2512,3 +2512,47 @@ new `_pick_representative()`, so their `REMOVED_DUPLICATE_SOURCES.json`
 entries carry `recovered_at` - the removal recorded there no longer describes
 their status. `strategy_status.selftest()`'s E1_expanded equality, which is
 what surfaced this, passes again: 1355 rows, 681 E1, 0 unmeasured.
+
+# Phase 20 - the NNTC family measured: 51 of 52 carry look-ahead bias, 2026-09-17
+
+The 52 repaired `NNTC_*` rows from Phase 14 - the family whose real bug was a
+read-only numpy array under pandas copy-on-write, taking the cluster from
+0/65 to 52/65 measuring real trades - had never been through Stage 2. They
+have now: **51 FOUND, 1 NA**, and the magnitudes are not marginal. Most move
+17 to 20 of 20 sampled entry signals; `NNTC_adx3_LSTM`, `NNTC_jump_LSTM`,
+`NNTC_macd_GRU`, `NNTC_nseq_GRU` and others move every entry and nearly every
+exit. The single NA is `NNTC_fbb_AdditiveAttention`, where freqtrade reports
+no strategy or timeframe resolved rather than any verdict.
+
+**This is one mechanism, not 51 findings.** Every row flags the same columns -
+`gain`, `loss`, `dwt`, `dwt_gain`, `dwt_profit`, `dwt_loss`,
+`dwt_profit_mean`, `dwt_profit_std` - and they are built in the framework's
+shared `DataframePopulator.add_future_data()`, which the base `NNTC.py` calls
+at line 479 before training:
+
+- `future_df['future_close'] = future_df[price_col].shift(-lookahead_win)`,
+  from which `future_gain`/`future_profit`/`future_loss` follow. A forward
+  shift is the ordinary way to build supervised labels and would be
+  unobjectionable if training were confined to data before the evaluated bar.
+- `future_df['full_dwt'] = self.get_dwt(dataframe['close'])` - a discrete
+  wavelet transform over the WHOLE close series. That is the leak in the
+  features rather than the labels: every point's transformed value depends on
+  points after it, so the `dwt_*` block cannot be computed causally at all,
+  and the model is trained and predicted inside the same window.
+
+The author was explicit about the intent - `NNTC.py:268` reads "try to
+combine current/historical data (from populate_indicators) with future data /
+If you only use future data, the ML training is just guessing" - so the future
+data is deliberate. What the measurement shows is that it reaches the entry
+and exit signals rather than staying inside the training step.
+
+**Consequence for the corpus.** `excluded` rises 419 to 470 and
+`exclusion_unconfirmed` falls 111 to 60: these rows were an unconfirmed
+exclusion carrying a recursion finding and no look-ahead verdict, and now
+carry their own C1 measurement. 1355 rows, E1_expanded 641, pending 129,
+too_few_trades 32, not_a_strategy 23. Selftests pass at 681 E1, 0 unmeasured.
+
+**Method note.** These 52 were reachable only because Phase 19 gave
+`candidates()` a second source; under the old eligibility-only selection every
+one of them was `ineligible` and unreachable without `--only`. The family had
+been repaired, measured at Stage 1, and then sat outside every queue.

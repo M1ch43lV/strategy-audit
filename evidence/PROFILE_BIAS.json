@@ -7531,6 +7531,1333 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
     },
+    "NNTC_adx2_LSTM": {
+      "canonical_sha256": "sha256_31c88bd9200f59e3034913aca73627108d8882cf82366e4abc78e377289c5ef8",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_adx2_LSTM-170f9693-lookahead.log",
+        "elapsed_s": 136.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_adx2_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_adx2_LSTM-170f9693 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_11def67c3ab8883148e3319d3fefb80b0e649a7f7c8909ba3afaacc71bcb27d2",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 19, exits 18 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_adx3_LSTM": {
+      "canonical_sha256": "sha256_5aa5dd409b8ca6f0f2f46abcd78bb0c5759632311015c3636e16dcac4fd46a20",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_adx3_LSTM-87b26844-lookahead.log",
+        "elapsed_s": 159.2,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_adx3_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_adx3_LSTM-87b26844 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_bf5cc3db622f3a4b5abaac80f1ccf971d4efc16a56324711977cc8964197a34c",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 20, exits 20 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_all_LSTM": {
+      "canonical_sha256": "sha256_2a7146b7ebd518a6028cb1b4944d2572b770fbbb6ec423524c0125853fe17523",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_all_LSTM-0b824419-lookahead.log",
+        "elapsed_s": 152.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_all_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_all_LSTM-0b824419 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_babc00fcc861fdebb29078c6f481687859d694e69fa45d8b0e7ec929c3b1619e",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 20, exits 18 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_aroon_LSTM": {
+      "canonical_sha256": "sha256_10c6eb270b647a369b5dd1a3836889d4521457d04234de435cc786f79d1ae510",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_aroon_LSTM-793afcdc-lookahead.log",
+        "elapsed_s": 143.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_aroon_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_aroon_LSTM-793afcdc --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_ddf09b06b6e22d481dd38c54677598c0c035d00e0038c2fdd529d1af76c74f29",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 19, exits 16 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_bbw_LSTM": {
+      "canonical_sha256": "sha256_6ee11b2e4635a0f2b70ef860533aaa52d3f87fd09cc1268fb3ea54097d7f384b",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_bbw_LSTM-aa63d2e2-lookahead.log",
+        "elapsed_s": 182.4,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_bbw_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_bbw_LSTM-aa63d2e2 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_db7ad7738e838ec089f741a74ef5969bad9254d969d3bc0e5d401fa939759a24",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 19, exits 15 of 20 signals; indicators gain, profit, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_dwt2_LSTM": {
+      "canonical_sha256": "sha256_47be10774ca7c577786c89f997049dff5c49266d8b47b02000794fa5813cd840",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_dwt2_LSTM-7b6fa822-lookahead.log",
+        "elapsed_s": 138.2,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_dwt2_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_dwt2_LSTM-7b6fa822 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_b5dbc5f77d881f6f08df0c6636c19efbaab583867591e9ff7da6bdfeac3871ff",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 17, exits 12 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_dwt_LSTM": {
+      "canonical_sha256": "sha256_fd00de07e19ededa879911f704831583eb5b83a90fd671dcbf234812486f9cb6",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_dwt_LSTM-bb3019cd-lookahead.log",
+        "elapsed_s": 143.4,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_dwt_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_dwt_LSTM-bb3019cd --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_cf5d9206ca3d2b8abdabf9a43627bd2b964ab87411739b3e8cf51ea8adb1fd16",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 19, exits 17 of 20 signals; indicators gain, profit, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_fbb_AdditiveAttention": {
+      "canonical_sha256": "sha256_76db989e425598e2decea3d802fc72097c04094185fc9b3823a53847a3f8cb34",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_fbb_AdditiveAttention-bc726eeb-lookahead.log",
+        "elapsed_s": 4.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_fbb_AdditiveAttention --strategy-path user_data/profile_bias_strategies/NNTC_fbb_AdditiveAttention-bc726eeb --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_6b30135e1f558abd7dfc831dcc21cb90972ac0b0de4cba64d3e761bfdbcf9ff8",
+        "runtime_id": "native_unversioned",
+        "status": "NA",
+        "timerange": "20200301-20200601",
+        "why": "There were no strategies specified neither through --strategy nor through --strategy-list or timeframe was not"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_fbb_Attention": {
+      "canonical_sha256": "sha256_0ac5f688520419d05ab07272138a5acef54ec29ecf72c175a5d26d7b881e2072",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_fbb_Attention-a7c6ffe0-lookahead.log",
+        "elapsed_s": 167.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_fbb_Attention --strategy-path user_data/profile_bias_strategies/NNTC_fbb_Attention-a7c6ffe0 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_522f809539757713168a2f74344b8c3c241a997a5655c4208769fa4b2e5a81f3",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 12 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_fbb_Ensemble": {
+      "canonical_sha256": "sha256_0b89ed6b6e96bc41d922d46b94eab43c083b740d09e25b3517b96d1deb1282e4",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_fbb_Ensemble-25406b73-lookahead.log",
+        "elapsed_s": 190.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_fbb_Ensemble --strategy-path user_data/profile_bias_strategies/NNTC_fbb_Ensemble-25406b73 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_806219474291abc705321cfd4a19be8de8dca195d57901d75131634502ee004b",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 20, exits 19 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_fbb_GRU": {
+      "canonical_sha256": "sha256_0aebff36f1e2f1b2f46b695e1f0ba5fdebc7c06b26631f7e1e4ede5fee851b33",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_fbb_GRU-ce8aa679-lookahead.log",
+        "elapsed_s": 169.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_fbb_GRU --strategy-path user_data/profile_bias_strategies/NNTC_fbb_GRU-ce8aa679 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_8862d395766b5afc7944c0545c809198946b63bf047b6c3345d69cb2a607bdbd",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 17 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_fbb_LSTM": {
+      "canonical_sha256": "sha256_4de180ca7c6138c5189cf2371ebddd0a1bf6934dc28edf3cc9c1250dc60dae71",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_fbb_LSTM-e7a95739-lookahead.log",
+        "elapsed_s": 142.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_fbb_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_fbb_LSTM-e7a95739 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_0a9022388e8055be3955df6c34c29fd8482773f4aa51f233f9d29102cd460dfa",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 18 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_fbb_Multihead": {
+      "canonical_sha256": "sha256_e4c57ba8c6283969c717965c66545c9d2df33ff65452d458664b59d728259c67",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_fbb_Multihead-73c19268-lookahead.log",
+        "elapsed_s": 149.4,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_fbb_Multihead --strategy-path user_data/profile_bias_strategies/NNTC_fbb_Multihead-73c19268 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_1a5af6cd7fe824232cdebafc632d398dcbd6d8bced9ef26e4f08e48214f88fcf",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 19, exits 15 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_fbb_Wavenet": {
+      "canonical_sha256": "sha256_73c436b1c3d9f570e8a4ae1eb6aa73143e4a7bf11ec263926c90f17897f29280",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_fbb_Wavenet-e69b4818-lookahead.log",
+        "elapsed_s": 143.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_fbb_Wavenet --strategy-path user_data/profile_bias_strategies/NNTC_fbb_Wavenet-e69b4818 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_e4d945013a821fb8efaf74345b56e677f2fef05ea8abb303d2bd7cb423cbc5e9",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 18 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_fwr_LSTM": {
+      "canonical_sha256": "sha256_0d6f510c973cf3926e2ed849c962537caa382d365659fedefb95500a54171270",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_fwr_LSTM-e5433bcd-lookahead.log",
+        "elapsed_s": 134.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_fwr_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_fwr_LSTM-e5433bcd --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_5a244b48c4d8852325ecfae23e1218f8df6b7efeeac1ee4350f0908fa249c0c1",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 16 of 20 signals; indicators gain, profit, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_highlow_Ensemble": {
+      "canonical_sha256": "sha256_19fb3dcdc55a538198888320d6086626950012deec0aaa377b7b1b8133d6f224",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_highlow_Ensemble-73a07d50-lookahead.log",
+        "elapsed_s": 166.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_highlow_Ensemble --strategy-path user_data/profile_bias_strategies/NNTC_highlow_Ensemble-73a07d50 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_8af3d1e4e51239bad94678ff359b2190a7e04b44b5b074afa3c4c6dcd7a848da",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 19, exits 20 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_highlow_LSTM": {
+      "canonical_sha256": "sha256_60740124370fb4d85f8b2bc3cf159f550affe4b8da97b2796df8e93733fc9a37",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_highlow_LSTM-3a252c28-lookahead.log",
+        "elapsed_s": 132.6,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_highlow_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_highlow_LSTM-3a252c28 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_077a282578214115c125534d0eab15c6732be22fcf93a10fb0357d9204da3b7d",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 18 of 20 signals; indicators gain, profit, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_jump_Ensemble": {
+      "canonical_sha256": "sha256_3590551cbdb09b925873c8a804651de53f2e3ad14ac293ddfbc032837d42536a",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_jump_Ensemble-f9064063-lookahead.log",
+        "elapsed_s": 186.1,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_jump_Ensemble --strategy-path user_data/profile_bias_strategies/NNTC_jump_Ensemble-f9064063 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_48547108749a411c2a0269eff4061aca66b1681b586dac4b901c9773753817df",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 17 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_jump_LSTM": {
+      "canonical_sha256": "sha256_d7a88fbf3a9e9c8bb44818cf5166cf27c8ca264fa5741e8958718208f5e0cae2",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_jump_LSTM-7fc9790d-lookahead.log",
+        "elapsed_s": 134.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_jump_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_jump_LSTM-7fc9790d --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_924ab06adaa5b0b702e38a6a4f2724143e38aca1cc9fa8097ad2ab2302adf388",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 20, exits 20 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_macd2_Attention": {
+      "canonical_sha256": "sha256_7afb211cb8949fd00c9cd93cf6a93842b30aaf123a4ee1f1ac09f74567d527d0",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_macd2_Attention-80614ccc-lookahead.log",
+        "elapsed_s": 146.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_macd2_Attention --strategy-path user_data/profile_bias_strategies/NNTC_macd2_Attention-80614ccc --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_e5e66ed39e44433527e2e268baf0a3daf2e095078adc292b7f755faaccb0db9d",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 15 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_macd3_LSTM": {
+      "canonical_sha256": "sha256_2ded17032f5de97d500a347f395cd27613d37c714b47ef7a89034b85b19e7a22",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_macd3_LSTM-b83622e3-lookahead.log",
+        "elapsed_s": 137.4,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_macd3_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_macd3_LSTM-b83622e3 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_a47b3215efb138111e39359be7ce71c6652e6e74223bf8ab68ca60c3c7976b5f",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 17, exits 15 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_macd_Attention": {
+      "canonical_sha256": "sha256_f2a460f769115e5d488816846247d7fecff8ab654fc4ed7a50884b16c991fd7d",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_macd_Attention-96cd374d-lookahead.log",
+        "elapsed_s": 134.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_macd_Attention --strategy-path user_data/profile_bias_strategies/NNTC_macd_Attention-96cd374d --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_49574778ce17ac73dcce14a493877d4fbafb6239e164f3a063e8bf9cd3517053",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 20, exits 18 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_macd_Ensemble": {
+      "canonical_sha256": "sha256_f0dbdc3cb5270521621d4938216d3ba5f928ab899b9e2eddb1544724b9c9898f",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_macd_Ensemble-84b4a9b2-lookahead.log",
+        "elapsed_s": 179.9,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_macd_Ensemble --strategy-path user_data/profile_bias_strategies/NNTC_macd_Ensemble-84b4a9b2 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_adab5bd3ac5c8690c544eda2cb80e09075eb510a7083a634e5522ed022288655",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 19, exits 18 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_macd_GRU": {
+      "canonical_sha256": "sha256_ceee8b0f860bbb23d9a0006e47bf57f4081b9b06bed5732a9c66c486f5e6eb0f",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_macd_GRU-b966f2ef-lookahead.log",
+        "elapsed_s": 127.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_macd_GRU --strategy-path user_data/profile_bias_strategies/NNTC_macd_GRU-b966f2ef --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_7b4c21bdcd10cc2e42ef24e54cea94c416c8af9d859671def5933435a900a928",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 20, exits 18 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_macd_LSTM": {
+      "canonical_sha256": "sha256_13ab7e6a9a98949187456c8c91acc1b53a24a2c9f195ad609aebab8f721f0b85",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_macd_LSTM-783f4316-lookahead.log",
+        "elapsed_s": 127.2,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_macd_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_macd_LSTM-783f4316 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_9eebde8f0bb10ca1e6e3728f514e7de26c65e3b62a87dae0cf3451be08a9213e",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 20, exits 18 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_macd_Multihead": {
+      "canonical_sha256": "sha256_bc5a4dd907c510b81a7cb9761516f1aabb685f12b6d4c53262eb268cc3b6c139",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_macd_Multihead-c21bbc27-lookahead.log",
+        "elapsed_s": 128.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_macd_Multihead --strategy-path user_data/profile_bias_strategies/NNTC_macd_Multihead-c21bbc27 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_e2b11391273fa15b5042e2d8e858511dcb2d76f355caf45667df4c2a98eadcdf",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 17, exits 16 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_mfi_LSTM": {
+      "canonical_sha256": "sha256_323686e1d46ca34e503e5eb2e6f28da07e1cf8a04b81c6d6049e9e71119757d8",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_mfi_LSTM-781b3e20-lookahead.log",
+        "elapsed_s": 126.1,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_mfi_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_mfi_LSTM-781b3e20 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_7fcf931a1214c755182dcd56f50107c3234e43a5344067d85bb74ec16435f093",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 18 of 20 signals; indicators gain, profit, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_minmax_LSTM": {
+      "canonical_sha256": "sha256_e2f428e6a3ef82d0d2d0345fcf5eb83bd954dfe61e3433af8295e8d626a70449",
+      "class1_rules": [
+        "restore_copied_local_module",
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_minmax_LSTM-7e5aa761-lookahead.log",
+        "elapsed_s": 126.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_minmax_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_minmax_LSTM-7e5aa761 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_578b68fdad0d17eef532534413bf7a16c83b91bf1c2a383f108e35512ce6f6dc",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 15, exits 18 of 20 signals; indicators gain, profit, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_nseq_Attention": {
+      "canonical_sha256": "sha256_21e10733b0834c0cc9d9e900f27215c2762f5b2d655f454437cf3049919c191d",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_nseq_Attention-c9fee997-lookahead.log",
+        "elapsed_s": 151.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_nseq_Attention --strategy-path user_data/profile_bias_strategies/NNTC_nseq_Attention-c9fee997 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_973fbb63f50134af435dbde6c7083917020e70bfd0b1a569096f5267accfdbe9",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 19, exits 18 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_nseq_Ensemble": {
+      "canonical_sha256": "sha256_01d41a54dda1f4745c0db157eb852502b3277fa33e23c22310d63add47427c9b",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_nseq_Ensemble-0d86a645-lookahead.log",
+        "elapsed_s": 189.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_nseq_Ensemble --strategy-path user_data/profile_bias_strategies/NNTC_nseq_Ensemble-0d86a645 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_02622386998a7065c1cf0816ac584c3254dc401e8fc6a2d109e3f70ac4f8b799",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 20, exits 18 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_nseq_GRU": {
+      "canonical_sha256": "sha256_68b2dbcde3cf44df8edbd51626671c8940d52ed7456625ebcb99b84d1ab8aeff",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_nseq_GRU-bdc6b791-lookahead.log",
+        "elapsed_s": 144.6,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_nseq_GRU --strategy-path user_data/profile_bias_strategies/NNTC_nseq_GRU-bdc6b791 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_1ab8b7700f8f8ed7c41867090c94d94da58352ebea799a3ba68365fcf502781a",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 20, exits 19 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_nseq_LSTM": {
+      "canonical_sha256": "sha256_89918c92d1772f17b7ffd8c57afc098f95a2c642e6ea924f524bf859ececd0db",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_nseq_LSTM-50b55aac-lookahead.log",
+        "elapsed_s": 146.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_nseq_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_nseq_LSTM-50b55aac --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_fd54e9d0bbf32c2d4b77f95013d056a84ed014a03da0f6ee9dc98644e2b238fc",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 20, exits 19 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_nseq_Wavenet": {
+      "canonical_sha256": "sha256_3f30c7cfc92b2882a87f7bea527ae30924dba02d4bd5a9277d9c6ab936cb79cf",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_nseq_Wavenet-f97a22f2-lookahead.log",
+        "elapsed_s": 160.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_nseq_Wavenet --strategy-path user_data/profile_bias_strategies/NNTC_nseq_Wavenet-f97a22f2 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_c771afe7997887b555787083bf89baa7aa6dfc2f888c73634b916898ea457ba7",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 17 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_over_LSTM": {
+      "canonical_sha256": "sha256_242332d23b29d8c831c966773726ecaeb6712d40c07b2775a5fce09721d28bd4",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_over_LSTM-01de3663-lookahead.log",
+        "elapsed_s": 145.6,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_over_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_over_LSTM-01de3663 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_8611681f58b8e52e1367343c10210b105cb159abc26d131b506a3379732eb0ed",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 19, exits 15 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_profit_AdditiveAttention": {
+      "canonical_sha256": "sha256_6e91d73393437ebc7b77fbe1bf47801e879c448f2722d336e0170a888dbf35f3",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_profit_AdditiveAttention-79209933-lookahead.log",
+        "elapsed_s": 157.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_profit_AdditiveAttention --strategy-path user_data/profile_bias_strategies/NNTC_profit_AdditiveAttention-79209933 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_7c56cb6e776fb23d06c409bf5a456c0d5508d9382985d0c11b82b8ada9fffab2",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 19, exits 16 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_profit_Attention": {
+      "canonical_sha256": "sha256_ff90bcd26d6a5f56eaad3f5fbebf37cefc1ccceef110ecba8fcefe1944e6d02a",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_profit_Attention-282bb461-lookahead.log",
+        "elapsed_s": 148.7,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_profit_Attention --strategy-path user_data/profile_bias_strategies/NNTC_profit_Attention-282bb461 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_6592d4115ad7ea4bb3756140cec90833249037b829c486efc46dc0d9ae2967c2",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 17 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_profit_CNN": {
+      "canonical_sha256": "sha256_c88cca69c4e4f122fa5a38c72e62457e56730651fef2d4a75069a47cabb76c2d",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_profit_CNN-4bd59aea-lookahead.log",
+        "elapsed_s": 133.1,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_profit_CNN --strategy-path user_data/profile_bias_strategies/NNTC_profit_CNN-4bd59aea --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_de515906e7635366aa8aced53f06e2009d2a80d6b7eb48d4071c5d0e659ee42a",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 15 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_profit_Ensemble": {
+      "canonical_sha256": "sha256_9c4be4a7835ea05bfcb85990d70c98ae311e23d8ef12d90bddc6881cd934bb27",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_profit_Ensemble-390a18dc-lookahead.log",
+        "elapsed_s": 181.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_profit_Ensemble --strategy-path user_data/profile_bias_strategies/NNTC_profit_Ensemble-390a18dc --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_5a2e29b6c808d768cfcf918982f395a897e69a418f8cb0f2c9f865ece7c93951",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 19, exits 19 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_profit_GRU": {
+      "canonical_sha256": "sha256_ca72598525e5d00ed622f708bb944ed44aea60b39b9761c1d347627b56e7c046",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_profit_GRU-d0ca526c-lookahead.log",
+        "elapsed_s": 141.4,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_profit_GRU --strategy-path user_data/profile_bias_strategies/NNTC_profit_GRU-d0ca526c --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_cfd80a9c8fda8ccae81fdb6b6090d1368e9b659879cb6cedfbc32858c8d3697b",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 18 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_profit_LSTM": {
+      "canonical_sha256": "sha256_25adb3ab88b771760e4bd7a84bffddab84183be482cc8d337d8f74d14d604bd2",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_profit_LSTM-e5023ae4-lookahead.log",
+        "elapsed_s": 141.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_profit_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_profit_LSTM-e5023ae4 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_b84131d02494f7ea84ad639b7bf1f9f7c9ac5e89fa1ceb749bca3980dbd3a972",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 17, exits 15 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_profit_LSTM2": {
+      "canonical_sha256": "sha256_49c4770decad99b82b27023dcad5597da13a19abb0ea70553de47e30190a0733",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_profit_LSTM2-8fc950bf-lookahead.log",
+        "elapsed_s": 159.4,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_profit_LSTM2 --strategy-path user_data/profile_bias_strategies/NNTC_profit_LSTM2-8fc950bf --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_277f5bfdb0afd8dc0849ff851021115071a4ef57908874fea6a116fe4a3a0c1f",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 19, exits 17 of 20 signals; indicators gain, profit, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_profit_LSTM3": {
+      "canonical_sha256": "sha256_450a5d08abc820bba085980bba5189b96a51caad10f667e71403ae061f541c64",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_profit_LSTM3-6ad57edf-lookahead.log",
+        "elapsed_s": 153.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_profit_LSTM3 --strategy-path user_data/profile_bias_strategies/NNTC_profit_LSTM3-6ad57edf --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_6c3489ae3ccbbd944a919956cac8878da90f6a62611e544ce183a827cf0223ea",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 17, exits 17 of 20 signals; indicators gain, profit, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_profit_MLP": {
+      "canonical_sha256": "sha256_0e6694ab5c9621c9daef9d7b079de7d506d9b66ade3010901cb3b82ee844404c",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_profit_MLP-c48fd130-lookahead.log",
+        "elapsed_s": 124.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_profit_MLP --strategy-path user_data/profile_bias_strategies/NNTC_profit_MLP-c48fd130 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_fd135f5029823469c1544dab09334c5ae5186883a6cc386d93c7c17117674758",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 20, exits 18 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_profit_Wavenet": {
+      "canonical_sha256": "sha256_013a0d9ef684f975d8ffd67aab5a8270f701597e54b4cf2ecece1aa101a9db13",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_profit_Wavenet-262fd33b-lookahead.log",
+        "elapsed_s": 139.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_profit_Wavenet --strategy-path user_data/profile_bias_strategies/NNTC_profit_Wavenet-262fd33b --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_f35b6b24beb242ab1a6f642e9852f8ba26108d8fd2c491646c4ac1ee02cc6fef",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 17 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_pv_Ensemble": {
+      "canonical_sha256": "sha256_a5652ae28e0d8a5a51810d50c60bfd5038c79a4697625f5f492a7b5fee1170bd",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_pv_Ensemble-23ad8dd6-lookahead.log",
+        "elapsed_s": 192.4,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_pv_Ensemble --strategy-path user_data/profile_bias_strategies/NNTC_pv_Ensemble-23ad8dd6 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_0b3f0079537221112e2dbe6f9aaf019a4714ef813766dd1aa5539bf80158d9fc",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 19 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_pv_LSTM": {
+      "canonical_sha256": "sha256_d2cb86238481cb8149e8a3485063e3cff7e9d7f49b14e2011c50528c8e77ea7e",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_pv_LSTM-72c868a3-lookahead.log",
+        "elapsed_s": 142.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_pv_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_pv_LSTM-72c868a3 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_bfd5c0d8b12c33b1a9910002cf070f1166ecff78d509fa9de2c3837b1aeb5cc5",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 19, exits 19 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_pv_MLP": {
+      "canonical_sha256": "sha256_3ebd58db1053ea4eccd72dea1414b91409447c3aff8360af3267d2c9720744b5",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_pv_MLP-f598edf2-lookahead.log",
+        "elapsed_s": 132.5,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_pv_MLP --strategy-path user_data/profile_bias_strategies/NNTC_pv_MLP-f598edf2 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_7a8895b0b1639fe739be35fd8cdc63959f6b3a3be746e94ff3f0b543f1181e13",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 16, exits 15 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_pv_Wavenet": {
+      "canonical_sha256": "sha256_e431e856a18bce2947a0b19cf1001143e7d2a0b5edba6c3e3fb6eb0ac034cd23",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_pv_Wavenet-d369ad01-lookahead.log",
+        "elapsed_s": 144.0,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_pv_Wavenet --strategy-path user_data/profile_bias_strategies/NNTC_pv_Wavenet-d369ad01 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_b6f7b42394c9bbc7e33affd05c110e25347821847a01d5a77afcb84af027d486",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 19, exits 18 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_slope_LSTM": {
+      "canonical_sha256": "sha256_b4b49b5e1067dbbfe9a60fd2b32450d619de9745440cb2accc7c38ef084515b6",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_slope_LSTM-5b12794a-lookahead.log",
+        "elapsed_s": 141.6,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_slope_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_slope_LSTM-5b12794a --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_3b2d9633cc49342a0940c4c724ec68ce58686004352498aa9b52c173a7d8e246",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 20, exits 17 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_smooth_LSTM": {
+      "canonical_sha256": "sha256_925bf274a31279605f05989801fe566d83b937a13a5bc30d6de5123e2ddb9bff",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_smooth_LSTM-f352a0f8-lookahead.log",
+        "elapsed_s": 142.8,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_smooth_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_smooth_LSTM-f352a0f8 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_77ddd0793f9ede081cb6930875b4be65ce9c5ae4e6418e519711d04baedb6aec",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 19, exits 18 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_stochastic_LSTM": {
+      "canonical_sha256": "sha256_9ab751e378b134a3e4dc66f884eca9bda37ad51896caf9b51b9f1afb78ff0c27",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_stochastic_LSTM-3691248e-lookahead.log",
+        "elapsed_s": 147.3,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_stochastic_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_stochastic_LSTM-3691248e --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_43260b2d9821c7ef59cff64c4b5d4aafbd9f2b7bbefc55ea4dd0fcf76013d5c4",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 15, exits 13 of 20 signals; indicators gain, profit, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
+    "NNTC_swing_LSTM": {
+      "canonical_sha256": "sha256_faea33f79b19985075680905d97b99fb5c6eeb2c2de45dc4077a4ecbee694f92",
+      "class1_rules": [
+        "tf_keras_saving_reexport",
+        "tf_keras_backend_set_session_noop",
+        "nntc_writable_labels",
+        "bias_market_order_price_side_compatibility"
+      ],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/NNTC_swing_LSTM-efa18378-lookahead.log",
+        "elapsed_s": 154.6,
+        "invocation": "freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy NNTC_swing_LSTM --strategy-path user_data/profile_bias_strategies/NNTC_swing_LSTM-efa18378 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_1e01a8f038311ac5a9d45d61430fd61423e4dcf6a6cefbddf841c6238891db70",
+        "runtime_id": "native_unversioned",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 18, exits 19 of 20 signals; indicators gain, loss, dwt, dwt_gain, dwt_profit, dwt_loss, dwt_profit_mean, dwt_profit_std,"
+      },
+      "mode": "spot",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
+    },
     "NOTankAi_15": {
       "canonical_sha256": "sha256_93b90bd991a15601d11c88a20cf6d395eaca143289ee6df96399f809052573a3",
       "class1_rules": [],
