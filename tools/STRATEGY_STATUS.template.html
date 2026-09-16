@@ -268,23 +268,31 @@
         question from whether the strategy is still in play.</p>
       </div>
       <div>
-        <h3>2 &middot; Recursion, on the warm-up ladder</h3>
-        <p class="lead">Second because it needs no trades &mdash; it compares
-        indicator values, not signals &mdash; so it can judge a strategy the
-        look-ahead check cannot yet touch. It produces the warm-up at which the
-        indicators settle, which the next step needs.</p>
+        <h3>2 &middot; Look-ahead</h3>
+        <p class="lead">Second because the recursion gate will not spend a run
+        without it: <code>profile_bias.py</code>'s
+        <code>recursive_prerequisite()</code> returns
+        <em>&ldquo;Look-Ahead is not PASS&rdquo;</em> and defers, since a
+        look-ahead finding is not something a warm-up can repair. Freqtrade's
+        <code>lookahead-analysis</code> builds a Backtesting object, and
+        <code>Backtesting.__init__</code> takes <code>required_startup</code>
+        from the strategy's declared <code>startup_candle_count</code> &mdash;
+        so this check runs at whatever the author declared, and 125 strategies
+        declare nothing at all, which compares their signals on indicators
+        still undefined at the start of the window. That is a known weakness of
+        this check, recorded per row rather than argued away: the settled
+        warm-up the next step produces is not available yet here. The check
+        needs ten trades, and widens its window rather than failing when there
+        are fewer.</p>
       </div>
       <div>
-        <h3>3 &middot; Look-ahead, at that warm-up</h3>
-        <p class="lead">Freqtrade's <code>lookahead-analysis</code> builds a
-        Backtesting object, and <code>Backtesting.__init__</code> takes
-        <code>required_startup</code> from the strategy's declared
-        <code>startup_candle_count</code>. So the check runs at whatever warm-up
-        is in force &mdash; and 125 strategies declare none, which would have
-        their signals compared on indicators still undefined at the start of the
-        window. Running it after the ladder means running it at a value shown to
-        settle them. This check needs ten trades, and widens its window rather
-        than failing when there are fewer.</p>
+        <h3>3 &middot; Recursion, on the warm-up ladder</h3>
+        <p class="lead">Only for a strategy whose look-ahead reads PASS. It
+        needs no trades &mdash; it compares indicator values, not signals
+        &mdash; and it climbs every rung the data allows to find the warm-up at
+        which the indicators stop moving. That settled warm-up is what the full
+        backtest then runs at, so this step produces something the next one
+        needs, which is why it sits here and not last.</p>
       </div>
       <div>
         <h3>4 &middot; Backtest over the full window</h3>
@@ -544,15 +552,21 @@ __CRITERIA__
   var smokePassed = suitable.filter(smokeOk);
   var smokeExcluded = suitable.filter(smokeExcl);
   var smokeOther = suitable.filter(function(r){ return !smokeOk(r) && !smokeExcl(r); });
-  var recPassed = smokePassed.filter(recursionOk);
-  var recExcluded = smokePassed.filter(recursionExcl);
-  var recOther = smokePassed.filter(function(r){ return !recursionOk(r) && !recursionExcl(r); });
-  var laPassed = recPassed.filter(lookaheadOk);
-  var laExcluded = recPassed.filter(lookaheadExcl);
-  var laOther = recPassed.filter(function(r){ return !lookaheadOk(r) && !lookaheadExcl(r); });
-  var fbPassed = laPassed.filter(fullbacktestOk);
-  var fbExcluded = laPassed.filter(fullbacktestExcl);
-  var fbOther = laPassed.filter(function(r){ return !fullbacktestOk(r) && !fullbacktestExcl(r); });
+  // Look-ahead before recursion, 2026-09-16. This is the order
+  // `profile_bias.py` has always run them in: its loop takes lookahead
+  // first, and `recursive_prerequisite()` refuses to spend a recursion run
+  // at all while look-ahead is not PASS. The funnel described the reverse,
+  // so a row excluded on recursion was counted at a stage the runner puts
+  // after the one it never reached.
+  var laPassed = smokePassed.filter(lookaheadOk);
+  var laExcluded = smokePassed.filter(lookaheadExcl);
+  var laOther = smokePassed.filter(function(r){ return !lookaheadOk(r) && !lookaheadExcl(r); });
+  var recPassed = laPassed.filter(recursionOk);
+  var recExcluded = laPassed.filter(recursionExcl);
+  var recOther = laPassed.filter(function(r){ return !recursionOk(r) && !recursionExcl(r); });
+  var fbPassed = recPassed.filter(fullbacktestOk);
+  var fbExcluded = recPassed.filter(fullbacktestExcl);
+  var fbOther = recPassed.filter(function(r){ return !fullbacktestOk(r) && !fullbacktestExcl(r); });
 
   // "Other reasons" is not one thing - it is every row this stage neither
   // passed nor excluded, and what it actually holds differs stage by
@@ -605,8 +619,8 @@ __CRITERIA__
     '<span>strategies suitable for a smoke run</span></div></div>'+
     [
       ["smoke run", smokePassed, smokeExcluded, "excluded — smoke run failed", smokeOther],
-      ["recursion-bias", recPassed, recExcluded, "excluded — recursion bias found", recOther],
       ["look-ahead-bias", laPassed, laExcluded, "excluded — look-ahead bias found", laOther],
+      ["recursion-bias", recPassed, recExcluded, "excluded — recursion bias found", recOther],
       ["full-backtest", fbPassed, fbExcluded, "excluded — full-backtest failed", fbOther]
     ].map(function(s){
       var label = s[0], passed = s[1], excluded = s[2], excludedLabel = s[3], other = s[4];

@@ -547,18 +547,48 @@ def run_diagnostic(row, diagnostic, timeout, fallback_timeout,
                     "elapsed_s": round(time.time() - started, 1)}
 
 
-def candidates(profile_path, eligibility_path):
+def candidates(profile_path, eligibility_path, output_path=None,
+               convergence_path=None):
+    """Rows owed a diagnostic run.
+
+    The eligibility table is the first source, and was the only one until
+    2026-09-16. It answers "what is still pending" for rows the expansion
+    left pending, which silently excludes a whole class: a strategy the
+    warm-up ladder looked at and then excluded on a recursion finding is
+    `ineligible` afterwards, so no pending row ever names it again and no
+    run can reach it without `--only`. 63 rows sat in exactly that state,
+    46 of them `ineligible` - all of them excluded on recursion without a
+    look-ahead verdict ever being measured, which the corrected check order
+    (look-ahead first, since `recursive_prerequisite()` will not spend a
+    recursion run without it) makes plainly backwards.
+
+    So the second source is the warm-up-convergence record: if the ladder
+    looked at a strategy, the strategy is in this audit's working set, and
+    a missing look-ahead verdict is work owed regardless of what its
+    eligibility row now says. Manifest order, after the pending rows, with
+    no row offered twice.
+    """
     profiles = {row["strategy_id"]: row for row in _csv(profile_path)}
     pending = _csv(eligibility_path)
-    return [profiles[row["strategy_id"]] for row in pending
-            if row["eligibility_status"] == "pending_diagnostics" and
-            not ({"zero_trades_in_smoke_requires_full_window",
-                  "exact_regime_window_coverage_not_verified",
-                  "execution_profile_unresolved",
-                  "artifact_role_requires_review"} &
-                 set(filter(None, row["pending_reasons"].split(";")))) and
-            ("lookahead_not_completed" in row["pending_reasons"] or
-             "recursive_bias_not_completed" in row["pending_reasons"])]
+    selected = [profiles[row["strategy_id"]] for row in pending
+                if row["eligibility_status"] == "pending_diagnostics" and
+                not ({"zero_trades_in_smoke_requires_full_window",
+                      "exact_regime_window_coverage_not_verified",
+                      "execution_profile_unresolved",
+                      "artifact_role_requires_review"} &
+                     set(filter(None, row["pending_reasons"].split(";")))) and
+                ("lookahead_not_completed" in row["pending_reasons"] or
+                 "recursive_bias_not_completed" in row["pending_reasons"])]
+    seen = {row["strategy_id"] for row in selected}
+    measured = _load(output_path or OUTPUT).get("results", {})
+    laddered = _load(convergence_path or CONVERGENCE).get("results", {})
+    for strategy_id, row in profiles.items():
+        if strategy_id in seen or strategy_id not in laddered:
+            continue
+        if measured.get(strategy_id, {}).get("lookahead"):
+            continue
+        selected.append(row)
+    return selected
 
 
 def recursive_prerequisite(previous, strategy, mode, convergence=None):
