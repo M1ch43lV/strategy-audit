@@ -33,32 +33,6 @@
       "measured_members": 0,
       "members": [
         {
-          "canonical_file": "repair/patched/repos/nateemma_strategies/Basket/MomentumRegimeBasket15m.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "MomentumRegimeBasket15m",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/nateemma_strategies/Basket/MomentumRegimeBasket15mFast.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "MomentumRegimeBasket15mFast",
-          "trades": "",
-          "trades_sha256": ""
-        }
-      ],
-      "normalized_ast_sha256": "sha256_0cbd34f89d4aa0a2474ebd9e1ea22a497e395c85a71b3b4ffd1d791ba9783598",
-      "trade_hashes": []
-    },
-    {
-      "evidence_status": "code_equivalent_only",
-      "measured_members": 0,
-      "members": [
-        {
           "canonical_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC.py",
           "full_backtest_status": "not_run",
           "repo": "webclinic017/strategies-freqtrade-",
@@ -670,7 +644,7 @@
           "trades_sha256": "sha256_4b6c949d8ab136e22b0447bcf09980361b19b78d3a008fcbe454317fe7ae160f"
         },
         {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v2.py",
+          "canonical_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/Schism-v2.py",
           "full_backtest_status": "not_run",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
@@ -679,7 +653,7 @@
           "trades_sha256": ""
         },
         {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v2.py",
+          "canonical_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/Schism-v2.py",
           "full_backtest_status": "not_run",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
@@ -691,6 +665,34 @@
       "normalized_ast_sha256": "sha256_0fd183b21d8276d981016b5c2d66085b62d2226d5a268fa74f428db30e475c49",
       "trade_hashes": [
         "sha256_4b6c949d8ab136e22b0447bcf09980361b19b78d3a008fcbe454317fe7ae160f"
+      ]
+    },
+    {
+      "evidence_status": "code_equivalent_only",
+      "measured_members": 1,
+      "members": [
+        {
+          "canonical_file": "repos/eovie_freqtrade_strs/ClucHAnix/ClucHAnix_5m.py",
+          "full_backtest_status": "not_run",
+          "repo": "eovie/freqtrade_strs",
+          "run_profile": "spot_long",
+          "strategy_id": "Cluc5mDCA",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/TheoBrigitte_freqtrade/strategies/cluc/ClucHAnix_5m.py",
+          "full_backtest_status": "measured",
+          "repo": "TheoBrigitte/freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "ClucHAnix_5m",
+          "trades": 2288,
+          "trades_sha256": "sha256_c85f3537335d7aef47f01b8f7c91d9006b7089c097092ba57b703982fc09af35"
+        }
+      ],
+      "normalized_ast_sha256": "sha256_104912d51abdd1438d77a677dcdb7d2c4602b17e0678dbf233113eb56e58088d",
+      "trade_hashes": [
+        "sha256_c85f3537335d7aef47f01b8f7c91d9006b7089c097092ba57b703982fc09af35"
       ]
     },
     {
@@ -718,34 +720,6 @@
       ],
       "normalized_ast_sha256": "sha256_1251db314cc4119a64a5de58d561a5b1ed336ea7fde858b419981bf6e3a892ac",
       "trade_hashes": []
-    },
-    {
-      "evidence_status": "confirmed_same_trades",
-      "measured_members": 2,
-      "members": [
-        {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Chispei.py",
-          "full_backtest_status": "measured",
-          "repo": "PeetCrypto/freqtrade-stuff",
-          "run_profile": "spot_long",
-          "strategy_id": "Chispei",
-          "trades": 3733,
-          "trades_sha256": "sha256_7933748efd6f41e4891df8e310450b4a136cef780be49c2c57005f42117735cb"
-        },
-        {
-          "canonical_file": "repos/botenesp_freqtrade_strategies/chispei.py",
-          "full_backtest_status": "measured",
-          "repo": "botenesp/freqtrade_strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "chispei",
-          "trades": 3733,
-          "trades_sha256": "sha256_7933748efd6f41e4891df8e310450b4a136cef780be49c2c57005f42117735cb"
-        }
-      ],
-      "normalized_ast_sha256": "sha256_137404e9fb73486b8c82e4fe609c17af005b7a205d32f622c75e867043ae07c4",
-      "trade_hashes": [
-        "sha256_7933748efd6f41e4891df8e310450b4a136cef780be49c2c57005f42117735cb"
-      ]
     },
     {
       "evidence_status": "code_equivalent_only",
@@ -780,59 +754,6 @@
         }
       ],
       "normalized_ast_sha256": "sha256_1c8673b7a300a2ed6de862a449147ced47d7b30c36dc1cc62343e7d34d624e68",
-      "trade_hashes": []
-    },
-    {
-      "evidence_status": "code_equivalent_only",
-      "measured_members": 0,
-      "members": [
-        {
-          "canonical_file": "repos/eovie_freqtrade_strs/ClucHAnix/ClucHAnix.py",
-          "full_backtest_status": "not_run",
-          "repo": "eovie/freqtrade_strs",
-          "run_profile": "spot_long",
-          "strategy_id": "ClucDCA",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix (3).py",
-          "full_backtest_status": "oom_confirmed",
-          "repo": "PeetCrypto/freqtrade-stuff",
-          "run_profile": "spot_long",
-          "strategy_id": "ClucHAnix",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix (3).py",
-          "full_backtest_status": "not_run",
-          "repo": "PeetCrypto/freqtrade-stuff",
-          "run_profile": "spot_long",
-          "strategy_id": "ClucHAnix_BTC",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix (3).py",
-          "full_backtest_status": "not_run",
-          "repo": "PeetCrypto/freqtrade-stuff",
-          "run_profile": "spot_long",
-          "strategy_id": "ClucHAnix_ETH",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix (3).py",
-          "full_backtest_status": "not_run",
-          "repo": "PeetCrypto/freqtrade-stuff",
-          "run_profile": "spot_long",
-          "strategy_id": "ClucHAnix_USD",
-          "trades": "",
-          "trades_sha256": ""
-        }
-      ],
-      "normalized_ast_sha256": "sha256_1f64631145a802f8e0bce79d7cbeadf6516e36bcb540729645986e4508bb9413",
       "trade_hashes": []
     },
     {
@@ -873,41 +794,13 @@
       ]
     },
     {
-      "evidence_status": "confirmed_same_trades",
-      "measured_members": 2,
-      "members": [
-        {
-          "canonical_file": "user_data/profile_repairs/FastSupertrend_optim3_rsi_75.py",
-          "full_backtest_status": "measured",
-          "repo": "TheoBrigitte/freqtrade",
-          "run_profile": "futures_long_short",
-          "strategy_id": "FastSupertrend_optim3_rsi_75",
-          "trades": 15898,
-          "trades_sha256": "sha256_62f9e431504d88718ca6b96fe309cb0d72279aec92b3c53f7aa85fc51c31263b"
-        },
-        {
-          "canonical_file": "user_data/profile_repairs/FastSupertrend_optim3_rsi_75fix.py",
-          "full_backtest_status": "measured",
-          "repo": "TheoBrigitte/freqtrade",
-          "run_profile": "futures_long_short",
-          "strategy_id": "FastSupertrend_optim3_rsi_75fix",
-          "trades": 15898,
-          "trades_sha256": "sha256_62f9e431504d88718ca6b96fe309cb0d72279aec92b3c53f7aa85fc51c31263b"
-        }
-      ],
-      "normalized_ast_sha256": "sha256_2514f6d04ba3bdf251e5a8a4e6269425b4929b03224f98ddba4ed5c062cda1ba",
-      "trade_hashes": [
-        "sha256_62f9e431504d88718ca6b96fe309cb0d72279aec92b3c53f7aa85fc51c31263b"
-      ]
-    },
-    {
       "evidence_status": "code_equivalent_only",
       "measured_members": 0,
       "members": [
         {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/HyperStra_GSN_SMAOnly.py",
+          "canonical_file": "repos/davidzr_freqtrade-strategies/strategies/HyperStra_GSN_SMAOnly/HyperStra_GSN_SMAOnly.py",
           "full_backtest_status": "not_run",
-          "repo": "PeetCrypto/freqtrade-stuff",
+          "repo": "davidzr/freqtrade-strategies",
           "run_profile": "spot_long",
           "strategy_id": "HyperStra_GSN_SMAOnly",
           "trades": "",
@@ -966,65 +859,11 @@
           "trades_sha256": ""
         },
         {
-          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusBBTrendStrategy.py",
-          "full_backtest_status": "not_run",
-          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
-          "run_profile": "futures_long_short",
-          "strategy_id": "LitmusBBTrendStrategy",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusClucStrategy.py",
-          "full_backtest_status": "not_run",
-          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
-          "run_profile": "futures_long_short",
-          "strategy_id": "LitmusClucStrategy",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusSARStrategy.py",
-          "full_backtest_status": "not_run",
-          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
-          "run_profile": "futures_long_short",
-          "strategy_id": "LitmusSARStrategy",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusScalpStrategy.py",
-          "full_backtest_status": "not_run",
-          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
-          "run_profile": "futures_long_short",
-          "strategy_id": "LitmusScalpStrategy",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
           "canonical_file": "repair/patched/repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusSimpleStrategy.py",
           "full_backtest_status": "not_run",
           "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
           "run_profile": "futures_long_short",
           "strategy_id": "LitmusSimpleStrategy",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusTrendScalpStrategy.py",
-          "full_backtest_status": "not_run",
-          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
-          "run_profile": "futures_long_short",
-          "strategy_id": "LitmusTrendScalpStrategy",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusVulcanStrategy.py",
-          "full_backtest_status": "not_run",
-          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
-          "run_profile": "futures_long_short",
-          "strategy_id": "LitmusVulcanStrategy",
           "trades": "",
           "trades_sha256": ""
         }
@@ -1037,29 +876,11 @@
       "measured_members": 0,
       "members": [
         {
-          "canonical_file": "repos/nateemma_strategies/TSPredict/TS_Coeff.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "futures_long",
-          "strategy_id": "TS_Coeff",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
           "canonical_file": "repos/nateemma_strategies/TSPredict/TS_Gain.py",
           "full_backtest_status": "not_run",
           "repo": "nateemma/strategies",
           "run_profile": "futures_long",
           "strategy_id": "TS_Gain",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/nateemma_strategies/TSPredict/TS_Wavelet.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "futures_long",
-          "strategy_id": "TS_Wavelet",
           "trades": "",
           "trades_sha256": ""
         },
@@ -1103,175 +924,6 @@
       "trade_hashes": [
         "sha256_454fe96eb823329bda1637cb8e136147fa7d2db933c7d076e66ed4451a71106e"
       ]
-    },
-    {
-      "evidence_status": "code_equivalent_only",
-      "measured_members": 0,
-      "members": [
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "PCA",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_dwt.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "PCA_dwt",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_fbb.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "PCA_fbb",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_fwr.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "PCA_fwr",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_highlow.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "PCA_highlow",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_jump.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "PCA_jump",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_macd.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "PCA_macd",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_mfi.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "PCA_mfi",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_minmax.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "PCA_minmax",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_nseq.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "PCA_nseq",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_over.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "PCA_over",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_profit.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "PCA_profit",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_pv.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "PCA_pv",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_stochastic.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "PCA_stochastic",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_swing.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "PCA_swing",
-          "trades": "",
-          "trades_sha256": ""
-        }
-      ],
-      "normalized_ast_sha256": "sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509",
-      "trade_hashes": []
-    },
-    {
-      "evidence_status": "code_equivalent_only",
-      "measured_members": 0,
-      "members": [
-        {
-          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats/hyperoptable_strategy_v2.py",
-          "full_backtest_status": "not_run",
-          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
-          "run_profile": "spot_long",
-          "strategy_id": "HyperoptableStrategyV2",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/LazyPigPig_freqtrade-grid/tests/strategy/strats/strategy_test_v2.py",
-          "full_backtest_status": "not_run",
-          "repo": "LazyPigPig/freqtrade-grid",
-          "run_profile": "spot_long",
-          "strategy_id": "StrategyTestV2",
-          "trades": "",
-          "trades_sha256": ""
-        }
-      ],
-      "normalized_ast_sha256": "sha256_349c61018b21c053190ee251d3af6fc6403835a7961b8ca362afce2ce567ea2d",
-      "trade_hashes": []
     },
     {
       "evidence_status": "code_equivalent_only",
@@ -1350,9 +1002,9 @@
           "trades_sha256": "sha256_3dcade4d19a21950f07bc4be313981dd6f8967b534b7e4085da2a3d4453374f9"
         },
         {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/NostalgiaForInfinityV7.py",
+          "canonical_file": "repos/ShahAnuj2610_my-freqtrade/user_data/strategies/NostalgiaForInfinityV7.py",
           "full_backtest_status": "measured",
-          "repo": "PeetCrypto/freqtrade-stuff",
+          "repo": "ShahAnuj2610/my-freqtrade",
           "run_profile": "spot_long",
           "strategy_id": "NostalgiaForInfinityV7",
           "trades": 542,
@@ -1413,7 +1065,7 @@
           "trades_sha256": ""
         },
         {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Schism-0318.py",
+          "canonical_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/Schism-0318.py",
           "full_backtest_status": "not_run",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
@@ -1422,7 +1074,7 @@
           "trades_sha256": ""
         },
         {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Schism-0318.py",
+          "canonical_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/Schism-0318.py",
           "full_backtest_status": "not_run",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
@@ -1517,42 +1169,6 @@
       "evidence_status": "code_equivalent_only",
       "measured_members": 0,
       "members": [
-        {
-          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats/broken_strats/broken_futures_strategies.py",
-          "full_backtest_status": "not_run",
-          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
-          "run_profile": "unknown",
-          "strategy_id": "TestStrategyImplementBuyTimeout",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats/broken_strats/broken_futures_strategies.py",
-          "full_backtest_status": "not_run",
-          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
-          "run_profile": "unknown",
-          "strategy_id": "TestStrategyImplementCustomSell",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/titouannwtt_freqtrade-ultimate/tests/strategy/strats/broken_strats/broken_futures_strategies.py",
-          "full_backtest_status": "not_run",
-          "repo": "titouannwtt/freqtrade-ultimate",
-          "run_profile": "unknown",
-          "strategy_id": "TestStrategyImplementEmptyWorking",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats/broken_strats/broken_futures_strategies.py",
-          "full_backtest_status": "not_run",
-          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
-          "run_profile": "unknown",
-          "strategy_id": "TestStrategyImplementSellTimeout",
-          "trades": "",
-          "trades_sha256": ""
-        },
         {
           "canonical_file": "repos/LazyPigPig_freqtrade-grid/tests/strategy/strats/broken_strats/broken_futures_strategies.py",
           "full_backtest_status": "not_run",
@@ -1650,32 +1266,6 @@
       "measured_members": 0,
       "members": [
         {
-          "canonical_file": "repos/ShahAnuj2610_my-freqtrade-nfi-nextgen/user_data/strategies/strat_dca.py",
-          "full_backtest_status": "not_run",
-          "repo": "ShahAnuj2610/my-freqtrade-nfi-nextgen",
-          "run_profile": "spot_long",
-          "strategy_id": "strat_dca",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/tbedit (1).py",
-          "full_backtest_status": "not_run",
-          "repo": "PeetCrypto/freqtrade-stuff",
-          "run_profile": "spot_long",
-          "strategy_id": "tbedit",
-          "trades": "",
-          "trades_sha256": ""
-        }
-      ],
-      "normalized_ast_sha256": "sha256_617720878e36e009d4908dcfd5b39785d78b9ec35111bf5eed54eab4d781b375",
-      "trade_hashes": []
-    },
-    {
-      "evidence_status": "code_equivalent_only",
-      "measured_members": 0,
-      "members": [
-        {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-v2.6.py",
           "full_backtest_status": "not_run",
           "repo": "PeetCrypto/freqtrade-stuff",
@@ -1748,6 +1338,32 @@
       "measured_members": 0,
       "members": [
         {
+          "canonical_file": "repos/eovie_freqtrade_strs/ClucHAnix/ClucHAnix.py",
+          "full_backtest_status": "not_run",
+          "repo": "eovie/freqtrade_strs",
+          "run_profile": "spot_long",
+          "strategy_id": "ClucDCA",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix E01VE Offsets.py",
+          "full_backtest_status": "oom_confirmed",
+          "repo": "PeetCrypto/freqtrade-stuff",
+          "run_profile": "spot_long",
+          "strategy_id": "ClucHAnix",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_764defd3dd4319a8ccadb18c8fdc98a5a95cd0cedb9be6a75d2638ec8b05c05d",
+      "trade_hashes": []
+    },
+    {
+      "evidence_status": "code_equivalent_only",
+      "measured_members": 0,
+      "members": [
+        {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.5.py",
           "full_backtest_status": "not_run",
           "repo": "PeetCrypto/freqtrade-stuff",
@@ -1811,86 +1427,6 @@
         }
       ],
       "normalized_ast_sha256": "sha256_82a6db849b25eb2be2dc2a5b692c2ac5b5dceb49efb66e4f1ee2908a607fa13f",
-      "trade_hashes": []
-    },
-    {
-      "evidence_status": "code_equivalent_only",
-      "measured_members": 0,
-      "members": [
-        {
-          "canonical_file": "repos/nateemma_strategies/Basket/BasketStrategy.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "BasketStrategy",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/nateemma_strategies/Basket/BlendBasket.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "BlendBasket",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/nateemma_strategies/Basket/ConstantMixBasket.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "ConstantMixBasket",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/nateemma_strategies/Basket/CppiBasket.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "CppiBasket",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/nateemma_strategies/Basket/InverseVolBasket.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "InverseVolBasket",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/nateemma_strategies/Basket/MinVarianceBasket.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "MinVarianceBasket",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/nateemma_strategies/Basket/MomentumBasket.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "MomentumBasket",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/nateemma_strategies/Basket/VolTargetBasket.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "VolTargetBasket",
-          "trades": "",
-          "trades_sha256": ""
-        }
-      ],
-      "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
       "trade_hashes": []
     },
     {
@@ -2065,7 +1601,7 @@
           "trades_sha256": ""
         },
         {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/SuperHV27.py",
+          "canonical_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/SuperHV27.py",
           "full_backtest_status": "not_run",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
@@ -2074,7 +1610,7 @@
           "trades_sha256": ""
         },
         {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/SuperHV27.py",
+          "canonical_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/SuperHV27.py",
           "full_backtest_status": "not_run",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
@@ -2187,22 +1723,13 @@
       ]
     },
     {
-      "evidence_status": "confirmed_same_trades",
-      "measured_members": 2,
+      "evidence_status": "code_equivalent_only",
+      "measured_members": 1,
       "members": [
         {
-          "canonical_file": "repos/davidzr_freqtrade-strategies/strategies/Combined_NFIv7_SMA_bAdBoY_20211204/Combined_NFIv7_SMA_bAdBoY_20211204.py",
-          "full_backtest_status": "measured",
-          "repo": "davidzr/freqtrade-strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "Combined_NFIv7_SMA_bAdBoY_20211204",
-          "trades": 722,
-          "trades_sha256": "sha256_85dce6cada742b6e1768f59e0daf70df041423f4e4a3f2cd9a21a3a4a5ae5145"
-        },
-        {
-          "canonical_file": "repos/davidzr_freqtrade-strategies/strategies/Combined_NFIv7_SMA_Rallipanos_20210707/Combined_NFIv7_SMA_Rallipanos_20210707.py",
+          "canonical_file": "repos/kemplail_freqtrade-stuff/strategies/Combined_NFIv7_SMA_Rallipanos.py",
           "full_backtest_status": "oom_confirmed",
-          "repo": "davidzr/freqtrade-strategies",
+          "repo": "kemplail/freqtrade-stuff",
           "run_profile": "spot_long",
           "strategy_id": "Combined_NFIv7_SMA_Rallipanos_20210707",
           "trades": "",
@@ -2289,9 +1816,9 @@
           "trades_sha256": "sha256_85dce6cada742b6e1768f59e0daf70df041423f4e4a3f2cd9a21a3a4a5ae5145"
         },
         {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/NostalgiaForInfinityV7_SMAv2 (2).py",
+          "canonical_file": "repos/davidzr_freqtrade-strategies/strategies/NostalgiaForInfinityV7_SMAv2/NostalgiaForInfinityV7_SMAv2.py",
           "full_backtest_status": "measured",
-          "repo": "PeetCrypto/freqtrade-stuff",
+          "repo": "davidzr/freqtrade-strategies",
           "run_profile": "spot_long",
           "strategy_id": "NostalgiaForInfinityV7_SMAv2",
           "trades": 722,
@@ -2336,50 +1863,6 @@
         }
       ],
       "normalized_ast_sha256": "sha256_aa2996ed045b938ca18251865f77882c050a5c7b3938779feb2c9d02cc53b4fe",
-      "trade_hashes": []
-    },
-    {
-      "evidence_status": "code_equivalent_only",
-      "measured_members": 0,
-      "members": [
-        {
-          "canonical_file": "repos/nateemma_strategies/Framework/test_base_strategy.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "_Strat",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/nateemma_strategies/Framework/BaseNNStrategy.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "BaseNNStrategy",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/nateemma_strategies/Framework/BaseStrategy.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "BaseStrategy",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/nateemma_strategies/SimpleStrategies/SimpleStrategy.py",
-          "full_backtest_status": "not_run",
-          "repo": "nateemma/strategies",
-          "run_profile": "spot_long",
-          "strategy_id": "SimpleStrategy",
-          "trades": "",
-          "trades_sha256": ""
-        }
-      ],
-      "normalized_ast_sha256": "sha256_aaab88b29e7c939e1d00894e0b2c18b5b751cc4eb6dddcc8bb8b2993f3b716ef",
       "trade_hashes": []
     },
     {
@@ -2433,34 +1916,6 @@
       ],
       "normalized_ast_sha256": "sha256_b5a1bebdf52e52189811b4871dae272aa79b9c696efbcfe59fcf11ea9f9822ad",
       "trade_hashes": []
-    },
-    {
-      "evidence_status": "code_equivalent_only",
-      "measured_members": 1,
-      "members": [
-        {
-          "canonical_file": "repos/TheoBrigitte_freqtrade/strategies/starrise/StarRise.py",
-          "full_backtest_status": "measured",
-          "repo": "TheoBrigitte/freqtrade",
-          "run_profile": "spot_long",
-          "strategy_id": "StarRise",
-          "trades": 158,
-          "trades_sha256": "sha256_a2725f2db0c8f4bb51e4f2b6dcf7611a3d0355ee5ec103d1cea864b8aba576e7"
-        },
-        {
-          "canonical_file": "repos/kemplail_freqtrade-stuff/strategies/StarRise.py",
-          "full_backtest_status": "not_run",
-          "repo": "kemplail/freqtrade-stuff",
-          "run_profile": "spot_long",
-          "strategy_id": "StarRise_dca",
-          "trades": "",
-          "trades_sha256": ""
-        }
-      ],
-      "normalized_ast_sha256": "sha256_baa88b7b4fde8f51c81c10888b4cc0f3eee74ce6f3fef2d313d55a9e1e924b5a",
-      "trade_hashes": [
-        "sha256_a2725f2db0c8f4bb51e4f2b6dcf7611a3d0355ee5ec103d1cea864b8aba576e7"
-      ]
     },
     {
       "evidence_status": "code_equivalent_only",
@@ -2556,25 +2011,25 @@
       "measured_members": 0,
       "members": [
         {
-          "canonical_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Hacklemore.py",
-          "full_backtest_status": "performance_limited",
-          "repo": "werkkrew/freqtrade-strategies",
+          "canonical_file": "repos/nateemma_strategies/Framework/test_base_strategy.py",
+          "full_backtest_status": "not_run",
+          "repo": "nateemma/strategies",
           "run_profile": "spot_long",
-          "strategy_id": "Hacklemore",
+          "strategy_id": "_Strat",
           "trades": "",
           "trades_sha256": ""
         },
         {
-          "canonical_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Hacklemore.py",
+          "canonical_file": "repos/nateemma_strategies/Framework/BaseStrategy.py",
           "full_backtest_status": "not_run",
-          "repo": "werkkrew/freqtrade-strategies",
+          "repo": "nateemma/strategies",
           "run_profile": "spot_long",
-          "strategy_id": "Hacklemore_Slow",
+          "strategy_id": "BaseStrategy",
           "trades": "",
           "trades_sha256": ""
         }
       ],
-      "normalized_ast_sha256": "sha256_c3949e8d9c2f7f1b855654fbdb8a21e23dbafcd6b941eaf64294f47b31ad5abb",
+      "normalized_ast_sha256": "sha256_c51c299e80748a7b2122c752ee3957d5f7e78d508502a472dbde0feb212a085e",
       "trade_hashes": []
     },
     {
@@ -2610,203 +2065,6 @@
         }
       ],
       "normalized_ast_sha256": "sha256_c83c06d6be74b726eafbb53ad9ae00e992ea9c895bb9980111691f635d15f9e6",
-      "trade_hashes": []
-    },
-    {
-      "evidence_status": "code_equivalent_only",
-      "measured_members": 0,
-      "members": [
-        {
-          "canonical_file": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/Anomaly.py",
-          "full_backtest_status": "not_run",
-          "repo": "hamidreza07/freqai-strategy",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_adx.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_adx",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_all.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_all",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_aroon.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_aroon",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_bbw.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_bbw",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_dwt.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_dwt",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_fbb.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_fbb",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_fwr.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_fwr",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_highlow.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_highlow",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_jump.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_jump",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_macd.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_macd",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_mfi.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_mfi",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_minmax.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_minmax",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_nseq.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_nseq",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_over.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_over",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_profit.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_profit",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_pv.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_pv",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_slope.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_slope",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_smooth.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_smooth",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_stochastic.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_stochastic",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_swing.py",
-          "full_backtest_status": "not_run",
-          "repo": "webclinic017/strategies-freqtrade-",
-          "run_profile": "spot_long",
-          "strategy_id": "Anomaly_swing",
-          "trades": "",
-          "trades_sha256": ""
-        }
-      ],
-      "normalized_ast_sha256": "sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d",
       "trade_hashes": []
     },
     {
@@ -3159,34 +2417,6 @@
       ],
       "normalized_ast_sha256": "sha256_edbc7cf1bec447a06d47948402c3ccab4cc6cbd37cdc68ffd31751a800e4f997",
       "trade_hashes": []
-    },
-    {
-      "evidence_status": "code_equivalent_only",
-      "measured_members": 1,
-      "members": [
-        {
-          "canonical_file": "repos/eovie_freqtrade_strs/ClucHAnix/ClucHAnix_5m.py",
-          "full_backtest_status": "not_run",
-          "repo": "eovie/freqtrade_strs",
-          "run_profile": "spot_long",
-          "strategy_id": "Cluc5mDCA",
-          "trades": "",
-          "trades_sha256": ""
-        },
-        {
-          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix_5m.py",
-          "full_backtest_status": "measured",
-          "repo": "PeetCrypto/freqtrade-stuff",
-          "run_profile": "spot_long",
-          "strategy_id": "ClucHAnix_5m",
-          "trades": 2288,
-          "trades_sha256": "sha256_c85f3537335d7aef47f01b8f7c91d9006b7089c097092ba57b703982fc09af35"
-        }
-      ],
-      "normalized_ast_sha256": "sha256_ede70561b00a428f090e2ec6f5bb69d6cfaaffc700c3c6b9cd8dab00740d3120",
-      "trade_hashes": [
-        "sha256_c85f3537335d7aef47f01b8f7c91d9006b7089c097092ba57b703982fc09af35"
-      ]
     },
     {
       "evidence_status": "code_equivalent_only",

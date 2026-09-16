@@ -2209,3 +2209,97 @@ admission regardless of what this phase changed. `strategy_status.html`
 was not regenerated this phase - it has its own separate build step,
 not touched here, and is now known-stale relative to the CSV/MD.
 
+# Phase 17 - duplicates excluded on code identity alone, a real 11-strategy loss, and repos/ tracked, 2026-09-16
+
+**Owner's decision.** The 102 269-batch rows `pre_stage1_hold` was holding
+(Phase 16's "269er-Batch" status report) could never reach that route's
+own confirmation bar - held from Stage 1, they could never reach the
+Stage-8 full backtest the bar requires. Asked to check by hash, not name,
+whether they really are duplicates (they are - `semantic_duplicates.py`
+already compared normalized AST code, never names) and, if so, to
+exclude them outright rather than hold them forever. `evidence.
+semantic_duplicates.adjudicate()` gained a second tier: normalized-AST
+match, no config overlay on either side (`PROFILE_CLASS1.json` or a
+companion params file), and no measured trade-count disagreement between
+members - the MACDStrategyADA/BTC and MACDStrategy* families are real,
+checked cases in this corpus where identical code measures different
+trades, so this guard is load-bearing, not decorative. `pre_stage1_hold`/
+`filter_targets`/`SEMANTIC_DUPLICATE_HOLD.json` are retired - nothing
+else in the repository ever called them, and every case they used to
+hold now resolves directly. `tools.harvest.remove_semantic_duplicates()`
+deletes the source file of every excluded duplicate and wires into
+`refresh_intake_evidence()`, so a harvest run cleans up its own new
+duplicates on its own from now on; a permanent, append-only
+`evidence/REMOVED_DUPLICATE_SOURCES.json` records what was removed and
+why, because the live adjudication file cannot: a duplicate group needs
+two still-existing members to be recomputed, so it self-erases the exact
+row it once justified removing the moment that row is gone.
+
+**A real, serious bug, found only after the fact: 11 strategies that were
+supposed to be KEPT got deleted anyway.** `adjudicate()` decides each
+duplicate group independently. A strategy can be the representative
+(kept) of one group while simultaneously being an excluded member of a
+completely different group - `BinClucMadv1` was representative for
+`BinClucMadSMAv1`/`SMAv2`/`v2` while itself excluded as somebody else's
+duplicate. Deleting it then orphaned its own group: three rows now
+pointed at a representative that no longer existed. Found by running the
+retired-family selftest guard added the same phase (a `ZERO_TRADE_
+TRIAGE.json`-sourced criterion, `measured_outside_its_design`, lost its
+only example, `BasketStrategy`, this way) and then auditing every
+representative name in the removal log against the live corpus:
+`BinClucMadv1`, `Cluc5mDCA`, `ClucDCA`, `ClucDCAV2`, `Enchilada`,
+`Lateralus`, `Lmao`, `NASOSv5HO`, `SuperReversal_mtf`, `TestStrategyNo
+Implements`, `ViN` - eleven confirmed gone, three of them (`ClucDCA`,
+`Cluc5mDCA`, and `TrailingBuyStratCluc`, found separately) never even
+reaching the removal log, lost in the very first manual pass before the
+log existed at all.
+
+**Fixed in `duplicate_source_files()`, two guards, both selftested
+against exactly this shape:** never resolve a strategy_id for deletion if
+it is cited as ANY entry's `canonical_representative`, regardless of its
+own exclusion status elsewhere; never resolve a file that a currently-
+kept (non-excluded) strategy_id also resolves to, in case two classes
+ever share one physical file. The eleven were re-harvested individually
+by exact path (not a full 18-repo re-clone - `tools.harvest.harvest()`
+re-fetches every file in a target repo unconditionally, and a first
+attempt at this sat re-downloading complete strategy collections,
+thousands of files, for a fix that needed twelve; killed and replaced
+with a targeted per-file fetch reusing `harvest.py`'s own `raw()`/
+`_write_scanned()`). Recovering `ClucDCA`/`BinClucMadv1`/etc. also
+restored sibling classes that shared their files (canonical strategy
+count rose from 1246 to 1320 before the corrected `remove_semantic_
+duplicates()` ran again and correctly re-excluded 18 genuine duplicates
+down to 1303, none of them a representative this time - verified by the
+same audit that found the bug, now showing zero missing representatives).
+The nine recovered rows that HAD reached the removal log before this are
+marked `recovered_at` there rather than deleted from it - the log stays
+append-only and honest about the mistake; `evidence.strategy_status`'s
+own duplicate-set computation now excludes any `recovered_at` entry from
+counting as still-removed.
+
+**`repos/` is tracked in git from this commit on.** Owner's decision,
+directly on the finding above: this project had assumed a downloaded
+strategy file was always regenerable from its origin repository, and
+today that assumption was the only thing standing between a local bug
+and a permanent loss - it happened to still be true (the eleven repos
+were still on GitHub, unchanged), but nothing guarantees a repo stays
+public, stays put, or keeps its history forever. `.gitignore`'s old
+`/repos/` exclusion is replaced with `repos/**/.git/` - the actual
+strategy files are now backed up the same way everything else in this
+project is, but 52 repositories carried a NESTED `.git` directory (real
+history and pack files from being fetched by `git clone` at some earlier
+point, before `harvest.py`'s API-only path existed, rather than harvest's
+own individual-file fetch) that does not belong here and would have
+committed two of them as broken gitlinks (`git add` silently offers to
+record a bare commit-hash pointer for any directory containing `.git`,
+with no corresponding `.gitmodules` entry to make it a real submodule -
+caught by checking `git ls-files --stage` for mode `160000` before
+committing, not assumed absent). All 52 nested `.git` directories were
+removed from disk (the repository content itself is unaffected; only
+each fetch's own local git history, never used or referenced by anything
+in this audit, is gone) before staging. 6578 files, ~750 MB after
+excluding those .git directories and the pre-existing `*.csv`/
+`__pycache__` ignores - no individual file over 18 MB, well inside
+GitHub's 100 MB hard per-file limit that blocked this project's push
+once already (see the LFS migration history).
+

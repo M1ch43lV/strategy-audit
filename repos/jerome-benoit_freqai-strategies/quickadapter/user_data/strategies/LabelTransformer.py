@@ -1,0 +1,668 @@
+import copy
+import fnmatch
+import logging
+from collections.abc import Mapping
+from dataclasses import dataclass, field
+from typing import Any, Final, Literal
+
+import numpy as np
+import scipy as sp
+from datasieve.transforms.base_transform import (
+    ArrayOrNone,
+    BaseTransform,
+    ListOrNone,
+)
+from EnumErrors import enum_error_message
+from numpy.typing import ArrayLike, NDArray
+from sklearn.preprocessing import (
+    MaxAbsScaler,
+    MinMaxScaler,
+    PowerTransformer,
+    RobustScaler,
+    StandardScaler,
+)
+
+logger = logging.getLogger(__name__)
+
+
+def _clip_sigmoid_domain(values: NDArray[np.floating]) -> NDArray[np.floating]:
+    """Clip ``values`` to the open interval ``(-1, 1)``.
+
+    The clip bounds are ``[-1 + eps, 1 - eps]`` with
+    ``eps = np.finfo(float).eps`` so that downstream ``logit((x + 1) / 2)``
+    stays finite at the boundary. NaN values pass through unchanged.
+    """
+    eps = np.finfo(float).eps
+    return np.clip(values, -1.0 + eps, 1.0 - eps)
+
+
+CombinedMetric = Literal[
+    "amplitude",
+    "amplitude_threshold_ratio",
+    "volume_rate",
+    "speed",
+    "efficiency_ratio",
+    "volume_weighted_efficiency_ratio",
+]
+COMBINED_METRICS: Final[tuple[CombinedMetric, ...]] = (
+    "amplitude",
+    "amplitude_threshold_ratio",
+    "volume_rate",
+    "speed",
+    "efficiency_ratio",
+    "volume_weighted_efficiency_ratio",
+)
+
+CombinedAggregation = Literal[
+    "arithmetic_mean",
+    "geometric_mean",
+    "harmonic_mean",
+    "quadratic_mean",
+    "weighted_median",
+    "softmax",
+]
+COMBINED_AGGREGATIONS: Final[tuple[CombinedAggregation, ...]] = (
+    "arithmetic_mean",
+    "geometric_mean",
+    "harmonic_mean",
+    "quadratic_mean",
+    "weighted_median",
+    "softmax",
+)
+
+WeightStrategy = Literal["none", "uniform", "combined"] | CombinedMetric
+WEIGHT_STRATEGIES: Final[tuple[WeightStrategy, ...]] = (
+    "none",
+    "uniform",
+    *COMBINED_METRICS,
+    "combined",
+)
+
+FillMethod = Literal["zero", "epsilon", "gaussian", "epsilon_gaussian"]
+FILL_METHODS: Final[tuple[FillMethod, ...]] = (
+    "zero",  # 0 - hard zero (default)
+    "epsilon",  # 1 - epsilon floor
+    "gaussian",  # 2 - per-pivot Gaussian bumps
+    "epsilon_gaussian",  # 3 - additive: epsilon floor + per-pivot Gaussian bumps
+)
+
+FillEpsilonBaseline = Literal["mean", "median"]
+FILL_EPSILON_BASELINES: Final[tuple[FillEpsilonBaseline, ...]] = (
+    "mean",  # 0 - arithmetic mean (default)
+    "median",  # 1 - robust against pivot-weight skew
+)
+
+FillBandwidth = Literal["fixed", "knn"]
+FILL_BANDWIDTHS: Final[tuple[FillBandwidth, ...]] = (
+    "fixed",  # 0 - constant sigma = fill_sigma_candles
+    "knn",  # 1 - per-pivot sigma from k-nearest-neighbor index distance
+)
+
+LabelWeightSupportPolicy = Literal["fallback", "raise"]
+LABEL_WEIGHT_SUPPORT_POLICIES: Final[tuple[LabelWeightSupportPolicy, ...]] = (
+    "fallback",  # 0 - warn and use sanitized base weights (default)
+    "raise",  # 1 - abort the fit with ValueError
+)
+
+StandardizationType = Literal["none", "zscore", "robust", "mmad", "power_yj"]
+STANDARDIZATION_TYPES: Final[tuple[StandardizationType, ...]] = (
+    "none",  # 0 - w
+    "zscore",  # 1 - (w - μ) / σ
+    "robust",  # 2 - (w - median) / IQR
+    "mmad",  # 3 - (w - median) / (MAD · k)
+    "power_yj",  # 4 - YJ(w) (standardized)
+)
+
+NormalizationType = Literal["maxabs", "minmax", "sigmoid", "none"]
+NORMALIZATION_TYPES: Final[tuple[NormalizationType, ...]] = (
+    "maxabs",  # 0 - w / max(|w|)
+    "minmax",  # 1 - low + (w - min) / (max - min) · (high - low)
+    "sigmoid",  # 2 - 2·σ(scale · w) - 1
+    "none",  # 3 - w
+)
+
+DEFAULTS_LABEL_WEIGHTING: Final[dict[str, Any]] = {
+    "strategy": WEIGHT_STRATEGIES[0],  # "none"
+    "metric_coefficients": {},
+    "aggregation": COMBINED_AGGREGATIONS[0],  # "arithmetic_mean"
+    "softmax_temperature": 1.0,
+    "fill_method": FILL_METHODS[0],  # "zero"
+    "fill_epsilon": 1e-6,
+    "fill_epsilon_baseline": FILL_EPSILON_BASELINES[0],  # "mean"
+    "fill_sigma_candles": 25.0,
+    "fill_sigma_min_candles": 0.5,
+    "fill_bandwidth": FILL_BANDWIDTHS[0],  # "fixed"
+    "fill_bandwidth_neighbors": 1,
+    "fill_bandwidth_alpha": 0.5,
+    "support_policy": LABEL_WEIGHT_SUPPORT_POLICIES[0],  # "fallback"
+    "min_pivot_equivalent_count": 3,
+    "min_positive_label_weight_fraction": 0.01,
+    "min_effective_sample_size": 3.0,
+}
+
+DEFAULTS_LABEL_PIPELINE: Final[dict[str, Any]] = {
+    "standardization": STANDARDIZATION_TYPES[0],  # "none"
+    "robust_quantiles": (0.25, 0.75),
+    "mmad_scaling_factor": 1.4826,
+    "normalization": NORMALIZATION_TYPES[0],  # "maxabs"
+    "minmax_range": (-1.0, 1.0),
+    "sigmoid_scale": 1.0,
+    "gamma": 1.0,
+}
+
+
+SmoothingMethod = Literal[
+    "none",
+    "gaussian",
+    "kaiser",
+    "kaiser_bessel_derived",
+    "triang",
+    "smm",
+    "sma",
+    "savgol",
+    "gaussian_filter1d",
+]
+SMOOTHING_METHODS: Final[tuple[SmoothingMethod, ...]] = (
+    "none",
+    "gaussian",
+    "kaiser",
+    "kaiser_bessel_derived",
+    "triang",
+    "smm",
+    "sma",
+    "savgol",
+    "gaussian_filter1d",
+)
+
+SmoothingMode = Literal["mirror", "constant", "nearest", "wrap", "interp"]
+SMOOTHING_MODES: Final[tuple[SmoothingMode, ...]] = (
+    "mirror",
+    "constant",
+    "nearest",
+    "wrap",
+    "interp",
+)
+SMOOTHING_METHOD_MODES: Final[dict[SmoothingMethod, tuple[SmoothingMode, ...]]] = {
+    SMOOTHING_METHODS[7]: SMOOTHING_MODES,  # "savgol"
+    SMOOTHING_METHODS[8]: SMOOTHING_MODES[:-1],  # "gaussian_filter1d"
+}
+
+DEFAULTS_LABEL_SMOOTHING: Final[dict[str, Any]] = {
+    "method": SMOOTHING_METHODS[1],  # "gaussian"
+    "window_candles": 5,
+    "beta": 8.0,
+    "polyorder": 3,
+    "mode": SMOOTHING_MODES[0],  # "mirror"
+    "sigma": 1.0,
+}
+
+PredictionMethod = Literal["none", "thresholding"]
+PREDICTION_METHODS: Final[tuple[PredictionMethod, ...]] = (
+    "none",
+    "thresholding",
+)
+
+ExtremaSelectionMethod = Literal["rank_extrema", "rank_peaks", "partition"]
+EXTREMA_SELECTION_METHODS: Final[tuple[ExtremaSelectionMethod, ...]] = (
+    "rank_extrema",
+    "rank_peaks",
+    "partition",
+)
+
+SkimageThresholdMethod = Literal["mean", "isodata", "li", "minimum", "otsu", "triangle", "yen"]
+SKIMAGE_THRESHOLD_METHODS: Final[tuple[SkimageThresholdMethod, ...]] = (
+    "mean",
+    "isodata",
+    "li",
+    "minimum",
+    "otsu",
+    "triangle",
+    "yen",
+)
+CustomThresholdMethod = Literal["median", "soft_extremum"]
+CUSTOM_THRESHOLD_METHODS: Final[tuple[CustomThresholdMethod, ...]] = (
+    "median",
+    "soft_extremum",
+)
+ThresholdMethod = SkimageThresholdMethod | CustomThresholdMethod
+THRESHOLD_METHODS: Final[tuple[ThresholdMethod, ...]] = (
+    *SKIMAGE_THRESHOLD_METHODS,
+    *CUSTOM_THRESHOLD_METHODS,
+)
+
+DEFAULTS_LABEL_PREDICTION: Final[dict[str, Any]] = {
+    "method": PREDICTION_METHODS[1],  # "thresholding"
+    "selection_method": EXTREMA_SELECTION_METHODS[0],  # "rank_extrema"
+    "threshold_method": SKIMAGE_THRESHOLD_METHODS[0],  # "mean"
+    "outlier_quantile": 0.999,
+    "soft_extremum_alpha": 12.0,
+    "keep_fraction": 0.0075,
+}
+
+
+def get_label_column_config(
+    column_name: str,
+    default_config: dict[str, Any],
+    columns_config: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    result = copy.deepcopy(default_config)
+
+    matches: list[tuple[float, str, dict[str, Any]]] = []
+    for pattern, col_config in columns_config.items():
+        if fnmatch.fnmatch(column_name, pattern):
+            if "*" not in pattern and "?" not in pattern and "[" not in pattern:
+                specificity = np.inf
+            else:
+                specificity = float(sum(1 for c in pattern if c not in "*?[]"))
+            matches.append((specificity, pattern, col_config))
+
+    if columns_config and not matches:
+        logger.warning(
+            f"Column '{column_name}' did not match any pattern in columns config. "
+            f"Available patterns: {list(columns_config.keys())}"
+        )
+
+    matches.sort(key=lambda x: x[0])
+
+    for _, _, col_config in matches:
+        result.update(col_config)
+
+    return result
+
+
+@dataclass
+class _ColumnState:
+    config: dict[str, Any]
+    standard_scaler: StandardScaler | None = None
+    robust_scaler: RobustScaler | None = None
+    power_transformer: PowerTransformer | None = None
+    median: float = 0.0
+    mad: float = 1.0
+    minmax_scaler: MinMaxScaler | None = None
+    maxabs_scaler: MaxAbsScaler | None = None
+
+
+@dataclass
+class _LabelTransformerConfig:
+    default: dict[str, Any] = field(default_factory=lambda: DEFAULTS_LABEL_PIPELINE.copy())
+    columns: dict[str, dict[str, Any]] = field(default_factory=dict)
+
+    @classmethod
+    def from_dict(cls, config: dict[str, Any]) -> "_LabelTransformerConfig":
+        if "default" in config or "columns" in config:
+            default = {**DEFAULTS_LABEL_PIPELINE, **config.get("default", {})}
+            columns = config.get("columns", {})
+            return cls(default=default, columns=columns)
+        else:
+            pipeline_keys = set(DEFAULTS_LABEL_PIPELINE.keys())
+            filtered_config = {k: v for k, v in config.items() if k in pipeline_keys}
+            default = {**DEFAULTS_LABEL_PIPELINE, **filtered_config}
+            return cls(default=default, columns={})
+
+    def get_column_config(self, column_name: str) -> dict[str, Any]:
+        return get_label_column_config(column_name, self.default, self.columns)
+
+
+# registry is an unhashable Mapping -> eq=False
+@dataclass(frozen=True, eq=False, slots=True)
+class _ScalerFamily:
+    registry: Mapping[str, str]
+    type_names: tuple[str, ...]
+    kind: Literal["standardization", "normalization"]
+
+
+class LabelTransformer(BaseTransform):
+    _STANDARDIZATION_SCALERS: Final[dict[str, str]] = {
+        STANDARDIZATION_TYPES[1]: "standard_scaler",  # zscore
+        STANDARDIZATION_TYPES[2]: "robust_scaler",  # robust
+        STANDARDIZATION_TYPES[4]: "power_transformer",  # power_yj
+    }
+    _NORMALIZATION_SCALERS: Final[dict[str, str]] = {
+        NORMALIZATION_TYPES[0]: "maxabs_scaler",  # maxabs
+        NORMALIZATION_TYPES[1]: "minmax_scaler",  # minmax
+    }
+    _STANDARDIZATION_FAMILY: Final[_ScalerFamily] = _ScalerFamily(
+        _STANDARDIZATION_SCALERS, STANDARDIZATION_TYPES, "standardization"
+    )
+    _NORMALIZATION_FAMILY: Final[_ScalerFamily] = _ScalerFamily(
+        _NORMALIZATION_SCALERS, NORMALIZATION_TYPES, "normalization"
+    )
+
+    def __init__(self, *, label_transformer: dict[str, Any]) -> None:
+        super().__init__(name="LabelTransformer")
+        self._config = _LabelTransformerConfig.from_dict(label_transformer)
+        self._column_states: dict[str, _ColumnState] = {}
+        self._fitted_columns: list[str] = []
+        self._fitted = False
+
+    @staticmethod
+    def _apply_scaler(
+        values: NDArray[np.floating],
+        mask: NDArray[np.bool_],
+        scaler: Any,
+        inverse: bool = False,
+    ) -> NDArray[np.floating]:
+        if values[mask].size == 0:
+            return values
+        out = values.copy()
+        method = scaler.inverse_transform if inverse else scaler.transform
+        out[mask] = method(values[mask].reshape(-1, 1)).flatten()
+        return out
+
+    @staticmethod
+    def _apply_mmad(
+        values: NDArray[np.floating],
+        mask: NDArray[np.bool_],
+        median: float,
+        mad: float,
+        k: float,
+        inverse: bool = False,
+    ) -> NDArray[np.floating]:
+        if values[mask].size == 0:
+            return values
+        out = values.copy()
+        if inverse:
+            out[mask] = values[mask] * (mad * k) + median
+        else:
+            out[mask] = (values[mask] - median) / (mad * k)
+        return out
+
+    @staticmethod
+    def _apply_sigmoid(
+        values: NDArray[np.floating],
+        mask: NDArray[np.bool_],
+        scale: float,
+        inverse: bool = False,
+    ) -> NDArray[np.floating]:
+        if values[mask].size == 0:
+            return values
+        if not np.isfinite(scale) or np.isclose(scale, 0.0):
+            return values
+        out = values.copy()
+        if inverse:
+            clipped = _clip_sigmoid_domain(values[mask])
+            clipped_count = int(
+                np.count_nonzero((clipped != values[mask]) & ~np.isnan(values[mask]))
+            )
+            if clipped_count:
+                logger.warning(
+                    "sigmoid_inverse_normalize: clipped %d value(s) outside the open (-1, 1) domain",
+                    clipped_count,
+                )
+            out[mask] = sp.special.logit((clipped + 1.0) / 2.0) / scale
+        else:
+            out[mask] = 2.0 * sp.special.expit(scale * values[mask]) - 1.0
+        return out
+
+    @staticmethod
+    def _apply_gamma(
+        values: NDArray[np.floating],
+        mask: NDArray[np.bool_],
+        gamma: float,
+        inverse: bool = False,
+    ) -> NDArray[np.floating]:
+        if np.isclose(gamma, 1.0) or not np.isfinite(gamma) or gamma <= 0:
+            return values
+        out = values.copy()
+        exp = 1.0 / gamma if inverse else gamma
+        out[mask] = np.sign(values[mask]) * np.power(np.abs(values[mask]), exp)
+        return out
+
+    @staticmethod
+    def _apply_registered_scaler(
+        values: NDArray[np.floating],
+        mask: NDArray[np.bool_],
+        state: _ColumnState,
+        method: str,
+        family: _ScalerFamily,
+        inverse: bool = False,
+    ) -> NDArray[np.floating]:
+        scaler_attr = family.registry.get(method)
+        if scaler_attr is None:
+            raise ValueError(enum_error_message(family.kind, method, family.type_names))
+        scaler = getattr(state, scaler_attr, None)
+        if scaler is None:
+            raise RuntimeError(f"{scaler_attr} not fitted")
+        return LabelTransformer._apply_scaler(values, mask, scaler, inverse=inverse)
+
+    def _standardize(
+        self,
+        values: NDArray[np.floating],
+        mask: NDArray[np.bool_],
+        state: _ColumnState,
+        inverse: bool = False,
+    ) -> NDArray[np.floating]:
+        method = state.config["standardization"]
+        if method == STANDARDIZATION_TYPES[0]:  # none
+            return values
+        if method == STANDARDIZATION_TYPES[3]:  # mmad
+            return LabelTransformer._apply_mmad(
+                values,
+                mask,
+                state.median,
+                state.mad,
+                state.config["mmad_scaling_factor"],
+                inverse=inverse,
+            )
+
+        return LabelTransformer._apply_registered_scaler(
+            values,
+            mask,
+            state,
+            method,
+            self._STANDARDIZATION_FAMILY,
+            inverse=inverse,
+        )
+
+    def _normalize(
+        self,
+        values: NDArray[np.floating],
+        mask: NDArray[np.bool_],
+        state: _ColumnState,
+        inverse: bool = False,
+    ) -> NDArray[np.floating]:
+        method = state.config["normalization"]
+        if method == NORMALIZATION_TYPES[2]:  # sigmoid
+            return LabelTransformer._apply_sigmoid(
+                values, mask, state.config["sigmoid_scale"], inverse=inverse
+            )
+        if method == NORMALIZATION_TYPES[3]:  # none
+            return values
+
+        return LabelTransformer._apply_registered_scaler(
+            values,
+            mask,
+            state,
+            method,
+            self._NORMALIZATION_FAMILY,
+            inverse=inverse,
+        )
+
+    def _fit_standardization(self, values: NDArray[np.floating], state: _ColumnState) -> None:
+        method = state.config["standardization"]
+        if method == STANDARDIZATION_TYPES[0]:  # none
+            return
+        if method == STANDARDIZATION_TYPES[1]:  # zscore
+            state.standard_scaler = StandardScaler()
+            state.standard_scaler.fit(values.reshape(-1, 1))
+            return
+        if method == STANDARDIZATION_TYPES[2]:  # robust
+            q = state.config["robust_quantiles"]
+            state.robust_scaler = RobustScaler(quantile_range=(q[0] * 100, q[1] * 100))
+            state.robust_scaler.fit(values.reshape(-1, 1))
+            return
+        if method == STANDARDIZATION_TYPES[3]:  # mmad
+            state.median = float(np.median(values))
+            mad = np.median(np.abs(values - state.median))
+            state.mad = float(mad) if np.isfinite(mad) and not np.isclose(mad, 0.0) else 1.0
+            return
+        if method == STANDARDIZATION_TYPES[4]:  # power_yj
+            state.power_transformer = PowerTransformer(method="yeo-johnson", standardize=True)
+            state.power_transformer.fit(values.reshape(-1, 1))
+            return
+
+        raise ValueError(enum_error_message("standardization", method, STANDARDIZATION_TYPES))
+
+    def _fit_normalization(self, values: NDArray[np.floating], state: _ColumnState) -> None:
+        method = state.config["normalization"]
+        if method == NORMALIZATION_TYPES[0]:  # maxabs
+            state.maxabs_scaler = MaxAbsScaler()
+            state.maxabs_scaler.fit(values.reshape(-1, 1))
+            return
+        if method == NORMALIZATION_TYPES[1]:  # minmax
+            state.minmax_scaler = MinMaxScaler(feature_range=state.config["minmax_range"])
+            state.minmax_scaler.fit(values.reshape(-1, 1))
+            return
+        if method in (NORMALIZATION_TYPES[2], NORMALIZATION_TYPES[3]):  # sigmoid, none
+            return
+
+        raise ValueError(enum_error_message("normalization", method, NORMALIZATION_TYPES))
+
+    def _fit_column(self, column_name: str, values: NDArray[np.floating]) -> _ColumnState:
+        config = self._config.get_column_config(column_name)
+        state = _ColumnState(config=config)
+
+        finite_values = values[np.isfinite(values)]
+        if finite_values.size == 0:
+            logger.warning(
+                f"Column {column_name!r}: no finite values found, using fallback [0.0, 1.0]"
+            )
+            fit_values = np.array([0.0, 1.0])
+        else:
+            fit_values = finite_values
+
+        self._fit_standardization(fit_values, state)
+
+        finite_mask = np.ones(len(fit_values), dtype=bool)
+        standardized = self._standardize(fit_values, finite_mask, state, inverse=False)
+
+        self._fit_normalization(standardized, state)
+
+        return state
+
+    def _transform_column(
+        self,
+        values: NDArray[np.floating],
+        state: _ColumnState,
+        inverse: bool = False,
+    ) -> NDArray[np.floating]:
+        mask = np.isfinite(values)
+
+        if inverse:
+            degamma = LabelTransformer._apply_gamma(
+                values, mask, state.config["gamma"], inverse=True
+            )
+            denorm = self._normalize(degamma, mask, state, inverse=True)
+            return self._standardize(denorm, mask, state, inverse=True)
+        else:
+            standardized = self._standardize(values, mask, state, inverse=False)
+            normalized = self._normalize(standardized, mask, state, inverse=False)
+            return LabelTransformer._apply_gamma(
+                normalized, mask, state.config["gamma"], inverse=False
+            )
+
+    def fit(
+        self,
+        X: ArrayLike,
+        y: ArrayOrNone = None,
+        sample_weight: ArrayOrNone = None,
+        feature_list: ListOrNone = None,
+        **kwargs,
+    ) -> tuple[ArrayLike, ArrayOrNone, ArrayOrNone, ListOrNone]:
+        arr = np.asarray(X, dtype=float)
+
+        if arr.ndim == 1:
+            arr = arr.reshape(-1, 1)
+
+        n_columns = arr.shape[1]
+
+        if feature_list is not None and len(feature_list) == n_columns:
+            column_names = list(feature_list)
+        else:
+            column_names = [f"column_{i}" for i in range(n_columns)]
+
+        self._column_states = {}
+        for i, col_name in enumerate(column_names):
+            col_values = arr[:, i]
+            self._column_states[col_name] = self._fit_column(col_name, col_values)
+
+        self._fitted_columns = column_names
+        self._fitted = True
+
+        return X, y, sample_weight, feature_list
+
+    def _transform_columns(
+        self,
+        X: ArrayLike,
+        y: ArrayOrNone,
+        sample_weight: ArrayOrNone,
+        feature_list: ListOrNone,
+        *,
+        inverse: bool,
+    ) -> tuple[ArrayLike, ArrayOrNone, ArrayOrNone, ListOrNone]:
+        if not self._fitted:
+            verb = "inverse_transform" if inverse else "transform"
+            raise RuntimeError(f"LabelTransformer must be fitted before {verb}")
+
+        arr = np.asarray(X, dtype=float)
+        was_1d = arr.ndim == 1
+        if was_1d:
+            arr = arr.reshape(-1, 1)
+
+        n_columns = arr.shape[1]
+
+        if feature_list is not None and len(feature_list) == n_columns:
+            column_names = list(feature_list)
+        else:
+            column_names = self._fitted_columns
+
+        if len(column_names) != n_columns:
+            raise ValueError(
+                f"Column count mismatch: fitted on {len(self._fitted_columns)} columns, "
+                f"got {n_columns}"
+            )
+
+        result = np.empty_like(arr)
+        for i, col_name in enumerate(column_names):
+            if col_name not in self._column_states:
+                raise ValueError(f"Column {col_name!r} was not present during fitting")
+            result[:, i] = self._transform_column(
+                arr[:, i], self._column_states[col_name], inverse=inverse
+            )
+
+        if was_1d:
+            result = result.flatten()
+
+        return result, y, sample_weight, feature_list
+
+    def transform(
+        self,
+        X: ArrayLike,
+        y: ArrayOrNone = None,
+        sample_weight: ArrayOrNone = None,
+        feature_list: ListOrNone = None,
+        outlier_check: bool = False,
+        **kwargs,
+    ) -> tuple[ArrayLike, ArrayOrNone, ArrayOrNone, ListOrNone]:
+        return self._transform_columns(X, y, sample_weight, feature_list, inverse=False)
+
+    def fit_transform(
+        self,
+        X: ArrayLike,
+        y: ArrayOrNone = None,
+        sample_weight: ArrayOrNone = None,
+        feature_list: ListOrNone = None,
+        **kwargs,
+    ) -> tuple[ArrayLike, ArrayOrNone, ArrayOrNone, ListOrNone]:
+        self.fit(X, y, sample_weight, feature_list, **kwargs)
+        return self.transform(X, y, sample_weight, feature_list, **kwargs)
+
+    def inverse_transform(
+        self,
+        X: ArrayLike,
+        y: ArrayOrNone = None,
+        sample_weight: ArrayOrNone = None,
+        feature_list: ListOrNone = None,
+        **kwargs,
+    ) -> tuple[ArrayLike, ArrayOrNone, ArrayOrNone, ListOrNone]:
+        return self._transform_columns(X, y, sample_weight, feature_list, inverse=True)

@@ -4,9 +4,13 @@
 This is deliberately separate from :mod:`evidence.new_repo_candidates`.
 That module asks whether a newly discovered *name* is already represented;
 this one audits the already canonicalized local corpus without network access.
-It emits evidence only.  It never changes an adjudication, status CSV, or
-benchmark input: a human still selects the representative for a confirmed
-group before a later decision writer can exclude the redundant members.
+`adjudicate()` writes final exclusion decisions automatically (owner-approved
+rule, no per-group human step) to `SEMANTIC_DUPLICATE_ADJUDICATION.json`,
+which `evidence.strategy_status` reads directly - this module does not itself
+touch the status CSV, a benchmark input, or any file on disk beyond its own
+three JSON/MD outputs. It never deletes a source file; `tools.harvest`'s own
+`remove_semantic_duplicates()` is the only place that acts on
+`duplicate_source_files()`'s resolved paths.
 """
 from __future__ import annotations
 
@@ -30,7 +34,6 @@ FULL_MANIFEST = os.path.join(ROOT, "results", "regime", "full_backtest_manifest.
 OUTPUT_JSON = os.path.join(ROOT, "evidence", "SEMANTIC_DUPLICATES.json")
 OUTPUT_MD = os.path.join(ROOT, "evidence", "SEMANTIC_DUPLICATES.md")
 ADJUDICATION = os.path.join(ROOT, "evidence", "SEMANTIC_DUPLICATE_ADJUDICATION.json")
-HOLD = os.path.join(ROOT, "evidence", "SEMANTIC_DUPLICATE_HOLD.json")
 PROFILE_CLASS1 = os.path.join(ROOT, "evidence", "PROFILE_CLASS1.json")
 
 
@@ -255,94 +258,139 @@ def _pick_representative(members):
         len(member["strategy_id"]), member["strategy_id"].casefold(), member["strategy_id"]))
 
 
-def pre_stage1_hold(data, class1=None):
-    """Candidates a Stage 1 batch can skip before spending any measurement on
-    them - not an exclusion, a deferral. A group only qualifies when it is
-    NOT already `confirmed_same_trades` (that case is `adjudicate()`'s job,
-    already excluded) and neither the candidate nor its representative carries
-    one of the two overlays `_has_own_config_overlay()` checks. Holding one
-    is a bet that the representative's own later measurement will confirm the
-    pair identical; if it does not (or the representative itself never gets
-    measured), the held row must still run its own Stage 1-7 - nothing here
-    removes a row from the corpus, it only reorders when its own measurement
-    happens. `evidence.strategy_status` does not read this file; only
-    `SEMANTIC_DUPLICATE_ADJUDICATION.json`'s measured-and-confirmed rows ever
-    exclude anything.
+def _json_bytes(data):
+    return (json.dumps(data, indent=2, ensure_ascii=False, sort_keys=True) + "\n").encode("utf-8")
+
+
+def adjudicate(data, class1=None):
+    """Apply the owner-approved duplicate rule - two evidence tiers, both
+    final exclusions.
+
+    2026-09-16: normalized code identity alone is now sufficient, an
+    owner decision made after this tool's previous, more cautious design
+    (`pre_stage1_hold` - now retired) held 102 269-batch rows in permanent
+    limbo. That design only ever promoted a hold into an exclusion once a
+    SECOND, independently full-backtested member confirmed an identical
+    trade hash - but a held row is by construction withheld from Stage 1,
+    so it can never reach the full backtest that confirmation requires.
+    102 rows sat waiting for evidence the hold itself made unreachable.
+
+    Tier 1, strongest, unchanged: `evidence_status == "confirmed_same_trades"`
+    - two or more members independently full-backtested with one shared
+    trade hash.
+
+    Tier 2, new: normalized AST identical, AND no config overlay detectable
+    on either side (`PROFILE_CLASS1.json` or a companion params file - see
+    `_has_own_config_overlay`), AND no existing measurement contradicts
+    equivalence. That last clause is load-bearing, not theoretical:
+    `MACDStrategyADA`/`AVAX`/`BTC`/`ENJ`/`ETC`/`SOL`/`XRP` are byte-identical
+    after class-name normalization yet measured seven DIFFERENT trade
+    counts - `_has_own_config_overlay` catches ADA/BTC specifically (a
+    same-named `.json` params file), but a group with two or more measured,
+    disagreeing trade hashes is direct proof of non-equivalence regardless
+    of whether the mechanism is known, and is never excluded here even if
+    every other tier-2 condition holds.
+
+    One measured member is retained when any exist (tier 1) or the same
+    shorter-unsuffixed-name tie-break `_pick_representative` uses otherwise
+    (tier 2, which may have no measurement to prefer at all). The final
+    lexical key makes regeneration deterministic.
     """
     class1 = _load_profile_class1() if class1 is None else class1
     decisions = []
     for group in data["groups"]:
         if group["evidence_status"] == "confirmed_same_trades":
+            measured = [member for member in group["members"] if member["trades_sha256"]]
+            representative = min(
+                measured, key=lambda member: (len(member["strategy_id"]),
+                                               member["strategy_id"].casefold(),
+                                               member["strategy_id"]))
+            for member in group["members"]:
+                if member["strategy_id"] == representative["strategy_id"]:
+                    continue
+                decisions.append({
+                    "strategy_id": member["strategy_id"],
+                    "decision": "excluded_duplicate_implementation",
+                    "canonical_representative": representative["strategy_id"],
+                    "normalized_ast_sha256": group["normalized_ast_sha256"],
+                    "trades_sha256": representative["trades_sha256"],
+                    "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+                })
             continue
+        if len(group["trade_hashes"]) > 1:
+            continue  # measured disagreement - direct proof, never excluded
         representative = _pick_representative(group["members"])
         rep_overlay = _has_own_config_overlay(
             representative["strategy_id"], representative["canonical_file"], class1)
         for member in group["members"]:
             if member["strategy_id"] == representative["strategy_id"]:
                 continue
-            if member["full_backtest_status"] == "measured":
-                continue  # already has its own measurement; nothing to defer
             if rep_overlay or _has_own_config_overlay(
                     member["strategy_id"], member["canonical_file"], class1):
-                continue
-            decisions.append({
-                "strategy_id": member["strategy_id"],
-                "decision": "hold_pending_representative_confirmation",
-                "canonical_representative": representative["strategy_id"],
-                "normalized_ast_sha256": group["normalized_ast_sha256"],
-                "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
-            })
-    return {"schema_version": 1, "decisions": sorted(decisions, key=lambda row: row["strategy_id"].casefold())}
-
-
-def filter_targets(strategy_ids, hold_data=None):
-    """Split a Stage 1 target list into (proceed, held) using a fresh
-    `pre_stage1_hold()` run - the actual "explicit filter before Stage 1
-    starts" this is for. `proceed` keeps the input order; `held` carries each
-    dropped strategy's representative so the caller can report why."""
-    if hold_data is None:
-        hold_data = pre_stage1_hold(build())
-    held = {row["strategy_id"]: row["canonical_representative"] for row in hold_data["decisions"]}
-    wanted = set(strategy_ids)
-    proceed = [s for s in strategy_ids if s not in held]
-    dropped = [{"strategy_id": s, "canonical_representative": held[s]}
-              for s in strategy_ids if s in held and s in wanted]
-    return proceed, dropped
-
-
-def _json_bytes(data):
-    return (json.dumps(data, indent=2, ensure_ascii=False, sort_keys=True) + "\n").encode("utf-8")
-
-
-def adjudicate(data):
-    """Apply the owner-approved, evidence-bound duplicate rule.
-
-    One measured member is retained. Shorter unsuffixed names win ties so
-    obvious labels such as ``foo`` are preferred over ``foofix``; the final
-    lexical key makes regeneration deterministic. Code-only groups never
-    produce exclusions.
-    """
-    decisions = []
-    for group in data["groups"]:
-        if group["evidence_status"] != "confirmed_same_trades":
-            continue
-        measured = [member for member in group["members"] if member["trades_sha256"]]
-        representative = min(
-            measured, key=lambda member: (len(member["strategy_id"]),
-                                           member["strategy_id"].casefold(),
-                                           member["strategy_id"]))
-        for member in group["members"]:
-            if member["strategy_id"] == representative["strategy_id"]:
                 continue
             decisions.append({
                 "strategy_id": member["strategy_id"],
                 "decision": "excluded_duplicate_implementation",
                 "canonical_representative": representative["strategy_id"],
                 "normalized_ast_sha256": group["normalized_ast_sha256"],
-                "trades_sha256": representative["trades_sha256"],
-                "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+                "trades_sha256": "",
+                "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
             })
     return {"schema_version": 1, "decisions": sorted(decisions, key=lambda row: row["strategy_id"].casefold())}
+
+
+def duplicate_source_files(decisions, profiles=None):
+    """Resolve each excluded row to the source file harvest.py wrote,
+    ready for a caller to delete - this module only computes, never
+    deletes (`tools.harvest.remove_semantic_duplicates` and the retroactive
+    cleanup script are the only callers that actually touch disk).
+    `original_file`, not `canonical_file`: the latter can point at a
+    `repair/patched/` overlay, which is not what harvest.py downloaded and
+    not what should be removed. A strategy_id EXECUTION_PROFILES.csv no
+    longer lists (already removed, or never harvested at all) is skipped
+    rather than raising - the caller may be re-running over a partially
+    cleaned corpus.
+
+    Two safety exclusions, found necessary 2026-09-16 (REGISTER.md Phase 17
+    addendum) after an 11-strategy loss this way: `adjudicate()` decides
+    each duplicate GROUP independently, so a strategy can be the KEPT
+    representative of one group while simultaneously being the EXCLUDED
+    member of a different group (`BinClucMadv1` was representative for
+    `BinClucMadSMAv1`/`SMAv2`/`v2` while itself excluded as a duplicate of
+    something else) - deleting it then orphans its own group's members,
+    which still point at a representative that no longer exists. Never
+    delete a strategy_id cited as ANY entry's `canonical_representative`
+    here, regardless of its own exclusion status; the adjudication record
+    still marks it excluded (correct for STRATEGY_STATUS.csv's cohort),
+    only the physical file is spared. Symmetrically, never delete a file
+    that a currently-kept (non-excluded) strategy_id also resolves to -
+    two classes sharing one physical file is not this corpus's common
+    case, but silently deleting a live class alongside an excluded one in
+    the same file would be the same shape of loss by a different route.
+    """
+    if profiles is None:
+        profiles = {row["strategy_id"]: row for row in _read_csv(PROFILES)}
+    excluded_ids = {entry["strategy_id"] for entry in decisions["decisions"]}
+    protected_reps = {entry["canonical_representative"]
+                      for entry in decisions["decisions"]
+                      if entry.get("canonical_representative")}
+    live_files = {row["original_file"] for sid, row in profiles.items()
+                 if sid not in excluded_ids}
+    resolved = []
+    for entry in decisions["decisions"]:
+        strategy_id = entry["strategy_id"]
+        if strategy_id in protected_reps:
+            continue
+        row = profiles.get(strategy_id)
+        if row is None:
+            continue
+        if row["original_file"] in live_files:
+            continue
+        resolved.append({"strategy_id": strategy_id,
+                         "canonical_representative": entry["canonical_representative"],
+                         "evidence_rule": entry["evidence_rule"],
+                         "original_file": row["original_file"]})
+    return resolved
 
 
 def _report(data):
@@ -370,12 +418,92 @@ def _write(path, content):
     os.replace(temporary, path)
 
 
+def _member(strategy_id, trades="", trades_sha256=""):
+    return {"strategy_id": strategy_id, "canonical_file": "repos/x/%s.py" % strategy_id,
+            "repo": "x/y", "run_profile": "spot_long", "full_backtest_status":
+            "measured" if trades_sha256 else "not_run", "trades": trades,
+            "trades_sha256": trades_sha256}
+
+
 def selftest():
     plain = "class Alpha:\n    value = 1\n"
     renamed = "from typing import Dict, List\nclass Beta:\n    value = 1\n"
     assert normalized_ast_digest(plain, "Alpha") == normalized_ast_digest(renamed, "Beta")
     used_typing = "from typing import Dict\nclass Beta:\n    value: Dict[str, int] = {}\n"
     assert normalized_ast_digest(plain, "Alpha") != normalized_ast_digest(used_typing, "Beta")
+
+    # Tier 1, unchanged: two independently full-backtested members share one
+    # trade hash - the third, unmeasured member rides along on that proof.
+    tier1 = {"groups": [{
+        "normalized_ast_sha256": "sha_a", "evidence_status": "confirmed_same_trades",
+        "trade_hashes": ["sha_trades"],
+        "members": [_member("Foo", 10, "sha_trades"), _member("FooTwin", 10, "sha_trades"),
+                    _member("FooThird")],
+    }]}
+    decisions = adjudicate(tier1, class1={})
+    excluded = {d["strategy_id"] for d in decisions["decisions"]}
+    assert excluded == {"FooThird", "FooTwin"}, excluded  # "Foo" is the shorter, retained name
+    assert all(d["evidence_rule"] == "normalized_code_and_identical_full_backtest_trades_v1"
+              for d in decisions["decisions"])
+
+    # Tier 2, new: code-identical, nothing measured yet, no config overlay -
+    # excluded on code identity alone. This is the exact shape that used to
+    # sit forever in pre_stage1_hold, unable to ever reach tier 1's bar.
+    tier2 = {"groups": [{
+        "normalized_ast_sha256": "sha_b", "evidence_status": "code_equivalent_only",
+        "trade_hashes": [],
+        "members": [_member("Bar"), _member("BarTwin")],
+    }]}
+    decisions = adjudicate(tier2, class1={})
+    assert {d["strategy_id"] for d in decisions["decisions"]} == {"BarTwin"}
+    assert decisions["decisions"][0]["evidence_rule"] == \
+        "normalized_code_match_no_config_overlay_either_side_v1"
+
+    # A config overlay on either side blocks tier 2 for that member - code
+    # identity alone does not prove behavioural identity here (the
+    # MACDStrategyADA/BTC shape: a companion params file changes the run).
+    decisions = adjudicate(tier2, class1={"BarTwin": {"rules": ["x"]}})
+    assert decisions["decisions"] == []
+
+    # Measured disagreement is direct proof of non-equivalence and blocks
+    # tier 2 outright, even though nothing else here would have. This is
+    # the actual MACDStrategy* shape: same code, seven different measured
+    # trade counts, still not excluded.
+    macd_like = {"groups": [{
+        "normalized_ast_sha256": "sha_c", "evidence_status": "code_equivalent_only",
+        "trade_hashes": ["sha_x", "sha_y"],
+        "members": [_member("MacdA", 10, "sha_x"), _member("MacdB", 20, "sha_y")],
+    }]}
+    assert adjudicate(macd_like, class1={})["decisions"] == []
+
+    # duplicate_source_files()'s two safety guards, found necessary after an
+    # 11-strategy loss this way (REGISTER.md Phase 17 addendum).
+    decisions = {"decisions": [
+        # Ordinary case: excluded, own unique file, no conflict - resolves.
+        {"strategy_id": "Dup1", "canonical_representative": "Keep1",
+         "evidence_rule": "r"},
+        # BinClucMadv1 shape: Dup2 is EXCLUDED here (as someone else's
+        # duplicate) while ALSO being cited as the representative other
+        # entries depend on - must not be deleted despite its own exclusion.
+        {"strategy_id": "Dup2", "canonical_representative": "SomeoneElse",
+         "evidence_rule": "r"},
+        {"strategy_id": "Dup2Child", "canonical_representative": "Dup2",
+         "evidence_rule": "r"},
+        # Dup3 shares its physical file with Keep3, which is NOT excluded -
+        # deleting the file would take Keep3 down with it.
+        {"strategy_id": "Dup3", "canonical_representative": "Keep3",
+         "evidence_rule": "r"},
+    ]}
+    profiles = {
+        "Dup1": {"original_file": "repos/x/dup1.py"},
+        "Dup2": {"original_file": "repos/x/dup2.py"},
+        "Dup2Child": {"original_file": "repos/x/dup2child.py"},
+        "Dup3": {"original_file": "repos/x/shared.py"},
+        "Keep3": {"original_file": "repos/x/shared.py"},
+    }
+    resolved = {r["strategy_id"] for r in duplicate_source_files(decisions, profiles)}
+    assert resolved == {"Dup1", "Dup2Child"}, resolved
+
     print("semantic_duplicates selftest: PASS")
 
 
@@ -383,35 +511,14 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--selftest", action="store_true")
     parser.add_argument("--check", action="store_true", help="fail when generated evidence is stale")
-    parser.add_argument("--filter-file", metavar="PATH",
-                        help="Stage 1 target list (one strategy_id per line, "
-                             "or 'name<TAB>path' like repair/run_freqai.py's "
-                             "input) - print which names can be held back "
-                             "pending their representative's own measurement, "
-                             "write the rest to PATH.filtered untouched, and "
-                             "exit without regenerating any evidence file.")
     args = parser.parse_args(argv)
     if args.selftest:
         selftest()
         return 0
     data = build()
     decisions = adjudicate(data)
-    hold = pre_stage1_hold(data)
-    if args.filter_file:
-        lines = [line.rstrip("\n") for line in io.open(args.filter_file, encoding="utf-8")
-                if line.strip() and not line.startswith("#")]
-        names = [line.split("\t")[0] for line in lines]
-        proceed, dropped = filter_targets(names, hold)
-        by_name = dict(zip(names, lines))
-        out_path = args.filter_file + ".filtered"
-        with io.open(out_path, "w", encoding="utf-8") as handle:
-            handle.write("\n".join(by_name[name] for name in proceed) + ("\n" if proceed else ""))
-        print("%d of %d proceed to Stage 1 -> %s" % (len(proceed), len(names), out_path))
-        for row in dropped:
-            print("  held: %-30s pending %s" % (row["strategy_id"], row["canonical_representative"]))
-        return 0
     outputs = ((OUTPUT_JSON, _json_bytes(data)), (OUTPUT_MD, _report(data)),
-               (ADJUDICATION, _json_bytes(decisions)), (HOLD, _json_bytes(hold)))
+               (ADJUDICATION, _json_bytes(decisions)))
     if args.check:
         stale = [path for path, content in outputs if not os.path.exists(path) or open(path, "rb").read() != content]
         if stale:
@@ -421,8 +528,8 @@ def main(argv=None):
         return 0
     for path, content in outputs:
         _write(path, content)
-    print("semantic duplicates: %d groups, %d exclusions, %d pre-stage1 holds, %d unreadable" % (
-        len(data["groups"]), len(decisions["decisions"]), len(hold["decisions"]), len(data["unreadable"])))
+    print("semantic duplicates: %d groups, %d exclusions, %d unreadable" % (
+        len(data["groups"]), len(decisions["decisions"]), len(data["unreadable"])))
     return 0
 
 

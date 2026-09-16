@@ -342,7 +342,10 @@ CRITERIA = [
                      "resolving to its fork instead; `KMM` wants `openai` to "
                      "call a live model during indicator computation, which "
                      "installing would not make a deterministic backtest; "
-                     "`Enchilada` wants `technical.tradingview`, a whole "
+                     "`Enchilada` (removed 2026-09-16 as a code-identical "
+                     "duplicate, REGISTER.md Phase 17 - cited here for the "
+                     "blocker it demonstrated, not as a still-present row) "
+                     "wanted `technical.tradingview`, a whole "
                      "class (`SummaryConsensus`) the `technical` package "
                      "dropped, which would need vendoring real algorithm "
                      "code rather than restoring one textbook function; "
@@ -1051,9 +1054,23 @@ REPAIRS = [
     {
         "family": "measured_outside_its_design",
         "name": "Measured one pair at a time when it needs the whole basket",
+        "retired_no_current_example":
+            "BasketStrategy (the only row ever classified under this family) "
+            "was removed 2026-09-16 as CppiBasket's code-identical duplicate "
+            "(REGISTER.md Phase 17). CppiBasket does not stand in for it here "
+            "without its own evidence: it measures 8 trades in a pooled "
+            "eight-pair Stage-1 smoke run (evidence/PROFILE_SMOKE.json), not "
+            "the zero BasketStrategy's own per-pair Stage-8 full backtest "
+            "showed - the two measurement modes differ in exactly the "
+            "dimension this family is about (whole-portfolio context present "
+            "or not), so CppiBasket's own per-pair full-backtest result would "
+            "have to be checked before assuming it repeats the finding. Kept "
+            "here as documentation of a real failure mode worth watching for "
+            "(see 'limit' below), not as a currently-live criterion.",
         "error": "(no error - the run succeeds and opens nothing)",
-        "cause": "`BasketStrategy` marks an entry on 8831 of 18570 candles, "
-                 "so it is not idle. It is a portfolio basket: "
+        "cause": "`BasketStrategy` (removed 2026-09-16, see above) marked an "
+                 "entry on 8831 of 18570 candles, so it was not idle. It was "
+                 "a portfolio basket: "
                  "`custom_stake_amount` sizes each entry as a target weight "
                  "of the whole portfolio and returns 0.0 when that falls "
                  "below the exchange minimum. The full-window measurement "
@@ -1602,11 +1619,18 @@ def selftest():
         "actually was, the repair, and where the repair stops - then re-run "
         "`python -m evidence.exclusion_criteria`."
         % ", ".join(sorted(present - named)))
-    assert not (named - present), (
+    # An entry may say so explicitly (`retired_no_current_example`) when its
+    # one-time example row is gone - a duplicate removal (REGISTER.md Phase
+    # 17) or similar - rather than the family being renamed or invented and
+    # never wired up. Silent absence is still the failure this catches;
+    # named absence with its own reason on record is not.
+    retired = {entry["family"] for entry in REPAIRS if entry.get("retired_no_current_example")}
+    assert not (named - present - retired), (
         "these repair families are described here and match no row any more: "
-        "%s. Either the route was withdrawn, in which case say so, or the "
-        "family was renamed and the entry should follow it."
-        % ", ".join(sorted(named - present)))
+        "%s. Either the route was withdrawn, in which case say so with "
+        "retired_no_current_example, or the family was renamed and the entry "
+        "should follow it."
+        % ", ".join(sorted(named - present - retired)))
     print("exclusion_criteria selftest: PASS (%d excluded, %d criteria, "
           "%d repair families)" % (len(excluded), len(CRITERIA), len(named)))
 

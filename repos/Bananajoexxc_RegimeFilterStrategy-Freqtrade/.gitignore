@@ -1,0 +1,52 @@
+# Freqtrade data
+user_data/data/
+user_data/logs/
+user_data/backtest_results/
+user_data/hyperopt_results/
+user_data/plot/
+
+# Database
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+tradesv3.sqlite*
+
+# Secrets - NEVER commit these!
+.env
+*.pem
+*credentials*
+*secret*
+
+# Keep API keys out
+config.json.bak
+config-private.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+.eggs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log

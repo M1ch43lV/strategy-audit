@@ -1,0 +1,84 @@
+{
+  "add_config_files": [
+    "../configs/trading_mode-futures.json",
+    "../configs/pairlist-volume-binance-usdt.json",
+    "../configs/blacklist-binance.json",
+    "../configs/exampleconfig.json",
+    "../configs/exampleconfig_secret.json"
+  ],
+
+  // Keys below override the files above (main config wins in deep_merge_dicts).
+  // Keep risk settings HERE, not in configs/ or the strategy file, so that
+  // `git pull` from upstream never clobbers them.
+
+  // --- capital deployment (deposit of 200 USDT landed 2026-07-30) -----------
+  // Balance went 43 -> 267.77 USDT. Risk per trade is
+  //     0.70 * tradable_balance_ratio / max_open_trades
+  // which contains no capital term -- so depositing WITHOUT raising slot count
+  // would have left risk per trade at the same 17.3% of the account and merely
+  // made every position 5.6x larger. The deposit is spent on diversification.
+  //
+  // At 267.77 with ratio 0.90 and 12 slots:
+  //     stake 20.08  notional 40.17 @2x  risk/doom 14.06 = 5.25% of account
+  // vs the previous 4 slots at ratio 0.99: stake 66.27, risk/doom 17.32%.
+  // Position size grew 1.7x while capital grew 5.6x.
+  //
+  // 12 slots specifically: BTC/USDT has minNotional 50, i.e. min stake 25 at
+  // 2x. freqtrade tops a stake up to the minimum when the gap is <=30%
+  // (wallets.py: `if stake_amount * 1.3 < min_stake_amount: return 0`), and
+  // 20.08 * 1.3 = 26.1 >= 25, so all 96 whitelisted pairs stay tradeable.
+  // At 16 slots stake falls to 15.06 and BTC drops out.
+  //
+  // Diversification is the right use of the deposit because the losses are
+  // idiosyncratic, not market-wide: on 2026-06-05 three pairs doomed while ten
+  // others closed in profit; on 2026-04-14, one doom against six winners.
+  //
+  // 0.90 rather than 0.99 leaves ~27 USDT free for NFI's grind mode, which can
+  // demand several times a slot's stake (trade #91 APE reached max_stake 47.49).
+  "tradable_balance_ratio": 0.90,
+
+  // --- P2: leverage ---------------------------------------------------------
+  // Was 3.0. At 3x a -33% adverse move wipes the trade's margin, and NFI's
+  // doom-stop (stop_threshold_doom_futures = 0.20) can be gapped straight
+  // through on a 5m alt candle -- that is how trades #52 (DRIFT) and #13 (AKE)
+  // reached actual liquidation. 2x doubles the gap headroom to -50%.
+  // Cost: scales realised P&L down by ~1/3 as well. Revert to 3.0 to undo.
+  "nfi_parameters": {
+    "futures_mode_leverage": 2.0,
+    "futures_mode_leverage_rebuy_mode": 2.0,
+    "futures_mode_leverage_grind_mode": 2.0
+  },
+
+  // --- P2: per-pair cooldown after a pair has hurt us -----------------------
+  // Fixes the single biggest loss pattern in the live history: the bot
+  // re-entering the same collapsing pair within hours.
+  //   ZEC  2026-06-04/05: #126 -7.28, then #131 -7.30  (= all 4.5 months of net profit)
+  //   SIREN 2026-06-13:   #163 -3.93, then #165 -3.65  (89 minutes apart)
+  //
+  // LowProfitPairs is used rather than StoplossGuard on purpose: StoplossGuard
+  // matches only freqtrade's native exit reasons (stop_loss / trailing /
+  // stoploss_on_exchange / liquidation) AND close_profit < limit. NFI exits its
+  // doom stops via custom_exit ("exit_long_tc_stoploss_doom_m ( 143 )"), so
+  // StoplossGuard would have caught 2 of the 12 disasters (the liquidations)
+  // and missed all 10 doom stops. LowProfitPairs ignores exit_reason entirely
+  // and just sums close_profit per pair, so it sees them.
+  //
+  // trade_limit 2 (not 1) is deliberate. Replayed on the SIREN sequence:
+  //   trade_limit=1 -> blocks the +0.37 winner AND the -3.65 doom  (+3.28)
+  //   trade_limit=2 -> blocks only the -3.65 doom                  (+3.65)
+  // Requiring two closed trades whose summed profit is negative lets a single
+  // unlucky small loss pass, but catches the repeated-damage pattern.
+  //
+  // Replayed over the 208 closed trades in the live DB:
+  //   post-blacklist universe (what the upstream update gives): +6.83 USDT
+  //     -> blocks ZEC #131 (-7.30), sacrifices ZEC #130 (+0.46)
+  //   full history: +9.30 USDT, catches both the ZEC and SIREN second dooms
+  // LowProfitPairs.global_stop() returns None, so this only ever locks the
+  // offending pair -- it can never halt the whole bot.
+  //
+  // NOTE: this freqtrade version hard-rejects "protections" in the config
+  // ("DEPRECATED: Setting 'protections' in the configuration is deprecated").
+  // It must live on the strategy class, so it is declared in ./NFIX7Risk.py,
+  // a thin subclass of NostalgiaForInfinityX7. See that file.
+  "strategy": "NFIX7Risk"
+}

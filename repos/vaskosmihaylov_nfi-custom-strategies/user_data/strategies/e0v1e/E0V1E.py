@@ -1,0 +1,219 @@
+from datetime import datetime, timedelta
+import logging
+from typing import Optional, Union
+import freqtrade.vendor.qtpylib.indicators as qtpylib
+import talib.abstract as ta
+import pandas_ta as pta
+from freqtrade.persistence import Trade
+from freqtrade.strategy.interface import IStrategy
+from pandas import DataFrame
+from freqtrade.strategy import DecimalParameter, IntParameter
+from functools import reduce
+
+logger = logging.getLogger(__name__)
+
+def ewo(dataframe, ema_length=5, ema2_length=35):
+    df = dataframe.copy()
+    ema1 = ta.EMA(df, timeperiod=ema_length)
+    ema2 = ta.EMA(df, timeperiod=ema2_length)
+    emadif = (ema1 - ema2) / df['low'] * 100
+    return emadif
+
+
+class E0V1E(IStrategy):
+    INTERFACE_VERSION = 3
+
+    minimal_roi = {
+        "0": 10
+    }
+
+    timeframe = '5m'
+
+    process_only_new_candles = True
+    startup_candle_count = 20
+
+    order_types = {
+        'entry': 'market',
+        'exit': 'market',
+        'emergency_exit': 'market',
+        'force_entry': 'market',
+        'force_exit': "market",
+        'stoploss': 'market',
+        'stoploss_on_exchange': False,
+
+        'stoploss_on_exchange_interval': 60,
+        'stoploss_on_exchange_market_ratio': 0.99
+    }
+
+    # Disabled
+    stoploss = -0.99
+
+    # Custom stoploss
+    use_custom_stoploss = True
+
+    is_optimize_ewo = True
+    buy_rsi_fast = IntParameter(35, 60, default=55, space='buy', optimize=is_optimize_ewo)
+    buy_rsi = IntParameter(15, 50, default=42, space='buy', optimize=is_optimize_ewo)
+    buy_ewo = DecimalParameter(-6.0, 5, default=2.058, space='buy', optimize=is_optimize_ewo)
+    buy_ema_low = DecimalParameter(0.9, 0.998, default=0.909, space='buy', optimize=is_optimize_ewo)
+    buy_ema_high = DecimalParameter(0.95, 1.2, default=1.082, space='buy', optimize=is_optimize_ewo)
+
+    is_optimize_32 = True
+    buy_rsi_fast_32 = IntParameter(20, 70, default=33, space='buy', optimize=is_optimize_32)
+    buy_rsi_32 = IntParameter(15, 50, default=47, space='buy', optimize=is_optimize_32)
+    buy_sma15_32 = DecimalParameter(0.900, 1, default=0.995, decimals=3, space='buy', optimize=is_optimize_32)
+    buy_cti_32 = DecimalParameter(-1, 0, default=-0.67, decimals=2, space='buy', optimize=is_optimize_32)
+
+    is_optimize_deadfish = True
+    sell_deadfish_bb_width = DecimalParameter(0.03, 0.75, default=0.05, space='sell', optimize=is_optimize_deadfish)
+    sell_deadfish_profit = DecimalParameter(-0.15, -0.05, default=-0.05, space='sell', optimize=is_optimize_deadfish)
+    sell_deadfish_bb_factor = DecimalParameter(0.90, 1.20, default=1.0, space='sell', optimize=is_optimize_deadfish)
+    sell_deadfish_volume_factor = DecimalParameter(1, 2.5, default=1.0, space='sell', optimize=is_optimize_deadfish)
+
+    sell_fastx = IntParameter(50, 100, default=75, space='sell', optimize=True)
+
+    def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+
+        # buy_1 indicators
+        dataframe['sma_15'] = ta.SMA(dataframe, timeperiod=15)
+        dataframe['cti'] = pta.cti(dataframe["close"], length=20)
+        dataframe['rsi'] = ta.RSI(dataframe, timeperiod=14)
+        dataframe['rsi_fast'] = ta.RSI(dataframe, timeperiod=4)
+        dataframe['rsi_slow'] = ta.RSI(dataframe, timeperiod=20)
+
+        # ewo indicators
+        dataframe['ema_8'] = ta.EMA(dataframe, timeperiod=8)
+        dataframe['ema_16'] = ta.EMA(dataframe, timeperiod=16)
+        dataframe['EWO'] = ewo(dataframe, 50, 200)
+
+        # profit sell indicators
+        stoch_fast = ta.STOCHF(dataframe, 5, 3, 0, 3, 0)
+        dataframe['fastd'] = stoch_fast['fastd']
+        dataframe['fastk'] = stoch_fast['fastk']
+
+        # loss sell indicators
+        bollinger2 = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=2)
+        dataframe['bb_lowerband2'] = bollinger2['lower']
+        dataframe['bb_middleband2'] = bollinger2['mid']
+        dataframe['bb_upperband2'] = bollinger2['upper']
+
+        dataframe['bb_width'] = (
+                (dataframe['bb_upperband2'] - dataframe['bb_lowerband2']) / dataframe['bb_middleband2'])
+
+        dataframe['volume_mean_12'] = dataframe['volume'].rolling(12).mean().shift(1)
+        dataframe['volume_mean_24'] = dataframe['volume'].rolling(24).mean().shift(1)
+
+        return dataframe
+
+    def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+
+        conditions = []
+        dataframe.loc[:, 'enter_tag'] = ''
+
+        buy_1 = (
+                (dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1)) &
+                (dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) &
+                (dataframe['rsi'] > self.buy_rsi_32.value) &
+                (dataframe['close'] < dataframe['sma_15'] * self.buy_sma15_32.value) &
+                (dataframe['cti'] < self.buy_cti_32.value)
+        )
+
+        # Keep only the profitable buy_1 branch until ewo is reworked.
+        conditions.append(buy_1)
+        dataframe.loc[buy_1, 'enter_tag'] += 'buy_1'
+
+        if conditions:
+            dataframe.loc[
+                reduce(lambda x, y: x | y, conditions),
+                'enter_long'] = 1
+
+        return dataframe
+
+    def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime, current_rate: float,
+                        current_profit: float, **kwargs) -> float:
+        """
+        Indicator-based trailing stoploss for longs with 3x leverage.
+
+        Emergency stop at -25% prevents liquidations (~-30% with 3x leverage).
+        Indicator-based exits (RSI, Stochastic) lock in profits when overbought.
+        Stops scaled 3x from original spot strategy to maintain same price tolerance.
+
+        Original stops (-0.001, -0.005) scaled to (-0.003, -0.015) for 3x leverage
+        to maintain same price movement tolerance as the original spot strategy.
+
+        Args:
+            pair: Trading pair
+            trade: Trade object
+            current_time: Current timestamp
+            current_rate: Current price
+            current_profit: Current profit/loss ratio
+            **kwargs: Additional arguments
+
+        Returns:
+            float: Stoploss percentage or 1.0 to keep base stoploss
+        """
+        # EMERGENCY BACKSTOP: Last resort before liquidation (~-30% with 3x)
+        # Tightened from -25% to -20% for more safety margin
+        if current_profit <= -0.20:
+            logger.warning(f"{trade.pair} EMERGENCY stop at {current_profit*100:.2f}% (preventing liquidation)")
+            return -0.21  # Exit immediately
+
+        dataframe, _ = self.dp.get_analyzed_dataframe(pair, self.timeframe)
+        current_candle = dataframe.iloc[-1].squeeze()
+
+        enter_tag = ''
+        if hasattr(trade, 'enter_tag') and trade.enter_tag is not None:
+            enter_tag = trade.enter_tag
+        enter_tags = enter_tag.split()
+
+        # EWO entries: Tight trailing at 5% profit (original: -0.005, scaled 3x: -0.015)
+        if "ewo" in enter_tags:
+            if current_profit >= 0.05:
+                return -0.015
+
+        # Profitable trades: Exit on overbought indicators (original: -0.001, scaled 3x: -0.003)
+        if current_profit > 0.01:
+            if current_candle["fastk"] > self.sell_fastx.value:
+                return -0.003
+
+            if current_candle["rsi"] > 80:
+                return -0.003
+
+        # Losing trades: Exit on extreme overbought (original: -0.001, scaled 3x: -0.003)
+        if current_profit < 0.01:
+            if current_candle["rsi"] > 90:
+                return -0.003
+
+        # Default: Keep base stoploss (-0.99)
+        return 1.0
+
+    def custom_exit(self, pair: str, trade: Trade, current_time: datetime, current_rate: float,
+                    current_profit: float, **kwargs) -> Optional[Union[str, bool]]:
+
+        dataframe, _ = self.dp.get_analyzed_dataframe(pair, self.timeframe)
+        current_candle = dataframe.iloc[-1].squeeze()
+
+        # stoploss - deadfish
+        if ((current_profit < self.sell_deadfish_profit.value)
+                and (current_candle['bb_width'] < self.sell_deadfish_bb_width.value)
+                and (current_candle['close'] > current_candle['bb_middleband2'] * self.sell_deadfish_bb_factor.value)
+                and (current_candle['volume_mean_12'] < current_candle[
+                    'volume_mean_24'] * self.sell_deadfish_volume_factor.value)):
+            logger.info(f"{pair} sell_stoploss_deadfish at {current_profit*100}")
+            return "sell_stoploss_deadfish"
+
+    def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+
+        #dataframe.loc[(), ['exit_long', 'exit_tag']] = (0, 'long_out')
+
+        return dataframe
+
+    def leverage(self, pair: str, current_time: datetime, current_rate: float,
+                 proposed_leverage: float, max_leverage: float, side: str, **kwargs) -> float:
+        """
+        Fixed 3x leverage for all long trades.
+
+        Returns:
+            float: Leverage multiplier (3.0 = 3x)
+        """
+        return 3.0

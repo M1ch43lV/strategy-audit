@@ -1,0 +1,33 @@
+{
+    "exchange": {
+        "name": "kraken",
+        "pair_whitelist": [
+            "AVAX/USD",
+            "BLZ/USD",
+            "BODEN/USD",
+            "FLOW/USD",
+            "KAVA/USD",
+            "LCX/USD",
+            "MINA/USD",
+            "MKR/USD",
+            "OP/USD",
+            "QNT/USD",
+            "SHIB/USD",
+            "TIA/USD",
+            "TREMP/USD",
+            "WAVES/USD",
+            "WIF/USD",
+            "ZEC/USD",
+            "NANO/USD",
+            "RPL/USD",
+            "GMX/USD",
+            "W/USD",
+            "SC/USD",
+            "MXC/USD",
+            "API3/USD",
+            "SEI/USD",
+            "BTC/USD"
+        ],
+        "pair_blacklist": []
+    }
+}

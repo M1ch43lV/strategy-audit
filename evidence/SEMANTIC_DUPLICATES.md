@@ -11,13 +11,6 @@ additionally means two or more canonical full backtests share one trade hash.
 | `BBMod` | `measured` | 6101 | `sha256_158305dde7d52e116c4c7c5178d979a867e8293f68171207d9b55983437e797d` |
 | `BBMod1DCA` | `not_run` | - | `-` |
 
-## `sha256_0cbd34f89d4aa0a2474ebd9e1ea22a497e395c85a71b3b4ffd1d791ba9783598` - code_equivalent_only
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `MomentumRegimeBasket15m` | `not_run` | - | `-` |
-| `MomentumRegimeBasket15mFast` | `not_run` | - | `-` |
-
 ## `sha256_0fa24cc21785a6b6ea98323c074dd61438ef00eb5379c2fe42f0aead59709480` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Trade hash |
@@ -97,19 +90,19 @@ additionally means two or more canonical full backtests share one trade hash.
 | `Schism2_BTC` | `not_run` | - | `-` |
 | `Schism2_ETH` | `not_run` | - | `-` |
 
+## `sha256_104912d51abdd1438d77a677dcdb7d2c4602b17e0678dbf233113eb56e58088d` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Trade hash |
+|---|---|---:|---|
+| `Cluc5mDCA` | `not_run` | - | `-` |
+| `ClucHAnix_5m` | `measured` | 2288 | `sha256_c85f3537335d7aef47f01b8f7c91d9006b7089c097092ba57b703982fc09af35` |
+
 ## `sha256_1251db314cc4119a64a5de58d561a5b1ed336ea7fde858b419981bf6e3a892ac` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Trade hash |
 |---|---|---:|---|
 | `FSupertrendStrategyBTC` | `not_run` | - | `-` |
 | `FSupertrendStrategyETH` | `not_run` | - | `-` |
-
-## `sha256_137404e9fb73486b8c82e4fe609c17af005b7a205d32f622c75e867043ae07c4` - confirmed_same_trades
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `Chispei` | `measured` | 3733 | `sha256_7933748efd6f41e4891df8e310450b4a136cef780be49c2c57005f42117735cb` |
-| `chispei` | `measured` | 3733 | `sha256_7933748efd6f41e4891df8e310450b4a136cef780be49c2c57005f42117735cb` |
 
 ## `sha256_1c8673b7a300a2ed6de862a449147ced47d7b30c36dc1cc62343e7d34d624e68` - code_equivalent_only
 
@@ -119,16 +112,6 @@ additionally means two or more canonical full backtests share one trade hash.
 | `ClucCrypROI_BTC` | `not_run` | - | `-` |
 | `ClucCrypROI_ETH` | `not_run` | - | `-` |
 
-## `sha256_1f64631145a802f8e0bce79d7cbeadf6516e36bcb540729645986e4508bb9413` - code_equivalent_only
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `ClucDCA` | `not_run` | - | `-` |
-| `ClucHAnix` | `oom_confirmed` | - | `-` |
-| `ClucHAnix_BTC` | `not_run` | - | `-` |
-| `ClucHAnix_ETH` | `not_run` | - | `-` |
-| `ClucHAnix_USD` | `not_run` | - | `-` |
-
 ## `sha256_24e826bf3a953bb43f1974f8e40482c1a82b1b4219b0b59d56eb994450138ad3` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Trade hash |
@@ -136,13 +119,6 @@ additionally means two or more canonical full backtests share one trade hash.
 | `Schism3` | `measured` | 6429 | `sha256_00ed6223fc91bb7d6a72e9f6a8905c5e1a812fe0bcf185044560dedf5fdcc72d` |
 | `Schism3_BTC` | `not_run` | - | `-` |
 | `Schism3_ETH` | `not_run` | - | `-` |
-
-## `sha256_2514f6d04ba3bdf251e5a8a4e6269425b4929b03224f98ddba4ed5c062cda1ba` - confirmed_same_trades
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `FastSupertrend_optim3_rsi_75` | `measured` | 15898 | `sha256_62f9e431504d88718ca6b96fe309cb0d72279aec92b3c53f7aa85fc51c31263b` |
-| `FastSupertrend_optim3_rsi_75fix` | `measured` | 15898 | `sha256_62f9e431504d88718ca6b96fe309cb0d72279aec92b3c53f7aa85fc51c31263b` |
 
 ## `sha256_25b5c4a90ba8f1703cc6e539a56cd037a57303e554820dc11556f943ebb7d613` - code_equivalent_only
 
@@ -163,21 +139,13 @@ additionally means two or more canonical full backtests share one trade hash.
 | Strategy | Full backtest | Trades | Trade hash |
 |---|---|---:|---|
 | `LitmusBBStrategy` | `not_run` | - | `-` |
-| `LitmusBBTrendStrategy` | `not_run` | - | `-` |
-| `LitmusClucStrategy` | `not_run` | - | `-` |
-| `LitmusSARStrategy` | `not_run` | - | `-` |
-| `LitmusScalpStrategy` | `not_run` | - | `-` |
 | `LitmusSimpleStrategy` | `not_run` | - | `-` |
-| `LitmusTrendScalpStrategy` | `not_run` | - | `-` |
-| `LitmusVulcanStrategy` | `not_run` | - | `-` |
 
 ## `sha256_2dec6c9e02c0b82930f449168435d921257be95c90a8d5298d5fde2a3fc53681` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Trade hash |
 |---|---|---:|---|
-| `TS_Coeff` | `not_run` | - | `-` |
 | `TS_Gain` | `not_run` | - | `-` |
-| `TS_Wavelet` | `not_run` | - | `-` |
 | `TSPredict` | `not_run` | - | `-` |
 
 ## `sha256_2e7546146e9d4c33cbdda0e095a1b04e7dc3d9864cbbd96cc6cdd6667d3b029f` - code_equivalent_only
@@ -186,33 +154,6 @@ additionally means two or more canonical full backtests share one trade hash.
 |---|---|---:|---|
 | `BB_RTR` | `measured` | 760 | `sha256_454fe96eb823329bda1637cb8e136147fa7d2db933c7d076e66ed4451a71106e` |
 | `BB_RTR_dca` | `not_run` | - | `-` |
-
-## `sha256_2f3a5f1914cafe43e1713e2e3de2957dffa0bbdb7339813fe68d1bcbd9b70509` - code_equivalent_only
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `PCA` | `not_run` | - | `-` |
-| `PCA_dwt` | `not_run` | - | `-` |
-| `PCA_fbb` | `not_run` | - | `-` |
-| `PCA_fwr` | `not_run` | - | `-` |
-| `PCA_highlow` | `not_run` | - | `-` |
-| `PCA_jump` | `not_run` | - | `-` |
-| `PCA_macd` | `not_run` | - | `-` |
-| `PCA_mfi` | `not_run` | - | `-` |
-| `PCA_minmax` | `not_run` | - | `-` |
-| `PCA_nseq` | `not_run` | - | `-` |
-| `PCA_over` | `not_run` | - | `-` |
-| `PCA_profit` | `not_run` | - | `-` |
-| `PCA_pv` | `not_run` | - | `-` |
-| `PCA_stochastic` | `not_run` | - | `-` |
-| `PCA_swing` | `not_run` | - | `-` |
-
-## `sha256_349c61018b21c053190ee251d3af6fc6403835a7961b8ca362afce2ce567ea2d` - code_equivalent_only
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `HyperoptableStrategyV2` | `not_run` | - | `-` |
-| `StrategyTestV2` | `not_run` | - | `-` |
 
 ## `sha256_3dc311837007edf3666a8a741c8803efa57d9314263a6a0f9064b145fe0108be` - code_equivalent_only
 
@@ -268,10 +209,6 @@ additionally means two or more canonical full backtests share one trade hash.
 
 | Strategy | Full backtest | Trades | Trade hash |
 |---|---|---:|---|
-| `TestStrategyImplementBuyTimeout` | `not_run` | - | `-` |
-| `TestStrategyImplementCustomSell` | `not_run` | - | `-` |
-| `TestStrategyImplementEmptyWorking` | `not_run` | - | `-` |
-| `TestStrategyImplementSellTimeout` | `not_run` | - | `-` |
 | `TestStrategyNoImplements` | `not_run` | - | `-` |
 | `TestStrategyNoImplementSell` | `not_run` | - | `-` |
 
@@ -291,13 +228,6 @@ additionally means two or more canonical full backtests share one trade hash.
 | `Solipsis4_BTC` | `not_run` | - | `-` |
 | `Solipsis4_ETH` | `not_run` | - | `-` |
 
-## `sha256_617720878e36e009d4908dcfd5b39785d78b9ec35111bf5eed54eab4d781b375` - code_equivalent_only
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `strat_dca` | `not_run` | - | `-` |
-| `tbedit` | `not_run` | - | `-` |
-
 ## `sha256_6f1198746f53f125bb1ff5247af3ba92a517dea1fafab4920913a2f5fd154087` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Trade hash |
@@ -314,6 +244,13 @@ additionally means two or more canonical full backtests share one trade hash.
 | `Schism4_BTC` | `not_run` | - | `-` |
 | `Schism4_ETH` | `not_run` | - | `-` |
 
+## `sha256_764defd3dd4319a8ccadb18c8fdc98a5a95cd0cedb9be6a75d2638ec8b05c05d` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Trade hash |
+|---|---|---:|---|
+| `ClucDCA` | `not_run` | - | `-` |
+| `ClucHAnix` | `oom_confirmed` | - | `-` |
+
 ## `sha256_7bd5a70b718e03ad86334c76dde9c1f3f07b85273360f8ee68f04debbf71bb0b` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Trade hash |
@@ -329,19 +266,6 @@ additionally means two or more canonical full backtests share one trade hash.
 | `BinanceStream` | `not_run` | - | `-` |
 | `CombinedBinHAndClucV4WS` | `not_run` | - | `-` |
 | `OBOnlyWSv2bband` | `not_run` | - | `-` |
-
-## `sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0` - code_equivalent_only
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `BasketStrategy` | `not_run` | - | `-` |
-| `BlendBasket` | `not_run` | - | `-` |
-| `ConstantMixBasket` | `not_run` | - | `-` |
-| `CppiBasket` | `not_run` | - | `-` |
-| `InverseVolBasket` | `not_run` | - | `-` |
-| `MinVarianceBasket` | `not_run` | - | `-` |
-| `MomentumBasket` | `not_run` | - | `-` |
-| `VolTargetBasket` | `not_run` | - | `-` |
 
 ## `sha256_8ab198b5f0af115441962cae49ace834f33fca76065b8376cbf3531c174287b1` - code_equivalent_only
 
@@ -408,11 +332,10 @@ additionally means two or more canonical full backtests share one trade hash.
 | `BBRSITV2` | `not_run` | - | `-` |
 | `BBRSITV3` | `not_run` | - | `-` |
 
-## `sha256_a180ea20e36bd86c4a3f8beafa2260018a16a82adb18a456aa1ca0c90c683cff` - confirmed_same_trades
+## `sha256_a180ea20e36bd86c4a3f8beafa2260018a16a82adb18a456aa1ca0c90c683cff` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Trade hash |
 |---|---|---:|---|
-| `Combined_NFIv7_SMA_bAdBoY_20211204` | `measured` | 722 | `sha256_85dce6cada742b6e1768f59e0daf70df041423f4e4a3f2cd9a21a3a4a5ae5145` |
 | `Combined_NFIv7_SMA_Rallipanos_20210707` | `oom_confirmed` | - | `-` |
 | `NostalgiaForInfinityV7_SMA` | `measured` | 722 | `sha256_85dce6cada742b6e1768f59e0daf70df041423f4e4a3f2cd9a21a3a4a5ae5145` |
 
@@ -445,15 +368,6 @@ additionally means two or more canonical full backtests share one trade hash.
 | `Solipsis5_BTC` | `not_run` | - | `-` |
 | `Solipsis5_ETH` | `not_run` | - | `-` |
 
-## `sha256_aaab88b29e7c939e1d00894e0b2c18b5b751cc4eb6dddcc8bb8b2993f3b716ef` - code_equivalent_only
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `_Strat` | `not_run` | - | `-` |
-| `BaseNNStrategy` | `not_run` | - | `-` |
-| `BaseStrategy` | `not_run` | - | `-` |
-| `SimpleStrategy` | `not_run` | - | `-` |
-
 ## `sha256_aabc12d6f3569e9be6a07ef76f0a644daadb765fdbcc77f302824ee5ae7c4bd8` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Trade hash |
@@ -467,13 +381,6 @@ additionally means two or more canonical full backtests share one trade hash.
 |---|---|---:|---|
 | `SuperReversal_mtf` | `not_run` | - | `-` |
 | `SuperReversal_mtf_5min` | `not_run` | - | `-` |
-
-## `sha256_baa88b7b4fde8f51c81c10888b4cc0f3eee74ce6f3fef2d313d55a9e1e924b5a` - code_equivalent_only
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `StarRise` | `measured` | 158 | `sha256_a2725f2db0c8f4bb51e4f2b6dcf7611a3d0355ee5ec103d1cea864b8aba576e7` |
-| `StarRise_dca` | `not_run` | - | `-` |
 
 ## `sha256_bab88fa24e387a47bc9e549a40ed44bdc41e771603fa5facc502986c642809bf` - code_equivalent_only
 
@@ -497,12 +404,12 @@ additionally means two or more canonical full backtests share one trade hash.
 | `Enchilada` | `not_run` | - | `-` |
 | `Enchilada_Slow` | `not_run` | - | `-` |
 
-## `sha256_c3949e8d9c2f7f1b855654fbdb8a21e23dbafcd6b941eaf64294f47b31ad5abb` - code_equivalent_only
+## `sha256_c51c299e80748a7b2122c752ee3957d5f7e78d508502a472dbde0feb212a085e` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Trade hash |
 |---|---|---:|---|
-| `Hacklemore` | `performance_limited` | - | `-` |
-| `Hacklemore_Slow` | `not_run` | - | `-` |
+| `_Strat` | `not_run` | - | `-` |
+| `BaseStrategy` | `not_run` | - | `-` |
 
 ## `sha256_c83c06d6be74b726eafbb53ad9ae00e992ea9c895bb9980111691f635d15f9e6` - code_equivalent_only
 
@@ -511,32 +418,6 @@ additionally means two or more canonical full backtests share one trade hash.
 | `Solipsis` | `not_run` | - | `-` |
 | `Solipsis_BTC` | `not_run` | - | `-` |
 | `Solipsis_USD` | `not_run` | - | `-` |
-
-## `sha256_d106e63768c9f3305c67247f8214457ed45fc7b4021b3eb766fdaa9ca08ac79d` - code_equivalent_only
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `Anomaly` | `not_run` | - | `-` |
-| `Anomaly_adx` | `not_run` | - | `-` |
-| `Anomaly_all` | `not_run` | - | `-` |
-| `Anomaly_aroon` | `not_run` | - | `-` |
-| `Anomaly_bbw` | `not_run` | - | `-` |
-| `Anomaly_dwt` | `not_run` | - | `-` |
-| `Anomaly_fbb` | `not_run` | - | `-` |
-| `Anomaly_fwr` | `not_run` | - | `-` |
-| `Anomaly_highlow` | `not_run` | - | `-` |
-| `Anomaly_jump` | `not_run` | - | `-` |
-| `Anomaly_macd` | `not_run` | - | `-` |
-| `Anomaly_mfi` | `not_run` | - | `-` |
-| `Anomaly_minmax` | `not_run` | - | `-` |
-| `Anomaly_nseq` | `not_run` | - | `-` |
-| `Anomaly_over` | `not_run` | - | `-` |
-| `Anomaly_profit` | `not_run` | - | `-` |
-| `Anomaly_pv` | `not_run` | - | `-` |
-| `Anomaly_slope` | `not_run` | - | `-` |
-| `Anomaly_smooth` | `not_run` | - | `-` |
-| `Anomaly_stochastic` | `not_run` | - | `-` |
-| `Anomaly_swing` | `not_run` | - | `-` |
 
 ## `sha256_d450cae91dda12b397e93cfb8f7982e9042cb256aba3aa816e6270f3434db2f2` - code_equivalent_only
 
@@ -592,13 +473,6 @@ additionally means two or more canonical full backtests share one trade hash.
 | `NNPredict_Transformer` | `not_run` | - | `-` |
 | `NNPredict_Wavenet` | `not_run` | - | `-` |
 | `NNPredict_Wavenet2` | `not_run` | - | `-` |
-
-## `sha256_ede70561b00a428f090e2ec6f5bb69d6cfaaffc700c3c6b9cd8dab00740d3120` - code_equivalent_only
-
-| Strategy | Full backtest | Trades | Trade hash |
-|---|---|---:|---|
-| `Cluc5mDCA` | `not_run` | - | `-` |
-| `ClucHAnix_5m` | `measured` | 2288 | `sha256_c85f3537335d7aef47f01b8f7c91d9006b7089c097092ba57b703982fc09af35` |
 
 ## `sha256_f8eb30739282885d6bdc5e1ac8e8decdc33be13ef9bbf3d8df9cf61a71dbf073` - code_equivalent_only
 

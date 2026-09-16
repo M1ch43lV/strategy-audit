@@ -1,0 +1,105 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "freqtrade-mcp-server"
+dynamic = ["version"]
+description = "Read-only MCP server for Freqtrade codebase introspection"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+requires-python = ">=3.13"
+authors = [
+    { name = "Yalçın AÇIKYILDIZ", email = "yalcin@webliyacelebi.com" },
+]
+keywords = ["freqtrade", "mcp", "llm", "trading", "introspection"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+]
+dependencies = [
+    "mcp[cli]>=1.26.0,<2.0",
+    "freqtrade>=2026.2",
+    "anyio>=4.5",
+    "packaging>=23.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.25",
+    "pytest-cov>=6.0",
+    "ruff>=0.11",
+    "mypy>=1.15",
+    "pre-commit>=4.0",
+]
+
+[project.scripts]
+freqtrade-mcp = "freqtrade_mcp.server:main"
+
+[project.urls]
+Homepage = "https://github.com/yalcin/freqtrade-mcp"
+Repository = "https://github.com/yalcin/freqtrade-mcp"
+Issues = "https://github.com/yalcin/freqtrade-mcp/issues"
+Changelog = "https://github.com/yalcin/freqtrade-mcp/blob/master/CHANGELOG.md"
+
+[tool.hatch.build]
+exclude = [
+    "/.gitnexus/",
+    "/.serena/",
+    "/AGENTS.md",
+    "/CLAUDE.md",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/freqtrade_mcp"]
+
+[tool.hatch.version]
+path = "src/freqtrade_mcp/__init__.py"
+
+[tool.ruff]
+target-version = "py313"
+line-length = 99
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E", "W",    # pycodestyle
+    "F",         # pyflakes
+    "I",         # isort
+    "N",         # pep8-naming
+    "D",         # pydocstyle
+    "UP",        # pyupgrade
+    "S",         # bandit (security)
+    "B",         # bugbear
+    "A",         # builtins
+    "C4",        # comprehensions
+    "RUF",       # ruff-specific
+]
+ignore = ["D100", "D104"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101", "D102", "D103"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--cov=freqtrade_mcp --cov-report=term-missing --cov-report=html --cov-fail-under=90"
+markers = [
+    "integration: exercises a real, importable freqtrade installation (skipped otherwise)",
+]

@@ -84,6 +84,14 @@ CLASSIFICATION = os.path.join(ROOT, "evidence/STRATEGY_CLASSIFICATION.json")
 PHASE_HYPOTHESIS = os.path.join(ROOT, "evidence/MARKET_PHASE_HYPOTHESIS.json")
 DUPLICATE_ADJUDICATION = os.path.join(
     ROOT, "evidence/SEMANTIC_DUPLICATE_ADJUDICATION.json")
+# The live adjudication above self-erases a row the moment tools.harvest.
+# remove_semantic_duplicates() acts on it: the group it names needs >= 2
+# still-existing members to be recomputed at all. This is the permanent,
+# append-only record of what was removed and why - read here only as a
+# name set for the selftest guards that would otherwise KeyError on an
+# evidence-store entry whose strategy no longer exists in `data`.
+REMOVED_DUPLICATES_LOG = os.path.join(
+    ROOT, "evidence/REMOVED_DUPLICATE_SOURCES.json")
 
 # What has actually become of a row that could not start. The triage says what
 # ought to be done; these say what was done and what it achieved, which is a
@@ -197,8 +205,11 @@ REASON_ORDER = (
      "have tightened - but applying it would touch every strategy's column "
      "writes, not just this row's; declined, owner's call 2026-09-04"),
     ("duplicate_implementation",
-     "duplicates the executable code and canonical full-backtest trade set "
-     "of a retained representative"),
+     "duplicates the executable code of a retained representative - either "
+     "confirmed further by an identical canonical full-backtest trade set, "
+     "or, since 2026-09-16, by code identity alone once no config overlay "
+     "and no measured disagreement stand against it (see evidence_rule in "
+     "SEMANTIC_DUPLICATE_ADJUDICATION.json for which applied to a given row)"),
     ("canonical_implementation_not_measured", "never ran"),
     ("no_verdict_on_lookahead_and_recursive", "measured; neither gate returned a verdict"),
     ("no_verdict_on_lookahead", "measured and recursion clean; look-ahead has no verdict"),
@@ -2407,8 +2418,30 @@ def selftest():
     duplicates = {row["strategy_id"] for row in
                   _json(DUPLICATE_ADJUDICATION, "decisions")
                   if row.get("decision") == "excluded_duplicate_implementation"}
+    # `recovered_at` marks an entry re-harvested after its removal turned out
+    # to be a mistake (Phase 17 addendum: duplicate_source_files() lacked the
+    # representative-protection guard) - the log keeps the entry as a
+    # permanent record, but the strategy is back in the corpus and must not
+    # still read as excluded.
+    duplicates |= {row["strategy_id"] for row in
+                   _json(REMOVED_DUPLICATES_LOG, "removed")
+                   if not row.get("recovered_at")}
+    # 2026-09-16: a code-identical duplicate with no config overlay and no
+    # measured disagreement is now removed at the SOURCE (tools.harvest.
+    # remove_semantic_duplicates deletes the file; see semantic_duplicates.
+    # adjudicate()'s tier 2) rather than only marked excluded while its row
+    # stays in the corpus. A strategy_id can therefore be `admitted_E1` in
+    # the historical ELIGIBILITY_EXPANSION_ADJUDICATION.csv record and no
+    # longer exist in `data` at all - verified in every case found this way
+    # (chispei/FastSupertrend_optim3_rsi_75fix/Lateralus) to be exactly a
+    # row whose own representative is ALSO independently admitted_E1, so no
+    # coverage was lost, only the duplicate copy. Restricting the equality
+    # to strategy_ids `data` still contains is the correct model: a removed
+    # row cannot be in any cohort, and asserting it is not is not the same
+    # claim as asserting nothing was ever admitted under that name.
+    present = {row["strategy_id"] for row in data}
     assert {row["strategy_id"] for row in data
-            if row["cohort"] == "E1_expanded"} == admitted - c10 - duplicates
+            if row["cohort"] == "E1_expanded"} == (admitted - c10 - duplicates) & present
     completed = [row for row in data
                  if row["technical_chain_complete"] == "true"]
     assert completed, "expected current canonical full-backtest completions"
@@ -2576,6 +2609,15 @@ def selftest():
     lookahead_review = _json(LOOKAHEAD_INDICATOR_REVIEW, key="reviewed")
     reviewed_seen = set()
     for name, status in fresh_store.items():
+        if name not in by_id:
+            # Removed at the source as a code-identical duplicate
+            # (tools.harvest.remove_semantic_duplicates, 2026-09-16) - its
+            # own historical evidence-store entries are provenance, not a
+            # row this table can still describe. Anything ELSE missing from
+            # `by_id` is a real bug, so this only ever skips a verified
+            # duplicate removal, never masks an unexplained disappearance.
+            assert name in duplicates, name
+            continue
         review = lookahead_review.get(name)
         reviewed = (status == "FOUND" and review
                     and review.get("canonical_sha256") == fresh_store_sha.get(name))
@@ -2603,6 +2645,9 @@ def selftest():
     for name, review in lookahead_review.items():
         assert combined_status.get(name) == "FOUND" \
             and combined_sha.get(name) == review.get("canonical_sha256"), name
+        if name not in by_id:
+            assert name in duplicates, name  # see the identical guard above
+            continue
         assert by_id[name]["lookahead"] == "PASS", name
         assert by_id[name]["lookahead_evidence"] == "reviewed_indicator_only", name
 

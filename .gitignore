@@ -55,10 +55,16 @@ data/
 # source repo moved since we captured it".
 !REPO_FRESHNESS.csv
 
-# Downloaded upstream strategy repositories - regenerate from the corpus
-# source list. Their nested .git directories and worktrees do not belong to
-# this audit repository.
-/repos/
+# Downloaded upstream strategy repositories. Tracked as of 2026-09-16
+# (REGISTER.md Phase 17): a duplicate-removal bug destroyed 11 strategies
+# that turned out to be recoverable only by re-fetching from GitHub, which
+# is not guaranteed to stay possible (a repo can move, go private, or be
+# deleted upstream) - owner's decision to stop depending on that. Their
+# nested .git directories and worktrees still do not belong to this audit
+# repository (a handful of repos were previously fetched by clone rather
+# than harvest.py's own API-only path, and carry real git history/pack
+# files that would otherwise bloat this repository for no benefit here).
+repos/**/.git/
 
 # Freqtrade runtime state: generated configs, trained FreqAI models and
 # backtest archives. Recreated by setup/run scripts and potentially very large.

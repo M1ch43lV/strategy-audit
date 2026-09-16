@@ -1,0 +1,16 @@
+---
+services:
+  freqtrade:
+    image: freqtradeorg/freqtrade:stable
+    restart: unless-stopped
+    container_name: freqtrade_regime_filter
+    volumes:
+      - "./user_data:/freqtrade/user_data"
+      - "./config.json:/freqtrade/config.json"
+    ports:
+      - "8080:8080"
+    command: >
+      trade
+      --logfile /freqtrade/user_data/logs/freqtrade.log
+      --config /freqtrade/config.json
+      --strategy RegimeFilterStrategy

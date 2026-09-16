@@ -47,6 +47,7 @@ READMEs as well.
 """
 from __future__ import print_function
 
+import datetime
 import io
 import json
 import os
@@ -65,6 +66,14 @@ from evidence import (execution_profiles, market_phase_hypothesis,
                       semantic_duplicates, strategy_status)
 
 REPOS = os.path.join(_ROOT, "repos")
+# Append-only, never rewritten to drop a row: once a duplicate's source file
+# is gone, evidence.semantic_duplicates.build() can no longer even form the
+# group that justified removing it (a group needs >= 2 still-existing
+# members), so the live SEMANTIC_DUPLICATE_ADJUDICATION.json self-erases the
+# decision the moment it is acted on. This file is the permanent record of
+# what was removed and why - evidence.strategy_status's own selftest reads
+# it precisely because the live file cannot answer the question anymore.
+REMOVED_DUPLICATES_LOG = os.path.join(_ROOT, "evidence", "REMOVED_DUPLICATE_SOURCES.json")
 # Resolved from PATH rather than a fixed install location, which was specific
 # to one earlier machine and no longer exists on this one.
 GH = __import__("shutil").which("gh") or "gh"
@@ -319,11 +328,67 @@ def harvest(full):
     return (full, got, len(names), err)
 
 
+def remove_semantic_duplicates():
+    """Delete the source file of every strategy semantic_duplicates.adjudicate()
+    excludes as a duplicate - owner's decision, 2026-09-16 (REGISTER.md
+    Phase 17): a downloaded file that duplicates an already-corpus
+    implementation's normalized code, with no config overlay on either side
+    and no measured trade-count disagreement between them, is removed at
+    intake rather than kept and held indefinitely (the previous design,
+    `pre_stage1_hold`, could never resolve a hold this way - a held row is
+    withheld from the Stage 1 measurement its own stronger confirmation
+    tier requires, so 102 269-batch rows sat unresolved). Only
+    `evidence.execution_profiles.discover()`'s own filesystem scan defines
+    the corpus, so deleting the file IS the removal - nothing else needs
+    editing, only regenerating, which the caller does next.
+
+    Idempotent and safe to call on every harvest: a strategy already
+    removed (by an earlier harvest, or a prior run of this function) is
+    absent from `evidence.execution_profiles.build()`'s own output, so
+    `duplicate_source_files()` silently skips it rather than re-deleting or
+    erroring.
+    """
+    data = semantic_duplicates.build()
+    decisions = semantic_duplicates.adjudicate(data)
+    resolved = semantic_duplicates.duplicate_source_files(decisions)
+    removed = []
+    now = datetime.datetime.now(datetime.timezone.utc).isoformat()
+    for row in resolved:
+        path = os.path.join(_ROOT, row["original_file"].replace("/", os.sep))
+        if not os.path.exists(path):
+            continue
+        os.remove(path)
+        removed.append(dict(row, removed_at=now))
+        print(u"  removed duplicate: %-34s (of %s, %s)"
+              % (row["strategy_id"], row["canonical_representative"], row["evidence_rule"]),
+              flush=True)
+    if removed:
+        log = {"schema_version": 1, "removed": []}
+        if os.path.exists(REMOVED_DUPLICATES_LOG):
+            with io.open(REMOVED_DUPLICATES_LOG, encoding="utf-8") as handle:
+                log = json.load(handle)
+        already = {entry["strategy_id"] for entry in log["removed"]}
+        log["removed"].extend(row for row in removed if row["strategy_id"] not in already)
+        log["removed"].sort(key=lambda row: row["strategy_id"].casefold())
+        tmp = REMOVED_DUPLICATES_LOG + ".tmp"
+        with io.open(tmp, "w", encoding="utf-8") as handle:
+            json.dump(log, handle, indent=2, ensure_ascii=False, sort_keys=True)
+            handle.write(u"\n")
+        os.replace(tmp, REMOVED_DUPLICATES_LOG)
+    print(u"%d duplicate source file(s) removed" % len(removed), flush=True)
+    return removed
+
+
 def refresh_intake_evidence():
     """Refresh all source-derived intake artifacts, never measurements."""
     print(u"refreshing canonical execution profiles...", flush=True)
     if execution_profiles.main([]) != 0:
         return 1
+    print(u"checking for and removing semantic duplicates...", flush=True)
+    if remove_semantic_duplicates():
+        print(u"refreshing canonical execution profiles (post-removal)...", flush=True)
+        if execution_profiles.main([]) != 0:
+            return 1
     print(u"refreshing strategy classification...", flush=True)
     if strategy_classification.main([]) != 0:
         return 1

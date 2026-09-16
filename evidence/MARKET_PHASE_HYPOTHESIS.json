@@ -164,86 +164,6 @@
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
     },
-    "Anomaly_adx": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_all": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_aroon": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_bbw": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_dwt": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_fbb": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_fwr": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_highlow": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_jump": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_macd": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_mfi": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_minmax": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_nseq": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_over": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_profit": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_pv": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_slope": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_smooth": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_stochastic": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "Anomaly_swing": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
     "AntigravityGridStrategy": {
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
@@ -548,17 +468,9 @@
       "assumed_market_regime": "range_choppy;range_quiet",
       "assumed_market_regime_evidence": "logic(mean_reversion); direction(long_only): bear excluded"
     },
-    "BaseNNStrategy": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
     "BaseStrategy": {
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "BasketStrategy": {
-      "assumed_market_regime": "range_choppy;range_quiet",
-      "assumed_market_regime_evidence": "logic(volatility) + named band: reversion, not expansion; direction(long_only): bear excluded"
     },
     "BbRoi": {
       "assumed_market_regime": "range_choppy;range_quiet",
@@ -759,10 +671,6 @@
     "BitcoinMLStrategy": {
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "BlendBasket": {
-      "assumed_market_regime": "bull_trend",
-      "assumed_market_regime_evidence": "logic(none) undecided, type(momentum); direction(long_only): bear excluded"
     },
     "BlueEyes_MPP_v1": {
       "assumed_market_regime": "bull_trend",
@@ -1060,18 +968,6 @@
       "assumed_market_regime": "bull_trend",
       "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"
     },
-    "ClucHAnix_BTC": {
-      "assumed_market_regime": "bull_trend",
-      "assumed_market_regime_evidence": "logic(none) undecided, type(momentum); direction(long_only): bear excluded"
-    },
-    "ClucHAnix_ETH": {
-      "assumed_market_regime": "bull_trend",
-      "assumed_market_regime_evidence": "logic(none) undecided, type(momentum); direction(long_only): bear excluded"
-    },
-    "ClucHAnix_USD": {
-      "assumed_market_regime": "bull_trend",
-      "assumed_market_regime_evidence": "logic(none) undecided, type(momentum); direction(long_only): bear excluded"
-    },
     "ClucHAnix_hhll": {
       "assumed_market_regime": "bull_trend",
       "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"
@@ -1216,10 +1112,6 @@
       "assumed_market_regime": "bull_trend",
       "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"
     },
-    "Combined_NFIv7_SMA_bAdBoY_20211204": {
-      "assumed_market_regime": "bull_trend",
-      "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"
-    },
     "ComboHold": {
       "assumed_market_regime": "bull_trend;range_choppy;range_quiet",
       "assumed_market_regime_evidence": "logic(none) undecided, type(mean_reversion,momentum,trend_following); direction(long_only): bear excluded"
@@ -1236,10 +1128,6 @@
       "assumed_market_regime": "bear_trend;bull_trend",
       "assumed_market_regime_evidence": "logic(trend_following); direction(long_short): trend prediction mirrors to bear"
     },
-    "ConstantMixBasket": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "direction(long_only): bear excluded"
-    },
     "CoppockCurveStrategy": {
       "assumed_market_regime": "bull_trend",
       "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"
@@ -1254,7 +1142,7 @@
     },
     "CppiBasket": {
       "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "direction(long_only): bear excluded"
+      "assumed_market_regime_evidence": "direction(unknown): bear excluded"
     },
     "CrossEMAStrategy": {
       "assumed_market_regime": "range_choppy;range_quiet",
@@ -1792,10 +1680,6 @@
       "assumed_market_regime": "bear_trend;bull_trend",
       "assumed_market_regime_evidence": "logic(trend_following); direction(long_short): trend prediction mirrors to bear"
     },
-    "FastSupertrend_optim3_rsi_75fix": {
-      "assumed_market_regime": "bear_trend;bull_trend",
-      "assumed_market_regime_evidence": "logic(trend_following); direction(long_short): trend prediction mirrors to bear"
-    },
     "FastSupertrend_optim3_rsi_75fix_signal": {
       "assumed_market_regime": "bear_trend;bull_trend",
       "assumed_market_regime_evidence": "logic(trend_following); direction(long_short): trend prediction mirrors to bear"
@@ -2136,10 +2020,6 @@
       "assumed_market_regime": "bull_trend",
       "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"
     },
-    "Hacklemore_Slow": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "direction(long_only): bear excluded"
-    },
     "Hacklemost": {
       "assumed_market_regime": "bull_trend",
       "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"
@@ -2221,10 +2101,6 @@
       "assumed_market_regime_evidence": "logic(unclear) undecided, type(momentum,scalping); direction(long_only): bear excluded"
     },
     "HyperoptableStrategy": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "direction(long_only): bear excluded"
-    },
-    "HyperoptableStrategyV2": {
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "direction(long_only): bear excluded"
     },
@@ -2323,10 +2199,6 @@
     "InverseV2": {
       "assumed_market_regime": "bull_trend",
       "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"
-    },
-    "InverseVolBasket": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "direction(long_only): bear excluded"
     },
     "InverseVolatilityPortfolio": {
       "assumed_market_regime": "range_choppy",
@@ -2436,14 +2308,6 @@
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
     },
-    "LitmusBBTrendStrategy": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "LitmusClucStrategy": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
     "LitmusEntryRollClassificationStrategy": {
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
@@ -2484,23 +2348,7 @@
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
     },
-    "LitmusSARStrategy": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "LitmusScalpStrategy": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
     "LitmusSimpleStrategy": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "LitmusTrendScalpStrategy": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "LitmusVulcanStrategy": {
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
     },
@@ -2630,15 +2478,15 @@
     },
     "MASlopeStrategy": {
       "assumed_market_regime": "bull_trend",
-      "assumed_market_regime_evidence": "logic(none) undecided, type(trend_following); direction(long_only): bear excluded"
+      "assumed_market_regime_evidence": "logic(none) undecided, type(scalping,trend_following); direction(long_only): bear excluded"
     },
     "MAStopLossStrategy": {
       "assumed_market_regime": "bull_trend",
-      "assumed_market_regime_evidence": "logic(none) undecided, type(trend_following); direction(long_only): bear excluded"
+      "assumed_market_regime_evidence": "logic(none) undecided, type(scalping,trend_following); direction(long_only): bear excluded"
     },
     "MATrailingStopLossStrategy": {
       "assumed_market_regime": "bull_trend",
-      "assumed_market_regime_evidence": "logic(none) undecided, type(trend_following); direction(long_only): bear excluded"
+      "assumed_market_regime_evidence": "logic(none) undecided, type(scalping,trend_following); direction(long_only): bear excluded"
     },
     "MFI": {
       "assumed_market_regime": "range_choppy;range_quiet",
@@ -2732,10 +2580,6 @@
       "assumed_market_regime": "bull_trend",
       "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"
     },
-    "MinVarianceBasket": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "direction(long_only): bear excluded"
-    },
     "MiniLambo": {
       "assumed_market_regime": "bull_trend;range_choppy;range_quiet",
       "assumed_market_regime_evidence": "logic(hybrid) undecided, type(mean_reversion,momentum,scalping); direction(long_only): bear excluded"
@@ -2760,10 +2604,6 @@
       "assumed_market_regime": "bull_trend",
       "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"
     },
-    "MomentumBasket": {
-      "assumed_market_regime": "bull_trend",
-      "assumed_market_regime_evidence": "logic(none) undecided, type(momentum); direction(long_only): bear excluded"
-    },
     "MomentumCCITrendStrategy": {
       "assumed_market_regime": "range_choppy;range_quiet",
       "assumed_market_regime_evidence": "logic(none) undecided, type(mean_reversion)"
@@ -2775,10 +2615,6 @@
     "MomentumRegimeBasket15m": {
       "assumed_market_regime": "range_choppy",
       "assumed_market_regime_evidence": "logic(unclear) undecided, type(grid_dca); direction(long_only): bear excluded"
-    },
-    "MomentumRegimeBasket15mFast": {
-      "assumed_market_regime": "bull_trend",
-      "assumed_market_regime_evidence": "logic(none) undecided, type(momentum); direction(long_only): bear excluded"
     },
     "MomentumScoreStrategy": {
       "assumed_market_regime": "bull_trend",
@@ -3700,62 +3536,6 @@
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
     },
-    "PCA_dwt": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "PCA_fbb": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "PCA_fwr": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "PCA_highlow": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "PCA_jump": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "PCA_macd": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "PCA_mfi": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "PCA_minmax": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "PCA_nseq": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "PCA_over": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "PCA_profit": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "PCA_pv": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "PCA_stochastic": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "PCA_swing": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
     "PRICEFOLLOWING": {
       "assumed_market_regime": "bull_trend",
       "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"
@@ -4252,10 +4032,6 @@
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "direction(long_only): bear excluded"
     },
-    "SimpleStrategy": {
-      "assumed_market_regime": "bull_trend;high_vol_shock;transition",
-      "assumed_market_regime_evidence": "logic(none) undecided, type(momentum,volatility_breakout); direction(long_only): bear excluded"
-    },
     "SlowPotato": {
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "direction(long_only): bear excluded"
@@ -4403,10 +4179,6 @@
     "StarRise_V3": {
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "direction(long_only): bear excluded"
-    },
-    "StarRise_dca": {
-      "assumed_market_regime": "range_choppy",
-      "assumed_market_regime_evidence": "logic(none) undecided, type(grid_dca); direction(long_only): bear excluded"
     },
     "StarRise_strat": {
       "assumed_market_regime": "bull_trend",
@@ -4608,15 +4380,7 @@
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
     },
-    "TS_Coeff": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
     "TS_Gain": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
-    },
-    "TS_Wavelet": {
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "model_driven: indicators are model features, no phase prior"
     },
@@ -4679,22 +4443,6 @@
     "TenderEnter": {
       "assumed_market_regime": "bull_trend;high_vol_shock;range_choppy;range_quiet;transition",
       "assumed_market_regime_evidence": "logic(unclear) undecided, type(mean_reversion,momentum,trend_following,volatility_breakout); direction(long_only): bear excluded"
-    },
-    "TestStrategyImplementBuyTimeout": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "direction(unknown): bear excluded"
-    },
-    "TestStrategyImplementCustomSell": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "direction(unknown): bear excluded"
-    },
-    "TestStrategyImplementEmptyWorking": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "direction(unknown): bear excluded"
-    },
-    "TestStrategyImplementSellTimeout": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "direction(unknown): bear excluded"
     },
     "TestStrategyLegacyV1": {
       "assumed_market_regime": "",
@@ -4928,10 +4676,6 @@
       "assumed_market_regime": "",
       "assumed_market_regime_evidence": "direction(long_only): bear excluded"
     },
-    "VolTargetBasket": {
-      "assumed_market_regime": "",
-      "assumed_market_regime_evidence": "direction(long_only): bear excluded"
-    },
     "VolatilitySystem": {
       "assumed_market_regime": "high_vol_shock",
       "assumed_market_regime_evidence": "logic(volatility); direction(long_only): bear excluded"
@@ -5107,10 +4851,6 @@
     "chatgpt": {
       "assumed_market_regime": "range_choppy;range_quiet",
       "assumed_market_regime_evidence": "logic(none) undecided, type(mean_reversion); direction(long_only): bear excluded"
-    },
-    "chispei": {
-      "assumed_market_regime": "bull_trend",
-      "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"
     },
     "conny": {
       "assumed_market_regime": "bull_trend;range_choppy;range_quiet",
@@ -5391,10 +5131,6 @@
     "stoploss": {
       "assumed_market_regime": "range_choppy;range_quiet",
       "assumed_market_regime_evidence": "logic(volatility) + named band: reversion, not expansion; direction(long_only): bear excluded"
-    },
-    "strat_dca": {
-      "assumed_market_regime": "range_choppy",
-      "assumed_market_regime_evidence": "logic(none) undecided, type(grid_dca); direction(long_only): bear excluded"
     },
     "strategy_test_v3_recursive_issue": {
       "assumed_market_regime": "",

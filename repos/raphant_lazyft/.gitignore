@@ -1,0 +1,16 @@
+venv/
+logs/
+cache/*
+configs/
+user_data/
+*egg*
+__pycache__
+*.db
+.vscode/
+.idea/
+.trunk/
+*.lock
+.flake8
+.isort.cfg
+.jupyter/
+.env

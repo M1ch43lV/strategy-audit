@@ -1,0 +1,35 @@
+Metric           Result
+---------------  -------------
+Total Trades     72
+Win/Loss         38 / 34
+Win Rate         52.7778 %
+Loss Rate        47.2222 %
+
+Expectancy       +2.0062 BUSD
+Average Profit   -0.5716 BUSD
+Average Profit   -0.1143 %
+
+Total Profit     -41.1557 BUSD
+Total Profit     -8.2311 %
+CAGR             -91.0286 %
+
+Max Drawdown     47.4435 BUSD
+Max Drawdown     9.4428 %
+Profit Factor    0.5565
+Recovery Factor  -0.8715
+Calmar           -9.6400
+
+Sharpe           -2.9537
+Sortino          -3.2222
+Risk Return      -0.1861
+
+Std Dev          13.5782
+Skewness         -1.3843
+Kurtosis         1.9292
+
+Risk of Ruin     0.0000 %
+Gain/Pain        -0.8183
+Payoff Ratio     0.4922
+Common Sense     0.1915
+Kelly Criterion  -0.4090 %
+Ulcer Index      0.0666

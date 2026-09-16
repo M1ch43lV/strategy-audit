@@ -1,0 +1,87 @@
+# Ignore the Private Config to prevent accidental pushing
+user_data/mgm-config-private.json
+
+# Ignore the HyperOpt Result Files that are used by Default
+user_data/mgm-config-hyperopt.json
+user_data/strategies/MoniGoManiHyperStrategy.json
+
+# Ignore .last helper files
+user_data/.last_command.json
+user_data/backtest_results/.last_result.json
+user_data/backtest_results/.last_backtest_sell_reasons.log
+user_data/hyperopt_results/.last_result.json
+user_data/hyperopt_results/.last_ho_results_table.log
+
+# Ignore Release Template
+Documentation/ReleaseTemplate.md
+
+# Ignore Python Caches
+__pycache__/
+ *.pyc
+
+# Ignore Other General User Data
+user_data/*_results/
+user_data/*.lock
+user_data/data/
+user_data/logs/
+user_data/plot/
+
+# Ignore JetBrains Folder
+.idea/
+
+# Ignore VSCodium / Visual Studio Code Folder + WorkSpace Files
+.vscode/
+*.code-workspace
+
+# Ignore Logo Folder
+Logo/
+
+# Ignore fthypt and legacy pickle Files
+*.fthypt
+*.pickle
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+junit/
+test-results*.xml
+
+# Ignore pytest cache files
+.pytest_cache/
+
+# Ignore freqtrade installation
+.env/
+build_helpers/
+config_examples/
+docker/
+!docker/Dockerfile.MoniGoMani
+docs/
+freqtrade/
+junit/
+scripts/
+tests/junit/
+
+freqtrade.service
+freqtrade.service.watchdog
+freqtrade.egg-info
+MANIFEST.in
+pyproject.toml
+pyproject.yml
+setup.cfg
+setup.py
+setup.sh

@@ -1,0 +1,11 @@
+# Dependabot - Automatic Dependency Package Management
+version: 2
+updates:
+
+  # Maintain dependencies for Pipenv
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    target-branch: "development"

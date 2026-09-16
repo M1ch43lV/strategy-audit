@@ -1,0 +1,1064 @@
+{
+  "removed": [
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_adx.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_adx"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_all.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_all"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_aroon.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_aroon"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_bbw.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_bbw"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_dwt.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_dwt"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_fbb.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_fbb"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_fwr.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_fwr"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_highlow.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_highlow"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_jump.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_jump"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_macd.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_macd"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_mfi.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_mfi"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_minmax.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_minmax"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_nseq.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_nseq"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_over.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_over"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_profit.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_profit"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_pv.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_pv"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_slope.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_slope"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_smooth.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_smooth"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_stochastic.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_stochastic"
+    },
+    {
+      "canonical_representative": "Anomaly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/Anomaly/Anomaly_swing.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Anomaly_swing"
+    },
+    {
+      "canonical_representative": "_Strat",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/nateemma_strategies/Framework/BaseNNStrategy.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "BaseNNStrategy"
+    },
+    {
+      "canonical_representative": "CppiBasket",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/nateemma_strategies/Basket/BasketStrategy.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "BasketStrategy"
+    },
+    {
+      "canonical_representative": "BB_RTR",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/ShahAnuj2610_my-freqtrade/user_data/strategies/BB_RTR.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "BB_RTR_dca"
+    },
+    {
+      "canonical_representative": "BBRSITV",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/BBRSITV.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "BBRSITV1"
+    },
+    {
+      "canonical_representative": "BBRSITV",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/BBRSITV.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "BBRSITV2"
+    },
+    {
+      "canonical_representative": "BBRSITV",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/BBRSITV.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "BBRSITV3"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/BBRSITV.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "BBRSITV4"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/BBRSITV.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "BBRSITV5"
+    },
+    {
+      "canonical_representative": "BinClucMadv1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/BinClucMadSMACore.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "BinClucMadSMAv1"
+    },
+    {
+      "canonical_representative": "BinClucMadv1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/BinClucMadSMACore.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "BinClucMadSMAv2"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/BinClucMadSMACore.py",
+      "recovered_at": "2026-09-16T17:55:11.783424+00:00",
+      "recovered_note": "re-harvested from its original repo after this removal turned out to be incorrect - Phase 17 addendum, evidence/semantic_duplicates.py duplicate_source_files() lacked the representative-protection guard added in the same phase. Kept as a permanent record of the mistake, not deleted.",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "BinClucMadv1"
+    },
+    {
+      "canonical_representative": "BinClucMadv1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/BinClucMadSMACore.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "BinClucMadv2"
+    },
+    {
+      "canonical_representative": "CppiBasket",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/nateemma_strategies/Basket/BlendBasket.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "BlendBasket"
+    },
+    {
+      "canonical_representative": "Chispei",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "note": "",
+      "original_file": "repos/botenesp_freqtrade_strategies/chispei.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "chispei"
+    },
+    {
+      "canonical_representative": "Cluc4werk",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/Cluc4werk.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Cluc4werk_ETH"
+    },
+    {
+      "canonical_representative": "Cluc5werk",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/Cluc5werk.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Cluc5werk_BTC"
+    },
+    {
+      "canonical_representative": "Cluc5werk",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/Cluc5werk.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Cluc5werk_ETH"
+    },
+    {
+      "canonical_representative": "Cluc5werk",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/Cluc5werk.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Cluc5werk_USD"
+    },
+    {
+      "canonical_representative": "ClucCrypROI",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucCrypROI.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ClucCrypROI_BTC"
+    },
+    {
+      "canonical_representative": "ClucCrypROI",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucCrypROI.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ClucCrypROI_ETH"
+    },
+    {
+      "canonical_representative": "ClucCrypSlow",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucCrypSlow (1).py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ClucCrypSlow_BTC"
+    },
+    {
+      "canonical_representative": "ClucCrypSlow",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucCrypSlow (1).py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ClucCrypSlow_ETH"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/thinkong_freqtradestrategies/user_data/strategies/ClucHAnixV2.py",
+      "recovered_at": "2026-09-16T17:55:11.783424+00:00",
+      "recovered_note": "re-harvested from its original repo after this removal turned out to be incorrect - Phase 17 addendum, evidence/semantic_duplicates.py duplicate_source_files() lacked the representative-protection guard added in the same phase. Kept as a permanent record of the mistake, not deleted.",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ClucDCAV2"
+    },
+    {
+      "canonical_representative": "ClucDCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix E01VE Offsets.py",
+      "removed_at": "2026-09-16T15:05:51.011635+00:00",
+      "strategy_id": "ClucHAnix"
+    },
+    {
+      "canonical_representative": "Cluc5mDCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/TheoBrigitte_freqtrade/strategies/cluc/ClucHAnix_5m.py",
+      "removed_at": "2026-09-16T15:05:51.011635+00:00",
+      "strategy_id": "ClucHAnix_5m"
+    },
+    {
+      "canonical_representative": "ClucDCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix (3).py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ClucHAnix_BTC"
+    },
+    {
+      "canonical_representative": "ClucDCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix (3).py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ClucHAnix_ETH"
+    },
+    {
+      "canonical_representative": "ClucDCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix (3).py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ClucHAnix_USD"
+    },
+    {
+      "canonical_representative": "ClucDCAV2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/thinkong_freqtradestrategies/user_data/strategies/ClucHAnixV2.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ClucHAnixV2"
+    },
+    {
+      "canonical_representative": "ClucHAwerk",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAwerk.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ClucHAwerk_BTC"
+    },
+    {
+      "canonical_representative": "ClucHAwerk",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAwerk.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ClucHAwerk_ETH"
+    },
+    {
+      "canonical_representative": "ClucHAwerk",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAwerk.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ClucHAwerk_USD"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityV7_SMA",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "original_file": "repos/jaredrsommer_freqtradestrategies/HUGE_FreqTrade_Strategy_Collection/Combined_NFIv7_SMA_bAdBoY_20211204.py",
+      "removed_at": "2026-09-16T15:05:51.011635+00:00",
+      "strategy_id": "Combined_NFIv7_SMA_bAdBoY_20211204"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityV7_SMA",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "original_file": "repos/jaredrsommer_freqtradestrategies/HUGE_FreqTrade_Strategy_Collection/Combined_NFIv7_SMA_Rallipanos_20210707.py",
+      "removed_at": "2026-09-16T15:05:51.011635+00:00",
+      "strategy_id": "Combined_NFIv7_SMA_Rallipanos_20210707"
+    },
+    {
+      "canonical_representative": "CppiBasket",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/nateemma_strategies/Basket/ConstantMixBasket.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ConstantMixBasket"
+    },
+    {
+      "canonical_representative": "EI3v2_tag_cofi_green",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/MMR-19_freqtrade-strategies/strategies/EI3v2_tag_cofi_green.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "EI3v2_tag_cofi_dca_green"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Enchilada.py",
+      "recovered_at": "2026-09-16T17:55:11.783424+00:00",
+      "recovered_note": "re-harvested from its original repo after this removal turned out to be incorrect - Phase 17 addendum, evidence/semantic_duplicates.py duplicate_source_files() lacked the representative-protection guard added in the same phase. Kept as a permanent record of the mistake, not deleted.",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Enchilada"
+    },
+    {
+      "canonical_representative": "Enchilada",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Enchilada.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Enchilada_Slow"
+    },
+    {
+      "canonical_representative": "FastSupertrend_optim3_rsi_75",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "note": "",
+      "original_file": "repos/TheoBrigitte_freqtrade/strategies/fastsupertrend/FastSupertrend_optim3_rsi_75fix.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "FastSupertrend_optim3_rsi_75fix"
+    },
+    {
+      "canonical_representative": "Hacklemore",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Hacklemore.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Hacklemore_Slow"
+    },
+    {
+      "canonical_representative": "StrategyTestV2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats/hyperoptable_strategy_v2.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "HyperoptableStrategyV2"
+    },
+    {
+      "canonical_representative": "HyperStra_SMAOnly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/davidzr_freqtrade-strategies/strategies/HyperStra_GSN_SMAOnly/HyperStra_GSN_SMAOnly.py",
+      "removed_at": "2026-09-16T15:05:51.011635+00:00",
+      "strategy_id": "HyperStra_GSN_SMAOnly"
+    },
+    {
+      "canonical_representative": "CppiBasket",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/nateemma_strategies/Basket/InverseVolBasket.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "InverseVolBasket"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Lateralus.py",
+      "recovered_at": "2026-09-16T17:55:11.783424+00:00",
+      "recovered_note": "re-harvested from its original repo after this removal turned out to be incorrect - Phase 17 addendum, evidence/semantic_duplicates.py duplicate_source_files() lacked the representative-protection guard added in the same phase. Kept as a permanent record of the mistake, not deleted.",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Lateralus"
+    },
+    {
+      "canonical_representative": "Lateralus",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Lateralus.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Lateralus_Slow"
+    },
+    {
+      "canonical_representative": "LitmusBBStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusBBTrendStrategy.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "LitmusBBTrendStrategy"
+    },
+    {
+      "canonical_representative": "LitmusBBStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusClucStrategy.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "LitmusClucStrategy"
+    },
+    {
+      "canonical_representative": "LitmusBBStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusSARStrategy.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "LitmusSARStrategy"
+    },
+    {
+      "canonical_representative": "LitmusBBStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusScalpStrategy.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "LitmusScalpStrategy"
+    },
+    {
+      "canonical_representative": "LitmusBBStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusTrendScalpStrategy.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "LitmusTrendScalpStrategy"
+    },
+    {
+      "canonical_representative": "LitmusBBStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusVulcanStrategy.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "LitmusVulcanStrategy"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Lmao/Lmao.py",
+      "recovered_at": "2026-09-16T17:55:11.783424+00:00",
+      "recovered_note": "re-harvested from its original repo after this removal turned out to be incorrect - Phase 17 addendum, evidence/semantic_duplicates.py duplicate_source_files() lacked the representative-protection guard added in the same phase. Kept as a permanent record of the mistake, not deleted.",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Lmao"
+    },
+    {
+      "canonical_representative": "Lmao",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Lmao/Lmao.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "LmaoStoplossClusterOpt"
+    },
+    {
+      "canonical_representative": "CppiBasket",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/nateemma_strategies/Basket/MinVarianceBasket.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "MinVarianceBasket"
+    },
+    {
+      "canonical_representative": "CppiBasket",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/nateemma_strategies/Basket/MomentumBasket.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "MomentumBasket"
+    },
+    {
+      "canonical_representative": "MomentumRegimeBasket15m",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/nateemma_strategies/Basket/MomentumRegimeBasket15mFast.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "MomentumRegimeBasket15mFast"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/NASOSv5_mod1 (1).py",
+      "recovered_at": "2026-09-16T17:55:11.783424+00:00",
+      "recovered_note": "re-harvested from its original repo after this removal turned out to be incorrect - Phase 17 addendum, evidence/semantic_duplicates.py duplicate_source_files() lacked the representative-protection guard added in the same phase. Kept as a permanent record of the mistake, not deleted.",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "NASOSv5HO"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/NASOSv5_mod1 (1).py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "NASOSv5PD"
+    },
+    {
+      "canonical_representative": "NASOSv5HO",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/NASOSv5_mod1 (1).py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "NASOSv5SL"
+    },
+    {
+      "canonical_representative": "MyStratV1",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "original_file": "repos/davidzr_freqtrade-strategies/strategies/NostalgiaForInfinityV7/NostalgiaForInfinityV7.py",
+      "removed_at": "2026-09-16T15:05:51.011635+00:00",
+      "strategy_id": "NostalgiaForInfinityV7"
+    },
+    {
+      "canonical_representative": "Combined_NFIv7_SMA",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "original_file": "repos/davidzr_freqtrade-strategies/strategies/NostalgiaForInfinityV7_SMAv2/NostalgiaForInfinityV7_SMAv2.py",
+      "removed_at": "2026-09-16T15:05:51.011635+00:00",
+      "strategy_id": "NostalgiaForInfinityV7_SMAv2"
+    },
+    {
+      "canonical_representative": "PCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_dwt.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "PCA_dwt"
+    },
+    {
+      "canonical_representative": "PCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_fbb.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "PCA_fbb"
+    },
+    {
+      "canonical_representative": "PCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_fwr.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "PCA_fwr"
+    },
+    {
+      "canonical_representative": "PCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_highlow.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "PCA_highlow"
+    },
+    {
+      "canonical_representative": "PCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_jump.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "PCA_jump"
+    },
+    {
+      "canonical_representative": "PCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_macd.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "PCA_macd"
+    },
+    {
+      "canonical_representative": "PCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_mfi.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "PCA_mfi"
+    },
+    {
+      "canonical_representative": "PCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_minmax.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "PCA_minmax"
+    },
+    {
+      "canonical_representative": "PCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_nseq.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "PCA_nseq"
+    },
+    {
+      "canonical_representative": "PCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_over.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "PCA_over"
+    },
+    {
+      "canonical_representative": "PCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_profit.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "PCA_profit"
+    },
+    {
+      "canonical_representative": "PCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_pv.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "PCA_pv"
+    },
+    {
+      "canonical_representative": "PCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_stochastic.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "PCA_stochastic"
+    },
+    {
+      "canonical_representative": "PCA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/webclinic017_strategies-freqtrade-/binanceus/PCA_swing.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "PCA_swing"
+    },
+    {
+      "canonical_representative": "Schism3",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.3.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Schism3_BTC"
+    },
+    {
+      "canonical_representative": "Schism3",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.3.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Schism3_ETH"
+    },
+    {
+      "canonical_representative": "Schism4",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.4.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Schism4_BTC"
+    },
+    {
+      "canonical_representative": "Schism4",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.4.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Schism4_ETH"
+    },
+    {
+      "canonical_representative": "Schism5",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.5.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Schism5_BTC"
+    },
+    {
+      "canonical_representative": "Schism5",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.5.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Schism5_ETH"
+    },
+    {
+      "canonical_representative": "Schism6",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.6.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Schism6_BTC"
+    },
+    {
+      "canonical_representative": "Schism6",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.6.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Schism6_ETH"
+    },
+    {
+      "canonical_representative": "_Strat",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/nateemma_strategies/SimpleStrategies/SimpleStrategy.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "SimpleStrategy"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/davidzr_freqtrade-strategies/strategies/SMAOffsetProtectOptV1_kkeue_20210619/SMAOffsetProtectOptV1_kkeue_20210619.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "SMAOffsetProtectOptV1_1"
+    },
+    {
+      "canonical_representative": "StarRise",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/kemplail_freqtrade-stuff/strategies/StarRise.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "StarRise_dca"
+    },
+    {
+      "canonical_representative": "Stinkfist",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/Stinkfist.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Stinkfist_BTC"
+    },
+    {
+      "canonical_representative": "Stinkfist",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/Stinkfist.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "Stinkfist_ETH"
+    },
+    {
+      "canonical_representative": "tbedit",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/ShahAnuj2610_my-freqtrade-nfi-nextgen/user_data/strategies/strat_dca.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "strat_dca"
+    },
+    {
+      "canonical_representative": "StrategyTestV3",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/LazyPigPig_freqtrade-grid/tests/strategy/strats/strategy_test_v3.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "StrategyTestV3Futures"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Strategies/SuperReversal_mtf.py",
+      "recovered_at": "2026-09-16T17:55:11.783424+00:00",
+      "recovered_note": "re-harvested from its original repo after this removal turned out to be incorrect - Phase 17 addendum, evidence/semantic_duplicates.py duplicate_source_files() lacked the representative-protection guard added in the same phase. Kept as a permanent record of the mistake, not deleted.",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "SuperReversal_mtf"
+    },
+    {
+      "canonical_representative": "SuperReversal_mtf",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Strategies/SuperReversal_mtf.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "SuperReversal_mtf_5min"
+    },
+    {
+      "canonical_representative": "TestStrategyNoImplements",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats/broken_strats/broken_futures_strategies.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "TestStrategyImplementBuyTimeout"
+    },
+    {
+      "canonical_representative": "TestStrategyNoImplements",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats/broken_strats/broken_futures_strategies.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "TestStrategyImplementCustomSell"
+    },
+    {
+      "canonical_representative": "TestStrategyNoImplements",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/titouannwtt_freqtrade-ultimate/tests/strategy/strats/broken_strats/broken_futures_strategies.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "TestStrategyImplementEmptyWorking"
+    },
+    {
+      "canonical_representative": "TestStrategyNoImplements",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats/broken_strats/broken_futures_strategies.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "TestStrategyImplementSellTimeout"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/LazyPigPig_freqtrade-grid/tests/strategy/strats/broken_strats/broken_futures_strategies.py",
+      "recovered_at": "2026-09-16T17:55:11.783424+00:00",
+      "recovered_note": "re-harvested from its original repo after this removal turned out to be incorrect - Phase 17 addendum, evidence/semantic_duplicates.py duplicate_source_files() lacked the representative-protection guard added in the same phase. Kept as a permanent record of the mistake, not deleted.",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "TestStrategyNoImplements"
+    },
+    {
+      "canonical_representative": "TestStrategyNoImplements",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/LazyPigPig_freqtrade-grid/tests/strategy/strats/broken_strats/broken_futures_strategies.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "TestStrategyNoImplementSell"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/NASOSv5_mod1 (1).py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "TrailingBuyStrat"
+    },
+    {
+      "canonical_representative": "TS_Gain",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/nateemma_strategies/TSPredict/TS_Coeff.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "TS_Coeff"
+    },
+    {
+      "canonical_representative": "TS_Gain",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/nateemma_strategies/TSPredict/TS_Wavelet.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "TS_Wavelet"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
+      "recovered_at": "2026-09-16T17:55:11.783424+00:00",
+      "recovered_note": "re-harvested from its original repo after this removal turned out to be incorrect - Phase 17 addendum, evidence/semantic_duplicates.py duplicate_source_files() lacked the representative-protection guard added in the same phase. Kept as a permanent record of the mistake, not deleted.",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ViN"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ViNBuyLc2"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ViNBuyPct"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ViNBuyPctLc2"
+    },
+    {
+      "canonical_representative": "",
+      "evidence_rule": "reconstructed_unattributed_2026-09-16",
+      "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ViNBuyVws"
+    },
+    {
+      "canonical_representative": "ViN",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ViNSellCorr"
+    },
+    {
+      "canonical_representative": "ViN",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ViNSellEps"
+    },
+    {
+      "canonical_representative": "ViN",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ViNSellRiseCorrFall"
+    },
+    {
+      "canonical_representative": "ViN",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "ViNSellRiseFall"
+    },
+    {
+      "canonical_representative": "CppiBasket",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "note": "",
+      "original_file": "repos/nateemma_strategies/Basket/VolTargetBasket.py",
+      "removed_at": "2026-09-16T14:59:36.982686+00:00",
+      "strategy_id": "VolTargetBasket"
+    }
+  ],
+  "schema_version": 1
+}

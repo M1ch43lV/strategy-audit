@@ -1,0 +1,463 @@
+name: Auto Test
+
+on:
+  push:
+    branches: [main, develop, "feature/**", "claude/**"]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  GIT_LFS_SKIP_SMUDGE: "1"
+  TALIB_VERSION: "0.6.4"
+  TALIB_CACHE_VERSION: "1"
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Job 1: Lint & import checks (fast, no data needed)
+  # ---------------------------------------------------------------------------
+  lint:
+    name: Lint & Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install minimal dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pyflakes
+
+      - name: Check Python syntax (all project modules)
+        run: pyflakes alpha/ strategy/ portfolio/ user_data/strategies/ dataset/
+
+  # ---------------------------------------------------------------------------
+  # Job 2: Unit tests
+  # ---------------------------------------------------------------------------
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          lfs: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - uses: ./.github/actions/setup-talib
+        with:
+          talib-version: ${{ env.TALIB_VERSION }}
+          cache-version: ${{ env.TALIB_CACHE_VERSION }}
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ env.PYTHON_VERSION }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: pip-${{ env.PYTHON_VERSION }}-
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip "setuptools<75" wheel
+          pip install -r requirements.txt
+          pip install -r requirements-ml.txt
+          pip install scipy pytest
+          pip install -e .
+
+      - name: Generate synthetic test data
+        run: portbench generate-data
+
+      - name: Run unit tests
+        run: pytest tests/ -v --tb=short
+
+  # ---------------------------------------------------------------------------
+  # Job 3: Strategy import validation
+  # ---------------------------------------------------------------------------
+  strategy-import:
+    name: Strategy Import Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          lfs: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - uses: ./.github/actions/setup-talib
+        with:
+          talib-version: ${{ env.TALIB_VERSION }}
+          cache-version: ${{ env.TALIB_CACHE_VERSION }}
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ env.PYTHON_VERSION }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: pip-${{ env.PYTHON_VERSION }}-
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip "setuptools<75" wheel
+          pip install -r requirements.txt
+          pip install -r requirements-ml.txt
+          pip install scipy
+          pip install -e .
+
+      - name: Validate all strategy imports
+        run: |
+          python -c "
+          import sys
+          errors = []
+
+          # Alpha modules
+          try:
+              from alpha.interface import IAlpha
+              print('OK: alpha.interface.IAlpha')
+          except Exception as e:
+              errors.append(f'alpha.interface: {e}')
+
+          try:
+              from alpha.SimpleEmaFactors import EmaAlpha
+              print('OK: alpha.SimpleEmaFactors.EmaAlpha')
+          except Exception as e:
+              errors.append(f'alpha.SimpleEmaFactors: {e}')
+
+          # Trading strategies
+          try:
+              from strategy.EmaCrossStrategy import EmaCrossStrategy
+              print('OK: strategy.EmaCrossStrategy')
+          except Exception as e:
+              errors.append(f'strategy.EmaCrossStrategy: {e}')
+
+          try:
+              from strategy.MacdAdxStrategy import MacdAdxStrategy
+              print('OK: strategy.MacdAdxStrategy')
+          except Exception as e:
+              errors.append(f'strategy.MacdAdxStrategy: {e}')
+
+          # Portfolio strategies
+          try:
+              from user_data.strategies.ONS import ONS_Portfolio
+              print('OK: user_data.strategies.ONS.ONS_Portfolio')
+          except Exception as e:
+              errors.append(f'user_data.strategies.ONS: {e}')
+
+          try:
+              from user_data.strategies.inv_vol import InverseVolatilityPortfolio
+              print('OK: user_data.strategies.inv_vol.InverseVolatilityPortfolio')
+          except Exception as e:
+              errors.append(f'user_data.strategies.inv_vol: {e}')
+
+          try:
+              from user_data.strategies.min_var import MinimumVariancePortfolio
+              print('OK: user_data.strategies.min_var.MinimumVariancePortfolio')
+          except Exception as e:
+              errors.append(f'user_data.strategies.min_var: {e}')
+
+          try:
+              from user_data.strategies.best_single_asset import BestSingleAssetPortfolio
+              print('OK: user_data.strategies.best_single_asset.BestSingleAssetPortfolio')
+          except Exception as e:
+              errors.append(f'user_data.strategies.best_single_asset: {e}')
+
+          # Portfolio pipeline
+          try:
+              from portfolio.PortfolioManagement import run_portfolio
+              print('OK: portfolio.PortfolioManagement.run_portfolio')
+          except Exception as e:
+              errors.append(f'portfolio.PortfolioManagement: {e}')
+
+          if errors:
+              print(f'\nFAILED: {len(errors)} import error(s):')
+              for err in errors:
+                  print(f'  - {err}')
+              sys.exit(1)
+          else:
+              print(f'\nAll imports passed.')
+          "
+
+  # ---------------------------------------------------------------------------
+  # Job 4: Portfolio pipeline smoke test
+  # ---------------------------------------------------------------------------
+  portfolio-pipeline:
+    name: Portfolio Pipeline Smoke Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          lfs: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - uses: ./.github/actions/setup-talib
+        with:
+          talib-version: ${{ env.TALIB_VERSION }}
+          cache-version: ${{ env.TALIB_CACHE_VERSION }}
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ env.PYTHON_VERSION }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: pip-${{ env.PYTHON_VERSION }}-
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip "setuptools<75" wheel
+          pip install -r requirements.txt
+          pip install scipy
+          pip install -e .
+
+      - name: Generate synthetic test data
+        run: portbench generate-data
+
+      - name: Run standalone portfolio pipeline
+        run: portbench portfolio
+
+  # ---------------------------------------------------------------------------
+  # Job 5: Backtest smoke tests
+  # ---------------------------------------------------------------------------
+  backtest-smoke:
+    name: Backtest Smoke Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          lfs: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - uses: ./.github/actions/setup-talib
+        with:
+          talib-version: ${{ env.TALIB_VERSION }}
+          cache-version: ${{ env.TALIB_CACHE_VERSION }}
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ env.PYTHON_VERSION }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: pip-${{ env.PYTHON_VERSION }}-
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip "setuptools<75" wheel
+          pip install -r requirements.txt
+          pip install scipy
+          pip install -e .
+
+      - name: Generate synthetic test data
+        run: portbench generate-data
+
+      # ── Trading strategies ──
+
+      - name: Backtest EmaCrossStrategy (crypto, 1d)
+        run: |
+          portbench backtesting \
+            --strategy EmaCrossStrategy \
+            --strategy-path ./strategy \
+            --timeframe 1d \
+            --timerange 20250501-20250601 \
+            --pairs BTC/USDT ETH/USDT
+
+      - name: Backtest EmaCrossStrategy (crypto, 4h)
+        run: |
+          portbench backtesting \
+            --strategy EmaCrossStrategy \
+            --strategy-path ./strategy \
+            --timeframe 4h \
+            --timerange 20250501-20250601 \
+            --pairs BTC/USDT ETH/USDT SOL/USDT XRP/USDT
+
+      - name: Backtest MacdAdxStrategy (stocks, 1d)
+        run: |
+          portbench backtesting \
+            --strategy MacdAdxStrategy \
+            --strategy-path ./strategy \
+            --timeframe 1d \
+            --timerange 20250501-20250601 \
+            --pairs AAPL/USD MSFT/USD
+
+      - name: Backtest RsiBollingerStrategy (stocks, 4h)
+        run: |
+          portbench backtesting \
+            --strategy RsiBollingerStrategy \
+            --strategy-path ./strategy \
+            --timeframe 4h \
+            --timerange 20250501-20250601 \
+            --pairs AAPL/USD MSFT/USD NVDA/USD GOOG/USD
+
+      - name: Backtest IchimokuCloudStrategy (crypto, 1d)
+        run: |
+          portbench backtesting \
+            --strategy IchimokuCloudStrategy \
+            --strategy-path ./strategy \
+            --timeframe 1d \
+            --timerange 20250501-20250601 \
+            --pairs BTC/USDT ETH/USDT
+
+      - name: Backtest StochasticCciStrategy (stocks, 1d)
+        run: |
+          portbench backtesting \
+            --strategy StochasticCciStrategy \
+            --strategy-path ./strategy \
+            --timeframe 1d \
+            --timerange 20250501-20250601 \
+            --pairs AAPL/USD MSFT/USD
+
+      - name: Backtest EmaCrossStrategy (indices, 1d)
+        run: |
+          portbench backtesting \
+            --strategy EmaCrossStrategy \
+            --strategy-path ./strategy \
+            --timeframe 1d \
+            --timerange 20250501-20250601 \
+            --pairs DJI/USD FTSE/USD GSPC/USD
+
+      - name: Backtest MacdAdxStrategy (mixed assets, 1d)
+        run: |
+          portbench backtesting \
+            --strategy MacdAdxStrategy \
+            --strategy-path ./strategy \
+            --timeframe 1d \
+            --timerange 20250501-20250601 \
+            --pairs BTC/USDT ETH/USDT AAPL/USD MSFT/USD DJI/USD
+
+      # ── Portfolio strategies ──
+
+      - name: Backtest ONS_Portfolio (mixed, 5m, short range)
+        run: |
+          portbench backtesting \
+            --strategy ONS_Portfolio \
+            --strategy-path ./user_data/strategies \
+            --timeframe 5m \
+            --timerange 20260101-20260103 \
+            --pairs BTC/USDT ETH/USDT AAPL/USD \
+            --dry-run-wallet 1000000
+
+      - name: Backtest ONS_Portfolio (crypto, 4h)
+        run: |
+          portbench backtesting \
+            --strategy ONS_Portfolio \
+            --strategy-path ./user_data/strategies \
+            --timeframe 4h \
+            --timerange 20260101-20260131 \
+            --pairs BTC/USDT ETH/USDT SOL/USDT XRP/USDT \
+            --dry-run-wallet 1000000
+
+      - name: Backtest InverseVolatilityPortfolio (stocks, 5m)
+        run: |
+          portbench backtesting \
+            --strategy InverseVolatilityPortfolio \
+            --strategy-path ./user_data/strategies \
+            --timeframe 5m \
+            --timerange 20260101-20260103 \
+            --pairs AAPL/USD MSFT/USD NVDA/USD GOOG/USD \
+            --dry-run-wallet 1000000
+
+      - name: Backtest MinimumVariancePortfolio (crypto, 5m)
+        run: |
+          portbench backtesting \
+            --strategy MinimumVariancePortfolio \
+            --strategy-path ./user_data/strategies \
+            --timeframe 5m \
+            --timerange 20260101-20260103 \
+            --pairs BTC/USDT ETH/USDT SOL/USDT \
+            --dry-run-wallet 1000000
+
+      - name: Backtest BestSingleAssetPortfolio (stocks, 1d)
+        run: |
+          portbench backtesting \
+            --strategy BestSingleAssetPortfolio \
+            --strategy-path ./user_data/strategies \
+            --timeframe 1d \
+            --timerange 20240101-20260131 \
+            --pairs AAPL/USD MSFT/USD NVDA/USD GOOG/USD \
+            --dry-run-wallet 1000000
+
+      - name: Backtest ExponentialGradientPortfolio (mixed, 5m)
+        run: |
+          portbench backtesting \
+            --strategy ExponentialGradientPortfolio \
+            --strategy-path ./user_data/strategies \
+            --timeframe 5m \
+            --timerange 20260101-20260103 \
+            --pairs BTC/USDT ETH/USDT AAPL/USD DJI/USD \
+            --dry-run-wallet 1000000
+
+      - name: Backtest MaxSharpePortfolio (crypto, 5m)
+        run: |
+          portbench backtesting \
+            --strategy MaxSharpePortfolio \
+            --strategy-path ./user_data/strategies \
+            --timeframe 5m \
+            --timerange 20260101-20260103 \
+            --pairs BTC/USDT ETH/USDT SOL/USDT XRP/USDT \
+            --dry-run-wallet 1000000
+
+      - name: Backtest RiskParityPortfolio (indices, 1d)
+        run: |
+          portbench backtesting \
+            --strategy RiskParityPortfolio \
+            --strategy-path ./user_data/strategies \
+            --timeframe 1d \
+            --timerange 20240101-20260131 \
+            --pairs DJI/USD FTSE/USD GSPC/USD \
+            --dry-run-wallet 1000000
+
+      - name: Backtest ONS_Portfolio (indices, 4h)
+        run: |
+          portbench backtesting \
+            --strategy ONS_Portfolio \
+            --strategy-path ./user_data/strategies \
+            --timeframe 4h \
+            --timerange 20260101-20260131 \
+            --pairs DJI/USD FTSE/USD GSPC/USD \
+            --dry-run-wallet 1000000
+
+      # ── Polymarket strategies ──
+
+      - name: Backtest PolymarketMomentumStrategy (5m)
+        run: |
+          portbench backtesting \
+            --strategy PolymarketMomentumStrategy \
+            --strategy-path ./strategy \
+            --timeframe 5m \
+            --timerange 20240901-20241001 \
+            --pairs TRUMP-WIN-YES/USDT BTC-100K-YES/USDT ETH-10K-NO/USDT
+
+      - name: Backtest PolymarketMeanReversionStrategy (4h)
+        run: |
+          portbench backtesting \
+            --strategy PolymarketMeanReversionStrategy \
+            --strategy-path ./strategy \
+            --timeframe 4h \
+            --timerange 20240901-20250101 \
+            --pairs TRUMP-WIN-YES/USDT FED-RATE-CUT-YES/USDT SPX-6000-YES/USDT
+
+      - name: Backtest PolymarketPortfolio (5m)
+        run: |
+          portbench backtesting \
+            --strategy PolymarketPortfolio \
+            --strategy-path ./user_data/strategies \
+            --timeframe 5m \
+            --timerange 20260101-20260103 \
+            --pairs TRUMP-WIN-YES/USDT BTC-100K-YES/USDT ETH-10K-YES/USDT \
+            --dry-run-wallet 1000000
