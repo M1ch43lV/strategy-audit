@@ -1882,17 +1882,23 @@ def _report(data):
         "**Terminal exclusions.** Every row in the `excluded` cohort is closed and",
         "therefore has no `open_work`. `exclusion_unconfirmed` is a distinct, unfinished",
         "cohort: it remains queued because the audit has not earned an exclusion verdict.", "",
-        "`evidence/REGIME_ELIGIBILITY.csv` remains a frozen file and is never",
-        "regenerated - but as of 2026-09-03 this table no longer treats its",
-        "`regime_eligible=true` rows as automatically usable. The recursion",
+        "**`evidence/REGIME_ELIGIBILITY.csv`'s old E0 baseline is obsolete,",
+        "not protected.** As of 2026-09-03 this table stopped treating its",
+        "`regime_eligible=true` rows as automatically usable - the recursion",
         "check that produced them used freqtrade's own hardcoded candle",
         "counts, never converted to a strategy's timeframe, not the",
-        "calendar-day ladder every other row is held to; measured under this",
-        "audit's own ladder for the first time this week, 64 of the 67 held",
-        "up and 1 (`MacdStrategy`) did not. Each of the 67 is now decided by",
-        "the same C1/C2/C3 criteria as every other row. Original membership",
-        "is kept as provenance in `gate_notes`, never as a reason to skip a",
-        "check.", "",
+        "calendar-day ladder every other row is held to. Re-measuring it",
+        "under this audit's own ladder found rows that did not hold up",
+        "(`MacdStrategy` among them, and more since). The file was for a",
+        "time described as \"frozen and never regenerated\", an immutable",
+        "historical anchor - that description no longer holds either: it",
+        "has in fact been regenerated since (2026-09-14, to surface later",
+        "harvest waves to `profile_bias.py`'s own candidate selection), so",
+        "there is no remaining reason to treat it as protected or as a",
+        "reliable historical snapshot. Each of its rows is decided by the",
+        "same C1/C2/C3 criteria as every other row regardless. Original",
+        "membership is kept as provenance in `gate_notes`, never as a",
+        "reason to skip a check.", "",
         "**On the run times.** The runners do not stamp a time into their",
         "records, so `last_tested_at` is recovered from what they leave behind:",
         "a result archive's filename, which carries the run's own clock, or",
@@ -2373,9 +2379,16 @@ def selftest():
     # converted to the strategy's timeframe, not the calendar-day ladder
     # every other row is held to. Its own name is kept as provenance in
     # `gate_notes`, never as a shortcut past a row's own C1/C2 measurement.
+    # No longer asserted at exactly 67 (2026-09-16): the file this reads was
+    # described as a frozen, never-regenerated historical anchor, but was in
+    # fact regenerated on 2026-09-14 to surface later harvest waves to
+    # profile_bias.py's own candidate selection - 121 rows read true today,
+    # not 67. That regeneration is not undone here (recoverable from git
+    # history if ever wanted), because the count was never load-bearing:
+    # `regime_eligible=true` grants no row anything, checked below, and
+    # stays true regardless of how many rows happen to carry it.
     baseline = {r["strategy_id"]: r for r in _csv(ELIGIBILITY)}
     frozen = {s for s, r in baseline.items() if r["regime_eligible"] == "true"}
-    assert len(frozen) == 67, len(frozen)
     assert not {row["strategy_id"] for row in data
                if row["cohort"] == "E0_strict67"},         "E0_strict67 must never be assigned again"
     noted = {row["strategy_id"] for row in data

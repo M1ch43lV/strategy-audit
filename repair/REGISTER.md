@@ -2170,3 +2170,42 @@ trade counts (`Schism_BTC` 458, `Schism_ETH` 407, `Schism2_BTC` 225,
 `Schism2_ETH` 334, `SuperHV27_BTC`/`ETH` 137 each) confirming the two
 mechanisms really were equivalent, not just similarly-shaped.
 
+# Phase 16 - E0's "frozen" label retired, STRATEGY_STATUS.csv regenerated, 2026-09-16
+
+**Owner's decision.** `evidence/REGIME_ELIGIBILITY.csv`'s old 67-row E0
+baseline (`REGIME_PREREGISTRATION.md`'s 2026-09-03 amendment, "E0 is
+retired as a separate cohort") already granted no row anything - the
+`regime_eligible=true` flag had been non-decisive since that date,
+kept only as `gate_notes` provenance. The owner confirmed that
+strategies drawn from that population have continued to surface
+look-ahead and recursive bias under this audit's own diagnostics well
+past 2026-09-03, `MacdStrategy` not an isolated case: the baseline's
+CONTENT is obsolete, not merely non-authoritative, and every remaining
+"frozen"/"never regenerated"/"untouchable" description of the file
+itself should go with it, not be left standing as a claim nobody
+still means. `REGIME_PREREGISTRATION.md` gets a new 2026-09-16
+amendment (preserving the 2026-09-03 one's text unchanged above it, per
+this document's own convention); `evidence/strategy_status.py`'s
+generated prose and its `assert len(frozen) == 67` selftest assertion
+are both rewritten - the count is no longer asserted (it cannot be:
+Phase 13/14/15's own discovery that the file was regenerated on
+2026-09-14, 67 -> 121 true rows, already broke it), while the
+internal-consistency check (`gate_notes` mentions exactly the rows the
+file marks true) stays, since that one was never about the count.
+
+**`STRATEGY_STATUS.csv` regenerated for the first time since 2026-09-14
+21:36** - overdue on its own terms (`evidence.strategy_status --check`
+already reported it stale before this phase), and blocked until now by
+the selftest failure this phase fixes. New cohort counts across all
+1369 rows: `E1_expanded` 641, `excluded` 337, `exclusion_unconfirmed`
+200, `pending` 131, `too_few_trades` 32, `not_a_strategy` 28. The
+"53-batch"/"79-batch" the owner has been tracking across this session is
+`exclusion_unconfirmed`, now 200 - the growth from the 269-batch's own
+rows finally being reflected here (many of the 167-subset's `failed`/
+`timeout` Stage-1 rows land in this cohort), not from the 66
+still-usable former-E0 rows losing their standing; they remain
+`E1_expanded` under their own row-level `converged_clean_gates_v1`
+admission regardless of what this phase changed. `strategy_status.html`
+was not regenerated this phase - it has its own separate build step,
+not touched here, and is now known-stale relative to the CSV/MD.
+

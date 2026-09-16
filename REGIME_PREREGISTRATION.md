@@ -523,6 +523,39 @@ Membership in the original frozen set is kept as provenance on the row
 admitted independently under `converged_clean_gates_v1`; their usability comes
 from those 66 row-level E1 decisions, never from former E0 membership.
 
+## Amendment 2026-09-16: the "frozen file" description is dropped, not just E0's authority
+
+**Owner's decision**, restated after re-confirming that strategies drawn from
+the original E0 population have continued to show look-ahead and recursive
+bias under this audit's own diagnostics well after the 2026-09-03 amendment
+above - `MacdStrategy` was not an isolated case. E0's `regime_eligible=true`
+was already non-authoritative (the amendment above already forbids it
+skipping any check), so this changes no admission result; it removes a
+description that was no longer true in either sense that mattered.
+
+Two things were being called "frozen" for `evidence/REGIME_ELIGIBILITY.csv`,
+and both are retired here. First, substantively: the file's content was
+treated as a reasonable historical snapshot worth preserving even though
+non-decisive. Repeated post-2026-09-03 findings of bias among former E0 rows
+mean it should not be read as even a soft signal of anything - E0 is
+obsolete, full stop. Second, literally: `evidence/strategy_status.py` and
+this document both described the file as "frozen and never regenerated," an
+immutable anchor. That was found false on 2026-09-16 - the file was in fact
+regenerated on 2026-09-14 (`b071dc3`, to surface later harvest waves to
+`profile_bias.py`'s own candidate selection), growing `regime_eligible=true`
+from the original 67 rows to 121. Keeping the "frozen, untouchable" label on
+a file already known to have been rewritten would document a protection that
+does not exist rather than the actual, harmless state of things - E0 grants
+nothing regardless of which or how many rows carry the flag.
+
+`evidence/strategy_status.py`'s selftest no longer asserts the old-baseline
+count at exactly 67; the internal-consistency check (every row noted as
+former E0 in `gate_notes` matches a row the eligibility file marks true, and
+only those) is unaffected and stays. The original 67-row snapshot remains
+recoverable from git history if ever wanted for comparison - not reverted
+here, because reverting would itself be re-asserting a "frozen" status this
+amendment is retiring.
+
 ## Amendment 2026-09-03: a second reader defect, corpus-wide
 
 While re-measuring E0's recursion drift, `StochRSITEMA` came back

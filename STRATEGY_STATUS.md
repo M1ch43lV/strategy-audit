@@ -1,13 +1,13 @@
 # Strategy status - current evidence for all 1369 rows
 
-**Generated 2026-09-14 21:36:26 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-16 16:27:15 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
 already been decided, collected from the smoke, bias, full-window,
 adjudication and convergence stores.
 
-**Completed full-backtest closure.** 590 rows carry an exact, successful
+**Completed full-backtest closure.** 589 rows carry an exact, successful
 canonical pooled Stage-7 full-backtest identity (source hash, run profile and
 mode timerange). Their `technical_chain_complete=true` closes the technical
 work queue, even if a later diagnostic-window amendment made earlier evidence
@@ -17,23 +17,29 @@ historical. This does not grant admission or overwrite an exclusion finding.
 therefore has no `open_work`. `exclusion_unconfirmed` is a distinct, unfinished
 cohort: it remains queued because the audit has not earned an exclusion verdict.
 
-`evidence/REGIME_ELIGIBILITY.csv` remains a frozen file and is never
-regenerated - but as of 2026-09-03 this table no longer treats its
-`regime_eligible=true` rows as automatically usable. The recursion
+**`evidence/REGIME_ELIGIBILITY.csv`'s old E0 baseline is obsolete,
+not protected.** As of 2026-09-03 this table stopped treating its
+`regime_eligible=true` rows as automatically usable - the recursion
 check that produced them used freqtrade's own hardcoded candle
 counts, never converted to a strategy's timeframe, not the
-calendar-day ladder every other row is held to; measured under this
-audit's own ladder for the first time this week, 64 of the 67 held
-up and 1 (`MacdStrategy`) did not. Each of the 67 is now decided by
-the same C1/C2/C3 criteria as every other row. Original membership
-is kept as provenance in `gate_notes`, never as a reason to skip a
-check.
+calendar-day ladder every other row is held to. Re-measuring it
+under this audit's own ladder found rows that did not hold up
+(`MacdStrategy` among them, and more since). The file was for a
+time described as "frozen and never regenerated", an immutable
+historical anchor - that description no longer holds either: it
+has in fact been regenerated since (2026-09-14, to surface later
+harvest waves to `profile_bias.py`'s own candidate selection), so
+there is no remaining reason to treat it as protected or as a
+reliable historical snapshot. Each of its rows is decided by the
+same C1/C2/C3 criteria as every other row regardless. Original
+membership is kept as provenance in `gate_notes`, never as a
+reason to skip a check.
 
 **On the run times.** The runners do not stamp a time into their
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 277 of 1369 rows
+file's time and is labelled `log_mtime` for that reason. 122 of 1369 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
@@ -41,21 +47,20 @@ have neither and are left empty rather than given an invented time.
 | | Strategies |
 |---|---:|
 | in the manifest | 1369 |
-| measured at all | 962 |
-| produced trades | 905 |
-| carrying a run time | 1092 |
+| measured at all | 1267 |
+| produced trades | 1020 |
+| carrying a run time | 1247 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 641 |
-| `excluded` | 314 |
-| `not_tested_in_current_runtime` | 259 |
-| `exclusion_unconfirmed` | 79 |
+| `excluded` | 337 |
+| `exclusion_unconfirmed` | 200 |
+| `pending` | 131 |
 | `too_few_trades` | 32 |
 | `not_a_strategy` | 28 |
-| `pending` | 16 |
 
 ## Timeframe and signal family
 
@@ -143,11 +148,11 @@ look-ahead/recursion pair, a later native look-ahead
 re-measurement, the warm-up ladder, a wave B recursion attempt, and
 the eight-pair full-window backtest actually ran for it - see
 `test_duration` in evidence/strategy_status.py for why this is a sum rather
-than a pick-one-source figure. 272 of 1369 rows carry no stamp at all,
+than a pick-one-source figure. 106 of 1369 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 1097 rows that do: **73.1 hours** of this audit's own compute so far.
+Summed across the 1263 rows that do: **78.5 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -160,14 +165,14 @@ Summed across the 1097 rows that do: **73.1 hours** of this audit's own compute 
 | `ONS_Portfolio` | 5912.3s | backtest=1800.0s; lookahead_remeasured=4048.1s; recursive_ladder=64.2s |
 | `epretrace` | 5780.4s | backtest=65.5s; lookahead=471.6s; lookahead_remeasured=5130.3s; recursive=22.3s; recursive_ladder=61.2s; recursive_wave_b=29.5s |
 | `ExponentialGradientPortfolio` | 4622.4s | backtest=165.6s; lookahead=586.7s; lookahead_remeasured=3837.0s; recursive_ladder=33.1s |
+| `NostalgiaForInfinityX4` | 4158.4s | backtest=74.7s; lookahead=372.9s; lookahead_remeasured=3667.1s; recursive_ladder=43.7s |
 | `NostalgiaForInfinityX3` | 4133.0s | backtest=29.5s; lookahead=375.2s; lookahead_remeasured=3682.6s; recursive_ladder=45.7s |
-| `NostalgiaForInfinityX4` | 4123.3s | backtest=39.6s; lookahead=372.9s; lookahead_remeasured=3667.1s; recursive_ladder=43.7s |
+| `UltraSmartStrategy` | 3600.3s | backtest=3600.3s |
 | `AlexBandSniperV10AI` | 3600.0s | backtest=3600.0s |
 | `BreakoutStrategy` | 3176.5s | backtest=65.0s; full_window=3033.6s; lookahead=56.1s; recursive=21.8s |
-| `HarmonicDivergence` | 3014.6s | backtest=51.3s; full_window=1802.9s; lookahead=413.0s; lookahead_remeasured=710.9s; recursive_ladder=36.5s |
-| `TSPredict` | 2987.1s | backtest=13.2s; full_window=2919.0s; lookahead=44.6s; recursive=10.3s |
+| `HarmonicDivergence` | 3019.7s | backtest=148.4s; full_window=1802.9s; lookahead=321.0s; lookahead_remeasured=710.9s; recursive_ladder=36.5s |
+| `TSPredict` | 2995.1s | backtest=21.2s; full_window=2919.0s; lookahead=44.6s; recursive=10.3s |
 | `Schism5` | 2631.5s | backtest=505.7s; lookahead=1200.0s; lookahead_remeasured=900.0s; recursive_ladder=25.8s |
-| `GKD_CT` | 2262.6s | backtest=80.3s; lookahead_remeasured=2076.9s; recursive_ladder=105.4s |
 
 ## The order the checks run in
 
@@ -291,7 +296,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 1777 of 3438 commands are recorded so far, and every new run
+recording. 1970 of 3604 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -391,7 +396,7 @@ coverage, no published trap.
 | `BinHV27` | `spot_long` | `E1_expanded` | 11503 | `convergence:576:warmup_supplied` | 2026-09-01 13:40:42 | [log](user_data/convergence_logs/BinHV27-ladder.log) |
 | `BinHV27F` | `futures_long` | `E1_expanded` | 154 | `convergence:576:warmup_supplied` | 2026-09-02 06:53:08 | [log](user_data/convergence_logs/BinHV27F-ladder.log) |
 | `BinHV27_short` | `futures_long_short` | `E1_expanded` | 5 | `convergence:576:warmup_supplied` | 2026-09-03 19:04:53 | [log](user_data/convergence_logs/BinHV27_short-ladder.log) |
-| `BinHV27_werkkrew` | `spot_long` | `E1_expanded` | 127 | `convergence:576:warmup_supplied` | 2026-09-03 21:02:46 | [archive](user_data/profile_smoke/BinHV27_werkkrew-3a997e27-2026-09-03_21-02-46.zip) [log](user_data/convergence_logs/BinHV27_werkkrew-ladder.log) |
+| `BinHV27_werkkrew` | `spot_long` | `E1_expanded` | 127 | `convergence:576:warmup_supplied` | 2026-09-16 16:07:57 | [archive](user_data/profile_smoke/BinHV27_werkkrew-3a997e27-smoke_20200301_20200401-b4807b77-2026-09-16_16-07-57.zip) [log](user_data/convergence_logs/BinHV27_werkkrew-ladder.log) |
 | `BinHV45` | `spot_long` | `E1_expanded` | 92 | `convergence:1440:warmup_supplied` | 2026-09-09 16:14:58 | [archive](user_data/profile_smoke/BinHV45-db2dd482-2026-09-09_16-14-58.zip) [log](user_data/convergence_logs/BinHV45-ladder.log) |
 | `BinHV45HO` | `spot_long` | `E1_expanded` | 59 | `convergence:1440:warmup_supplied` | 2026-09-09 16:27:13 | [archive](user_data/profile_smoke/BinHV45HO-2a444e3c-2026-09-09_16-27-13.zip) [log](user_data/convergence_logs/BinHV45HO-ladder.log) |
 | `BinHV45_kanaxe` | `spot_long` | `E1_expanded` | 184 | `convergence:1440:warmup_supplied` | 2026-09-09 16:27:50 | [archive](user_data/profile_smoke/BinHV45_kanaxe-5d56a0a8-2026-09-09_16-27-50.zip) [log](user_data/convergence_logs/BinHV45_kanaxe-ladder.log) |
@@ -486,7 +491,7 @@ coverage, no published trap.
 | `DemaCrossStrategy` | `spot_long` | `E1_expanded` | 21528 | `convergence:288:warmup_supplied` | 2026-09-01 12:24:04 | [log](user_data/convergence_logs/DemaCrossStrategy-ladder.log) |
 | `Diamond` | `spot_long` | `E1_expanded` | 4603 | `convergence:288:warmup_supplied` | 2026-09-01 15:46:33 | [log](user_data/convergence_logs/Diamond-ladder.log) |
 | `Divergences` | `spot_long` | `E1_expanded` | 9981 | `convergence:2160:warmup_supplied` | 2026-09-01 13:21:26 | [log](user_data/convergence_logs/Divergences-ladder.log) |
-| `DonchianBounce` | `spot_long` | `E1_expanded` | 32 | `convergence:576:warmup_supplied` | 2026-09-09 07:48:01 | [archive](user_data/profile_smoke/DonchianBounce-9e62325a-2026-09-09_07-48-01.zip) [log](user_data/convergence_logs/DonchianBounce-9e62325a-ladder.log) |
+| `DonchianBounce` | `spot_long` | `E1_expanded` | 32 | `convergence:576:warmup_supplied` | 2026-09-15 21:00:17 | [archive](user_data/profile_smoke/DonchianBounce-9e62325a-smoke_20200301_20200601-9c543975-2026-09-15_21-00-17.zip) [log](user_data/convergence_logs/DonchianBounce-9e62325a-ladder.log) |
 | `DonchianBreakoutStrategy` | `spot_long` | `E1_expanded` | 21512 | `convergence:288:warmup_supplied` | 2026-09-01 12:24:28 | [log](user_data/convergence_logs/DonchianBreakoutStrategy-ladder.log) |
 | `DoubleEMACrossoverWithTrend` | `spot_long` | `E1_expanded` | 4019 | `convergence:2160:warmup_supplied` | 2026-09-03 19:41:49 | [log](user_data/convergence_logs/DoubleEMACrossoverWithTrend-2df7ee08-ladder.log) |
 | `Dyna_opti` | `spot_long` | `E1_expanded` | 26 | `convergence:576:warmup_supplied` | 2026-09-04 06:12:17 | [archive](user_data/profile_smoke/Dyna_opti-8aa17cbf-2026-09-04_06-12-17.zip) [log](user_data/convergence_logs/Dyna_opti-ladder.log) |
@@ -661,7 +666,7 @@ coverage, no published trap.
 | `MarketChyperHyperStrategy` | `spot_long` | `E1_expanded` | 2406 | `convergence:336` | 2026-09-03 13:59:41 | [log](user_data/convergence_logs/MarketChyperHyperStrategy-ladder.log) |
 | `Maro4hMacdSd` | `spot_long` | `E1_expanded` | 30492 | `convergence:288:warmup_supplied` | 2026-09-01 16:06:29 | [log](user_data/convergence_logs/Maro4hMacdSd-ladder.log) |
 | `Martin` | `spot_long` | `E1_expanded` | 12724 | `convergence:288:warmup_supplied` | 2026-09-01 14:26:38 | [log](user_data/convergence_logs/Martin-ladder.log) |
-| `MeanReversionTrend` | `spot_long` | `E1_expanded` | 56 | `convergence:336:warmup_supplied` | 2026-09-08 17:21:22 | [archive](user_data/profile_smoke/MeanReversionTrend-9c6041b5-2026-09-08_17-21-22.zip) [log](user_data/convergence_logs/MeanReversionTrend-9c6041b5-ladder.log) |
+| `MeanReversionTrend` | `spot_long` | `E1_expanded` | 56 | `convergence:336:warmup_supplied` | 2026-09-15 21:00:36 | [archive](user_data/profile_smoke/MeanReversionTrend-9c6041b5-smoke_20200301_20200601-9c543975-2026-09-15_21-00-36.zip) [log](user_data/convergence_logs/MeanReversionTrend-9c6041b5-ladder.log) |
 | `MiniLambo` | `spot_long` | `E1_expanded` | 163 | `convergence:2880:warmup_supplied` | 2026-09-09 16:22:34 | [archive](user_data/profile_smoke/MiniLambo-32df6766-2026-09-09_16-22-34.zip) [log](user_data/convergence_logs/MiniLambo-ladder.log) |
 | `Minmax` | `spot_long` | `E1_expanded` | 3882 | `convergence:24:warmup_supplied` | 2026-09-01 14:27:56 | [log](user_data/convergence_logs/Minmax-ladder.log) |
 | `MomStrategy` | `spot_long` | `E1_expanded` | 21607 | `convergence:336:warmup_supplied` | 2026-09-01 16:07:18 | [log](user_data/convergence_logs/MomStrategy-ladder.log) |
@@ -669,7 +674,7 @@ coverage, no published trap.
 | `Momentumv2` | `spot_long` | `E1_expanded` | 2263 | `convergence:540:warmup_supplied` | 2026-09-01 12:31:37 | [log](user_data/convergence_logs/Momentumv2-ladder.log) |
 | `MoneyFlowStrategy` | `spot_long` | `E1_expanded` | 19490 | `convergence:576:warmup_supplied` | 2026-09-01 12:32:02 | [log](user_data/convergence_logs/MoneyFlowStrategy-ladder.log) |
 | `MontrealStrategy` | `spot_long` | `E1_expanded` | 26411 | `convergence:192:warmup_supplied` | 2026-09-01 14:28:21 | [log](user_data/convergence_logs/MontrealStrategy-ladder.log) |
-| `MultiActionZone` | `spot_long` | `E1_expanded` | 290 | `convergence:540:warmup_supplied` | 2026-09-05 15:21:02 | [archive](user_data/profile_smoke/MultiActionZone-179b96b7-2026-09-05_15-21-02.zip) [log](user_data/convergence_logs/MultiActionZone-179b96b7-ladder.log) |
+| `MultiActionZone` | `spot_long` | `E1_expanded` | 290 | `convergence:540:warmup_supplied` | 2026-09-15 21:00:04 | [archive](user_data/profile_smoke/MultiActionZone-179b96b7-smoke_20200301_20200601-9c543975-2026-09-15_21-00-04.zip) [log](user_data/convergence_logs/MultiActionZone-179b96b7-ladder.log) |
 | `MultiFactorConfluenceStrategy` | `spot_long` | `E1_expanded` | 5224 | `convergence:540:warmup_supplied` | 2026-09-01 12:32:26 | [log](user_data/convergence_logs/MultiFactorConfluenceStrategy-ladder.log) |
 | `MultiMA_TSL` | `spot_long` | `E1_expanded` | 6 | `convergence:2016:warmup_supplied` | 2026-09-04 04:48:31 | [archive](user_data/profile_smoke/MultiMA_TSL-432f3842-2026-09-04_04-48-31.zip) [log](user_data/convergence_logs/MultiMA_TSL-ladder.log) |
 | `MultiMA_TSL3b` | `spot_long` | `E1_expanded` | 25 | `convergence:2016:warmup_supplied` | 2026-09-10 08:20:24 | [archive](user_data/profile_smoke/MultiMA_TSL3b-394a8370-smoke_20200301_20200401-b4807b77-2026-09-10_08-20-24.zip) [log](user_data/convergence_logs/MultiMA_TSL3b-394a8370-ladder.log) |
@@ -853,7 +858,7 @@ coverage, no published trap.
 | `TD` | `spot_long` | `E1_expanded` | 6164 | `convergence:12:warmup_supplied` | 2026-09-01 15:11:03 | [log](user_data/convergence_logs/TD-ladder.log) |
 | `TDSequentialStrategy` | `spot_long` | `E1_expanded` | 4587 | `convergence:24` | 2026-09-03 14:06:05 | [log](user_data/convergence_logs/TDSequentialStrategy-ladder.log) |
 | `TEMA` | `spot_long` | `E1_expanded` | 9966 | `convergence:1440:warmup_supplied` | 2026-09-09 16:25:50 | [archive](user_data/profile_smoke/TEMA-2a9399f6-2026-09-09_16-25-50.zip) [log](user_data/convergence_logs/TEMA-ladder.log) |
-| `TEMABounce` | `spot_long` | `E1_expanded` | 10 | `convergence:576:warmup_supplied` | 2026-09-09 07:48:05 | [archive](user_data/profile_smoke/TEMABounce-9f6a881a-2026-09-09_07-48-05.zip) [log](user_data/convergence_logs/TEMABounce-9f6a881a-ladder.log) |
+| `TEMABounce` | `spot_long` | `E1_expanded` | 10 | `convergence:576:warmup_supplied` | 2026-09-15 21:00:27 | [archive](user_data/profile_smoke/TEMABounce-9f6a881a-smoke_20200301_20200601-9c543975-2026-09-15_21-00-27.zip) [log](user_data/convergence_logs/TEMABounce-9f6a881a-ladder.log) |
 | `TRIWAVE` | `spot_long` | `E1_expanded` | 3624 | `convergence:672:warmup_supplied` | 2026-09-01 12:46:51 | [log](user_data/convergence_logs/TRIWAVE-ladder.log) |
 | `TRIX_spot` | `spot_long` | `E1_expanded` | 71 | `convergence:2160:warmup_supplied` | 2026-09-06 18:23:24 | [archive](user_data/profile_smoke/TRIX_spot-b4f2394c-2026-09-06_18-23-24.zip) [log](user_data/convergence_logs/TRIX_spot-b4f2394c-ladder.log) |
 | `TWAPStrategy` | `futures_long_short` | `E1_expanded` | 671 | `convergence:192:warmup_supplied` | 2026-09-01 15:11:56 | [log](user_data/convergence_logs/TWAPStrategy-ladder.log) |
@@ -872,7 +877,7 @@ coverage, no published trap.
 | `TouchEmaDelayStrategy` | `spot_long` | `E1_expanded` | 2331 | `convergence:480:warmup_supplied` | 2026-09-01 16:28:24 | [log](user_data/convergence_logs/TouchEmaDelayStrategy-ladder.log) |
 | `TouchEmaStrategy` | `spot_long` | `E1_expanded` | 5193 | `convergence:288:warmup_supplied` | 2026-09-01 16:29:16 | [log](user_data/convergence_logs/TouchEmaStrategy-ladder.log) |
 | `TrendAtrStrategy` | `spot_long` | `E1_expanded` | 3067 | `convergence:540:warmup_supplied` | 2026-09-01 12:47:40 | [log](user_data/convergence_logs/TrendAtrStrategy-ladder.log) |
-| `TrendBreakout` | `spot_long` | `E1_expanded` | 320 | `convergence:365:warmup_supplied` | 2026-09-08 17:15:05 | [archive](user_data/profile_smoke/TrendBreakout-9b18ab53-2026-09-08_17-15-05.zip) [log](user_data/convergence_logs/TrendBreakout-9b18ab53-ladder.log) |
+| `TrendBreakout` | `spot_long` | `E1_expanded` | 320 | `convergence:365:warmup_supplied` | 2026-09-15 20:59:25 | [archive](user_data/profile_smoke/TrendBreakout-9b18ab53-smoke_20200301_20200601-9c543975-2026-09-15_20-59-25.zip) [log](user_data/convergence_logs/TrendBreakout-9b18ab53-ladder.log) |
 | `TrendFutures` | `futures_long_short` | `E1_expanded` | 41 | `convergence:220` | 2026-09-08 18:40:48 | [archive](user_data/profile_smoke/TrendFutures-4ee78b0b-2026-09-08_18-40-48.zip) [log](user_data/convergence_logs/TrendFutures-4ee78b0b-ladder.log) |
 | `Trend_Strength_Directional` | `spot_long` | `E1_expanded` | 7684 | `convergence:192:warmup_supplied` | 2026-09-01 16:30:06 | [log](user_data/convergence_logs/Trend_Strength_Directional-ladder.log) |
 | `TripleEmaStrategy` | `spot_long` | `E1_expanded` | 17670 | `convergence:288:warmup_supplied` | 2026-09-01 12:48:03 | [log](user_data/convergence_logs/TripleEmaStrategy-ladder.log) |
@@ -1352,7 +1357,7 @@ The calls behind each, one per gate:
   ```
 - `BinHV27_werkkrew`
   ```
-  backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy BinHV27_werkkrew --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinHV27_werkkrew-3a997e27 --cache none
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy BinHV27_werkkrew --strategy-path repos/TheoBrigitte_freqtrade/strategies/BinHV45 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinHV27_werkkrew-3a997e27-smoke_20200301_20200401-b4807b77 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/BinHV27_werkkrew-3a997e27_gate.json --strategy BinHV27_werkkrew --strategy-path user_data/profile_bias_strategies/BinHV27_werkkrew-3a997e27 --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/expansion_configs/BinHV27_werkkrew_startup_288.json --strategy BinHV27_werkkrew --strategy-path user_data/profile_bias_strategies/BinHV27_werkkrew --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
@@ -4419,288 +4424,46 @@ The calls behind each, one per gate:
   recursive  [reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy wavetrend_rsi --strategy-path user_data/profile_bias_strategies/wavetrend_rsi --timerange 20190101-20190401 --no-color
   ```
 
-## Pending - 16 strategies
+## Pending - 131 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
 
-`AlexBandSniperV10AI`, `BBBHold`, `BaseStrategy`, `Danke`
-`FreqAIHybridStrategy`, `GRIDDMIPRICEStrategyFutureV4`, `Guacamole`, `Kamaflage`
-`NNPredict`, `NewsHeliusBitqueryML`, `ONS_Portfolio`, `Proton`
-`RebalanceStrategySpot`, `UltraSmartStrategy`, `el_extrema_RL`, `haGradient`
+`ARIMA_5`, `AlexBandSniperV10AI`, `AlexBandSniperV58COptuna`, `AlexNexusForgeV8AIV4_SPOT`
+`Anomaly`, `BBBHold`, `BB_RPB_TSL_Trailing`, `BaseStrategy`
+`Best5m`, `BestSingleAssetPortfolio`, `BigWill`, `BinClucMadv1`
+`BinHV27_combined`, `BollingerBounce_Shorts`, `ClucHAnixV2`, `ClucHAnix_BB_RPB_MOD_CTT_DTB`
+`CombinedBinHAndClucV4WS`, `CompleteIndicatorStrategy2`, `Danke`, `DevDsl2Approx`
+`DevilStra`, `E0V1E_3`, `E0V1E_Shorts`, `EDTMA_Long_Short_prot_CE_1h_3Lev_3mt_March`
+`ETCG_Shorts`, `ExponentialGradientPortfolio`, `FBB_KalmanSIMD`, `FSupertrendStrategyBTC`
+`FSupertrendStrategyETH`, `FenixTopProfit`, `Fibbo`, `FibonacciEMATrendStrategy`
+`FisherBBDynamic`, `FreqAIHybridStrategy`, `GRIDDMIPRICEStrategyFuture`, `GRIDDMIPRICEStrategyFutureV3`
+`GRIDDMIPRICEStrategyFutureV4`, `GRIDDMIPRICEStrategyFutureV5`, `GnF_V2`, `Guacamole`
+`HPStrategy_12_27`, `HarmonicDivergence`, `HarmonicDivergence_fix`, `HurstCycleV5`
+`IchimokuCloudBreakoutStrategy`, `KamaFama_2_20250115`, `Kamaflage`, `KeltnerBounce_Shorts`
+`LitmusBBStrategy`, `Lmao`, `LongShortRangeTradingMachetesV1`, `MASlopeStrategy`
+`MAStopLossStrategy`, `MATrailingStopLossStrategy`, `MartyEMA`, `Matrix`
+`MomentumCCITrendStrategy`, `MoniGoManiHyperStrategy`, `MtfScalper`, `MultiMA_TSL5`
+`NFIX7Risk`, `NNPredict`, `NNPredict_LSTM`, `NNPredict_LSTM0`
+`NNPredict_Transformer`, `NNPredict_kTFT`, `NNTC_adx_LSTM`, `NNTC_bbw_Transformer`
+`NNTC_fbb_Transformer`, `NNTC_jump_Transformer`, `NNTC_macd_TCN`, `NNTC_macd_Transformer`
+`NNTC_nseq_Transformer`, `NNTC_profit_Multihead`, `NNTC_profit_TCN`, `NNTC_profit_Transformer`
+`NNTC_profit_Wavenet2`, `NNTC_profit_Wavenet3`, `NNTC_pv_Multihead`, `NewsHeliusBitqueryML`
+`NostalgiaForInfinityNext_ChangeToTower_V6_Short`, `NostalgiaForInfinityX8`, `OBOnlyWSv2bband`, `ONS_Portfolio`
+`ORBAlgo`, `Obelisk_3EMA_StochRSI_ATR`, `PCA`, `Pmax`
+`Proton`, `RSI_BB_MACD_Nov_2023_1h_2_Dec`, `RebalanceStrategySpot`, `SimpleRSI_Shorts`
+`Solipsis3_BTC`, `Solipsis3_ETH`, `Solipsis4_BTC`, `Solipsis4_ETH`
+`Solipsis5_BTC`, `Solipsis5_ETH`, `Solipsis6_BTC`, `Solipsis6_ETH`
+`SolipsisCon_BTC`, `SolipsisMM_BTC`, `SolipsisMM_ETH`, `Solipsis_BTC`
+`Solipsis_ETH`, `Solipsis_v4`, `StopLossStrategy`, `SuperBuy`
+`Supertrend`, `TPActivatingTSLwithInitialTSLStrategy`, `TPActivatingTSLwithSLStrategy`, `TS_Gain`
+`TrailingBuySellStrat`, `TrailingBuyStrat`, `TrailingBuyStrat2a`, `TrailingStopLossStrategy`
+`TwoCandleTheory`, `UltraSmartStrategy`, `ViNBuyVws`, `ZaratustraV31`
+`_Strat`, `abbas`, `beta_factors_model`, `binance`
+`binance_shorts`, `degen`, `el_extrema_RL`, `epretrace`
+`haGradient`, `newstrategy4`, `zorkv7_0_0`
 
-## Attempted, no measurement - 259 strategies
-
-No run under the current pipeline is recorded for these. The
-original corpus sweep did attempt every row, but it ran in an
-environment that did not establish the preconditions this audit
-requires - which is the whole reason the pre-checks are being
-redone - so its outcome is a hint about what to expect and never a
-verdict. Where such a hint exists it is shown in brackets.
-
-| Strategy | Wave | Status |
-|---|---|---|
-| `ARIMA_5` | `-` | `no run under the current runtime` |
-| `AdaptiveRegimeLong` | `-` | `no run under the current runtime` |
-| `Anomaly_adx` | `-` | `no run under the current runtime` |
-| `Anomaly_all` | `-` | `no run under the current runtime` |
-| `Anomaly_aroon` | `-` | `no run under the current runtime` |
-| `Anomaly_bbw` | `-` | `no run under the current runtime` |
-| `Anomaly_dwt` | `-` | `no run under the current runtime` |
-| `Anomaly_fbb` | `-` | `no run under the current runtime` |
-| `Anomaly_fwr` | `-` | `no run under the current runtime` |
-| `Anomaly_highlow` | `-` | `no run under the current runtime` |
-| `Anomaly_jump` | `-` | `no run under the current runtime` |
-| `Anomaly_macd` | `-` | `no run under the current runtime` |
-| `Anomaly_mfi` | `-` | `no run under the current runtime` |
-| `Anomaly_minmax` | `-` | `no run under the current runtime` |
-| `Anomaly_nseq` | `-` | `no run under the current runtime` |
-| `Anomaly_over` | `-` | `no run under the current runtime` |
-| `Anomaly_profit` | `-` | `no run under the current runtime` |
-| `Anomaly_pv` | `-` | `no run under the current runtime` |
-| `Anomaly_slope` | `-` | `no run under the current runtime` |
-| `Anomaly_smooth` | `-` | `no run under the current runtime` |
-| `Anomaly_stochastic` | `-` | `no run under the current runtime` |
-| `Anomaly_swing` | `-` | `no run under the current runtime` |
-| `BBMod1DCA` | `-` | `no run under the current runtime` |
-| `BBRSITV1` | `-` | `no run under the current runtime` |
-| `BBRSITV2` | `-` | `no run under the current runtime` |
-| `BBRSITV3` | `-` | `no run under the current runtime` |
-| `BBRSITV4` | `-` | `no run under the current runtime` |
-| `BBRSITV5` | `-` | `no run under the current runtime` |
-| `BB_RPB_TSL_Trailing` | `-` | `no run under the current runtime` |
-| `BB_RPB_TSL_Tranz_TrailingBuy` | `-` | `no run under the current runtime` |
-| `BB_RTR_dca` | `-` | `no run under the current runtime` |
-| `BaseNNStrategy` | `-` | `no run under the current runtime` |
-| `BinClucMadSMAv1` | `-` | `no run under the current runtime` |
-| `BinClucMadSMAv2` | `-` | `no run under the current runtime` |
-| `BinClucMadv1` | `-` | `no run under the current runtime` |
-| `BinClucMadv2` | `-` | `no run under the current runtime` |
-| `BlendBasket` | `-` | `no run under the current runtime` |
-| `BuyHoldBasket` | `-` | `no run under the current runtime` |
-| `Cluc4werk_ETH` | `-` | `no run under the current runtime` |
-| `Cluc5mDCA` | `-` | `no run under the current runtime` |
-| `Cluc5werk_BTC` | `-` | `no run under the current runtime` |
-| `Cluc5werk_ETH` | `-` | `no run under the current runtime` |
-| `Cluc5werk_USD` | `-` | `no run under the current runtime` |
-| `ClucCrypROI_BTC` | `-` | `no run under the current runtime` |
-| `ClucCrypROI_ETH` | `-` | `no run under the current runtime` |
-| `ClucCrypSlow_BTC` | `-` | `no run under the current runtime` |
-| `ClucCrypSlow_ETH` | `-` | `no run under the current runtime` |
-| `ClucDCA` | `-` | `no run under the current runtime` |
-| `ClucDCAV2` | `-` | `no run under the current runtime` |
-| `ClucHAnix_5M_E0V1E_DYNAMIC_TB` | `-` | `no run under the current runtime` |
-| `ClucHAnix_5mTB1` | `-` | `no run under the current runtime` |
-| `ClucHAnix_BB_RPB_MOD2_ROI_DYNAMIC_TB` | `-` | `no run under the current runtime` |
-| `ClucHAnix_BB_RPB_MOD_CTT_DTB` | `-` | `no run under the current runtime` |
-| `ClucHAnix_BB_RPB_MOD_CTT_STB` | `-` | `no run under the current runtime` |
-| `ClucHAnix_BB_RPB_MOD_E0V1E_ROI_DYNAMIC_TB` | `-` | `no run under the current runtime` |
-| `ClucHAnix_BTC` | `-` | `no run under the current runtime` |
-| `ClucHAnix_ETH` | `-` | `no run under the current runtime` |
-| `ClucHAnix_USD` | `-` | `no run under the current runtime` |
-| `ClucHAnix_hhll_TB` | `-` | `no run under the current runtime` |
-| `ClucHAwerk_BTC` | `-` | `no run under the current runtime` |
-| `ClucHAwerk_ETH` | `-` | `no run under the current runtime` |
-| `ClucHAwerk_USD` | `-` | `no run under the current runtime` |
-| `CombinedBinHAndClucV4WS` | `-` | `no run under the current runtime` |
-| `ConstantMixBasket` | `-` | `no run under the current runtime` |
-| `CppiBasket` | `-` | `no run under the current runtime` |
-| `EI3v2_tag_cofi_dca_green` | `-` | `no run under the current runtime` |
-| `Enchilada_Slow` | `-` | `no run under the current runtime` |
-| `Hacklemore_Slow` | `-` | `no run under the current runtime` |
-| `InverseVolBasket` | `-` | `no run under the current runtime` |
-| `Lateralus_Slow` | `-` | `no run under the current runtime` |
-| `LitmusBBStrategy` | `-` | `no run under the current runtime` |
-| `LitmusBBTrendStrategy` | `-` | `no run under the current runtime` |
-| `LitmusClucStrategy` | `-` | `no run under the current runtime` |
-| `LitmusSARStrategy` | `-` | `no run under the current runtime` |
-| `LitmusScalpStrategy` | `-` | `no run under the current runtime` |
-| `LitmusTrendScalpStrategy` | `-` | `no run under the current runtime` |
-| `LitmusVulcanStrategy` | `-` | `no run under the current runtime` |
-| `LmaoStoplossClusterOpt` | `-` | `no run under the current runtime` |
-| `MASlopeStrategy` | `-` | `no run under the current runtime` |
-| `MAStopLossStrategy` | `-` | `no run under the current runtime` |
-| `MATrailingStopLossStrategy` | `-` | `no run under the current runtime` |
-| `MinVarianceBasket` | `-` | `no run under the current runtime` |
-| `MiniLambo_TBS` | `-` | `no run under the current runtime` |
-| `MomentumBasket` | `-` | `no run under the current runtime` |
-| `MomentumRegimeBasket15mFast` | `-` | `no run under the current runtime` |
-| `MoniGoManiHyperStrategy` | `-` | `no run under the current runtime` |
-| `MultiMA_TSL3a` | `-` | `no run under the current runtime` |
-| `NASOSv5HO` | `-` | `no run under the current runtime` |
-| `NASOSv5PD` | `-` | `no run under the current runtime` |
-| `NASOSv5SL` | `-` | `no run under the current runtime` |
-| `NASOSv5_antipump` | `-` | `no run under the current runtime` |
-| `NNPredict_AdditiveAttention` | `-` | `no run under the current runtime` |
-| `NNPredict_Attention` | `-` | `no run under the current runtime` |
-| `NNPredict_CNN` | `-` | `no run under the current runtime` |
-| `NNPredict_GRU` | `-` | `no run under the current runtime` |
-| `NNPredict_LSTM` | `-` | `no run under the current runtime` |
-| `NNPredict_LSTM0` | `-` | `no run under the current runtime` |
-| `NNPredict_LSTM2` | `-` | `no run under the current runtime` |
-| `NNPredict_LSTM3` | `-` | `no run under the current runtime` |
-| `NNPredict_MLP` | `-` | `no run under the current runtime` |
-| `NNPredict_Multihead` | `-` | `no run under the current runtime` |
-| `NNPredict_NBeats` | `-` | `no run under the current runtime` |
-| `NNPredict_NHiTS` | `-` | `no run under the current runtime` |
-| `NNPredict_NLinear` | `-` | `no run under the current runtime` |
-| `NNPredict_Ray` | `-` | `no run under the current runtime` |
-| `NNPredict_TCN` | `-` | `no run under the current runtime` |
-| `NNPredict_TFT` | `-` | `no run under the current runtime` |
-| `NNPredict_Transformer` | `-` | `no run under the current runtime` |
-| `NNPredict_Wavenet` | `-` | `no run under the current runtime` |
-| `NNPredict_Wavenet2` | `-` | `no run under the current runtime` |
-| `NNPredict_dTransformer` | `-` | `no run under the current runtime` |
-| `NNPredict_kTFT` | `-` | `no run under the current runtime` |
-| `NNTC_adx2_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_adx3_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_adx_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_all_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_aroon_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_bbw_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_bbw_Transformer` | `-` | `no run under the current runtime` |
-| `NNTC_dwt2_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_dwt_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_fbb_AdditiveAttention` | `-` | `no run under the current runtime` |
-| `NNTC_fbb_Attention` | `-` | `no run under the current runtime` |
-| `NNTC_fbb_Ensemble` | `-` | `no run under the current runtime` |
-| `NNTC_fbb_GRU` | `-` | `no run under the current runtime` |
-| `NNTC_fbb_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_fbb_Multihead` | `-` | `no run under the current runtime` |
-| `NNTC_fbb_Transformer` | `-` | `no run under the current runtime` |
-| `NNTC_fbb_Wavenet` | `-` | `no run under the current runtime` |
-| `NNTC_fwr_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_highlow_Ensemble` | `-` | `no run under the current runtime` |
-| `NNTC_highlow_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_jump_Ensemble` | `-` | `no run under the current runtime` |
-| `NNTC_jump_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_jump_Transformer` | `-` | `no run under the current runtime` |
-| `NNTC_macd2_Attention` | `-` | `no run under the current runtime` |
-| `NNTC_macd3_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_macd_Attention` | `-` | `no run under the current runtime` |
-| `NNTC_macd_Ensemble` | `-` | `no run under the current runtime` |
-| `NNTC_macd_GRU` | `-` | `no run under the current runtime` |
-| `NNTC_macd_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_macd_Multihead` | `-` | `no run under the current runtime` |
-| `NNTC_macd_TCN` | `-` | `no run under the current runtime` |
-| `NNTC_macd_Transformer` | `-` | `no run under the current runtime` |
-| `NNTC_mfi_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_minmax_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_nseq_Attention` | `-` | `no run under the current runtime` |
-| `NNTC_nseq_Ensemble` | `-` | `no run under the current runtime` |
-| `NNTC_nseq_GRU` | `-` | `no run under the current runtime` |
-| `NNTC_nseq_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_nseq_Transformer` | `-` | `no run under the current runtime` |
-| `NNTC_nseq_Wavenet` | `-` | `no run under the current runtime` |
-| `NNTC_over_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_profit_AdditiveAttention` | `-` | `no run under the current runtime` |
-| `NNTC_profit_Attention` | `-` | `no run under the current runtime` |
-| `NNTC_profit_CNN` | `-` | `no run under the current runtime` |
-| `NNTC_profit_Ensemble` | `-` | `no run under the current runtime` |
-| `NNTC_profit_GRU` | `-` | `no run under the current runtime` |
-| `NNTC_profit_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_profit_LSTM2` | `-` | `no run under the current runtime` |
-| `NNTC_profit_LSTM3` | `-` | `no run under the current runtime` |
-| `NNTC_profit_MLP` | `-` | `no run under the current runtime` |
-| `NNTC_profit_Multihead` | `-` | `no run under the current runtime` |
-| `NNTC_profit_TCN` | `-` | `no run under the current runtime` |
-| `NNTC_profit_Transformer` | `-` | `no run under the current runtime` |
-| `NNTC_profit_Wavenet` | `-` | `no run under the current runtime` |
-| `NNTC_profit_Wavenet2` | `-` | `no run under the current runtime` |
-| `NNTC_profit_Wavenet3` | `-` | `no run under the current runtime` |
-| `NNTC_pv_Ensemble` | `-` | `no run under the current runtime` |
-| `NNTC_pv_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_pv_MLP` | `-` | `no run under the current runtime` |
-| `NNTC_pv_Multihead` | `-` | `no run under the current runtime` |
-| `NNTC_pv_Wavenet` | `-` | `no run under the current runtime` |
-| `NNTC_slope_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_smooth_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_stochastic_LSTM` | `-` | `no run under the current runtime` |
-| `NNTC_swing_LSTM` | `-` | `no run under the current runtime` |
-| `OBOnlyWSv2bband` | `-` | `no run under the current runtime` |
-| `PCA_dwt` | `-` | `no run under the current runtime` |
-| `PCA_fbb` | `-` | `no run under the current runtime` |
-| `PCA_fwr` | `-` | `no run under the current runtime` |
-| `PCA_highlow` | `-` | `no run under the current runtime` |
-| `PCA_jump` | `-` | `no run under the current runtime` |
-| `PCA_macd` | `-` | `no run under the current runtime` |
-| `PCA_mfi` | `-` | `no run under the current runtime` |
-| `PCA_minmax` | `-` | `no run under the current runtime` |
-| `PCA_nseq` | `-` | `no run under the current runtime` |
-| `PCA_over` | `-` | `no run under the current runtime` |
-| `PCA_profit` | `-` | `no run under the current runtime` |
-| `PCA_pv` | `-` | `no run under the current runtime` |
-| `PCA_stochastic` | `-` | `no run under the current runtime` |
-| `PCA_swing` | `-` | `no run under the current runtime` |
-| `SMAOffsetProtectOptV1Mod2_antipump` | `-` | `no run under the current runtime` |
-| `SMAOffsetProtectOptV1_1` | `-` | `no run under the current runtime` |
-| `SMAoffset_antipump_div` | `-` | `no run under the current runtime` |
-| `Schism2_BTC` | `-` | `no run under the current runtime` |
-| `Schism2_ETH` | `-` | `no run under the current runtime` |
-| `Schism3_BTC` | `-` | `no run under the current runtime` |
-| `Schism3_ETH` | `-` | `no run under the current runtime` |
-| `Schism4_BTC` | `-` | `no run under the current runtime` |
-| `Schism4_ETH` | `-` | `no run under the current runtime` |
-| `Schism5_BTC` | `-` | `no run under the current runtime` |
-| `Schism5_ETH` | `-` | `no run under the current runtime` |
-| `Schism6_BTC` | `-` | `no run under the current runtime` |
-| `Schism6_ETH` | `-` | `no run under the current runtime` |
-| `Schism_BTC` | `-` | `no run under the current runtime` |
-| `Schism_ETH` | `-` | `no run under the current runtime` |
-| `SimpleStrategy` | `-` | `no run under the current runtime` |
-| `Solipsis3_BTC` | `-` | `no run under the current runtime` |
-| `Solipsis3_ETH` | `-` | `no run under the current runtime` |
-| `Solipsis4_BTC` | `-` | `no run under the current runtime` |
-| `Solipsis4_ETH` | `-` | `no run under the current runtime` |
-| `Solipsis5_BTC` | `-` | `no run under the current runtime` |
-| `Solipsis5_ETH` | `-` | `no run under the current runtime` |
-| `Solipsis6_BTC` | `-` | `no run under the current runtime` |
-| `Solipsis6_ETH` | `-` | `no run under the current runtime` |
-| `SolipsisCon_BTC` | `-` | `no run under the current runtime` |
-| `SolipsisMM_BTC` | `-` | `no run under the current runtime` |
-| `SolipsisMM_ETH` | `-` | `no run under the current runtime` |
-| `Solipsis_BTC` | `-` | `no run under the current runtime` |
-| `Solipsis_ETH` | `-` | `no run under the current runtime` |
-| `Solipsis_USD` | `-` | `no run under the current runtime` |
-| `StarRise_V2` | `-` | `no run under the current runtime` |
-| `StarRise_V3` | `-` | `no run under the current runtime` |
-| `StarRise_dca` | `-` | `no run under the current runtime` |
-| `Stinkfist_BTC` | `-` | `no run under the current runtime` |
-| `Stinkfist_ETH` | `-` | `no run under the current runtime` |
-| `StopLossStrategy` | `-` | `no run under the current runtime` |
-| `SuperBuy` | `-` | `no run under the current runtime` |
-| `SuperHV27_BTC` | `-` | `no run under the current runtime` |
-| `SuperHV27_ETH` | `-` | `no run under the current runtime` |
-| `SuperReversal_mtf_5min` | `-` | `no run under the current runtime` |
-| `TPActivatingTSLwithInitialTSLStrategy` | `-` | `no run under the current runtime` |
-| `TPActivatingTSLwithSLStrategy` | `-` | `no run under the current runtime` |
-| `TS_Coeff` | `-` | `no run under the current runtime` |
-| `TS_Gain` | `-` | `no run under the current runtime` |
-| `TS_Wavelet` | `-` | `no run under the current runtime` |
-| `TrailingBuySellStrat` | `-` | `no run under the current runtime` |
-| `TrailingBuyStrat` | `-` | `no run under the current runtime` |
-| `TrailingBuyStrat2` | `-` | `no run under the current runtime` |
-| `TrailingBuyStrat2a` | `-` | `no run under the current runtime` |
-| `TrailingBuyStratCluc` | `-` | `no run under the current runtime` |
-| `TrailingBuyStratCluc5m` | `-` | `no run under the current runtime` |
-| `TrailingBuyStratClucBBRPBMODE` | `-` | `no run under the current runtime` |
-| `TrailingStopLossStrategy` | `-` | `no run under the current runtime` |
-| `UziChanTB` | `-` | `no run under the current runtime` |
-| `UziChanTB2` | `-` | `no run under the current runtime` |
-| `ViNBuyLc2` | `-` | `no run under the current runtime` |
-| `ViNBuyPct` | `-` | `no run under the current runtime` |
-| `ViNBuyPctLc2` | `-` | `no run under the current runtime` |
-| `ViNBuyVws` | `-` | `no run under the current runtime` |
-| `ViNSellCorr` | `-` | `no run under the current runtime` |
-| `ViNSellEps` | `-` | `no run under the current runtime` |
-| `ViNSellRiseCorrFall` | `-` | `no run under the current runtime` |
-| `ViNSellRiseFall` | `-` | `no run under the current runtime` |
-| `VolTargetBasket` | `-` | `no run under the current runtime` |
-| `_Strat` | `-` | `no run under the current runtime` |
-| `strat_dca` | `-` | `no run under the current runtime` |
-| `tbedit` | `-` | `no run under the current runtime` |
-
-## Exclusion unconfirmed - 79 strategies
+## Exclusion unconfirmed - 200 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
 somebody else's measurement or on the absence of one. These rows
@@ -4712,18 +4475,17 @@ basis stay on the row, and the work that would settle it is in
 
 | Held on | Basis | Strategies |
 |---|---|---:|
-| `no_verdict_on_lookahead` | `no_finding` | 36 |
-| `unclassified` | `no_finding` | 34 |
-| `no_verdict_on_lookahead_and_recursive` | `no_finding` | 7 |
+| `no_trades_in_full_measurement` | `inherited` | 187 |
+| `no_verdict_on_lookahead` | `no_finding` | 11 |
 | `recursive_bias_unverified` | `no_finding` | 1 |
-| `recursive_warmup_refused` | `no_finding` | 1 |
+| `unclassified` | `no_finding` | 1 |
 
 This is not a softening. A row here may well end up excluded - the
 38 held on an inherited look-ahead finding probably will, because a
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 314 strategies, by decisive reason
+## Not passing - 337 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -4771,7 +4533,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 314 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 337 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -4779,15 +4541,15 @@ one of them carries none.
 
 | Reason | Meaning | Strategies |
 |---|---|---:|
-| `lookahead_found` | reads data it could not have had at the time | 88 |
+| `lookahead_found` | reads data it could not have had at the time | 99 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 77 |
-| `no_trades_in_full_measurement` | never trades over the full window | 7 |
+| `no_trades_in_full_measurement` | never trades over the full window | 6 |
 | `full_backtest_not_testable` | the canonical pooled full backtest did not complete under the fixed runtime budget | 34 |
 | `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 51 |
-| `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 6 |
+| `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 15 |
 | `measured_only_in_freqai_arm` | runs only under its author's own FreqAI configuration, measured separately in that arm; not comparable with the ordinary spot audit | 6 |
 | `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 19 |
-| `shared_runtime_change_declined` | the fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04 | 7 |
+| `shared_runtime_change_declined` | the fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04 | 11 |
 | `duplicate_implementation` | duplicates the executable code and canonical full-backtest trade set of a retained representative | 6 |
 | `recursive_check_incomplete_at_longest_rungs` | - | 13 |
 
@@ -4796,38 +4558,41 @@ one of them carries none.
 
 | Reason | `-` | `A_pending_diagnostics` | `B_warmup_refusal` | `C_measurement_recovery` | `D_recursive_drift` | `E0_strict67` | `not_scheduled` |
 |---|---|---|---|---|---|---|---|
-| `lookahead_found` | 13 | 2 | 0 | 12 | 0 | 0 | 61 |
+| `lookahead_found` | 23 | 2 | 0 | 13 | 0 | 0 | 61 |
 | `recursive_bias_found` | 15 | 0 | 3 | 18 | 14 | 1 | 26 |
-| `no_trades_in_full_measurement` | 0 | 0 | 0 | 7 | 0 | 0 | 0 |
+| `no_trades_in_full_measurement` | 0 | 0 | 0 | 6 | 0 | 0 | 0 |
 | `full_backtest_not_testable` | 18 | 0 | 0 | 15 | 0 | 0 | 1 |
 | `repair_refused_would_invent_strategy` | 9 | 1 | 0 | 37 | 0 | 0 | 4 |
-| `local_module_repair_exhausted` | 0 | 0 | 0 | 6 | 0 | 0 | 0 |
+| `local_module_repair_exhausted` | 7 | 0 | 0 | 8 | 0 | 0 | 0 |
 | `measured_only_in_freqai_arm` | 0 | 0 | 0 | 5 | 0 | 0 | 1 |
 | `third_party_package_declined` | 7 | 0 | 0 | 12 | 0 | 0 | 0 |
-| `shared_runtime_change_declined` | 0 | 0 | 0 | 6 | 0 | 0 | 1 |
+| `shared_runtime_change_declined` | 4 | 0 | 0 | 6 | 0 | 0 | 1 |
 | `duplicate_implementation` | 0 | 0 | 0 | 1 | 2 | 0 | 3 |
 | `recursive_check_incomplete_at_longest_rungs` | 13 | 0 | 0 | 0 | 0 | 0 | 0 |
 
-### `lookahead_found` - 88
+### `lookahead_found` - 99
 
 Reads data it could not have had at the time.
 
-Wave `-` - 13:
+Wave `-` - 23:
 
 `AdvancedFuturesSwingStrategy`, `AlexBattleTankKillerV4`, `AlexNexusForgeV8AIV2`, `Auto_EI_t4c0s_Shorts`
 `AwesomeEWOLambo`, `AwesomeEWOLambo_Shorts`, `CsMom`, `DonchianChannel`
-`EI4_t4c0s_V2_2_Shorts`, `GKD_FisherTransformV4_ML`, `LiquiditySweep`, `OsirisXRSI`
-`ichiV1_plus`
+`EI4_t4c0s_V2_2_Shorts`, `GKD_FisherTransformV4_ML`, `LiquiditySweep`, `NNPredict_AdditiveAttention`
+`NNPredict_CNN`, `NNPredict_GRU`, `NNPredict_LSTM2`, `NNPredict_LSTM3`
+`NNPredict_MLP`, `NNPredict_Multihead`, `NNPredict_TCN`, `NNPredict_Wavenet`
+`NNPredict_Wavenet2`, `OsirisXRSI`, `ichiV1_plus`
 
 Wave `A_pending_diagnostics` - 2:
 
 `HyperStra_GSN_SMAOnly`, `kalthetank`
 
-Wave `C_measurement_recovery` - 12:
+Wave `C_measurement_recovery` - 13:
 
 `ARIMASTR`, `ARIMA_15`, `FastSupertrend`, `FreqaiExampleStrategy`
 `MKR`, `NostalgiaForInfinityNext_ChangeToTower_V5_2`, `NostalgiaForInfinityNext_ChangeToTower_V5_3`, `NostalgiaForInfinityNext_ChangeToTower_V6`
-`NostalgiaForInfinityXw`, `Stinkfist`, `bbema`, `ichiV1_Marius`
+`NostalgiaForInfinityXw`, `Stinkfist`, `SuperTrendPure`, `bbema`
+`ichiV1_Marius`
 
 Wave `not_scheduled` - 61:
 
@@ -4892,14 +4657,14 @@ Wave `not_scheduled` - 26:
 `SimpleHopt1Ashort`, `SimpleHoptS`, `Solipsis5`, `TrendFollowingStrategy`
 `TrendRiderStrategy`, `pcb20`
 
-### `no_trades_in_full_measurement` - 7
+### `no_trades_in_full_measurement` - 6
 
 Never trades over the full window.
 
-Wave `C_measurement_recovery` - 7:
+Wave `C_measurement_recovery` - 6:
 
 `BreakEven`, `DoesNothingStrategy`, `Miku_PP_v3`, `MyStrategyTemplate`
-`Obelisk_3EMA_StochRSI_ATR`, `ViN`, `ep3mas2`
+`ViN`, `ep3mas2`
 
 ### `full_backtest_not_testable` - 34
 
@@ -4955,14 +4720,19 @@ Wave `not_scheduled` - 4:
 
 `MyStrategyNew10`, `NowoIchimoku1hV1`, `Schism6`, `tacos1`
 
-### `local_module_repair_exhausted` - 6
+### `local_module_repair_exhausted` - 15
 
 Imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls.
 
-Wave `C_measurement_recovery` - 6:
+Wave `-` - 7:
 
-`AdvancedRiskFilterStrategy`, `BB_RPB_3c`, `DWT`, `MlpSpeculativeStrategy`
-`Solipsis6`, `SolipsisMM`
+`NNPredict_Attention`, `NNPredict_NBeats`, `NNPredict_NHiTS`, `NNPredict_NLinear`
+`NNPredict_Ray`, `NNPredict_TFT`, `NNPredict_dTransformer`
+
+Wave `C_measurement_recovery` - 8:
+
+`AdvancedRiskFilterStrategy`, `BB_RPB_3c`, `DWT`, `DualModelPolymarketPortfolio`
+`MlpSpeculativeStrategy`, `Solipsis4`, `Solipsis6`, `SolipsisMM`
 
 ### `measured_only_in_freqai_arm` - 6
 
@@ -4992,9 +4762,13 @@ Wave `C_measurement_recovery` - 12:
 `LitmusMLDPStrategy`, `LitmusMinMaxBroadClassificationStrategy`, `LitmusMinMaxClassificationStrategy`, `LitmusMinMaxRegretClassificationStrategy`
 `LitmusMinMaxSegmentClassificationStrategy`, `LitmusMinMaxStrategy`, `LitmusMinMaxTrendStrategy`, `LitmusSimpleStrategy`
 
-### `shared_runtime_change_declined` - 7
+### `shared_runtime_change_declined` - 11
 
 The fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04.
+
+Wave `-` - 4:
+
+`BBMod1DCA`, `BB_RPB_TSL_Tranz_TrailingBuy`, `MultiMA_TSL3a`, `TripleSuperTrendADXRSI`
 
 Wave `C_measurement_recovery` - 6:
 
@@ -5046,13 +4820,13 @@ Wave `-` - 13:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 324 |
-| `first_measurement_in_current_runtime` | 259 |
-| `lookahead_remeasure_pending` | 46 |
-| `convergence_inconclusive` | 14 |
+| `recursive_ladder_pending` | 302 |
+| `lookahead_remeasure_pending` | 227 |
+| `full_window_measurement_pending` | 187 |
+| `to_be_fixed` | 55 |
 | `needs_a_look` | 10 |
 | `repair_attempted` | 3 |
-| `to_be_fixed` | 2 |
+| `convergence_inconclusive` | 1 |
 
 Per-row detail, including every evidence path, is in
 `STRATEGY_STATUS.csv`.
