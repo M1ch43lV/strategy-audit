@@ -190,6 +190,13 @@ def build(destination):
                         _spelled(len(exclusion_criteria.CRITERIA)))
     page = page.replace("__NOT_CRITERIA_COUNT__",
                         _spelled(len(exclusion_criteria.NOT_CRITERIA)))
+    # Same hand-typed-number bug as __TOTAL__, one footer line lower: the
+    # footer still claimed 588 native look-ahead rows and a 2026-09-02
+    # snapshot long after both moved.
+    page = page.replace("__LOOKAHEAD_NATIVE__",
+                        str(sum(1 for row in data["rows"] if row.get("ls") == "native")))
+    page = page.replace("__WARMUP_SETTLED__",
+                        str(sum(1 for row in data["rows"] if row.get("cs"))))
     with io.open(destination, "w", encoding="utf-8", newline="\n") as handle:
         handle.write(page)
     return len(data["rows"]), os.path.getsize(destination)
@@ -200,6 +207,7 @@ def selftest():
     assert "__DATA__" in template and "__GEN__" in template and "__TOTAL__" in template
     assert "__CRITERIA__" in template and "__CRITERIA_COUNT__" in template \
         and "__NOT_CRITERIA_COUNT__" in template
+    assert "__LOOKAHEAD_NATIVE__" in template and "__WARMUP_SETTLED__" in template
     # The legend has to show every criterion that can actually exclude a row,
     # or the page understates what "excluded" means - which is exactly the
     # bug this replaced (three cards typed by hand, six criteria added since

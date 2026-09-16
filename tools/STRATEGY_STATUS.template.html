@@ -419,8 +419,8 @@ __CRITERIA__
   </section>
 
   <footer>
-    <div>Generated from <code>STRATEGY_STATUS.csv</code> by <code>evidence/strategy_status.py</code>. The frozen baseline <code>REGIME_ELIGIBILITY.csv</code> is never regenerated; the difference between it and this table is the expansion.</div>
-    <div>Snapshot of 2026-09-02. Look-ahead is measured natively on 588 rows, from 53 at the start of the session. The warm-up ladder has 481 records, 418 settled. What remains open is listed per row in <code>open_work</code>.</div>
+    <div>Generated from <code>STRATEGY_STATUS.csv</code> by <code>evidence/strategy_status.py</code>. <code>REGIME_ELIGIBILITY.csv</code>'s original 67-row E0 baseline was once described here as frozen and never regenerated. It is neither: it was regenerated on 2026-09-14, and re-testing those supposedly safe strategies found look-ahead and recursion bias among them, so E0 is obsolete rather than authoritative. This table is what is known today.</div>
+    <div>Look-ahead is measured natively on __LOOKAHEAD_NATIVE__ of these rows, and the warm-up ladder has settled a startup for __WARMUP_SETTLED__ of them. What remains open is listed per row in <code>open_work</code>.</div>
   </footer>
 </div>
 
