@@ -1,0 +1,60 @@
+{
+    // ─── Interpreter ─────────────────────────────────────────────────────────
+    "python.defaultInterpreterPath": "${workspaceFolder}/ftenv/Scripts/python.exe",
+    "python.experiments.enabled": false,
+    "python.useEnvironmentsExtension": false,
+
+    // ─── Pylance: Vendored-Strategien und venv NICHT analysieren ──────────────
+    // strategy-audit/ is its own git repo root and can be opened directly as
+    // the VS Code workspace, in which case the sibling settings.json at
+    // ../.vscode/settings.json (freqtrade-benchmarks/) never applies - found
+    // 2026-09-18 after Pylance tried to index this folder from scratch again.
+    // Mirrors that file's excludes, with paths relative to THIS root instead.
+    //
+    // repos/ holds 4955 vendored .py files (755 MB) - read-only third-party
+    // strategy source, IntelliSense for it has no use.
+    // ftenv/ is this project's actual venv (pandas needs it; .venv has a DLL
+    // problem here) - 18143 .py files, 3.0 GB, larger than repos/ itself.
+    // repair/patched/ mirrors repos/'s tree for a handful of patched files;
+    // excluded for the same reason as repos/ itself.
+    "python.analysis.exclude": [
+        "**/.venv",
+        "**/data",
+        "**/repos",
+        "**/results",
+        "**/ftenv",
+        "**/repair/patched",
+        "**/unzipped",
+        "**/user_data/backtest_results",
+        "**/__pycache__"
+    ],
+    "python.analysis.diagnosticMode": "openFilesOnly",
+    "python.analysis.userFileIndexingLimit": 500,
+    "python.analysis.persistAllIndices": true,
+
+    // ─── Dateiwatcher ───────────────────────────────────────────────────────
+    "files.watcherExclude": {
+        "**/.venv/**": true,
+        "**/data/**": true,
+        "**/repos/**": true,
+        "**/ftenv/**": true,
+        "**/repair/patched/**": true,
+        "**/unzipped/**": true,
+        "**/user_data/backtest_results/**": true,
+        "**/__pycache__/**": true
+    },
+    // repos/ stays searchable on purpose - only Pylance and the file watcher
+    // ignore it, full-text search does not. ftenv is pure venv third-party
+    // code like .venv, so it stays excluded there too.
+    "search.exclude": {
+        "**/.venv": true,
+        "**/data/candles": true,
+        "**/ftenv": true,
+        "**/unzipped": true,
+        "**/user_data/backtest_results": true,
+        "**/__pycache__": true
+    },
+    "files.exclude": {
+        "**/__pycache__": true
+    }
+}
