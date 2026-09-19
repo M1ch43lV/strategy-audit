@@ -1726,6 +1726,87 @@ def install_nntc_writable_labels():
     return True
 
 
+LOOKAHEAD_FRAME_DIAGNOSTICS_RULE = "lookahead_dataframe_alignment_diagnostics"
+
+
+DETERMINISTIC_IMPORT_RULE = "deterministic_strategy_import_randomness"
+
+
+def install_deterministic_strategy_import_randomness():
+    """Make an import-time random hyperopt space reproducible for analysis.
+
+    DevilStra constructs ``spell_pot`` with ``random.choices`` in the class
+    body. Lookahead-analysis resolves the strategy repeatedly for its full
+    and sliced runs, so an unseeded import gives each run a different set of
+    indicator columns before any author-selected parameters are applied. The
+    analyzer cannot compare those distinct strategies.
+
+    This adapter seeds Python's module-global PRNG only around the resolver's
+    module import and restores the caller's state in ``finally``. It changes
+    neither strategy source nor runtime randomness after loading; its sole
+    purpose is that repeated imports represent the same strategy definition.
+    """
+    import random
+    from freqtrade.resolvers.strategy_resolver import StrategyResolver
+
+    if getattr(StrategyResolver, "_deterministic_import_randomness", False):
+        return True
+
+    original_load = StrategyResolver.load_strategy
+
+    def load_strategy(config=None):
+        state = random.getstate()
+        random.seed(0)
+        try:
+            return original_load(config)
+        finally:
+            random.setstate(state)
+
+    StrategyResolver.load_strategy = staticmethod(load_strategy)
+    StrategyResolver._deterministic_import_randomness = True
+    return True
+
+
+def install_lookahead_frame_diagnostics():
+    """Log analyzer frame structure, then preserve its alignment failure.
+
+    The wrapper calls freqtrade's implementation first, catches only the
+    identically-labelled DataFrame error, records enough structure to locate
+    the mismatch, and re-raises the same exception. It therefore cannot turn
+    an analyzer error into PASS or FOUND while these rows are investigated.
+    """
+    import logging
+    from freqtrade.optimize.analysis.lookahead import LookaheadAnalysis
+
+    if getattr(LookaheadAnalysis, "_frame_diagnostics_installed", False):
+        return True
+
+    original = LookaheadAnalysis.analyze_indicators
+    logger = logging.getLogger(__name__)
+
+    def analyze_indicators(self, full_vars, cut_vars, current_pair):
+        try:
+            return original(self, full_vars, cut_vars, current_pair)
+        except ValueError as exc:
+            if "identically-labeled" not in str(exc):
+                raise
+            full_df = full_vars.indicators[current_pair]
+            cut_df = cut_vars.indicators[current_pair]
+            logger.error(
+                "LOOKAHEAD_FRAME_ALIGNMENT pair=%s full_shape=%s cut_shape=%s "
+                "full_index_unique=%s cut_index_unique=%s "
+                "full_columns=%r cut_columns=%r",
+                current_pair, full_df.shape, cut_df.shape,
+                full_df.index.is_unique, cut_df.index.is_unique,
+                list(full_df.columns), list(cut_df.columns),
+            )
+            raise
+
+    LookaheadAnalysis.analyze_indicators = analyze_indicators
+    LookaheadAnalysis._frame_diagnostics_installed = True
+    return True
+
+
 INSTALLERS = {RULE: install_min_roi_reached_entry,
               SCAN_RULE: install_tolerant_class_scan,
               ADVISE_RULE: install_idempotent_advise_entry,
@@ -1751,7 +1832,9 @@ INSTALLERS = {RULE: install_min_roi_reached_entry,
               BARE_SAVE_RULE: install_tf_keras_bare_save_redirect,
               WRITEBACK_RULE: install_nnpredict_prediction_writeback,
               POPULATE_WRITEBACK_RULE: install_populate_indicators_chained_writeback,
-              NNTC_WRITABLE_LABELS_RULE: install_nntc_writable_labels}
+              NNTC_WRITABLE_LABELS_RULE: install_nntc_writable_labels,
+              DETERMINISTIC_IMPORT_RULE: install_deterministic_strategy_import_randomness,
+              LOOKAHEAD_FRAME_DIAGNOSTICS_RULE: install_lookahead_frame_diagnostics}
 
 
 def install_from_environment():

@@ -33,6 +33,13 @@
       ],
       "status": "applied"
     },
+    "AlexBandSniperV58COptuna": {
+      "note": "Diagnostic-only instrumentation for freqtrade's identically-labelled DataFrame failure. It records the full/cut frame shapes, index uniqueness and column labels, then re-raises the same exception; it cannot create a gate verdict or modify strategy output.",
+      "rules": [
+        "lookahead_dataframe_alignment_diagnostics"
+      ],
+      "status": "applied"
+    },
     "AntigravityStrategy": {
       "config_keys": [
         "timeframe",
@@ -509,6 +516,14 @@
       "note": "reads Path(__file__).resolve().parent / 'historical_funding_rates_DB.json', a 199 KB funding-rate table the author ships beside the strategy and harvest.py did not take. Staging it does not by itself make the run succeed - the smoke run fails separately with \"'NoneType' object has no attribute 'columns'\" - so this rule supplies the author's input and that failure is measured on its own merits rather than on a missing file.",
       "rules": [
         "stage_author_data_file"
+      ],
+      "status": "applied"
+    },
+    "DevilStra": {
+      "note": "DevilStra constructs its class-level hyperopt spell space with random.choices at module import. lookahead-analysis resolves the strategy repeatedly for full and sliced runs, otherwise producing different indicator columns before the author's fixed buy_params/sell_params are applied. The import-time compatibility rule seeds only that resolver call and restores the previous PRNG state immediately; it neither edits strategy source nor changes runtime randomness after loading. The diagnostic rule remains enabled to preserve frame structure if a separate alignment failure remains.",
+      "rules": [
+        "deterministic_strategy_import_randomness",
+        "lookahead_dataframe_alignment_diagnostics"
       ],
       "status": "applied"
     },
@@ -1216,6 +1231,34 @@
     },
     "NASOSv5": {
       "note": "writes the legacy `buy_tag`. freqtrade's `advise_entry` initialises `enter_tag` to \"\" and then renames `buy_tag` to `enter_tag`; renaming relabels rather than merges, so the frame comes back with two columns of that name. An ordinary backtest never notices, because it calls the hook once. `lookahead-analysis` calls it twice on the same frame - in `prepare_data` and again inside `backtest` - and the second pass has to align against a columns axis with a duplicate label, which pandas refuses: \"cannot reindex on an axis with duplicate labels\". The defect is freqtrade's own workaround meeting freqtrade's own rename; the strategy runs and trades in an ordinary backtest and its recursion is clean. The shim collapses the duplicate onto the last occurrence - the strategy's own tags - and was measured neutral on six of these rows: entry signals and tags identical with and without it, on runs carrying 138, 147 and 1956 entries. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
+    },
+    "NASOSv5HO": {
+      "note": "This subclass inherits the same legacy buy_tag writer as NASOSv5_mod1. The registry is keyed by the requested strategy class, so the base-class entry alone did not activate the already-validated idempotent entry-tag shim. The look-ahead traceback confirms the identical second-pass duplicate-label failure. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
+    },
+    "NASOSv5PD": {
+      "note": "This subclass inherits the same legacy buy_tag writer as NASOSv5_mod1. The registry is keyed by the requested strategy class, so the base-class entry alone did not activate the already-validated idempotent entry-tag shim. The look-ahead traceback confirms the identical second-pass duplicate-label failure. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
+    },
+    "NASOSv5SL": {
+      "note": "This subclass inherits the same legacy buy_tag writer as NASOSv5_mod1. The registry is keyed by the requested strategy class, so the base-class entry alone did not activate the already-validated idempotent entry-tag shim. The look-ahead traceback confirms the identical second-pass duplicate-label failure. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
+    },
+    "NASOSv5_antipump": {
+      "note": "This subclass inherits the same legacy buy_tag writer as NASOSv5. The registry is keyed by the requested strategy class, so the base-class entry alone did not activate the already-validated idempotent entry-tag shim. The look-ahead traceback confirms the identical second-pass duplicate-label failure. No strategy source is touched.",
       "rules": [
         "idempotent_entry_tag_initialisation"
       ],
@@ -2561,7 +2604,8 @@
         "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
       ],
       "rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "lookahead_dataframe_alignment_diagnostics"
       ],
       "status": "applied"
     },
@@ -2573,7 +2617,8 @@
       "rules": [
         "restore_copied_local_module",
         "legacy_min_roi_reached_entry_signature",
-        "lookahead_runmode_reports_backtest"
+        "lookahead_runmode_reports_backtest",
+        "lookahead_dataframe_alignment_diagnostics"
       ],
       "status": "applied"
     },
@@ -2612,7 +2657,15 @@
         "repos/werkkrew_freqtrade-strategies/strategies/solipsis"
       ],
       "rules": [
-        "restore_copied_local_module"
+        "restore_copied_local_module",
+        "lookahead_dataframe_alignment_diagnostics"
+      ],
+      "status": "applied"
+    },
+    "Solipsis_USD": {
+      "note": "Diagnostic-only instrumentation for freqtrade's identically-labelled DataFrame failure. It records the full/cut frame shapes, index uniqueness and column labels, then re-raises the same exception; it cannot create a gate verdict or modify strategy output.",
+      "rules": [
+        "lookahead_dataframe_alignment_diagnostics"
       ],
       "status": "applied"
     },
@@ -2742,6 +2795,13 @@
         "freqai_config_from_author_block"
       ],
       "status": "refused"
+    },
+    "UziChanTB2": {
+      "note": "This subclass inherits Apollo11's legacy buy_tag writer. The registry is keyed by the requested strategy class, so Apollo11's entry alone did not activate the already-validated idempotent entry-tag shim. The look-ahead traceback confirms the identical second-pass duplicate-label failure. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
+      ],
+      "status": "applied"
     },
     "bbrsi1_strategy": {
       "note": "declares `class <Name> (IStrategy):` with a space. Freqtrade's resolver skips a file unless its text contains the literal `class <Name>(`, so it never imports the file at all and reports \"This class does not exist or contains Python code errors\", which is true of neither. The shim makes that pre-import scan tolerant of whitespace; every file it admits still has to pass the four real conditions. No strategy source is touched.",
