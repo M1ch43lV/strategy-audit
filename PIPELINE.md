@@ -174,6 +174,17 @@ Sample on this date: **0 of 608 `E1_expanded` strategies have `observed_trades =
 
 ## Stage 9 — Market Regime Classification
 
+## Post-Full-Backtest — Execution Robustness
+
+This prospective, additive verification follows a measured canonical pooled
+Full-Backtest and never changes admission or replaces its manifest. For every
+identity-current measured strategy with a declared timeframe above 5m, run the
+same pooled window and pair universe with `--timeframe-detail 5m` into the
+separate `evidence/EXECUTION_ROBUSTNESS.json` store. The strategy timeframe is
+not overridden: the detail data model intrabar execution only. The binding
+parameters, classifications, and later cost/fill/temporal extensions are
+specified once in `EXECUTION_ROBUSTNESS_PLAN.md`.
+
 | Program | Reads | Writes |
 |---|---|---|
 | `regime/regime_engine.py` | local candle files | `results/regime/regime_daily.csv`, `regime_episodes.csv`, `regime_transitions.csv`, `regime_btc_episodes.csv`, `regime_state_summary.csv`, `regime_feature_distributions.csv`, `regime_manifest.json` |

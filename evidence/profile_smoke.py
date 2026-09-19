@@ -383,7 +383,8 @@ def _invocation(command):
 
 
 def run_one(row, timerange, timeout, pair=None, extra_env=None,
-            config_overrides=None, artifact_key=None, run_context=None):
+            config_overrides=None, artifact_key=None, run_context=None,
+            extra_cli_args=None):
     strategy = row["strategy_id"]
     canonical = os.path.abspath(os.path.join(ROOT, row["canonical_file"].replace("/", os.sep)))
     profile = row["run_profile"]
@@ -410,7 +411,7 @@ def run_one(row, timerange, timeout, pair=None, extra_env=None,
         "--strategy", strategy, "--strategy-path", os.path.dirname(canonical),
         "--timerange", timerange, "--fee", "0.001", "--export", "trades",
         "--backtest-directory", prefix, "--cache", "none",
-    ] + (["--pairs", pair] if pair else []) + extra_args
+    ] + (["--pairs", pair] if pair else []) + extra_args + (extra_cli_args or [])
     # The invocation is part of the result. Without it a record says what came
     # out but not what was asked, and a reader cannot reproduce the run without
     # re-deriving the arguments from four other files.

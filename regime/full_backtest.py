@@ -118,11 +118,15 @@ def main(argv=None) -> int:
     parser.add_argument("--output", type=Path, default=OUTPUT)
     parser.add_argument("--timeout", type=int, default=3600)
     parser.add_argument("--workers", type=int, default=2)
+    parser.add_argument("--timeframe-detail",
+                        help="intracandle detail timeframe; requires a non-canonical --output")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--import-manifest", action="append", type=Path, default=[],
                         help="import identity-matching measured results from another runtime")
     parser.add_argument("--import-only", action="store_true")
     args = parser.parse_args(argv)
+    if args.timeframe_detail and args.output == OUTPUT:
+        raise SystemExit("--timeframe-detail requires an explicit non-canonical --output")
     rows = eligible()
     row_by_strategy = {row["strategy_id"]: row for row in rows}
     if args.strategy:
@@ -264,13 +268,18 @@ def main(argv=None) -> int:
                 return strategy, result, False
         mode = "futures" if row["run_profile"].startswith("futures_") else "spot"
         settings = overrides.get(strategy) or None
+        detail_args = (["--timeframe-detail", args.timeframe_detail]
+                       if args.timeframe_detail else None)
         result = profile_smoke.run_one(row, timerange(mode), args.timeout,
-                                        config_overrides=settings)
+                                        config_overrides=settings,
+                                        extra_cli_args=detail_args)
         config = (profile_smoke.FUTURES_CONFIG if mode == "futures"
                   else profile_smoke.SPOT_CONFIG)
         result.update(fingerprint)
         result["pairs"] = profile_smoke._read_jsonc(config)["exchange"]["pair_whitelist"]
         result["measurement_scope"] = "canonical_pooled_native_pair_universe"
+        if args.timeframe_detail:
+            result["timeframe_detail"] = args.timeframe_detail
         result["attempted_at"] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
         # Every earlier try this runner overwrote used to vanish outright, so a
         # strategy that needed several retries before it measured - or that

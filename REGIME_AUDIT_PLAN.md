@@ -1562,6 +1562,15 @@ BTC x coin, and episode summaries remain separate, and Phase A is descriptive.
 
 ## Stage 12 — robustness and exploratory analysis
 
+### Execution robustness prerequisite
+
+Regime attribution uses canonical pooled Full-Backtest trades unchanged. A
+separate, prospective execution-robustness verification is applied afterwards
+to measured strategies with main timeframes above 5m. It uses Freqtrade
+`--timeframe-detail 5m`, retains authored signal timeframes, and records only
+an additive sensitivity classification. The complete frozen specification is
+`EXECUTION_ROBUSTNESS_PLAN.md`; it is intentionally not duplicated here.
+
 41. Signed ER analysis.
 42. Return / volatility analysis.
 43. ADX sensitivity.
