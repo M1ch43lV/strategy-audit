@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1355 rows
 
-**Generated 2026-09-19 08:01:35 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-19 10:09:17 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -67,13 +67,13 @@ have neither and are left empty rather than given an invented time.
 
 Both read from the strategy's own source by `strategy_classification.py`,
 not measured - see that module's docstring for the marker table and its
-limits. `timeframe` is blank on 48 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 0 rows where no marker matched at all, so its counts below add up to more than 1355.
+limits. `timeframe` is blank on 46 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 0 rows where no marker matched at all, so its counts below add up to more than 1355.
 
 ### Timeframe
 
 | Timeframe | Strategies |
 |---|---:|
-| `5m` | 777 |
+| `5m` | 779 |
 | `1h` | 193 |
 | `15m` | 110 |
 | `1m` | 99 |

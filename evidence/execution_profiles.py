@@ -21,7 +21,8 @@ import json
 import os
 import sys
 
-from repair.overrides import repair_overrides, sibling_config_timeframe
+from repair.overrides import (imported_module_timeframe, repair_overrides,
+                              sibling_config_timeframe)
 import warnings
 
 
@@ -489,6 +490,13 @@ def build(repair_root=DEFAULT_REPAIR):
         config_sibling_timeframe = (
             None if (timeframe or config_timeframe)
             else sibling_config_timeframe(_rel(original_path)))
+        config_imported_timeframe = None
+        if not (timeframe or config_timeframe or config_sibling_timeframe):
+            for python_path in environment.get("python_paths", []):
+                config_imported_timeframe = imported_module_timeframe(
+                    python_path, "Config")
+                if config_imported_timeframe:
+                    break
         # A fourth and last source: a value recovered by a repair route with
         # no source location at all to scan - Argrelextrema's timeframe is a
         # comment ("# timeframe = '5m'"), not a live assignment, so nothing
@@ -499,14 +507,16 @@ def build(repair_root=DEFAULT_REPAIR):
         # out left a row with a native look-ahead PASS and a settled ladder
         # stuck on "coverage: unsupported_or_unknown_profile" indefinitely.
         repair_timeframe = (
-            None if (timeframe or config_timeframe or config_sibling_timeframe)
+            None if (timeframe or config_timeframe or config_sibling_timeframe
+                     or config_imported_timeframe)
             else (timeframe_repairs.get(strategy) or {}).get("timeframe"))
         execution_timeframe = normalize_timeframe(
-            timeframe or config_timeframe or config_sibling_timeframe
+            timeframe or config_timeframe or config_sibling_timeframe or config_imported_timeframe
             or repair_timeframe)
         timeframe_source = (declared_timeframe_source if timeframe else
                             "author_config" if config_timeframe else
                             "author_sibling_config" if config_sibling_timeframe else
+                            "author_imported_config" if config_imported_timeframe else
                             "repair_override" if repair_timeframe else
                             "unresolved")
         long_entry, short_entry, methods, _writes = entry_writes(node)
