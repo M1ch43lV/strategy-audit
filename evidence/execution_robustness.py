@@ -70,7 +70,24 @@ COST = {
     # "Be cautious if your average profit is below 0.5 %" (Brook Miles,
     # Backtesting Traps in Freqtrade, 2021). Reported as a flag, not decisive.
     "caution_mean_profit_ratio": 0.005,
+    # Trades a regime state needs before its cost result means anything. It is
+    # the specialist evaluation's own floor (regime.specialist_evaluation.
+    # MIN_TRADES); selftest() asserts the two stay equal.
+    "regime_min_trades": 10,
+    # A specialist claim rests on the validation window (regime.specialist_
+    # evaluation.VALIDATION_START, frozen 2026-09-11), so the cost condition is
+    # judged on the trades of that window. The whole window is published beside it
+    # as context. selftest() asserts the date stays equal to the evaluation's.
+    "regime_validation_start": "2024-01-01",
 }
+# The primary DMI/ADX model's four states, for BTC and for the traded coin
+# (REGIME_PREREGISTRATION.md). A trade belongs to the state on the day it opened,
+# exactly as regime.attribution assigns it.
+REGIME_KINDS = (("btc", "btc_regime", "btc_episode_id"),
+                ("coin", "coin_regime", "coin_episode_id"))
+REGIME_STATES = ("BULL", "BEAR", "SIDEWAYS", "TRANSITION")
+REGIME_BASIS = "fixed_stake_per_trade_ratio"
+CHUNK = 40
 # Detail timeframe by main timeframe. Above 5m: the plan's 5m detail run.
 # At or below 5m there is no rerun (owner decision 2026-09-19, on resource
 # grounds): such a baseline already simulates at the granularity the others are
@@ -382,30 +399,151 @@ def cost_screen(block):
     return record
 
 
+def _regime_cell(ratios, leverage, episodes, floor):
+    """The cost result of one trade set (one strategy in one regime state).
+
+    Fixed stake per trade, the specialist evaluation's own convention: each trade
+    counts as its own equal stake and the ratios are averaged, so a state late in
+    the window is not inflated by a compounded balance. The slippage cost of a
+    trade is 2 * slippage * leverage as a ratio of its margin.
+    """
+    n = len(ratios)
+    cell = {"trades": int(n), "episodes": int(episodes)}
+    if n == 0:
+        return dict(cell, status="NA", reasons=["no_trades_in_state"])
+    mean = float(ratios.mean())
+    cell["mean_profit_pct"] = _round(100.0 * mean, 4)
+    lev_sum = float(leverage.sum())
+    cell["break_even_slippage_bps_per_side"] = _round(
+        1e4 * float(ratios.sum()) / (2.0 * lev_sum), 2) if lev_sum else None
+    stressed = {}
+    for s in COST["grid_per_side"]:
+        net = float((ratios - 2.0 * s * leverage).mean())
+        stressed["%.4f" % s] = {"mean_profit_pct": _round(100.0 * net, 4), "survives": net > 0}
+    cell["stressed"] = stressed
+    if n < floor:
+        return dict(cell, status="NA", reasons=["below_trade_floor"])
+    if mean <= 0:
+        return dict(cell, status="NA", reasons=["state_not_profitable"])
+    ok = stressed["%.4f" % COST["reference_slippage_per_side"]]["survives"]
+    return dict(cell, status="PASS" if ok else "SENSITIVE",
+                reasons=[] if ok else ["not_profitable_at_reference_slippage"])
+
+
+def regime_cost_screen(frame, floor=None):
+    """Per ADX state, for BTC and for the coin: the cost result of that state's trades.
+
+    `frame` is one strategy's attributed trades with `open_date`, `profit_ratio`
+    and `leverage`. A regime specialist is judged on the trades of its own state,
+    so a strong state is not marked down by the weak ones around it. Each state
+    is evaluated twice: on the validation window, where a specialist claim rests
+    and which decides `cost_pass_regimes`, and on the whole window, published as
+    context in `cost_pass_regimes_all_windows`.
+    """
+    import pandas as pd
+    floor = COST["regime_min_trades"] if floor is None else floor
+    start = pd.Timestamp(COST["regime_validation_start"], tz="UTC")
+    windows = (("validation", frame[frame["open_date"] >= start]), ("all", frame))
+    by_regime = {}
+    passing = {"validation": [], "all": []}
+    for kind, column, episode_column in REGIME_KINDS:
+        cells = {state: {} for state in REGIME_STATES}
+        for window, source in windows:
+            matched = source[source[column].notna()]
+            for state in REGIME_STATES:
+                part = matched[matched[column] == state]
+                episodes = (part[["pair", episode_column]].drop_duplicates().shape[0]
+                            if kind == "coin" else part[episode_column].nunique())
+                cell = _regime_cell(part["profit_ratio"].to_numpy(float),
+                                    part["leverage"].to_numpy(float), episodes, floor)
+                cells[state][window] = cell
+                if cell["status"] == "PASS":
+                    passing[window].append("%s:%s" % (kind, state))
+        by_regime[kind] = cells
+    return {"by_regime": by_regime, "cost_pass_regimes": passing["validation"],
+            "cost_pass_regimes_all_windows": passing["all"],
+            "regime_basis": REGIME_BASIS,
+            "regime_window": "validation_from_%s" % COST["regime_validation_start"]}
+
+
+def qualifies_in(record, kind, state, window="validation"):
+    """Cost condition of the specialist designation for one claimed state."""
+    return ((record or {}).get("by_regime", {}).get(kind, {}).get(state, {})
+            .get(window, {}).get("status") == "PASS")
+
+
+def qualifies_universal(record, kind="coin", window="validation"):
+    """A universal specialist must hold in every one of the four states."""
+    return all(qualifies_in(record, kind, state, window) for state in REGIME_STATES)
+
+
+def regime_screens(blocks):
+    """Regime cost screens for a set of native blocks, keyed by strategy."""
+    import numpy as np
+    from regime import attribution
+    archives = [{"strategy_id": s, "trades": b.get("trades") or [], "model": "model0"}
+                for s, b in blocks.items() if b.get("trades")]
+    if not archives:
+        return {}
+    frame = attribution.attribute(archives)
+    leverage = {a["strategy_id"]: np.array([t.get("leverage") or 1.0 for t in a["trades"]],
+                                           dtype=float) for a in archives}
+    frame["leverage"] = [leverage[s][o] for s, o in
+                         zip(frame["strategy_id"], frame["trade_ordinal"])]
+    return {strategy: regime_cost_screen(part)
+            for strategy, part in frame.groupby("strategy_id", sort=False)}
+
+
 def measured_baselines(baseline):
     return {s: r for s, r in baseline.items()
             if isinstance(r, dict) and r.get("status") == "measured"
             and r.get("measurement_scope") == CANONICAL_SCOPE}
 
 
-def build(root=ROOT, detail_paths=None, with_coverage=True):
-    """Both stores, from the archives that are present. Returns (rob, cost, notes)."""
+def _chunks(items, size):
+    for start in range(0, len(items), size):
+        yield items[start:start + size]
+
+
+def build(root=ROOT, detail_paths=None, with_coverage=True, with_regime=True):
+    """Both stores, from the archives that are present. Returns (rob, cost, notes).
+
+    Baselines are read in chunks: only the strategies that have a detail run keep
+    their native block, the rest are priced and dropped, so memory does not grow
+    with the corpus.
+    """
     baseline = _load(os.path.join(root, "results", "regime",
                                   "full_backtest_manifest.json")).get("results", {})
     old_rob = _load(os.path.join(root, "evidence", "EXECUTION_ROBUSTNESS.json")).get("results", {})
     old_cost = _load(os.path.join(root, "evidence", "COST_SCREEN.json")).get("results", {})
     details = choose_detail_records(detail_paths)
     rob, cost, notes = {}, {}, collections.Counter()
-    blocks = {}
-    for strategy, record in sorted(measured_baselines(baseline).items()):
-        block = read_block(record.get("archive"), strategy, root)
-        if block is None:
-            notes["baseline_archive_unavailable"] += 1
-            if strategy in old_cost:
-                cost[strategy] = old_cost[strategy]
-            continue
-        cost[strategy] = cost_screen(block)
-        blocks[strategy] = block
+    blocks, timeframes = {}, {}
+    measured = measured_baselines(baseline)
+    for chunk in _chunks(sorted(measured), CHUNK):
+        loaded = {}
+        for strategy in chunk:
+            block = read_block(measured[strategy].get("archive"), strategy, root)
+            if block is None:
+                notes["baseline_archive_unavailable"] += 1
+                if strategy in old_cost:
+                    cost[strategy] = old_cost[strategy]
+                continue
+            cost[strategy] = cost_screen(block)
+            timeframes[strategy] = block.get("timeframe")
+            loaded[strategy] = block
+            if strategy in details:
+                blocks[strategy] = block
+        if with_regime and root == ROOT:
+            for strategy, screen in regime_screens(loaded).items():
+                cost[strategy].update(screen)
+        else:
+            # Without the regime pass the previous regime result is kept, not lost.
+            for strategy in loaded:
+                for key in ("by_regime", "cost_pass_regimes", "cost_pass_regimes_all_windows",
+                            "regime_basis", "regime_window"):
+                    if key in old_cost.get(strategy, {}):
+                        cost[strategy][key] = old_cost[strategy][key]
     coverage_cache = {}
     for strategy, record in sorted(details.items()):
         base_record = baseline.get(strategy) or {}
@@ -432,9 +570,9 @@ def build(root=ROOT, detail_paths=None, with_coverage=True):
         if det_block is not None and strategy in cost:
             cost[strategy]["detail"] = cost_screen(det_block)
     # At or below 5m there is no detail run to wait for: equal by owner rule.
-    for strategy, block in sorted(blocks.items()):
-        if strategy not in rob and detail_timeframe(block.get("timeframe")) is None:
-            rob[strategy] = rule_record(block.get("timeframe"))
+    for strategy, timeframe in sorted(timeframes.items()):
+        if strategy not in rob and detail_timeframe(timeframe) is None:
+            rob[strategy] = rule_record(timeframe)
     return rob, cost, notes
 
 
@@ -563,6 +701,67 @@ def selftest():
         levered = cost_screen({"timeframe": "1h", "starting_balance": 1000.0,
                                "trades": [_trade(1.0, leverage=3.0) for _ in range(100)]})
         assert abs(levered["stressed"]["0.0010"]["net_profit_abs"] - 40.0) < 1e-3, levered
+        # Regime cost screen. The case that motivates it: strong in BULL, losing
+        # in BEAR, unprofitable over the whole run. The whole-run screen says NA;
+        # the BULL state must still pass on its own trades.
+        import numpy as np
+        import pandas as pd
+
+        def frame(bull, bear, leverage=1.0, bull_n=30, bear_n=30, when="2025-03-01"):
+            rows = ([{"profit_ratio": bull, "btc_regime": "BULL", "coin_regime": "BULL"}] * bull_n
+                    + [{"profit_ratio": bear, "btc_regime": "BEAR", "coin_regime": "BEAR"}] * bear_n)
+            out = pd.DataFrame(rows)
+            out["open_date"] = pd.Timestamp(when, tz="UTC")
+            out["leverage"] = leverage
+            out["pair"] = "BTC/USDT"
+            out["btc_episode_id"] = np.arange(len(out)) % 6
+            out["coin_episode_id"] = np.arange(len(out)) % 6
+            return out
+
+        strong_weak = regime_cost_screen(frame(0.01, -0.02))
+        assert strong_weak["cost_pass_regimes"] == ["btc:BULL", "coin:BULL"], strong_weak
+        assert strong_weak["by_regime"]["btc"]["BEAR"]["validation"]["reasons"] == [
+            "state_not_profitable"]
+        assert strong_weak["by_regime"]["btc"]["SIDEWAYS"]["validation"]["reasons"] == [
+            "no_trades_in_state"]
+        whole_run = cost_screen({"timeframe": "1h", "starting_balance": 1000.0,
+                                 "trades": [_trade(1.0) for _ in range(30)]
+                                 + [_trade(-2.0) for _ in range(30)]})
+        assert whole_run["status"] == "NA", "whole run must be unprofitable here"
+        bull = strong_weak["by_regime"]["btc"]["BULL"]["validation"]
+        assert bull["status"] == "PASS" and bull["break_even_slippage_bps_per_side"] == 50.0, bull
+        # The trade floor, thin edge, and leverage all act inside the state.
+        assert regime_cost_screen(frame(0.01, -0.02, bull_n=9))["by_regime"]["btc"]["BULL"][
+            "validation"]["reasons"] == ["below_trade_floor"]
+        thin = regime_cost_screen(frame(0.001, -0.02))["by_regime"]["btc"]["BULL"]["validation"]
+        assert thin["status"] == "SENSITIVE", thin
+        levered = regime_cost_screen(frame(0.005, -0.02, leverage=3.0))[
+            "by_regime"]["btc"]["BULL"]["validation"]
+        assert levered["status"] == "SENSITIVE", levered
+        # A state strong only BEFORE the validation window passes on the whole window
+        # and not on the window the specialist claim rests on.
+        early = regime_cost_screen(frame(0.01, -0.02, when="2022-06-01"))
+        assert early["cost_pass_regimes"] == [], early["cost_pass_regimes"]
+        assert early["cost_pass_regimes_all_windows"] == ["btc:BULL", "coin:BULL"]
+        assert not qualifies_in(early, "btc", "BULL") and qualifies_in(early, "btc", "BULL", "all")
+        # The designation's cost condition is asked per claimed state.
+        record = dict(strong_weak)
+        assert qualifies_in(record, "btc", "BULL") and not qualifies_in(record, "btc", "BEAR")
+        assert not qualifies_universal(record) and not qualifies_in({}, "btc", "BULL")
+        every = regime_cost_screen(pd.concat(
+            [frame(0.01, 0.01).assign(btc_regime=state, coin_regime=state)
+             for state in REGIME_STATES]))
+        assert qualifies_universal(every, "coin") and qualifies_universal(every, "btc")
+        assert not qualifies_universal(early, "coin", "all")
+        assert qualifies_universal(every, "coin") and qualifies_universal(every, "btc")
+        # The floor is the specialist evaluation's, not a second opinion.
+        try:
+            from regime import specialist_evaluation
+            assert specialist_evaluation.MIN_TRADES == COST["regime_min_trades"]
+            assert str(specialist_evaluation.VALIDATION_START)[:10] == COST[
+                "regime_validation_start"], specialist_evaluation.VALIDATION_START
+        except ImportError:
+            pass
         # The parameter hash reacts to a threshold change.
         before = parameters_sha256()
         THRESHOLDS["profit_relative_change"] = 0.4
@@ -587,6 +786,8 @@ def main(argv=None):
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--no-coverage", action="store_true",
                         help="skip the detail-data coverage check")
+    parser.add_argument("--no-regime", action="store_true",
+                        help="skip the per-regime cost pass and keep the previous result")
     args = parser.parse_args(argv)
     if args.selftest:
         selftest()
@@ -597,7 +798,8 @@ def main(argv=None):
         if names:
             print(_cmd(args.targets, names))
         return 0
-    rob, cost, notes = build(with_coverage=not args.no_coverage)
+    rob, cost, notes = build(with_coverage=not args.no_coverage,
+                            with_regime=not args.no_regime)
     rob_doc, cost_doc = document(rob, ROBUSTNESS_STAGE), document(cost, COST_STAGE)
     if notes:
         print("notes:", dict(notes))

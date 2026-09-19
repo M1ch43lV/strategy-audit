@@ -1603,20 +1603,26 @@ section proposed a 1m batch; it is withdrawn.
 whatever is still owed to the 5m batch.
 
 **Decided 2026-09-19: the cost screen is a condition of the verified specialist
-designation.** `robustness_qualified` is now `execution_robustness_status == PASS`
-AND `cost_screen_status == PASS`; both components stay published beside it. A cost
-`NA` (baseline not profitable) is not a `PASS`. Two consequences for whoever owns
-the regime pipeline:
+designation, and it is judged per ADX regime state.** A specialist that is strong in
+some states must not be marked down by the states where it does not run well. The
+whole-run `cost_screen_status` is now descriptive and does not gate.
+`robustness_qualified` is `execution_robustness_status == PASS` AND cost `PASS` in at
+least one state on the validation window (from 2024-01-01); the states are listed in
+`cost_screen_regimes_pass`. That flag is necessary, not sufficient: the designation for
+a claimed state must consult that state, and a universal specialist all four. Two
+consequences for whoever owns the regime pipeline:
 
-- `regime/specialist_evaluation.py` does not consult `robustness_qualified` yet and
-  nothing is ranked, so nothing is mislabelled today. When a ranked output is
-  produced, the designation is "clears the specialist floor" AND
-  `robustness_qualified`, joined from `STRATEGY_STATUS.csv` as an annotation. It must
-  not change any ranking or floor; that protocol is frozen.
-- The screen is computed on the whole run. A regime specialist whose whole-run
-  baseline is negative cannot qualify through it. A screen scoped to the trades in
-  the specialist's own regime would fit better; it is not built and needs an owner
-  call before anyone builds it.
+- `regime/specialist_evaluation.py` does not consult any of this yet and nothing is
+  ranked, so nothing is mislabelled today. When a ranked output is produced, the
+  designation is "clears the specialist floor" AND the per-state cost qualification,
+  through `evidence.execution_robustness.qualifies_in(record, kind, state)` and
+  `qualifies_universal(record, kind)` on the records in `evidence/COST_SCREEN.json`
+  (`by_regime`). Attach it as an annotation. It must not change any ranking or floor;
+  that protocol is frozen.
+- The regime screen reuses `regime.attribution.attribute()` for the trade-to-state
+  assignment, the specialist evaluation's 10-trade floor and its fixed-stake basis.
+  A rebuild takes about two minutes, not one, because it attributes every baseline.
+  `--no-regime` skips that pass and keeps the previous regime result.
 
 **Undecided, owner's call.**
 

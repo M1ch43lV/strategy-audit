@@ -61,8 +61,9 @@ universal specialist; `SENSITIVE`, `NA`, `ERROR`, and `PENDING` remain
 visible but cannot receive that verified designation.
 
 *Revised on 2026-09-19: `robustness_qualified` additionally requires a cost-screen
-`PASS`. See "Qualification for the verified specialist designation" in the
-amendment at the end of this file.*
+`PASS` in the claimed ADX regime state. See "Cost screen per ADX regime state"
+and "Qualification for the verified specialist designation" in the amendment
+at the end of this file.*
 
 ## Follow-up stages
 
@@ -180,33 +181,61 @@ but not decisive: 43 of 102 strategies below that mean still pass the doubling
 stress. The calculation is first order. With `stake_amount: unlimited` a lower
 balance would shrink later stakes, which it leaves out.
 
+### Cost screen per ADX regime state
+
+Owner decision 2026-09-19, later the same day: a regime specialist that performs
+very well in some market phases must not be marked down by the cost picture of the
+phases where the strategy does not run well. The whole-run screen above is
+therefore descriptive only, and the cost condition is judged per ADX regime state.
+
+- **States.** The primary DMI/ADX model's four states, `BULL`, `BEAR`, `SIDEWAYS`
+  and `TRANSITION`, once for BTC (`btc`) and once for the traded coin (`coin`). A
+  trade belongs to the state on the day it opened, assigned by
+  `regime.attribution.attribute()` itself and not re-derived. Where the project's
+  own regime summary was current, 2343 of 2343 cell trade counts match it.
+- **Basis.** A fixed stake per trade, the specialist evaluation's own convention,
+  so a state late in the window is not inflated by a compounded balance. A trade's
+  cost is twice the slippage times its leverage, as a ratio of its margin. This
+  differs from the whole-run screen, which prices actual stakes.
+- **Trade floor.** 10 trades per state, the specialist evaluation's own floor;
+  `selftest()` asserts the two constants stay equal. Below it the state is `NA`.
+- **Window.** A specialist claim rests on the validation window from 2024-01-01
+  (`regime.specialist_evaluation.VALIDATION_START`, frozen 2026-09-11), so that
+  window decides. The whole window is published beside it as context
+  (`cost_pass_regimes_all_windows`). The two differ mostly for universal
+  specialists: 7 pass in all four coin states on the validation window, 128 on
+  the whole window, because many states have fewer than 10 validation trades.
+- **Status per state.** `PASS` when the state's mean per-trade profit stays
+  positive at the reference stress; `SENSITIVE` when it is positive but does not;
+  `NA` when the state is not profitable, has no trades, or is below the floor.
+
 ### Qualification for the verified specialist designation
 
-Owner decision 2026-09-19: the cost screen is a condition of the verified
-specialist designation. `robustness_qualified` is therefore the conjunction of two
-published results, and is true only when both hold:
+`robustness_qualified` is the condition for the verified specialist designation,
+and it has two parts:
 
 - `execution_robustness_status` is `PASS` (measured, or by the rule for strategies
   at or below 5m), **and**
-- `cost_screen_status` is `PASS`.
+- the cost screen passes **in the state where the specialist claim is made**.
 
-Each component stays published beside the conjunction (`execution_robustness_status`,
-`cost_screen_status`), so a strategy that is not qualified can be told apart by
-which condition it missed. `evidence/PIPELINE_STATE.json` carries the conjunction as
-`robustness_qualification`, with its two requirements listed.
+`robustness_qualified` in the status table is the strategy-level form: execution
+`PASS` and cost `PASS` in at least one state on the validation window, with those
+states listed in `cost_screen_regimes_pass`. It is necessary and not sufficient.
+The designation for one claimed state must consult that state
+(`qualifies_in(record, kind, state)`), and a universal specialist must pass in all
+four (`qualifies_universal(record, kind)`). Because a strategy with any positive
+state can reach the strategy-level flag, that flag discriminates weakly by itself;
+the per-state list is the information.
 
-A cost `NA` is not a `PASS`. It means the baseline was not profitable, so there is
-nothing for a cost to erode, and such a strategy cannot be qualified. Two limits of
-this follow from the screen being computed on the whole run:
+Each component stays published (`execution_robustness_status`,
+`cost_screen_regimes_pass`), and the whole-run `cost_screen_status` stays as a
+description that no longer gates. `evidence/PIPELINE_STATE.json` carries the
+conjunction as `robustness_qualification`.
 
-- A strategy whose edge lies inside one regime but whose whole-run baseline is
-  negative can never carry the designation through this screen. A screen scoped to
-  the trades inside the specialist's own regime would fit the designation better.
-  It is not built.
-- `regime/specialist_evaluation.py` does not consult `robustness_qualified` yet. No
-  ranked output exists, so nothing is mislabelled today. When one is produced, the
-  designation is "clears the specialist floor" AND `robustness_qualified`, joined
-  from `STRATEGY_STATUS.csv` as an annotation; it changes no ranking.
+`regime/specialist_evaluation.py` does not consult any of this yet. No ranked
+output exists, so nothing is mislabelled today. When one is produced, the
+designation is "clears the specialist floor" AND the per-state qualification,
+attached as an annotation that changes no ranking.
 
 ### Generated stores
 

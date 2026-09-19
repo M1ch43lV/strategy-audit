@@ -277,11 +277,15 @@ class EvidenceStore:
         robustness_status = robustness.get("status", "PENDING") if full_complete else "NA"
         # The cost screen needs no detail run, so it exists for every complete
         # Full-Backtest. Owner decision 2026-09-19: a cost PASS is a condition of
-        # `robustness_qualified`, which is the condition for the verified
-        # specialist designation. `NA` (baseline not profitable, so there is
-        # nothing to stress) is not a PASS.
+        # `robustness_qualified`, the condition for the verified specialist
+        # designation, and (same day, later) it is judged per ADX regime state,
+        # on the trades of that state only, so a specialist that is strong in one
+        # state is not marked down by the weak states around it. The whole-run
+        # `cost_screen_status` stays published as a description and no longer
+        # gates. `NA` is not a PASS.
         cost = self.cost_screen.get(strategy_id) or {}
         cost_status = cost.get("status", "PENDING") if full_complete else "NA"
+        regimes_pass = list(cost.get("cost_pass_regimes") or []) if full_complete else []
         gate_record = (fresh or tried or diagnostics.get("lookahead") or {})
 
         return {
@@ -307,11 +311,15 @@ class EvidenceStore:
             "full_backtest_status": full_backtest.get("status", ""),
             "technical_chain_complete": full_complete,
             "execution_robustness_status": robustness_status,
-            "robustness_qualified": robustness_status == "PASS" and cost_status == "PASS",
+            # Necessary, not sufficient: true when the execution stage passes and at
+            # least one ADX state passes the cost screen. The designation for a
+            # claimed state must consult that state in `cost_screen_regimes_pass`.
+            "robustness_qualified": robustness_status == "PASS" and bool(regimes_pass),
             # A PASS is either a measured 5m detail run or, at or below 5m,
             # the owner rule that counts the baseline as equal to one.
             "execution_robustness_basis": robustness.get("basis", "") if full_complete else "",
             "cost_screen_status": cost_status,
+            "cost_screen_regimes_pass": ";".join(regimes_pass),
             "cost_break_even_bps": cost.get("break_even_slippage_bps_per_side", ""),
             "full_backtest_store": (self._relative(self.paths["full_backtest"])
                                     if full_backtest else ""),
@@ -432,10 +440,16 @@ def _public_resolution(resolved):
         # Both components are published above and below; this is their conjunction.
         "robustness_qualification": {
             "qualified": resolved["robustness_qualified"],
-            "requires": ["execution_robustness:PASS", "cost_screen:PASS"],
+            "requires": ["execution_robustness:PASS",
+                         "cost_screen:PASS in the claimed ADX regime state"],
+            "note": "at the strategy level: PASS in at least one state",
         },
         "cost_screen": {
             "status": resolved["cost_screen_status"],
+            "scope_of_status": "whole run, descriptive; does not gate",
+            "regimes_pass": [x for x in resolved["cost_screen_regimes_pass"].split(";") if x],
+            "regimes_pass_window": "validation window from 2024-01-01, the specialist "
+                                   "evaluation's VALIDATION_START",
             "break_even_slippage_bps_per_side": resolved["cost_break_even_bps"],
             "producer_store": "evidence/COST_SCREEN.json",
         },
