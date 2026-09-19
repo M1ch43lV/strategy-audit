@@ -10,18 +10,19 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 |---|---:|---|
 | `repaired` | 157 | runs now, and the run is recorded |
 | `repair_attempted` | 23 | a route was applied and did not finish the job |
-| `to_be_fixed` | 22 | the route is known, the run has not happened yet |
+| `to_be_fixed` | 18 | the route is known, the run has not happened yet |
 | `needs_a_look` | 39 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 2 | the repair made things worse and was undone |
 | `refuse_repair` | 62 | repairing it would mean inventing the strategy |
 | `excluded_by_policy` | 42 |  |
 | `-` | 62 |  |
+| `excluded_after_repeated_timeout` | 4 |  |
 
 ## Routes taken
 
 ### Timeframe recovered from the author's own field
 
-`repair_family: timeframe_missing` &mdash; 52 strategies (repaired 45, to_be_fixed 7)
+`repair_family: timeframe_missing` &mdash; 48 strategies (repaired 45, to_be_fixed 3)
 
 **The message.**
 
@@ -38,6 +39,26 @@ Timeframe needs to be set in either configuration or as cli argument `--timefram
 Tool: `evidence/eligibility_timeframe_repair.py`.
 
 For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `Argrelextrema`, `BBRSI`, `BBRSIS`.
+
+### Closed: identical timeout after applied timeframe repair
+
+`repair_family: repeated_timeout_after_exhausted_repair` &mdash; 4 strategies (excluded_after_repeated_timeout 4)
+
+**The message.**
+
+```
+timeout after 1800 seconds
+```
+
+**What it actually was.** The author-evidenced timeframe override was applied, but the same native timeout recurred when that exact route was retried.
+
+**The repair.** No additional retry is scheduled. The hash-bound adjudicator records the exhausted route and its matching prior timeout.
+
+**Where it stops.** Only a repeated, identical timeout after an applied route closes the row. A first timeout, different error, or changed source stays open.
+
+Tool: `repair/adjudicate.py`.
+
+For example: `MASlopeStrategy`, `MAStopLossStrategy`, `MATrailingStopLossStrategy`, `StopLossStrategy`.
 
 ### Seven compatibility shims for freqtrade's own behaviour
 

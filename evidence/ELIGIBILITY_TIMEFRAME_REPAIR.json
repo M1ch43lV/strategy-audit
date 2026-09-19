@@ -929,6 +929,13 @@
       "elapsed_s": 1800.0,
       "invocation": "freqtrade backtesting --config user_data/profile_configs/MASlopeStrategy-806a5703-override-93c76024faa3.json --strategy MASlopeStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MASlopeStrategy-806a5703 --cache none",
       "mode": "spot",
+      "prior_attempts": [
+        {
+          "runtime_id": "native_unversioned",
+          "status": "timeout",
+          "why": "timeout after 1800 seconds"
+        }
+      ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
@@ -946,6 +953,13 @@
       "elapsed_s": 1800.0,
       "invocation": "freqtrade backtesting --config user_data/profile_configs/MAStopLossStrategy-38f87396-override-93c76024faa3.json --strategy MAStopLossStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MAStopLossStrategy-38f87396 --cache none",
       "mode": "spot",
+      "prior_attempts": [
+        {
+          "runtime_id": "native_unversioned",
+          "status": "timeout",
+          "why": "timeout after 1800 seconds"
+        }
+      ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
@@ -960,9 +974,16 @@
     "MATrailingStopLossStrategy": {
       "canonical_sha256": "sha256_e31a377ec655b9cf6daf7db9fd31b334c02f249eb50f7a7aa905920518a0d602",
       "class1_rules": [],
-      "elapsed_s": 1800.0,
+      "elapsed_s": 1800.1,
       "invocation": "freqtrade backtesting --config user_data/profile_configs/MATrailingStopLossStrategy-6f3792ee-override-93c76024faa3.json --strategy MATrailingStopLossStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MATrailingStopLossStrategy-6f3792ee --cache none",
       "mode": "spot",
+      "prior_attempts": [
+        {
+          "runtime_id": "native_unversioned",
+          "status": "timeout",
+          "why": "timeout after 1800 seconds"
+        }
+      ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",
@@ -1083,9 +1104,16 @@
     "StopLossStrategy": {
       "canonical_sha256": "sha256_83ecebd266d2162e9bbd88ac462a12dc023462e1f02aa6b0756e7307a8c59760",
       "class1_rules": [],
-      "elapsed_s": 1800.1,
+      "elapsed_s": 1800.0,
       "invocation": "freqtrade backtesting --config user_data/profile_configs/StopLossStrategy-6a8b552a-override-93c76024faa3.json --strategy StopLossStrategy --strategy-path repos/keithorange_FreqTradeCustomOrders --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/StopLossStrategy-6a8b552a --cache none",
       "mode": "spot",
+      "prior_attempts": [
+        {
+          "runtime_id": "native_unversioned",
+          "status": "timeout",
+          "why": "timeout after 1800 seconds"
+        }
+      ],
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "native_unversioned",

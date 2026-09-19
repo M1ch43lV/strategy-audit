@@ -4,7 +4,9 @@ This is deliberately narrower than a generic ``fix errors`` tool.  It records
 either a source-bound refusal (where running the row would require inventing
 code, data, a live service, or an unavailable platform) or an explicit owner
 scope decision. The latter is intentionally *not* a claim that a strategy is
-intrinsically unrepairable. A timeout is never an exclusion.
+intrinsically unrepairable. A first timeout is never an exclusion. A repeated,
+identical timeout may be excluded only after the documented repair route was
+actually applied and exhausted.
 
 The output is consumed by ``evidence.strategy_status``.  Each decision carries
 the canonical file digest, so a later harvest or source correction makes it
@@ -24,6 +26,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TRIAGE = ROOT / "evidence" / "BLOCKED_TRIAGE.json"
 PROFILES = ROOT / "evidence" / "EXECUTION_PROFILES.csv"
 OUTPUT = ROOT / "evidence" / "REPAIR_ADJUDICATION.json"
+TIMEFRAME_REPAIR = ROOT / "evidence" / "ELIGIBILITY_TIMEFRAME_REPAIR.json"
 
 
 def _ids(*names: str) -> frozenset[str]:
@@ -94,7 +97,51 @@ def _digest(relative: str) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def derive(triage: dict) -> dict:
+def _repeated_timeout_decisions(records: dict, profiles: dict[str, dict]) -> dict:
+    """Derive exclusions only for identical retries after an applied repair."""
+    decisions = {}
+    for strategy, record in records.items():
+        prior = record.get("prior_attempts") or []
+        why = record.get("why")
+        identical_prior = [attempt for attempt in prior
+                           if attempt.get("status") == "timeout"
+                           and attempt.get("why") == why
+                           and attempt.get("runtime_id") == record.get("runtime_id")]
+        route_applied = ("-override-" in record.get("invocation", "")
+                         and bool(record.get("timeframe"))
+                         and bool(record.get("timeframe_evidence")))
+        # A lone timeout, an altered timeout, or a route that did not actually
+        # apply an author-evidenced override remains eligible for repair.
+        if record.get("status") != "timeout" or not why \
+                or not identical_prior or not route_applied:
+            continue
+        source_file = profiles.get(strategy, {}).get("canonical_file", "")
+        if not source_file:
+            continue
+        try:
+            digest = _digest(source_file)
+        except OSError:
+            continue
+        decisions[strategy] = {
+            "strategy_id": strategy,
+            "decision": "exclude_after_repeated_timeout",
+            "family": "repeated_timeout_after_exhausted_repair",
+            "reason": ("The author-evidenced timeframe override was applied and the same "
+                       "native timeout recurred on retry; the repair route is exhausted."),
+            "source_file": source_file,
+            "source_sha256": digest,
+            "evidence": "ELIGIBILITY_TIMEFRAME_REPAIR.json",
+            "repair_route": "timeframe_recovered_from_author_declaration",
+            "timeframe": record["timeframe"],
+            "timerange": record.get("timerange", ""),
+            "runtime_id": record.get("runtime_id", ""),
+            "timeout_reason": why,
+            "identical_prior_timeouts": len(identical_prior),
+        }
+    return decisions
+
+
+def derive(triage: dict, timeframe_repair: dict | None = None) -> dict:
     """Build hash-bound owner-scope decisions without writing evidence."""
     records = triage.get("results", {})
     with io.open(PROFILES, newline="", encoding="utf-8-sig") as handle:
@@ -125,12 +172,21 @@ def derive(triage: dict) -> dict:
             "source_sha256": digest,
             "evidence": "repair.adjudicate hash-bound owner scope decision",
         }
-    return {"schema_version": 2, "decisions": decisions, "candidates": {},
-            "keep_open": sorted(KEEP_OPEN)}
+    timeout_records = (timeframe_repair or {}).get("results", {})
+    timeout_decisions = _repeated_timeout_decisions(timeout_records, profiles)
+    decisions.update(timeout_decisions)
+    return {"schema_version": 3, "decisions": decisions, "candidates": {},
+            "keep_open": sorted(KEEP_OPEN - set(timeout_decisions)),
+            "repeated_timeout_exclusions": sorted(timeout_decisions)}
 
 
 def _load_triage() -> dict:
     with io.open(TRIAGE, encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+def _load_timeframe_repair() -> dict:
+    with io.open(TIMEFRAME_REPAIR, encoding="utf-8") as handle:
         return json.load(handle)
 
 
@@ -147,16 +203,21 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--apply", action="store_true", help="write the source-bound decision store")
     parser.add_argument("--selftest", action="store_true", help="validate policy shape without writing")
     args = parser.parse_args(argv)
-    data = derive(_load_triage())
-    assert set(data["decisions"]) == POLICY_EXCLUSIONS
-    assert not (set(data["decisions"]) & KEEP_OPEN)
+    data = derive(_load_triage(), _load_timeframe_repair())
+    assert POLICY_EXCLUSIONS <= set(data["decisions"])
+    assert not (set(POLICY_EXCLUSIONS) & KEEP_OPEN)
     assert all(record["decision"] == "exclude_by_user_policy"
-               for record in data["decisions"].values())
+               for strategy, record in data["decisions"].items()
+               if strategy in POLICY_EXCLUSIONS)
+    timeout_ids = set(data["repeated_timeout_exclusions"])
+    assert not (timeout_ids & set(data["keep_open"]))
+    assert all(data["decisions"][strategy]["decision"] ==
+               "exclude_after_repeated_timeout" for strategy in timeout_ids)
     assert all(len(record["source_sha256"]) == 64 for record in data["decisions"].values())
     if args.selftest:
-        print("repair adjudication selftest: PASS (%d owner-scope exclusions, %d retained repair routes)" % (len(data["decisions"]), len(data["keep_open"])))
+        print("repair adjudication selftest: PASS (%d owner-scope exclusions, %d repeated-timeout exclusions, %d retained repair routes)" % (len(POLICY_EXCLUSIONS), len(timeout_ids), len(data["keep_open"])))
         return 0
-    print("Repair adjudication plan: %d owner-scope exclusions; %d retained repair routes." % (len(data["decisions"]), len(data["keep_open"])))
+    print("Repair adjudication plan: %d owner-scope exclusions; %d repeated-timeout exclusions; %d retained repair routes." % (len(POLICY_EXCLUSIONS), len(timeout_ids), len(data["keep_open"])))
     if args.apply:
         write(data)
         print("wrote %s" % OUTPUT.relative_to(ROOT))

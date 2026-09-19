@@ -26,8 +26,8 @@
       "evidence": "repair.adjudicate hash-bound owner scope decision",
       "family": "user_policy_excluded_after_triage",
       "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
-      "source_file": "repos/PeetCrypto_freqtrade-stuff/BB_RPB_TSL.py",
-      "source_sha256": "b9672cc3e328910a94049ac331c5c475c125bda6c80d84228e854ce399c60adf",
+      "source_file": "user_data/profile_repairs/BB_RPB_TSL_Trailing.py",
+      "source_sha256": "bbbaddae0763db53846ec503389bbb133623061bc86cfcfbade5a58840420220",
       "strategy_id": "BB_RPB_TSL_Trailing",
       "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
     },
@@ -130,6 +130,51 @@
       "source_sha256": "14f23798e722c42e4bf5d9f59c972e5be4bc1b020445d1885cdfd74acc9b3fd1",
       "strategy_id": "LitmusVulcanStrategy",
       "triage_context": "missing_author_dependency: Imports the unshipped cointanalysis runtime. Its model/data contract is not present in the captured repository, so installing or recreating it would not reproduce the author environment."
+    },
+    "MASlopeStrategy": {
+      "decision": "exclude_after_repeated_timeout",
+      "evidence": "ELIGIBILITY_TIMEFRAME_REPAIR.json",
+      "family": "repeated_timeout_after_exhausted_repair",
+      "identical_prior_timeouts": 1,
+      "reason": "The author-evidenced timeframe override was applied and the same native timeout recurred on retry; the repair route is exhausted.",
+      "repair_route": "timeframe_recovered_from_author_declaration",
+      "runtime_id": "native_unversioned",
+      "source_file": "repos/keithorange_FreqTradeCustomOrders/ma_slope_strategy.py",
+      "source_sha256": "02e401ccf5fc59c363a9854d9c55e9fd603f254aff17cc7d0975edb0f4946c30",
+      "strategy_id": "MASlopeStrategy",
+      "timeframe": "1m",
+      "timeout_reason": "timeout after 1800 seconds",
+      "timerange": "20200301-20200401"
+    },
+    "MAStopLossStrategy": {
+      "decision": "exclude_after_repeated_timeout",
+      "evidence": "ELIGIBILITY_TIMEFRAME_REPAIR.json",
+      "family": "repeated_timeout_after_exhausted_repair",
+      "identical_prior_timeouts": 1,
+      "reason": "The author-evidenced timeframe override was applied and the same native timeout recurred on retry; the repair route is exhausted.",
+      "repair_route": "timeframe_recovered_from_author_declaration",
+      "runtime_id": "native_unversioned",
+      "source_file": "repos/keithorange_FreqTradeCustomOrders/ma_stop_loss_strategy.py",
+      "source_sha256": "1c86421dacfa09ec74e9fee499e8c37fa4b2948b6d9da16cffbe4a3c1918d766",
+      "strategy_id": "MAStopLossStrategy",
+      "timeframe": "1m",
+      "timeout_reason": "timeout after 1800 seconds",
+      "timerange": "20200301-20200401"
+    },
+    "MATrailingStopLossStrategy": {
+      "decision": "exclude_after_repeated_timeout",
+      "evidence": "ELIGIBILITY_TIMEFRAME_REPAIR.json",
+      "family": "repeated_timeout_after_exhausted_repair",
+      "identical_prior_timeouts": 1,
+      "reason": "The author-evidenced timeframe override was applied and the same native timeout recurred on retry; the repair route is exhausted.",
+      "repair_route": "timeframe_recovered_from_author_declaration",
+      "runtime_id": "native_unversioned",
+      "source_file": "repos/keithorange_FreqTradeCustomOrders/ma_trailing_stop_strategy.py",
+      "source_sha256": "e31a377ec655b9cf6daf7db9fd31b334c02f249eb50f7a7aa905920518a0d602",
+      "strategy_id": "MATrailingStopLossStrategy",
+      "timeframe": "1m",
+      "timeout_reason": "timeout after 1800 seconds",
+      "timerange": "20200301-20200401"
     },
     "MoniGoManiHyperStrategy": {
       "decision": "exclude_by_user_policy",
@@ -331,6 +376,21 @@
       "strategy_id": "OBOnlyWSv2bband",
       "triage_context": "external_live_data_not_canonical: Depends on the BinanceStream websocket/order-book base class. A historical candle backtest cannot reproduce the required live stream without author-supplied recorded data."
     },
+    "StopLossStrategy": {
+      "decision": "exclude_after_repeated_timeout",
+      "evidence": "ELIGIBILITY_TIMEFRAME_REPAIR.json",
+      "family": "repeated_timeout_after_exhausted_repair",
+      "identical_prior_timeouts": 1,
+      "reason": "The author-evidenced timeframe override was applied and the same native timeout recurred on retry; the repair route is exhausted.",
+      "repair_route": "timeframe_recovered_from_author_declaration",
+      "runtime_id": "native_unversioned",
+      "source_file": "repos/keithorange_FreqTradeCustomOrders/stop_loss_strategy.py",
+      "source_sha256": "83ecebd266d2162e9bbd88ac462a12dc023462e1f02aa6b0756e7307a8c59760",
+      "strategy_id": "StopLossStrategy",
+      "timeframe": "1m",
+      "timeout_reason": "timeout after 1800 seconds",
+      "timerange": "20200301-20200401"
+    },
     "SuperBuy": {
       "decision": "exclude_by_user_policy",
       "evidence": "repair.adjudicate hash-bound owner scope decision",
@@ -423,9 +483,6 @@
     }
   },
   "keep_open": [
-    "MASlopeStrategy",
-    "MAStopLossStrategy",
-    "MATrailingStopLossStrategy",
     "Solipsis3_BTC",
     "Solipsis3_ETH",
     "Solipsis4_BTC",
@@ -439,11 +496,16 @@
     "SolipsisMM_ETH",
     "Solipsis_BTC",
     "Solipsis_ETH",
-    "StopLossStrategy",
     "TPActivatingTSLwithInitialTSLStrategy",
     "TPActivatingTSLwithSLStrategy",
     "TrailingStopLossStrategy",
     "ViNBuyVws"
   ],
-  "schema_version": 2
+  "repeated_timeout_exclusions": [
+    "MASlopeStrategy",
+    "MAStopLossStrategy",
+    "MATrailingStopLossStrategy",
+    "StopLossStrategy"
+  ],
+  "schema_version": 3
 }

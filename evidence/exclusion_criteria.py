@@ -110,6 +110,10 @@ def _user_policy_excluded_after_triage(row):
     return row["primary_reason"] == "user_policy_excluded_after_triage"
 
 
+def _repeated_timeout_after_exhausted_repair(row):
+    return row["primary_reason"] == "repeated_timeout_after_exhausted_repair"
+
+
 CRITERIA = [
     {
         "id": "C1",
@@ -510,6 +514,25 @@ CRITERIA = [
         # a scope closure; its absence is not a stale technical criterion.
         "optional_until_published": True,
     },
+    {
+        "id": "C13",
+        "name": "Repeated identical timeout after an exhausted repair route",
+        "test": _repeated_timeout_after_exhausted_repair,
+        "columns": 'primary_reason == "repeated_timeout_after_exhausted_repair"',
+        "what": "An author-evidenced compatibility repair was applied, then the "
+                "same native timeout recurred on a documented retry of that route.",
+        "why_final": "A first timeout is inconclusive and remains open. This "
+                     "criterion is reached only after the repair path has been "
+                     "used and failed identically again, so queuing the same work "
+                     "would consume resources without adding evidence.",
+        "evidence": "`evidence/ELIGIBILITY_TIMEFRAME_REPAIR.json` retains the "
+                    "current invocation, author-evidenced timeframe override, and "
+                    "the identical prior timeout. `REPAIR_ADJUDICATION.json` binds "
+                    "the resulting decision to the source SHA-256.",
+        "watch": "A changed timeout reason, runtime, or repair route does not "
+                 "qualify. Nor does any first timeout. A changed source invalidates "
+                 "the hash-bound decision and reopens the row automatically.",
+    },
 ]
 
 
@@ -849,6 +872,18 @@ REPAIRS = [
                  "strategy rather than restoring it, and those rows are "
                  "refused as `timeframe_not_recoverable`.",
         "tool": "evidence/eligibility_timeframe_repair.py",
+    },
+    {
+        "family": "repeated_timeout_after_exhausted_repair",
+        "name": "Closed: identical timeout after applied timeframe repair",
+        "error": "timeout after 1800 seconds",
+        "cause": "The author-evidenced timeframe override was applied, but the "
+                 "same native timeout recurred when that exact route was retried.",
+        "fix": "No additional retry is scheduled. The hash-bound adjudicator "
+               "records the exhausted route and its matching prior timeout.",
+        "limit": "Only a repeated, identical timeout after an applied route closes "
+                 "the row. A first timeout, different error, or changed source stays open.",
+        "tool": "repair/adjudicate.py",
     },
     {
         "family": "framework_compat_shim",

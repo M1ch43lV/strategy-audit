@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1355 rows
 
-**Generated 2026-09-19 10:09:17 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-19 10:15:25 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -56,8 +56,8 @@ have neither and are left empty rather than given an invented time.
 | Cohort | Strategies |
 |---|---:|
 | `E1_expanded` | 686 |
-| `excluded` | 537 |
-| `pending` | 64 |
+| `excluded` | 541 |
+| `pending` | 60 |
 | `too_few_trades` | 34 |
 | `not_a_strategy` | 23 |
 | `exclusion_unconfirmed` | 8 |
@@ -5143,7 +5143,7 @@ an identical trade list.
 | `Schism5` | `spot_long` | 288 candles | 0.0% on `rmi-slow` | 2026-09-10 09:56:14 | `user_data/convergence_logs/Schism5-ladder.log` |
 | `abbas` | `spot_long` | 2016 candles | 0.0% on `ma_buy_17` | 2026-09-06 18:34:59 | `user_data/convergence_logs/abbas-66cc6f6a-ladder.log` |
 
-## Pending - 64 strategies
+## Pending - 60 strategies
 
 No hard failure and no verdict. Evidence is missing, which is
 neither a pass nor a fail.
@@ -5152,15 +5152,14 @@ neither a pass nor a fail.
 `Danke`, `DevilStra`, `ExponentialGradientPortfolio`, `FisherBBDynamic`
 `FreqAIHybridStrategy`, `GRIDDMIPRICEStrategyFutureV3`, `GRIDDMIPRICEStrategyFutureV4`, `GRIDDMIPRICEStrategyFutureV5`
 `Guacamole`, `HarmonicDivergence`, `HarmonicDivergence_fix`, `HurstCycleV5`
-`Kamaflage`, `LongShortRangeTradingMachetesV1`, `MASlopeStrategy`, `MAStopLossStrategy`
-`MATrailingStopLossStrategy`, `MartyEMA`, `Matrix`, `MultiMA_TSL5`
-`NASOSv5HO`, `NASOSv5PD`, `NASOSv5SL`, `NASOSv5_antipump`
-`NNTC_fbb_AdditiveAttention`, `NewsHeliusBitqueryML`, `ONS_Portfolio`, `Obelisk_3EMA_StochRSI_ATR`
-`Proton`, `RebalanceStrategySpot`, `Solipsis`, `Solipsis3_BTC`
-`Solipsis3_ETH`, `Solipsis4_BTC`, `Solipsis4_ETH`, `Solipsis5_BTC`
-`Solipsis5_ETH`, `Solipsis6_BTC`, `Solipsis6_ETH`, `SolipsisCon_BTC`
-`SolipsisMM_BTC`, `SolipsisMM_ETH`, `Solipsis_BTC`, `Solipsis_ETH`
-`Solipsis_USD`, `Solipsis_v4`, `StopLossStrategy`, `TPActivatingTSLwithInitialTSLStrategy`
+`Kamaflage`, `LongShortRangeTradingMachetesV1`, `MartyEMA`, `Matrix`
+`MultiMA_TSL5`, `NASOSv5HO`, `NASOSv5PD`, `NASOSv5SL`
+`NASOSv5_antipump`, `NNTC_fbb_AdditiveAttention`, `NewsHeliusBitqueryML`, `ONS_Portfolio`
+`Obelisk_3EMA_StochRSI_ATR`, `Proton`, `RebalanceStrategySpot`, `Solipsis`
+`Solipsis3_BTC`, `Solipsis3_ETH`, `Solipsis4_BTC`, `Solipsis4_ETH`
+`Solipsis5_BTC`, `Solipsis5_ETH`, `Solipsis6_BTC`, `Solipsis6_ETH`
+`SolipsisCon_BTC`, `SolipsisMM_BTC`, `SolipsisMM_ETH`, `Solipsis_BTC`
+`Solipsis_ETH`, `Solipsis_USD`, `Solipsis_v4`, `TPActivatingTSLwithInitialTSLStrategy`
 `TPActivatingTSLwithSLStrategy`, `TrailingStopLossStrategy`, `UltraSmartStrategy`, `UziChanTB2`
 `ViNBuyPct`, `ViNBuyPctLc2`, `ViNBuyVws`, `degen`
 `el_extrema_RL`, `epretrace`, `haGradient`, `tbedit`
@@ -5185,7 +5184,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 537 strategies, by decisive reason
+## Not passing - 541 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -5233,7 +5232,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 495 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 499 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -5252,6 +5251,7 @@ one of them carries none.
 | `shared_runtime_change_declined` | the fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04 | 10 |
 | `duplicate_implementation` | duplicates the executable code of a retained representative - either confirmed further by an identical canonical full-backtest trade set, or, since 2026-09-16, by code identity alone once no config overlay and no measured disagreement stand against it (see evidence_rule in SEMANTIC_DUPLICATE_ADJUDICATION.json for which applied to a given row) | 88 |
 | `recursive_check_incomplete_at_longest_rungs` | - | 13 |
+| `repeated_timeout_after_exhausted_repair` | - | 4 |
 | `user_policy_excluded_after_triage` | - | 42 |
 
 
@@ -5270,6 +5270,7 @@ one of them carries none.
 | `shared_runtime_change_declined` | 3 | 0 | 0 | 6 | 0 | 0 | 1 |
 | `duplicate_implementation` | 85 | 1 | 0 | 0 | 0 | 0 | 2 |
 | `recursive_check_incomplete_at_longest_rungs` | 13 | 0 | 0 | 0 | 0 | 0 | 0 |
+| `repeated_timeout_after_exhausted_repair` | 4 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `user_policy_excluded_after_triage` | 41 | 0 | 0 | 1 | 0 | 0 | 0 |
 
 ### `lookahead_found` - 156
@@ -5554,6 +5555,12 @@ Wave `-` - 13:
 `NNTC`, `TRIX_LS`, `avellaneda`, `delist_shorter_strategy`
 `kijun_cross_strong_s`
 
+### `repeated_timeout_after_exhausted_repair` - 4
+
+Wave `-` - 4:
+
+`MASlopeStrategy`, `MAStopLossStrategy`, `MATrailingStopLossStrategy`, `StopLossStrategy`
+
 ### `user_policy_excluded_after_triage` - 42
 
 Wave `-` - 41:
@@ -5590,9 +5597,9 @@ Wave `C_measurement_recovery` - 1:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 49 |
+| `recursive_ladder_pending` | 45 |
 | `lookahead_remeasure_pending` | 32 |
-| `to_be_fixed` | 21 |
+| `to_be_fixed` | 17 |
 | `needs_a_look` | 10 |
 | `repair_attempted` | 3 |
 | `convergence_inconclusive` | 1 |

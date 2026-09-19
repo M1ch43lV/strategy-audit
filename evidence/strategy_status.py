@@ -504,7 +504,8 @@ def _adjudicated_decisions():
         import hashlib
         actual = hashlib.sha256(io.open(path, "rb").read()).hexdigest()
         if actual == expected and record.get("decision") in (
-                "refuse_repair", "exclude_by_user_policy"):
+                "refuse_repair", "exclude_by_user_policy",
+                "exclude_after_repeated_timeout"):
             out[strategy] = record
     return out
 
@@ -1303,9 +1304,11 @@ def rows():
                 repair["family"] = refusal_family
         if strategy in adjudicated:
             decision = adjudicated[strategy]
-            repair["verdict"] = ("excluded_by_policy"
-                                 if decision["decision"] == "exclude_by_user_policy"
-                                 else "refuse_repair")
+            repair["verdict"] = (
+                "excluded_by_policy" if decision["decision"] == "exclude_by_user_policy"
+                else "excluded_after_repeated_timeout"
+                if decision["decision"] == "exclude_after_repeated_timeout"
+                else "refuse_repair")
             repair["family"] = decision["family"]
             repair["note"] = decision["reason"]
         if strategy in withdrawn:
@@ -1332,6 +1335,14 @@ def rows():
             cohort = "excluded"
             reason = "user_policy_excluded_after_triage"
             basis = "user_direction"
+            open_work = []
+        # This is deliberately narrower than a normal timeout: the same
+        # timeout must already have recurred after an applied repair route.
+        if cohort == "pending" and repair.get("verdict") == "excluded_after_repeated_timeout" \
+                and repair.get("family") == "repeated_timeout_after_exhausted_repair":
+            cohort = "excluded"
+            reason = "repeated_timeout_after_exhausted_repair"
+            basis = "own_measurement"
             open_work = []
         # C4, reached from the gate rather than a trial-run failure: see
         # `invalid_gate_config` above. The row measures and trades fine, so
