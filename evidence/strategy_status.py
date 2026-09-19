@@ -148,6 +148,7 @@ FIELDS = [
     "test_duration_evidence", "lookahead", "lookahead_evidence",
     "recursive", "recursive_evidence", "coverage_status", "coverage_evidence",
     "full_backtest_status", "technical_chain_complete", "execution_robustness_status", "robustness_qualified",
+    "cost_screen_status", "cost_break_even_bps",
     "traps_n", "artifact_role",
     "baseline_status", "primary_reason", "exclusion_basis",
     "repair_family", "repair_verdict", "repair_settings", "required_image",
@@ -1564,6 +1565,8 @@ def rows():
             "technical_chain_complete": "true" if full_backtest_complete else "false",
             "execution_robustness_status": resolved["execution_robustness_status"],
             "robustness_qualified": "true" if resolved["robustness_qualified"] else "false",
+            "cost_screen_status": resolved["cost_screen_status"],
+            "cost_break_even_bps": resolved["cost_break_even_bps"],
             "traps_n": base.get("traps_n", ""),
             "artifact_role": profile.get("artifact_role", ""),
             "baseline_status": base.get("eligibility_status", ""),
@@ -2475,7 +2478,8 @@ def selftest():
         # An exclusion this audit has not confirmed is a verdict it has not
         # earned. Nothing may sit in `excluded` on borrowed or absent evidence.
         if row["cohort"] == "excluded":
-            assert row["exclusion_basis"] in ("own_measurement", "blocked"), \
+            assert row["exclusion_basis"] in ("own_measurement", "blocked",
+                                              "user_direction"), \
                 (row["strategy_id"], row["exclusion_basis"])
             assert not row["open_work"], \
                 "an excluded strategy must not remain in the work queue: %s" % \

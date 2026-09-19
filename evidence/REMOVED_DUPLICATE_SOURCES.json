@@ -281,6 +281,8 @@
       ],
       "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/BBRSITV.py",
+      "recovered_at": "2026-09-19",
+      "recovered_note": "Status re-checked 2026-09-19: this strategy is in no group of the current SEMANTIC_DUPLICATES.json and has no entry in SEMANTIC_DUPLICATE_ADJUDICATION.json, it was measured and adjudicated admitted_E1 in ELIGIBILITY_EXPANSION_ADJUDICATION.csv, and STRATEGY_STATUS.csv lists it as E1_expanded. The removal recorded above therefore no longer describes its status. The reason it left its duplicate group was not investigated. The historical fields are left as they were.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "retained_reason": "source file also defines live kept strategy class(es) BBRSITV and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "BBRSITV4"
@@ -294,6 +296,8 @@
       ],
       "note": "file confirmed removed via EXECUTION_PROFILES.csv diff against the pre-removal commit; the specific duplicate-group attribution was not persisted before the live SEMANTIC_DUPLICATE_ADJUDICATION.json was regenerated post-removal and could not be recovered for this row - the removal itself is not in doubt, only which representative and evidence tier it matched at the time",
       "original_file": "repos/PeetCrypto_freqtrade-stuff/BBRSITV.py",
+      "recovered_at": "2026-09-19",
+      "recovered_note": "Status re-checked 2026-09-19: this strategy is in no group of the current SEMANTIC_DUPLICATES.json and has no entry in SEMANTIC_DUPLICATE_ADJUDICATION.json, it was measured and adjudicated admitted_E1 in ELIGIBILITY_EXPANSION_ADJUDICATION.csv, and STRATEGY_STATUS.csv lists it as E1_expanded. The removal recorded above therefore no longer describes its status. The reason it left its duplicate group was not investigated. The historical fields are left as they were.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "retained_reason": "source file also defines live kept strategy class(es) BBRSITV and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "BBRSITV5"

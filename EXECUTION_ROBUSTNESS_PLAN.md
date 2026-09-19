@@ -11,6 +11,9 @@ The stage is applied to every identity-current strategy with a measured
 canonical pooled Full-Backtest and a declared main timeframe greater than 5m.
 Selection is independent of performance, rank, or profitability.
 
+*Superseded in part on 2026-09-19: strategies at 5m and 3m are included, with 1m
+detail. See "Amendment 2026-09-19" at the end of this file.*
+
 ## Intracandle-detail check
 
 For each eligible strategy, rerun the canonical pooled Full-Backtest with the
@@ -69,3 +72,117 @@ The detail data must be present before a run is admitted. A missing data set is
 recorded as `NA`, not repaired by changing the strategy or timerange. Evidence
 publication, pipeline-state refresh, metadata recording, commit, and push
 occur after every completed batch.
+
+## Amendment 2026-09-19: classifier, 1m detail for 5m and finer, cost screen
+
+Owner decisions of this date, and the definitions the first implementation
+(`evidence/execution_robustness.py`) applies. Nothing above is withdrawn; where
+this amendment is more specific it governs.
+
+### Scope: 5m and 3m strategies are included
+
+The stage covers every identity-current strategy with a measured canonical
+pooled Full-Backtest, whatever its timeframe. The detail timeframe follows the
+main timeframe:
+
+| main timeframe | detail timeframe |
+| --- | --- |
+| above 5m | 5m |
+| 5m, 3m | 1m |
+| 1m | none - `NA`, `no_finer_timeframe_than_1m` |
+
+A 5m candle spans several trailing-stop distances as easily as a 1h candle does,
+and 398 of the 632 identity-current measured baselines are 5m. The data precondition of the
+original scope note is met: spot 1m holds about 4.4 million candles per pair,
+with the same roughly 27 exchange gaps as 5m, and XMR ends on 2024-02-20 in
+every timeframe. 1m detail is materially heavier than 5m detail. A resource
+failure (exit -9, timeout) is recorded as `ERROR`, never as a strategy verdict,
+and the 1m batch runs serially after the 5m batch, not beside it.
+
+### What `SENSITIVE` means
+
+The plan's third trigger ("an exit/duration profile indicating intra-candle
+sensitivity") had no measurable form. It is replaced. A run is `SENSITIVE` when
+any of these holds, comparing the detail run with its baseline:
+
+1. **`profit_sign_flip`** - net profit changes sign. Covers the plan's "becomes
+   unprofitable" and its mirror image.
+2. **`profit_change_over_50pct`** - net profit changes by more than 50 percent of
+   the baseline's magnitude, in either direction. The plan's clause only looked
+   at losses; on the first 42 runs `TrendBreakout` went from -52.8 % to +75.6 %
+   and `AdaptiveRegime` from -11.7 % to +27.6 %, which is large execution
+   sensitivity that a losses-only rule reads as `PASS`. The freqtrade baseline is
+   pessimistic where a stoploss and a take-profit both fit inside one candle.
+3. **`trade_count_change_over_10pct`** - the trade set changes by more than 10
+   percent. The regime attribution is built on the baseline trades; a materially
+   different trade set means it no longer describes the more realistic run.
+
+The distance between the two exit-reason mixes is reported but is not a trigger:
+on the first 42 runs its median was 0.002 and its maximum 0.063, including runs
+that flipped sign, so a threshold on it could never fire.
+
+These thresholds are hashed into every record (`thresholds_sha256`). They were
+fixed while 42 of the 230 five-minute-detail runs existed and before the rest
+did; that is disclosed here rather than presented as predeclared in the strict
+sense. `SENSITIVE` remains a review classification, not an exclusion.
+
+### Validity of a comparison
+
+A record is only produced when all of the following hold, otherwise it is `NA`
+or `ERROR` with the reason named:
+
+- the native result echoes `timeframe_detail` equal to the one requested
+  (`ERROR: detail_flag_not_applied_in_native_result`) and the baseline does not
+  (`ERROR: baseline_is_itself_a_detail_run`);
+- `canonical_sha256`, `runtime_config_sha256`, `run_profile`, `timerange` and the
+  pair list are identical between baseline and detail run (`NA:
+  identity_mismatch:...`);
+- detail candles cover at least 99 percent of what the main timeframe's own data
+  for the same pair and window implies. freqtrade silently falls back to the
+  coarse candle where detail data is missing, so a run over partial data would
+  still "measure" (`NA: detail_data_incomplete`).
+
+### Runtime attribution and anomalies
+
+The record states whether baseline and detail ran in the same runtime. A
+`SENSITIVE` result across runtimes carries `control_run_needed`: the baseline of
+24 of the first 30 strategies came from `native_unversioned`, the detail runs
+from Docker, so the difference is not yet attributable to the detail candles.
+Strategies without intra-candle logic reproduce exactly across the two runtimes
+(`AlligatorStrategy` 590.5 % in both), which bounds the effect without removing
+it. No control run is scheduled by this amendment.
+
+The classifier also reports, without changing any status, findings about the
+runs themselves. The first is trades that close before they open: 0 in the
+baselines, 15 trades across 7 strategies in the detail runs, so an artifact of
+`--timeframe-detail` rather than of any strategy.
+
+### Cost screen
+
+Separate from the detail check and needing no new backtest. The canonical
+baseline trades are re-priced with additional slippage per side, on the notional
+(`stake_amount` times leverage), on top of the 0.1 % fee the run already charges.
+The reference stress doubles the modelled friction: 0.1 % extra per side, 0.2 %
+per round trip. The grid is 0.05 %, 0.1 % and 0.2 % per side.
+
+- `PASS` - net profit stays positive at the reference stress.
+- `SENSITIVE` - baseline profitable, not profitable at the reference stress.
+- `NA` - baseline not profitable, or no trades. A cost can only worsen it.
+
+Each record carries the break-even slippage per side in basis points and the
+article's caution flag (mean profit per trade below 0.5 %), which is reported
+but not decisive: 43 of 102 strategies below that mean still pass the doubling
+stress. The calculation is first order. With `stake_amount: unlimited` a lower
+balance would shrink later stakes, which it leaves out.
+
+Whether a cost `PASS` should also be required for `robustness_qualified` is not
+decided. That field keeps its original meaning (execution `PASS` only), and the
+cost result is published beside it as `cost_screen_status`.
+
+### Generated stores
+
+`evidence/EXECUTION_ROBUSTNESS.json` and `evidence/COST_SCREEN.json` are written
+only by `python -m evidence.execution_robustness` and never edited by hand. Each
+record carries the numbers it was decided on, so the files stay readable without
+`user_data/`; a rebuild without an archive keeps that strategy's existing record.
+Rebuild after every detail batch, then regenerate the status table.

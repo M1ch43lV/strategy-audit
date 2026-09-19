@@ -76,6 +76,7 @@ class EvidenceStore:
                     root, "results", "regime", "full_backtest_manifest.json"),
             "execution_robustness": os.path.join(
                     evidence, "EXECUTION_ROBUSTNESS.json"),
+            "cost_screen": os.path.join(evidence, "COST_SCREEN.json"),
         }
         self.repair_paths = (
             os.path.join(evidence, "ELIGIBILITY_TIMEFRAME_REPAIR.json"),
@@ -103,6 +104,7 @@ class EvidenceStore:
         full_backtest = _json(self.paths["full_backtest"])
         self.full_backtests = full_backtest
         self.execution_robustness = _json(self.paths["execution_robustness"])
+        self.cost_screen = _json(self.paths["cost_screen"])
 
         self.repaired = {}
         self.repair_store = {}
@@ -273,6 +275,12 @@ class EvidenceStore:
         full_complete = completed_full_backtest(profile, full_backtest)
         robustness = self.execution_robustness.get(strategy_id) or {}
         robustness_status = robustness.get("status", "PENDING") if full_complete else "NA"
+        # Separate from robustness on purpose: it needs no detail run, so it
+        # exists for every complete Full-Backtest. Whether a cost PASS should
+        # also be required for `robustness_qualified` is an owner decision that
+        # has not been made, so that field keeps its original meaning.
+        cost = self.cost_screen.get(strategy_id) or {}
+        cost_status = cost.get("status", "PENDING") if full_complete else "NA"
         gate_record = (fresh or tried or diagnostics.get("lookahead") or {})
 
         return {
@@ -299,6 +307,8 @@ class EvidenceStore:
             "technical_chain_complete": full_complete,
             "execution_robustness_status": robustness_status,
             "robustness_qualified": robustness_status == "PASS",
+            "cost_screen_status": cost_status,
+            "cost_break_even_bps": cost.get("break_even_slippage_bps_per_side", ""),
             "full_backtest_store": (self._relative(self.paths["full_backtest"])
                                     if full_backtest else ""),
             # Selected records used by the status generator. Keeping these in
@@ -414,6 +424,11 @@ def _public_resolution(resolved):
             "status": resolved["execution_robustness_status"],
             "qualified": resolved["robustness_qualified"],
             "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
+        },
+        "cost_screen": {
+            "status": resolved["cost_screen_status"],
+            "break_even_slippage_bps_per_side": resolved["cost_break_even_bps"],
+            "producer_store": "evidence/COST_SCREEN.json",
         },
     }
 

@@ -1559,3 +1559,73 @@ not broadly align or discard columns before the mismatch is known.
 After that diagnosis, retry `Schism5` alone with the extended look-ahead
 timeout previously agreed with the owner. Keep every run serial and finalize
 its evidence before launching the next one.
+
+## Work order from claude, 2026-09-19 - execution robustness: state, order, open decisions
+
+The classifier and the cost screen are built. The definitions live in
+`EXECUTION_ROBUSTNESS_PLAN.md` ("Amendment 2026-09-19") and in the docstring of
+`evidence/execution_robustness.py`; this section holds only what is not derivable
+from those: state, sequencing, and what is undecided. Do not re-implement either.
+
+**Ownership.** `evidence/EXECUTION_ROBUSTNESS.json` and `evidence/COST_SCREEN.json`
+are written only by `python -m evidence.execution_robustness` (about one minute,
+reads the result archives under `user_data/`). Never edit them by hand. A rebuild
+without an archive keeps that strategy's existing record, so a checkout without
+`user_data/` cannot destroy evidence.
+
+**Add this to the batch procedure.** The plan already says evidence publication and
+the pipeline-state refresh follow every completed batch. Extend that step to:
+
+    python -m evidence.execution_robustness
+    python -m evidence.strategy_status
+    python -m tools.strategy_status_page
+
+Until it runs, `execution_robustness_status` shows `PENDING` for strategies whose
+detail run has finished. `python -m evidence.execution_robustness --check` reports
+whether the stores are current.
+
+**What is running.** The 5m-detail batch (230 strategies with a main timeframe above
+5m; output `results/regime/execution_robustness_detail_5m_docker.json`). Serial by
+rule: do not start a second full-backtest writer beside it. At the last rebuild it
+had 46 comparisons: 36 `PASS`, 9 `SENSITIVE`, 1 `ERROR` (`MacheteV8b`, the detail
+run failed).
+
+**Next, after that batch.** The 1m-detail batch for strategies at 5m and 3m (owner
+decision 2026-09-19, about 400 strategies):
+
+    python -m evidence.execution_robustness --targets 1m
+
+prints the exact command, in the same form as the running job. 1m detail loads five
+times the candles, so run a three-strategy pilot first and watch the WSL ceiling of
+14 GB. Exit -9 or a timeout is `ERROR` here, not a strategy verdict, matching the
+existing `resource_inconclusive` rule.
+
+**Undecided, owner's call.**
+
+1. Whether a cost-screen `PASS` should also be required for `robustness_qualified`.
+   It currently means execution `PASS` only; `cost_screen_status` is published
+   beside it. Of 279 profitable baselines, 218 pass the doubling stress and 61 do not.
+2. The classifier thresholds. They were fixed after 42 of 230 detail runs existed,
+   which the plan discloses. Freeze them or change them before the 1m batch, not
+   after.
+3. Control runs. Seven `SENSITIVE` results compare a `native_unversioned` baseline
+   with a Docker detail run (`control_run_needed` in the record), so the change is
+   not yet attributable to the detail candles. `BB_RSI` shows 3559 baseline trades
+   against 5988 in the detail run. Not built: a control run must write to its own
+   output file (never the canonical manifest, which a run without
+   `--timeframe-detail` would overwrite), and the classifier would need a rule to
+   prefer a same-runtime control as the comparison baseline. Build it only if the
+   attribution matters to a decision.
+
+**Observed, unexplained.** The first ten detail strategies failed in the native
+runtime and were measured in Docker; `execution_robustness_detail_5m.err` is empty,
+so the cause is unknown. Trades that close before they open appear only under
+`--timeframe-detail` (0 in the baselines, 15 trades in 7 strategies in the detail
+runs); the classifier reports them and does not act on them.
+
+**Red at HEAD, not from this work.** `python -m evidence.strategy_status --selftest`
+was failing before these changes. Two causes were fixed and named in the commit: a
+stale removal-log entry for `BBRSITV4`/`BBRSITV5`, and an allow-list that lacked
+`user_direction`. A third remains: `MASlopeStrategy` carries the primary reason
+`repeated_timeout_after_exhausted_repair`, which an assertion does not accept. It
+belongs to the newest exclusion criterion and was left alone.
