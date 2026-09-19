@@ -71,10 +71,14 @@ COST = {
     # Backtesting Traps in Freqtrade, 2021). Reported as a flag, not decisive.
     "caution_mean_profit_ratio": 0.005,
 }
-# Detail timeframe by main timeframe. Above 5m the plan's 5m detail; at or
-# below 5m the 1m detail (owner decision 2026-09-19); a 1m strategy has no
-# finer data to model with.
-DETAIL_RULE = {">5m": "5m", "<=5m": "1m", "<=1m": None}
+# Detail timeframe by main timeframe. Above 5m: the plan's 5m detail run.
+# At or below 5m there is no rerun (owner decision 2026-09-19, on resource
+# grounds): such a baseline already simulates at the granularity the others are
+# rerun at, so it is counted as equal to a strategy that received the 5m run.
+# That is a rule, not a measurement, and the record says so (`basis`).
+DETAIL_RULE = {">5m": "5m", "<=5m": None}
+BASIS_MEASURED = "measured_detail_run"
+BASIS_RULE = "owner_rule_at_or_below_5m"
 
 
 def parameters():
@@ -88,9 +92,14 @@ def parameters_sha256():
 
 def detail_timeframe(main_timeframe):
     minutes = TF_MINUTES.get(main_timeframe)
-    if minutes is None or minutes <= 1:
-        return None
-    return "5m" if minutes > 5 else "1m"
+    return "5m" if minutes is not None and minutes > 5 else None
+
+
+def rule_record(main_timeframe):
+    """The record of a strategy at or below 5m: equal to a passed 5m run."""
+    return {"status": "PASS", "reasons": ["baseline_at_detail_granularity"],
+            "basis": BASIS_RULE, "main_timeframe": main_timeframe or "",
+            "detail_timeframe": None, "thresholds_sha256": parameters_sha256()}
 
 
 def _load(path):
@@ -286,7 +295,7 @@ def classify(strategy, base_record, det_record, base_block, det_block, coverage=
     }
 
     def done(status, reasons, **extra):
-        record.update(status=status, reasons=reasons, **extra)
+        record.update(status=status, reasons=reasons, basis=BASIS_MEASURED, **extra)
         return record
 
     if det_record.get("status") != "measured":
@@ -294,7 +303,7 @@ def classify(strategy, base_record, det_record, base_block, det_block, coverage=
     if base_block is None or det_block is None:
         return done("ERROR", ["result_archive_unreadable"])
     if detail_timeframe(main_tf) is None:
-        return done("NA", ["no_finer_timeframe_than_%s" % main_tf])
+        return rule_record(main_tf)
     if want != detail_timeframe(main_tf):
         return done("NA", ["detail_timeframe_%s_not_the_rule_for_%s" % (want, main_tf)])
     if det_block.get("timeframe_detail") != want:
@@ -422,13 +431,10 @@ def build(root=ROOT, detail_paths=None, with_coverage=True):
         rob[strategy] = classify(strategy, base_record, record, base_block, det_block, coverage)
         if det_block is not None and strategy in cost:
             cost[strategy]["detail"] = cost_screen(det_block)
-    # A strategy whose main timeframe is already the finest there is has no
-    # detail run to wait for.
+    # At or below 5m there is no detail run to wait for: equal by owner rule.
     for strategy, block in sorted(blocks.items()):
         if strategy not in rob and detail_timeframe(block.get("timeframe")) is None:
-            rob[strategy] = {"status": "NA", "reasons": ["no_finer_timeframe_than_%s"
-                             % block.get("timeframe")], "main_timeframe": block.get("timeframe"),
-                             "thresholds_sha256": parameters_sha256()}
+            rob[strategy] = rule_record(block.get("timeframe"))
     return rob, cost, notes
 
 
@@ -491,8 +497,11 @@ def _trade(profit, stake=100.0, duration=120, reason="roi", leverage=1.0):
 
 def selftest():
     assert detail_timeframe("1d") == detail_timeframe("1h") == detail_timeframe("15m") == "5m"
-    assert detail_timeframe("5m") == detail_timeframe("3m") == "1m"
-    assert detail_timeframe("1m") is None and detail_timeframe("weird") is None
+    # At or below 5m there is no rerun; such a baseline is equal by owner rule.
+    for tf in ("5m", "3m", "1m", "weird"):
+        assert detail_timeframe(tf) is None, tf
+    ruled = rule_record("5m")
+    assert ruled["status"] == "PASS" and ruled["basis"] == BASIS_RULE, ruled
 
     work = tempfile.mkdtemp(prefix="robustness_selftest_")
     try:
@@ -526,16 +535,18 @@ def selftest():
         assert run([_trade(2.0)] * 100, flag=False)["reasons"] == ["detail_flag_not_applied_in_native_result"]
         assert run([_trade(2.0)] * 100, mismatch=True)["status"] == "NA"
         assert run([_trade(2.0)] * 100, detail_tf="1m")["status"] == "NA"
+        assert run([_trade(2.0)] * 100)["basis"] == BASIS_MEASURED
         cross = run([_trade(0.5) for _ in range(100)], same_runtime=False)
         assert cross["comparison"] == {"same_runtime": False, "control_run_needed": True}
         assert run([_trade(0.5) for _ in range(100)])["comparison"]["control_run_needed"] is False
         # A run closing trades before they open is reported and changes nothing.
         odd = run([_trade(2.0)] * 99 + [_trade(2.0, duration=-5)])
         assert odd["status"] == "PASS" and odd["anomalies"], odd
-        # A 1m strategy has nothing finer to model with.
-        assert classify("S", {"archive": "x"}, {"timeframe_detail": "5m", "status": "measured"},
-                        {"timeframe": "1m"}, {"timeframe": "1m", "timeframe_detail": "5m"}
-                        )["status"] in ("NA", "ERROR")
+        # A strategy at or below 5m is counted equal to a passed 5m run, and the
+        # record says that this is a rule and not a measurement.
+        at_5m = classify("S", {"archive": "x"}, {"timeframe_detail": "5m", "status": "measured"},
+                         {"timeframe": "5m"}, {"timeframe": "5m", "timeframe_detail": "5m"})
+        assert at_5m["status"] == "PASS" and at_5m["basis"] == BASIS_RULE, at_5m
 
         # Cost screen: 100 trades, stake 100, profit 1.0 each.
         screen = cost_screen({"timeframe": "1h", "starting_balance": 1000.0,
@@ -571,8 +582,8 @@ def main(argv=None):
                         help="fail when the stores differ from a rebuild")
     parser.add_argument("--selftest", action="store_true")
     parser.add_argument("--summary", action="store_true")
-    parser.add_argument("--targets", choices=("5m", "1m"),
-                        help="list strategies still owed a detail run and print the command")
+    parser.add_argument("--targets", choices=("5m",),
+                        help="list strategies still owed the 5m detail run and print the command")
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--no-coverage", action="store_true",
                         help="skip the detail-data coverage check")

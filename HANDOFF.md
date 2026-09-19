@@ -1590,15 +1590,16 @@ rule: do not start a second full-backtest writer beside it. At the last rebuild 
 had 46 comparisons: 36 `PASS`, 9 `SENSITIVE`, 1 `ERROR` (`MacheteV8b`, the detail
 run failed).
 
-**Next, after that batch.** The 1m-detail batch for strategies at 5m and 3m (owner
-decision 2026-09-19, about 400 strategies):
+**Strategies at or below 5m: no rerun, no 1m batch** (owner decision 2026-09-19,
+resource grounds). They are counted equal to a strategy that received the 5m run:
+the classifier writes `PASS` with `basis: owner_rule_at_or_below_5m` for the 404 of
+them (400 at 5m, 4 at 3m) and `robustness_qualified` follows. Do not schedule a 1m
+batch. The basis is published as `execution_robustness_basis` so a rule-based
+`PASS` stays distinguishable from a measured one. An earlier version of this
+section proposed a 1m batch; it is withdrawn.
 
-    python -m evidence.execution_robustness --targets 1m
-
-prints the exact command, in the same form as the running job. 1m detail loads five
-times the candles, so run a three-strategy pilot first and watch the WSL ceiling of
-14 GB. Exit -9 or a timeout is `ERROR` here, not a strategy verdict, matching the
-existing `resource_inconclusive` rule.
+`python -m evidence.execution_robustness --targets 5m` prints the command for
+whatever is still owed to the 5m batch.
 
 **Undecided, owner's call.**
 
@@ -1606,8 +1607,8 @@ existing `resource_inconclusive` rule.
    It currently means execution `PASS` only; `cost_screen_status` is published
    beside it. Of 279 profitable baselines, 218 pass the doubling stress and 61 do not.
 2. The classifier thresholds. They were fixed after 42 of 230 detail runs existed,
-   which the plan discloses. Freeze them or change them before the 1m batch, not
-   after.
+   which the plan discloses. Freeze them or change them before the remaining 5m
+   results are classified, not after.
 3. Control runs. Seven `SENSITIVE` results compare a `native_unversioned` baseline
    with a Docker detail run (`control_run_needed` in the record), so the change is
    not yet attributable to the detail candles. `BB_RSI` shows 3559 baseline trades

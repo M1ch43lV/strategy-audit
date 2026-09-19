@@ -307,6 +307,9 @@ class EvidenceStore:
             "technical_chain_complete": full_complete,
             "execution_robustness_status": robustness_status,
             "robustness_qualified": robustness_status == "PASS",
+            # A PASS is either a measured 5m detail run or, at or below 5m,
+            # the owner rule that counts the baseline as equal to one.
+            "execution_robustness_basis": robustness.get("basis", "") if full_complete else "",
             "cost_screen_status": cost_status,
             "cost_break_even_bps": cost.get("break_even_slippage_bps_per_side", ""),
             "full_backtest_store": (self._relative(self.paths["full_backtest"])
@@ -423,6 +426,7 @@ def _public_resolution(resolved):
         "execution_robustness": {
             "status": resolved["execution_robustness_status"],
             "qualified": resolved["robustness_qualified"],
+            "basis": resolved["execution_robustness_basis"],
             "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
         },
         "cost_screen": {

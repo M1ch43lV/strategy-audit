@@ -11,8 +11,9 @@ The stage is applied to every identity-current strategy with a measured
 canonical pooled Full-Backtest and a declared main timeframe greater than 5m.
 Selection is independent of performance, rank, or profitability.
 
-*Superseded in part on 2026-09-19: strategies at 5m and 3m are included, with 1m
-detail. See "Amendment 2026-09-19" at the end of this file.*
+*Revised on 2026-09-19: strategies at or below 5m are not rerun, and count as equal
+to a strategy that received the 5m run. See "Amendment 2026-09-19" at the end of
+this file.*
 
 ## Intracandle-detail check
 
@@ -73,31 +74,30 @@ recorded as `NA`, not repaired by changing the strategy or timerange. Evidence
 publication, pipeline-state refresh, metadata recording, commit, and push
 occur after every completed batch.
 
-## Amendment 2026-09-19: classifier, 1m detail for 5m and finer, cost screen
+## Amendment 2026-09-19: classifier, strategies at or below 5m, cost screen
 
 Owner decisions of this date, and the definitions the first implementation
 (`evidence/execution_robustness.py`) applies. Nothing above is withdrawn; where
 this amendment is more specific it governs.
 
-### Scope: 5m and 3m strategies are included
+### Scope: strategies at or below 5m are not rerun
+
+Owner decision, on resource grounds, made after a first draft of this amendment
+had proposed a 1m-detail batch for them. That batch is not run and not planned.
 
 The stage covers every identity-current strategy with a measured canonical
-pooled Full-Backtest, whatever its timeframe. The detail timeframe follows the
-main timeframe:
+pooled Full-Backtest. Above 5m the 5m detail run applies. A strategy at or below
+5m (404 of the measured baselines: 400 at 5m, 4 at 3m) already simulates at the
+granularity the others are rerun at, so it is **counted equal to a strategy that
+received the 5m run**: `PASS`, reason `baseline_at_detail_granularity`, and
+`robustness_qualified` follows from it exactly as for a measured `PASS`.
 
-| main timeframe | detail timeframe |
-| --- | --- |
-| above 5m | 5m |
-| 5m, 3m | 1m |
-| 1m | none - `NA`, `no_finer_timeframe_than_1m` |
-
-A 5m candle spans several trailing-stop distances as easily as a 1h candle does,
-and 398 of the 632 identity-current measured baselines are 5m. The data precondition of the
-original scope note is met: spot 1m holds about 4.4 million candles per pair,
-with the same roughly 27 exchange gaps as 5m, and XMR ends on 2024-02-20 in
-every timeframe. 1m detail is materially heavier than 5m detail. A resource
-failure (exit -9, timeout) is recorded as `ERROR`, never as a strategy verdict,
-and the 1m batch runs serially after the 5m batch, not beside it.
+This is a rule and not a measurement, and the record says so: `basis` is
+`owner_rule_at_or_below_5m` where it is `measured_detail_run` for a rerun, and the
+status table publishes it as `execution_robustness_basis`. What the rule does not
+show is ordering inside one 5m candle, which only a 1m run would. The 1m data
+exists (about 4.4 million candles per pair, complete apart from the exchange's
+own gaps) should the decision be reopened.
 
 ### What `SENSITIVE` means
 

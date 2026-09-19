@@ -10,8 +10,7 @@
       "reference_slippage_per_side": 0.001
     },
     "detail_rule": {
-      "<=1m": null,
-      "<=5m": "1m",
+      "<=5m": null,
       ">5m": "5m"
     },
     "thresholds": {
@@ -20,8 +19,18 @@
       "trade_count_relative_change": 0.1
     }
   },
-  "parameters_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6",
+  "parameters_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80",
   "results": {
+    "ADXDM": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
     "ADXMomentum": {
       "anomalies": [],
       "baseline": {
@@ -49,6 +58,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 70.968
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -106,7 +116,7 @@
       "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "ADX_15M_USDT": {
       "anomalies": [],
@@ -137,6 +147,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 67.959
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -196,7 +207,17 @@
       "main_timeframe": "15m",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ASDTSRockwellTrading": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "ActionZone": {
       "anomalies": [
@@ -228,6 +249,7 @@
         "trailing_exit_pct": 87.28,
         "winrate_pct": 27.006
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -286,7 +308,17 @@
       "main_timeframe": "1d",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "AdaptiveMAStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "AdaptiveRegime": {
       "anomalies": [
@@ -321,6 +353,7 @@
         "trailing_exit_pct": 29.167,
         "winrate_pct": 33.333
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": true
@@ -384,7 +417,7 @@
         "profit_change_over_50pct"
       ],
       "status": "SENSITIVE",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "AdxSmas": {
       "anomalies": [
@@ -417,6 +450,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 46.376
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -476,7 +510,7 @@
       "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "AdxSmasS": {
       "anomalies": [],
@@ -507,6 +541,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 55.928
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -566,7 +601,17 @@
       "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "AdxStrengthStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "AlligatorStrat": {
       "anomalies": [],
@@ -597,6 +642,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 34.364
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -656,7 +702,7 @@
       "main_timeframe": "4h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "AlligatorStrategy": {
       "anomalies": [],
@@ -685,6 +731,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 30.593
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -742,7 +789,17 @@
       "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "AlwaysBuy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "Apollo11": {
       "anomalies": [],
@@ -772,6 +829,7 @@
         "trailing_exit_pct": 93.795,
         "winrate_pct": 80.985
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -830,7 +888,37 @@
       "main_timeframe": "15m",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Argrelextrema": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "AroonTrendStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "AtrTrailingStopStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "AverageStrategy": {
       "anomalies": [],
@@ -861,6 +949,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 28.236
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -920,7 +1009,7 @@
       "main_timeframe": "4h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "AwesomeMacd": {
       "anomalies": [],
@@ -950,6 +1039,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 38.167
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -1008,7 +1098,27 @@
       "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BBKCBounce": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BBMod": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "BBRSI": {
       "anomalies": [],
@@ -1039,6 +1149,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 67.873
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -1098,7 +1209,147 @@
       "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BBRSI21": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BBRSI3366": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BBRSIOptim2020Strategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BBRSIOptimStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BBRSIOptimizedStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BBRSITV": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BBRSITV4": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BBRSITV5": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BB_RPB_TSL_RNG": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BB_RPB_TSL_RNG_2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BB_RPB_TSL_RNG_TBS": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BB_RPB_TSL_RNG_TBS_GOLD": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BB_RPB_TSL_RNG_VWAP": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BB_RPB_TSL_c7c477d_20211030": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "BB_RSI": {
       "anomalies": [],
@@ -1129,6 +1380,7 @@
         "trailing_exit_pct": 75.695,
         "winrate_pct": 51.925
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": true,
         "same_runtime": false
@@ -1190,7 +1442,17 @@
         "trade_count_change_over_10pct"
       ],
       "status": "SENSITIVE",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BB_RTR": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "BB_Strategy04": {
       "anomalies": [],
@@ -1221,6 +1483,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 64.126
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -1280,7 +1543,27 @@
       "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BBandsRSI": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BBlower": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "BbRoi": {
       "anomalies": [],
@@ -1311,6 +1594,7 @@
         "trailing_exit_pct": 40.346,
         "winrate_pct": 67.904
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -1370,7 +1654,327 @@
       "main_timeframe": "15m",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BbWidthExpansionStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BbandRsiRolling": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Best5m": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BigDrop": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BigPete": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BigTrader": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BigZ03": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BigZ03HO": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BigZ04_TSL3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BigZ04_TSL4": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BigZ07Next": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BigZ07Next2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BinClucMad": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BinClucMadDevelop": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BinClucMadSMADevelop": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BinClucMadV1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BinHV27": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BinHV27F": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BinHV27_combined": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BinHV27_short": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BinHV27_werkkrew": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BinMfiBTCv5003": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BollingerBandStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "3m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BollingerBounce": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BollingerBounceStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BollingerBounce_Shorts": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BopTrendStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BullishEngulfingStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BuyDips": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "BuyOrDie": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CBPete9": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CCI_BB": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "CMCWinner": {
       "anomalies": [],
@@ -1400,6 +2004,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 59.834
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -1458,7 +2063,57 @@
       "main_timeframe": "15m",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CciMeanReversionStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Cenderawasih_3_kucoin": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ChaikinMoneyFlowStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Chandem": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Chandemtwo": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "Chispei": {
       "anomalies": [
@@ -1491,6 +2146,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 46.049
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": true,
         "same_runtime": false
@@ -1552,7 +2208,387 @@
         "profit_change_over_50pct"
       ],
       "status": "SENSITIVE",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ClucFiatROI": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ClucFiatSlow": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ClucHAnix_5M_E0V1E": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ClucHAnix_5M_E0V1E_DYNAMIC_TB": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ClucHAnix_5m": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ClucHAnix_5m1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ClucHAnix_5mTB1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ClucHAnix_5m_old": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ClucHAnix_hhll": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ClucHAnix_hhll_TB": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ClucMay72018": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CofiBitStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHAndCluc": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHAndCluc2021": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHAndCluc2021Bull": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHAndClucV2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHAndClucV3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHAndClucV4": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHAndClucV5": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHAndClucV5Hyperoptable": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHAndClucV6": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHAndClucV6H": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHAndClucV7": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHAndClucV8": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHAndClucV8Hyper": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHAndClucV8XH": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHAndClucV8XHO": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHClucAndMADV3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHClucAndMADV5": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHClucAndMADV6": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CombinedBinHClucAndMADV9": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Combined_NFIv6_SMA": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Combined_NFIv7_SMA": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Combined_NFIv7_SMA_bAdBoY_20211204": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CompositeScoreStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ConsensusShort": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CoppockCurveStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CoreStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "CrossEMAStrategy": {
       "anomalies": [],
@@ -1581,6 +2617,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 28.355
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -1638,7 +2675,187 @@
       "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CryptoFrog": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CryptoFrogHO": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CryptoFrogHO2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CryptoFrogHO2A": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CryptoFrogHO3A1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CryptoFrogHO3A2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CryptoFrogHO3A3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CryptoFrogHO3A4": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CryptoFrogNFI": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CryptoFrogNFIHO1A": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CryptoFrogOffset": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "CryptoFrog_nateema": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "DD": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "DWT_LongShort": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "DWT_short": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "DemaCrossStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "DevDsl2Approx": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Diamond": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "Divergences": {
       "anomalies": [],
@@ -1669,6 +2886,7 @@
         "trailing_exit_pct": 0.09,
         "winrate_pct": 35.564
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -1728,7 +2946,187 @@
       "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "DonchianBounce": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "DonchianBreakoutStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Dyna_opti": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "E0V1E": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "E0V1E2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "E0V1EN": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "E0V1E_3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "E0V1E_DCA3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "E0V1E_Shorts": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "E0V1E_ewo": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "E0V1E_protections": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "E0V1E_strs": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "EI3v2_tag_cofi_green": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "EMA50": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "EMABounce": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "EMABreakout": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "EMACross": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "EMASkipPump": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "EMAVolume": {
       "anomalies": [],
@@ -1759,6 +3157,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 25.455
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -1818,7 +3217,227 @@
       "main_timeframe": "15m",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "EMA_CROSSOVER_STRATEGY": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "EMA_Trailing_Stoploss_LessMagic": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ETCG_Shorts": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "EXPERIMENTAL_STRATEGY": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ElliotV2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ElliotV4": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ElliotV531": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ElliotV5HO": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ElliotV5HOMod2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ElliotV5HOMod3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ElliotV5_SMA": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ElliotV7": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ElliotV8HO": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ElliotV8_original": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ElliotV8_original_ichiv2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ElliotV8_original_ichiv2OH": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ElliotV8_original_ichiv3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Elliotv8": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "EmaRibbonStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "FBB_DWT": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "FBB_KalmanSIMD": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "FFT": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "FOttStrategy": {
       "anomalies": [],
@@ -1849,6 +3468,7 @@
         "trailing_exit_pct": 7.035,
         "winrate_pct": 83.38
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -1909,7 +3529,7 @@
       "main_timeframe": "15m",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "FRAYSTRAT": {
       "anomalies": [],
@@ -1940,6 +3560,7 @@
         "trailing_exit_pct": 31.524,
         "winrate_pct": 57.528
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -1999,7 +3620,17 @@
       "main_timeframe": "15m",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "FReinforcedStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "FSupertrendStrategyBTC": {
       "anomalies": [],
@@ -2030,6 +3661,7 @@
         "trailing_exit_pct": 0.057,
         "winrate_pct": 58.796
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": true
@@ -2089,7 +3721,7 @@
       "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "FSupertrendStrategyETH": {
       "anomalies": [],
@@ -2120,6 +3752,7 @@
         "trailing_exit_pct": 0.057,
         "winrate_pct": 58.796
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": true
@@ -2179,7 +3812,57 @@
       "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "FTT_DWT_FBB_FUTURES": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Fakebuy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "FisherTransformStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "FiveMinCrossAbove": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ForexSignal": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "FrayStratBTC": {
       "anomalies": [],
@@ -2211,6 +3894,7 @@
         "trailing_exit_pct": 25.528,
         "winrate_pct": 94.432
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": true,
         "same_runtime": false
@@ -2273,7 +3957,7 @@
         "trade_count_change_over_10pct"
       ],
       "status": "SENSITIVE",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "FrostAuraM115mStrategy": {
       "anomalies": [],
@@ -2303,6 +3987,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 64.584
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -2361,7 +4046,7 @@
       "main_timeframe": "15m",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "FrostAuraM11hStrategy": {
       "anomalies": [],
@@ -2391,6 +4076,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 77.906
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": true,
         "same_runtime": false
@@ -2451,7 +4137,7 @@
         "profit_change_over_50pct"
       ],
       "status": "SENSITIVE",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "FrostAuraM21hStrategy": {
       "anomalies": [],
@@ -2480,6 +4166,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 22.792
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -2537,7 +4224,7 @@
       "main_timeframe": "15m",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "FrostAuraM315mStrategy": {
       "anomalies": [],
@@ -2567,6 +4254,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 67.081
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -2625,7 +4313,7 @@
       "main_timeframe": "15m",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "FrostAuraM31hStrategy": {
       "anomalies": [],
@@ -2656,6 +4344,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 62.929
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -2715,7 +4404,7 @@
       "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "GRIDDMIPRICEStrategyFutureV5Short": {
       "anomalies": [],
@@ -2743,6 +4432,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 0.0
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": true
@@ -2799,7 +4489,57 @@
       "main_timeframe": "4h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "GodCard": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "GoldenCrossStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Gumbo1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Hacklemost": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Hammer": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "HansenSmaOffsetV1": {
       "anomalies": [],
@@ -2828,6 +4568,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 67.391
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -2885,7 +4626,27 @@
       "main_timeframe": "15m",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "HeikinAshiStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "HigherHighStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "HourBasedStrategy": {
       "anomalies": [],
@@ -2915,6 +4676,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 61.68
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -2973,7 +4735,17 @@
       "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "HourBasedStrategy_5m": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "Ichess": {
       "anomalies": [
@@ -3006,6 +4778,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 43.45
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": true,
         "same_runtime": false
@@ -3067,7 +4840,7 @@
         "profit_change_over_50pct"
       ],
       "status": "SENSITIVE",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "Ichi": {
       "anomalies": [],
@@ -3096,6 +4869,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 76.403
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": true
@@ -3153,7 +4927,37 @@
       "main_timeframe": "15m",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Ichimoku": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "IchimokuSimpleStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "IchimokuStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "3m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "Ichimoku_SenkouSpanCross": {
       "anomalies": [],
@@ -3183,6 +4987,7 @@
         "trailing_exit_pct": 4.196,
         "winrate_pct": 39.161
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -3241,7 +5046,7 @@
       "main_timeframe": "4h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "Ichimoku_v12": {
       "anomalies": [],
@@ -3270,6 +5075,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 98.082
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -3327,7 +5133,468 @@
       "main_timeframe": "4h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Ichimoku_v30": {
+      "anomalies": [
+        "detail_run_has_1_trades_closing_before_they_opened"
+      ],
+      "baseline": {
+        "archive": "user_data/profile_smoke/Ichimoku_v30-7fe5650b-2026-09-06_21-06-59.zip",
+        "canonical_sha256": "sha256_cc125c04e31b7a649e07d4866ccb042405949361a54a79c4f9ab44366cde49aa",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_3c0a8a56ebfea6accc4e09e3b055939e32ba2cd1881e619b1d6a8305e4b767ef"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 90,
+          "force_exit": 7
+        },
+        "max_drawdown_account": 0.2602,
+        "mean_duration_min": 242867.63,
+        "mean_profit_pct": 54.9989,
+        "negative_duration_trades": 0,
+        "profit_abs": 7656.2218,
+        "profit_factor": 1.7573,
+        "profit_pct": 765.6222,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.104,
+        "starting_balance": 1000,
+        "trades": 97,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 52.577
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9991,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9991,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.009468,
+        "profit_abs": -6.5799,
+        "profit_pct_points": -0.658,
+        "profit_relative_change": 0.0009,
+        "same_candle_pct_points": 1.02,
+        "trade_relative_change": 0.0103,
+        "trades": 1
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/Ichimoku_v30-7fe5650b-2026-09-19_15-14-22.zip",
+        "attempted_at": "2026-09-19T15:14:23+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_1b4e8bb139edfdb80f83a640be723262e7a9dc5c10f528550a9c29a633e0d953"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 90,
+          "force_exit": 8
+        },
+        "max_drawdown_account": 0.2608,
+        "mean_duration_min": 240389.34,
+        "mean_profit_pct": 54.431,
+        "negative_duration_trades": 1,
+        "profit_abs": 7649.6419,
+        "profit_factor": 1.7562,
+        "profit_pct": 764.9642,
+        "same_candle_pct": 1.02,
+        "sharpe": 0.1045,
+        "starting_balance": 1000,
+        "trades": 98,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 52.041
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "4h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Ichimoku_v31": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/Ichimoku_v31-7208d46d-2026-09-05_17-47-01.zip",
+        "canonical_sha256": "sha256_b8c58ef260550293607f8432194f7be4e4ed64c24dba2fd0decb9f8dec8fbae8",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_da0b64e8af8423d09e3b109e120b574310b0fef729ad636adac45f80b6cbecc1"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1436,
+          "force_exit": 7
+        },
+        "max_drawdown_account": 0.2599,
+        "mean_duration_min": 6043.62,
+        "mean_profit_pct": 1.6048,
+        "negative_duration_trades": 0,
+        "profit_abs": 5623.9414,
+        "profit_factor": 1.3456,
+        "profit_pct": 562.3941,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.5704,
+        "starting_balance": 1000,
+        "trades": 1443,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 22.938
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": 0.1635,
+        "profit_pct_points": 0.0164,
+        "profit_relative_change": 0.0,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/Ichimoku_v31-7208d46d-2026-09-19_15-17-24.zip",
+        "attempted_at": "2026-09-19T15:17:25+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_45a34c6c790f9d70ce9cf0e8fb23445a76f885601687b82311f1853b0a85715f"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1436,
+          "force_exit": 7
+        },
+        "max_drawdown_account": 0.2599,
+        "mean_duration_min": 6043.62,
+        "mean_profit_pct": 1.6049,
+        "negative_duration_trades": 0,
+        "profit_abs": 5624.1049,
+        "profit_factor": 1.3456,
+        "profit_pct": 562.4105,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.5704,
+        "starting_balance": 1000,
+        "trades": 1443,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 22.938
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Ichimoku_v32": {
+      "anomalies": [
+        "detail_run_has_1_trades_closing_before_they_opened"
+      ],
+      "baseline": {
+        "archive": "user_data/profile_smoke/Ichimoku_v32-8a755cec-2026-09-06_21-07-21.zip",
+        "canonical_sha256": "sha256_e7de6f78d43fa5e5735b555c4fca8b6d2cfab95350310702ad43e103220c558e",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_970ed93fe2b1eb348df9a6b652ea62c7d0a823233f7f367340d7b2c955da57ad"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 276,
+          "force_exit": 6
+        },
+        "max_drawdown_account": 0.4561,
+        "mean_duration_min": 67939.57,
+        "mean_profit_pct": 13.4125,
+        "negative_duration_trades": 0,
+        "profit_abs": 6018.7699,
+        "profit_factor": 1.3265,
+        "profit_pct": 601.877,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.1676,
+        "starting_balance": 1000,
+        "trades": 282,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 36.879
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9991,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9991,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.003458,
+        "profit_abs": -2.5076,
+        "profit_pct_points": -0.2508,
+        "profit_relative_change": 0.0004,
+        "same_candle_pct_points": 0.353,
+        "trade_relative_change": 0.0035,
+        "trades": 1
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/Ichimoku_v32-8a755cec-2026-09-19_15-21-14.zip",
+        "attempted_at": "2026-09-19T15:21:15+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_c6313ada54da23f8661e5b1951d25bf659fc71b0856e546702ce2532ca8a910d"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 276,
+          "force_exit": 7
+        },
+        "max_drawdown_account": 0.4561,
+        "mean_duration_min": 67699.49,
+        "mean_profit_pct": 13.364,
+        "negative_duration_trades": 1,
+        "profit_abs": 6016.2623,
+        "profit_factor": 1.3264,
+        "profit_pct": 601.6262,
+        "same_candle_pct": 0.353,
+        "sharpe": 0.1678,
+        "starting_balance": 1000,
+        "trades": 283,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 36.749
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "4h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Ichimoku_v33": {
+      "anomalies": [
+        "detail_run_has_1_trades_closing_before_they_opened"
+      ],
+      "baseline": {
+        "archive": "user_data/profile_smoke/Ichimoku_v33-7daff278-2026-09-06_21-08-05.zip",
+        "canonical_sha256": "sha256_8e39599c5f08b76459d9f37b8b3105760a03f398f1f379ab8a6f6532ca857dab",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_58906b8cc67efeffb49a471ba6249d3ff5c929c77bc59943b16b4b6c15eeb5f3"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1079,
+          "force_exit": 5
+        },
+        "max_drawdown_account": 0.2163,
+        "mean_duration_min": 2336.01,
+        "mean_profit_pct": 0.2476,
+        "negative_duration_trades": 0,
+        "profit_abs": 306.8366,
+        "profit_factor": 1.1178,
+        "profit_pct": 30.6837,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.2551,
+        "starting_balance": 1000,
+        "trades": 1084,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 36.347
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9991,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9991,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.000917,
+        "profit_abs": -0.497,
+        "profit_pct_points": -0.0497,
+        "profit_relative_change": 0.0016,
+        "same_candle_pct_points": 0.092,
+        "trade_relative_change": 0.0009,
+        "trades": 1
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/Ichimoku_v33-7daff278-2026-09-19_15-22-49.zip",
+        "attempted_at": "2026-09-19T15:22:49+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_58b9adcbda9a685ffe1740f1dd8addde42aaa020004f8413df96ee0a1e4d03e8"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1079,
+          "force_exit": 6
+        },
+        "max_drawdown_account": 0.2163,
+        "mean_duration_min": 2333.86,
+        "mean_profit_pct": 0.2472,
+        "negative_duration_trades": 1,
+        "profit_abs": 306.3396,
+        "profit_factor": 1.1175,
+        "profit_pct": 30.634,
+        "same_candle_pct": 0.092,
+        "sharpe": 0.2547,
+        "starting_balance": 1000,
+        "trades": 1085,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 36.313
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "4h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Ichimoku_v37": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/Ichimoku_v37-18e3ba92-2026-09-05_17-49-34.zip",
+        "canonical_sha256": "sha256_ab55a132c009484ace8d44aee152e8b951639b3e2b37b0825b4aa5513baa79a5",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_86b15882cf17a8efe2ffaa70dc9bfaef4e5c2f96bd7653f63cc1523902fea1d9"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 510,
+          "force_exit": 2
+        },
+        "max_drawdown_account": 0.3503,
+        "mean_duration_min": 16974.84,
+        "mean_profit_pct": 5.9829,
+        "negative_duration_trades": 0,
+        "profit_abs": 6622.9897,
+        "profit_factor": 1.8705,
+        "profit_pct": 662.299,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.39,
+        "starting_balance": 1000,
+        "trades": 512,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 17.383
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9991,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9991,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": -0.0275,
+        "profit_pct_points": -0.0028,
+        "profit_relative_change": 0.0,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/Ichimoku_v37-18e3ba92-2026-09-19_15-25-08.zip",
+        "attempted_at": "2026-09-19T15:25:09+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_4692d14900b0e471bd96a5e8a83fcd064b24a6e4378851decc309038cc0d9aef"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 510,
+          "force_exit": 2
+        },
+        "max_drawdown_account": 0.3502,
+        "mean_duration_min": 16974.84,
+        "mean_profit_pct": 5.9828,
+        "negative_duration_trades": 0,
+        "profit_abs": 6622.9622,
+        "profit_factor": 1.8706,
+        "profit_pct": 662.2962,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.3901,
+        "starting_balance": 1000,
+        "trades": 512,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 17.383
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "4h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ImpulseV1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "InformativeSample": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "Inverse": {
       "anomalies": [],
@@ -3357,6 +5624,7 @@
         "trailing_exit_pct": 4.785,
         "winrate_pct": 28.753
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": true,
         "same_runtime": false
@@ -3417,7 +5685,7 @@
         "profit_change_over_50pct"
       ],
       "status": "SENSITIVE",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "InverseV2": {
       "anomalies": [],
@@ -3446,6 +5714,7 @@
         "trailing_exit_pct": 5.512,
         "winrate_pct": 29.696
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": true,
         "same_runtime": false
@@ -3505,7 +5774,653 @@
         "profit_change_over_50pct"
       ],
       "status": "SENSITIVE",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "JustROCR": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/JustROCR-acac3a3d-2026-09-06_21-09-39.zip",
+        "canonical_sha256": "sha256_0c056ac53867e6ea085299c01463ef2b9d0450669e0fc3fdf8afe4d36544740f",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_4253f1b854e1b2fdcb944208cdbcfc516493f086a5ed367be9f50cdacc34e57b"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "force_exit": 4,
+          "roi": 244,
+          "stop_loss": 1,
+          "trailing_stop_loss": 301
+        },
+        "max_drawdown_account": 0.3904,
+        "mean_duration_min": 12443.13,
+        "mean_profit_pct": 1.7599,
+        "negative_duration_trades": 0,
+        "profit_abs": 1470.6644,
+        "profit_factor": 1.1185,
+        "profit_pct": 147.0664,
+        "same_candle_pct": 1.091,
+        "sharpe": 0.2344,
+        "starting_balance": 1000,
+        "trades": 550,
+        "trailing_exit_pct": 54.727,
+        "winrate_pct": 44.727
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.001818,
+        "profit_abs": 19.4366,
+        "profit_pct_points": 1.9437,
+        "profit_relative_change": 0.0132,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/JustROCR-acac3a3d-2026-09-19_15-27-55.zip",
+        "attempted_at": "2026-09-19T15:27:56+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_62f5f72d6915afed63a2ec7a460bab52e33cd68c204e6cbbe18b1da79307b56d"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "force_exit": 4,
+          "roi": 244,
+          "trailing_stop_loss": 302
+        },
+        "max_drawdown_account": 0.3919,
+        "mean_duration_min": 12470.26,
+        "mean_profit_pct": 1.7769,
+        "negative_duration_trades": 0,
+        "profit_abs": 1490.101,
+        "profit_factor": 1.12,
+        "profit_pct": 149.0101,
+        "same_candle_pct": 1.091,
+        "sharpe": 0.2371,
+        "starting_balance": 1000,
+        "trades": 550,
+        "trailing_exit_pct": 54.909,
+        "winrate_pct": 44.727
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "JustROCR2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "JustROCR3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "JustROCR4": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "KAMACCIRSI": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "KAMACCIRSI_new": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "KC_BB": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "KamaFama_2_20250115": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "KeltnerBounce": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "KeltnerBounce_Shorts": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "KeltnerChannelStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "KeltnerChannels": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Lateralus": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "LinearRegressionStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "LuxOSC": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MAC": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/MAC-1f6368e6-2026-09-05_18-02-35.zip",
+        "canonical_sha256": "sha256_2af777a511a984a6c4a15c52e2361297ebbe45c5070af9d9f61f45ce524e2c4e",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_f78e89a2fdc923c3852cd167c53a460fb07fe0b0a45edaa02c0e55daa53cfd95"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 12,
+          "stop_loss": 34
+        },
+        "max_drawdown_account": 0.3939,
+        "mean_duration_min": 110097.39,
+        "mean_profit_pct": 4.2099,
+        "negative_duration_trades": 0,
+        "profit_abs": 149.834,
+        "profit_factor": 1.2392,
+        "profit_pct": 14.9834,
+        "same_candle_pct": 4.348,
+        "sharpe": 0.0207,
+        "starting_balance": 1000,
+        "trades": 46,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 15.217
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9985,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9985,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": -0.3931,
+        "profit_pct_points": -0.0393,
+        "profit_relative_change": 0.0026,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/MAC-1f6368e6-2026-09-19_15-29-33.zip",
+        "attempted_at": "2026-09-19T15:29:34+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_9f0b1c6174eca31019ac36df72ebf06c0e30ad95fd3f0cefaa5d23e1d3500b43"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 12,
+          "stop_loss": 34
+        },
+        "max_drawdown_account": 0.3941,
+        "mean_duration_min": 110723.15,
+        "mean_profit_pct": 4.2099,
+        "negative_duration_trades": 0,
+        "profit_abs": 149.4409,
+        "profit_factor": 1.2385,
+        "profit_pct": 14.9441,
+        "same_candle_pct": 4.348,
+        "sharpe": 0.0207,
+        "starting_balance": 1000,
+        "trades": 46,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 15.217
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1d",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACD003": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACDCCI": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/MACDCCI-86633671-2026-09-06_21-35-41.zip",
+        "canonical_sha256": "sha256_13131ed784a7dd272f1cf8b3c8e81fe5d3ed9b7e4aab52c5347da9b8c4cda434",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_3ba995370ff91763c51eb97ba7d7eef2abfa16abfe26266f0fe697402e382190"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 3,
+          "force_exit": 8,
+          "stop_loss": 6
+        },
+        "max_drawdown_account": 0.1717,
+        "mean_duration_min": 1488594.71,
+        "mean_profit_pct": 210.5361,
+        "negative_duration_trades": 0,
+        "profit_abs": 4395.6713,
+        "profit_factor": 18.4382,
+        "profit_pct": 439.5671,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.0772,
+        "starting_balance": 1000,
+        "trades": 17,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 58.824
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 1.0,
+        "per_pair": {
+          "ADA/USDT": 1.0,
+          "BTC/USDT": 1.0,
+          "DASH/USDT": 1.0,
+          "ETH/USDT": 1.0,
+          "LTC/USDT": 1.0,
+          "XLM/USDT": 1.0,
+          "XMR/USDT": 1.0,
+          "XRP/USDT": 1.0
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": 0.0,
+        "profit_pct_points": 0.0,
+        "profit_relative_change": 0.0,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/MACDCCI-86633671-2026-09-19_15-37-02.zip",
+        "attempted_at": "2026-09-19T15:37:03+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_00e1e08acf0720f383a5c225781414f899f2b506e63183a1579e77d209e36650"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 3,
+          "force_exit": 8,
+          "stop_loss": 6
+        },
+        "max_drawdown_account": 0.1717,
+        "mean_duration_min": 1488598.24,
+        "mean_profit_pct": 210.5361,
+        "negative_duration_trades": 0,
+        "profit_abs": 4395.6713,
+        "profit_factor": 18.4382,
+        "profit_pct": 439.5671,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.0772,
+        "starting_balance": 1000,
+        "trades": 17,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 58.824
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "30m",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACDCross": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACDRL": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACDRS": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACDRSI200": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACDStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACDStrategyADA": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACDStrategyAVAX": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACDStrategyBTC": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACDStrategyENJ": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACDStrategyETC": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACDStrategySOL": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACDStrategyXRP": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACDStrategy_crossed": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACDTurn": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACD_EMA": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACD_TRIPLE_MA": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MACD_TRI_EMA": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MADisplaceV3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MFI": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MFI2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MFIRSICross": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MacdAdxStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MacdZeroCrossStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "MacheteV8b": {
       "baseline": {
@@ -3514,6 +6429,7 @@
         "runtime_id": "native_unversioned",
         "trades_sha256": "sha256_877d3866d128f3f590e60dfdd6f13b97e2f367e3d5aa25ee374b6e8fa4dbe81e"
       },
+      "basis": "measured_detail_run",
       "detail": {
         "archive": null,
         "attempted_at": "2026-09-19T10:04:24+00:00",
@@ -3528,7 +6444,284 @@
         "detail_run_failed"
       ],
       "status": "ERROR",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MacheteV8bRallimod": {
+      "baseline": {
+        "archive": "user_data/profile_smoke/MacheteV8bRallimod-019087a6-2026-09-06_21-57-47.zip",
+        "canonical_sha256": "sha256_a32e955e51d25725ca5503de79a01c23f2f45f61a82880caa02b39baf0d18816",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_cdc7cf5c759b5c685e9c3d59da8def8a582552bd5aef1850edf09032e5afe3dd"
+      },
+      "basis": "measured_detail_run",
+      "detail": {
+        "archive": null,
+        "attempted_at": "2026-09-19T15:49:23+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "failed",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": null
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "15m",
+      "reasons": [
+        "detail_run_failed"
+      ],
+      "status": "ERROR",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MacheteV8bRallimod2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MarketChyperHyperStrategy": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/MarketChyperHyperStrategy-d7bac38e-2026-09-05_18-25-53.zip",
+        "canonical_sha256": "sha256_29bc8e0e7645cd329e31b603352f6a61c136ffea728ed85e695381ba4ab3b866",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_6041896daf56e9d1aa0a9eaa77adf57b1ff014b21a80e8145df4a64892bb6625"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1078,
+          "force_exit": 1,
+          "roi": 1583,
+          "stop_loss": 350,
+          "trailing_stop_loss": 115
+        },
+        "max_drawdown_account": 0.7713,
+        "mean_duration_min": 2280.19,
+        "mean_profit_pct": -0.2332,
+        "negative_duration_trades": 0,
+        "profit_abs": -697.9945,
+        "profit_factor": 0.8787,
+        "profit_pct": -69.7995,
+        "same_candle_pct": 0.064,
+        "sharpe": -0.9784,
+        "starting_balance": 1000,
+        "trades": 3127,
+        "trailing_exit_pct": 3.678,
+        "winrate_pct": 59.418
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.015475,
+        "profit_abs": 72.3762,
+        "profit_pct_points": 7.2377,
+        "profit_relative_change": 0.1037,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0016,
+        "trades": 5
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/MarketChyperHyperStrategy-d7bac38e-2026-09-19_15-52-03.zip",
+        "attempted_at": "2026-09-19T15:52:04+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_81cc357f9ef84d7013d4d6748f961e33eaa9718df7a953cda8b0733883e3c78e"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1042,
+          "force_exit": 1,
+          "roi": 1634,
+          "stop_loss": 349,
+          "trailing_stop_loss": 106
+        },
+        "max_drawdown_account": 0.7245,
+        "mean_duration_min": 2279.73,
+        "mean_profit_pct": -0.1786,
+        "negative_duration_trades": 0,
+        "profit_abs": -625.6183,
+        "profit_factor": 0.9006,
+        "profit_pct": -62.5618,
+        "same_candle_pct": 0.064,
+        "sharpe": -0.8229,
+        "starting_balance": 1000,
+        "trades": 3132,
+        "trailing_exit_pct": 3.384,
+        "winrate_pct": 60.824
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Maro4hMacdSd": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Martin": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MomentumScoreStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MoneyFlowStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MultiMA_TSL": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MultiMA_TSL3b": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MultiOffsetLamboV0": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "MyStratV1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NASOSv4": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NASOSv5": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NASOSv5_mod1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NASOSv5_mod1_DanMod": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NASOSv5_mod2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NASOSv5_mod3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NDrop": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "NEWTEST15m": {
       "anomalies": [],
@@ -3559,6 +6752,7 @@
         "trailing_exit_pct": 18.278,
         "winrate_pct": 87.891
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -3618,7 +6812,597 @@
       "main_timeframe": "15m",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFI46": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFI46Frog": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFI46FrogZ": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFI46Offset": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFI46OffsetHOA1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFI46Z": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFI47V2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFI4Frog": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFI5MOHO": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFI5MOHO2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFI5MOHO_WIP": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFI5MOHO_WIP_1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFI5MOHO_WIP_2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFI7MOHO": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFINextMOHO": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFINextMOHO2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NFINextMultiOffsetAndHO": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NSeq": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NWEv6_new": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "3m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Nostalgia": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityNext_ChangeToTower_V6_Short": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityV1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityV2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityV3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityV4": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityV4HO": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityV5": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityV5MultiOffsetAndHO": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityV5MultiOffsetAndHO2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityV6": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityV6HO": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityV7": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityV7_SMA": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityV7_SMAv2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityV7_SMAv2_1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NostalgiaForInfinityX": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NotAnotherSMAOffsetStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NotAnotherSMAOffsetStrategyHO": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NotAnotherSMAOffsetStrategyHOv3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NotAnotherSMAOffsetStrategyLite": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NotAnotherSMAOffsetStrategyModHO": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NotAnotherSMAOffsetStrategyModHO_LamineDz_20210901": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NotAnotherSMAOffsetStrategyX1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "NotAnotherSMAOffsetStrategy_uzi": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ORBAlgo": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Obelisk_TradePro_Ichi_v2_2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "PRICEFOLLOWING": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ParabolicSarStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Patterns2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Persia": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "PowerTower": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "PpoMomentumStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "PriceActionCandleStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "PriceChannelStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "PumpDetector": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Quickie": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "RSI_EMA_strategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "RalliV1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "RalliV1_disable56": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "RegimeFilterStrategy": {
       "anomalies": [],
@@ -3648,6 +7432,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 30.984
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -3706,7 +7491,7 @@
       "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "ReinforcedSmoothScalp": {
       "anomalies": [],
@@ -3736,6 +7521,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 67.918
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -3794,7 +7580,387 @@
       "main_timeframe": "15m",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "RocMomentumStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Roth01": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Roth03": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "RsiDivergenceStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SAR": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SARCross": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAIP3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAIP3v2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOG": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOPv1_TTF": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOffset": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOffsetProtectOpt": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOffsetProtectOptV0": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOffsetProtectOptV1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOffsetProtectOptV1HO1": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOffsetProtectOptV1Mod": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOffsetProtectOptV1Mod2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOffsetProtectOptV1Mod2_antipump": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOffsetProtectOptV1_kkeue_20210619": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOffsetV2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOffset_Hippocritical_dca": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOffset_Hippocritical_dca_leverage": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOffset_Hippocritical_dca_old": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMAOffset_Hippocritical_dca_protections": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SMA_BBRSI": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "STRATEGY_RSI_BB_BOUNDS_CROSS": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "STRATEGY_RSI_BB_CROSS": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SampleStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SampleStrategyV2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Sar": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Schism2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Schism2_ETH": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Schism3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Schism4": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Seb": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Simple": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SimpleBollinger": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SimpleHopt": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "SimpleHopt1Along": {
       "anomalies": [],
@@ -3824,6 +7990,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 95.683
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -3882,7 +8049,17 @@
       "main_timeframe": "4h",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SlowPotato": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "SmaRsiStrategy": {
       "anomalies": [
@@ -3915,6 +8092,7 @@
         "trailing_exit_pct": 0.0,
         "winrate_pct": 22.599
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": false
@@ -3974,7 +8152,347 @@
       "main_timeframe": "1d",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SmoothOperator": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Squeeze001": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Squeeze002": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SqueezeMomentum": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SqueezeMomentumStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SqueezeOff": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "StarRise": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "StarRise_V2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "StarRise_strat": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "StochRSITEMA": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "StochasticOversoldStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "StochasticRsiStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Strategy001": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Strategy001_custom_exit": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Strategy001_custom_sell": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Strategy002": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Strategy003": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Strategy004": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Strategy005": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SuperHV27_BTC": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "SuperHV27_ETH": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "TEMABounce": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "TechnicalExampleStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "TemaMaster": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "TemaPure": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "TemaPureNeat": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "TemaPureTwo": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "TemaStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Test_MAMA4": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "TheRealPullbackV2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "TouchEmaDelayStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "3m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "TouchEmaStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "TrailingBuyStrat2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "TrailingBuyStratCluc5m": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "TrendBreakout": {
       "anomalies": [
@@ -4006,6 +8524,7 @@
         "trailing_exit_pct": 89.13,
         "winrate_pct": 31.988
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": true
@@ -4068,7 +8587,7 @@
         "trade_count_change_over_10pct"
       ],
       "status": "SENSITIVE",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
     "TrendFutures": {
       "anomalies": [
@@ -4101,6 +8620,7 @@
         "trailing_exit_pct": 76.686,
         "winrate_pct": 27.938
       },
+      "basis": "measured_detail_run",
       "comparison": {
         "control_run_needed": false,
         "same_runtime": true
@@ -4160,7 +8680,490 @@
       "main_timeframe": "1d",
       "reasons": [],
       "status": "PASS",
-      "thresholds_sha256": "sha256_4cedd43d992e5ed4e0f8b6c82172e7af4489952b6c58259ac533dd303784abe6"
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "TripleEmaStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "TrixSignalStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "TwoCandleTheory": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "UltimateMomentumIndicator": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "UniversalMACD": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "Uptrend": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "VWAP": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "VolumeBreakoutStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "VortexStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "VwapReversionStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "WTDMIPRICEDCAStrategyFuture": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "WTX3": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "WilliamsRStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "XtraThicc": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ZaratustraDCA2_06": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ZaratustraDCA2_07": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ZaratustraDCA5": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "adaptive": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "bbrsi1_strategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "bestV2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "binance": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "binance_shorts": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "cryptotankV2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "custom_sell": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "ema": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "fahmibah": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "gettinMoist": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "mabStra": {
+      "anomalies": [
+        "detail_run_has_2_trades_closing_before_they_opened"
+      ],
+      "baseline": {
+        "archive": "user_data/profile_smoke/mabStra-c5e70fad-2026-09-05_18-21-41.zip",
+        "canonical_sha256": "sha256_a7796af206e8a84718ebfe09d2a29323a414dab9cbe9a07829162ff3d7b61888",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_16346edc4c1a88e19f1858fa23cd31cce1b073ab6701dae12a08ebecc1ce975a"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "force_exit": 6,
+          "roi": 2472,
+          "stop_loss": 1114
+        },
+        "max_drawdown_account": 0.9413,
+        "mean_duration_min": 6860.45,
+        "mean_profit_pct": 0.0654,
+        "negative_duration_trades": 0,
+        "profit_abs": -632.5577,
+        "profit_factor": 0.9771,
+        "profit_pct": -63.2558,
+        "same_candle_pct": 1.364,
+        "sharpe": -0.2136,
+        "starting_balance": 1000,
+        "trades": 3592,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 56.208
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": true,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9991,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9991,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.000852,
+        "profit_abs": 450.5454,
+        "profit_pct_points": 45.0546,
+        "profit_relative_change": 0.7123,
+        "same_candle_pct_points": -0.07,
+        "trade_relative_change": 0.0109,
+        "trades": 39
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/mabStra-c5e70fad-2026-09-19_15-40-55.zip",
+        "attempted_at": "2026-09-19T15:40:57+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_15af6e8b903087e22f28fe6a04361ff01c16d3d5dbac1b0058e843682b827e36"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "force_exit": 8,
+          "roi": 2500,
+          "stop_loss": 1123
+        },
+        "max_drawdown_account": 0.9015,
+        "mean_duration_min": 6893.02,
+        "mean_profit_pct": 0.2843,
+        "negative_duration_trades": 2,
+        "profit_abs": -182.0123,
+        "profit_factor": 0.9954,
+        "profit_pct": -18.2012,
+        "same_candle_pct": 1.294,
+        "sharpe": -0.0466,
+        "starting_balance": 1000,
+        "trades": 3631,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 58.028
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "4h",
+      "reasons": [
+        "profit_change_over_50pct"
+      ],
+      "status": "SENSITIVE",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "macd_recovery": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "momentum": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "momentum_long": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "momentum_rsi": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "momentum_wick": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "multi_tf": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "quantumfirst": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "stoploss": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "tbtest": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "true_lambo": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "twinturboV8": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
+    "twinturboV8_2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     }
   },
   "schema_version": 1,
