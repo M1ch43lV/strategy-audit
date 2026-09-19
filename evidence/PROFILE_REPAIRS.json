@@ -1,6 +1,48 @@
 {
   "repairs": [
     {
+      "base_file": "repos/thinkong_freqtradestrategies/user_data/strategies/BBMod.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_12ea6e9bbbee8c851ad45b94c2a1f4e3a86e91dab209f1c84f77677bafdef395",
+      "output_sha256": "sha256_617cee07b701935b3f4a02d8bbd1efcbb41005da6117767be232ced6882b1298",
+      "overlay_file": "user_data/profile_repairs/BBMod1DCA.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "numpy1_string_nan_coercion"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "BBMod1DCA"
+    },
+    {
+      "base_file": "repos/PeetCrypto_freqtrade-stuff/BB_RPB_TSL.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_b9672cc3e328910a94049ac331c5c475c125bda6c80d84228e854ce399c60adf",
+      "output_sha256": "sha256_bbbaddae0763db53846ec503389bbb133623061bc86cfcfbade5a58840420220",
+      "overlay_file": "user_data/profile_repairs/BB_RPB_TSL_Trailing.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "parameter_space_default_only"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "BB_RPB_TSL_Trailing"
+    },
+    {
+      "base_file": "repos/davidzr_freqtrade-strategies/strategies/BB_RPB_TSL_SMA_Tranz_TB_1_1_1/BB_RPB_TSL_SMA_Tranz_TB_1_1_1.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_3fd18fcbd7d67bd69f088570b29f0d555fffeb2132fb763cdc04e4b1da9c0482",
+      "output_sha256": "sha256_d73a9e81d3fbd3ecffa25be3b325f8303708b154caf21e69a492c64df5b37c6c",
+      "overlay_file": "user_data/profile_repairs/BB_RPB_TSL_Tranz_TrailingBuy.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "numpy1_string_nan_coercion"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "BB_RPB_TSL_Tranz_TrailingBuy"
+    },
+    {
       "base_file": "repos/mlsys-io_PortfolioBench/user_data/strategies/best_single_asset.py",
       "equivalence_status": "output_equivalent",
       "input_sha256": "sha256_abdcc7728bf2bef3093f801d14bb72e99bf16c21c9d2b1a0c73b6e3a0cc89208",
@@ -437,6 +479,20 @@
       "strategy": "HEW"
     },
     {
+      "base_file": "repos/PeetCrypto_freqtrade-stuff/Example_Strat_With_FileLogging.py",
+      "equivalence_status": "output_equivalent",
+      "input_sha256": "sha256_87916f286b5dedc3d59c27418bc26d95c0c370fd75f7adf07b62892d68a2d3c7",
+      "output_sha256": "sha256_509d0c4d349fc2e67465effa048f97352425ecffe13667c45327e2e077190c9e",
+      "overlay_file": "user_data/profile_repairs/Ichi.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "remove_import_time_root_logging_reset"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "Ichi"
+    },
+    {
       "base_file": "repos/TheoBrigitte_freqtrade/strategies/insomnia/Insomnia_short.py",
       "equivalence_status": "strict_equivalent",
       "input_sha256": "sha256_98814ba2c51d4a38da889866864c4a0cda96e114f24c54f8ccd2f046f45604c6",
@@ -449,6 +505,20 @@
       ],
       "source_tree": "profile-class2-overlay",
       "strategy": "Insomnia_short"
+    },
+    {
+      "base_file": "repos/PeetCrypto_freqtrade-stuff/MultiMA_TSL.py",
+      "equivalence_status": "strict_equivalent",
+      "input_sha256": "sha256_c28037f8215192b27499438125bbe3f56fb54482fa1a881bf5a4910fc2effebc",
+      "output_sha256": "sha256_45fabc590c40ad74d62d80d6ab71d7327d91d3d1146e5e0d7562503bdc69a162",
+      "overlay_file": "user_data/profile_repairs/MultiMA_TSL3a.py",
+      "population": "repaired",
+      "repair_class": "class2",
+      "repair_rules": [
+        "numpy1_string_nan_coercion"
+      ],
+      "source_tree": "profile-class2-overlay",
+      "strategy": "MultiMA_TSL3a"
     },
     {
       "base_file": "repos/kemplail_freqtrade-stuff/strategies/MultiMA_TSL.py",

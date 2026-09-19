@@ -20,6 +20,7 @@ import sys
 import time
 
 from evidence import profile_smoke
+from evidence.pipeline_state import EvidenceStore
 from runtime import runlog
 from repair.overrides import repair_overrides
 
@@ -157,6 +158,15 @@ def _isolated_strategy(row, canonical, repair=None):
     directory = os.path.join(ISOLATED_DIR, profile_smoke._safe(row["strategy_id"]))
     os.makedirs(directory, exist_ok=True)
     target = os.path.join(directory, os.path.basename(canonical))
+    # A repair can change the canonical basename (for example the original
+    # Example_Strat_With_FileLogging.py becomes the Ichi.py overlay).  Leaving
+    # the former copy beside the new one defeats the isolation contract:
+    # Freqtrade enumerates both files and may resolve the stale class first.
+    # Remove only generated Python copies; staged author data remains intact.
+    for name in os.listdir(directory):
+        stale = os.path.join(directory, name)
+        if name.endswith(".py") and os.path.abspath(stale) != os.path.abspath(target):
+            os.unlink(stale)
     temporary = target + ".tmp"
     shutil.copyfile(canonical, temporary)
     os.replace(temporary, target)
@@ -242,7 +252,7 @@ DEFAULT_DRIFT_THRESHOLD = 0.01
 # enough. Both must be read: ten rows straight came back "no drift table" here
 # only because every one of them used the ASCII fallback and the header/row
 # match was written for the Unicode form alone.
-_HEADER = re.compile(r"[┃|]\s*Indicators\s*[┃|](.+?)[┃|]\s*$", re.M)
+_HEADER = re.compile(r"[┃│|]\s*Indicators\s*[┃│|](.+?)[┃│|]\s*$", re.M)
 _FROM_STRATEGY = re.compile(r"\(from strategy\)")
 
 
@@ -289,8 +299,9 @@ def recursive_table(output):
         return [], {}
     # Whichever delimiter the header matched on is the one the whole table
     # uses - `rich` does not mix styles within one render.
-    delim = "┃" if "┃" in header.group(0) else "|"
-    row_delim = "│" if delim == "┃" else "|"
+    delim = ("┃" if "┃" in header.group(0) else
+             "│" if "│" in header.group(0) else "|")
+    row_delim = "│" if delim in ("┃", "│") else "|"
     columns = []
     for cell in header.group(1).split(delim):
         cell = cell.strip()
@@ -604,6 +615,13 @@ def candidates(profile_path, eligibility_path, output_path=None,
     no row offered twice.
     """
     profiles = {row["strategy_id"]: row for row in _csv(profile_path)}
+    canonical_read = (
+        os.path.abspath(profile_path) == os.path.abspath(PROFILES)
+        and os.path.abspath(eligibility_path) == os.path.abspath(ELIGIBILITY)
+        and os.path.abspath(output_path or OUTPUT) == os.path.abspath(OUTPUT)
+        and os.path.abspath(convergence_path or CONVERGENCE)
+        == os.path.abspath(CONVERGENCE))
+    evidence_store = EvidenceStore(ROOT) if canonical_read else None
     pending = _csv(eligibility_path)
     selected = [profiles[row["strategy_id"]] for row in pending
                 if row["eligibility_status"] == "pending_diagnostics" and
@@ -620,7 +638,13 @@ def candidates(profile_path, eligibility_path, output_path=None,
     for strategy_id, row in profiles.items():
         if strategy_id in seen or strategy_id not in laddered:
             continue
-        if measured.get(strategy_id, {}).get("lookahead"):
+        if evidence_store:
+            resolved = evidence_store.resolve(strategy_id, row)
+            already_attempted = resolved["lookahead_attempted"]
+        else:
+            already_attempted = bool(
+                measured.get(strategy_id, {}).get("lookahead"))
+        if already_attempted:
             continue
         selected.append(row)
     return selected
@@ -754,6 +778,11 @@ def selftest():
         "│ ema │ 0.000% │ 0.000% │ -0.000% │",
         ran])
     assert settled_startup(flat, 1.0)[0] == 30
+    # Freqtrade 2026.7 renders the header with the same light vertical used by
+    # its rows.  Older releases used a heavy header delimiter.  Both carry the
+    # identical table and must parse identically.
+    light = flat.replace("┃", "│")
+    assert settled_startup(light, 1.0)[0] == 30
     # An undefined cell disqualifies its own column and every smaller one.
     holed = nl.join([
         "┃ Indicators ┃ 30 (from strategy) ┃ 90 ┃ 365 ┃",
@@ -892,6 +921,15 @@ def main(argv=None):
             print("  %s: %s" % (previous[diagnostic]["status"],
                                  previous[diagnostic]["why"]), flush=True)
     print("profile bias records: %d" % len(data["results"]))
+    canonical_run = (
+        os.path.abspath(args.output) == os.path.abspath(OUTPUT)
+        and os.path.abspath(args.profiles) == os.path.abspath(PROFILES)
+        and os.path.abspath(args.eligibility) == os.path.abspath(ELIGIBILITY))
+    if canonical_run:
+        from evidence.finalize_evidence import (
+            publication_lock, refresh_published_state)
+        with publication_lock():
+            refresh_published_state()
     return 0
 
 

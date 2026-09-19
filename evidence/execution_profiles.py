@@ -702,7 +702,33 @@ _CHILD_OWN_FIELDS = (
     "runtime_smoke_status", "runtime_smoke_timerange", "observed_long_trades",
     "observed_short_trades", "canonical_observed_trades",
     "trade_evidence_source", "runtime_config_sha256", "source_sha256",
+    "declared_timeframe", "execution_timeframe", "timeframe_source",
 )
+
+
+def _inherit_authored_timeframe(child_row, parent_row):
+    """Resolve a Python-inherited timeframe without copying behavior.
+
+    A subclass inherits class attributes even when it implements its own entry
+    or exit methods.  Behavioral profile inheritance below is intentionally
+    conditional, but applying that condition to ``timeframe`` loses authored
+    metadata for signal-bearing subclasses.  Only source-declared values are
+    propagated here; config and repair-derived values keep their existing,
+    separately recorded provenance.
+    """
+    if child_row.get("execution_timeframe"):
+        return
+    source = parent_row.get("timeframe_source", "")
+    if source not in (
+        "strategy_source", "legacy_strategy_source",
+        "inherited_strategy_source", "inherited_legacy_strategy_source",
+    ):
+        return
+    child_row["declared_timeframe"] = parent_row.get("declared_timeframe", "")
+    child_row["execution_timeframe"] = parent_row.get("execution_timeframe", "")
+    child_row["timeframe_source"] = (
+        source if source.startswith("inherited_") else "inherited_" + source
+    )
 
 
 def _inherit_subclass_profiles(rows):
@@ -712,6 +738,7 @@ def _inherit_subclass_profiles(rows):
         parent_row = by_id.get(parent)
         if child_row is None or parent_row is None:
             continue
+        _inherit_authored_timeframe(child_row, parent_row)
         if child_row.get("signal_capability") != "unknown":
             # The child's own class body already gave the static analysis
             # something real to read (BBRSITV1's own buy_params/stoploss,
@@ -747,6 +774,26 @@ class Both(IStrategy):
     assert long_entry and short_entry
     profile = _profile("x.py", node, "true", long_entry, short_entry, methods)
     assert profile["run_profile"] == "futures_long_short"
+
+    child = {
+        "declared_timeframe": "", "execution_timeframe": "",
+        "timeframe_source": "unresolved",
+    }
+    parent = {
+        "declared_timeframe": "5m", "execution_timeframe": "5m",
+        "timeframe_source": "strategy_source",
+    }
+    _inherit_authored_timeframe(child, parent)
+    assert child == {
+        "declared_timeframe": "5m", "execution_timeframe": "5m",
+        "timeframe_source": "inherited_strategy_source",
+    }
+    explicit = {
+        "declared_timeframe": "1h", "execution_timeframe": "1h",
+        "timeframe_source": "strategy_source",
+    }
+    _inherit_authored_timeframe(explicit, parent)
+    assert explicit["execution_timeframe"] == "1h"
 
     profile = _profile("x.py", node, "false", long_entry, short_entry, methods)
     assert profile["signal_capability"] == "long_short"

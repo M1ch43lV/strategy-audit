@@ -37,6 +37,8 @@ import time
 
 from evidence import eligibility_warmup
 from evidence import profile_bias
+from evidence import regime_coverage
+from evidence.finalize_evidence import publication_lock, refresh_published_state
 from evidence import profile_smoke
 from runtime import runlog
 from repair.overrides import repair_overrides, sibling_config_timeframe
@@ -711,6 +713,10 @@ def resolve(row, timeout, overrides=None):
 # either was made by code that could not have got the answer.
 DEFECTIVE = ("freqtrade refused startup",
              "analyzer produced no drift table",
+             # The controller interpreter can build and select the cohort
+             # without carrying Freqtrade itself. Such a launch never reaches
+             # the analyzer and is execution-environment evidence only.
+             "No module named 'freqtrade'",
              # Not a defect of ours but of the moment: a run that could not
              # reach the exchange never evaluated the strategy, so its message
              # describes the machine. Nine rows carry it.
@@ -739,11 +745,13 @@ def redo_defective(cohort_name, selected=None):
     and had no sibling Config.py either, until `repair/local_modules.py`'s
     `restore_copied_local_module` resolution (2026-09-09) started reading the
     timeframe from the exact copy it already proved these two rows import.
-    Once a repair store carries that value, the old record is not evidence
-    about the strategy any more, only about the gap that has since closed.
+    Once the current execution profile or a repair store carries that value,
+    the old record is not evidence about the strategy any more, only about the
+    metadata-resolution gap that has since closed.
     """
     data = _load(OUTPUT)
     cohort_ids = {row["strategy_id"] for row in cohort(cohort_name)}
+    profiles = {row["strategy_id"]: row for row in _csv(PROFILES)}
     overrides = repair_overrides()
     superseded = data.setdefault("superseded", {})
     moved = []
@@ -762,15 +770,20 @@ def redo_defective(cohort_name, selected=None):
             reason = ("recorded under superseded diagnostic window %s; re-run "
                       "under frozen window %s"
                       % (record["timerange"], expected_window))
-        elif state == "inconclusive" and any(marker in why for marker in DEFECTIVE):
+        elif state in ("inconclusive", "crashes_even_at_longest_rungs") \
+                and any(marker in why for marker in DEFECTIVE):
             reason = ("recorded before the ladder trimmed an over-large top "
                       "rung and dropped an uncomputable bottom rung; re-run "
                       "under the fix")
-        elif (state == "no_usable_ladder" and why == "no declared timeframe"
-              and (overrides.get(strategy) or {}).get("timeframe")):
-            reason = ("recorded before a repair store carried this row's "
-                      "timeframe; re-run now that %s is on record"
-                      % overrides[strategy]["timeframe"])
+        elif state == "no_usable_ladder" and why == "no declared timeframe":
+            current_timeframe = (
+                (overrides.get(strategy) or {}).get("timeframe")
+                or (profiles.get(strategy) or {}).get("execution_timeframe"))
+            if not timeframe_minutes(current_timeframe):
+                continue
+            reason = ("recorded before the current evidence profile carried "
+                      "this row's timeframe; re-run now that %s is on record"
+                      % current_timeframe)
         else:
             continue
         record["superseded_because"] = reason
@@ -801,6 +814,78 @@ def supersede_selected(cohort_name, selected=None):
         moved.append(strategy)
     _write(OUTPUT, data)
     return moved
+
+
+def reparse_stored_no_table(selected=None):
+    """Reinterpret completed logs after a parser-only table-format fix.
+
+    This never launches Freqtrade.  It is limited to successful records whose
+    sole problem was the old parser rejecting the light-box header emitted by
+    Freqtrade 2026.7, and it preserves the former record under ``superseded``.
+    """
+    data = _load(OUTPUT)
+    superseded = data.setdefault("superseded", {})
+    changed = []
+    for strategy, current in sorted(data.get("results", {}).items()):
+        if selected and strategy not in selected:
+            continue
+        if (current.get("state") != "inconclusive"
+                or current.get("why") != "analyzer produced no drift table"
+                or current.get("returncode") != 0):
+            continue
+        log_path = os.path.join(ROOT, current.get("debug_log", "").replace("/", os.sep))
+        if not os.path.isfile(log_path):
+            continue
+        output = io.open(log_path, encoding="utf-8").read()
+        columns, rows = profile_bias.recursive_table(output)
+        if not columns or not rows:
+            continue
+
+        archived = dict(current)
+        archived["superseded_because"] = (
+            "stored Freqtrade 2026.7 light-box table was rejected by the old parser")
+        superseded.setdefault(strategy, []).append(archived)
+
+        record = dict(current)
+        record["columns"] = [{"startup_candle_count": startup,
+                              "from_strategy": from_strategy}
+                             for startup, from_strategy in columns]
+        record["drifts"] = {name: values for name, values in sorted(rows.items())}
+        blind = profile_bias.undefined_throughout(output)
+        if blind:
+            record["undefined_throughout"] = blind
+        declared = next((index for index, (_startup, from_strategy)
+                         in enumerate(columns) if from_strategy), None)
+        if declared is not None:
+            worst = [abs(values[declared]) for values in rows.values()
+                     if values[declared] is not None]
+            record["declared_startup_candle_count"] = columns[declared][0]
+            record["declared_max_drift_pct"] = max(worst) if worst else None
+
+        settled = profile_bias.settled_startup(output, DRIFT_THRESHOLD_PCT)
+        if settled is None:
+            record["state"] = "not_converged_within_ladder"
+            record["why"] = ("no startup up to %d candles keeps every indicator "
+                             "inside %s%%" % (columns[-1][0], DRIFT_THRESHOLD_PCT))
+        else:
+            startup, indicator, value = settled
+            record["state"] = "converged"
+            record["chosen_startup_candle_count"] = startup
+            record["chosen_ladder_days"] = next(
+                (days for days, candles in zip(record.get("ladder_days", []),
+                                                record.get("ladder_candles", []))
+                 if candles == startup), None)
+            record["max_drift_pct"] = abs(value)
+            record["max_drift_indicator"] = indicator
+            record["needed_no_override"] = (
+                record.get("declared_warmup_override") is None
+                and declared is not None and startup <= columns[declared][0])
+            record["why"] = "stored recursive table reparsed after delimiter fix"
+        record["reparsed_from_stored_log"] = True
+        data["results"][strategy] = record
+        changed.append((strategy, record["state"]))
+    _write(OUTPUT, data)
+    return changed
 
 
 def run(cohort_name, limit, timeout, wanted=None):
@@ -872,14 +957,22 @@ def selftest():
         assert hard[row["strategy_id"]] == "recursive_bias_found"
     # Nothing already admitted to E1 is revisited.
     assert not {row["strategy_id"] for row in rows} & _admitted()
-    # Wave D leads the fixed processing order.
+    # Wave D leads the fixed processing order. Its original size was 124, but
+    # rows leave this pending cohort after admission, so the assertion must
+    # verify ordering rather than freeze a stale pending count.
     waves = {row["strategy_id"]: row["expansion_wave"] for row in _csv(CANDIDATES)}
-    first = [waves[row["strategy_id"]] for row in rows[:124]]
-    assert set(first) == {"D_recursive_drift"}, sorted(set(first))
+    sequence = [waves[row["strategy_id"]] for row in rows]
+    wave_d_count = sequence.count("D_recursive_drift")
+    assert set(sequence[:wave_d_count]) == {"D_recursive_drift"}
+    assert "D_recursive_drift" not in sequence[wave_d_count:]
 
     assert len(cohort("wave_c_refusals")) == len(eligibility_warmup.WAVE_C_REFUSALS)
     assert len(cohort("wave_b_static_rejected")) == len(WAVE_B_STATIC_REJECTED)
-    assert len(cohort("wave_d")) == 124
+    profiled = {row["strategy_id"] for row in _csv(PROFILES)}
+    expected_wave_d = sum(1 for row in _csv(CANDIDATES)
+                          if row["expansion_wave"] == "D_recursive_drift"
+                          and row["strategy_id"] in profiled)
+    assert len(cohort("wave_d")) == expected_wave_d
     print("warmup_convergence selftest: PASS "
           "(%d recursion-only rows, %d of them Wave D)"
           % (len(rows), len(cohort("wave_d"))))
@@ -902,6 +995,8 @@ def main(argv=None):
                         help="move records a known defect produced aside")
     parser.add_argument("--force", action="store_true",
                         help="archive selected current records before rerunning")
+    parser.add_argument("--reparse-stored", action="store_true",
+                        help="reparse successful no-table logs after parser fixes")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:
@@ -913,10 +1008,28 @@ def main(argv=None):
         for strategy, why in moved:
             print("   %-30s %s" % (strategy, why))
         return 0
+    if args.reparse_stored:
+        changed = reparse_stored_no_table(set(args.strategy) or None)
+        print("reparsed %d stored recursive-analysis logs" % len(changed))
+        for strategy, state in changed:
+            print("   %-40s %s" % (strategy, state))
+        if changed:
+            regime_coverage.main([])
+            with publication_lock():
+                refresh_published_state()
+        return 0
     if args.force:
         moved = supersede_selected(args.cohort, set(args.strategy) or None)
         print("archived %d selected records for explicit rerun" % len(moved))
-    return run(args.cohort, args.limit, args.timeout, set(args.strategy) or None)
+    result = run(args.cohort, args.limit, args.timeout, set(args.strategy) or None)
+    if result == 0:
+        # Coverage is a separate, data-only gate. Refresh it when a ladder
+        # changes the set of rows eligible for admission; otherwise newly
+        # converged rows can remain stuck on stale baseline coverage.
+        regime_coverage.main([])
+        with publication_lock():
+            refresh_published_state()
+    return result
 
 
 if __name__ == "__main__":

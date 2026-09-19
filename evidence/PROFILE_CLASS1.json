@@ -329,6 +329,17 @@
       ],
       "status": "applied"
     },
+    "BaseNNStrategy": {
+      "image": "strategy-audit-tensorflow-runtime:2026.7",
+      "note": "The base strategy imports the author's adjacent utils package; retain the repository package root in the isolated runtime.",
+      "python_paths": [
+        "repos/nateemma_strategies"
+      ],
+      "rules": [
+        "restore_copied_local_module"
+      ],
+      "status": "applied"
+    },
     "CME": {
       "data_files": [
         "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/CME/user_data/cme_data/BTC1_weekly_data.csv"
@@ -2819,6 +2830,13 @@
       "note": "reads BASE_DIR / 'Bitcoin_marketcap.csv' with BASE_DIR the strategy's own directory. harvest.py fetches .py files with IStrategy, READMEs and the import closure, so the author's 97 KB marketcap series next to the code was never taken. Re-fetched from mlsys-io/PortfolioBench; the rule stages it beside the isolated copy the bias runner makes, which is where the strategy's own __file__ lookup points. It also loads MODEL_PATH = Path(__file__).parent / \"beta_factors_model.joblib\" and never trains, so without that file there is no strategy to measure. The .joblib came with the original 2026-08-24 acquisition (mtime and the Phase 17 commit both show it) and is no longer in the upstream tree, which the author appears to have pruned; it is the authors own artifact as captured, same provenance as the .py, not anything trained here.",
       "rules": [
         "stage_author_data_file"
+      ],
+      "status": "applied"
+    },
+    "abbas": {
+      "note": "Writes the legacy buy_tag and reaches the already-documented duplicate enter_tag failure on look-ahead-analysis' second signal pass. The requested class had no registry entry, so the existing idempotent entry-tag compatibility rule was not activated. No strategy source is touched.",
+      "rules": [
+        "idempotent_entry_tag_initialisation"
       ],
       "status": "applied"
     },

@@ -8,12 +8,13 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 
 | Verdict | Strategies | Meaning |
 |---|---:|---|
-| `repaired` | 145 | runs now, and the run is recorded |
+| `repaired` | 157 | runs now, and the run is recorded |
 | `repair_attempted` | 23 | a route was applied and did not finish the job |
-| `to_be_fixed` | 36 | the route is known, the run has not happened yet |
+| `to_be_fixed` | 22 | the route is known, the run has not happened yet |
 | `needs_a_look` | 39 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 2 | the repair made things worse and was undone |
 | `refuse_repair` | 62 | repairing it would mean inventing the strategy |
+| `excluded_by_policy` | 42 |  |
 | `-` | 62 |  |
 
 ## Routes taken
@@ -40,7 +41,7 @@ For example: `ADX_15M_USDT`, `ADX_15M_USDT2`, `AlligatorStrat`, `Argrelextrema`,
 
 ### Seven compatibility shims for freqtrade's own behaviour
 
-`repair_family: framework_compat_shim` &mdash; 115 strategies (repaired 97, repair_attempted 2, to_be_fixed 16)
+`repair_family: framework_compat_shim` &mdash; 121 strategies (repaired 109, repair_attempted 2, to_be_fixed 10)
 
 **The message.**
 
@@ -98,7 +99,7 @@ For example: `ARIMASTR`, `Apollo11`, `BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB
 
 ### The author's own module put back on the path
 
-`repair_family: local_module_off_path` &mdash; 92 strategies (repaired 2, repair_attempted 16, to_be_fixed 9, needs_a_look 1, repair_withdrawn 2, - 62)
+`repair_family: local_module_off_path` &mdash; 84 strategies (repaired 2, repair_attempted 16, to_be_fixed 1, needs_a_look 1, repair_withdrawn 2, - 62)
 
 **The message.**
 
@@ -114,7 +115,7 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `repair/local_modules.py`.
 
-For example: `AdvancedRiskFilterStrategy`, `BBBHold`, `BBKCBounce`, `BB_RPB_3c`, `BTCMACDCross`, `BaseStrategy`.
+For example: `AdvancedRiskFilterStrategy`, `BBKCBounce`, `BB_RPB_3c`, `BTCMACDCross`, `BaseStrategy`, `BuyRegions`.
 
 ### FreqAI strategies given the author's own configuration
 
@@ -608,12 +609,12 @@ For example: `BlueEyes_MPP_v1`.
 
 | Rule | Strategies |
 |---|---:|
-| `restore_copied_local_module` | 78 |
+| `restore_copied_local_module` | 79 |
 | `tf_keras_saving_reexport` | 73 |
 | `tf_keras_backend_set_session_noop` | 72 |
 | `nntc_writable_labels` | 65 |
 | `startup_candles_not_limited_by_call_budget` | 61 |
-| `idempotent_entry_tag_initialisation` | 23 |
+| `idempotent_entry_tag_initialisation` | 29 |
 | `legacy_min_roi_reached_entry_signature` | 21 |
 | `lookahead_runmode_reports_backtest` | 21 |
 | `legacy_min_roi_reached_entry_override` | 11 |
@@ -622,6 +623,7 @@ For example: `BlueEyes_MPP_v1`.
 | `restore_fetched_local_module` | 10 |
 | `nnpredict_chained_iloc_writeback` | 10 |
 | `populate_indicators_chained_writeback` | 8 |
+| `lookahead_dataframe_alignment_diagnostics` | 6 |
 | `whitespace_tolerant_class_scan` | 6 |
 | `tf_keras_bare_save_redirect` | 6 |
 | `freqai_config_from_author_block` | 5 |
@@ -638,6 +640,7 @@ For example: `BlueEyes_MPP_v1`.
 | `restore_freqtrade_indicator_helpers` | 1 |
 | `legacy_sell_check_tuple` | 1 |
 | `restore_keras_vis_utils` | 1 |
+| `deterministic_strategy_import_randomness` | 1 |
 | `legacy_replace_method_kwarg` | 1 |
 | `restore_numpy_lib_function_base` | 1 |
 | `legacy_pmax_parameter_names` | 1 |

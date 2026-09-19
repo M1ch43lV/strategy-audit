@@ -25,6 +25,14 @@ import os
 import re
 import sys
 
+from evidence.pipeline_state import (
+    EvidenceStore,
+    OUTPUT as PIPELINE_STATE_OUT,
+    completed_full_backtest,
+    document as pipeline_state_document,
+    write_document as write_pipeline_state,
+)
+
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BS_SEP = chr(92)
@@ -53,6 +61,7 @@ WAVE_B_WARMUP = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_WARMUP.json")
 # What stops each row that never ran, and whether repairing it would restore
 # what the author wrote or invent something they did not.
 BLOCKED_TRIAGE = os.path.join(ROOT, "evidence/BLOCKED_TRIAGE.json")
+REPAIR_ADJUDICATION = os.path.join(ROOT, "evidence/REPAIR_ADJUDICATION.json")
 ZERO_TRADE_TRIAGE = os.path.join(ROOT, "evidence/ZERO_TRADE_TRIAGE.json")
 # A repaired row is measured by its own runner, into its own store. The smoke
 # store holds the failure; this holds what happened once the obstacle was
@@ -468,13 +477,36 @@ NO_REPAIR_POSSIBLE = {"timeframe_not_recoverable", "no_stoploss",
                       "insufficient_authored_history_contract",
                       "missing_author_runtime",
                       "unsupported_exchange_timeframe",
-                      "local_module_repair_exhausted"}
+                      "local_module_repair_exhausted",
+                      "missing_author_dependency",
+                      "platform_unsupported",
+                      "external_live_data_not_canonical",
+                      "author_parent_missing",
+                      "not_a_strategy_fixture"}
 
 
 def _json(path, key="results"):
     if not os.path.exists(path):
         return {}
     return json.load(io.open(path, encoding="utf-8")).get(key, {})
+
+
+def _adjudicated_decisions():
+    """Return only controller decisions whose captured source is unchanged."""
+    data = _json(REPAIR_ADJUDICATION, "decisions")
+    out = {}
+    for strategy, record in data.items():
+        source = record.get("source_file", "")
+        expected = record.get("source_sha256", "")
+        path = os.path.join(ROOT, source.replace("/", os.sep))
+        if not source or not expected or not os.path.isfile(path):
+            continue
+        import hashlib
+        actual = hashlib.sha256(io.open(path, "rb").read()).hexdigest()
+        if actual == expected and record.get("decision") in (
+                "refuse_repair", "exclude_by_user_policy"):
+            out[strategy] = record
+    return out
 
 
 def _full_backtest_document():
@@ -484,17 +516,6 @@ def _full_backtest_document():
     document = json.load(io.open(FULL_BACKTEST_MANIFEST, encoding="utf-8"))
     return {"results": document.get("results") or {},
             "timerange": document.get("timerange") or {}}
-
-
-def completed_full_backtest(profile, record):
-    """Whether this exact implementation completed the canonical pooled run."""
-    if not record or record.get("status") != "measured":
-        return False
-    return (
-        record.get("measurement_scope") == "canonical_pooled_native_pair_universe"
-        and record.get("run_profile") == profile.get("run_profile")
-        and record.get("canonical_sha256") == profile.get("source_sha256")
-    )
 
 
 FULL_BACKTEST_NOT_TESTABLE = frozenset((
@@ -565,6 +586,8 @@ EXCLUSION_BASIS = {
         "it under a known reader defect",
     "blocked":
         "the strategy did not run, so nothing about it was judged",
+    "user_direction":
+        "explicit owner scope decision after repair triage; not a technical finding",
 }
 
 
@@ -710,14 +733,8 @@ def rows():
     }
     classification = _json(CLASSIFICATION)
     phase_hypothesis = _json(PHASE_HYPOTHESIS)
-    smoke = dict(_json(SMOKE))
-    bias = _json(BIAS)
-    full = _json(FULL_WINDOW)
-    full_backtest_document = _full_backtest_document()
-    full_backtests = full_backtest_document["results"]
-    convergence = _json(CONVERGENCE)
-    wave_b = _json(WAVE_B_WARMUP)
     triage = _json(BLOCKED_TRIAGE)
+    adjudicated = _adjudicated_decisions()
     # Zero trades over the full window is the strategy's own
     # property only when nothing on our side stopped it trading.
     # Four of the eleven turned out to be ours: a basket strategy
@@ -786,149 +803,34 @@ def rows():
     attempted = {name: record.get("why", "")
                  for name, record in _json(LOCAL_MODULES).items()
                  if record.get("status") != "resolved"}
-    repaired = dict(_json(TIMEFRAME_REPAIR))
-    # Two repair runners, one precedence: whichever of them last produced a
-    # measurement for a row replaces the failure the smoke store holds.
-    for name, record in _json(MODULE_REPAIR).items():
-        repaired.setdefault(name, record)
-    for name, record in _json(SIGNATURE_REPAIR).items():
-        repaired.setdefault(name, record)
-    for name, record in _json(FREQAI_REPAIR).items():
-        repaired.setdefault(name, record)
-    for name, record in _json(FREQAI_WTAI).items():
-        repaired.setdefault(name, record)
-    # A native re-measurement outranks whatever PROFILE_BIAS or the baseline
-    # holds: it is the same gate, measured later, from this implementation.
-    remeasured = {}
-    remeasured_sha = {}
-    # Separately: every row a gate of ours has been run against, verdict or
-    # not. An NA is not a verdict, but it is emphatically not "never measured
-    # here" either - the run happened, it produced nothing, and the reason is
-    # worth showing. Recording it as `missing` said the opposite of the truth
-    # for 22 convergence candidates.
-    attempted_gate = {}
-    for store in LOOKAHEAD_STORES:
-        for name, record in _json(store).items():
-            gate = record.get("lookahead") or {}
-            if gate.get("status") in ("PASS", "FOUND"):
-                remeasured[name] = gate
-                remeasured_sha[name] = record.get("canonical_sha256")
-            elif gate.get("status"):
-                attempted_gate.setdefault(name, gate)
-    # freqtrade's lookahead-analysis flags `has_bias=Yes` the moment ANY
-    # dataframe column differs between a short and a long data window - that
-    # is also what a correctly-built lagging/leading Ichimoku span looks
-    # like by construction (a raw intermediate value briefly holds a real
-    # future close before the strategy re-aligns or never reads it). Its own
-    # signal-level check is stronger evidence: entries/exits actually
-    # replayed against 20 sampled trades. Where that check found zero biased
-    # entries and zero biased exits, and a strategy's own code has been read
-    # by hand to confirm the flagged column never reaches populate_entry/
-    # exit_trend un-neutralised, evidence/LOOKAHEAD_INDICATOR_REVIEW.json records the
-    # finding bound to the file's hash - so a later edit of the strategy
-    # invalidates the review instead of silently keeping it.
-    lookahead_review = _json(LOOKAHEAD_INDICATOR_REVIEW, key="reviewed")
+    # One reader owns the precedence across smoke, repair, full-window,
+    # Look-Ahead, convergence, Recursive-Bias, and pooled Full-Backtest stores.
+    # No consumer may reconstruct this ordering from one raw JSON file.
+    evidence_store = EvidenceStore(ROOT)
 
     out = []
     for strategy in sorted(profiles):
         profile = profiles[strategy]
-        full_backtest = full_backtests.get(strategy) or {}
-        full_backtest_complete = completed_full_backtest(profile, full_backtest)
         base = baseline.get(strategy, {})
         wave = waves.get(strategy, {}).get("expansion_wave", "")
-        measurement = smoke.get(strategy) or {}
-        repair_run = repaired.get(strategy) or {}
-        # `repaired` is a handful of one-off runner stores, each written once
-        # and never touched again once no script remains that regenerates it.
-        # `smoke` is evidence/PROFILE_SMOKE.json, re-run directly whenever a rule is
-        # added or corrected. When both hold a record and disagree on which
-        # rules were active, the fresher one is whichever measured under the
-        # rules PROFILE_CLASS1 currently registers - not by construction
-        # whichever store this is. Solipsis4 and Dyna_opti needed a second
-        # shim after their module-path repair was already measured and
-        # filed; a bare `status in (...)` check kept reporting that stale
-        # failure days after a passing run sat in `smoke`.
-        #
-        # Rule-matching alone answers "did the registered compat rules
-        # change", not "did the underlying file change" - a different
-        # staleness question, and RLAgentStrategy fell straight through the
-        # gap between them: its upstream repo moved (a new dependency,
-        # datasieve, replacing the old optunahub one FREQAI_REPAIR.json was
-        # filed against), PROFILE_CLASS1's registered rule for it was
-        # untouched, so the rule check alone said "still current" over a
-        # canonical_sha256 that no longer existed on disk. Comparing hashes
-        # is the same fix `evidence/profile_smoke.py`'s own skip check needed for the
-        # same three rows this session, applied where a repair store
-        # competes with a fresh smoke measurement instead of with itself.
-        current_rules = class1.get(strategy, {}).get("rules") or []
-        smoke_is_current_measurement = (
-            measurement.get("status") == "measured"
-            and measurement.get("class1_rules", current_rules) == current_rules)
-        if repair_run.get("status") in ("measured", "failed") \
-                and not smoke_is_current_measurement \
-                and repair_run.get("class1_rules", current_rules) == current_rules \
-                and (not measurement.get("canonical_sha256")
-                     or repair_run.get("canonical_sha256")
-                     == measurement.get("canonical_sha256")):
-            # The obstacle is gone and the row produced trades. Continuing to
-            # report the old failure would say the strategy does not run while
-            # a run of it sits on disk.
-            measurement = repair_run
-        window = full.get(strategy) or {}
-        diagnostics = bias.get(strategy) or {}
-        settled = convergence.get(strategy) or {}
-        warmup = wave_b.get(strategy) or {}
-        attempt = (warmup.get("attempts") or {}).get(
-            str(warmup.get("latest_startup_candle_count"))) or {}
-
-        trades, source = "", ""
-        if window.get("status") == "measured":
-            trades, source = window.get("trades", ""), "full_window"
-        elif measurement.get("status") == "measured":
-            trades, source = measurement.get("trades", ""), "smoke"
-        elif base.get("canonical_measured") == "true":
-            trades, source = base.get("canonical_observed_trades", ""), "baseline"
-
-        for gate in ("lookahead", "recursive"):
-            if (repair_run.get(gate) or {}).get("status") in ("PASS", "FOUND"):
-                diagnostics = dict(diagnostics)
-                diagnostics[gate] = repair_run[gate]
-        fresh = remeasured.get(strategy)
-        lookahead = (fresh or diagnostics.get("lookahead") or {}).get("status")             or base.get("lookahead") or ""
-        tried = attempted_gate.get(strategy)
-        lookahead_evidence = (
-            "native" if (fresh or diagnostics.get("lookahead") or tried)
-            else (base.get("lookahead_evidence_source") or "missing"))
-        if not lookahead and tried:
-            lookahead = tried.get("status") or ""
-        # A reviewed exception: the indicator freqtrade flagged never
-        # decided this row's actual entries/exits (see the note where
-        # LOOKAHEAD_INDICATOR_REVIEW is loaded), and the file has not
-        # changed since a human read confirmed why.
-        review = lookahead_review.get(strategy)
-        review_note = ""
-        if lookahead == "FOUND" and review:
-            active_sha = (remeasured_sha.get(strategy) if fresh is not None
-                          else diagnostics.get("canonical_sha256"))
-            if active_sha and active_sha == review.get("canonical_sha256"):
-                lookahead = "PASS"
-                lookahead_evidence = "reviewed_indicator_only"
-                review_note = ("lookahead reviewed: flagged column not "
-                               "decisive (%s, see evidence/LOOKAHEAD_INDICATOR_REVIEW.json)"
-                               % review.get("pattern", ""))
-        recursive = ((diagnostics.get("recursive") or {}).get("status")
-                     or base.get("recursive") or "")
-        # Where a verdict comes from decides whether it may be shown as one.
-        # The baseline can carry a PASS from the original corpus sweep for a
-        # canonical implementation that was never measured: real evidence, but
-        # about a different run and a different file selection. It is recorded
-        # with its provenance rather than presented as this row's verdict.
-        if diagnostics.get("recursive"):
-            recursive_evidence = "native"
-        elif base.get("canonical_measured") == "true":
-            recursive_evidence = "baseline"
-        else:
-            recursive_evidence = base.get("recursive_evidence_source") or "missing"
+        resolved = evidence_store.resolve(strategy, profile, base)
+        full_backtest = resolved["full_backtest_record"]
+        full_backtest_complete = resolved["technical_chain_complete"]
+        measurement = resolved["measurement_record"]
+        repair_run = resolved["repair_record"]
+        window = resolved["full_window_record"]
+        diagnostics = resolved["diagnostics_record"]
+        settled = resolved["convergence_record"]
+        attempt = resolved["warmup_attempt_record"]
+        trades = resolved["observed_trades"]
+        source = resolved["trade_evidence"]
+        fresh = resolved["fresh_lookahead_record"]
+        tried = resolved["attempted_lookahead_record"]
+        lookahead = resolved["lookahead"]
+        lookahead_evidence = resolved["lookahead_evidence"]
+        recursive = resolved["recursive"]
+        recursive_evidence = resolved["recursive_evidence"]
+        review_note = resolved["lookahead_review_note"]
         # Same precedence, for the same reason: evidence/REGIME_COVERAGE.csv is
         # regenerated freely and now covers every row evidence/EXECUTION_PROFILES.csv
         # does, so it is read first; the frozen baseline is the fallback for
@@ -946,66 +848,6 @@ def rows():
             coverage_status = ""
             coverage_evidence = "missing"
             coverage_detail = ""
-        # A FOUND inherited from a run that never got as far as measuring is
-        # not a finding. `refused_no_warmup` records that the analyzer declined
-        # the strategy because it declared no warm-up - the same non-finding
-        # already corrected for the convergence candidates, still on the
-        # inherited path for 47 rows. Naming it as what it is keeps the reader
-        # from reading a missing precondition as detected bias.
-        # Only where no ladder has run. Once it has, what it measured is
-        # the answer, and "nothing was ever compared" would be false:
-        # four rows said that while the ladder had in fact compared
-        # every rung and found drift at all of them.
-        if recursive == "FOUND" and not diagnostics.get("recursive") \
-                and not settled \
-                and base.get("recursive_kind") == "refused_no_warmup":
-            recursive = "WARMUP_NEEDED"
-            recursive_evidence += ":refused_no_warmup"
-        if settled.get("state") == "converged":
-            # The ladder has re-measured this row, so the stored FOUND is the
-            # superseded verdict and must not be shown as the current one. Two
-            # different passes are possible and the difference is the whole
-            # point of the amendment: a row inside the frozen 0.01 percent band
-            # needed no relaxation at all, while one inside 1.0 percent is
-            # admitted only under the wider band.
-            drift = settled.get("max_drift_pct")
-            recursive = ("PASS" if (drift or 0) < 0.01 else "PASS_1PCT")
-            recursive_evidence = "convergence:%s%s" % (
-                settled.get("chosen_startup_candle_count"),
-                "" if settled.get("needed_no_override") else ":warmup_supplied")
-        elif settled.get("state") == "not_converged_within_ladder":
-            # The ladder supplied warm-up after warm-up and the indicator kept
-            # drifting. This is the one shape in which a recursion finding is
-            # confirmed rather than inherited.
-            recursive = "FOUND"
-            recursive_evidence = "convergence:not_settled"
-        elif settled.get("state") == "crashes_even_at_longest_rungs":
-            # Not a finding - no drift was ever observed, because the row
-            # never produced a drift table to observe it in. TRIX_LS
-            # (`rsi_.rolling(length)` on `None`) and kijun_cross_strong_s (a
-            # `NoneType` subscript) both crash inside their own indicator
-            # code, and both already pass a real smoke test on full history,
-            # so this is the ladder's extreme short rungs, not a defect
-            # visible under real use. The shrinking-ladder retry (`resolve()`
-            # in evidence/warmup_convergence.py) already gave every rung down to the 3
-            # longest a chance to be the reason and it still crashes there.
-            # `recursive` stays `NA` - honestly, no bias verdict exists - but
-            # the recursive-bias check is not optional for any row, so
-            # failing to complete it even at the most generous remaining
-            # warm-up is treated as failing to pass it.
-            recursive = "NA"
-            recursive_evidence = "convergence:crash_exhausted"
-        elif attempt:
-            # Measured here, at a supplied warm-up, but under the parser that
-            # read the wrong table column and treated an undefined cell as a
-            # clean one. Re-parsing the 106 wave B logs that survive overturns
-            # 58 of them, every one from FOUND to "no verdict"; the runs that
-            # produced the PASS verdicts kept no log at all and cannot be
-            # re-parsed. So the attempt is shown as superseded and the row is
-            # queued for the ladder rather than credited with its old result.
-            recursive_evidence = "wave_b:%s:superseded" % (
-                attempt.get("startup_candle_count"))
-
         # Freqtrade ships its own fixtures under tests/strategy/strats, and
         # eleven of them are in the corpus. They load, they trade, they clear
         # both bias checks - and they are not strategies anyone wrote to
@@ -1015,8 +857,7 @@ def rows():
         # anything, so a row it turned away for want of them cannot be given a
         # verdict by any amount of re-running. Read from the widest window the
         # check tried, which is the full 6.5 years over all eight pairs.
-        gate_record = (fresh or tried
-                       or (diagnostics.get("lookahead") or {}) or {})
+        gate_record = resolved["lookahead_gate_record"]
         too_few = (
             gate_record.get("status") == "NA"
             and "too few trades" in (gate_record.get("why") or "")
@@ -1103,6 +944,12 @@ def rows():
             # `can_short` unset. None of that is a statement about the
             # strategy, so none of it excludes one.
             cohort = "pending"
+        elif window.get("status") == "measured" \
+                and _integer(window.get("trades")) > 0:
+            # A current canonical full-window measurement with trades
+            # disproves an inherited zero-trade label. It does not admit the
+            # row: the remaining gates still decide it, so keep it pending.
+            cohort = "pending"
         else:
             cohort = "excluded"
 
@@ -1140,6 +987,11 @@ def rows():
                 reasons.add("recursive_warmup_refused")
             if measurement.get("status") == "measured":
                 reasons.discard("canonical_implementation_not_measured")
+            if window.get("status") == "measured" \
+                    and _integer(window.get("trades")) > 0:
+                # Do not let the frozen source keep a "never trades" reason
+                # once the canonical full-window store records trades.
+                reasons.discard("no_trades_in_full_measurement")
             # The frozen baseline still carries `technical_trap_found`, and
             # it stays there: the baseline is not rewritten. It is no longer a
             # reason a row fails, though. `traps.py` reads the source for the
@@ -1449,6 +1301,13 @@ def rows():
             repair["note"], refusal_family = refused_repair[strategy]
             if refusal_family:
                 repair["family"] = refusal_family
+        if strategy in adjudicated:
+            decision = adjudicated[strategy]
+            repair["verdict"] = ("excluded_by_policy"
+                                 if decision["decision"] == "exclude_by_user_policy"
+                                 else "refuse_repair")
+            repair["family"] = decision["family"]
+            repair["note"] = decision["reason"]
         if strategy in withdrawn:
             repair["verdict"] = "repair_withdrawn"
             repair["family"] = "local_module_off_path"
@@ -1464,6 +1323,15 @@ def rows():
             # Nothing is still owed: no ladder will ever run on a row that
             # never starts, so the pending-side flag from before this row was
             # decided does not belong on it any more.
+            open_work = []
+        # This is an owner scope decision, not a finding about the strategy.
+        # It is separate from C4 and can be reopened without changing the
+        # source-bound technical triage record.
+        if cohort == "pending" and repair.get("verdict") == "excluded_by_policy" \
+                and repair.get("family") == "user_policy_excluded_after_triage":
+            cohort = "excluded"
+            reason = "user_policy_excluded_after_triage"
+            basis = "user_direction"
             open_work = []
         # C4, reached from the gate rather than a trial-run failure: see
         # `invalid_gate_config` above. The row measures and trades fine, so
@@ -1591,7 +1459,7 @@ def rows():
         # because a supporting gate record is historical or incomplete.
         # `exclusion_unconfirmed` is intentionally not covered: it is not an
         # earned exclusion and must retain the work needed to decide it.
-        if cohort == "excluded":
+        if cohort in ("excluded", "too_few_trades"):
             open_work = []
 
         # Owner decision 2026-09-10: a successful, identity-bound canonical
@@ -2484,7 +2352,7 @@ def selftest():
         # excluded 40 running strategies before either bias check had seen
         # them, and not a verdict inherited from the original sweep.
         if row["cohort"] == "excluded":
-            assert row["exclusion_basis"] == "own_measurement",                 (row["strategy_id"], row["exclusion_basis"])
+            assert row["exclusion_basis"] in ("own_measurement", "user_direction"),                 (row["strategy_id"], row["exclusion_basis"])
             assert (
                 (row["lookahead"] == "FOUND"
                  and row["lookahead_evidence"] == "native")
@@ -2498,6 +2366,7 @@ def selftest():
                 or row["primary_reason"] == "third_party_package_declined"
                 or row["primary_reason"] == "shared_runtime_change_declined"
                 or row["primary_reason"] == "duplicate_implementation"
+                or row["primary_reason"] == "user_policy_excluded_after_triage"
             ), (row["strategy_id"], row["primary_reason"],
                 row["lookahead"], row["recursive_evidence"])
         # A trap is a fact about the source, never a verdict. It may sit on
@@ -2513,6 +2382,9 @@ def selftest():
                 "too_few_trades_to_measure"), row["strategy_id"]
             assert row["exclusion_basis"] == "own_measurement",                 row["strategy_id"]
             assert row["lookahead"] == "NA", row["strategy_id"]
+            assert not row["open_work"], \
+                "a terminal full-window zero-trade row must not block the queue: %s" % \
+                row["strategy_id"]
         # A file that is not a strategy is neither admitted nor excluded:
         # there is no verdict to reach about a test fixture. It says what it
         # is, and it asks for nothing.
@@ -2697,6 +2569,16 @@ def main(argv=None):
         if current != rendered[OUTPUT]:
             print("stale: %s" % os.path.relpath(OUTPUT, ROOT))
             return 1
+        if not os.path.exists(PIPELINE_STATE_OUT):
+            print("stale: %s" % os.path.relpath(PIPELINE_STATE_OUT, ROOT))
+            return 1
+        pipeline_current = json.load(io.open(
+            PIPELINE_STATE_OUT, encoding="utf-8"))
+        pipeline_expected = pipeline_state_document(
+            data, generated_at=pipeline_current.get("generated_at"))
+        if pipeline_current != pipeline_expected:
+            print("stale: %s" % os.path.relpath(PIPELINE_STATE_OUT, ROOT))
+            return 1
         from evidence import exclusion_criteria
         for path, build in ((exclusion_criteria.CRITERIA_OUT,
                              exclusion_criteria.criteria_report),
@@ -2714,6 +2596,7 @@ def main(argv=None):
         return 0
     for path, content in rendered.items():
         _write(path, content)
+    write_pipeline_state(data)
     counts = collections.Counter(row["cohort"] for row in data)
     for cohort, count in counts.most_common():
         print("%s: %d" % (cohort, count))

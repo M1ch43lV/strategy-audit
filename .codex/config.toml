@@ -1,0 +1,21 @@
+[mcp_servers.codex]
+command = "codex.cmd"
+args = ["mcp-server"]
+
+[controller]
+default_model = "gpt-5.6-terra"
+default_reasoning = "low"
+
+[routing]
+classification = { model = "gpt-5.6-luna", reasoning = "low" }
+smoke = { model = "gpt-5.6-luna", reasoning = "low" }
+lookahead = { model = "gpt-5.6-luna", reasoning = "low" }
+warmup_recursive = { model = "gpt-5.6-luna", reasoning = "low" }
+full_backtest = { model = "gpt-5.6-terra", reasoning = "medium" }
+escalation = ["gpt-5.6-sol:medium", "gpt-5.6-sol:high"]
+
+[dispatcher]
+# The dispatcher remains dry-run by default.  It starts at most one serial
+# canonical runner per cycle; --watch must be requested explicitly.
+default_interval_seconds = 60
+max_parallel_runners = 1

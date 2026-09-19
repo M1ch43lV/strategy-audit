@@ -262,11 +262,12 @@ def record_refusals():
     return refused
 
 
-def run_smoke(limit, timeout):
+def run_smoke(limit, timeout, retry_timeouts=False):
     record_refusals()
     data = _load()
     queue = [(row, tf, kind, why) for row, tf, kind, why in cohort()
-             if tf and row["strategy_id"] not in data["results"]]
+             if tf and (row["strategy_id"] not in data["results"]
+                        or (retry_timeouts and data["results"][row["strategy_id"]].get("status") == "timeout"))]
     refused = [(row["strategy_id"], why) for row, tf, _k, why in cohort() if not tf]
     if limit:
         queue = queue[:limit]
@@ -277,7 +278,14 @@ def run_smoke(limit, timeout):
         strategy = row["strategy_id"]
         result = profile_smoke.run_one(row, TIMERANGE, timeout,
                                        config_overrides={"timeframe": timeframe})
+        previous = data["results"].get(strategy)
         result.update(_record(row, timeframe, kind, source))
+        if previous is not None:
+            attempts = list(previous.get("prior_attempts", []))
+            attempts.append({key: previous.get(key) for key in
+                             ("status", "why", "runtime_id", "source_sha256", "finished_at")
+                             if key in previous})
+            result["prior_attempts"] = attempts
         data["results"][strategy] = result
         _write(data)
         print("[%d/%d] %-34s tf=%-4s %-9s %s"
@@ -363,6 +371,8 @@ def main(argv=None):
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--timeout", type=int, default=1800)
     parser.add_argument("--fallback-timeout", type=int, default=600)
+    parser.add_argument("--retry-timeouts", action="store_true",
+                        help="retry only previously recorded timeout rows; preserve each prior attempt")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:
@@ -374,7 +384,7 @@ def main(argv=None):
         return report()
     if args.stage == "gates":
         return run_gates(args.limit, args.timeout, args.fallback_timeout)
-    return run_smoke(args.limit, args.timeout)
+    return run_smoke(args.limit, args.timeout, args.retry_timeouts)
 
 
 if __name__ == "__main__":

@@ -38,11 +38,14 @@ rule is the most likely way to corrupt this study.
 
 ## Tier 2 - who is measured
 
-- **`STRATEGY_STATUS.md` / `.csv` - start here.** The current evidence for all
-  1,050 rows, regenerated from the smoke, bias, full-window, adjudication and
-  convergence stores. It is the only table that answers "what do we know about
-  this strategy today"; the frozen baseline cannot, by design. It decides
-  nothing - admission happens in the adjudicator alone.
+- **`evidence/PIPELINE_STATE.json` or `STRATEGY_STATUS.md` / `.csv` - start
+  here.** They are the canonical machine-readable and flat published views of
+  current evidence across smoke, bias, convergence, full-window, adjudication,
+  and canonical pooled Full-Backtest stores. `PIPELINE_STATE.json` additionally
+  records mutually exclusive next-action counts and the selected producer
+  store for every resolved gate. Never derive a pipeline-wide count from one
+  raw runner store. These views decide nothing; admission happens in the
+  adjudicator alone.
 - `evidence/REGIME_ELIGIBILITY.md` / `.csv` - the invalidated historical Stage 6
   snapshot. Its 67 `regime_eligible=true` flags were assigned before every row
   completed this audit's uniform check chain. They are preserved to document

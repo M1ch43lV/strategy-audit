@@ -1,0 +1,449 @@
+{
+  "candidates": {},
+  "decisions": {
+    "ARIMA_5": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/TheoBrigitte_freqtrade/strategies/arima/ARIMA_5.py",
+      "source_sha256": "11e3b33787eca095a1ff206c2593f1e91e382b84207b30ea19beae1dc72015fd",
+      "strategy_id": "ARIMA_5",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "BBBHold": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/_BBBHold/BBBHold.py",
+      "source_sha256": "c110190434abe68fcdbe744c6e6d89d83c007c717ddc00f21c605bdad751bbbd",
+      "strategy_id": "BBBHold",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "BB_RPB_TSL_Trailing": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/BB_RPB_TSL.py",
+      "source_sha256": "b9672cc3e328910a94049ac331c5c475c125bda6c80d84228e854ce399c60adf",
+      "strategy_id": "BB_RPB_TSL_Trailing",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "BaseNNStrategy": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/nateemma_strategies/Framework/BaseNNStrategy.py",
+      "source_sha256": "70aa33849d6a4d5e9bd27d928e1ef62d1ea29ad289842a91d06fa0a8cf8adb4c",
+      "strategy_id": "BaseNNStrategy",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "ClucHAnix_BB_RPB_MOD_CTT_DTB": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/ShahAnuj2610_my-freqtrade/user_data/strategies/BB_RPB_TSL_ClucHAnix_BB_RPB_MOD_CTT_Dynamic_Offsets_COMBINED_MOD_TraNz_1.py",
+      "source_sha256": "bfd38c83376dde5e23b864b343d23d9e41623235649819178fd54b72d1473aec",
+      "strategy_id": "ClucHAnix_BB_RPB_MOD_CTT_DTB",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "CombinedBinHAndClucV4WS": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/TomtomEh_freqtrade-websocket/user_data/strategies/CombinedBinHAndClucV4WS.py",
+      "source_sha256": "cbe2a6d02165b05ee7b163cf14ad9db7ed8d279cde91dd3ce6413ab38f2789c1",
+      "strategy_id": "CombinedBinHAndClucV4WS",
+      "triage_context": "external_live_data_not_canonical: Depends on the BinanceStream websocket/order-book base class. A historical candle backtest cannot reproduce the required live stream without author-supplied recorded data."
+    },
+    "LitmusBBStrategy": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusBBStrategy.py",
+      "source_sha256": "e08c7572991cc4ff5fd3491622932f57021f221787408e7e0aff6a47873b79bf",
+      "strategy_id": "LitmusBBStrategy",
+      "triage_context": "missing_author_dependency: Imports the unshipped cointanalysis runtime. Its model/data contract is not present in the captured repository, so installing or recreating it would not reproduce the author environment."
+    },
+    "LitmusBBTrendStrategy": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusBBTrendStrategy.py",
+      "source_sha256": "c105d817e5898f5c601b8ced0cd9cd5115bf964bd2ede5c626a230b6997b62e1",
+      "strategy_id": "LitmusBBTrendStrategy",
+      "triage_context": "missing_author_dependency: Imports the unshipped cointanalysis runtime. Its model/data contract is not present in the captured repository, so installing or recreating it would not reproduce the author environment."
+    },
+    "LitmusClucStrategy": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusClucStrategy.py",
+      "source_sha256": "2c2b175108d5a3788ac4cbb800680566104140f668733571f0f84e6635aa5be5",
+      "strategy_id": "LitmusClucStrategy",
+      "triage_context": "missing_author_dependency: Imports the unshipped cointanalysis runtime. Its model/data contract is not present in the captured repository, so installing or recreating it would not reproduce the author environment."
+    },
+    "LitmusSARStrategy": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusSARStrategy.py",
+      "source_sha256": "f635d05c1791606b5659ea5891216e056e55c1077f0ff470b4916cd57f3d0364",
+      "strategy_id": "LitmusSARStrategy",
+      "triage_context": "missing_author_dependency: Imports the unshipped cointanalysis runtime. Its model/data contract is not present in the captured repository, so installing or recreating it would not reproduce the author environment."
+    },
+    "LitmusScalpStrategy": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusScalpStrategy.py",
+      "source_sha256": "1b8a2e2bbaa71bbf56afe21c20db446a45fff219e3a3cd271f858ef90eac9410",
+      "strategy_id": "LitmusScalpStrategy",
+      "triage_context": "missing_author_dependency: Imports the unshipped cointanalysis runtime. Its model/data contract is not present in the captured repository, so installing or recreating it would not reproduce the author environment."
+    },
+    "LitmusTrendScalpStrategy": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusTrendScalpStrategy.py",
+      "source_sha256": "50d06704d9cb60a2bb9120d4d20e8101317d37f9b7e3e15b46a986e8341ae45c",
+      "strategy_id": "LitmusTrendScalpStrategy",
+      "triage_context": "missing_author_dependency: Imports the unshipped cointanalysis runtime. Its model/data contract is not present in the captured repository, so installing or recreating it would not reproduce the author environment."
+    },
+    "LitmusVulcanStrategy": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusVulcanStrategy.py",
+      "source_sha256": "14f23798e722c42e4bf5d9f59c972e5be4bc1b020445d1885cdfd74acc9b3fd1",
+      "strategy_id": "LitmusVulcanStrategy",
+      "triage_context": "missing_author_dependency: Imports the unshipped cointanalysis runtime. Its model/data contract is not present in the captured repository, so installing or recreating it would not reproduce the author environment."
+    },
+    "MoniGoManiHyperStrategy": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/Rikj000_MoniGoMani/user_data/strategies/MoniGoManiHyperStrategy.py",
+      "source_sha256": "cd084942f1c75257311423c7e769c55408002788335004a3689b7612683cada0",
+      "strategy_id": "MoniGoManiHyperStrategy",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNPredict": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/NNPredict.py",
+      "source_sha256": "569b8784e7768b57d1bc2a0736e6a24a5375488b50ff09843b3b90c991e663a5",
+      "strategy_id": "NNPredict",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNPredict_LSTM": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNPredict/NNPredict_LSTM.py",
+      "source_sha256": "31540507529e8916cce372bbefade15a5ec34c9d8aba5d2d7cb69487284a7e57",
+      "strategy_id": "NNPredict_LSTM",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNPredict_LSTM0": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNPredict/NNPredict_LSTM0.py",
+      "source_sha256": "91509c9f75a18d8c65594abec33e69cb8d483324737ff6499f17a974af65da38",
+      "strategy_id": "NNPredict_LSTM0",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNPredict_Transformer": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_Transformer.py",
+      "source_sha256": "d02a90ce51d66b5bf3f462f9ef7941e80dd0bbd787288f5243281aa1270ae49a",
+      "strategy_id": "NNPredict_Transformer",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNPredict_kTFT": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_kTFT.py",
+      "source_sha256": "a77e97d20562deead7e72a5429c965ed559ec7d374adc8e074973d6ae44ee75a",
+      "strategy_id": "NNPredict_kTFT",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNTC_adx_LSTM": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_adx_LSTM.py",
+      "source_sha256": "643111ee8e61545e792fe1b6fa8212b2c9bbbf5d9e992d6928224b1a78379383",
+      "strategy_id": "NNTC_adx_LSTM",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNTC_bbw_Transformer": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_bbw_Transformer.py",
+      "source_sha256": "3270e3f5ce915c1546f0ab44739d7dc9cddb6c3a36635f6c2101a39d81004f1e",
+      "strategy_id": "NNTC_bbw_Transformer",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNTC_fbb_Transformer": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_fbb_Transformer.py",
+      "source_sha256": "1cc66547fa5d6a2c5ae5639eec8aa10a7ff09fefe166580beed5fa0bf2527632",
+      "strategy_id": "NNTC_fbb_Transformer",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNTC_jump_Transformer": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_jump_Transformer.py",
+      "source_sha256": "ec5c0834b7cce1bdb944abcbff619d44c96ddaed38086be5a91ffb9374b9b078",
+      "strategy_id": "NNTC_jump_Transformer",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNTC_macd_TCN": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_macd_TCN.py",
+      "source_sha256": "2b6201679bc470e117d3a0fb0a6479c0a166a1302d68b568777f49a25ada8ee5",
+      "strategy_id": "NNTC_macd_TCN",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNTC_macd_Transformer": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_macd_Transformer.py",
+      "source_sha256": "4e5ccc8a976780c48f1bbebdd0d07fdc45c90416ace14a1fbee5395bc8c47f4a",
+      "strategy_id": "NNTC_macd_Transformer",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNTC_nseq_Transformer": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_nseq_Transformer.py",
+      "source_sha256": "f48cfd61cff1a27849ed0922761d40cf586ae348e6a2475a482362c43094ec08",
+      "strategy_id": "NNTC_nseq_Transformer",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNTC_profit_Multihead": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_profit_Multihead.py",
+      "source_sha256": "74bde6f8ad0330164bc90113b506936e61d085bcd3d6b28146ed9f6d684cdd47",
+      "strategy_id": "NNTC_profit_Multihead",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNTC_profit_TCN": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_profit_TCN.py",
+      "source_sha256": "9f391a5beb85077bed3ddc55ab39ede64874b40fd63505c409d0d103aa2e1fb9",
+      "strategy_id": "NNTC_profit_TCN",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNTC_profit_Transformer": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_profit_Transformer.py",
+      "source_sha256": "6bf08153fcb1d262075a0298f747702db4c623e1d392004c58830a1f3a6f9950",
+      "strategy_id": "NNTC_profit_Transformer",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNTC_profit_Wavenet2": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_profit_Wavenet2.py",
+      "source_sha256": "7831c07028507c5d22fbf7d38988fa29a3f6e4327562ea83f83317db7f9f67bc",
+      "strategy_id": "NNTC_profit_Wavenet2",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNTC_profit_Wavenet3": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_profit_Wavenet3.py",
+      "source_sha256": "efc37f4bea3bc981caa3c1fbaf385bb102b1e7443bb79db419adfa7e0cc0a6f3",
+      "strategy_id": "NNTC_profit_Wavenet3",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "NNTC_pv_Multihead": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNTC/NNTC_pv_Multihead.py",
+      "source_sha256": "64563f0986b9b7063253009c6f32b17fc5e8c15a4d9c94c1341bb2b217449582",
+      "strategy_id": "NNTC_pv_Multihead",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "OBOnlyWSv2bband": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/OBOnlyWSv2bband.py",
+      "source_sha256": "4d71d84d28ddd30da2e8860ff70ff2d159b40de7fa32a53d5d1e01141a08eeb1",
+      "strategy_id": "OBOnlyWSv2bband",
+      "triage_context": "external_live_data_not_canonical: Depends on the BinanceStream websocket/order-book base class. A historical candle backtest cannot reproduce the required live stream without author-supplied recorded data."
+    },
+    "SuperBuy": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Uptrend.py",
+      "source_sha256": "db33d69c36222899fc489a2b77eca0f05c4e06969b26e9d205e272910e2dbd9f",
+      "strategy_id": "SuperBuy",
+      "triage_context": "author_logic_incomplete: The recorded failure is inside author trading/model logic. Replacing it would alter signals rather than restore an API name."
+    },
+    "TS_Coeff": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/nateemma_strategies/TSPredict/TS_Coeff.py",
+      "source_sha256": "ec6b311252b39a55b5a0496f1e93605896dbd0f16f0c06c25fc0a7afa91b5aa3",
+      "strategy_id": "TS_Coeff",
+      "triage_context": "platform_unsupported: Depends on Apple MLX, which is unavailable in the canonical Linux/Windows audit runtime. Porting its tensor implementation changes the execution platform and is not a compatibility shim."
+    },
+    "TS_Gain": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/nateemma_strategies/TSPredict/TS_Gain.py",
+      "source_sha256": "64f6615f896b0ef6e47882266198ea3455c0fffafa74382d0b2e03e63d6db472",
+      "strategy_id": "TS_Gain",
+      "triage_context": "platform_unsupported: Depends on Apple MLX, which is unavailable in the canonical Linux/Windows audit runtime. Porting its tensor implementation changes the execution platform and is not a compatibility shim."
+    },
+    "TS_Wavelet": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/nateemma_strategies/TSPredict/TS_Wavelet.py",
+      "source_sha256": "466f6a83cf05f8834846df50a4a1eab95febe10f60db008bec014f0ea5f0a4dd",
+      "strategy_id": "TS_Wavelet",
+      "triage_context": "platform_unsupported: Depends on Apple MLX, which is unavailable in the canonical Linux/Windows audit runtime. Porting its tensor implementation changes the execution platform and is not a compatibility shim."
+    },
+    "TrailingBuySellStrat": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/TrailingBuySellStrat (1).py",
+      "source_sha256": "a8843e3f878198381e3e670871cf0fce48ab4917f8def92a386144080f0527ef",
+      "strategy_id": "TrailingBuySellStrat",
+      "triage_context": "not_backtest_compatible: The author explicitly states that this trailing-buy wrapper is not compatible with backtest or hyperopt; a canonical historical measurement would not measure its declared operating mode."
+    },
+    "TrailingBuyStrat": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/NASOSv5_mod1 (1).py",
+      "source_sha256": "8bd88a9be50e76d1fc0bbf5616ee893a0b1fd0e5edff23e079cc49642133c218",
+      "strategy_id": "TrailingBuyStrat",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "TrailingBuyStrat2a": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/thinkong_freqtradestrategies/user_data/strategies/dca_snippet.py",
+      "source_sha256": "d63905a3e57de321d769a8a65fa1348ac4b992311e8154df2722b315edb61ac7",
+      "strategy_id": "TrailingBuyStrat2a",
+      "triage_context": "Unselected repair branch after triage; no repair action is scheduled under the current owner scope."
+    },
+    "_Strat": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/nateemma_strategies/Framework/test_base_strategy.py",
+      "source_sha256": "56bd2a1fc0abfbd1e23cdc509df37c0d899265d76fd8258a09ceeeafed6b803a",
+      "strategy_id": "_Strat",
+      "triage_context": "not_a_strategy_fixture: The harvested file is Framework/test_base_strategy.py, a test fixture rather than a runnable published strategy."
+    },
+    "zorkv7_0_0": {
+      "decision": "exclude_by_user_policy",
+      "evidence": "repair.adjudicate hash-bound owner scope decision",
+      "family": "user_policy_excluded_after_triage",
+      "reason": "Explicit owner scope decision: exclude from the repair queue after triage; this is not a claim that the strategy is intrinsically unrepairable.",
+      "source_file": "repos/TheoBrigitte_freqtrade/sources/sponsors/zorkv7_0_0.py",
+      "source_sha256": "175f15c80c9f30fb7453d23a782cb5b1910dae58143148888ecd46c6933e1d79",
+      "strategy_id": "zorkv7_0_0",
+      "triage_context": "author_logic_incomplete: The recorded failure is inside author trading/model logic. Replacing it would alter signals rather than restore an API name."
+    }
+  },
+  "keep_open": [
+    "MASlopeStrategy",
+    "MAStopLossStrategy",
+    "MATrailingStopLossStrategy",
+    "Solipsis3_BTC",
+    "Solipsis3_ETH",
+    "Solipsis4_BTC",
+    "Solipsis4_ETH",
+    "Solipsis5_BTC",
+    "Solipsis5_ETH",
+    "Solipsis6_BTC",
+    "Solipsis6_ETH",
+    "SolipsisCon_BTC",
+    "SolipsisMM_BTC",
+    "SolipsisMM_ETH",
+    "Solipsis_BTC",
+    "Solipsis_ETH",
+    "StopLossStrategy",
+    "TPActivatingTSLwithInitialTSLStrategy",
+    "TPActivatingTSLwithSLStrategy",
+    "TrailingStopLossStrategy",
+    "ViNBuyVws"
+  ],
+  "schema_version": 2
+}

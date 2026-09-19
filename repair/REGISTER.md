@@ -2556,3 +2556,22 @@ too_few_trades 32, not_a_strategy 23. Selftests pass at 681 E1, 0 unmeasured.
 `candidates()` a second source; under the old eligibility-only selection every
 one of them was `ineligible` and unreachable without `--only`. The family had
 been repaired, measured at Stage 1, and then sat outside every queue.
+
+---
+
+# Smoke evidence reconciliation, 2026-09-17
+
+The 496 profiles without a raw Smoke card were reconciled without treating a
+missing short-run artifact as proof that no execution had occurred. Of those,
+391 have an identity-current measured canonical pooled Full-Backtest and were
+copied into the Smoke store with explicit reconstruction provenance; 87 are
+formal duplicate, non-strategy, or terminal-exclusion exemptions. Only the
+remaining 18 were executed again, serially.
+
+That focused run exposed two environment-only gaps in the existing TensorFlow
+path. `BaseNNStrategy` now retains the author repository root exactly like the
+already registered `BuyRegions` repair, and the pinned TensorFlow image now
+installs Debian's `libgomp1`, required by its already pinned LightGBM wheel.
+Neither change modifies strategy source or signal calculations. Both rows were
+retried: they advanced to deeper author dependency incompatibilities and remain
+failed evidence rather than false successful repairs.

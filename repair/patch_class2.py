@@ -250,6 +250,50 @@ def apply_rolling_any_masked(src):
     return RX_A9AV_ANY.sub(repl, src)
 
 
+# ───── rule 5: explicit rolling Spearman correlation for ViNBuyVws ─────────
+
+# pandas never accepted ``method=`` on Rolling.corr.  The author did state the
+# intended statistic, however, and Series.corr has supported that spelling.
+# This remains an intent-preserving *unverified* Class 2 overlay: no historical
+# run of the invalid call exists to prove output equivalence.
+RX_VIN_SPEARMAN = re.compile(
+    r"(?P<left>ef\['index'\])\.rolling\(window=(?P<window>[^,]+),\s*"
+    r"min_periods=(?P<minimum>[^)]+)\)\.corr\("
+    r"(?P<right>ef\['(?:hlc3_adj|close)'\]),\s*method=['\"]spearman['\"]\)"
+)
+VIN_SPEARMAN_HELPER = '''\
+def rolling_spearman_corr(left, right, *, window, min_periods):
+    """Rolling Spearman correlation using pandas' supported Series API."""
+    return left.rolling(window=window, min_periods=min_periods).apply(
+        lambda sample: sample.corr(right.reindex(sample.index), method="spearman"),
+        raw=False)
+'''
+
+
+def pre_vin_spearman(src, path):
+    if "class ViNBuyVws" not in src:
+        return False, "ViNBuyVws class not present"
+    matches = list(RX_VIN_SPEARMAN.finditer(src))
+    if len(matches) != 3:
+        return False, "expected exactly three explicit ViN rolling Spearman calls, found %d" % len(matches)
+    if "def rolling_spearman_corr(" in src:
+        return False, "explicit rolling Spearman helper already present"
+    return True, ("three invalid Rolling.corr(method='spearman') calls name the "
+                  "intended statistic; rewrite through supported Series.corr")
+
+
+def apply_vin_spearman(src):
+    def replace(match):
+        return ("rolling_spearman_corr(%s, %s, window=%s, min_periods=%s)" %
+                (match.group("left"), match.group("right"),
+                 match.group("window"), match.group("minimum")))
+    out = RX_VIN_SPEARMAN.sub(replace, src)
+    marker = "\nclass ViNBuyVws(ViN):"
+    if marker not in out:
+        return src
+    return out.replace(marker, "\n\n" + VIN_SPEARMAN_HELPER + marker, 1)
+
+
 # ───────── rule 5: fillna(method=...) and sum(level=...) - pandas renames ───
 
 FILL_MAP = {"ffill": "ffill", "pad": "ffill", "bfill": "bfill", "backfill": "bfill"}
@@ -548,6 +592,7 @@ RULES = [
     ("param_missing_space", pre_space, apply_space),
     ("rolling_any_masked", pre_rolling_any_masked, apply_rolling_any_masked),
     ("rolling_any_detect_only", pre_rolling_any, None),
+    ("vin_explicit_rolling_spearman", pre_vin_spearman, apply_vin_spearman),
     ("legacy_signal_int_literal", pre_signal_int_literal,
      apply_signal_int_literal),
 ]
@@ -559,6 +604,8 @@ def equivalence_status(rule_names):
         return "behavior_changed"
     if "rolling_any_masked" in rule_names:
         return "output_equivalent"
+    if "vin_explicit_rolling_spearman" in rule_names:
+        return "intent_preserving_unverified"
     return "strict_equivalent"
 
 
@@ -569,12 +616,50 @@ def targets_from_ledger(ledger):
     return [(r["strategy"], r["repo"], r["file"]) for r in rows]
 
 
+def targets_from_profiles(names):
+    """Resolve explicit overlay targets without a temporary ledger file."""
+    profiles = os.path.join(ROOT, "evidence", "EXECUTION_PROFILES.csv")
+    rows = {row["strategy_id"]: row
+            for row in csv.DictReader(io.open(profiles, encoding="utf-8-sig"))}
+    out = []
+    for name in names:
+        row = rows.get(name)
+        if not row:
+            raise ValueError("strategy not present in EXECUTION_PROFILES.csv: %s" % name)
+        out.append((name, row["repo"], row["canonical_file"]))
+    return out
+
+
+def selftest():
+    """Validate the narrow matcher and Spearman result without writing files."""
+    vin = os.path.join(ROOT, "repos", "PeetCrypto_freqtrade-stuff", "vin.py")
+    source = io.open(vin, encoding="utf-8").read()
+    ok, _why = pre_vin_spearman(source, vin)
+    assert ok
+    patched = apply_vin_spearman(source)
+    assert patched.count("rolling_spearman_corr(") == 4  # helper plus 3 calls
+    namespace = {}
+    exec(VIN_SPEARMAN_HELPER, namespace)
+    import pandas as pd
+    left = pd.Series([1.0, 2.0, 3.0, 4.0])
+    right = pd.Series([4.0, 3.0, 2.0, 1.0])
+    result = namespace["rolling_spearman_corr"](left, right, window=3, min_periods=3)
+    assert result.iloc[-1] == -1.0
+    print("patch_class2 selftest: PASS (ViN explicit rolling Spearman overlay)")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("ledger", nargs="?", default=os.path.join(
         AUD, "old", "predecessor_audit", "LEDGER.csv"))
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--strategy", action="append", dest="strategies",
+                    help="explicit strategy from EXECUTION_PROFILES.csv; repeatable")
+    ap.add_argument("--selftest", action="store_true")
     args = ap.parse_args()
+    if args.selftest:
+        selftest()
+        return
 
     # The report is read by evidence/execution_profiles.py to decide which
     # strategies get their patched overlay selected as canonical, and this
@@ -597,7 +682,9 @@ def main():
 
     report, patched = [], 0
     seen_this_run = set()
-    for name, repo, rel in targets_from_ledger(args.ledger):
+    targets = (targets_from_profiles(args.strategies) if args.strategies
+               else targets_from_ledger(args.ledger))
+    for name, repo, rel in targets:
         seen_this_run.add(name)
         path = os.path.join(AUD, rel)
         if not os.path.exists(path):

@@ -36,6 +36,29 @@ def main() -> int:
     from repair.compat_signature import install_from_environment as install_compat
     install_compat()
 
+    # Opt-in diagnostic for successful recursive-analysis runs that produce no
+    # report table.  It does not alter comparisons or verdicts; it only emits
+    # the analyzer's per-rung comparison dimensions after the normal method.
+    if os.environ.get("PROFILE_RECURSIVE_TRACE") == "1":
+        from freqtrade.optimize.analysis.recursive import RecursiveAnalysis
+
+        original_analyze = RecursiveAnalysis.analyze_indicators
+
+        def analyze_with_trace(self):
+            result = original_analyze(self)
+            pair = self.pair_to_used
+            base = self.full_varHolder.indicators[pair].iloc[-1]
+            for part in self.partial_varHolder_array:
+                compared = base.compare(part.indicators[pair].iloc[-1])
+                print("PROFILE_RECURSIVE_TRACE startup=%s shape=%sx%s columns=%s"
+                      % (part.startup_candle, compared.shape[0], compared.shape[1],
+                         ",".join(map(str, compared.columns))), flush=True)
+            print("PROFILE_RECURSIVE_TRACE result_indicators=%s"
+                  % len(self.dict_recursive), flush=True)
+            return result
+
+        RecursiveAnalysis.analyze_indicators = analyze_with_trace
+
     from freqtrade.main import main as freqtrade_main
 
     return int(freqtrade_main() or 0)

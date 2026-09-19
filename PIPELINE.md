@@ -10,6 +10,16 @@ All native runs (not Docker) need the Python interpreter from `ftenv/Scripts/pyt
 
 `python -m tools.harvest owner/repo` is the complete source-intake command. When it finds at least one new class, it regenerates execution profiles, classification, preregistered phase hypotheses, semantic duplicate evidence, duplicate adjudication, strategy status, and the status page in dependency order. These are source/report transformations only: harvest never starts a smoke run, bias diagnostic, full backtest, or performance-based decision. `--no-refresh` is the explicit batch-download escape hatch.
 
+For serial operational continuation after an intake refresh, use
+`python -m tools.pipeline_dispatcher` to inspect the next eligible action or
+`python -m tools.pipeline_dispatcher --watch --apply` to dispatch one
+preregistered runner at a time. The dispatcher reads the published pipeline
+state, refuses to overlap an active Docker runner, runs the existing wrapper,
+refreshes published state, applies the existing E1 admission command, and
+records routing provenance. It does not change a gate's selection rule, repair
+policy, timeout, evidence store, or preregistered order. Repair-only and
+zero-trade full-window cases are surfaced for escalation rather than guessed.
+
 | Program | Reads | Writes |
 |---|---|---|
 | `tools/harvest.py` | GitHub API (only `.py` files with `IStrategy`) | Files under `repos/<repo>/` |
@@ -33,6 +43,13 @@ Since the prospective amendment of 2026-09-10, the trial run is a fixed cascade:
 
 If the test run fails due to a specified, fixable obstacle (missing `timeframe`, missing local module, signature change of freqtrade/pandas/numpy), one of the following repair routes will take effect, after which stage 1 runs again for this line:
 
+The explicit common entry point is `python -m repair.controller`. It plans by
+default and runs selected Class 1/Class 2 writers serially only with `--apply`.
+It records orchestration provenance in `evidence/REPAIR_CONTROLLER.jsonl`,
+while each repair route retains its own evidence store and source identity.
+The serial pipeline dispatcher does not invoke repair automatically: ambiguous
+repair triage remains an escalation boundary.
+
 | Repair Route | Writes |
 |---|---|
 | `evidence/eligibility_timeframe_evidence.py` → `evidence/eligibility_timeframe_repair.py` | `evidence/ELIGIBILITY_TIMEFRAME_EVIDENCE.json`, `evidence/ELIGIBILITY_TIMEFRAME_REPAIR.json` |
@@ -47,6 +64,25 @@ If the test run fails due to a specified, fixable obstacle (missing `timeframe`,
 | `evidence/profile_bias.py` (`run_diagnostic`, native or Docker) | `evidence/EXECUTION_PROFILES.csv`, repair stores | `evidence/PROFILE_BIAS.json` |
 | `evidence/eligibility_lookahead_backfill.py` | `STRATEGY_STATUS.csv`, `evidence/EXECUTION_PROFILES.csv`, `evidence/WARMUP_CONVERGENCE.json`, `evidence/PROFILE_CLASS1.json` | `evidence/ELIGIBILITY_LOOKAHEAD_BACKFILL.json` |
 | `evidence/profile_bias_merge.py` | disjoint shard files (in parallel runs) | the canonical `evidence/PROFILE_BIAS.json` |
+
+Completed bias shards are not left as a manual follow-up. The Docker wrapper
+automatically passes each successful non-canonical output to
+`evidence.profile_bias_merge`, which verifies current strategy identity,
+serializes concurrent shard completion, updates `PROFILE_BIAS.json`, and then
+regenerates `STRATEGY_STATUS.csv`, `evidence/PIPELINE_STATE.json`, the supporting
+status reports, and `strategy_status.html`. A direct canonical `profile_bias`
+run performs the same publication step before it exits successfully.
+
+Missing historical Smoke cards are reconciled by
+`evidence/profile_smoke_backfill.py`. It may import only an identity-current,
+measured canonical pooled Full-Backtest card, and marks that card explicitly as
+reconstructed stronger evidence rather than pretending it was a short Smoke
+run. Confirmed duplicate implementations and non-strategy fixtures receive
+documented exemptions in `evidence/PROFILE_SMOKE_BACKFILL.json`. Every other
+missing row remains in the real Smoke queue.
+After that queue has run, `python -m evidence.profile_smoke_backfill
+--finalize-run` replaces its queued dispositions with the canonical measured or
+failed Smoke cards while preserving the original reconciliation population.
 
 A native look-ahead finding of `FOUND` is a final information-leak exclusion. Neither the warm-up ladder nor Recursive-Bias runs afterward because they cannot repair an information leak.
 
@@ -87,8 +123,17 @@ Pure file system check (no Freqtrade execution), cached per `(mode, timeframe)` 
 | Program | Reads | Writes |
 |---|---|---|
 | `evidence/strategy_status.py` | **everything** from level 0–5 plus `evidence/REGIME_ELIGIBILITY.csv` (invalidated historical E0 snapshot, exclusively provenance), `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` (active E1 decisions), `evidence/STRATEGY_CLASSIFICATION.json`, `evidence/MARKET_PHASE_HYPOTHESIS.json`, `evidence/BLOCKED_TRIAGE.json` | `STRATEGY_STATUS.csv`, `STRATEGY_STATUS.md`, **automatically in the same run**: `evidence/exclusion_criteria_list.md`, `evidence/repair_measures_list.md`, `RUNTIME_ENVIRONMENTS.md` |
+| `evidence.pipeline_state.EvidenceStore` | all measurement, repair, Look-Ahead, Recursive-Bias, convergence, full-window, and canonical pooled Full-Backtest evidence stores | one resolved per-strategy interface used by `evidence/strategy_status.py`; `evidence/PIPELINE_STATE.json` is generated from that view |
 
-A single call (`python -m evidence.strategy_status`) writes all five files. `--check` only checks whether they are still up to date (does not write anything); `--selftest` runs the built-in consistency checks.
+A single call (`python -m evidence.strategy_status`) writes all published read
+models and supporting reports, including `evidence/PIPELINE_STATE.json`. That
+file is the one machine-readable operational memory: it gives each strategy's
+resolved measurement and gate provenance, the remaining technical-chain queue,
+and the canonical pooled Full-Backtest state. Raw JSON stores remain separate
+writer-owned provenance and must never be counted individually to answer a
+pipeline-wide question. `python -m evidence.pipeline_state --summary` prints
+the current overview. `--check` checks whether generated state is current
+without starting a measurement; `--selftest` runs consistency checks.
 
 E0 is not a fallback option: its 67 old `regime_eligible=true` flags may not replace any check and may not allow any line. Only an active `admitted_E1` decision generates `cohort=E1_expanded`; the old E0 membership appears only in `gate_notes`.
 

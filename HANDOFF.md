@@ -2,25 +2,78 @@
 
 ## Baton
 
-- Open work order for codex, added by claude 2026-09-16 without touching the
-  baton below: see `## Work order from claude, 2026-09-16 - one read path for
-  evidence stores` at the end of this file. It is a refactor with a
-  byte-identical-output acceptance test, not a change of any verdict. The
-  owner asked for it after two wrong answers came out of single-store reads.
+- On 2026-09-18, the 20 targeted Warmup/Recursive cases were resolved: 17
+  converged and were admitted to E1 after native Look-Ahead PASS and coverage
+  PASS; three ClucHAnix variants did not converge within the frozen ladder and
+  remain excluded. The stored Freqtrade 2026.7 tables were reparsed after
+  adding support for its light Unicode header delimiter. The serial dispatcher
+  Full-Backtest run is active. Completed so far: `AdaptiveRegimeLong` (163
+  trades), `BBRSITV4` (335), `BBRSITV5` (493), and
+  `ClucHAnix_5M_E0V1E_DYNAMIC_TB` (4,421). `ClucHAnix_5mTB1` is currently
+  running; 13 of the 17 are not yet complete. Do not start a second runner.
+  `AIAgentTradingStrategy` no longer blocks dispatch: its zero-trade terminal
+  cohort now correctly carries no `recursive_ladder_pending` work. A direct
+  script import bug in dispatcher metadata finalization was fixed and the
+  missing `AdaptiveRegimeLong` Terra/medium metadata was recovered.
+- On 2026-09-18, execution-profile timeframe resolution was corrected to
+  follow authored Python class inheritance independently of behavioral-profile
+  inheritance. The 16 Look-Ahead PASS rows previously recorded as
+  `no_usable_ladder: no declared timeframe` now resolve to their authored
+  1m/5m/1d intervals; the obsolete records and one controller-interpreter
+  launch failure are preserved under `WARMUP_CONVERGENCE.json.superseded`.
+  The productive serial `ftenv` ladder converged only
+  `SMAOffsetProtectOptV1Mod2_antipump` (288 candles, 0.0% drift); the other 15
+  are `inconclusive` because Freqtrade completed without emitting a recursive
+  drift table, so none was promoted to PASS. The converged row was admitted to
+  E1 and completed its pooled eight-pair Full-Backtest over
+  `20200401-20260821`: 180 trades, status `measured`,
+  `technical_chain_complete=true`. Current published state: 675 E1 rows, 618
+  measured Full-Backtests, 604 identity-current complete archives, and 98 open
+  technical-chain rows. No Docker benchmark is running.
+- The apparent 496-row Smoke gap is fully reconciled in
+  `evidence/PROFILE_SMOKE_BACKFILL.json`: 391 rows reuse identity-current,
+  measured canonical pooled Full-Backtests as explicitly non-Smoke stronger
+  evidence; 79 are confirmed duplicates, 7 are non-strategy fixtures, and 1
+  is a terminal repair exclusion. The remaining 18 received real serial Smoke
+  attempts with all registered repair overlays: 9 measured and 9 failed.
+  `PROFILE_SMOKE.json` now has 1,270 cards for 1,355 profiles; its 87 absent
+  cards are exactly the documented 79+7+1 exemptions. There is no
+  undocumented first-run gap.
+- The two environment-only issues discovered by that run were repaired and
+  retried in the pinned TensorFlow image: `BuyRegions` measured 480 trades and
+  `SimpleStrategy` loaded and measured zero trades. `BaseNNStrategy` progressed
+  through the restored author-root import but stops at obsolete
+  `joblib.externals.cloudpickle`; `TS_Coeff` progressed past missing OpenMP but,
+  like `TS_Wavelet`, ultimately requires Apple-only MLX. Six Litmus derivatives
+  remain failed on the already documented unavailable `cointanalysis` or unsafe
+  `freqtrade.litmus` shadow-package boundary. Do not rerun these nine cards
+  unless the dependency policy or runtime capability changes.
+- The three completed 2026-09-17 Look-Ahead shards were identity-checked and
+  merged into `evidence/PROFILE_BIAS.json` (86 records: 28 PASS, 6 FOUND,
+  52 NA). All published status views were regenerated at 12:34. The current
+  mutually exclusive next-action counts are 67 Stage-1 measurement/repair,
+  50 Look-Ahead, and 62 convergence/Recursive-Bias; 179 strategies remain
+  open. These counts supersede the older 67/86/38 note below.
+- Check-run finalization is now automatic. Direct canonical bias runs refresh
+  all published state before successful exit; `runtime/profile_bias_docker.ps1`
+  automatically merges a successful shard through the identity-checked,
+  serialized `evidence.profile_bias_merge` path and refreshes
+  `STRATEGY_STATUS.csv`, `evidence/PIPELINE_STATE.json`, supporting reports,
+  and `strategy_status.html`. Do not reintroduce a manual merge gap.
+- The 2026-09-16 one-read-path work order is implemented. Pipeline-wide state
+  now comes from `evidence/PIPELINE_STATE.json`, generated through
+  `evidence.pipeline_state.EvidenceStore`; never count a raw runner store.
 - Last agent: codex
-- Last update: 2026-09-15T12:00:00+02:00
-- Stopped because: Claude's six-strategy native smoke/legacy-Keras run is still
-  active and owns `evidence/PROFILE_SMOKE.json`; starting or validating a
-  competing writer would corrupt or misread in-flight evidence.
-- Next agent should: monitor the existing `evidence.profile_smoke` process and
-  `legacy_keras_test6_full3600.log`. It has completed three of six strategies
-  and is currently running the one-year `NNPredict_LSTM3` rung after completing
-  its three-month rung below the ten-trade threshold. After the
-  writer exits, inspect all six final records and errors, run targeted tests for
-  the uncommitted compatibility changes, then regenerate strategy status. Do
-  not start another smoke or bias process while this writer exists. Preserve
-  `.gitattributes` and never recommit the LFS attribution CSV as an ordinary
-  Git blob.
+- Last update: 2026-09-17T07:22:26+02:00
+- Stopped because: the canonical pipeline-state refactor and Claude-to-Codex
+  MCP setup are complete and validated; no benchmark or analyzer was started.
+- Next agent should: read `evidence/PIPELINE_STATE.json` or run
+  `python -m evidence.pipeline_state --summary` before discussing or launching
+  remaining check-chain work. Current next-action counts are 67 Stage-1
+  measurement/repair, 86 Look-Ahead, and 38 convergence/Recursive-Bias cases.
+  Of 641 admitted strategies, 570 have an identity-current pooled Full-Backtest,
+  14 have a measured but identity-stale archive, and 57 are closed without a
+  complete archive under the existing resource/performance rules.
 - Git/LFS checkpoint: GitHub reports `fork=false`; remote `main` matched local
   `0666ba4a0991a7d79246d6bf4b3c8b36b86cf5f8` after upload. The CSV is a
   135-byte pointer to LFS object
@@ -926,6 +979,38 @@ log before deciding.
 
 ## Last observed machine state
 
+Observed 2026-09-17T07:22:26+02:00 after the pipeline-state refactor:
+
+- No Docker container and no smoke, bias, convergence, full-window, or pooled
+  Full-Backtest process is running. `STRATEGY_STATUS.csv` and
+  `evidence/PIPELINE_STATE.json` pass their freshness checks.
+- The repository has 1,355 strategy rows. Exactly 191 have technical
+  `open_work`: 67 next need Stage 1 measurement/repair, 86 next need
+  Look-Ahead, and 38 next need convergence or final Recursive-Bias. These are
+  mutually exclusive next actions, not overlapping raw-store counts.
+- E1 has 641 rows: 570 identity-current complete pooled Full-Backtests, 14
+  measured archives whose source/profile identity is stale, and 57 closed
+  resource/performance cases (`oom_confirmed` 51, `performance_limited` 5,
+  `stake_overflow_confirmed` 1).
+- Claude's project MCP configuration includes `codex`; the stdio handshake
+  reports `codex-mcp-server` 0.151.0 with tools `codex` and `codex-reply`, and
+  `claude mcp get codex` reports `Connected`. The tracked project config uses
+  portable `codex.cmd`, and `CLAUDE.md` documents how to delegate bounded
+  tasks. The CLI warns that the current `codex mcp-server` command is
+  deprecated, so re-check the supported bridge after a future Codex CLI
+  upgrade.
+- A Claude-driven end-to-end tool call could not be charged because the active
+  Claude API account returned `Credit balance is too low`. This is an account
+  blocker, not an MCP health failure; the independent MCP initialize/tools-list
+  handshake and both `claude mcp get/list` health checks pass.
+- `graphify update .` completed after the refactor: 1,754 nodes, 2,877 edges,
+  and 179 communities. No semantic extraction or API call was used.
+- The only pre-existing unrelated worktree change carried into this checkpoint
+  is the requested deletion of root `_sabotage/BrokenOnPurpose.py`.
+
+Earlier observations below are historical and are superseded wherever they
+conflict with this state.
+
 Observed 2026-09-15T11:56:00+02:00 during Claude's webclinic017 compatibility
 recovery:
 
@@ -1446,3 +1531,31 @@ recursion finding was `ineligible` afterwards and no run could reach it again:
 warm-up-convergence record as a second source. That fix is deliberately narrow
 and should be folded into the general accessor rather than left as a special
 case.
+
+## 2026-09-18 - queued look-ahead repair follow-up
+
+The serial Full-Backtest dispatcher is still the sole active Freqtrade runner.
+Do not start a look-ahead or recursive command while its Docker container is
+present. At the latest check it was running `FSupertrendStrategyBTC` with
+`--workers 1`; the manifest held 630 measured rows.
+
+Six requested-class registry gaps are now repaired in
+`evidence/PROFILE_CLASS1.json`: `NASOSv5HO`, `NASOSv5PD`, `NASOSv5SL`,
+`NASOSv5_antipump`, `UziChanTB2`, and `abbas` activate the existing
+`idempotent_entry_tag_initialisation` rule. Their tracebacks are the already
+documented second-pass duplicate-`enter_tag` failure; the prior base-class
+entries did not apply because runtime lookup is keyed by `strategy_id`.
+
+Six separate identically-labelled DataFrame failures now activate the
+diagnostic-only `lookahead_dataframe_alignment_diagnostics` rule:
+`AlexBandSniperV58COptuna`, `DevilStra`, `Solipsis`, `Solipsis3`,
+`SolipsisCon`, and `Solipsis_USD`. The rule logs a
+`LOOKAHEAD_FRAME_ALIGNMENT` record containing shapes, index uniqueness, and
+column labels, then re-raises the original exception. It cannot turn the error
+into PASS or FOUND. Once the Full-Backtest queue is idle, rerun one small case
+first (prefer `DevilStra`) and use that record to design a narrow repair; do
+not broadly align or discard columns before the mismatch is known.
+
+After that diagnosis, retry `Schism5` alone with the extended look-ahead
+timeout previously agreed with the owner. Keep every run serial and finalize
+its evidence before launching the next one.

@@ -1,0 +1,17 @@
+---
+description: Automatically merge completed check results and refresh canonical pipeline state
+alwaysApply: true
+---
+
+# Automatic Evidence Finalization
+
+- Do not leave successful check-run shards as the newest unmerged evidence.
+- Merge bias shards with `python -m evidence.profile_bias_merge`; never copy or
+  concatenate result JSON manually.
+- Before reporting a run as finished, ensure `STRATEGY_STATUS.csv`,
+  `evidence/PIPELINE_STATE.json`, the supporting status reports, and
+  `strategy_status.html` were regenerated successfully.
+- Preserve raw shard files as provenance. Stop on identity mismatches or
+  conflicting terminal verdicts.
+- Read pipeline-wide status only from `evidence/PIPELINE_STATE.json` after the
+  final refresh.

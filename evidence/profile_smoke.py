@@ -749,12 +749,21 @@ def main(argv=None):
               "it is gone" % age, flush=True)
         os.utime(claim, None)
     try:
-        return _run(args, rows, claim)
+        result = _run(args, rows, claim)
     finally:
         try:
             os.rmdir(claim)
         except OSError:
             pass
+    canonical_run = (
+        os.path.abspath(args.output) == os.path.abspath(OUTPUT)
+        and os.path.abspath(args.manifest) == os.path.abspath(MANIFEST))
+    if canonical_run and result == 0:
+        from evidence.finalize_evidence import (
+            publication_lock, refresh_published_state)
+        with publication_lock():
+            refresh_published_state()
+    return result
 
 
 def _run(args, rows, claim):

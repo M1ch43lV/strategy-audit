@@ -256,6 +256,33 @@ def patch_min_roi_call_signature(source):
     return source.replace(old, new), count
 
 
+def patch_import_time_root_logging(source):
+    """Remove Ichi's process-wide import-time logging reconfiguration.
+
+    The strategy deletes every root handler and redirects all Freqtrade output
+    to a dated file while the module is imported.  Removing only that setup is
+    output-equivalent for indicators and signals and keeps analyzer evidence on
+    the invoking process' configured streams.
+    """
+    if "class Ichi(IStrategy):" not in source:
+        return source, 0
+    old = '''LOG_FILENAME = datetime.now().strftime('logfile_%d_%m_%Y.log')
+os.system("rm " + LOG_FILENAME)
+
+# This will have an impact on all the logging from FreqTrade, when using other strategies than this one !!!
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
+logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG, format='%(asctime)s :: %(message)s')
+
+logging.info("test")
+'''
+    old = old.replace("strategies than this one !!!\n",
+                      "strategies than this one !!! \n")
+    if source.count(old) != 1:
+        return source, 0
+    return source.replace(old, ""), 1
+
+
 def patch_fott_quadratic_recurrence(source):
     """Linearize two unused-variable fixpoint loops in FOttStrategy.ott().
 
@@ -474,6 +501,29 @@ def build():
                 "input_sha256": _sha(original), "output_sha256": _sha(changed),
                 "source_tree": "profile-class2-overlay",
             }
+    # Ichi's import-time root logger reset hides the recursive analyzer's
+    # startup-candle refusal and result table.  This is independent of smoke
+    # success, so publish a narrow source overlay explicitly.
+    strategy = "Ichi"
+    if strategy in rows:
+        row = rows[strategy]
+        base_file = row.get("original_file") or row["canonical_file"]
+        original = _read(os.path.join(ROOT, base_file.replace("/", os.sep)))
+        changed, count = patch_import_time_root_logging(original)
+        if count:
+            os.makedirs(OVERLAYS, exist_ok=True)
+            destination = os.path.join(OVERLAYS, strategy + ".py")
+            io.open(destination, "w", encoding="utf-8", newline="").write(changed)
+            repairs_by_strategy[strategy] = {
+                "strategy": strategy, "population": "repaired",
+                "repair_class": "class2",
+                "repair_rules": ["remove_import_time_root_logging_reset"],
+                "equivalence_status": "output_equivalent",
+                "base_file": base_file,
+                "overlay_file": os.path.relpath(destination, ROOT).replace(os.sep, "/"),
+                "input_sha256": _sha(original), "output_sha256": _sha(changed),
+                "source_tree": "profile-class2-overlay",
+            }
     repairs = [repairs_by_strategy[name] for name in sorted(repairs_by_strategy)]
     return {"schema_version": 1, "repairs": repairs}
 
@@ -510,6 +560,17 @@ def selftest():
            "a = self.min_roi_reached_entry(trade_dur)\n"
            "b = self.min_roi_reached_entry(trade_dur)\n")
     assert patch_min_roi_call_signature(roi)[1] == 2
+    ichi = ("import logging\nimport os\nclass Ichi(IStrategy):\n    pass\n")
+    assert patch_import_time_root_logging(ichi) == (ichi, 0)
+    ichi = ("import logging\nimport os\n\n"
+            "LOG_FILENAME = datetime.now().strftime('logfile_%d_%m_%Y.log')\n"
+            "os.system(\"rm \" + LOG_FILENAME)\n\n"
+            "# This will have an impact on all the logging from FreqTrade, when using other strategies than this one !!!" + " \n"
+            "for handler in logging.root.handlers[:]:\n"
+            "    logging.root.removeHandler(handler)\n"
+            "logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG, format='%(asctime)s :: %(message)s')\n\n"
+            "logging.info(\"test\")\n\n\nclass Ichi(IStrategy):\n    pass\n")
+    assert patch_import_time_root_logging(ichi)[1] == 1
     fott = ('class FOttStrategy(IStrategy):\n'
             '        df["longstop"] = 0.0\n        for i in df["UD"]:\n'
             '            pass\n        # get xover\n'

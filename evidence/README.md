@@ -4,6 +4,21 @@ This directory keeps the current technical evidence used to decide whether a
 strategy is auditable. It deliberately stays flat: a writer and the store it
 owns live together, while user-facing status remains in the repository root.
 
+## One operational read model
+
+`PIPELINE_STATE.json` is the canonical machine-readable overview across the
+complete check chain, including the canonical pooled Full-Backtest. It contains
+the current mutually exclusive next-action counts, every resolved strategy
+row, and the exact producer store selected for measurement, Look-Ahead,
+Recursive-Bias, and Full-Backtest evidence. Generate it together with the
+published status files by running `python -m evidence.strategy_status`.
+
+Code that needs the same resolution imports `EvidenceStore` from
+`evidence.pipeline_state`. Humans and agents that only need counts run
+`python -m evidence.pipeline_state --summary`. Never answer a pipeline-wide
+question by counting `PROFILE_SMOKE.json`, `PROFILE_BIAS.json`, or another raw
+store in isolation.
+
 The files here are not benchmark rankings. They cover canonical execution
 profiles, smoke and bias diagnostics, warm-up convergence, phase hypotheses,
 coverage, repair provenance, expansion adjudication, and frozen supporting

@@ -6,6 +6,10 @@ FROM ${BASE_IMAGE}
 # audit runtime; only the interpreter boundary differs.
 ENV PYTHONPATH=/audit/repair
 
+RUN apt-get update \
+    && apt-get install --yes --no-install-recommends libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY runtime/requirements-audit-runtime.txt runtime/requirements-audit-tensorflow.txt /tmp/
 RUN python -m pip install --no-cache-dir \
       freqtrade==2026.7 \
