@@ -1612,13 +1612,31 @@ least one state on the validation window (from 2024-01-01); the states are liste
 a claimed state must consult that state, and a universal specialist all four. Two
 consequences for whoever owns the regime pipeline:
 
-- `regime/specialist_evaluation.py` does not consult any of this yet and nothing is
-  ranked, so nothing is mislabelled today. When a ranked output is produced, the
-  designation is "clears the specialist floor" AND the per-state cost qualification,
-  through `evidence.execution_robustness.qualifies_in(record, kind, state)` and
+- `regime/specialist_evaluation.py` does not consult any of this yet, and rankings
+  already exist: Model 0 for 584 strategies and the Model 1/2/3 candidate sets
+  (`results/regime/specialist_evaluation/`, published as the *Regime-Spezialisten*
+  artifact on 2026-09-15). An earlier version of this paragraph said that nothing was
+  ranked; that was wrong. Those rankings predate Stage 8b and carry no annotation, so
+  none of their rows is a *verified* specialist. The designation is "clears the
+  specialist floor" AND the per-state qualification, through
+  `evidence.execution_robustness.qualifies_in(record, kind, state)` and
   `qualifies_universal(record, kind)` on the records in `evidence/COST_SCREEN.json`
-  (`by_regime`). Attach it as an annotation. It must not change any ranking or floor;
-  that protocol is frozen.
+  (`by_regime`). Attach it as a column. It must not change any ranking or floor; that
+  protocol is frozen.
+- **What the existing rankings look like against it (2026-09-19, and it moves while
+  the 5m batch runs; 378 of the BTC rows and 386 of the coin rows are still `PENDING`).**
+  Of the 1651 BTC and 1737 coin ranking rows, 401 and 414 hold both conditions for the
+  state they claim. Of the 374 universal candidates, 6 hold an execution `PASS` and a
+  cost `PASS` in all four coin states. None of the 7 fully consistent candidates
+  qualifies: `FastSupertrend_optim3`, `_rsi_70`, `_rsi_75`, `_rsi_752` and `_rsi_75sell`
+  are `SENSITIVE`, `FastSupertrend_optim_quick` and `_rsi_80` (the single ADX-Uptrend
+  specialist) are `PENDING`. Under 5m detail the five `SENSITIVE` ones fall from 0.32 to
+  0.43 percent mean profit per trade to 0.08 to 0.12 percent, and 66 to 78 percent of
+  their exits are trailing stops. Their whole-run baseline profits of +78,000 to
+  +152,000 percent, which compound an unlimited stake, drop to +150 to +270 percent.
+  Baseline and detail ran in different runtimes for these five, but the size and the
+  mechanism (a 0.1 percent trailing distance on 1h candles) are what the trailing-stop
+  trap predicts.
 - The regime screen reuses `regime.attribution.attribute()` for the trade-to-state
   assignment, the specialist evaluation's 10-trade floor and its fixed-stake basis.
   A rebuild takes about two minutes, not one, because it attributes every baseline.

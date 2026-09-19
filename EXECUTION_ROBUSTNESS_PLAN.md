@@ -232,10 +232,14 @@ Each component stays published (`execution_robustness_status`,
 description that no longer gates. `evidence/PIPELINE_STATE.json` carries the
 conjunction as `robustness_qualification`.
 
-`regime/specialist_evaluation.py` does not consult any of this yet. No ranked
-output exists, so nothing is mislabelled today. When one is produced, the
+`regime/specialist_evaluation.py` does not consult any of this yet, although
+rankings already exist: the Model 0 evaluation of 584 strategies and the Model
+1/2/3 evaluations of the candidate sets, published as the *Regime-Spezialisten*
+artifact on 2026-09-15. They predate this stage and carry no annotation, so no row
+of them is a *verified* specialist, and the artifact does not use that word. The
 designation is "clears the specialist floor" AND the per-state qualification,
-attached as an annotation that changes no ranking.
+joined in as a column that changes no ranking. (An earlier version of this section
+said that no ranked output existed; that was wrong.)
 
 ### Generated stores
 

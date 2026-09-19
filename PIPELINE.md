@@ -152,19 +152,19 @@ Two structurally different, both necessary measurements (see `REGIME_AUDIT_PLAN.
 
 | Program | Purpose | Reads | Writes |
 |---|---|---|---|
-| `evidence/profile_full_window.py` (sharded in pairs) | Stage-7 Confirmation: does the strategy trade across the entire window, per pair | `evidence/EXECUTION_PROFILES.csv` | `evidence/PROFILE_FULL_WINDOW.json` (or shard files in parallel containers) |
+| `evidence/profile_full_window.py` (sharded in pairs) | Full-window confirmation (older code and comments call this "Stage 7"): does the strategy trade across the entire window, per pair | `evidence/EXECUTION_PROFILES.csv` | `evidence/PROFILE_FULL_WINDOW.json` (or shard files in parallel containers) |
 | `evidence/merge_full_window_shards.py` | merges shards | `evidence/PROFILE_FULL_WINDOW_shardA.json`, `_shardB.json`, `_shardTF.json` | the canonical `evidence/PROFILE_FULL_WINDOW.json` |
 | `regime/full_backtest.py` (pooled, `canonical_pooled_native_pair_universe`) | Phase A: actual performance backtest over all 8 pairs pooled | `STRATEGY_STATUS.csv` (E1 cohort) | `results/regime/full_backtest_manifest.json`, `full_backtest_native.json` |
 
-`evidence/PROFILE_FULL_WINDOW.json` flows back into Stage 5 (`evidence/strategy_status.py` reads it for `observed_trades`/`trade_evidence`). The pooled backtest results from `regime/full_backtest.py` **do not** flow back into the approval — they are the data basis for Stage 9.
+`evidence/PROFILE_FULL_WINDOW.json` flows back into Stage 6 (`evidence/strategy_status.py` reads it for `observed_trades`/`trade_evidence`). The pooled backtest results from `regime/full_backtest.py` **do not** flow back into the approval — they are the data basis for Stage 10 (attribution) and Model 0 in Stage 12.
 
 **Misunderstanding that suggests itself: 'Single pair' does not mean 'every pair fully measured.'** `evidence/profile_full_window.py` is a yes/no gate, not a performance measurement: it only answers 'does the strategy act over the entire window at all, for at least one pair?' As soon as ONE pair produces trades, the question is answered, and the rest of the pair list is no longer touched for this strategy (comment in the script header: 'One positive pair is sufficient to resolve a zero-trade smoke as positive... Sharding does not replace pooled performance backtests'). Only if ALL configured pairs produce zero trades does each one actually need to run through to confirm '0 trades' — which is why `evidence/PROFILE_FULL_WINDOW_shardA.json`/`_shardB.json` show fewer completed pair measurements for many strategies. as configured pairs, even though the strategy itself is already considered `measured`.
 
 The actual completeness — every pair over the entire 6.5-year window, without interruption — is provided exclusively by `regime/full_backtest.py` (line above): it calls freqtrade without the `--pairs` filter, thus with the complete pair list together in a single backtest, and never terminates early.
 
-**Performance limit instead of endless retry.** The 3600s timeout is a hard limit, not adjustable per strategy. `SuperHV27` and `Schism` each ran twice independently exactly up to the 3600s limit, without crashing and without OOM signature — the compatibility shims (`repair/compat_signature.py`) fixed the original crash, but the remaining per-trade costs over 8 pairs and 6.5 years are not enough for that. `evidence/POOLED_BACKTEST_PERFORMANCE_LIMIT.json` records this confirmation (rule: at least two independent timeouts, no other type of error in between); `regime/full_backtest.py` reads it and sets the status once to `performance_limited`, instead of consuming a full hour again on each container run. The strategy remains approved (`E1_expanded`) — it permanently only lacks the pooled performance metric for Stage 9.
+**Performance limit instead of endless retry.** The 3600s timeout is a hard limit, not adjustable per strategy. `SuperHV27` and `Schism` each ran twice independently exactly up to the 3600s limit, without crashing and without OOM signature — the compatibility shims (`repair/compat_signature.py`) fixed the original crash, but the remaining per-trade costs over 8 pairs and 6.5 years are not enough for that. `evidence/POOLED_BACKTEST_PERFORMANCE_LIMIT.json` records this confirmation (rule: at least two independent timeouts, no other type of error in between); `regime/full_backtest.py` reads it and sets the status once to `performance_limited`, instead of consuming a full hour again on each container run. The strategy remains approved (`E1_expanded`) — it permanently only lacks the pooled performance metric for Stage 10.
 
-**The same principle for confirmed memory shortage.** 52 strategies (BBRSI2/BBands/BinHV45-*/Cluc*-family, among others) were `resource_inconclusive` both under the original 13-14GB/`--workers 2` setting and afterwards, after increasing to 16GB VM memory with `--workers 1` on 2026-09-07 — a single process with the full memory budget, no concurrency left that could be blamed. This refutes resource contention as the cause; what remains is the strategy's own memory consumption over 8 pairs and 6.5 years. `evidence/POOLED_BACKTEST_OOM_LIMIT.json` records the confirmation, `regime/full_backtest.py` sets the status once to `oom_confirmed` instead of repeatedly trying endlessly. Here too: still allowed, just without the level-9 metric.
+**The same principle for confirmed memory shortage.** 52 strategies (BBRSI2/BBands/BinHV45-*/Cluc*-family, among others) were `resource_inconclusive` both under the original 13-14GB/`--workers 2` setting and afterwards, after increasing to 16GB VM memory with `--workers 1` on 2026-09-07 — a single process with the full memory budget, no concurrency left that could be blamed. This refutes resource contention as the cause; what remains is the strategy's own memory consumption over 8 pairs and 6.5 years. `evidence/POOLED_BACKTEST_OOM_LIMIT.json` records the confirmation, `regime/full_backtest.py` sets the status once to `oom_confirmed` instead of repeatedly trying endlessly. Here too: still allowed, just without the Stage-10 metric.
 
 **Third category: unlimited stake growth.** `FastSupertrend_optim3_rsi_75lev` failed at 37% of the pooled run with `Stake amount 12570778.900608359 too high for XMR/USDT:USDT`. Cause: `runtime/profile_futures_config.json` sets `stake_amount: unlimited`; the strategy fixes leverage at 5× and lets profits run (`minimal_roi = {"0": 0.99}`). Over enough profitable years, the wallet grows exponentially until the calculated stake exceeds any real market liquidity. Unlike the first two categories, this is 100% deterministic: it is unrelated to memory, workers, or timing, and a retry reproduces exactly the same error at the same point. No earlier stage detects it: the smoke test uses the same configuration but only a one-month window, far too short for compounding to reach this scale, while Recursive-Bias and Look-Ahead-Bias test information leakage rather than capital scaling. `evidence/POOLED_BACKTEST_STAKE_OVERFLOW.json` records the confirmation; the same mechanism as above sets `stake_overflow_confirmed`. Whether other leveraged strategies carry the same risk was deliberately left open.
 
@@ -172,18 +172,24 @@ The actual completeness — every pair over the entire 6.5-year window, without 
 
 Sample on this date: **0 of 608 `E1_expanded` strategies have `observed_trades == 0`.** At that time, no admitted strategy needed this stage: all 571 strategies assigned to the `full-window-a`/`full-window-b` containers already had positive smoke-test evidence and needed no confirmation. `regime/full_backtest.py` (pooled and already running for the same cohort) also provides a more representative trade count for this majority because it shares the `max_open_trades` capital constraint across all pairs instead of isolating each pair. Both containers therefore stopped after all 571 assignments, with zero genuine zero-trade cases. Before any future cohort expansion starts `evidence/profile_full_window.py`, first check `observed_trades == 0` in `STRATEGY_STATUS.csv` and run it only for that subset.
 
+## Stage 8b — Post-Full-Backtest: Execution Robustness and Cost Screen
+
+Prospective and additive. It follows a measured canonical pooled Full-Backtest of exactly the same implementation and never changes admission or replaces `results/regime/full_backtest_manifest.json`. The binding definitions (thresholds, statuses, validity checks, the cost model) are in `EXECUTION_ROBUSTNESS_PLAN.md`, Amendment 2026-09-19; this section only says what runs when. It is numbered 8b so that the stage numbers other files cite stay valid.
+
+| Program | Reads | Writes |
+|---|---|---|
+| `regime/full_backtest.py --timeframe-detail 5m` (Docker wrapper `runtime/regime_full_backtest_docker.ps1`, serial) | the same strategy, profile, config, eight pairs and window as the canonical run | `results/regime/execution_robustness_detail_5m_docker.json` — always a separate output, never the canonical manifest |
+| `evidence/execution_robustness.py` | the canonical manifest, the detail stores, their result archives under `user_data/`, the candle files (detail coverage), `regime_daily.csv` through `regime.attribution.attribute()` (regime cost screen) | `evidence/EXECUTION_ROBUSTNESS.json`, `evidence/COST_SCREEN.json` |
+
+- **Above 5m: a rerun with 5m detail.** The strategy keeps its own timeframe; the detail candles only model execution inside the candle. The classifier compares the two runs and writes `PASS`, `SENSITIVE`, `NA` or `ERROR` (a sign flip, a profit change over 50 percent in either direction, or a trade-set change over 10 percent is `SENSITIVE`). `SENSITIVE` is a review marker, not an exclusion.
+- **At or below 5m: no rerun.** Owner decision 2026-09-19, on resource grounds: such a baseline already simulates at the granularity the others are rerun at, so it counts as equal to a passed 5m run. It is a rule and not a measurement, and the record says so (`basis: owner_rule_at_or_below_5m`, published as `execution_robustness_basis`).
+- **Cost screen, for every measured baseline, per ADX regime state.** The four DMI/ADX states, for BTC and for the traded coin, each judged on the trades that opened in that state, so a specialist that is strong in one state is not marked down by the states around it. Basis and floor are the specialist evaluation's own (fixed stake per trade, 10 trades), the window is the validation window from 2024-01-01. The whole-run result is kept as a description and does not gate.
+- **`robustness_qualified`** is an execution `PASS` and a cost `PASS` in at least one state; the states are listed in `cost_screen_regimes_pass`. The designation for one claimed state must consult that state.
+- **After every batch:** `python -m evidence.execution_robustness && python -m evidence.strategy_status && python -m tools.strategy_status_page`. `python -m evidence.execution_robustness --targets 5m` prints the command for what the 5m batch still owes.
+
+Nothing after this stage reads these results yet. Stage 13 has produced rankings without them, so those rankings carry no robustness annotation and none of their rows is a *verified* specialist; the designation is applied only once the annotation is joined in.
+
 ## Stage 9 — Market Regime Classification
-
-## Post-Full-Backtest — Execution Robustness
-
-This prospective, additive verification follows a measured canonical pooled
-Full-Backtest and never changes admission or replaces its manifest. For every
-identity-current measured strategy with a declared timeframe above 5m, run the
-same pooled window and pair universe with `--timeframe-detail 5m` into the
-separate `evidence/EXECUTION_ROBUSTNESS.json` store. The strategy timeframe is
-not overridden: the detail data model intrabar execution only. The binding
-parameters, classifications, and later cost/fill/temporal extensions are
-specified once in `EXECUTION_ROBUSTNESS_PLAN.md`.
 
 | Program | Reads | Writes |
 |---|---|---|
@@ -191,7 +197,7 @@ specified once in `EXECUTION_ROBUSTNESS_PLAN.md`.
 | `regime/validate_regime.py` | the same `results/regime/regime_*.csv` | nothing (pure test, console output PASS/FAIL) |
 | `regime/report.py` | the same files | `REGIME_DATA_REPORT.md` |
 
-Generates the frozen 4-state model (BULL/BEAR/SIDEWAYS/TRANSITION from DMI(14)/ADX(14)) plus the raw data from which the six-phase extension (`bull_trend`/`bear_trend`/`range_quiet`/`range_choppy`/`transition`/`high_vol_shock`) in Stage 9 is derived.
+Generates the frozen 4-state model (BULL/BEAR/SIDEWAYS/TRANSITION from DMI(14)/ADX(14)) plus the raw data from which the six-phase extension (`bull_trend`/`bear_trend`/`range_quiet`/`range_choppy`/`transition`/`high_vol_shock`), which `regime/attribution.py` derives in Stage 10.
 
 ## Stage 10 — Attribution (per strategy/candidate, per regime/phase)
 
@@ -200,7 +206,7 @@ Generates the frozen 4-state model (BULL/BEAR/SIDEWAYS/TRANSITION from DMI(14)/A
 | `regime/attribution.py` | `results/regime/regime_daily.csv`, `full_backtest_manifest.json`, `STRATEGY_STATUS.csv` (E1 cohort) | `results/regime/trade_regime_attribution.csv`, `strategy_btc_regime_summary.csv`, `strategy_regime_summary.csv`, `strategy_episode_summary.csv`, `strategy_phase_summary.csv`, `strategy_phase_episode_summary.csv`, `attribution_manifest.json` |
 | `regime/gated_attribution.py` | `regime_daily.csv`, a complete `model1_backtest_manifest.json`, `model2_backtest_manifest.json` or `model3_backtest_manifest.json`, current E1 identities | per model in `results/regime/modelN_attribution/`: Trade attribution, five `candidate_*_summary.csv` and `attribution_manifest.json` |
 
-The two `*_phase_*` files (Six-Phase Model, Addendum 2026-09-05) already exist as code, but have not yet been run in production — they require `regime/full_backtest.py`'s complete results (Stage 7). Whether a writer is currently running for this is determined solely by the checks in `HANDOFF.md`; this pipeline file is not a run status. The gated attribution by default rejects an incomplete candidate set; `--allow-partial` only generates a technical intermediate state explicitly marked as partial and is not a ranking release.
+The two `*_phase_*` files (Six-Phase Model, Addendum 2026-09-05) were produced on 2026-09-14 from the same Model-0 attribution (`strategy_phase_summary.csv`, `strategy_phase_episode_summary.csv`); they read `regime/full_backtest.py`'s results (Stage 8). `trade_regime_attribution.csv` itself is a Git LFS object of about 1.3 GB; in a checkout without `git lfs pull` it is a pointer file, and `regime/attribution.py` recomputes it from the result archives. Whether a writer is currently running for this is determined solely by the checks in `HANDOFF.md`; this pipeline file is not a run status. The gated attribution by default rejects an incomplete candidate set; `--allow-partial` only generates a technical intermediate state explicitly marked as partial and is not a ranking release.
 
 ## Stage 11 — Hypothesis (independent, to be frozen before any evaluation)
 
@@ -208,22 +214,29 @@ The two `*_phase_*` files (Six-Phase Model, Addendum 2026-09-05) already exist a
 |---|---|---|
 | `evidence/market_phase_hypothesis.py` | `evidence/EXECUTION_PROFILES.csv`, `evidence/STRATEGY_CLASSIFICATION.json`, `cluster/clusters.json` | `evidence/MARKET_PHASE_HYPOTHESIS.json` |
 
-Must be written **before** anyone looks at the results from stage 9 — otherwise it is no longer a prediction (`REGIME_AUDIT_PLAN.md` §28.3). Already executed; is only read by `evidence/strategy_status.py` (stage 5), never decided anew.
+Must be written **before** anyone looks at the attribution results of Stage 10 — otherwise it is no longer a prediction (`REGIME_AUDIT_PLAN.md` §28.3). Already executed; is only read by `evidence/strategy_status.py` (Stage 6), never decided anew.
 
 ## Stage 12 — Benchmark: Model 0/1/2/3
 
 After the expansion frozen on 2026-09-07 before each productive gate run, four comparison levels per strategy:
 
-- **Model 0 — partially measured.** "Original strategy, no regime filter" is
-exactly what `regime/full_backtest.py` (level 7) calculates: the ungated, pooled backtest across all 8 pairs. The resumable call `python -m regime.full_backtest` continues this measurement; ongoing writers are previously excluded according to `HANDOFF.md`. It is not a separate, yet-to-be-built level. **Correction compared to the previous version of this file:** it incorrectly stated here "no script exists" for the entire level 11 — that only applied to model 1/2 and the comparison itself, not to model 0.
-- **Model 1 — implemented, not yet run in production.**
-`regime/gated_backtest.py --model model1` filters entries according to the BTC states explicitly mentioned in the candidate spec. Global BTC states remain available even if no local daily line exists for a delisted coin.
-- **Model 2 — implemented, not yet run in production.**
-`regime/gated_backtest.py --model model2` filters entries exclusively based on the explicitly specified local coin states. It does not read or require any BTC state. If the local state is missing, the gate closes.
-- **Model 3 — implemented, not yet run in production.**
-`regime/gated_backtest.py --model model3` is the previous combined Model-2 logic: Entries require both an allowed global BTC state and an allowed local coin state. Exits remain completely with the original strategy in all three gate models.
-- **The technical comparison of the four levels is implemented, not yet
-ran productively. ** `regime/model_compare.py` checks identical candidates, Model 3's agreement with Model 1's BTC-Gate and Model 2's Coin-Gate, time windows, identities, and archives before it places the four runtime metrics side by side. It writes `model_metrics_long.csv`, `model_comparison.csv`, and `model_comparison_manifest.json`, but does not sort or rank any strategy. The mechanical deltas are Model 1 minus 0, Model 2 minus 0, Model 3 minus 0, Model 3 minus 1, and Model 3 minus 2; Model 2 minus Model 1 is not output as an incremental effect because the two individual gates are not nested within each other.
+- **Model 0 — measured, attributed and evaluated.** "Original strategy, no regime filter" is exactly what `regime/full_backtest.py` (Stage 8) calculates: the ungated, pooled backtest across all 8 pairs. It is attributed in Stage 10 and evaluated in Stage 13 for 584 strategies. The resumable call `python -m regime.full_backtest` continues the measurement; ongoing writers are excluded according to `HANDOFF.md`.
+- **Model 1 — has run on candidate sets, not on the whole corpus.** `regime/gated_backtest.py --model model1` filters entries according to the BTC states explicitly mentioned in the candidate spec. Global BTC states remain available even if no local daily line exists for a delisted coin.
+- **Model 2 — has run on candidate sets, not on the whole corpus.** `regime/gated_backtest.py --model model2` filters entries exclusively based on the explicitly specified local coin states. It does not read or require any BTC state. If the local state is missing, the gate closes.
+- **Model 3 — has run on candidate sets, not on the whole corpus.** `regime/gated_backtest.py --model model3` is the previous combined Model-2 logic: Entries require both an allowed global BTC state and an allowed local coin state. Exits remain completely with the original strategy in all three gate models.
+- **The technical comparison of the four levels has run for the 7 pilot candidates.** `regime/model_compare.py` checks identical candidates, Model 3's agreement with Model 1's BTC-Gate and Model 2's Coin-Gate, time windows, identities, and archives before it places the four runtime metrics side by side. It writes `model_metrics_long.csv`, `model_comparison.csv`, and `model_comparison_manifest.json`, but does not sort or rank any strategy. The mechanical deltas are Model 1 minus 0, Model 2 minus 0, Model 3 minus 0, Model 3 minus 1, and Model 3 minus 2; Model 2 minus Model 1 is not output as an incremental effect because the two individual gates are not nested within each other.
+
+Gate runs to date, from the manifests under `results/regime/` (2026-09-19). Each row is one candidate spec; the three model columns give the entries of that model's manifest.
+
+| Candidate spec (`candidate_set_id`) | Role | Candidates | Model 1 | Model 2 | Model 3 |
+|---|---|---|---|---|---|
+| `pilot_v1_stratified_trend_gate` | PILOT | 7 | 7 measured | 7 measured | 7 measured |
+| `pilot_v1_stratified_sideways_transition_gate` | PILOT | 14 (7 strategies) | 14 measured | 14 measured | 14 measured |
+| `regime_specialists_v2_lcb_ranked_deduplicated` | PILOT | 33 (25 strategies) | 33 measured | 33 measured | 33 measured |
+| `top10_v1_regime_specialists_trend_gate` | VALIDATION | 55 | 16 measured | not run | not run |
+| `full_v1_trend_gate` | VALIDATION | 647 | 128 entries: 113 measured, 10 failed, 5 timeout | 184 entries: 151 measured, 28 failed, 5 timeout | 206 entries: 165 measured, 36 failed, 5 timeout |
+
+The `full_v1` and `top10_v1` runs are partial. The `*_merged` attribution folders combine the manifests of several runs; the specialist evaluation has been applied to each model's attribution (`results/regime/specialist_evaluation/modelN/`, and `modelN_regime_specialists_v2/`).
 
 The runner writes atomically after each candidate, locks one output store against a second writer, and binds each run to source/config identity, regime data hash, gate rule, candidate spec, time range, and analysis role. Multiple gate variants of the same strategy receive separate archives.
 
@@ -264,6 +277,8 @@ python -m regime.model_compare
 The still pending evaluation stage is not the mechanical side-by-side comparison, but the preregistered assessment: Exposure-Match, specialist thresholds, Discovery/Validation, and portfolio rule. All nine preregistration questions (`REGIME_PREREGISTRATION.md`, Amendment 2026-09-11) have been decided since 2026-09-11 — one candidate spec and one productive Model-1/2/3 run are thus approved. Portfolio allocation for multiple simultaneously qualifying candidates is deliberately deferred for Version 1, not decided.
 
 ## Stage 13 — Specialist/Universal Evaluation
+
+Status: run on the full Model-0 inventory (584 strategies) and on the Model 1/2/3 attributions of the candidate sets above; the results are published as the *Regime-Spezialisten* artifact. The ranking rules below are frozen. The rankings carry no Stage 8b annotation yet: a row is called a *verified* specialist only when it clears the specialist floor **and** the strategy passes Stage 8b for the claimed state (`evidence.execution_robustness.qualifies_in` / `qualifies_universal`). The annotation is joined in as a column and changes no ranking.
 
 | Program | Reads | Writes |
 |---|---|---|
@@ -336,7 +351,7 @@ Model 3 previously showed two separate tables (BTC regime, Coin regime), althoug
 
 ## Where Docker stands instead of native Python
 
-Stages 1–3 (trial run, both bias tests) run both natively and in the pinned Docker images (`strategy-audit-runtime:2026.7` and variants), depending on which runner calls them — both write to the same JSON stores, distinguished only by the field `runtime_id` (`native_unversioned` vs. `docker:sha256:...`). Stage 7 (full window, pooled) runs exclusively in Docker because it runs unattended for hours.
+Stages 1–4 (trial run, look-ahead, warm-up ladder, recursion) run both natively and in the pinned Docker images (`strategy-audit-runtime:2026.7` and variants), depending on which runner calls them — both write to the same JSON stores, distinguished only by the field `runtime_id` (`native_unversioned` vs. `docker:sha256:...`). Stage 8 (full window, pooled) and the 5m detail reruns of Stage 8b run exclusively in Docker because it runs unattended for hours.
 
 ## Old files that are no longer needed
 
@@ -344,14 +359,14 @@ Three different categories, not one — important because they are treated diffe
 
 ### 1. From the original author of the previous work (895/900 strategies review, before this verification chain)
 
-Publication preface and case studies of a previous, less strict review. No file here is read or written by a script from level 0–11; they describe a state that `STRATEGY_STATUS.csv` has long since replaced.
+Publication preface and case studies of a previous, less strict review. No file here is read or written by a script from Stage 0–13; they describe a state that `STRATEGY_STATUS.csv` has long since replaced.
 
 | File/Directory | Created by | Replaced by |
 |---|---|---|
 | `old/predecessor_audit/README.md`, `LEDGER.csv`, `LEDGER.md` | archived `ledger.py` | `STRATEGY_STATUS.md` |
 | `old/predecessor_audit/CORPUS.md`, `CORPUS_PLAN.md`, `corpus/INDEX.md` + 896 cards under `corpus/` | archived predecessor tooling | `evidence/EXECUTION_PROFILES.csv`, `evidence/corpus_sources.json` |
 | `old/predecessor_audit/ANALYSIS.md`, `ANALYSIS.ru.md` | (predecessor tooling) | five handpicked case studies, no population — `STRATEGY_STATUS.csv` covers the current population |
-| `old/predecessor_audit/results/*.md` (`DoubleEMACrossoverWithTrend.md` et al., `INDEX.md`) | (Predecessor tooling) | the same five case studies — **not to be confused with `results/regime/`**, which is current and described from level 7–9 |
+| `old/predecessor_audit/results/*.md` (`DoubleEMACrossoverWithTrend.md` et al., `INDEX.md`) | (Predecessor tooling) | the same five case studies — **not to be confused with `results/regime/`**, which is current and described from Stage 8 onward |
 | `old/predecessor_audit/DCA.md`, `DEPTH.md`, `RESOLVABLE.md` | (Predecessor Tooling) | independent page investigations without regime reference, nothing replaces them, because nothing in the current chain asks the same question |
 | `old/**` (`corpus_repair`, `eligibility_zwischenstand_2026-08`, `hmm_prototype_2026-08`, `proxy_backtests_2026-08`, `root_prototypes_2026-08`, `translation_attempts_2026-08`, `vorueberlegungen`, own `old/README.md`) | various, all before this chain | consciously archived, not deleted |
 | `.codex/CONTINUATION.md` | (predecessor tooling) | explained by itself replaced by `HANDOFF.md` |
@@ -368,12 +383,12 @@ All files here are current and not outdated. Most run on demand; Stage 0 additio
 |---|---|---|
 | `tools/secret_gate.py` | Prevents a commit from containing a secret (four layers, see separate docstring) | before each commit that introduces new files |
 | `tools/translation_repair.py` | Translates Russian comments/strings in Python files, AST-checked, never silently translates failed parts | when `tools/harvest.py` (Stage 0) brings in a repo with non-English comments |
-| `tools/blocked_triage.py` | Finds fixable causes for rows that the test run never reached (freqtrade didn't even start them); writes `REPAIR_LIST.md` and `evidence/BLOCKED_TRIAGE.json`, which Stage 5 reads | after new Harvest or when the number of blocked rows changes (`--probe --list`) |
+| `tools/blocked_triage.py` | Finds fixable causes for rows that the test run never reached (freqtrade didn't even start them); writes `REPAIR_LIST.md` and `evidence/BLOCKED_TRIAGE.json`, which Stage 6 reads | after new Harvest or when the number of blocked rows changes (`--probe --list`) |
 | `tools/eligibility_expansion.py` | Freezes the historical, result-blind eligibility expansion inventory (only technical stage-6 artifacts, no performance) | if `REGIME_PREREGISTRATION.md`/`ELIGIBILITY_EXPANSION_PLAN.md` are changed |
 | `tools/probe_double_advise.py` | Checks whether the double `ft_advise_signals` call in `lookahead-analysis` duplicates a column | if there is a suspicion that the `enter_tag` shim distorts the result |
 | `tools/probe_shim_neutral.py` | Compares backtest results with/without `enter_tag` shim on neutrality | after a change to the shim mechanism |
 | `tools/probe_zero.py` | Differentiates in a row without trades whether the entry condition never becomes true or the indicator is missing | when a row shows 0 trades and the cause is unclear |
-| `tools/strategy_classification.py` | Classifies type/timeframe per row from `evidence/EXECUTION_PROFILES.csv` and the strategy source code; writes `evidence/STRATEGY_CLASSIFICATION.json`, which is read by Stage 5 and Stage 10. `strategy_type` is always explicit: recognized family, `unclassified` or for test/template artifacts `not_applicable`. Order: classification before phase hypothesis, status, and HTML page. | after new harvest, if `evidence/EXECUTION_PROFILES.csv` changes or classification rules have been changed |
+| `tools/strategy_classification.py` | Classifies type/timeframe per row from `evidence/EXECUTION_PROFILES.csv` and the strategy source code; writes `evidence/STRATEGY_CLASSIFICATION.json`, which is read by Stage 6 and Stage 11. `strategy_type` is always explicit: recognized family, `unclassified` or for test/template artifacts `not_applicable`. Order: classification before phase hypothesis, status, and HTML page. | after new harvest, if `evidence/EXECUTION_PROFILES.csv` changes or classification rules have been changed |
 | `tools/strategy_status_page.py` | Builds the published page from `STRATEGY_STATUS.csv`, so that page and table never get out of sync | after each `evidence/strategy_status.py` run, before publication |
 | `tools/warmup_reparse.py` | Reads stored leader logs again with the current parser without having to run freqtrade again | after a fix to the drift tables parser |
 
