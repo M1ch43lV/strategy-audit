@@ -60,6 +60,10 @@ eligibility condition for calling a result an ADX regime specialist or
 universal specialist; `SENSITIVE`, `NA`, `ERROR`, and `PENDING` remain
 visible but cannot receive that verified designation.
 
+*Revised on 2026-09-19: `robustness_qualified` additionally requires a cost-screen
+`PASS`. See "Qualification for the verified specialist designation" in the
+amendment at the end of this file.*
+
 ## Follow-up stages
 
 Cost/slippage stress, limit-order fill-risk review, and temporal walk-forward
@@ -90,7 +94,8 @@ pooled Full-Backtest. Above 5m the 5m detail run applies. A strategy at or below
 5m (404 of the measured baselines: 400 at 5m, 4 at 3m) already simulates at the
 granularity the others are rerun at, so it is **counted equal to a strategy that
 received the 5m run**: `PASS`, reason `baseline_at_detail_granularity`, and
-`robustness_qualified` follows from it exactly as for a measured `PASS`.
+it satisfies the execution half of `robustness_qualified` exactly as a measured
+`PASS` does (the cost half is separate, see below).
 
 This is a rule and not a measurement, and the record says so: `basis` is
 `owner_rule_at_or_below_5m` where it is `measured_detail_run` for a rerun, and the
@@ -175,9 +180,33 @@ but not decisive: 43 of 102 strategies below that mean still pass the doubling
 stress. The calculation is first order. With `stake_amount: unlimited` a lower
 balance would shrink later stakes, which it leaves out.
 
-Whether a cost `PASS` should also be required for `robustness_qualified` is not
-decided. That field keeps its original meaning (execution `PASS` only), and the
-cost result is published beside it as `cost_screen_status`.
+### Qualification for the verified specialist designation
+
+Owner decision 2026-09-19: the cost screen is a condition of the verified
+specialist designation. `robustness_qualified` is therefore the conjunction of two
+published results, and is true only when both hold:
+
+- `execution_robustness_status` is `PASS` (measured, or by the rule for strategies
+  at or below 5m), **and**
+- `cost_screen_status` is `PASS`.
+
+Each component stays published beside the conjunction (`execution_robustness_status`,
+`cost_screen_status`), so a strategy that is not qualified can be told apart by
+which condition it missed. `evidence/PIPELINE_STATE.json` carries the conjunction as
+`robustness_qualification`, with its two requirements listed.
+
+A cost `NA` is not a `PASS`. It means the baseline was not profitable, so there is
+nothing for a cost to erode, and such a strategy cannot be qualified. Two limits of
+this follow from the screen being computed on the whole run:
+
+- A strategy whose edge lies inside one regime but whose whole-run baseline is
+  negative can never carry the designation through this screen. A screen scoped to
+  the trades inside the specialist's own regime would fit the designation better.
+  It is not built.
+- `regime/specialist_evaluation.py` does not consult `robustness_qualified` yet. No
+  ranked output exists, so nothing is mislabelled today. When one is produced, the
+  designation is "clears the specialist floor" AND `robustness_qualified`, joined
+  from `STRATEGY_STATUS.csv` as an annotation; it changes no ranking.
 
 ### Generated stores
 

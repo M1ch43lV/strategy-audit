@@ -12623,6 +12623,39 @@
       "baseline_mean_profit_pct": -0.023,
       "baseline_profit_abs": -485.778,
       "break_even_slippage_bps_per_side": -7.16,
+      "detail": {
+        "baseline_mean_profit_pct": -0.0246,
+        "baseline_profit_abs": -492.6034,
+        "break_even_slippage_bps_per_side": -7.31,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.1246,
+            "net_profit_abs": -829.5075,
+            "net_profit_pct": -82.9508,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.2246,
+            "net_profit_abs": -1166.4117,
+            "net_profit_pct": -116.6412,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.4246,
+            "net_profit_abs": -1840.22,
+            "net_profit_pct": -184.022,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80",
+        "trades": 3185
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [

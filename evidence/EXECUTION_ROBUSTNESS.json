@@ -6593,6 +6593,95 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
     },
+    "Minmax": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/Minmax-476cf2d9-2026-09-05_18-54-33.zip",
+        "canonical_sha256": "sha256_b69e76191caee9b44a2f0bc47bc583e59568d90a4838b35c62c10b219b9ef52c",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_c4dbd4e698a9bbfa2434cc65e369a1399efd7d41622efdf30dba5a687ab36c26"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1298,
+          "force_exit": 1,
+          "stop_loss": 1885
+        },
+        "max_drawdown_account": 0.6559,
+        "mean_duration_min": 3779.34,
+        "mean_profit_pct": -0.023,
+        "negative_duration_trades": 0,
+        "profit_abs": -485.778,
+        "profit_factor": 0.9546,
+        "profit_pct": -48.5778,
+        "same_candle_pct": 2.701,
+        "sharpe": -0.4782,
+        "starting_balance": 1000,
+        "trades": 3184,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 39.698
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.000128,
+        "profit_abs": -6.8254,
+        "profit_pct_points": -0.6825,
+        "profit_relative_change": 0.0141,
+        "same_candle_pct_points": -0.001,
+        "trade_relative_change": 0.0003,
+        "trades": 1
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/Minmax-476cf2d9-2026-09-19_16-02-00.zip",
+        "attempted_at": "2026-09-19T16:02:01+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_664b03ae7e6c90190002725bab9271ab162094386e21ccbcb78af233348f380e"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1298,
+          "force_exit": 1,
+          "stop_loss": 1886
+        },
+        "max_drawdown_account": 0.6579,
+        "mean_duration_min": 3793.71,
+        "mean_profit_pct": -0.0246,
+        "negative_duration_trades": 0,
+        "profit_abs": -492.6034,
+        "profit_factor": 0.9537,
+        "profit_pct": -49.2603,
+        "same_candle_pct": 2.7,
+        "sharpe": -0.4879,
+        "starting_balance": 1000,
+        "trades": 3185,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 39.686
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_edaf1f560f7d46c74b8a4fade81988594eeaa59af78c2fcbd5ca6e8d49a09a80"
+    },
     "MomentumScoreStrategy": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,

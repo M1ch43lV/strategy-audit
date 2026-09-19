@@ -275,10 +275,11 @@ class EvidenceStore:
         full_complete = completed_full_backtest(profile, full_backtest)
         robustness = self.execution_robustness.get(strategy_id) or {}
         robustness_status = robustness.get("status", "PENDING") if full_complete else "NA"
-        # Separate from robustness on purpose: it needs no detail run, so it
-        # exists for every complete Full-Backtest. Whether a cost PASS should
-        # also be required for `robustness_qualified` is an owner decision that
-        # has not been made, so that field keeps its original meaning.
+        # The cost screen needs no detail run, so it exists for every complete
+        # Full-Backtest. Owner decision 2026-09-19: a cost PASS is a condition of
+        # `robustness_qualified`, which is the condition for the verified
+        # specialist designation. `NA` (baseline not profitable, so there is
+        # nothing to stress) is not a PASS.
         cost = self.cost_screen.get(strategy_id) or {}
         cost_status = cost.get("status", "PENDING") if full_complete else "NA"
         gate_record = (fresh or tried or diagnostics.get("lookahead") or {})
@@ -306,7 +307,7 @@ class EvidenceStore:
             "full_backtest_status": full_backtest.get("status", ""),
             "technical_chain_complete": full_complete,
             "execution_robustness_status": robustness_status,
-            "robustness_qualified": robustness_status == "PASS",
+            "robustness_qualified": robustness_status == "PASS" and cost_status == "PASS",
             # A PASS is either a measured 5m detail run or, at or below 5m,
             # the owner rule that counts the baseline as equal to one.
             "execution_robustness_basis": robustness.get("basis", "") if full_complete else "",
@@ -425,9 +426,13 @@ def _public_resolution(resolved):
         },
         "execution_robustness": {
             "status": resolved["execution_robustness_status"],
-            "qualified": resolved["robustness_qualified"],
             "basis": resolved["execution_robustness_basis"],
             "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
+        },
+        # Both components are published above and below; this is their conjunction.
+        "robustness_qualification": {
+            "qualified": resolved["robustness_qualified"],
+            "requires": ["execution_robustness:PASS", "cost_screen:PASS"],
         },
         "cost_screen": {
             "status": resolved["cost_screen_status"],

@@ -1593,7 +1593,8 @@ run failed).
 **Strategies at or below 5m: no rerun, no 1m batch** (owner decision 2026-09-19,
 resource grounds). They are counted equal to a strategy that received the 5m run:
 the classifier writes `PASS` with `basis: owner_rule_at_or_below_5m` for the 404 of
-them (400 at 5m, 4 at 3m) and `robustness_qualified` follows. Do not schedule a 1m
+them (400 at 5m, 4 at 3m), which satisfies the execution half of
+`robustness_qualified`. Do not schedule a 1m
 batch. The basis is published as `execution_robustness_basis` so a rule-based
 `PASS` stays distinguishable from a measured one. An earlier version of this
 section proposed a 1m batch; it is withdrawn.
@@ -1601,15 +1602,28 @@ section proposed a 1m batch; it is withdrawn.
 `python -m evidence.execution_robustness --targets 5m` prints the command for
 whatever is still owed to the 5m batch.
 
+**Decided 2026-09-19: the cost screen is a condition of the verified specialist
+designation.** `robustness_qualified` is now `execution_robustness_status == PASS`
+AND `cost_screen_status == PASS`; both components stay published beside it. A cost
+`NA` (baseline not profitable) is not a `PASS`. Two consequences for whoever owns
+the regime pipeline:
+
+- `regime/specialist_evaluation.py` does not consult `robustness_qualified` yet and
+  nothing is ranked, so nothing is mislabelled today. When a ranked output is
+  produced, the designation is "clears the specialist floor" AND
+  `robustness_qualified`, joined from `STRATEGY_STATUS.csv` as an annotation. It must
+  not change any ranking or floor; that protocol is frozen.
+- The screen is computed on the whole run. A regime specialist whose whole-run
+  baseline is negative cannot qualify through it. A screen scoped to the trades in
+  the specialist's own regime would fit better; it is not built and needs an owner
+  call before anyone builds it.
+
 **Undecided, owner's call.**
 
-1. Whether a cost-screen `PASS` should also be required for `robustness_qualified`.
-   It currently means execution `PASS` only; `cost_screen_status` is published
-   beside it. Of 279 profitable baselines, 218 pass the doubling stress and 61 do not.
-2. The classifier thresholds. They were fixed after 42 of 230 detail runs existed,
+1. The classifier thresholds. They were fixed after 42 of 230 detail runs existed,
    which the plan discloses. Freeze them or change them before the remaining 5m
    results are classified, not after.
-3. Control runs. Seven `SENSITIVE` results compare a `native_unversioned` baseline
+2. Control runs. Seven `SENSITIVE` results compare a `native_unversioned` baseline
    with a Docker detail run (`control_run_needed` in the record), so the change is
    not yet attributable to the detail candles. `BB_RSI` shows 3559 baseline trades
    against 5988 in the detail run. Not built: a control run must write to its own
