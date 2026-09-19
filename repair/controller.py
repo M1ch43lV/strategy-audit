@@ -34,6 +34,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "evidence"
 LOG = EVIDENCE / "REPAIR_CONTROLLER.jsonl"
 LOCK = ROOT / "user_data" / ".repair_controller.running"
+AUDIT_IMAGE_PREFIX = "strategy-audit-runtime:"
 
 
 class RepairControllerError(RuntimeError):
@@ -117,7 +118,12 @@ def _active_docker() -> list[str]:
         text=True, capture_output=True, check=False)
     if completed.returncode:
         raise RepairControllerError("could not inspect Docker: " + completed.stderr.strip())
-    return [line for line in completed.stdout.splitlines() if line.strip()]
+    # Gainium services share the Docker daemon but never read audit profiles.
+    # Only an audit runtime container is a conflicting benchmark reader.
+    return [
+        line for line in completed.stdout.splitlines()
+        if line.strip() and line.split("|", 1)[1].startswith(AUDIT_IMAGE_PREFIX)
+    ]
 
 
 @contextlib.contextmanager
@@ -216,6 +222,7 @@ def selftest() -> None:
     assert len({handler.name for handler in all_handlers}) == len(all_handlers)
     assert all(handler.command[0] == fixed_python for handler in all_handlers)
     assert all(handler.evidence for handler in all_handlers)
+    assert AUDIT_IMAGE_PREFIX == "strategy-audit-runtime:"
     assert _selected({"class1"}, fixed_python) == all_handlers[:2]
     assert _selected({"class2"}, fixed_python) == all_handlers[2:5]
     assert _selected({"adjudication"}, fixed_python) == (all_handlers[5],)
