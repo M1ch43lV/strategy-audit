@@ -73,7 +73,9 @@ class EvidenceStore:
             "review": os.path.join(evidence, "LOOKAHEAD_INDICATOR_REVIEW.json"),
             "class1": os.path.join(evidence, "PROFILE_CLASS1.json"),
             "full_backtest": os.path.join(
-                root, "results", "regime", "full_backtest_manifest.json"),
+                    root, "results", "regime", "full_backtest_manifest.json"),
+            "execution_robustness": os.path.join(
+                    evidence, "EXECUTION_ROBUSTNESS.json"),
         }
         self.repair_paths = (
             os.path.join(evidence, "ELIGIBILITY_TIMEFRAME_REPAIR.json"),
@@ -100,6 +102,7 @@ class EvidenceStore:
         self.review = _json(self.paths["review"], "reviewed")
         full_backtest = _json(self.paths["full_backtest"])
         self.full_backtests = full_backtest
+        self.execution_robustness = _json(self.paths["execution_robustness"])
 
         self.repaired = {}
         self.repair_store = {}
@@ -268,6 +271,8 @@ class EvidenceStore:
 
         full_backtest = self.full_backtests.get(strategy_id) or {}
         full_complete = completed_full_backtest(profile, full_backtest)
+        robustness = self.execution_robustness.get(strategy_id) or {}
+        robustness_status = robustness.get("status", "PENDING") if full_complete else "NA"
         gate_record = (fresh or tried or diagnostics.get("lookahead") or {})
 
         return {
@@ -292,6 +297,8 @@ class EvidenceStore:
             "recursive_store": recursive_store,
             "full_backtest_status": full_backtest.get("status", ""),
             "technical_chain_complete": full_complete,
+            "execution_robustness_status": robustness_status,
+            "robustness_qualified": robustness_status == "PASS",
             "full_backtest_store": (self._relative(self.paths["full_backtest"])
                                     if full_backtest else ""),
             # Selected records used by the status generator. Keeping these in
@@ -307,6 +314,7 @@ class EvidenceStore:
             "lookahead_gate_record": gate_record,
             "lookahead_review_note": review_note,
             "full_backtest_record": full_backtest,
+            "execution_robustness_record": robustness,
         }
 
 
@@ -401,6 +409,11 @@ def _public_resolution(resolved):
             "status": resolved["full_backtest_status"],
             "identity_current_complete": resolved["technical_chain_complete"],
             "producer_store": resolved["full_backtest_store"],
+        },
+        "execution_robustness": {
+            "status": resolved["execution_robustness_status"],
+            "qualified": resolved["robustness_qualified"],
+            "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
         },
     }
 

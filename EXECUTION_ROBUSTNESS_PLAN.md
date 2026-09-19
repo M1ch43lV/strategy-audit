@@ -49,6 +49,13 @@ of the baseline net profit, or has an exit/duration profile indicating
 intra-candle sensitivity. The full native metrics and baseline comparison must
 remain visible; no aggregate ranking may conceal the classification.
 
+`STRATEGY_STATUS.csv` and `evidence/PIPELINE_STATE.json` publish
+`execution_robustness_status` and `robustness_qualified`. Only `PASS` sets the
+latter to true. This does not alter E1 admission. It is an additional final
+eligibility condition for calling a result an ADX regime specialist or
+universal specialist; `SENSITIVE`, `NA`, `ERROR`, and `PENDING` remain
+visible but cannot receive that verified designation.
+
 ## Follow-up stages
 
 Cost/slippage stress, limit-order fill-risk review, and temporal walk-forward
