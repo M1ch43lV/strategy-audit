@@ -29,10 +29,12 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 STATE = ROOT / "evidence" / "PIPELINE_STATE.json"
 WARMUP = ROOT / "evidence" / "WARMUP_CONVERGENCE.json"
+BIAS = ROOT / "evidence" / "PROFILE_BIAS.json"
 LOCK = ROOT / "user_data" / ".pipeline_dispatcher.running"
 METADATA = ROOT / "evidence" / "RUN_METADATA.jsonl"
 CONFIG = ROOT / ".codex" / "config.toml"
 AUDIT_IMAGE_PREFIX = "strategy-audit-runtime:"
+STALE_LOCK_SECONDS = 300
 PS = "powershell.exe" if os.name == "nt" else "powershell"
 
 RUNNERS = {
@@ -92,6 +94,26 @@ def _docker_running() -> list[str]:
             if line.strip() and line.split("|", 1)[1].startswith(AUDIT_IMAGE_PREFIX)]
 
 
+def recover_stale_lock() -> bool:
+    """Remove only an old, empty legacy lock after the Docker contention check.
+
+    This deliberately is not automatic.  A caller must opt in after confirming
+    that no host-side runner is active; a current dispatcher always owns a
+    non-stale lock for less than this short recovery interval.
+    """
+    if not LOCK.exists():
+        return False
+    if _docker_running():
+        raise DispatchError("cannot recover dispatcher lock while an audit Docker container runs")
+    if any(LOCK.iterdir()):
+        raise DispatchError("refusing to recover a non-empty dispatcher lock")
+    age = time.time() - LOCK.stat().st_mtime
+    if age < STALE_LOCK_SECONDS:
+        raise DispatchError("refusing to recover a recent dispatcher lock")
+    LOCK.rmdir()
+    return True
+
+
 def _load_state() -> dict:
     if not STATE.exists():
         raise DispatchError("published pipeline state is missing")
@@ -111,6 +133,14 @@ def _converged() -> set[str]:
         return set()
     return {name for name, record in _json(WARMUP).get("results", {}).items()
             if record.get("state") == "converged"}
+
+
+def _has_lookahead_attempt(strategy: str) -> bool:
+    """Tell a true retry from a newly-intaken row's placeholder label."""
+    if not BIAS.exists():
+        return False
+    record = _json(BIAS).get("results", {}).get(strategy, {})
+    return bool(record.get("lookahead"))
 
 
 def _first(rows: Iterable[dict], predicate) -> dict | None:
@@ -134,7 +164,8 @@ def choose(state: dict, strategy: str = "") -> dict:
     warm_records = _json(WARMUP).get("results", {}) if WARMUP.exists() else {}
 
     row = _first(rows, lambda item: (
-        _work(item) == {"first_measurement_in_current_runtime"}
+        "first_measurement_in_current_runtime" in _work(item)
+        and not (_work(item) & REPAIR_BLOCKERS)
         and item.get("run_profile") in KNOWN_SMOKE_PROFILES))
     if row:
         return {"kind": "run", "gate": "smoke", "strategy": row["strategy_id"],
@@ -143,11 +174,15 @@ def choose(state: dict, strategy: str = "") -> dict:
 
     row = _first(rows, lambda item: (
         item.get("measured") == "true"
-        # `lookahead_remeasure_pending` means an attempt already exists but
-        # produced NA/timeout/error evidence. It is not an untested row and
-        # must wait for a repair or explicit diagnostic decision. A routine
-        # dispatch is allowed only for a genuinely missing verdict.
-        and _work(item) == {"lookahead_verdict"}))
+        # `lookahead_remeasure_pending` normally means an attempt already
+        # exists but produced NA/timeout/error evidence.  Fresh intake rows
+        # can receive that generic publication label before any bias card
+        # exists; those are genuine first diagnostics and must enter Stage 2.
+        # Existing attempts remain an escalation boundary.
+        and not (_work(item) & REPAIR_BLOCKERS)
+        and ("lookahead_verdict" in _work(item)
+             or ("lookahead_remeasure_pending" in _work(item)
+                 and not _has_lookahead_attempt(item["strategy_id"])))))
     if row:
         return {"kind": "run", "gate": "lookahead", "strategy": row["strategy_id"],
                 "args": ["--only", row["strategy_id"], "--diagnostics", "lookahead",
@@ -370,6 +405,8 @@ def selftest() -> None:
         "B": {"strategy_id": "B", "open_work": "lookahead_verdict", "run_profile": "spot_long", "measured": "true"},
     }}
     assert choose(base)["gate"] == "smoke"
+    base["strategies"]["A"]["open_work"] = "first_measurement_in_current_runtime;recursive_ladder_pending"
+    assert choose(base)["gate"] == "smoke"
     base["strategies"]["A"]["open_work"] = "runtime_repair_pending"
     assert choose(base)["gate"] == "lookahead"
     base["strategies"]["B"]["open_work"] = "recursive_ladder_pending;to_be_fixed"
@@ -392,6 +429,8 @@ def main(argv=None) -> int:
     parser.add_argument("--strategy", help="restrict planning and dispatch to one strategy ID")
     parser.add_argument("--intake", action="store_true",
                         help="refresh source-derived intake evidence before the named strategy")
+    parser.add_argument("--recover-stale-lock", action="store_true",
+                        help="remove only an old empty lock after checking audit Docker is idle")
     parser.add_argument("--interval", type=int, default=60, help="idle polling interval in seconds")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
@@ -405,6 +444,9 @@ def main(argv=None) -> int:
             raise SystemExit("--intake requires --strategy")
         if not args.apply:
             raise SystemExit("--intake writes source-derived evidence; pass --apply")
+    if args.recover_stale_lock:
+        recovered = recover_stale_lock()
+        print(json.dumps({"stale_lock_recovered": recovered}, indent=2))
     with dispatcher_lock():
         if args.intake:
             command = [sys.executable, "-c",

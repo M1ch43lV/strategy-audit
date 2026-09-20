@@ -25,6 +25,11 @@ repair policy, timeout, evidence store, or preregistered order. Repair-only
 and zero-trade full-window cases are surfaced for escalation rather than
 guessed.
 
+If a prior dispatcher was interrupted after leaving its empty lock directory,
+an operator who has first verified that no host-side audit process is active
+may use `--recover-stale-lock`. It removes only an empty lock older than five
+minutes and refuses recovery while a strategy-audit Docker container runs.
+
 | Program | Reads | Writes |
 |---|---|---|
 | `tools/harvest.py` | GitHub API (only `.py` files with `IStrategy`) | Files under `repos/<repo>/` |
