@@ -1,0 +1,53 @@
+[
+ {
+  "run": "canonical 5m (Docker)",
+  "trades": 757,
+  "mean_ratio_pct": 0.8888,
+  "sum_ratio": 6.728,
+  "win_rate_pct": 95.0,
+  "median_ratio_pct": 1.279,
+  "mean_duration_h": 10.2,
+  "worst_ratio_pct": -26.71,
+  "best_ratio_pct": 6.13,
+  "exit_reasons": {
+   "trailing_stop_loss": 704,
+   "unclog": 36,
+   "exit_signal": 15,
+   "force_exit": 2
+  }
+ },
+ {
+  "run": "control 5m (native)",
+  "trades": 757,
+  "mean_ratio_pct": 0.8888,
+  "sum_ratio": 6.728,
+  "win_rate_pct": 95.0,
+  "median_ratio_pct": 1.279,
+  "mean_duration_h": 10.2,
+  "worst_ratio_pct": -26.71,
+  "best_ratio_pct": 6.13,
+  "exit_reasons": {
+   "trailing_stop_loss": 704,
+   "unclog": 36,
+   "exit_signal": 15,
+   "force_exit": 2
+  }
+ },
+ {
+  "run": "1m detail (native)",
+  "trades": 763,
+  "mean_ratio_pct": 0.7548,
+  "sum_ratio": 5.759,
+  "win_rate_pct": 95.0,
+  "median_ratio_pct": 1.198,
+  "mean_duration_h": 10.16,
+  "worst_ratio_pct": -26.71,
+  "best_ratio_pct": 3.45,
+  "exit_reasons": {
+   "trailing_stop_loss": 674,
+   "exit_signal": 51,
+   "unclog": 36,
+   "force_exit": 2
+  }
+ }
+]
