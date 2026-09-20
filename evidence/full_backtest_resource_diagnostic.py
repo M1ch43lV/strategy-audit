@@ -106,7 +106,8 @@ def run(strategy: str, pair_count: int, timeout: int, output: Path) -> dict:
     stop = threading.Event()
     watcher = threading.Thread(target=_container_stats, args=(container_name, stop, samples), daemon=True)
     started = time.monotonic()
-    process = subprocess.Popen(command, cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    process = subprocess.Popen(command, cwd=ROOT, text=True, encoding="utf-8", errors="replace",
+                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     watcher.start()
     try:
         stdout, _ = process.communicate(timeout=timeout)
