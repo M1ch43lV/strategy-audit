@@ -1602,6 +1602,10 @@ def rows():
                 ("originally in the frozen E0 baseline, retired 2026-09-03"
                  if base.get("regime_eligible") == "true" else ""),
                 review_note,
+                ("Full-Backtest: 1m resource_inconclusive retained; owner-approved "
+                 "5m pooled override measured"
+                 if full_backtest.get("measurement_scope") ==
+                 "owner_approved_timeframe_override_pooled_pair_universe" else ""),
                 ("coverage %s: %s" % (coverage_status or "absent", coverage_detail[:110])
                  if coverage_status != "PASS" else "")) if part),
             "repair_settings": "; ".join(

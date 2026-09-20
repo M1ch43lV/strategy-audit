@@ -1,13 +1,13 @@
 # Strategy status - current evidence for all 1356 rows
 
-**Generated 2026-09-20 20:37:27 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-20 22:53:13 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
 already been decided, collected from the smoke, bias, full-window,
 adjudication and convergence stores.
 
-**Completed full-backtest closure.** 632 rows carry an exact, successful
+**Completed full-backtest closure.** 633 rows carry an exact, successful
 canonical pooled Stage-7 full-backtest identity (source hash, run profile and
 mode timerange). Their `technical_chain_complete=true` closes the technical
 work queue, even if a later diagnostic-window amendment made earlier evidence

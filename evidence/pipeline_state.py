@@ -46,11 +46,12 @@ def _csv(path):
 
 
 def completed_full_backtest(profile, record):
-    """Whether this exact implementation completed the canonical pooled run."""
+    """Whether this exact implementation completed an accepted pooled run."""
     return bool(record) and all((
         record.get("status") == "measured",
-        record.get("measurement_scope") ==
-        "canonical_pooled_native_pair_universe",
+        record.get("measurement_scope") in (
+            "canonical_pooled_native_pair_universe",
+            "owner_approved_timeframe_override_pooled_pair_universe"),
         record.get("run_profile") == profile.get("run_profile"),
         record.get("canonical_sha256") == profile.get("source_sha256"),
     ))

@@ -789,6 +789,23 @@ it is not requeued or retried. This rule applies to the 34 previously E1
 admitted rows with those statuses, and does not infer anything about their
 profitability.
 
+### Amendment 2026-09-20: one owner-approved 1m-to-5m pooled exception
+
+**Owner's decision.** `HedgeAdaptiveRegimeStrategy` at canonical source hash
+`sha256_378a5c0315a4f89d2424578ef6a8d57bce54fba018d0842b7e467b230db5d2b6`
+ended its eight-pair 1m pooled Full-Backtest as `resource_inconclusive`. The
+owner approved one replacement pooled Full-Backtest at 5m after a separate
+eight-pair diagnostic completed with the same source, futures configuration,
+pair universe, timerange, fee and shared-capital settings. The 1m OOM record
+is retained inside the promoted record; the accepted 5m record is labelled
+`owner_approved_timeframe_override_pooled_pair_universe` in status evidence.
+
+This exception applies only to that source hash and does not alter the
+timeframe of the strategy source, the ordinary canonical runner, the C10 rule
+for any other strategy, or the interpretation of 1m and 5m performance as
+identical. Its purpose is auditable E1 pooled coverage under the owner's
+explicit resource decision, with the execution-timeframe difference visible.
+
 ### Amendment 2026-09-11: warm-up convergence precedes final recursive-bias
 
 **Owner's decision**, applied prospectively to every strategy that still has
