@@ -1652,13 +1652,15 @@ consequences for whoever owns the regime pipeline:
   already exist: Model 0 for 584 strategies and the Model 1/2/3 candidate sets
   (`results/regime/specialist_evaluation/`, published as the *Regime-Spezialisten*
   artifact on 2026-09-15). An earlier version of this paragraph said that nothing was
-  ranked; that was wrong. Those rankings predate Stage 8b and carry no annotation, so
-  none of their rows is a *verified* specialist. The designation is "clears the
+  ranked; that was wrong. The ranking CSVs carry no annotation. Since 2026-09-20 the
+  published page joins it as a *Robustheit* column (`python -m tools.regime_specialists_page`,
+  template `tools/REGIME_SPECIALISTS.template.html`; the Model 1/2/3 blocks are snapshots
+  under `tools/regime_specialists_data/`). The designation is "clears the
   specialist floor" AND the per-state qualification, through
   `evidence.execution_robustness.qualifies_in(record, kind, state)` and
   `qualifies_universal(record, kind)` on the records in `evidence/COST_SCREEN.json`
-  (`by_regime`). Attach it as a column. It must not change any ranking or floor; that
-  protocol is frozen.
+  (`by_regime`). It is a column and changes no ranking or floor. Rankings are not
+  frozen: they are recomputed when the results change; only the floor and the rules stay.
 - **What the existing rankings look like against it (2026-09-19, and it moves while
   the 5m batch runs; 378 of the BTC rows and 386 of the coin rows are still `PENDING`).**
   Of the 1651 BTC and 1737 coin ranking rows, 401 and 414 hold both conditions for the

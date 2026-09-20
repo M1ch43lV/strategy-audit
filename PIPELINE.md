@@ -187,7 +187,7 @@ Prospective and additive. It follows a measured canonical pooled Full-Backtest o
 - **`robustness_qualified`** is an execution `PASS` and a cost `PASS` in at least one state; the states are listed in `cost_screen_regimes_pass`. The designation for one claimed state must consult that state.
 - **After every batch:** `python -m evidence.execution_robustness && python -m evidence.strategy_status && python -m tools.strategy_status_page`. `python -m evidence.execution_robustness --targets 5m` prints the command for what the 5m batch still owes.
 
-Nothing after this stage reads these results yet. Stage 13 has produced rankings without them, so those rankings carry no robustness annotation and none of their rows is a *verified* specialist; the designation is applied only once the annotation is joined in.
+Only the published *Regime-Spezialisten* page reads these results (`tools/regime_specialists_page.py`, 2026-09-20): it joins the annotation to every ranking row as a column and changes no ranking. The ranking CSVs under `results/regime/specialist_evaluation/` do not carry it. A row is a *verified* specialist only where the strategy clears the specialist floor and the annotation reads `PASS` for the claimed state.
 
 ## Stage 9 — Market Regime Classification
 
@@ -278,7 +278,7 @@ The still pending evaluation stage is not the mechanical side-by-side comparison
 
 ## Stage 13 — Specialist/Universal Evaluation
 
-Status: run on the full Model-0 inventory (584 strategies) and on the Model 1/2/3 attributions of the candidate sets above; the results are published as the *Regime-Spezialisten* artifact. The ranking rules below are frozen. The rankings carry no Stage 8b annotation yet: a row is called a *verified* specialist only when it clears the specialist floor **and** the strategy passes Stage 8b for the claimed state (`evidence.execution_robustness.qualifies_in` / `qualifies_universal`). The annotation is joined in as a column and changes no ranking.
+Status: run on the full Model-0 inventory (629 strategies on 2026-09-20) and on the Model 1/2/3 attributions of the candidate sets above; the results are published as the *Regime-Spezialisten* page (`python -m tools.regime_specialists_page`). The floor and the ranking rules below are fixed; the rankings themselves are recomputed whenever the results change (`python -m regime.attribution`, then `python -m regime.specialist_evaluation`). A row is called a *verified* specialist only when it clears the specialist floor **and** the strategy passes Stage 8b for the claimed state (`evidence.execution_robustness.qualifies_in` / `qualifies_universal`); the page shows that as the *Robustheit* column and changes no ranking.
 
 | Program | Reads | Writes |
 |---|---|---|
