@@ -2140,6 +2140,10 @@
       "assumed_market_regime": "range_choppy;range_quiet",
       "assumed_market_regime_evidence": "logic(mean_reversion); direction(long_only): bear excluded"
     },
+    "HedgeAdaptiveRegimeStrategy": {
+      "assumed_market_regime": "",
+      "assumed_market_regime_evidence": "no phase-bearing marker in source"
+    },
     "HeikinAshiStrategy": {
       "assumed_market_regime": "bull_trend",
       "assumed_market_regime_evidence": "logic(trend_following); direction(long_only): bear excluded"

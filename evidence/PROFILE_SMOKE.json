@@ -14276,6 +14276,52 @@
       "trades": 850,
       "trades_sha256": "sha256_8b9c5ef5dddb30add5b57f0c8a73d46e71cb891313da65bce24bbe7204aa4bf1"
     },
+    "HedgeAdaptiveRegimeStrategy": {
+      "archive": "user_data/profile_smoke/HedgeAdaptiveRegimeStrategy-abda3016-smoke_20200301_20200401-b4807b77-2026-09-20_18-28-38.zip",
+      "archive_sha256": "sha256_14ef446a08cb99e8e1c379d6df873c6b3d27539e25b2d9c446853be770ac999a",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/HedgeAdaptiveRegimeStrategy-abda3016-smoke_20200301_20200401-b4807b77-2026-09-20_18-28-38.zip",
+          "archive_sha256": "sha256_14ef446a08cb99e8e1c379d6df873c6b3d27539e25b2d9c446853be770ac999a",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 103.1,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy HedgeAdaptiveRegimeStrategy --strategy-path repair/patched/repos/XXA222_HPRL/config_examples/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/HedgeAdaptiveRegimeStrategy-abda3016-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 2497,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+          "short_trades": 2523,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 5020,
+          "trades_sha256": "sha256_8f163e5fb1efe9057a2c9f4eb2c9bbfb3d0fae3a97103e23c2dfc71616b230f6"
+        }
+      ],
+      "canonical_sha256": "sha256_378a5c0315a4f89d2424578ef6a8d57bce54fba018d0842b7e467b230db5d2b6",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 103.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy HedgeAdaptiveRegimeStrategy --strategy-path repair/patched/repos/XXA222_HPRL/config_examples/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/HedgeAdaptiveRegimeStrategy-abda3016-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 2497,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "short_trades": 2523,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 5020,
+      "trades_sha256": "sha256_8f163e5fb1efe9057a2c9f4eb2c9bbfb3d0fae3a97103e23c2dfc71616b230f6"
+    },
     "HeikinAshiStrategy": {
       "archive": "user_data/profile_smoke/HeikinAshiStrategy-97b9bc04-2026-09-09_21-50-22.zip",
       "archive_sha256": "sha256_398a5c913aaad86b9fe20c5ac498b673ff839713e986a1070eef8808f54311a6",

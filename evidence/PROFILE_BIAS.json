@@ -5551,6 +5551,25 @@
       "run_profile": "spot_long",
       "runtime_config_sha256": "sha256_7b5db1697a27e06e33bdec8c89e765a4350b9737b508e82f4908cd5f66a3f3a0"
     },
+    "HedgeAdaptiveRegimeStrategy": {
+      "canonical_sha256": "sha256_378a5c0315a4f89d2424578ef6a8d57bce54fba018d0842b7e467b230db5d2b6",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "elapsed_s": 168.4,
+        "invocation": "freqtrade lookahead-analysis --config runtime/profile_futures_config.json --strategy HedgeAdaptiveRegimeStrategy --strategy-path user_data/profile_bias_strategies/HedgeAdaptiveRegimeStrategy-abda3016 --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_c0ea00c0148befc6763fc4ffb516147105b16660e320ee056b77e6989c09c83b",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "PASS",
+        "timerange": "20200301-20200601",
+        "why": "no bias detected"
+      },
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
     "Heracles": {
       "canonical_sha256": "sha256_8039952f7ce86bfbe955482dca98d1ff89e33e3fb6037bdf99dc53265459fe0b",
       "class1_rules": [

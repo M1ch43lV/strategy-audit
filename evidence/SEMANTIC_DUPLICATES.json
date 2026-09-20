@@ -14,7 +14,7 @@
           "trades_sha256": "sha256_158305dde7d52e116c4c7c5178d979a867e8293f68171207d9b55983437e797d"
         },
         {
-          "canonical_file": "repos/thinkong_freqtradestrategies/user_data/strategies/BBMod.py",
+          "canonical_file": "user_data/profile_repairs/BBMod1DCA.py",
           "full_backtest_status": "not_run",
           "repo": "thinkong/freqtradestrategies",
           "run_profile": "spot_long",
@@ -684,7 +684,7 @@
     },
     {
       "evidence_status": "code_equivalent_only",
-      "measured_members": 1,
+      "measured_members": 3,
       "members": [
         {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v2.py",
@@ -697,53 +697,57 @@
         },
         {
           "canonical_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/Schism-v2.py",
-          "full_backtest_status": "not_run",
+          "full_backtest_status": "measured",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
           "strategy_id": "Schism2_BTC",
-          "trades": "",
-          "trades_sha256": ""
+          "trades": 7133,
+          "trades_sha256": "sha256_5c92c5c4cad4ce02ce47dca922f14f06d8269c07fc9cbb68a5dbe45e61b83729"
         },
         {
           "canonical_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/Schism-v2.py",
-          "full_backtest_status": "not_run",
+          "full_backtest_status": "measured",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
           "strategy_id": "Schism2_ETH",
-          "trades": "",
-          "trades_sha256": ""
+          "trades": 8854,
+          "trades_sha256": "sha256_57045540e69987196a9b40430a109de650bf67dc085b300fa9281f365479ea42"
         }
       ],
       "normalized_ast_sha256": "sha256_0fd183b21d8276d981016b5c2d66085b62d2226d5a268fa74f428db30e475c49",
       "trade_hashes": [
-        "sha256_4b6c949d8ab136e22b0447bcf09980361b19b78d3a008fcbe454317fe7ae160f"
+        "sha256_4b6c949d8ab136e22b0447bcf09980361b19b78d3a008fcbe454317fe7ae160f",
+        "sha256_57045540e69987196a9b40430a109de650bf67dc085b300fa9281f365479ea42",
+        "sha256_5c92c5c4cad4ce02ce47dca922f14f06d8269c07fc9cbb68a5dbe45e61b83729"
       ]
     },
     {
-      "evidence_status": "code_equivalent_only",
-      "measured_members": 0,
+      "evidence_status": "confirmed_same_trades",
+      "measured_members": 2,
       "members": [
         {
           "canonical_file": "user_data/profile_repairs/FSupertrendStrategyBTC.py",
-          "full_backtest_status": "not_run",
+          "full_backtest_status": "measured",
           "repo": "MelvynClark/Freqtrade-Strategy",
           "run_profile": "spot_long",
           "strategy_id": "FSupertrendStrategyBTC",
-          "trades": "",
-          "trades_sha256": ""
+          "trades": 6975,
+          "trades_sha256": "sha256_a0e5fc882c01d6730096b9d78ba77b4ec3d41e42c1ddf517d4d6200f86380f13"
         },
         {
           "canonical_file": "user_data/profile_repairs/FSupertrendStrategyETH.py",
-          "full_backtest_status": "not_run",
+          "full_backtest_status": "measured",
           "repo": "MelvynClark/Freqtrade-Strategy",
           "run_profile": "spot_long",
           "strategy_id": "FSupertrendStrategyETH",
-          "trades": "",
-          "trades_sha256": ""
+          "trades": 6975,
+          "trades_sha256": "sha256_a0e5fc882c01d6730096b9d78ba77b4ec3d41e42c1ddf517d4d6200f86380f13"
         }
       ],
       "normalized_ast_sha256": "sha256_1251db314cc4119a64a5de58d561a5b1ed336ea7fde858b419981bf6e3a892ac",
-      "trade_hashes": []
+      "trade_hashes": [
+        "sha256_a0e5fc882c01d6730096b9d78ba77b4ec3d41e42c1ddf517d4d6200f86380f13"
+      ]
     },
     {
       "evidence_status": "code_equivalent_only",
@@ -1305,7 +1309,7 @@
         },
         {
           "canonical_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/Schism-0318.py",
-          "full_backtest_status": "not_run",
+          "full_backtest_status": "timeout",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
           "strategy_id": "Schism_BTC",
@@ -1314,7 +1318,7 @@
         },
         {
           "canonical_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/Schism-0318.py",
-          "full_backtest_status": "not_run",
+          "full_backtest_status": "timeout",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
           "strategy_id": "Schism_ETH",
@@ -1909,8 +1913,8 @@
       "trade_hashes": []
     },
     {
-      "evidence_status": "code_equivalent_only",
-      "measured_members": 0,
+      "evidence_status": "confirmed_same_trades",
+      "measured_members": 2,
       "members": [
         {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/SuperHV27.py",
@@ -1923,25 +1927,27 @@
         },
         {
           "canonical_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/SuperHV27.py",
-          "full_backtest_status": "not_run",
+          "full_backtest_status": "measured",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
           "strategy_id": "SuperHV27_BTC",
-          "trades": "",
-          "trades_sha256": ""
+          "trades": 4127,
+          "trades_sha256": "sha256_738002527f5439ff19ae02b36e3c03ad7ce7a34bfd90a3ed068dbc330ca8ff6e"
         },
         {
           "canonical_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/SuperHV27.py",
-          "full_backtest_status": "not_run",
+          "full_backtest_status": "measured",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
           "strategy_id": "SuperHV27_ETH",
-          "trades": "",
-          "trades_sha256": ""
+          "trades": 4127,
+          "trades_sha256": "sha256_738002527f5439ff19ae02b36e3c03ad7ce7a34bfd90a3ed068dbc330ca8ff6e"
         }
       ],
       "normalized_ast_sha256": "sha256_92eeebcf73cb5b3b9c61e245f402cf988a97a022149144e3817ffb5dd488f3d5",
-      "trade_hashes": []
+      "trade_hashes": [
+        "sha256_738002527f5439ff19ae02b36e3c03ad7ce7a34bfd90a3ed068dbc330ca8ff6e"
+      ]
     },
     {
       "evidence_status": "code_equivalent_only",
@@ -1979,8 +1985,8 @@
           "repo": "werkkrew/freqtrade-strategies",
           "run_profile": "spot_long",
           "strategy_id": "Lateralus",
-          "trades": 2974,
-          "trades_sha256": "sha256_f9a582af066b439bc450fc1a1d4d17eaaf7945e7ce519a89e1b96066a8df8520"
+          "trades": 2936,
+          "trades_sha256": "sha256_47e39a8e570161a04c446a5dcc39bd51aaee21056f6155170f35e65ea125f6ef"
         },
         {
           "canonical_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Lateralus.py",
@@ -1994,7 +2000,7 @@
       ],
       "normalized_ast_sha256": "sha256_9e470b22ff859bb019d33311dbd82f617389746464ec5288a8403f66be3ceeb8",
       "trade_hashes": [
-        "sha256_f9a582af066b439bc450fc1a1d4d17eaaf7945e7ce519a89e1b96066a8df8520"
+        "sha256_47e39a8e570161a04c446a5dcc39bd51aaee21056f6155170f35e65ea125f6ef"
       ]
     },
     {
@@ -2084,7 +2090,7 @@
         },
         {
           "canonical_file": "repos/thinkong_freqtradestrategies/user_data/strategies/ClucHAnixV2.py",
-          "full_backtest_status": "not_run",
+          "full_backtest_status": "resource_inconclusive",
           "repo": "thinkong/freqtradestrategies",
           "run_profile": "spot_long",
           "strategy_id": "ClucHAnixV2",

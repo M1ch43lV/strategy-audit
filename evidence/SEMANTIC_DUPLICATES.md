@@ -101,15 +101,15 @@ additionally means two or more canonical full backtests share one trade hash.
 | Strategy | Full backtest | Trades | Trade hash |
 |---|---|---:|---|
 | `Schism2` | `measured` | 6078 | `sha256_4b6c949d8ab136e22b0447bcf09980361b19b78d3a008fcbe454317fe7ae160f` |
-| `Schism2_BTC` | `not_run` | - | `-` |
-| `Schism2_ETH` | `not_run` | - | `-` |
+| `Schism2_BTC` | `measured` | 7133 | `sha256_5c92c5c4cad4ce02ce47dca922f14f06d8269c07fc9cbb68a5dbe45e61b83729` |
+| `Schism2_ETH` | `measured` | 8854 | `sha256_57045540e69987196a9b40430a109de650bf67dc085b300fa9281f365479ea42` |
 
-## `sha256_1251db314cc4119a64a5de58d561a5b1ed336ea7fde858b419981bf6e3a892ac` - code_equivalent_only
+## `sha256_1251db314cc4119a64a5de58d561a5b1ed336ea7fde858b419981bf6e3a892ac` - confirmed_same_trades
 
 | Strategy | Full backtest | Trades | Trade hash |
 |---|---|---:|---|
-| `FSupertrendStrategyBTC` | `not_run` | - | `-` |
-| `FSupertrendStrategyETH` | `not_run` | - | `-` |
+| `FSupertrendStrategyBTC` | `measured` | 6975 | `sha256_a0e5fc882c01d6730096b9d78ba77b4ec3d41e42c1ddf517d4d6200f86380f13` |
+| `FSupertrendStrategyETH` | `measured` | 6975 | `sha256_a0e5fc882c01d6730096b9d78ba77b4ec3d41e42c1ddf517d4d6200f86380f13` |
 
 ## `sha256_1c8673b7a300a2ed6de862a449147ced47d7b30c36dc1cc62343e7d34d624e68` - code_equivalent_only
 
@@ -225,8 +225,8 @@ additionally means two or more canonical full backtests share one trade hash.
 | Strategy | Full backtest | Trades | Trade hash |
 |---|---|---:|---|
 | `Schism` | `performance_limited` | - | `-` |
-| `Schism_BTC` | `not_run` | - | `-` |
-| `Schism_ETH` | `not_run` | - | `-` |
+| `Schism_BTC` | `timeout` | - | `-` |
+| `Schism_ETH` | `timeout` | - | `-` |
 
 ## `sha256_49819a82e74b52abc8b9372534d26aaf584bc94e532bb5bfa71fd92e99c08c3a` - code_equivalent_only
 
@@ -349,13 +349,13 @@ additionally means two or more canonical full backtests share one trade hash.
 | `ClucHAwerk_ETH` | `not_run` | - | `-` |
 | `ClucHAwerk_USD` | `not_run` | - | `-` |
 
-## `sha256_92eeebcf73cb5b3b9c61e245f402cf988a97a022149144e3817ffb5dd488f3d5` - code_equivalent_only
+## `sha256_92eeebcf73cb5b3b9c61e245f402cf988a97a022149144e3817ffb5dd488f3d5` - confirmed_same_trades
 
 | Strategy | Full backtest | Trades | Trade hash |
 |---|---|---:|---|
 | `SuperHV27` | `performance_limited` | - | `-` |
-| `SuperHV27_BTC` | `not_run` | - | `-` |
-| `SuperHV27_ETH` | `not_run` | - | `-` |
+| `SuperHV27_BTC` | `measured` | 4127 | `sha256_738002527f5439ff19ae02b36e3c03ad7ce7a34bfd90a3ed068dbc330ca8ff6e` |
+| `SuperHV27_ETH` | `measured` | 4127 | `sha256_738002527f5439ff19ae02b36e3c03ad7ce7a34bfd90a3ed068dbc330ca8ff6e` |
 
 ## `sha256_9761bd11bb0d19621cc4b6fa657bf9012b8dff70d000896bf09ac13230633699` - code_equivalent_only
 
@@ -368,7 +368,7 @@ additionally means two or more canonical full backtests share one trade hash.
 
 | Strategy | Full backtest | Trades | Trade hash |
 |---|---|---:|---|
-| `Lateralus` | `measured` | 2974 | `sha256_f9a582af066b439bc450fc1a1d4d17eaaf7945e7ce519a89e1b96066a8df8520` |
+| `Lateralus` | `measured` | 2936 | `sha256_47e39a8e570161a04c446a5dcc39bd51aaee21056f6155170f35e65ea125f6ef` |
 | `Lateralus_Slow` | `not_run` | - | `-` |
 
 ## `sha256_a0d2c464e0dcd422ea3b71dd96adb61d94e10f8867995afea69a001499832301` - code_equivalent_only
@@ -392,7 +392,7 @@ additionally means two or more canonical full backtests share one trade hash.
 | Strategy | Full backtest | Trades | Trade hash |
 |---|---|---:|---|
 | `ClucDCAV2` | `not_run` | - | `-` |
-| `ClucHAnixV2` | `not_run` | - | `-` |
+| `ClucHAnixV2` | `resource_inconclusive` | - | `-` |
 
 ## `sha256_a9e258075a92b4c7ee510c3ccb16aaa8492a99506b4a71a40afeb4ecd43071cb` - confirmed_same_trades
 

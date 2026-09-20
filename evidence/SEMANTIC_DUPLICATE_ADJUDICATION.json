@@ -385,6 +385,14 @@
       "trades_sha256": "sha256_62f9e431504d88718ca6b96fe309cb0d72279aec92b3c53f7aa85fc51c31263b"
     },
     {
+      "canonical_representative": "FSupertrendStrategyBTC",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "normalized_ast_sha256": "sha256_1251db314cc4119a64a5de58d561a5b1ed336ea7fde858b419981bf6e3a892ac",
+      "strategy_id": "FSupertrendStrategyETH",
+      "trades_sha256": "sha256_a0e5fc882c01d6730096b9d78ba77b4ec3d41e42c1ddf517d4d6200f86380f13"
+    },
+    {
       "canonical_representative": "Hacklemore",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
@@ -663,6 +671,22 @@
       "normalized_ast_sha256": "sha256_aabc12d6f3569e9be6a07ef76f0a644daadb765fdbcc77f302824ee5ae7c4bd8",
       "strategy_id": "StrategyTestV3Futures",
       "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "SuperHV27_BTC",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "normalized_ast_sha256": "sha256_92eeebcf73cb5b3b9c61e245f402cf988a97a022149144e3817ffb5dd488f3d5",
+      "strategy_id": "SuperHV27",
+      "trades_sha256": "sha256_738002527f5439ff19ae02b36e3c03ad7ce7a34bfd90a3ed068dbc330ca8ff6e"
+    },
+    {
+      "canonical_representative": "SuperHV27_BTC",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "normalized_ast_sha256": "sha256_92eeebcf73cb5b3b9c61e245f402cf988a97a022149144e3817ffb5dd488f3d5",
+      "strategy_id": "SuperHV27_ETH",
+      "trades_sha256": "sha256_738002527f5439ff19ae02b36e3c03ad7ce7a34bfd90a3ed068dbc330ca8ff6e"
     },
     {
       "canonical_representative": "SuperReversal_mtf",

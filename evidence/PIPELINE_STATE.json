@@ -1,6 +1,6 @@
 {
   "authority": "generated_read_model_not_a_verdict_store",
-  "generated_at": "2026-09-20T12:45:02",
+  "generated_at": "2026-09-20T20:37:28",
   "raw_store_policy": "Raw evidence stores retain provenance and writer ownership; read pipeline-wide state only from this file or STRATEGY_STATUS.csv.",
   "schema_version": 1,
   "strategies": {
@@ -45854,7 +45854,7 @@
       "cmd_backtest": "[recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy FSupertrendStrategyETH --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FSupertrendStrategyETH-69f6617c-smoke_20200301_20200401-b4807b77 --cache none",
       "cmd_lookahead": "[recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy FSupertrendStrategyETH --strategy-path user_data/profile_bias_strategies/FSupertrendStrategyETH-69f6617c --timerange 20200301-20200601 --no-color",
       "cmd_recursive": "[recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy FSupertrendStrategyETH --strategy-path user_data/profile_bias_strategies/FSupertrendStrategyETH-69f6617c --timerange 20200301-20200601 --no-color --startup-candle 24 48 168 336 720 2160",
-      "cohort": "E1_expanded",
+      "cohort": "excluded",
       "cost_break_even_bps": -1.87,
       "cost_screen_regimes_pass": "btc:SIDEWAYS",
       "cost_screen_status": "NA",
@@ -45915,7 +45915,7 @@
           ]
         }
       },
-      "exclusion_basis": "",
+      "exclusion_basis": "own_measurement",
       "execution_robustness_basis": "measured_detail_run",
       "execution_robustness_status": "PASS",
       "expansion_wave": "C_measurement_recovery",
@@ -45929,7 +45929,7 @@
       "needed_no_override": "true",
       "observed_trades": 89,
       "open_work": "",
-      "primary_reason": "",
+      "primary_reason": "duplicate_implementation",
       "recursive": "PASS",
       "recursive_evidence": "convergence:24",
       "repair_family": "",
@@ -56679,7 +56679,7 @@
       "cost_screen_regimes_pass": "btc:BULL;btc:BEAR;btc:SIDEWAYS;btc:TRANSITION;coin:BULL;coin:BEAR;coin:SIDEWAYS;coin:TRANSITION",
       "cost_screen_status": "PASS",
       "coverage_evidence": "native",
-      "coverage_status": "PENDING",
+      "coverage_status": "PASS",
       "evidence_gap": "",
       "evidence_paths": "user_data/profile_smoke/Hammer-c157cbf6-2026-09-09_07-32-38.zip;user_data/convergence_logs/Hammer-c157cbf6-ladder.log",
       "evidence_resolution": {
@@ -56747,7 +56747,7 @@
       "execution_robustness_status": "PASS",
       "expansion_wave": "",
       "full_backtest_status": "measured",
-      "gate_notes": "coverage PENDING: unsupported_or_unknown_profile",
+      "gate_notes": "",
       "last_tested_at": "2026-09-09 07:32:38",
       "last_tested_source": "run_archive",
       "lookahead": "PASS",
@@ -57100,6 +57100,112 @@
       "timeframe": "15m",
       "trade_evidence": "smoke",
       "traps_n": "0"
+    },
+    "HedgeAdaptiveRegimeStrategy": {
+      "artifact_role": "strategy",
+      "assumed_market_regime": "",
+      "assumed_market_regime_evidence": "no phase-bearing marker in source",
+      "baseline_status": "",
+      "cmd_backtest": "[recorded] freqtrade backtesting --config runtime/profile_futures_config.json --strategy HedgeAdaptiveRegimeStrategy --strategy-path repair/patched/repos/XXA222_HPRL/config_examples/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/HedgeAdaptiveRegimeStrategy-abda3016-smoke_20200301_20200401-b4807b77 --cache none",
+      "cmd_lookahead": "[recorded] freqtrade lookahead-analysis --config runtime/profile_futures_config.json --strategy HedgeAdaptiveRegimeStrategy --strategy-path user_data/profile_bias_strategies/HedgeAdaptiveRegimeStrategy-abda3016 --timerange 20200301-20200601 --no-color",
+      "cmd_recursive": "[recorded] freqtrade recursive-analysis --config runtime/profile_futures_config.json --strategy HedgeAdaptiveRegimeStrategy --strategy-path user_data/profile_bias_strategies/HedgeAdaptiveRegimeStrategy-abda3016 --timerange 20200301-20200601 --no-color --startup-candle 1440",
+      "cohort": "E1_expanded",
+      "cost_break_even_bps": "",
+      "cost_screen_regimes_pass": "",
+      "cost_screen_status": "NA",
+      "coverage_evidence": "native",
+      "coverage_status": "PASS",
+      "evidence_gap": "",
+      "evidence_paths": "user_data/profile_smoke/HedgeAdaptiveRegimeStrategy-abda3016-smoke_20200301_20200401-b4807b77-2026-09-20_18-28-38.zip;user_data/convergence_logs/HedgeAdaptiveRegimeStrategy-abda3016-ladder.log",
+      "evidence_resolution": {
+        "cost_screen": {
+          "break_even_slippage_bps_per_side": "",
+          "producer_store": "evidence/COST_SCREEN.json",
+          "regimes_pass": [],
+          "regimes_pass_window": "validation window from 2024-01-01, the specialist evaluation's VALIDATION_START",
+          "scope_of_status": "whole run, descriptive; does not gate",
+          "status": "NA"
+        },
+        "execution_robustness": {
+          "basis": "",
+          "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
+          "status": "NA"
+        },
+        "full_backtest": {
+          "identity_current_complete": false,
+          "producer_store": "",
+          "status": ""
+        },
+        "lookahead": {
+          "attempted": true,
+          "evidence": "native",
+          "has_verdict": true,
+          "producer_store": "evidence/PROFILE_BIAS.json",
+          "review_store": "",
+          "status": "PASS"
+        },
+        "measurement": {
+          "attempted": true,
+          "measured": true,
+          "observed_trades": 5020,
+          "producer_store": "evidence/PROFILE_SMOKE.json",
+          "selected_measurement_store": "evidence/PROFILE_SMOKE.json",
+          "trade_evidence": "smoke"
+        },
+        "recursive": {
+          "attempted": true,
+          "evidence": "convergence:1440:warmup_supplied",
+          "has_verdict": true,
+          "producer_store": "evidence/WARMUP_CONVERGENCE.json",
+          "status": "PASS"
+        },
+        "robustness_qualification": {
+          "note": "at the strategy level: PASS in at least one state",
+          "qualified": false,
+          "requires": [
+            "execution_robustness:PASS",
+            "cost_screen:PASS in the claimed ADX regime state"
+          ]
+        }
+      },
+      "exclusion_basis": "",
+      "execution_robustness_basis": "",
+      "execution_robustness_status": "NA",
+      "expansion_wave": "",
+      "full_backtest_status": "",
+      "gate_notes": "",
+      "last_tested_at": "2026-09-20 18:28:38",
+      "last_tested_source": "run_archive",
+      "lookahead": "PASS",
+      "lookahead_evidence": "native",
+      "measured": "true",
+      "needed_no_override": "false",
+      "observed_trades": 5020,
+      "open_work": "",
+      "primary_reason": "",
+      "recursive": "PASS",
+      "recursive_evidence": "convergence:1440:warmup_supplied",
+      "repair_family": "",
+      "repair_settings": "",
+      "repair_verdict": "",
+      "repo": "XXA222/HPRL",
+      "required_image": "strategy-audit-runtime:2026.7",
+      "result_archive": "user_data/profile_smoke/HedgeAdaptiveRegimeStrategy-abda3016-smoke_20200301_20200401-b4807b77-2026-09-20_18-28-38.zip",
+      "robustness_qualified": "false",
+      "run_profile": "futures_long_short",
+      "runtime_failure": "",
+      "settled_days": 1,
+      "settled_drift_pct": 0.0,
+      "settled_startup": 1440,
+      "source_file": "repair/patched/repos/XXA222_HPRL/config_examples/strategies/HedgeAdaptiveRegimeStrategy.py",
+      "strategy_id": "HedgeAdaptiveRegimeStrategy",
+      "strategy_type": "scalping",
+      "technical_chain_complete": "false",
+      "test_duration_evidence": "backtest=103.1s; lookahead=168.4s; recursive_ladder=72.3s",
+      "test_duration_s": 343.8,
+      "timeframe": "1m",
+      "trade_evidence": "smoke",
+      "traps_n": ""
     },
     "HeikinAshiStrategy": {
       "artifact_role": "strategy",
@@ -63124,7 +63230,7 @@
       "cost_screen_regimes_pass": "",
       "cost_screen_status": "PASS",
       "coverage_evidence": "native",
-      "coverage_status": "PENDING",
+      "coverage_status": "PASS",
       "evidence_gap": "",
       "evidence_paths": "user_data/profile_smoke/KeltnerBounce-63c48d3d-2026-09-09_07-32-46.zip;user_data/convergence_logs/KeltnerBounce-63c48d3d-ladder.log",
       "evidence_resolution": {
@@ -63183,7 +63289,7 @@
       "execution_robustness_status": "PASS",
       "expansion_wave": "",
       "full_backtest_status": "measured",
-      "gate_notes": "coverage PENDING: unsupported_or_unknown_profile",
+      "gate_notes": "",
       "last_tested_at": "2026-09-09 07:32:46",
       "last_tested_source": "run_archive",
       "lookahead": "PASS",
@@ -111094,7 +111200,7 @@
       "cmd_backtest": "[recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy Schism5 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Schism5-e648f3be-smoke_20200301_20200401-b4807b77 --cache none",
       "cmd_lookahead": "[recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy Schism5 --strategy-path user_data/profile_bias_strategies/Schism5-e648f3be --timerange 20200301-20200601 --no-color",
       "cmd_recursive": "[recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Schism5 --strategy-path user_data/profile_bias_strategies/Schism5 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
-      "cohort": "convergence_candidate",
+      "cohort": "E1_expanded",
       "cost_break_even_bps": "",
       "cost_screen_regimes_pass": "",
       "cost_screen_status": "NA",
@@ -119929,7 +120035,7 @@
       "cmd_backtest": "[recorded] freqtrade backtesting --config profile_spot_config.json --strategy SuperHV27 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperHV27-aefe004a --cache none",
       "cmd_lookahead": "[recorded] freqtrade lookahead-analysis --config user_data/profile_configs/SuperHV27-aefe004a_gate.json --strategy SuperHV27 --strategy-path user_data/profile_bias_strategies/SuperHV27-aefe004a --timerange 20190101-20190401 --no-color",
       "cmd_recursive": "[recorded] freqtrade recursive-analysis --config user_data/expansion_configs/SuperHV27_startup_288.json --strategy SuperHV27 --strategy-path user_data/profile_bias_strategies/SuperHV27 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
-      "cohort": "E1_expanded",
+      "cohort": "excluded",
       "cost_break_even_bps": "",
       "cost_screen_regimes_pass": "",
       "cost_screen_status": "NA",
@@ -119988,7 +120094,7 @@
           ]
         }
       },
-      "exclusion_basis": "",
+      "exclusion_basis": "own_measurement",
       "execution_robustness_basis": "",
       "execution_robustness_status": "NA",
       "expansion_wave": "C_measurement_recovery",
@@ -120002,7 +120108,7 @@
       "needed_no_override": "false",
       "observed_trades": 226,
       "open_work": "",
-      "primary_reason": "",
+      "primary_reason": "duplicate_implementation",
       "recursive": "PASS",
       "recursive_evidence": "convergence:576:warmup_supplied",
       "repair_family": "framework_compat_shim",
@@ -120141,7 +120247,7 @@
       "cmd_backtest": "[recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy SuperHV27_ETH --strategy-path repair/patched/repos/PeetCrypto_freqtrade-stuff --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SuperHV27_ETH-4fc47acf-smoke_20200301_20200401-b4807b77 --cache none",
       "cmd_lookahead": "[recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy SuperHV27_ETH --strategy-path user_data/profile_bias_strategies/SuperHV27_ETH-4fc47acf --timerange 20200301-20200601 --no-color",
       "cmd_recursive": "[recorded] freqtrade recursive-analysis --config user_data/expansion_configs/SuperHV27_ETH_startup_288.json --strategy SuperHV27_ETH --strategy-path user_data/profile_bias_strategies/SuperHV27_ETH-4fc47acf --timerange 20200301-20200601 --no-color --startup-candle 288 576 2016 4032",
-      "cohort": "E1_expanded",
+      "cohort": "excluded",
       "cost_break_even_bps": -0.28,
       "cost_screen_regimes_pass": "",
       "cost_screen_status": "NA",
@@ -120200,7 +120306,7 @@
           ]
         }
       },
-      "exclusion_basis": "",
+      "exclusion_basis": "own_measurement",
       "execution_robustness_basis": "owner_rule_at_or_below_5m",
       "execution_robustness_status": "PASS",
       "expansion_wave": "",
@@ -120214,7 +120320,7 @@
       "needed_no_override": "false",
       "observed_trades": 137,
       "open_work": "",
-      "primary_reason": "",
+      "primary_reason": "duplicate_implementation",
       "recursive": "PASS",
       "recursive_evidence": "convergence:576:warmup_supplied",
       "repair_family": "framework_compat_shim",
@@ -133294,7 +133400,7 @@
       "cmd_backtest": "[recorded] freqtrade backtesting --config profile_spot_config.json --strategy abbas --strategy-path repos/thinkong_freqtradestrategies/user_data/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/abbas-66cc6f6a --cache none",
       "cmd_lookahead": "[recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy abbas --strategy-path user_data/profile_bias_strategies/abbas-66cc6f6a --timerange 20200301-20200601 --no-color",
       "cmd_recursive": "[recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy abbas --strategy-path user_data/profile_bias_strategies/abbas-66cc6f6a --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032",
-      "cohort": "convergence_candidate",
+      "cohort": "E1_expanded",
       "cost_break_even_bps": "",
       "cost_screen_regimes_pass": "",
       "cost_screen_status": "NA",
@@ -145280,8 +145386,8 @@
   "summary": {
     "cohorts": {
       "E1_expanded": 686,
-      "convergence_candidate": 3,
-      "excluded": 541,
+      "convergence_candidate": 1,
+      "excluded": 544,
       "exclusion_unconfirmed": 8,
       "not_a_strategy": 23,
       "pending": 60,
@@ -145289,13 +145395,14 @@
     },
     "full_backtest_for_admitted": {
       "admitted_strategies": 686,
-      "closed_without_complete_archive": 57,
-      "identity_current_complete": 629,
+      "closed_without_complete_archive": 56,
+      "identity_current_complete": 627,
       "measured_but_identity_stale": 0,
       "status": {
-        "measured": 629,
+        "measured": 627,
+        "missing": 3,
         "oom_confirmed": 51,
-        "performance_limited": 5,
+        "performance_limited": 4,
         "stake_overflow_confirmed": 1
       }
     },
@@ -145308,6 +145415,6 @@
       },
       "open_strategies": 68
     },
-    "total_strategies": 1355
+    "total_strategies": 1356
   }
 }

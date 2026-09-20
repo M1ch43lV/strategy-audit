@@ -2661,6 +2661,11 @@
       "timeframe": "15m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "HedgeAdaptiveRegimeStrategy": {
+      "strategy_type": "scalping",
+      "timeframe": "1m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "HeikinAshiStrategy": {
       "strategy_type": "mean_reversion;momentum;scalping;trend_following",
       "timeframe": "5m",

@@ -61193,6 +61193,74 @@
       "timerange": "20190101-20190401",
       "why": "list index out of range"
     },
+    "HedgeAdaptiveRegimeStrategy": {
+      "available_prefix_candles": 36954,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 1440,
+      "cohort": "lookahead_pass",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 240
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 1440
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/HedgeAdaptiveRegimeStrategy-abda3016-ladder.log",
+      "declared_max_drift_pct": 5.973,
+      "declared_startup_candle_count": 240,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "hedge_confidence": [
+          4.603,
+          0.0
+        ],
+        "hedge_long_score": [
+          0.001,
+          -0.0
+        ],
+        "hedge_risk_scale": [
+          5.973,
+          0.0
+        ],
+        "hedge_short_score": [
+          -0.001,
+          0.0
+        ],
+        "hedge_target_net_ratio": [
+          0.005,
+          -0.0
+        ]
+      },
+      "elapsed_s": 72.3,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": null,
+      "implementation_id": "HedgeAdaptiveRegimeStrategy:378a5c0315a4",
+      "invocation": "freqtrade recursive-analysis --config runtime/profile_futures_config.json --strategy HedgeAdaptiveRegimeStrategy --strategy-path user_data/profile_bias_strategies/HedgeAdaptiveRegimeStrategy-abda3016 --timerange 20200301-20200601 --no-color --startup-candle 1440",
+      "ladder_candles": [
+        1440
+      ],
+      "ladder_days": [
+        1
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        1440
+      ],
+      "max_drift_indicator": "hedge_long_score",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_bcff9bfcc6d3b94748232aa963428a72ec9e96e97999af6c3083a1f28eaf34bc",
+      "returncode": 0,
+      "run_profile": "futures_long_short",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "state": "converged",
+      "strategy_id": "HedgeAdaptiveRegimeStrategy",
+      "timeframe": "1m",
+      "timerange": "20200301-20200601"
+    },
     "HeikinAshiStrategy": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 1,
