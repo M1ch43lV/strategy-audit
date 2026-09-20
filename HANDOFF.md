@@ -1608,7 +1608,22 @@ Only admitted strategies are owed a detail run, because the runner takes only
 `MacdStrategy` (excluded, recursion not settled) and `chispei` (a duplicate of `Chispei`,
 removed at intake on 2026-09-16 and still present in the pooled manifest; `Chispei`
 itself is measured). `targets()` now skips them and the table reports such a strategy
-as `NA` with `execution_robustness_basis: not_rerun_outside_admitted_cohort`, not `PENDING`. Log:
+as `NA` with `execution_robustness_basis: not_rerun_outside_admitted_cohort`, not `PENDING`.
+
+**Removed duplicates no longer leave results behind (2026-09-20).** Four duplicates that
+`tools/harvest.py` had deleted (`chispei`, `MyStratV1`, `Combined_NFIv7_SMA_bAdBoY_20211204`,
+`Combined_NFIv7_SMA_Rallipanos_20210707`) still had records in the result stores, and
+`MyStratV1` held four rows in each specialist ranking. `tools/purge_removed_duplicate_results.py`
+logs those records verbatim in `evidence/REMOVED_DUPLICATE_RESULTS.json`, then removes them from
+the pooled manifest, the full-window shards, the warm-up ladder (results and superseded), the
+trial run, the look-ahead backfill and the OOM confirmations. Run it again after any intake that
+removes a duplicate, then regenerate `regime.attribution`, `regime.specialist_evaluation`,
+`evidence.execution_robustness`, `evidence.strategy_status`, `tools.strategy_status_page`.
+The Model 0 evaluation now covers 629 strategies (584 before; the old run also predated later
+pooled measurements). Rankings are regenerated whenever the results change; they are not frozen.
+Not touched: `candidate_spec_full_v1.json` and the model1/2/3 manifests still list the removed
+candidates (they are bound to the spec hash), the decision records `ELIGIBILITY_EXPANSION_*`,
+`REGIME_ELIGIBILITY.csv`, `NEW_REPO_CANDIDATES.json`, and the run archives under `user_data/`. Log:
 `results/regime/execution_robustness_detail_5m_parallel.log`.
 
 **Strategies at or below 5m: no rerun, no 1m batch** (owner decision 2026-09-19,
