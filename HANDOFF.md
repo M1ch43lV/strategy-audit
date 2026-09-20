@@ -5,6 +5,7 @@ question is in `README.md`. The long baton, checkpoints and work orders written 
 unchanged in `old/handoff/HANDOFF_until_2026-09-20.md`; read that only to trace how something came about, never for
 state.
 
+The documentation rules for both agents are in `AGENTS.md`, "Documentation discipline", and in `CLAUDE.md`.
 Keep this file short. Edit your own baton entry, not the other agent's. When a line stops being live, delete it here.
 Never write a count that a command can print: counts in prose are what made the old file wrong.
 

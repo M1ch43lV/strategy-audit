@@ -4,6 +4,23 @@
 - This applies to new content and to text changed during an edit; do not translate unrelated historical material solely for consistency.
 - User-facing conversation may remain in the user's preferred language.
 
+# Documentation discipline
+
+`README.md` holds the table of which Markdown document answers which question. Follow it; do not start from memory.
+
+- One fact lives in one place. Point to it; do not copy it.
+- Never write a count, a status or a row number into prose when a command or a generated file can print it
+  (`python -m evidence.pipeline_state --summary`, `STRATEGY_STATUS.csv`).
+- A decision of the check chain is a dated entry in `PIPELINE.md`, "Decision record", and, if it changes a stage, in
+  that stage's text. A rule of the regime study is a dated amendment in `REGIME_PREREGISTRATION.md`. A protocol that
+  extends the chain is a Part of `PIPELINE_EXTENSIONS.md`.
+- `HANDOFF.md` is live state only. Update your own baton entry, delete lines that stopped being live, and do not
+  paste history or results into it. Do not overwrite the other agent's entry.
+- Do not add a Markdown file without a row in the `README.md` table. Never hand-edit a generated file (list in
+  `README.md`).
+- When you change a rule, change the stage text and the decision record in the same commit, and search the other
+  documents for the old wording.
+
 # Canonical Pipeline State
 
 - Never count remaining work, measurements, Look-Ahead verdicts,
