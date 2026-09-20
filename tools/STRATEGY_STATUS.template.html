@@ -129,7 +129,7 @@
 
   .scroller{overflow-x:auto; border:1px solid var(--line); border-radius:4px;
             background:var(--surface); max-height:70vh; overflow-y:auto}
-  table{border-collapse:collapse; width:100%; min-width:1020px}
+  table{border-collapse:collapse; width:100%; min-width:1140px}
   thead th{position:sticky; top:0; z-index:1; background:var(--raised);
     font-size:10.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
     color:var(--muted); text-align:left; padding:10px 12px; white-space:nowrap;
@@ -233,6 +233,16 @@
     font-family:"IBM Plex Mono",ui-monospace,monospace;
     font-variant-numeric:tabular-nums; color:var(--ink); font-weight:600}
 
+  .stages td{vertical-align:top; font-size:13px; color:var(--muted); padding:9px 12px;
+    border-top:1px solid var(--line-soft)}
+  .stages tbody tr:first-child td{border-top:0}
+  .stages td.no{font-family:"IBM Plex Mono",ui-monospace,monospace; color:var(--ink);
+    font-weight:600; white-space:nowrap; font-size:12.5px}
+  .stages td.st{color:var(--ink); font-weight:600; min-width:190px}
+  .stages td.st code{display:block; margin-top:3px; font-weight:400; width:max-content}
+  .stages tr.new td.no{color:var(--accent)}
+  .stages tr.frame td{background:var(--sunk)}
+
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
@@ -253,64 +263,77 @@
 
   <section>
     <h2>The order the checks run in</h2>
-    <p class="note">The order is not arbitrary: each step needs what the one
-    before it produces.</p>
-    <div class="legend">
-      <div>
-        <h3>1 &middot; Trial run</h3>
-        <p class="lead">One month over eight pairs, widened to three months and
-        then one year while fewer than ten trades are observed: does the strategy
-        start, and does it trade. <strong>A strategy that fails here is <span class="pill k-hold">open</span>,
-        never excluded</strong> &mdash; no check has seen it, so nothing about it
-        has been judged. It is labelled <span class="basis v-to_be_fixed">to be fixed</span>
-        until the obstacle is either removed or shown to be the strategy's own.
-        <code>repair_verdict</code> then says which it is, and that is a separate
-        question from whether the strategy is still in play.</p>
-      </div>
-      <div>
-        <h3>2 &middot; Look-ahead</h3>
-        <p class="lead">Second because the recursion gate will not spend a run
-        without it: <code>profile_bias.py</code>'s
-        <code>recursive_prerequisite()</code> returns
-        <em>&ldquo;Look-Ahead is not PASS&rdquo;</em> and defers, since a
-        look-ahead finding is not something a warm-up can repair. Freqtrade's
-        <code>lookahead-analysis</code> builds a Backtesting object, and
-        <code>Backtesting.__init__</code> takes <code>required_startup</code>
-        from the strategy's declared <code>startup_candle_count</code> &mdash;
-        so this check runs at whatever the author declared, and 125 strategies
-        declare nothing at all, which compares their signals on indicators
-        still undefined at the start of the window. That is a known weakness of
-        this check, recorded per row rather than argued away: the settled
-        warm-up the next step produces is not available yet here. The check
-        needs ten trades, and widens its window rather than failing when there
-        are fewer.</p>
-      </div>
-      <div>
-        <h3>3 &middot; Recursion, on the warm-up ladder</h3>
-        <p class="lead">Only for a strategy whose look-ahead reads PASS. It
-        needs no trades &mdash; it compares indicator values, not signals
-        &mdash; and it climbs every rung the data allows to find the warm-up at
-        which the indicators stop moving. That settled warm-up is what the full
-        backtest then runs at, so this step produces something the next one
-        needs, which is why it sits here and not last.</p>
-      </div>
-      <div>
-        <h3>4 &middot; Backtest over the full window</h3>
-        <p class="lead">Only for a strategy that has cleared both bias checks:
-        <code>20200301-20260821</code>, six and a half years over all eight
-        pairs, at the warm-up the ladder settled on. Two runs of about four
-        minutes each per strategy, so it is the most expensive step by a wide
-        margin &mdash; which is why it comes last and only for strategies whose
-        numbers can be trusted. Admission follows from it, and the market-phase
-        work is built on it.</p>
-      </div>
+    <p class="note">Every stage a strategy passes through, in processing order.
+    Each step needs what the one before it produces, so the order is not
+    arbitrary: look-ahead comes before the warm-up ladder and recursion because
+    recursion refuses to spend a run on a strategy whose look-ahead is not
+    <code>PASS</code>, and a look-ahead finding is not something a warm-up can
+    repair. The counts per stage are the funnel above.</p>
+    <div class="scroller" style="max-height:none">
+      <table class="stages" style="min-width:860px">
+        <thead><tr><th>#</th><th>Stage</th><th>What it checks</th><th>On failure</th></tr></thead>
+        <tbody>
+          <tr><td class="no">0</td><td class="st">Intake<code>tools/harvest.py</code></td>
+            <td>Only <code>.py</code> files with an <code>IStrategy</code> subclass are downloaded, with a malware scan, one canonical row per implementation and a duplicate check by hash.</td>
+            <td>A freshly downloaded, still unchecked duplicate is deleted. Once a strategy has been checked, a later duplicate is only excluded (C11), never deleted, because other strategies may import that file.</td></tr>
+          <tr><td class="no">1</td><td class="st">Trial run<code>profile_smoke</code></td>
+            <td>Does the strategy load and trade? One month over eight pairs, widened to three months and then one year while it has fewer than ten trades.</td>
+            <td>Stays <strong>open</strong>, never excluded: no check has judged it. What blocks it goes to the repair routes, then the trial run is repeated.</td></tr>
+          <tr><td class="no">1b</td><td class="st">Repair routes<code>repair.controller</code></td>
+            <td>Missing timeframe, a local module the author shipped beside the file, a changed signature, missing data files.</td>
+            <td>Where no repair would avoid inventing the strategy: C4, C5, C7, C8, C12 or C13.</td></tr>
+          <tr><td class="no">2</td><td class="st">Look-ahead<code>profile_bias</code></td>
+            <td>Does the strategy see data it could not have had at the time? Runs at the warm-up the author declared, so a strategy that declares none is compared on indicators still undefined at the start of the window; that is recorded on the row.</td>
+            <td><code>FOUND</code> is a final exclusion (C1). The warm-up ladder and recursion then no longer run.</td></tr>
+          <tr><td class="no">3</td><td class="st">Warm-up ladder<code>warmup_convergence</code></td>
+            <td>Only after a look-ahead <code>PASS</code>. From which startup (1, 2, 7, 14, 30, 90, 365 days, converted to the strategy's timeframe) do all indicators stay inside 1 percent?</td>
+            <td>No rung converges or the strategy is inconclusive: it is not admitted. The longest rungs failing to run at all is C9.</td></tr>
+          <tr><td class="no">4</td><td class="st">Recursion<code>profile_bias</code></td>
+            <td>The final check, at the warm-up the ladder settled on.</td>
+            <td><code>FOUND</code> at every reachable warm-up is C2.</td></tr>
+          <tr><td class="no">5</td><td class="st">Data coverage</td>
+            <td>A plain check of the candle files for each pair and window.</td>
+            <td>Gaps are reported. It gives no verdict of its own.</td></tr>
+          <tr><td class="no">6</td><td class="st">Merge<code>strategy_status</code>, <code>pipeline_state</code></td>
+            <td>Derives each strategy's cohort from all stores.</td>
+            <td>No verdict of its own.</td></tr>
+          <tr><td class="no">7</td><td class="st">Admission E1<code>eligibility_admit_converged</code></td>
+            <td>Clean bias results and a converged warm-up, then back to stage 6 for the cohort.</td>
+            <td>Stays in the queue.</td></tr>
+          <tr><td class="no">8</td><td class="st">Full-window backtest<code>regime.full_backtest</code></td>
+            <td>All eight pairs pooled, <code>20200301-20260821</code>, hard timeout of 3600 s. The single-pair run counts only for strategies that never trade.</td>
+            <td>No trades over the whole window: C3. Failure, timeout or memory limit: C10. Identical canonical trades to another implementation: C11.</td></tr>
+          <tr class="new"><td class="no">8b</td><td class="st">Execution robustness<code>execution_robustness</code></td>
+            <td>Above 5m: the same run again with <code>--timeframe-detail 5m</code>, compared with the baseline. At or below 5m: not rerun; owner decision, because such a baseline already simulates at that granularity, so it counts as a passed 5m run. The record says which of the two it is.</td>
+            <td><code>SENSITIVE</code> (profit changes sign, moves by more than 50 percent, or the trade set moves by more than 10 percent) is a review marker, not an exclusion.</td></tr>
+          <tr class="new"><td class="no">8b</td><td class="st">Cost screen<code>execution_robustness</code></td>
+            <td>Does the profit survive an extra 0.1 percent slippage per side, judged separately for each ADX state on the trades that opened in that state, so a specialist strong in one state is not marked down by the others? Validation window from 2024-01-01, at least 10 trades per state.</td>
+            <td>No exclusion. Execution <code>PASS</code> plus cost <code>PASS</code> in at least one state is <code>robustness_qualified</code>: necessary for the label <em>verified specialist</em>, not sufficient.</td></tr>
+          <tr class="frame"><td class="no">9</td><td class="st">Market regime classification<code>regime_engine</code></td>
+            <td>Market-level, not per strategy: BTC and coin states from the DMI/ADX model. Computed once and frozen.</td>
+            <td>No verdict.</td></tr>
+          <tr><td class="no">10</td><td class="st">Attribution<code>regime.attribution</code></td>
+            <td>Every trade is assigned by its opening day to the BTC state and to the coin state.</td>
+            <td>No verdict.</td></tr>
+          <tr class="frame"><td class="no">11</td><td class="st">Hypothesis</td>
+            <td>Each strategy's assumed market phase, written before any evaluation looks at results.</td>
+            <td>No verdict.</td></tr>
+          <tr><td class="no">12</td><td class="st">Benchmark Models 0 to 3</td>
+            <td>The original strategy, then the same strategy gated by the BTC state, by the coin state, and by both. Model 0 has run on the measured corpus; Models 1 to 3 have run on the pilot and specialist candidate sets and are partial on the wider ones.</td>
+            <td>No exclusion.</td></tr>
+          <tr><td class="no">13</td><td class="st">Specialist and universal evaluation</td>
+            <td>Validation window from 2024-01-01, at least 5 episodes and 10 trades, excess return against an equal-exposure buy-and-hold. The rules are frozen and rankings exist.</td>
+            <td>Only rows above the floor are ranked. The rankings carry no stage 8b annotation yet, so no row is a <em>verified specialist</em> today.</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
   <section>
     <h2>What excludes a strategy</h2>
     <p class="note">__CRITERIA_COUNT__ things, and nothing else. Each is a result this
-    audit produced itself, on this data, in this runtime.</p>
+    audit produced itself, on this data, in this runtime, except C12, which is
+    the owner's recorded decision about scope.</p>
     <div class="legend">
 __CRITERIA__
     </div>
@@ -345,6 +368,9 @@ __CRITERIA__
           <tr><td>Recursion-bias check, spot</td><td><code>20200301-20200601</code><span class="msg">three months, at the ladder's settled startup</span></td><td><code>BTC/USDT</code> only</td></tr>
           <tr><td>Recursion-bias check, futures</td><td><code>20200301-20200601</code><span class="msg">three months, at the ladder's settled startup</span></td><td><code>BTC/USDT:USDT</code> only</td></tr>
           <tr><td>Full run <code>profile_full_window</code></td><td><code>20200301-20260821</code><span class="msg">6.5 years</span></td><td>all 8</td></tr>
+          <tr><td>Pooled full backtest <code>regime.full_backtest</code></td><td><code>20200301-20260821</code><span class="msg">6.5 years, all eight pairs sharing one open-trade budget, hard timeout of 3600 s</span></td><td>all 8, pooled</td></tr>
+          <tr><td>Execution robustness, above 5m</td><td><code>20200301-20260821</code><span class="msg">the pooled run again with <code>--timeframe-detail 5m</code>; at or below 5m no rerun</span></td><td>all 8, pooled</td></tr>
+          <tr><td>Cost screen, per ADX state</td><td><code>2024-01-01</code> onward decides<span class="msg">the whole window is kept as context</span></td><td>BTC state and coin state</td></tr>
         </tbody>
       </table>
     </div>
@@ -394,6 +420,7 @@ __CRITERIA__
             <th data-k="td" class="n">Duration</th>
             <th data-k="l">Look-ahead</th>
             <th data-k="r">Recursion</th>
+            <th data-k="er" title="Stage 8b. PASS at 5m detail (measured, or by owner rule at or below 5m) and the number of ADX states that pass the cost screen.">Robustness</th>
             <th data-k="n">Decisive reason</th>
             <th data-k="d">Last run</th>
             <th>Invocations</th>
@@ -613,6 +640,32 @@ __CRITERIA__
       '</b></li></ul>';
   }
 
+  // Stage 8b. Its population is the full-backtest stage's own passed rows,
+  // like every stage above it. SENSITIVE is a review marker and never an
+  // exclusion, so it is shown in the amber sub-line and not the red one.
+  var robPassed = fbPassed.filter(function(r){ return r.er === "PASS"; });
+  var robSensitive = fbPassed.filter(function(r){ return r.er === "SENSITIVE"; });
+  var robOther = fbPassed.filter(function(r){ return r.er !== "PASS" && r.er !== "SENSITIVE"; });
+  var robRule = robPassed.filter(function(r){ return r.eb === "owner_rule_at_or_below_5m"; }).length;
+  var costPassed = robPassed.filter(function(r){ return r.rq === "true"; });
+  var costNot = robPassed.filter(function(r){ return r.rq !== "true"; });
+  var ROB_LABEL = {PENDING:"5m rerun still owed", ERROR:"run errored",
+                   NA:"no comparable baseline"};
+  function robBreakdown(list){
+    var counts = {};
+    list.forEach(function(r){ var k = r.er || "NA"; counts[k] = (counts[k] || 0) + 1; });
+    return '<ul class="stat-breakdown">' + Object.keys(counts).sort(function(a, b){
+      return counts[b] - counts[a];
+    }).map(function(k){
+      return '<li><span>' + (ROB_LABEL[k] || k) + '</span><b>' + counts[k] + '</b></li>';
+    }).join("") + '</ul>';
+  }
+  function extraCard(label, passed, note, subLabel, subList, otherHtml){
+    return '<div class="stat is-pass"><b>'+passed.length+'</b><span>'+label+'</span>'+note+
+      '<div class="stat-sub is-hold"><b>'+subList.length+'</b><span>'+subLabel+'</span></div>'+
+      otherHtml+'</div>';
+  }
+
   document.getElementById("stats").innerHTML =
     '<div class="stat"><b>'+downloaded.length+'</b><span>strategies downloaded</span>'+
     '<div class="stat-sub is-hold"><b>'+suitable.length+'</b>'+
@@ -628,7 +681,15 @@ __CRITERIA__
         '<div class="stat-sub"><b>'+excluded.length+'</b><span>'+excludedLabel+'</span></div>'+
         '<div class="stat-sub is-hold"><b>'+other.length+
         '</b><span>other reasons</span>'+breakdown(other)+'</div></div>';
-    }).join("");
+    }).join("") +
+    extraCard("execution robustness passed", robPassed,
+      '<ul class="stat-breakdown"><li><span>measured 5m rerun</span><b>'+(robPassed.length-robRule)+
+      '</b></li><li><span>at or below 5m, by owner rule</span><b>'+robRule+'</b></li></ul>',
+      "marked sensitive — a review marker, not an exclusion", robSensitive,
+      '<div class="stat-sub is-hold"><b>'+robOther.length+'</b><span>not yet decided</span>'+
+      robBreakdown(robOther)+'</div>') +
+    extraCard("cost-qualified: cost PASS in at least one ADX state", costPassed, "",
+      "no ADX state survives the extra slippage — not an exclusion", costNot, "");
 
   document.getElementById("dist").innerHTML = ORDER.map(function(c){
     var n = count(c); if(!n) return "";
@@ -764,6 +825,29 @@ __CRITERIA__
      that ran; a reconstructed one is derived and says so, because the two are
      not the same claim. */
   var GATE_LABEL = {kb:"bt", kl:"la", kr:"rec"};
+  /* Stage 8b. The basis is part of the claim: a measured 5m rerun and the
+     owner's rule for strategies at or below 5m are not the same evidence. */
+  function robustness(r){
+    if(!r.er || r.er === "NA") return '<span class="gate g-NA">–</span>';
+    var states = r.crp ? r.crp.split(";").filter(Boolean) : [];
+    var cost = "cost screen: " + (r.cst || "NA") + (states.length ?
+      " in " + states.join(", ") : "");
+    if(r.er === "PASS"){
+      var rule = r.eb === "owner_rule_at_or_below_5m";
+      return '<span class="gate g-PASS" title="'+esc((rule ?
+        "At or below 5m: not rerun. Counted as a passed 5m run by owner rule, not measured. " :
+        "Rerun with 5m detail candles and compared with the baseline. ")+cost)+'">PASS <small>'+
+        (rule ? "rule" : "@ 5m")+' · cost '+states.length+'/8</small></span>';
+    }
+    if(r.er === "SENSITIVE"){
+      return '<span class="gate g-WARM" title="The result changes materially under 5m detail candles. '+
+        'A review marker, not an exclusion. '+esc(cost)+'">sensitive</span>';
+    }
+    if(r.er === "PENDING"){
+      return '<span class="gate g-NA" title="Above 5m; the 5m rerun has not run yet.">owed</span>';
+    }
+    return '<span class="gate g-NA" title="The 5m rerun or its comparison failed.">error</span>';
+  }
   function call(r){
     var out = [];
     ["kb","kl","kr"].forEach(function(key){
@@ -846,6 +930,16 @@ __CRITERIA__
        ['<span class="gate g-NA">superseded</span>', "Measured here at a supplied warm-up, but under the reader that took the wrong column of the drift table. That run kept no log and cannot be re-read."],
        ['<span class="gate g-NA">NA</span>', "The gate ran here and produced no verdict — a timeout, an exception, or too few trades in the window. Not a finding, and not “never measured” either: the reason is printed under the row."],
        ['<span class="gate g-NA">&#8211;</span>', "No verdict bound to this implementation — either not measured, or the only verdict available comes from the original sweep."]
+     ]},
+    {title:"Robustness (stage 8b)", field:null,
+     lead:"Whether the full-window result survives a finer simulation of what happens inside a candle, and whether it survives an extra 0.1 percent slippage per side. Neither is an exclusion.",
+     rows:[
+       ['<span class="gate g-PASS">PASS <small>@ 5m · cost 3/8</small></span>', "Rerun with 5m detail candles, the result held; cost PASS in three of the eight ADX states (BTC and coin, four states each)."],
+       ['<span class="gate g-PASS">PASS <small>rule · cost 3/8</small></span>', "Timeframe at or below 5m, so not rerun. Counted as a passed 5m run by owner decision; that is a rule and not a measurement."],
+       ['<span class="gate g-WARM">sensitive</span>', "Under 5m detail the profit changes sign or by more than 50 percent, or the trade set changes by more than 10 percent. Where the baseline and the rerun ran in different runtimes, a control run would separate the two effects."],
+       ['<span class="gate g-NA">owed</span>', "Above 5m and not rerun yet."],
+       ['<span class="gate g-NA">error</span>', "The rerun or the comparison failed."],
+       ['<span class="gate g-NA">&#8211;</span>', "No measured full-window baseline, so nothing to compare."]
      ]}
   ];
 
@@ -953,7 +1047,7 @@ __CRITERIA__
         if(r._hay === undefined){
           r._hay = [r.s, r.c, (COHORT[r.c]||{}).label, r.n,
                     REASON_TEXT[r.n], r.f, r.xb, BASIS_LABEL[r.xb],
-                    r.l, r.r, r.ls, r.rs, r.o, r.rp, r.tf, r.ty, r.te, r.amr]
+                    r.l, r.r, r.ls, r.rs, r.er, r.crp, r.o, r.rp, r.tf, r.ty, r.te, r.amr]
                    .filter(Boolean).join(" ").toLowerCase();
         }
         if(r._hay.indexOf(query) < 0) return false;
@@ -1008,6 +1102,7 @@ __CRITERIA__
         '<td class="num" title="'+esc(r.tde||"no timed run recorded")+'">'+fmtDuration(r.td)+'</td>'+
         '<td>'+bound(r.l, r.ls)+'</td>'+
         '<td>'+recursion(r)+'</td>'+
+        '<td>'+robustness(r)+'</td>'+
         '<td class="reason">'+reason+'</td>'+
         '<td class="small" title="'+esc(r.ds||"")+'">'+(r.d ? r.d.slice(0,16) : "–")+'</td>'+
         '<td class="cmd">'+call(r)+'</td>'+

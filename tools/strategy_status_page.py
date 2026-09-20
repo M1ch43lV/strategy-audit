@@ -30,7 +30,7 @@ TABLE = os.path.join(ROOT, "STRATEGY_STATUS.csv")
 TEMPLATE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                         "STRATEGY_STATUS.template.html")
 # regime/full_backtest.py's pooled, all-eight-pairs-together run - PIPELINE.md
-# Stage 7. Deliberately not read by evidence/strategy_status.py: its own
+# Stage 8. Deliberately not read by evidence/strategy_status.py: its own
 # docstring says a pooled result must never feed admission back (the pooled
 # run answers a different question, for Stage 9, from the paired per-pair
 # `evidence/PROFILE_FULL_WINDOW.json` Stage-6 gate that does feed it). That
@@ -42,7 +42,8 @@ POOLED_BACKTEST = os.path.join(ROOT, "results/regime/full_backtest_manifest.json
 
 _NUMBER_WORDS = {1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five",
                  6: "Six", 7: "Seven", 8: "Eight", 9: "Nine", 10: "Ten",
-                 11: "Eleven", 12: "Twelve"}
+                 11: "Eleven", 12: "Twelve", 13: "Thirteen",
+                 14: "Fourteen", 15: "Fifteen"}
 
 
 def _spelled(n):
@@ -118,6 +119,12 @@ FIELDS = {
     "rf": "repair_family",
     "rs2": "repair_settings",
     "gn": "gate_notes",
+    # Stage 8b (evidence/execution_robustness.py, through strategy_status).
+    "er": "execution_robustness_status",
+    "eb": "execution_robustness_basis",
+    "rq": "robustness_qualified",
+    "cst": "cost_screen_status",
+    "crp": "cost_screen_regimes_pass",
 }
 
 

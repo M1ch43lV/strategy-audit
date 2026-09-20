@@ -1829,6 +1829,39 @@
       "cost_pass_regimes_all_windows": [
         "btc:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.0158,
+        "baseline_profit_abs": -581.0492,
+        "break_even_slippage_bps_per_side": -2.53,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.0842,
+            "net_profit_abs": -1729.865,
+            "net_profit_pct": -172.9865,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.1842,
+            "net_profit_abs": -2878.6807,
+            "net_profit_pct": -287.8681,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.3842,
+            "net_profit_abs": -5176.3122,
+            "net_profit_pct": -517.6312,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 5721
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -6599,6 +6632,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.3038,
+        "baseline_profit_abs": -965.6426,
+        "break_even_slippage_bps_per_side": -18.73,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.4038,
+            "net_profit_abs": -1223.4775,
+            "net_profit_pct": -122.3477,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.5038,
+            "net_profit_abs": -1481.3124,
+            "net_profit_pct": -148.1312,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.7038,
+            "net_profit_abs": -1996.9821,
+            "net_profit_pct": -199.6982,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 10818
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -7357,6 +7423,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1467,
+        "baseline_profit_abs": -965.7754,
+        "break_even_slippage_bps_per_side": -8.84,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2467,
+            "net_profit_abs": -1511.7214,
+            "net_profit_pct": -151.1721,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3467,
+            "net_profit_abs": -2057.6673,
+            "net_profit_pct": -205.7667,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5467,
+            "net_profit_abs": -3149.5593,
+            "net_profit_pct": -314.9559,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 13715
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -12572,6 +12671,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1738,
+        "baseline_profit_abs": -965.6946,
+        "break_even_slippage_bps_per_side": -7.66,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2738,
+            "net_profit_abs": -1596.0271,
+            "net_profit_pct": -159.6027,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3738,
+            "net_profit_abs": -2226.3597,
+            "net_profit_pct": -222.636,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5738,
+            "net_profit_abs": -3487.0248,
+            "net_profit_pct": -348.7025,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 15392
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -13015,6 +13147,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1279,
+        "baseline_profit_abs": -966.6403,
+        "break_even_slippage_bps_per_side": -4.2,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2279,
+            "net_profit_abs": -2116.5733,
+            "net_profit_pct": -211.6573,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3279,
+            "net_profit_abs": -3266.5063,
+            "net_profit_pct": -326.6506,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5279,
+            "net_profit_abs": -5566.3724,
+            "net_profit_pct": -556.6372,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 17307
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -14786,6 +14951,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.0414,
+        "baseline_profit_abs": -790.2952,
+        "break_even_slippage_bps_per_side": -2.48,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.1414,
+            "net_profit_abs": -2381.8852,
+            "net_profit_pct": -238.1885,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.2414,
+            "net_profit_abs": -3973.4752,
+            "net_profit_pct": -397.3475,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.4414,
+            "net_profit_abs": -7156.6552,
+            "net_profit_pct": -715.6655,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 10582
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -16519,6 +16717,39 @@
         "coin:BEAR"
       ],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1787,
+        "baseline_profit_abs": -588.4248,
+        "break_even_slippage_bps_per_side": -9.66,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2787,
+            "net_profit_abs": -892.9908,
+            "net_profit_pct": -89.2991,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3787,
+            "net_profit_abs": -1197.5569,
+            "net_profit_pct": -119.7557,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5787,
+            "net_profit_abs": -1806.6889,
+            "net_profit_pct": -180.6689,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 3248
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -16953,6 +17184,37 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.9002,
+        "baseline_profit_abs": 787.3671,
+        "break_even_slippage_bps_per_side": 28.38,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": false,
+        "reasons": [],
+        "status": "PASS",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.8002,
+            "net_profit_abs": 648.6529,
+            "net_profit_pct": 64.8653,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.7002,
+            "net_profit_abs": 509.9387,
+            "net_profit_pct": 50.9939,
+            "survives": true
+          },
+          "0.0020": {
+            "mean_profit_pct": 0.5002,
+            "net_profit_abs": 232.5102,
+            "net_profit_pct": 23.251,
+            "survives": true
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 563
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": false,
       "reasons": [],
@@ -21988,6 +22250,37 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 27.2012,
+        "baseline_profit_abs": 4406.5734,
+        "break_even_slippage_bps_per_side": 481.62,
+        "main_timeframe": "1d",
+        "mean_profit_below_caution": false,
+        "reasons": [],
+        "status": "PASS",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 27.1012,
+            "net_profit_abs": 4360.8256,
+            "net_profit_pct": 436.0826,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 27.0012,
+            "net_profit_abs": 4315.0779,
+            "net_profit_pct": 431.5078,
+            "survives": true
+          },
+          "0.0020": {
+            "mean_profit_pct": 26.8012,
+            "net_profit_abs": 4223.5824,
+            "net_profit_pct": 422.3582,
+            "survives": true
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 78
+      },
       "main_timeframe": "1d",
       "mean_profit_below_caution": false,
       "reasons": [],
@@ -22429,6 +22722,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.0808,
+        "baseline_profit_abs": -967.5102,
+        "break_even_slippage_bps_per_side": -2.28,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.1808,
+            "net_profit_abs": -3093.178,
+            "net_profit_pct": -309.3178,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.2808,
+            "net_profit_abs": -5218.8459,
+            "net_profit_pct": -521.8846,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.4808,
+            "net_profit_abs": -9470.1815,
+            "net_profit_pct": -947.0182,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 26165
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -25713,6 +26039,39 @@
         "btc:BULL",
         "coin:BULL"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": -0.036,
+        "baseline_profit_abs": -157.1856,
+        "break_even_slippage_bps_per_side": -2.06,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.136,
+            "net_profit_abs": -538.2575,
+            "net_profit_pct": -53.8258,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.236,
+            "net_profit_abs": -919.3295,
+            "net_profit_pct": -91.933,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.436,
+            "net_profit_abs": -1681.4735,
+            "net_profit_pct": -168.1473,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 3150
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -35881,6 +36240,39 @@
       "cost_pass_regimes_all_windows": [
         "btc:BULL"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": -0.0621,
+        "baseline_profit_abs": -211.6681,
+        "break_even_slippage_bps_per_side": -3.92,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.1621,
+            "net_profit_abs": -481.4152,
+            "net_profit_pct": -48.1415,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.2621,
+            "net_profit_abs": -751.1623,
+            "net_profit_pct": -75.1162,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.4621,
+            "net_profit_abs": -1290.6565,
+            "net_profit_pct": -129.0656,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 2291
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -38075,6 +38467,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.2313,
+        "baseline_profit_abs": -871.0806,
+        "break_even_slippage_bps_per_side": -10.1,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.3313,
+            "net_profit_abs": -1302.1589,
+            "net_profit_pct": -130.2159,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.4313,
+            "net_profit_abs": -1733.2372,
+            "net_profit_pct": -173.3237,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.6313,
+            "net_profit_abs": -2595.3938,
+            "net_profit_pct": -259.5394,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 4804
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -67918,6 +68343,39 @@
         "btc:SIDEWAYS",
         "coin:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.1067,
+        "baseline_profit_abs": 308.9671,
+        "break_even_slippage_bps_per_side": 2.11,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "not_profitable_at_reference_slippage"
+        ],
+        "status": "SENSITIVE",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.0067,
+            "net_profit_abs": -424.2124,
+            "net_profit_pct": -42.4212,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.0933,
+            "net_profit_abs": -1157.3918,
+            "net_profit_pct": -115.7392,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.2933,
+            "net_profit_abs": -2623.7506,
+            "net_profit_pct": -262.3751,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 3977
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -73968,6 +74426,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1615,
+        "baseline_profit_abs": -797.3091,
+        "break_even_slippage_bps_per_side": -6.22,
+        "main_timeframe": "4h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2615,
+            "net_profit_abs": -1438.5897,
+            "net_profit_pct": -143.859,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3615,
+            "net_profit_abs": -2079.8702,
+            "net_profit_pct": -207.987,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5615,
+            "net_profit_abs": -3362.4314,
+            "net_profit_pct": -336.2431,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 7354
+      },
       "main_timeframe": "4h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -74411,6 +74902,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.2453,
+        "baseline_profit_abs": -939.6817,
+        "break_even_slippage_bps_per_side": -11.2,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.3453,
+            "net_profit_abs": -1359.1338,
+            "net_profit_pct": -135.9134,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.4453,
+            "net_profit_abs": -1778.5859,
+            "net_profit_pct": -177.8586,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.6453,
+            "net_profit_abs": -2617.4902,
+            "net_profit_pct": -261.749,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 8918
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -76025,6 +76549,37 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.7047,
+        "baseline_profit_abs": 1889.8258,
+        "break_even_slippage_bps_per_side": 18.29,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": false,
+        "reasons": [],
+        "status": "PASS",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.6047,
+            "net_profit_abs": 1373.1633,
+            "net_profit_pct": 137.3163,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.5047,
+            "net_profit_abs": 856.5008,
+            "net_profit_pct": 85.6501,
+            "survives": true
+          },
+          "0.0020": {
+            "mean_profit_pct": 0.3047,
+            "net_profit_abs": -176.8241,
+            "net_profit_pct": -17.6824,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 1762
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": false,
       "reasons": [],
@@ -77444,6 +77999,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.2909,
+        "baseline_profit_abs": -965.657,
+        "break_even_slippage_bps_per_side": -13.39,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.3909,
+            "net_profit_abs": -1326.1745,
+            "net_profit_pct": -132.6174,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.4909,
+            "net_profit_abs": -1686.692,
+            "net_profit_pct": -168.6692,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.6909,
+            "net_profit_abs": -2407.727,
+            "net_profit_pct": -240.7727,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 9295
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -85720,6 +86308,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.3647,
+        "baseline_profit_abs": -325.2188,
+        "break_even_slippage_bps_per_side": -17.83,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.4647,
+            "net_profit_abs": -416.4367,
+            "net_profit_pct": -41.6437,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.5647,
+            "net_profit_abs": -507.6547,
+            "net_profit_pct": -50.7655,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.7647,
+            "net_profit_abs": -690.0906,
+            "net_profit_pct": -69.0091,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 874
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -87473,6 +88094,37 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 5.1124,
+        "baseline_profit_abs": 1026.6302,
+        "break_even_slippage_bps_per_side": 18.97,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": false,
+        "reasons": [],
+        "status": "PASS",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 4.7124,
+            "net_profit_abs": 756.0052,
+            "net_profit_pct": 75.6005,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 4.3124,
+            "net_profit_abs": 485.3803,
+            "net_profit_pct": 48.538,
+            "survives": true
+          },
+          "0.0020": {
+            "mean_profit_pct": 3.5124,
+            "net_profit_abs": -55.8696,
+            "net_profit_pct": -5.587,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 253
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": false,
       "reasons": [],
@@ -89173,6 +89825,37 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 1.6915,
+        "baseline_profit_abs": 1484.8345,
+        "break_even_slippage_bps_per_side": 23.21,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": false,
+        "reasons": [],
+        "status": "PASS",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 1.5915,
+            "net_profit_abs": 1164.9007,
+            "net_profit_pct": 116.4901,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 1.4915,
+            "net_profit_abs": 844.967,
+            "net_profit_pct": 84.4967,
+            "survives": true
+          },
+          "0.0020": {
+            "mean_profit_pct": 1.2915,
+            "net_profit_abs": 205.0995,
+            "net_profit_pct": 20.5099,
+            "survives": true
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 1091
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": false,
       "reasons": [],
@@ -89614,6 +90297,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.0891,
+        "baseline_profit_abs": -637.5188,
+        "break_even_slippage_bps_per_side": -5.17,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.1891,
+            "net_profit_abs": -1254.0684,
+            "net_profit_pct": -125.4068,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.2891,
+            "net_profit_abs": -1870.6179,
+            "net_profit_pct": -187.0618,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.4891,
+            "net_profit_abs": -3103.717,
+            "net_profit_pct": -310.3717,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 7078
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -92206,6 +92922,39 @@
         "btc:SIDEWAYS",
         "coin:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.0746,
+        "baseline_profit_abs": 120.0225,
+        "break_even_slippage_bps_per_side": 0.5,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "not_profitable_at_reference_slippage"
+        ],
+        "status": "SENSITIVE",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.0254,
+            "net_profit_abs": -1091.5884,
+            "net_profit_pct": -109.1588,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.1254,
+            "net_profit_abs": -2303.1992,
+            "net_profit_pct": -230.3199,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.3254,
+            "net_profit_abs": -4726.421,
+            "net_profit_pct": -472.6421,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 5703
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -95843,6 +96592,39 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.0912,
+        "baseline_profit_abs": 1663.2601,
+        "break_even_slippage_bps_per_side": 2.06,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "not_profitable_at_reference_slippage"
+        ],
+        "status": "SENSITIVE",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.0088,
+            "net_profit_abs": -2369.6848,
+            "net_profit_pct": -236.9685,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.1088,
+            "net_profit_abs": -6402.6297,
+            "net_profit_pct": -640.263,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.3088,
+            "net_profit_abs": -14468.5194,
+            "net_profit_pct": -1446.8519,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 17622
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [],
@@ -96273,6 +97055,39 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.0574,
+        "baseline_profit_abs": 1894.8282,
+        "break_even_slippage_bps_per_side": 1.05,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "not_profitable_at_reference_slippage"
+        ],
+        "status": "SENSITIVE",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.0426,
+            "net_profit_abs": -7103.5098,
+            "net_profit_pct": -710.351,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.1426,
+            "net_profit_abs": -16101.8479,
+            "net_profit_pct": -1610.1848,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.3426,
+            "net_profit_abs": -34098.5239,
+            "net_profit_pct": -3409.8524,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 29181
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -96588,6 +97403,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1917,
+        "baseline_profit_abs": -965.8617,
+        "break_even_slippage_bps_per_side": -8.94,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2917,
+            "net_profit_abs": -1506.3116,
+            "net_profit_pct": -150.6312,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3917,
+            "net_profit_abs": -2046.7615,
+            "net_profit_pct": -204.6762,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5917,
+            "net_profit_abs": -3127.6613,
+            "net_profit_pct": -312.7661,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 13887
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -96903,6 +97751,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1652,
+        "baseline_profit_abs": -966.0746,
+        "break_even_slippage_bps_per_side": -7.06,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2652,
+            "net_profit_abs": -1650.3598,
+            "net_profit_pct": -165.036,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3652,
+            "net_profit_abs": -2334.6449,
+            "net_profit_pct": -233.4645,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5652,
+            "net_profit_abs": -3703.2152,
+            "net_profit_pct": -370.3215,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 15866
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -97218,6 +98099,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1704,
+        "baseline_profit_abs": -966.319,
+        "break_even_slippage_bps_per_side": -7.36,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2704,
+            "net_profit_abs": -1622.3621,
+            "net_profit_pct": -162.2362,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3704,
+            "net_profit_abs": -2278.4053,
+            "net_profit_pct": -227.8405,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5704,
+            "net_profit_abs": -3590.4916,
+            "net_profit_pct": -359.0492,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 15438
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -97533,6 +98447,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1528,
+        "baseline_profit_abs": -966.5066,
+        "break_even_slippage_bps_per_side": -7.21,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2528,
+            "net_profit_abs": -1636.921,
+            "net_profit_pct": -163.6921,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3528,
+            "net_profit_abs": -2307.3353,
+            "net_profit_pct": -230.7335,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5528,
+            "net_profit_abs": -3648.1641,
+            "net_profit_pct": -364.8164,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 17253
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -97970,6 +98917,39 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.0113,
+        "baseline_profit_abs": -626.645,
+        "break_even_slippage_bps_per_side": -12.24,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.0887,
+            "net_profit_abs": -882.6742,
+            "net_profit_pct": -88.2674,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.1887,
+            "net_profit_abs": -1138.7035,
+            "net_profit_pct": -113.8703,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.3887,
+            "net_profit_abs": -1650.762,
+            "net_profit_pct": -165.0762,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 2980
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -108206,6 +109186,39 @@
         "btc:BEAR",
         "coin:BULL"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.3005,
+        "baseline_profit_abs": -350.6419,
+        "break_even_slippage_bps_per_side": -10.78,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.1995,
+            "net_profit_abs": -513.3107,
+            "net_profit_pct": -51.3311,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.6995,
+            "net_profit_abs": -675.9795,
+            "net_profit_pct": -67.5979,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -1.6995,
+            "net_profit_abs": -1001.3171,
+            "net_profit_pct": -100.1317,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 428
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -112368,6 +113381,37 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.9802,
+        "baseline_profit_abs": 498.3582,
+        "break_even_slippage_bps_per_side": 19.79,
+        "main_timeframe": "1d",
+        "mean_profit_below_caution": false,
+        "reasons": [],
+        "status": "PASS",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.8802,
+            "net_profit_abs": 372.4644,
+            "net_profit_pct": 37.2464,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.7802,
+            "net_profit_abs": 246.5706,
+            "net_profit_pct": 24.6571,
+            "survives": true
+          },
+          "0.0020": {
+            "mean_profit_pct": 0.5802,
+            "net_profit_abs": -5.217,
+            "net_profit_pct": -0.5217,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 491
+      },
       "main_timeframe": "1d",
       "mean_profit_below_caution": false,
       "reasons": [],
@@ -120310,6 +121354,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1777,
+        "baseline_profit_abs": -965.7077,
+        "break_even_slippage_bps_per_side": -7.49,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2777,
+            "net_profit_abs": -1610.5656,
+            "net_profit_pct": -161.0566,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3777,
+            "net_profit_abs": -2255.4235,
+            "net_profit_pct": -225.5423,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5777,
+            "net_profit_abs": -3545.1393,
+            "net_profit_pct": -354.5139,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 13983
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -129616,6 +130693,39 @@
         "btc:SIDEWAYS",
         "coin:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.0151,
+        "baseline_profit_abs": -16.7968,
+        "break_even_slippage_bps_per_side": -0.43,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.0849,
+            "net_profit_abs": -211.0948,
+            "net_profit_pct": -21.1095,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.1849,
+            "net_profit_abs": -405.3929,
+            "net_profit_pct": -40.5393,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.3849,
+            "net_profit_abs": -793.989,
+            "net_profit_pct": -79.3989,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 1413
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -138916,6 +140026,39 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.2843,
+        "baseline_profit_abs": -182.0123,
+        "break_even_slippage_bps_per_side": -1.09,
+        "main_timeframe": "4h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.1843,
+            "net_profit_abs": -1018.2615,
+            "net_profit_pct": -101.8261,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.0843,
+            "net_profit_abs": -1854.5107,
+            "net_profit_pct": -185.4511,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.1157,
+            "net_profit_abs": -3527.0091,
+            "net_profit_pct": -352.7009,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 3631
+      },
       "main_timeframe": "4h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -141582,6 +142725,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.279,
+        "baseline_profit_abs": -965.9536,
+        "break_even_slippage_bps_per_side": -14.08,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.379,
+            "net_profit_abs": -1309.0216,
+            "net_profit_pct": -130.9022,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.479,
+            "net_profit_abs": -1652.0895,
+            "net_profit_pct": -165.2089,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.679,
+            "net_profit_abs": -2338.2253,
+            "net_profit_pct": -233.8225,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 9671
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -144043,6 +145219,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.2064,
+        "baseline_profit_abs": -965.7072,
+        "break_even_slippage_bps_per_side": -10.07,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.3064,
+            "net_profit_abs": -1445.3032,
+            "net_profit_pct": -144.5303,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.4064,
+            "net_profit_abs": -1924.8992,
+            "net_profit_pct": -192.4899,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.6064,
+            "net_profit_abs": -2884.0912,
+            "net_profit_pct": -288.4091,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 12912
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -145241,6 +146450,39 @@
         "btc:SIDEWAYS",
         "coin:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.1679,
+        "baseline_profit_abs": 382.9859,
+        "break_even_slippage_bps_per_side": 4.17,
+        "main_timeframe": "4h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "not_profitable_at_reference_slippage"
+        ],
+        "status": "SENSITIVE",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.0679,
+            "net_profit_abs": -76.0512,
+            "net_profit_pct": -7.6051,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.0321,
+            "net_profit_abs": -535.0882,
+            "net_profit_pct": -53.5088,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.2321,
+            "net_profit_abs": -1453.1624,
+            "net_profit_pct": -145.3162,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 2072
+      },
       "main_timeframe": "4h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -160889,6 +162131,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.3615,
+        "baseline_profit_abs": -770.2309,
+        "break_even_slippage_bps_per_side": -17.9,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.4615,
+            "net_profit_abs": -985.3194,
+            "net_profit_pct": -98.5319,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.5615,
+            "net_profit_abs": -1200.4079,
+            "net_profit_pct": -120.0408,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.7615,
+            "net_profit_abs": -1630.585,
+            "net_profit_pct": -163.0585,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 3153
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -162701,6 +163976,39 @@
         "btc:BULL",
         "coin:BULL"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": -0.0094,
+        "baseline_profit_abs": -4.6042,
+        "break_even_slippage_bps_per_side": -1.44,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.1094,
+            "net_profit_abs": -20.6424,
+            "net_profit_pct": -2.0642,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.2094,
+            "net_profit_abs": -36.6806,
+            "net_profit_pct": -3.6681,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.4094,
+            "net_profit_abs": -68.757,
+            "net_profit_pct": -6.8757,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 127
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -173909,6 +175217,37 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 2.5779,
+        "baseline_profit_abs": 4493.8238,
+        "break_even_slippage_bps_per_side": 56.41,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": false,
+        "reasons": [],
+        "status": "PASS",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 2.4779,
+            "net_profit_abs": 4095.4748,
+            "net_profit_pct": 409.5475,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 2.3779,
+            "net_profit_abs": 3697.1258,
+            "net_profit_pct": 369.7126,
+            "survives": true
+          },
+          "0.0020": {
+            "mean_profit_pct": 2.1779,
+            "net_profit_abs": 2900.4278,
+            "net_profit_pct": 290.0428,
+            "survives": true
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 639
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": false,
       "reasons": [],
@@ -174786,6 +176125,39 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.3214,
+        "baseline_profit_abs": 951.0118,
+        "break_even_slippage_bps_per_side": 6.42,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "not_profitable_at_reference_slippage"
+        ],
+        "status": "SENSITIVE",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.2214,
+            "net_profit_abs": 210.7765,
+            "net_profit_pct": 21.0777,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.1214,
+            "net_profit_abs": -529.4587,
+            "net_profit_pct": -52.9459,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.0786,
+            "net_profit_abs": -2009.9292,
+            "net_profit_pct": -200.9929,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 2896
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -175222,6 +176594,39 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.3214,
+        "baseline_profit_abs": 951.0118,
+        "break_even_slippage_bps_per_side": 6.42,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "not_profitable_at_reference_slippage"
+        ],
+        "status": "SENSITIVE",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.2214,
+            "net_profit_abs": 210.7765,
+            "net_profit_pct": 21.0777,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.1214,
+            "net_profit_abs": -529.4587,
+            "net_profit_pct": -52.9459,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.0786,
+            "net_profit_abs": -2009.9292,
+            "net_profit_pct": -200.9929,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 2896
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -175658,6 +177063,39 @@
         "coin:BULL",
         "coin:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.2709,
+        "baseline_profit_abs": 940.6397,
+        "break_even_slippage_bps_per_side": 6.26,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "not_profitable_at_reference_slippage"
+        ],
+        "status": "SENSITIVE",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.1709,
+            "net_profit_abs": 188.9258,
+            "net_profit_pct": 18.8926,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.0709,
+            "net_profit_abs": -562.7881,
+            "net_profit_pct": -56.2788,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.1291,
+            "net_profit_abs": -2066.2158,
+            "net_profit_pct": -206.6216,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 3123
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -176574,6 +178012,39 @@
       "cost_pass_regimes_all_windows": [
         "btc:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": -0.18,
+        "baseline_profit_abs": -544.3124,
+        "break_even_slippage_bps_per_side": -8.09,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.28,
+            "net_profit_abs": -880.7524,
+            "net_profit_pct": -88.0752,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.38,
+            "net_profit_abs": -1217.1924,
+            "net_profit_pct": -121.7192,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.58,
+            "net_profit_abs": -1890.0724,
+            "net_profit_pct": -189.0072,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 3292
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -179999,6 +181470,39 @@
         "btc:BEAR",
         "coin:BULL"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.4323,
+        "baseline_profit_abs": -54.7854,
+        "break_even_slippage_bps_per_side": -2.7,
+        "main_timeframe": "1d",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.3323,
+            "net_profit_abs": -156.1096,
+            "net_profit_pct": -15.611,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.2323,
+            "net_profit_abs": -257.4339,
+            "net_profit_pct": -25.7434,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": 0.0323,
+            "net_profit_abs": -460.0825,
+            "net_profit_pct": -46.0082,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 554
+      },
       "main_timeframe": "1d",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -184651,6 +186155,37 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 2.2955,
+        "baseline_profit_abs": 2078.9897,
+        "break_even_slippage_bps_per_side": 54.43,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": false,
+        "reasons": [],
+        "status": "PASS",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 2.1955,
+            "net_profit_abs": 1888.0214,
+            "net_profit_pct": 188.8021,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 2.0955,
+            "net_profit_abs": 1697.0531,
+            "net_profit_pct": 169.7053,
+            "survives": true
+          },
+          "0.0020": {
+            "mean_profit_pct": 1.8955,
+            "net_profit_abs": 1315.1166,
+            "net_profit_pct": 131.5117,
+            "survives": true
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 472
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": false,
       "reasons": [],
@@ -185092,6 +186627,39 @@
         "btc:BEAR"
       ],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.5199,
+        "baseline_profit_abs": -348.5753,
+        "break_even_slippage_bps_per_side": -25.63,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.6199,
+            "net_profit_abs": -416.5756,
+            "net_profit_pct": -41.6576,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.7199,
+            "net_profit_abs": -484.5759,
+            "net_profit_pct": -48.4576,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.9199,
+            "net_profit_abs": -620.5764,
+            "net_profit_pct": -62.0576,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 642
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -185535,6 +187103,39 @@
       "cost_pass_regimes_all_windows": [
         "btc:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": -0.0005,
+        "baseline_profit_abs": -8.5849,
+        "break_even_slippage_bps_per_side": -0.44,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.1005,
+            "net_profit_abs": -105.8762,
+            "net_profit_pct": -10.5876,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.2005,
+            "net_profit_abs": -203.1676,
+            "net_profit_pct": -20.3168,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.4005,
+            "net_profit_abs": -397.7503,
+            "net_profit_pct": -39.775,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 751
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -185957,6 +187558,39 @@
         "coin:BULL",
         "coin:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.1989,
+        "baseline_profit_abs": -1.7975,
+        "break_even_slippage_bps_per_side": -0.13,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.0989,
+            "net_profit_abs": -71.883,
+            "net_profit_pct": -7.1883,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.0011,
+            "net_profit_abs": -141.9685,
+            "net_profit_pct": -14.1968,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.2011,
+            "net_profit_abs": -282.1395,
+            "net_profit_pct": -28.2139,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 537
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -187729,6 +189363,39 @@
       "cost_pass_regimes_all_windows": [
         "btc:BULL"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": -0.0877,
+        "baseline_profit_abs": -524.4039,
+        "break_even_slippage_bps_per_side": -4.07,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.1877,
+            "net_profit_abs": -1168.7973,
+            "net_profit_pct": -116.8797,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.2877,
+            "net_profit_abs": -1813.1907,
+            "net_profit_pct": -181.3191,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.4877,
+            "net_profit_abs": -3101.9776,
+            "net_profit_pct": -310.1978,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 5081
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -190434,6 +192101,39 @@
         "btc:BULL",
         "coin:BULL"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": -0.0112,
+        "baseline_profit_abs": -106.2431,
+        "break_even_slippage_bps_per_side": -1.75,
+        "main_timeframe": "4h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.1112,
+            "net_profit_abs": -410.3327,
+            "net_profit_pct": -41.0333,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.2112,
+            "net_profit_abs": -714.4224,
+            "net_profit_pct": -71.4422,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.4112,
+            "net_profit_abs": -1322.6016,
+            "net_profit_pct": -132.2602,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 2424
+      },
       "main_timeframe": "4h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -202716,6 +204416,37 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 3.1819,
+        "baseline_profit_abs": 4103.5956,
+        "break_even_slippage_bps_per_side": 51.95,
+        "main_timeframe": "12h",
+        "mean_profit_below_caution": false,
+        "reasons": [],
+        "status": "PASS",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 3.0819,
+            "net_profit_abs": 3708.6644,
+            "net_profit_pct": 370.8664,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 2.9819,
+            "net_profit_abs": 3313.7332,
+            "net_profit_pct": 331.3733,
+            "survives": true
+          },
+          "0.0020": {
+            "mean_profit_pct": 2.7819,
+            "net_profit_abs": 2523.8708,
+            "net_profit_pct": 252.3871,
+            "survives": true
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 894
+      },
       "main_timeframe": "12h",
       "mean_profit_below_caution": false,
       "reasons": [],
@@ -222579,6 +224310,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1157,
+        "baseline_profit_abs": -328.4473,
+        "break_even_slippage_bps_per_side": -5.44,
+        "main_timeframe": "2h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2157,
+            "net_profit_abs": -630.3126,
+            "net_profit_pct": -63.0313,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3157,
+            "net_profit_abs": -932.178,
+            "net_profit_pct": -93.2178,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5157,
+            "net_profit_abs": -1535.9086,
+            "net_profit_pct": -153.5909,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 14827
+      },
       "main_timeframe": "2h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -223826,6 +225590,39 @@
         "coin:TRANSITION"
       ],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1273,
+        "baseline_profit_abs": -681.1346,
+        "break_even_slippage_bps_per_side": -8.81,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2273,
+            "net_profit_abs": -1067.8992,
+            "net_profit_pct": -106.7899,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3273,
+            "net_profit_abs": -1454.6638,
+            "net_profit_pct": -145.4664,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5273,
+            "net_profit_abs": -2228.193,
+            "net_profit_pct": -222.8193,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 3139
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -224269,6 +226066,39 @@
         "btc:BULL"
       ],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.0951,
+        "baseline_profit_abs": -789.758,
+        "break_even_slippage_bps_per_side": -3.69,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.1951,
+            "net_profit_abs": -1859.97,
+            "net_profit_pct": -185.997,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.2951,
+            "net_profit_abs": -2930.182,
+            "net_profit_pct": -293.0182,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.4951,
+            "net_profit_abs": -5070.606,
+            "net_profit_pct": -507.0606,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 11131
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -224584,6 +226414,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.173,
+        "baseline_profit_abs": -661.9672,
+        "break_even_slippage_bps_per_side": -42.96,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.273,
+            "net_profit_abs": -739.0104,
+            "net_profit_pct": -73.901,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.373,
+            "net_profit_abs": -816.0536,
+            "net_profit_pct": -81.6054,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.573,
+            "net_profit_abs": -970.14,
+            "net_profit_pct": -97.014,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 3429
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -227552,6 +229415,39 @@
         "coin:BULL",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.2859,
+        "baseline_profit_abs": 1001.0554,
+        "break_even_slippage_bps_per_side": 7.0,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "not_profitable_at_reference_slippage"
+        ],
+        "status": "SENSITIVE",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.1859,
+            "net_profit_abs": 285.7313,
+            "net_profit_pct": 28.5731,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.0859,
+            "net_profit_abs": -429.5927,
+            "net_profit_pct": -42.9593,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.1141,
+            "net_profit_abs": -1860.2408,
+            "net_profit_pct": -186.0241,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 3324
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -229209,6 +231105,39 @@
         "coin:BULL",
         "coin:BEAR"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.2907,
+        "baseline_profit_abs": -579.4815,
+        "break_even_slippage_bps_per_side": -24.74,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.1907,
+            "net_profit_abs": -696.6039,
+            "net_profit_pct": -69.6604,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.0907,
+            "net_profit_abs": -813.7264,
+            "net_profit_pct": -81.3726,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.1093,
+            "net_profit_abs": -1047.9713,
+            "net_profit_pct": -104.7971,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 1223
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -232778,6 +234707,39 @@
         "coin:BULL",
         "coin:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.209,
+        "baseline_profit_abs": 242.2954,
+        "break_even_slippage_bps_per_side": 0.53,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "not_profitable_at_reference_slippage"
+        ],
+        "status": "SENSITIVE",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.109,
+            "net_profit_abs": -2052.7806,
+            "net_profit_pct": -205.2781,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.009,
+            "net_profit_abs": -4347.8567,
+            "net_profit_pct": -434.7857,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.191,
+            "net_profit_abs": -8938.0088,
+            "net_profit_pct": -893.8009,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 6588
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -238679,6 +240641,37 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 5.7378,
+        "baseline_profit_abs": 9136.4095,
+        "break_even_slippage_bps_per_side": 48.5,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": false,
+        "reasons": [],
+        "status": "PASS",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 5.5378,
+            "net_profit_abs": 8194.5892,
+            "net_profit_pct": 819.4589,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 5.3378,
+            "net_profit_abs": 7252.7688,
+            "net_profit_pct": 725.2769,
+            "survives": true
+          },
+          "0.0020": {
+            "mean_profit_pct": 4.9378,
+            "net_profit_abs": 5369.1281,
+            "net_profit_pct": 536.9128,
+            "survives": true
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 543
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": false,
       "reasons": [],
@@ -239115,6 +241108,39 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.0954,
+        "baseline_profit_abs": 1867.53,
+        "break_even_slippage_bps_per_side": 9.88,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "not_profitable_at_reference_slippage"
+        ],
+        "status": "SENSITIVE",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.1046,
+            "net_profit_abs": 922.4348,
+            "net_profit_pct": 92.2435,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3046,
+            "net_profit_abs": -22.6603,
+            "net_profit_pct": -2.266,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.7046,
+            "net_profit_abs": -1912.8506,
+            "net_profit_pct": -191.2851,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 1084
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -240811,6 +242837,39 @@
       "cost_pass_regimes_all_windows": [
         "btc:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1742,
+        "baseline_profit_abs": -688.9106,
+        "break_even_slippage_bps_per_side": -8.58,
+        "main_timeframe": "2h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2742,
+            "net_profit_abs": -1090.314,
+            "net_profit_pct": -109.0314,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3742,
+            "net_profit_abs": -1491.7173,
+            "net_profit_pct": -149.1717,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5742,
+            "net_profit_abs": -2294.5241,
+            "net_profit_pct": -229.4524,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 4142
+      },
       "main_timeframe": "2h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -245701,6 +247760,37 @@
         "coin:BULL",
         "coin:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.4641,
+        "baseline_profit_abs": 384.4902,
+        "break_even_slippage_bps_per_side": 20.18,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [],
+        "status": "PASS",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.3641,
+            "net_profit_abs": 289.2125,
+            "net_profit_pct": 28.9212,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.2641,
+            "net_profit_abs": 193.9348,
+            "net_profit_pct": 19.3935,
+            "survives": true
+          },
+          "0.0020": {
+            "mean_profit_pct": 0.0641,
+            "net_profit_abs": 3.3794,
+            "net_profit_pct": 0.3379,
+            "survives": true
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 589
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -246143,6 +248233,39 @@
         "coin:BEAR"
       ],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.6724,
+        "baseline_profit_abs": -279.7709,
+        "break_even_slippage_bps_per_side": -33.97,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.7724,
+            "net_profit_abs": -320.951,
+            "net_profit_pct": -32.0951,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.8724,
+            "net_profit_abs": -362.131,
+            "net_profit_pct": -36.2131,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -1.0724,
+            "net_profit_abs": -444.491,
+            "net_profit_pct": -44.4491,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 356
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -247029,6 +249152,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1503,
+        "baseline_profit_abs": -819.6656,
+        "break_even_slippage_bps_per_side": -7.19,
+        "main_timeframe": "4h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2503,
+            "net_profit_abs": -1389.4898,
+            "net_profit_pct": -138.949,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3503,
+            "net_profit_abs": -1959.3141,
+            "net_profit_pct": -195.9314,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5503,
+            "net_profit_abs": -3098.9626,
+            "net_profit_pct": -309.8963,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 6213
+      },
       "main_timeframe": "4h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -247915,6 +250071,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1726,
+        "baseline_profit_abs": -605.3924,
+        "break_even_slippage_bps_per_side": -8.86,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2726,
+            "net_profit_abs": -946.89,
+            "net_profit_pct": -94.689,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3726,
+            "net_profit_abs": -1288.3875,
+            "net_profit_pct": -128.8388,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5726,
+            "net_profit_abs": -1971.3826,
+            "net_profit_pct": -197.1383,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 3949
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -249659,6 +251848,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.2269,
+        "baseline_profit_abs": -960.3815,
+        "break_even_slippage_bps_per_side": -11.45,
+        "main_timeframe": "30m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.3269,
+            "net_profit_abs": -1379.7133,
+            "net_profit_pct": -137.9713,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.4269,
+            "net_profit_abs": -1799.0451,
+            "net_profit_pct": -179.9045,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.6269,
+            "net_profit_abs": -2637.7086,
+            "net_profit_pct": -263.7709,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 11483
+      },
       "main_timeframe": "30m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -250097,6 +252319,39 @@
         "coin:BULL",
         "coin:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.1517,
+        "baseline_profit_abs": 913.3718,
+        "break_even_slippage_bps_per_side": 3.46,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "not_profitable_at_reference_slippage"
+        ],
+        "status": "SENSITIVE",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.0517,
+            "net_profit_abs": -405.0377,
+            "net_profit_pct": -40.5038,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.0483,
+            "net_profit_abs": -1723.4471,
+            "net_profit_pct": -172.3447,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.2483,
+            "net_profit_abs": -4360.2661,
+            "net_profit_pct": -436.0266,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 5448
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -250981,6 +253236,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.0886,
+        "baseline_profit_abs": -425.2243,
+        "break_even_slippage_bps_per_side": -4.16,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.1886,
+            "net_profit_abs": -936.6014,
+            "net_profit_pct": -93.6601,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.2886,
+            "net_profit_abs": -1447.9786,
+            "net_profit_pct": -144.7979,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.4886,
+            "net_profit_abs": -2470.7329,
+            "net_profit_pct": -247.0733,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 4827
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -251424,6 +253712,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1579,
+        "baseline_profit_abs": -822.9745,
+        "break_even_slippage_bps_per_side": -5.63,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2579,
+            "net_profit_abs": -1553.5686,
+            "net_profit_pct": -155.3569,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3579,
+            "net_profit_abs": -2284.1627,
+            "net_profit_pct": -228.4163,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5579,
+            "net_profit_abs": -3745.351,
+            "net_profit_pct": -374.5351,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 7967
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -251857,6 +254178,39 @@
         "coin:BEAR",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.8747,
+        "baseline_profit_abs": -779.0246,
+        "break_even_slippage_bps_per_side": -22.59,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": false,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.7747,
+            "net_profit_abs": -951.4333,
+            "net_profit_pct": -95.1433,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.6747,
+            "net_profit_abs": -1123.8419,
+            "net_profit_pct": -112.3842,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": 0.4747,
+            "net_profit_abs": -1468.6592,
+            "net_profit_pct": -146.8659,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 1838
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": false,
       "reasons": [
@@ -252741,6 +255095,39 @@
       "cost_pass_regimes_all_windows": [
         "btc:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": -0.0422,
+        "baseline_profit_abs": -668.348,
+        "break_even_slippage_bps_per_side": -6.15,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.1422,
+            "net_profit_abs": -1211.3668,
+            "net_profit_pct": -121.1367,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.2422,
+            "net_profit_abs": -1754.3855,
+            "net_profit_pct": -175.4386,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.4422,
+            "net_profit_abs": -2840.423,
+            "net_profit_pct": -284.0423,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 4218
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -253482,6 +255869,39 @@
       "cost_pass_regimes_all_windows": [
         "btc:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1743,
+        "baseline_profit_abs": -672.8187,
+        "break_even_slippage_bps_per_side": -12.28,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2743,
+            "net_profit_abs": -946.7777,
+            "net_profit_pct": -94.6778,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3743,
+            "net_profit_abs": -1220.7367,
+            "net_profit_pct": -122.0737,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5743,
+            "net_profit_abs": -1768.6548,
+            "net_profit_pct": -176.8655,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 2615
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -253797,6 +256217,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.2213,
+        "baseline_profit_abs": -965.6902,
+        "break_even_slippage_bps_per_side": -10.1,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.3213,
+            "net_profit_abs": -1443.5377,
+            "net_profit_pct": -144.3538,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.4213,
+            "net_profit_abs": -1921.3851,
+            "net_profit_pct": -192.1385,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.6213,
+            "net_profit_abs": -2877.08,
+            "net_profit_pct": -287.708,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 12023
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -257579,6 +260032,39 @@
         "btc:BULL",
         "coin:BEAR"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1573,
+        "baseline_profit_abs": -150.958,
+        "break_even_slippage_bps_per_side": -8.2,
+        "main_timeframe": "4h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2573,
+            "net_profit_abs": -243.0265,
+            "net_profit_pct": -24.3027,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3573,
+            "net_profit_abs": -335.0951,
+            "net_profit_pct": -33.5095,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5573,
+            "net_profit_abs": -519.2322,
+            "net_profit_pct": -51.9232,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 722
+      },
       "main_timeframe": "4h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -258455,6 +260941,37 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 1.1867,
+        "baseline_profit_abs": 4414.6904,
+        "break_even_slippage_bps_per_side": 28.22,
+        "main_timeframe": "6h",
+        "mean_profit_below_caution": false,
+        "reasons": [],
+        "status": "PASS",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 1.0867,
+            "net_profit_abs": 3632.5408,
+            "net_profit_pct": 363.2541,
+            "survives": true
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.9867,
+            "net_profit_abs": 2850.3911,
+            "net_profit_pct": 285.0391,
+            "survives": true
+          },
+          "0.0020": {
+            "mean_profit_pct": 0.7867,
+            "net_profit_abs": 1286.0918,
+            "net_profit_pct": 128.6092,
+            "survives": true
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 1613
+      },
       "main_timeframe": "6h",
       "mean_profit_below_caution": false,
       "reasons": [],
@@ -262649,6 +265166,39 @@
         "coin:BEAR",
         "coin:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.1931,
+        "baseline_profit_abs": 74.7121,
+        "break_even_slippage_bps_per_side": 0.33,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "not_profitable_at_reference_slippage"
+        ],
+        "status": "SENSITIVE",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.0931,
+            "net_profit_abs": -1060.6027,
+            "net_profit_pct": -106.0603,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.0069,
+            "net_profit_abs": -2195.9174,
+            "net_profit_pct": -219.5917,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.2069,
+            "net_profit_abs": -4466.547,
+            "net_profit_pct": -446.6547,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 3764
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -263524,6 +266074,39 @@
       "cost_pass_regimes_all_windows": [
         "btc:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1825,
+        "baseline_profit_abs": -917.6952,
+        "break_even_slippage_bps_per_side": -6.25,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2825,
+            "net_profit_abs": -1651.7953,
+            "net_profit_pct": -165.1795,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3825,
+            "net_profit_abs": -2385.8954,
+            "net_profit_pct": -238.5895,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5825,
+            "net_profit_abs": -3854.0956,
+            "net_profit_pct": -385.4096,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 6281
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -264718,6 +267301,39 @@
       "cost_pass_regimes_all_windows": [
         "btc:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": -0.3099,
+        "baseline_profit_abs": -967.3409,
+        "break_even_slippage_bps_per_side": -12.74,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.4099,
+            "net_profit_abs": -1347.1013,
+            "net_profit_pct": -134.7101,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.5099,
+            "net_profit_abs": -1726.8617,
+            "net_profit_pct": -172.6862,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.7099,
+            "net_profit_abs": -2486.3826,
+            "net_profit_pct": -248.6383,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 7689
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -265161,6 +267777,39 @@
       },
       "cost_pass_regimes": [],
       "cost_pass_regimes_all_windows": [],
+      "detail": {
+        "baseline_mean_profit_pct": -0.2546,
+        "baseline_profit_abs": -603.6199,
+        "break_even_slippage_bps_per_side": -11.82,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.3546,
+            "net_profit_abs": -858.9115,
+            "net_profit_pct": -85.8912,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.4546,
+            "net_profit_abs": -1114.2031,
+            "net_profit_pct": -111.4203,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.6546,
+            "net_profit_abs": -1624.7864,
+            "net_profit_pct": -162.4786,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 2692
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -266875,6 +269524,39 @@
       "cost_pass_regimes_all_windows": [
         "btc:SIDEWAYS"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": -0.1268,
+        "baseline_profit_abs": -604.4167,
+        "break_even_slippage_bps_per_side": -8.58,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": -0.2268,
+            "net_profit_abs": -956.526,
+            "net_profit_pct": -95.6526,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": -0.3268,
+            "net_profit_abs": -1308.6353,
+            "net_profit_pct": -130.8635,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.5268,
+            "net_profit_abs": -2012.8538,
+            "net_profit_pct": -201.2854,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 2543
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": true,
       "reasons": [
@@ -267305,6 +269987,39 @@
         "coin:SIDEWAYS",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.7729,
+        "baseline_profit_abs": -94.0435,
+        "break_even_slippage_bps_per_side": -0.99,
+        "main_timeframe": "1h",
+        "mean_profit_below_caution": false,
+        "reasons": [
+          "baseline_not_profitable"
+        ],
+        "status": "NA",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.6729,
+            "net_profit_abs": -567.463,
+            "net_profit_pct": -56.7463,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.5729,
+            "net_profit_abs": -1040.8826,
+            "net_profit_pct": -104.0883,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": 0.3729,
+            "net_profit_abs": -1987.7216,
+            "net_profit_pct": -198.7722,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 5213
+      },
       "main_timeframe": "1h",
       "mean_profit_below_caution": false,
       "reasons": [
