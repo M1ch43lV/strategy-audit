@@ -1,0 +1,126 @@
+{
+  "measurement_scope": "canonical_pooled_native_pair_universe",
+  "results": {
+    "FibonacciEMATrendStrategy": {
+      "attempted_at": "2026-09-20T09:33:01+00:00",
+      "canonical_sha256": "sha256_f6b72347b89de97f2bd4bd4f948e28d8216c318fb36066d2754b8ad44bd80ce7",
+      "class1_rules": [],
+      "elapsed_s": 3600.7,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy FibonacciEMATrendStrategy --strategy-path repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Fibbo --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FibonacciEMATrendStrategy-83084414 --cache none --timeframe-detail 5m",
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "futures",
+      "pairs": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "status": "timeout",
+      "timeframe_detail": "5m",
+      "timerange": "20200301-20260821",
+      "why": "timeout after 3600 seconds"
+    },
+    "eltoro": {
+      "archive": "user_data/profile_smoke/eltoro-4b7ac68a-2026-09-20_09-51-17.zip",
+      "archive_sha256": "sha256_9d130a56c4105b9340261369c8f2043bc3d8ad35f2adf422d1e8453e3c65030d",
+      "artifact_key": "",
+      "attempted_at": "2026-09-20T09:51:20+00:00",
+      "canonical_sha256": "sha256_b5c100d910d9124d1d550444422fe0b62f02063d707a2499c581a4031646a536",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 1095.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy eltoro --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/eltoro-4b7ac68a --cache none --timeframe-detail 5m",
+      "long_trades": 3214,
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "spot",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "short_trades": 0,
+      "status": "measured",
+      "timeframe_detail": "5m",
+      "timerange": "20200401-20260821",
+      "trades": 3214,
+      "trades_sha256": "sha256_e9791b4970ad37c437031bb61794af9b5e1dbd699a81b92a97af2601746fa4b5"
+    },
+    "eltoro1_4_simple": {
+      "archive": "user_data/profile_smoke/eltoro1_4_simple-8a1dc3d9-2026-09-20_10-11-15.zip",
+      "archive_sha256": "sha256_fd144101b3a4879fe6acc5c050af5d92b8f10cbae021442b3e233537ee9c9456",
+      "artifact_key": "",
+      "attempted_at": "2026-09-20T10:11:18+00:00",
+      "canonical_sha256": "sha256_cbce3878912efb5ed0953b070b4838b22dcf935e23627d6a4cc36421d1d093e5",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 1196.6,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy eltoro1_4_simple --strategy-path repos/jaredrsommer_freqtradestrategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/eltoro1_4_simple-8a1dc3d9 --cache none --timeframe-detail 5m",
+      "long_trades": 2027,
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "spot",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "short_trades": 0,
+      "status": "measured",
+      "timeframe_detail": "5m",
+      "timerange": "20200401-20260821",
+      "trades": 2027,
+      "trades_sha256": "sha256_1e24a779801ae59a1d1b9688bca700b5737770e39a764581e4d92b40712c2520"
+    }
+  },
+  "runtime_ids": [
+    "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a"
+  ],
+  "schema_version": 1,
+  "timerange": {
+    "futures": "20200301-20260821",
+    "spot": "20200401-20260821"
+  }
+}

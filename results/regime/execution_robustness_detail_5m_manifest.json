@@ -1,0 +1,363 @@
+{
+  "measurement_scope": "canonical_pooled_native_pair_universe",
+  "results": {
+    "AdaptiveRegime": {
+      "attempted_at": "2026-09-19T09:41:39+00:00",
+      "canonical_sha256": "sha256_cf6478f765e4b95984227e64b11d72f44c14935bc13c8f5a84fa7499354b47bc",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/AdaptiveRegime-90b67ba4.log",
+      "elapsed_s": 0.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AdaptiveRegime --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AdaptiveRegime-90b67ba4 --cache none --timeframe-detail 5m",
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "futures",
+      "pairs": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "status": "failed",
+      "timeframe_detail": "5m",
+      "timerange": "20200301-20260821",
+      "why": "No module named 'freqtrade'"
+    },
+    "BBRSI": {
+      "attempted_at": "2026-09-19T09:41:38+00:00",
+      "canonical_sha256": "sha256_8a5058ea5a2ef3b66265c01dd977a580222545edc1fbf63d9ed7fe12591d1f73",
+      "class1_rules": [
+        "restore_freqtrade_indicator_helpers"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/BBRSI-0d31007a.log",
+      "elapsed_s": 0.1,
+      "invocation": "freqtrade backtesting --config user_data/profile_configs/BBRSI-0d31007a-override-f400cf1f3448.json --strategy BBRSI --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BBRSI-0d31007a --cache none --timeframe-detail 5m",
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "spot",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {
+          "timeframe": "1h"
+        },
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": [
+          "restore_freqtrade_indicator_helpers"
+        ]
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "status": "failed",
+      "timeframe_detail": "5m",
+      "timerange": "20200401-20260821",
+      "why": "No module named 'freqtrade'"
+    },
+    "GRIDDMIPRICEStrategyFutureV5Short": {
+      "attempted_at": "2026-09-19T09:41:40+00:00",
+      "canonical_sha256": "sha256_12e4cab68e366fa81d75c91a05193dcf81b5365d912865d300e37c99c0d6b964",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/GRIDDMIPRICEStrategyFutureV5Short-0a37b705.log",
+      "elapsed_s": 0.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy GRIDDMIPRICEStrategyFutureV5Short --strategy-path repos/LazyPigPig_freqtrade-grid/user_data/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/GRIDDMIPRICEStrategyFutureV5Short-0a37b705 --cache none --timeframe-detail 5m",
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "futures",
+      "pairs": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "status": "failed",
+      "timeframe_detail": "5m",
+      "timerange": "20200301-20260821",
+      "why": "No module named 'freqtrade'"
+    },
+    "Inverse": {
+      "attempted_at": "2026-09-19T09:41:38+00:00",
+      "canonical_sha256": "sha256_28baa0e828618ee262e2917b4812482c8dd66f9491d3220d39e308dc6900ae7f",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/Inverse-bfe272f9.log",
+      "elapsed_s": 0.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Inverse --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Inverse-bfe272f9 --cache none --timeframe-detail 5m",
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "spot",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "status": "failed",
+      "timeframe_detail": "5m",
+      "timerange": "20200401-20260821",
+      "why": "No module named 'freqtrade'"
+    },
+    "InverseV2": {
+      "attempted_at": "2026-09-19T09:41:38+00:00",
+      "canonical_sha256": "sha256_cff8f7be447ad13ee0f8428badc82259f95fb2703435dd38c71158df12065ff9",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/InverseV2-cc2ff292.log",
+      "elapsed_s": 0.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy InverseV2 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/InverseV2-cc2ff292 --cache none --timeframe-detail 5m",
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "spot",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "status": "failed",
+      "timeframe_detail": "5m",
+      "timerange": "20200401-20260821",
+      "why": "No module named 'freqtrade'"
+    },
+    "MacheteV8b": {
+      "attempted_at": "2026-09-19T09:41:39+00:00",
+      "canonical_sha256": "sha256_03e93809d87757fc2c208847298e42d0cedd553abd0e600654a7a124a526d154",
+      "class1_rules": [
+        "legacy_min_roi_reached_entry_signature",
+        "lookahead_runmode_reports_backtest"
+      ],
+      "debug_log": "user_data/profile_smoke_logs/MacheteV8b-b42642cf.log",
+      "elapsed_s": 0.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy MacheteV8b --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MacheteV8b-b42642cf --cache none --timeframe-detail 5m",
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "spot",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": [
+          "legacy_min_roi_reached_entry_signature",
+          "lookahead_runmode_reports_backtest"
+        ]
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "status": "failed",
+      "timeframe_detail": "5m",
+      "timerange": "20200401-20260821",
+      "why": "No module named 'freqtrade'"
+    },
+    "RegimeFilterStrategy": {
+      "attempted_at": "2026-09-19T09:41:37+00:00",
+      "canonical_sha256": "sha256_11c48354d533ffb7016721014861842ec5220ddcf1bdf66237a96cb9bd5e9a55",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/RegimeFilterStrategy-2be6a696.log",
+      "elapsed_s": 0.2,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy RegimeFilterStrategy --strategy-path repos/Bananajoexxc_RegimeFilterStrategy-Freqtrade/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/RegimeFilterStrategy-2be6a696 --cache none --timeframe-detail 5m",
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "futures",
+      "pairs": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "status": "failed",
+      "timeframe_detail": "5m",
+      "timerange": "20200301-20260821",
+      "why": "No module named 'freqtrade'"
+    },
+    "SmaRsiStrategy": {
+      "attempted_at": "2026-09-19T09:41:38+00:00",
+      "canonical_sha256": "sha256_d2d0c1e93cee45e6c2dab585017613e784cc886db0d3e8a869cb09c5f2a4909a",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/SmaRsiStrategy-62d3e5a3.log",
+      "elapsed_s": 0.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy SmaRsiStrategy --strategy-path repos/DutchCryptoDad_FreqtradeBotStrategyDevelopmentForBeginners --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/SmaRsiStrategy-62d3e5a3 --cache none --timeframe-detail 5m",
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "spot",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "status": "failed",
+      "timeframe_detail": "5m",
+      "timerange": "20200401-20260821",
+      "why": "No module named 'freqtrade'"
+    },
+    "TrendBreakout": {
+      "attempted_at": "2026-09-19T09:41:39+00:00",
+      "canonical_sha256": "sha256_694ac356d779c955633cbb62579ee52cc6f18ce74c1d5b2e9a8634b3014eaaac",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/TrendBreakout-9b18ab53.log",
+      "elapsed_s": 0.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy TrendBreakout --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrendBreakout-9b18ab53 --cache none --timeframe-detail 5m",
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "spot",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "native_unversioned",
+      "status": "failed",
+      "timeframe_detail": "5m",
+      "timerange": "20200401-20260821",
+      "why": "No module named 'freqtrade'"
+    },
+    "TrendFutures": {
+      "attempted_at": "2026-09-19T09:41:40+00:00",
+      "canonical_sha256": "sha256_996f504ad07d02a330b9b27d10d78fbee3c2edf79d9e715bdc508126c12861bf",
+      "class1_rules": [],
+      "debug_log": "user_data/profile_smoke_logs/TrendFutures-4ee78b0b.log",
+      "elapsed_s": 0.1,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy TrendFutures --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrendFutures-4ee78b0b --cache none --timeframe-detail 5m",
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "futures",
+      "pairs": [
+        "BTC/USDT:USDT",
+        "ETH/USDT:USDT",
+        "LTC/USDT:USDT",
+        "XRP/USDT:USDT",
+        "ADA/USDT:USDT",
+        "XLM/USDT:USDT",
+        "XMR/USDT:USDT",
+        "DASH/USDT:USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "status": "failed",
+      "timeframe_detail": "5m",
+      "timerange": "20200301-20260821",
+      "why": "No module named 'freqtrade'"
+    }
+  },
+  "runtime_ids": [],
+  "schema_version": 1,
+  "timerange": {
+    "futures": "20200301-20260821",
+    "spot": "20200401-20260821"
+  }
+}

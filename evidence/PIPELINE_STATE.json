@@ -1,6 +1,6 @@
 {
   "authority": "generated_read_model_not_a_verdict_store",
-  "generated_at": "2026-09-20T12:03:47",
+  "generated_at": "2026-09-20T12:45:02",
   "raw_store_policy": "Raw evidence stores retain provenance and writer ownership; read pipeline-wide state only from this file or STRATEGY_STATUS.csv.",
   "schema_version": 1,
   "strategies": {
@@ -136871,7 +136871,7 @@
         "execution_robustness": {
           "basis": "measured_detail_run",
           "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
-          "status": "ERROR"
+          "status": "SENSITIVE"
         },
         "full_backtest": {
           "identity_current_complete": true,
@@ -136912,7 +136912,7 @@
       },
       "exclusion_basis": "",
       "execution_robustness_basis": "measured_detail_run",
-      "execution_robustness_status": "ERROR",
+      "execution_robustness_status": "SENSITIVE",
       "expansion_wave": "D_recursive_drift",
       "full_backtest_status": "measured",
       "gate_notes": "",

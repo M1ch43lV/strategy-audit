@@ -257788,6 +257788,39 @@
         "coin:BEAR",
         "coin:TRANSITION"
       ],
+      "detail": {
+        "baseline_mean_profit_pct": 0.3545,
+        "baseline_profit_abs": 37.9529,
+        "break_even_slippage_bps_per_side": 0.52,
+        "main_timeframe": "15m",
+        "mean_profit_below_caution": true,
+        "reasons": [
+          "not_profitable_at_reference_slippage"
+        ],
+        "status": "SENSITIVE",
+        "stressed": {
+          "0.0005": {
+            "mean_profit_pct": 0.2545,
+            "net_profit_abs": -323.6669,
+            "net_profit_pct": -32.3667,
+            "survives": false
+          },
+          "0.0010": {
+            "mean_profit_pct": 0.1545,
+            "net_profit_abs": -685.2866,
+            "net_profit_pct": -68.5287,
+            "survives": false
+          },
+          "0.0020": {
+            "mean_profit_pct": -0.0455,
+            "net_profit_abs": -1408.5261,
+            "net_profit_pct": -140.8526,
+            "survives": false
+          }
+        },
+        "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+        "trades": 2027
+      },
       "main_timeframe": "15m",
       "mean_profit_below_caution": true,
       "reasons": [

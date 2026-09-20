@@ -235,6 +235,11 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
     verified_universal = sum(r["ok"] for r in rows["universal"])
     pending = sum(1 for s in evaluated if robustness.status(s) == "PENDING")
     sensitive = sum(1 for s in evaluated if robustness.status(s) == "SENSITIVE")
+    failed = sum(1 for s in evaluated if robustness.status(s) == "ERROR")
+    run_state = ("bei %d steht der 5m-Lauf noch aus (Timeframe über 5m)" % pending if pending
+                 else "alle 5m-Läufe sind abgeschlossen")
+    if failed:
+        run_state += ", bei %d ist er fehlgeschlagen oder am Zeitlimit von 3600 s gescheitert" % failed
 
     def pct(part, whole):
         return de_pct(100.0 * part / whole)
@@ -353,10 +358,9 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
         '<i>behaupteten</i> ADX-Zustand einen zusätzlichen Slippage von 0,1 %% je Seite übersteht (Validierungsfenster, '
         'mindestens 10 Trades in diesem Zustand). Bei Strategien bis 5m entfällt der Lauf, sie zählen per Entscheidung des '
         'Eigentümers als bestanden; das ist eine Regel und keine Messung. Die Spalte ändert kein Ranking. '
-        'Stand: %d der %d Strategien sind im 5m-Lauf <code class="mono">sensitiv</code>, bei %d steht der 5m-Lauf noch aus '
-        '(Timeframe über 5m). <b>Rangfolge und Robustheit sind getrennte Aussagen:</b> Ein Rang 1 ohne PASS ist nur der beste '
+        'Stand: %d der %d Strategien sind im 5m-Lauf <code class="mono">sensitiv</code>, %s. <b>Rangfolge und Robustheit sind getrennte Aussagen:</b> Ein Rang 1 ohne PASS ist nur der beste '
         'Wert einer Zeile, kein verifizierter Spezialist.</div></div>'
-        % (n_eval, sensitive, n_eval, pending))
+        % (n_eval, sensitive, n_eval, run_state))
     return facts, text, manifest
 
 

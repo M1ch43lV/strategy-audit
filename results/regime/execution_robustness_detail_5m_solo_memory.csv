@@ -1,0 +1,7 @@
+strategy,worker,status,elapsed_s,peak_mib,memory_limit
+FastSupertrend_optim3_rsi_75fix,1,no_record,1,0,none
+FibonacciEMATrendStrategy,1,timeout,3602,3014,none
+MacdStrategy,1,no_record,1,0,none
+chispei,1,no_record,1,0,none
+eltoro,1,measured,1097,4639,none
+eltoro1_4_simple,1,measured,1198,3660,none

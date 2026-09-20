@@ -1584,7 +1584,15 @@ Until it runs, `execution_robustness_status` shows `PENDING` for strategies whos
 detail run has finished. `python -m evidence.execution_robustness --check` reports
 whether the stores are current.
 
-**What is running (changed 2026-09-20).** The serial 5m-detail batch was stopped by
+**Finished 2026-09-20 (12:11).** The parallel batch and its solo repeat are done: 630
+strategies have a detail record or an owner-rule `PASS`; 574 `PASS`, 52 `SENSITIVE`, 4 `ERROR`.
+The four `ERROR` are final: `FibonacciEMATrendStrategy` and `Hacklemore2` hit the 3600 s
+ceiling running alone, `MacheteV8b` and `MacheteV8bRallimod` fail with a datetime error
+inside the strategy. Peak memory across the batch was 4.6 GB (`eltoro`, which the 3.5 GB
+limit killed and the solo repeat then measured). `--targets 5m` still lists those four
+as owed; the launcher skips them. What follows is the design note from the start of the batch.
+
+**What was running (changed 2026-09-20).** The serial 5m-detail batch was stopped by
 Claude with the owner's agreement after 180 records (175 measured, 2 failed, 1 timeout)
 and replaced by `runtime/detail_batch_parallel.py`: four Docker containers, one strategy
 each, `--memory 3500m` (also the swap limit) and `--cpus 1` per container, taking the
