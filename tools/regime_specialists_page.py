@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import datetime
 import io
 import json
 import os
@@ -278,6 +279,8 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
         "n_verified_rows_btc": verified_btc, "n_verified_rows_coin": verified_coin,
         "n_verified_universal": verified_universal,
         "tbl_btc": de_int(len(btc)), "tbl_coin": de_int(len(coin)),
+        # Stamped at generation, always: a page that carries an old date reads as current.
+        "generated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
     }
     contradictions = int(((btc["dollar_gain_usd"] > btc["benchmark_dollar_gain_usd"]) & (btc["excess_return"] < 0)).sum()
                          + ((coin["dollar_gain_usd"] > coin["benchmark_dollar_gain_usd"]) & (coin["excess_return"] < 0)).sum())
