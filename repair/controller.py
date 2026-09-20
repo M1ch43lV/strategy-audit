@@ -102,6 +102,15 @@ def handlers(python: str | None = None) -> tuple[Handler, ...]:
             evidence=("repair/patch_class2_report.json", "repair/patched/", "repair/patched/diffs/"),
         ),
         Handler(
+            name="resource_timeframe_5m_recovery",
+            repair_class="resource",
+            description=("Repeat every technical gate at 5m for the 60 1m pooled-OOM "
+                         "candidates before an isolated eight-pair 5m recovery full run."),
+            command=(python, "-m", "repair.timeframe_5m_recovery", "--apply"),
+            evidence=("evidence/TIMEFRAME_5M_RECOVERY.json",
+                      "evidence/TIMEFRAME_5M_RECOVERY_FULL.json"),
+        ),
+        Handler(
             name="repair_adjudication",
             repair_class="adjudication",
             description="Record hash-bound source refusals or explicit owner-scope closures; preserve the distinction in evidence.",
@@ -218,14 +227,15 @@ def selftest() -> None:
     """Check controller wiring only; individual handler selftests stay separate."""
     fixed_python = "audit-python"
     all_handlers = handlers(fixed_python)
-    assert [handler.repair_class for handler in all_handlers] == ["class1", "class1", "class2", "class2", "class2", "adjudication"]
+    assert [handler.repair_class for handler in all_handlers] == ["class1", "class1", "class2", "class2", "class2", "resource", "adjudication"]
     assert len({handler.name for handler in all_handlers}) == len(all_handlers)
     assert all(handler.command[0] == fixed_python for handler in all_handlers)
     assert all(handler.evidence for handler in all_handlers)
     assert AUDIT_IMAGE_PREFIX == "strategy-audit-runtime:"
     assert _selected({"class1"}, fixed_python) == all_handlers[:2]
     assert _selected({"class2"}, fixed_python) == all_handlers[2:5]
-    assert _selected({"adjudication"}, fixed_python) == (all_handlers[5],)
+    assert _selected({"resource"}, fixed_python) == (all_handlers[5],)
+    assert _selected({"adjudication"}, fixed_python) == (all_handlers[6],)
     rendered = plan(all_handlers)
     assert "no writes" in rendered and "handler-owned" in rendered
     print("repair controller selftest: PASS")
@@ -233,7 +243,7 @@ def selftest() -> None:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--class", dest="classes", choices=("class1", "class2", "adjudication"),
+    parser.add_argument("--class", dest="classes", choices=("class1", "class2", "resource", "adjudication"),
                         action="append", help="repair class to include (default: both)")
     parser.add_argument("--apply", action="store_true",
                         help="execute selected handlers serially after Docker/lock checks")

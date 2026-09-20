@@ -806,6 +806,21 @@ for any other strategy, or the interpretation of 1m and 5m performance as
 identical. Its purpose is auditable E1 pooled coverage under the owner's
 explicit resource decision, with the execution-timeframe difference visible.
 
+### Amendment 2026-09-20: 1m OOM recovery route at 5m
+
+**Owner's decision.** The 60 source-preserving strategies whose canonical 1m
+pooled Full-Backtest is `oom_confirmed` or `resource_inconclusive` may enter
+`repair.timeframe_5m_recovery`. This is a repair route, not a source change or
+automatic timeframe reclassification. It repeats Smoke, Look-ahead, Warm-up
+convergence, and final Recursive-bias at an isolated 5m execution timeframe.
+A failed or inconclusive gate blocks later gates; only four PASS results permit
+an isolated full-eight-pair 5m Full-Backtest.
+
+All recovery evidence is outside canonical gate stores and the canonical full
+manifest. A measured 5m result remains `pending_owner_promotion`; it cannot
+change E1/C10, source identity, or the meaning of the retained 1m OOM result
+without a later explicit owner decision for that exact implementation identity.
+
 ### Amendment 2026-09-11: warm-up convergence precedes final recursive-bias
 
 **Owner's decision**, applied prospectively to every strategy that still has

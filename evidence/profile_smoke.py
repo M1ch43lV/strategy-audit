@@ -514,7 +514,7 @@ def _policy_id(timeranges, trade_floor):
 
 
 def run_cascade(row, timeranges, trade_floor, timeout, config_overrides=None,
-                policy_id=None):
+                policy_id=None, extra_cli_args=None, artifact_namespace="smoke"):
     """Widen a successful but trade-poor smoke run by a frozen rule.
 
     Runtime failures are not evidence that a longer market interval helps, so
@@ -528,10 +528,12 @@ def run_cascade(row, timeranges, trade_floor, timeout, config_overrides=None,
     for timerange in timeranges:
         result = run_one(
             row, timerange, timeout, config_overrides=config_overrides,
-            artifact_key="smoke_%s" % timerange.replace("-", "_"),
+            artifact_key="%s_%s" % (artifact_namespace, timerange.replace("-", "_")),
             run_context={"smoke_policy_id": policy_id,
                          "trade_floor": trade_floor,
-                         "rung": len(attempts) + 1},
+                         "rung": len(attempts) + 1,
+                         "artifact_namespace": artifact_namespace},
+            extra_cli_args=extra_cli_args,
         )
         attempts.append(result)
         final = result

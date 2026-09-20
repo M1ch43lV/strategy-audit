@@ -21,7 +21,8 @@ from tools.run_metadata import append_record
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG = ROOT / "runtime" / "profile_futures_config.json"
+FUTURES_CONFIG = ROOT / "runtime" / "profile_futures_config.json"
+SPOT_CONFIG = ROOT / "runtime" / "profile_spot_config.json"
 OUTPUT = ROOT / "evidence" / "FULL_BACKTEST_RESOURCE_DIAGNOSTIC.json"
 METADATA = ROOT / "evidence" / "RUN_METADATA.jsonl"
 IMAGE = "strategy-audit-runtime:2026.7"
@@ -53,9 +54,12 @@ def _row(strategy: str) -> dict:
     if strategy not in rows:
         raise SystemExit("unknown strategy: " + strategy)
     row = rows[strategy]
-    if not row["run_profile"].startswith("futures_"):
-        raise SystemExit("resource diagnostic currently supports futures profiles only")
     return row
+
+
+def _config_for(row: dict) -> Path:
+    """Select the frozen profile config without changing the strategy source."""
+    return FUTURES_CONFIG if row["run_profile"].startswith("futures_") else SPOT_CONFIG
 
 
 def _active_audit_container() -> bool:
@@ -79,7 +83,8 @@ def run(strategy: str, pair_count: int, timeout: int, output: Path,
     if _active_audit_container():
         raise SystemExit("refusing resource diagnostic while an audit container is active")
     row = _row(strategy)
-    base = json.loads(CONFIG.read_text(encoding="utf-8"))
+    base_config = _config_for(row)
+    base = json.loads(base_config.read_text(encoding="utf-8"))
     pairs = base["exchange"]["pair_whitelist"][:pair_count]
     if len(pairs) != pair_count:
         raise SystemExit("pair count exceeds the canonical futures universe")
@@ -145,7 +150,8 @@ def run(strategy: str, pair_count: int, timeout: int, output: Path,
         "requested_timeframe": timeframe or row.get("execution_timeframe", ""),
         "timerange": TIMERANGE,
         "runtime_image": IMAGE,
-        "runtime_config_sha256": _sha256(CONFIG),
+        "runtime_config": str(base_config.relative_to(ROOT)).replace("\\", "/"),
+        "runtime_config_sha256": _sha256(base_config),
         "subset_config": str(config_path.relative_to(ROOT)).replace("\\", "/"),
         "subset_config_sha256": _sha256(config_path),
         "command": command,

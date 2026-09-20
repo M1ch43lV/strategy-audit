@@ -43,5 +43,21 @@ intrinsically unrepairable, and its technical triage context remains in the
 record. A later owner decision can reopen it by changing the policy store;
 neither kind of record changes source code.
 
+## 1m OOM recovery at 5m
+
+`repair.timeframe_5m_recovery` is a source-preserving resource-repair route.
+It selects only the 60 implementations whose canonical 1m eight-pair pooled
+Full-Backtest is `oom_confirmed` or `resource_inconclusive`. At an isolated 5m
+execution timeframe it repeats Smoke, Look-ahead, Warm-up convergence, and
+final Recursive-bias in that order. Only four passes permit an isolated
+eight-pair 5m Full-Backtest.
+
+It writes `evidence/TIMEFRAME_5M_RECOVERY.json` and
+`evidence/TIMEFRAME_5M_RECOVERY_FULL.json`. These files do not change source,
+canonical state, or generated status. A successful alternate full run remains
+`pending_owner_promotion`; it never silently treats 5m as equal to the
+authored 1m result. Run it with
+`python -m repair.controller --class resource --apply`.
+
 Run standalone repair tools as modules from the repository root, for example
 `\.\ftenv\Scripts\python.exe -m repair.local_modules --selftest`.
