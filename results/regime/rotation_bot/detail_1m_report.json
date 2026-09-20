@@ -1,0 +1,191 @@
+[
+ {
+  "strategy_id": "EI3v2_tag_cofi_green",
+  "canonical": {
+   "trades": 757,
+   "mean_ratio_pct": 0.8888363537785179,
+   "sum_ratio": 6.728491198103381,
+   "win_rate_pct": 94.98018494055482
+  },
+  "control": {
+   "trades": 757,
+   "mean_ratio_pct": 0.8888363537739773,
+   "sum_ratio": 6.728491198069008,
+   "win_rate_pct": 94.98018494055482
+  },
+  "detail": {
+   "trades": 763,
+   "mean_ratio_pct": 0.7548447938967758,
+   "sum_ratio": 5.7594657774324,
+   "win_rate_pct": 95.01965923984272
+  }
+ },
+ {
+  "strategy_id": "BuyOrDie",
+  "canonical": {
+   "trades": 843,
+   "mean_ratio_pct": 0.733706654397037,
+   "sum_ratio": 6.185147096567022,
+   "win_rate_pct": 4.6263345195729535
+  },
+  "control": {
+   "trades": 884,
+   "mean_ratio_pct": 0.6878489062608802,
+   "sum_ratio": 6.080584331346182,
+   "win_rate_pct": 4.751131221719457
+  },
+  "detail": {
+   "trades": 884,
+   "mean_ratio_pct": 0.6878526507295821,
+   "sum_ratio": 6.080617432449506,
+   "win_rate_pct": 4.751131221719457
+  }
+ },
+ {
+  "strategy_id": "E0V1E_DCA3",
+  "canonical": {
+   "trades": 407,
+   "mean_ratio_pct": 1.1305370872941538,
+   "sum_ratio": 4.601285945287206,
+   "win_rate_pct": 85.25798525798525
+  },
+  "control": {
+   "trades": 407,
+   "mean_ratio_pct": 1.1304606611667003,
+   "sum_ratio": 4.6009748909484705,
+   "win_rate_pct": 85.25798525798525
+  },
+  "detail": {
+   "trades": 427,
+   "mean_ratio_pct": 0.7918565934643401,
+   "sum_ratio": 3.3812276540927324,
+   "win_rate_pct": 80.56206088992974
+  }
+ },
+ {
+  "strategy_id": "ClucFiatROI",
+  "canonical": {
+   "trades": 1377,
+   "mean_ratio_pct": 0.2624996880603952,
+   "sum_ratio": 3.6146207045916414,
+   "win_rate_pct": 84.67683369644155
+  },
+  "control": {
+   "trades": 1392,
+   "mean_ratio_pct": 0.25759732082803,
+   "sum_ratio": 3.585754705926177,
+   "win_rate_pct": 84.69827586206897
+  },
+  "detail": {
+   "trades": 1400,
+   "mean_ratio_pct": 0.28872488200189694,
+   "sum_ratio": 4.042148348026557,
+   "win_rate_pct": 85.07142857142857
+  }
+ },
+ {
+  "strategy_id": "SMAOffset_Hippocritical_dca_leverage",
+  "canonical": {
+   "trades": 138,
+   "mean_ratio_pct": 2.5561010870966854,
+   "sum_ratio": 3.527419500193426,
+   "win_rate_pct": 100.0
+  },
+  "control": {
+   "trades": 138,
+   "mean_ratio_pct": 2.5561672632265187,
+   "sum_ratio": 3.527510823252596,
+   "win_rate_pct": 100.0
+  },
+  "detail": {
+   "trades": 213,
+   "mean_ratio_pct": 2.481438879086367,
+   "sum_ratio": 5.285464812453962,
+   "win_rate_pct": 99.53051643192488
+  }
+ },
+ {
+  "strategy_id": "UniversalMACD",
+  "canonical": {
+   "trades": 466,
+   "mean_ratio_pct": 0.6752967679821422,
+   "sum_ratio": 3.1468829387967827,
+   "win_rate_pct": 74.67811158798283
+  },
+  "control": {
+   "trades": 466,
+   "mean_ratio_pct": 0.6752967680521537,
+   "sum_ratio": 3.146882939123036,
+   "win_rate_pct": 74.67811158798283
+  },
+  "detail": {
+   "trades": 466,
+   "mean_ratio_pct": 0.713020355130919,
+   "sum_ratio": 3.3226748549100824,
+   "win_rate_pct": 76.39484978540773
+  }
+ },
+ {
+  "strategy_id": "CombinedBinHAndClucV3",
+  "canonical": {
+   "trades": 473,
+   "mean_ratio_pct": 0.6577851614735304,
+   "sum_ratio": 3.1113238137697987,
+   "win_rate_pct": 86.4693446088795
+  },
+  "control": {
+   "trades": 473,
+   "mean_ratio_pct": 0.6577851614659371,
+   "sum_ratio": 3.1113238137338826,
+   "win_rate_pct": 86.4693446088795
+  },
+  "detail": {
+   "trades": 483,
+   "mean_ratio_pct": 0.7796923004219958,
+   "sum_ratio": 3.7659138110382395,
+   "win_rate_pct": 87.99171842650104
+  }
+ },
+ {
+  "strategy_id": "SMAOffset",
+  "canonical": {
+   "trades": 443,
+   "mean_ratio_pct": 0.6599008840246008,
+   "sum_ratio": 2.9233609162289818,
+   "win_rate_pct": 64.55981941309255
+  },
+  "control": {
+   "trades": 443,
+   "mean_ratio_pct": 0.65990088403018,
+   "sum_ratio": 2.923360916253697,
+   "win_rate_pct": 64.55981941309255
+  },
+  "detail": {
+   "trades": 443,
+   "mean_ratio_pct": 0.6599008840415522,
+   "sum_ratio": 2.9233609163040764,
+   "win_rate_pct": 64.55981941309255
+  }
+ },
+ {
+  "strategy_id": "NFI5MOHO_WIP",
+  "canonical": {
+   "trades": 230,
+   "mean_ratio_pct": 1.2042897181706524,
+   "sum_ratio": 2.7698663517925004,
+   "win_rate_pct": 88.26086956521739
+  },
+  "control": {
+   "trades": 230,
+   "mean_ratio_pct": 1.2042897182585155,
+   "sum_ratio": 2.7698663519945854,
+   "win_rate_pct": 88.26086956521739
+  },
+  "detail": {
+   "trades": 241,
+   "mean_ratio_pct": 0.9510952523861537,
+   "sum_ratio": 2.2921395582506303,
+   "win_rate_pct": 88.79668049792531
+  }
+ }
+]

@@ -249,3 +249,153 @@ only by `python -m evidence.execution_robustness` and never edited by hand. Each
 record carries the numbers it was decided on, so the files stay readable without
 `user_data/`; a rebuild without an archive keeps that strategy's existing record.
 Rebuild after every detail batch, then regenerate the status table.
+
+## Amendment 2026-09-20: how large the detail effect is, what causes it, and what to run
+
+Two questions, both answered from runs that exist: how much do the results of a strategy at 5m change when
+it is rerun with 1m detail candles (section 1), and why do the Stage 8b reruns of strategies above 5m deviate
+from their author-timeframe runs (section 3). The recommendation for future work is in section 2. Nothing
+here changes `THRESHOLDS`, the classifier or a status; it is evidence for a decision that stays with the
+owner.
+
+### 1. Test: strategies at 5m, rerun with 1m detail
+
+The rule of 2026-09-19 counts a strategy at or below 5m as having passed the detail check, because its own
+candle is already as fine as the detail candle. That is a rule and not a measurement. To see what it leaves
+out, ten strategies were rerun with `--timeframe-detail 1m`.
+
+**Selection**, computed by `bot/detail_1m_batch.py`, not picked by hand: own timeframe 5m; ranked by the
+validation-window dollar gain of `strategy_total_dollar_gain.csv`; the source declares a trailing stop, a
+custom stoploss or a dynamic ROI (a table of two or more steps, or `custom_roi`); strategies with the same
+trades and gain count once; the first ten. `ClucFiatSlow` is thereby not tested separately from
+`ClucFiatROI`.
+
+**Method.** Each strategy ran through the pipeline's own runner (`profile_smoke.run_one`, so the same config,
+runtime rules and repairs as its canonical run) over the validation window, 2024-01-01 to 2026-08-20, with
+1m detail. Each was compared with (a) its canonical archive and (b) a control: the same runner and window at
+5m without detail candles. The control matters because a window that starts in 2024 does not start in the
+state of a run that began in 2020. Trades are compared by the mean profit ratio per trade, the sum of the
+ratios, and matched by pair and opening candle.
+
+| strategy | canonical n / mean % | control n / mean % | 1m detail n / mean % | 1m vs control |
+|---|---|---|---|---|
+| EI3v2_tag_cofi_green | 757 / 0.889 | 757 / 0.889 | 763 / 0.755 | -15.1 % |
+| BuyOrDie | 843 / 0.734 | 884 / 0.688 | 884 / 0.688 | 0.0 % |
+| E0V1E_DCA3 | 407 / 1.131 | 407 / 1.130 | 427 / 0.792 | -30.0 % |
+| ClucFiatROI | 1377 / 0.262 | 1392 / 0.258 | 1400 / 0.289 | +12.1 % |
+| SMAOffset_Hippocritical_dca_leverage | 138 / 2.556 | 138 / 2.556 | 213 / 2.481 | -2.9 % |
+| UniversalMACD | 466 / 0.675 | 466 / 0.675 | 466 / 0.713 | +5.6 % |
+| CombinedBinHAndClucV3 | 473 / 0.658 | 473 / 0.658 | 483 / 0.780 | +18.5 % |
+| SMAOffset | 443 / 0.660 | 443 / 0.660 | 443 / 0.660 | 0.0 % |
+| NFI5MOHO_WIP | 230 / 1.204 | 230 / 1.204 | 241 / 0.951 | -21.0 % |
+| ZaratustraDCA5 | not comparable, see below | 7322 / 0.123 | timeout at 3600 s | - |
+
+**Result over the nine that finished.** The detail candles alone change the mean profit per trade by -3.6 %
+on average (median 0 %; worse in four, better in five). Pooled over all trades the mean falls from 0.703 % to
+0.693 % (-1.4 %), and the sum of the ratios changes by +1.0 %. Against the canonical runs it is -4.6 % on
+average and -2.9 % pooled. The spread is large: -30 % to +19 %. The largest loss, -30 % (E0V1E_DCA3), is below
+the 50 % that makes a strategy `SENSITIVE` in the classifier. No strategy's mean profit per trade changed its sign.
+
+A runtime difference does not appear in these ten: for seven the control has the same trade count and the same mean as
+the canonical run (the canonical archives are Docker or native runs, the control is native). Two controls differ from the
+canonical run because of the window start, not the runtime: BuyOrDie, which holds positions for months
+(843 canonical against 884 in every 2024 run), and ClucFiatROI (1377 against 1392). Without the control the
+1m effect of BuyOrDie would have read -6.2 % instead of 0 %.
+
+**ZaratustraDCA5 (not comparable, and not measurable at 1m within the ceiling).** The 1m run reached the
+ceiling of 3600 s and is recorded as a timeout; the ceiling is not raised. Its 5m control also does not
+match the canonical run in trade count (7322 against 4161), and the reason is the account, not the candles:
+the canonical run with `stake_amount: "unlimited"` lost 96.7 % of its account over the whole window and
+ended at $33.7, so its later stakes were small (mean $9 in the validation window), which probably limited the
+number of entries (the minimum stake was not checked); the control started with a fresh $1000 (mean stake $67) and placed 76 % more. The profit ratio per
+trade is independent of the stake (0.166 % against 0.123 %), the set of trades is not. The strategy is a DCA
+strategy on futures with long and short trades. The fixed-$1000-per-trade convention of the evaluation shows
++$6,898 for it in the validation window while the account of its own run collapsed; that is a property of the
+convention and of DCA, worth a caveat wherever its dollar figure is quoted. A strategy of this kind cannot be
+compared across windows that start in different account states and cannot be run at 1m inside the ceiling.
+
+### 2. Causes and recommendation
+
+**Where the change comes from** (`bot/detail_1m_causes.py`, the nine strategies, control against 1m,
+5155 trades that both runs opened):
+
+- Almost all of it is on trades both runs opened, at the exit. Only 35 trades exist only in the control and 56
+  only at 1m; their sums are +0.74 and +0.92 against -1.97 from the common trades.
+- Trailing stops are the main cause. For EI3v2 361 trades keep the exit reason `trailing_stop_loss` and lose
+  0.93 of a total change of -1.07 in the ratio sum; for E0V1E_DCA3 242 trades explain -1.06 of -1.08. The sign
+  is not fixed: for CombinedBinHAndClucV3 28 trailing trades gain +0.61. The coarse candle does not know the
+  order of the high and the low inside it, which is the likely reason; what was measured is the effect, not the
+  mechanism inside freqtrade.
+- Exits that depend on the profit do the same: NFI5MOHO_WIP (`signal_profit_*`) changes on 31 % of its trades,
+  -0.29 % per trade.
+- A dynamic ROI moves little: UniversalMACD +0.18 over 119 ROI trades.
+- A fixed stoploss and a fixed target change nothing: BuyOrDie and SMAOffset show 0 % on every trade. BuyOrDie
+  has a trailing stop, but it only starts at +36 % and never triggers in practice.
+- A change of the entry set is small, larger for the two DCA strategies (E0V1E_DCA3, SMAOffset_Hippocritical_
+  dca_leverage), where a different exit moves the next fill.
+
+**Recommendation for strategies that are tested in the future.**
+
+1. Screen at the granularity that is already run: the 5m detail rerun for strategies above 5m, the own
+   timeframe for strategies at or below 5m. Do not apply a flat discount: the single strategies moved between
+   -30 % and +19 %, so a discount would correct a third of them in the wrong direction. If a number is needed
+   for planning, the pooled effect of 1m over 5m is about -1 % to -3 % of the mean profit per trade.
+2. Run 1m detail for a strategy that reaches a shortlist or a specialist designation and whose source declares
+   a trailing stop, an exit that depends on the profit (`exit_profit_only`, `custom_exit`/`custom_sell`), or
+   position adjustment. A strategy with only a fixed stoploss and a fixed or table ROI does not need it. The
+   1m runs took 1 to 2 minutes for most strategies (ClucFiatROI 7, BuyOrDie 19), so a shortlist of a few dozen is
+   a matter of hours.
+3. Compare a 1m run with a 5m control in the same window and runtime, never with a run that started at another
+   date, for strategies that hold positions for months or compound their account.
+4. Do not rank strategies with a trailing stop or a profit-dependent exit by differences smaller than about
+   30 % of their mean profit per trade; the 5m figure does not resolve them.
+5. A strategy that does not finish at 1m within the ceiling is recorded as `1m not measurable`, its 5m figure
+   stays with that flag, and the ceiling is not raised.
+6. Consider extending the rule of 2026-09-19 to require a 1m rerun for a strategy at or below 5m when its
+   source declares one of the mechanisms of point 2. This is a proposal; the current rule stands until decided.
+
+### 3. Test: the existing 5m detail reruns of strategies above 5m
+
+`bot/detail_5m_deviation.py` compares, for every strategy with a measured 5m detail run, the detail archive
+with the canonical archive over the validation window and matches trades by pair and opening candle. 195
+strategies have both runs and trades in the validation window: 157 `PASS` and 38 `SENSITIVE`. The report is
+`results/regime/rotation_bot/detail_5m_deviation.json`.
+
+- **The bulk does not move.** Median change of the mean profit per trade: 0.000 pp over all 195 and over the 157
+  `PASS`. For the 157
+  `PASS`, the strategies with a mean of at least 0.3 % per trade (83 of them) have a median absolute change of
+  1.5 % and 11 % of them change by more than 20 %. For the 38 `SENSITIVE` (16 with such a mean) the median is
+  70 % and 88 % exceed 20 %.
+- **What separates them is the declared mechanism.** Strategies whose source declares none of trailing stop,
+  custom stoploss and profit-dependent exit (99): median absolute change 0.2 %, 6 % above 20 %. Strategies with a
+  trailing stop (61, of these 26 with a mean of 0.3 % or more): median 18.3 %, 46 % above 20 %. Among the 38
+  `SENSITIVE`, 23 declare a trailing stop, 24 a dynamic ROI, 10 a profit-dependent exit, 8 a custom stoploss, 3
+  position adjustment; one declares none of these.
+- **The dominant cause on the common trades of the `SENSITIVE`:** 18 of 38 trailing stop with an unchanged exit
+  reason (a different fill price), 7 a changed entry set, 5 ROI with an unchanged reason (timing and price), 2
+  stoploss to ROI, and single cases. The same pattern as at 1m: the trailing fill decides, the ROI table and
+  the entry set follow.
+- **The author timeframe matters.** Median absolute change of the mean per trade, strategies with a mean of at
+  least 0.3 %: 15m 4.7 %, 1h 8.3 %, 4h 0.0 % (5 % above 20 %), 1d 16.3 % (47 % above 20 %). The coarse daily
+  candle leaves the most room; the 4h group has a median of 0 % but 5 % of it above 20 %. The likely reason is the candle size, which was not tested separately.
+- **Percentages of a small base mislead.** The largest relative changes (Chispei, mabStra, Inverse) are on means
+  near zero. The comparison above therefore uses percentage points and only counts strategies with a mean of at
+  least 0.3 % per trade when it quotes a relative change.
+
+**The runtime confound.** Of the 195, 157 baselines were made in another runtime than their detail run
+(`same_runtime` false), among them 33 of the 38 `SENSITIVE`. The `PASS` strategies show that the runtime alone
+moves little: same runtime (31) and different runtime (126) both have a median change of 0.000 pp, and the share
+above 20 % is 13 % against 10 %. That does not prove it for the 33 `SENSITIVE`. The five `SENSITIVE` with the
+same runtime (AdaptiveRegime, MomentumCCITrendStrategy, PatternRecognition, PolymarketMomentumStrategy,
+TrendBreakout, all on 4h or 1d) show the same causes: three trailing fill, one a changed entry set, one a
+stoploss that became a trailing exit. The other 33 are "sensitive, cause likely the detail candles, runtime not
+excluded". A control run of each in the runtime of its detail run without detail candles would settle it; that
+is open. Until then a `SENSITIVE` of the 33 stays as classified and carries `control_run_needed` in its record.
+
+### 4. Reproduction
+
+`python -m bot.detail_1m_batch` (the ten runs), `python -m bot.detail_1m_batch --control` (the 5m controls),
+`python -m bot.detail_1m_report` (the table), `python -m bot.detail_1m_causes` (section 2),
+`python -m bot.detail_5m_deviation` (section 3). Results under `results/regime/rotation_bot/`. The runs used
+`profile_smoke.run_one` with `artifact_key` `val_1m` and `val_5m`, so their archives sit beside the canonical
+ones in `user_data/profile_smoke/` and replace none of them.
