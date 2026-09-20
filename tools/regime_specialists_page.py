@@ -13,8 +13,10 @@ computed here and filled into `{{token}}` slots of `tools/REGIME_SPECIALISTS.tem
 a claim that depends on the result (that the fully consistent candidates are all
 FastSupertrend variants, for one) is written only when the data still shows it.
 
-The Model 1/2/3 sections and the top-10 selection are snapshots of the gated runs and
-live as JSON under `tools/regime_specialists_data/`; they are not recomputed here.
+It also writes `regime_gating.html`, the second page: the Model 1/2/3 sections and the top-10
+selection are snapshots of the gated runs and live as JSON under
+`tools/regime_specialists_data/`; they are not recomputed here. Both pages share
+`tools/regime_pages_common.css` and `tools/regime_pages_common.js`.
 
 The Stage 8b annotation is a column and changes no ranking: a row is marked `PASS` when
 the strategy passed the 5m detail rerun (measured, or by the owner rule at or below 5m)
@@ -35,11 +37,18 @@ import pandas as pd
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
-from evidence import execution_robustness as er  # noqa: E402
+from evidence import execution_robustness as er, profile_full_window  # noqa: E402
 
 SPEC = os.path.join(ROOT, "results", "regime", "specialist_evaluation")
 DATA = os.path.join(ROOT, "tools", "regime_specialists_data")
 TEMPLATE = os.path.join(ROOT, "tools", "REGIME_SPECIALISTS.template.html")
+GATING_TEMPLATE = os.path.join(ROOT, "tools", "REGIME_GATING.template.html")
+COMMON_CSS = os.path.join(ROOT, "tools", "regime_pages_common.css")
+COMMON_JS = os.path.join(ROOT, "tools", "regime_pages_common.js")
+DETAIL_TOTALS = os.path.join(SPEC, "detail_5m_total_dollar_gain.csv")
+# The two artifacts link to each other. The gating page is published first; its address goes here.
+MAIN_URL = "https://claude.ai/artifact/6PoC2NwYCruR6UoJ81Bgia"
+GATING_URL = "https://claude.ai/artifact/LjAu8PjEDrZXdK8vnAbcZM"
 STATUS = os.path.join(ROOT, "STRATEGY_STATUS.csv")
 PROFILES = os.path.join(ROOT, "evidence", "EXECUTION_PROFILES.csv")
 POOLED = os.path.join(ROOT, "results", "regime", "full_backtest_manifest.json")
@@ -89,6 +98,7 @@ class Robustness(object):
         with io.open(STATUS, newline="", encoding="utf-8-sig") as handle:
             self.table = {r["strategy_id"]: r for r in csv.DictReader(handle)}
         self.cost = _read_json(er.COST_OUTPUT)["results"]
+        self.record = _read_json(er.ROBUSTNESS_OUTPUT)["results"]
 
     def status(self, strategy):
         return (self.table.get(strategy) or {}).get("execution_robustness_status") or "NA"
@@ -103,8 +113,11 @@ class Robustness(object):
         xs = self.status(strategy)
         cost = er.validation_total(self.cost.get(strategy), "btc")
         ok = xs == "PASS" and cost["status"] == "PASS"
+        record = self.record.get(strategy) or {}
+        basis = {er.BASIS_RULE: "rule", er.BASIS_MEASURED: "measured"}.get(record.get("basis"), "")
         return {"xs": xs, "ok": 1 if ok else 0, "cv": cost["status"],
-                "cm": cost["mean_profit_pct"], "c10": cost["stressed_pct"]}
+                "cm": cost["mean_profit_pct"], "c10": cost["stressed_pct"],
+                "tf": record.get("main_timeframe") or "", "xb": basis}
 
     def universal(self, strategy):
         xs = self.status(strategy)
@@ -133,6 +146,42 @@ def confirmation_lookups():
                               None if pd.isna(r.score) else round(float(r.score), 4),
                               int(r.phases_better_in_both), int(r.phases_confirmed))
     return rows, uni
+
+
+def confirmed_phase_counts():
+    """Per strategy: in how many coin and BTC phases it is confirmed."""
+    frame = pd.read_csv(os.path.join(SPEC, "discovery_vs_validation.csv"))
+    done = frame[frame["confirmed"]]
+    counts = {}
+    for kind in ("coin", "btc"):
+        counts[kind] = done[done["kind"] == kind].groupby("strategy_id").size().to_dict()
+    return counts
+
+
+def total_rows(gain, robustness, uconfirm):
+    """The whole-window table: author timeframe and 5m rerun side by side, robustness and
+    confirmation. The 5m side comes from regime/detail_totals.py, never recomputed here."""
+    if not os.path.isfile(DETAIL_TOTALS):
+        raise SystemExit("run `python -m regime.detail_totals` first")
+    d5 = pd.read_csv(DETAIL_TOTALS).set_index("strategy_id")
+    phases = confirmed_phase_counts()
+    rows = []
+    for rank, row in enumerate(gain.to_dict(orient="records"), start=1):
+        sid = row["strategy_id"]
+        record = {k: clean(v) for k, v in row.items()}
+        record["rk"] = rank
+        record.update(robustness.total(sid))
+        if sid in d5.index:
+            d = d5.loc[sid]
+            record.update(d_trades=int(d["trades"]), d_gain=clean(d["dollar_gain_usd"]),
+                          d_bench=clean(d["benchmark_dollar_gain_usd"]),
+                          d_excess=clean(d["excess_dollar_gain_usd"]),
+                          d_cm=clean(d["cost_mean_pct"]), d_c10=clean(d["cost_stressed_pct"]))
+        ur, us, up, _ = uconfirm.get(sid, (-1, None, 0, 0))
+        cn, bn = phases["coin"].get(sid, 0), phases["btc"].get(sid, 0)
+        record.update(ur=ur, us=us, up=up, cn=cn, bn=bn, cq=100 * max(ur, 0) + 10 * cn + bn)
+        rows.append(record)
+    return rows
 
 
 # ------------------------------------------------------------------ data exports
@@ -205,7 +254,7 @@ def native_stats(strategy_ids):
     return rows, len(rejected)
 
 
-def discovery_blobs(robustness):
+def discovery_blobs(robustness, confirm):
     """Discovery against validation (regime/discovery_comparison.py), for the page.
 
     The scatter carries one point per strategy, kind and phase that clears the floor in
@@ -245,8 +294,24 @@ def discovery_blobs(robustness):
                     "val_trades": None if pd.isna(row["trades_val"]) else int(row["trades_val"]),
                     "val_episodes": None if pd.isna(row["episodes_val"]) else int(row["episodes_val"]),
                     "ok": robustness.row(row["strategy_id"], kind, state)["ok"]})
+                cf, sc = confirm.get((kind, row["strategy_id"], state), (0, None))
+                rows[-1]["cf"], rows[-1]["sc"] = cf, sc
             top[kind][state] = rows
     return scatter, top, _read_json(summary)
+
+
+def top10_annotation(robustness, confirm):
+    """Robustness and confirmation of the Model 0 rows behind the gating page's top-10 selection."""
+    with io.open(os.path.join(DATA, "top10byregime.json"), encoding="utf-8") as handle:
+        selection = json.load(handle)
+    out = {}
+    for state, block in selection.items():
+        for candidate in block["candidates"]:
+            sid = candidate["strategy_id"]
+            row = robustness.row(sid, "coin", state)
+            cf, sc = confirm.get(("coin", sid, state), (0, None))
+            out["%s|%s" % (sid, state)] = {"ok": row["ok"], "xs": row["xs"], "cf": cf, "sc": sc}
+    return out
 
 
 def dca_strategies():
@@ -270,7 +335,45 @@ def forced_exits():
 
 
 # ------------------------------------------------------------------ facts and text
-def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, futures, dca, rows):
+def window_facts(summary):
+    """The two analysis windows, from the constants the evaluation itself uses."""
+    from regime import attribution, specialist_evaluation
+    day = pd.Timedelta(days=1)
+    disc_start = attribution.START
+    disc_end = specialist_evaluation.VALIDATION_START - day
+    val_start = specialist_evaluation.VALIDATION_START
+    val_end = attribution.END - day
+
+    def iso(ts):
+        return ts.strftime("%Y-%m-%d")
+
+    def code(value):
+        return "%s-%s-%s" % (value[:4], value[4:6], value[6:8])
+
+    bt = profile_full_window.TIMERANGE
+    return {"disc_start": iso(disc_start), "disc_end": iso(disc_end),
+            "val_start": iso(val_start), "val_end": iso(val_end),
+            "disc_days": de_int((disc_end - disc_start).days + 1),
+            "val_days": de_int((val_end - val_start).days + 1),
+            "disc_trades": de_int(summary["discovery_trades"]),
+            "val_trades": de_int(summary["validation_trades"]),
+            "bt_spot": code(bt["spot"].split("-")[0]), "bt_futures": code(bt["futures"].split("-")[0])}
+
+
+def detail_check_text():
+    """The 5m totals are priced by the evaluation's own code; say so only while the check passes."""
+    import contextlib
+    from regime import detail_totals
+    with contextlib.redirect_stdout(io.StringIO()):
+        ok = detail_totals.check()
+    if not ok:
+        return ('<b>Achtung:</b> die Gegenprobe (<code class="mono">regime/detail_totals.py --check</code>) stimmt '
+                'nicht mehr mit den Ranglisten überein; die 5m-Zahlen sind nicht belastbar.')
+    return ('Die Rechnung wurde an Basis-Archiven gegengeprüft: dieselben Funktionen reproduzieren die Zahlen der '
+            'Autor-Timeframe-Seite auf die Stelle genau (<code class="mono">regime/detail_totals.py --check</code>).')
+
+
+def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, futures, dca, rows, summary, total):
     manifest = _read_json(os.path.join(SPEC, "evaluation_manifest.json"))
     attribution = _read_json(ATTRIBUTION)
     pooled = _read_json(POOLED)["results"]
@@ -364,7 +467,11 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
         "tbl_btc": de_int(len(btc)), "tbl_coin": de_int(len(coin)),
         # Stamped at generation, always: a page that carries an old date reads as current.
         "generated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "n_d5": sum(1 for r in total if r.get("d_trades") is not None),
+        "gating_url": GATING_URL, "main_url": MAIN_URL,
+        "d5_check": detail_check_text(),
     }
+    facts.update(window_facts(summary))
     contradictions = int(((btc["dollar_gain_usd"] > btc["benchmark_dollar_gain_usd"]) & (btc["excess_return"] < 0)).sum()
                          + ((coin["dollar_gain_usd"] > coin["benchmark_dollar_gain_usd"]) & (coin["excess_return"] < 0)).sum())
     facts["contradiction_text"] = ("kein einziges Mal mehr" if contradictions == 0
@@ -421,7 +528,7 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
         % (n_eval, len(bull_lcb), "hat" if len(bull_lcb) == 1 else "haben",
            ", ".join("<code class=\"mono\">%s</code>" % s for s in bull_lcb) or "keine"))
 
-    text["callout_update"] = (
+    text["callout_recalc"] = (
         '<div class="callout warn"><span class="dot">&#9888;</span><div><b>Neu berechnet am 2026-09-20.</b> '
         'Vier beim Intake gelöschte Duplikate (<code class="mono">chispei</code>, <code class="mono">MyStratV1</code>, '
         '<code class="mono">Combined_NFIv7_SMA_bAdBoY_20211204</code>, <code class="mono">Combined_NFIv7_SMA_Rallipanos_20210707</code>) '
@@ -429,8 +536,10 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
         'in beiden Ranglisten neben seinem Vertreter. Zugleich bezieht die Auswertung jetzt alle seit dem 15.09. gemessenen '
         'Vollfenster-Läufe ein (%d statt 584 Strategien). Die Zahlen weichen deshalb von der Fassung vom 15.09. ab, und die '
         'Abweichung stammt überwiegend aus den neu gemessenen Strategien, nicht aus dem Entfernen der Duplikate. '
-        'Der Abschnitt zu Modell 1-3 und die Top-10-Auswahl darunter sind Momentaufnahmen der gegateten Läufe und wurden nicht '
-        'neu gerechnet.</div></div>\n'
+        'Der Abschnitt zu Modell 1-3 mit der Top-10-Auswahl steht im eigenen Artefakt Gating-Hypothese; er ist eine '
+        'Momentaufnahme der gegateten Läufe und wurde nicht neu gerechnet.</div></div>'
+        % n_eval)
+    text["callout_robust"] = (
         '<div class="callout info"><span class="dot">&#8505;</span><div><b>Robustheit (Stufe 8b), in jeder Tabelle mit Marktphasen-Ergebnissen.</b> '
         'Ein Spezialist gilt erst als <i>verified</i>, wenn die Strategie den 5m-Detaillauf besteht und der Gewinn im '
         '<i>behaupteten</i> ADX-Zustand einen zusätzlichen Slippage von 0,1 %% je Seite übersteht (Validierungsfenster, '
@@ -438,7 +547,7 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
         'Eigentümers als bestanden; das ist eine Regel und keine Messung. Die Spalte ändert kein Ranking. '
         'Stand: %d der %d Strategien sind im 5m-Lauf <code class="mono">sensitiv</code>, %s. <b>Rangfolge und Robustheit sind getrennte Aussagen:</b> Ein Rang 1 ohne PASS ist nur der beste '
         'Wert einer Strategie in dieser Phase, kein verifizierter Spezialist.</div></div>'
-        % (n_eval, sensitive, n_eval, run_state))
+        % (sensitive, n_eval, run_state))
     return facts, text, manifest
 
 
@@ -480,7 +589,24 @@ def fill(template, facts, text):
     return re.sub(r"\{\{([a-z_0-9]+)\}\}", lambda m: mapping[m.group(1)], template)
 
 
-def build(destination, skip_native=False):
+def render_page(template_path, destination, facts, text, blobs):
+    template = io.open(template_path, encoding="utf-8").read()
+    template = fill(template, facts, text)
+    for marker, path in (("/*__COMMON_CSS__*/", COMMON_CSS), ("/*__COMMON_JS__*/", COMMON_JS)):
+        assert template.count(marker) == 1, marker
+        template = template.replace(marker, io.open(path, encoding="utf-8").read())
+    for name, payload in blobs.items():
+        token = "__%s_JSON__" % name
+        assert template.count(token) <= 1, token
+        template = template.replace(token, payload)
+    left = re.findall(r"__[A-Z0-9]+_JSON__", template)
+    assert not left, "blobs the template asks for were not supplied: %s" % ", ".join(sorted(set(left)))
+    assert len(re.findall(r"<section[ >]", template)) == template.count("</section>")
+    with io.open(destination, "w", encoding="utf-8", newline="\n") as handle:
+        handle.write(template)
+
+
+def build(destination, gating_destination, skip_native=False):
     robustness = Robustness()
     btc = pd.read_csv(os.path.join(SPEC, "btc_specialist_table.csv"))
     coin = pd.read_csv(os.path.join(SPEC, "coin_specialist_table.csv"))
@@ -491,11 +617,7 @@ def build(destination, skip_native=False):
     rows = {"btc": regime_rows(btc, "btc_regime", "btc", robustness, confirm),
             "coin": regime_rows(coin, "coin_regime", "coin", robustness, confirm),
             "universal": universal_rows(universal, coin, robustness, uconfirm)}
-    gain_rows = []
-    for row in gain.to_dict(orient="records"):
-        record = {k: clean(v) for k, v in row.items()}
-        record.update(robustness.total(row["strategy_id"]))
-        gain_rows.append(record)
+    gain_rows = total_rows(gain, robustness, uconfirm)
     if skip_native:
         native, rejected = [], 0
     else:
@@ -506,39 +628,38 @@ def build(destination, skip_native=False):
                                   "strategy_id"].unique().tolist())
     dca = dca_strategies()
 
+    dv_scatter, dv_top, dv_summary = discovery_blobs(robustness, confirm)
     facts, text, _ = facts_and_text(btc, coin, universal, gain, native or [{}], rejected,
-                                    robustness, futures, dca, rows)
-    template = io.open(TEMPLATE, encoding="utf-8").read()
-    template = fill(template, facts, text)
-
-    dv_scatter, dv_top, dv_summary = discovery_blobs(robustness)
+                                    robustness, futures, dca, rows, dv_summary, gain_rows)
     static = {name: io.open(os.path.join(DATA, name.lower() + ".json"), encoding="utf-8").read().strip()
               for name in ("GATEDCOMPARE", "GATEDDETAIL", "TOP10BYREGIME", "COINEPISODES", "COINEPISODECOUNTS")}
-    blobs = {
+    shared = {"FUTURESSTRATEGIES": _dump(futures), "DCASTRATEGIES": _dump(dca)}
+    main_blobs = {
         "REGIMEFULL": _dump({"btc": rows["btc"], "coin": rows["coin"]}),
         "UNIVERSAL": _dump(rows["universal"]), "TOTALGAIN": _dump(gain_rows),
         "DVSCATTER": _dump(dv_scatter), "DVTOP": _dump(dv_top), "DVSUMMARY": _dump(dv_summary),
-        "FTSTATS": _dump(native), "FUTURESSTRATEGIES": _dump(futures), "DCASTRATEGIES": _dump(dca),
-    }
-    blobs.update(static)
-    for name, payload in blobs.items():
-        token = "__%s_JSON__" % name
-        assert template.count(token) == 1, token
-        template = template.replace(token, payload)
-    assert len(re.findall(r"<section[ >]", template)) == template.count("</section>")
-    with io.open(destination, "w", encoding="utf-8", newline="\n") as handle:
-        handle.write(template)
+        "FTSTATS": _dump(native), "COINEPISODES": static["COINEPISODES"],
+        "COINEPISODECOUNTS": static["COINEPISODECOUNTS"]}
+    main_blobs.update(shared)
+    gating_blobs = {"GATEDCOMPARE": static["GATEDCOMPARE"], "GATEDDETAIL": static["GATEDDETAIL"],
+                    "TOP10BYREGIME": static["TOP10BYREGIME"],
+                    "TOP10ANNOT": _dump(top10_annotation(robustness, confirm))}
+    gating_blobs.update(shared)
+    render_page(TEMPLATE, destination, facts, text, main_blobs)
+    render_page(GATING_TEMPLATE, gating_destination, facts, text, gating_blobs)
     return facts
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", default=os.path.join(ROOT, "regime_specialists.html"))
+    parser.add_argument("--gating-out", default=os.path.join(ROOT, "regime_gating.html"))
     parser.add_argument("--skip-native", action="store_true",
                         help="leave the Freqtrade-native block empty (fast, for layout work)")
     args = parser.parse_args(argv)
-    facts = build(args.out, args.skip_native)
-    print("built %s (%.1f KB)" % (args.out, os.path.getsize(args.out) / 1024.0))
+    facts = build(args.out, args.gating_out, args.skip_native)
+    for path in (args.out, args.gating_out):
+        print("built %s (%.1f KB)" % (path, os.path.getsize(path) / 1024.0))
     for key in ("n_eval", "n_eligible", "n_universal", "n_consistent", "n_verified_rows_btc",
                 "n_verified_rows_coin", "n_verified_universal"):
         print("  %-22s %s" % (key, facts[key]))
