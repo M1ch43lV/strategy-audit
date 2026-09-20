@@ -215,6 +215,8 @@ def discovery_blobs(robustness):
                     "val_excess": clean(row["excess_return_val"]) if on_floor else None,
                     "val_rank": rank.get(row["strategy_id"]) if on_floor else None,
                     "val_rows": len(val),
+                    "val_trades": None if pd.isna(row["trades_val"]) else int(row["trades_val"]),
+                    "val_episodes": None if pd.isna(row["episodes_val"]) else int(row["episodes_val"]),
                     "ok": robustness.row(row["strategy_id"], kind, state)["ok"]})
             top[kind][state] = rows
     return scatter, top, _read_json(summary)

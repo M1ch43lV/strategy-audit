@@ -263,11 +263,11 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
     <span><b>{{n_eval}}</b> von {{n_eligible}} eligiblen Strategien</span>
     <span><b>{{trades_total}}</b> Trades</span>
     <span>Validierungsfenster ab <b>2024-01-01</b></span>
-    <span><b>{{rows_btc}}</b>/<b>{{rows_coin}}</b> VALIDATION-Zeilen (BTC/Coin)</span>
+    <span><b>{{rows_btc}}</b>/<b>{{rows_coin}}</b> Strategien im VALIDATION-Tier, je Marktphase gezählt (BTC/Coin)</span>
     <span><b>{{n_universal}}</b> Universal-Kandidaten</span>
     <span><b>{{n_consistent}}</b> davon vollständig konsistent</span>
     <span><b>{{n_gain_pos}}</b>/<b>{{n_gain_rows}}</b> mit positivem Gesamtgewinn in Dollar</span>
-    <span><b>{{n_verified_rows_btc}}</b>/<b>{{n_verified_rows_coin}}</b> Zeilen mit Robustheits-PASS (BTC/Coin)</span>
+    <span><b>{{n_verified_rows_btc}}</b>/<b>{{n_verified_rows_coin}}</b> davon mit Robustheits-PASS (BTC/Coin)</span>
   </div>
 </header>
 
@@ -280,7 +280,7 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
 <div class="callout warn"><span class="dot">&#9888;</span><div><b>Rang 1 ist bei dieser Stichprobengröße kein Gesamt-Sieger-Signal.</b> Je Regime-Spalte konkurrieren {{cand_range}} VALIDATION-Kandidaten. Ein einzelner erster Platz wird leicht von einer dünnen Stichprobe mit zufällig gutem Mittelwert gewonnen (z. B. 12-40 Trades). Belastbarer sind die Universal-Konsistenz und der Median-Excess-Return über alle vier Regime.</div></div>
 
 <div class="stats">
-  <div class="stat"><div class="n">{{n_gain_rows}} / {{n_eval}}</div><div class="l">Strategien mit mindestens einer Regime-Zeile im Validierungsfenster</div></div>
+  <div class="stat"><div class="n">{{n_gain_rows}} / {{n_eval}}</div><div class="l">Strategien mit mindestens einer Marktphase im Validierungsfenster</div></div>
   <div class="stat"><div class="n">{{n_floor_coin}}</div><div class="l">erreichen den Specialist-Floor in mindestens einem Coin-Regime</div></div>
   <div class="stat"><div class="n">{{n_universal}}</div><div class="l">Universal-Kandidaten (alle 4 Coin-Regime auf VALIDATION-Tier)</div></div>
   <div class="stat"><div class="n">{{n_consistent}}</div><div class="l">schlagen den Benchmark in wirklich jedem der vier Coin-Regime</div></div>
@@ -311,21 +311,30 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
 <section class="robust" id="dv-section">
   <div class="sectionhead">
     <h2>Discovery gegen Validation: hält, was sich bewährt hat?</h2>
-    <span class="hint">dieselbe Auswertung auf beiden Zeitfenstern, Zeile für Zeile</span>
+    <span class="hint">dieselbe Auswertung auf beiden Zeitfenstern, Strategie für Strategie</span>
   </div>
-  <p class="secintro">Für jede Kombination aus Strategie und Marktphase wird der Excess-Return einmal aus den Trades der Discovery (vor 2024-01-01) und einmal aus denen der Validation gerechnet, mit derselben Formel, demselben Benchmark und demselben Floor (mindestens 5 Episoden und 10 Trades <i>im jeweiligen Fenster</i>). Verglichen werden die Zeilen, die den Floor in <b>beiden</b> Fenstern erreichen. Nichts aus der Discovery fließt in die Ranglisten; das ist ein Gegentest, keine Auswahl.</p>
+  <p class="secintro">Für jede Strategie und jede Marktphase wird der Excess-Return einmal aus den Trades der Discovery (vor 2024-01-01) und einmal aus denen der Validation gerechnet, mit derselben Formel, demselben Benchmark und demselben Floor (mindestens 5 Episoden und 10 Trades <i>im jeweiligen Fenster</i>). Verglichen werden die Strategien, die den Floor in der jeweiligen Marktphase in <b>beiden</b> Fenstern erreichen. Nichts aus der Discovery fließt in die Ranglisten; das ist ein Gegentest, keine Auswahl.</p>
   <div class="callout info"><span class="dot">&#8505;</span><div id="dv-lead"></div></div>
 
   <h3>Beständigkeit je Marktphase</h3>
   <div class="tablebox">
     <table class="plain">
-      <thead><tr><th>Regime</th><th>Phase</th><th class="num">Zeilen mit Floor in beiden</th><th class="num" title="Spearman: 1 = gleiche Reihenfolge in beiden Fenstern, 0 = kein Zusammenhang">Rang-Korrelation ρ</th><th class="num" title="Anteil der Zeilen mit positivem Excess in der Validation, wenn er in der Discovery positiv war">Validation positiv | Discovery positiv</th><th class="num" title="dasselbe, wenn der Excess in der Discovery nicht positiv war">| Discovery nicht positiv</th><th class="num" title="Anteil positiv in der Validation über alle Zeilen">Basisrate</th><th class="num" title="Median in der Validation der zehn Prozent besten Zeilen der Discovery, gegen den Median aller Zeilen">Discovery-Top-10 % in Validation (Median)</th><th class="num" title="Anteil positiv in der Validation, wenn die untere Vertrauensgrenze (LCB) in der Discovery über 0 lag">Validation positiv | Discovery-LCB &gt; 0</th></tr></thead>
+      <thead><tr><th>Regime</th><th>Phase</th><th class="num" title="Strategien, die den Floor in dieser Marktphase in beiden Fenstern erreichen. D = Strategien mit Floor in der Discovery, V = in der Validation.">Strategien mit Floor in beiden Fenstern</th><th class="num" title="Spearman: 1 = dieselbe Reihenfolge in beiden Fenstern, 0 = kein Zusammenhang">Rang-Korrelation &rho;</th><th class="num" title="Von den Strategien, die in der Discovery besser als Buy-and-Hold waren: Anteil, der es in der Validation ebenfalls war. In Klammern: Anzahl der Strategien in dieser Gruppe.">Discovery besser als B&amp;H &rarr; Validation auch besser</th><th class="num" title="Von den Strategien, die in der Discovery nicht besser als Buy-and-Hold waren: Anteil, der es in der Validation war.">Discovery nicht besser &rarr; Validation besser</th><th class="num" title="Anteil aller verglichenen Strategien, die in der Validation besser als Buy-and-Hold waren, ohne die Discovery zu kennen.">Basisrate</th><th class="num" title="Die 10 % Strategien mit dem höchsten Excess in der Discovery: ihr Median-Excess in der Validation, daneben der Median aller Strategien.">Beste 10 % der Discovery: Median in Validation</th><th class="num" title="Von den Strategien, deren untere 95-%-Vertrauensgrenze (LCB) in der Discovery über 0 lag: Anteil, der in der Validation besser als Buy-and-Hold war.">Discovery-LCB &gt; 0 &rarr; Validation besser</th></tr></thead>
       <tbody id="dv-table"></tbody>
     </table>
   </div>
+  <div class="callout info" style="margin-top:12px;"><span class="dot">&#8505;</span><div>
+    <b>Die Spalten erklärt.</b>
+    <p style="margin:8px 0 0;max-width:none;"><b>&bdquo;Besser als B&amp;H&ldquo; (vorher &bdquo;positiv&ldquo;)</b> heißt: Mehrgewinn gegenüber Buy-and-Hold, also Excess-Return über 0. Es heißt nicht &bdquo;stimmt überein&ldquo;. Der Excess-Return einer Strategie in einer Marktphase ist ihre Rendite in den Episoden dieser Phase minus die Rendite von Buy-and-Hold über dieselben Episoden.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Discovery besser als B&amp;H &rarr; Validation auch besser.</b> Man nimmt alle Strategien, die in der Discovery Buy-and-Hold in dieser Phase geschlagen haben, und zählt, wie viele davon es in der Validation wieder tun. 81&nbsp;% heißt: vier von fünf haben es wiederholt. Die Zahl in Klammern ist die Größe der Gruppe; bei 5 oder 16 Strategien sagt der Prozentwert kaum etwas.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Discovery nicht besser &rarr; Validation besser.</b> Dasselbe für die übrigen Strategien: Wie viele waren in der Discovery nicht besser und wurden es in der Validation? Ein niedriger Wert hier bei hohem Wert links bedeutet: Wer in der Discovery nicht überzeugte, tat es meist auch später nicht.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Basisrate.</b> Der Anteil aller verglichenen Strategien dieser Phase, die in der Validation besser als Buy-and-Hold sind, ohne die Discovery zu kennen. Sie ist die Vergleichslinie: Nur was deutlich darüber liegt, zeigt Beständigkeit. In fallenden Phasen ist sie hoch, weil dort fast jeder Long-Handel weniger verliert als Halten. Beispiel BTC-Abwärts: Basisrate <span id="ex-base"></span>, die Discovery-Besseren erreichen <span id="ex-given"></span>, also <span id="ex-lift"></span> Prozentpunkte darüber; nur dieser Abstand ist Beständigkeit.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Beste 10&nbsp;% der Discovery: Median in Validation.</b> Man sortiert die Strategien nach ihrem Excess in der Discovery und nimmt die besten 10&nbsp;%. Angezeigt ist deren mittlerer Excess in der Validation, dahinter der Median aller Strategien. Beispiel BTC-Aufwärts: <b><span id="ex-top"></span> vs <span id="ex-all"></span></b> heißt, die Discovery-Besten haben in der Validation im Median einen Excess von <span id="ex-top2"></span> gegenüber Buy-and-Hold, alle zusammen <span id="ex-all2"></span>. Der Abstand beträgt <span id="ex-gap"></span> Prozentpunkte <span id="ex-dir"></span>. Ist die erste Zahl größer als die zweite, hilft die Auswahl in der Discovery; ein negativer Wert heißt schlechter als Buy-and-Hold.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Discovery-LCB &gt; 0 &rarr; Validation besser.</b> LCB ist die untere 95-%-Vertrauensgrenze des mittleren Excess je Episode. Liegt sie über 0, war der Vorsprung gegenüber Buy-and-Hold in der Discovery statistisch belastbar und nicht nur ein Mittelwert aus wenigen Episoden. Die Spalte zeigt, wie viele dieser Strategien es in der Validation ebenfalls waren.</p>
+  </div></div>
 
-  <h3>Jede Zeile ein Punkt: Discovery gegen Validation</h3>
-  <p class="secintro">Auf der waagerechten Achse der Excess-Return der Discovery, auf der senkrechten der der Validation. Punkte auf der Diagonale hielten ihren Wert genau, Punkte im oberen rechten Viertel waren in beiden Fenstern besser als Buy-and-Hold. Hervorgehoben sind Zeilen mit Robustheits-PASS (Stufe 8b).</p>
+  <h3>Jede Strategie ein Punkt: Discovery gegen Validation</h3>
+  <p class="secintro">Auf der waagerechten Achse der Excess-Return der Discovery, auf der senkrechten der der Validation. Punkte auf der Diagonale hielten ihren Wert genau, Punkte im oberen rechten Viertel waren in beiden Fenstern besser als Buy-and-Hold. Hervorgehoben sind Strategien mit Robustheits-PASS (Stufe 8b).</p>
   <div class="rtabs" id="dv-tabs">
     <div class="rtab active" data-kind="coin">Coin-Regime</div>
     <div class="rtab" data-kind="btc">BTC-Regime</div>
@@ -339,6 +348,7 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
       <tbody id="dv-top"></tbody>
     </table>
   </div>
+  <p class="secintro" style="margin-top:8px;max-width:none;"><b>&bdquo;Unter Floor&ldquo;</b> heißt: In der Validation hat die Strategie in dieser Marktphase weniger als 5 Episoden oder weniger als 10 Trades. Sie wird dort nicht gerankt (Tier EXPLORATORY), und ihr Excess-Return ist zu dünn belegt, um ihn zu zeigen. Die Klammer nennt, was sie in der Validation tatsächlich hatte. Bei einer Strategie, die in der Discovery in einer Phase oft gehandelt hat und in der Validation kaum, ist das kein Misserfolg, sondern fehlende Evidenz.</p>
   <div class="callout warn" style="margin-top:14px;"><span class="dot">&#9888;</span><div><b>Wie das zu lesen ist.</b> Die Beständigkeit ist hoch, aber sie beweist kein Phasenkönnen. Der Excess-Return misst gegen Buy-and-Hold der ganzen Phase. Eine Strategie, die wenig im Markt ist, gewinnt deshalb in fallenden Phasen fast immer gegen den Benchmark und verliert in Aufwärtsphasen, in beiden Fenstern gleichermaßen. Ein Teil der Rang-Korrelation ist also der Handelsstil (Marktzeit, Häufigkeit, Hebel), und der bleibt über Jahre gleich. Es sind außerdem dieselben Strategien in beiden Fenstern, keine unabhängigen Stichproben, und die Validation ist ein anderer Markt (2024 bis 2026). Wo die Korrelation niedrig ist, wie in BTC-Seitwärts, fehlt die Beständigkeit tatsächlich.</div></div>
 </section>
 
@@ -347,7 +357,7 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
     <h2>Gewinner unter Berücksichtigung der Robustheit (Stufe 8b)</h2>
     <span class="hint">je Marktphase und über das gesamte Validierungsfenster</span>
   </div>
-  <p class="secintro">Ein hoher Excess-Return sagt noch nicht, dass der Gewinn die Ausführung überlebt. Stufe 8b prüft zwei Dinge, und beide müssen für dieselbe Zeile bestehen. Dieser Abschnitt zeigt dieselben Ranglisten wie unten, aber nur mit den Zeilen, die beides bestehen. Die Rangfolge ändert sich dadurch nicht: gefiltert wird nur, und der Rang in der ungefilterten Liste steht dabei.</p>
+  <p class="secintro">Ein hoher Excess-Return sagt noch nicht, dass der Gewinn die Ausführung überlebt. Stufe 8b prüft zwei Dinge, und beide müssen für dieselbe Strategie in derselben Marktphase bestehen. Dieser Abschnitt zeigt dieselben Ranglisten wie unten, aber nur mit den Strategien, die beides bestehen. Die Rangfolge ändert sich dadurch nicht: gefiltert wird nur, und der Rang in der ungefilterten Liste steht dabei.</p>
   <div class="rules">
     <div class="rule"><b>5m-Detaillauf</b>Derselbe Vollfenster-Backtest noch einmal, mit 5m-Kerzen für alles, was innerhalb einer Kerze passiert (Trailing-Stop, ROI, Stoploss). Ändert sich der Gewinn stark, ist die Strategie <i>sensitiv</i>. Bis 5m entfällt der Lauf; sie zählen per Entscheidung als bestanden &mdash; eine Regel, keine Messung.</div>
     <div class="rule"><b>Kostenstress je Marktphase</b>Zusätzlich 0,1 % Slippage je Seite, gerechnet nur auf den Trades, die in dieser ADX-Phase eröffnet wurden (Validierungsfenster, mindestens 10 Trades). Ein Spezialist mit einer starken Phase wird so nicht durch seine schwachen Phasen abgewertet.</div>
@@ -358,13 +368,13 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
   <p class="secintro">Je Zeile eine Kombination aus Regime-Art und ADX-Phase. <b>Rang 1</b> zeigt, wer ohne Filter vorn liegt und wer mit Filter.</p>
   <div class="tablebox">
     <table class="plain">
-      <thead><tr><th>Regime</th><th>Phase</th><th class="num">Zeilen</th><th class="num">PASS</th><th class="num">Anteil</th><th class="num">5m sensitiv</th><th class="num">Kosten &#10007;</th><th class="num">5m offen</th><th>Rang 1 ohne Filter</th><th>Rang 1 mit PASS</th></tr></thead>
+      <thead><tr><th>Regime</th><th>Phase</th><th class="num">Strategien</th><th class="num">PASS</th><th class="num">Anteil</th><th class="num">5m sensitiv</th><th class="num">Kosten &#10007;</th><th class="num">5m offen</th><th>Rang 1 ohne Filter</th><th>Rang 1 mit PASS</th></tr></thead>
       <tbody id="rob-matrix"></tbody>
     </table>
   </div>
 
-  <h3>Gewinner je Marktphase &mdash; nur Zeilen mit Robustheits-PASS</h3>
-  <p class="secintro">Die fünf besten Zeilen je Phase nach Excess-Return, gefiltert auf PASS. Unter jeder Karte steht, wer aus der ungefilterten Top&nbsp;5 herausfällt und warum.</p>
+  <h3>Gewinner je Marktphase &mdash; nur Strategien mit Robustheits-PASS</h3>
+  <p class="secintro">Die fünf besten Strategien je Phase nach Excess-Return, gefiltert auf PASS. Unter jeder Karte steht, wer aus der ungefilterten Top&nbsp;5 herausfällt und warum.</p>
   <div class="rtabs" id="rob-tabs">
     <div class="rtab active" data-kind="btc">BTC-Regime</div>
     <div class="rtab" data-kind="coin">Coin-Regime</div>
@@ -472,7 +482,7 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
     </div>
     <div class="fnote"><b>&minus;{{drop_no_validation}}</b> liefen durch, aber ohne einen einzigen Trade im Validierungsfenster (ab 2024-01-01) &mdash; derselbe mechanische Grund wie <code class="mono">ASDTSRockwellTrading</code> im 7er-Pilotlauf, jetzt in der Breite.</div>
     <div class="frow">
-      <div class="flabel">&ge;1 Regime-Zeile im Validierungsfenster</div>
+      <div class="flabel">&ge;1 Marktphase im Validierungsfenster</div>
       <div class="fcount">{{n_gain_rows}} <span class="pct">{{pct_gain}}</span></div>
       <div class="ftrack"><div class="fbar" style="width:{{w_gain}}%"></div></div>
     </div>
@@ -1527,8 +1537,8 @@ renderGatedModel('gm-model3-content', 'model3');
     ' (Coin) und ' + num(allb.spearman, 2) + ' (BTC), je Phase zwischen ' +
     num(Math.min.apply(null, STATES.map(function(x){ return s['coin/' + x].spearman; }).concat(STATES.map(function(x){ return s['btc/' + x].spearman; }))), 2) + ' und ' +
     num(Math.max.apply(null, STATES.map(function(x){ return s['coin/' + x].spearman; }).concat(STATES.map(function(x){ return s['btc/' + x].spearman; }))), 2) +
-    '. War der Excess in der Discovery positiv, blieb er es in der Validation bei ' + share(all.val_positive_given_disc_positive) + ' der Coin-Zeilen (sonst nur ' + share(all.val_positive_given_disc_not_positive) + '). ' +
-    'Grundlage: ' + all.rows_both + ' Coin- und ' + allb.rows_both + ' BTC-Zeilen mit Floor in beiden Fenstern, ' +
+    '. Waren Strategien mit coin-spezifischen Marktphasen in der Discovery besser als Buy-and-Hold, waren es ' + share(all.val_positive_given_disc_positive) + ' davon in der Validation wieder (waren sie es nicht, wurden nur ' + share(all.val_positive_given_disc_not_positive) + ' später besser; ohne Kenntnis der Discovery wären es ' + share(all.val_positive_all_both) + '). ' +
+    'Grundlage: ' + all.rows_both + ' Kombinationen aus Strategie und coin-spezifischer Marktphase sowie ' + allb.rows_both + ' aus Strategie und BTC-Marktphase, jeweils mit Floor in beiden Fenstern, ' +
     (s.discovery_trades / 1e6).toFixed(2).replace('.', ',') + ' Mio. Trades in der Discovery, ' + (s.validation_trades / 1e6).toFixed(2).replace('.', ',') + ' Mio. in der Validation.';
 
   var html = '';
@@ -1541,11 +1551,19 @@ renderGatedModel('gm-model3-content', 'model3');
         '<td class="num mono">' + share(r.val_positive_given_disc_positive) + ' <span style="color:var(--text-muted)">(' + r.disc_positive + ')</span></td>' +
         '<td class="num mono">' + share(r.val_positive_given_disc_not_positive) + '</td>' +
         '<td class="num mono">' + share(r.val_positive_all_both) + '</td>' +
-        '<td class="num mono">' + pct1(r.top_decile_val_median) + ' <span style="color:var(--text-muted)">vs ' + pct1(r.all_val_median) + '</span></td>' +
+        '<td class="num mono"><b>' + pct1(r.top_decile_val_median) + '</b> <span style="color:var(--text-muted)">vs ' + pct1(r.all_val_median) + ' (alle)</span></td>' +
         '<td class="num mono">' + share(r.val_positive_given_disc_lcb_positive) + ' <span style="color:var(--text-muted)">(' + r.disc_lcb_positive + ')</span></td></tr>';
     });
   });
   document.getElementById('dv-table').innerHTML = html;
+  var eb = s['btc/BEAR'], eu = s['btc/BULL'];
+  function setText(id, v){ var el = document.getElementById(id); if (el) el.textContent = v; }
+  setText('ex-base', share(eb.val_positive_all_both)); setText('ex-given', share(eb.val_positive_given_disc_positive));
+  setText('ex-lift', Math.round(100 * (eb.val_positive_given_disc_positive - eb.val_positive_all_both)));
+  setText('ex-top', pct1(eu.top_decile_val_median)); setText('ex-all', pct1(eu.all_val_median));
+  setText('ex-top2', pct1(eu.top_decile_val_median)); setText('ex-all2', pct1(eu.all_val_median));
+  var gap = 100 * (eu.top_decile_val_median - eu.all_val_median);
+  setText('ex-gap', Math.abs(gap).toFixed(1).replace('.', ',')); setText('ex-dir', gap >= 0 ? 'zugunsten der Discovery-Auswahl' : 'zulasten der Discovery-Auswahl');
 
   // scatter, one canvas per phase
   function css(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || '#888'; }
@@ -1576,7 +1594,7 @@ renderGatedModel('gm-model3-content', 'model3');
     STATES.forEach(function(st, i){
       var r = s[kind + '/' + st];
       out += '<div class="dvcard"><div class="dvhead" style="background:var(--' + ({BULL: 'bull', BEAR: 'bear', SIDEWAYS: 'sideways', TRANSITION: 'transition'})[st] + ')"><span>' + stateLabel(st) + '</span><span>ρ ' + num(r.spearman, 2) + '</span></div>' +
-        '<canvas id="dv-c-' + i + '"></canvas><div class="dvfoot">' + r.rows_both + ' Zeilen · x: Discovery, y: Validation</div></div>';
+        '<canvas id="dv-c-' + i + '"></canvas><div class="dvfoot">' + r.rows_both + ' Strategien · x: Discovery, y: Validation</div></div>';
     });
     document.getElementById('dv-scatter').innerHTML = out;
     STATES.forEach(function(st, i){
@@ -1605,7 +1623,9 @@ renderGatedModel('gm-model3-content', 'model3');
         '<td class="num val ' + valClass(r.disc_excess) + '">' + fmtPct(r.disc_excess) + '</td>' +
         '<td class="num mono">' + r.disc_trades + ' / ' + r.disc_episodes + '</td>' +
         '<td class="num val ' + (r.val_excess === null ? '' : valClass(r.val_excess)) + '">' + (r.val_excess === null ? '–' : fmtPct(r.val_excess)) + '</td>' +
-        '<td class="num mono">' + (r.val_rank ? r.val_rank + ' von ' + r.val_rows : (r.val_excess === null ? 'kein Floor' : '–')) + '</td>' +
+        '<td class="num mono">' + (r.val_rank ? r.val_rank + ' von ' + r.val_rows :
+          '<span title="In der Validation weniger als 5 Episoden oder weniger als 10 Trades in dieser Phase: nicht gerankt, Excess nicht belastbar." style="color:var(--text-muted)">unter Floor (' +
+          (r.val_trades === null ? 'keine Trades' : r.val_trades + (r.val_trades === 1 ? ' Trade, ' : ' Trades, ') + r.val_episodes + ' Ep.') + ')</span>') + '</td>' +
         '<td class="num">' + okBadge + '</td></tr>';
     });
   });
@@ -1666,7 +1686,7 @@ renderGatedModel('gm-model3-content', 'model3');
       var dropped = rows.slice(0, 5).filter(function(r){ return !r.ok; });
       var okCount = rows.filter(function(r){ return r.ok; }).length;
       out += '<div class="regimecard"><div class="rhead ' + s + '"><span>' + stateLabel(s) + '</span><span class="of">' + okCount + ' von ' + rows.length + ' mit PASS</span></div><ol>';
-      if (!winners.length) out += '<li><div class="li-top"><span class="nm" style="color:var(--text-muted);font-weight:500">Keine Zeile mit PASS.</span></div></li>';
+      if (!winners.length) out += '<li><div class="li-top"><span class="nm" style="color:var(--text-muted);font-weight:500">Keine Strategie mit PASS.</span></div></li>';
       winners.forEach(function(r, i){
         out += '<li><div class="li-top"><span class="rk">' + (i + 1) + '</span><span class="nm" title="' + r.strategy_id + '">' + futuresLabel(r.strategy_id) + '</span>' +
           '<span class="vv val ' + valClass(r.excess_return) + '">' + fmtPct(r.excess_return) + '</span></div>' +
