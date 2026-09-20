@@ -275,6 +275,12 @@ th.sortable[title]{cursor:pointer;}
 #total-table td.num .rbadge{margin-right:4px;}
 #pf-table td.num{white-space:nowrap;}
 #pf-table td.num .confscore{display:block;margin:2px 0 0;}
+.hb{display:block;font-size:9.5px;font-weight:500;letter-spacing:.02em;text-transform:none;margin-top:2px;}
+.hs{cursor:pointer;padding:0 3px;border-radius:3px;}
+.hs:hover{color:var(--accent-text);}
+.hs.active{color:var(--accent-text);background:var(--accent-soft);}
+.basisbar{display:inline-flex;gap:8px;align-items:center;font-size:11px;color:var(--text-muted);padding:0 8px 0 10px;border-left:1px solid var(--border);margin-left:6px;}
+.basisbar label{display:inline-flex;gap:3px;align-items:center;cursor:pointer;}
 
 </style>
 
@@ -286,7 +292,7 @@ th.sortable[title]{cursor:pointer;}
 </div>
 
 <header>
-  <div class="eyebrow">Modell 1/2/3 &middot; Entry-Gate nach Marktphase &middot; Stand 2026-09-20 16:54</div>
+  <div class="eyebrow">Modell 1/2/3 &middot; Entry-Gate nach Marktphase &middot; Stand 2026-09-20 18:37</div>
   <h1>Gating-Hypothese</h1>
   <p class="subtitle">Bringt es etwas, eine Strategie nur in einer bestimmten Marktphase handeln zu lassen? Pilot mit 25 Strategien und 33 Gate-Kandidaten: Modell 1 gated nach der BTC-Phase, Modell 2 nach der Phase des Coins, Modell 3 nach beiden zugleich. Die Exits bleiben unverändert.</p>
   <div class="metabar">
@@ -813,61 +819,125 @@ function decorate(){
   schedule();
 })();
 
+/* ---- Autor / 5m: which side a numeric column sorts by ---- */
+var SORT_BASIS = 'author';
+var TABLE_RENDERS = [];
+function syncBasisUi(){
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="sort-basis"]'), function(el){ el.checked = el.value === SORT_BASIS; });
+  Array.prototype.forEach.call(document.querySelectorAll('.hs'), function(el){ el.classList.toggle('active', el.getAttribute('data-basis') === SORT_BASIS); });
+}
+function setBasis(basis){
+  SORT_BASIS = basis;
+  syncBasisUi();
+  TABLE_RENDERS.forEach(function(fn){ fn(); });
+}
+/* a click on the "Autor" or "5m" half of a header picks that side before the header sorts */
+document.addEventListener('click', function(ev){
+  var hs = ev.target.closest ? ev.target.closest('.hs') : null;
+  if (hs) { SORT_BASIS = hs.getAttribute('data-basis'); syncBasisUi(); }
+}, true);
+document.addEventListener('change', function(ev){
+  if (ev.target && ev.target.name === 'sort-basis') setBasis(ev.target.value);
+});
+/* The value a table sorts by. Keys named in `keys5` (a map to flat fields) or `pairedKeys`
+   (fields of the nested `x5` object) have a 5m side; every other key sorts by the row itself. */
+function basisValue(r, key, opts){
+  if (SORT_BASIS === 'd5') {
+    if (opts.keys5 && opts.keys5[key]) return r[opts.keys5[key]];
+    if (opts.pairedKeys && opts.pairedKeys.indexOf(key) !== -1) return r.x5 ? r.x5[key] : null;
+  }
+  return r[key];
+}
+function isMissing(v){ return v === null || v === undefined || (typeof v === 'number' && isNaN(v)); }
+
+/* ---- a cell with two figures, author timeframe / 5m rerun ---- */
+function why5(r){
+  if (r.x5 && r.x5.tier) return 'Im 5m-Lauf unter dem Floor in dieser Phase (' + r.x5.trades + ' Trades, ' + r.x5.episodes + ' Episoden): kein belastbares Ergebnis.';
+  if (r.tfm && r.tfm < 5) return 'Kein 5m-Lauf: der Timeframe der Strategie ist ' + r.tf + ' und liegt unter 5m (Regel, keine Messung).';
+  if (r.tfm > 5) return 'Kein verwertbarer 5m-Lauf: der Lauf ist fehlgeschlagen, oder die Strategie erreicht im 5m-Lauf nicht in allen vier Coin-Phasen den Floor.';
+  return 'Kein 5m-Wert.';
+}
+function fmtOrDash(f, v){ return isMissing(v) ? '<span class="na5">–</span>' : f(v); }
+function pairCell(f, r, k){
+  var b = (r.x5 && !isMissing(r.x5[k])) ? f(r.x5[k]) : '<span class="na5" title="' + why5(r) + '">–</span>';
+  return '<td class="num">' + fmtOrDash(f, r[k]) + '<span class="slash">/</span>' + b + '</td>';
+}
+/* header of a column that has both sides; the two halves of "Autor / 5m" are clickable */
+function pairTh(key, label, tip, extra){
+  return '<th class="sortable num' + (extra || '') + '" data-key="' + key + '" title="' + tip + '">' + label +
+    '<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>';
+}
+var F = {
+  int: function(v){ return '<span class="mono">' + v + '</span>'; },
+  pct: function(v){ return '<span class="val ' + valClass(v) + '">' + fmtPct(v) + '</span>'; },
+  usd: function(v){ return '<span class="val ' + dollarClass(v) + '">' + fmtUsd(v) + '</span>'; },
+  dd: function(v){ return '<span class="mono">' + fmtDrawdown(v) + '</span>'; },
+  sortino: function(v){ return '<span class="val ' + valClass(v) + '">' + fmtSortino(v) + '</span>'; },
+  ann: function(v){ return '<span class="val ' + valClass(v) + '">' + fmtAnnualizedReturn(v) + '</span>'; },
+  pf: function(v){ return '<span class="mono">' + fmtProfitFactor(v) + '</span>'; },
+  score: function(v){ return '<span class="val ' + scoreClass(v) + '">' + fmtScore(v) + '</span>'; },
+  lcb: function(v){ return '<span class="mono">' + fmtLcb(v) + '</span>'; },
+  grade: function(v){ return '<span class="val ' + gradeClass(v) + '">' + v + '</span>'; },
+  cons: function(v){ return '<span class="mono">' + Math.round(v * 100) + '%</span>'; }
+};
+
 /* ---- search + sort wiring for one strategy table ----
    opts: data, tableId, bodyId, countId, searchId, defaultKey, defaultDir, rowHtml,
-   optional filter(row), compare(key, a, b) returning a number or undefined, extra() run after a render. */
+   optional filter(row), keys5 / pairedKeys (the columns that have a 5m side), extra(rows). */
 function wireSearchSortTable(opts){
   var key = opts.defaultKey, dir = opts.defaultDir;
   var body = document.getElementById(opts.bodyId);
   var count = document.getElementById(opts.countId);
   var search = document.getElementById(opts.searchId);
   var headers = Array.prototype.slice.call(document.querySelectorAll('#' + opts.tableId + ' th.sortable'));
-  function compare(a, b){
-    if (opts.compare) { var c = opts.compare(key, a, b, dir); if (c !== undefined) return c * dir; }
-    if (key === 'strategy_id') return dir * a.strategy_id.localeCompare(b.strategy_id);
-    if (key === 'lcb_grade') return dir * (gradeScore(a.lcb_grade) - gradeScore(b.lcb_grade));
-    if (key === 'ur') {
-      var du = a.ur - b.ur;
-      if (du === 0) du = (a.us === null || a.us === undefined ? -9 : a.us) - (b.us === null || b.us === undefined ? -9 : b.us);
-      return du * dir;
-    }
-    var av = a[key], bv = b[key];
-    if (typeof av === 'string' || typeof bv === 'string') return dir * String(av || '').localeCompare(String(bv || ''));
-    var an = av === null || av === undefined, bn = bv === null || bv === undefined;
-    if (an || bn) return an && bn ? 0 : (an ? 1 : -1);
-    return (av - bv) * dir;
+  function valueOf(r){
+    if (key === 'lcb_grade') { var g = basisValue(r, key, opts); return isMissing(g) ? null : gradeScore(g); }
+    if (key === 'ur') return (r.ur === undefined ? -1 : r.ur) * 100 + (isMissing(r.us) ? -9 : r.us);
+    if (key === 'cf') return r.cf * 100 + (isMissing(r.sc) ? -9 : r.sc);
+    if (key === 'tf') return r.tfm;
+    return basisValue(r, key, opts);
   }
   function render(){
     var q = search.value.trim().toLowerCase();
     var rows = opts.data.filter(function(r){
       return r.strategy_id.toLowerCase().indexOf(q) !== -1 && (!opts.filter || opts.filter(r));
+    }).map(function(r, i){ return {r: r, v: valueOf(r), i: i}; });
+    rows.sort(function(a, b){
+      var ma = isMissing(a.v), mb = isMissing(b.v);
+      if (ma || mb) return ma && mb ? a.i - b.i : (ma ? 1 : -1);
+      var c = (typeof a.v === 'string' || typeof b.v === 'string') ? String(a.v).localeCompare(String(b.v), 'de') : (a.v === b.v ? 0 : (a.v < b.v ? -1 : 1));
+      return c === 0 ? a.i - b.i : c * dir;
     });
-    rows = rows.slice().sort(compare);
-    count.textContent = rows.length + ' von ' + opts.data.length;
-    body.innerHTML = rows.map(opts.rowHtml).join('');
-    if (opts.extra) opts.extra(rows);
+    var shown = rows.map(function(o){ return o.r; });
+    count.textContent = shown.length + ' von ' + opts.data.length;
+    body.innerHTML = shown.map(opts.rowHtml).join('');
+    if (opts.extra) opts.extra(shown);
   }
+  var sortedBasis = SORT_BASIS;
   search.addEventListener('input', render);
   headers.forEach(function(th){
     th.addEventListener('click', function(){
       var k = th.getAttribute('data-key');
-      if (key === k) { dir *= -1; }
-      else {
+      if (key === k) {
+        if (sortedBasis === SORT_BASIS) dir *= -1;      // same column, same side: turn around
+      } else {
         key = k;
-        var sample = opts.data.find(function(r){ return r[k] !== null && r[k] !== undefined; });
+        var sample = opts.data.find(function(r){ return !isMissing(r[k]); });
         dir = (sample && typeof sample[k] === 'string') ? 1 : -1;
         if (k === 'rk') dir = 1;
       }
+      sortedBasis = SORT_BASIS;
       markArrows(headers, th, dir);
-      render();
+      TABLE_RENDERS.forEach(function(fn){ fn(); });   // the side may have changed for every table
     });
   });
   var initial = headers.filter(function(t){ return t.getAttribute('data-key') === key; })[0];
   if (initial) markArrows(headers, initial, dir);
   render();
+  TABLE_RENDERS.push(render);
   return {render: render};
 }
-
+document.addEventListener('DOMContentLoaded', syncBasisUi);
 
 
 function fmtGatedCell(cell){

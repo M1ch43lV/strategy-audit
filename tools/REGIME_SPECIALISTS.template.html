@@ -11,6 +11,9 @@
   <button type="button" id="zoom-out" aria-label="Tabellen verkleinern">&minus;</button>
   <span class="zlabel" id="zoom-label">100%</span>
   <button type="button" id="zoom-in" aria-label="Tabellen vergr&ouml;&szlig;ern">+</button>
+  <span class="basisbar" title="Nach welcher Seite die Zahlenspalten mit zwei Werten (Autor / 5m) sortiert werden. Ein Klick auf &bdquo;Autor&ldquo; oder &bdquo;5m&ldquo; in einer Spaltenüberschrift wählt die Seite direkt.">Sortieren nach
+    <label><input type="radio" name="sort-basis" value="author" checked> Autor</label>
+    <label><input type="radio" name="sort-basis" value="d5"> 5m</label></span>
 </div>
 
 <header>
@@ -243,9 +246,7 @@
     <input class="search" id="total-search" type="text" placeholder="Strategie suchen…">
     <label class="okfilter"><input type="checkbox" id="total-ok"> nur Robustheits-PASS</label>
     <label class="okfilter"><input type="checkbox" id="total-cf"> nur bestätigt (mind. eine Phase)</label>
-    <span class="basis" title="Nach welcher Seite die Zahlenspalten sortiert werden. Strategien ohne 5m-Lauf stehen bei der Sortierung nach 5m am Ende.">Sortieren nach
-      <label><input type="radio" name="total-basis" value="author" checked> Autor-Timeframe</label>
-      <label><input type="radio" name="total-basis" value="d5"> 5m-Lauf</label></span>
+
     <span class="rowcount mono" id="total-count"></span>
   </div>
   <p class="secintro" id="rob-total-drop" style="margin:0 0 10px;max-width:none;"></p>
@@ -256,13 +257,13 @@
           <th class="sortable num active" data-key="rk">Rang ohne Filter<span class="arrow">&#9662;</span></th>
           <th class="sortable" data-key="strategy_id">Strategie<span class="arrow">&#9662;</span></th>
           <th class="sortable" data-key="tf" title="Timeframe der Strategie (vom Autor). Über 5m gibt es einen 5m-Detaillauf, bis 5m nicht.">Timeframe<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="trades" title="Trades im Validierungsfenster: Autor-Timeframe / 5m-Lauf">Trades (Autor / 5m)<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="dollar_gain_usd" title="Summe der Gewinne bei festem 1.000-$-Einsatz je Trade: Autor-Timeframe / 5m-Lauf">Gesamtgewinn (Autor / 5m)<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="benchmark_dollar_gain_usd" title="Buy-and-Hold des Coins über dieselben Trades, je 1.000 $: Autor-Timeframe / 5m-Lauf">Benchmark (Autor / 5m)<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="excess_dollar_gain_usd" title="Gesamtgewinn minus Benchmark: Autor-Timeframe / 5m-Lauf">Excess ($) (Autor / 5m)<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="cm" title="Mittlerer Gewinn je Trade vor → nach 0,1 % zusätzlichem Slippage je Seite: Autor-Timeframe / 5m-Lauf">Kosten Ø je Trade (Autor / 5m)<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="dc" title="Tagesrendite auf das tatsächlich eingesetzte Kapital, Validation, nach 0,1 % Slippage je Seite: Autor-Timeframe / 5m-Lauf. Schmeichelt kurzen Trades.">Pro Tag, eingesetzt (Autor / 5m)<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="ds" title="Tagesrendite auf das bereitgestellte Kapital (ein Platz je Coin und Tag), Validation, nach 0,1 % Slippage je Seite: Autor-Timeframe / 5m-Lauf. Ziel: 0,08 % pro Tag.">Pro Tag, bereitgestellt (Autor / 5m)<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="trades" title="Trades im Validierungsfenster: Autor-Timeframe / 5m-Lauf">Trades<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="dollar_gain_usd" title="Summe der Gewinne bei festem 1.000-$-Einsatz je Trade: Autor-Timeframe / 5m-Lauf">Gesamtgewinn<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="benchmark_dollar_gain_usd" title="Buy-and-Hold des Coins über dieselben Trades, je 1.000 $: Autor-Timeframe / 5m-Lauf">Benchmark<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="excess_dollar_gain_usd" title="Gesamtgewinn minus Benchmark: Autor-Timeframe / 5m-Lauf">Excess ($)<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="cm" title="Mittlerer Gewinn je Trade vor → nach 0,1 % zusätzlichem Slippage je Seite: Autor-Timeframe / 5m-Lauf">Kosten Ø je Trade<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="dc" title="Tagesrendite auf das tatsächlich eingesetzte Kapital, Validation, nach 0,1 % Slippage je Seite: Autor-Timeframe / 5m-Lauf. Schmeichelt kurzen Trades.">Pro Tag, eingesetzt<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="ds" title="Tagesrendite auf das bereitgestellte Kapital (ein Platz je Coin und Tag), Validation, nach 0,1 % Slippage je Seite: Autor-Timeframe / 5m-Lauf. Ziel: 0,08 % pro Tag.">Pro Tag, bereitgestellt<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>
           <th class="sortable num" data-key="ok">Robustheit<span class="arrow">&#9662;</span></th>
           <th class="sortable num" data-key="cq" title="Bestätigung über Discovery und Validation. Bei Universal-Kandidaten streng oder mild, sonst die Zahl der bestätigten Phasen.">Bestätigung<span class="arrow">&#9662;</span></th>
         </tr></thead>
@@ -347,9 +348,13 @@
   </div>
   <p class="secintro">{{consistent_intro}}</p>
   <div class="callout info"><span class="dot">&#8505;</span><div><b>Diese {{n_consistent_word}} Strategien sind im Kern eine Datei, nicht {{n_consistent_word}} unabhängige Strategien.</b> Mechanik: drei Supertrend-Lesungen auf derselben 1h-Kerze &mdash; nicht drei Zeitrahmen, drei <code class="mono">multiplier</code>/<code class="mono">period</code>-Paare &mdash; müssen für einen Einstieg übereinstimmen (3-von-3-AND); für den Ausstieg entscheidet nur noch die trägste der drei Lesungen allein. ROI ist ab <code class="mono">optim3</code> faktisch abgeschaltet (<code class="mono">{"0": 0.99}</code>), die eigentliche Gewinnmitnahme übernimmt ein Trailing Stop, der ab +2% Gewinn scharf wird und danach nur noch 0,1% Abstand zum bisherigen Höchstkurs zulässt. <code class="mono">FastSupertrend_optim3_rsi_80</code> &mdash; der einzige reale ADX-Uptrend-Spezialist des gesamten Bestands, siehe Callout oben zu * &mdash; ergänzt darauf nur einen RSI-EMA(14)-Filter, der Einstiege in bereits stark überkaufte/überverkaufte Kerzen blockiert. Herkunft: <span class="mono">juankysoriano</span> schrieb die Ursprungslogik (<code class="mono">freqtrade/freqtrade-strategies</code>), <span class="mono">perkmeister</span> baute daraus 2022 die numpy-optimierte "Fast"-Version (Issue&nbsp;#242, Logik unverändert), <span class="mono">TheoBrigitte/freqtrade</span> forkte weiter zu <code class="mono">optim3</code>/<code class="mono">_rsi_XX</code> (Futures-Shorts, asymmetrischer Exit, der RSI-Filter) &mdash; genau die Version, die dieser Bestand misst. Vollständige Herleitung mit Code-Ausschnitten und Quellenbelegen: <a href="https://claude.ai/artifact/RHddoXo3XhxGafPWem3Vw3" target="_blank" rel="noopener">FastSupertrend Dossier</a> (Englisch).</div></div>
+  <div class="toolbar">
+    <input class="search" id="consistent-search" type="text" placeholder="Strategie suchen…">
+    <span class="rowcount mono" id="consistent-count"></span>
+  </div>
   <div class="tablebox">
-    <table class="plain">
-      <thead><tr><th>Strategie</th><th>Schwächstes Regime</th><th class="num">Trades</th><th class="num">Episoden</th><th class="num">Excess-Return</th><th class="num">Dollar-Gewinn</th><th class="num">B&amp;H-Gewinn</th><th class="num">Median Excess-Return</th><th class="num">Max Drawdown</th><th class="num">Worst Trade</th><th class="num">Sortino</th><th class="num">Rendite p.a.</th><th class="num">Profit-Factor</th><th class="num">FreqForge-Score</th><th class="num">Episoden-Excess-LCB</th><th class="num">Grade</th><th class="num">Robustheit</th><th class="num">Bestätigung</th></tr></thead>
+    <table class="plain" id="consistent-table">
+      <thead id="consistent-head"></thead>
       <tbody id="consistent-body"></tbody>
     </table>
   </div>
@@ -368,27 +373,7 @@
   <div class="tablebox">
     <div class="scrollbody">
       <table class="plain" id="universal-table">
-        <thead><tr>
-          <th class="sortable" data-key="strategy_id">Strategie<span class="arrow">&#9662;</span></th>
-          <th class="sortable" data-key="worst_regime">Schwächstes Regime<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="trades">Trades<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="episodes">Episoden<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="worst_regime_return">Excess-Return<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="dollar_gain_usd">Dollar-Gewinn<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="benchmark_dollar_gain_usd">B&amp;H-Gewinn<span class="arrow">&#9662;</span></th>
-          <th class="sortable num active" data-key="median_regime_excess_return">Median Excess-Return<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="max_drawdown">Max Drawdown<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="worst_trade">Worst Trade<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="sortino">Sortino<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="annualized_return">Rendite p.a.<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="profit_factor">Profit-Factor<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="freqforge_score">FreqForge-Score<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="episode_excess_lcb">Episoden-Excess-LCB<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="lcb_grade">Grade<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="regime_consistency">Konsistenz<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="ok">Robustheit<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="ur">Bestätigung<span class="arrow">&#9662;</span></th>
-        </tr></thead>
+        <thead id="universal-head"></thead>
         <tbody id="universal-body"></tbody>
       </table>
     </div>
@@ -558,11 +543,31 @@ const DCASTRATEGIES = __DCASTRATEGIES_JSON__;
 
 /*__COMMON_JS__*/
 
+// Column spec of the phase tables: key, label, tooltip, formatter. Every one has an author and a 5m side.
+var REG_COLS = [
+  ['trades', 'Trades', 'Anzahl der Trades in dieser Phase im Validierungsfenster.', F.int],
+  ['episodes', 'Episoden', 'Zusammenhängende Abschnitte dieser Marktphase. Jede Episode zählt als eine unabhängige Beobachtung; der Floor verlangt mindestens 5.', F.int],
+  ['excess_return', 'Excess-Return', 'Rendite der Strategie in den Episoden dieser Phase minus Buy-and-Hold über dieselben Episoden. Über 0 heißt: besser als Halten.', F.pct],
+  ['dollar_gain_usd', 'Dollar-Gewinn', 'Summe der Gewinne aller Trades bei festem 1.000-$-Einsatz je Trade, ohne Wiederanlage.', F.usd],
+  ['benchmark_dollar_gain_usd', 'B&amp;H-Gewinn', 'Derselbe Betrag für Buy-and-Hold des jeweiligen Coins über die ganzen Episoden.', F.usd],
+  ['median_excess_return', 'Median Excess-Return', 'Median der Excess-Returns dieser Strategie über ihre Phasen, in denen sie den Floor erreicht.', F.pct],
+  ['max_drawdown', 'Max Drawdown', 'Größter Einbruch der Gewinnkurve bei festem 1.000-$-Einsatz, in Prozent des bis dahin eingesetzten Kapitals.', F.dd],
+  ['worst_trade', 'Worst Trade', 'Der schlechteste einzelne Trade in dieser Phase, in Prozent seines Einsatzes.', F.pct],
+  ['sortino', 'Sortino', 'Ertrag geteilt durch die Streuung der Verlust-Trades, aufs Jahr hochgerechnet. „kein Verlust“ heißt: es gab keinen Verlust-Trade.', F.sortino],
+  ['annualized_return', 'Rendite p.a.', 'Mittlere Trade-Rendite mal Trades pro Jahr. Linear hochgerechnet, ohne Zinseszins.', F.ann],
+  ['profit_factor', 'Profit-Factor', 'Bruttogewinn geteilt durch Bruttoverlust. Über 1 heißt: mehr Gewinn als Verlust. ∞ heißt: kein Verlust-Trade.', F.pf],
+  ['freqforge_score', 'FreqForge-Score', 'Punktwert von 0 bis 100 aus sechs Kategorien nach FreqForge. Nur eine Zusatzspalte, kein Ranking-Kriterium.', F.score],
+  ['episode_excess_lcb', 'Episoden-Excess-LCB', 'LCB (Lower Confidence Bound): untere 95-%-Vertrauensgrenze des mittleren Excess-Returns je Episode. Über 0 heißt: der Vorsprung ist statistisch belastbar.', F.lcb],
+  ['lcb_grade', 'Grade', 'Note A bis F aus dem LCB: A über +2 %, B 0 bis +2 %, C −2 bis 0 %, D −5 bis −2 %, F darunter.', F.grade],
+  ['dc', 'Pro Tag, eingesetzt', 'Tagesrendite auf das tatsächlich eingesetzte Kapital, Validation, nach 0,1 % Slippage je Seite. Schmeichelt kurzen Trades.', function(v){ return '<span class="val ' + dailyClass(v) + '">' + fmtDaily(v) + '</span>'; }],
+  ['ds', 'Pro Tag, bereitgestellt', 'Tagesrendite auf das bereitgestellte Kapital (ein Platz je Coin und Tag der Phase), Validation, nach 0,1 % Slippage je Seite. Das Ziel ist 0,08 % pro Tag.', function(v){ return '<span class="val ' + dailyClass(v) + '">' + fmtDaily(v) + '</span>'; }]
+];
+var REG_KEYS = REG_COLS.map(function(c){ return c[0]; });
+
 function renderRegimeFullTable(containerId, rows){
   var prefix = containerId;
   var codes = ['BULL', 'BEAR', 'SIDEWAYS', 'TRANSITION'];
   var activeRegimes = new Set(codes);
-  var sortKey = 'excess_return', sortDir = -1;
   var container = document.getElementById(containerId);
   container.innerHTML =
     '<div class="toolbar"><input class="search" id="' + prefix + '-search" type="text" placeholder="Strategie suchen…">' +
@@ -574,22 +579,7 @@ function renderRegimeFullTable(containerId, rows){
     '<thead><tr>' +
     '<th class="sortable" data-key="strategy_id">Strategie<span class="arrow">&#9662;</span></th>' +
     '<th class="sortable" data-key="regime">Zustand<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="trades">Trades<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="episodes">Episoden<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num active" data-key="excess_return">Excess-Return<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="dollar_gain_usd">Dollar-Gewinn<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="benchmark_dollar_gain_usd">B&amp;H-Gewinn<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="median_excess_return">Median Excess-Return<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="max_drawdown">Max Drawdown<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="worst_trade">Worst Trade<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="sortino">Sortino<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="annualized_return">Rendite p.a.<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="profit_factor">Profit-Factor<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="freqforge_score">FreqForge-Score<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="episode_excess_lcb">Episoden-Excess-LCB<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="lcb_grade">Grade<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="dc" title="Tagesrendite auf das tatsächlich eingesetzte Kapital, Validation, nach 0,1 % Slippage je Seite. Schmeichelt kurzen Trades.">Pro Tag, eingesetzt<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="ds" title="Tagesrendite auf das bereitgestellte Kapital (ein Platz je Coin und Tag der Phase), Validation, nach 0,1 % Slippage je Seite. Das Ziel ist 0,08 % pro Tag.">Pro Tag, bereitgestellt<span class="arrow">&#9662;</span></th>' +
+    REG_COLS.map(function(c){ return pairTh(c[0], c[1], c[2]); }).join('') +
     '<th class="sortable num" data-key="ok">Robustheit<span class="arrow">&#9662;</span></th>' +
     '<th class="sortable num" data-key="cf" title="Bestätigung über Discovery und Validation">Bestätigung<span class="arrow">&#9662;</span></th>' +
     '</tr></thead><tbody id="' + prefix + '-body"></tbody></table></div></div>';
@@ -599,67 +589,31 @@ function renderRegimeFullTable(containerId, rows){
     codes.map(function(r){
       return '<span class="chip active" data-value="' + r + '">' + stateLabel(r) + '</span>';
     }).join('');
-
-  function render(){
-    var q = document.getElementById(prefix + '-search').value.trim().toLowerCase();
-    var filtered = rows.filter(function(r){
+  var api = wireSearchSortTable({
+    data: rows, tableId: prefix + '-table', bodyId: prefix + '-body', countId: prefix + '-count', searchId: prefix + '-search',
+    defaultKey: 'excess_return', defaultDir: -1, pairedKeys: REG_KEYS,
+    filter: function(r){
       if (document.getElementById(prefix + '-ok').checked && !r.ok) return false;
       if (document.getElementById(prefix + '-cf').checked && r.cf !== 2) return false;
-      return activeRegimes.has(r.regime) && r.strategy_id.toLowerCase().indexOf(q) !== -1;
-    });
-    filtered = filtered.slice().sort(function(a, b){
-      if (sortKey === 'strategy_id') return sortDir * a.strategy_id.localeCompare(b.strategy_id);
-      if (sortKey === 'regime') return sortDir * a.regime.localeCompare(b.regime);
-      if (sortKey === 'lcb_grade') return sortDir * (gradeScore(a.lcb_grade) - gradeScore(b.lcb_grade));
-      if (sortKey === 'cf') {
-        var dc = a.cf - b.cf;
-        if (dc === 0) dc = (a.sc === null ? -9 : a.sc) - (b.sc === null ? -9 : b.sc);
-        return dc * sortDir;
-      }
-      return (a[sortKey] - b[sortKey]) * sortDir;
-    });
-    document.getElementById(prefix + '-count').textContent = filtered.length + ' von ' + rows.length;
-    document.getElementById(prefix + '-body').innerHTML = filtered.map(function(r){
+      return activeRegimes.has(r.regime);
+    },
+    rowHtml: function(r){
       return '<tr><td><b>' + futuresLabel(r.strategy_id) + '</b></td>' +
         '<td><span class="regimebadge rb-' + r.regime + '">' + stateLabel(r.regime) + '</span></td>' +
-        '<td class="num mono">' + r.trades + '</td>' +
-        '<td class="num mono">' + r.episodes + '</td>' +
-        '<td class="num val ' + valClass(r.excess_return) + '">' + fmtPct(r.excess_return) + '</td>' +
-        '<td class="num val ' + dollarClass(r.dollar_gain_usd) + '">' + fmtUsd(r.dollar_gain_usd) + '</td>' +
-        '<td class="num val ' + dollarClass(r.benchmark_dollar_gain_usd) + '">' + fmtUsd(r.benchmark_dollar_gain_usd) + '</td>' +
-        '<td class="num val ' + valClass(r.median_excess_return) + '">' + fmtPct(r.median_excess_return) + '</td>' +
-        '<td class="num mono">' + fmtDrawdown(r.max_drawdown) + '</td>' +
-        '<td class="num val ' + valClass(r.worst_trade) + '">' + fmtPct(r.worst_trade) + '</td>' +
-        '<td class="num val ' + valClass(r.sortino) + '">' + fmtSortino(r.sortino) + '</td>' +
-        '<td class="num val ' + valClass(r.annualized_return) + '">' + fmtAnnualizedReturn(r.annualized_return) + '</td>' +
-        '<td class="num mono">' + fmtProfitFactor(r.profit_factor) + '</td>' +
-        '<td class="num val ' + scoreClass(r.freqforge_score) + '">' + fmtScore(r.freqforge_score) + '</td>' +
-
-        '<td class="num mono">' + fmtLcb(r.episode_excess_lcb) + '</td>' +
-        '<td class="num val ' + gradeClass(r.lcb_grade) + '">' + (r.lcb_grade || '&mdash;') + '</td>' +
-        '<td class="num val ' + dailyClass(r.dc) + '">' + fmtDaily(r.dc) + '</td>' +
-        '<td class="num val ' + dailyClass(r.ds) + '">' + fmtDaily(r.ds) + '</td>' +
+        REG_COLS.map(function(c){ return pairCell(c[3], r, c[0]); }).join('') +
         robustCell(r) + confirmCell(r) + '</tr>';
-    }).join('');
-  }
+    }
+  });
   chipsEl.querySelectorAll('.chip').forEach(function(chip){
     chip.addEventListener('click', function(){
       var v = chip.getAttribute('data-value');
       if (activeRegimes.has(v)) { activeRegimes.delete(v); chip.classList.remove('active'); }
       else { activeRegimes.add(v); chip.classList.add('active'); }
-      render();
+      api.render();
     });
   });
-  document.getElementById(prefix + '-search').addEventListener('input', render);
-  document.querySelectorAll('#' + prefix + '-table th.sortable').forEach(function(th){
-    th.addEventListener('click', function(){
-      var k = th.getAttribute('data-key');
-      if (sortKey === k) { sortDir *= -1; } else { sortKey = k; sortDir = (k === 'strategy_id' || k === 'regime') ? 1 : -1; }
-      markArrows(Array.prototype.slice.call(document.querySelectorAll('#' + prefix + '-table th.sortable')), th, sortDir);
-      render();
-    });
-  });
-  render();
+  document.getElementById(prefix + '-ok').addEventListener('change', api.render);
+  document.getElementById(prefix + '-cf').addEventListener('change', api.render);
 }
 renderRegimeFullTable('rf-btc-content', REGIMEFULL.btc);
 renderRegimeFullTable('rf-coin-content', REGIMEFULL.coin);
@@ -748,58 +702,56 @@ renderRegimeFullTable('rf-coin-content', REGIMEFULL.coin);
   }).join('');
 })();
 
-const consistentBody = document.getElementById('consistent-body');
-const consistentRows = UNIVERSAL.filter(function(r){ return r.regime_consistency === 1.0; })
-  .sort(function(a,b){ return b.median_regime_excess_return - a.median_regime_excess_return; });
-if (consistentRows.length === 0) {
-  consistentBody.innerHTML = '<tr><td colspan="18" style="color:var(--text-muted);font-style:italic;">Keine Strategie erreicht aktuell regime_consistency = 1.0 &mdash; siehe Callout oben (ADX-Uptrend-Phasen).</td></tr>';
-} else {
-  consistentRows.forEach(function(r){
-    consistentBody.insertAdjacentHTML('beforeend',
-      '<tr><td><b>' + futuresLabel(r.strategy_id) + '</b></td>' +
-      '<td><span class="regimebadge rb-' + r.worst_regime + '">' + stateLabel(r.worst_regime) + '</span></td>' +
-      '<td class="num mono">' + r.trades + '</td>' +
-      '<td class="num mono">' + r.episodes + '</td>' +
-      '<td class="num val ' + valClass(r.worst_regime_return) + '">' + fmtPct(r.worst_regime_return) + '</td>' +
-      '<td class="num val ' + dollarClass(r.dollar_gain_usd) + '">' + fmtUsd(r.dollar_gain_usd) + '</td>' +
-      '<td class="num val ' + dollarClass(r.benchmark_dollar_gain_usd) + '">' + fmtUsd(r.benchmark_dollar_gain_usd) + '</td>' +
-      '<td class="num val ' + valClass(r.median_regime_excess_return) + '">' + fmtPct(r.median_regime_excess_return) + '</td>' +
-      '<td class="num mono">' + fmtDrawdown(r.max_drawdown) + '</td>' +
-        '<td class="num val ' + valClass(r.worst_trade) + '">' + fmtPct(r.worst_trade) + '</td>' +
-        '<td class="num val ' + valClass(r.sortino) + '">' + fmtSortino(r.sortino) + '</td>' +
-        '<td class="num val ' + valClass(r.annualized_return) + '">' + fmtAnnualizedReturn(r.annualized_return) + '</td>' +
-      '<td class="num mono">' + fmtProfitFactor(r.profit_factor) + '</td>' +
-      '<td class="num val ' + scoreClass(r.freqforge_score) + '">' + fmtScore(r.freqforge_score) + '</td>' +
-      '<td class="num mono">' + fmtLcb(r.episode_excess_lcb) + '</td>' +
-      '<td class="num val ' + gradeClass(r.lcb_grade) + '">' + (r.lcb_grade || '&mdash;') + '</td>' +
-      robustCell(r) + uconfirmCell(r) + '</tr>');
-  });
+// Universal candidates: the columns are those of the worst coin phase; the 5m side is the rerun's own figure at that phase.
+var UNI_COLS = [
+  ['trades', 'Trades', 'Anzahl der Trades im schwächsten Coin-Regime im Validierungsfenster.', F.int],
+  ['episodes', 'Episoden', 'Episoden im schwächsten Coin-Regime. Der Floor verlangt mindestens 5.', F.int],
+  ['worst_regime_return', 'Excess-Return', 'Excess-Return im schwächsten Coin-Regime: Rendite minus Buy-and-Hold über dieselben Episoden.', F.pct],
+  ['dollar_gain_usd', 'Dollar-Gewinn', 'Summe der Gewinne bei festem 1.000-$-Einsatz je Trade im schwächsten Regime.', F.usd],
+  ['benchmark_dollar_gain_usd', 'B&amp;H-Gewinn', 'Derselbe Betrag für Buy-and-Hold über die ganzen Episoden.', F.usd],
+  ['median_regime_excess_return', 'Median Excess-Return', 'Median der Excess-Returns über die vier Coin-Regime.', F.pct],
+  ['max_drawdown', 'Max Drawdown', 'Größter Einbruch der Gewinnkurve im schwächsten Regime, in Prozent des eingesetzten Kapitals.', F.dd],
+  ['worst_trade', 'Worst Trade', 'Der schlechteste einzelne Trade im schwächsten Regime.', F.pct],
+  ['sortino', 'Sortino', 'Ertrag geteilt durch die Streuung der Verlust-Trades, aufs Jahr hochgerechnet.', F.sortino],
+  ['annualized_return', 'Rendite p.a.', 'Mittlere Trade-Rendite mal Trades pro Jahr, ohne Zinseszins.', F.ann],
+  ['profit_factor', 'Profit-Factor', 'Bruttogewinn geteilt durch Bruttoverlust.', F.pf],
+  ['freqforge_score', 'FreqForge-Score', 'Punktwert von 0 bis 100 aus sechs Kategorien nach FreqForge.', F.score],
+  ['episode_excess_lcb', 'Episoden-Excess-LCB', 'Untere 95-%-Vertrauensgrenze des mittleren Excess-Returns je Episode, im schwächsten Regime.', F.lcb],
+  ['lcb_grade', 'Grade', 'Note A bis F aus dem LCB.', F.grade],
+  ['regime_consistency', 'Konsistenz', 'Anteil der vier Coin-Regime, in denen die Strategie Buy-and-Hold schlägt.', F.cons]
+];
+var UNI_KEYS = UNI_COLS.map(function(c){ return c[0]; });
+function uniHead(withConsistency){
+  var cols = withConsistency ? UNI_COLS : UNI_COLS.filter(function(c){ return c[0] !== 'regime_consistency'; });
+  return '<tr><th class="sortable" data-key="strategy_id">Strategie<span class="arrow">&#9662;</span></th>' +
+    '<th class="sortable" data-key="worst_regime">Schwächstes Regime<span class="arrow">&#9662;</span></th>' +
+    cols.map(function(c){ return pairTh(c[0], c[1], c[2]); }).join('') +
+    '<th class="sortable num" data-key="ok">Robustheit<span class="arrow">&#9662;</span></th>' +
+    '<th class="sortable num" data-key="ur">Bestätigung<span class="arrow">&#9662;</span></th></tr>';
 }
-
+function uniRow(withConsistency){
+  var cols = withConsistency ? UNI_COLS : UNI_COLS.filter(function(c){ return c[0] !== 'regime_consistency'; });
+  return function(r){
+    return '<tr><td><b>' + futuresLabel(r.strategy_id) + '</b></td>' +
+      '<td><span class="regimebadge rb-' + r.worst_regime + '">' + stateLabel(r.worst_regime) + '</span></td>' +
+      cols.map(function(c){ return pairCell(c[3], r, c[0]); }).join('') +
+      robustCell(r) + uconfirmCell(r) + '</tr>';
+  };
+}
+document.getElementById('consistent-head').innerHTML = uniHead(false);
+document.getElementById('universal-head').innerHTML = uniHead(true);
+var CONSISTENT = UNIVERSAL.filter(function(r){ return r.regime_consistency === 1.0; });
+wireSearchSortTable({
+  data: CONSISTENT, tableId: 'consistent-table', bodyId: 'consistent-body',
+  countId: 'consistent-count', searchId: 'consistent-search',
+  defaultKey: 'median_regime_excess_return', defaultDir: -1, pairedKeys: UNI_KEYS,
+  rowHtml: uniRow(false)
+});
 wireSearchSortTable({
   data: UNIVERSAL, tableId: 'universal-table', bodyId: 'universal-body',
   countId: 'universal-count', searchId: 'universal-search',
-  defaultKey: 'median_regime_excess_return', defaultDir: -1,
-  rowHtml: function(r){
-    return '<tr><td><b>' + futuresLabel(r.strategy_id) + '</b></td>' +
-      '<td><span class="regimebadge rb-' + r.worst_regime + '">' + stateLabel(r.worst_regime) + '</span></td>' +
-      '<td class="num mono">' + r.trades + '</td>' +
-      '<td class="num mono">' + r.episodes + '</td>' +
-      '<td class="num val ' + valClass(r.worst_regime_return) + '">' + fmtPct(r.worst_regime_return) + '</td>' +
-      '<td class="num val ' + dollarClass(r.dollar_gain_usd) + '">' + fmtUsd(r.dollar_gain_usd) + '</td>' +
-      '<td class="num val ' + dollarClass(r.benchmark_dollar_gain_usd) + '">' + fmtUsd(r.benchmark_dollar_gain_usd) + '</td>' +
-      '<td class="num val ' + valClass(r.median_regime_excess_return) + '">' + fmtPct(r.median_regime_excess_return) + '</td>' +
-      '<td class="num mono">' + fmtDrawdown(r.max_drawdown) + '</td>' +
-        '<td class="num val ' + valClass(r.worst_trade) + '">' + fmtPct(r.worst_trade) + '</td>' +
-        '<td class="num val ' + valClass(r.sortino) + '">' + fmtSortino(r.sortino) + '</td>' +
-        '<td class="num val ' + valClass(r.annualized_return) + '">' + fmtAnnualizedReturn(r.annualized_return) + '</td>' +
-      '<td class="num mono">' + fmtProfitFactor(r.profit_factor) + '</td>' +
-      '<td class="num val ' + scoreClass(r.freqforge_score) + '">' + fmtScore(r.freqforge_score) + '</td>' +
-      '<td class="num mono">' + fmtLcb(r.episode_excess_lcb) + '</td>' +
-      '<td class="num val ' + gradeClass(r.lcb_grade) + '">' + (r.lcb_grade || '&mdash;') + '</td>' +
-      '<td class="num mono">' + Math.round(r.regime_consistency * 100) + '%</td>' +
-      robustCell(r) + uconfirmCell(r) + '</tr>';
-  }
+  defaultKey: 'median_regime_excess_return', defaultDir: -1, pairedKeys: UNI_KEYS,
+  rowHtml: uniRow(true)
 });
 
 // Freqtrade's own block, for the universal candidates: robustness and confirmation come from the same rows
@@ -935,18 +887,7 @@ function dailyClass(v){
       if (document.getElementById('total-cf').checked && !((r.cn || 0) + (r.bn || 0) > 0)) return false;
       return true;
     },
-    compare: function(key, a, b, dir){
-      var base = document.querySelector('input[name="total-basis"]:checked').value;
-      if (base === 'd5' && KEYS5[key]) {
-        var av = a[KEYS5[key]], bv = b[KEYS5[key]];
-        var an = av === null || av === undefined, bn = bv === null || bv === undefined;
-        if (an || bn) return an && bn ? 0 : (an ? 1 : -1) * dir;
-        return av - bv;
-      }
-      if (key === 'tf') return String(a.tf || '').localeCompare(String(b.tf || ''));
-      if (key === 'cq') return (a.cq || 0) - (b.cq || 0);
-      return undefined;
-    },
+    keys5: KEYS5,
     rowHtml: function(r){
       var d = has5(r);
       var cost = r.cm === null || r.cm === undefined ? '–' : fmt2(r.cm) + ' → ' + fmt2(r.c10) + ' %';
@@ -972,7 +913,6 @@ function dailyClass(v){
     }
   });
   ['total-ok', 'total-cf'].forEach(function(id){ document.getElementById(id).addEventListener('change', api.render); });
-  Array.prototype.forEach.call(document.querySelectorAll('input[name="total-basis"]'), function(el){ el.addEventListener('change', api.render); });
 })();
 
 (function renderDiscoveryComparison(){

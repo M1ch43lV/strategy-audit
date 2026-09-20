@@ -104,6 +104,11 @@ class Robustness(object):
         self.cost = _read_json(er.COST_OUTPUT)["results"]
         self.record = _read_json(er.ROBUSTNESS_OUTPUT)["results"]
 
+    def timeframe(self, strategy):
+        """The strategy's own (author) timeframe and its length in minutes, 0 if unknown."""
+        tf = (self.record.get(strategy) or {}).get("main_timeframe") or ""
+        return tf, er.TF_MINUTES.get(tf, 0)
+
     def status(self, strategy):
         return (self.table.get(strategy) or {}).get("execution_robustness_status") or "NA"
 
@@ -230,6 +235,44 @@ def portfolio(coin_rows, bh):
     return {"target": DAILY_TARGET, "min_trades": PORTFOLIO_MIN_TRADES, "phases": phases}
 
 
+X5_KEYS = ["trades", "episodes", "excess_return", "dollar_gain_usd", "benchmark_dollar_gain_usd",
+           "median_excess_return", "max_drawdown", "worst_trade", "sortino", "annualized_return",
+           "profit_factor", "freqforge_score", "episode_excess_lcb", "lcb_grade", "dc", "ds", "dd"]
+
+
+def detail_lookup():
+    """The phase rows of the 5m detail runs (regime/detail_totals.py), keyed like the author rows.
+    A row under the specialist floor carries only its tier and counts, so the page can say why
+    there is no figure."""
+    names = {"btc": ("detail_5m_btc_specialist_table.csv", "btc_regime"),
+             "coin": ("detail_5m_coin_specialist_table.csv", "coin_regime")}
+    path = os.path.join(SPEC, "detail_5m_phase_daily.csv")
+    if not os.path.isfile(path):
+        raise SystemExit("run `python -m regime.detail_totals` first")
+    daily = pd.read_csv(path)
+    dmap = {(r.strategy_id, r.kind, r.regime): r for r in daily.itertuples(index=False)}
+    out = {}
+    for kind, (file, column) in names.items():
+        table = pd.read_csv(os.path.join(SPEC, file))
+        median = table[table["tier"] == "VALIDATION"].groupby("strategy_id")["excess_return"].median()
+        for r in table.to_dict(orient="records"):
+            key = (kind, r["strategy_id"], r[column])
+            if r["tier"] != "VALIDATION":
+                out[key] = {"tier": r["tier"], "trades": int(r["trades"]), "episodes": int(r["episodes"])}
+                continue
+            d = dmap.get((r["strategy_id"], kind, r[column]))
+            record = {k: clean(r[k]) for k in ("excess_return", "dollar_gain_usd", "benchmark_dollar_gain_usd",
+                                               "max_drawdown", "worst_trade", "sortino", "annualized_return",
+                                               "profit_factor", "freqforge_score", "episode_excess_lcb")}
+            record.update(trades=int(r["trades"]), episodes=int(r["episodes"]), lcb_grade=r["lcb_grade"],
+                          median_excess_return=_num(median.get(r["strategy_id"])),
+                          dc=_num(d.daily_on_capital) if d is not None else None,
+                          ds=_num(d.daily_on_slots) if d is not None else None,
+                          dd=_num(d.daily_discovery) if d is not None else None, tier="VALIDATION")
+            out[key] = record
+    return out
+
+
 def confirmed_phase_counts():
     """Per strategy: in how many coin and BTC phases it is confirmed."""
     frame = pd.read_csv(os.path.join(SPEC, "discovery_vs_validation.csv"))
@@ -261,6 +304,12 @@ def total_rows(gain, robustness, uconfirm, daily_total):
                           d_excess=clean(d["excess_dollar_gain_usd"]),
                           d_cm=clean(d["cost_mean_pct"]), d_c10=clean(d["cost_stressed_pct"]),
                           d_dc=_num(d["daily_on_capital"]), d_ds=_num(d["daily_on_slots"]))
+        tf, minutes = robustness.timeframe(sid)
+        record["tfm"] = minutes
+        if tf == "5m":
+            record.update(d_trades=record["trades"], d_gain=record["dollar_gain_usd"],
+                          d_bench=record["benchmark_dollar_gain_usd"], d_excess=record["excess_dollar_gain_usd"],
+                          d_cm=record.get("cm"), d_c10=record.get("c10"), d_dc=record.get("dc"), d_ds=record.get("ds"))
         ur, us, up, _ = uconfirm.get(sid, (-1, None, 0, 0))
         cn, bn = phases["coin"].get(sid, 0), phases["btc"].get(sid, 0)
         record.update(ur=ur, us=us, up=up, cn=cn, bn=bn, cq=100 * max(ur, 0) + 10 * cn + bn)
@@ -269,7 +318,7 @@ def total_rows(gain, robustness, uconfirm, daily_total):
 
 
 # ------------------------------------------------------------------ data exports
-def regime_rows(table, regime_col, kind, robustness, confirm, daily):
+def regime_rows(table, regime_col, kind, robustness, confirm, daily, detail):
     qualified = table[table["tier"] == "VALIDATION"].copy()
     median_by_strategy = qualified.groupby("strategy_id")["excess_return"].median()
     qualified["median_excess_return"] = qualified["strategy_id"].map(median_by_strategy)
@@ -295,6 +344,13 @@ def regime_rows(table, regime_col, kind, robustness, confirm, daily):
         cf, sc = confirm.get((kind, row["strategy_id"], row[regime_col]), (0, None))
         record["cf"], record["sc"] = cf, sc
         record.update(daily.get((row["strategy_id"], kind, row[regime_col]), {"dc": None, "ds": None, "dd": None}))
+        tf, minutes = robustness.timeframe(row["strategy_id"])
+        record["tf"], record["tfm"] = tf, minutes
+        if tf == "5m":
+            # the author timeframe is 5m: the same run, the same figures
+            record["x5"] = {k: record.get(k) for k in X5_KEYS}
+        else:
+            record["x5"] = detail.get((kind, row["strategy_id"], row[regime_col]))
         rows.append(record)
     return rows
 
@@ -304,7 +360,24 @@ DETAIL_COLS = ["trades", "episodes", "dollar_gain_usd", "benchmark_dollar_gain_u
                "freqforge_score", "episode_excess_lcb", "lcb_grade"]
 
 
-def universal_rows(universal, coin, robustness, uconfirm):
+def universal_x5(sid, worst, detail):
+    """The 5m rerun's figures at the strategy's worst coin phase, and its median and consistency over
+    the four coin phases, or None where the rerun lacks one of them at the floor."""
+    cells = {s: detail.get(("coin", sid, s)) for s in STATES}
+    if any(c is None or c.get("tier") != "VALIDATION" for c in cells.values()):
+        return None
+    at = cells.get(worst)
+    excess = [c["excess_return"] for c in cells.values()]
+    out = {k: at.get(k) for k in ("trades", "episodes", "dollar_gain_usd", "benchmark_dollar_gain_usd", "max_drawdown",
+                                  "worst_trade", "sortino", "annualized_return", "profit_factor", "freqforge_score",
+                                  "episode_excess_lcb", "lcb_grade")}
+    out["worst_regime_return"] = at["excess_return"]
+    out["median_regime_excess_return"] = float(pd.Series(excess).median())
+    out["regime_consistency"] = float(sum(1 for e in excess if e > 0)) / len(excess)
+    return out
+
+
+def universal_rows(universal, coin, robustness, uconfirm, detail):
     indexed = coin.set_index(["strategy_id", "coin_regime"])
     rows = []
     for row in universal.to_dict(orient="records"):
@@ -315,6 +388,13 @@ def universal_rows(universal, coin, robustness, uconfirm):
         record.update(robustness.universal(row["strategy_id"]))
         ur, us, up, uc = uconfirm.get(row["strategy_id"], (0, None, 0, 0))
         record.update({"ur": ur, "us": us, "up": up, "uc": uc})
+        tf, minutes = robustness.timeframe(row["strategy_id"])
+        record["tf"], record["tfm"] = tf, minutes
+        if tf == "5m":
+            keys = DETAIL_COLS + ["worst_regime_return", "median_regime_excess_return", "regime_consistency"]
+            record["x5"] = {k: record.get(k) for k in keys}
+        else:
+            record["x5"] = universal_x5(row["strategy_id"], row["worst_regime"], detail)
         rows.append(record)
     return rows
 
@@ -701,9 +781,10 @@ def build(destination, gating_destination, skip_native=False):
 
     confirm, uconfirm = confirmation_lookups()
     daily_phase, daily_total = daily_lookup(robustness)
-    rows = {"btc": regime_rows(btc, "btc_regime", "btc", robustness, confirm, daily_phase),
-            "coin": regime_rows(coin, "coin_regime", "coin", robustness, confirm, daily_phase),
-            "universal": universal_rows(universal, coin, robustness, uconfirm)}
+    detail = detail_lookup()
+    rows = {"btc": regime_rows(btc, "btc_regime", "btc", robustness, confirm, daily_phase, detail),
+            "coin": regime_rows(coin, "coin_regime", "coin", robustness, confirm, daily_phase, detail),
+            "universal": universal_rows(universal, coin, robustness, uconfirm, detail)}
     gain_rows = total_rows(gain, robustness, uconfirm, daily_total)
     plan = portfolio(rows["coin"], buy_hold_daily())
     if skip_native:

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Validation-window totals of the 5m detail runs, beside those of the author timeframe.
+"""Validation-window totals and phase tables of the 5m detail runs, beside those of the author timeframe.
 
 `regime/specialist_evaluation.py` prices every strategy's validation trades once, from the
 author-timeframe baseline (`strategy_total_dollar_gain.csv`). Stage 8b reruns a strategy above 5m
@@ -16,7 +16,10 @@ cost screen's own (`attribution.attribute`, `attach_benchmark`, `total_dollar_ga
     ./ftenv/Scripts/python.exe -m regime.detail_totals --check    # reproduce the baseline figures
 
 Writes `results/regime/specialist_evaluation/detail_5m_total_dollar_gain.csv`, one row per
-strategy that has a measured detail run. Strategies at or below 5m have no rerun (owner rule) and
+strategy that has a measured detail run, and the same runs' phase tables
+(`detail_5m_btc_specialist_table.csv`, `detail_5m_coin_specialist_table.csv`, with the daily
+returns of `regime/daily_return.py` in `detail_5m_phase_daily.csv`), computed by the evaluation's own
+`btc_specialist_table` / `coin_specialist_table`. Strategies at or below 5m have no rerun (owner rule) and
 no row. `--check` runs the same code on the baseline archives of a few strategies and compares
 the result with `strategy_total_dollar_gain.csv`; it must agree, or this module prices trades
 differently from the evaluation.
@@ -36,18 +39,20 @@ sys.path.insert(0, str(ROOT))
 from evidence import execution_robustness as er  # noqa: E402
 from regime import attribution, specialist_evaluation as se  # noqa: E402
 
-OUT = ROOT / "results" / "regime" / "specialist_evaluation" / "detail_5m_total_dollar_gain.csv"
+OUTDIR = ROOT / "results" / "regime" / "specialist_evaluation"
+OUT = OUTDIR / "detail_5m_total_dollar_gain.csv"
 BASELINE_TABLE = ROOT / "results" / "regime" / "specialist_evaluation" / "strategy_total_dollar_gain.csv"
 CHUNK = 25
 
 
-def price(blocks: dict) -> pd.DataFrame:
+def price(blocks: dict, with_phases: bool = False):
     """One row per strategy: the validation window of these native blocks, priced as the
-    evaluation prices the baseline."""
+    evaluation prices the baseline. With `with_phases`, returns (table, btc phases, coin phases,
+    daily returns per phase) instead of the table alone."""
     archives = [{"strategy_id": s, "trades": b.get("trades") or [], "model": "model0"}
                 for s, b in blocks.items() if b.get("trades")]
     if not archives:
-        return pd.DataFrame()
+        return (pd.DataFrame(),) * 4 if with_phases else pd.DataFrame()
     frame = attribution.attribute(archives)
     leverage = {a["strategy_id"]: np.array([t.get("leverage") or 1.0 for t in a["trades"]],
                                            dtype=float) for a in archives}
@@ -61,7 +66,42 @@ def price(blocks: dict) -> pd.DataFrame:
     table["cost_stressed_pct"] = table["strategy_id"].map(lambda s: cost[s]["stressed_pct"])
     table["daily_on_capital"] = table["strategy_id"].map(lambda s: daily.get(s, (None, None))[0])
     table["daily_on_slots"] = table["strategy_id"].map(lambda s: daily.get(s, (None, None))[1])
-    return table
+    if not with_phases:
+        return table
+    return (table, se.btc_specialist_table(priced), se.coin_specialist_table(priced), phase_daily(frame))
+
+
+def phase_daily(frame: pd.DataFrame) -> pd.DataFrame:
+    """Daily return per strategy, kind and phase, as regime/daily_return.py defines it: after 0.1 %
+    slippage per side and on both capitals for the validation window, before slippage on the
+    provided capital for the discovery window."""
+    from regime import daily_return
+    daily = pd.read_csv(daily_return.DAILY, usecols=["date", "pair", "btc_regime", "coin_regime"])
+    daily["date"] = pd.to_datetime(daily["date"], utc=True)
+    daily = daily[daily["date"] < attribution.END]
+    slots = daily_return.slot_days(daily).set_index(["kind", "regime", "window"])["slot_days"]
+    slip = er.COST["reference_slippage_per_side"]
+    window = np.where(frame["open_date"] >= se.VALIDATION_START, "validation", "discovery")
+    base = frame.assign(window=window,
+                        net=frame["profit_ratio"] - 2.0 * slip * frame["leverage"],
+                        days=np.maximum(frame["trade_duration"].astype(float), daily_return.MIN_HOLD_MINUTES) / 1440.0)
+    rows = []
+    for kind, column, _ in daily_return.KINDS:
+        part = base[base[column].notna()]
+        grouped = part.groupby(["strategy_id", "window", column]).agg(
+            raw=("profit_ratio", "sum"), net=("net", "sum"), days=("days", "sum")).reset_index()
+        grouped = grouped.rename(columns={column: "regime"})
+        grouped["kind"] = kind
+        rows.append(grouped)
+    out = pd.concat(rows, ignore_index=True)
+    out["slot_days"] = [slots.get((k, r, w), np.nan) for k, r, w in zip(out["kind"], out["regime"], out["window"])]
+    val = out[out["window"] == "validation"]
+    disc = out[out["window"] == "discovery"].set_index(["strategy_id", "kind", "regime"])
+    result = pd.DataFrame({"strategy_id": val["strategy_id"], "kind": val["kind"], "regime": val["regime"],
+                           "daily_on_capital": val["net"] / val["days"], "daily_on_slots": val["net"] / val["slot_days"]})
+    keys = list(zip(val["strategy_id"], val["kind"], val["regime"]))
+    result["daily_discovery"] = [(disc.at[k, "raw"] / disc.at[k, "slot_days"]) if k in disc.index else np.nan for k in keys]
+    return result.reset_index(drop=True)
 
 
 def daily_returns(frame: pd.DataFrame) -> dict:
@@ -92,13 +132,18 @@ def measured_blocks(strategies=None):
             yield strategy, archive, block
 
 
-def run(strategies=None) -> pd.DataFrame:
+def run(strategies=None):
     parts, archives = [], {}
     batch = {}
+    phases = {"btc": [], "coin": [], "daily": []}
 
     def flush():
         if batch:
-            parts.append(price(dict(batch)))
+            table, btc, coin, daily = price(dict(batch), with_phases=True)
+            parts.append(table)
+            phases["btc"].append(btc)
+            phases["coin"].append(coin)
+            phases["daily"].append(daily)
             batch.clear()
 
     for strategy, archive, block in measured_blocks(strategies):
@@ -110,7 +155,8 @@ def run(strategies=None) -> pd.DataFrame:
     flush()
     table = pd.concat([p for p in parts if not p.empty], ignore_index=True)
     table["detail_archive"] = table["strategy_id"].map(archives)
-    return table.sort_values("dollar_gain_usd", ascending=False).reset_index(drop=True)
+    table = table.sort_values("dollar_gain_usd", ascending=False).reset_index(drop=True)
+    return table, {k: pd.concat([p for p in v if len(p)], ignore_index=True) for k, v in phases.items()}
 
 
 def check(sample: int = 4) -> bool:
@@ -138,10 +184,13 @@ def main(argv=None) -> int:
     if args.check:
         return 0 if check() else 1
     chosen = {s.strip() for s in args.strategies.split(",") if s.strip()} or None
-    table = run(chosen)
+    table, phases = run(chosen)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     table.to_csv(OUT, index=False, lineterminator="\n", float_format="%.12g")
-    print("wrote %s: %d strategies" % (OUT, len(table)))
+    for name, file in (("btc", "detail_5m_btc_specialist_table.csv"), ("coin", "detail_5m_coin_specialist_table.csv"),
+                       ("daily", "detail_5m_phase_daily.csv")):
+        phases[name].to_csv(OUTDIR / file, index=False, lineterminator="\n", float_format="%.12g")
+    print("wrote %s: %d strategies; phase rows btc %d, coin %d" % (OUT, len(table), len(phases["btc"]), len(phases["coin"])))
     return 0
 
 
