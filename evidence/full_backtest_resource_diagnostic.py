@@ -74,7 +74,8 @@ def _container_stats(name: str, stop: threading.Event, samples: list[float]) -> 
             samples.append(amount)
 
 
-def run(strategy: str, pair_count: int, timeout: int, output: Path) -> dict:
+def run(strategy: str, pair_count: int, timeout: int, output: Path,
+        timeframe: str = "") -> dict:
     if _active_audit_container():
         raise SystemExit("refusing resource diagnostic while an audit container is active")
     row = _row(strategy)
@@ -83,7 +84,8 @@ def run(strategy: str, pair_count: int, timeout: int, output: Path) -> dict:
     if len(pairs) != pair_count:
         raise SystemExit("pair count exceeds the canonical futures universe")
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    identifier = f"{strategy}-{stamp}-pairs{pair_count}"
+    suffix = f"-tf{timeframe}" if timeframe else ""
+    identifier = f"{strategy}-{stamp}-pairs{pair_count}{suffix}"
     directory = ROOT / "user_data" / "resource_diagnostics" / identifier
     directory.mkdir(parents=True, exist_ok=False)
     config = dict(base)
@@ -102,6 +104,8 @@ def run(strategy: str, pair_count: int, timeout: int, output: Path) -> dict:
         "--timerange", TIMERANGE, "--fee", "0.001", "--export", "trades",
         "--backtest-directory", output_in_container, "--cache", "none",
     ]
+    if timeframe:
+        command += ["--timeframe", timeframe]
     samples: list[float] = []
     stop = threading.Event()
     watcher = threading.Thread(target=_container_stats, args=(container_name, stop, samples), daemon=True)
@@ -132,10 +136,13 @@ def run(strategy: str, pair_count: int, timeout: int, output: Path) -> dict:
         "attempted_at": dt.datetime.now(dt.timezone.utc).isoformat(),
         "strategy": strategy,
         "canonical_identity": profile_smoke._identity(row),
-        "diagnostic_scope": "noncanonical_pair_subset_resource_probe",
+        "diagnostic_scope": ("noncanonical_timeframe_override_resource_probe"
+                             if timeframe else "noncanonical_pair_subset_resource_probe"),
         "canonical_baseline_reference": "results/regime/full_backtest_manifest.json",
         "pairs": pairs,
         "pair_count": pair_count,
+        "source_timeframe": row.get("execution_timeframe", ""),
+        "requested_timeframe": timeframe or row.get("execution_timeframe", ""),
         "timerange": TIMERANGE,
         "runtime_image": IMAGE,
         "runtime_config_sha256": _sha256(CONFIG),
@@ -179,6 +186,8 @@ def main(argv=None) -> int:
     parser.add_argument("--strategy")
     parser.add_argument("--pair-count", type=int, default=1)
     parser.add_argument("--timeout", type=int, default=1800)
+    parser.add_argument("--timeframe", default="",
+                        help="non-canonical Freqtrade timeframe override, for example 5m")
     parser.add_argument("--output", type=Path, default=OUTPUT)
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
@@ -189,7 +198,7 @@ def main(argv=None) -> int:
         raise SystemExit("--strategy is required unless --selftest is used")
     if args.pair_count < 1 or args.timeout < 1:
         raise SystemExit("pair count and timeout must be positive")
-    run(args.strategy, args.pair_count, args.timeout, args.output)
+    run(args.strategy, args.pair_count, args.timeout, args.output, args.timeframe)
     return 0
 
 
