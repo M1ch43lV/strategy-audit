@@ -41,6 +41,7 @@ RUNNERS = {
     "warmup": "runtime/warmup_convergence_docker.ps1",
     "recursive": "runtime/profile_bias_docker.ps1",
     "full_backtest": "runtime/regime_full_backtest_docker.ps1",
+    "execution_detail": "runtime/regime_full_backtest_docker.ps1",
 }
 KNOWN_SMOKE_PROFILES = {
     "spot_long", "spot_short", "spot_long_short",
@@ -117,7 +118,7 @@ def _first(rows: Iterable[dict], predicate) -> dict | None:
                  if predicate(row)), None)
 
 
-def choose(state: dict) -> dict:
+def choose(state: dict, strategy: str = "") -> dict:
     """Choose exactly one safe next action from the canonical read model.
 
     Repair triage and the zero-trade full-window probe are intentionally not
@@ -125,6 +126,10 @@ def choose(state: dict) -> dict:
     represented as an escalation instead of a fabricated normal gate.
     """
     rows = list(state["strategies"].values())
+    if strategy:
+        rows = [row for row in rows if row["strategy_id"] == strategy]
+        if not rows:
+            raise DispatchError("requested strategy is absent from published state: " + strategy)
     converged = _converged()
     warm_records = _json(WARMUP).get("results", {}) if WARMUP.exists() else {}
 
@@ -174,11 +179,37 @@ def choose(state: dict) -> dict:
                          "--limit", "1", "--timeout", "1200", "--fallback-timeout", "300"]}
 
     row = _first(rows, lambda item: (
+        item.get("lookahead") == "PASS"
+        and item.get("recursive") in ("PASS", "PASS_1PCT")
+        and item.get("coverage_status") == "PENDING"
+        and not (_work(item) & REPAIR_BLOCKERS)))
+    if row:
+        return {"kind": "run", "gate": "coverage", "metadata_gate": "warmup_recursive",
+                "strategy": row["strategy_id"], "args": []}
+
+    row = _first(rows, lambda item: (
         item.get("cohort") == "E1_expanded"
         and item.get("full_backtest_status") in (None, "")))
     if row:
         return {"kind": "run", "gate": "full_backtest", "strategy": row["strategy_id"],
                 "args": ["--strategy", row["strategy_id"], "--workers", "1", "--timeout", "3600"]}
+
+    row = _first(rows, lambda item: (
+        item.get("technical_chain_complete") is True
+        and item.get("execution_robustness_status") == "PENDING"))
+    if row:
+        detail_timeframe = _detail_timeframe(row.get("timeframe") or "")
+        if detail_timeframe == "5m":
+            return {"kind": "run", "gate": "execution_detail",
+                    "metadata_gate": "execution_robustness", "strategy": row["strategy_id"],
+                    "args": ["--strategy", row["strategy_id"], "--workers", "1", "--timeout", "3600",
+                             "--timeframe-detail", "5m", "--output",
+                             "results/regime/execution_robustness_detail_5m_docker.json"]}
+        if detail_timeframe is None:
+            return {"kind": "run", "gate": "execution_robustness",
+                    "strategy": row["strategy_id"], "args": []}
+        return {"kind": "escalate", "strategy": row["strategy_id"],
+                "reason": "execution robustness requires a resolvable authored timeframe"}
 
     manual = _first(rows, lambda item: bool(_work(item)))
     if manual:
@@ -188,7 +219,21 @@ def choose(state: dict) -> dict:
     return {"kind": "idle", "reason": "no eligible pending work"}
 
 
+def _detail_timeframe(timeframe: str) -> str | None:
+    """Return the frozen Stage-8b route without changing the authored TF."""
+    minutes = {"1m": 1, "3m": 3, "5m": 5, "15m": 15, "30m": 30,
+               "1h": 60, "2h": 120, "4h": 240, "6h": 360, "8h": 480,
+               "12h": 720, "1d": 1440, "1w": 10080}.get(timeframe)
+    if minutes is None:
+        return "unknown"
+    return "5m" if minutes > 5 else None
+
+
 def _command(action: dict) -> list[str]:
+    if action["gate"] == "coverage":
+        return [sys.executable, "-m", "evidence.regime_coverage"]
+    if action["gate"] == "execution_robustness":
+        return [sys.executable, "-m", "evidence.execution_robustness"]
     return [PS, "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
             str(ROOT / RUNNERS[action["gate"]]), *action["args"]]
 
@@ -211,6 +256,27 @@ def _admit_then_refresh() -> None:
     _refresh_state()
 
 
+def _finalize_success(action: dict) -> None:
+    """Publish exactly the derived evidence the completed route requires."""
+    if action["gate"] == "execution_detail":
+        completed = subprocess.run(
+            [sys.executable, "-m", "evidence.execution_robustness"], cwd=ROOT,
+            text=True, capture_output=True, check=False)
+        if completed.returncode:
+            raise DispatchError("execution-robustness publication failed: "
+                                + completed.stderr.strip())
+        _refresh_state()
+        return
+    if action["gate"] == "execution_robustness":
+        _refresh_state()
+        return
+    # The raw runner owns its evidence store. Rebuild the published reader
+    # before admission so a just-written coverage or convergence record is
+    # visible to the admission rule in this same dispatcher cycle.
+    _refresh_state()
+    _admit_then_refresh()
+
+
 def _result_status(action: dict, returncode: int) -> str:
     """Map process completion to operational metadata, never a strategy verdict."""
     if returncode:
@@ -224,7 +290,11 @@ def _result_status(action: dict, returncode: int) -> str:
         return "PASS" if state.get("recursive") in ("PASS", "PASS_1PCT") else "FAIL"
     if action["gate"] == "warmup":
         return "PASS" if action["strategy"] in _converged() else "FAIL"
-    return "PASS" if state.get("measured") == "true" else "FAIL"
+    if action["gate"] == "coverage":
+        return "PASS" if state.get("coverage_status") == "PASS" else "FAIL"
+    if action["gate"] in ("execution_detail", "execution_robustness"):
+        return "PASS" if state.get("execution_robustness_status") == "PASS" else "FAIL"
+    return "PASS" if state.get("measured") in (True, "true") else "FAIL"
 
 
 def _append_metadata(action: dict, command: list[str], status: str, output: str) -> None:
@@ -268,7 +338,7 @@ def dispatcher_lock():
             pass
 
 
-def run_once(apply: bool) -> int:
+def run_once(apply: bool, strategy: str = "") -> int:
     active = _docker_running()
     if active:
         print(json.dumps({"kind": "blocked", "reason": "active Docker container", "containers": active}, indent=2))
@@ -278,17 +348,15 @@ def run_once(apply: bool) -> int:
         print(json.dumps({"kind": "blocked", "reason": "published pipeline state is stale",
                           "detail": detail}, ensure_ascii=False, indent=2))
         return 0
-    action = choose(_load_state())
+    action = choose(_load_state(), strategy)
     if not apply or action["kind"] != "run":
         print(json.dumps(action, ensure_ascii=False, indent=2))
         return 0
     command = _command(action)
     print(json.dumps({"dispatch": action, "command": command}, ensure_ascii=False, indent=2), flush=True)
     completed = subprocess.run(command, cwd=ROOT, text=True, capture_output=True, check=False)
-    # Runners publish their direct evidence.  Admission and full-backtest state
-    # need the explicit read-model refresh prescribed by PIPELINE.md.
     if completed.returncode == 0:
-        _admit_then_refresh()
+        _finalize_success(action)
     status = _result_status(action, completed.returncode)
     _append_metadata(action, command, status, completed.stdout + completed.stderr)
     if completed.returncode:
@@ -307,6 +375,13 @@ def selftest() -> None:
     base["strategies"]["B"]["open_work"] = "recursive_ladder_pending;to_be_fixed"
     base["strategies"]["B"]["lookahead"] = "PASS"
     assert choose(base)["kind"] == "escalate"
+    post = {"strategies": {"C": {
+        "strategy_id": "C", "technical_chain_complete": True,
+        "execution_robustness_status": "PENDING", "timeframe": "1m",
+    }}}
+    assert choose(post)["gate"] == "execution_robustness"
+    post["strategies"]["C"]["timeframe"] = "1h"
+    assert choose(post)["gate"] == "execution_detail"
     print("pipeline_dispatcher selftest: PASS")
 
 
@@ -314,6 +389,9 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--apply", action="store_true", help="start exactly one eligible runner")
     parser.add_argument("--watch", action="store_true", help="repeat after every completed run")
+    parser.add_argument("--strategy", help="restrict planning and dispatch to one strategy ID")
+    parser.add_argument("--intake", action="store_true",
+                        help="refresh source-derived intake evidence before the named strategy")
     parser.add_argument("--interval", type=int, default=60, help="idle polling interval in seconds")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
@@ -322,9 +400,25 @@ def main(argv=None) -> int:
         return 0
     if args.interval < 1:
         raise SystemExit("--interval must be positive")
+    if args.intake:
+        if not args.strategy:
+            raise SystemExit("--intake requires --strategy")
+        if not args.apply:
+            raise SystemExit("--intake writes source-derived evidence; pass --apply")
     with dispatcher_lock():
+        if args.intake:
+            command = [sys.executable, "-c",
+                       "from tools.harvest import refresh_intake_evidence; raise SystemExit(refresh_intake_evidence())"]
+            completed = subprocess.run(command, cwd=ROOT, text=True,
+                                       capture_output=True, check=False)
+            intake_action = {"gate": "classification", "strategy": args.strategy}
+            _append_metadata(intake_action, command,
+                             "PASS" if completed.returncode == 0 else "ERROR",
+                             completed.stdout + completed.stderr)
+            if completed.returncode:
+                raise DispatchError("source intake refresh failed with exit %d" % completed.returncode)
         while True:
-            run_once(args.apply)
+            run_once(args.apply, args.strategy or "")
             if not args.watch:
                 return 0
             time.sleep(args.interval)

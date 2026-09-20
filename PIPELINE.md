@@ -13,12 +13,17 @@ All native runs (not Docker) need the Python interpreter from `ftenv/Scripts/pyt
 For serial operational continuation after an intake refresh, use
 `python -m tools.pipeline_dispatcher` to inspect the next eligible action or
 `python -m tools.pipeline_dispatcher --watch --apply` to dispatch one
-preregistered runner at a time. The dispatcher reads the published pipeline
-state, refuses to overlap an active Docker runner, runs the existing wrapper,
-refreshes published state, applies the existing E1 admission command, and
-records routing provenance. It does not change a gate's selection rule, repair
-policy, timeout, evidence store, or preregistered order. Repair-only and
-zero-trade full-window cases are surfaced for escalation rather than guessed.
+preregistered runner at a time. For one already-imported source, the explicit
+`--strategy <id> --intake --apply` route regenerates the source-derived intake
+views before selecting that strategy only. The dispatcher reads the published
+pipeline state, refuses to overlap an active Docker runner, runs the existing
+wrapper, refreshes published state, applies the existing E1 admission command,
+and records routing provenance. It includes Stage 8b after a measured
+Full-Backtest: a 5m detail run above 5m, or the documented at-or-below-5m rule
+plus cost-screen publication. It does not change a gate's selection rule,
+repair policy, timeout, evidence store, or preregistered order. Repair-only
+and zero-trade full-window cases are surfaced for escalation rather than
+guessed.
 
 | Program | Reads | Writes |
 |---|---|---|

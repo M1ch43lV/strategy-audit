@@ -44,6 +44,8 @@ The fixed gate order and default route are:
 4. Warm-up / recursive analysis — GPT-5.6 Luna, low reasoning
 5. Full backtest and interpretation — GPT-5.6 Terra, medium reasoning
 
+6. Post-full execution robustness and cost screen — GPT-5.6 Terra, medium reasoning
+
 The controller default is GPT-5.6 Terra with low reasoning. Escalate only for
 ambiguous, contradictory, or deep code/methodology cases, in this order:
 
@@ -84,10 +86,14 @@ container or another dispatcher holds its lock.  It reads only the published
 published state after completion, applies the existing E1 admission command,
 and appends one metadata record per dispatched gate.
 
-The dispatcher may select only routine, preregistered routes: first smoke
-measurement, native Look-Ahead, warm-up convergence, final Recursive-Bias,
-and missing E1 pooled Full-Backtests.  Repair triage and a zero-trade
-full-window probe remain `ESCALATE` conditions, never guessed automation.
+The dispatcher may select only routine, preregistered routes: source intake and
+classification for an explicitly named strategy, then smoke measurement,
+native Look-Ahead, warm-up convergence, final Recursive-Bias, coverage
+publication, missing E1 pooled Full-Backtests, and the additive post-full
+execution-robustness/cost-screen stage. Above 5m it runs the prescribed 5m
+detail backtest; at or below 5m it publishes the owner-rule record without a
+detail rerun. Repair triage and a zero-trade full-window probe remain
+`ESCALATE` conditions, never guessed automation.
 
 ### Repair controller
 

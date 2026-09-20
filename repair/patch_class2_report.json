@@ -1666,5 +1666,23 @@
   "repair_class": "class2",
   "source_tree": "class2-overlay",
   "equivalence_status": "strict_equivalent"
+ },
+ {
+  "strategy": "HedgeAdaptiveRegimeStrategy",
+  "rule": [
+   "fork_local_hedge_contract_import"
+  ],
+  "repair_rules": [
+   "fork_local_hedge_contract_import"
+  ],
+  "action": "patched",
+  "reason": [
+   "XXA222's source imports a passive HedgeStrategyMixin absent from the pinned upstream runtime; the isolated overlay changes only that import to its local contract validator"
+  ],
+  "file": "repos/XXA222_HPRL/config_examples/strategies/HedgeAdaptiveRegimeStrategy.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent"
  }
 ]
