@@ -1,6 +1,13 @@
 param(
     [switch] $RebuildRuntime,
     [switch] $TensorflowRuntime,
+    # Optional container limits, for running several containers side by side. The
+    # memory limit is also the swap limit, so a run that outgrows it is killed on
+    # its own (exit -9, recorded as resource_inconclusive) instead of pushing the
+    # whole VM into swap. Without them the container behaves as before.
+    [string] $MemoryLimit = "",
+    [double] $Cpus = 0,
+    [string] $ContainerName = "",
     [Parameter(ValueFromRemainingArguments = $true)]
     [string[]] $BacktestArguments
 )
@@ -26,7 +33,12 @@ if ($RebuildRuntime -or -not $existingImageId) {
 $imageId = docker image inspect $image --format '{{.Id}}'
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-docker run --rm `
+$limits = @()
+if ($MemoryLimit) { $limits += @("--memory", $MemoryLimit, "--memory-swap", $MemoryLimit) }
+if ($Cpus -gt 0) { $limits += @("--cpus", "$Cpus") }
+if ($ContainerName) { $limits += @("--name", $ContainerName) }
+
+docker run --rm @limits `
     -e "PROFILE_RUNTIME_ID=docker:$imageId" `
     -v "${auditPath}:/audit" `
     -w /audit `

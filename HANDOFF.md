@@ -1584,11 +1584,25 @@ Until it runs, `execution_robustness_status` shows `PENDING` for strategies whos
 detail run has finished. `python -m evidence.execution_robustness --check` reports
 whether the stores are current.
 
-**What is running.** The 5m-detail batch (230 strategies with a main timeframe above
-5m; output `results/regime/execution_robustness_detail_5m_docker.json`). Serial by
-rule: do not start a second full-backtest writer beside it. At the last rebuild it
-had 46 comparisons: 36 `PASS`, 9 `SENSITIVE`, 1 `ERROR` (`MacheteV8b`, the detail
-run failed).
+**What is running (changed 2026-09-20).** The serial 5m-detail batch was stopped by
+Claude with the owner's agreement after 180 records (175 measured, 2 failed, 1 timeout)
+and replaced by `runtime/detail_batch_parallel.py`: four Docker containers, one strategy
+each, `--memory 3500m` (also the swap limit) and `--cpus 1` per container, taking the
+next owed strategy from a shared queue. Each container writes its own store,
+`results/regime/execution_robustness_detail_5m_w<N>_docker.json`; two containers must
+never write one file. `evidence/execution_robustness.py` already reads every
+`execution_robustness_detail_*.json` and keeps the best record per strategy, so nothing
+downstream changed. The script records the peak memory of every strategy in
+`execution_robustness_detail_5m_w_memory.csv`.
+Strategies that hit the 3.5 GB limit (`resource_inconclusive`), that time out under
+parallel load, or whose container died without a record are then repeated one at a
+time without a memory limit, into `execution_robustness_detail_5m_solo_docker.json`
+(`--solo` runs only that repeat). A serial `failed` or `timeout` from the old store is
+final and is not queued again. Do not restart the serial batch and do not start another
+full-backtest writer beside this one. The wrapper
+`runtime/regime_full_backtest_docker.ps1` gained `-MemoryLimit`, `-Cpus` and
+`-ContainerName`; without them it behaves as before. Log:
+`results/regime/execution_robustness_detail_5m_parallel.log`.
 
 **Strategies at or below 5m: no rerun, no 1m batch** (owner decision 2026-09-19,
 resource grounds). They are counted equal to a strategy that received the 5m run:
