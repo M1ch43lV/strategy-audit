@@ -54,11 +54,30 @@ def price(blocks: dict) -> pd.DataFrame:
     frame["leverage"] = [leverage[s][o] for s, o in zip(frame["strategy_id"], frame["trade_ordinal"])]
     cost = {s: er.validation_total(er.regime_cost_screen(part), "btc")
             for s, part in frame.groupby("strategy_id", sort=False)}
+    daily = daily_returns(frame)
     priced = se.split_discovery_validation(se.attach_benchmark(frame))
     table = se.total_dollar_gain_table(priced)
     table["cost_mean_pct"] = table["strategy_id"].map(lambda s: cost[s]["mean_profit_pct"])
     table["cost_stressed_pct"] = table["strategy_id"].map(lambda s: cost[s]["stressed_pct"])
+    table["daily_on_capital"] = table["strategy_id"].map(lambda s: daily.get(s, (None, None))[0])
+    table["daily_on_slots"] = table["strategy_id"].map(lambda s: daily.get(s, (None, None))[1])
     return table
+
+
+def daily_returns(frame: pd.DataFrame) -> dict:
+    """Whole validation window, after 0.1 % slippage per side: the daily return on employed
+    capital and on provided capital (regime/daily_return.py defines both), per strategy."""
+    from regime import daily_return
+    daily = pd.read_csv(daily_return.DAILY, usecols=["date", "pair", "btc_regime"])
+    daily["date"] = pd.to_datetime(daily["date"], utc=True)
+    daily = daily[(daily["date"] >= se.VALIDATION_START) & (daily["date"] < attribution.END)]
+    slots = float(daily["btc_regime"].notna().sum())
+    val = frame[(frame["open_date"] >= se.VALIDATION_START) & frame["btc_regime"].notna()].copy()
+    slip = er.COST["reference_slippage_per_side"]
+    val["net"] = val["profit_ratio"] - 2.0 * slip * val["leverage"]
+    val["days"] = np.maximum(val["trade_duration"].astype(float), daily_return.MIN_HOLD_MINUTES) / 1440.0
+    grouped = val.groupby("strategy_id").agg(net=("net", "sum"), days=("days", "sum"))
+    return {s: (r["net"] / r["days"], r["net"] / slots) for s, r in grouped.iterrows()}
 
 
 def measured_blocks(strategies=None):

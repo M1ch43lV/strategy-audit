@@ -35,6 +35,7 @@
   <a href="#sec-regeln">Regeln und Fenster</a>
   <a href="#dv-section">Discovery gegen Validation</a>
   <a href="#robust-section">Robuste Gewinner</a>
+  <a href="#sec-portfolio">Phasen-Portfolio</a>
   <a href="#sec-total">Gesamtes Validierungsfenster</a>
   <a href="#sec-spez">Tabellen je Marktphase</a>
   <a href="#sec-funnel">Universal-Kandidaten</a>
@@ -190,6 +191,40 @@
   <div class="callout warn" style="margin-top:14px;"><span class="dot">&#9888;</span><div><b>Was der Filter nicht leistet.</b> PASS ist eine notwendige, keine hinreichende Bedingung: fast jede Strategie mit einer gewinnbringenden Phase besteht den Kostenstress in dieser Phase, der Filter trennt also vor allem über den 5m-Lauf. Bei Strategien bis 5m ist dieser Teil eine Regel und keine Messung. Wo Baseline und 5m-Lauf in verschiedenen Laufzeiten gerechnet wurden, ist ein <i>sensitiv</i> nicht sauber vom Laufzeiteffekt getrennt; ein Kontrolllauf steht aus. &bdquo;5m offen&ldquo; heißt: Timeframe über 5m, Lauf noch nicht fertig, das Ergebnis kann sich noch ändern.</div></div>
 </section>
 
+<section id="sec-portfolio">
+  <div class="sectionhead">
+    <h2>Phasen-Portfolio: eine Strategie je Marktphase</h2>
+    <span class="hint">Ziel: mindestens {{daily_target}} Rendite pro Tag auf das Kapital</span>
+  </div>
+  <p class="secintro">Die Frage: Welche Strategie soll in welcher ADX-Phase des Coins laufen, damit das Kapital im Schnitt mindestens {{daily_target}} pro Tag verdient und Buy-and-Hold in dieser Phase geschlagen wird? Die Auswahl ist eine Regel, keine Handarbeit: Robustheits-PASS in der Phase, in beiden Fenstern bestätigt (LCB über 0), eine Tagesrendite von mindestens {{daily_target}} <b>nach 0,1&nbsp;% Slippage je Seite</b> und über der von Buy-and-Hold, mindestens {{pf_min_trades}} Trades. In der Aufwärtsphase bleibt es bei Buy-and-Hold; das ist die Entscheidung des Eigentümers und zugleich das Ergebnis, weil dort keine Strategie die Regel erfüllt.</p>
+  <div class="callout info"><span class="dot">&#8505;</span><div><b>Zwei Lesarten der Tagesrendite.</b> Beide rechnen mit festem Einsatz je Trade, ohne Zinseszins.
+    <p style="margin:8px 0 0;max-width:none;"><b>Auf das eingesetzte Kapital:</b> Summe der Trade-Renditen geteilt durch die Kapitaltage, die die Trades tatsächlich gehalten wurden (mindestens eine Stunde je Trade). Kapital, das nichts tut, zählt nicht. Eine Strategie, die nur Minuten im Markt ist, erreicht hier leicht große Zahlen; diese Lesart schmeichelt kurzen Trades.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Auf das bereitgestellte Kapital:</b> dieselbe Summe geteilt durch die Tage der Phase, ein Platz je Coin. Auch untätiges Kapital zählt. Das ist, was ein Konto je Tag und Einheit Kapital in dieser Phase verdient, und die strengere Zahl. <b>Die Tabelle rechnet mit dieser.</b> Buy-and-Hold ist immer voll investiert, dort sind beide gleich.</p></div></div>
+  <div class="tablebox">
+    <table class="plain" id="pf-table" data-nosort>
+      <thead><tr>
+        <th title="ADX-Marktphase des Coins">Phase</th>
+        <th class="num" title="Anteil der Coin-Tage im Validierungsfenster, die auf diese Phase entfallen; damit wird die Gesamtrendite gewichtet.">Anteil der Tage</th>
+        <th class="num" title="Buy-and-Hold des Coins über alle Episoden dieser Phase: Summe der Episoden-Renditen geteilt durch ihre Tage. Validation / Discovery.">Buy-and-Hold pro Tag (Val. / Disc.)</th>
+        <th title="Die nach der Regel gewählte Strategie; ohne Treffer Buy-and-Hold oder ein Kandidat ohne Bestätigung, so gekennzeichnet.">Empfehlung</th>
+        <th class="num" title="Tagesrendite auf das bereitgestellte Kapital nach 0,1 % Slippage je Seite, Validation; danach die Discovery vor Slippage (zum Vergleich, nicht zum Auswählen).">Pro Tag, bereitgestellt (Val. / Disc.)</th>
+        <th class="num" title="Tagesrendite auf das tatsächlich eingesetzte Kapital nach Slippage, Validation. Schmeichelt kurzen Trades.">Pro Tag, eingesetzt</th>
+        <th class="num" title="Trades und Episoden der Strategie in dieser Phase im Validierungsfenster">Trades / Episoden</th>
+        <th class="num" title="Stufe 8b in dieser Phase">Robustheit</th>
+        <th class="num" title="Bestätigung über Discovery und Validation">Bestätigung</th>
+        <th class="num" title="Ist das Ziel von {{daily_target}} pro Tag in der Validation nach Slippage erreicht?">Ziel</th>
+      </tr></thead>
+      <tbody id="pf-body"></tbody>
+    </table>
+  </div>
+  <p class="secintro" id="pf-blend" style="margin-top:10px;max-width:none;"></p>
+  <details class="fold" id="pf-more">
+    <summary>Weitere Kandidaten je Phase <span class="sub">wer die Regel ebenfalls erfüllt, und wer sie ohne Bestätigung erfüllt</span></summary>
+    <div class="foldbody"><div id="pf-more-body"></div></div>
+  </details>
+  <div class="callout warn"><span class="dot">&#9888;</span><div><b>Wie belastbar das ist.</b> (1) Die Wahl beruht auf der Validation, dem Fenster, in dem auch die Rendite gemessen wird. Der Wert ist damit zu günstig; die Discovery-Spalte zeigt, was dieselbe Strategie im früheren Fenster verdiente, ohne Slippage. (2) Die Validation (2024 bis 2026) war ein Aufwärts-Markt; Buy-and-Hold verdient dort in drei von vier Phasen Geld, nur in der Übergangsphase nicht. In der Discovery liegt der Wechsel je Phase (ohne Slippage) nicht über Buy-and-Hold; der Vorsprung der Validation ist also zum Teil Auswahl-Effekt. (3) Eine Strategie, die nur in einer Phase handeln darf, läuft in der Praxis nicht wie im Gesamtlauf: das Gate ändert ihre Trades (siehe <a href="{{gating_url}}" target="_blank" rel="noopener">Gating-Hypothese</a>). Die Zahlen hier ordnen vorhandene Trades einer Phase zu und simulieren das Gate nicht. (4) Der Wechsel zwischen Strategien bei einem Phasenwechsel kostet zusätzlich, das ist nicht enthalten. (5) Das ADX-Regime kennt man erst mit einem Tag Verzögerung; die Zuordnung ist am Öffnungstag des Trades belegt.</div></div>
+</section>
+
 <section id="sec-total">
   <div class="sectionhead">
     <h2>Gesamtes Validierungsfenster: Gewinn in Dollar</h2>
@@ -226,6 +261,8 @@
           <th class="sortable num" data-key="benchmark_dollar_gain_usd" title="Buy-and-Hold des Coins über dieselben Trades, je 1.000 $: Autor-Timeframe / 5m-Lauf">Benchmark (Autor / 5m)<span class="arrow">&#9662;</span></th>
           <th class="sortable num" data-key="excess_dollar_gain_usd" title="Gesamtgewinn minus Benchmark: Autor-Timeframe / 5m-Lauf">Excess ($) (Autor / 5m)<span class="arrow">&#9662;</span></th>
           <th class="sortable num" data-key="cm" title="Mittlerer Gewinn je Trade vor → nach 0,1 % zusätzlichem Slippage je Seite: Autor-Timeframe / 5m-Lauf">Kosten Ø je Trade (Autor / 5m)<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="dc" title="Tagesrendite auf das tatsächlich eingesetzte Kapital, Validation, nach 0,1 % Slippage je Seite: Autor-Timeframe / 5m-Lauf. Schmeichelt kurzen Trades.">Pro Tag, eingesetzt (Autor / 5m)<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="ds" title="Tagesrendite auf das bereitgestellte Kapital (ein Platz je Coin und Tag), Validation, nach 0,1 % Slippage je Seite: Autor-Timeframe / 5m-Lauf. Ziel: 0,08 % pro Tag.">Pro Tag, bereitgestellt (Autor / 5m)<span class="arrow">&#9662;</span></th>
           <th class="sortable num" data-key="ok">Robustheit<span class="arrow">&#9662;</span></th>
           <th class="sortable num" data-key="cq" title="Bestätigung über Discovery und Validation. Bei Universal-Kandidaten streng oder mild, sonst die Zahl der bestätigten Phasen.">Bestätigung<span class="arrow">&#9662;</span></th>
         </tr></thead>
@@ -512,6 +549,7 @@ const TOTALGAIN = __TOTALGAIN_JSON__;
 const DVSCATTER = __DVSCATTER_JSON__;
 const DVTOP = __DVTOP_JSON__;
 const DVSUMMARY = __DVSUMMARY_JSON__;
+const PORTFOLIO = __PORTFOLIO_JSON__;
 const FTSTATS = __FTSTATS_JSON__;
 const COINEPISODES = __COINEPISODES_JSON__;
 const COINEPISODECOUNTS = __COINEPISODECOUNTS_JSON__;
@@ -550,6 +588,8 @@ function renderRegimeFullTable(containerId, rows){
     '<th class="sortable num" data-key="freqforge_score">FreqForge-Score<span class="arrow">&#9662;</span></th>' +
     '<th class="sortable num" data-key="episode_excess_lcb">Episoden-Excess-LCB<span class="arrow">&#9662;</span></th>' +
     '<th class="sortable num" data-key="lcb_grade">Grade<span class="arrow">&#9662;</span></th>' +
+    '<th class="sortable num" data-key="dc" title="Tagesrendite auf das tatsächlich eingesetzte Kapital, Validation, nach 0,1 % Slippage je Seite. Schmeichelt kurzen Trades.">Pro Tag, eingesetzt<span class="arrow">&#9662;</span></th>' +
+    '<th class="sortable num" data-key="ds" title="Tagesrendite auf das bereitgestellte Kapital (ein Platz je Coin und Tag der Phase), Validation, nach 0,1 % Slippage je Seite. Das Ziel ist 0,08 % pro Tag.">Pro Tag, bereitgestellt<span class="arrow">&#9662;</span></th>' +
     '<th class="sortable num" data-key="ok">Robustheit<span class="arrow">&#9662;</span></th>' +
     '<th class="sortable num" data-key="cf" title="Bestätigung über Discovery und Validation">Bestätigung<span class="arrow">&#9662;</span></th>' +
     '</tr></thead><tbody id="' + prefix + '-body"></tbody></table></div></div>';
@@ -597,6 +637,8 @@ function renderRegimeFullTable(containerId, rows){
 
         '<td class="num mono">' + fmtLcb(r.episode_excess_lcb) + '</td>' +
         '<td class="num val ' + gradeClass(r.lcb_grade) + '">' + (r.lcb_grade || '&mdash;') + '</td>' +
+        '<td class="num val ' + dailyClass(r.dc) + '">' + fmtDaily(r.dc) + '</td>' +
+        '<td class="num val ' + dailyClass(r.ds) + '">' + fmtDaily(r.ds) + '</td>' +
         robustCell(r) + confirmCell(r) + '</tr>';
     }).join('');
   }
@@ -789,10 +831,82 @@ wireSearchSortTable({
   }
 });
 
+
+// ---- daily return: format, colour against the target, and the phase portfolio
+function fmtDaily(v){
+  if (v === null || v === undefined) return '–';
+  var p = v * 100;
+  var s = Math.abs(p) >= 10 ? Math.abs(p).toFixed(0) : Math.abs(p).toFixed(3);
+  return (p >= 0 ? '+' : '−') + s.replace('.', ',') + ' %';
+}
+function dailyClass(v){
+  if (v === null || v === undefined) return '';
+  if (v >= PORTFOLIO.target) return 'pos';
+  return v >= 0 ? 'neg-1' : 'neg-3';
+}
+(function renderPortfolio(){
+  var PH = PORTFOLIO.phases;
+  var body = '', blendVal = 0, blendDisc = 0;
+  var TARGET_TXT = fmtDaily(PORTFOLIO.target);
+  PH.forEach(function(ph){
+    var hold = ph.hold, pick = ph.pick;
+    var holdOnly = ph.regime === 'BULL' || !pick;
+    var val, disc, name, trades = '–', ok = '<td class="num">–</td>', conf = '<td class="num">–</td>', cap = '–';
+    if (holdOnly) {
+      val = hold.val; disc = hold.disc;
+      name = '<b>Buy-and-Hold</b> <span class="mono" style="color:var(--text-muted)">(' + hold.episodes + ' Episoden)</span>' +
+        (ph.regime === 'BULL' ? '<div class="mono" style="font-size:11px;color:var(--text-muted);">Entscheidung des Eigentümers; ' + ph.n_qualified + ' Strategien erfüllen die Regel</div>' :
+                                '<div class="mono" style="font-size:11px;color:var(--text-muted);">keine Strategie erfüllt die Regel</div>');
+      cap = fmtDaily(hold.val);
+    } else {
+      val = pick.ds; disc = pick.dd;
+      name = '<b>' + futuresLabel(pick.sid) + '</b>' + (pick.status === 'unconfirmed' ? ' <span class="rbadge rb-warn" title="Robust und in beiden Fenstern über dem Floor, aber die untere Vertrauensgrenze liegt nicht in beiden über 0.">nicht bestätigt</span>' : '');
+      trades = pick.trades + ' / ' + pick.episodes;
+      ok = '<td class="num"><span class="rbadge rb-ok" title="5m-Detaillauf und Kostenstress in dieser Phase bestanden">PASS</span></td>';
+      conf = confirmCell({cf: pick.cf, sc: pick.sc});
+      cap = fmtDaily(pick.dc);
+    }
+    blendVal += ph.weight * val; blendDisc += ph.weight * disc;
+    body += '<tr><td><span class="regimebadge rb-' + ph.regime + '">' + stateLabel(ph.regime) + '</span></td>' +
+      '<td class="num mono">' + Math.round(ph.weight * 100) + ' %</td>' +
+      '<td class="num"><span class="val ' + dailyClass(hold.val) + '">' + fmtDaily(hold.val) + '</span><span class="slash">/</span><span class="val ' + dailyClass(hold.disc) + '">' + fmtDaily(hold.disc) + '</span></td>' +
+      '<td>' + name + '</td>' +
+      '<td class="num"><span class="val ' + dailyClass(val) + '">' + fmtDaily(val) + '</span><span class="slash">/</span><span class="val ' + dailyClass(disc) + '">' + fmtDaily(disc) + '</span></td>' +
+      '<td class="num mono">' + cap + '</td>' +
+      '<td class="num mono">' + trades + '</td>' + ok + conf +
+      '<td class="num">' + (val >= PORTFOLIO.target ? '<span class="rbadge rb-ok" title="Ziel in der Validation nach Slippage erreicht">erreicht</span>' : '<span class="rbadge rb-warn" title="Ziel nicht erreicht">nicht erreicht</span>') + '</td></tr>';
+  });
+  document.getElementById('pf-body').innerHTML = body;
+  document.getElementById('pf-blend').innerHTML = '<b>Wechsel je Phase, nach Tagesanteil gewichtet:</b> ' +
+    '<span class="val ' + dailyClass(blendVal) + '">' + fmtDaily(blendVal) + '</span> pro Tag in der Validation (Ziel ' + TARGET_TXT + '), ' +
+    '<span class="val ' + dailyClass(blendDisc) + '">' + fmtDaily(blendDisc) + '</span> in der Discovery mit denselben Strategien, dort ohne Slippage. ' +
+    'Reine Buy-and-Hold-Vergleichszahl über alle Phasen: ' + fmtDaily(PH.reduce(function(a, ph){ return a + ph.weight * ph.hold.val; }, 0)) + ' (Validation), ' +
+    fmtDaily(PH.reduce(function(a, ph){ return a + ph.weight * ph.hold.disc; }, 0)) + ' (Discovery).';
+  // the other candidates
+  var more = '';
+  function table(rows){
+    if (!rows.length) return '<p class="secintro" style="margin:4px 0 12px;">keine</p>';
+    return '<div class="tablebox" style="margin-bottom:12px;"><table class="plain"><thead><tr><th>Strategie</th><th class="num" title="Trades in dieser Phase">Trades</th><th class="num" title="Episoden in dieser Phase">Episoden</th><th class="num" title="Excess-Return gegen Buy-and-Hold der Phase">Excess-Return</th><th class="num" title="Tagesrendite auf das bereitgestellte Kapital nach Slippage, Validation">Pro Tag, bereitgestellt</th><th class="num" title="Discovery, vor Slippage">Pro Tag, Discovery</th><th class="num" title="Tagesrendite auf das eingesetzte Kapital nach Slippage">Pro Tag, eingesetzt</th><th class="num">Robustheit</th><th class="num">Bestätigung</th></tr></thead><tbody>' +
+      rows.map(function(r){
+        return '<tr><td><b>' + futuresLabel(r.sid) + '</b></td><td class="num mono">' + r.trades + '</td><td class="num mono">' + r.episodes + '</td>' +
+          '<td class="num val ' + valClass(r.excess) + '">' + fmtPct(r.excess) + '</td>' +
+          '<td class="num val ' + dailyClass(r.ds) + '">' + fmtDaily(r.ds) + '</td><td class="num val ' + dailyClass(r.dd) + '">' + fmtDaily(r.dd) + '</td>' +
+          '<td class="num mono">' + fmtDaily(r.dc) + '</td>' + robustCell({ok: 1, xs: r.xs}) + confirmCell({cf: r.cf, sc: r.sc}) + '</tr>';
+      }).join('') + '</tbody></table></div>';
+  }
+  PH.forEach(function(ph){
+    more += '<h4 class="mono" style="font-size:11px;margin:14px 0 6px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;">' + stateLabel(ph.regime) +
+      ' <span style="text-transform:none;letter-spacing:0;color:var(--accent-text);">&mdash; ' + ph.n_qualified + ' erfüllen die Regel, ' + ph.n_partial + ' weitere ohne Bestätigung</span></h4>' +
+      '<p class="secintro" style="margin:0 0 4px;max-width:none;">Bestätigt und über dem Ziel (bis zu 6):</p>' + table(ph.qualified) +
+      '<p class="secintro" style="margin:0 0 4px;max-width:none;">Robust, über dem Ziel, aber nicht bestätigt (bis zu 4):</p>' + table(ph.partial);
+  });
+  document.getElementById('pf-more-body').innerHTML = more;
+})();
+
 // ---- whole validation window: every strategy, author timeframe / 5m rerun side by side
 (function renderTotal(){
   var KEYS5 = {trades: 'd_trades', dollar_gain_usd: 'd_gain', benchmark_dollar_gain_usd: 'd_bench',
-               excess_dollar_gain_usd: 'd_excess', cm: 'd_cm'};
+               excess_dollar_gain_usd: 'd_excess', cm: 'd_cm', dc: 'd_dc', ds: 'd_ds'};
   function why(r){
     if (r.ok) return 'PASS';
     if (r.xs === 'SENSITIVE') return '5m sensitiv';
@@ -844,6 +958,8 @@ wireSearchSortTable({
         two('<span class="val ' + dollarClass(r.benchmark_dollar_gain_usd) + '">' + fmtUsd(r.benchmark_dollar_gain_usd) + '</span>', d ? '<span class="val ' + dollarClass(r.d_bench) + '">' + fmtUsd(r.d_bench) + '</span>' : miss(r)) +
         two('<span class="val ' + dollarClass(r.excess_dollar_gain_usd) + '">' + fmtUsd(r.excess_dollar_gain_usd) + '</span>', d ? '<span class="val ' + dollarClass(r.d_excess) + '">' + fmtUsd(r.d_excess) + '</span>' : miss(r)) +
         two('<span class="mono">' + cost + '</span>', cost5 ? '<span class="mono">' + cost5 + '</span>' : miss(r)) +
+        two('<span class="val ' + dailyClass(r.dc) + '">' + fmtDaily(r.dc) + '</span>', d && r.d_dc !== null && r.d_dc !== undefined ? '<span class="val ' + dailyClass(r.d_dc) + '">' + fmtDaily(r.d_dc) + '</span>' : miss(r)) +
+        two('<span class="val ' + dailyClass(r.ds) + '">' + fmtDaily(r.ds) + '</span>', d && r.d_ds !== null && r.d_ds !== undefined ? '<span class="val ' + dailyClass(r.d_ds) + '">' + fmtDaily(r.d_ds) + '</span>' : miss(r)) +
         robustCell(r) + stratConfirmCell(r) + '</tr>';
     },
     extra: function(rows){

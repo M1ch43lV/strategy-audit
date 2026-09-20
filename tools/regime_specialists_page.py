@@ -48,6 +48,10 @@ COMMON_JS = os.path.join(ROOT, "tools", "regime_pages_common.js")
 DETAIL_TOTALS = os.path.join(SPEC, "detail_5m_total_dollar_gain.csv")
 # The two artifacts link to each other. The gating page is published first; its address goes here.
 MAIN_URL = "https://claude.ai/artifact/6PoC2NwYCruR6UoJ81Bgia"
+# Owner's target: at least this return per day on the capital (0.08 %).
+DAILY_TARGET = 0.0008
+# A pick needs this many trades in its phase; a thinner one is listed but not chosen.
+PORTFOLIO_MIN_TRADES = 30
 GATING_URL = "https://claude.ai/artifact/LjAu8PjEDrZXdK8vnAbcZM"
 STATUS = os.path.join(ROOT, "STRATEGY_STATUS.csv")
 PROFILES = os.path.join(ROOT, "evidence", "EXECUTION_PROFILES.csv")
@@ -148,6 +152,84 @@ def confirmation_lookups():
     return rows, uni
 
 
+def _num(value, digits=6):
+    return None if value is None or pd.isna(value) else round(float(value), digits)
+
+
+def daily_lookup(robustness):
+    """Daily return per strategy, kind and phase in the validation window after 0.1 % slippage
+    per side (the cost screen's own stressed mean, leverage included), and before slippage in
+    the discovery window. regime/daily_return.py defines the two readings."""
+    frame = pd.read_csv(os.path.join(SPEC, "phase_daily_return.csv"))
+    key = "%.4f" % er.COST["reference_slippage_per_side"]
+    phase, total = {}, {}
+    disc = {(r.strategy_id, r.kind, r.regime): r for r in frame[frame["window"] == "discovery"].itertuples(index=False)}
+    sums = {}
+    for r in frame[frame["window"] == "validation"].itertuples(index=False):
+        cell = (((robustness.cost.get(r.strategy_id) or {}).get("by_regime") or {}).get(r.kind, {})
+                .get(r.regime, {}).get("validation") or {})
+        stressed = (cell.get("stressed") or {}).get(key, {}).get("mean_profit_pct")
+        net = None if stressed is None else r.trades * stressed / 100.0
+        d = disc.get((r.strategy_id, r.kind, r.regime))
+        phase[(r.strategy_id, r.kind, r.regime)] = {
+            "dc": None if net is None else _num(net / r.capital_days),
+            "ds": None if net is None else _num(net / r.slot_days),
+            "dd": None if d is None or pd.isna(d.slot_days) else _num(d.ratio_sum / d.slot_days)}
+        if r.kind == "btc" and net is not None:
+            s = sums.setdefault(r.strategy_id, [0.0, 0.0, 0.0])
+            s[0] += net
+            s[1] += r.capital_days
+            s[2] += r.slot_days
+    for sid, (net, days, slots) in sums.items():
+        total[sid] = {"dc": _num(net / days), "ds": _num(net / slots)}
+    return phase, total
+
+
+def buy_hold_daily():
+    frame = pd.read_csv(os.path.join(SPEC, "buy_hold_daily_return.csv"))
+    out = {}
+    for r in frame.itertuples(index=False):
+        out[(r.kind, r.regime, r.window)] = {"daily": _num(r.daily_return), "episodes": int(r.episodes), "days": int(r.days)}
+    return out
+
+
+def portfolio(coin_rows, bh):
+    """One pick per coin phase, by a rule that is computed, not chosen by hand.
+
+    Qualified: Stage 8b PASS in this phase, confirmed in both windows, and a daily return on
+    the provided capital of at least the target after slippage and above Buy-and-Hold's. The
+    pick is the qualified row with the highest such return among those with enough trades. Where
+    none qualifies, the phase shows the best rows that are robust and clear the floor in both
+    windows but are not confirmed, flagged as such, and Buy-and-Hold if it reaches the target."""
+    phases, weights = [], {}
+    total_days = sum(bh[("coin", s, "validation")]["days"] for s in STATES)
+    for s in STATES:
+        hold = bh[("coin", s, "validation")]
+        hold_disc = bh[("coin", s, "discovery")]
+        weight = hold["days"] / float(total_days)
+        rows = [r for r in coin_rows if r["regime"] == s and r.get("ds") is not None and r["ok"]]
+
+        def entry(r):
+            return {"sid": r["strategy_id"], "trades": r["trades"], "episodes": r["episodes"],
+                    "excess": r["excess_return"], "lcb": r["episode_excess_lcb"], "cf": r["cf"], "sc": r["sc"],
+                    "dc": r["dc"], "ds": r["ds"], "dd": r["dd"], "xs": r["xs"]}
+
+        floor = max(DAILY_TARGET, hold["daily"])
+        qualified = sorted((r for r in rows if r["cf"] == 2 and r["ds"] >= floor), key=lambda r: -r["ds"])
+        partial = sorted((r for r in rows if r["cf"] == 1 and r["ds"] >= floor), key=lambda r: -r["ds"])
+        pick = next((r for r in qualified if r["trades"] >= PORTFOLIO_MIN_TRADES), None)
+        status = "confirmed"
+        if pick is None:
+            pick = next((r for r in partial if r["trades"] >= PORTFOLIO_MIN_TRADES), None)
+            status = "unconfirmed"
+        phases.append({"regime": s, "weight": round(weight, 4),
+                       "hold": {"val": hold["daily"], "disc": hold_disc["daily"], "episodes": hold["episodes"], "days": hold["days"]},
+                       "pick": dict(entry(pick), status=status) if pick else None,
+                       "qualified": [entry(r) for r in qualified[:6]], "partial": [entry(r) for r in partial[:4]],
+                       "n_qualified": len(qualified), "n_partial": len(partial)})
+    return {"target": DAILY_TARGET, "min_trades": PORTFOLIO_MIN_TRADES, "phases": phases}
+
+
 def confirmed_phase_counts():
     """Per strategy: in how many coin and BTC phases it is confirmed."""
     frame = pd.read_csv(os.path.join(SPEC, "discovery_vs_validation.csv"))
@@ -158,7 +240,7 @@ def confirmed_phase_counts():
     return counts
 
 
-def total_rows(gain, robustness, uconfirm):
+def total_rows(gain, robustness, uconfirm, daily_total):
     """The whole-window table: author timeframe and 5m rerun side by side, robustness and
     confirmation. The 5m side comes from regime/detail_totals.py, never recomputed here."""
     if not os.path.isfile(DETAIL_TOTALS):
@@ -171,12 +253,14 @@ def total_rows(gain, robustness, uconfirm):
         record = {k: clean(v) for k, v in row.items()}
         record["rk"] = rank
         record.update(robustness.total(sid))
+        record.update(daily_total.get(sid, {}))
         if sid in d5.index:
             d = d5.loc[sid]
             record.update(d_trades=int(d["trades"]), d_gain=clean(d["dollar_gain_usd"]),
                           d_bench=clean(d["benchmark_dollar_gain_usd"]),
                           d_excess=clean(d["excess_dollar_gain_usd"]),
-                          d_cm=clean(d["cost_mean_pct"]), d_c10=clean(d["cost_stressed_pct"]))
+                          d_cm=clean(d["cost_mean_pct"]), d_c10=clean(d["cost_stressed_pct"]),
+                          d_dc=_num(d["daily_on_capital"]), d_ds=_num(d["daily_on_slots"]))
         ur, us, up, _ = uconfirm.get(sid, (-1, None, 0, 0))
         cn, bn = phases["coin"].get(sid, 0), phases["btc"].get(sid, 0)
         record.update(ur=ur, us=us, up=up, cn=cn, bn=bn, cq=100 * max(ur, 0) + 10 * cn + bn)
@@ -185,7 +269,7 @@ def total_rows(gain, robustness, uconfirm):
 
 
 # ------------------------------------------------------------------ data exports
-def regime_rows(table, regime_col, kind, robustness, confirm):
+def regime_rows(table, regime_col, kind, robustness, confirm, daily):
     qualified = table[table["tier"] == "VALIDATION"].copy()
     median_by_strategy = qualified.groupby("strategy_id")["excess_return"].median()
     qualified["median_excess_return"] = qualified["strategy_id"].map(median_by_strategy)
@@ -210,6 +294,7 @@ def regime_rows(table, regime_col, kind, robustness, confirm):
         record.update(robustness.row(row["strategy_id"], kind, row[regime_col]))
         cf, sc = confirm.get((kind, row["strategy_id"], row[regime_col]), (0, None))
         record["cf"], record["sc"] = cf, sc
+        record.update(daily.get((row["strategy_id"], kind, row[regime_col]), {"dc": None, "ds": None, "dd": None}))
         rows.append(record)
     return rows
 
@@ -469,6 +554,7 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
         "generated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
         "n_d5": sum(1 for r in total if r.get("d_trades") is not None),
         "gating_url": GATING_URL, "main_url": MAIN_URL,
+        "daily_target": de_pct(100 * DAILY_TARGET, 2), "pf_min_trades": PORTFOLIO_MIN_TRADES,
         "d5_check": detail_check_text(),
     }
     facts.update(window_facts(summary))
@@ -614,10 +700,12 @@ def build(destination, gating_destination, skip_native=False):
     gain = pd.read_csv(os.path.join(SPEC, "strategy_total_dollar_gain.csv"))
 
     confirm, uconfirm = confirmation_lookups()
-    rows = {"btc": regime_rows(btc, "btc_regime", "btc", robustness, confirm),
-            "coin": regime_rows(coin, "coin_regime", "coin", robustness, confirm),
+    daily_phase, daily_total = daily_lookup(robustness)
+    rows = {"btc": regime_rows(btc, "btc_regime", "btc", robustness, confirm, daily_phase),
+            "coin": regime_rows(coin, "coin_regime", "coin", robustness, confirm, daily_phase),
             "universal": universal_rows(universal, coin, robustness, uconfirm)}
-    gain_rows = total_rows(gain, robustness, uconfirm)
+    gain_rows = total_rows(gain, robustness, uconfirm, daily_total)
+    plan = portfolio(rows["coin"], buy_hold_daily())
     if skip_native:
         native, rejected = [], 0
     else:
@@ -636,7 +724,7 @@ def build(destination, gating_destination, skip_native=False):
     shared = {"FUTURESSTRATEGIES": _dump(futures), "DCASTRATEGIES": _dump(dca)}
     main_blobs = {
         "REGIMEFULL": _dump({"btc": rows["btc"], "coin": rows["coin"]}),
-        "UNIVERSAL": _dump(rows["universal"]), "TOTALGAIN": _dump(gain_rows),
+        "UNIVERSAL": _dump(rows["universal"]), "TOTALGAIN": _dump(gain_rows), "PORTFOLIO": _dump(plan),
         "DVSCATTER": _dump(dv_scatter), "DVTOP": _dump(dv_top), "DVSUMMARY": _dump(dv_summary),
         "FTSTATS": _dump(native), "COINEPISODES": static["COINEPISODES"],
         "COINEPISODECOUNTS": static["COINEPISODECOUNTS"]}

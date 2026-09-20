@@ -268,3 +268,5 @@ th.sortable[title]{cursor:pointer;}
 #total-table td{white-space:nowrap;padding:8px 12px;}
 #total-table thead th{white-space:normal;vertical-align:bottom;padding:8px 12px;}
 #total-table td.num .rbadge{margin-right:4px;}
+#pf-table td.num{white-space:nowrap;}
+#pf-table td.num .confscore{display:block;margin:2px 0 0;}
