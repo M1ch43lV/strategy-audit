@@ -1,0 +1,64 @@
+{
+  "results": {
+    "HedgeAdaptiveRegimeStrategy": [
+      {
+        "attempted_at": "2026-09-20T20:05:10.610650+00:00",
+        "canonical_baseline_reference": "results/regime/full_backtest_manifest.json",
+        "canonical_identity": {
+          "canonical_sha256": "sha256_378a5c0315a4f89d2424578ef6a8d57bce54fba018d0842b7e467b230db5d2b6",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+        },
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--name",
+          "resource-diag-e36fa2dff648",
+          "-v",
+          "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit:/audit",
+          "-w",
+          "/audit",
+          "--entrypoint",
+          "python",
+          "strategy-audit-runtime:2026.7",
+          "evidence/profile_freqtrade.py",
+          "backtesting",
+          "--config",
+          "/audit/user_data/resource_diagnostics/HedgeAdaptiveRegimeStrategy-20260920T200038Z-pairs1/futures_subset_config.json",
+          "--strategy",
+          "HedgeAdaptiveRegimeStrategy",
+          "--strategy-path",
+          "/audit/repair/patched/repos/XXA222_HPRL/config_examples/strategies",
+          "--timerange",
+          "20200301-20260821",
+          "--fee",
+          "0.001",
+          "--export",
+          "trades",
+          "--backtest-directory",
+          "/audit/user_data/resource_diagnostics/HedgeAdaptiveRegimeStrategy-20260920T200038Z-pairs1",
+          "--cache",
+          "none"
+        ],
+        "diagnostic_scope": "noncanonical_pair_subset_resource_probe",
+        "elapsed_s": 272.0,
+        "memory_samples": 88,
+        "pair_count": 1,
+        "pairs": [
+          "BTC/USDT:USDT"
+        ],
+        "peak_memory_mib": 4429.8,
+        "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+        "runtime_image": "strategy-audit-runtime:2026.7",
+        "status": "measured",
+        "stdout_tail": "       \u2502 BTC/USDT:USDT -65.66%                     \u2502\n\u2502 Best trade                             \u2502 BTC/USDT:USDT 21.06%                      \u2502\n\u2502 Worst trade                            \u2502 BTC/USDT:USDT -6.99%                      \u2502\n\u2502 Best day                               \u2502 21.602 USDT                               \u2502\n\u2502 Worst day                              \u2502 -21.527 USDT                              \u2502\n\u2502 Days win/draw/lose                     \u2502 16 / 0 / 181                              \u2502\n\u2502 Min/Max/Avg. Duration Winners          \u2502 0d 00:50 / 0d 06:10 / 0d 02:18            \u2502\n\u2502 Min/Max/Avg. Duration Losers           \u2502 0d 00:03 / 0d 03:17 / 0d 00:42            \u2502\n\u2502 Max Consecutive Wins / Loss            \u2502 3 / 54                                    \u2502\n\u2502 Rejected Entry signals                 \u2502 0                                         \u2502\n\u2502 Entry/Exit Timeouts                    \u2502 0 / 0                                     \u2502\n\u2502                                        \u2502                                           \u2502\n\u2502 Min/Max balance (closed trades)        \u2502 343.396 USDT / 1001.197 USDT              \u2502\n\u2502 Max % of account underwater            \u2502 65.70%                                    \u2502\n\u2502 Absolute drawdown                      \u2502 657.801 USDT (65.70%)                     \u2502\n\u2502 Drawdown duration                      \u2502 184 days 04:52:00                         \u2502\n\u2502 Profit at drawdown start               \u2502 1.197 USDT                                \u2502\n\u2502 Profit at drawdown end                 \u2502 -656.604 USDT                             \u2502\n\u2502 Drawdown start                         \u2502 2020-03-13 04:11:00                       \u2502\n\u2502 Drawdown end                           \u2502 2020-09-13 09:03:00                       \u2502\n\u2502                                        \u2502                                           \u2502\n\u2502 Wallet based Metrics                   \u2502                                           \u2502\n\u2502 Min/Max balance (wallet balance)       \u2502 343.396 USDT / 1001.197 USDT              \u2502\n\u2502 Min/Max balance dates (wallet balance) \u2502 2020-09-13 09:04:00 / 2020-03-13 04:12:00 \u2502\n\u2502 Max % of account underwater (balance)  \u2502 65.70%                                    \u2502\n\u2502 Absolute drawdown (wallet balance)     \u2502 657.801 USDT (65.70%)                     \u2502\n\u2502 Drawdown duration                      \u2502 184 days 04:52:00                         \u2502\n\u2502 Profit at drawdown start               \u2502 1.197 USDT                                \u2502\n\u2502 Profit at drawdown end                 \u2502 -656.604 USDT                             \u2502\n\u2502 Drawdown start                         \u2502 2020-03-13 04:12:00                       \u2502\n\u2502 Drawdown end                           \u2502 2020-09-13 09:04:00                       \u2502\n\u2502 Sharpe (daily wallet balance)          \u2502 -4.26                                     \u2502\n\u2502 Sortino (daily wallet balance)         \u2502 -2.58                                     \u2502\n\u2502 Calmar (daily wallet balance)          \u2502 -0.81                                     \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\nBacktested 2020-03-01 00:00:00 -> 2026-08-20 23:59:00 | Max open trades : 1\n                                                                   STRATEGY SUMMARY                                                                    \n\u250f\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2533\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2533\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2533\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2533\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2533\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2533\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2533\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2513\n\u2503                    Strategy \u2503 Trades \u2503 Avg Profit % \u2503 Tot Profit USDT \u2503 Tot Profit % \u2503 Avg Duration \u2503  Win  Draw  Loss  Win% \u2503             Drawdown \u2503\n\u2521\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2547\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2547\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2547\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2547\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2547\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2547\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2547\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2529\n\u2502 HedgeAdaptiveRegimeStrategy \u2502   4269 \u2502        -0.21 \u2502        -656.604 \u2502       -65.66 \u2502      0:57:00 \u2502  654     0  3615  15.3 \u2502 657.801 USDT  65.70% \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n",
+        "strategy": "HedgeAdaptiveRegimeStrategy",
+        "subset_config": "user_data/resource_diagnostics/HedgeAdaptiveRegimeStrategy-20260920T200038Z-pairs1/futures_subset_config.json",
+        "subset_config_sha256": "sha256_b4eec4f8665ab258869bf77330b241c10c8669729978ce4bd9361ce92a730d69",
+        "timerange": "20200301-20260821",
+        "why": "completed non-canonical pair-subset diagnostic"
+      }
+    ]
+  },
+  "schema_version": 1
+}
