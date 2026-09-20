@@ -91,6 +91,38 @@ def growth_per_day(net, pair, days_in_window):
     return total ** (1.0 / days_in_window) - 1.0 if total > 0 else -1.0, total
 
 
+def pooled_account(part, days, slots=len(PAIRS)):
+    """One capital for all pairs, computed from the trade list.
+
+    The stake of a new trade is the free capital divided by the number of free slots, which is what Freqtrade's
+    `stake_amount: unlimited` does with `max_open_trades` = the number of pairs. Profits are booked when a trade closes,
+    the fee and the extra slippage are in the net ratio. Returns the growth factor, the compounded daily growth and the
+    worst peak-to-trough fall of the booked capital. The primary figures of the evaluation stay those of the slot
+    model; this is a second reading."""
+    rows = part.sort_values("open_date")
+    events = []
+    for i, (opened, minutes, net) in enumerate(zip(rows["open_date"], rows["trade_duration"].astype(float), rows["net"])):
+        events.append((opened, 1, i, net))
+        events.append((opened + pd.Timedelta(minutes=max(1.0, 0.0 if pd.isna(minutes) else minutes)), 0, i, net))
+    events.sort(key=lambda e: (e[0], e[1]))       # a close before an open at the same instant
+    free, stakes, curve = 1.0, {}, []
+    for _, kind, i, net in events:
+        if kind == 1:
+            stake = free / max(1, slots - len(stakes))
+            stakes[i] = stake
+            free -= stake
+        else:
+            free += stakes.pop(i) * (1.0 + net)
+            curve.append(free + sum(stakes.values()))
+    total = free + sum(stakes.values())
+    peak, worst = 1.0, 0.0
+    for value in curve:
+        peak = max(peak, value)
+        worst = min(worst, value / peak - 1.0)
+    growth = total ** (1.0 / days) - 1.0 if total > 0 else -1.0
+    return total, growth, worst
+
+
 def buy_hold(window_days):
     """Equal-weight buy-and-hold of the same pairs on the spot daily candles, per window."""
     closes = {}
@@ -138,6 +170,7 @@ def summary(frame, slots, days, windows):
         record = {"trades": int(len(part)), "days": days[window], "slot_days": int(slots[window])}
         if len(part):
             g, factor = growth_per_day(part.sort_values("open_date")["net"].to_numpy(), part.sort_values("open_date")["coin"].to_numpy(), days[window])
+            pooled = pooled_account(part, days[window])
             record.update({
                 "mean_ratio_gross_pct": round(100 * float(part["profit_ratio"].mean()), 4),
                 "mean_ratio_net_pct": round(100 * float(part["net"].mean()), 4),
@@ -145,6 +178,8 @@ def summary(frame, slots, days, windows):
                 "daily_net_on_provided_pct": round(100 * float(part["net"].sum()) / slots[window], 5),
                 "daily_net_on_employed_pct": round(100 * float(part["net"].sum() / part["cap_days"].sum()), 4),
                 "compounded_daily_net_pct": round(100 * g, 5), "compounded_total_factor": round(factor, 4),
+                "pooled_total_factor": round(pooled[0], 4), "pooled_daily_net_pct": round(100 * pooled[1], 5),
+                "pooled_worst_fall_pct": round(100 * pooled[2], 2),
                 "share_liquidated": round(float((part["exit_reason"] == "liquidation").mean()), 4),
                 "exit_reasons": part["exit_reason"].value_counts().to_dict()})
         out[window] = record

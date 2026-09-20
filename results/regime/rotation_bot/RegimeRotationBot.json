@@ -25,6 +25,9 @@
     },
     "mean_ratio_gross_pct": -0.0323,
     "mean_ratio_net_pct": -0.2323,
+    "pooled_daily_net_pct": -0.02558,
+    "pooled_total_factor": 0.7043,
+    "pooled_worst_fall_pct": -56.97,
     "share_liquidated": 0.0,
     "slot_days": 10960,
     "trades": 866
@@ -59,6 +62,9 @@
     },
     "mean_ratio_gross_pct": -0.1196,
     "mean_ratio_net_pct": -0.3196,
+    "pooled_daily_net_pct": -0.02732,
+    "pooled_total_factor": 0.7686,
+    "pooled_worst_fall_pct": -36.73,
     "share_liquidated": 0.0,
     "slot_days": 6792,
     "trades": 527
@@ -80,6 +86,9 @@
     },
     "mean_ratio_gross_pct": 0.3376,
     "mean_ratio_net_pct": 0.1376,
+    "pooled_daily_net_pct": 0.00488,
+    "pooled_total_factor": 1.0691,
+    "pooled_worst_fall_pct": -25.34,
     "share_liquidated": 0.0,
     "slot_days": 10960,
     "trades": 572
@@ -113,6 +122,9 @@
     },
     "mean_ratio_gross_pct": 0.3205,
     "mean_ratio_net_pct": 0.1205,
+    "pooled_daily_net_pct": 0.0036,
+    "pooled_total_factor": 1.0353,
+    "pooled_worst_fall_pct": -6.16,
     "share_liquidated": 0.0,
     "slot_days": 6792,
     "trades": 242
@@ -131,6 +143,9 @@
     },
     "mean_ratio_gross_pct": 7.8557,
     "mean_ratio_net_pct": 7.6557,
+    "pooled_daily_net_pct": 0.10495,
+    "pooled_total_factor": 4.2084,
+    "pooled_worst_fall_pct": -19.58,
     "share_liquidated": 0.0,
     "slot_days": 10960,
     "trades": 192
@@ -162,6 +177,9 @@
     },
     "mean_ratio_gross_pct": 5.8447,
     "mean_ratio_net_pct": 5.6447,
+    "pooled_daily_net_pct": 0.05586,
+    "pooled_total_factor": 1.7122,
+    "pooled_worst_fall_pct": -20.83,
     "share_liquidated": 0.0,
     "slot_days": 6792,
     "trades": 120
@@ -181,6 +199,9 @@
     },
     "mean_ratio_gross_pct": 2.5626,
     "mean_ratio_net_pct": 2.3626,
+    "pooled_daily_net_pct": 0.02095,
+    "pooled_total_factor": 1.3323,
+    "pooled_worst_fall_pct": -4.77,
     "share_liquidated": 0.0,
     "slot_days": 10960,
     "trades": 102
@@ -214,6 +235,9 @@
     },
     "mean_ratio_gross_pct": 0.4509,
     "mean_ratio_net_pct": 0.2509,
+    "pooled_daily_net_pct": 0.00197,
+    "pooled_total_factor": 1.0191,
+    "pooled_worst_fall_pct": -11.21,
     "share_liquidated": 0.0,
     "slot_days": 6792,
     "trades": 90
@@ -242,6 +266,9 @@
    },
    "mean_ratio_gross_pct": 1.1171,
    "mean_ratio_net_pct": 0.9171,
+   "pooled_daily_net_pct": 0.1021,
+   "pooled_total_factor": 4.0473,
+   "pooled_worst_fall_pct": -56.29,
    "share_liquidated": 0.0,
    "slot_days": 10960,
    "trades": 1732
@@ -387,6 +414,9 @@
    },
    "mean_ratio_gross_pct": 0.7727,
    "mean_ratio_net_pct": 0.5727,
+   "pooled_daily_net_pct": 0.03224,
+   "pooled_total_factor": 1.364,
+   "pooled_worst_fall_pct": -37.51,
    "share_liquidated": 0.0,
    "slot_days": 6792,
    "trades": 979

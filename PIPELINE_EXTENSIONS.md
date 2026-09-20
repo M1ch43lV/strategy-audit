@@ -1035,3 +1035,42 @@ what a later read of the validation window can prove.
 A second read of the validation window after a further change would no longer be out of sample. The forward hold-out
 of the confirmation rule (Part 3 and `REGIME_PREREGISTRATION.md`, Amendment 2026-09-20) is the test that does not
 depend on it, and it is on hold.
+
+### 4.3 Result of V2, read once on the validation window (2026-09-20)
+
+Choice per phase (`python -m bot.phase_choice`, discovery only; `results/regime/rotation_bot/phase_choice.json`): BTC bear
+goes to cash (EI3v2: mean +0.34 % per episode, lower bound -0.44 %), coin sideways keeps Ichimoku (+1.31 %, lower bound
++0.40 %), coin transition goes to cash (BuyOrDie -0.79 %). Note that the bound is against cash. EI3v2 is confirmed
+against Buy-and-Hold in the specialist evaluation and still fails here, because most bear episodes contain no trade of
+it; the two rules ask different questions.
+
+Reproduce: `python -m bot.run_rotation <variant>` for each variant, then `python -m bot.rotation_eval <variants>`;
+figures are in `results/regime/rotation_bot/<variant>.json`.
+
+| Validation window | Base | V2N1 (choice only) | V2 (choice and N=2) | Hold alone (base) |
+|---|---|---|---|---|
+| Daily return on provided capital | 0.083 % | 0.102 % | 0.074 % | 0.100 % |
+| Growth factor, slot model | 1.14 | 1.55 | 1.32 | 1.58 |
+| Growth factor, pooled account | 1.36 | 1.72 | 1.45 | 1.71 |
+| Worst fall of the pooled account | -37.5 % | -24.0 % | -33.6 % | -20.8 % |
+| Trades | 979 | 307 | 288 | 120 |
+
+Equal-weight Buy-and-Hold of the same pairs: factor 1.08. In the discovery window the same three variants reach 0.145 %,
+0.178 % and 0.146 % per day and pooled factors 4.05, 7.49 and 4.52.
+
+Reading, without re-tuning:
+
+- **The component choice worked as intended (V2N1).** It stops the subtraction: the bot now earns as much as hold
+  alone (0.102 % against 0.100 %, pooled factor 1.72 against 1.71) and clears the 0.08 % target. Ichimoku in sideways adds
+  about 0.002 % per day to hold, which cannot be told from zero. What was gained is that nothing is lost, not that
+  something is added.
+- **The preregistered V2 with `N = 2` is worse than the choice alone.** The confirmation delays the entry into the BTC
+  uptrend by a day and its exit by a day; the hold component falls from 0.100 % to 0.057 % per day and from 120 to 104
+  trades. The phase takeovers fall from 74 to 20 already without the confirmation, so the churn it was meant to remove
+  came from the removed components, not from state flicker.
+- **Consequence.** `N = 2` is rejected on the validation window and is not adopted. Taking V2N1 as the new base is a
+  choice made after reading the validation window; a further variant read on the same window is no longer out of sample,
+  so any such step waits for a window that has not been read (the forward hold-out of Part 3, on hold).
+- **Limits.** The pooled account concentrates: with few open positions one trade gets all free capital, hence the falls
+  above. Validation numbers of the base variant were known when the rule was written (4.1). A single window and one
+  path of eight correlated coins; no confidence interval was computed for the differences above.

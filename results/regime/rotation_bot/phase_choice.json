@@ -1,0 +1,93 @@
+{
+ "phases": {
+  "bear": {
+   "choice": "cash",
+   "episodes": 232,
+   "options": {
+    "cash": {
+     "lcb": 0.0,
+     "lcb_pct": 0.0,
+     "mean": 0.0,
+     "mean_pct": 0.0,
+     "n": 232
+    },
+    "component": {
+     "lcb": -0.004397171210142067,
+     "lcb_pct": -0.4397,
+     "mean": 0.0033923769960448385,
+     "mean_pct": 0.3392,
+     "n": 232,
+     "tag": "ei3v2"
+    },
+    "hold": {
+     "lcb": -0.013033814428615266,
+     "lcb_pct": -1.3034,
+     "mean": 0.0024705951300556185,
+     "mean_pct": 0.2471,
+     "n": 232
+    }
+   },
+   "phase_days": 2768
+  },
+  "side": {
+   "choice": "component",
+   "episodes": 183,
+   "options": {
+    "cash": {
+     "lcb": 0.0,
+     "lcb_pct": 0.0,
+     "mean": 0.0,
+     "mean_pct": 0.0,
+     "n": 183
+    },
+    "component": {
+     "lcb": 0.004014102505498739,
+     "lcb_pct": 0.4014,
+     "mean": 0.013057485395759143,
+     "mean_pct": 1.3057,
+     "n": 183,
+     "tag": "ichimoku"
+    },
+    "hold": {
+     "lcb": -0.0047361851155554805,
+     "lcb_pct": -0.4736,
+     "mean": 0.012288638595828195,
+     "mean_pct": 1.2289,
+     "n": 183
+    }
+   },
+   "phase_days": 1799
+  },
+  "trans": {
+   "choice": "cash",
+   "episodes": 259,
+   "options": {
+    "cash": {
+     "lcb": 0.0,
+     "lcb_pct": 0.0,
+     "mean": 0.0,
+     "mean_pct": 0.0,
+     "n": 259
+    },
+    "component": {
+     "lcb": -0.024317944453085275,
+     "lcb_pct": -2.4318,
+     "mean": -0.007934132597233485,
+     "mean_pct": -0.7934,
+     "n": 259,
+     "tag": "buyordie"
+    },
+    "hold": {
+     "lcb": -0.011908975679254027,
+     "lcb_pct": -1.1909,
+     "mean": -0.0023838700655656048,
+     "mean_pct": -0.2384,
+     "n": 259
+    }
+   },
+   "phase_days": 1274
+  }
+ },
+ "rule": "PIPELINE_EXTENSIONS.md Part 4.2 point 1",
+ "window": "discovery"
+}

@@ -109,6 +109,8 @@ container exists. Inspect processes, locks, artifact timestamps, and the run log
   the record says so (`basis: owner_rule_at_or_below_5m`).
 - The 2x, short and coin-downtrend variants of the rotation bot (`bot/`) were stopped by the owner on 2026-09-20; do not
   restart them unless asked.
+- Rotation bot: variants and their result are in `PIPELINE_EXTENSIONS.md` Part 4. `V2` with `N = 2` was rejected on the
+  validation window; do not read that window again for a further variant (it would no longer be out of sample).
 - Root `_sabotage/` was removed on 2026-09-15 (an orphaned fixture of the archived `loadscan.py`).
 
 ## Owner decisions that are open

@@ -1,0 +1,297 @@
+{
+ "buy_hold_equal_weight": {
+  "discovery": {
+   "daily": 0.0014053096292374612,
+   "factor": 6.84776728224717
+  },
+  "validation": {
+   "daily": 8.412822338832449e-05,
+   "factor": 1.0843839865964453
+  }
+ },
+ "components": {
+  "hold": {
+   "discovery": {
+    "compounded_daily_net_pct": 0.07432,
+    "compounded_total_factor": 2.7671,
+    "daily_gross_on_provided_pct": 0.11612,
+    "daily_net_on_employed_pct": 0.3222,
+    "daily_net_on_provided_pct": 0.11335,
+    "days": 1370,
+    "exit_reasons": {
+     "phase_end": 152
+    },
+    "mean_ratio_gross_pct": 8.3729,
+    "mean_ratio_net_pct": 8.1729,
+    "pooled_daily_net_pct": 0.07869,
+    "pooled_total_factor": 2.9376,
+    "pooled_worst_fall_pct": -25.81,
+    "share_liquidated": 0.0,
+    "slot_days": 10960,
+    "trades": 152
+   },
+   "evaluation_row": {
+    "confirmed": false,
+    "episodes_disc": 19.0,
+    "episodes_val": 13.0,
+    "excess_disc": -0.00973,
+    "excess_val": -0.03764,
+    "floor_disc": true,
+    "floor_val": true,
+    "kind": "btc",
+    "lcb_disc": -0.03946,
+    "lcb_val": -0.05391,
+    "regime": "BULL",
+    "trades_disc": 152.0,
+    "trades_val": 104.0
+   },
+   "validation": {
+    "compounded_daily_net_pct": 0.016,
+    "compounded_total_factor": 1.1665,
+    "daily_gross_on_provided_pct": 0.06022,
+    "daily_net_on_employed_pct": 0.2637,
+    "daily_net_on_provided_pct": 0.05716,
+    "days": 963,
+    "exit_reasons": {
+     "phase_end": 104
+    },
+    "mean_ratio_gross_pct": 3.9328,
+    "mean_ratio_net_pct": 3.7328,
+    "pooled_daily_net_pct": 0.02628,
+    "pooled_total_factor": 1.2879,
+    "pooled_worst_fall_pct": -33.86,
+    "share_liquidated": 0.0,
+    "slot_days": 6792,
+    "trades": 104
+   }
+  },
+  "ichimoku": {
+   "discovery": {
+    "compounded_daily_net_pct": 0.02808,
+    "compounded_total_factor": 1.4691,
+    "daily_gross_on_provided_pct": 0.03558,
+    "daily_net_on_employed_pct": 0.5325,
+    "daily_net_on_provided_pct": 0.03289,
+    "days": 1370,
+    "exit_reasons": {
+     "ich_cloud": 120,
+     "phase_takeover": 27
+    },
+    "mean_ratio_gross_pct": 2.6525,
+    "mean_ratio_net_pct": 2.4525,
+    "pooled_daily_net_pct": 0.03141,
+    "pooled_total_factor": 1.5377,
+    "pooled_worst_fall_pct": -5.05,
+    "share_liquidated": 0.0,
+    "slot_days": 10960,
+    "trades": 147
+   },
+   "evaluation_row": {
+    "confirmed": false,
+    "episodes_disc": 75.0,
+    "episodes_val": 77.0,
+    "excess_disc": -0.01957,
+    "excess_val": -0.02752,
+    "floor_disc": true,
+    "floor_val": true,
+    "kind": "coin",
+    "lcb_disc": -0.04848,
+    "lcb_val": -0.05757,
+    "regime": "SIDEWAYS",
+    "trades_disc": 145.0,
+    "trades_val": 184.0
+   },
+   "validation": {
+    "compounded_daily_net_pct": 0.01381,
+    "compounded_total_factor": 1.1423,
+    "daily_gross_on_provided_pct": 0.02247,
+    "daily_net_on_employed_pct": 0.205,
+    "daily_net_on_provided_pct": 0.01705,
+    "days": 963,
+    "exit_reasons": {
+     "force_exit": 3,
+     "ich_cloud": 161,
+     "phase_takeover": 20
+    },
+    "mean_ratio_gross_pct": 0.8293,
+    "mean_ratio_net_pct": 0.6293,
+    "pooled_daily_net_pct": 0.01249,
+    "pooled_total_factor": 1.1278,
+    "pooled_worst_fall_pct": -11.59,
+    "share_liquidated": 0.0,
+    "slot_days": 6792,
+    "trades": 184
+   }
+  }
+ },
+ "target_daily_pct": 0.08,
+ "trades_total": 587,
+ "variant": "RegimeRotationBotV2",
+ "whole": {
+  "discovery": {
+   "compounded_daily_net_pct": 0.10133,
+   "compounded_total_factor": 4.005,
+   "daily_gross_on_provided_pct": 0.1517,
+   "daily_net_on_employed_pct": 0.3536,
+   "daily_net_on_provided_pct": 0.14624,
+   "days": 1370,
+   "exit_reasons": {
+    "ich_cloud": 120,
+    "phase_end": 152,
+    "phase_takeover": 27
+   },
+   "mean_ratio_gross_pct": 5.5606,
+   "mean_ratio_net_pct": 5.3606,
+   "pooled_daily_net_pct": 0.11012,
+   "pooled_total_factor": 4.5171,
+   "pooled_worst_fall_pct": -22.25,
+   "share_liquidated": 0.0,
+   "slot_days": 10960,
+   "trades": 299
+  },
+  "evaluation_rows": {
+   "btc/BEAR": {
+    "confirmed": false,
+    "episodes_disc": 2.0,
+    "episodes_val": null,
+    "excess_disc": -0.07404,
+    "excess_val": null,
+    "floor_disc": false,
+    "floor_val": false,
+    "kind": "btc",
+    "lcb_disc": -0.11254,
+    "lcb_val": null,
+    "regime": "BEAR",
+    "trades_disc": 2.0,
+    "trades_val": null
+   },
+   "btc/BULL": {
+    "confirmed": false,
+    "episodes_disc": 19.0,
+    "episodes_val": 13.0,
+    "excess_disc": -0.00998,
+    "excess_val": -0.03578,
+    "floor_disc": true,
+    "floor_val": true,
+    "kind": "btc",
+    "lcb_disc": -0.03976,
+    "lcb_val": -0.0506,
+    "regime": "BULL",
+    "trades_disc": 157.0,
+    "trades_val": 111.0
+   },
+   "btc/SIDEWAYS": {
+    "confirmed": false,
+    "episodes_disc": 18.0,
+    "episodes_val": 18.0,
+    "excess_disc": -0.07673,
+    "excess_val": -0.03232,
+    "floor_disc": true,
+    "floor_val": true,
+    "kind": "btc",
+    "lcb_disc": -0.11522,
+    "lcb_val": -0.0643,
+    "regime": "SIDEWAYS",
+    "trades_disc": 97.0,
+    "trades_val": 123.0
+   },
+   "btc/TRANSITION": {
+    "confirmed": false,
+    "episodes_disc": 19.0,
+    "episodes_val": 18.0,
+    "excess_disc": -0.01601,
+    "excess_val": -0.00327,
+    "floor_disc": true,
+    "floor_val": true,
+    "kind": "btc",
+    "lcb_disc": -0.05089,
+    "lcb_val": -0.02917,
+    "regime": "TRANSITION",
+    "trades_disc": 43.0,
+    "trades_val": 54.0
+   },
+   "coin/BEAR": {
+    "confirmed": false,
+    "episodes_disc": 22.0,
+    "episodes_val": 7.0,
+    "excess_disc": 0.00095,
+    "excess_val": 0.11575,
+    "floor_disc": true,
+    "floor_val": false,
+    "kind": "coin",
+    "lcb_disc": -0.07158,
+    "lcb_val": 0.01053,
+    "regime": "BEAR",
+    "trades_disc": 23.0,
+    "trades_val": 8.0
+   },
+   "coin/BULL": {
+    "confirmed": false,
+    "episodes_disc": 58.0,
+    "episodes_val": 29.0,
+    "excess_disc": -0.057,
+    "excess_val": -0.07887,
+    "floor_disc": true,
+    "floor_val": true,
+    "kind": "coin",
+    "lcb_disc": -0.12418,
+    "lcb_val": -0.13035,
+    "regime": "BULL",
+    "trades_disc": 58.0,
+    "trades_val": 29.0
+   },
+   "coin/SIDEWAYS": {
+    "confirmed": false,
+    "episodes_disc": 94.0,
+    "episodes_val": 87.0,
+    "excess_disc": 0.04422,
+    "excess_val": -0.03212,
+    "floor_disc": true,
+    "floor_val": true,
+    "kind": "coin",
+    "lcb_disc": -0.00585,
+    "lcb_val": -0.05702,
+    "regime": "SIDEWAYS",
+    "trades_disc": 192.0,
+    "trades_val": 218.0
+   },
+   "coin/TRANSITION": {
+    "confirmed": false,
+    "episodes_disc": 25.0,
+    "episodes_val": 20.0,
+    "excess_disc": 0.1164,
+    "excess_val": 0.18727,
+    "floor_disc": true,
+    "floor_val": true,
+    "kind": "coin",
+    "lcb_disc": -0.0532,
+    "lcb_val": -0.07749,
+    "regime": "TRANSITION",
+    "trades_disc": 26.0,
+    "trades_val": 21.0
+   }
+  },
+  "validation": {
+   "compounded_daily_net_pct": 0.02903,
+   "compounded_total_factor": 1.3225,
+   "daily_gross_on_provided_pct": 0.08269,
+   "daily_net_on_employed_pct": 0.2475,
+   "daily_net_on_provided_pct": 0.07421,
+   "days": 963,
+   "exit_reasons": {
+    "force_exit": 3,
+    "ich_cloud": 161,
+    "phase_end": 104,
+    "phase_takeover": 20
+   },
+   "mean_ratio_gross_pct": 1.95,
+   "mean_ratio_net_pct": 1.75,
+   "pooled_daily_net_pct": 0.03877,
+   "pooled_total_factor": 1.4525,
+   "pooled_worst_fall_pct": -33.61,
+   "share_liquidated": 0.0,
+   "slot_days": 6792,
+   "trades": 288
+  }
+ }
+}

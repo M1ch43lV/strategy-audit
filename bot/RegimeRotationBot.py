@@ -17,6 +17,10 @@ the priority of the BTC phases: when BTC turns BULL or BEAR, positions that belo
 component are closed and the phase's own component takes the pair over (`phase_takeover`).
 Hold positions end when BTC leaves BULL.
 
+Variants (`RegimeRotationBotV2N1`, `RegimeRotationBotV2`, and the older test subclasses at the end of the file) change the option
+per phase (`bear_mode`, `side_mode`, `trans_mode`) and the days a new state must hold (`phase_confirm_days`). The rule and the
+result of each is `PIPELINE_EXTENSIONS.md`, Part 4.
+
 Every component is a port of the strategy in `repos/`, checked against the original's own
 `populate_*` output by `bot/check_ports.py`. Known deviations from the originals: the protections of
 EI3v2 are not carried over (they are global and would also lock the hold; a backtest ignores protections
@@ -67,6 +71,22 @@ def daily_regime(daily: DataFrame) -> DataFrame:
     return out
 
 
+def confirm_regime(states: pd.Series, days: int) -> pd.Series:
+    """A change of state is accepted only after the new raw state has held for `days` consecutive days.
+
+    Bot logic on top of the frozen labels; the labels themselves are not touched. `days` = 1 returns the input."""
+    if days <= 1:
+        return states
+    raw = states.to_numpy(dtype=object)
+    out = raw.copy()
+    current = raw[0]
+    for i in range(len(raw)):
+        if i >= days - 1 and all(raw[i - k] == raw[i] for k in range(days)):
+            current = raw[i]
+        out[i] = current
+    return pd.Series(out, index=states.index)
+
+
 def ewo(dataframe: DataFrame, ema_length: int = 5, ema2_length: int = 3):
     ema1 = ta.EMA(dataframe, timeperiod=ema_length)
     ema2 = ta.EMA(dataframe, timeperiod=ema2_length)
@@ -93,8 +113,11 @@ class RegimeRotationBot(IStrategy):
 
     # test switches, overridden in the subclasses below
     hold_leverage = 1.0
-    bear_mode = "ei3v2"          # "ei3v2" or "short_hold"
+    bear_mode = "ei3v2"          # "ei3v2", "short_hold" or "cash" (cash: everything is closed when BTC turns BEAR)
     bear_regime = "btc"          # which regime decides the downtrend phase: "btc" or "coin"
+    side_mode = "ichimoku"       # coin SIDEWAYS: "ichimoku" or "cash"
+    trans_mode = "buyordie"      # coin TRANSITION: "buyordie" or "cash"
+    phase_confirm_days = 1       # days a new raw state must hold before the bot follows it (1 = no confirmation)
 
     # EI3v2_tag_cofi_green, the values its `buy_params`/`sell_params` load
     ei = {"ma_buy": 12, "ma_sell": 22, "rsi_buy": 58, "ewo_high": 3.001, "ewo_low": -10.289,
@@ -132,6 +155,7 @@ class RegimeRotationBot(IStrategy):
         raw = self.dp.get_pair_dataframe(pair=self._spot(source), timeframe="1d", candle_type="spot")
         logger.info("regime source %s starts %s, %d daily candles", self._spot(source), raw["date"].iloc[0], len(raw))
         daily = daily_regime(raw)
+        daily["regime"] = confirm_regime(daily["regime"], self.phase_confirm_days)
         daily = daily.rename(columns={"regime": prefix + "_regime"})
         left = dataframe[["date"]].copy()
         unit = left["date"].dtype
@@ -262,9 +286,12 @@ class RegimeRotationBot(IStrategy):
         if self.bear_mode == "short_hold":
             enter(phase.eq("bear"), "enter_short", "hold_short")
         else:
-            enter(phase.eq("bear") & dataframe["ei_buy"].eq(1), "enter_long", "ei3v2")
-        enter(phase.eq("side") & dataframe["ich_buy"].eq(1), "enter_long", "ichimoku")
-        enter(phase.eq("trans") & dataframe["bod_buy"].eq(1), "enter_long", "buyordie")
+            if self.bear_mode == "ei3v2":
+                enter(phase.eq("bear") & dataframe["ei_buy"].eq(1), "enter_long", "ei3v2")
+        if self.side_mode == "ichimoku":
+            enter(phase.eq("side") & dataframe["ich_buy"].eq(1), "enter_long", "ichimoku")
+        if self.trans_mode == "buyordie":
+            enter(phase.eq("trans") & dataframe["bod_buy"].eq(1), "enter_long", "buyordie")
         return dataframe
 
     def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
@@ -293,7 +320,7 @@ class RegimeRotationBot(IStrategy):
         if phase == "hold":
             return "hold"
         if phase == "bear":
-            return "hold_short" if self.bear_mode == "short_hold" else "ei3v2"
+            return {"short_hold": "hold_short", "cash": "cash"}.get(self.bear_mode, "ei3v2")
         return None
 
     def custom_exit(self, pair: str, trade: Trade, current_time: datetime, current_rate: float,
@@ -348,3 +375,19 @@ class RegimeRotationBotCoinBear(RegimeRotationBot):
 class RegimeRotationBotShort(RegimeRotationBot):
     """Test: a 1x short hold in the BTC downtrend instead of EI3v2."""
     bear_mode = "short_hold"
+
+
+class RegimeRotationBotV2N1(RegimeRotationBot):
+    """V2 without the phase confirmation (decomposition only, `PIPELINE_EXTENSIONS.md` Part 4.2 point 3).
+
+    The component choice is the result of `bot/phase_choice.py` on the discovery window (`results/regime/rotation_bot/
+    phase_choice.json`): BTC bear and coin TRANSITION go to cash, coin SIDEWAYS keeps Ichimoku."""
+    bear_mode = "cash"
+    trans_mode = "cash"
+    side_mode = "ichimoku"
+    phase_confirm_days = 1
+
+
+class RegimeRotationBotV2(RegimeRotationBotV2N1):
+    """V2: the component choice above, and a change of phase is followed after 2 consecutive days."""
+    phase_confirm_days = 2
