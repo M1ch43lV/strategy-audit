@@ -1563,9 +1563,20 @@ def rows():
             "coverage_evidence": coverage_evidence,
             "full_backtest_status": full_backtest.get("status", ""),
             "technical_chain_complete": "true" if full_backtest_complete else "false",
-            "execution_robustness_status": resolved["execution_robustness_status"],
+            # The detail rerun goes through the same runner as the full backtest, and
+            # that runner takes only admitted strategies. An excluded strategy that
+            # still has an old measured baseline (a later-found duplicate, a recursion
+            # finding) is therefore never rerun; it must not read PENDING forever.
+            "execution_robustness_status": (
+                "NA" if (cohort != "E1_expanded" and
+                         resolved["execution_robustness_status"] == "PENDING")
+                else resolved["execution_robustness_status"]),
             "robustness_qualified": "true" if resolved["robustness_qualified"] else "false",
-            "execution_robustness_basis": resolved["execution_robustness_basis"],
+            "execution_robustness_basis": (
+                "not_rerun_outside_admitted_cohort" if (
+                    cohort != "E1_expanded" and
+                    resolved["execution_robustness_status"] == "PENDING")
+                else resolved["execution_robustness_basis"]),
             "cost_screen_status": resolved["cost_screen_status"],
             "cost_screen_regimes_pass": resolved["cost_screen_regimes_pass"],
             "cost_break_even_bps": resolved["cost_break_even_bps"],

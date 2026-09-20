@@ -1,6 +1,6 @@
 {
   "authority": "generated_read_model_not_a_verdict_store",
-  "generated_at": "2026-09-20T08:17:41",
+  "generated_at": "2026-09-20T09:19:09",
   "raw_store_policy": "Raw evidence stores retain provenance and writer ownership; read pipeline-wide state only from this file or STRATEGY_STATUS.csv.",
   "schema_version": 1,
   "strategies": {
@@ -47335,8 +47335,8 @@
         }
       },
       "exclusion_basis": "own_measurement",
-      "execution_robustness_basis": "",
-      "execution_robustness_status": "PENDING",
+      "execution_robustness_basis": "not_rerun_outside_admitted_cohort",
+      "execution_robustness_status": "NA",
       "expansion_wave": "not_scheduled",
       "full_backtest_status": "measured",
       "gate_notes": "",
@@ -70754,8 +70754,8 @@
         }
       },
       "exclusion_basis": "own_measurement",
-      "execution_robustness_basis": "",
-      "execution_robustness_status": "PENDING",
+      "execution_robustness_basis": "not_rerun_outside_admitted_cohort",
+      "execution_robustness_status": "NA",
       "expansion_wave": "E0_strict67",
       "full_backtest_status": "measured",
       "gate_notes": "",

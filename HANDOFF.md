@@ -1601,7 +1601,14 @@ time without a memory limit, into `execution_robustness_detail_5m_solo_docker.js
 final and is not queued again. Do not restart the serial batch and do not start another
 full-backtest writer beside this one. The wrapper
 `runtime/regime_full_backtest_docker.ps1` gained `-MemoryLimit`, `-Cpus` and
-`-ContainerName`; without them it behaves as before. Log:
+`-ContainerName`; without them it behaves as before.
+Only admitted strategies are owed a detail run, because the runner takes only
+`cohort == E1_expanded`. Three baselines were listed as owed and are not:
+`FastSupertrend_optim3_rsi_75fix` (excluded as a duplicate of `_rsi_75`),
+`MacdStrategy` (excluded, recursion not settled) and `chispei` (a duplicate of `Chispei`,
+removed at intake on 2026-09-16 and still present in the pooled manifest; `Chispei`
+itself is measured). `targets()` now skips them and the table reports such a strategy
+as `NA` with `execution_robustness_basis: not_rerun_outside_admitted_cohort`, not `PENDING`. Log:
 `results/regime/execution_robustness_detail_5m_parallel.log`.
 
 **Strategies at or below 5m: no rerun, no 1m batch** (owner decision 2026-09-19,

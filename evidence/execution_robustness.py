@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import csv
 import datetime
 import glob
 import hashlib
@@ -581,13 +582,31 @@ def document(results, stage):
             "parameters_sha256": parameters_sha256(), "results": results}
 
 
+def _runnable():
+    """Strategies the runner will take: the admitted cohort of STRATEGY_STATUS.csv.
+
+    `regime.full_backtest.eligible()` refuses everything else ("not currently
+    eligible"), so an old baseline of an excluded strategy or of a removed duplicate
+    (`chispei`, identical to `Chispei`) is not owed a rerun. None when the table is
+    absent, so nothing is silently dropped.
+    """
+    path = os.path.join(ROOT, "STRATEGY_STATUS.csv")
+    if not os.path.exists(path):
+        return None
+    with io.open(path, newline="", encoding="utf-8-sig") as handle:
+        return {row["strategy_id"] for row in csv.DictReader(handle)
+                if row["cohort"] == "E1_expanded"}
+
+
 def targets(detail_tf, limit=0):
     """Strategies still owed a detail run at ``detail_tf``, and the command."""
     baseline = measured_baselines(_load(BASELINE_STORE).get("results", {}))
     done = {s for s, r in choose_detail_records().items()
             if r.get("status") == "measured" and r["timeframe_detail"] == detail_tf}
     cost = _load(COST_OUTPUT).get("results", {})
+    runnable = _runnable()
     names = sorted(s for s in baseline if s not in done
+                   and (runnable is None or s in runnable)
                    and detail_timeframe((cost.get(s) or {}).get("main_timeframe")) == detail_tf)
     if limit:
         names = names[:limit]
