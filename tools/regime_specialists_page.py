@@ -178,6 +178,48 @@ def native_stats(strategy_ids):
     return rows, len(rejected)
 
 
+def discovery_blobs(robustness):
+    """Discovery against validation (regime/discovery_comparison.py), for the page.
+
+    The scatter carries one point per strategy, kind and phase that clears the floor in
+    both windows: [kind, phase, discovery excess, validation excess, robustness PASS].
+    The top-five table lists, per phase, the best coin rows of the discovery and what
+    those rows did in the validation.
+    """
+    paired = os.path.join(SPEC, "discovery_vs_validation.csv")
+    summary = os.path.join(SPEC, "discovery_vs_validation_summary.json")
+    if not (os.path.isfile(paired) and os.path.isfile(summary)):
+        raise SystemExit("run `python -m regime.discovery_comparison` first")
+    frame = pd.read_csv(paired)
+    scatter = []
+    both = frame[frame["floor_disc"] & frame["floor_val"]]
+    for _, row in both.iterrows():
+        ok = robustness.row(row["strategy_id"], row["kind"], row["regime"])["ok"]
+        scatter.append([0 if row["kind"] == "btc" else 1, STATES.index(row["regime"]),
+                        round(float(row["excess_return_disc"]), 4),
+                        round(float(row["excess_return_val"]), 4), ok])
+    top = {"btc": {}, "coin": {}}
+    for kind in ("btc", "coin"):
+        for state in STATES:
+            part = frame[(frame["kind"] == kind) & (frame["regime"] == state)]
+            val = part[part["floor_val"]].sort_values("excess_return_val", ascending=False)
+            rank = {s: i + 1 for i, s in enumerate(val["strategy_id"])}
+            best = part[part["floor_disc"]].sort_values("excess_return_disc", ascending=False).head(5)
+            rows = []
+            for _, row in best.iterrows():
+                on_floor = bool(row["floor_val"])
+                rows.append({
+                    "strategy_id": row["strategy_id"],
+                    "disc_excess": clean(row["excess_return_disc"]),
+                    "disc_trades": int(row["trades_disc"]), "disc_episodes": int(row["episodes_disc"]),
+                    "val_excess": clean(row["excess_return_val"]) if on_floor else None,
+                    "val_rank": rank.get(row["strategy_id"]) if on_floor else None,
+                    "val_rows": len(val),
+                    "ok": robustness.row(row["strategy_id"], kind, state)["ok"]})
+            top[kind][state] = rows
+    return scatter, top, _read_json(summary)
+
+
 def dca_strategies():
     enable = re.compile(r"position_adjustment_enable\s*=\s*True\b")
     method = re.compile(r"def\s+adjust_trade_position\s*\(")
@@ -402,11 +444,13 @@ def build(destination, skip_native=False):
     template = io.open(TEMPLATE, encoding="utf-8").read()
     template = fill(template, facts, text)
 
+    dv_scatter, dv_top, dv_summary = discovery_blobs(robustness)
     static = {name: io.open(os.path.join(DATA, name.lower() + ".json"), encoding="utf-8").read().strip()
               for name in ("GATEDCOMPARE", "GATEDDETAIL", "TOP10BYREGIME", "COINEPISODES", "COINEPISODECOUNTS")}
     blobs = {
         "REGIMEFULL": _dump({"btc": rows["btc"], "coin": rows["coin"]}),
         "UNIVERSAL": _dump(rows["universal"]), "TOTALGAIN": _dump(gain_rows),
+        "DVSCATTER": _dump(dv_scatter), "DVTOP": _dump(dv_top), "DVSUMMARY": _dump(dv_summary),
         "FTSTATS": _dump(native), "FUTURESSTRATEGIES": _dump(futures), "DCASTRATEGIES": _dump(dca),
     }
     blobs.update(static)

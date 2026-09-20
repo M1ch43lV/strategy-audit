@@ -234,6 +234,11 @@ th.sortable.active .arrow{opacity:1;color:var(--accent-text);}
 .dropnote{padding:8px 12px;border-top:1px solid var(--border);font-size:11.5px;color:var(--text-muted);line-height:1.55;background:var(--surface-alt);}
 .dropnote b{color:var(--text);font-weight:600;}
 .moved{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--warn-text);background:var(--warn-bg);border:1px solid var(--warn-border);border-radius:4px;padding:1px 6px;margin-left:6px;white-space:nowrap;}
+.dvgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;}
+.dvcard{border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--surface);}
+.dvcard .dvhead{padding:7px 12px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:700;color:#fff;display:flex;justify-content:space-between;}
+.dvcard canvas{display:block;width:100%;height:250px;}
+.dvcard .dvfoot{padding:6px 12px;font-size:11px;color:var(--text-muted);border-top:1px solid var(--border);font-family:"IBM Plex Mono",monospace;}
 footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--border);}
 footer h2{font-size:15px;margin-bottom:10px;}
 footer ul{margin:0 0 18px;padding-left:18px;font-size:13px;color:var(--text-muted);line-height:1.7;}
@@ -295,11 +300,46 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
   <div class="callout info" style="margin-top:14px;"><span class="dot">&#8505;</span><div>
     <b>Warum es einen Split zwischen Discovery und Validation gibt.</b>
     <p style="margin:8px 0 0;max-width:none;"><b>Das Problem.</b> Hier werden hunderte Strategien in vier Marktphasen und zwei Regime-Arten (BTC und Coin) verglichen, also tausende Kombinationen. Bei so vielen Vergleichen glänzt immer einige zufällig. Wer eine Zeile auf denselben Daten findet, auf denen er sie bewertet, überschätzt sie fast zwangsläufig (Data-Snooping, mehrfaches Testen).</p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Die Lösung.</b> Die Daten werden zeitlich geteilt. In der <i>Discovery</i> (2020-03 bis 2023-12) darf gesucht werden: Hypothesen bilden, Kandidaten auswählen. Die <i>Validation</i> (2024-01 bis 2026-08) dient nur zum Bewerten: Was dort gerankt wird, wurde nicht auf diesen Daten gesucht. Die Grenze ist ein Kalenderdatum, das am 2026-09-11 eingefroren wurde. Sie wurde nur gegen Episodenzahlen geprüft, nie gegen Strategieergebnisse, damit sie sich nicht auf ein gewünschtes Ergebnis hin verschieben lässt.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Die Lösung.</b> Die Daten werden zeitlich in zwei Fenster geteilt: <i>Discovery</i> (2020-03 bis 2023-12) und <i>Validation</i> (2024-01 bis 2026-08). Beide werden mit derselben Auswertung und denselben Schwellen einzeln bewertet. Die Ranglisten dieser Seite beruhen ausschließlich auf der Validation; aus der Discovery fließt nichts in Rang, Tier oder Auswahl ein. Ihr Zweck ist der Gegentest im nächsten Abschnitt: Hält in der Validation, was sich in der Discovery bewährt hat? Die Grenze ist ein Kalenderdatum, das am 2026-09-11 eingefroren wurde. Sie wurde nur gegen Episodenzahlen geprüft, nie gegen Strategieergebnisse.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Nicht verwechseln.</b> <i>EXPLORATORY</i> ist ein Tier (eine Zeile unter dem Specialist-Floor), kein Zeitfenster. Discovery und Validation sind die beiden Zeitfenster.</p>
     <p style="margin:8px 0 0;max-width:none;"><b>Was daraus folgt.</b> Rang, Tier und Specialist-Floor gelten nur im Validation-Fenster; auch die Episoden für den Floor werden nur dort gezählt (Korrektur vom 2026-09-14). Der Kostenstress der Stufe 8b nutzt dasselbe Fenster. Die Schwellen von 5 Episoden und 10 Trades wurden gegen die Episodenzahlen dieses Fensters festgelegt (BTC: 15 bis 36 Episoden je Phase).</p>
     <p style="margin:8px 0 0;max-width:none;"><b>Warum nach Kalender und nicht zufällig.</b> Eine Marktphase ist eine zusammenhängende Episode über Tage bis Monate. Würde man Trades zufällig auf beide Hälften verteilen, läge dieselbe Episode in beiden, und die Validation wäre keine unabhängige Prüfung mehr.</p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Grenzen.</b> (1) Es gibt eine Grenze und ein Validierungsfenster von rund 2,7 Jahren; die zweite Hälfte ist zudem eine andere Marktlage als die erste, ein Befund, der dort nicht hält, kann an der Strategie oder an der Marktlage liegen. (2) Diese Seite zeigt keine Rangliste für die Discovery. (3) Die Validation ist kein vollständig gesperrtes Hold-out: Die Kandidaten für Modell 1 bis 3 wurden aus den Validation-Zeilen von Modell 0 gewählt (siehe Abschnitt weiter unten), ihre gegateten Ergebnisse im selben Fenster sind deshalb kein unabhängiger Test.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Grenzen.</b> (1) Es gibt eine Grenze und ein Validierungsfenster von rund 2,7 Jahren; die zweite Hälfte ist zudem eine andere Marktlage als die erste, ein Befund, der dort nicht hält, kann an der Strategie oder an der Marktlage liegen. (2) Bis zum Vergleich unten wurde die Discovery nicht ausgewertet: Sie hat keine Auswahl getroffen und keine Rangliste erzeugt. (3) Die Validation ist kein vollständig gesperrtes Hold-out: Die Kandidaten für Modell 1 bis 3 wurden aus den Validation-Zeilen von Modell 0 gewählt (siehe Abschnitt weiter unten), ihre gegateten Ergebnisse im selben Fenster sind deshalb kein unabhängiger Test.</p>
   </div></div>
+</section>
+
+<section class="robust" id="dv-section">
+  <div class="sectionhead">
+    <h2>Discovery gegen Validation: hält, was sich bewährt hat?</h2>
+    <span class="hint">dieselbe Auswertung auf beiden Zeitfenstern, Zeile für Zeile</span>
+  </div>
+  <p class="secintro">Für jede Kombination aus Strategie und Marktphase wird der Excess-Return einmal aus den Trades der Discovery (vor 2024-01-01) und einmal aus denen der Validation gerechnet, mit derselben Formel, demselben Benchmark und demselben Floor (mindestens 5 Episoden und 10 Trades <i>im jeweiligen Fenster</i>). Verglichen werden die Zeilen, die den Floor in <b>beiden</b> Fenstern erreichen. Nichts aus der Discovery fließt in die Ranglisten; das ist ein Gegentest, keine Auswahl.</p>
+  <div class="callout info"><span class="dot">&#8505;</span><div id="dv-lead"></div></div>
+
+  <h3>Beständigkeit je Marktphase</h3>
+  <div class="tablebox">
+    <table class="plain">
+      <thead><tr><th>Regime</th><th>Phase</th><th class="num">Zeilen mit Floor in beiden</th><th class="num" title="Spearman: 1 = gleiche Reihenfolge in beiden Fenstern, 0 = kein Zusammenhang">Rang-Korrelation ρ</th><th class="num" title="Anteil der Zeilen mit positivem Excess in der Validation, wenn er in der Discovery positiv war">Validation positiv | Discovery positiv</th><th class="num" title="dasselbe, wenn der Excess in der Discovery nicht positiv war">| Discovery nicht positiv</th><th class="num" title="Anteil positiv in der Validation über alle Zeilen">Basisrate</th><th class="num" title="Median in der Validation der zehn Prozent besten Zeilen der Discovery, gegen den Median aller Zeilen">Discovery-Top-10 % in Validation (Median)</th><th class="num" title="Anteil positiv in der Validation, wenn die untere Vertrauensgrenze (LCB) in der Discovery über 0 lag">Validation positiv | Discovery-LCB &gt; 0</th></tr></thead>
+      <tbody id="dv-table"></tbody>
+    </table>
+  </div>
+
+  <h3>Jede Zeile ein Punkt: Discovery gegen Validation</h3>
+  <p class="secintro">Auf der waagerechten Achse der Excess-Return der Discovery, auf der senkrechten der der Validation. Punkte auf der Diagonale hielten ihren Wert genau, Punkte im oberen rechten Viertel waren in beiden Fenstern besser als Buy-and-Hold. Hervorgehoben sind Zeilen mit Robustheits-PASS (Stufe 8b).</p>
+  <div class="rtabs" id="dv-tabs">
+    <div class="rtab active" data-kind="coin">Coin-Regime</div>
+    <div class="rtab" data-kind="btc">BTC-Regime</div>
+  </div>
+  <div class="rtabpanel"><div class="dvgrid" id="dv-scatter"></div></div>
+
+  <h3>Die fünf besten der Discovery je Phase &mdash; und was sie in der Validation taten</h3>
+  <div class="tablebox">
+    <table class="plain">
+      <thead><tr><th>Phase</th><th class="num">Rang</th><th>Strategie</th><th class="num">Excess Discovery</th><th class="num">Trades / Episoden</th><th class="num">Excess Validation</th><th class="num">Rang in Validation</th><th class="num">Robustheit</th></tr></thead>
+      <tbody id="dv-top"></tbody>
+    </table>
+  </div>
+  <div class="callout warn" style="margin-top:14px;"><span class="dot">&#9888;</span><div><b>Wie das zu lesen ist.</b> Die Beständigkeit ist hoch, aber sie beweist kein Phasenkönnen. Der Excess-Return misst gegen Buy-and-Hold der ganzen Phase. Eine Strategie, die wenig im Markt ist, gewinnt deshalb in fallenden Phasen fast immer gegen den Benchmark und verliert in Aufwärtsphasen, in beiden Fenstern gleichermaßen. Ein Teil der Rang-Korrelation ist also der Handelsstil (Marktzeit, Häufigkeit, Hebel), und der bleibt über Jahre gleich. Es sind außerdem dieselben Strategien in beiden Fenstern, keine unabhängigen Stichproben, und die Validation ist ein anderer Markt (2024 bis 2026). Wo die Korrelation niedrig ist, wie in BTC-Seitwärts, fehlt die Beständigkeit tatsächlich.</div></div>
 </section>
 
 <section class="robust" id="robust-section">
@@ -732,6 +772,9 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
 const REGIMEFULL = __REGIMEFULL_JSON__;
 const UNIVERSAL = __UNIVERSAL_JSON__;
 const TOTALGAIN = __TOTALGAIN_JSON__;
+const DVSCATTER = __DVSCATTER_JSON__;
+const DVTOP = __DVTOP_JSON__;
+const DVSUMMARY = __DVSUMMARY_JSON__;
 const FTSTATS = __FTSTATS_JSON__;
 const GATEDCOMPARE = __GATEDCOMPARE_JSON__;
 const GATEDDETAIL = __GATEDDETAIL_JSON__;
@@ -1468,6 +1511,105 @@ renderGatedModel('gm-model3-content', 'model3');
     idx = Math.min(STEPS.length - 1, idx + 1); apply();
   });
   apply();
+})();
+
+(function renderDiscoveryComparison(){
+  var STATES = ['BULL', 'BEAR', 'SIDEWAYS', 'TRANSITION'];
+  var KIND_LABEL = {btc: 'BTC', coin: 'Coin'};
+  function num(v, d){ return (v === null || v === undefined) ? '–' : v.toFixed(d).replace('.', ','); }
+  function share(v){ return (v === null || v === undefined) ? '–' : Math.round(100 * v) + ' %'; }
+  function pct1(v){ return (v === null || v === undefined) ? '–' : (v >= 0 ? '+' : '−') + Math.abs(100 * v).toFixed(1).replace('.', ',') + ' %'; }
+
+  var s = DVSUMMARY;
+  var all = s['coin/ALL'], allb = s['btc/ALL'];
+  document.getElementById('dv-lead').innerHTML =
+    '<b>Kurz gesagt:</b> Ja, es gibt einen deutlichen Zusammenhang. Über alle Phasen liegt die Rang-Korrelation bei ρ&nbsp;=&nbsp;' + num(all.spearman, 2) +
+    ' (Coin) und ' + num(allb.spearman, 2) + ' (BTC), je Phase zwischen ' +
+    num(Math.min.apply(null, STATES.map(function(x){ return s['coin/' + x].spearman; }).concat(STATES.map(function(x){ return s['btc/' + x].spearman; }))), 2) + ' und ' +
+    num(Math.max.apply(null, STATES.map(function(x){ return s['coin/' + x].spearman; }).concat(STATES.map(function(x){ return s['btc/' + x].spearman; }))), 2) +
+    '. War der Excess in der Discovery positiv, blieb er es in der Validation bei ' + share(all.val_positive_given_disc_positive) + ' der Coin-Zeilen (sonst nur ' + share(all.val_positive_given_disc_not_positive) + '). ' +
+    'Grundlage: ' + all.rows_both + ' Coin- und ' + allb.rows_both + ' BTC-Zeilen mit Floor in beiden Fenstern, ' +
+    (s.discovery_trades / 1e6).toFixed(2).replace('.', ',') + ' Mio. Trades in der Discovery, ' + (s.validation_trades / 1e6).toFixed(2).replace('.', ',') + ' Mio. in der Validation.';
+
+  var html = '';
+  ['btc', 'coin'].forEach(function(kind){
+    STATES.forEach(function(st){
+      var r = s[kind + '/' + st];
+      html += '<tr><td>' + KIND_LABEL[kind] + '</td><td><span class="regimebadge rb-' + st + '">' + stateLabel(st) + '</span></td>' +
+        '<td class="num mono">' + r.rows_both + ' <span style="color:var(--text-muted)">(D ' + r.rows_floor_disc + ' · V ' + r.rows_floor_val + ')</span></td>' +
+        '<td class="num mono">' + num(r.spearman, 2) + '</td>' +
+        '<td class="num mono">' + share(r.val_positive_given_disc_positive) + ' <span style="color:var(--text-muted)">(' + r.disc_positive + ')</span></td>' +
+        '<td class="num mono">' + share(r.val_positive_given_disc_not_positive) + '</td>' +
+        '<td class="num mono">' + share(r.val_positive_all_both) + '</td>' +
+        '<td class="num mono">' + pct1(r.top_decile_val_median) + ' <span style="color:var(--text-muted)">vs ' + pct1(r.all_val_median) + '</span></td>' +
+        '<td class="num mono">' + share(r.val_positive_given_disc_lcb_positive) + ' <span style="color:var(--text-muted)">(' + r.disc_lcb_positive + ')</span></td></tr>';
+    });
+  });
+  document.getElementById('dv-table').innerHTML = html;
+
+  // scatter, one canvas per phase
+  function css(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || '#888'; }
+  function drawScatter(canvas, points, lim){
+    var ratio = window.devicePixelRatio || 1;
+    var w = canvas.clientWidth || 260, h = canvas.clientHeight || 250;
+    canvas.width = w * ratio; canvas.height = h * ratio;
+    var g = canvas.getContext('2d'); g.scale(ratio, ratio);
+    var pad = 26, x0 = pad, x1 = w - 8, y0 = h - pad, y1 = 8;
+    function X(v){ return x0 + (Math.max(-lim, Math.min(lim, v)) + lim) / (2 * lim) * (x1 - x0); }
+    function Y(v){ return y0 - (Math.max(-lim, Math.min(lim, v)) + lim) / (2 * lim) * (y0 - y1); }
+    g.clearRect(0, 0, w, h);
+    g.strokeStyle = css('--border'); g.lineWidth = 1;
+    g.beginPath(); g.moveTo(X(0), y1); g.lineTo(X(0), y0); g.moveTo(x0, Y(0)); g.lineTo(x1, Y(0)); g.stroke();
+    g.setLineDash([4, 3]); g.beginPath(); g.moveTo(X(-lim), Y(-lim)); g.lineTo(X(lim), Y(lim)); g.stroke(); g.setLineDash([]);
+    g.fillStyle = css('--text-muted'); g.font = '10px "IBM Plex Mono", monospace';
+    g.fillText('Discovery →', x1 - 62, y0 + 18); g.save(); g.translate(10, y1 + 62); g.rotate(-Math.PI / 2); g.fillText('Validation →', 0, 0); g.restore();
+    g.fillText((lim * 100).toFixed(0) + ' %', x1 - 30, y0 - 4); g.fillText('−' + (lim * 100).toFixed(0) + ' %', x0 + 2, y0 - 4);
+    var muted = css('--text-muted'), accent = css('--accent');
+    g.globalAlpha = 0.45; g.fillStyle = muted;
+    points.forEach(function(p){ if (!p[4]) { g.beginPath(); g.arc(X(p[2]), Y(p[3]), 2, 0, 6.2832); g.fill(); } });
+    g.globalAlpha = 0.95; g.fillStyle = accent;
+    points.forEach(function(p){ if (p[4]) { g.beginPath(); g.arc(X(p[2]), Y(p[3]), 2.6, 0, 6.2832); g.fill(); } });
+    g.globalAlpha = 1;
+  }
+  function renderScatter(kind){
+    var ki = kind === 'btc' ? 0 : 1, out = '';
+    STATES.forEach(function(st, i){
+      var r = s[kind + '/' + st];
+      out += '<div class="dvcard"><div class="dvhead" style="background:var(--' + ({BULL: 'bull', BEAR: 'bear', SIDEWAYS: 'sideways', TRANSITION: 'transition'})[st] + ')"><span>' + stateLabel(st) + '</span><span>ρ ' + num(r.spearman, 2) + '</span></div>' +
+        '<canvas id="dv-c-' + i + '"></canvas><div class="dvfoot">' + r.rows_both + ' Zeilen · x: Discovery, y: Validation</div></div>';
+    });
+    document.getElementById('dv-scatter').innerHTML = out;
+    STATES.forEach(function(st, i){
+      var pts = DVSCATTER.filter(function(p){ return p[0] === ki && p[1] === i; });
+      var vals = [];
+      pts.forEach(function(p){ vals.push(Math.abs(p[2]), Math.abs(p[3])); });
+      vals.sort(function(a, b){ return a - b; });
+      var lim = Math.max(0.1, vals.length ? vals[Math.floor(vals.length * 0.97)] : 0.5);
+      drawScatter(document.getElementById('dv-c-' + i), pts, lim);
+    });
+  }
+  renderScatter('coin');
+  document.getElementById('dv-tabs').addEventListener('click', function(ev){
+    var tab = ev.target.closest('.rtab'); if (!tab) return;
+    Array.prototype.forEach.call(document.querySelectorAll('#dv-tabs .rtab'), function(el){ el.classList.toggle('active', el === tab); });
+    renderScatter(tab.getAttribute('data-kind'));
+  });
+
+  // the five best of the discovery per phase (coin), and their validation result
+  var top = '';
+  STATES.forEach(function(st){
+    (DVTOP.coin[st] || []).forEach(function(r, i){
+      var okBadge = r.ok ? '<span class="rbadge rb-ok">PASS</span>' : '<span class="rbadge rb-no">–</span>';
+      top += '<tr><td>' + (i === 0 ? '<span class="regimebadge rb-' + st + '">' + stateLabel(st) + '</span>' : '') + '</td><td class="num mono">' + (i + 1) + '</td>' +
+        '<td><b>' + futuresLabel(r.strategy_id) + '</b></td>' +
+        '<td class="num val ' + valClass(r.disc_excess) + '">' + fmtPct(r.disc_excess) + '</td>' +
+        '<td class="num mono">' + r.disc_trades + ' / ' + r.disc_episodes + '</td>' +
+        '<td class="num val ' + (r.val_excess === null ? '' : valClass(r.val_excess)) + '">' + (r.val_excess === null ? '–' : fmtPct(r.val_excess)) + '</td>' +
+        '<td class="num mono">' + (r.val_rank ? r.val_rank + ' von ' + r.val_rows : (r.val_excess === null ? 'kein Floor' : '–')) + '</td>' +
+        '<td class="num">' + okBadge + '</td></tr>';
+    });
+  });
+  document.getElementById('dv-top').innerHTML = top;
 })();
 
 (function renderRobustSection(){

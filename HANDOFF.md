@@ -1629,6 +1629,11 @@ removes a duplicate, then regenerate `regime.attribution`, `regime.specialist_ev
 `evidence.execution_robustness`, `evidence.strategy_status`, `tools.strategy_status_page`.
 The Model 0 evaluation now covers 629 strategies (584 before; the old run also predated later
 pooled measurements). Rankings are regenerated whenever the results change; they are not frozen.
+The discovery window had been dropped by the evaluation (trades were labelled and then only the
+validation ones used). `regime/discovery_comparison.py` (2026-09-20) evaluates the discovery
+trades with the same functions and floor and writes `discovery_vs_validation.csv` and a summary;
+the page shows it. It selects nothing. Result: within a phase the rank correlation of the excess
+return between the two windows is 0.61-0.79 (BTC sideways 0.21).
 Not touched: `candidate_spec_full_v1.json` and the model1/2/3 manifests still list the removed
 candidates (they are bound to the spec hash), the decision records `ELIGIBILITY_EXPANSION_*`,
 `REGIME_ELIGIBILITY.csv`, `NEW_REPO_CANDIDATES.json`, and the run archives under `user_data/`. Log:
