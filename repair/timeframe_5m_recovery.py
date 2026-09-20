@@ -76,13 +76,17 @@ def _pass(gate, result):
 
 
 def _metadata(strategy, gate, result, task, previous=""):
+    # Run metadata deliberately models warm-up and the final recursive check
+    # as one routing gate. Keep the detailed substep in ``task``/evidence,
+    # rather than inventing a second gate name outside its public contract.
+    metadata_gate = "warmup_recursive" if gate == "recursive" else gate
     append_record(METADATA, {
-        "run_id": "timeframe-5m-%s-%s" % (gate, hashlib.sha256(
+        "run_id": "timeframe-5m-%s-%s" % (metadata_gate, hashlib.sha256(
             (strategy + dt.datetime.now(dt.timezone.utc).isoformat()).encode()).hexdigest()[:16]),
         "timestamp": dt.datetime.now(dt.timezone.utc).isoformat(),
-        "gate": gate,
-        "model": "gpt-5.6-terra" if gate == "full_backtest" else "gpt-5.6-luna",
-        "reasoning": "medium" if gate == "full_backtest" else "low",
+        "gate": metadata_gate,
+        "model": "gpt-5.6-terra" if metadata_gate == "full_backtest" else "gpt-5.6-luna",
+        "reasoning": "medium" if metadata_gate == "full_backtest" else "low",
         "status": _gate_status(gate, result),
         "strategy_ref": strategy + " [5m recovery]",
         "task": task,
