@@ -145,7 +145,7 @@ The final Recursive-Bias run explicitly receives the ladder's smallest converged
 |---|---|---|
 | `evidence/regime_coverage.py` | `evidence/EXECUTION_PROFILES.csv`, candle files under `user_data/data/binance` | `evidence/REGIME_COVERAGE.csv`, `evidence/REGIME_COVERAGE.md` |
 
-Pure file system check (no Freqtrade execution), cached per `(mode, timeframe)` — inexpensive, safely reproducible at any time. Currently covers all 1,050 lines; the historical count as of 2026-09-06 was 919.
+Pure file system check (no Freqtrade execution), cached per `(mode, timeframe)` — inexpensive, safely reproducible at any time. It covers every row of `evidence/EXECUTION_PROFILES.csv`.
 
 ## Stage 6 — Merging
 
@@ -251,7 +251,7 @@ Must be written **before** anyone looks at the attribution results of Stage 10 �
 
 After the expansion frozen on 2026-09-07 before each productive gate run, four comparison levels per strategy:
 
-- **Model 0 — measured, attributed and evaluated.** "Original strategy, no regime filter" is exactly what `regime/full_backtest.py` (Stage 8) calculates: the ungated, pooled backtest across all 8 pairs. It is attributed in Stage 10 and evaluated in Stage 13 for 584 strategies. The resumable call `python -m regime.full_backtest` continues the measurement; ongoing writers are excluded according to `HANDOFF.md`.
+- **Model 0 — measured, attributed and evaluated.** "Original strategy, no regime filter" is exactly what `regime/full_backtest.py` (Stage 8) calculates: the ungated, pooled backtest across all 8 pairs. It is attributed in Stage 10 and evaluated in Stage 13 for the whole Model-0 inventory. The resumable call `python -m regime.full_backtest` continues the measurement; ongoing writers are excluded according to `HANDOFF.md`.
 - **Model 1 — has run on candidate sets, not on the whole corpus.** `regime/gated_backtest.py --model model1` filters entries according to the BTC states explicitly mentioned in the candidate spec. Global BTC states remain available even if no local daily line exists for a delisted coin.
 - **Model 2 — has run on candidate sets, not on the whole corpus.** `regime/gated_backtest.py --model model2` filters entries exclusively based on the explicitly specified local coin states. It does not read or require any BTC state. If the local state is missing, the gate closes.
 - **Model 3 — has run on candidate sets, not on the whole corpus.** `regime/gated_backtest.py --model model3` is the previous combined Model-2 logic: Entries require both an allowed global BTC state and an allowed local coin state. Exits remain completely with the original strategy in all three gate models.
