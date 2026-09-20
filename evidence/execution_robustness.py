@@ -478,6 +478,36 @@ def qualifies_universal(record, kind="coin", window="validation"):
     return all(qualifies_in(record, kind, state, window) for state in REGIME_STATES)
 
 
+def validation_total(record, kind="btc"):
+    """The cost result over the whole validation window, all states together.
+
+    Not stored on its own: the trades of the four states of one regime kind are the
+    validation window's trades, and both the mean and the stressed mean are linear in
+    the trades, so the whole is the trade-weighted mean of the four cells. The BTC
+    states cover every day, which is why `btc` is the default; the coin states miss
+    the days a delisted coin has no candles. The rule is the cell's own: below the
+    floor or not profitable is `NA`, otherwise `PASS` if the reference slippage is
+    survived.
+    """
+    cells = [(record or {}).get("by_regime", {}).get(kind, {}).get(state, {}).get("validation")
+             or {} for state in REGIME_STATES]
+    cells = [c for c in cells if c.get("trades") and "stressed" in c]
+    trades = sum(c["trades"] for c in cells)
+    if not trades:
+        return {"trades": 0, "status": "NA", "mean_profit_pct": None, "stressed_pct": None}
+    key = "%.4f" % COST["reference_slippage_per_side"]
+    mean = sum(c["trades"] * c["mean_profit_pct"] for c in cells) / trades
+    stressed = sum(c["trades"] * c["stressed"][key]["mean_profit_pct"] for c in cells) / trades
+    if trades < COST["regime_min_trades"]:
+        status = "NA"
+    elif mean <= 0:
+        status = "NA"
+    else:
+        status = "PASS" if stressed > 0 else "SENSITIVE"
+    return {"trades": int(trades), "status": status, "mean_profit_pct": _round(mean, 4),
+            "stressed_pct": _round(stressed, 4)}
+
+
 def regime_screens(blocks):
     """Regime cost screens for a set of native blocks, keyed by strategy."""
     import numpy as np

@@ -1,6 +1,6 @@
 {
   "authority": "generated_read_model_not_a_verdict_store",
-  "generated_at": "2026-09-20T10:03:02",
+  "generated_at": "2026-09-20T11:54:41",
   "raw_store_policy": "Raw evidence stores retain provenance and writer ownership; read pipeline-wide state only from this file or STRATEGY_STATUS.csv.",
   "schema_version": 1,
   "strategies": {
@@ -110261,9 +110261,9 @@
           "status": "NA"
         },
         "execution_robustness": {
-          "basis": "",
+          "basis": "measured_detail_run",
           "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
-          "status": "PENDING"
+          "status": "PASS"
         },
         "full_backtest": {
           "identity_current_complete": true,
@@ -110295,7 +110295,7 @@
         },
         "robustness_qualification": {
           "note": "at the strategy level: PASS in at least one state",
-          "qualified": false,
+          "qualified": true,
           "requires": [
             "execution_robustness:PASS",
             "cost_screen:PASS in the claimed ADX regime state"
@@ -110303,8 +110303,8 @@
         }
       },
       "exclusion_basis": "",
-      "execution_robustness_basis": "",
-      "execution_robustness_status": "PENDING",
+      "execution_robustness_basis": "measured_detail_run",
+      "execution_robustness_status": "PASS",
       "expansion_wave": "",
       "full_backtest_status": "measured",
       "gate_notes": "",
@@ -110325,7 +110325,7 @@
       "repo": "PeetCrypto/freqtrade-stuff",
       "required_image": "strategy-audit-runtime:2026.7",
       "result_archive": "user_data/profile_smoke/Schism2_BTC-2a7bcf41-smoke_20200301_20200401-b4807b77-2026-09-16_16-13-25.zip",
-      "robustness_qualified": "false",
+      "robustness_qualified": "true",
       "run_profile": "spot_long",
       "runtime_failure": "",
       "settled_days": 1,
@@ -127211,9 +127211,9 @@
           "status": "NA"
         },
         "execution_robustness": {
-          "basis": "",
+          "basis": "measured_detail_run",
           "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
-          "status": "PENDING"
+          "status": "PASS"
         },
         "full_backtest": {
           "identity_current_complete": true,
@@ -127245,7 +127245,7 @@
         },
         "robustness_qualification": {
           "note": "at the strategy level: PASS in at least one state",
-          "qualified": false,
+          "qualified": true,
           "requires": [
             "execution_robustness:PASS",
             "cost_screen:PASS in the claimed ADX regime state"
@@ -127253,8 +127253,8 @@
         }
       },
       "exclusion_basis": "",
-      "execution_robustness_basis": "",
-      "execution_robustness_status": "PENDING",
+      "execution_robustness_basis": "measured_detail_run",
+      "execution_robustness_status": "PASS",
       "expansion_wave": "",
       "full_backtest_status": "measured",
       "gate_notes": "",
@@ -127275,7 +127275,7 @@
       "repo": "vaskosmihaylov/nfi-custom-strategies",
       "required_image": "strategy-audit-runtime:2026.7",
       "result_archive": "user_data/profile_smoke/TripleSuperTrendADXRSI-6eecbc1c-smoke_20200301_20200401-b4807b77-2026-09-14_19-45-29.zip",
-      "robustness_qualified": "false",
+      "robustness_qualified": "true",
       "run_profile": "futures_long_short",
       "runtime_failure": "",
       "settled_days": 14,
@@ -128174,9 +128174,9 @@
           "status": "NA"
         },
         "execution_robustness": {
-          "basis": "",
+          "basis": "measured_detail_run",
           "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
-          "status": "PENDING"
+          "status": "PASS"
         },
         "full_backtest": {
           "identity_current_complete": true,
@@ -128216,8 +128216,8 @@
         }
       },
       "exclusion_basis": "",
-      "execution_robustness_basis": "",
-      "execution_robustness_status": "PENDING",
+      "execution_robustness_basis": "measured_detail_run",
+      "execution_robustness_status": "PASS",
       "expansion_wave": "B_warmup_refusal",
       "full_backtest_status": "measured",
       "gate_notes": "",
@@ -132888,9 +132888,9 @@
           "status": "NA"
         },
         "execution_robustness": {
-          "basis": "",
+          "basis": "measured_detail_run",
           "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
-          "status": "PENDING"
+          "status": "PASS"
         },
         "full_backtest": {
           "identity_current_complete": true,
@@ -132930,8 +132930,8 @@
         }
       },
       "exclusion_basis": "",
-      "execution_robustness_basis": "",
-      "execution_robustness_status": "PENDING",
+      "execution_robustness_basis": "measured_detail_run",
+      "execution_robustness_status": "PASS",
       "expansion_wave": "",
       "full_backtest_status": "measured",
       "gate_notes": "",
@@ -133531,9 +133531,9 @@
           "status": "PASS"
         },
         "execution_robustness": {
-          "basis": "",
+          "basis": "measured_detail_run",
           "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
-          "status": "PENDING"
+          "status": "PASS"
         },
         "full_backtest": {
           "identity_current_complete": true,
@@ -133565,7 +133565,7 @@
         },
         "robustness_qualification": {
           "note": "at the strategy level: PASS in at least one state",
-          "qualified": false,
+          "qualified": true,
           "requires": [
             "execution_robustness:PASS",
             "cost_screen:PASS in the claimed ADX regime state"
@@ -133573,8 +133573,8 @@
         }
       },
       "exclusion_basis": "",
-      "execution_robustness_basis": "",
-      "execution_robustness_status": "PENDING",
+      "execution_robustness_basis": "measured_detail_run",
+      "execution_robustness_status": "PASS",
       "expansion_wave": "E0_strict67",
       "full_backtest_status": "measured",
       "gate_notes": "",
@@ -133595,7 +133595,7 @@
       "repo": "mlsys-io/PortfolioBench",
       "required_image": "strategy-audit-runtime:2026.7",
       "result_archive": "user_data/profile_smoke/adaptive_trend-4c45a656-2026-09-09_22-22-58.zip",
-      "robustness_qualified": "false",
+      "robustness_qualified": "true",
       "run_profile": "spot_long",
       "runtime_failure": "",
       "settled_days": 30,
@@ -134068,9 +134068,9 @@
           "status": "NA"
         },
         "execution_robustness": {
-          "basis": "",
+          "basis": "measured_detail_run",
           "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
-          "status": "PENDING"
+          "status": "PASS"
         },
         "full_backtest": {
           "identity_current_complete": true,
@@ -134110,8 +134110,8 @@
         }
       },
       "exclusion_basis": "",
-      "execution_robustness_basis": "",
-      "execution_robustness_status": "PENDING",
+      "execution_robustness_basis": "measured_detail_run",
+      "execution_robustness_status": "PASS",
       "expansion_wave": "B_warmup_refusal",
       "full_backtest_status": "measured",
       "gate_notes": "",
@@ -136646,9 +136646,9 @@
           "status": "NA"
         },
         "execution_robustness": {
-          "basis": "",
+          "basis": "measured_detail_run",
           "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
-          "status": "PENDING"
+          "status": "PASS"
         },
         "full_backtest": {
           "identity_current_complete": true,
@@ -136680,7 +136680,7 @@
         },
         "robustness_qualification": {
           "note": "at the strategy level: PASS in at least one state",
-          "qualified": false,
+          "qualified": true,
           "requires": [
             "execution_robustness:PASS",
             "cost_screen:PASS in the claimed ADX regime state"
@@ -136688,8 +136688,8 @@
         }
       },
       "exclusion_basis": "",
-      "execution_robustness_basis": "",
-      "execution_robustness_status": "PENDING",
+      "execution_robustness_basis": "measured_detail_run",
+      "execution_robustness_status": "PASS",
       "expansion_wave": "D_recursive_drift",
       "full_backtest_status": "measured",
       "gate_notes": "",
@@ -136710,7 +136710,7 @@
       "repo": "jaredrsommer/freqtradestrategies",
       "required_image": "strategy-audit-runtime:2026.7",
       "result_archive": "user_data/profile_smoke/eltoro-4b7ac68a-2026-09-07_16-37-48.zip",
-      "robustness_qualified": "false",
+      "robustness_qualified": "true",
       "run_profile": "spot_long",
       "runtime_failure": "",
       "settled_days": 14,
@@ -136758,9 +136758,9 @@
           "status": "NA"
         },
         "execution_robustness": {
-          "basis": "",
+          "basis": "measured_detail_run",
           "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
-          "status": "PENDING"
+          "status": "SENSITIVE"
         },
         "full_backtest": {
           "identity_current_complete": true,
@@ -136800,8 +136800,8 @@
         }
       },
       "exclusion_basis": "",
-      "execution_robustness_basis": "",
-      "execution_robustness_status": "PENDING",
+      "execution_robustness_basis": "measured_detail_run",
+      "execution_robustness_status": "SENSITIVE",
       "expansion_wave": "D_recursive_drift",
       "full_backtest_status": "measured",
       "gate_notes": "",
@@ -136869,9 +136869,9 @@
           "status": "NA"
         },
         "execution_robustness": {
-          "basis": "",
+          "basis": "measured_detail_run",
           "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
-          "status": "PENDING"
+          "status": "ERROR"
         },
         "full_backtest": {
           "identity_current_complete": true,
@@ -136911,8 +136911,8 @@
         }
       },
       "exclusion_basis": "",
-      "execution_robustness_basis": "",
-      "execution_robustness_status": "PENDING",
+      "execution_robustness_basis": "measured_detail_run",
+      "execution_robustness_status": "ERROR",
       "expansion_wave": "D_recursive_drift",
       "full_backtest_status": "measured",
       "gate_notes": "",
@@ -138888,9 +138888,9 @@
           "status": "NA"
         },
         "execution_robustness": {
-          "basis": "",
+          "basis": "measured_detail_run",
           "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
-          "status": "PENDING"
+          "status": "PASS"
         },
         "full_backtest": {
           "identity_current_complete": true,
@@ -138930,8 +138930,8 @@
         }
       },
       "exclusion_basis": "",
-      "execution_robustness_basis": "",
-      "execution_robustness_status": "PENDING",
+      "execution_robustness_basis": "measured_detail_run",
+      "execution_robustness_status": "PASS",
       "expansion_wave": "not_scheduled",
       "full_backtest_status": "measured",
       "gate_notes": "",
@@ -141019,9 +141019,9 @@
           "status": "NA"
         },
         "execution_robustness": {
-          "basis": "",
+          "basis": "measured_detail_run",
           "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
-          "status": "PENDING"
+          "status": "PASS"
         },
         "full_backtest": {
           "identity_current_complete": true,
@@ -141061,8 +141061,8 @@
         }
       },
       "exclusion_basis": "",
-      "execution_robustness_basis": "",
-      "execution_robustness_status": "PENDING",
+      "execution_robustness_basis": "measured_detail_run",
+      "execution_robustness_status": "PASS",
       "expansion_wave": "not_scheduled",
       "full_backtest_status": "measured",
       "gate_notes": "",
@@ -142408,9 +142408,9 @@
           "status": "PASS"
         },
         "execution_robustness": {
-          "basis": "",
+          "basis": "measured_detail_run",
           "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
-          "status": "PENDING"
+          "status": "PASS"
         },
         "full_backtest": {
           "identity_current_complete": true,
@@ -142442,7 +142442,7 @@
         },
         "robustness_qualification": {
           "note": "at the strategy level: PASS in at least one state",
-          "qualified": false,
+          "qualified": true,
           "requires": [
             "execution_robustness:PASS",
             "cost_screen:PASS in the claimed ADX regime state"
@@ -142450,8 +142450,8 @@
         }
       },
       "exclusion_basis": "",
-      "execution_robustness_basis": "",
-      "execution_robustness_status": "PENDING",
+      "execution_robustness_basis": "measured_detail_run",
+      "execution_robustness_status": "PASS",
       "expansion_wave": "",
       "full_backtest_status": "measured",
       "gate_notes": "",
@@ -142472,7 +142472,7 @@
       "repo": "titouannwtt/freqtrade-france-strategies_simple_vwap",
       "required_image": "strategy-audit-runtime:2026.7",
       "result_archive": "user_data/profile_smoke/simple_vwap_v1-28330b62-2026-09-05_15-12-31.zip",
-      "robustness_qualified": "false",
+      "robustness_qualified": "true",
       "run_profile": "spot_long",
       "runtime_failure": "",
       "settled_days": 365,

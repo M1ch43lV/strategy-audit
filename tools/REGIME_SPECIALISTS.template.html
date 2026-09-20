@@ -226,6 +226,14 @@ th.sortable.active .arrow{opacity:1;color:var(--accent-text);}
 .rbadge.rb-no{background:var(--surface-alt);color:var(--text-muted);border:1px solid var(--border);}
 .rbadge.rb-warn{background:var(--warn-bg);color:var(--warn-text);border:1px solid var(--warn-border);}
 .okfilter{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--text-muted);display:inline-flex;gap:6px;align-items:center;cursor:pointer;user-select:none;}
+.rtabs{display:flex;gap:4px;margin:10px 0 0;}
+.rtab{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:5px 5px 0 0;cursor:pointer;border:1px solid var(--border);border-bottom:none;background:var(--surface-alt);color:var(--text-muted);user-select:none;}
+.rtab.active{background:var(--surface);color:var(--accent-text);border-color:var(--accent);}
+.rtabpanel{border:1px solid var(--border);border-radius:0 6px 6px 6px;background:var(--surface);box-shadow:var(--shadow);padding:16px;}
+.robust h3{font-size:15px;font-weight:600;margin:26px 0 8px;}
+.dropnote{padding:8px 12px;border-top:1px solid var(--border);font-size:11.5px;color:var(--text-muted);line-height:1.55;background:var(--surface-alt);}
+.dropnote b{color:var(--text);font-weight:600;}
+.moved{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--warn-text);background:var(--warn-bg);border:1px solid var(--warn-border);border-radius:4px;padding:1px 6px;margin-left:6px;white-space:nowrap;}
 footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--border);}
 footer h2{font-size:15px;margin-bottom:10px;}
 footer ul{margin:0 0 18px;padding-left:18px;font-size:13px;color:var(--text-muted);line-height:1.7;}
@@ -284,6 +292,60 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
     <div class="rule"><b>Median Excess-Return</b>Median der eigenen Excess-Return-Werte einer Strategie über die Regime-Zeilen, die sie erreicht (bis zu 4: BULL/BEAR/SIDEWAYS/TRANSITION bzw. die vier ADX-Zustände) &mdash; eine Ebene über Excess-Return selbst, nicht über Trades oder Episoden. Ein Median über nur 2-4 Werten ist einfach der mittlere (bei 4 Werten: Durchschnitt der beiden mittleren) Regime-Wert &mdash; robuster gegen ein einzelnes Ausreißer-Regime als der Mittelwert über alle vier, aber bei so wenigen Werten kein Ersatz für eine echte Verteilung.</div>
     <div class="rule"><b>Dollar-Ansicht</b>Fixer $1000-Einsatz je Trade, keine Wiederanlage, einfache Summe &mdash; siehe Abschnitt unten für die verworfene Alternative.</div>
   </div>
+</section>
+
+<section class="robust" id="robust-section">
+  <div class="sectionhead">
+    <h2>Gewinner unter Berücksichtigung der Robustheit (Stufe 8b)</h2>
+    <span class="hint">je Marktphase und über das gesamte Validierungsfenster</span>
+  </div>
+  <p class="secintro">Ein hoher Excess-Return sagt noch nicht, dass der Gewinn die Ausführung überlebt. Stufe 8b prüft zwei Dinge, und beide müssen für dieselbe Zeile bestehen. Dieser Abschnitt zeigt dieselben Ranglisten wie unten, aber nur mit den Zeilen, die beides bestehen. Die Rangfolge ändert sich dadurch nicht: gefiltert wird nur, und der Rang in der ungefilterten Liste steht dabei.</p>
+  <div class="rules">
+    <div class="rule"><b>5m-Detaillauf</b>Derselbe Vollfenster-Backtest noch einmal, mit 5m-Kerzen für alles, was innerhalb einer Kerze passiert (Trailing-Stop, ROI, Stoploss). Ändert sich der Gewinn stark, ist die Strategie <i>sensitiv</i>. Bis 5m entfällt der Lauf; sie zählen per Entscheidung als bestanden &mdash; eine Regel, keine Messung.</div>
+    <div class="rule"><b>Kostenstress je Marktphase</b>Zusätzlich 0,1 % Slippage je Seite, gerechnet nur auf den Trades, die in dieser ADX-Phase eröffnet wurden (Validierungsfenster, mindestens 10 Trades). Ein Spezialist mit einer starken Phase wird so nicht durch seine schwachen Phasen abgewertet.</div>
+    <div class="rule"><b>Kosten im gesamten Fenster</b>Dieselbe Rechnung über alle Validierungs-Trades zusammen, für die Ansicht &bdquo;größte Dollar-Gewinner&ldquo; ohne Marktphase. Sie ist das mit den Trades gewichtete Mittel der vier BTC-Phasen.</div>
+  </div>
+
+  <h3>Was die Robustheit an jeder Marktphase ändert</h3>
+  <p class="secintro">Je Zeile eine Kombination aus Regime-Art und ADX-Phase. <b>Rang 1</b> zeigt, wer ohne Filter vorn liegt und wer mit Filter.</p>
+  <div class="tablebox">
+    <table class="plain">
+      <thead><tr><th>Regime</th><th>Phase</th><th class="num">Zeilen</th><th class="num">PASS</th><th class="num">Anteil</th><th class="num">5m sensitiv</th><th class="num">Kosten &#10007;</th><th class="num">5m offen</th><th>Rang 1 ohne Filter</th><th>Rang 1 mit PASS</th></tr></thead>
+      <tbody id="rob-matrix"></tbody>
+    </table>
+  </div>
+
+  <h3>Gewinner je Marktphase &mdash; nur Zeilen mit Robustheits-PASS</h3>
+  <p class="secintro">Die fünf besten Zeilen je Phase nach Excess-Return, gefiltert auf PASS. Unter jeder Karte steht, wer aus der ungefilterten Top&nbsp;5 herausfällt und warum.</p>
+  <div class="rtabs" id="rob-tabs">
+    <div class="rtab active" data-kind="btc">BTC-Regime</div>
+    <div class="rtab" data-kind="coin">Coin-Regime</div>
+  </div>
+  <div class="rtabpanel"><div class="regimegrid" id="rob-winners"></div></div>
+
+  <h3>Gesamtes Validierungsfenster &mdash; größte Dollar-Gewinner</h3>
+  <p class="secintro">Fester $1000-Einsatz je Trade im Validierungsfenster, alle Marktphasen zusammen (wie in &bdquo;Gesamtgewinn in Dollar&ldquo; unten). Die Spalte <i>Kosten</i> zeigt den mittleren Gewinn je Trade vor und nach 0,1&nbsp;% zusätzlichem Slippage je Seite.</p>
+  <div class="toolbar">
+    <label class="okfilter"><input type="checkbox" id="rob-total-ok" checked> nur Robustheits-PASS</label>
+    <span class="rowcount mono" id="rob-total-count"></span>
+  </div>
+  <p class="secintro" id="rob-total-drop" style="margin:0 0 10px;"></p>
+  <div class="tablebox">
+    <table class="plain">
+      <thead><tr><th class="num">Rang ohne Filter</th><th>Strategie</th><th class="num">Trades</th><th class="num">Gesamtgewinn</th><th class="num">Benchmark</th><th class="num">Excess ($)</th><th class="num">Kosten (Ø je Trade)</th><th class="num">Robustheit</th></tr></thead>
+      <tbody id="rob-total-body"></tbody>
+    </table>
+  </div>
+
+  <h3>Universal-Kandidaten mit PASS in allen vier Coin-Phasen</h3>
+  <p class="secintro">Die strengste Lesart: der Kandidat erreicht den Specialist-Floor in allen vier Coin-Phasen, besteht den 5m-Lauf und übersteht den Kostenstress in jeder der vier Phasen einzeln.</p>
+  <div class="tablebox">
+    <table class="plain">
+      <thead><tr><th>Strategie</th><th>Schwächstes Regime</th><th class="num">Excess im schwächsten</th><th class="num">Median Excess</th><th class="num">Konsistenz</th><th class="num">Trades</th><th class="num">Dollar-Gewinn</th><th class="num">Grade</th></tr></thead>
+      <tbody id="rob-universal"></tbody>
+    </table>
+  </div>
+  <div class="callout warn" style="margin-top:14px;"><span class="dot">&#9888;</span><div><b>Was der Filter nicht leistet.</b> PASS ist eine notwendige, keine hinreichende Bedingung: fast jede Strategie mit einer gewinnbringenden Phase besteht den Kostenstress in dieser Phase, der Filter trennt also vor allem über den 5m-Lauf. Bei Strategien bis 5m ist dieser Teil eine Regel und keine Messung. Wo Baseline und 5m-Lauf in verschiedenen Laufzeiten gerechnet wurden, ist ein <i>sensitiv</i> nicht sauber vom Laufzeiteffekt getrennt; ein Kontrolllauf steht aus. &bdquo;5m offen&ldquo; heißt: Timeframe über 5m, Lauf noch nicht fertig, das Ergebnis kann sich noch ändern.</div></div>
 </section>
 
 <section>
@@ -1398,6 +1460,121 @@ renderGatedModel('gm-model3-content', 'model3');
     idx = Math.min(STEPS.length - 1, idx + 1); apply();
   });
   apply();
+})();
+
+(function renderRobustSection(){
+  var STATES = ['BULL', 'BEAR', 'SIDEWAYS', 'TRANSITION'];
+  function byExcess(a, b){ return b.excess_return - a.excess_return; }
+  function why(r){
+    if (r.ok) return 'PASS';
+    if (r.xs === 'SENSITIVE') return '5m sensitiv';
+    if (r.xs === 'PENDING') return '5m offen';
+    if (r.xs === 'ERROR') return '5m Fehler';
+    if (r.xs === 'PASS') return 'Kosten ✗';
+    return '–';
+  }
+  function badge(r){
+    var cls = r.ok ? 'rb-ok' : ((r.xs === 'PASS' || r.xs === 'SENSITIVE') ? 'rb-warn' : 'rb-no');
+    return '<span class="rbadge ' + cls + '">' + why(r) + '</span>';
+  }
+  function pct2(v){
+    if (v === null || v === undefined) return '–';
+    return (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(2).replace('.', ',') + ' %';
+  }
+  function sorted(rows, state){ return rows.filter(function(r){ return r.regime === state; }).sort(byExcess); }
+
+  // --- matrix: what the filter changes in each market phase
+  var kinds = [['btc', 'BTC', REGIMEFULL.btc], ['coin', 'Coin', REGIMEFULL.coin]];
+  var html = '';
+  kinds.forEach(function(k){
+    STATES.forEach(function(s){
+      var rows = sorted(k[2], s), ok = rows.filter(function(r){ return r.ok; });
+      var sens = rows.filter(function(r){ return r.xs === 'SENSITIVE'; }).length;
+      var cost = rows.filter(function(r){ return r.xs === 'PASS' && !r.ok; }).length;
+      var open = rows.filter(function(r){ return r.xs === 'PENDING' || r.xs === 'ERROR'; }).length;
+      var top = rows[0], topOk = ok[0];
+      var same = top && topOk && top.strategy_id === topOk.strategy_id;
+      var rank = topOk ? rows.indexOf(topOk) + 1 : 0;
+      html += '<tr><td>' + k[1] + '</td><td><span class="regimebadge rb-' + s + '">' + stateLabel(s) + '</span></td>' +
+        '<td class="num mono">' + rows.length + '</td><td class="num mono">' + ok.length + '</td>' +
+        '<td class="num mono">' + (rows.length ? Math.round(100 * ok.length / rows.length) : 0) + ' %</td>' +
+        '<td class="num mono">' + sens + '</td><td class="num mono">' + cost + '</td><td class="num mono">' + open + '</td>' +
+        '<td>' + (top ? futuresLabel(top.strategy_id) + ' <span class="mono" style="color:var(--text-muted)">' + fmtPct(top.excess_return) + '</span>' : '–') + '</td>' +
+        '<td>' + (topOk ? futuresLabel(topOk.strategy_id) + ' <span class="mono" style="color:var(--text-muted)">' + fmtPct(topOk.excess_return) + '</span>' +
+          (same ? '' : '<span class="moved">Rang ' + rank + ' ohne Filter</span>') : '–') + '</td></tr>';
+    });
+  });
+  document.getElementById('rob-matrix').innerHTML = html;
+
+  // --- winners per market phase, PASS only
+  function renderWinners(kind){
+    var source = kind === 'btc' ? REGIMEFULL.btc : REGIMEFULL.coin;
+    var out = '';
+    STATES.forEach(function(s){
+      var rows = sorted(source, s);
+      var winners = rows.filter(function(r){ return r.ok; }).slice(0, 5);
+      var dropped = rows.slice(0, 5).filter(function(r){ return !r.ok; });
+      var okCount = rows.filter(function(r){ return r.ok; }).length;
+      out += '<div class="regimecard"><div class="rhead ' + s + '"><span>' + stateLabel(s) + '</span><span class="of">' + okCount + ' von ' + rows.length + ' mit PASS</span></div><ol>';
+      if (!winners.length) out += '<li><div class="li-top"><span class="nm" style="color:var(--text-muted);font-weight:500">Keine Zeile mit PASS.</span></div></li>';
+      winners.forEach(function(r, i){
+        out += '<li><div class="li-top"><span class="rk">' + (i + 1) + '</span><span class="nm" title="' + r.strategy_id + '">' + futuresLabel(r.strategy_id) + '</span>' +
+          '<span class="vv val ' + valClass(r.excess_return) + '">' + fmtPct(r.excess_return) + '</span></div>' +
+          '<div class="li-bottom"><span class="mt" style="white-space:normal">Rang ' + (rows.indexOf(r) + 1) + ' ohne Filter · ' + r.trades + ' Trades · ' + r.episodes + ' Ep.</span>' +
+          '<span class="dd val ' + gradeClass(r.lcb_grade) + '">Grade ' + (r.lcb_grade || '–') + '</span></div></li>';
+      });
+      out += '</ol><div class="dropnote">' + (dropped.length ?
+        '<b>Aus der ungefilterten Top&nbsp;5 fallen heraus:</b> ' + dropped.map(function(r){
+          return futuresLabel(r.strategy_id) + ' (Rang ' + (rows.indexOf(r) + 1) + ', ' + why(r) + ')';
+        }).join(', ') : '<b>Die ungefilterte Top&nbsp;5 besteht die Robustheit vollständig.</b>') + '</div></div>';
+    });
+    document.getElementById('rob-winners').innerHTML = out;
+  }
+  renderWinners('btc');
+  document.getElementById('rob-tabs').addEventListener('click', function(ev){
+    var tab = ev.target.closest('.rtab'); if (!tab) return;
+    Array.prototype.forEach.call(document.querySelectorAll('#rob-tabs .rtab'), function(el){ el.classList.toggle('active', el === tab); });
+    renderWinners(tab.getAttribute('data-kind'));
+  });
+
+  // --- whole validation window: biggest dollar winners
+  var all = TOTALGAIN.slice().sort(function(a, b){ return b.dollar_gain_usd - a.dollar_gain_usd; });
+  var rankOf = {}; all.forEach(function(r, i){ rankOf[r.strategy_id] = i + 1; });
+  function renderTotal(){
+    var only = document.getElementById('rob-total-ok').checked;
+    var rows = all.filter(function(r){ return !only || r.ok; });
+    var shown = rows.slice(0, 15);
+    var lost = all.slice(0, 10).filter(function(r){ return !r.ok; });
+    document.getElementById('rob-total-drop').innerHTML = lost.length ?
+      '<b>Aus den zehn größten Dollar-Gewinnern fallen ' + lost.length + ' heraus:</b> ' + lost.map(function(r){
+        return futuresLabel(r.strategy_id) + ' (' + fmtUsd(r.dollar_gain_usd) + ', ' + why(r) + (r.xs === 'PASS' && r.cv !== 'PASS' ? ', Kosten gesamt ' + (r.cv === 'NA' ? 'nicht profitabel' : 'nicht bestanden') : '') + ')';
+      }).join(', ') + '.' : 'Alle zehn größten Dollar-Gewinner bestehen die Robustheit.';
+    document.getElementById('rob-total-count').textContent = 'Top ' + shown.length + ' von ' + rows.length + (only ? ' mit PASS' : '') + ' (' + all.length + ' Strategien mit Dollar-Zeile)';
+    document.getElementById('rob-total-body').innerHTML = shown.map(function(r){
+      var cost = r.cm === null || r.cm === undefined ? '–' : pct2(r.cm) + ' → ' + pct2(r.c10);
+      return '<tr><td class="num mono">' + rankOf[r.strategy_id] + '</td><td><b>' + futuresLabel(r.strategy_id) + '</b></td>' +
+        '<td class="num mono">' + r.trades + '</td>' +
+        '<td class="num val ' + dollarClass(r.dollar_gain_usd) + '">' + fmtUsd(r.dollar_gain_usd) + '</td>' +
+        '<td class="num val ' + dollarClass(r.benchmark_dollar_gain_usd) + '">' + fmtUsd(r.benchmark_dollar_gain_usd) + '</td>' +
+        '<td class="num val ' + dollarClass(r.excess_dollar_gain_usd) + '">' + fmtUsd(r.excess_dollar_gain_usd) + '</td>' +
+        '<td class="num mono">' + cost + '</td><td class="num">' + badge(r) + '</td></tr>';
+    }).join('');
+  }
+  document.getElementById('rob-total-ok').addEventListener('change', renderTotal);
+  renderTotal();
+
+  // --- universal candidates that pass in all four coin phases
+  var uni = UNIVERSAL.filter(function(r){ return r.ok; }).sort(function(a, b){ return b.median_regime_excess_return - a.median_regime_excess_return; });
+  document.getElementById('rob-universal').innerHTML = uni.length ? uni.map(function(r){
+    return '<tr><td><b>' + futuresLabel(r.strategy_id) + '</b></td>' +
+      '<td><span class="regimebadge rb-' + r.worst_regime + '">' + stateLabel(r.worst_regime) + '</span></td>' +
+      '<td class="num val ' + valClass(r.worst_regime_return) + '">' + fmtPct(r.worst_regime_return) + '</td>' +
+      '<td class="num val ' + valClass(r.median_regime_excess_return) + '">' + fmtPct(r.median_regime_excess_return) + '</td>' +
+      '<td class="num mono">' + Math.round(r.regime_consistency * 100) + '%</td>' +
+      '<td class="num mono">' + r.trades + '</td>' +
+      '<td class="num val ' + dollarClass(r.dollar_gain_usd) + '">' + fmtUsd(r.dollar_gain_usd) + '</td>' +
+      '<td class="num val ' + gradeClass(r.lcb_grade) + '">' + (r.lcb_grade || '–') + '</td></tr>';
+  }).join('') : '<tr><td colspan="8" style="color:var(--text-muted);font-style:italic;">Kein Universal-Kandidat besteht in allen vier Coin-Phasen.</td></tr>';
 })();
 </script>
 

@@ -97,6 +97,14 @@ class Robustness(object):
         ok = xs == "PASS" and er.qualifies_in(self.cost.get(strategy), kind, state)
         return {"xs": xs, "ok": 1 if ok else 0}
 
+    def total(self, strategy):
+        """The whole validation window, all states together."""
+        xs = self.status(strategy)
+        cost = er.validation_total(self.cost.get(strategy), "btc")
+        ok = xs == "PASS" and cost["status"] == "PASS"
+        return {"xs": xs, "ok": 1 if ok else 0, "cv": cost["status"],
+                "cm": cost["mean_profit_pct"], "c10": cost["stressed_pct"]}
+
     def universal(self, strategy):
         xs = self.status(strategy)
         ok = xs == "PASS" and er.qualifies_universal(self.cost.get(strategy), "coin")
@@ -367,7 +375,11 @@ def build(destination, skip_native=False):
     rows = {"btc": regime_rows(btc, "btc_regime", "btc", robustness),
             "coin": regime_rows(coin, "coin_regime", "coin", robustness),
             "universal": universal_rows(universal, coin, robustness)}
-    gain_rows = [{k: clean(v) for k, v in row.items()} for row in gain.to_dict(orient="records")]
+    gain_rows = []
+    for row in gain.to_dict(orient="records"):
+        record = {k: clean(v) for k, v in row.items()}
+        record.update(robustness.total(row["strategy_id"]))
+        gain_rows.append(record)
     if skip_native:
         native, rejected = [], 0
     else:
@@ -395,7 +407,7 @@ def build(destination, skip_native=False):
         token = "__%s_JSON__" % name
         assert template.count(token) == 1, token
         template = template.replace(token, payload)
-    assert template.count("<section>") == template.count("</section>")
+    assert len(re.findall(r"<section[ >]", template)) == template.count("</section>")
     with io.open(destination, "w", encoding="utf-8", newline="\n") as handle:
         handle.write(template)
     return facts
