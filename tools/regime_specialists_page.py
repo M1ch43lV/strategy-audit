@@ -327,6 +327,7 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
         "n_measured_baselines": measured,
         "n_verified_rows_btc": verified_btc, "n_verified_rows_coin": verified_coin,
         "n_verified_universal": verified_universal,
+        "n_consistent_word": COUNT_WORDS.get(n_cons, str(n_cons)),
         "tbl_btc": de_int(len(btc)), "tbl_coin": de_int(len(coin)),
         # Stamped at generation, always: a page that carries an old date reads as current.
         "generated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
@@ -375,7 +376,7 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
     else:
         ft_tail = ("Alle %d lassen sich zuordnen (identitätsgeprüfter nativer Archiv-Treffer, dieselbe Prüfung "
                    "wie beim Modell-0/1/2/3-Vergleich &mdash; passendes Profil, Archiv-Hash, Zeitraum)." % n_universal)
-    ft_tail += (" Stand der Neuberechnung 2026-09-20: %s/%s VALIDATION-Zeilen, %d Universal-Kandidaten."
+    ft_tail += (" Stand der Neuberechnung 2026-09-20: %s/%s Strategien im VALIDATION-Tier (je Phase gezählt), %d Universal-Kandidaten."
                 % (de_int(len(val_btc)), de_int(len(val_coin)), n_universal))
     text["ft_intro_tail"] = ft_tail
 
@@ -391,19 +392,19 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
         '<div class="callout warn"><span class="dot">&#9888;</span><div><b>Neu berechnet am 2026-09-20.</b> '
         'Vier beim Intake gelöschte Duplikate (<code class="mono">chispei</code>, <code class="mono">MyStratV1</code>, '
         '<code class="mono">Combined_NFIv7_SMA_bAdBoY_20211204</code>, <code class="mono">Combined_NFIv7_SMA_Rallipanos_20210707</code>) '
-        'sind aus allen Ergebnisspeichern entfernt; <code class="mono">MyStratV1</code> stand bis dahin mit je vier Zeilen '
+        'sind aus allen Ergebnisspeichern entfernt; <code class="mono">MyStratV1</code> stand bis dahin mit je vier Phasen-Einträgen '
         'in beiden Ranglisten neben seinem Vertreter. Zugleich bezieht die Auswertung jetzt alle seit dem 15.09. gemessenen '
         'Vollfenster-Läufe ein (%d statt 584 Strategien). Die Zahlen weichen deshalb von der Fassung vom 15.09. ab, und die '
         'Abweichung stammt überwiegend aus den neu gemessenen Strategien, nicht aus dem Entfernen der Duplikate. '
         'Der Abschnitt zu Modell 1-3 und die Top-10-Auswahl darunter sind Momentaufnahmen der gegateten Läufe und wurden nicht '
         'neu gerechnet.</div></div>\n'
-        '<div class="callout info"><span class="dot">&#8505;</span><div><b>Robustheit (Stufe 8b), in jeder Tabelle mit Regime-Zeilen.</b> '
+        '<div class="callout info"><span class="dot">&#8505;</span><div><b>Robustheit (Stufe 8b), in jeder Tabelle mit Marktphasen-Ergebnissen.</b> '
         'Ein Spezialist gilt erst als <i>verified</i>, wenn die Strategie den 5m-Detaillauf besteht und der Gewinn im '
         '<i>behaupteten</i> ADX-Zustand einen zusätzlichen Slippage von 0,1 %% je Seite übersteht (Validierungsfenster, '
         'mindestens 10 Trades in diesem Zustand). Bei Strategien bis 5m entfällt der Lauf, sie zählen per Entscheidung des '
         'Eigentümers als bestanden; das ist eine Regel und keine Messung. Die Spalte ändert kein Ranking. '
         'Stand: %d der %d Strategien sind im 5m-Lauf <code class="mono">sensitiv</code>, %s. <b>Rangfolge und Robustheit sind getrennte Aussagen:</b> Ein Rang 1 ohne PASS ist nur der beste '
-        'Wert einer Zeile, kein verifizierter Spezialist.</div></div>'
+        'Wert einer Strategie in dieser Phase, kein verifizierter Spezialist.</div></div>'
         % (n_eval, sensitive, n_eval, run_state))
     return facts, text, manifest
 
