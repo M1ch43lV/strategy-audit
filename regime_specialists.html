@@ -251,7 +251,7 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
 </div>
 
 <header>
-  <div class="eyebrow">Specialist-/Universal-Auswertung · Voller Modell-0-Bestand · Stand 2026-09-20 12:50</div>
+  <div class="eyebrow">Specialist-/Universal-Auswertung · Voller Modell-0-Bestand · Stand 2026-09-20 13:26</div>
   <h1>Regime-Spezialisten</h1>
   <p class="subtitle">Welche von 629 erfolgreich attribuierten Strategien schlägt in welcher Marktlage ihren eigenen Exposure-matched Benchmark — und welche halten sich über alle vier Regime hinweg. Gerankt wird ausschließlich nach der präregistrierten Regel, nie nach roher Rendite.</p>
   <div class="metabar">
@@ -293,6 +293,14 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
     <div class="rule"><b>Median Excess-Return</b>Median der eigenen Excess-Return-Werte einer Strategie über die Regime-Zeilen, die sie erreicht (bis zu 4: BULL/BEAR/SIDEWAYS/TRANSITION bzw. die vier ADX-Zustände) &mdash; eine Ebene über Excess-Return selbst, nicht über Trades oder Episoden. Ein Median über nur 2-4 Werten ist einfach der mittlere (bei 4 Werten: Durchschnitt der beiden mittleren) Regime-Wert &mdash; robuster gegen ein einzelnes Ausreißer-Regime als der Mittelwert über alle vier, aber bei so wenigen Werten kein Ersatz für eine echte Verteilung.</div>
     <div class="rule"><b>Dollar-Ansicht</b>Fixer $1000-Einsatz je Trade, keine Wiederanlage, einfache Summe &mdash; siehe Abschnitt unten für die verworfene Alternative.</div>
   </div>
+  <div class="callout info" style="margin-top:14px;"><span class="dot">&#8505;</span><div>
+    <b>Warum es einen Split zwischen Discovery und Validation gibt.</b>
+    <p style="margin:8px 0 0;max-width:none;"><b>Das Problem.</b> Hier werden hunderte Strategien in vier Marktphasen und zwei Regime-Arten (BTC und Coin) verglichen, also tausende Kombinationen. Bei so vielen Vergleichen glänzt immer einige zufällig. Wer eine Zeile auf denselben Daten findet, auf denen er sie bewertet, überschätzt sie fast zwangsläufig (Data-Snooping, mehrfaches Testen).</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Die Lösung.</b> Die Daten werden zeitlich geteilt. In der <i>Discovery</i> (2020-03 bis 2023-12) darf gesucht werden: Hypothesen bilden, Kandidaten auswählen. Die <i>Validation</i> (2024-01 bis 2026-08) dient nur zum Bewerten: Was dort gerankt wird, wurde nicht auf diesen Daten gesucht. Die Grenze ist ein Kalenderdatum, das am 2026-09-11 eingefroren wurde. Sie wurde nur gegen Episodenzahlen geprüft, nie gegen Strategieergebnisse, damit sie sich nicht auf ein gewünschtes Ergebnis hin verschieben lässt.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Was daraus folgt.</b> Rang, Tier und Specialist-Floor gelten nur im Validation-Fenster; auch die Episoden für den Floor werden nur dort gezählt (Korrektur vom 2026-09-14). Der Kostenstress der Stufe 8b nutzt dasselbe Fenster. Die Schwellen von 5 Episoden und 10 Trades wurden gegen die Episodenzahlen dieses Fensters festgelegt (BTC: 15 bis 36 Episoden je Phase).</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Warum nach Kalender und nicht zufällig.</b> Eine Marktphase ist eine zusammenhängende Episode über Tage bis Monate. Würde man Trades zufällig auf beide Hälften verteilen, läge dieselbe Episode in beiden, und die Validation wäre keine unabhängige Prüfung mehr.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Grenzen.</b> (1) Es gibt eine Grenze und ein Validierungsfenster von rund 2,7 Jahren; die zweite Hälfte ist zudem eine andere Marktlage als die erste, ein Befund, der dort nicht hält, kann an der Strategie oder an der Marktlage liegen. (2) Diese Seite zeigt keine Rangliste für die Discovery. (3) Die Validation ist kein vollständig gesperrtes Hold-out: Die Kandidaten für Modell 1 bis 3 wurden aus den Validation-Zeilen von Modell 0 gewählt (siehe Abschnitt weiter unten), ihre gegateten Ergebnisse im selben Fenster sind deshalb kein unabhängiger Test.</p>
+  </div></div>
 </section>
 
 <section class="robust" id="robust-section">
