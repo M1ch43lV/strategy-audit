@@ -87,10 +87,6 @@
       "verdict": "oom_confirmed",
       "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
     },
-    "Combined_NFIv7_SMA_Rallipanos_20210707": {
-      "verdict": "oom_confirmed",
-      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
-    },
     "EasyInEasyOut": {
       "verdict": "oom_confirmed",
       "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."

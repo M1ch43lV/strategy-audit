@@ -4983,53 +4983,6 @@
       "trades": 722,
       "trades_sha256": "sha256_85dce6cada742b6e1768f59e0daf70df041423f4e4a3f2cd9a21a3a4a5ae5145"
     },
-    "Combined_NFIv7_SMA_Rallipanos_20210707": {
-      "attempted_at": "2026-09-08T05:33:33+00:00",
-      "attempts": [
-        {
-          "attempted_at": null,
-          "elapsed_s": 167.7,
-          "status": "resource_inconclusive",
-          "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
-        }
-      ],
-      "canonical_sha256": "sha256_7c418bfb65492eae17271e1e3bf09ce80e42e986b26b4651b2c723d8514730fe",
-      "measurement_scope": "canonical_pooled_native_pair_universe",
-      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "status": "oom_confirmed",
-      "why": "resource_inconclusive under the original 13-14GB / --workers 2 setup, and still resource_inconclusive after the 2026-09-07 change to a 16GB VM with --workers 1 (one process, the full memory budget to itself, no concurrent worker to compete with) - 1 confirmed attempt(s) recorded in results/regime/full_backtest_manifest.json since attempt history tracking began, on top of the pre-tracking failures under the old settings that motivated the memory increase. Ruling out concurrency leaves the strategy's own memory footprint over 8 pairs and 6.5 years as the remaining explanation, not resource contention."
-    },
-    "Combined_NFIv7_SMA_bAdBoY_20211204": {
-      "archive": "user_data/profile_smoke/Combined_NFIv7_SMA_bAdBoY_20211204-553271e2-2026-09-07_13-52-29.zip",
-      "archive_sha256": "sha256_bb717483507ed8eeead97690f9f8e5e4df1369b879b21d16aaa8e271e4851dbb",
-      "artifact_key": "",
-      "canonical_sha256": "sha256_c74c33844b8c29f13e96b6b192fbefd4d9b820beff6be4d1e066fb8ee3a402a7",
-      "class1_rules": [],
-      "config_overrides": {},
-      "elapsed_s": 204.5,
-      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy Combined_NFIv7_SMA_bAdBoY_20211204 --strategy-path repos/davidzr_freqtrade-strategies/strategies/Combined_NFIv7_SMA_bAdBoY_20211204 --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Combined_NFIv7_SMA_bAdBoY_20211204-553271e2 --cache none",
-      "long_trades": 722,
-      "measurement_scope": "canonical_pooled_native_pair_universe",
-      "mode": "spot",
-      "pairs": [
-        "BTC/USDT",
-        "ETH/USDT",
-        "LTC/USDT",
-        "XRP/USDT",
-        "ADA/USDT",
-        "XLM/USDT",
-        "XMR/USDT",
-        "DASH/USDT"
-      ],
-      "run_profile": "spot_long",
-      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "native_unversioned",
-      "short_trades": 0,
-      "status": "measured",
-      "timerange": "20200401-20260821",
-      "trades": 722,
-      "trades_sha256": "sha256_85dce6cada742b6e1768f59e0daf70df041423f4e4a3f2cd9a21a3a4a5ae5145"
-    },
     "ComboHold": {
       "attempted_at": "2026-09-09T22:26:36+00:00",
       "canonical_sha256": "sha256_a0477076b3876975fffea2b696c0021afa4699a77d6dee88649eb6b14418aa23",
@@ -12977,36 +12930,6 @@
       "status": "failed",
       "timerange": "20200401-20260821",
       "why": "NDFrame.fillna() got an unexpected keyword argument 'method'"
-    },
-    "MyStratV1": {
-      "archive": "user_data/profile_smoke/MyStratV1-acbbbcd0-2026-09-05_12-42-27.zip",
-      "archive_sha256": "sha256_4d6fde8153c3f9cf32c93e38813b81beb773766932d071d4f429797aeff4dc90",
-      "canonical_sha256": "sha256_5f95a1cf1609c3d03ea87fa4e4b454a18115d9aff3355cbdc1f8e7a425d1c6e9",
-      "class1_rules": [],
-      "config_overrides": {},
-      "elapsed_s": 367.2,
-      "invocation": "freqtrade backtesting --config profile_spot_config.json --strategy MyStratV1 --strategy-path repos/Foxel05_freqtrade-stuff/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/MyStratV1-acbbbcd0 --cache none",
-      "long_trades": 542,
-      "measurement_scope": "canonical_pooled_native_pair_universe",
-      "mode": "spot",
-      "pairs": [
-        "BTC/USDT",
-        "ETH/USDT",
-        "LTC/USDT",
-        "XRP/USDT",
-        "ADA/USDT",
-        "XLM/USDT",
-        "XMR/USDT",
-        "DASH/USDT"
-      ],
-      "run_profile": "spot_long",
-      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "native_unversioned",
-      "short_trades": 0,
-      "status": "measured",
-      "timerange": "20200401-20260821",
-      "trades": 542,
-      "trades_sha256": "sha256_3dcade4d19a21950f07bc4be313981dd6f8967b534b7e4085da2a3d4453374f9"
     },
     "NASOSRv6_private_Reinuvader_20211121": {
       "attempted_at": "2026-09-08T05:33:32+00:00",
@@ -21876,39 +21799,6 @@
       "timerange": "20200401-20260821",
       "trades": 5448,
       "trades_sha256": "sha256_f475b4e51c8a83b637d7220ba9ee5061a5093768f0e1888fe27a0fbfbde3375b"
-    },
-    "chispei": {
-      "archive": "user_data/profile_smoke/chispei-b48773fa-2026-09-07_02-48-11.zip",
-      "archive_sha256": "sha256_d9986ccf51117572b74f92fe50a56e152af7b613a8c371aaf600d8e5c85e119d",
-      "artifact_key": "",
-      "canonical_sha256": "sha256_6b4e2cdd6976de45dd49539e7888003eb66a17203f95c40aa91491673d8f9011",
-      "class1_rules": [],
-      "config_overrides": {
-        "timeframe": "4h"
-      },
-      "elapsed_s": 75.3,
-      "invocation": "freqtrade backtesting --config user_data/profile_configs/chispei-b48773fa-override-aa2053461232.json --strategy chispei --strategy-path repos/botenesp_freqtrade_strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/chispei-b48773fa --cache none",
-      "long_trades": 3733,
-      "measurement_scope": "canonical_pooled_native_pair_universe",
-      "mode": "spot",
-      "pairs": [
-        "BTC/USDT",
-        "ETH/USDT",
-        "LTC/USDT",
-        "XRP/USDT",
-        "ADA/USDT",
-        "XLM/USDT",
-        "XMR/USDT",
-        "DASH/USDT"
-      ],
-      "run_profile": "spot_long",
-      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "native_unversioned",
-      "short_trades": 0,
-      "status": "measured",
-      "timerange": "20200401-20260821",
-      "trades": 3733,
-      "trades_sha256": "sha256_7933748efd6f41e4891df8e310450b4a136cef780be49c2c57005f42117735cb"
     },
     "conny": {
       "archive": "user_data/profile_smoke/conny-82fa40ec-2026-09-06_09-05-02.zip",

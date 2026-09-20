@@ -510,6 +510,101 @@
       "status": "SENSITIVE",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "AdaptiveRegimeLong": {
+      "anomalies": [
+        "detail_run_has_1_trades_closing_before_they_opened"
+      ],
+      "baseline": {
+        "archive": "user_data/profile_smoke/AdaptiveRegimeLong-aea59d43-2026-09-18_13-38-39.zip",
+        "canonical_sha256": "sha256_6ad46911f919caa8980feea5253eec95406c6d152c5f78e85f47143e350faf0f",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_2ef4879c2e1d4f8f482b600016bed9c391bedb0f7fbda0f0b6342b1d3b9b8ace"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "range_mean_exit": 1,
+          "range_regime_flip": 8,
+          "stop_loss": 1,
+          "trailing_stop_loss": 44,
+          "trend_channel_exit": 109
+        },
+        "max_drawdown_account": 0.2034,
+        "mean_duration_min": 38535.46,
+        "mean_profit_pct": 11.3719,
+        "negative_duration_trades": 0,
+        "profit_abs": 3881.4863,
+        "profit_factor": 1.8389,
+        "profit_pct": 388.1486,
+        "same_candle_pct": 1.227,
+        "sharpe": 0.2049,
+        "starting_balance": 1000,
+        "trades": 163,
+        "trailing_exit_pct": 26.994,
+        "winrate_pct": 44.172
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 0.9985,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9985,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.029238,
+        "profit_abs": 1399.301,
+        "profit_pct_points": 139.9301,
+        "profit_relative_change": 0.3605,
+        "same_candle_pct_points": 0.039,
+        "trade_relative_change": 0.0307,
+        "trades": -5
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/AdaptiveRegimeLong-aea59d43-2026-09-20_06-54-04.zip",
+        "attempted_at": "2026-09-20T06:54:05+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w1_docker.json",
+        "trades_sha256": "sha256_739ad17e5217bc72a0c6a839a2741a89b62e8d218fd5929968a96474556aa413"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "force_exit": 1,
+          "range_mean_exit": 1,
+          "range_regime_flip": 8,
+          "trailing_stop_loss": 39,
+          "trend_channel_exit": 109
+        },
+        "max_drawdown_account": 0.1667,
+        "mean_duration_min": 39970.13,
+        "mean_profit_pct": 13.9758,
+        "negative_duration_trades": 1,
+        "profit_abs": 5280.7873,
+        "profit_factor": 2.0837,
+        "profit_pct": 528.0787,
+        "same_candle_pct": 1.266,
+        "sharpe": 0.2227,
+        "starting_balance": 1000,
+        "trades": 158,
+        "trailing_exit_pct": 24.684,
+        "winrate_pct": 44.937
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1d",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "AdxSmas": {
       "anomalies": [
         "detail_run_has_1_trades_closing_before_they_opened"
@@ -1366,6 +1461,97 @@
         "trades": 4257,
         "trailing_exit_pct": 0.0,
         "winrate_pct": 38.948
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "BB10fall": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/BB10fall-cef5331b-2026-09-07_17-49-26.zip",
+        "canonical_sha256": "sha256_2c63dda2d7402630d99ac482c823d68f5e34316c7aefae53f906a7850c1c641a",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_f19804af12c35fb49d330e6d5b11a0e58c5cb7cd109afba7a6aafc5c9605cfed"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1962,
+          "force_exit": 2,
+          "roi": 491,
+          "stop_loss": 14
+        },
+        "max_drawdown_account": 0.8362,
+        "mean_duration_min": 7833.24,
+        "mean_profit_pct": 0.1179,
+        "negative_duration_trades": 0,
+        "profit_abs": -337.0734,
+        "profit_factor": 0.9779,
+        "profit_pct": -33.7073,
+        "same_candle_pct": 0.081,
+        "sharpe": -0.1255,
+        "starting_balance": 1000,
+        "trades": 2469,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 60.672
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": -0.4025,
+        "profit_pct_points": -0.0403,
+        "profit_relative_change": 0.0012,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/BB10fall-cef5331b-2026-09-20_06-46-00.zip",
+        "attempted_at": "2026-09-20T06:46:02+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w2_docker.json",
+        "trades_sha256": "sha256_a50e1c42683c6f73675c039c4e7a7a2235aee8d82c4bf6592de0a4b14b943cdb"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1962,
+          "force_exit": 2,
+          "roi": 491,
+          "stop_loss": 14
+        },
+        "max_drawdown_account": 0.8363,
+        "mean_duration_min": 7838.81,
+        "mean_profit_pct": 0.1179,
+        "negative_duration_trades": 0,
+        "profit_abs": -337.4759,
+        "profit_factor": 0.9779,
+        "profit_pct": -33.7476,
+        "same_candle_pct": 0.081,
+        "sharpe": -0.1257,
+        "starting_balance": 1000,
+        "trades": 2469,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 60.672
       },
       "detail_timeframe": "5m",
       "main_timeframe": "1h",
@@ -3243,6 +3429,97 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "Candle2": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/Candle2-21a0249c-2026-09-06_11-07-44.zip",
+        "canonical_sha256": "sha256_34ea4c0954a2680beebb9dec767e2842d60385398b13b723e2240dffc0798341",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_94aa8f44545d9159cd95d4b9eb271cc3cb54abf503cdeaf54c0af06476d45938"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "Above Resistance 4h": 276,
+          "force_exit": 1,
+          "stop_loss": 4171,
+          "trailing_stop_loss": 1483
+        },
+        "max_drawdown_account": 0.9791,
+        "mean_duration_min": 3335.24,
+        "mean_profit_pct": -0.349,
+        "negative_duration_trades": 0,
+        "profit_abs": -961.1863,
+        "profit_factor": 0.9231,
+        "profit_pct": -96.1186,
+        "same_candle_pct": 4.114,
+        "sharpe": -1.3238,
+        "starting_balance": 1000,
+        "trades": 5931,
+        "trailing_exit_pct": 25.004,
+        "winrate_pct": 29.641
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.003995,
+        "profit_abs": 50.3232,
+        "profit_pct_points": 5.0323,
+        "profit_relative_change": 0.0524,
+        "same_candle_pct_points": 0.094,
+        "trade_relative_change": 0.0177,
+        "trades": 105
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/Candle2-21a0249c-2026-09-20_06-29-09.zip",
+        "attempted_at": "2026-09-20T06:29:11+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_47230b6df859a6eadd7e25b76b5bf8ba4900a8f9c87a242ff754d33bdd5c59e8"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "Above Resistance 4h": 305,
+          "force_exit": 1,
+          "stop_loss": 4241,
+          "trailing_stop_loss": 1489
+        },
+        "max_drawdown_account": 0.9561,
+        "mean_duration_min": 3407.96,
+        "mean_profit_pct": -0.2197,
+        "negative_duration_trades": 0,
+        "profit_abs": -910.8631,
+        "profit_factor": 0.9448,
+        "profit_pct": -91.0863,
+        "same_candle_pct": 4.208,
+        "sharpe": -1.025,
+        "starting_balance": 1000,
+        "trades": 6036,
+        "trailing_exit_pct": 24.669,
+        "winrate_pct": 29.689
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "CciMeanReversionStrategy": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -3813,14 +4090,95 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
-    "Combined_NFIv7_SMA_bAdBoY_20211204": {
-      "basis": "owner_rule_at_or_below_5m",
-      "detail_timeframe": null,
-      "main_timeframe": "5m",
+    "CompleteIndicatorStrategy2": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/CompleteIndicatorStrategy2-cc7c80ef-2026-09-17_19-11-24.zip",
+        "canonical_sha256": "sha256_c3084440b51a85d50e8eeae9051e14e2f9bbbbd582bd3321aac577e42fd48661",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_61b3496ed5b71f0bfe993d74fd476d7064d14f3f624abf5e1ea606762d0e2e1c"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 169,
+          "stop_loss": 30,
+          "trailing_stop_loss": 1351
+        },
+        "max_drawdown_account": 0.9829,
+        "mean_duration_min": 72.58,
+        "mean_profit_pct": -2.0803,
+        "negative_duration_trades": 0,
+        "profit_abs": -982.9097,
+        "profit_factor": 0.1597,
+        "profit_pct": -98.291,
+        "same_candle_pct": 55.548,
+        "sharpe": -4.4969,
+        "starting_balance": 1000,
+        "trades": 1550,
+        "trailing_exit_pct": 87.161,
+        "winrate_pct": 9.806
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 1.0,
+        "per_pair": {
+          "ADA/USDT:USDT": 1.0,
+          "BTC/USDT:USDT": 1.0,
+          "DASH/USDT:USDT": 1.0,
+          "ETH/USDT:USDT": 1.0,
+          "LTC/USDT:USDT": 1.0,
+          "XLM/USDT:USDT": 1.0,
+          "XMR/USDT:USDT": 1.0,
+          "XRP/USDT:USDT": 1.0
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.033717,
+        "profit_abs": -0.1724,
+        "profit_pct_points": -0.0172,
+        "profit_relative_change": 0.0002,
+        "same_candle_pct_points": -10.603,
+        "trade_relative_change": 0.7039,
+        "trades": 1091
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/CompleteIndicatorStrategy2-cc7c80ef-2026-09-20_06-44-31.zip",
+        "attempted_at": "2026-09-20T06:44:33+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w3_docker.json",
+        "trades_sha256": "sha256_49030199d4f45c60b1907294283fe1d7de87910b7983058a692ca64ce19ce00e"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 377,
+          "stop_loss": 22,
+          "trailing_stop_loss": 2242
+        },
+        "max_drawdown_account": 0.9853,
+        "mean_duration_min": 129.45,
+        "mean_profit_pct": -1.2052,
+        "negative_duration_trades": 0,
+        "profit_abs": -983.0821,
+        "profit_factor": 0.4127,
+        "profit_pct": -98.3082,
+        "same_candle_pct": 44.945,
+        "sharpe": -3.9266,
+        "starting_balance": 1000,
+        "trades": 2641,
+        "trailing_exit_pct": 84.892,
+        "winrate_pct": 24.915
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
       "reasons": [
-        "baseline_at_detail_granularity"
+        "trade_count_change_over_10pct"
       ],
-      "status": "PASS",
+      "status": "SENSITIVE",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "CompositeScoreStrategy": {
@@ -4517,6 +4875,101 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "EDTMA_Long_Short_prot_CE_1h_3Lev_3mt_March": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/EDTMA_Long_Short_prot_CE_1h_3Lev_3mt_March-a6438d1f-2026-09-17_21-19-01.zip",
+        "canonical_sha256": "sha256_bbe48186ea6f27ae6d76d7d577002c264b0fbe00d09cc4b274676b6e26314c12",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_7cc43b0b1098696739af81cc0b4b0b31ddfc65652ebecb2637e801704d73f430"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "ce_sl_long": 537,
+          "roi": 1041,
+          "stop_loss": 2471,
+          "trailing_stop_loss": 10836
+        },
+        "max_drawdown_account": 0.6152,
+        "mean_duration_min": 326.7,
+        "mean_profit_pct": 0.222,
+        "negative_duration_trades": 0,
+        "profit_abs": 13937.9086,
+        "profit_factor": 1.0647,
+        "profit_pct": 1393.7909,
+        "same_candle_pct": 23.44,
+        "sharpe": 1.7481,
+        "starting_balance": 1000,
+        "trades": 14885,
+        "trailing_exit_pct": 72.798,
+        "winrate_pct": 71.663
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 1.0,
+        "per_pair": {
+          "ADA/USDT:USDT": 1.0,
+          "BTC/USDT:USDT": 1.0,
+          "DASH/USDT:USDT": 1.0,
+          "ETH/USDT:USDT": 1.0,
+          "LTC/USDT:USDT": 1.0,
+          "XLM/USDT:USDT": 1.0,
+          "XMR/USDT:USDT": 1.0,
+          "XRP/USDT:USDT": 1.0
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.041059,
+        "profit_abs": -14926.5619,
+        "profit_pct_points": -1492.6562,
+        "profit_relative_change": 1.0709,
+        "same_candle_pct_points": 32.292,
+        "trade_relative_change": 0.5294,
+        "trades": -7880
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/EDTMA_Long_Short_prot_CE_1h_3Lev_3mt_March-a6438d1f-2026-09-20_06-42-08.zip",
+        "attempted_at": "2026-09-20T06:42:11+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w4_docker.json",
+        "trades_sha256": "sha256_3bf7c9ecf90b5673b7407516939a85bf5c4fdfc73d7ebd0c6b65c3332702c3e9"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "ce_sl_long": 181,
+          "roi": 274,
+          "stop_loss": 1193,
+          "trailing_stop_loss": 5357
+        },
+        "max_drawdown_account": 0.9924,
+        "mean_duration_min": 220.23,
+        "mean_profit_pct": -0.4569,
+        "negative_duration_trades": 0,
+        "profit_abs": -988.6533,
+        "profit_factor": 0.778,
+        "profit_pct": -98.8653,
+        "same_candle_pct": 55.732,
+        "sharpe": -2.4274,
+        "starting_balance": 1000,
+        "trades": 7005,
+        "trailing_exit_pct": 76.474,
+        "winrate_pct": 76.631
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [
+        "profit_sign_flip",
+        "profit_change_over_50pct",
+        "trade_count_change_over_10pct"
+      ],
+      "status": "SENSITIVE",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "EI3v2_tag_cofi_green": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -5209,6 +5662,93 @@
       "reasons": [
         "baseline_at_detail_granularity"
       ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "EmaCrossStrategy": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/EmaCrossStrategy-a8314e54-2026-09-09_21-45-29.zip",
+        "canonical_sha256": "sha256_f7f999702cb12d78170091d9ca09e544bde64559d1ef42fbe7e27a9fde15a1b8",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_cfe622684fc83c3d37a042ec5d3e04a76ed122bd667602fdad43fd292e806407"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1820,
+          "force_exit": 7
+        },
+        "max_drawdown_account": 0.4436,
+        "mean_duration_min": 4053.33,
+        "mean_profit_pct": 0.4744,
+        "negative_duration_trades": 0,
+        "profit_abs": 912.4248,
+        "profit_factor": 1.1147,
+        "profit_pct": 91.2425,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.3309,
+        "starting_balance": 1000,
+        "trades": 1827,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 30.378
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 0.9991,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9991,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": -0.2419,
+        "profit_pct_points": -0.0242,
+        "profit_relative_change": 0.0003,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/EmaCrossStrategy-a8314e54-2026-09-20_06-45-01.zip",
+        "attempted_at": "2026-09-20T06:45:02+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w4_docker.json",
+        "trades_sha256": "sha256_e14d072206367be3b8abfc87cad7a6ef549ea54a96aacfe66f68f5fdb8d6db99"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1820,
+          "force_exit": 7
+        },
+        "max_drawdown_account": 0.4436,
+        "mean_duration_min": 4053.33,
+        "mean_profit_pct": 0.4743,
+        "negative_duration_trades": 0,
+        "profit_abs": 912.1829,
+        "profit_factor": 1.1146,
+        "profit_pct": 91.2183,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.3309,
+        "starting_balance": 1000,
+        "trades": 1827,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 30.378
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "4h",
+      "reasons": [],
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
@@ -5992,6 +6532,101 @@
       "reasons": [
         "baseline_at_detail_granularity"
       ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "FVGChannel": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/FVGChannel-f442e141-2026-09-06_11-21-21.zip",
+        "canonical_sha256": "sha256_379d24ac1c430e1fd9d2afb3babde0eab2a0c4dfda1b4845dc390ddcca2f7334",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_0b0dbe3aa4e8f13664de9375f2543b7c9a78bab1f6ac27890fc9f979cbc14914"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "lower_inner cross": 3897,
+          "mid_point cross": 1741,
+          "roi": 6205,
+          "stop_loss": 368,
+          "upper_extreme cross": 5,
+          "upper_inner cross": 430
+        },
+        "max_drawdown_account": 0.9672,
+        "mean_duration_min": 293.01,
+        "mean_profit_pct": -0.2031,
+        "negative_duration_trades": 0,
+        "profit_abs": -966.1543,
+        "profit_factor": 0.7738,
+        "profit_pct": -96.6154,
+        "same_candle_pct": 1.953,
+        "sharpe": -7.2524,
+        "starting_balance": 1000,
+        "trades": 12646,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 49.921
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.009051,
+        "profit_abs": 0.4624,
+        "profit_pct_points": 0.0462,
+        "profit_relative_change": 0.0005,
+        "same_candle_pct_points": 4.638,
+        "trade_relative_change": 0.0234,
+        "trades": -296
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/FVGChannel-f442e141-2026-09-20_06-34-50.zip",
+        "attempted_at": "2026-09-20T06:34:52+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_ae30b117c6e9fc82ef200216defa491a7aecf800d1b10ab3a467f979056070d3"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "lower_inner cross": 3694,
+          "mid_point cross": 1739,
+          "roi": 6123,
+          "stop_loss": 360,
+          "upper_extreme cross": 5,
+          "upper_inner cross": 429
+        },
+        "max_drawdown_account": 0.967,
+        "mean_duration_min": 294.65,
+        "mean_profit_pct": -0.2066,
+        "negative_duration_trades": 0,
+        "profit_abs": -965.6919,
+        "profit_factor": 0.7634,
+        "profit_pct": -96.5692,
+        "same_candle_pct": 6.591,
+        "sharpe": -7.475,
+        "starting_balance": 1000,
+        "trades": 12350,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 50.405
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
@@ -7311,6 +7946,208 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "FenixTopProfit": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/FenixTopProfit-82637b6e-2026-09-17_19-48-57.zip",
+        "canonical_sha256": "sha256_086f65a3868c7f3cd15663cdd6137f6965b1755fe22c691139ffbf29a16c1c3a",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_69ff939ba2682c39fac962fbcf2403b805af6c182167c96518ede40982e9aae0"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "FenixTopProfit Exit Long": 200,
+          "FenixTopProfit Exit Short": 177,
+          "roi": 2115,
+          "stop_loss": 100
+        },
+        "max_drawdown_account": 0.4768,
+        "mean_duration_min": 686.04,
+        "mean_profit_pct": 0.2173,
+        "negative_duration_trades": 0,
+        "profit_abs": -425.7681,
+        "profit_factor": 0.7419,
+        "profit_pct": -42.5768,
+        "same_candle_pct": 0.077,
+        "sharpe": -0.9986,
+        "starting_balance": 1000,
+        "trades": 2592,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 71.451
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 1.0,
+        "per_pair": {
+          "ADA/USDT:USDT": 1.0,
+          "BTC/USDT:USDT": 1.0,
+          "DASH/USDT:USDT": 1.0,
+          "ETH/USDT:USDT": 1.0,
+          "LTC/USDT:USDT": 1.0,
+          "XLM/USDT:USDT": 1.0,
+          "XMR/USDT:USDT": 1.0,
+          "XRP/USDT:USDT": 1.0
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.040108,
+        "profit_abs": 32.2873,
+        "profit_pct_points": 3.2287,
+        "profit_relative_change": 0.0758,
+        "same_candle_pct_points": 0.077,
+        "trade_relative_change": 0.0042,
+        "trades": 11
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/FenixTopProfit-82637b6e-2026-09-20_06-48-32.zip",
+        "attempted_at": "2026-09-20T06:48:34+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w3_docker.json",
+        "trades_sha256": "sha256_595fa24b4944515509f15c27f5ceda84dc7deeebe006fbf9bd9ec2cf7438df5c"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "FenixTopProfit Exit Long": 257,
+          "FenixTopProfit Exit Short": 226,
+          "roi": 2032,
+          "stop_loss": 88
+        },
+        "max_drawdown_account": 0.4433,
+        "mean_duration_min": 661.61,
+        "mean_profit_pct": 0.2635,
+        "negative_duration_trades": 0,
+        "profit_abs": -393.4808,
+        "profit_factor": 0.7609,
+        "profit_pct": -39.3481,
+        "same_candle_pct": 0.154,
+        "sharpe": -0.8694,
+        "starting_balance": 1000,
+        "trades": 2603,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 74.184
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "Fibbo": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/Fibbo-558454bf-2026-09-17_19-09-04.zip",
+        "canonical_sha256": "sha256_b78fad498ac73b512482dd7224f9b7318e5083bf7ef077f77004047b9ab4e736",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_b412e14d85a2956e600ded0a72b729cca6307c2d09f5d04c8428d7a69477d8e6"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "roi": 90,
+          "trailing_stop_loss": 20
+        },
+        "max_drawdown_account": 0.1489,
+        "mean_duration_min": 1227.95,
+        "mean_profit_pct": -1.106,
+        "negative_duration_trades": 0,
+        "profit_abs": -135.8216,
+        "profit_factor": 0.3064,
+        "profit_pct": -13.5822,
+        "same_candle_pct": 0.0,
+        "sharpe": -0.255,
+        "starting_balance": 1000,
+        "trades": 110,
+        "trailing_exit_pct": 18.182,
+        "winrate_pct": 59.091
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 1.0,
+        "per_pair": {
+          "ADA/USDT:USDT": 1.0,
+          "BTC/USDT:USDT": 1.0,
+          "DASH/USDT:USDT": 1.0,
+          "ETH/USDT:USDT": 1.0,
+          "LTC/USDT:USDT": 1.0,
+          "XLM/USDT:USDT": 1.0,
+          "XMR/USDT:USDT": 1.0,
+          "XRP/USDT:USDT": 1.0
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": 3.7547,
+        "profit_pct_points": 0.3755,
+        "profit_relative_change": 0.0276,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/Fibbo-558454bf-2026-09-20_06-48-02.zip",
+        "attempted_at": "2026-09-20T06:48:04+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w4_docker.json",
+        "trades_sha256": "sha256_5adc31383dccb775e0003749ade45972f688e086362494329d10670b2e4b940b"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "roi": 90,
+          "trailing_stop_loss": 20
+        },
+        "max_drawdown_account": 0.1456,
+        "mean_duration_min": 1231.18,
+        "mean_profit_pct": -1.0725,
+        "negative_duration_trades": 0,
+        "profit_abs": -132.0669,
+        "profit_factor": 0.3274,
+        "profit_pct": -13.2067,
+        "same_candle_pct": 0.0,
+        "sharpe": -0.2459,
+        "starting_balance": 1000,
+        "trades": 110,
+        "trailing_exit_pct": 18.182,
+        "winrate_pct": 61.818
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "15m",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "FibonacciEMATrendStrategy": {
+      "baseline": {
+        "archive": "user_data/profile_smoke/FibonacciEMATrendStrategy-83084414-2026-09-17_20-17-45.zip",
+        "canonical_sha256": "sha256_f6b72347b89de97f2bd4bd4f948e28d8216c318fb36066d2754b8ad44bd80ce7",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_61934270914a629ec7e40350579f86627ac1578bc00cde75898082e279e01114"
+      },
+      "basis": "measured_detail_run",
+      "detail": {
+        "archive": null,
+        "attempted_at": "2026-09-20T07:46:05+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "timeout",
+        "store": "results/regime/execution_robustness_detail_5m_w2_docker.json",
+        "trades_sha256": null
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [
+        "detail_run_timeout"
+      ],
+      "status": "ERROR",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "FisherTransformStrategy": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -7328,6 +8165,93 @@
       "reasons": [
         "baseline_at_detail_granularity"
       ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "FlawlessVictory": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/FlawlessVictory-16bcd567-2026-09-14_18-15-10.zip",
+        "canonical_sha256": "sha256_39a22333a9a7eb02c4ea537ea2e940820ca12e217ca614cf8fc2c5c955f55720",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_ff92993e74f515f8fcced2af6fdcee25843eeba6328963910d3022bcb91faa66"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 10089,
+          "force_exit": 7
+        },
+        "max_drawdown_account": 0.9522,
+        "mean_duration_min": 2011.62,
+        "mean_profit_pct": -0.0095,
+        "negative_duration_trades": 0,
+        "profit_abs": -597.6327,
+        "profit_factor": 0.984,
+        "profit_pct": -59.7633,
+        "same_candle_pct": 0.0,
+        "sharpe": -0.2801,
+        "starting_balance": 1000,
+        "trades": 10096,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 64.798
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 1.0,
+        "per_pair": {
+          "ADA/USDT": 1.0,
+          "BTC/USDT": 1.0,
+          "DASH/USDT": 1.0,
+          "ETH/USDT": 1.0,
+          "LTC/USDT": 1.0,
+          "XLM/USDT": 1.0,
+          "XMR/USDT": 1.0,
+          "XRP/USDT": 1.0
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": -0.0317,
+        "profit_pct_points": -0.0031,
+        "profit_relative_change": 0.0001,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/FlawlessVictory-16bcd567-2026-09-20_07-03-21.zip",
+        "attempted_at": "2026-09-20T07:03:26+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w4_docker.json",
+        "trades_sha256": "sha256_8ec910350996f533d3d2fda8318f7f8167e0ca810bf578850135eb33a9bb05b5"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 10089,
+          "force_exit": 7
+        },
+        "max_drawdown_account": 0.9522,
+        "mean_duration_min": 2011.62,
+        "mean_profit_pct": -0.0095,
+        "negative_duration_trades": 0,
+        "profit_abs": -597.6644,
+        "profit_factor": 0.984,
+        "profit_pct": -59.7664,
+        "same_candle_pct": 0.0,
+        "sharpe": -0.2801,
+        "starting_balance": 1000,
+        "trades": 10096,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 64.798
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "15m",
+      "reasons": [],
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
@@ -7972,6 +8896,464 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "GKD_Baseline": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/GKD_Baseline-3a0dd663-2026-09-06_11-18-54.zip",
+        "canonical_sha256": "sha256_b2941c2286406cbed4f0dfaca3fc67b2c9326e83a658c32b07a9646db583b721",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_56ccca52a390fa1996bed961b1259f2092b0014ef505e65e0867087207086d10"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 6984,
+          "roi": 3708,
+          "stop_loss": 4,
+          "trailing_stop_loss": 181
+        },
+        "max_drawdown_account": 0.9665,
+        "mean_duration_min": 148.28,
+        "mean_profit_pct": -0.2469,
+        "negative_duration_trades": 0,
+        "profit_abs": -965.7063,
+        "profit_factor": 0.6606,
+        "profit_pct": -96.5706,
+        "same_candle_pct": 2.133,
+        "sharpe": -12.2752,
+        "starting_balance": 1000,
+        "trades": 10877,
+        "trailing_exit_pct": 1.664,
+        "winrate_pct": 34.201
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": true,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.004735,
+        "profit_abs": 0.0248,
+        "profit_pct_points": 0.0025,
+        "profit_relative_change": 0.0,
+        "same_candle_pct_points": -0.775,
+        "trade_relative_change": 0.1985,
+        "trades": 2159
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/GKD_Baseline-3a0dd663-2026-09-20_06-37-10.zip",
+        "attempted_at": "2026-09-20T06:37:12+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_10c87d4d4ae68f6d06e584e206df4063dedf0c39438683d204df70eac920c1f8"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 8402,
+          "roi": 4474,
+          "trailing_stop_loss": 160
+        },
+        "max_drawdown_account": 0.9664,
+        "mean_duration_min": 155.56,
+        "mean_profit_pct": -0.2049,
+        "negative_duration_trades": 0,
+        "profit_abs": -965.6815,
+        "profit_factor": 0.7062,
+        "profit_pct": -96.5681,
+        "same_candle_pct": 1.358,
+        "sharpe": -12.221,
+        "starting_balance": 1000,
+        "trades": 13036,
+        "trailing_exit_pct": 1.227,
+        "winrate_pct": 35.563
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [
+        "trade_count_change_over_10pct"
+      ],
+      "status": "SENSITIVE",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "GKD_BaselineAllMAs": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/GKD_BaselineAllMAs-d132f795-2026-09-06_11-20-16.zip",
+        "canonical_sha256": "sha256_dff087dc468bdc6664fd0ae41cf91e26f7620aa7d70c693c8681f1467900d93a",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_56ccca52a390fa1996bed961b1259f2092b0014ef505e65e0867087207086d10"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 6984,
+          "roi": 3708,
+          "stop_loss": 4,
+          "trailing_stop_loss": 181
+        },
+        "max_drawdown_account": 0.9665,
+        "mean_duration_min": 148.28,
+        "mean_profit_pct": -0.2469,
+        "negative_duration_trades": 0,
+        "profit_abs": -965.7063,
+        "profit_factor": 0.6606,
+        "profit_pct": -96.5706,
+        "same_candle_pct": 2.133,
+        "sharpe": -12.2752,
+        "starting_balance": 1000,
+        "trades": 10877,
+        "trailing_exit_pct": 1.664,
+        "winrate_pct": 34.201
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": true,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.004735,
+        "profit_abs": 0.0248,
+        "profit_pct_points": 0.0025,
+        "profit_relative_change": 0.0,
+        "same_candle_pct_points": -0.775,
+        "trade_relative_change": 0.1985,
+        "trades": 2159
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/GKD_BaselineAllMAs-d132f795-2026-09-20_06-51-54.zip",
+        "attempted_at": "2026-09-20T06:51:57+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w3_docker.json",
+        "trades_sha256": "sha256_10c87d4d4ae68f6d06e584e206df4063dedf0c39438683d204df70eac920c1f8"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 8402,
+          "roi": 4474,
+          "trailing_stop_loss": 160
+        },
+        "max_drawdown_account": 0.9664,
+        "mean_duration_min": 155.56,
+        "mean_profit_pct": -0.2049,
+        "negative_duration_trades": 0,
+        "profit_abs": -965.6815,
+        "profit_factor": 0.7062,
+        "profit_pct": -96.5681,
+        "same_candle_pct": 1.358,
+        "sharpe": -12.221,
+        "starting_balance": 1000,
+        "trades": 13036,
+        "trailing_exit_pct": 1.227,
+        "winrate_pct": 35.563
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [
+        "trade_count_change_over_10pct"
+      ],
+      "status": "SENSITIVE",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "GKD_FisherTransformMTF": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/GKD_FisherTransformMTF-dba7d6d9-2026-09-06_11-22-37.zip",
+        "canonical_sha256": "sha256_f0e506446029b30653e2e8a6677b0380c5552a9c5c648e2af0cf77f3ae266f1d",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_41420bf87ff372163ce60d1870b5a732972d1f6ec0ad62da6068d8f6441e1550"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 3220,
+          "force_exit": 6,
+          "stop_loss": 746
+        },
+        "max_drawdown_account": 0.811,
+        "mean_duration_min": 5524.03,
+        "mean_profit_pct": 0.4251,
+        "negative_duration_trades": 0,
+        "profit_abs": 845.4775,
+        "profit_factor": 1.0194,
+        "profit_pct": 84.5478,
+        "same_candle_pct": 0.076,
+        "sharpe": 0.1519,
+        "starting_balance": 1000,
+        "trades": 3972,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 41.843
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": -2.5745,
+        "profit_pct_points": -0.2575,
+        "profit_relative_change": 0.003,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/GKD_FisherTransformMTF-dba7d6d9-2026-09-20_06-59-45.zip",
+        "attempted_at": "2026-09-20T06:59:48+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w3_docker.json",
+        "trades_sha256": "sha256_da76fbd91ba4a87c41b4b8e0943f60a53976d64355ffabee0fd5a493896139fd"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 3220,
+          "force_exit": 6,
+          "stop_loss": 746
+        },
+        "max_drawdown_account": 0.8111,
+        "mean_duration_min": 5528.93,
+        "mean_profit_pct": 0.4251,
+        "negative_duration_trades": 0,
+        "profit_abs": 842.903,
+        "profit_factor": 1.0193,
+        "profit_pct": 84.2903,
+        "same_candle_pct": 0.076,
+        "sharpe": 0.1515,
+        "starting_balance": 1000,
+        "trades": 3972,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 41.843
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "GKD_HurstExponent": {
+      "anomalies": [
+        "detail_run_has_1_trades_closing_before_they_opened"
+      ],
+      "baseline": {
+        "archive": "user_data/profile_smoke/GKD_HurstExponent-48f852cd-2026-09-06_11-25-06.zip",
+        "canonical_sha256": "sha256_c169beca3ea5e4b9b27e81344b62fee5df4308a772665b5d48f71b759f938f27",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_8753806b95353340c7350d477a98cef3f25d12c8bc3ac07645bfcfcb154993cb"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "roi": 4448,
+          "stop_loss": 19,
+          "trailing_stop_loss": 675
+        },
+        "max_drawdown_account": 0.6658,
+        "mean_duration_min": 1573.84,
+        "mean_profit_pct": -0.1194,
+        "negative_duration_trades": 0,
+        "profit_abs": -594.5307,
+        "profit_factor": 0.8973,
+        "profit_pct": -59.4531,
+        "same_candle_pct": 2.567,
+        "sharpe": -1.3615,
+        "starting_balance": 1000,
+        "trades": 5142,
+        "trailing_exit_pct": 13.127,
+        "winrate_pct": 86.503
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.000882,
+        "profit_abs": 106.9022,
+        "profit_pct_points": 10.6902,
+        "profit_relative_change": 0.1798,
+        "same_candle_pct_points": -0.624,
+        "trade_relative_change": 0.0008,
+        "trades": 4
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/GKD_HurstExponent-48f852cd-2026-09-20_07-00-19.zip",
+        "attempted_at": "2026-09-20T07:00:21+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w1_docker.json",
+        "trades_sha256": "sha256_bb6eb6c780625f6bad7153eeca2faf732a57f2d1628ebee4d90a6fc4a6453dd4"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "force_exit": 1,
+          "roi": 4455,
+          "stop_loss": 16,
+          "trailing_stop_loss": 674
+        },
+        "max_drawdown_account": 0.5916,
+        "mean_duration_min": 1594.54,
+        "mean_profit_pct": -0.0828,
+        "negative_duration_trades": 1,
+        "profit_abs": -487.6285,
+        "profit_factor": 0.9228,
+        "profit_pct": -48.7629,
+        "same_candle_pct": 1.943,
+        "sharpe": -1.0264,
+        "starting_balance": 1000,
+        "trades": 5146,
+        "trailing_exit_pct": 13.098,
+        "winrate_pct": 88.127
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "GKD_PFE": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/GKD_PFE-3611d4c1-2026-09-06_11-25-04.zip",
+        "canonical_sha256": "sha256_74b9df4754e95213f2735328799341c1720c3279fca9e50982462e0434b259e8",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_2476b228c5f0ebd682918ff9a977895dc8ae67b89f07998ec07436e46d791f44"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 4647,
+          "roi": 5943,
+          "stop_loss": 13,
+          "trailing_stop_loss": 450
+        },
+        "max_drawdown_account": 0.9677,
+        "mean_duration_min": 273.83,
+        "mean_profit_pct": -0.236,
+        "negative_duration_trades": 0,
+        "profit_abs": -965.7725,
+        "profit_factor": 0.7813,
+        "profit_pct": -96.5773,
+        "same_candle_pct": 4.424,
+        "sharpe": -7.2626,
+        "starting_balance": 1000,
+        "trades": 11053,
+        "trailing_exit_pct": 4.071,
+        "winrate_pct": 54.646
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": true,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.030314,
+        "profit_abs": 0.097,
+        "profit_pct_points": 0.0098,
+        "profit_relative_change": 0.0001,
+        "same_candle_pct_points": -2.117,
+        "trade_relative_change": 0.3454,
+        "trades": 3818
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/GKD_PFE-3611d4c1-2026-09-20_07-05-34.zip",
+        "attempted_at": "2026-09-20T07:05:36+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w3_docker.json",
+        "trades_sha256": "sha256_288f535a6d97ae25a90cc5387f26783a8c93183ba8d7a35524d7284910aab1bc"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 6703,
+          "roi": 7770,
+          "stop_loss": 3,
+          "trailing_stop_loss": 395
+        },
+        "max_drawdown_account": 0.9676,
+        "mean_duration_min": 302.71,
+        "mean_profit_pct": -0.1734,
+        "negative_duration_trades": 0,
+        "profit_abs": -965.6755,
+        "profit_factor": 0.8435,
+        "profit_pct": -96.5675,
+        "same_candle_pct": 2.307,
+        "sharpe": -6.6347,
+        "starting_balance": 1000,
+        "trades": 14871,
+        "trailing_exit_pct": 2.656,
+        "winrate_pct": 55.188
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [
+        "trade_count_change_over_10pct"
+      ],
+      "status": "SENSITIVE",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "GRIDDMIPRICEStrategyFutureV5Short": {
       "anomalies": [],
       "baseline": {
@@ -8053,6 +9435,91 @@
       },
       "detail_timeframe": "5m",
       "main_timeframe": "4h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "GnF_V2": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/GnF_V2-0f3ac6fa-2026-09-17_21-49-16.zip",
+        "canonical_sha256": "sha256_3e095a5da824d1b9c58351f19265f79adc3bad47daea258b190caca6289d456d",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_32cc674e0d3107b1143b9b4f8f36f2d95bbc47b908ced58715f6db4c5799f19d"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 15193
+        },
+        "max_drawdown_account": 0.9663,
+        "mean_duration_min": 840.74,
+        "mean_profit_pct": -0.1534,
+        "negative_duration_trades": 0,
+        "profit_abs": -965.7203,
+        "profit_factor": 0.8759,
+        "profit_pct": -96.572,
+        "same_candle_pct": 0.0,
+        "sharpe": -3.7,
+        "starting_balance": 1000,
+        "trades": 15193,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 39.373
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 1.0,
+        "per_pair": {
+          "ADA/USDT:USDT": 1.0,
+          "BTC/USDT:USDT": 1.0,
+          "DASH/USDT:USDT": 1.0,
+          "ETH/USDT:USDT": 1.0,
+          "LTC/USDT:USDT": 1.0,
+          "XLM/USDT:USDT": 1.0,
+          "XMR/USDT:USDT": 1.0,
+          "XRP/USDT:USDT": 1.0
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": 0.0161,
+        "profit_pct_points": 0.0016,
+        "profit_relative_change": 0.0,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0005,
+        "trades": 8
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/GnF_V2-0f3ac6fa-2026-09-20_07-09-14.zip",
+        "attempted_at": "2026-09-20T07:09:17+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w1_docker.json",
+        "trades_sha256": "sha256_e47ef783b98b8cf3f1b8dd5df71ba71813478880d2d92fd0689ea4b8b77a128a"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 15201
+        },
+        "max_drawdown_account": 0.9663,
+        "mean_duration_min": 840.57,
+        "mean_profit_pct": -0.1533,
+        "negative_duration_trades": 0,
+        "profit_abs": -965.7042,
+        "profit_factor": 0.876,
+        "profit_pct": -96.5704,
+        "same_candle_pct": 0.0,
+        "sharpe": -3.6981,
+        "starting_balance": 1000,
+        "trades": 15201,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 39.366
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
@@ -8322,6 +9789,97 @@
       "reasons": [
         "baseline_at_detail_granularity"
       ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "HilbertSineWave": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/HilbertSineWave-b856be2d-2026-09-06_11-45-35.zip",
+        "canonical_sha256": "sha256_7580e8750833b04c282ae6e730f7292e228852ed013a3142e5ae2b59cf174e98",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_93543208b22be0f9127026da9d1939f37bda2e9613289b7db53940e5fecbe17c"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1367,
+          "force_exit": 1,
+          "roi": 391,
+          "stop_loss": 1996
+        },
+        "max_drawdown_account": 0.8762,
+        "mean_duration_min": 2391.5,
+        "mean_profit_pct": -0.2949,
+        "negative_duration_trades": 0,
+        "profit_abs": -806.898,
+        "profit_factor": 0.8974,
+        "profit_pct": -80.6898,
+        "same_candle_pct": 5.939,
+        "sharpe": -1.3038,
+        "starting_balance": 1000,
+        "trades": 3755,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 45.087
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.006691,
+        "profit_abs": 51.1244,
+        "profit_pct_points": 5.1124,
+        "profit_relative_change": 0.0634,
+        "same_candle_pct_points": 1.099,
+        "trade_relative_change": 0.0141,
+        "trades": 53
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/HilbertSineWave-b856be2d-2026-09-20_07-21-09.zip",
+        "attempted_at": "2026-09-20T07:21:12+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w4_docker.json",
+        "trades_sha256": "sha256_830ce2b83468dec9ca815da58975089e11be88b23c5f6768e71c849002a7b4b2"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1368,
+          "force_exit": 1,
+          "roi": 422,
+          "stop_loss": 2017
+        },
+        "max_drawdown_account": 0.8432,
+        "mean_duration_min": 2374.09,
+        "mean_profit_pct": -0.2343,
+        "negative_duration_trades": 0,
+        "profit_abs": -755.7736,
+        "profit_factor": 0.9186,
+        "profit_pct": -75.5774,
+        "same_candle_pct": 7.038,
+        "sharpe": -1.0829,
+        "starting_balance": 1000,
+        "trades": 3808,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 45.299
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
@@ -8702,6 +10260,184 @@
       "reasons": [
         "baseline_at_detail_granularity"
       ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "IchimokuCloudBreakoutStrategy": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/IchimokuCloudBreakoutStrategy-8a53a90c-2026-09-17_21-46-00.zip",
+        "canonical_sha256": "sha256_785613de9f740dbe788081cda2534a6d1baff6ba93933e877bcd023e87913a9c",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_70b4351df7da4be2f110a103f519fe148ece5485244f6de64e58491813547bdf"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "ichimoku_exit_long": 450,
+          "ichimoku_exit_short": 489,
+          "roi": 994,
+          "stop_loss": 3096
+        },
+        "max_drawdown_account": 0.9893,
+        "mean_duration_min": 1477.8,
+        "mean_profit_pct": -0.4721,
+        "negative_duration_trades": 0,
+        "profit_abs": -982.8792,
+        "profit_factor": 0.8885,
+        "profit_pct": -98.2879,
+        "same_candle_pct": 22.947,
+        "sharpe": -1.4615,
+        "starting_balance": 1000,
+        "trades": 5029,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 29.29
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 1.0,
+        "per_pair": {
+          "ADA/USDT:USDT": 1.0,
+          "BTC/USDT:USDT": 1.0,
+          "DASH/USDT:USDT": 1.0,
+          "ETH/USDT:USDT": 1.0,
+          "LTC/USDT:USDT": 1.0,
+          "XLM/USDT:USDT": 1.0,
+          "XMR/USDT:USDT": 1.0,
+          "XRP/USDT:USDT": 1.0
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.012241,
+        "profit_abs": 0.0491,
+        "profit_pct_points": 0.0049,
+        "profit_relative_change": 0.0,
+        "same_candle_pct_points": -0.855,
+        "trade_relative_change": 0.1386,
+        "trades": 697
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/IchimokuCloudBreakoutStrategy-8a53a90c-2026-09-20_07-13-10.zip",
+        "attempted_at": "2026-09-20T07:13:12+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w3_docker.json",
+        "trades_sha256": "sha256_bd4b28243ab0d1da6673fef9fc1e4dfbb4f4a6edeca42ece66f1d6f1db33918d"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "ichimoku_exit_long": 524,
+          "ichimoku_exit_short": 602,
+          "roi": 1145,
+          "stop_loss": 3455
+        },
+        "max_drawdown_account": 0.9915,
+        "mean_duration_min": 1633.91,
+        "mean_profit_pct": -0.3451,
+        "negative_duration_trades": 0,
+        "profit_abs": -982.8301,
+        "profit_factor": 0.9264,
+        "profit_pct": -98.283,
+        "same_candle_pct": 22.092,
+        "sharpe": -1.0981,
+        "starting_balance": 1000,
+        "trades": 5726,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 29.794
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "4h",
+      "reasons": [
+        "trade_count_change_over_10pct"
+      ],
+      "status": "SENSITIVE",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "IchimokuCloudStrategy": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/IchimokuCloudStrategy-eede6bf0-2026-09-09_21-51-21.zip",
+        "canonical_sha256": "sha256_0c5f406b817aca75f94f52364cea9fcfdaad130855b25ef634ebdea7b5accba8",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_b3f8b5ce90f78bc2323bec6442523a64355540f72608c1b368f2e85dac64e783"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 709
+        },
+        "max_drawdown_account": 0.1159,
+        "mean_duration_min": 5428.27,
+        "mean_profit_pct": 2.2314,
+        "negative_duration_trades": 0,
+        "profit_abs": 4540.3801,
+        "profit_factor": 1.7128,
+        "profit_pct": 454.038,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.6981,
+        "starting_balance": 1000,
+        "trades": 709,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 37.377
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 0.9991,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9991,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": 2.2744,
+        "profit_pct_points": 0.2274,
+        "profit_relative_change": 0.0005,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/IchimokuCloudStrategy-eede6bf0-2026-09-20_07-11-30.zip",
+        "attempted_at": "2026-09-20T07:11:31+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w1_docker.json",
+        "trades_sha256": "sha256_53ab0d186a6e8c73afcd57aab2f7d5568674a8b7acfebcd79841f5c7af9693e0"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 709
+        },
+        "max_drawdown_account": 0.1159,
+        "mean_duration_min": 5428.27,
+        "mean_profit_pct": 2.2318,
+        "negative_duration_trades": 0,
+        "profit_abs": 4542.6545,
+        "profit_factor": 1.713,
+        "profit_pct": 454.2654,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.6982,
+        "starting_balance": 1000,
+        "trades": 709,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 37.377
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "4h",
+      "reasons": [],
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
@@ -9841,6 +11577,95 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "LeoStrategy": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/LeoStrategy-a4770535-2026-09-09_20-36-32.zip",
+        "canonical_sha256": "sha256_672ed38ef31253ba8bf1088bfc10354f6082756cc2b4a3d49197f2aa6df760af",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_50bff29c7b4a9cc0130fe9fe6decda48883f6aa8078cbe60f23cf6c2a3daefb1"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 284,
+          "roi": 915,
+          "trailing_stop_loss": 113
+        },
+        "max_drawdown_account": 0.4609,
+        "mean_duration_min": 866.89,
+        "mean_profit_pct": -0.3597,
+        "negative_duration_trades": 0,
+        "profit_abs": -448.3488,
+        "profit_factor": 0.6656,
+        "profit_pct": -44.8349,
+        "same_candle_pct": 1.905,
+        "sharpe": -1.5552,
+        "starting_balance": 1000,
+        "trades": 1312,
+        "trailing_exit_pct": 8.613,
+        "winrate_pct": 69.741
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 0.9991,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9991,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.03811,
+        "profit_abs": 182.5254,
+        "profit_pct_points": 18.2526,
+        "profit_relative_change": 0.4071,
+        "same_candle_pct_points": 27.973,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/LeoStrategy-a4770535-2026-09-20_07-13-32.zip",
+        "attempted_at": "2026-09-20T07:13:33+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w1_docker.json",
+        "trades_sha256": "sha256_5e8881df754c18eb682f8863d38a49b94b30a7ebabc0e591e02e6e0ef5f54de1"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 268,
+          "roi": 965,
+          "trailing_stop_loss": 79
+        },
+        "max_drawdown_account": 0.312,
+        "mean_duration_min": 844.82,
+        "mean_profit_pct": -0.1846,
+        "negative_duration_trades": 0,
+        "profit_abs": -265.8234,
+        "profit_factor": 0.8046,
+        "profit_pct": -26.5823,
+        "same_candle_pct": 29.878,
+        "sharpe": -0.851,
+        "starting_balance": 1000,
+        "trades": 1312,
+        "trailing_exit_pct": 6.021,
+        "winrate_pct": 73.552
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "4h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "LinearRegressionStrategy": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -9955,6 +11780,95 @@
       "reasons": [
         "baseline_at_detail_granularity"
       ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "MACD9fall": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/MACD9fall-3ef1c8d0-2026-09-07_17-50-10.zip",
+        "canonical_sha256": "sha256_6506bc1d5a4463c5074c02c59a143a4fec5be27e6feed0cbea399fd3989b1729",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_1a9d5150f87b9a524110e1921a431382bee5135a09fd90da4778c8979e44aa42"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "force_exit": 4,
+          "roi": 262,
+          "stop_loss": 39
+        },
+        "max_drawdown_account": 0.6798,
+        "mean_duration_min": 59652.2,
+        "mean_profit_pct": 1.9993,
+        "negative_duration_trades": 0,
+        "profit_abs": 217.3125,
+        "profit_factor": 1.0333,
+        "profit_pct": 21.7312,
+        "same_candle_pct": 0.328,
+        "sharpe": 0.0273,
+        "starting_balance": 1000,
+        "trades": 305,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 86.23
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": -0.4233,
+        "profit_pct_points": -0.0423,
+        "profit_relative_change": 0.0019,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/MACD9fall-3ef1c8d0-2026-09-20_07-20-28.zip",
+        "attempted_at": "2026-09-20T07:20:29+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w3_docker.json",
+        "trades_sha256": "sha256_ff1f1788ff0f43e31fdd45e4bf1a10ae41d495fe0d2c1c15761acc095cb3c994"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "force_exit": 4,
+          "roi": 262,
+          "stop_loss": 39
+        },
+        "max_drawdown_account": 0.6799,
+        "mean_duration_min": 59678.75,
+        "mean_profit_pct": 1.9993,
+        "negative_duration_trades": 0,
+        "profit_abs": 216.8892,
+        "profit_factor": 1.0333,
+        "profit_pct": 21.6889,
+        "same_candle_pct": 0.328,
+        "sharpe": 0.0273,
+        "starting_balance": 1000,
+        "trades": 305,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 86.23
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
@@ -10269,6 +12183,97 @@
       "reasons": [
         "baseline_at_detail_granularity"
       ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "MACDZeroCrossStrategy": {
+      "anomalies": [
+        "detail_run_has_1_trades_closing_before_they_opened"
+      ],
+      "baseline": {
+        "archive": "user_data/profile_smoke/MACDZeroCrossStrategy-18eb90f7-2026-09-06_11-06-17.zip",
+        "canonical_sha256": "sha256_6fe1bca7b1b387a6434e423370659379e267a61623bc910df23a48e76babd9e5",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_09813e58cfb457ccec6b7594156a5a382d688cf5402c90bcf5402444111f29dc"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 292,
+          "force_exit": 2,
+          "stop_loss": 2
+        },
+        "max_drawdown_account": 0.4753,
+        "mean_duration_min": 37921.62,
+        "mean_profit_pct": 7.8753,
+        "negative_duration_trades": 0,
+        "profit_abs": 2647.8551,
+        "profit_factor": 1.3248,
+        "profit_pct": 264.7855,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.159,
+        "starting_balance": 1000,
+        "trades": 296,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 29.73
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9985,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9985,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.003344,
+        "profit_abs": -2.231,
+        "profit_pct_points": -0.2231,
+        "profit_relative_change": 0.0008,
+        "same_candle_pct_points": 0.337,
+        "trade_relative_change": 0.0034,
+        "trades": 1
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/MACDZeroCrossStrategy-18eb90f7-2026-09-20_06-24-07.zip",
+        "attempted_at": "2026-09-20T06:24:08+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_945be5883c5593d4c97d36b15cce0f0ac06b0c58db8acd90e6f180b5f87de450"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 292,
+          "force_exit": 3,
+          "stop_loss": 2
+        },
+        "max_drawdown_account": 0.4693,
+        "mean_duration_min": 37802.53,
+        "mean_profit_pct": 7.8471,
+        "negative_duration_trades": 1,
+        "profit_abs": 2645.6241,
+        "profit_factor": 1.3245,
+        "profit_pct": 264.5624,
+        "same_candle_pct": 0.337,
+        "sharpe": 0.1592,
+        "starting_balance": 1000,
+        "trades": 297,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 29.63
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1d",
+      "reasons": [],
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
@@ -10717,6 +12722,97 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "MeanReversionTrend": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/MeanReversionTrend-9c6041b5-2026-09-09_22-29-00.zip",
+        "canonical_sha256": "sha256_8970d13fe62a153642ffd4f644c36491f7fa92b1be077caadbea5be237b3efdb",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_1492751a04a5742c989852feb65b5b559cfeec9638fa41a10a7eb97a89360d0a"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 27,
+          "stop_loss": 5,
+          "time_exit_hours": 1,
+          "time_exit_loss": 23
+        },
+        "max_drawdown_account": 0.0363,
+        "mean_duration_min": 520.71,
+        "mean_profit_pct": 0.6309,
+        "negative_duration_trades": 0,
+        "profit_abs": 43.5247,
+        "profit_factor": 1.3704,
+        "profit_pct": 4.3525,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.0585,
+        "starting_balance": 1000,
+        "trades": 56,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 50.0
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": 8.4607,
+        "profit_pct_points": 0.846,
+        "profit_relative_change": 0.1944,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/MeanReversionTrend-9c6041b5-2026-09-20_07-15-35.zip",
+        "attempted_at": "2026-09-20T07:15:36+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w1_docker.json",
+        "trades_sha256": "sha256_0a5d03788e81f90593129e9fcd17c26cb6eb4bc1184f481890ba8ebf4828ca75"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 27,
+          "stop_loss": 5,
+          "time_exit_hours": 1,
+          "time_exit_loss": 23
+        },
+        "max_drawdown_account": 0.034,
+        "mean_duration_min": 519.38,
+        "mean_profit_pct": 0.747,
+        "negative_duration_trades": 0,
+        "profit_abs": 51.9854,
+        "profit_factor": 1.474,
+        "profit_pct": 5.1985,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.0703,
+        "starting_balance": 1000,
+        "trades": 56,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 50.0
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "Minmax": {
       "anomalies": [],
       "baseline": {
@@ -10891,6 +12987,100 @@
       "main_timeframe": "1h",
       "reasons": [],
       "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "MomentumCCITrendStrategy": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/MomentumCCITrendStrategy-f0099a2a-2026-09-17_20-23-11.zip",
+        "canonical_sha256": "sha256_066a46aa955134fc839f9113da472736909c11c7897c8ed2fffd5f47708bae9a",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_126a0aa0bebf79469a07382c780834b21f05cc3e4795545780ebfc44fd3764e5"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "CCI Exit Long": 17,
+          "CCI Exit Short": 17,
+          "roi": 243,
+          "stop_loss": 190
+        },
+        "max_drawdown_account": 0.618,
+        "mean_duration_min": 949.72,
+        "mean_profit_pct": -1.5001,
+        "negative_duration_trades": 0,
+        "profit_abs": -591.2673,
+        "profit_factor": 0.6633,
+        "profit_pct": -59.1267,
+        "same_candle_pct": 45.824,
+        "sharpe": -0.5976,
+        "starting_balance": 1000,
+        "trades": 467,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 52.248
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 1.0,
+        "per_pair": {
+          "ADA/USDT:USDT": 1.0,
+          "BTC/USDT:USDT": 1.0,
+          "DASH/USDT:USDT": 1.0,
+          "ETH/USDT:USDT": 1.0,
+          "LTC/USDT:USDT": 1.0,
+          "XLM/USDT:USDT": 1.0,
+          "XMR/USDT:USDT": 1.0,
+          "XRP/USDT:USDT": 1.0
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.876423,
+        "profit_abs": -397.285,
+        "profit_pct_points": -39.7285,
+        "profit_relative_change": 0.6719,
+        "same_candle_pct_points": 53.518,
+        "trade_relative_change": 13.0021,
+        "trades": 6072
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/MomentumCCITrendStrategy-f0099a2a-2026-09-20_07-18-58.zip",
+        "attempted_at": "2026-09-20T07:18:59+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w1_docker.json",
+        "trades_sha256": "sha256_4f76bc1d1ea5316f182549f88d55857a3f7cdd897987a9c07c8de05b2c627349"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "CCI Exit Long": 2613,
+          "CCI Exit Short": 3594,
+          "roi": 264,
+          "stop_loss": 68
+        },
+        "max_drawdown_account": 0.9888,
+        "mean_duration_min": 36.13,
+        "mean_profit_pct": -0.5571,
+        "negative_duration_trades": 0,
+        "profit_abs": -988.5523,
+        "profit_factor": 0.2241,
+        "profit_pct": -98.8552,
+        "same_candle_pct": 99.342,
+        "sharpe": -12.5673,
+        "starting_balance": 1000,
+        "trades": 6539,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 4.037
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1d",
+      "reasons": [
+        "profit_change_over_50pct",
+        "trade_count_change_over_10pct"
+      ],
+      "status": "SENSITIVE",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "MomentumScoreStrategy": {
@@ -11095,6 +13285,184 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "MultiActionZone": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/MultiActionZone-179b96b7-2026-09-09_20-55-48.zip",
+        "canonical_sha256": "sha256_05288498308646163d89560bf12ece262b72c3ce4dcc2e8cfb6310e269518401",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_87c548927198d24ff3595f12064c9e929e0d01cc7b07a2a68e02778e8b5ff7ee"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 283,
+          "force_exit": 3
+        },
+        "max_drawdown_account": 0.1346,
+        "mean_duration_min": 41161.68,
+        "mean_profit_pct": 9.5879,
+        "negative_duration_trades": 0,
+        "profit_abs": 3618.306,
+        "profit_factor": 2.9159,
+        "profit_pct": 361.8306,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.3666,
+        "starting_balance": 1000,
+        "trades": 286,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 32.867
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 0.9991,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9991,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": 0.0,
+        "profit_pct_points": 0.0,
+        "profit_relative_change": 0.0,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/MultiActionZone-179b96b7-2026-09-20_07-42-13.zip",
+        "attempted_at": "2026-09-20T07:42:14+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w1_docker.json",
+        "trades_sha256": "sha256_c3fe5d9f3453e12052a0c729dfa1d803f379e377d9cc28e7cf97ea1844e23b83"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 283,
+          "force_exit": 3
+        },
+        "max_drawdown_account": 0.1346,
+        "mean_duration_min": 41161.68,
+        "mean_profit_pct": 9.5879,
+        "negative_duration_trades": 0,
+        "profit_abs": 3618.306,
+        "profit_factor": 2.9159,
+        "profit_pct": 361.8306,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.3666,
+        "starting_balance": 1000,
+        "trades": 286,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 32.867
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "4h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "MultiFactorConfluenceStrategy": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/MultiFactorConfluenceStrategy-195fb188-2026-09-09_22-02-20.zip",
+        "canonical_sha256": "sha256_d48dc4a8d0a98f062187df66aea29edb3644933603fb5d93f21a1078e9d3177e",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_9af9c22dabcbdb1fde42b550db5dc91158311e90114ed580c372414ef36054db"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 31,
+          "roi": 1820,
+          "stop_loss": 2073,
+          "trailing_stop_loss": 521
+        },
+        "max_drawdown_account": 0.9159,
+        "mean_duration_min": 3393.04,
+        "mean_profit_pct": -0.2717,
+        "negative_duration_trades": 0,
+        "profit_abs": -851.1278,
+        "profit_factor": 0.9287,
+        "profit_pct": -85.1128,
+        "same_candle_pct": 5.939,
+        "sharpe": -1.166,
+        "starting_balance": 1000,
+        "trades": 4445,
+        "trailing_exit_pct": 11.721,
+        "winrate_pct": 52.868
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 0.9991,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9991,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.026311,
+        "profit_abs": 147.7883,
+        "profit_pct_points": 14.7788,
+        "profit_relative_change": 0.1736,
+        "same_candle_pct_points": -1.186,
+        "trade_relative_change": 0.0061,
+        "trades": -27
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/MultiFactorConfluenceStrategy-195fb188-2026-09-20_07-24-59.zip",
+        "attempted_at": "2026-09-20T07:25:01+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w3_docker.json",
+        "trades_sha256": "sha256_3f5807399f9ca972620a7f7d40f57ecb4a8fdf8d52bcfdd60069064360b814c5"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 31,
+          "roi": 1925,
+          "stop_loss": 2056,
+          "trailing_stop_loss": 406
+        },
+        "max_drawdown_account": 0.864,
+        "mean_duration_min": 3528.76,
+        "mean_profit_pct": -0.1415,
+        "negative_duration_trades": 0,
+        "profit_abs": -703.3395,
+        "profit_factor": 0.9563,
+        "profit_pct": -70.334,
+        "same_candle_pct": 4.753,
+        "sharpe": -0.7389,
+        "starting_balance": 1000,
+        "trades": 4418,
+        "trailing_exit_pct": 9.19,
+        "winrate_pct": 52.965
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "4h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "MultiMA_TSL": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -11116,16 +13484,6 @@
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "MultiOffsetLamboV0": {
-      "basis": "owner_rule_at_or_below_5m",
-      "detail_timeframe": null,
-      "main_timeframe": "5m",
-      "reasons": [
-        "baseline_at_detail_granularity"
-      ],
-      "status": "PASS",
-      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
-    },
-    "MyStratV1": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",
@@ -12908,6 +15266,182 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "OmaGann": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/OmaGann-9401627a-2026-09-06_11-47-48.zip",
+        "canonical_sha256": "sha256_aaffac4314decb5c5a84c12eb6d97140b8559bcf1d90e176d4a2a1b4eddd4840",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_76732f88c340540dd3323eb086988bdf476da1f215c4069450c69e3e581c2bde"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 8682,
+          "force_exit": 1,
+          "roi": 805,
+          "stop_loss": 33
+        },
+        "max_drawdown_account": 0.8896,
+        "mean_duration_min": 1211.99,
+        "mean_profit_pct": -0.1171,
+        "negative_duration_trades": 0,
+        "profit_abs": -820.8086,
+        "profit_factor": 0.93,
+        "profit_pct": -82.0809,
+        "same_candle_pct": 0.126,
+        "sharpe": -1.6862,
+        "starting_balance": 1000,
+        "trades": 9521,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 28.747
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": 0.1033,
+        "profit_pct_points": 0.0104,
+        "profit_relative_change": 0.0001,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/OmaGann-9401627a-2026-09-20_07-26-45.zip",
+        "attempted_at": "2026-09-20T07:26:48+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w4_docker.json",
+        "trades_sha256": "sha256_cffd32a6678e5166f8ff69cf4b2fcd2a71706e61216e241019831d883cab9d21"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 8682,
+          "force_exit": 1,
+          "roi": 805,
+          "stop_loss": 33
+        },
+        "max_drawdown_account": 0.8896,
+        "mean_duration_min": 1214.34,
+        "mean_profit_pct": -0.1171,
+        "negative_duration_trades": 0,
+        "profit_abs": -820.7053,
+        "profit_factor": 0.93,
+        "profit_pct": -82.0705,
+        "same_candle_pct": 0.126,
+        "sharpe": -1.6857,
+        "starting_balance": 1000,
+        "trades": 9521,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 28.747
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "OversoldReversion": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/OversoldReversion-dcb09e33-2026-09-18_22-32-17.zip",
+        "canonical_sha256": "sha256_1c0c56d1ca315b3bb783998b7f8fde67fabb06204d7942e839e228fa0530a89d",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_fcb500b98c8853c3fae3fc8bbb85293c15dcbb8a1b3a21723d72b32c4bf44f80"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "hold_expired": 124
+        },
+        "max_drawdown_account": 0.1003,
+        "mean_duration_min": 4320.0,
+        "mean_profit_pct": 4.6781,
+        "negative_duration_trades": 0,
+        "profit_abs": 543.1999,
+        "profit_factor": 2.6509,
+        "profit_pct": 54.32,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.3731,
+        "starting_balance": 1000,
+        "trades": 124,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 66.129
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": 37.3836,
+        "profit_pct_points": 3.7384,
+        "profit_relative_change": 0.0688,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/OversoldReversion-dcb09e33-2026-09-20_07-28-44.zip",
+        "attempted_at": "2026-09-20T07:28:45+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w3_docker.json",
+        "trades_sha256": "sha256_44f17edc2a10128a64461e0613502d334a58bb7e2e273b812b6e0580ca9204a2"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "hold_expired": 124
+        },
+        "max_drawdown_account": 0.0998,
+        "mean_duration_min": 4320.0,
+        "mean_profit_pct": 4.8405,
+        "negative_duration_trades": 0,
+        "profit_abs": 580.5835,
+        "profit_factor": 2.7542,
+        "profit_pct": 58.0584,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.3861,
+        "starting_balance": 1000,
+        "trades": 124,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 67.742
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "PRICEFOLLOWING": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -13132,6 +15666,185 @@
         "baseline_at_detail_granularity"
       ],
       "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "PolymarketMeanReversionStrategy": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/PolymarketMeanReversionStrategy-9c33dc8c-2026-09-09_22-03-11.zip",
+        "canonical_sha256": "sha256_62a838619e15bf55c864029c5efb1f559c536014466e31dc48379317df41fec0",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_771d39b93b054db412a1eaed9cc0522a4424c4bfd4997061858f63ee57a15289"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 123,
+          "roi": 14,
+          "stop_loss": 10
+        },
+        "max_drawdown_account": 0.1278,
+        "mean_duration_min": 4654.69,
+        "mean_profit_pct": 0.3773,
+        "negative_duration_trades": 0,
+        "profit_abs": 52.6264,
+        "profit_factor": 1.0757,
+        "profit_pct": 5.2626,
+        "same_candle_pct": 0.68,
+        "sharpe": 0.0318,
+        "starting_balance": 1000,
+        "trades": 147,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 61.224
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 0.9991,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9991,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": 0.0,
+        "profit_pct_points": 0.0,
+        "profit_relative_change": 0.0,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/PolymarketMeanReversionStrategy-9c33dc8c-2026-09-20_07-28-45.zip",
+        "attempted_at": "2026-09-20T07:28:46+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w4_docker.json",
+        "trades_sha256": "sha256_6f8a7be30f77ddfe54894968e9ad8d2aaf1ac093672d0e7915dc0fe5cce58b32"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 123,
+          "roi": 14,
+          "stop_loss": 10
+        },
+        "max_drawdown_account": 0.1278,
+        "mean_duration_min": 4673.1,
+        "mean_profit_pct": 0.3773,
+        "negative_duration_trades": 0,
+        "profit_abs": 52.6264,
+        "profit_factor": 1.0757,
+        "profit_pct": 5.2626,
+        "same_candle_pct": 0.68,
+        "sharpe": 0.0318,
+        "starting_balance": 1000,
+        "trades": 147,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 61.224
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "4h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "PolymarketMomentumStrategy": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/PolymarketMomentumStrategy-aee6b82b-2026-09-09_22-04-04.zip",
+        "canonical_sha256": "sha256_66235975cdad6095dc6f6fcf92658412e35fdac63ce9ed36a488b5c201a77a36",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_a4bc99d65b5f0482cdc65cbd078f47819b0a1de7c4747d1a6589cca828b86d25"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 991,
+          "trailing_stop_loss": 134
+        },
+        "max_drawdown_account": 0.3652,
+        "mean_duration_min": 1561.39,
+        "mean_profit_pct": -0.1955,
+        "negative_duration_trades": 0,
+        "profit_abs": -256.6953,
+        "profit_factor": 0.8793,
+        "profit_pct": -25.6695,
+        "same_candle_pct": 1.422,
+        "sharpe": -0.4361,
+        "starting_balance": 1000,
+        "trades": 1125,
+        "trailing_exit_pct": 11.911,
+        "winrate_pct": 38.578
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 0.9991,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9991,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.025277,
+        "profit_abs": 409.9814,
+        "profit_pct_points": 40.9981,
+        "profit_relative_change": 1.5972,
+        "same_candle_pct_points": -0.707,
+        "trade_relative_change": 0.0053,
+        "trades": -6
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/PolymarketMomentumStrategy-aee6b82b-2026-09-20_07-30-55.zip",
+        "attempted_at": "2026-09-20T07:30:56+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w3_docker.json",
+        "trades_sha256": "sha256_553812b7e7d44c7e4665cf1b359da57fbed044359c25a8f62b0597f91c5fca43"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1014,
+          "trailing_stop_loss": 105
+        },
+        "max_drawdown_account": 0.2126,
+        "mean_duration_min": 1591.03,
+        "mean_profit_pct": 0.1247,
+        "negative_duration_trades": 0,
+        "profit_abs": 153.2861,
+        "profit_factor": 1.0582,
+        "profit_pct": 15.3286,
+        "same_candle_pct": 0.715,
+        "sharpe": 0.1886,
+        "starting_balance": 1000,
+        "trades": 1119,
+        "trailing_exit_pct": 9.383,
+        "winrate_pct": 39.857
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "4h",
+      "reasons": [
+        "profit_sign_flip",
+        "profit_change_over_50pct"
+      ],
+      "status": "SENSITIVE",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "PowerTower": {
@@ -13637,6 +16350,191 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "RSI_BB": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/RSI_BB-ebe5244c-2026-09-07_16-47-57.zip",
+        "canonical_sha256": "sha256_a6b9af248ea093a49165f11b6cd25ad54a362eeb2ab13ed86ced748b000afea3",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_91de16be990e3bede3d17e716adf0af0436988bcc20c31729f8dc931e04b6368"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 12147,
+          "force_exit": 5
+        },
+        "max_drawdown_account": 0.9538,
+        "mean_duration_min": 1743.12,
+        "mean_profit_pct": 0.0166,
+        "negative_duration_trades": 0,
+        "profit_abs": -486.1832,
+        "profit_factor": 0.9922,
+        "profit_pct": -48.6183,
+        "same_candle_pct": 0.0,
+        "sharpe": -0.1636,
+        "starting_balance": 1000,
+        "trades": 12152,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 61.677
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 1.0,
+        "per_pair": {
+          "ADA/USDT": 1.0,
+          "BTC/USDT": 1.0,
+          "DASH/USDT": 1.0,
+          "ETH/USDT": 1.0,
+          "LTC/USDT": 1.0,
+          "XLM/USDT": 1.0,
+          "XMR/USDT": 1.0,
+          "XRP/USDT": 1.0
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": 0.0871,
+        "profit_pct_points": 0.0087,
+        "profit_relative_change": 0.0002,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/RSI_BB-ebe5244c-2026-09-20_07-47-15.zip",
+        "attempted_at": "2026-09-20T07:47:21+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w4_docker.json",
+        "trades_sha256": "sha256_e54257a8e32e8e73a4c45c77cc0c4f0abe8d3249760fc5acf7a6ef0c86342d84"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 12147,
+          "force_exit": 5
+        },
+        "max_drawdown_account": 0.9538,
+        "mean_duration_min": 1743.12,
+        "mean_profit_pct": 0.0166,
+        "negative_duration_trades": 0,
+        "profit_abs": -486.0961,
+        "profit_factor": 0.9922,
+        "profit_pct": -48.6096,
+        "same_candle_pct": 0.0,
+        "sharpe": -0.1635,
+        "starting_balance": 1000,
+        "trades": 12152,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 61.677
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "15m",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "RSI_BB_MACD_Nov_2023_1h_2_Dec": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/RSI_BB_MACD_Nov_2023_1h_2_Dec-87700a43-2026-09-17_21-22-53.zip",
+        "canonical_sha256": "sha256_74943580a566758ce28f9f6ef7a57d15ae6053c1d798b875ac2a307fa7937a7a",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_e5c74341eb0c25f4f0bee425f806ac40abb0de0fbff56fc07d5a400369eef2f6"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_long": 179,
+          "exit_short": 854,
+          "force_exit": 1,
+          "roi": 2593,
+          "stop_loss": 1618,
+          "trailing_stop_loss": 19943
+        },
+        "max_drawdown_account": 0.6152,
+        "mean_duration_min": 616.41,
+        "mean_profit_pct": 0.4708,
+        "negative_duration_trades": 0,
+        "profit_abs": 41139182.5678,
+        "profit_factor": 1.0369,
+        "profit_pct": 4113918.2568,
+        "same_candle_pct": 11.482,
+        "sharpe": 1.377,
+        "starting_balance": 1000,
+        "trades": 25188,
+        "trailing_exit_pct": 79.177,
+        "winrate_pct": 78.577
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 1.0,
+        "per_pair": {
+          "ADA/USDT:USDT": 1.0,
+          "BTC/USDT:USDT": 1.0,
+          "DASH/USDT:USDT": 1.0,
+          "ETH/USDT:USDT": 1.0,
+          "LTC/USDT:USDT": 1.0,
+          "XLM/USDT:USDT": 1.0,
+          "XMR/USDT:USDT": 1.0,
+          "XRP/USDT:USDT": 1.0
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.094647,
+        "profit_abs": -41140175.7712,
+        "profit_pct_points": -4114017.5771,
+        "profit_relative_change": 1.0,
+        "same_candle_pct_points": 40.467,
+        "trade_relative_change": 0.7587,
+        "trades": -19109
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/RSI_BB_MACD_Nov_2023_1h_2_Dec-87700a43-2026-09-20_07-38-28.zip",
+        "attempted_at": "2026-09-20T07:38:31+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w3_docker.json",
+        "trades_sha256": "sha256_6cd78571a8d17f3d39c411d25a8027cb1bb43562a06802efb27cef2bc138bda1"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_long": 8,
+          "exit_short": 89,
+          "roi": 203,
+          "stop_loss": 509,
+          "trailing_stop_loss": 5270
+        },
+        "max_drawdown_account": 0.9953,
+        "mean_duration_min": 310.0,
+        "mean_profit_pct": -0.4685,
+        "negative_duration_trades": 0,
+        "profit_abs": -993.2034,
+        "profit_factor": 0.7987,
+        "profit_pct": -99.3203,
+        "same_candle_pct": 51.949,
+        "sharpe": -1.5557,
+        "starting_balance": 1000,
+        "trades": 6079,
+        "trailing_exit_pct": 86.692,
+        "winrate_pct": 85.343
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [
+        "profit_sign_flip",
+        "profit_change_over_50pct",
+        "trade_count_change_over_10pct"
+      ],
+      "status": "SENSITIVE",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "RSI_EMA_strategy": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -14140,6 +17038,93 @@
       "reasons": [
         "baseline_at_detail_granularity"
       ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "RsiBollingerStrategy": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/RsiBollingerStrategy-86871f9f-2026-09-09_22-09-13.zip",
+        "canonical_sha256": "sha256_092749f70399d945bef528bee9dc8c52f6e8ee6762fe1deba448ae998b7f30ee",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_ab59144059dc4b4cfe2000cc0c7d653add50dcdaf4e589f0808cf2b4185dde4e"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 2374,
+          "force_exit": 1
+        },
+        "max_drawdown_account": 0.3951,
+        "mean_duration_min": 2581.41,
+        "mean_profit_pct": 0.1994,
+        "negative_duration_trades": 0,
+        "profit_abs": 366.5303,
+        "profit_factor": 1.0408,
+        "profit_pct": 36.653,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.241,
+        "starting_balance": 1000,
+        "trades": 2375,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 62.905
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": 0.0,
+        "profit_pct_points": 0.0,
+        "profit_relative_change": 0.0,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/RsiBollingerStrategy-86871f9f-2026-09-20_07-42-25.zip",
+        "attempted_at": "2026-09-20T07:42:27+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w3_docker.json",
+        "trades_sha256": "sha256_9664b3bed0dc9407f66d8b9c4cb246d00e162da2021c3198e56a6d6568d82d08"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 2374,
+          "force_exit": 1
+        },
+        "max_drawdown_account": 0.3951,
+        "mean_duration_min": 2581.41,
+        "mean_profit_pct": 0.1994,
+        "negative_duration_trades": 0,
+        "profit_abs": 366.5303,
+        "profit_factor": 1.0408,
+        "profit_pct": 36.653,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.241,
+        "starting_balance": 1000,
+        "trades": 2375,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 62.905
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
@@ -14758,6 +17743,94 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "SimpleRSI_Shorts": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/SimpleRSI_Shorts-f0dec165-2026-09-17_21-24-24.zip",
+        "canonical_sha256": "sha256_3158b4254edadbfc9344fc93abaab0d67beee4e3c0f2db8c7f5a5c201d6e48b2",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_93a10c8bf6015ae86f02d2961dd91d80756f066ac507f8be70d3fddaa9e35af6"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "force_exit": 2,
+          "stop_loss": 1,
+          "trailing_stop_loss": 13
+        },
+        "max_drawdown_account": 0.6339,
+        "mean_duration_min": 51660.0,
+        "mean_profit_pct": -46.717,
+        "negative_duration_trades": 0,
+        "profit_abs": -633.948,
+        "profit_factor": 0.0,
+        "profit_pct": -63.3948,
+        "same_candle_pct": 18.75,
+        "sharpe": -0.1851,
+        "starting_balance": 1000,
+        "trades": 16,
+        "trailing_exit_pct": 81.25,
+        "winrate_pct": 0.0
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 1.0,
+        "per_pair": {
+          "ADA/USDT:USDT": 1.0,
+          "BTC/USDT:USDT": 1.0,
+          "DASH/USDT:USDT": 1.0,
+          "ETH/USDT:USDT": 1.0,
+          "LTC/USDT:USDT": 1.0,
+          "XLM/USDT:USDT": 1.0,
+          "XMR/USDT:USDT": 1.0,
+          "XRP/USDT:USDT": 1.0
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0625,
+        "profit_abs": 132.9342,
+        "profit_pct_points": 13.2934,
+        "profit_relative_change": 0.2097,
+        "same_candle_pct_points": 12.5,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/SimpleRSI_Shorts-f0dec165-2026-09-20_07-44-54.zip",
+        "attempted_at": "2026-09-20T07:44:55+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w3_docker.json",
+        "trades_sha256": "sha256_c7d5751397fb2eb78a3be9f2942d08eb1b9d49fc0bf941a0ecedff4a238b1766"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "force_exit": 2,
+          "trailing_stop_loss": 14
+        },
+        "max_drawdown_account": 0.501,
+        "mean_duration_min": 51715.62,
+        "mean_profit_pct": -32.6448,
+        "negative_duration_trades": 0,
+        "profit_abs": -501.0138,
+        "profit_factor": 0.0,
+        "profit_pct": -50.1014,
+        "same_candle_pct": 31.25,
+        "sharpe": -0.2974,
+        "starting_balance": 1000,
+        "trades": 16,
+        "trailing_exit_pct": 87.5,
+        "winrate_pct": 0.0
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1d",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "SlowPotato": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -14950,6 +18023,180 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "SmartMoneyStrategy": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/SmartMoneyStrategy-83dc6dbe-2026-09-07_16-50-03.zip",
+        "canonical_sha256": "sha256_f89d1e0ec3dd685a6214d917e5d3beda8b003a44e8a528af6e3a70fe415944c3",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_39e5049e4968e884bbd0e4322702efff4b071f389a9a2b870c3f0c681230f958"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 340,
+          "force_exit": 8
+        },
+        "max_drawdown_account": 0.5075,
+        "mean_duration_min": 68351.21,
+        "mean_profit_pct": 3.5686,
+        "negative_duration_trades": 0,
+        "profit_abs": 3072.1614,
+        "profit_factor": 1.6512,
+        "profit_pct": 307.2161,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.2507,
+        "starting_balance": 1000,
+        "trades": 348,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 97.701
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 1.0,
+        "per_pair": {
+          "ADA/USDT": 1.0,
+          "BTC/USDT": 1.0,
+          "DASH/USDT": 1.0,
+          "ETH/USDT": 1.0,
+          "LTC/USDT": 1.0,
+          "XLM/USDT": 1.0,
+          "XMR/USDT": 1.0,
+          "XRP/USDT": 1.0
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.000642,
+        "profit_abs": 75.5267,
+        "profit_pct_points": 7.5527,
+        "profit_relative_change": 0.0246,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0287,
+        "trades": 10
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/SmartMoneyStrategy-83dc6dbe-2026-09-20_07-57-53.zip",
+        "attempted_at": "2026-09-20T07:57:59+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w3_docker.json",
+        "trades_sha256": "sha256_d338afaea2442f7d42a2e80771e2a8463bf58036a283e28ad0998342445f8330"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 350,
+          "force_exit": 8
+        },
+        "max_drawdown_account": 0.5057,
+        "mean_duration_min": 66334.29,
+        "mean_profit_pct": 3.4946,
+        "negative_duration_trades": 0,
+        "profit_abs": 3147.6881,
+        "profit_factor": 1.6602,
+        "profit_pct": 314.7688,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.2574,
+        "starting_balance": 1000,
+        "trades": 358,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 97.765
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "30m",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "SmartMoneyStrategyHyperopt": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/SmartMoneyStrategyHyperopt-fff5e4c0-2026-09-07_16-50-26.zip",
+        "canonical_sha256": "sha256_f89d1e0ec3dd685a6214d917e5d3beda8b003a44e8a528af6e3a70fe415944c3",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_0dc5bed6aaabc3f61d5e1e7bd7bfbdc8bf174e0ea11d6137965116484c380661"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 215,
+          "force_exit": 8
+        },
+        "max_drawdown_account": 0.5588,
+        "mean_duration_min": 104313.63,
+        "mean_profit_pct": 3.7667,
+        "negative_duration_trades": 0,
+        "profit_abs": 1150.9039,
+        "profit_factor": 1.3718,
+        "profit_pct": 115.0904,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.1164,
+        "starting_balance": 1000,
+        "trades": 223,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 96.413
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.000632,
+        "profit_abs": -1.0097,
+        "profit_pct_points": -0.101,
+        "profit_relative_change": 0.0009,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0179,
+        "trades": 4
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/SmartMoneyStrategyHyperopt-fff5e4c0-2026-09-20_07-55-14.zip",
+        "attempted_at": "2026-09-20T07:55:20+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w2_docker.json",
+        "trades_sha256": "sha256_c2f909e6207305ab7bc09f6394d85c06fb76852bddc9b2755cbd4d651fabb5b8"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 219,
+          "force_exit": 8
+        },
+        "max_drawdown_account": 0.5582,
+        "mean_duration_min": 102398.13,
+        "mean_profit_pct": 3.6828,
+        "negative_duration_trades": 0,
+        "profit_abs": 1149.8942,
+        "profit_factor": 1.3726,
+        "profit_pct": 114.9894,
+        "same_candle_pct": 0.0,
+        "sharpe": 0.1173,
+        "starting_balance": 1000,
+        "trades": 227,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 96.476
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "SmoothOperator": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -15047,6 +18294,91 @@
       "reasons": [
         "baseline_at_detail_granularity"
       ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "StochasticCciStrategy": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/StochasticCciStrategy-11eeffb3-2026-09-09_22-11-44.zip",
+        "canonical_sha256": "sha256_f73b9660c66300af13eb837b64e2bed031ed6b2d5a29053b4fc836083eb86b1d",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_b76f32b72fee9974e157cc07d79891a27fc99aa8fafd1f1067de56163e55f052"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1186
+        },
+        "max_drawdown_account": 0.2868,
+        "mean_duration_min": 1412.63,
+        "mean_profit_pct": -0.0218,
+        "negative_duration_trades": 0,
+        "profit_abs": -58.3888,
+        "profit_factor": 0.9717,
+        "profit_pct": -5.8389,
+        "same_candle_pct": 0.0,
+        "sharpe": -0.0848,
+        "starting_balance": 1000,
+        "trades": 1186,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 57.504
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": 0.0,
+        "profit_pct_points": 0.0,
+        "profit_relative_change": 0.0,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/StochasticCciStrategy-11eeffb3-2026-09-20_07-49-42.zip",
+        "attempted_at": "2026-09-20T07:49:44+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w4_docker.json",
+        "trades_sha256": "sha256_0f847ea5e41ca8e41cff2e10e74846c3c4586c38e7d671b457cafbe40849bb89"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1186
+        },
+        "max_drawdown_account": 0.2868,
+        "mean_duration_min": 1412.63,
+        "mean_profit_pct": -0.0218,
+        "negative_duration_trades": 0,
+        "profit_abs": -58.3888,
+        "profit_factor": 0.9717,
+        "profit_pct": -5.8389,
+        "same_candle_pct": 0.0,
+        "sharpe": -0.0848,
+        "starting_balance": 1000,
+        "trades": 1186,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 57.504
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
@@ -16282,6 +19614,95 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "TrendAtrStrategy": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/TrendAtrStrategy-b0b678b4-2026-09-09_22-14-51.zip",
+        "canonical_sha256": "sha256_286e0b77d053b429ef6a6ef8d6c329dd817ad84b95b30415cd097b2f47697863",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_251208ded4f7fe32de04231ebdf5808d79b6a17ac84c3a86ee927227d9ee2c02"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1909,
+          "roi": 673,
+          "stop_loss": 96
+        },
+        "max_drawdown_account": 0.4387,
+        "mean_duration_min": 1309.42,
+        "mean_profit_pct": -0.0199,
+        "negative_duration_trades": 0,
+        "profit_abs": -138.8366,
+        "profit_factor": 0.979,
+        "profit_pct": -13.8837,
+        "same_candle_pct": 1.083,
+        "sharpe": -0.1775,
+        "starting_balance": 1000,
+        "trades": 2678,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 29.5
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 0.9991,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9991,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": 0.9204,
+        "profit_pct_points": 0.0921,
+        "profit_relative_change": 0.0066,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/TrendAtrStrategy-b0b678b4-2026-09-20_07-52-05.zip",
+        "attempted_at": "2026-09-20T07:52:06+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w4_docker.json",
+        "trades_sha256": "sha256_2ed5b24b70a63946ce2c998c9e33561abc6e187abdced765ed0e8f83d2dc7fdd"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 1909,
+          "roi": 673,
+          "stop_loss": 96
+        },
+        "max_drawdown_account": 0.4397,
+        "mean_duration_min": 1335.48,
+        "mean_profit_pct": -0.018,
+        "negative_duration_trades": 0,
+        "profit_abs": -137.9162,
+        "profit_factor": 0.9791,
+        "profit_pct": -13.7916,
+        "same_candle_pct": 1.083,
+        "sharpe": -0.1763,
+        "starting_balance": 1000,
+        "trades": 2678,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 29.537
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "4h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "TrendBreakout": {
       "anomalies": [
         "detail_run_has_1_trades_closing_before_they_opened"
@@ -16939,6 +20360,98 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "TwoCandle": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/TwoCandle-01e43a04-2026-09-06_11-52-12.zip",
+        "canonical_sha256": "sha256_461de9e30dbfec9d93ec25c5fbbad201ff39e887eced6edbf942a6045f2940c4",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_81bb90cf0a5a7d1559119cce74d98eb1bb14d8ff4294217bc36f0bfe4667fd82"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit 2": 6587,
+          "roi": 2934,
+          "short1": 8,
+          "stop_loss": 1546
+        },
+        "max_drawdown_account": 0.9676,
+        "mean_duration_min": 236.36,
+        "mean_profit_pct": -0.2398,
+        "negative_duration_trades": 0,
+        "profit_abs": -965.6778,
+        "profit_factor": 0.7493,
+        "profit_pct": -96.5678,
+        "same_candle_pct": 13.788,
+        "sharpe": -8.5321,
+        "starting_balance": 1000,
+        "trades": 11075,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 40.767
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.002971,
+        "profit_abs": -0.0469,
+        "profit_pct_points": -0.0047,
+        "profit_relative_change": 0.0,
+        "same_candle_pct_points": -1.708,
+        "trade_relative_change": 0.0367,
+        "trades": 407
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/TwoCandle-01e43a04-2026-09-20_08-00-53.zip",
+        "attempted_at": "2026-09-20T08:00:57+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w2_docker.json",
+        "trades_sha256": "sha256_7fb662d86f0bd3a7b57c6b67ac67a1dcd9d8ee19050345a8e3f78c729f9fc234"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit 2": 6840,
+          "roi": 3008,
+          "short1": 8,
+          "stop_loss": 1603,
+          "trailing_stop_loss": 23
+        },
+        "max_drawdown_account": 0.9676,
+        "mean_duration_min": 246.04,
+        "mean_profit_pct": -0.2304,
+        "negative_duration_trades": 0,
+        "profit_abs": -965.7247,
+        "profit_factor": 0.7586,
+        "profit_pct": -96.5725,
+        "same_candle_pct": 12.08,
+        "sharpe": -8.4467,
+        "starting_balance": 1000,
+        "trades": 11482,
+        "trailing_exit_pct": 0.2,
+        "winrate_pct": 40.986
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "TwoCandleTheory": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -17422,6 +20935,95 @@
       "reasons": [
         "baseline_at_detail_granularity"
       ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "ZScoreMeanReversionStrategy": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/ZScoreMeanReversionStrategy-33c3c74c-2026-09-09_22-22-32.zip",
+        "canonical_sha256": "sha256_32b828e27d7579629999826519d84302662a8dba9a0db93d90afd7bfe11fb207",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "trades_sha256": "sha256_34e7f40e709599177cdb724240ad1d5c75379fa9bd7af7f07464908872acc795"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "exit_signal": 21,
+          "roi": 7,
+          "stop_loss": 6
+        },
+        "max_drawdown_account": 0.0197,
+        "mean_duration_min": 1284.71,
+        "mean_profit_pct": 1.3209,
+        "negative_duration_trades": 0,
+        "profit_abs": 55.9424,
+        "profit_factor": 1.7802,
+        "profit_pct": 5.5942,
+        "same_candle_pct": 5.882,
+        "sharpe": 0.0701,
+        "starting_balance": 1000,
+        "trades": 34,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 55.882
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": true
+      },
+      "coverage": {
+        "min_ratio": 0.9991,
+        "per_pair": {
+          "ADA/USDT": 0.9995,
+          "BTC/USDT": 0.9995,
+          "DASH/USDT": 0.9995,
+          "ETH/USDT": 0.9995,
+          "LTC/USDT": 0.9995,
+          "XLM/USDT": 0.9995,
+          "XMR/USDT": 0.9991,
+          "XRP/USDT": 0.9995
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.0,
+        "profit_abs": 0.0,
+        "profit_pct_points": 0.0,
+        "profit_relative_change": 0.0,
+        "same_candle_pct_points": 0.0,
+        "trade_relative_change": 0.0,
+        "trades": 0
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/ZScoreMeanReversionStrategy-33c3c74c-2026-09-20_08-00-15.zip",
+        "attempted_at": "2026-09-20T08:00:16+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_w3_docker.json",
+        "trades_sha256": "sha256_ad33293ba86a34745c3ed637f22fd7f6e4c335bb3e7b16dd096924964eeada9b"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "exit_signal": 21,
+          "roi": 7,
+          "stop_loss": 6
+        },
+        "max_drawdown_account": 0.0197,
+        "mean_duration_min": 1335.15,
+        "mean_profit_pct": 1.3209,
+        "negative_duration_trades": 0,
+        "profit_abs": 55.9424,
+        "profit_factor": 1.7802,
+        "profit_pct": 5.5942,
+        "same_candle_pct": 5.882,
+        "sharpe": 0.0701,
+        "starting_balance": 1000,
+        "trades": 34,
+        "trailing_exit_pct": 0.0,
+        "winrate_pct": 55.882
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "4h",
+      "reasons": [],
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
@@ -19787,6 +23389,99 @@
         "trade_count_change_over_10pct"
       ],
       "status": "SENSITIVE",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "wavetrend_rsi": {
+      "anomalies": [],
+      "baseline": {
+        "archive": "user_data/profile_smoke/wavetrend_rsi-32bf6591-2026-09-07_16-32-22.zip",
+        "canonical_sha256": "sha256_fdc17d6f3b035050b15b2462fd230d9851a3df6440d3f18717e9f283ee905058",
+        "runtime_id": "native_unversioned",
+        "trades_sha256": "sha256_bddd8b64b3a6f240d2ed1f0f6d575b5efbc69a3dfd0f9b36eb12e01e06a2868e"
+      },
+      "baseline_metrics": {
+        "exit_reasons": {
+          "WT/RSI": 1024,
+          "force_exit": 5,
+          "roi": 32,
+          "stop_loss": 1,
+          "trailing_stop_loss": 527
+        },
+        "max_drawdown_account": 0.1736,
+        "mean_duration_min": 14459.55,
+        "mean_profit_pct": 0.5015,
+        "negative_duration_trades": 0,
+        "profit_abs": 170.5604,
+        "profit_factor": 1.132,
+        "profit_pct": 17.056,
+        "same_candle_pct": 0.566,
+        "sharpe": 0.4366,
+        "starting_balance": 1000,
+        "trades": 1589,
+        "trailing_exit_pct": 33.166,
+        "winrate_pct": 91.693
+      },
+      "basis": "measured_detail_run",
+      "comparison": {
+        "control_run_needed": false,
+        "same_runtime": false
+      },
+      "coverage": {
+        "min_ratio": 0.9998,
+        "per_pair": {
+          "ADA/USDT": 0.9999,
+          "BTC/USDT": 0.9999,
+          "DASH/USDT": 0.9999,
+          "ETH/USDT": 0.9999,
+          "LTC/USDT": 0.9999,
+          "XLM/USDT": 0.9999,
+          "XMR/USDT": 0.9998,
+          "XRP/USDT": 0.9999
+        }
+      },
+      "delta": {
+        "exit_profile_distance": 0.026827,
+        "profit_abs": -20.1386,
+        "profit_pct_points": -2.0138,
+        "profit_relative_change": 0.1181,
+        "same_candle_pct_points": -0.027,
+        "trade_relative_change": 0.051,
+        "trades": 81
+      },
+      "detail": {
+        "archive": "user_data/profile_smoke/wavetrend_rsi-32bf6591-2026-09-20_06-21-56.zip",
+        "attempted_at": "2026-09-20T06:21:58+00:00",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "measured",
+        "store": "results/regime/execution_robustness_detail_5m_docker.json",
+        "trades_sha256": "sha256_01b5f178012ceb3ddb5dcba40a471eafe6952d5e0bac5d030c0af9916ec8c2ae"
+      },
+      "detail_metrics": {
+        "exit_reasons": {
+          "WT/RSI": 1121,
+          "force_exit": 5,
+          "roi": 12,
+          "stop_loss": 1,
+          "trailing_stop_loss": 531
+        },
+        "max_drawdown_account": 0.1648,
+        "mean_duration_min": 13700.42,
+        "mean_profit_pct": 0.4289,
+        "negative_duration_trades": 0,
+        "profit_abs": 150.4218,
+        "profit_factor": 1.1215,
+        "profit_pct": 15.0422,
+        "same_candle_pct": 0.539,
+        "sharpe": 0.4081,
+        "starting_balance": 1000,
+        "trades": 1670,
+        "trailing_exit_pct": 31.796,
+        "winrate_pct": 92.814
+      },
+      "detail_timeframe": "5m",
+      "main_timeframe": "1h",
+      "reasons": [],
+      "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     }
   },

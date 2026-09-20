@@ -7867,26 +7867,6 @@
       "trades": 722,
       "trades_sha256": "sha256_85dce6cada742b6e1768f59e0daf70df041423f4e4a3f2cd9a21a3a4a5ae5145"
     },
-    "Combined_NFIv7_SMA_Rallipanos_20210707": {
-      "archive": "user_data/profile_smoke/Combined_NFIv7_SMA_Rallipanos_20210707-e9761cd4-2026-09-09_16-33-26.zip",
-      "archive_sha256": "sha256_132ed967deea60c6591a06ce68d734b9832bd40f674c19ec119b332548724634",
-      "artifact_key": "",
-      "canonical_sha256": "sha256_7c418bfb65492eae17271e1e3bf09ce80e42e986b26b4651b2c723d8514730fe",
-      "class1_rules": [],
-      "config_overrides": {},
-      "elapsed_s": 37.4,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy Combined_NFIv7_SMA_Rallipanos_20210707 --strategy-path repos/davidzr_freqtrade-strategies/strategies/Combined_NFIv7_SMA_Rallipanos_20210707 --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Combined_NFIv7_SMA_Rallipanos_20210707-e9761cd4 --cache none",
-      "long_trades": 36,
-      "mode": "spot",
-      "run_profile": "spot_long",
-      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
-      "short_trades": 0,
-      "status": "measured",
-      "timerange": "20200301-20200401",
-      "trades": 36,
-      "trades_sha256": "sha256_3782e4dc70703811f84284b1384cefa9c942b2781a99ce5005cea3c73c61d390"
-    },
     "ComboHold": {
       "archive": "user_data/profile_smoke/ComboHold-7aef3c0f-2026-09-08_16-34-36.zip",
       "archive_sha256": "sha256_00fe6c59a237e0d38fc13440b3ddccb61844c916504c5911184d60ba65c90576",
@@ -37215,19 +37195,6 @@
       "timerange": "20200301-20200401",
       "trades": 72,
       "trades_sha256": "sha256_18340ebdc46126fbc7bf44a0a4f4860a79ec0be7d8aa793aceed23f3e1d3f97b"
-    },
-    "chispei": {
-      "canonical_sha256": "sha256_6b4e2cdd6976de45dd49539e7888003eb66a17203f95c40aa91491673d8f9011",
-      "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/chispei.log",
-      "elapsed_s": 21.3,
-      "mode": "spot",
-      "run_profile": "spot_long",
-      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
-      "runtime_id": "docker:sha256:5dd2dacdd2749163a678894f80917ce6299d6f8bf6edfa7ef8b33ec4f6d1669b",
-      "status": "failed",
-      "timerange": "20200301-20200401",
-      "why": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`"
     },
     "conny": {
       "archive": "user_data/profile_smoke/conny-82fa40ec-2026-09-06_09-05-02.zip",
