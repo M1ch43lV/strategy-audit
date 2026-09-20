@@ -1618,6 +1618,11 @@ removed at intake on 2026-09-16 and still present in the pooled manifest; `Chisp
 itself is measured). `targets()` now skips them and the table reports such a strategy
 as `NA` with `execution_robustness_basis: not_rerun_outside_admitted_cohort`, not `PENDING`.
 
+**Validation extension is on hold (owner, 2026-09-20).** `VALIDATION_EXTENSION_PLAN.md` (version 3, reviewed by
+DeepSeek) describes how to extend the validation window to 2026-09-19 without a third window. The owner has postponed it;
+do not start it, do not change `END` in `regime/regime_engine.py` or `regime/attribution.py`, and do not touch
+`profile_full_window.TIMERANGE`. No Amendment for it has been written yet.
+
 **Removed duplicates no longer leave results behind (2026-09-20).** Four duplicates that
 `tools/harvest.py` had deleted (`chispei`, `MyStratV1`, `Combined_NFIv7_SMA_bAdBoY_20211204`,
 `Combined_NFIv7_SMA_Rallipanos_20210707`) still had records in the result stores, and

@@ -1,5 +1,8 @@
 # Plan: extend the validation window to 2026-09-19
 
+**On hold (owner decision 2026-09-20): the extension will be carried out at a later date. Nothing is to be started until
+the owner asks for it.** The plan stays valid as written; before starting, re-check the window end and the data.
+
 Status: plan only (version 3, 2026-09-20), nothing below has been run except the one-strategy
 probe in section 2. Version 2 added the owner's decisions of 2026-09-20 (5m robustness and the
 Freqtrade-native figures are extended too) and the two-tier design that follows from them. Version 3
