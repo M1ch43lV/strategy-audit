@@ -1,0 +1,5 @@
+--- repos/XXA222_HPRL/config_examples/strategies/HedgeAdaptiveRegimeStrategy.py
++++ repair/patched/repos/XXA222_HPRL/config_examples/strategies/HedgeAdaptiveRegimeStrategy.py
+@@
+-from freqtrade.strategy.hedge import HedgeStrategyMixin
++from xxa222_hedge_audit_shim import HedgeStrategyMixin
