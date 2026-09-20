@@ -8,7 +8,7 @@ itself are all chosen by whoever runs it.
 
 UNTIL 2026-09-14 THIS WAS THEREFORE TREATED AS NOT A CLASS 1 REPAIR: every
 number this module produces was tagged `run_class="freqai"` and reported on a
-separate, non-comparable track, never entering E1. `ELIGIBILITY_EXPANSION_PLAN.md`
+separate, non-comparable track, never entering E1. `PIPELINE_EXTENSIONS.md` (Part 1)
 §4.1 (2026-09-14 amendment, on owner instruction) retired that framing: the
 `freqai` block is restored infrastructure a strategy's own code requires to
 load at all, the same kind of missing piece as `stake_amount`/`pair_whitelist`/

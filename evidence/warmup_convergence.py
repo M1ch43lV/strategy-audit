@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Choose a diagnostic warm-up by convergence instead of by literal period.
 
-The frozen rule is in `REGIME_PREREGISTRATION.md` under "Frozen warm-up
+The frozen rule is in `PIPELINE.md` (Decision record) under "Frozen warm-up
 convergence amendment". In short: walk a fixed ladder of warm-up values and
 take the FIRST one at which freqtrade's `recursive-analysis` reports no
 indicator drifting by 1.0 percent or more.
@@ -66,7 +66,7 @@ LOG_DIR = os.path.join(ROOT, "user_data", "convergence_logs")
 # timeframe, 30 days is 30 candles, which cannot settle an EMA200; a year can.
 LADDER_DAYS = (1, 2, 7, 14, 30, 90, 365)
 DRIFT_THRESHOLD_PCT = 1.0
-# Amendment 2026-09-03 (REGIME_PREREGISTRATION.md): the ceiling this caps the
+# Amendment 2026-09-03 (PIPELINE.md, Decision record): the ceiling this caps the
 # ladder at exists to protect the full-window run these values are later
 # reused in - see evidence/profile_full_window.py's own note on the same amendment.
 # Spot and futures pairs were listed on Binance at different times, so their

@@ -14,7 +14,7 @@ data/
 
 # And CLAIMS.csv, which freeze_guard.py reads and README links to. It was
 # swept up by *.csv and never committed: the link 404'd and every clean
-# checkout failed CI, while the working tree passed. See CORRECTIONS.md.
+# checkout failed CI, while the working tree passed. See LESSONS.md, Part 3.
 !CLAIMS.csv
 
 # Published, reproducible canonical strategy/run-profile manifest.

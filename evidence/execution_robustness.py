@@ -6,7 +6,7 @@ Two derived stores, both generated from result archives and never edited by hand
 * ``evidence/EXECUTION_ROBUSTNESS.json`` - compares each strategy's canonical
   pooled Full-Backtest with the same run repeated under ``--timeframe-detail``
   and classifies it PASS / SENSITIVE / NA / ERROR
-  (see EXECUTION_ROBUSTNESS_PLAN.md).
+  (see PIPELINE_EXTENSIONS.md, Part 2).
 * ``evidence/COST_SCREEN.json`` - re-prices every measured canonical
   Full-Backtest with extra slippage and reports whether the net profit
   survives. It needs no new backtest, only the trades already in the archive.

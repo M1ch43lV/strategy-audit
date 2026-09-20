@@ -21,7 +21,7 @@ from evidence import profile_smoke
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTPUT = os.path.join(ROOT, "evidence/PROFILE_FULL_WINDOW.json")
-# Amendment 2026-09-03 (REGIME_PREREGISTRATION.md): the spot window starts a
+# Amendment 2026-09-03 (PIPELINE.md, Decision record): the spot window starts a
 # month later than the futures one. DASH/USDT was listed on Binance
 # 2019-03-28; at the old shared start of 2020-03-01 that left only 337 days
 # of prefix history, so the warm-up ladder could never reach its 365-day
@@ -56,7 +56,7 @@ REPAIR_STORES = (
 def settled_warmups():
     """The warm-up each row settled at, as a config override.
 
-    `REGIME_PREREGISTRATION.md`, amendment of 2026-09-02: the settled warm-up
+    `PIPELINE.md` (Decision record), amendment of 2026-09-02: the settled warm-up
     is the measurement. A full-window run at the author's declared value
     measures exactly the drift the ladder exists to remove, so the number the
     ranking is built on would carry it.

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Run both bias gates over the Wave C rows that produced trades.
 
-Wave C established only that a row runs. `ELIGIBILITY_EXPANSION_PLAN.md`
+Wave C established only that a row runs. `PIPELINE_EXTENSIONS.md` (Part 1)
 is explicit that this is not eligibility: "Successful load or smoke execution
 is not eligibility; full measurement and both bias gates still follow." This
 queue is that follow-up, and it is the step that turns a measurement into a

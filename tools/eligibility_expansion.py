@@ -24,7 +24,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ELIGIBILITY = os.path.join(ROOT, "evidence/REGIME_ELIGIBILITY.csv")
 PROFILES = os.path.join(ROOT, "evidence/EXECUTION_PROFILES.csv")
 CLUSTERS = os.path.join(ROOT, "cluster", "CLUSTERS.csv")
-PLAN = os.path.join(ROOT, "ELIGIBILITY_EXPANSION_PLAN.md")
+PLAN = os.path.join(ROOT, "PIPELINE_EXTENSIONS.md")
 PREREGISTRATION = os.path.join(ROOT, "REGIME_PREREGISTRATION.md")
 OUTPUT = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_CANDIDATES.csv")
 MISSINGNESS = os.path.join(ROOT, "evidence/ELIGIBILITY_EXPANSION_MISSINGNESS.csv")
@@ -230,7 +230,7 @@ def _report(rows, missingness, manifest):
     lines = [
         "# Eligibility expansion inventory", "",
         "**Frozen:** 2026-08-30, before Stage 9 ranking",
-        "**Protocol:** `ELIGIBILITY_EXPANSION_PLAN.md`", "",
+        "**Protocol:** `PIPELINE_EXTENSIONS.md` (Part 1)", "",
         "This inventory uses technical Stage 6 evidence only. No strategy-by-regime",
         "performance or ranking output was read to select candidates.", "",
         "**Current-use warning:** `E0_strict67` is an invalidated historical tag,",

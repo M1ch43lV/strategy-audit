@@ -1,10 +1,33 @@
-# Pipeline — which program runs when, and what it touches
+# Pipeline — the check chain: which program runs when, what it touches, and what was decided
 
 Handwritten, not generated: unlike `STRATEGY_STATUS.csv` or `RUNTIME_ENVIRONMENTS.md`, this sequence does not change with each measurement, but only when the test chain itself changes. Whoever installs a new stage or modifies an existing one updates this file by hand.
 
-This file answers a single question: **in which order do the scripts run, and which file reads/writes which one?** What each stage means content-wise and why it was decided this way and not otherwise is specified in `REGIME_PREREGISTRATION.md` (binding) and `REGIME_AUDIT_PLAN.md` (reference) — see `DOCUMENT_MAP.md` for the reading order to it.
+This file is the one place for the check chain. **Stages 0-13** give the order, the programs, what each reads and writes, and the rule that applies today. The **Decision record** after Stage 13 holds the dated owner decisions behind the rules of Stages 0-8 (moved here from `REGIME_PREREGISTRATION.md` on 2026-09-20). Whatever was added to the chain by a protocol of its own (admission expansion, execution robustness = Stage 8b, the validation extension that is on hold) is in `PIPELINE_EXTENSIONS.md`.
+
+Neighbours: `REGIME_PREREGISTRATION.md` is binding for the regime study (model, windows, gates, specialist rules, confirmation), `REGIME_AUDIT_PLAN.md` is the reasoning behind it (reference only), `HANDOFF.md` is the live state, and `README.md` gives the reading order. What is *currently true* of any strategy is never in this file; it is in `STRATEGY_STATUS.csv` and `evidence/PIPELINE_STATE.json`.
 
 All native runs (not Docker) need the Python interpreter from `ftenv/Scripts/python.exe` (`freqtrade`/`pandas` is installed there, not in the system Python) — usually via the environment variable `PROFILE_PYTHON`.
+
+## Fixed constants
+
+Do not rederive these; a change is a new dated entry in the Decision record or in `REGIME_PREREGISTRATION.md`.
+
+| What | Value | Rule |
+|---|---|---|
+| Spot analysis window | `20200401-20260821` (end exclusive) | Decision 2026-09-03 |
+| Futures analysis window | `20200301-20260821` (end exclusive) | Decision 2026-09-03 |
+| Discovery / validation | discovery 2020-03-01 to 2023-12-31, validation 2024-01-01 to 2026-08-20 | `REGIME_PREREGISTRATION.md`, 2026-09-11 |
+| Bias and convergence diagnostic window, Spot and Futures, BTC only | `20200301-20200601` | Decisions 2026-09-09, 2026-09-10 |
+| Smoke cascade | `20200301-20200401`, then `20200301-20200601`; stop at 10 trades | Decisions 2026-09-10, 2026-09-15 |
+| Convergence ladder | 1, 2, 7, 14, 30, 90, 365 days; accepted when every indicator's absolute drift stays below 1.0 percent | Decision 2026-09-01 |
+| Universe | eight-pair pooled canonical portfolio; pairwise shards are supporting evidence and do not replace pooled shared-capital mechanics | Stage 8 |
+| Primary state model | Wilder DMI/ADX(14) on completed daily candles, shifted one UTC day; four states; six reporting phases on top | `REGIME_PREREGISTRATION.md` |
+| Models | 0 original; 1 BTC-entry gate; 2 coin-entry gate (no BTC); 3 both. Exits stay original. Missing local evidence closes the gate in Models 2 and 3; Model 1 needs only BTC | `REGIME_PREREGISTRATION.md`, 2026-09-07 |
+| Timeout | 3600 s per strategy run, hard, never raised, not even for one strategy | Stage 8 |
+| Memory | WSL ceiling 14 GB plus 4 GB swap, not to be raised. An in-container exit `-9` is `resource_inconclusive`, not a strategy failure. A Docker wrapper exit 125 or an unresponsive VM is not a completed attempt | Stage 8 |
+| Stores | identity-bound, atomic, resumable; one writer per store; every runner records its invocation and non-command environment/config provenance | Stage 6 |
+| `technical_chain_complete=true` | a `measured` canonical pooled Full-Backtest whose source hash and run profile still match the current execution profile; it clears `open_work` only, not cohort or adjudication | Decision 2026-09-10 |
+| Current usable population | the latest active `admitted_E1` adjudication set after C10. E0 is invalid historical provenance and never a fallback | Decision 2026-09-03 |
 
 ## Stage 0 — Corpus Collection (once, or when new repositories are added)
 
@@ -45,11 +68,7 @@ Result of this stage: new rows in `evidence/EXECUTION_PROFILES.csv` (one row per
 |---|---|---|
 | `evidence/profile_smoke.py` | `evidence/EXECUTION_PROFILES.csv`, `evidence/PROFILE_CLASS1.json` (Repair Rules) | `evidence/PROFILE_SMOKE.json` |
 
-Since the prospective amendment of 2026-09-10, the trial run is a fixed cascade: `20200301-20200401` (1 month), with fewer than 10 trades `20200301-20200601` (3 months). It stops at the first result with at least 10 trades and records all attempts. Errors/timeouts are not reinterpreted as passed through a longer window. Existing full-window evidence remains prioritized.
-
-**2026-09-15, amended again:** the third rung, `20200301-20210301` (1 year), is gone. The webclinic017 NNPredict_* cluster showed it buying an hour of retraining per strategy for a verdict the three-month rung already gave just as reliably — zero trades at three months meant zero trades at one year too, every time it was checked, once the actual bug (a pandas chained-assignment no-op silently dropping the write, not a short window) was found. Policy id bumped to `fixed_1m_3m_until_10_trades_v2`; a low-trade result recorded under the old three-rung policy is deliberately treated as stale and re-cascaded under the shorter policy the next time it is asked for.
-
-**2026-09-06, completed:** `ELIGIBILITY_NEVER_RUN.json` and `ELIGIBILITY_TRAP_SMOKE.json` were one-time fallback stores from previous waves (no runner in the current repo rewrote them) — 65 of the 83 lines in them had no separate `evidence/PROFILE_SMOKE.json` entry, `evidence/strategy_status.py` fell back to these two files for them. Caught up via targeted `evidence/profile_smoke.py --strategy ... --profiles spot_long futures_long unknown` (empirically checked: previously 65 of 83 lines in `STRATEGY_STATUS.csv` changed if the files were omitted, afterwards not a single one) and removed both files, including the fallback loop in `evidence/strategy_status.py`.
+The trial run is a fixed cascade: `20200301-20200401` (1 month); if it completes with fewer than 10 trades, `20200301-20200601` (3 months). It stops at the first rung with at least 10 trades and records every attempt. Policy id `fixed_1m_3m_until_10_trades_v2`: a low-trade result recorded under an older policy is deliberately stale and is re-cascaded the next time it is asked for. A runtime failure or timeout is not reinterpreted as a trade-count verdict by widening the window, and full-window evidence that already exists keeps priority over a smoke rung. Decisions: 2026-09-10 (cascade), 2026-09-15 (one-year rung dropped), 2026-09-06 (two fallback stores removed) — see the Decision record.
 
 If the test run fails due to a specified, fixable obstacle (missing `timeframe`, missing local module, signature change of freqtrade/pandas/numpy), one of the following repair routes will take effect, after which stage 1 runs again for this line:
 
@@ -94,15 +113,15 @@ After that queue has run, `python -m evidence.profile_smoke_backfill
 --finalize-run` replaces its queued dispositions with the canonical measured or
 failed Smoke cards while preserving the original reconciliation population.
 
-A native look-ahead finding of `FOUND` is a final information-leak exclusion. Neither the warm-up ladder nor Recursive-Bias runs afterward because they cannot repair an information leak.
+A native look-ahead finding of `FOUND` is a final information-leak exclusion (Decision 2026-09-11, order of the diagnostics). Neither the warm-up ladder nor Recursive-Bias runs afterward because they cannot repair an information leak.
 
-The diagnostic interval has been identical in both modes since the amendment of 2026-09-10: `20200301-20200601`. A stored futures run of only one month or a spot run over `20190101-20190401` is of historical provenance and must be superseded and measured again before a new decision.
+The diagnostic interval is identical in both modes: `20200301-20200601` (Decisions 2026-09-09 and 2026-09-10). A stored futures run of only one month or a spot run over `20190101-20190401` is of historical provenance and must be superseded and measured again before a new decision.
 
-An exception applies to the work queue: A successful canonical pooled Stage-8 full backtest closes the preceding technical verification chain for exactly the same implementation. `evidence/strategy_status.py` shows this as `technical_chain_complete=true` and then does not set `open_work` if the source hash and run profile match `results/regime/full_backtest_manifest.json`. This is not a retrospective E1 admission and does not override any documented exclusion; failed, OOM, or timeout Stage-8 attempts do not count as completion.
+An exception applies to the work queue (Decision 2026-09-10, closure): A successful canonical pooled Stage-8 full backtest closes the preceding technical verification chain for exactly the same implementation. `evidence/strategy_status.py` shows this as `technical_chain_complete=true` and then does not set `open_work` if the source hash and run profile match `results/regime/full_backtest_manifest.json`. This is not a retrospective E1 admission and does not override any documented exclusion; failed, OOM, or timeout Stage-8 attempts do not count as completion.
 
-Regardless, each row with the cohort value `excluded` is a completed work case: it remains visible with its exclusion reason and evidence, but does not receive `open_work`. `exclusion_unconfirmed` is explicitly not synonymous with this; these not-yet-confirmed exclusions remain open until the missing decision evidence is available.
+Regardless (Decision 2026-09-10, exclusions), each row with the cohort value `excluded` is a completed work case: it remains visible with its exclusion reason and evidence, but does not receive `open_work`. `exclusion_unconfirmed` is explicitly not synonymous with this; these not-yet-confirmed exclusions remain open until the missing decision evidence is available.
 
-In addition, the owner decided on 2026-09-10 for level 8: A previously approved strategy with `full_backtest_status`, `failed`, `resource_inconclusive`, or `timeout` is not testable for this benchmark and is finally excluded as C10 `full_backtest_not_testable`. These three states will not be rescheduled in the full backtest.
+In addition, the owner decided on 2026-09-10 (Decision: non-testable canonical full backtests) for level 8: A previously approved strategy with `full_backtest_status`, `failed`, `resource_inconclusive`, or `timeout` is not testable for this benchmark and is finally excluded as C10 `full_backtest_not_testable`. These three states will not be rescheduled in the full backtest.
 
 ## Stage 3 — Warm-up Convergence Ladder after Passing Look-Ahead
 
@@ -110,7 +129,7 @@ In addition, the owner decided on 2026-09-10 for level 8: A previously approved 
 |---|---|---|
 | `evidence/warmup_convergence.py` (`lookahead_pass`) | `evidence/EXECUTION_PROFILES.csv`, identity-linked Look-Ahead-PASS, repair stores | `evidence/WARMUP_CONVERGENCE.json` |
 
-Only a look-ahead line with `PASS` can reach this stage. `NA` is not a pass and will not receive a follow-up measurement until the technical cause is clarified. The frozen convergence ladder is 1, 2, 7, 14, 30, 90, 365 days, converted into candles over its own timeframe. A line is `converged`, `not_converged_within_ladder`, or `inconclusive`.
+Only a look-ahead line with `PASS` can reach this stage. `NA` is not a pass and will not receive a follow-up measurement until the technical cause is clarified. The frozen convergence ladder is 1, 2, 7, 14, 30, 90, 365 days, converted into candles over its own timeframe, capped at the candles available before the window start. It is measured in one analyzer run; it is accepted at the smallest rung at which that rung and every larger one keep every indicator's absolute drift below 1.0 percent, not at the first crossing (Decision 2026-09-01; the settled value is the measurement, Decision 2026-09-02). A line is `converged`, `not_converged_within_ladder`, or `inconclusive`.
 
 ## Stage 4 — Final Recursive Bias after Converged Warm-up
 
@@ -149,6 +168,8 @@ E0 is not a fallback option: its 67 old `regime_eligible=true` flags may not rep
 
 ## Stage 7 — Admission (Admission)
 
+The protocol (populations E1/E2/E3, repair boundary, equivalence evidence, stop rule) is `PIPELINE_EXTENSIONS.md`, Part 1; the results of the waves it scheduled are in `evidence/ADMISSION_RECORDS.md`. The row-level decisions are `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv`.
+
 | Program | Reads | Writes |
 |---|---|---|
 | `evidence/eligibility_admit_converged.py` (current rule, `converged_clean_gates_v1`) | `STRATEGY_STATUS.csv`, `evidence/WARMUP_CONVERGENCE.json` | appends new `admitted_E1` lines to `evidence/ELIGIBILITY_EXPANSION_ADJUDICATION.csv` |
@@ -184,7 +205,7 @@ Sample on this date: **0 of 608 `E1_expanded` strategies have `observed_trades =
 
 ## Stage 8b — Post-Full-Backtest: Execution Robustness and Cost Screen
 
-Prospective and additive. It follows a measured canonical pooled Full-Backtest of exactly the same implementation and never changes admission or replaces `results/regime/full_backtest_manifest.json`. The binding definitions (thresholds, statuses, validity checks, the cost model) are in `EXECUTION_ROBUSTNESS_PLAN.md`, Amendment 2026-09-19; this section only says what runs when. It is numbered 8b so that the stage numbers other files cite stay valid.
+Prospective and additive. It follows a measured canonical pooled Full-Backtest of exactly the same implementation and never changes admission or replaces `results/regime/full_backtest_manifest.json`. The binding definitions (thresholds, statuses, validity checks, the cost model) are in `PIPELINE_EXTENSIONS.md`, Part 2, Amendment 2026-09-19; the size and causes of the detail effect and the recommendation for future tests are in its Amendment 2026-09-20; this section only says what runs when. It is numbered 8b so that the stage numbers other files cite stay valid.
 
 | Program | Reads | Writes |
 |---|---|---|
@@ -359,6 +380,496 @@ Bug found and fixed in exactly this change (2026-09-12, discovered by the user i
 
 Model 3 previously showed two separate tables (BTC regime, Coin regime), although the gate requires both dimensions simultaneously — merged into a combined table at the user's request. Trades and dollar profit were already identical between the two tables (the same trades), but the number of episodes and excess return differed because BTC episode and Coin episode are different time windows. New fourth benchmark column `joint_episode_benchmark_return` in `attach_benchmark()`: the actual intersection of BTC episode and Coin episode of a trade (not just one of the two alone) — this is the actual condition required by Model 3's AND gate. New function `joint_specialist_table()`, after `--joint` (explicitly requested only, since it only makes sense for an AND-gated model — applied to Model 0/1/2). would result in a meaningless table). Discovered during construction: `btc_regime`/`coin_regime` almost always match for gated trades, but not without exception — 7 out of around 22,000 Model 3 trades deviate (signal candle and fill candle can be one day apart, during which one of the two regime dimensions moves independently of the other; neither reaches VALIDATION tier). Not a bug, so not handled as an error: `joint_specialist_table()` takes `coin_regime` as the sole display label instead of assuming a match. Model 1/2 unchanged (only one dimension gated, no combined regime makes sense).
 
+## Decision record for Stages 0-8
+
+The dated owner decisions that fixed the rules above. Until 2026-09-20 they were amendments in
+`REGIME_PREREGISTRATION.md`; the text below is unchanged and the wording "this document" inside an entry means the
+preregistration it was written in. Each was made prospectively (before the rows it affects were re-measured, and
+never from profit or regime performance). The stage sections say what the rule is today; an entry says why it was
+made and what it replaced. Where a later entry supersedes an earlier one, the earlier one says so or is named here.
+
+| Date | Decision | Stage |
+|---|---|---|
+| 2026-09-01 | Warm-up convergence ladder, acceptance rule and scope | 3, 4 |
+| 2026-09-02 | The settled warm-up is the measurement; paired run no longer an admission gate | 3, 4, 7 |
+| 2026-09-03 | Spot analysis window starts 2020-04-01 | 5, 8 |
+| 2026-09-03 | E0 retired as a cohort | 6, 7 |
+| 2026-09-03 | Table parser and case-colliding log paths | 3, 4 |
+| 2026-09-06 | Two fallback stores removed (housekeeping, no owner decision) | 1 |
+| 2026-09-09 | Futures recursion window becomes three months | 2, 3 |
+| 2026-09-10 | Fixed smoke trade-count cascade | 1 |
+| 2026-09-10 | Identical Spot and Futures bias windows | 2, 3 |
+| 2026-09-10 | Completed full backtest closes technical work | 6, 8 |
+| 2026-09-10 | Exclusions close the work queue | 6 |
+| 2026-09-10 | Non-testable canonical full backtests are excluded (C10) | 8 |
+| 2026-09-11 | Look-ahead, then warm-up ladder, then final recursive-bias | 2, 3, 4 |
+| 2026-09-15 | Smoke cascade drops the one-year rung | 1 |
+| 2026-09-16 | "Frozen file" description of REGIME_ELIGIBILITY.csv dropped | 6 |
+
+### Frozen warm-up convergence amendment
+
+Authorized by the owner on 2026-09-01, before any strategy-by-regime ranking
+was generated or inspected. It governs a new admission route. Its contemporary
+promise that E0 would remain a valid untouched cohort was superseded on
+2026-09-03 after E0's missing checks were discovered.
+
+**The problem it solves.** The recursive gate asks whether an indicator's value
+depends on how much history was loaded. Answering it requires a warm-up, and
+the warm-up value used so far was the longest literal indicator period found in
+the source. That heuristic is demonstrably wrong in three ways already
+recorded: it read a minimum instead of a maximum (`Strategy004`), it carried a
+period across timeframes without conversion (`Cluc4`, `BB_RPB_TSL`), and it
+ignores that a recursively smoothed indicator never forgets its seed. Setting
+the warm-up equal to the period leaves roughly `e^-2` of the seed for a
+standard EMA and `e^-1` for Wilder smoothing - 13.5 and 36.8 percent. Measured
+confirmation: `pmaxTest` with warm-up 112 still drifts 4.5 percent on `rsi_112`.
+
+**The rule, fixed here before it is run.**
+
+1. Ladder, in calendar days: 1, 2, 7, 14, 30, 90, 365, converted to candles
+   through the strategy's own timeframe and capped at the candles actually
+   available before the frozen window start for that pair basket. Days rather
+   than multiples of the file-derived period, because that period is the thing
+   that keeps being wrong; a ladder anchored to it inherits its errors, while a
+   day is the same span of market history for every strategy. The ladder
+   reaches a year because 30 days is 30 candles at a daily timeframe and cannot
+   settle an EMA200. Rungs that collapse onto the same candle count are not run
+   twice.
+2. Acceptance: freqtrade `recursive-analysis` reports no indicator whose
+   absolute drift reaches **1.0 percent**.
+3. The chosen value is the smallest rung at which that rung AND every larger
+   rung in the table stay inside the band. Not the first crossing: a drift
+   curve does not fall monotonically. `SmaRsiStrategy` reports 0.588 percent
+   for `rsi` at 14 candles, then 4.262 at 25 and 1.718 at 30 before settling
+   near zero at 90. Taking the first value under the band would pick 14, where
+   the indicator is plainly not settled; convergence means it stays settled.
+   Among the rungs that qualify, the one with the smallest worst-case drift is
+   taken, and an exact tie keeps the smaller warm-up. Every candidate has
+   already cleared the band at its own value and at every larger one, so this
+   choice cannot pass or fail a row; it only selects the warm-up at which the
+   indicators are most settled. Choosing the smallest drift across ALL rungs,
+   qualifying or not, is inadmissible: it would pick the value that flatters
+   the test statistic, and on a non-monotone curve it lands on a crossing.
+   There is no per-row search beyond the ladder.
+3a. The whole ladder is measured in ONE analyzer run. `recursive-analysis`
+   accepts the startup values to test and prints one column per value, plus a
+   column for the strategy's own declared warm-up. The declared value is
+   therefore never overridden: it is read as its own column, which is what
+   makes requirement 6 below decidable.
+4. A row where no ladder value satisfies acceptance is terminal for this route.
+5. Acceptance is not admission. A chosen value must additionally survive the
+   paired full-window run: identical trade list, identical `trades_sha256`,
+   against the strategy as declared. Coverage `PASS`, trap-free,
+   `artifact_role=strategy` and not `behavior_changed` continue to apply.
+6. A row whose settled value is at or below the author's own declared warm-up
+   needs no override at all. It was excluded by a defect in this audit's
+   parser, which read the wrong table column, and admitting it requires neither
+   a changed warm-up nor the wider band. Such a row is recorded as
+   `needed_no_override` and is reported separately, because it is a correction
+   rather than a relaxation.
+7. A row that converges but whose trade list changes is **E3 exploratory**, not
+   E1. The fix altered behaviour, which is a finding, not an admission.
+8. Rows admitted through this route carry the label `convergence_warmup_v1` so
+   every result can be reported with and without them.
+9. Every admitted row records its chosen warm-up, the ladder step it came from,
+   the complete drift table it was decided on, the drift at the author's own
+   declared warm-up, the largest remaining drift and the indicator carrying it,
+   and the trade count the equality was established over. The trade count is required because
+   equality over eight trades and equality over 1,845 are not comparable
+   evidence, and a reader must be able to see which one a row rests on.
+
+**What this relaxes, stated plainly.** The frozen Stage 6 gate treats any drift
+above 0.01 percent as recursive bias. This route accepts up to 1.0 percent, a
+hundredfold wider band, and 545 of the 900 rows were excluded by that gate. The
+preregistration's own sentence that eligibility thresholds are not relaxed no
+longer holds without qualification, and this paragraph is that qualification.
+The justification is that 0.01 percent is unreachable in principle for any
+recursively smoothed indicator, so the old gate did not separate careful
+strategies from careless ones; it separated strategies that use an EMA from
+strategies that do not. Requirement 5 partly offsets the wider band, and its strength must not be
+overstated. An identical trade list constrains decisions rather than
+intermediate values, and decisions are what this study measures. It is not,
+however, a stricter criterion than a drift bound, and the two are not ordered.
+A five percent drift can leave every trade unchanged when no signal sits near a
+decision threshold, and a hundredth of a percent can flip one when a signal
+does. It is evidence about this timerange and this pair basket, not a property
+of the computation. It is weakest exactly where evidence is already thinnest: a
+row with eight trades has almost no opportunity to differ, while one with 1,845
+has many.
+
+This audit already contains the decisive counterexample. In Wave B,
+`Combined_Indicators` and `CombinedBinHAndClucHyperV0` matched the original
+trade list exactly and were still refused, because their decisions rest on
+`ta.EMA`, which never fully forgets its seed. Exact trade equality admitted
+precisely what the recursion reasoning caught. Each requirement therefore
+covers a failure the other misses, which is why both are required and neither
+is described as the guarantee.
+
+**Scope.** Every row whose sole hard exclusion reason is `recursive_bias_found`
+- 440 rows once the profiles already admitted to E1 are removed, of which 124
+are Wave D, 242 were never scheduled and 74 are the Wave B remainder. Rows
+carrying a second hard reason are deliberately excluded: 35 also record
+`lookahead_found`, 17 a technical trap and 43 no canonical measurement, and no
+warm-up changes any of those. Processing order is fixed here, not chosen from
+results: Wave D, then the unscheduled rows, then the Wave B remainder.
+
+**Historical clause, superseded 2026-09-03.** At adoption, E0 was to remain the
+frozen 67 and be reported beside every result. It is retained only as an
+immutable record of that mistaken Stage 6 classification and must not enter any
+current result. Former E0 members require independent E1 admission.
+
+### Amendment 2026-09-02: the settled warm-up is the measurement
+
+**Owner's decision, recorded before the rows it affects were admitted.**
+
+Requirement 7 above routed a converged row whose trade list changed under the
+supplied warm-up to E3 exploratory rather than E1, on the ground that the fix
+altered behaviour. **Requirement 7 is retired.** So is requirement 5's paired
+full-window run as an admission gate.
+
+The reasoning, in the owner's terms. This audit ranks working strategies by
+market phase; it is not an attempt to reproduce what an author once ran. Many
+of these strategies were written before indicator drift was widely understood,
+and their declared warm-ups do not let their own indicators settle - 226 of the
+354 candidates declare a value below the one at which their drift disappears,
+some by a factor of seventy. A result computed at such a warm-up was not
+correct when the author computed it either. What is wanted is the
+mathematically clean result: no recursive drift, no look-ahead, under the
+current freqtrade. That a clean warm-up yields fewer trades, or more, is the
+consequence of measuring properly and not a defect in the row.
+
+**What this costs, stated plainly.** The paired run was the only test that
+separated "repaired" from "reconfigured". Of the 26 rows it has already
+decided, 13 produced an identical trade list and 13 did not - `SlowPotato`
+1,835 against 1,899, `JuicyTrend` 13,698 against 13,607, and two rows with the
+same count and a different checksum. Under this amendment all 26 would be
+admitted alike. A reader of a market-phase result therefore cannot assume the
+number is what the author's own configuration would have produced, and for
+roughly half of them it is not.
+
+**What is kept so that cost stays visible.** Every admitted row records the
+warm-up it was measured at, the ladder step, the drift, and whether that value
+is at or below the author's own declaration (`needed_no_override`). Two of the
+354 need no supplied warm-up at all; 126 declare none, so freqtrade's recursion
+analyzer refuses them outright and a value had to be supplied before the gate
+could run at all; 226 declare a value that runs and was overridden by ours.
+Where the paired run has already produced a verdict it stays on the record as
+provenance. None of this decides admission any more; all of it decides how a
+number should be read.
+
+**What is unchanged.** The amendment is about warm-up and nothing else. A row
+still needs a look-ahead `PASS` measured from its own implementation - an `NA`
+is no verdict and admits nothing - recursion settled by the ladder, coverage
+`PASS`, `traps_n` zero, `artifact_role=strategy`, and not `behavior_changed`.
+Three rows that clear both bias gates are held by a documented backtesting
+trap, which is not a warm-up question.
+
+Implemented by `evidence/eligibility_admit_converged.py` under ruleset
+`converged_clean_gates_v1`; every row it admits carries that ruleset, so any
+result can still be reported with and without this amendment.
+
+### Amendment 2026-09-03: the spot analysis window starts a month later
+
+**Owner's decision**, on a finding from the warm-up ladder's own coverage.
+
+The convergence ladder tests warm-ups up to 365 days, but its ceiling is
+capped by whichever of the eight basket pairs has the least history before
+the analysis window starts - a warm-up the ladder accepts is later reused as
+`startup_candle_count` in the full-window run across all eight pairs, and a
+value that exceeds one pair's available history would silently shorten that
+pair's measured span rather than fail loudly.
+
+`DASH/USDT` was listed on Binance 2019-03-28, the latest of the eight. At the
+original window start of 2020-03-01 that left 337 days of prefix history -
+short of the 365-day rung by four weeks. Not one of the 62 strategies the
+ladder could not settle, across both the original and the `shim5`-widened
+runs, was ever offered that rung. Two converged the moment `shim5` let them
+reach 90 days at all; the rest sat at whatever their timeframe's nearest
+reachable rung was, some worse off there than at 14 days, because drift
+against the full-history reference is not monotone in the warm-up.
+
+**The spot window now starts 2020-04-01**, not 2020-03-01. `DASH/USDT` then
+carries 370 days of prefix, clearing the 365-day rung with a few days to
+spare; `XMR/USDT`, the second-latest listing, clears it with more. The cost
+is 31 days off a 6.5-year window, under 0.5 percent, and current for only 18
+strategies' full-window measurements at the time of the change - the
+market-phase benchmark itself had not yet started.
+
+**The futures window is untouched, and stays at 2020-03-01.** Futures pairs
+were listed later still - the last, `DASH/USDT:USDT`, on 2020-02-04 - so
+matching fix would need a start of 2021-02-04, cutting eleven months from the
+whole futures window to help fourteen strategies. Declined: those fourteen
+are capped by history that will never arrive on this exchange, which is a
+fact about the pair's own listing date, not a choice this audit is making.
+Their reason names that rather than folding it into a bias verdict.
+
+Implemented in `profile_full_window.TIMERANGE` (now `{"spot":
+"20200401-20260821", "futures": "20200301-20260821"}`) and
+`warmup_convergence.WINDOW_START` (now `{"spot": "2020-04-01", "futures":
+"2020-03-01"}`), which the ladder's ceiling and the full-window run must
+agree on - the same reasoning as the `shim5` amendment: a warm-up accepted
+under one window and applied under another can silently shorten a pair's
+span. The `recursive-analysis` and `lookahead-analysis` diagnostic windows
+(`profile_bias.WINDOWS`) are a separate, shorter measurement and are not
+affected - those checks are forced onto `BTC/USDT` alone by freqtrade itself,
+for which `DASH/USDT`'s listing date is irrelevant.
+
+### Amendment 2026-09-03: E0 is retired as a separate cohort
+
+**Owner's decision**, on a finding from re-measuring the frozen 67 for the
+first time in this audit's own runtime.
+
+E0 was frozen on 2026-08-30 as a reproducibility anchor: "E0 is untouched. It
+remains the frozen 67 and is reported beside every result." The intent was
+sound - keep one unmoving reference point while the eligibility expansion
+ran. The consequence, only visible once E0 was finally measured here, was
+not: E0's own recursion-bias standing had never rested on this audit's
+methodology at all.
+
+The Stage 6 sweep that produced the 67 ran `recursive-analysis` without
+`--startup-candle` (`harness.py`, commit `be77d12`, 20.08; the same command
+is item 1 of `CHECKLIST.md`, commit `4d5a937`, the same day). Freqtrade then
+falls back to its own hardcoded default - five fixed candle counts (199,
+399, 499, 999, 1999), the same five regardless of a strategy's timeframe,
+plus whatever the strategy's own `startup_candle_count` declares. A one-day
+strategy tests up to 1999 days of history that way; a five-minute strategy
+tests under seven. Whether the resulting table showed "near-zero variation"
+was never asked in calendar time, and never checked against a longer warm-up
+in case a false plateau was sitting in front of a real one - the exact
+failure this audit's own convergence ladder exists to catch (`BigZ04`'s
+`bb_lowerband_1h` sits at a flat 3.63% from 200 through 8640 candles, then
+jumps to -12.88% at 90 days).
+
+Measured under this audit's own ladder for the first time this week: 64 of
+67 hold up cleanly under both checks. One, `MacdStrategy`, does not - 1.07%
+residual drift at the largest warm-up the data supports (365 days, after the
+2026-09-03 window amendment), just outside the 1% band. Two, `BuyRegions`
+and `StochRSITEMA`, had been misread by a defect in our own table parser
+(see below) rather than measured at all.
+
+**E0_strict67 is retired and invalid as a cohort.** The 67 are no longer
+admitted by having been in the original Stage 6 corpus; each must complete the
+same current audit chain as every other strategy, including current-runtime
+measurement, the C1-C4 exclusions, convergence, coverage, trade evidence,
+artifact role, and repair provenance. No E0 flag may skip a check or serve as a
+fallback verdict.
+Membership in the original frozen set is kept as provenance on the row
+(`gate_notes`), never as a reason to skip a check or override a finding.
+
+`MacdStrategy` moves to `excluded` under C2. The other 66 were subsequently
+admitted independently under `converged_clean_gates_v1`; their usability comes
+from those 66 row-level E1 decisions, never from former E0 membership.
+
+### Amendment 2026-09-03: a second reader defect, corpus-wide
+
+While re-measuring E0's recursion drift, `StochRSITEMA` came back
+"inconclusive: no drift table" despite its stored log showing a complete,
+readable 76-row table. The cause: `recursive_table()`'s row-name filter
+required a bare Python identifier (`[a-zA-Z_0-9]+`) and silently dropped any
+row whose name did not match - `rsi(14)`, `stoch-slowk`, `BBB_20_2.0`,
+`1h-rsi`, `50 SMA`. 68 stored logs across the corpus carry at least one such
+row; some were misread as having no table at all, others as `converged` on
+an incomplete table that never showed the very indicator whose name could
+not be parsed.
+
+Fixed in `profile_bias.recursive_table()`; re-derived from stored logs via
+`tools/warmup_reparse.py --store punctuated`, applied only where the reading grew
+richer (58 records) and never where it would have shrunk, which is the
+signature of a different defect entirely (below).
+
+**A related, independent defect surfaced during the same re-read.** Ten
+pairs of strategy IDs in the corpus differ only in case - `SuperTrend` and
+`Supertrend`, `BBRSI` and `bbrsi`, `mabStra` and `MabStra`, among others -
+genuinely different strategies from different source files. The path
+construction used for per-strategy logs and isolated source directories
+(`profile_smoke._safe`) preserved case but did not otherwise disambiguate,
+and this filesystem folds case, so both members of every such pair wrote to
+the identical path. Whichever ran later silently overwrote the earlier one's
+log. `_safe` now appends a short hash of the exact-cased name, so no two
+different strategy IDs can ever collide again; already-written `debug_log`
+paths are untouched, since nothing regenerates them to look a file up.
+Records whose log the punctuation fix would have shrunk (`SuperTrend`,
+`bbrsi`, `hlhb`, `MACDStrategy`, `MacdZeroCrossStrategy`) are queued for a
+fresh, collision-safe run rather than reparsed from a log that no longer
+describes them.
+
+### 2026-09-06 housekeeping: two fallback stores removed (Stage 1)
+
+`ELIGIBILITY_NEVER_RUN.json` and `ELIGIBILITY_TRAP_SMOKE.json` were one-time fallback stores from previous waves (no runner in the current repo rewrote them) — 65 of the 83 lines in them had no separate `evidence/PROFILE_SMOKE.json` entry, `evidence/strategy_status.py` fell back to these two files for them. Caught up via targeted `evidence/profile_smoke.py --strategy ... --profiles spot_long futures_long unknown` (empirically checked: previously 65 of 83 lines in `STRATEGY_STATUS.csv` changed if the files were omitted, afterwards not a single one) and removed both files, including the fallback loop in `evidence/strategy_status.py`.
+
+### Amendment 2026-09-09: three-month Futures recursion window
+
+**Owner's decision**, before the affected Futures recursion exclusions were
+retested. The native Futures recursive-bias diagnostic and the warm-up
+convergence ladder now use `20200301-20200601`, three calendar months, instead
+of `20200301-20200401`. Spot remains `20190101-20190401`, also three months.
+
+The earlier asymmetry was inherited mechanically: the Spot window came from
+the predecessor bias harness, while Futures reused its one-month smoke-test
+window. No methodological justification for applying a shorter recursion
+observation interval to Futures was recorded. Local BTC perpetual candles begin
+on 2020-01-01, leaving two months of prefix history before the new interval.
+
+Stored one-month Futures recursion and convergence records remain provenance,
+but cannot satisfy the amended gate. A rerun moves each superseded record under
+`superseded` before writing the three-month result. The affected set is selected
+only by the pre-existing technical exclusion `recursive_bias_found`, never by
+profit or regime performance.
+
+### Amendment 2026-09-10: fixed smoke trade-count cascade
+
+**Owner's decision**, recorded before rechecking the low-trade smoke records.
+The canonical trial run starts with `20200301-20200401`. If that run completes
+but produces fewer than ten trades, the same unchanged strategy and runtime
+are tested over `20200301-20200601`, then `20200301-20210301`. The cascade
+stops at the first rung with at least ten trades. A runtime failure does not
+become a trade-count verdict and is not repaired by merely widening the date
+range. Every attempted rung, archive identity, and trade count is retained.
+
+This is a prospective, result-blind diagnostic rule: the rungs and threshold
+were fixed before the rerun and do not depend on profitability or market-regime
+performance. It prevents a quiet calendar month from being mistaken for a
+strategy that does not trade. It does not relax the eligibility gates and it
+does not supersede stronger evidence already obtained over the complete frozen
+window. In particular, a look-ahead analysis that remains below ten trades
+after its 6.5-year fallback, or a full-window backtest with zero trades, is not
+rerun on these shorter smoke rungs.
+
+### Amendment 2026-09-10: identical Spot and Futures bias windows
+
+**Owner's decision**, before any Spot diagnostic was rerun under this change.
+The native look-ahead, recursive-bias, and warm-up-convergence diagnostics now
+use the identical calendar interval `20200301-20200601` for Spot and Futures.
+This supersedes only the sentence in the 2026-09-09 amendment that retained
+Spot at `20190101-20190401`; its three-month duration remains unchanged.
+
+Using the same calendar dates removes the sampled market period as a difference
+between the two execution modes. Both diagnostics use BTC only, so the later
+listing dates of the other seven pooled pairs do not constrain this interval.
+January and February 2020 remain available as prefix history for both modes.
+
+Stored Spot records over `20190101-20190401` remain immutable provenance but
+cannot satisfy a new decision under this amendment. They must be superseded and
+rerun under `20200301-20200601`; selection for rerun is based on the obsolete
+timerange, not on profitability or regime performance.
+
+### Amendment 2026-09-10: completed full backtest closes technical work
+
+**Owner's decision.** A successful canonical pooled Stage-7 full backtest is
+evidence that the exact strategy implementation completed the technical chain
+which precedes that run. A subsequent change to a Spot or Futures diagnostic
+calendar window must therefore not return that implementation to the
+measurement queue.
+
+The closure is identity-bound: the recorded Stage-7 result must be `measured`,
+have the canonical pooled scope, and match the current source hash and run
+profile. Its recorded full-backtest timerange remains visible as provenance;
+the later Spot diagnostic-window shift does not invalidate this closure. It is exposed as
+`technical_chain_complete=true` in `STRATEGY_STATUS.csv`. It closes only
+`open_work`; it does not retrospectively admit a strategy, reverse an existing
+exclusion finding, or treat an OOM, timeout, failed, or identity-mismatched run
+as completed.
+
+### Amendment 2026-09-10: exclusions close the work queue
+
+**Owner's decision.** A strategy recorded in the final `excluded` cohort is a
+completed audit case. Its exclusion reason and evidence remain visible, but it
+must never retain an `open_work` item merely because a supporting diagnostic is
+historical or an ancillary recursion ladder did not finish. This does not apply
+to `exclusion_unconfirmed`: that separate cohort has not earned an exclusion
+verdict and remains open until its evidence gap is resolved.
+
+### Amendment 2026-09-10: non-testable canonical full backtests are excluded
+
+**Owner's decision.** A strategy that reached Stage 7 but has a canonical
+pooled full-backtest status of `failed`, `resource_inconclusive`, or `timeout`
+is not testable for this benchmark and is final `excluded` under C10
+`full_backtest_not_testable`. The recorded outcome is retained as provenance;
+it is not requeued or retried. This rule applies to the 34 previously E1
+admitted rows with those statuses, and does not infer anything about their
+profitability.
+
+### Amendment 2026-09-11: warm-up convergence precedes final recursive-bias
+
+**Owner's decision**, applied prospectively to every strategy that still has
+technical gate work. The diagnostic sequence is now: native look-ahead first;
+only after a `PASS`, the frozen warm-up convergence ladder; only after a
+current `converged` ladder result, final native recursive-bias using that
+ladder's selected startup-candle count. A native look-ahead `FOUND` is a final
+information-leak exclusion, so neither later measurement is useful or
+permitted for that implementation. `NA` is not a pass and likewise blocks
+follow-up work until its technical cause is resolved.
+
+This changes workload order, not an admission threshold, timerange, strategy
+implementation, or any existing measurement. It prevents an author's declared
+or Freqtrade default warm-up from deciding the final recursion verdict when the
+fixed ladder demonstrates that it is too short. The runner defers recursive
+work until the prerequisite exists and passes the settled value explicitly;
+`PIPELINE.md` documents the same order for future work. Older recursive records
+remain provenance and are not silently reclassified by this prospective change.
+
+### Amendment 2026-09-15: smoke cascade drops the one-year third rung
+
+**Owner's decision**, made investigating the webclinic017 NNPredict_*
+cluster's zero-trade smoke results. The cascade above now stops after
+`20200301-20200601` (3 months); `20200301-20210301` (1 year) is removed.
+
+The cluster's zero-trade result turned out not to be a quiet market period
+at all - the actual cause was a pandas 3.0 chained-assignment no-op
+(`repair/REGISTER.md`, Phase 10) that silently dropped every model
+prediction before it reached the dataframe, so the entry trigger could
+never fire on ANY window, three months or one year, until the underlying
+bug was fixed. The one-year rung bought an hour of retraining per strategy
+for a verdict the three-month rung already gave just as reliably in every
+case checked. A row that still measures zero trades after the three-month
+rung is now read as "something upstream of this window is broken or this
+strategy genuinely does not trade" - a question for the next diagnostic
+stage, not for a longer smoke window - rather than reflexively spending
+more runtime (or analyst time reading its log) on the same row before
+that question is even asked.
+
+This narrows, rather than removes, the guard the 2026-09-10 amendment
+describes: a quiet first month is still caught by the second rung: only
+the third rung - the expensive one, and the one this investigation showed
+adds a verdict the second rung already reliably gives - is gone. Everything
+else about the 2026-09-10 amendment (prospective, result-blind, does not
+relax eligibility gates, does not supersede stronger full-window evidence)
+is unchanged.
+
+### Amendment 2026-09-16: the "frozen file" description is dropped, not just E0's authority
+
+**Owner's decision**, restated after re-confirming that strategies drawn from
+the original E0 population have continued to show look-ahead and recursive
+bias under this audit's own diagnostics well after the 2026-09-03 amendment
+above - `MacdStrategy` was not an isolated case. E0's `regime_eligible=true`
+was already non-authoritative (the amendment above already forbids it
+skipping any check), so this changes no admission result; it removes a
+description that was no longer true in either sense that mattered.
+
+Two things were being called "frozen" for `evidence/REGIME_ELIGIBILITY.csv`,
+and both are retired here. First, substantively: the file's content was
+treated as a reasonable historical snapshot worth preserving even though
+non-decisive. Repeated post-2026-09-03 findings of bias among former E0 rows
+mean it should not be read as even a soft signal of anything - E0 is
+obsolete, full stop. Second, literally: `evidence/strategy_status.py` and
+this document both described the file as "frozen and never regenerated," an
+immutable anchor. That was found false on 2026-09-16 - the file was in fact
+regenerated on 2026-09-14 (`b071dc3`, to surface later harvest waves to
+`profile_bias.py`'s own candidate selection), growing `regime_eligible=true`
+from the original 67 rows to 121. Keeping the "frozen, untouchable" label on
+a file already known to have been rewritten would document a protection that
+does not exist rather than the actual, harmless state of things - E0 grants
+nothing regardless of which or how many rows carry the flag.
+
+`evidence/strategy_status.py`'s selftest no longer asserts the old-baseline
+count at exactly 67; the internal-consistency check (every row noted as
+former E0 in `gate_notes` matches a row the eligibility file marks true, and
+only those) is unaffected and stays. The original 67-row snapshot remains
+recoverable from git history if ever wanted for comparison - not reverted
+here, because reverting would itself be re-asserting a "frozen" status this
+amendment is retiring.
+
+
 ## Where Docker stands instead of native Python
 
 Stages 1–4 (trial run, look-ahead, warm-up ladder, recursion) run both natively and in the pinned Docker images (`strategy-audit-runtime:2026.7` and variants), depending on which runner calls them — both write to the same JSON stores, distinguished only by the field `runtime_id` (`native_unversioned` vs. `docker:sha256:...`). Stage 8 (full window, pooled) and the 5m detail reruns of Stage 8b run exclusively in Docker because it runs unattended for hours.
@@ -379,7 +890,6 @@ Publication preface and case studies of a previous, less strict review. No file 
 | `old/predecessor_audit/results/*.md` (`DoubleEMACrossoverWithTrend.md` et al., `INDEX.md`) | (Predecessor tooling) | the same five case studies — **not to be confused with `results/regime/`**, which is current and described from Stage 8 onward |
 | `old/predecessor_audit/DCA.md`, `DEPTH.md`, `RESOLVABLE.md` | (Predecessor Tooling) | independent page investigations without regime reference, nothing replaces them, because nothing in the current chain asks the same question |
 | `old/**` (`corpus_repair`, `eligibility_zwischenstand_2026-08`, `hmm_prototype_2026-08`, `proxy_backtests_2026-08`, `root_prototypes_2026-08`, `translation_attempts_2026-08`, `vorueberlegungen`, own `old/README.md`) | various, all before this chain | consciously archived, not deleted |
-| `.codex/CONTINUATION.md` | (predecessor tooling) | explained by itself replaced by `HANDOFF.md` |
 
 ### 2. Own files of this test chain, but orphaned (no producer script anymore available)
 
@@ -394,7 +904,7 @@ All files here are current and not outdated. Most run on demand; Stage 0 additio
 | `tools/secret_gate.py` | Prevents a commit from containing a secret (four layers, see separate docstring) | before each commit that introduces new files |
 | `tools/translation_repair.py` | Translates Russian comments/strings in Python files, AST-checked, never silently translates failed parts | when `tools/harvest.py` (Stage 0) brings in a repo with non-English comments |
 | `tools/blocked_triage.py` | Finds fixable causes for rows that the test run never reached (freqtrade didn't even start them); writes `REPAIR_LIST.md` and `evidence/BLOCKED_TRIAGE.json`, which Stage 6 reads | after new Harvest or when the number of blocked rows changes (`--probe --list`) |
-| `tools/eligibility_expansion.py` | Freezes the historical, result-blind eligibility expansion inventory (only technical stage-6 artifacts, no performance) | if `REGIME_PREREGISTRATION.md`/`ELIGIBILITY_EXPANSION_PLAN.md` are changed |
+| `tools/eligibility_expansion.py` | Freezes the historical, result-blind eligibility expansion inventory (only technical stage-6 artifacts, no performance) | if `REGIME_PREREGISTRATION.md`/`PIPELINE_EXTENSIONS.md` (Part 1) are changed |
 | `tools/probe_double_advise.py` | Checks whether the double `ft_advise_signals` call in `lookahead-analysis` duplicates a column | if there is a suspicion that the `enter_tag` shim distorts the result |
 | `tools/probe_shim_neutral.py` | Compares backtest results with/without `enter_tag` shim on neutrality | after a change to the shim mechanism |
 | `tools/probe_zero.py` | Differentiates in a row without trades whether the entry condition never becomes true or the indicator is missing | when a row shows 0 trades and the cause is unclear |
@@ -402,4 +912,4 @@ All files here are current and not outdated. Most run on demand; Stage 0 additio
 | `tools/strategy_status_page.py` | Builds the published page from `STRATEGY_STATUS.csv`, so that page and table never get out of sync | after each `evidence/strategy_status.py` run, before publication |
 | `tools/warmup_reparse.py` | Reads stored leader logs again with the current parser without having to run freqtrade again | after a fix to the drift tables parser |
 
-`repair/FREQAI_RESULTS.md`, `repair/REGISTER.md`, `repair/TRANSLATION_AUDIT.md` are also separate, current files, but provenance logs, not tools — only relevant if a specific repaired implementation is under discussion (see `DOCUMENT_MAP.md`).
+`repair/FREQAI_RESULTS.md`, `repair/REGISTER.md`, `repair/TRANSLATION_AUDIT.md` are also separate, current files, but provenance logs, not tools — only relevant if a specific repaired implementation is under discussion (see `README.md`).

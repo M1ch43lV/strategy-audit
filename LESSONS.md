@@ -1,4 +1,242 @@
-# Errors found in this audit, and what they changed
+# Lessons - traps, corrections and rules that were left alone
+
+Four hand-written documents, kept together because they answer one question: *what has already gone wrong in this
+audit, and what does that mean for reading a result?* Read it before choosing a metric, a benchmark or a gate.
+
+| Part | Subject |
+|---|---|
+| 1 | Why `Market change` (buy-and-hold) is the column that decides whether a survivor is a winner |
+| 2 | The standard for changing a rule after the data invited it: do not |
+| 3 | Errors found after publication, and what each one changed (2026-08-20 to 2026-08-24) |
+| 4 | Exploratory: how much the trailing stop moves a conclusion (E3, nothing confirmatory) |
+
+Parts 1 to 3 were written during the predecessor corpus study (August 2026). Their counts and the survivor set they
+name are historical; the lessons are not. Where a part points to `LEDGER.md`, `PREREGISTRATION.md` or `TRAPS.md`, the
+file lives under `old/predecessor_audit/`. A file name inside the text of a merged part (for example `CORRECTIONS.md`) names the file as it was then; the table "Where a former document went" in `README.md` resolves it.
+
+## 1. The baseline column
+
+*Formerly `BASELINE.md`, merged here on 2026-09-20 without changes to the text below.*
+
+A strategy that survives every statistical test in this repository has shown
+one thing: that its measurement is not obviously broken. It has not shown that
+it makes money, and it has not shown that it beats doing nothing.
+
+The second question needs one more column — the one freqtrade prints in every
+backtest summary, for free, immediately under the profit line:
+
+```
+Absolute profit    ...
+Total profit %     ...
+Market change      ...   <- this one
+```
+
+`Market change` is buy-and-hold on the same pairs over the same window. It costs
+nothing to read and it is scrolled past in nearly every published backtest,
+because a large positive `Total profit %` already feels like an answer.
+
+**This page carries no counts of its own.** Every number lives in
+**[LEDGER.md](old/predecessor_audit/LEDGER.md)**, generated from
+[LEDGER.csv](old/predecessor_audit/LEDGER.csv) by
+`ledger.py`, and a pre-commit hook rejects a commit in which the published
+figures no longer reproduce. That arrangement exists because this file used to
+open with a count in its own title, and that count went stale within a day of
+being published while still reading as authoritative. A document that repeats
+numbers is a document that will eventually contradict them.
+
+### What the ladder is for
+
+Each gate in the ledger removes strategies for a different reason, and the order
+matters, because a reader who sees only the last number cannot tell which stage
+did the work:
+
+- The **largest** single drop is not a bias detector. It is in-sample
+  expectancy: strategies that lose money in the window their own author chose.
+- The **statistical** gates — significance in both windows — are the ones most
+  audits stop at. By those alone a substantial fraction survives, and that
+  fraction is what a reader would call a finding.
+- The **baseline** question is asked after all of them, and it is the one that
+  changes the conclusion.
+
+Had the baseline column not been added — it was added because an outside critic
+pointed out its absence — this page would be announcing every one of those
+survivors as a winner.
+
+### Why survivors are not winners
+
+The out-of-sample window covers a market that rose a great deal. A strategy that
+is long most of the time will show a large positive return, a good p-value, and
+a genuine improvement over its own in-sample period — while capturing a fraction
+of a rise it did not predict. All of those numbers are real. None of them is
+edge.
+
+This also cuts against the strategies in the other direction: the *in-sample*
+window was largely a bear market, so a strategy that merely stayed out of
+trouble there looks selective rather than lucky. Any measure of "how much of the
+edge was retained" mixes the two regimes together and should not be read as a
+measure of robustness. That confound is stated rather than corrected, because
+correcting it would require regime-matched windows that the authors' own
+published window does not provide.
+
+### Duplicates
+
+A meaningful share of the corpus is the same strategy under different names —
+identical trade counts, identical results. They are kept in the ledger, marked,
+and counted once when the question is *how many distinct things survive*.
+Counting name-duplicates as independent findings would overstate the evidence in
+both directions: it inflates the survivor count, and it inflates the number of
+independent tests in the multiplicity correction.
+
+### What this does not say
+
+- It does not say these strategies do not work. It says that on this data, with
+  these costs, in this window, none of them beat holding the same coins.
+- It does not say the authors were wrong. Most publish code that does exactly
+  what they describe. The question is what a reader takes from a results table.
+- It does not say buy-and-hold is a good strategy. It says it is the number an
+  active strategy has to beat before "profitable" means anything.
+
+### The honest reading
+
+The survivors are not frauds and their statistics are not fake. They are
+strategies whose authors measured the right quantity and never compared it to
+the obvious alternative. That is not a rare mistake, and it is not a
+sophisticated one — it is the default outcome of reading a backtest summary from
+the top down and stopping when the number is large enough to be satisfying.
+
+## 2. A rule that was not changed when the result invited it
+
+*Formerly `DECISION_INVARIANCE.md`, merged here on 2026-09-20 without changes to the text below.*
+
+On 2026-08-22 a gate was added, produced a verdict, and within hours the data
+offered a reason to modify that gate. The modification would have been
+defensible, would have explained the data better, and was not made.
+
+This file records that, because the whole difficulty of pre-registration is not
+writing the rule down — it is leaving it alone once the numbers arrive.
+
+---
+
+### 1. The gate
+
+`G12_economic`: a strategy passes if its total return out of sample exceeds
+`Market change` — buy-and-hold on the same pairs over the same window.
+
+### 2. When it was created
+
+Commit `5091379`, 2026-08-22 10:59 UTC. Added after an outside reader pointed
+out that the ladder demanded statistical significance and never demanded
+economic significance.
+
+Note the date against the corpus: the first result card of this corpus is
+2026-08-21 19:58 UTC. **The gate is 15 hours younger than the data**, which is
+exactly why the current result is labelled repair-adjusted and not confirmatory.
+`freeze_guard.py` derives that from `git log` and `evidence/CORPUS_RUN.json` rather than
+taking anyone's word.
+
+### 3. The result it produced
+
+Fourteen strategies reached the gate. Ten cleared the effect-size gate before
+it. **None cleared `G12`.** Over the full window they return +38.6% to +156.6%
+against buy-and-hold's +346.3% — a shortfall of 190 to 308 percentage points of
+cumulative return.
+
+*Those were six and five until 2026-08-22, when the trap rule was corrected to
+the community's own definition and stopped disqualifying eight strategies it
+should never have counted. The verdict at `G12` did not move — that was checked
+before the rule was changed, and it is the whole point of this document.*
+
+### 4. When the regime dependence was found
+
+> ⚠ **2026-08-22, evening — this table was computed on a population that no
+> longer exists.** `evidence/regime_split.json` holds five strategies from the survivor
+> set as it stood before two corrections landed: the trap definition (6 → 14)
+> and then the `G6`/`G7` fix that stopped counting an unrunnable bias check as
+> a pass (14 → 2). The current survivors are `ClucHAnix_5m_old` and
+> `CombinedBinHClucAndMADV5`; **neither appears in the five**. The regime
+> finding is kept because the decision it records — refusing to repair `G12`
+> after the data invited it — is a fact about a decision, not about the
+> strategies. But the table below is **exploratory, superseded, and must not be
+> read as describing the current survivor set.** Re-running it on the two is
+> open work.
+
+
+Same day, hours later. The out-of-sample window is a bull market, so the gate
+was suspected of measuring the window rather than the strategies. The test was
+declared before it ran and deliberately neutral — calendar years, not periods
+chosen by their shape.
+
+```
+year    market        survivors beating buy-and-hold
+2020   +143.04%       0 of 5
+2021   +218.33%       0 of 5
+2022    -66.70%       5 of 5
+2023    +76.37%       0 of 5
+2024    +95.90%       0 of 5
+2025    -20.89%       5 of 5
+2026    -29.65%       5 of 5
+```
+
+Seven years, seven correct classifications by the sign of the market. The
+survivors beat buy-and-hold in every falling year and in no rising year.
+
+### 5. The modification that was proposed and refused
+
+Two obvious repairs presented themselves:
+
+- make `G12` regime-conditional — require the strategy to beat buy-and-hold in
+  at least one declared regime rather than over the whole window;
+- replace the benchmark with an exposure-matched one, since in 2022 the market
+  fell 66.7% while these strategies returned between −5.9% and +3.5%, meaning
+  they were barely in the market at all.
+
+Both are reasonable. The second is arguably more correct as a matter of
+finance. Neither was applied to `G12`.
+
+### 6. The exploratory finding, kept separate
+
+The regime split is published as an **exploratory** result with its own epoch.
+It does not enter the primary endpoint. It is a hypothesis for the next corpus,
+not a correction to this one.
+
+It also does not say the survivors are useful. Sitting out a falling market is
+something cash does without any strategy, and the correct benchmark for a
+low-exposure strategy is an exposure-matched one — which is precisely the change
+that was refused here, and which the next corpus can test under a rule fixed in
+advance.
+
+### 7. Why the change was refused
+
+Because the result asked for it.
+
+A rule adjusted after seeing what it produced cannot support the claim it is
+used to make, however good the adjustment is. The repair would have been made on
+the same data, on the same day, in response to the same numbers it was meant to
+judge. That is the definition of the failure this repository exists to detect,
+and finding it in someone else's work while performing it in one's own would
+make the whole exercise worthless.
+
+The gate stays. The finding is published beside it. The next corpus decides.
+
+### 8. Where to check this
+
+| what | where |
+|---|---|
+| gate introduced | commit `5091379` |
+| ladder definition | `ledger_block.py`, `LADDER` |
+| corpus start | `evidence/CORPUS_RUN.json`, `first_card_epoch` |
+| status derived, not asserted | `freeze_guard.py` |
+| frozen rule for the next corpus | `PREREGISTRATION.md` |
+| the epoch table | `LEDGER.md`, `CLAIMS.csv` |
+
+---
+
+A certificate cannot be issued to oneself. It can only be earned by refusal —
+and a refusal is only evidence if the temptation is documented alongside it.
+
+## 3. Errors found in this audit, and what they changed
+
+*Formerly `CORRECTIONS.md`, merged here on 2026-09-20 without changes to the text below.*
 
 Every finding below was made *after* something had been published, and every one
 of them changed a number or a claim. They are collected here rather than left in
@@ -10,7 +248,7 @@ Nothing here was reported by a reader unless it says so.
 
 ---
 
-## The metric was not scale-free (2026-08-21)
+### The metric was not scale-free (2026-08-21)
 
 Earlier versions reported freqtrade's `Expectancy` in USDT and called it
 configuration-independent, in contrast to `Total profit %`. That was wrong. The
@@ -36,7 +274,7 @@ good question to ask of any backtest, including this one.*
 
 ---
 
-## A statement about five, made from the one I was looking at (2026-08-21)
+### A statement about five, made from the one I was looking at (2026-08-21)
 
 An earlier README said *one* of the five strategies was not statistically
 significant, citing `MACDCrossoverWithTrend` at p = 0.1283. That was the p-value
@@ -50,7 +288,7 @@ population, made from the single case actually examined.
 
 ---
 
-## "Walk-forward" was the wrong word (2026-08-21)
+### "Walk-forward" was the wrong word (2026-08-21)
 
 This is an *out-of-sample test*, not a walk-forward analysis. Walk-forward means
 rolling or anchored windows with re-fitting at each step; nothing here re-fits.
@@ -58,7 +296,7 @@ An earlier version used the wrong term. Corrected rather than quietly edited.
 
 ---
 
-## An RSI threshold I assumed instead of read (2026-08-20)
+### An RSI threshold I assumed instead of read (2026-08-20)
 
 The first run produced 18 trades for `RSIDirectionalWithTrendSlow` against the
 author's 108 — an 8× gap that would have made a persuasive *"does not
@@ -73,7 +311,7 @@ more often than not it is yours.**
 
 ---
 
-## The corpus sweep was silently running the wrong timeframe (2026-08-20)
+### The corpus sweep was silently running the wrong timeframe (2026-08-20)
 
 Of the 571 strategies then in the corpus, only **52** declare
 `timeframe = '1h'`. The largest group, **351**, declares `5m`. Only 1h data had
@@ -112,7 +350,7 @@ looked fine.*
 
 ---
 
-## Published figures went stale while the corpus grew (2026-08-21)
+### Published figures went stale while the corpus grew (2026-08-21)
 
 The README carried *"571 strategies, 55 clean"* for about a day after the corpus
 had grown past 900. Nothing was false when written. An external reviewer read
@@ -133,7 +371,7 @@ published code that is not declared part of the pipeline.
 
 ---
 
-## A consistency check that could not catch its own error (2026-08-22)
+### A consistency check that could not catch its own error (2026-08-22)
 
 The generated block published **"repositories swept 3"** instead of 53:
 `evidence/corpus_sources.json` is a dict of three keys, and the list of repositories sits
@@ -150,7 +388,7 @@ rather than the number alone.
 
 ---
 
-## Ten strategies never reached publication (2026-08-22)
+### Ten strategies never reached publication (2026-08-22)
 
 Ten pairs of strategy names differ only by case — `Ichi`/`ichi`, `SAR`/`Sar`,
 `SuperTrend`/`Supertrend` and seven more. On a case-insensitive filesystem the
@@ -164,7 +402,7 @@ collide.
 
 ---
 
-## A gate that passed what it had never measured (2026-08-22)
+### A gate that passed what it had never measured (2026-08-22)
 
 The trade-duration gate asked `not card.get("intracandle")`. Cards computed
 before that layer existed carry no such field, so the absent value read as
@@ -175,7 +413,7 @@ not absence of the defect.
 
 ---
 
-## A "trap" that was not one (2026-08-22)
+### A "trap" that was not one (2026-08-22)
 
 I claimed a tenth trap of my own, not in the community's list: an average trade
 shorter than the strategy's own candle. The reasoning was that the engine knows
@@ -214,7 +452,7 @@ the entire reason for publishing.
 
 ---
 
-## A trap that was only a trap when tight (2026-08-22)
+### A trap that was only a trap when tight (2026-08-22)
 
 `traps.py` counted `trailing_stop = True` with no `trailing_stop_positive` as a
 trap: freqtrade then trails at the full stoploss distance rather than at a few
@@ -247,7 +485,7 @@ has been put to them.
 
 ---
 
-## Leverage divides the trailing distance, and I had read the line that says so (2026-08-22)
+### Leverage divides the trailing distance, and I had read the line that says so (2026-08-22)
 
 `Hippocritical`, minutes after the previous correction: *"and incorporate
 leverage with that check — if you have 1% trailing and do 10x leverage then it
@@ -285,7 +523,7 @@ effectively-tight trailing stops in this corpus is **unknown and at least 38**.
 
 ---
 
-## Two detectors compared as rivals, when they have different subjects (2026-08-22)
+### Two detectors compared as rivals, when they have different subjects (2026-08-22)
 
 An earlier version of this file carried the section below under the heading
 *"Measured, and it did not hold"*, treating the overlap between `traps.py` and
@@ -311,7 +549,7 @@ was wrong.
 
 ---
 
-## The measurement itself, kept without the framing
+### The measurement itself, kept without the framing
 
 From the same conversation. Testable directly, so it was tested.
 
@@ -333,7 +571,7 @@ is known, and unknown for the other 72%.
 
 ---
 
-## A file the README links to was never in the repository (2026-08-23)
+### A file the README links to was never in the repository (2026-08-23)
 
 `CLAIMS.csv` — the table that marks every published figure as descriptive,
 pre-registered, repair-adjusted or exploratory — matched `*.csv` in
@@ -364,7 +602,7 @@ the one that was failing, so it had never run. It is declared now.
 reader can check them, which is the only thing this repository claims to be
 for.
 
-## Nine strategies were measured without a mechanism they contain (2026-08-23)
+### Nine strategies were measured without a mechanism they contain (2026-08-23)
 
 `adjust_trade_position` — the DCA hook — is only called when
 `position_adjustment_enable` is set. freqtrade resolves that attribute in one
@@ -396,7 +634,7 @@ a thing a reader deserves to know about.
 behaviour is not all in the strategy file. Take the `.py` without its config
 and you get, silently, a different strategy.
 
-## The trap list was not using the community's definition of a trap (2026-08-22)
+### The trap list was not using the community's definition of a trap (2026-08-22)
 
 `Hippocritical`, asked directly whether `trailing_stop_positive` set while
 `trailing_stop` is `False` — 177 of 895 — belongs in a list of backtesting traps:
@@ -434,7 +672,7 @@ automatic guard caught rather than a reader.*
 
 ---
 
-## The ceiling on this instrument, stated by the people who build the engine
+### The ceiling on this instrument, stated by the people who build the engine
 
 `froggleston`: *"any callback can add a backtesting trap — it can be very
 subtle."*
@@ -460,7 +698,7 @@ same claim as completeness of *what exists*, and only the second is refused here
 
 ---
 
-## The freeze guard watched the names of the gates, not their meaning (2026-08-22)
+### The freeze guard watched the names of the gates, not their meaning (2026-08-22)
 
 `freeze_guard.py` exists to answer one question against its own author: was the
 rule fixed before the data were seen, or adjusted after? It derives the answer
@@ -487,7 +725,7 @@ catch that class had it, in the part of itself that judges its author.
 
 ---
 
-## A gate that passed what it had never measured — again, in the gate that matters most (2026-08-22, evening)
+### A gate that passed what it had never measured — again, in the gate that matters most (2026-08-22, evening)
 
 Above, under *"A gate that passed what it had never measured"*, this file
 records fixing `G9_candle`: a card with no duration field read as **passed**.
@@ -542,7 +780,7 @@ or "fourteen survivors" described populations containing strategies never
 tested for look-ahead bias. The published endpoint — no strategy beats
 buy-and-hold — is unchanged under all three versions.
 
-## Strategies that never load were counted as strategies (2026-08-24)
+### Strategies that never load were counted as strategies (2026-08-24)
 
 **Raised by** froggleston, in the freqtrade Discord: *"it also doesn't list
 strategies that simply don't load."*
@@ -592,3 +830,95 @@ this correction is about.
 **Consequence for the reader:** the denominator in every rate quoted from the
 funnel included 94 strategies that were never runnable. The published endpoint
 — no strategy beats buy-and-hold — sits on later gates and does not move.
+
+## 4. How much do conclusions depend on the trailing stop?
+
+*Formerly `TRAILING_SENSITIVITY_FINDINGS.md`, merged here on 2026-09-20 without changes to the text below.*
+
+**Exploratory (E3). Nothing here changes E0, E1, or any confirmatory result.**
+
+A trailing stop is the one exit mechanism a backtest cannot resolve: freqtrade
+does not know the price path inside a candle. This arm re-measures every
+affected strategy with trailing disabled, over the identical window, pair
+universe and config. No strategy source was edited; trailing is switched off
+through the configuration, which `StrategyResolver` applies over the strategy
+attribute, so every canonical hash is unchanged.
+
+### Scope
+
+22 of the 67 measured strategies enable a trailing stop - just under a third.
+
+### Answer: the dependence is large
+
+| | Strategies |
+|---|---|
+| trailing never fired (identical trade lists) | 5 |
+| result unchanged | 1 |
+| **better without trailing** | **13** |
+| worse without trailing | 3 |
+
+For 5 strategies the mechanism is inert and the question does not arise:
+`MACD_TRIPLE_MA`, `NostalgiaForInfinityV1`, `SMAIP3`, `cryptotank`,
+`cryptotankV5` produce byte-identical trade lists either way.
+
+For the other 17 the effect is large and one-directional. Nine strategies move
+by more than 20 percentage points of total profit.
+
+| Strategy | canonical | no trailing | change |
+|---|---|---|---|
+| `Cluc7werk` | -91.3 % | **+96.0 %** | +187.3 |
+| `CombinedBinHAndClucV3` | 222.2 % | 333.2 % | +111.1 |
+| `ElliotV5_SMA` | 164.4 % | 253.2 % | +88.8 |
+| `MADisplaceV3` | 42.1 % | 125.4 % | +83.3 |
+| `ClucHAwerk` | -96.6 % | -31.4 % | +65.2 |
+| `BigTrader` | 77.2 % | 139.5 % | +62.3 |
+| `bestV2` | 73.7 % | 106.1 % | +32.5 |
+| `CombinedBinHAndClucV7` | 60.7 % | 81.8 % | +21.2 |
+| `ElliotV2` | 108.0 % | 129.0 % | +21.1 |
+
+`Cluc7werk` reverses sign: a catastrophic loser becomes a strong performer.
+Ranked by total profit it moves from 18th to 8th, and `ClucHAwerk` from 21st to
+14th. The largest rank shift among the 22 is **10 places**.
+
+`BigTrader` is a warning against reading the table as "better": profit rises
+from 77 % to 140 % while its Sharpe ratio falls from 3.39 to 0.93. The risk
+profile changes, not just the return.
+
+### Why the effect points one way
+
+This is not noise. Freqtrade's backtester states the reason in
+`optimize/backtesting.py`:
+
+> Special case: trailing triggers within same candle as trade opened. Assume
+> most pessimistic price movement, which is moving just enough to arm stoploss
+> and immediately going down to stop price.
+
+When the path inside a candle is unknown, freqtrade resolves it against the
+trader. Trailing-stop results are therefore systematically conservative, which
+matches 13 of 16 affected strategies improving once the mechanism is removed.
+
+### What this does and does not establish
+
+It establishes that for roughly a third of the corpus, and severely for the
+1-minute Cluc/BinH family, conclusions rest on an estimate rather than a
+measurement.
+
+It does **not** establish that the trailing-disabled numbers are the true ones.
+Removing a trailing stop produces a different strategy, not a corrected one.
+Two causes are entangled here and this arm cannot separate them: freqtrade's
+deliberately pessimistic assumption, and trailing parameters that are genuinely
+poor. `TGMA` showed the second is real - it arms its stop at 1.3 % profit and
+then trails 3.5 % behind, placing the stop below entry.
+
+Separating the two requires re-running with `--timeframe-detail`, which
+simulates the intra-candle path from finer candles. That is the honest next
+step if trailing-stop accuracy needs to be settled rather than bounded.
+
+### Consequence for regime classification
+
+A trailing stop locks in gains during sustained moves, so its effect is
+strongest in trending phases and weakest in flat ones. The distortion is
+therefore not uniform across market regimes; it acts along the very axis this
+audit measures. Any regime conclusion about the nine strategies above should
+carry this sensitivity beside it, and `Cluc7werk` should not be characterised
+from the canonical arm alone.

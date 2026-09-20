@@ -23,7 +23,7 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 # is stored under its own startup value the moment it exists, so an interrupted
 # container leaves finished attempts intact and the same command resumes.
 # Walks the frozen warm-up ladder and stops at the first value inside the band.
-# --cohort selects which frozen cohort to walk; see REGIME_PREREGISTRATION.md.
+# --cohort selects which frozen cohort to walk; see PIPELINE.md (Decision record).
 docker run --rm `
     -e "PROFILE_RUNTIME_ID=docker:$imageId" `
     -v "${auditPath}:/audit" `
