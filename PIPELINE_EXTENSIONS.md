@@ -9,6 +9,7 @@ separate plan file until 2026-09-20; the text is unchanged, only the headings mo
 | 1. Eligibility expansion protocol | 6, 7 (who is admitted) | Frozen 2026-08-30, E0 clauses superseded 2026-09-03; all expansion waves terminal. Results of the waves: `evidence/ADMISSION_RECORDS.md` | `ELIGIBILITY_EXPANSION_PLAN.md` |
 | 2. Execution robustness and cost screen | 8b (after the pooled Full-Backtest) | Built and running; Amendments 2026-09-19 and 2026-09-20 are current | `EXECUTION_ROBUSTNESS_PLAN.md` |
 | 3. Validation window extension | 9 to 13 (regime, attribution, evaluation) | **On hold** (owner, 2026-09-20). Do not start, do not change `END` or `TIMERANGE` | `VALIDATION_EXTENSION_PLAN.md` |
+| 4. Regime rotation bot | none (a consumer of the results, not part of the chain) | Variants and the rule of each, written before it is run | new 2026-09-20 |
 
 Section numbers quoted inside a part (for example `section 5.1`) refer to that part. A file name inside the text of a merged part (for example `EXECUTION_ROBUSTNESS_PLAN.md`) names the file as it was then; the table "Where a former document went" in `README.md` resolves it.
 
@@ -990,3 +991,47 @@ The plan (version 2) was submitted with the request to find what is overlooked. 
 | Tier B timeouts; suggests a longer timeout | The risk is correct. A longer timeout is excluded by the standing rule that 3600 s is a hard ceiling. | Slow runs go first and alone, outcome labelled (4.3). |
 | Benchmark from 1m candles not updated explicitly | Covered by 4.1, made an explicit acceptance test | Test 3b added. |
 | Only one strategy tested | Correct | Pilot over the missing classes before the batch (4.0). |
+
+## 4. Regime rotation bot: variants and their preregistered rules
+
+The bot (`bot/RegimeRotationBot.py`) runs one component per ADX phase: Buy-and-Hold in the BTC uptrend, EI3v2 in the
+BTC downtrend, Ichimoku in coin SIDEWAYS, BuyOrDie in coin TRANSITION. It is evaluated by `bot/rotation_eval.py` from
+per-pair backtests (`bot/run_rotation.py`, 5m with 1m detail, futures, 0.1 % fee and 0.1 % slippage per side). This part
+holds the rule of each variant *before* the variant is run. It changes no regime label, no threshold of the study and no
+stage of the chain.
+
+### 4.1 Result of the base variant (`RegimeRotationBot`), read before the rule below was written
+
+Validation window, daily return on provided capital (fixed stake, eight slots): whole bot 0.083 %, hold alone 0.100 %.
+Compounded growth factor over the window: whole bot 1.14, hold alone 1.58, equal-weight Buy-and-Hold 1.08. In the
+discovery window the whole bot was ahead of hold alone (0.145 % against 0.134 % per day; factor 4.65 against 3.97). Per
+component in the validation window: hold +0.100 %, EI3v2 +0.004 % (the only confirmed one), Ichimoku +0.003 %, BuyOrDie
+-0.025 % (negative in both windows). So the components other than hold subtract in the validation window. The
+validation numbers of this variant were known when the rule below was written; that is disclosed here and it limits
+what a later read of the validation window can prove.
+
+### 4.2 Rule for `RegimeRotationBotV2` (written 2026-09-20, before V2 was run)
+
+1. **Choice of component per phase, from the discovery window only** (2020-04-01 to 2023-12-31). For each of the phases
+   BTC bear, coin sideways and coin transition there are three options: the component, Buy-and-Hold of the coin for the
+   length of the phase (1x, entry when the phase starts, exit when it ends, same costs), and cash. An option other than
+   cash is taken only if the one-sided 95 % lower confidence bound of its mean net return per phase episode is above
+   0 in the discovery window (t bound over episodes, as `episode_excess_lcb`, but against cash, not against Buy-and-Hold).
+   Among the options that pass, the one with the highest mean net return per episode is taken; if none passes, the
+   phase is cash. Nothing from the validation window enters this choice. The bound instead of the plain maximum guards
+   against picking the best of several noisy numbers.
+2. **Phase confirmation.** A change of the BTC or of the coin state is accepted only after the new raw state has held for
+   `N = 2` consecutive days. `N` is fixed, not searched. The regime labels themselves are not changed; the
+   confirmation is bot logic. The hold in the BTC uptrend is subject to the same confirmation.
+3. **Reading.** V2 is read once on the validation window and reported whichever way it falls, next to the base variant,
+   hold alone and equal-weight Buy-and-Hold. To separate the two changes, the same component choice with `N = 1` is
+   run and reported (`RegimeRotationBotV2N1`); it is a decomposition and does not choose `N`.
+4. **Account model.** The primary figures stay those of the slot model (eight slots, fixed stake), so V2 is comparable
+   with the base variant. Added for both variants, as a second reading: a pooled account (one capital; the stake of a
+   new trade is the free capital divided by the number of free slots, as Freqtrade's `stake_amount: unlimited` does),
+   computed from the trade list. It is reported beside the slot model and never replaces it.
+5. **Not tested here:** 2x hold, shorts and the coin-downtrend variant stay stopped (owner, 2026-09-20).
+
+A second read of the validation window after a further change would no longer be out of sample. The forward hold-out
+of the confirmation rule (Part 3 and `REGIME_PREREGISTRATION.md`, Amendment 2026-09-20) is the test that does not
+depend on it, and it is on hold.

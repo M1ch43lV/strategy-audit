@@ -46,7 +46,7 @@ copied into a second file is the file that will be wrong first.
 | Which image or shim does a strategy need, and which rows never ran? | [`RUNTIME_ENVIRONMENTS.md`](RUNTIME_ENVIRONMENTS.md), [`REPAIR_LIST.md`](REPAIR_LIST.md), `evidence/repair_measures_list.md`, `repair/REGISTER.md` |
 | What are the regime labels and their episode counts? | [`REGIME_DATA_REPORT.md`](REGIME_DATA_REPORT.md) |
 | Results for a reader | [`regime_specialists.html`](regime_specialists.html), [`regime_gating.html`](regime_gating.html) (rebuilt by `python -m tools.regime_specialists_page`) |
-| The regime rotation bot | `bot/` (module docstrings); results under `results/regime/rotation_bot/`; there is no separate document |
+| The regime rotation bot | rule of each variant and its results: [`PIPELINE_EXTENSIONS.md`](PIPELINE_EXTENSIONS.md) Part 4; code in `bot/`, data under `results/regime/rotation_bot/` |
 | Rules for the agents | [`CLAUDE.md`](CLAUDE.md), [`AGENTS.md`](AGENTS.md) |
 
 ### When two documents disagree
