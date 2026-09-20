@@ -38,6 +38,7 @@ import time
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 from evidence import execution_robustness as er  # noqa: E402
+from regime import full_backtest  # noqa: E402
 
 WRAPPER = os.path.join(ROOT, "runtime", "regime_full_backtest_docker.ps1")
 REGIME = os.path.join(ROOT, "results", "regime")
@@ -184,7 +185,14 @@ def main(argv=None):
         # alone, is final: repeating it in parallel would only reproduce it.
         final = {s for s, r in er.choose_detail_records().items()
                  if r.get("status") in ("failed", "timeout")}
-        names = [s for s in er.targets(args.detail) if s not in final]
+        # The runner refuses a strategy it no longer lists as eligible ("not currently
+        # eligible") - a baseline can outlive that - so those cannot be rerun at all.
+        eligible = {row["strategy_id"] for row in full_backtest.eligible()}
+        owed = [s for s in er.targets(args.detail) if s not in final]
+        names = [s for s in owed if s in eligible]
+        if len(names) != len(owed):
+            print("not currently eligible, skipped: %s" % ", ".join(sorted(set(owed) - eligible)),
+                  flush=True)
         if args.limit:
             names = names[:args.limit]
         print("%d strategies owed a %s detail run; %d containers x %s" % (
