@@ -1634,6 +1634,13 @@ validation ones used). `regime/discovery_comparison.py` (2026-09-20) evaluates t
 trades with the same functions and floor and writes `discovery_vs_validation.csv` and a summary;
 the page shows it. It selects nothing. Result: within a phase the rank correlation of the excess
 return between the two windows is 0.61-0.79 (BTC sideways 0.21).
+Confirmation (owner decision 2026-09-20): a strategy in a phase is *confirmed* when the floor and
+the lower confidence bound above 0 hold in both windows; the score is the smaller bound. Universal
+candidates: strict = confirmed in all four coin phases, else mild = better than Buy-and-Hold in both
+windows in at least three. Today: 137 coin and 166 BTC strategy/phase pairs confirmed; universal 0
+strict, 30 mild. It is a column on the page and changes no ranking. The rule is frozen for a forward
+test on data after 2026-08-21 (Amendment 2026-09-20 in REGIME_PREREGISTRATION.md); nothing is
+scheduled, extending the analysis window is the owner's decision.
 Not touched: `candidate_spec_full_v1.json` and the model1/2/3 manifests still list the removed
 candidates (they are bound to the spec hash), the decision records `ELIGIBILITY_EXPANSION_*`,
 `REGIME_ELIGIBILITY.csv`, `NEW_REPO_CANDIDATES.json`, and the run archives under `user_data/`. Log:

@@ -159,6 +159,21 @@
     "val_positive_given_disc_not_positive": 0.29432624113475175,
     "val_positive_given_disc_positive": 0.8540540540540541
   },
+  "confirmation": {
+    "confirmed_rows": {
+      "btc": 166,
+      "coin": 137
+    },
+    "rule": {
+      "lcb_min": 0.0,
+      "universal_mild_phases": 3
+    },
+    "universal": {
+      "mild": 30,
+      "none": 374,
+      "strict": 0
+    }
+  },
   "discovery_trades": 2814334,
   "universal": {
     "spearman": 0.7542564762197762,

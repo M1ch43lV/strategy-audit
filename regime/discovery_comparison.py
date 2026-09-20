@@ -17,7 +17,19 @@ validation window.
     ./ftenv/Scripts/python.exe -m regime.discovery_comparison
 
 Writes `results/regime/specialist_evaluation/discovery_vs_validation.csv` (one row per
-strategy, kind and phase) and `discovery_vs_validation_summary.json`.
+strategy, kind and phase), `discovery_vs_validation_summary.json` and
+`universal_confirmation.csv`.
+
+Confirmation (frozen 2026-09-20, REGIME_PREREGISTRATION.md, "Amendment 2026-09-20"): a
+strategy in a phase is *confirmed* when it clears the floor in both windows and the
+one-sided 95 % lower confidence bound of its episode excess return (`episode_excess_lcb`)
+is above 0 in both. Its *confirmation score* is the smaller of the two bounds, the weakest
+link; the score says nothing about similarity, so equally poor results earn nothing. For a
+universal candidate (all four coin phases at VALIDATION tier) the strict rule is: confirmed
+in all four phases. Where that does not hold, the milder rule applies: better than
+Buy-and-Hold in both windows (excess above 0, floor in both) in at least three of the four
+phases. The label reports the strongest rule that holds, `strict`, `mild` or `none`; the
+universal score is the score of its weakest phase.
 """
 from __future__ import annotations
 
@@ -37,6 +49,9 @@ KINDS = (("btc", "btc_regime", se.btc_specialist_table),
          ("coin", "coin_regime", se.coin_specialist_table))
 KEEP = ["trades", "episodes", "excess_return", "tier", "episode_excess_lcb", "lcb_grade",
         "dollar_gain_usd"]
+# The confirmation rule. Frozen in the amendment named in the docstring; change it there first.
+CONFIRM_LCB_MIN = 0.0            # both lower confidence bounds must exceed this
+UNIVERSAL_MILD_PHASES = 3        # milder rule: better than Buy-and-Hold in both windows in this many of 4
 
 
 def discovery_trades(trades: pd.DataFrame) -> pd.DataFrame:
@@ -62,6 +77,10 @@ def paired_rows(trades: pd.DataFrame) -> pd.DataFrame:
     frame = pd.concat(rows, ignore_index=True)
     frame["floor_disc"] = frame["tier_disc"] == "VALIDATION"
     frame["floor_val"] = frame["tier_val"] == "VALIDATION"
+    both = frame["floor_disc"] & frame["floor_val"]
+    frame["confirmation_score"] = np.where(
+        both, np.fmin(frame["episode_excess_lcb_disc"], frame["episode_excess_lcb_val"]), np.nan)
+    frame["confirmed"] = both & (frame["confirmation_score"] > CONFIRM_LCB_MIN)
     return frame
 
 
@@ -118,6 +137,29 @@ def universal_pairs(frame: pd.DataFrame) -> pd.DataFrame:
     return grouped.reset_index()
 
 
+def universal_confirmation(frame: pd.DataFrame, universal_ids) -> pd.DataFrame:
+    """Per universal candidate: the strongest confirmation rule that holds, and its score."""
+    coin = frame[(frame["kind"] == "coin") & frame["strategy_id"].isin(set(universal_ids))]
+    rows = []
+    for strategy, part in coin.groupby("strategy_id"):
+        both = part["floor_disc"] & part["floor_val"]
+        positive = both & (part["excess_return_disc"] > 0) & (part["excess_return_val"] > 0)
+        confirmed = int(part["confirmed"].sum())
+        scores = part["confirmation_score"]
+        if confirmed == 4:
+            rule = "strict"
+        elif int(positive.sum()) >= UNIVERSAL_MILD_PHASES:
+            rule = "mild"
+        else:
+            rule = "none"
+        rows.append({"strategy_id": strategy, "phases_floor_both": int(both.sum()),
+                     "phases_confirmed": confirmed, "phases_better_in_both": int(positive.sum()),
+                     "rule": rule,
+                     "score": float(scores.min()) if len(scores) == 4 and scores.notna().all() else np.nan})
+    return pd.DataFrame(rows, columns=["strategy_id", "phases_floor_both", "phases_confirmed",
+                                       "phases_better_in_both", "rule", "score"])
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--trades", type=Path, default=se.DEFAULT_TRADES)
@@ -139,7 +181,18 @@ def main(argv=None) -> int:
     summary["validation_trades"] = int((trades["analysis_window"] == "validation").sum())
     summary["validation_start"] = se.VALIDATION_START.isoformat()
 
+    universal_path = args.outdir / "universal_strategies.csv"
+    universal_ids = pd.read_csv(universal_path)["strategy_id"] if universal_path.is_file() else []
+    confirmation = universal_confirmation(frame, universal_ids)
+    summary["confirmation"] = {
+        "confirmed_rows": {kind: int(frame[(frame["kind"] == kind) & frame["confirmed"]].shape[0])
+                           for kind in ("btc", "coin")},
+        "universal": {rule: int((confirmation["rule"] == rule).sum())
+                      for rule in ("strict", "mild", "none")},
+        "rule": {"lcb_min": CONFIRM_LCB_MIN, "universal_mild_phases": UNIVERSAL_MILD_PHASES},
+    }
     args.outdir.mkdir(parents=True, exist_ok=True)
+    confirmation.to_csv(args.outdir / "universal_confirmation.csv", index=False, float_format="%.6g")
     frame.to_csv(args.outdir / "discovery_vs_validation.csv", index=False, float_format="%.6g")
     (args.outdir / "discovery_vs_validation_summary.json").write_text(
         json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")

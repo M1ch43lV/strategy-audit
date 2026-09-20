@@ -734,6 +734,47 @@ distributions) where one was available, never against strategy performance.
    interaction - better scoped once it is visible how often multiple
    candidates qualify at once, which nothing in the corpus can show yet.
 
+## Amendment 2026-09-20: confirmation across the discovery and validation windows, and a forward hold-out
+
+**Owner's decision.** Timing: made *after* discovery and validation, with both windows'
+results known, so it is a post-hoc reporting rule and is labelled as such. Classification:
+reporting-only. It adds columns and changes no ranking, no floor, no tier and no
+eligibility.
+
+The evaluation labelled each trade `discovery` (opened before 2024-01-01) or `validation`
+and then used only the validation trades. `regime/discovery_comparison.py` now runs the
+same evaluation, floor and benchmark on the discovery trades and pairs the two results per
+strategy, regime kind (BTC or coin) and phase. Two results are added on top of that pairing.
+
+1. **Confirmed.** A strategy in a phase is *confirmed* when it clears the specialist floor
+   (5 episodes and 10 trades) in **both** windows and the one-sided 95 % lower confidence
+   bound of its episode excess return (`episode_excess_lcb`) is above 0 in **both**.
+2. **Confirmation score.** The smaller of the two lower confidence bounds, the weakest link.
+   It rewards being good in both windows. It does not reward similarity as such, so equally
+   poor results give a negative score and no label.
+3. **Universal candidates** (VALIDATION tier in all four coin phases). *Strict*: confirmed
+   in all four phases. Where that does not hold, the *mild* rule applies: better than
+   Buy-and-Hold in both windows (excess return above 0, floor in both) in at least three of
+   the four phases. The label is the strongest rule that holds (`strict`, `mild`, `none`);
+   the score of a universal candidate is the score of its weakest phase. The mild rule was
+   added because the strict one left no universal candidate (0 of 404), which is a
+   data-informed choice and is recorded as one.
+
+The constants are `CONFIRM_LCB_MIN = 0` and `UNIVERSAL_MILD_PHASES = 3` in
+`regime/discovery_comparison.py`. Both windows were known when they were chosen, so the
+counts they produce say nothing about how well the rule predicts.
+
+**Forward hold-out from 2026-08-21.** The analysis window ends at 2026-08-21 00:00 UTC. No
+result in this audit uses data after that date. The rule above is frozen as of this
+amendment; a later change to the thresholds or to the definition is a new amendment and
+cannot be tested on the same forward window. To test it, extend the candle data and the
+pooled backtests to a new end date, run the same evaluation on the window that starts at
+2026-08-21, and compare, per phase, the share of confirmed strategies that beat
+Buy-and-Hold in that window with the share of the strategies that were not confirmed. The
+result is reported whichever way it falls. The window needs enough episodes to clear the
+floor per phase, which is a matter of months, not weeks. Extending the analysis window is
+a separate decision of the owner and is not made here.
+
 ## OPEN before Stage 9 ranking
 
 The following choices are intentionally not inferred from strategy outcomes.

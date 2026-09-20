@@ -112,8 +112,31 @@ class Robustness(object):
         return {"xs": xs, "ok": 1 if ok else 0}
 
 
+# ------------------------------------------------------------------ confirmation
+def confirmation_lookups():
+    """Discovery confirmation (regime/discovery_comparison.py) per strategy, kind and phase,
+    and per universal candidate. Read, never recomputed here."""
+    paired = os.path.join(SPEC, "discovery_vs_validation.csv")
+    universal = os.path.join(SPEC, "universal_confirmation.csv")
+    if not (os.path.isfile(paired) and os.path.isfile(universal)):
+        raise SystemExit("run `python -m regime.discovery_comparison` first")
+    frame = pd.read_csv(paired)
+    rows = {}
+    for r in frame.itertuples(index=False):
+        both = bool(r.floor_disc and r.floor_val)
+        rows[(r.kind, r.strategy_id, r.regime)] = (
+            2 if r.confirmed else (1 if both else 0),
+            None if pd.isna(r.confirmation_score) else round(float(r.confirmation_score), 4))
+    uni = {}
+    for r in pd.read_csv(universal).itertuples(index=False):
+        uni[r.strategy_id] = ({"strict": 2, "mild": 1, "none": 0}[r.rule],
+                              None if pd.isna(r.score) else round(float(r.score), 4),
+                              int(r.phases_better_in_both), int(r.phases_confirmed))
+    return rows, uni
+
+
 # ------------------------------------------------------------------ data exports
-def regime_rows(table, regime_col, kind, robustness):
+def regime_rows(table, regime_col, kind, robustness, confirm):
     qualified = table[table["tier"] == "VALIDATION"].copy()
     median_by_strategy = qualified.groupby("strategy_id")["excess_return"].median()
     qualified["median_excess_return"] = qualified["strategy_id"].map(median_by_strategy)
@@ -136,6 +159,8 @@ def regime_rows(table, regime_col, kind, robustness):
             "lcb_grade": row["lcb_grade"],
         }
         record.update(robustness.row(row["strategy_id"], kind, row[regime_col]))
+        cf, sc = confirm.get((kind, row["strategy_id"], row[regime_col]), (0, None))
+        record["cf"], record["sc"] = cf, sc
         rows.append(record)
     return rows
 
@@ -145,7 +170,7 @@ DETAIL_COLS = ["trades", "episodes", "dollar_gain_usd", "benchmark_dollar_gain_u
                "freqforge_score", "episode_excess_lcb", "lcb_grade"]
 
 
-def universal_rows(universal, coin, robustness):
+def universal_rows(universal, coin, robustness, uconfirm):
     indexed = coin.set_index(["strategy_id", "coin_regime"])
     rows = []
     for row in universal.to_dict(orient="records"):
@@ -154,6 +179,8 @@ def universal_rows(universal, coin, robustness):
         for column in DETAIL_COLS:
             record[column] = clean(detail[column])
         record.update(robustness.universal(row["strategy_id"]))
+        ur, us, up, uc = uconfirm.get(row["strategy_id"], (0, None, 0, 0))
+        record.update({"ur": ur, "us": us, "up": up, "uc": uc})
         rows.append(record)
     return rows
 
@@ -277,6 +304,10 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
     verified_btc = sum(r["ok"] for r in rows["btc"])
     verified_coin = sum(r["ok"] for r in rows["coin"])
     verified_universal = sum(r["ok"] for r in rows["universal"])
+    confirmed_btc = sum(1 for r in rows["btc"] if r["cf"] == 2)
+    confirmed_coin = sum(1 for r in rows["coin"] if r["cf"] == 2)
+    univ_strict = sum(1 for r in rows["universal"] if r["ur"] == 2)
+    univ_mild = sum(1 for r in rows["universal"] if r["ur"] == 1)
     pending = sum(1 for s in evaluated if robustness.status(s) == "PENDING")
     sensitive = sum(1 for s in evaluated if robustness.status(s) == "SENSITIVE")
     failed = sum(1 for s in evaluated if robustness.status(s) == "ERROR")
@@ -327,6 +358,8 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
         "n_measured_baselines": measured,
         "n_verified_rows_btc": verified_btc, "n_verified_rows_coin": verified_coin,
         "n_verified_universal": verified_universal,
+        "n_conf_btc": confirmed_btc, "n_conf_coin": confirmed_coin,
+        "n_univ_strict": univ_strict, "n_univ_mild": univ_mild,
         "n_consistent_word": COUNT_WORDS.get(n_cons, str(n_cons)),
         "tbl_btc": de_int(len(btc)), "tbl_coin": de_int(len(coin)),
         # Stamped at generation, always: a page that carries an old date reads as current.
@@ -354,7 +387,7 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
         intro += ": " + ", ".join("<code class=\"mono\">%s</code>" % i for i in ids) + "."
     intro += (" Für die übrigen %d bleibt der Grund oben belegt: ADX Uptrend kippt bei ihnen fast überall "
               "ins Negative." % rest)
-    text = {"consistent_intro": intro}
+    text = {"consistent_intro": intro, "lcb_example": lcb_example(coin)}
 
     best = weakest_bull.sort_values("median_regime_excess_return", ascending=False).head(1)
     if len(best):
@@ -409,6 +442,36 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
     return facts, text, manifest
 
 
+def lcb_example(coin):
+    """Two real rows that show what the lower confidence bound does: a high mean over few
+    episodes whose bound is below 0, and a smaller mean over many episodes whose bound is
+    above 0."""
+    val = coin[coin["tier"] == "VALIDATION"].dropna(subset=["episode_excess_lcb"])
+    few = val[(val["episodes"].between(5, 15)) & (val["excess_return"] > 0.05) & (val["episode_excess_lcb"] < 0)]
+    if few.empty:
+        return ""
+    a = few.sort_values("excess_return", ascending=False).iloc[0]
+    many = val[(val["episodes"] >= 30) & (val["episode_excess_lcb"] > 0) & (val["excess_return"] < a["excess_return"])]
+    if many.empty:
+        return ""
+    b = many.sort_values("episode_excess_lcb", ascending=False).iloc[0]
+
+    def pct(v):
+        return ("&minus;" if v < 0 else "+") + ("%.1f" % abs(100 * v)).replace(".", ",") + "&nbsp;%"
+
+    def label(r):
+        return '<code class="mono">%s</code> in %s' % (r["strategy_id"], {
+            "BULL": "ADX Uptrend", "BEAR": "ADX Downtrend", "SIDEWAYS": "ADX Sideways",
+            "TRANSITION": "ADX Transition"}[r["coin_regime"]])
+
+    return ('<p style="margin:8px 0 0;max-width:none;"><b>Beispiel aus den Daten.</b> %s: mittlerer Excess %s, aber nur %d '
+            'Episoden, die Untergrenze liegt bei %s. Der Vorsprung kann Zufall sein. %s: mittlerer Excess nur %s, dafür %d '
+            'Episoden, die Untergrenze liegt bei %s. Dieser Vorsprung ist belastbar. Der Mittelwert allein hätte die beiden '
+            'in die falsche Reihenfolge gebracht.</p>'
+            % (label(a), pct(a["excess_return"]), int(a["episodes"]), pct(a["episode_excess_lcb"]),
+               label(b), pct(b["excess_return"]), int(b["episodes"]), pct(b["episode_excess_lcb"])))
+
+
 def fill(template, facts, text):
     mapping = {k: str(v) for k, v in facts.items()}
     mapping.update(text)
@@ -424,9 +487,10 @@ def build(destination, skip_native=False):
     universal = pd.read_csv(os.path.join(SPEC, "universal_strategies.csv"))
     gain = pd.read_csv(os.path.join(SPEC, "strategy_total_dollar_gain.csv"))
 
-    rows = {"btc": regime_rows(btc, "btc_regime", "btc", robustness),
-            "coin": regime_rows(coin, "coin_regime", "coin", robustness),
-            "universal": universal_rows(universal, coin, robustness)}
+    confirm, uconfirm = confirmation_lookups()
+    rows = {"btc": regime_rows(btc, "btc_regime", "btc", robustness, confirm),
+            "coin": regime_rows(coin, "coin_regime", "coin", robustness, confirm),
+            "universal": universal_rows(universal, coin, robustness, uconfirm)}
     gain_rows = []
     for row in gain.to_dict(orient="records"):
         record = {k: clean(v) for k, v in row.items()}

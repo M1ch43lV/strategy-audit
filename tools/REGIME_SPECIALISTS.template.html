@@ -225,6 +225,7 @@ th.sortable.active .arrow{opacity:1;color:var(--accent-text);}
 .rbadge.rb-ok{background:var(--accent-soft);color:var(--accent-text);border:1px solid var(--accent);}
 .rbadge.rb-no{background:var(--surface-alt);color:var(--text-muted);border:1px solid var(--border);}
 .rbadge.rb-warn{background:var(--warn-bg);color:var(--warn-text);border:1px solid var(--warn-border);}
+.confscore{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--text-muted);margin-left:5px;}
 .okfilter{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--text-muted);display:inline-flex;gap:6px;align-items:center;cursor:pointer;user-select:none;}
 .rtabs{display:flex;gap:4px;margin:10px 0 0;}
 .rtab{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:5px 5px 0 0;cursor:pointer;border:1px solid var(--border);border-bottom:none;background:var(--surface-alt);color:var(--text-muted);user-select:none;}
@@ -268,13 +269,15 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
     <span><b>{{n_consistent}}</b> davon vollständig konsistent</span>
     <span><b>{{n_gain_pos}}</b>/<b>{{n_gain_rows}}</b> mit positivem Gesamtgewinn in Dollar</span>
     <span><b>{{n_verified_rows_btc}}</b>/<b>{{n_verified_rows_coin}}</b> davon mit Robustheits-PASS (BTC/Coin)</span>
+    <span><b>{{n_conf_btc}}</b>/<b>{{n_conf_coin}}</b> davon in Discovery und Validation bestätigt (BTC/Coin)</span>
   </div>
 </header>
 
 <div class="callout info"><span class="dot">&#8505;</span><div><b>* = Futures-Strategie, in jeder Tabelle auf dieser Seite.</b> Markiert jede Strategie mit <code class="mono">run_profile</code> <code class="mono">futures_long</code>/<code class="mono">futures_short</code>/<code class="mono">futures_long_short</code> in <code class="mono">evidence/EXECUTION_PROFILES.csv</code> &mdash; derselbe Spot/Futures-Split, den die Backtest-Pipeline selbst verwendet. Das ist keine Hebel-<i>Höhe</i>, sondern nur die Marktart: Futures/Margin erlaubt grundsätzlich Verluste über 100% des eigenen Einsatzes hinaus, Spot nicht. {{n_futures_eval}} der {{n_eval}} Modell-0-Strategien und 2 der 25 Regime-Spezialisten-Piloten-<i>Strategien</i> (<code class="mono">FastSupertrend_optim3_rsi_80</code>, <code class="mono">FSampleStrategy</code> &mdash; genau die beiden, die auch das optionale <code class="mono">-trend</code>-Gate bekommen haben, siehe unten) sind so markiert &mdash; in den Modell-1/2/3-Tabellen entsprechend alle ihre Gate-Varianten (4 der 33 Kandidaten).</div></div>
 <div class="callout info"><span class="dot">&#8505;</span><div><b># = DCA-Strategie, in jeder Tabelle auf dieser Seite.</b> Markiert jede Strategie, die im eigenen Quellcode <code class="mono">position_adjustment_enable = True</code> gesetzt UND eine tatsächliche <code class="mono">adjust_trade_position()</code>-Methode implementiert hat &mdash; direkt am Code geprüft, nicht am breiteren <code class="mono">strategy_type</code>-Marker <code class="mono">grid_dca</code> aus <code class="mono">STRATEGY_STATUS.csv</code> (reiner Substring-Treffer auf <code class="mono">position_adjustment_enable</code>/<code class="mono">dca</code>/<code class="mono">grid</code> im Quelltext, ohne True-Prüfung und ohne Verhaltenscheck &mdash; {{n_dca_marker}} statt hier {{n_dca_verified}} Treffer). Bedeutung: die Strategie kann eine offene Position nachträglich aufstocken (oder verkleinern) statt nur einmalig ein- und auszusteigen &mdash; der feste $1000-Einsatz je Trade auf dieser Seite bildet zusätzliche Nachkäufe innerhalb desselben Trades nicht ab, der tatsächliche Kapitaleinsatz kann darüberliegen. {{n_dca_eval}} der {{n_eval}} Modell-0-Strategien, {{n_dca_universal}} der {{n_universal}} Universal-Kandidaten und 5 der 25 Regime-Spezialisten-Piloten-<i>Strategien</i> (<code class="mono">BB_RTR</code>, <code class="mono">OversoldReversion</code>, <code class="mono">cryptotank</code>, <code class="mono">eltoro1_4</code>, <code class="mono">eltoro1_4_simple</code>) sind so markiert.</div></div>
 <div class="callout info"><span class="dot">&#8505;</span><div><b>Worst Trade / Sortino / Rendite p.a. / Profit-Factor / FreqForge-Score, in jeder Tabelle auf dieser Seite.</b> Alle fünf sind Rohwerte bzw. Punktwerte aus genau diesem Regime, nicht über die ganze Strategie-Historie. Profit-Factor = Bruttogewinn &divide; Bruttoverlust (&#8734; bei null Verlust-Trades &mdash; laut FreqForge-Konvention der Bestfall, nicht undefiniert; seit 2026-09-14 dieselbe Konvention in jeder Tabelle dieser Seite, vorher wich eine andere interne Tabelle mit NaN davon ab). Sortino zeigt <i>"kein Verlust"</i> statt einer Zahl, wenn es in diesem Regime schlicht keinen einzigen Verlust-Trade gab (Freqtrades eigene &bdquo;-100&ldquo;-Sentinel-Konvention f&uuml;r eine Kennzahl ohne Downside-Streuung &mdash; FreqForge wertet das als Bestfall, nicht als Fehler). <b>Rendite p.a.</b> ist eine lineare, <i>nicht</i> kompoundierende Jahreshochrechnung (mittlere Trade-Rendite &times; Trades pro Jahr) &mdash; bewusst kein CAGR: bei der hier verwendeten Fixed-$1000-je-Trade-Buchführung (jeder Trade sein eigener frischer Einsatz, nichts wird wiederangelegt) würde eine echte Zinseszins-Formel bei hoher Trade-Frequenz ins Astronomische explodieren, ohne etwas über die tatsächliche Strategiequalität auszusagen (Korrektur 2026-09-14, nach einer DeepSeek-v4-pro-Durchsicht des gesamten Metrik-Codes). Sortino wird ebenfalls auf Trade-Ebene annualisiert (Wurzel aus Trades-pro-Jahr statt der vorherigen, dimensional inkonsistenten Mischung aus Tages- und Trade-Kennzahlen) und kann bei sehr hoher Handelsfrequenz zusammen mit Rendite p.a. dennoch groß werden &mdash; ab 1.000 wird kompakt mit Tsd/Mio/Mrd-Suffix angezeigt, das ist keine Rundung auf eine kleinere Zahl. FreqForge-Score ist ein gewichteter 0-100-Punktwert, nachgebildet nach den sechs Kategorien von <a href="https://github.com/baxr6/FreqForge" target="_blank" rel="noopener">github.com/baxr6/FreqForge</a>: Sortino 25%, Drawdown-Kontrolle 25%, Rendite p.a. 15%, Liquidation-Safety 15%, Profit-Factor 10%, Worst-Trade-Severity 10%. <b>Rein zusätzliche Berichtsspalten, kein Ranking-Kriterium</b> &mdash; die Regel "kein Einzelscore" aus <code class="mono">REGIME_AUDIT_PLAN.md</code> §17 gilt weiterhin für Tier und Excess-Return-Ranking. Liquidation-Safety fließt in die Score-Berechnung ein, ist aber seit 2026-09-14 auf echte Zwangsliquidationen verengt (<code class="mono">exit_reason == "liquidation"</code>) statt vorher auch harmlose <code class="mono">force_exit</code>-Ausstiege (z. B. Backtest-Fensterende) mitzuzählen &mdash; liegt dadurch bei praktisch jeder Strategie bei 100 Punkten (nur {{n_forced_exits}} von {{trades_mio}} Mio. Trades im ganzen Bestand sind überhaupt Zwangsausstiege irgendeiner Art).</div></div>
-<div class="callout info"><span class="dot">&#8505;</span><div><b>Episoden-Excess-LCB / Grade, in jeder Tabelle auf dieser Seite &mdash; bewusst getrennt vom FreqForge-Score.</b> Beantwortet direkt "schlägt Trading B&amp;H, UND ist das statistisch verlässlich (viele Episoden), oder nur zufällig gut bei wenigen"? Berechnung, mit DeepSeek-v4-pro abgestimmt: je unabhängiger Episode wird die Strategie-Rendite minus Buy-and-Hold-Rendite <i>dieser einen Episode</i> gebildet, daraus über alle Episoden Mittelwert und Streuung, dann die einseitige 95%-Untergrenze <code class="mono">LCB = Mittelwert &minus; t(0,95, n&minus;1) &times; Standardfehler</code>. Wenige oder stark schwankende Episoden ziehen die Grenze automatisch tief ins Negative &mdash; ganz ohne separate Mindest-Trade-Regel, die Verlässlichkeit steckt schon in der Formel. Grade ist eine Gainium-artige A-F-Note aus festen Schwellen auf denselben LCB-Wert (A: &gt;+2%, B: 0 bis +2%, C: &minus;2% bis 0, D: &minus;5% bis &minus;2%, F: darunter) &mdash; vor jeder Sichtung der Ergebnisse festgelegt, nicht nachträglich passend gewählt. Bei unter 2 Episoden erscheint kein Wert (EXPLORATORY-Strategien mit 0-1 Episoden in einer Phase lassen sich nicht sinnvoll bebändern). <b>Ebenfalls rein zusätzliche Spalte, kein Ersatz für Tier oder Excess-Return-Ranking.</b></div></div>
+<div class="callout info"><span class="dot">&#8505;</span><div><b>Episoden-Excess-LCB / Grade, in jeder Tabelle auf dieser Seite &mdash; bewusst getrennt vom FreqForge-Score.</b> <b>LCB steht für <i>Lower Confidence Bound</i>, auf Deutsch <i>untere Vertrauensgrenze</i>.</b> Sie ist ein Wert, unter den der wahre mittlere Excess-Return mit 95&nbsp;% Sicherheit nicht fällt. Der Mittelwert einer Strategie ist nur eine Schätzung aus einer begrenzten Zahl von Episoden; die Untergrenze sagt, wie viel davon man auch im ungünstigen Fall noch glauben darf. Liegt sie über 0, ist der Vorsprung gegenüber Buy-and-Hold statistisch belastbar. Beantwortet direkt "schlägt Trading B&amp;H, UND ist das statistisch verlässlich (viele Episoden), oder nur zufällig gut bei wenigen"? Berechnung, mit DeepSeek-v4-pro abgestimmt: je unabhängiger Episode wird die Strategie-Rendite minus Buy-and-Hold-Rendite <i>dieser einen Episode</i> gebildet, daraus über alle Episoden Mittelwert und Streuung, dann die einseitige 95%-Untergrenze <code class="mono">LCB = Mittelwert &minus; t(0,95, n&minus;1) &times; Standardfehler</code>. Wenige oder stark schwankende Episoden ziehen die Grenze automatisch tief ins Negative &mdash; ganz ohne separate Mindest-Trade-Regel, die Verlässlichkeit steckt schon in der Formel. Grade ist eine Gainium-artige A-F-Note aus festen Schwellen auf denselben LCB-Wert (A: &gt;+2%, B: 0 bis +2%, C: &minus;2% bis 0, D: &minus;5% bis &minus;2%, F: darunter) &mdash; vor jeder Sichtung der Ergebnisse festgelegt, nicht nachträglich passend gewählt. Bei unter 2 Episoden erscheint kein Wert (EXPLORATORY-Strategien mit 0-1 Episoden in einer Phase lassen sich nicht sinnvoll bebändern). <b>Ebenfalls rein zusätzliche Spalte, kein Ersatz für Tier oder Excess-Return-Ranking.</b>
+    <span style="display:block">{{lcb_example}}</span></div></div>
 {{callout_update}}
 <div class="callout info"><span class="dot">&#8505;</span><div><b>Modell 0, ungegatet.</b> Bewertet wird das natürliche Handelsverhalten jeder Strategie ohne Regime-Gate. Dieselbe Auswertung gegen die gegateten Modell-1/2/3-Kandidaten steht noch aus.</div></div>
 <div class="callout warn"><span class="dot">&#9888;</span><div><b>Rang 1 ist bei dieser Stichprobengröße kein Gesamt-Sieger-Signal.</b> Je Regime-Spalte konkurrieren {{cand_range}} VALIDATION-Kandidaten. Ein einzelner erster Platz wird leicht von einer dünnen Stichprobe mit zufällig gutem Mittelwert gewonnen (z. B. 12-40 Trades). Belastbarer sind die Universal-Konsistenz und der Median-Excess-Return über alle vier Regime.</div></div>
@@ -285,6 +288,7 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
   <div class="stat"><div class="n">{{n_universal}}</div><div class="l">Universal-Kandidaten (alle 4 Coin-Regime auf VALIDATION-Tier)</div></div>
   <div class="stat"><div class="n">{{n_consistent}}</div><div class="l">schlagen den Benchmark in wirklich jedem der vier Coin-Regime</div></div>
   <div class="stat"><div class="n">{{n_verified_universal}}</div><div class="l">Universal-Kandidaten mit Robustheits-PASS in allen vier Coin-Regimen</div></div>
+  <div class="stat"><div class="n">{{n_univ_strict}} / {{n_univ_mild}}</div><div class="l">Universal-Kandidaten in Discovery und Validation bestätigt (streng / mild)</div></div>
 </div>
 
 <section>
@@ -349,6 +353,14 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
     </table>
   </div>
   <p class="secintro" style="margin-top:8px;max-width:none;"><b>&bdquo;Unter Floor&ldquo;</b> heißt: In der Validation hat die Strategie in dieser Marktphase weniger als 5 Episoden oder weniger als 10 Trades. Sie wird dort nicht gerankt (Tier EXPLORATORY), und ihr Excess-Return ist zu dünn belegt, um ihn zu zeigen. Die Klammer nennt, was sie in der Validation tatsächlich hatte. Bei einer Strategie, die in der Discovery in einer Phase oft gehandelt hat und in der Validation kaum, ist das kein Misserfolg, sondern fehlende Evidenz.</p>
+
+  <h3>Bestätigung als Spalte: Kennzeichen und Score</h3>
+  <div class="callout info"><span class="dot">&#8505;</span><div>
+    <p style="margin:0;max-width:none;"><b>Kennzeichen &bdquo;bestätigt&ldquo;.</b> Die Strategie erreicht in der Marktphase den Floor in <i>beiden</i> Fenstern, und die untere 95-%-Vertrauensgrenze (LCB, <i>Lower Confidence Bound</i>, siehe Erklärung oben) ihres Excess-Returns liegt in der Discovery <i>und</i> in der Validation über 0. Wer das erfüllt, war in beiden Fenstern belastbar besser als Buy-and-Hold. Zufällig gelingt das selten.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Score.</b> Die kleinere der beiden Grenzen, also das schwächste Glied. Er ist nur hoch, wenn die Strategie in beiden Fenstern gut ist. Ähnlich <i>schlechte</i> Ergebnisse bringen nichts: Sie ergeben einen negativen Score und kein Kennzeichen. Der Score ändert kein Ranking; er steht als eigene Spalte neben der Robustheit und lässt sich sortieren.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Universal-Kandidaten.</b> Streng gilt: in allen vier Coin-Phasen bestätigt. Trifft das nicht zu, gilt die mildere Regel: in mindestens drei der vier Phasen in beiden Fenstern besser als Buy-and-Hold (Excess über 0, Floor in beiden). Angezeigt wird die stärkste Regel, die zutrifft. Der Score eines Universal-Kandidaten ist der seiner schwächsten Phase; wer nur mild bestätigt ist, hat deshalb einen negativen Score, weil mindestens eine Phase statistisch nicht belastbar ist. <span id="cf-univ-counts"></span></p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Stand der Regel.</b> Beide Fenster waren bei der Festlegung bekannt, und die mildere Universal-Regel wurde eingeführt, weil die strenge keinen einzigen Kandidaten übrig ließ. Die Regel ist deshalb nachträglich gewählt und beweist ihre Vorhersagekraft nicht. Sie ist ab dem 2026-09-20 eingefroren (Nachtrag in <code class="mono">REGIME_PREREGISTRATION.md</code>) und soll an Daten ab 2026-08-21 geprüft werden, die dafür noch nicht benutzt wurden.</p>
+  </div></div>
   <div class="callout warn" style="margin-top:14px;"><span class="dot">&#9888;</span><div><b>Wie das zu lesen ist.</b> Die Beständigkeit ist hoch, aber sie beweist kein Phasenkönnen. Der Excess-Return misst gegen Buy-and-Hold der ganzen Phase. Eine Strategie, die wenig im Markt ist, gewinnt deshalb in fallenden Phasen fast immer gegen den Benchmark und verliert in Aufwärtsphasen, in beiden Fenstern gleichermaßen. Ein Teil der Rang-Korrelation ist also der Handelsstil (Marktzeit, Häufigkeit, Hebel), und der bleibt über Jahre gleich. Es sind außerdem dieselben Strategien in beiden Fenstern, keine unabhängigen Stichproben, und die Validation ist ein anderer Markt (2024 bis 2026). Wo die Korrelation niedrig ist, wie in BTC-Seitwärts, fehlt die Beständigkeit tatsächlich.</div></div>
 </section>
 
@@ -368,7 +380,7 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
   <p class="secintro">Jede Tabellenzeile ist eine Kombination aus Regime-Art und ADX-Phase. <b>Rang 1</b> zeigt, wer ohne Filter vorn liegt und wer mit Filter.</p>
   <div class="tablebox">
     <table class="plain">
-      <thead><tr><th>Regime</th><th>Phase</th><th class="num">Strategien</th><th class="num">PASS</th><th class="num">Anteil</th><th class="num">5m sensitiv</th><th class="num">Kosten &#10007;</th><th class="num">5m offen</th><th>Rang 1 ohne Filter</th><th>Rang 1 mit PASS</th></tr></thead>
+      <thead><tr><th>Regime</th><th>Phase</th><th class="num">Strategien</th><th class="num">PASS</th><th class="num">Anteil</th><th class="num">5m sensitiv</th><th class="num">Kosten &#10007;</th><th class="num">5m offen</th><th class="num" title="Strategien, die in Discovery und Validation bestätigt sind">bestätigt</th><th class="num" title="bestätigt und Robustheits-PASS">bestätigt + PASS</th><th>Rang 1 ohne Filter</th><th>Rang 1 mit PASS</th></tr></thead>
       <tbody id="rob-matrix"></tbody>
     </table>
   </div>
@@ -399,7 +411,7 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
   <p class="secintro">Die strengste Lesart: der Kandidat erreicht den Specialist-Floor in allen vier Coin-Phasen, besteht den 5m-Lauf und übersteht den Kostenstress in jeder der vier Phasen einzeln.</p>
   <div class="tablebox">
     <table class="plain">
-      <thead><tr><th>Strategie</th><th>Schwächstes Regime</th><th class="num">Excess im schwächsten</th><th class="num">Median Excess</th><th class="num">Konsistenz</th><th class="num">Trades</th><th class="num">Dollar-Gewinn</th><th class="num">Grade</th></tr></thead>
+      <thead><tr><th>Strategie</th><th>Schwächstes Regime</th><th class="num">Excess im schwächsten</th><th class="num">Median Excess</th><th class="num">Konsistenz</th><th class="num">Trades</th><th class="num">Dollar-Gewinn</th><th class="num">Grade</th><th class="num">Bestätigung</th></tr></thead>
       <tbody id="rob-universal"></tbody>
     </table>
   </div>
@@ -593,7 +605,7 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
   <div class="callout info"><span class="dot">&#8505;</span><div><b>Diese {{n_consistent_word}} Strategien sind im Kern eine Datei, nicht {{n_consistent_word}} unabhängige Strategien.</b> Mechanik: drei Supertrend-Lesungen auf derselben 1h-Kerze &mdash; nicht drei Zeitrahmen, drei <code class="mono">multiplier</code>/<code class="mono">period</code>-Paare &mdash; müssen für einen Einstieg übereinstimmen (3-von-3-AND); für den Ausstieg entscheidet nur noch die trägste der drei Lesungen allein. ROI ist ab <code class="mono">optim3</code> faktisch abgeschaltet (<code class="mono">{"0": 0.99}</code>), die eigentliche Gewinnmitnahme übernimmt ein Trailing Stop, der ab +2% Gewinn scharf wird und danach nur noch 0,1% Abstand zum bisherigen Höchstkurs zulässt. <code class="mono">FastSupertrend_optim3_rsi_80</code> &mdash; der einzige reale ADX-Uptrend-Spezialist des gesamten Bestands, siehe Callout oben zu * &mdash; ergänzt darauf nur einen RSI-EMA(14)-Filter, der Einstiege in bereits stark überkaufte/überverkaufte Kerzen blockiert. Herkunft: <span class="mono">juankysoriano</span> schrieb die Ursprungslogik (<code class="mono">freqtrade/freqtrade-strategies</code>), <span class="mono">perkmeister</span> baute daraus 2022 die numpy-optimierte "Fast"-Version (Issue&nbsp;#242, Logik unverändert), <span class="mono">TheoBrigitte/freqtrade</span> forkte weiter zu <code class="mono">optim3</code>/<code class="mono">_rsi_XX</code> (Futures-Shorts, asymmetrischer Exit, der RSI-Filter) &mdash; genau die Version, die dieser Bestand misst. Vollständige Herleitung mit Code-Ausschnitten und Quellenbelegen: <a href="https://claude.ai/artifact/RHddoXo3XhxGafPWem3Vw3" target="_blank" rel="noopener">FastSupertrend Dossier</a> (Englisch).</div></div>
   <div class="tablebox">
     <table class="plain">
-      <thead><tr><th>Strategie</th><th>Schwächstes Regime</th><th class="num">Trades</th><th class="num">Episoden</th><th class="num">Excess-Return</th><th class="num">Dollar-Gewinn</th><th class="num">B&amp;H-Gewinn</th><th class="num">Median Excess-Return</th><th class="num">Max Drawdown</th><th class="num">Worst Trade</th><th class="num">Sortino</th><th class="num">Rendite p.a.</th><th class="num">Profit-Factor</th><th class="num">FreqForge-Score</th><th class="num">Episoden-Excess-LCB</th><th class="num">Grade</th><th class="num">Robustheit</th></tr></thead>
+      <thead><tr><th>Strategie</th><th>Schwächstes Regime</th><th class="num">Trades</th><th class="num">Episoden</th><th class="num">Excess-Return</th><th class="num">Dollar-Gewinn</th><th class="num">B&amp;H-Gewinn</th><th class="num">Median Excess-Return</th><th class="num">Max Drawdown</th><th class="num">Worst Trade</th><th class="num">Sortino</th><th class="num">Rendite p.a.</th><th class="num">Profit-Factor</th><th class="num">FreqForge-Score</th><th class="num">Episoden-Excess-LCB</th><th class="num">Grade</th><th class="num">Robustheit</th><th class="num">Bestätigung</th></tr></thead>
       <tbody id="consistent-body"></tbody>
     </table>
   </div>
@@ -631,6 +643,7 @@ footer .prov code{background:var(--surface-alt);padding:1px 5px;border-radius:3p
           <th class="sortable num" data-key="lcb_grade">Grade<span class="arrow">&#9662;</span></th>
           <th class="sortable num" data-key="regime_consistency">Konsistenz<span class="arrow">&#9662;</span></th>
           <th class="sortable num" data-key="ok">Robustheit<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="ur">Bestätigung<span class="arrow">&#9662;</span></th>
         </tr></thead>
         <tbody id="universal-body"></tbody>
       </table>
@@ -930,6 +943,32 @@ function fmtCagr(v){
 /* Stage 8b annotation. `ok` is set only when the strategy passed the 5m detail
    rerun (measured, or by the owner rule at or below 5m) AND the cost screen in
    the claimed ADX state. It changes no ranking; it is a column. */
+function fmtConf(v){
+  if (v === null || v === undefined) return '–';
+  return (v >= 0 ? '+' : '−') + Math.abs(100 * v).toFixed(1).replace('.', ',') + ' %';
+}
+/* Confirmation across the discovery and the validation window (regime/discovery_comparison.py).
+   cf: 2 confirmed, 1 floor in both windows but not confirmed, 0 no discovery floor.
+   sc: the smaller of the two lower confidence bounds, the weakest link. */
+function confirmCell(r){
+  if (r.cf === 2) {
+    return '<td class="num"><span class="rbadge rb-ok" title="Floor in beiden Fenstern, und die untere Vertrauensgrenze des Excess-Returns liegt in der Discovery und in der Validation über 0.">bestätigt</span><span class="confscore" title="Score: die kleinere der beiden unteren Vertrauensgrenzen">' + fmtConf(r.sc) + '</span></td>';
+  }
+  if (r.cf === 1) {
+    return '<td class="num"><span class="rbadge rb-warn" title="Floor in beiden Fenstern, aber mindestens eine untere Vertrauensgrenze liegt nicht über 0.">nicht bestätigt</span><span class="confscore" title="Score: die kleinere der beiden unteren Vertrauensgrenzen">' + fmtConf(r.sc) + '</span></td>';
+  }
+  return '<td class="num"><span class="rbadge rb-no" title="Die Strategie erreicht in dieser Phase in der Discovery den Floor nicht (weniger als 5 Episoden oder 10 Trades).">–</span></td>';
+}
+/* Universal candidates: 2 strict (confirmed in all four coin phases), 1 mild (better than
+   Buy-and-Hold in both windows in at least three of the four phases), 0 neither. */
+function uconfirmCell(r){
+  var cls = r.ur === 2 ? 'rb-ok' : (r.ur === 1 ? 'rb-warn' : 'rb-no');
+  var text = r.ur === 2 ? 'streng bestätigt' : (r.ur === 1 ? 'mild bestätigt' : 'nicht bestätigt');
+  var title = r.ur === 2 ? 'In allen vier Coin-Phasen bestätigt.' :
+    (r.ur === 1 ? 'Nicht in allen vier Phasen bestätigt, aber in ' + r.up + ' von 4 Phasen in beiden Fenstern besser als Buy-and-Hold (mildere Regel).' :
+    'In weniger als drei Phasen in beiden Fenstern besser als Buy-and-Hold.');
+  return '<td class="num"><span class="rbadge ' + cls + '" title="' + title + '">' + text + '</span><span class="confscore" title="Score der schwächsten Phase: die kleinere der beiden unteren Vertrauensgrenzen">' + fmtConf(r.us) + '</span></td>';
+}
 function robustCell(r){
   if (r.ok) {
     return '<td class="num"><span class="rbadge rb-ok" title="5m-Detaillauf bestanden und Kostenstress (0,1 % Slippage je Seite) in diesem ADX-Zustand bestanden">PASS</span></td>';
@@ -952,6 +991,7 @@ function renderRegimeFullTable(containerId, rows){
   container.innerHTML =
     '<div class="toolbar"><input class="search" id="' + prefix + '-search" type="text" placeholder="Strategie suchen…">' +
     '<label class="okfilter"><input type="checkbox" id="' + prefix + '-ok"> nur Robustheits-PASS</label>' +
+    '<label class="okfilter"><input type="checkbox" id="' + prefix + '-cf"> nur bestätigt</label>' +
     '<span class="rowcount mono" id="' + prefix + '-count"></span></div>' +
     '<div class="chipbar" id="' + prefix + '-chips"></div>' +
     '<div class="tablebox"><div class="scrollbody"><table class="plain" id="' + prefix + '-table">' +
@@ -973,6 +1013,7 @@ function renderRegimeFullTable(containerId, rows){
     '<th class="sortable num" data-key="episode_excess_lcb">Episoden-Excess-LCB<span class="arrow">&#9662;</span></th>' +
     '<th class="sortable num" data-key="lcb_grade">Grade<span class="arrow">&#9662;</span></th>' +
     '<th class="sortable num" data-key="ok">Robustheit<span class="arrow">&#9662;</span></th>' +
+    '<th class="sortable num" data-key="cf" title="Bestätigung über Discovery und Validation">Bestätigung<span class="arrow">&#9662;</span></th>' +
     '</tr></thead><tbody id="' + prefix + '-body"></tbody></table></div></div>';
 
   var chipsEl = document.getElementById(prefix + '-chips');
@@ -985,11 +1026,17 @@ function renderRegimeFullTable(containerId, rows){
     var q = document.getElementById(prefix + '-search').value.trim().toLowerCase();
     var filtered = rows.filter(function(r){
       if (document.getElementById(prefix + '-ok').checked && !r.ok) return false;
+      if (document.getElementById(prefix + '-cf').checked && r.cf !== 2) return false;
       return activeRegimes.has(r.regime) && r.strategy_id.toLowerCase().indexOf(q) !== -1;
     });
     filtered = filtered.slice().sort(function(a, b){
       if (sortKey === 'strategy_id') return sortDir * a.strategy_id.localeCompare(b.strategy_id);
       if (sortKey === 'lcb_grade') return sortDir * (gradeScore(a.lcb_grade) - gradeScore(b.lcb_grade));
+      if (sortKey === 'cf') {
+        var dc = a.cf - b.cf;
+        if (dc === 0) dc = (a.sc === null ? -9 : a.sc) - (b.sc === null ? -9 : b.sc);
+        return dc * sortDir;
+      }
       return (a[sortKey] - b[sortKey]) * sortDir;
     });
     document.getElementById(prefix + '-count').textContent = filtered.length + ' von ' + rows.length;
@@ -1011,7 +1058,7 @@ function renderRegimeFullTable(containerId, rows){
 
         '<td class="num mono">' + fmtLcb(r.episode_excess_lcb) + '</td>' +
         '<td class="num val ' + gradeClass(r.lcb_grade) + '">' + (r.lcb_grade || '&mdash;') + '</td>' +
-        robustCell(r) + '</tr>';
+        robustCell(r) + confirmCell(r) + '</tr>';
     }).join('');
   }
   chipsEl.querySelectorAll('.chip').forEach(function(chip){
@@ -1141,7 +1188,7 @@ const consistentBody = document.getElementById('consistent-body');
 const consistentRows = UNIVERSAL.filter(function(r){ return r.regime_consistency === 1.0; })
   .sort(function(a,b){ return b.median_regime_excess_return - a.median_regime_excess_return; });
 if (consistentRows.length === 0) {
-  consistentBody.innerHTML = '<tr><td colspan="17" style="color:var(--text-muted);font-style:italic;">Keine Strategie erreicht aktuell regime_consistency = 1.0 &mdash; siehe Callout oben (ADX-Uptrend-Phasen).</td></tr>';
+  consistentBody.innerHTML = '<tr><td colspan="18" style="color:var(--text-muted);font-style:italic;">Keine Strategie erreicht aktuell regime_consistency = 1.0 &mdash; siehe Callout oben (ADX-Uptrend-Phasen).</td></tr>';
 } else {
   consistentRows.forEach(function(r){
     consistentBody.insertAdjacentHTML('beforeend',
@@ -1161,7 +1208,7 @@ if (consistentRows.length === 0) {
       '<td class="num val ' + scoreClass(r.freqforge_score) + '">' + fmtScore(r.freqforge_score) + '</td>' +
       '<td class="num mono">' + fmtLcb(r.episode_excess_lcb) + '</td>' +
       '<td class="num val ' + gradeClass(r.lcb_grade) + '">' + (r.lcb_grade || '&mdash;') + '</td>' +
-      robustCell(r) + '</tr>');
+      robustCell(r) + uconfirmCell(r) + '</tr>');
   });
 }
 
@@ -1188,6 +1235,11 @@ function wireSearchSortTable(opts){
     rows = rows.slice().sort(function(a, b){
       if (key === 'strategy_id') return dir * a.strategy_id.localeCompare(b.strategy_id);
       if (key === 'lcb_grade') return dir * (gradeScore(a.lcb_grade) - gradeScore(b.lcb_grade));
+      if (key === 'ur') {
+        var du = a.ur - b.ur;
+        if (du === 0) du = (a.us === null ? -9 : a.us) - (b.us === null ? -9 : b.us);
+        return du * dir;
+      }
       return (a[key] - b[key]) * dir;
     });
     count.textContent = rows.length + ' von ' + opts.data.length;
@@ -1228,7 +1280,7 @@ wireSearchSortTable({
       '<td class="num mono">' + fmtLcb(r.episode_excess_lcb) + '</td>' +
       '<td class="num val ' + gradeClass(r.lcb_grade) + '">' + (r.lcb_grade || '&mdash;') + '</td>' +
       '<td class="num mono">' + Math.round(r.regime_consistency * 100) + '%</td>' +
-      robustCell(r) + '</tr>';
+      robustCell(r) + uconfirmCell(r) + '</tr>';
   }
 });
 
@@ -1630,6 +1682,10 @@ renderGatedModel('gm-model3-content', 'model3');
     });
   });
   document.getElementById('dv-top').innerHTML = top;
+  var cc = s.confirmation;
+  if (cc) {
+    document.getElementById('cf-univ-counts').textContent = 'Aktuell: ' + cc.universal.strict + ' streng, ' + cc.universal.mild + ' mild bestätigt, ' + cc.universal.none + ' nicht bestätigt (von ' + (cc.universal.strict + cc.universal.mild + cc.universal.none) + '). Bestätigte Strategien je Phase gezählt: ' + cc.confirmed_rows.coin + ' bei Coin-, ' + cc.confirmed_rows.btc + ' bei BTC-Marktphasen.';
+  }
 })();
 
 (function renderRobustSection(){
@@ -1669,6 +1725,7 @@ renderGatedModel('gm-model3-content', 'model3');
         '<td class="num mono">' + rows.length + '</td><td class="num mono">' + ok.length + '</td>' +
         '<td class="num mono">' + (rows.length ? Math.round(100 * ok.length / rows.length) : 0) + ' %</td>' +
         '<td class="num mono">' + sens + '</td><td class="num mono">' + cost + '</td><td class="num mono">' + open + '</td>' +
+        '<td class="num mono">' + rows.filter(function(r){ return r.cf === 2; }).length + '</td><td class="num mono">' + rows.filter(function(r){ return r.cf === 2 && r.ok; }).length + '</td>' +
         '<td>' + (top ? futuresLabel(top.strategy_id) + ' <span class="mono" style="color:var(--text-muted)">' + fmtPct(top.excess_return) + '</span>' : '–') + '</td>' +
         '<td>' + (topOk ? futuresLabel(topOk.strategy_id) + ' <span class="mono" style="color:var(--text-muted)">' + fmtPct(topOk.excess_return) + '</span>' +
           (same ? '' : '<span class="moved">Rang ' + rank + ' ohne Filter</span>') : '–') + '</td></tr>';
@@ -1743,8 +1800,8 @@ renderGatedModel('gm-model3-content', 'model3');
       '<td class="num mono">' + Math.round(r.regime_consistency * 100) + '%</td>' +
       '<td class="num mono">' + r.trades + '</td>' +
       '<td class="num val ' + dollarClass(r.dollar_gain_usd) + '">' + fmtUsd(r.dollar_gain_usd) + '</td>' +
-      '<td class="num val ' + gradeClass(r.lcb_grade) + '">' + (r.lcb_grade || '–') + '</td></tr>';
-  }).join('') : '<tr><td colspan="8" style="color:var(--text-muted);font-style:italic;">Kein Universal-Kandidat besteht in allen vier Coin-Phasen.</td></tr>';
+      '<td class="num val ' + gradeClass(r.lcb_grade) + '">' + (r.lcb_grade || '–') + '</td>' + uconfirmCell(r) + '</tr>';
+  }).join('') : '<tr><td colspan="9" style="color:var(--text-muted);font-style:italic;">Kein Universal-Kandidat besteht in allen vier Coin-Phasen.</td></tr>';
 })();
 </script>
 
