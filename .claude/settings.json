@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "C:/Users/micro/.local/bin/graphify.EXE hook-guard search"
+            "command": "C:/Users/micro/AppData/Roaming/uv/tools/graphifyy/Scripts/python.exe -m graphify hook-guard search"
           }
         ]
       },
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "C:/Users/micro/.local/bin/graphify.EXE hook-guard read"
+            "command": "C:/Users/micro/AppData/Roaming/uv/tools/graphifyy/Scripts/python.exe -m graphify hook-guard read"
           }
         ]
       }

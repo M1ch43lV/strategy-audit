@@ -301,7 +301,7 @@
             <td>Clean bias results and a converged warm-up, then back to stage 6 for the cohort.</td>
             <td>Stays in the queue.</td></tr>
           <tr><td class="no">8</td><td class="st">Full-window backtest<code>regime.full_backtest</code></td>
-            <td>All eight pairs pooled, <code>20200301-20260821</code>, hard timeout of 3600 s. The single-pair run counts only for strategies that never trade.</td>
+            <td>All eight pairs pooled, spot <code>20200401-20260821</code>, futures <code>20200301-20260821</code>, hard timeout of 3600 s. The single-pair run counts only for strategies that never trade.</td>
             <td>No trades over the whole window: C3. Failure, timeout or memory limit: C10. Identical canonical trades to another implementation: C11.</td></tr>
           <tr class="new"><td class="no">8b</td><td class="st">Execution robustness<code>execution_robustness</code></td>
             <td>Above 5m: the same run again with <code>--timeframe-detail 5m</code>, compared with the baseline. At or below 5m: not rerun; owner decision, because such a baseline already simulates at that granularity, so it counts as a passed 5m run. The record says which of the two it is.</td>
@@ -360,16 +360,16 @@ __CRITERIA__
       <table style="min-width:640px">
         <thead><tr><th>Check</th><th>Window</th><th>Pairs</th></tr></thead>
         <tbody>
-          <tr><td>Trial run <code>profile_smoke</code></td><td><code>20200301-20200401</code> &rarr; <code>20200301-20200601</code> &rarr; <code>20200301-20210301</code><span class="msg">stop at 10 trades; at most one year</span></td><td>all 8</td></tr>
+          <tr><td>Trial run <code>profile_smoke</code></td><td><code>20200301-20200401</code> &rarr; <code>20200301-20200601</code><span class="msg">stop at 10 trades; at most three months</span></td><td>all 8</td></tr>
           <tr><td>Look-ahead-bias check, first fallback</td><td><code>20200101-20220101</code><span class="msg">used when the frozen window yields fewer than ten trades</span></td><td>BTC only</td></tr>
           <tr><td>Look-ahead-bias check, second fallback</td><td><code>20200301-20260820</code></td><td>BTC only</td></tr>
           <tr><td>Warm-up convergence ladder, spot</td><td><code>20200301-20200601</code><span class="msg">three months; rungs at 1, 2, 7, 14, 30, 90, 365 days of startup, converted to the strategy's own timeframe</span></td><td><code>BTC/USDT</code> only</td></tr>
           <tr><td>Warm-up convergence ladder, futures</td><td><code>20200301-20200601</code><span class="msg">three months; rungs at 1, 2, 7, 14, 30, 90, 365 days of startup, converted to the strategy's own timeframe</span></td><td><code>BTC/USDT:USDT</code> only</td></tr>
           <tr><td>Recursion-bias check, spot</td><td><code>20200301-20200601</code><span class="msg">three months, at the ladder's settled startup</span></td><td><code>BTC/USDT</code> only</td></tr>
           <tr><td>Recursion-bias check, futures</td><td><code>20200301-20200601</code><span class="msg">three months, at the ladder's settled startup</span></td><td><code>BTC/USDT:USDT</code> only</td></tr>
-          <tr><td>Full run <code>profile_full_window</code></td><td><code>20200301-20260821</code><span class="msg">6.5 years</span></td><td>all 8</td></tr>
-          <tr><td>Pooled full backtest <code>regime.full_backtest</code></td><td><code>20200301-20260821</code><span class="msg">6.5 years, all eight pairs sharing one open-trade budget, hard timeout of 3600 s</span></td><td>all 8, pooled</td></tr>
-          <tr><td>Execution robustness, above 5m</td><td><code>20200301-20260821</code><span class="msg">the pooled run again with <code>--timeframe-detail 5m</code>; at or below 5m no rerun</span></td><td>all 8, pooled</td></tr>
+          <tr><td>Full run <code>profile_full_window</code></td><td>spot <code>20200401-20260821</code>, futures <code>20200301-20260821</code><span class="msg">6.4 and 6.5 years. Spot starts a month later so that the 365-day warm-up rung has its history: DASH/USDT was listed on 2019-03-28 and has only 337 days before 2020-03-01</span></td><td>all 8</td></tr>
+          <tr><td>Pooled full backtest <code>regime.full_backtest</code></td><td>spot <code>20200401-20260821</code>, futures <code>20200301-20260821</code><span class="msg">all eight pairs sharing one open-trade budget, hard timeout of 3600 s</span></td><td>all 8, pooled</td></tr>
+          <tr><td>Execution robustness, above 5m</td><td>spot <code>20200401-20260821</code>, futures <code>20200301-20260821</code><span class="msg">the pooled run again with <code>--timeframe-detail 5m</code>; at or below 5m no rerun</span></td><td>all 8, pooled</td></tr>
           <tr><td>Cost screen, per ADX state</td><td><code>2024-01-01</code> onward decides<span class="msg">the whole window is kept as context</span></td><td>BTC state and coin state</td></tr>
         </tbody>
       </table>
