@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "results" / "regime"
 REPORT = ROOT / "REGIME_DATA_REPORT.md"
 SANITY_WINDOWS = (
-    ("2020-03-01", "2020-05-31", "2020 market shock"),
+    ("2020-04-01", "2020-05-31", "2020 market shock (after the March crash, which is outside the window)"),
     ("2021-01-01", "2021-04-30", "2021 rising market"),
     ("2022-04-01", "2022-07-31", "2022 falling market"),
 )

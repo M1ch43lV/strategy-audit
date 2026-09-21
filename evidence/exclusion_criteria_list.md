@@ -58,7 +58,7 @@ Currently 533 of 1356 strategies are excluded. The criteria are not exclusive - 
 
 **Machine test.** `primary_reason == "no_trades_in_full_measurement" and trade_evidence == "full_window"`, together with `exclusion_basis == "own_measurement"`.
 
-**What it means.** The strategy started, ran `20200301-20260821` across all eight pairs, and opened no position at all.
+**What it means.** The strategy started, ran the full window (`20200401-20260821`; futures ran `20200301-20260821` until 2026-09-21) across all eight pairs, and opened no position at all.
 
 **Why it is final.** There is nothing to classify. Market-phase efficiency is a statement about trades, and this strategy makes none in six and a half years. Several are deliberate: a template, a demonstration of stop-loss handling, a strategy whose entry column is set to False in the source.
 

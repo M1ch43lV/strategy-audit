@@ -26,8 +26,9 @@ the current audit rules, exposed as `cohort=E1_expanded` in
 Stage 6 snapshot and supplies provenance only. Whole-window profit is not an
 admission rule.
 
-The analysis window is 2020-03-01 00:00 UTC through 2026-08-21 00:00 UTC
-(exclusive end). A daily candle is usable only on the following UTC day. No
+The analysis window is 2020-04-01 00:00 UTC through 2026-08-21 00:00 UTC
+(exclusive end), for spot and futures alike (owner, 2026-09-21; until then futures started on 2020-03-01,
+see `PIPELINE.md`, Decision record). The regime indicators read the earlier candles as warm-up. A daily candle is usable only on the following UTC day. No
 feature, label, gate, or attribution may use the still-open daily candle.
 
 ## Frozen eligibility expansion amendment, with E0 clauses superseded
@@ -218,7 +219,7 @@ recommendation checked against the corpus's own data (episode counts, return
 distributions) where one was available, never against strategy performance.
 
 1. **Discovery/validation split.** Frozen at the proposed calendar boundary:
-   discovery `2020-03-01`-`2023-12-31`, validation `2024-01-01` through the
+   discovery `2020-04-01`-`2023-12-31` (`2020-03-01` until 2026-09-21), validation `2024-01-01` through the
    analysis window's end (`2026-08-21`). Reason: `REGIME_AUDIT_PLAN.md` §20's
    own concern - hundreds of strategies times many regimes is a large
    data-snooping surface - and no sharper boundary was proposed or checked

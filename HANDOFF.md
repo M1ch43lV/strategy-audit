@@ -117,6 +117,13 @@ container exists. Inspect processes, locks, artifact timestamps, and the run log
   2026-09-19 are not to be added to any window (owner, 2026-09-21).
 - Root `_sabotage/` was removed on 2026-09-15 (an orphaned fixture of the archived `loadscan.py`).
 
+## Window correction in progress (owner, 2026-09-21)
+
+Spot and futures both start on 2020-04-01. The canonical futures full backtests (73 rows with the old window at the
+time) and then their 5m detail runs are repeated by the dispatcher (`--force`, about 20 hours of Docker in total);
+`python -m tools.pipeline_dispatcher` shows the next one. The attribution trims until they are done. The 5m recoveries
+(41 spot, 7 futures) stay trimmed, there is no route to repeat them.
+
 ## Owner decisions that are open
 
 1. **Validation window extension: on hold** (owner, 2026-09-20). `PIPELINE_EXTENSIONS.md`, Part 3, stays valid. Do not

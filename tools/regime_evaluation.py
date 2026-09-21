@@ -43,7 +43,9 @@ INPUT_FILES = (
 
 # (module, what it is). Model 0 only.
 STEPS = (
+    ("regime.regime_engine", "Stage 9: regime labels from the analysis window start (2020-04-01)"),
     ("regime.validate_regime", "Stage 9: regime labels validate"),
+    ("regime.report", "Stage 9: REGIME_DATA_REPORT.md"),
     ("regime.attribution", "Stage 10: Model 0 attribution of every accepted archive"),
     ("regime.specialist_evaluation", "Stage 13: specialist and universal evaluation"),
     ("regime.discovery_comparison", "Stage 13: discovery against validation, confirmation"),
@@ -52,8 +54,8 @@ STEPS = (
     ("tools.regime_specialists_page", "Stage 13: the two published pages (Regime-Spezialisten, Gating-Hypothese)"),
 )
 GATED = ("gated_backtest", "gated_attribution", "model_compare")
-CODE = tuple(ROOT / (module.replace(".", "/") + ".py") for module, _ in STEPS if not module.endswith("validate_regime")) + (
-    ROOT / "regime" / "validate_regime.py", ROOT / "regime" / "regime_engine.py", Path(__file__),
+CODE = tuple(ROOT / (module.replace(".", "/") + ".py") for module, _ in STEPS) + (
+    Path(__file__),
     ROOT / "evidence" / "execution_robustness.py", ROOT / "evidence" / "profile_full_window.py",
     ROOT / "tools" / "REGIME_SPECIALISTS.template.html", ROOT / "tools" / "REGIME_GATING.template.html",
     ROOT / "tools" / "regime_pages_common.js", ROOT / "tools" / "regime_pages_common.css",

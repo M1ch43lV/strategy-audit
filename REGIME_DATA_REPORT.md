@@ -6,7 +6,7 @@ input/output fingerprints are in `results/regime/regime_manifest.json`.
 
 Runtime: numpy 2.5.2, pandas 3.0.5, python 3.13.14, ta_lib 0.7.1.
 
-The causal daily table contains **18000** pair-days across
+The causal daily table contains **17752** pair-days across
 **8** audit pairs. Every feature is lagged by one
 completed UTC daily candle before it becomes available.
 
@@ -16,31 +16,31 @@ BTC/global state:
 
 | state      |   days |
 |:-----------|-------:|
-| BEAR       |    627 |
+| BEAR       |    605 |
 | BULL       |    665 |
 | SIDEWAYS   |    559 |
-| TRANSITION |    513 |
+| TRANSITION |    504 |
 
 Local coin states across available pair-days:
 
 | state      |   days |
 |:-----------|-------:|
-| BEAR       |   4919 |
-| BULL       |   3871 |
+| BEAR       |   4689 |
+| BULL       |   3869 |
 | SIDEWAYS   |   5473 |
-| TRANSITION |   3737 |
+| TRANSITION |   3721 |
 
 ## Episodes
 
 | regime     |   episodes |   days |   median_days |   max_days |
 |:-----------|-----------:|-------:|--------------:|-----------:|
-| BEAR       |        329 |   4919 |             8 |         78 |
-| BULL       |        303 |   3871 |             7 |         69 |
+| BEAR       |        324 |   4689 |             7 |         78 |
+| BULL       |        302 |   3869 |             7 |         69 |
 | SIDEWAYS   |        330 |   5473 |            12 |         69 |
-| TRANSITION |        652 |   3737 |             5 |         37 |
+| TRANSITION |        647 |   3721 |             5 |         37 |
 
-The global BTC sequence contains **213** contiguous episodes
-covering **2364** unique UTC days.
+The global BTC sequence contains **210** contiguous episodes
+covering **2333** unique UTC days.
 
 The transition table contains **64** pair/state edges.
 
@@ -49,24 +49,19 @@ The transition table contains **64** pair/state edges.
 The following weekly samples are visual sanity checks selected before
 strategy outcomes are inspected. They do not set or tune thresholds.
 
-### 2020 market shock
+### 2020 market shock (after the March crash, which is outside the window)
 
 | date       | btc_regime   |   btc_adx |   btc_plus_di |   btc_minus_di |   btc_return_90d |   btc_ser_30 |
 |:-----------|:-------------|----------:|--------------:|---------------:|-----------------:|-------------:|
-| 2020-03-01 | TRANSITION   |    24.221 |        12.969 |         25.682 |            0.153 |       -0.168 |
-| 2020-03-08 | TRANSITION   |    21.262 |        16.747 |         21.237 |            0.183 |       -0.145 |
-| 2020-03-15 | BEAR         |    38.093 |         5.031 |         47.199 |           -0.273 |       -0.495 |
-| 2020-03-22 | BEAR         |    43.349 |        17.642 |         30.914 |           -0.175 |       -0.336 |
-| 2020-03-29 | BEAR         |    34.084 |        16.477 |         27.144 |           -0.156 |       -0.247 |
-| 2020-04-05 | BEAR         |    25.4   |        19.38  |         21.29  |           -0.068 |       -0.204 |
-| 2020-04-12 | SIDEWAYS     |    18.256 |        19.556 |         20.67  |           -0.16  |        0.268 |
-| 2020-04-19 | SIDEWAYS     |    12.965 |        22.601 |         18.248 |           -0.167 |        0.18  |
-| 2020-04-26 | SIDEWAYS     |    14.338 |        28.323 |         15.585 |           -0.125 |        0.141 |
-| 2020-05-03 | BULL         |    29.264 |        38.03  |          8.27  |           -0.039 |        0.379 |
-| 2020-05-10 | BULL         |    43.039 |        37.371 |          9.465 |           -0.06  |        0.363 |
-| 2020-05-17 | BULL         |    32.814 |        28.552 |         17.235 |           -0.054 |        0.298 |
-| 2020-05-24 | BULL         |    27.218 |        22.03  |         18.659 |           -0.076 |        0.226 |
-| 2020-05-31 | TRANSITION   |    20.578 |        24.567 |         16.399 |            0.137 |        0.138 |
+| 2020-04-01 | BEAR         |    31.305 |        17.686 |         24.865 |           -0.11  |       -0.192 |
+| 2020-04-08 | TRANSITION   |    22.168 |        23.456 |         18.204 |           -0.107 |       -0.081 |
+| 2020-04-15 | SIDEWAYS     |    15.164 |        21.193 |         20.83  |           -0.221 |        0.232 |
+| 2020-04-22 | SIDEWAYS     |    11.47  |        19.424 |         20.684 |           -0.212 |        0.169 |
+| 2020-04-29 | SIDEWAYS     |    17.671 |        27.284 |         14.064 |           -0.168 |        0.364 |
+| 2020-05-06 | BULL         |    35.381 |        36.17  |          9.548 |           -0.061 |        0.393 |
+| 2020-05-13 | BULL         |    35.889 |        25.025 |         21.678 |           -0.147 |        0.274 |
+| 2020-05-20 | BULL         |    32.593 |        27.611 |         14.197 |            0.019 |        0.348 |
+| 2020-05-27 | TRANSITION   |    22.823 |        18.986 |         20.906 |            0.006 |        0.144 |
 
 ### 2021 rising market
 

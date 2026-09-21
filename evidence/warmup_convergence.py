@@ -73,7 +73,7 @@ DRIFT_THRESHOLD_PCT = 1.0
 # windows now differ too; each mode's start must match the window
 # profile_full_window.timerange(mode) actually uses, or a warm-up this ladder
 # accepts could still silently truncate the pair it is later run against.
-WINDOW_START = {"spot": "2020-04-01", "futures": "2020-03-01"}
+WINDOW_START = {"spot": "2020-04-01", "futures": "2020-04-01"}   # both modes since 2026-09-21
 
 # Freqtrade refuses any startup_candle_count above five times what the exchange
 # serves per request - "more than 5x (4999 candles)" for Binance - and exits

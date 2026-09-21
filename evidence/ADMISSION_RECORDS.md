@@ -598,7 +598,7 @@ identity (start-up of 1440 candles at 1m); the gates at 5m (288 candles) are in 
 | Above Buy-and-Hold | 40 % | 37 % |
 | Stage 8b `PASS` | 100 % | 92 % |
 | At least one verified specialist row | 21 of 35 | 298 of 515 |
-| At least one confirmed row | 23 of 35 | 168 of 515 |
+| At least one confirmed row | 22 of 35 | 163 of 515 |
 
 In the phase tables they hold 15 of the 80 places of the eight Top-10 lists: BTC sideways 4, BTC transition 3, coin
 sideways 2, coin transition 4, coin bear 2, none in the BTC and coin uptrend. `FisherHull` is first in three of the phase
@@ -612,7 +612,7 @@ lists. Of the 9 verified universal specialists, 3 are recoveries (`DMIPRICEDCASt
   first ends at 96 % of its start capital with 5x leverage and a 55 % drawdown, the second at 2 % (its account collapsed).
   The same convention effect as for `ZaratustraDCA5`.
 - The yield is in the phases. Mean-reversion scalpers (BinHV45, Cluc, Low_BB, FisherHull, Trump_LIM) are over-represented in
-  the sideways, transition and bear lists, and confirmed rows are twice as frequent as elsewhere. Solid own accounts:
+  the sideways, transition and bear lists, and confirmed rows are twice as frequent as elsewhere (numbers after the window start of 2020-04-01 for both modes; the earlier ones differed by one strategy). Solid own accounts:
   `Trump_LIM` (+129 %, drawdown 14 %), `BinHV45_werkkrew` (+132 %, 16 %), `Low_BB` (+55 %, 22 %), `ClucHAnix` (+163 %, 45 %).
   `FisherHull` is first in three phases and below Buy-and-Hold over the whole window (excess -$3,199).
 - Independent evidence is smaller than 47: 44 distinct trade sets, in a handful of families (BinHV45, Cluc, DMIPRICE, MiniLambo);

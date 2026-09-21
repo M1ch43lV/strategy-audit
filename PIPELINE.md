@@ -14,9 +14,8 @@ Do not rederive these; a change is a new dated entry in the Decision record or i
 
 | What | Value | Rule |
 |---|---|---|
-| Spot analysis window | `20200401-20260821` (end exclusive) | Decision 2026-09-03 |
-| Futures analysis window | `20200301-20260821` (end exclusive) | Decision 2026-09-03 |
-| Discovery / validation | discovery 2020-03-01 to 2023-12-31, validation 2024-01-01 to 2026-08-20 | `REGIME_PREREGISTRATION.md`, 2026-09-11 |
+| Analysis window, Spot and Futures | `20200401-20260821` (end exclusive) for both | Decisions 2026-09-03 (spot) and 2026-09-21 (futures, for comparison) |
+| Discovery / validation | discovery 2020-04-01 to 2023-12-31, validation 2024-01-01 to 2026-08-20 | `REGIME_PREREGISTRATION.md`, 2026-09-11 |
 | Bias and convergence diagnostic window, Spot and Futures, BTC only | `20200301-20200601` | Decisions 2026-09-09, 2026-09-10 |
 | Smoke cascade | `20200301-20200401`, then `20200301-20200601`; stop at 10 trades | Decisions 2026-09-10, 2026-09-15 |
 | Convergence ladder | 1, 2, 7, 14, 30, 90, 365 days; accepted when every indicator's absolute drift stays below 1.0 percent | Decision 2026-09-01 |
@@ -872,10 +871,24 @@ labels, the execution-robustness and cost-screen stores, the source of the progr
 excluded (backtests, gated attribution, comparison), as paused above; the pages keep their snapshots. The step is
 recorded as gate `regime_evaluation` (Terra, medium) in `evidence/RUN_METADATA.jsonl`.
 
-The analysis window is set per execution mode in every run the dispatcher starts: spot from 2020-04-01, futures from
-2020-03-01 (`profile_full_window.timerange`, Decision 2026-09-03). `evidence/full_backtest_resource_diagnostic.py`, which
-ran the 5m OOM recoveries, used one shared `20200301-20260821` for both and is corrected. The 41 spot recoveries that
-already exist keep their archives; their trades before 2020-04-01 are removed in the attribution, not by a rerun.
+The analysis window is one calendar interval for both modes from 2026-09-21 (`profile_full_window.timerange`, see the next
+entry). `evidence/full_backtest_resource_diagnostic.py`, which ran the 5m OOM recoveries, used `20200301-20260821` for
+both modes and now takes the window from `profile_full_window`.
+
+### Amendment 2026-09-21: the analysis window starts on 2020-04-01 for spot and futures
+
+**Owner's decision.** "For comparison", the futures window starts on 2020-04-01 like the spot window (365-day warm-up
+rung unchanged). Until now only the spot window did (Decision 2026-09-03); futures full backtests ran from 2020-03-01.
+Changed: `profile_full_window.TIMERANGE` and `warmup_convergence.WINDOW_START` (futures), the start of the regime labels
+and of the attribution (`regime.regime_engine.START`, `regime.attribution.START`; the indicators still read the earlier
+candles), so the discovery window is 2020-04-01 to 2023-12-31 and the March 2020 crash is outside the benchmark.
+
+Existing results: every canonical futures full backtest (72 at the time) was run from 2020-03-01. Until it is repeated,
+the attribution drops the trades that opened before 2020-04-01, which is an approximation (the account and the shared
+open-trade budget differed in March). The dispatcher repeats them with `--force`, then their 5m detail runs (a detail
+run over another window is not comparable to its base run). The owner-approved 5m recoveries (41 spot, 7 futures) have
+no dispatcher route and stay trimmed. The ladder ceilings of the futures rows that were capped by their prefix history
+were not recomputed.
 
 ### Amendment 2026-09-11: warm-up convergence precedes final recursive-bias
 

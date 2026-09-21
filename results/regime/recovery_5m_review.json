@@ -87,7 +87,7 @@
    "verified_rows": 4
   },
   {
-   "confirmed_rows": 1,
+   "confirmed_rows": 0,
    "excess_usd": 883,
    "gain_usd": 1345,
    "rank": 132,
@@ -373,16 +373,16 @@
  },
  "specialist": {
   "at_least_one_confirmed_row": {
-   "others": 168,
-   "recovered": 23
+   "others": 163,
+   "recovered": 22
   },
   "at_least_one_verified_row": {
    "others": 298,
    "recovered": 21
   },
   "confirmed_rows": {
-   "all": 350,
-   "recovered": 47
+   "all": 332,
+   "recovered": 46
   },
   "strategies_with_validation_rows": {
    "others": 515,

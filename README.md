@@ -22,7 +22,7 @@ candles and shifted by one UTC day. It yields `BULL`, `BEAR`, `SIDEWAYS`, and
 - **Model 3:** entries require both the Model 1 BTC and Model 2 coin gate.
 
 Original exits remain authoritative. The choices that were open before ranking
-were all decided on 2026-09-05 and 2026-09-11; discovery is 2020-03-01 to
+were all decided on 2026-09-05 and 2026-09-11; discovery is 2020-04-01 to
 2023-12-31, validation is 2024-01-01 to 2026-08-20.
 
 ## Which document answers which question

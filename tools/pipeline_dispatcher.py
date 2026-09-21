@@ -168,7 +168,34 @@ def _regime_stale() -> bool:
     return regime_evaluation.is_stale()[0]
 
 
-def choose(state: dict, strategy: str = "", regime_stale=_regime_stale) -> dict:
+def _window_stale() -> tuple[dict, dict]:
+    """Strategies whose accepted canonical run used another window than today's per-mode rule.
+
+    Returns (base runs to repeat, detail runs to repeat). The window of both modes is `20200401-20260821` since
+    2026-09-21; a canonical futures run made before that started on 2020-03-01. Only canonical pooled runs are
+    repeated here. The owner-approved 5m recoveries have their own route and are trimmed to the window in the
+    attribution instead. A detail run is repeated once its base run has the current window, because the classifier
+    refuses to compare runs over different windows.
+    """
+    from evidence import execution_robustness as er, profile_full_window
+    manifest = _json(ROOT / "results" / "regime" / "full_backtest_manifest.json")["results"]
+    base: dict[str, str] = {}
+    for sid, row in manifest.items():
+        if row.get("status") == "measured" and row.get("measurement_scope") == "canonical_pooled_native_pair_universe":
+            want = profile_full_window.timerange(row.get("mode"))
+            if row.get("timerange") != want:
+                base[sid] = want
+    detail: dict[str, str] = {}
+    for sid, record in er.choose_detail_records().items():
+        row = manifest.get(sid) or {}
+        if (record.get("status") == "measured" and sid not in base and row.get("status") == "measured"
+                and row.get("measurement_scope") == "canonical_pooled_native_pair_universe"
+                and record.get("timerange") != row.get("timerange")):
+            detail[sid] = row.get("timerange", "")
+    return base, detail
+
+
+def choose(state: dict, strategy: str = "", regime_stale=_regime_stale, window_stale=_window_stale) -> dict:
     """Choose exactly one safe next action from the canonical read model.
 
     Repair triage and the zero-trade full-window probe are intentionally not
@@ -248,6 +275,20 @@ def choose(state: dict, strategy: str = "", regime_stale=_regime_stale) -> dict:
     if row:
         return {"kind": "run", "gate": "full_backtest", "strategy": row["strategy_id"],
                 "args": ["--strategy", row["strategy_id"], "--workers", "1", "--timeout", "3600"]}
+
+    # Window correction (Decision 2026-09-21): repeat a canonical run made over the old futures window, then its detail run.
+    stale_base, stale_detail = window_stale()
+    row = _first(rows, lambda item: item["strategy_id"] in stale_base and item.get("cohort") == "E1_expanded")
+    if row:
+        return {"kind": "run", "gate": "full_backtest", "strategy": row["strategy_id"],
+                "args": ["--strategy", row["strategy_id"], "--workers", "1", "--timeout", "3600", "--force"]}
+    row = _first(rows, lambda item: item["strategy_id"] in stale_detail and item.get("cohort") == "E1_expanded")
+    if row:
+        return {"kind": "run", "gate": "execution_detail", "metadata_gate": "execution_robustness",
+                "strategy": row["strategy_id"],
+                "args": ["--strategy", row["strategy_id"], "--workers", "1", "--timeout", "3600",
+                         "--timeframe-detail", "5m", "--force", "--output",
+                         "results/regime/execution_robustness_detail_5m_docker.json"]}
 
     row = _first(rows, lambda item: (
         _is_true(item.get("technical_chain_complete"))
@@ -435,35 +476,49 @@ def run_once(apply: bool, strategy: str = "") -> int:
 
 
 def selftest() -> None:
+    no_window = lambda: ({}, {})
+
+    def pick(state, strategy="", **kw):
+        kw.setdefault("window_stale", no_window)
+        return choose(state, strategy, **kw)
+
     base = {"strategies": {
         "A": {"strategy_id": "A", "open_work": "first_measurement_in_current_runtime", "run_profile": "spot_long"},
         "B": {"strategy_id": "B", "open_work": "lookahead_verdict", "run_profile": "spot_long", "measured": "true"},
     }}
-    assert choose(base)["gate"] == "smoke"
+    assert pick(base)["gate"] == "smoke"
     base["strategies"]["A"]["open_work"] = "first_measurement_in_current_runtime;recursive_ladder_pending"
-    assert choose(base)["gate"] == "smoke"
+    assert pick(base)["gate"] == "smoke"
     base["strategies"]["A"]["open_work"] = "runtime_repair_pending"
-    assert choose(base)["gate"] == "lookahead"
+    assert pick(base)["gate"] == "lookahead"
     base["strategies"]["B"]["open_work"] = "recursive_ladder_pending;to_be_fixed"
     base["strategies"]["B"]["lookahead"] = "PASS"
-    assert choose(base, regime_stale=lambda: False)["kind"] == "escalate"
+    assert pick(base, regime_stale=lambda: False)["kind"] == "escalate"
     post = {"strategies": {"C": {
         "strategy_id": "C", "technical_chain_complete": True,
         "execution_robustness_status": "PENDING", "timeframe": "1m",
     }}}
-    assert choose(post)["gate"] == "execution_robustness"
+    assert pick(post)["gate"] == "execution_robustness"
     post["strategies"]["C"]["timeframe"] = "1h"
-    assert choose(post)["gate"] == "execution_detail"
+    assert pick(post)["gate"] == "execution_detail"
     post["strategies"]["C"]["technical_chain_complete"] = "true"
-    assert choose(post)["gate"] == "execution_detail"
+    assert pick(post)["gate"] == "execution_detail"
     idle = {"strategies": {"D": {"strategy_id": "D", "open_work": ""}}}
-    assert choose(idle, regime_stale=lambda: True)["gate"] == REGIME_GATE
-    assert choose(idle, regime_stale=lambda: False)["kind"] == "idle"
-    assert choose(idle, "D", regime_stale=lambda: True)["kind"] == "idle"   # never for one requested strategy
+    assert pick(idle, regime_stale=lambda: True)["gate"] == REGIME_GATE
+    assert pick(idle, regime_stale=lambda: False)["kind"] == "idle"
+    assert pick(idle, "D", regime_stale=lambda: True)["kind"] == "idle"   # never for one requested strategy
     fresh = {"strategies": {"E": {"strategy_id": "E", "open_work": "first_measurement_in_current_runtime",
                                   "run_profile": "spot_long"}}}
-    assert choose(fresh, regime_stale=lambda: True)["gate"] == "smoke"    # strategy work comes first
+    assert pick(fresh, regime_stale=lambda: True)["gate"] == "smoke"    # strategy work comes first
     assert _command({"gate": REGIME_GATE})[-1] == "tools.regime_evaluation"
+    late = {"strategies": {"F": {"strategy_id": "F", "open_work": "", "cohort": "E1_expanded", "full_backtest_status": "measured", "technical_chain_complete": True,
+                                 "execution_robustness_status": "PASS", "timeframe": "1h"}}}
+    hit = pick(late, window_stale=lambda: ({"F": "20200401-20260821"}, {}), regime_stale=lambda: False)
+    assert hit["gate"] == "full_backtest" and "--force" in hit["args"]          # old futures window: repeat the base run
+    hit = pick(late, window_stale=lambda: ({}, {"F": "20200401-20260821"}), regime_stale=lambda: False)
+    assert hit["gate"] == "execution_detail" and "--force" in hit["args"]       # then its detail run
+    both = pick(late, window_stale=lambda: ({"F": "x"}, {"F": "x"}), regime_stale=lambda: False)
+    assert both["gate"] == "full_backtest"                                      # base before detail
     try:
         _command({"gate": "model1"})
     except DispatchError:

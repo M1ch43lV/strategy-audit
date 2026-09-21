@@ -13503,7 +13503,7 @@
   ],
   "accepted_archives": 675,
   "archive_selection_source": "results\\regime\\full_backtest_manifest.json",
-  "attributed_profiles": 675,
+  "attributed_profiles": 674,
   "attributed_strategies": [
     "ADXDM",
     "ADXMomentum",
@@ -13791,7 +13791,6 @@
     "HansenSmaOffsetV1",
     "HedgeAdaptiveRegimeStrategy",
     "HeikinAshiStrategy",
-    "HighFreqDemo",
     "HigherHighStrategy",
     "HilbertSineWave",
     "HourBasedStrategy",
@@ -14181,8 +14180,8 @@
     "wavetrend",
     "wavetrend_rsi"
   ],
-  "btc_regime_matched_trades": 3816870,
-  "coin_regime_matched_trades": 3803243,
+  "btc_regime_matched_trades": 3778956,
+  "coin_regime_matched_trades": 3765329,
   "coin_regime_unmatched_by_pair": {
     "XMR/USDT:USDT": 13627
   },
@@ -14196,6 +14195,7 @@
     "FastSupertrend_optim3_rsi_75lev",
     "Hacklemore",
     "Hacklemore3",
+    "HighFreqDemo",
     "JustROCR6",
     "NASOSRv6_private_Reinuvader_20211121",
     "NFINextMultiOffsetAndHO2",
@@ -14265,6 +14265,6 @@
   ],
   "rejected_archives": [],
   "schema_version": 1,
-  "spot_override_trades_before_window_start_removed": 24878,
-  "trades": 3816870
+  "trades": 3778956,
+  "window_start": "2020-04-01T00:00:00+00:00"
 }

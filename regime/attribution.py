@@ -13,7 +13,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from evidence import execution_robustness, market_phase_hypothesis, profile_full_window, profile_smoke
+from evidence import execution_robustness, market_phase_hypothesis, profile_smoke
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from regime import episodes as regime_episodes
 
@@ -31,7 +31,7 @@ STATUS = ROOT / "STRATEGY_STATUS.csv"
 # is sufficient proof the bytes have not changed and the prior digest still
 # holds; only a changed or new archive pays for a fresh read.
 ARCHIVE_CACHE = OUT / "ATTRIBUTION_ARCHIVE_CACHE.json"
-START = pd.Timestamp("2020-03-01T00:00:00Z")
+START = pd.Timestamp("2020-04-01T00:00:00Z")   # both modes, Decision 2026-09-21; a trade that opened earlier is not in the window
 END = pd.Timestamp("2026-08-21T00:00:00Z")
 MEASUREMENT_SCOPE = "canonical_pooled_native_pair_universe"
 # The six reporting phases, at the two thresholds frozen in
@@ -505,16 +505,6 @@ def main(argv=None) -> int:
         evidence_source = str(args.full_manifest.relative_to(ROOT))
     accepted, rejected = archive_inventory(args.search_root, profiles, archive_paths, cache, expected_timeframes)
     rejected = manifest_rejections + rejected
-    # The owner-approved 5m recoveries were run over 20200301-20260821 whatever the mode; the frozen spot analysis
-    # window starts on 2020-04-01 (`profile_full_window.TIMERANGE`), so the trades of a spot recovery that opened
-    # before it are left out, as a canonical spot run never had them.
-    spot_start = pd.Timestamp(profile_full_window.TIMERANGE["spot"].split("-")[0], tz="UTC")
-    trimmed = 0
-    for record in accepted:
-        if record["strategy_id"] in expected_timeframes and record["mode"] == "spot":
-            kept = [t for t in record["trades"] if pd.Timestamp(t["open_date"]) >= spot_start]
-            trimmed += len(record["trades"]) - len(kept)
-            record["trades"] = kept
     trades = attribute(accepted)
     args.outdir.mkdir(parents=True, exist_ok=True)
     _save_cache(cache)
@@ -556,7 +546,7 @@ def main(argv=None) -> int:
         "archive_selection_source": evidence_source,
         "rejected_archives": rejected,
         "override_scope_strategies": sorted(expected_timeframes),
-        "spot_override_trades_before_window_start_removed": trimmed,
+        "window_start": START.isoformat(),
         "trades": len(trades),
         "btc_regime_matched_trades": btc_matched,
         "coin_regime_matched_trades": coin_matched,

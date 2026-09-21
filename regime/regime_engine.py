@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "user_data" / "data" / "binance"
 OUT = ROOT / "results" / "regime"
 PAIRS = ("BTC", "ETH", "LTC", "XRP", "ADA", "XLM", "XMR", "DASH")
-START = pd.Timestamp("2020-03-01T00:00:00Z")
+START = pd.Timestamp("2020-04-01T00:00:00Z")   # the analysis window of both modes (Decision 2026-09-21); the indicators still use the earlier candles
 END = pd.Timestamp("2026-08-21T00:00:00Z")
 
 

@@ -1,10 +1,12 @@
 {
- "completed_at": "2026-09-21T16:12:12.178890+00:00",
- "fingerprint": "693a7f8379bd9f72978592f3cf9081859dfb923d0609f7dc1dee7f35964c71d0",
+ "completed_at": "2026-09-21T16:48:40.531667+00:00",
+ "fingerprint": "9332e91830fdf0e12c59b5f66cc86a5a48ad03281485c4ed538fd8f1e7d4e60a",
  "scope": "Model 0 only; Model 1/2/3 are owner-paused since 2026-09-21",
- "started_at": "2026-09-21T16:04:12.430582+00:00",
+ "started_at": "2026-09-21T16:40:48.528383+00:00",
  "steps": [
+  "regime.regime_engine",
   "regime.validate_regime",
+  "regime.report",
   "regime.attribution",
   "regime.specialist_evaluation",
   "regime.discovery_comparison",

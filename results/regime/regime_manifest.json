@@ -10,12 +10,12 @@
     "XRP_USDT-1d.feather": "sha256_18b43582f2eba171cc1d25973b1e08136c5c3ba85ad3a0a58923c4e4ef3220af"
   },
   "output_sha256": {
-    "regime_btc_episodes.csv": "sha256_6c83d2d15994f3efab7d20e61cfb9a3c7181a3d8807e7cd4e181cb8fe4e8ac07",
-    "regime_daily.csv": "sha256_6b905f07bf62e652198fdc048dc9128101953d60631e6390ddde8e49873ce6d0",
-    "regime_episodes.csv": "sha256_651a26999d6f4a95c1869749d0985789048403cb93ebca703ddd295b1cbc9678",
-    "regime_feature_distributions.csv": "sha256_d00b28059974190d818f80b58094da3fd854bd74de75fbe46e0a4529406181fd",
-    "regime_state_summary.csv": "sha256_642599ae407c69685779b6ed329c0ec673847b375ebaa463f4a86595fe6fd4f3",
-    "regime_transitions.csv": "sha256_1af76323937baa45171f8ed025d413948cd9c96adc11cdbe52212dc489234809"
+    "regime_btc_episodes.csv": "sha256_5091b80ead95128bc6a23a80cf4a4efc77dcd210ca8f7e719448d1e95dda7567",
+    "regime_daily.csv": "sha256_8878777b850330a06f351554af85e2a3b34eeea69e2430549004451ddad4f43e",
+    "regime_episodes.csv": "sha256_980ff0aad658c1ff9c3f2cbf426e70dc43ad33003cc14d79368eb1f45dd9c7ba",
+    "regime_feature_distributions.csv": "sha256_899978a77627956461887e55e314877aad613f7ca7a799937a869c7ebdb71846",
+    "regime_state_summary.csv": "sha256_05fe20963a9e773cfd5b9f148d06076360c06b547320544fa2ce94dbec2ff1e1",
+    "regime_transitions.csv": "sha256_f84bee839d1b82dfd2e8f6567ed3442fdf52100764e34f4979ac162ba6c6d49f"
   },
   "pairs": [
     "BTC/USDT",
@@ -48,5 +48,5 @@
   },
   "schema_version": 1,
   "window_end_exclusive": "2026-08-21T00:00:00+00:00",
-  "window_start": "2020-03-01T00:00:00+00:00"
+  "window_start": "2020-04-01T00:00:00+00:00"
 }

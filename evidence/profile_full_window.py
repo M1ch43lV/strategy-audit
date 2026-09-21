@@ -21,6 +21,11 @@ from evidence import profile_smoke
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTPUT = os.path.join(ROOT, "evidence/PROFILE_FULL_WINDOW.json")
+# Amendment 2026-09-21 (PIPELINE.md, Decision record): the futures window starts on
+# 2020-04-01 as well, "for comparison" (owner). Between 2026-09-03 and then only the
+# spot window started on 2020-04-01; the rest of this note is the reason for the
+# spot start, which the futures window now shares.
+#
 # Amendment 2026-09-03 (PIPELINE.md, Decision record): the spot window starts a
 # month later than the futures one. DASH/USDT was listed on Binance
 # 2019-03-28; at the old shared start of 2020-03-01 that left only 337 days
@@ -31,10 +36,10 @@ OUTPUT = os.path.join(ROOT, "evidence/PROFILE_FULL_WINDOW.json")
 # few days to spare. Futures pairs were listed later still - the last one,
 # DASH/USDT:USDT, on 2020-02-04 - so matching the same fix there would need
 # 2021-02-04, cutting eleven months from the whole futures window for
-# fourteen affected strategies. Left as it was; those rows are capped by data
+# fourteen affected strategies. Left as it was then; those rows are capped by data
 # that will never arrive, which is a fact about the exchange's own history
 # and belongs in their reason as that, not folded into a bias verdict.
-TIMERANGE = {"spot": "20200401-20260821", "futures": "20200301-20260821"}
+TIMERANGE = {"spot": "20200401-20260821", "futures": "20200401-20260821"}
 LOCK = threading.Lock()
 
 
