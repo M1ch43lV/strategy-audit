@@ -1,1 +1,2 @@
 results/regime/trade_regime_attribution.csv filter=lfs diff=lfs merge=lfs -text
+tools/hooks/* text eol=lf
