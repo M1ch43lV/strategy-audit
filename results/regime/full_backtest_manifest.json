@@ -263,15 +263,15 @@
       "trades_sha256": "sha256_766edd1546398fe0e1889ca1694e76bdc62587d37172efe5c899c96dd721b7af"
     },
     "AdaptiveRegime": {
-      "archive": "user_data/profile_smoke/AdaptiveRegime-90b67ba4-2026-09-09_18-54-14.zip",
-      "archive_sha256": "sha256_5ada2ad5f8939b87bad166c71b3115fb2aa6d14c69b3784563872c6a99ad91eb",
+      "archive": "user_data/profile_smoke/AdaptiveRegime-90b67ba4-2026-09-21_18-38-35.zip",
+      "archive_sha256": "sha256_1956d2b13bff2aaca41b4969c82ea9f4e242202e4b79c4a5899c4f73fdc343c2",
       "artifact_key": "",
-      "attempted_at": "2026-09-09T18:54:15+00:00",
+      "attempted_at": "2026-09-21T18:38:36+00:00",
       "canonical_sha256": "sha256_cf6478f765e4b95984227e64b11d72f44c14935bc13c8f5a84fa7499354b47bc",
       "class1_rules": [],
       "config_overrides": {},
-      "elapsed_s": 47.6,
-      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AdaptiveRegime --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AdaptiveRegime-90b67ba4 --cache none",
+      "elapsed_s": 99.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AdaptiveRegime --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AdaptiveRegime-90b67ba4 --cache none",
       "long_trades": 157,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "futures",
@@ -285,12 +285,19 @@
         "XMR/USDT:USDT",
         "DASH/USDT:USDT"
       ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
       "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
       "short_trades": 179,
       "status": "measured",
-      "timerange": "20200301-20260821",
+      "timerange": "20200401-20260821",
       "trades": 336,
       "trades_sha256": "sha256_dcfebd3bb0b6dcc3536e80eda010f55dcc9ae6f9df51727c18aabf844ec0a938"
     },
@@ -8200,14 +8207,16 @@
       "trades_sha256": "sha256_b957008c7a0cf1eddc296a5efcbf1c88a9b5c8fe1d0b3d77314bfdf920c9eb65"
     },
     "FAdxSmaStrategy": {
-      "archive": "user_data/profile_smoke/FAdxSmaStrategy-a1fd31c2-2026-09-06_10-54-50.zip",
-      "archive_sha256": "sha256_7812d69be191b860987b29766d2cc8a305088b9f25493401169949a5ef964bc2",
+      "archive": "user_data/profile_smoke/FAdxSmaStrategy-a1fd31c2-2026-09-21_18-38-42.zip",
+      "archive_sha256": "sha256_c30681850f57288e04b69142e23c299478ca330449d99ae228d44f311b204ba2",
+      "artifact_key": "",
+      "attempted_at": "2026-09-21T18:38:43+00:00",
       "canonical_sha256": "sha256_450ed20d7fee0b7316fa4856c549aad4664299f40f5f6de6ca5be791f7ac7cad",
       "class1_rules": [],
       "config_overrides": {},
-      "elapsed_s": 67.8,
-      "invocation": "freqtrade backtesting --config profile_futures_config.json --strategy FAdxSmaStrategy --strategy-path repos/freqtrade_freqtrade-strategies/user_data/strategies/futures --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FAdxSmaStrategy-a1fd31c2 --cache none",
-      "long_trades": 413,
+      "elapsed_s": 106.0,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy FAdxSmaStrategy --strategy-path repos/freqtrade_freqtrade-strategies/user_data/strategies/futures --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FAdxSmaStrategy-a1fd31c2 --cache none",
+      "long_trades": 397,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "futures",
       "pairs": [
@@ -8220,14 +8229,21 @@
         "XMR/USDT:USDT",
         "DASH/USDT:USDT"
       ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
-      "runtime_id": "native_unversioned",
-      "short_trades": 460,
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "short_trades": 457,
       "status": "measured",
-      "timerange": "20200301-20260821",
-      "trades": 873,
-      "trades_sha256": "sha256_79341735d179dfa3f416921c6e5405ea034027ccca5c5104b7b600a7889d036f"
+      "timerange": "20200401-20260821",
+      "trades": 854,
+      "trades_sha256": "sha256_7b1cf65ea5186de46ca1be8189408804f4cc612815665c624cc37d80ef69fe30"
     },
     "FBB_DWT": {
       "archive": "user_data/profile_smoke/FBB_DWT-a8f9de02-2026-09-09_20-35-42.zip",
@@ -8337,16 +8353,16 @@
       "trades_sha256": "sha256_81835893bde9ea23ac7343dbb00833e67f294e3d13cad99ec11cf62bec7a1ab7"
     },
     "FLAGS": {
-      "archive": "user_data/profile_smoke/FLAGS-72416802-2026-09-09_19-50-04.zip",
-      "archive_sha256": "sha256_816eb1bd6d85537f3239448b451dd9522682e2b8a4f4368ccecacbccfc265d13",
+      "archive": "user_data/profile_smoke/FLAGS-72416802-2026-09-21_18-38-54.zip",
+      "archive_sha256": "sha256_f83addb1d842d575c1eeac328959f107a1cd4c31cd6756413ba4b007f8decb6b",
       "artifact_key": "",
-      "attempted_at": "2026-09-09T19:50:05+00:00",
+      "attempted_at": "2026-09-21T18:38:55+00:00",
       "canonical_sha256": "sha256_ddc8ba187de3efd3d60f9a2454a04f0b2f746b9640d670e0a84c0fb646a200b5",
       "class1_rules": [],
       "config_overrides": {},
-      "elapsed_s": 75.6,
-      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy FLAGS --strategy-path repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/FLAGS/user_data/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FLAGS-72416802 --cache none",
-      "long_trades": 115,
+      "elapsed_s": 118.4,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy FLAGS --strategy-path repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/FLAGS/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FLAGS-72416802 --cache none",
+      "long_trades": 110,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "futures",
       "pairs": [
@@ -8359,14 +8375,21 @@
         "XMR/USDT:USDT",
         "DASH/USDT:USDT"
       ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
       "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
       "short_trades": 138,
       "status": "measured",
-      "timerange": "20200301-20260821",
-      "trades": 253,
-      "trades_sha256": "sha256_37e8dd3b4a5e6c3625f2110870c730ce0069fef2ab3c88107170208d970b19a4"
+      "timerange": "20200401-20260821",
+      "trades": 248,
+      "trades_sha256": "sha256_b2efac6ba68ed8cc77424628036c2a4793c52e17bfc41eec8fc29c7bf01c485a"
     },
     "FOttStrategy": {
       "archive": "user_data/profile_smoke/FOttStrategy-636b332f-2026-09-05_13-12-24.zip",
@@ -21585,15 +21608,23 @@
       "trades_sha256": "sha256_5c51360d6f11d82b4d950f0206c756c4834768b0fb47e84edcd40f65126bb745"
     },
     "TrendFutures": {
-      "archive": "user_data/profile_smoke/TrendFutures-4ee78b0b-2026-09-09_18-56-05.zip",
-      "archive_sha256": "sha256_853eb4efde93c2e2808d7fbae0eeca978cf7da11b4016788377332129c581865",
+      "archive": "user_data/profile_smoke/TrendFutures-4ee78b0b-2026-09-21_18-40-25.zip",
+      "archive_sha256": "sha256_173cc239c06073f0bd7c590674ccc48a4609670b9eea56771c5a955325a39e61",
       "artifact_key": "",
-      "attempted_at": "2026-09-09T18:56:06+00:00",
+      "attempted_at": "2026-09-21T18:40:26+00:00",
+      "attempts": [
+        {
+          "attempted_at": "2026-09-21T18:38:37+00:00",
+          "elapsed_s": 100.3,
+          "status": "measured",
+          "why": null
+        }
+      ],
       "canonical_sha256": "sha256_996f504ad07d02a330b9b27d10d78fbee3c2edf79d9e715bdc508126c12861bf",
       "class1_rules": [],
       "config_overrides": {},
-      "elapsed_s": 46.6,
-      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy TrendFutures --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200301-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrendFutures-4ee78b0b --cache none",
+      "elapsed_s": 76.3,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy TrendFutures --strategy-path repos/Kureshi25_cryptobot/user_data/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/TrendFutures-4ee78b0b --cache none",
       "long_trades": 288,
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "futures",
@@ -21607,12 +21638,19 @@
         "XMR/USDT:USDT",
         "DASH/USDT:USDT"
       ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
       "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
       "short_trades": 231,
       "status": "measured",
-      "timerange": "20200301-20260821",
+      "timerange": "20200401-20260821",
       "trades": 519,
       "trades_sha256": "sha256_eda652a1540260288f7604784314b87eaa09389f1d60e2c9b1721e2338b13e95"
     },
@@ -24945,11 +24983,12 @@
   "runtime_ids": [
     "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
     "native_unversioned",
+    "strategy-audit-runtime:2026.7",
     "windows-ftenv:freqtrade-2026.7-python-3.13"
   ],
   "schema_version": 1,
   "timerange": {
-    "futures": "20200301-20260821",
+    "futures": "20200401-20260821",
     "spot": "20200401-20260821"
   }
 }

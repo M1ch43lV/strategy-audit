@@ -105,7 +105,7 @@ container exists. Inspect processes, locks, artifact timestamps, and the run log
 - E0 as evidence: do not rerun the old 67, add 67 to E1, or regenerate frozen E0 files.
 - Strategy type classification: never infer a type from repo prose or hand-edit `STRATEGY_STATUS.csv`.
 - A candidate spec is never generated from observed strategy performance.
-- The ceiling of 3600 s per strategy run is never raised, not even for one strategy. WSL stays at 14 GB plus 4 GB swap.
+- The ceiling of 3600 s per strategy run is never raised, not even for one strategy. WSL stays at 16 GB plus 4 GB swap (`.wslconfig`).
 - Strategies at or below 5m get no rerun and no 1m batch (owner, 2026-09-19); they count as a passed 5m run by rule and
   the record says so (`basis: owner_rule_at_or_below_5m`).
 - The 2x, short and coin-downtrend variants of the rotation bot (`bot/`) were stopped by the owner on 2026-09-20; do not
@@ -120,8 +120,9 @@ container exists. Inspect processes, locks, artifact timestamps, and the run log
 ## Window correction in progress (owner, 2026-09-21)
 
 Spot and futures both start on 2020-04-01. The canonical futures full backtests (73 rows with the old window at the
-time) and then their 5m detail runs are repeated by the dispatcher (`--force`, about 20 hours of Docker in total);
-`python -m tools.pipeline_dispatcher` shows the next one. The attribution trims until they are done. The 5m recoveries
+time, 69 left after a trial of four) and then their 5m detail runs are repeated by the dispatcher in batches of four
+containers with 3.5 GB, failures alone with 15.5 GB (`python -m tools.pipeline_dispatcher --watch --apply`; without
+`--apply` it prints the next batch). The attribution trims until they are done. The 5m recoveries
 (41 spot, 7 futures) stay trimmed, there is no route to repeat them.
 
 ## Owner decisions that are open

@@ -5,7 +5,7 @@ The serial batch takes one strategy after the other. This one keeps N Docker
 containers busy, each running exactly one strategy at a time under its own memory
 limit, so a strategy that outgrows the limit dies alone and is attributable. Those
 strategies, and timeouts under parallel load, are then repeated one at a time with
-the whole VM (`--solo`).
+one at a time with 15.5 GB (`--solo`).
 
 Why containers and not `--workers N` inside one: the memory limit is per container,
 and a SIGKILL inside a shared pool cannot be pinned on one strategy - the reason
@@ -101,7 +101,7 @@ class Peaks(object):
         return self.peak.pop(name, 0.0)
 
 
-def run_pass(tf, names, workers, memory, tag, timeout, prefix):
+def run_pass(tf, names, workers, memory, tag, timeout, prefix, cpus="1"):
     """One pass over ``names``. Returns {strategy: (status, elapsed_s, peak_mib)}."""
     work = queue.Queue()
     for name in names:
@@ -126,9 +126,9 @@ def run_pass(tf, names, workers, memory, tag, timeout, prefix):
             command = ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", WRAPPER,
                        "-ContainerName", container]
             if memory:
-                command += ["-MemoryLimit", memory, "-Cpus", "1"]
+                command += ["-MemoryLimit", memory, "-Cpus", cpus]
             command += ["--timeframe-detail", tf, "--output", os.path.relpath(output, ROOT).replace(os.sep, "/"),
-                        "--workers", "1", "--timeout", str(timeout), "--strategy", strategy]
+                        "--workers", "1", "--timeout", str(timeout), "--strategy", strategy, "--force"]   # --force: a record over the old window is in the store
             with io.open(output[:-len("_docker.json")] + ".log", "a", encoding="utf-8") as sink:
                 sink.write("=== %s %s\n" % (datetime.datetime.now().isoformat(timespec="seconds"), strategy))
                 sink.flush()
@@ -173,10 +173,14 @@ def main(argv=None):
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--memory", default="3500m",
                         help="per-container memory and swap limit; 4 x 3.5 GB leaves the 16 GB VM some room")
+    parser.add_argument("--solo-memory", default="15500m",
+                        help="memory limit of the repeat, one strategy at a time (owner, 2026-09-21: 15.5 GB)")
+    parser.add_argument("--strategy", action="append", default=[],
+                        help="run exactly these strategies instead of the ones still owed (a detail run over an old window)")
     parser.add_argument("--timeout", type=int, default=3600)
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--solo", action="store_true",
-                        help="only repeat the killed or timed-out parallel attempts, one at a time, without a memory limit")
+                        help="only repeat the killed or timed-out parallel attempts, one at a time, with --solo-memory")
     parser.add_argument("--no-solo", action="store_true", help="skip the repeat after the parallel pass")
     args = parser.parse_args(argv)
 
@@ -188,7 +192,7 @@ def main(argv=None):
         # The runner refuses a strategy it no longer lists as eligible ("not currently
         # eligible") - a baseline can outlive that - so those cannot be rerun at all.
         eligible = {row["strategy_id"] for row in full_backtest.eligible()}
-        owed = [s for s in er.targets(args.detail) if s not in final]
+        owed = list(args.strategy) or [s for s in er.targets(args.detail) if s not in final]
         names = [s for s in owed if s in eligible]
         if len(names) != len(owed):
             print("not currently eligible, skipped: %s" % ", ".join(sorted(set(owed) - eligible)),
@@ -210,7 +214,7 @@ def main(argv=None):
         retry = sorted(set(retry) | {s for s, (status, _, _) in results.items() if status == "no_record"})
     print("%d strategies to repeat one at a time: %s" % (len(retry), ", ".join(retry) or "-"), flush=True)
     if retry:
-        run_pass(args.detail, retry, 1, "", "solo", args.timeout, "detail5m-solo")
+        run_pass(args.detail, retry, 1, args.solo_memory, "solo", args.timeout, "detail5m-solo", cpus="4")
     return 0
 
 

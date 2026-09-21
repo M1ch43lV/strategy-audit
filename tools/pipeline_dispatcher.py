@@ -168,6 +168,11 @@ def _regime_stale() -> bool:
     return regime_evaluation.is_stale()[0]
 
 
+def owed_recovery() -> list[str]:
+    from repair import timeframe_5m_recovery
+    return timeframe_5m_recovery.owed()
+
+
 def _window_stale() -> tuple[dict, dict]:
     """Strategies whose accepted canonical run used another window than today's per-mode rule.
 
@@ -195,7 +200,8 @@ def _window_stale() -> tuple[dict, dict]:
     return base, detail
 
 
-def choose(state: dict, strategy: str = "", regime_stale=_regime_stale, window_stale=_window_stale) -> dict:
+def choose(state: dict, strategy: str = "", regime_stale=_regime_stale, window_stale=_window_stale,
+           recovery_owed=owed_recovery) -> dict:
     """Choose exactly one safe next action from the canonical read model.
 
     Repair triage and the zero-trade full-window probe are intentionally not
@@ -269,43 +275,47 @@ def choose(state: dict, strategy: str = "", regime_stale=_regime_stale, window_s
         return {"kind": "run", "gate": "coverage", "metadata_gate": "warmup_recursive",
                 "strategy": row["strategy_id"], "args": []}
 
-    row = _first(rows, lambda item: (
-        item.get("cohort") == "E1_expanded"
-        and item.get("full_backtest_status") in (None, "")))
-    if row:
-        return {"kind": "run", "gate": "full_backtest", "strategy": row["strategy_id"],
-                "args": ["--strategy", row["strategy_id"], "--workers", "1", "--timeout", "3600"]}
-
-    # Window correction (Decision 2026-09-21): repeat a canonical run made over the old futures window, then its detail run.
+    # Pooled full backtests run as a batch (owner, 2026-09-21): four containers of 3.5 GB side by side, then the
+    # strategies that died or timed out again alone with 15.5 GB (`runtime/full_batch_parallel.py`). The batch takes
+    # every strategy owed one: a first run, and a canonical run over the old futures window (Decision 2026-09-21).
     stale_base, stale_detail = window_stale()
-    row = _first(rows, lambda item: item["strategy_id"] in stale_base and item.get("cohort") == "E1_expanded")
-    if row:
-        return {"kind": "run", "gate": "full_backtest", "strategy": row["strategy_id"],
-                "args": ["--strategy", row["strategy_id"], "--workers", "1", "--timeout", "3600", "--force"]}
-    row = _first(rows, lambda item: item["strategy_id"] in stale_detail and item.get("cohort") == "E1_expanded")
-    if row:
-        return {"kind": "run", "gate": "execution_detail", "metadata_gate": "execution_robustness",
-                "strategy": row["strategy_id"],
-                "args": ["--strategy", row["strategy_id"], "--workers", "1", "--timeout", "3600",
-                         "--timeframe-detail", "5m", "--force", "--output",
-                         "results/regime/execution_robustness_detail_5m_docker.json"]}
+    owed_full = sorted(item["strategy_id"] for item in rows
+                       if item.get("cohort") == "E1_expanded"
+                       and (item.get("full_backtest_status") in (None, "") or item["strategy_id"] in stale_base))
+    if owed_full:
+        return {"kind": "run", "gate": "parallel_full", "metadata_gate": "full_backtest",
+                "strategy": "batch-full", "names": owed_full, "args": []}
+
+    # The 5m detail runs, the same way: those still pending and those over the old window.
+    pending_detail = sorted(item["strategy_id"] for item in rows
+                            if _is_true(item.get("technical_chain_complete"))
+                            and item.get("execution_robustness_status") == "PENDING"
+                            and _detail_timeframe(item.get("timeframe") or "") == "5m")
+    stale_detail_rows = sorted(item["strategy_id"] for item in rows
+                               if item["strategy_id"] in stale_detail and item.get("cohort") == "E1_expanded")
+    owed_detail = sorted(set(pending_detail) | set(stale_detail_rows))
+    if owed_detail:
+        return {"kind": "run", "gate": "parallel_detail", "metadata_gate": "execution_robustness",
+                "strategy": "batch-detail", "names": owed_detail, "args": []}
 
     row = _first(rows, lambda item: (
         _is_true(item.get("technical_chain_complete"))
         and item.get("execution_robustness_status") == "PENDING"))
     if row:
         detail_timeframe = _detail_timeframe(row.get("timeframe") or "")
-        if detail_timeframe == "5m":
-            return {"kind": "run", "gate": "execution_detail",
-                    "metadata_gate": "execution_robustness", "strategy": row["strategy_id"],
-                    "args": ["--strategy", row["strategy_id"], "--workers", "1", "--timeout", "3600",
-                             "--timeframe-detail", "5m", "--output",
-                             "results/regime/execution_robustness_detail_5m_docker.json"]}
         if detail_timeframe is None:
             return {"kind": "run", "gate": "execution_robustness",
                     "strategy": row["strategy_id"], "args": []}
         return {"kind": "escalate", "strategy": row["strategy_id"],
                 "reason": "execution robustness requires a resolvable authored timeframe"}
+
+    # A strategy whose 1m pooled run is a known out-of-memory case goes straight to the 5m recovery route (its four gates
+    # and the 5m full backtest, `repair.timeframe_5m_recovery`), one at a time because that run needs 5-6 GB. Promotion into
+    # E1 is a separate owner decision and is not made here. Never for a single requested strategy that is not owed it.
+    row = next((sid for sid in recovery_owed() if not strategy or sid == strategy), None)
+    if row:
+        return {"kind": "run", "gate": "recovery_5m", "metadata_gate": "resource_diagnostic",
+                "strategy": row, "args": []}
 
     # Pipeline-level work, after every strategy-level route is exhausted, never for a single requested strategy:
     # Stages 9-13 for Model 0 when an input (an accepted archive, the E1 cohort, the regime labels, the robustness
@@ -337,6 +347,14 @@ def _command(action: dict) -> list[str]:
         raise DispatchError("Model 1/2/3 gated backtests are owner-paused")
     if action["gate"] == REGIME_GATE:
         return [sys.executable, "-m", "tools.regime_evaluation"]
+    if action["gate"] == "parallel_full":
+        return [sys.executable, str(ROOT / "runtime" / "full_batch_parallel.py"),
+                *[a for name in action["names"] for a in ("--strategy", name)]]
+    if action["gate"] == "parallel_detail":
+        return [sys.executable, str(ROOT / "runtime" / "detail_batch_parallel.py"),
+                *[a for name in action["names"] for a in ("--strategy", name)]]
+    if action["gate"] == "recovery_5m":
+        return [sys.executable, "-m", "repair.timeframe_5m_recovery", "--apply", "--strategy", action["strategy"]]
     if action["gate"] == "coverage":
         return [sys.executable, "-m", "evidence.regime_coverage"]
     if action["gate"] == "execution_robustness":
@@ -367,7 +385,10 @@ def _finalize_success(action: dict) -> None:
     """Publish exactly the derived evidence the completed route requires."""
     if action["gate"] == REGIME_GATE:
         return  # the run wrote its own state and pages; no strategy row changes
-    if action["gate"] == "execution_detail":
+    if action["gate"] == "recovery_5m":
+        _refresh_state()
+        return
+    if action["gate"] in ("execution_detail", "parallel_detail"):
         completed = subprocess.run(
             [sys.executable, "-m", "evidence.execution_robustness"], cwd=ROOT,
             text=True, capture_output=True, check=False)
@@ -390,7 +411,7 @@ def _result_status(action: dict, returncode: int) -> str:
     """Map process completion to operational metadata, never a strategy verdict."""
     if returncode:
         return "ERROR"
-    if action["gate"] == REGIME_GATE:
+    if action["gate"] in (REGIME_GATE, "parallel_full", "parallel_detail", "recovery_5m"):
         return "PASS"
     state = _load_state().get("strategies", {}).get(action["strategy"], {})
     if action["gate"] == "full_backtest":
@@ -480,6 +501,7 @@ def selftest() -> None:
 
     def pick(state, strategy="", **kw):
         kw.setdefault("window_stale", no_window)
+        kw.setdefault("recovery_owed", lambda: [])
         return choose(state, strategy, **kw)
 
     base = {"strategies": {
@@ -500,9 +522,9 @@ def selftest() -> None:
     }}}
     assert pick(post)["gate"] == "execution_robustness"
     post["strategies"]["C"]["timeframe"] = "1h"
-    assert pick(post)["gate"] == "execution_detail"
+    assert pick(post)["gate"] == "parallel_detail" and pick(post)["names"] == ["C"]
     post["strategies"]["C"]["technical_chain_complete"] = "true"
-    assert pick(post)["gate"] == "execution_detail"
+    assert pick(post)["gate"] == "parallel_detail"
     idle = {"strategies": {"D": {"strategy_id": "D", "open_work": ""}}}
     assert pick(idle, regime_stale=lambda: True)["gate"] == REGIME_GATE
     assert pick(idle, regime_stale=lambda: False)["kind"] == "idle"
@@ -514,11 +536,21 @@ def selftest() -> None:
     late = {"strategies": {"F": {"strategy_id": "F", "open_work": "", "cohort": "E1_expanded", "full_backtest_status": "measured", "technical_chain_complete": True,
                                  "execution_robustness_status": "PASS", "timeframe": "1h"}}}
     hit = pick(late, window_stale=lambda: ({"F": "20200401-20260821"}, {}), regime_stale=lambda: False)
-    assert hit["gate"] == "full_backtest" and "--force" in hit["args"]          # old futures window: repeat the base run
+    assert hit["gate"] == "parallel_full" and hit["names"] == ["F"]             # old futures window: repeat the base run in the batch
     hit = pick(late, window_stale=lambda: ({}, {"F": "20200401-20260821"}), regime_stale=lambda: False)
-    assert hit["gate"] == "execution_detail" and "--force" in hit["args"]       # then its detail run
+    assert hit["gate"] == "parallel_detail" and hit["names"] == ["F"]           # then its detail run
     both = pick(late, window_stale=lambda: ({"F": "x"}, {"F": "x"}), regime_stale=lambda: False)
-    assert both["gate"] == "full_backtest"                                      # base before detail
+    assert both["gate"] == "parallel_full"                                      # base before detail
+    first_run = {"strategies": {"G": {"strategy_id": "G", "open_work": "", "cohort": "E1_expanded"}}}
+    hit = pick(first_run, regime_stale=lambda: False)
+    assert hit["gate"] == "parallel_full" and hit["names"] == ["G"]             # a first run also goes through the batch
+    cmd = _command(hit)
+    assert cmd[1].endswith("full_batch_parallel.py") and cmd[-2:] == ["--strategy", "G"]
+    idle_state = {"strategies": {"H": {"strategy_id": "H", "open_work": ""}}}
+    hit = pick(idle_state, recovery_owed=lambda: ["H"], regime_stale=lambda: False)
+    assert hit["gate"] == "recovery_5m" and hit["strategy"] == "H"              # a known 1m OOM goes straight to 5m
+    assert _command(hit)[-3:] == ["--apply", "--strategy", "H"]
+    assert pick(idle_state, "H", recovery_owed=lambda: ["Q"], regime_stale=lambda: False)["kind"] == "idle"   # another strategy's recovery is not ours
     try:
         _command({"gate": "model1"})
     except DispatchError:

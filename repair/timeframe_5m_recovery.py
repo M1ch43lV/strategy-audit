@@ -57,6 +57,23 @@ def candidates():
                   key=lambda row: row["strategy_id"].lower())
 
 
+FINAL_STATUSES = ("promoted_E1", "measured_5m_pending_owner_promotion", "recovery_full_backtest_not_measured")
+
+
+def owed():
+    """Candidates without a final recovery result for their current identity: known 1m out-of-memory strategies that
+    still have to go through the 5m route. A strategy repaired since its record was written is owed again."""
+    results = _load(OUTPUT, {}).get("results", {})
+    out = []
+    for row in candidates():
+        record = results.get(row["strategy_id"]) or {}
+        same = all(record.get(k) == v for k, v in _identity(row).items())
+        final = str(record.get("status", "")).startswith("recovery_blocked") or record.get("status") in FINAL_STATUSES
+        if not (same and final):
+            out.append(row["strategy_id"])
+    return out
+
+
 def _gate_status(gate, result):
     if gate == "smoke":
         if result.get("status") == "measured":
@@ -175,12 +192,13 @@ def run_one(row, data, smoke_timeout, gate_timeout, full_timeout, force=False):
 
 
 def selftest():
-    assert len(candidates()) == 60
+    # 60 candidates existed until the 47 successes were promoted (their manifest row is a measured 5m run then)
+    assert isinstance(candidates(), list) and isinstance(owed(), list)
     assert _gate_status("smoke", {"status": "measured", "trades": 10}) == "PASS"
     assert _gate_status("lookahead", {"status": "FOUND"}) == "FAIL"
     assert _gate_status("warmup_recursive", {"state": "converged"}) == "PASS"
     assert _gate_status("full_backtest", {"status": "resource_inconclusive"}) == "ERROR"
-    print("timeframe_5m_recovery selftest: PASS (60 candidates)")
+    print("timeframe_5m_recovery selftest: PASS (%d candidates, %d owed)" % (len(candidates()), len(owed())))
 
 
 def main(argv=None):

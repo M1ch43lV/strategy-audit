@@ -23,7 +23,7 @@ Do not rederive these; a change is a new dated entry in the Decision record or i
 | Primary state model | Wilder DMI/ADX(14) on completed daily candles, shifted one UTC day; four states; six reporting phases on top | `REGIME_PREREGISTRATION.md` |
 | Models | 0 original; 1 BTC-entry gate; 2 coin-entry gate (no BTC); 3 both. Exits stay original. Missing local evidence closes the gate in Models 2 and 3; Model 1 needs only BTC | `REGIME_PREREGISTRATION.md`, 2026-09-07 |
 | Timeout | 3600 s per strategy run, hard, never raised, not even for one strategy | Stage 8 |
-| Memory | WSL ceiling 14 GB plus 4 GB swap, not to be raised. An in-container exit `-9` is `resource_inconclusive`, not a strategy failure. A Docker wrapper exit 125 or an unresponsive VM is not a completed attempt | Stage 8 |
+| Memory | WSL machine 16 GB plus 4 GB swap (`.wslconfig`, since 2026-09-07), not to be raised. Batches: four containers of 3.5 GB side by side, a strategy that dies or times out is repeated alone in one container of 15.5 GB (Decision 2026-09-21). An in-container exit `-9` is `resource_inconclusive`, not a strategy failure. A Docker wrapper exit 125 or an unresponsive VM is not a completed attempt | Stage 8 |
 | Stores | identity-bound, atomic, resumable; one writer per store; every runner records its invocation and non-command environment/config provenance | Stage 6 |
 | `technical_chain_complete=true` | a `measured` canonical pooled Full-Backtest whose source hash and run profile still match the current execution profile; it clears `open_work` only, not cohort or adjudication | Decision 2026-09-10 |
 | Current usable population | the latest active `admitted_E1` adjudication set after C10. E0 is invalid historical provenance and never a fallback | Decision 2026-09-03 |
@@ -889,6 +889,24 @@ open-trade budget differed in March). The dispatcher repeats them with `--force`
 run over another window is not comparable to its base run). The owner-approved 5m recoveries (41 spot, 7 futures) have
 no dispatcher route and stay trimmed. The ladder ceilings of the futures rows that were capped by their prefix history
 were not recomputed.
+
+### Amendment 2026-09-21: pooled runs go in batches of four, failures repeat alone, known 1m OOM goes to 5m
+
+**Owner's decision.** The dispatcher no longer runs the pooled full backtests and the 5m detail runs one strategy at a
+time. Every strategy owed one (a first run, a run over the old window, a detail run still pending or over the old window)
+goes into one batch: four containers side by side, each with a 3.5 GB memory limit (`runtime/full_batch_parallel.py`,
+`runtime/detail_batch_parallel.py`; the limit is also the swap limit, so a strategy that outgrows it dies alone). Whatever
+did not finish (killed for memory, past the 3600 s ceiling, no record) is repeated at the end, one strategy at a time,
+in a single container with 15.5 GB and against the canonical store; the canonical record of such a strategy is the solo
+result. Workers write their own stores and the measured results are imported into the canonical manifest, because two
+containers must not write one file. The ceiling of 3600 s is not raised.
+
+A strategy whose 1m pooled run is a known out-of-memory case (the canonical status is `oom_confirmed` or
+`resource_inconclusive`, also after a repair, because the row keeps its status until a rerun replaces it) is not run at
+1m again. The dispatcher sends it to `repair.timeframe_5m_recovery` (four gates and the eight-pair 5m full backtest at
+5m), one at a time, because that run needs 5 to 6 GB. It stops at `measured_5m_pending_owner_promotion`: the promotion
+into E1 that the owner gave on 2026-09-21 was for the 60 cases then analysed, and is not extended to new ones by this
+entry.
 
 ### Amendment 2026-09-11: warm-up convergence precedes final recursive-bias
 
