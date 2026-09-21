@@ -147,7 +147,7 @@ writers for one manifest.
 After code changes use `graphify update .`. This is the AST-only path. Do not
 use `graphify extract .` for routine updates: it performs semantic document
 extraction and consumes API quota. A local fail-open post-commit hook runs the
-AST-only update when Graphify is installed.
+AST-only update after every commit, whoever makes it; the versioned copy is `tools/hooks/post-commit` (install with `cp tools/hooks/post-commit .git/hooks/post-commit`). It runs Graphify through the Python of its tool environment: the `graphify.exe` launcher has been blocked by Windows application control since 2026-09-21, and the hook then failed silently.
 
 ## Interpretation limits
 

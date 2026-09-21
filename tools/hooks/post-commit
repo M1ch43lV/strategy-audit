@@ -1,0 +1,28 @@
+#!/bin/sh
+# Keep the local code graph current after commits. This intentionally uses
+# Graphify's AST-only update path: no semantic extraction and no LLM/API call.
+#
+# Install (Git does not version .git/hooks):  cp tools/hooks/post-commit .git/hooks/post-commit
+#
+# The graphify.exe launcher is unsigned and Windows application control has blocked it since
+# 2026-09-21, which made this hook fail without a trace. The Python of the same tool
+# environment is not blocked, so the module is run through it: that interpreter is recorded in
+# graphify-out/.graphify_python, and the bare command is only the fallback.
+test -f graphify-out/graph.json || exit 0
+run=""
+if test -f graphify-out/.graphify_python; then
+    py=$(tr -d '\r\n' < graphify-out/.graphify_python)
+    py=$(cygpath -u "$py" 2>/dev/null || echo "$py")
+    if test -x "$py"; then
+        run="$py -m graphify"
+    fi
+fi
+if test -z "$run" && command -v graphify >/dev/null 2>&1; then
+    run="graphify"
+fi
+test -n "$run" || exit 0
+$run update . || {
+    echo 'warning: graphify AST-only update failed; commit remains valid' >&2
+    exit 0
+}
+exit 0
