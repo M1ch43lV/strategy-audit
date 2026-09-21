@@ -13,6 +13,9 @@ var FUTURES = new Set(FUTURESSTRATEGIES);
 // "dca"/"grid" as substrings, no True-check, no behavior check; that broader
 // marker hits 121 strategies, this verified set 108).
 var DCA = new Set(DCASTRATEGIES);
+// 5m recovery marker (2026-09-21): the strategy's own timeframe is 1m, its canonical 1m pooled backtest ran out of
+// memory, and the figures are those of an owner-approved rerun at 5m (manifest scope owner_approved_timeframe_5m_recovery_*).
+var REC5 = new Set(typeof RECOVERY5MSTRATEGIES === 'undefined' ? [] : RECOVERY5MSTRATEGIES);
 // Modell 1/2/3 rows carry a candidate_id (e.g. "FastSupertrend_optim3_rsi_80-trend"), not
 // the bare strategy_id FUTURESSTRATEGIES is keyed on - an exact-match
 // lookup silently never marked a single gated row (found 2026-09-14 while
@@ -29,7 +32,7 @@ function baseStrategyId(id){
 }
 function futuresLabel(strategyId){
   var base = baseStrategyId(strategyId);
-  return strategyId + (FUTURES.has(base) ? ' *' : '') + (DCA.has(base) ? ' #' : '');
+  return strategyId + (FUTURES.has(base) ? ' *' : '') + (DCA.has(base) ? ' #' : '') + (REC5.has(base) ? ' †' : '');
 }
 
 // Display names only (renamed 2026-09-12 per user request) - the underlying
@@ -308,7 +311,7 @@ function enableSort(table){
 
 /* ---- header tooltips: what a term means, for every table header that has no title yet ---- */
 var TERMS = {
-  'strategie': 'Name der FreqTrade-Strategie. * = Futures-Strategie, # = DCA-Strategie (siehe Legende).',
+  'strategie': 'Name der FreqTrade-Strategie. * = Futures-Strategie, # = DCA-Strategie, † = Autor-Timeframe 1m, auf 5m neu gerechnet (siehe Legende).',
   'kandidat': 'Gate-Kandidat: eine Strategie mit Entry-Gate auf einen ADX-Zustand. Der Suffix nennt den Zustand: -uptrend, -downtrend, -sideways, -transition, -trend (long im Uptrend, short im Downtrend).',
   'zustand': 'ADX-Marktphase: Uptrend, Downtrend, Sideways oder Transition. Definition im Abschnitt „ADX-Regime“.',
   'regime': 'Art der Marktphase: BTC (der Zustand von BTC) oder Coin (der Zustand des gehandelten Coins).',

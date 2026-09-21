@@ -17,6 +17,7 @@ BB10fall,4,0,1,none,-0.146677
 BBKCBounce,4,1,2,none,-0.435557
 BBMod,4,0,2,none,-0.191771
 BBRSI,4,1,3,mild,-0.295059
+BBRSI2,4,0,0,none,-0.134362
 BBRSI21,4,0,2,none,-0.179318
 BBRSINaiveStrategy,4,0,0,none,-0.159596
 BBRSIOptim2020Strategy,4,0,0,none,-0.276084
@@ -35,6 +36,7 @@ BB_RTR,4,1,3,mild,-0.738244
 BB_Strategy04,4,2,2,none,-0.158932
 BBlower,4,1,2,none,-0.272741
 Bandtastic,4,0,0,none,-0.209946
+BbandRsi,4,0,0,none,-0.116113
 BbandRsiRolling,4,0,0,none,-0.134823
 Best5m,4,0,1,none,-0.405624
 BigDrop,4,0,1,none,-0.151066
@@ -55,6 +57,11 @@ BinHV27F,4,0,0,none,-0.288915
 BinHV27_combined,4,0,2,none,-0.287091
 BinHV27_short,4,0,2,none,-0.0583981
 BinHV27_werkkrew,4,0,0,none,-0.127835
+BinHV45,4,0,2,none,-0.89577
+BinHV45HO,4,1,3,mild,-0.72403
+BinHV45_kanaxe,4,0,2,none,-0.448716
+BinHV45_stash,4,0,2,none,-0.475673
+BinHV45_werkkrew,4,0,2,none,-0.669958
 BollingerBandStrategy,4,0,0,none,-0.169122
 BollingerBounce,4,2,2,none,-0.303277
 BollingerBounceStrategy,4,0,0,none,-0.180677
@@ -68,8 +75,12 @@ Candle2,4,0,0,none,-0.201966
 Chandem,4,0,0,none,-0.131306
 Chandemtwo,4,0,0,none,-0.137083
 Chispei,4,0,0,none,-0.127806
+Cluc4,4,0,0,none,-0.292379
+Cluc4werk,4,0,0,none,-0.282799
+Cluc5werk,4,0,2,none,-0.180323
 ClucFiatROI,4,1,2,none,-0.146061
 ClucFiatSlow,4,1,2,none,-0.146061
+ClucHAnix,4,1,2,none,-0.217344
 ClucHAnix_5M_E0V1E,4,0,2,none,-0.244003
 ClucHAnix_5M_E0V1E_DYNAMIC_TB,4,0,2,none,-0.244003
 ClucHAnix_5m,4,0,2,none,-0.33965
@@ -83,6 +94,9 @@ CofiBitStrategy,4,0,0,none,-0.429119
 CombinedBinHAndCluc,4,1,2,none,-0.323975
 CombinedBinHAndCluc2021,4,2,2,none,-0.319476
 CombinedBinHAndCluc2021Bull,4,0,2,none,-0.3518
+CombinedBinHAndClucHyper,4,1,1,none,-0.225643
+CombinedBinHAndClucHyperV0,4,0,1,none,-0.271947
+CombinedBinHAndClucHyperV3,4,1,2,none,-0.452042
 CombinedBinHAndClucV2,4,0,1,none,-0.706661
 CombinedBinHAndClucV3,4,2,2,none,-0.315949
 CombinedBinHAndClucV4,4,2,2,none,-0.362604
@@ -99,6 +113,7 @@ CombinedBinHClucAndMADV3,4,1,2,none,-0.375736
 CombinedBinHClucAndMADV5,4,0,1,none,-0.312196
 CombinedBinHClucAndMADV6,4,0,1,none,-0.338499
 CombinedBinHClucAndMADV9,4,1,1,none,-0.236223
+Combined_Indicators,4,0,1,none,-0.310963
 Combined_NFIv6_SMA,4,1,2,none,-0.328529
 Combined_NFIv7_SMA,4,1,2,none,-0.323957
 CrossEMAStrategy,4,0,0,none,-0.174941
@@ -114,6 +129,7 @@ CryptoFrogNFI,4,0,0,none,-0.110509
 CryptoFrogNFIHO1A,4,0,0,none,-0.106868
 CryptoFrogOffset,4,0,0,none,-0.117394
 CryptoFrog_nateema,4,1,2,none,-0.230643
+DMIPRICEDCAStrategyFuture,4,1,3,mild,-0.211156
 DWT_short,4,0,0,none,-0.47293
 DevDsl2Approx,4,0,2,none,-0.525616
 Diamond,4,0,1,none,-0.279754
@@ -143,7 +159,6 @@ FReinforcedStrategy,4,0,0,none,-0.203971
 FSampleStrategy,4,0,3,mild,-0.715705
 FSupertrendStrategy,4,0,0,none,-0.19512
 FSupertrendStrategyBTC,4,0,0,none,-0.175399
-FSupertrendStrategyETH,4,0,0,none,-0.175399
 FVGChannel,4,0,0,none,-0.224041
 Fakebuy,4,0,2,none,-0.976364
 FastSupertrendOpt,4,0,0,none,-0.147607
@@ -157,6 +172,7 @@ FastSupertrend_optim3_rsi_80,4,2,4,mild,-0.02944
 FastSupertrend_optim_quick,4,1,4,mild,-0.00583391
 FastSupertrend_ts_origstop_fix,4,0,2,none,-0.147745
 FenixTopProfit,4,0,1,none,-0.200204
+FisherHull,4,1,3,mild,-1.15379
 FlawlessVictory,4,0,0,none,-0.14211
 FrayStratBTC,4,0,0,none,-0.32596
 Freqtrade_backtest_validation_freqtrade1,4,0,0,none,-0.0683597
@@ -166,6 +182,7 @@ FrostAuraM315mStrategy,4,0,0,none,-0.13063
 FrostAuraM31hStrategy,4,1,2,none,-0.190238
 GKD_FisherTransformMTF,4,1,2,none,-0.138289
 GKD_HurstExponent,4,0,0,none,-0.203254
+GPTREV,4,2,3,mild,-0.347525
 GnF_V2,4,0,0,none,-0.294015
 GoldenCrossStrategy,4,0,0,none,-0.179576
 HEAD_SHOULDER,4,0,1,none,-0.442101
@@ -189,6 +206,7 @@ KamaFama_2_20250115,4,0,1,none,-0.795638
 KeltnerBounce_Shorts,4,0,0,none,-0.393221
 Lateralus,4,0,0,none,-0.348229
 LeoStrategy,4,0,0,none,-0.395592
+Low_BB,4,2,3,mild,-0.58443
 LuxOSC,4,0,0,none,-0.120873
 MACD003,4,0,2,none,-0.192559
 MACD9fall,4,0,2,none,-0.69797
@@ -214,6 +232,8 @@ MacheteV8b,4,0,1,none,-0.143373
 MacheteV8bRallimod,4,0,1,none,-0.20212
 MarketChyperHyperStrategy,4,1,1,none,-0.190338
 Martin,4,0,0,none,-0.15748
+MiniLambo,4,1,2,none,-0.443897
+MiniLambo_TBS,4,1,2,none,-0.443897
 Minmax,4,2,2,none,-0.235629
 MomentumCCITrendStrategy,4,0,1,none,-0.564761
 Momentumv2,4,0,1,none,-0.272961
@@ -308,6 +328,7 @@ SimpleHopt,4,0,0,none,-0.202899
 SimpleHopt1Along,4,0,0,none,-0.238171
 SmaRsiStrategy,4,0,0,none,-0.271779
 SmoothOperator,4,0,0,none,-0.117103
+SmoothScalp,4,0,0,none,-0.129011
 Squeeze001,4,2,3,mild,-0.770815
 Squeeze002,4,0,1,none,-0.176803
 SqueezeMomentum,4,0,0,none,-0.20463
@@ -321,8 +342,9 @@ Strategy002,4,0,2,none,-0.343373
 Strategy003,4,0,0,none,-0.220006
 Strategy004,4,0,1,none,-0.151717
 Strategy005,4,0,0,none,-0.160546
+StrategyScalpingFast,4,0,1,none,-0.329429
 SuperHV27_BTC,4,0,1,none,-0.217478
-SuperHV27_ETH,4,0,1,none,-0.217478
+SuperTrend,4,0,1,none,-0.225845
 SupertrendStrategy,4,0,0,none,-0.182901
 SwingHigh,4,2,3,mild,-0.268448
 SwingHighToSky,4,1,1,none,-0.186167
@@ -331,6 +353,7 @@ TDSequentialStrategy,4,0,1,none,-0.172363
 TRIWAVE,4,1,2,none,-0.185309
 TRIX_spot,4,0,0,none,-0.0989637
 TemaMaster,4,0,0,none,-0.191527
+TemaMaster3,4,0,0,none,-0.228396
 TemaPure,4,0,0,none,-0.141063
 TemaPureNeat,4,0,0,none,-0.155171
 TemaPureTwo,4,0,0,none,-0.145738
@@ -342,6 +365,7 @@ ToTheMoon,4,0,0,none,-0.196804
 TouchEmaDelayStrategy,4,1,1,none,-0.182035
 TouchEmaStrategy,4,2,3,mild,-0.117689
 TrailingBuyStrat2,4,1,3,mild,-0.936347
+TrailingBuyStratCluc,4,1,2,none,-0.217344
 TrailingBuyStratCluc5m,4,0,2,none,-0.240476
 TrendAtrStrategy,4,0,1,none,-0.133589
 TrendFutures,4,0,0,none,-0.606927
@@ -351,12 +375,14 @@ TrixStrategy,4,0,0,none,-0.0585408
 TrixV15Strategy,4,1,1,none,-0.271392
 TrixV21Strategy,4,0,1,none,-0.259304
 TrixV23Strategy,4,0,1,none,-0.254604
+Trump_LIM,4,1,2,none,-0.319497
 TwoCandleTheory,4,0,0,none,-0.37543
 UltimateMomentumIndicator,4,1,1,none,-0.0547208
 UniversalMACD,4,2,2,none,-0.321962
 VWAP,4,0,2,none,-0.633561
 VolatilitySystem,4,0,1,none,-0.760634
 VolatilitySystemV2,4,0,1,none,-0.452847
+WTDMIPRICESDCAtrategy,4,1,2,none,-0.157924
 WTHO,4,0,1,none,-0.312934
 WaveTrendStra,4,0,0,none,-0.0966504
 XtraThicc,4,0,0,none,-0.178635
@@ -364,6 +390,7 @@ ZaratustraDCA2_06,4,0,1,none,-0.209169
 ZaratustraDCA2_07,4,0,1,none,-0.167692
 ZaratustraDCA5,4,0,2,none,-0.211239
 adaptive,4,0,1,none,-0.749617
+adx_opt_strat,4,2,2,none,-0.302582
 adxbbrsi2,4,3,3,mild,-0.360969
 bb_rsi_opt_new,4,0,1,none,-0.351758
 bbandrsi,4,0,2,none,-0.160907
@@ -383,6 +410,7 @@ eltoro1_4,4,2,2,none,-0.290302
 eltoro1_4_simple,4,2,2,none,-0.206419
 fahmibah,4,0,0,none,-0.297403
 gettinMoist,4,0,0,none,-0.340821
+gpt_reversal,4,2,3,mild,-0.347525
 hansencandlepatternV1,4,0,0,none,-0.123247
 hlhb,4,0,1,none,-0.624561
 ichi,4,0,0,none,-0.234094

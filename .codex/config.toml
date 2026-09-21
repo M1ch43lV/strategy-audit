@@ -13,6 +13,7 @@ lookahead = { model = "gpt-5.6-luna", reasoning = "low" }
 warmup_recursive = { model = "gpt-5.6-luna", reasoning = "low" }
 full_backtest = { model = "gpt-5.6-terra", reasoning = "medium" }
 execution_robustness = { model = "gpt-5.6-terra", reasoning = "medium" }
+regime_evaluation = { model = "gpt-5.6-terra", reasoning = "medium" }
 escalation = ["gpt-5.6-sol:medium", "gpt-5.6-sol:high"]
 
 [dispatcher]

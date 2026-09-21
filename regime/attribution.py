@@ -13,7 +13,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from evidence import market_phase_hypothesis, profile_smoke
+from evidence import execution_robustness, market_phase_hypothesis, profile_full_window, profile_smoke
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from regime import episodes as regime_episodes
 
@@ -188,8 +188,13 @@ def read_archive(path: Path, profiles: dict[str, dict]) -> list[dict]:
 
 def archive_inventory(search_root: Path, profiles: dict[str, dict],
                       archive_paths: list[Path] | None = None,
-                      cache: dict | None = None) -> tuple[list[dict], list[dict]]:
+                      cache: dict | None = None,
+                      expected_timeframes: dict[str, str] | None = None) -> tuple[list[dict], list[dict]]:
+    """`expected_timeframes` names the execution timeframe of strategies whose accepted baseline is an
+    owner-approved override (a 5m rerun of a strategy whose canonical 1m run ran out of memory); every other
+    strategy is held to the timeframe of its execution profile."""
     cache = {} if cache is None else cache
+    expected_timeframes = expected_timeframes or {}
     accepted, rejected = [], []
     seen = set()
     paths = sorted(archive_paths) if archive_paths is not None else sorted(search_root.rglob("*.zip"))
@@ -206,8 +211,9 @@ def archive_inventory(search_root: Path, profiles: dict[str, dict],
                 reason = "canonical_source_hash_mismatch"
             elif record["mode"] != expected_mode:
                 reason = "native_mode_mismatch"
-            elif (profile["execution_timeframe"] and
-                  record["summary"].get("timeframe") != profile["execution_timeframe"]):
+            elif ((expected_timeframes.get(record["strategy_id"]) or profile["execution_timeframe"]) and
+                  record["summary"].get("timeframe") !=
+                  (expected_timeframes.get(record["strategy_id"]) or profile["execution_timeframe"])):
                 reason = "execution_timeframe_mismatch"
             elif actual_pairs != expected_pairs:
                 reason = "not_canonical_pooled_pair_universe"
@@ -467,6 +473,7 @@ def main(argv=None) -> int:
     cache = _load_cache()
     archive_paths = None
     manifest_rejections = []
+    expected_timeframes: dict[str, str] = {}
     evidence_source = "bootstrap_archive_scan"
     if args.full_manifest.exists():
         full = json.loads(args.full_manifest.read_text(encoding="utf-8"))
@@ -479,8 +486,10 @@ def main(argv=None) -> int:
             reason = ""
             if not row.get("archive") or not path.is_file():
                 reason = "manifest_archive_missing"
-            elif row.get("measurement_scope") != MEASUREMENT_SCOPE:
+            elif row.get("measurement_scope") not in execution_robustness.ACCEPTED_BASELINE_SCOPES:
                 reason = "manifest_measurement_scope_mismatch"
+            elif row.get("measurement_scope") != MEASUREMENT_SCOPE and not row.get("execution_timeframe"):
+                reason = "manifest_override_without_execution_timeframe"
             elif any(row.get(key) != value for key, value in identity.items()):
                 reason = "manifest_identity_mismatch"
             elif _cached_file_sha(path, cache) != row.get("archive_sha256"):
@@ -491,9 +500,21 @@ def main(argv=None) -> int:
                                             "reason": reason})
             else:
                 archive_paths.append(path)
+                if row.get("measurement_scope") != MEASUREMENT_SCOPE:
+                    expected_timeframes[strategy] = row["execution_timeframe"]
         evidence_source = str(args.full_manifest.relative_to(ROOT))
-    accepted, rejected = archive_inventory(args.search_root, profiles, archive_paths, cache)
+    accepted, rejected = archive_inventory(args.search_root, profiles, archive_paths, cache, expected_timeframes)
     rejected = manifest_rejections + rejected
+    # The owner-approved 5m recoveries were run over 20200301-20260821 whatever the mode; the frozen spot analysis
+    # window starts on 2020-04-01 (`profile_full_window.TIMERANGE`), so the trades of a spot recovery that opened
+    # before it are left out, as a canonical spot run never had them.
+    spot_start = pd.Timestamp(profile_full_window.TIMERANGE["spot"].split("-")[0], tz="UTC")
+    trimmed = 0
+    for record in accepted:
+        if record["strategy_id"] in expected_timeframes and record["mode"] == "spot":
+            kept = [t for t in record["trades"] if pd.Timestamp(t["open_date"]) >= spot_start]
+            trimmed += len(record["trades"]) - len(kept)
+            record["trades"] = kept
     trades = attribute(accepted)
     args.outdir.mkdir(parents=True, exist_ok=True)
     _save_cache(cache)
@@ -534,6 +555,8 @@ def main(argv=None) -> int:
                            "locked runtime/config/data manifest."),
         "archive_selection_source": evidence_source,
         "rejected_archives": rejected,
+        "override_scope_strategies": sorted(expected_timeframes),
+        "spot_override_trades_before_window_start_removed": trimmed,
         "trades": len(trades),
         "btc_regime_matched_trades": btc_matched,
         "coin_regime_matched_trades": coin_matched,

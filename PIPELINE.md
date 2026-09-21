@@ -43,7 +43,11 @@ pipeline state, refuses to overlap an active Docker runner, runs the existing
 wrapper, refreshes published state, applies the existing E1 admission command,
 and records routing provenance. It includes Stage 8b after a measured
 Full-Backtest: a 5m detail run above 5m, or the documented at-or-below-5m rule
-plus cost-screen publication. It never dispatches gated Model 1/2/3 backtests
+plus cost-screen publication. When no per-strategy work is left and the fingerprint of
+its inputs changed, it runs Stages 9-13 for Model 0 (`tools/regime_evaluation.py`: labels
+check, attribution, specialist evaluation, discovery comparison, daily returns, 5m totals,
+the two published pages; `results/regime/regime_evaluation_state.json` records the last
+complete run). It never dispatches gated Model 1/2/3 backtests, attribution or comparison
 while they are owner-paused. It does not change a gate's selection rule,
 repair policy, timeout, evidence store, or preregistered order. Repair-only
 and zero-trade full-window cases are surfaced for escalation rather than
@@ -249,6 +253,8 @@ Generates the frozen 4-state model (BULL/BEAR/SIDEWAYS/TRANSITION from DMI(14)/A
 |---|---|---|
 | `regime/attribution.py` | `results/regime/regime_daily.csv`, `full_backtest_manifest.json`, `STRATEGY_STATUS.csv` (E1 cohort) | `results/regime/trade_regime_attribution.csv`, `strategy_btc_regime_summary.csv`, `strategy_regime_summary.csv`, `strategy_episode_summary.csv`, `strategy_phase_summary.csv`, `strategy_phase_episode_summary.csv`, `attribution_manifest.json` |
 | `regime/gated_attribution.py` | `regime_daily.csv`, a complete `model1_backtest_manifest.json`, `model2_backtest_manifest.json` or `model3_backtest_manifest.json`, current E1 identities | per model in `results/regime/modelN_attribution/`: Trade attribution, five `candidate_*_summary.csv` and `attribution_manifest.json` |
+
+`regime/attribution.py` accepts an accepted baseline of the canonical scope and of the owner-approved 5m scopes (`execution_robustness.ACCEPTED_BASELINE_SCOPES`); for the latter it expects the manifest row's `execution_timeframe` and, for a spot strategy, drops the trades that opened before the frozen spot window start of 2020-04-01 (`profile_full_window.TIMERANGE`), which the 5m recoveries of 2026-09-20 had been run over one month too early. The count removed is in `attribution_manifest.json`.
 
 The two `*_phase_*` files (Six-Phase Model, Addendum 2026-09-05) were produced on 2026-09-14 from the same Model-0 attribution (`strategy_phase_summary.csv`, `strategy_phase_episode_summary.csv`); they read `regime/full_backtest.py`'s results (Stage 8). `trade_regime_attribution.csv` itself is a Git LFS object of about 1.3 GB; in a checkout without `git lfs pull` it is a pointer file, and `regime/attribution.py` recomputes it from the result archives. Whether a writer is currently running for this is determined solely by the checks in `HANDOFF.md`; this pipeline file is not a run status. The gated attribution by default rejects an incomplete candidate set; `--allow-partial` only generates a technical intermediate state explicitly marked as partial and is not a ranking release.
 
@@ -855,6 +861,21 @@ historical evidence. The serial pipeline dispatcher must not schedule, resume,
 or create any gated-model run. This does not pause Model 0 technical evidence,
 Stage 8b execution robustness, the cost screen, or verified-specialist
 qualification for admitted strategies.
+
+### Amendment 2026-09-21: the dispatcher runs Stages 9-13 for Model 0, and every full-backtest window is per mode
+
+**Owner's decision.** The serial dispatcher no longer stops at Stage 8b. When no per-strategy route is left and the
+inputs of the regime evaluation changed (the E1 cohort with the digest and scope of each accepted archive, the regime
+labels, the execution-robustness and cost-screen stores, the source of the programs), it runs `tools.regime_evaluation`:
+`regime.validate_regime`, `regime.attribution`, `regime.specialist_evaluation`, `regime.discovery_comparison`,
+`regime.daily_return`, `regime.detail_totals` and `tools.regime_specialists_page`. Model 1, Model 2 and Model 3 are
+excluded (backtests, gated attribution, comparison), as paused above; the pages keep their snapshots. The step is
+recorded as gate `regime_evaluation` (Terra, medium) in `evidence/RUN_METADATA.jsonl`.
+
+The analysis window is set per execution mode in every run the dispatcher starts: spot from 2020-04-01, futures from
+2020-03-01 (`profile_full_window.timerange`, Decision 2026-09-03). `evidence/full_backtest_resource_diagnostic.py`, which
+ran the 5m OOM recoveries, used one shared `20200301-20260821` for both and is corrected. The 41 spot recoveries that
+already exist keep their archives; their trades before 2020-04-01 are removed in the attribution, not by a rerun.
 
 ### Amendment 2026-09-11: warm-up convergence precedes final recursive-bias
 

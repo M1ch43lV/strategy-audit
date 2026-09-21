@@ -16,7 +16,7 @@ import threading
 import time
 from pathlib import Path
 
-from evidence import profile_smoke
+from evidence import profile_full_window, profile_smoke
 from tools.run_metadata import append_record
 
 
@@ -26,7 +26,9 @@ SPOT_CONFIG = ROOT / "runtime" / "profile_spot_config.json"
 OUTPUT = ROOT / "evidence" / "FULL_BACKTEST_RESOURCE_DIAGNOSTIC.json"
 METADATA = ROOT / "evidence" / "RUN_METADATA.jsonl"
 IMAGE = "strategy-audit-runtime:2026.7"
-TIMERANGE = "20200301-20260821"
+# The analysis window is per execution mode: spot starts on 2020-04-01, futures on 2020-03-01
+# (`profile_full_window.TIMERANGE`, decision of 2026-09-03). A single shared window ran the 41 spot
+# recoveries of 2026-09-20 one month too early.
 POLL_SECONDS = 2.0
 
 
@@ -84,6 +86,7 @@ def run(strategy: str, pair_count: int, timeout: int, output: Path,
         raise SystemExit("refusing resource diagnostic while an audit container is active")
     row = _row(strategy)
     base_config = _config_for(row)
+    timerange = profile_full_window.timerange("futures" if row["run_profile"].startswith("futures_") else "spot")
     base = json.loads(base_config.read_text(encoding="utf-8"))
     pairs = base["exchange"]["pair_whitelist"][:pair_count]
     if len(pairs) != pair_count:
@@ -106,7 +109,7 @@ def run(strategy: str, pair_count: int, timeout: int, output: Path,
         "-v", f"{ROOT}:/audit", "-w", "/audit", "--entrypoint", "python", IMAGE,
         "evidence/profile_freqtrade.py", "backtesting", "--config", config_in_container,
         "--strategy", strategy, "--strategy-path", "/audit/" + str(canonical.parent).replace("\\", "/"),
-        "--timerange", TIMERANGE, "--fee", "0.001", "--export", "trades",
+        "--timerange", timerange, "--fee", "0.001", "--export", "trades",
         "--backtest-directory", output_in_container, "--cache", "none",
     ]
     if timeframe:
@@ -148,7 +151,7 @@ def run(strategy: str, pair_count: int, timeout: int, output: Path,
         "pair_count": pair_count,
         "source_timeframe": row.get("execution_timeframe", ""),
         "requested_timeframe": timeframe or row.get("execution_timeframe", ""),
-        "timerange": TIMERANGE,
+        "timerange": timerange,
         "runtime_image": IMAGE,
         "runtime_config": str(base_config.relative_to(ROOT)).replace("\\", "/"),
         "runtime_config_sha256": _sha256(base_config),

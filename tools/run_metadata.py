@@ -14,7 +14,7 @@ import uuid
 
 STATUSES = {"PASS", "FAIL", "ESCALATE", "ERROR"}
 GATES = {"classification", "smoke", "lookahead", "warmup_recursive", "full_backtest",
-         "execution_robustness", "resource_diagnostic"}
+         "execution_robustness", "resource_diagnostic", "regime_evaluation"}
 MODELS = {"gpt-5.6-luna", "gpt-5.6-terra", "gpt-5.6-sol"}
 REASONING = {"low", "medium", "high"}
 FIELDS = (

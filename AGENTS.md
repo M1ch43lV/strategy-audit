@@ -62,6 +62,7 @@ The fixed gate order and default route are:
 5. Full backtest and interpretation — GPT-5.6 Terra, medium reasoning
 
 6. Post-full execution robustness and cost screen — GPT-5.6 Terra, medium reasoning
+7. Model 0 regime evaluation, Stages 9-13 (dispatcher-run, Model 1/2/3 excluded) — GPT-5.6 Terra, medium reasoning
 
 The controller default is GPT-5.6 Terra with low reasoning. Escalate only for
 ambiguous, contradictory, or deep code/methodology cases, in this order:

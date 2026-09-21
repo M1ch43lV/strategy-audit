@@ -479,6 +479,13 @@ def top10_annotation(robustness, confirm):
     return out
 
 
+def recovery_5m_strategies():
+    """Strategies whose accepted baseline is an owner-approved 5m rerun of a 1m strategy (marked with a dagger)."""
+    manifest = _read_json(os.path.join(ROOT, "results", "regime", "full_backtest_manifest.json"))["results"]
+    return sorted(s for s, r in manifest.items() if r.get("status") == "measured"
+                  and r.get("measurement_scope") == "owner_approved_timeframe_5m_recovery_pooled_pair_universe")
+
+
 def dca_strategies():
     enable = re.compile(r"position_adjustment_enable\s*=\s*True\b")
     method = re.compile(r"def\s+adjust_trade_position\s*\(")
@@ -568,7 +575,7 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
         marker = sum(1 for r in csv.DictReader(handle) if "grid_dca" in (r.get("strategy_type") or ""))
     ft_profitable = sum(1 for r in native if (r.get("profit_total") or 0) > 0)
     measured = sum(1 for s, r in pooled.items() if r.get("status") == "measured"
-                   and r.get("measurement_scope") == er.CANONICAL_SCOPE)
+                   and r.get("measurement_scope") in er.ACCEPTED_BASELINE_SCOPES)
     verified_btc = sum(r["ok"] for r in rows["btc"])
     verified_coin = sum(r["ok"] for r in rows["coin"])
     verified_universal = sum(r["ok"] for r in rows["universal"])
@@ -802,7 +809,7 @@ def build(destination, gating_destination, skip_native=False):
                                     robustness, futures, dca, rows, dv_summary, gain_rows)
     static = {name: io.open(os.path.join(DATA, name.lower() + ".json"), encoding="utf-8").read().strip()
               for name in ("GATEDCOMPARE", "GATEDDETAIL", "TOP10BYREGIME", "COINEPISODES", "COINEPISODECOUNTS")}
-    shared = {"FUTURESSTRATEGIES": _dump(futures), "DCASTRATEGIES": _dump(dca)}
+    shared = {"FUTURESSTRATEGIES": _dump(futures), "DCASTRATEGIES": _dump(dca), "RECOVERY5MSTRATEGIES": _dump(recovery_5m_strategies())}
     main_blobs = {
         "REGIMEFULL": _dump({"btc": rows["btc"], "coin": rows["coin"]}),
         "UNIVERSAL": _dump(rows["universal"]), "TOTALGAIN": _dump(gain_rows), "PORTFOLIO": _dump(plan),

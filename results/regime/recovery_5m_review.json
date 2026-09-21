@@ -1,0 +1,438 @@
+{
+ "all_with_total_row": 567,
+ "beats_buy_and_hold": {
+  "others": 0.374,
+  "recovered": 0.4
+ },
+ "best": [
+  {
+   "confirmed_rows": 3,
+   "excess_usd": 21308,
+   "gain_usd": 17112,
+   "rank": 9,
+   "robust": "PASS",
+   "strategy_id": "DMIPRICEDCAStrategyFuture",
+   "verified_rows": 8
+  },
+  {
+   "confirmed_rows": 0,
+   "excess_usd": 7864,
+   "gain_usd": 11192,
+   "rank": 10,
+   "robust": "PASS",
+   "strategy_id": "GRIDDMIPRICEStrategySpot",
+   "verified_rows": 2
+  },
+  {
+   "confirmed_rows": 1,
+   "excess_usd": 9720,
+   "gain_usd": 10075,
+   "rank": 12,
+   "robust": "PASS",
+   "strategy_id": "Trump_LIM",
+   "verified_rows": 6
+  },
+  {
+   "confirmed_rows": 3,
+   "excess_usd": -3199,
+   "gain_usd": 9920,
+   "rank": 13,
+   "robust": "PASS",
+   "strategy_id": "FisherHull",
+   "verified_rows": 5
+  },
+  {
+   "confirmed_rows": 3,
+   "excess_usd": 7624,
+   "gain_usd": 5604,
+   "rank": 29,
+   "robust": "PASS",
+   "strategy_id": "WTDMIPRICESDCAtrategy",
+   "verified_rows": 8
+  },
+  {
+   "confirmed_rows": 3,
+   "excess_usd": 2406,
+   "gain_usd": 3401,
+   "rank": 46,
+   "robust": "PASS",
+   "strategy_id": "TrailingBuyStratCluc",
+   "verified_rows": 5
+  },
+  {
+   "confirmed_rows": 3,
+   "excess_usd": 2406,
+   "gain_usd": 3401,
+   "rank": 47,
+   "robust": "PASS",
+   "strategy_id": "ClucHAnix",
+   "verified_rows": 5
+  },
+  {
+   "confirmed_rows": 1,
+   "excess_usd": -262,
+   "gain_usd": 2210,
+   "rank": 80,
+   "robust": "PASS",
+   "strategy_id": "BinHV45_werkkrew",
+   "verified_rows": 7
+  },
+  {
+   "confirmed_rows": 3,
+   "excess_usd": -1772,
+   "gain_usd": 1845,
+   "rank": 95,
+   "robust": "PASS",
+   "strategy_id": "Low_BB",
+   "verified_rows": 4
+  },
+  {
+   "confirmed_rows": 1,
+   "excess_usd": 883,
+   "gain_usd": 1345,
+   "rank": 132,
+   "robust": "PASS",
+   "strategy_id": "CombinedBinHAndClucHyper",
+   "verified_rows": 0
+  },
+  {
+   "confirmed_rows": 2,
+   "excess_usd": 262,
+   "gain_usd": 750,
+   "rank": 192,
+   "robust": "PASS",
+   "strategy_id": "BinHV45_kanaxe",
+   "verified_rows": 4
+  },
+  {
+   "confirmed_rows": 0,
+   "excess_usd": 124,
+   "gain_usd": 557,
+   "rank": 206,
+   "robust": "PASS",
+   "strategy_id": "BinHV45_stash",
+   "verified_rows": 3
+  }
+ ],
+ "compute": {
+  "full_backtest_hours": 5.1,
+  "peak_memory_mib_max": 6080.5
+ },
+ "cost_pass_whole_run": {
+  "others": 0.37,
+  "recovered": 0.314
+ },
+ "duplicates": {
+  "distinct_trade_sets": 44,
+  "sets_equal_to_a_non_recovered_strategy": 0,
+  "sets_shared_by_several_recovered": 3
+ },
+ "gain_positive": {
+  "others": 0.47,
+  "recovered": 0.457
+ },
+ "phase_top10": {
+  "btc/BEAR": {
+   "recovered_in_top10": 0,
+   "recovered_in_verified_top10": 0,
+   "recovered_verified": [
+    [
+     21,
+     "BinHV45HO"
+    ],
+    [
+     25,
+     "Low_BB"
+    ],
+    [
+     38,
+     "CombinedBinHAndClucHyperV3"
+    ],
+    [
+     39,
+     "DMIPRICEDCAStrategyFuture"
+    ],
+    [
+     52,
+     "BinHV45_werkkrew"
+    ]
+   ],
+   "rows": 462,
+   "verified_rows": 106
+  },
+  "btc/BULL": {
+   "recovered_in_top10": 0,
+   "recovered_in_verified_top10": 0,
+   "recovered_verified": [
+    [
+     34,
+     "WTDMIPRICESDCAtrategy"
+    ],
+    [
+     41,
+     "ClucHAnix"
+    ],
+    [
+     42,
+     "TrailingBuyStratCluc"
+    ],
+    [
+     44,
+     "Cluc5werk"
+    ],
+    [
+     49,
+     "DMIPRICEDCAStrategyFuture"
+    ]
+   ],
+   "rows": 466,
+   "verified_rows": 165
+  },
+  "btc/SIDEWAYS": {
+   "recovered_in_top10": 4,
+   "recovered_in_verified_top10": 4,
+   "recovered_verified": [
+    [
+     1,
+     "FisherHull"
+    ],
+    [
+     2,
+     "Trump_LIM"
+    ],
+    [
+     9,
+     "BinHV45_werkkrew"
+    ],
+    [
+     10,
+     "BinHV45"
+    ],
+    [
+     11,
+     "DMIPRICEDCAStrategyFuture"
+    ]
+   ],
+   "rows": 487,
+   "verified_rows": 148
+  },
+  "btc/TRANSITION": {
+   "recovered_in_top10": 3,
+   "recovered_in_verified_top10": 3,
+   "recovered_verified": [
+    [
+     2,
+     "FisherHull"
+    ],
+    [
+     4,
+     "DMIPRICEDCAStrategyFuture"
+    ],
+    [
+     5,
+     "Low_BB"
+    ],
+    [
+     11,
+     "Trump_LIM"
+    ],
+    [
+     13,
+     "BinHV45_werkkrew"
+    ]
+   ],
+   "rows": 471,
+   "verified_rows": 149
+  },
+  "coin/BEAR": {
+   "recovered_in_top10": 2,
+   "recovered_in_verified_top10": 2,
+   "recovered_verified": [
+    [
+     2,
+     "FisherHull"
+    ],
+    [
+     6,
+     "Low_BB"
+    ],
+    [
+     13,
+     "DMIPRICEDCAStrategyFuture"
+    ],
+    [
+     20,
+     "GPTREV"
+    ],
+    [
+     21,
+     "gpt_reversal"
+    ]
+   ],
+   "rows": 446,
+   "verified_rows": 97
+  },
+  "coin/BULL": {
+   "recovered_in_top10": 0,
+   "recovered_in_verified_top10": 1,
+   "recovered_verified": [
+    [
+     6,
+     "DMIPRICEDCAStrategyFuture"
+    ],
+    [
+     16,
+     "WTDMIPRICESDCAtrategy"
+    ],
+    [
+     23,
+     "Cluc5werk"
+    ],
+    [
+     26,
+     "GRIDDMIPRICEStrategySpot"
+    ],
+    [
+     35,
+     "ClucHAnix"
+    ]
+   ],
+   "rows": 533,
+   "verified_rows": 214
+  },
+  "coin/SIDEWAYS": {
+   "recovered_in_top10": 2,
+   "recovered_in_verified_top10": 2,
+   "recovered_verified": [
+    [
+     1,
+     "FisherHull"
+    ],
+    [
+     8,
+     "Trump_LIM"
+    ],
+    [
+     18,
+     "DMIPRICEDCAStrategyFuture"
+    ],
+    [
+     53,
+     "adx_opt_strat"
+    ],
+    [
+     62,
+     "WTDMIPRICESDCAtrategy"
+    ]
+   ],
+   "rows": 523,
+   "verified_rows": 172
+  },
+  "coin/TRANSITION": {
+   "recovered_in_top10": 4,
+   "recovered_in_verified_top10": 4,
+   "recovered_verified": [
+    [
+     1,
+     "FisherHull"
+    ],
+    [
+     6,
+     "Low_BB"
+    ],
+    [
+     7,
+     "Trump_LIM"
+    ],
+    [
+     9,
+     "DMIPRICEDCAStrategyFuture"
+    ],
+    [
+     17,
+     "BinHV45_werkkrew"
+    ]
+   ],
+   "rows": 496,
+   "verified_rows": 80
+  }
+ },
+ "rank": {
+  "median": 295,
+  "population_median": 284.0,
+  "top_10": 2,
+  "top_100": 9,
+  "top_200": 11,
+  "top_25": 4,
+  "top_50": 7
+ },
+ "recovered_strategies": 47,
+ "robustness_pass": {
+  "others": 0.917,
+  "recovered": 1.0
+ },
+ "specialist": {
+  "at_least_one_confirmed_row": {
+   "others": 168,
+   "recovered": 23
+  },
+  "at_least_one_verified_row": {
+   "others": 298,
+   "recovered": 21
+  },
+  "confirmed_rows": {
+   "all": 350,
+   "recovered": 47
+  },
+  "strategies_with_validation_rows": {
+   "others": 515,
+   "recovered": 35
+  },
+  "verified_rows": {
+   "all": 1131,
+   "recovered": 85
+  }
+ },
+ "universal": {
+  "candidates": 432,
+  "recovered": [
+   "DMIPRICEDCAStrategyFuture",
+   "SmoothScalp",
+   "BbandRsi",
+   "WTDMIPRICESDCAtrategy",
+   "Cluc5werk",
+   "BBRSI2",
+   "ClucHAnix",
+   "TrailingBuyStratCluc",
+   "CombinedBinHAndClucHyper",
+   "Cluc4werk",
+   "SuperTrend",
+   "CombinedBinHAndClucHyperV0",
+   "TemaMaster3",
+   "Trump_LIM",
+   "Cluc4",
+   "Combined_Indicators",
+   "GPTREV",
+   "gpt_reversal",
+   "adx_opt_strat",
+   "StrategyScalpingFast",
+   "MiniLambo",
+   "MiniLambo_TBS",
+   "BinHV45_kanaxe",
+   "CombinedBinHAndClucHyperV3",
+   "BinHV45_stash",
+   "Low_BB",
+   "BinHV45HO",
+   "BinHV45_werkkrew",
+   "BinHV45",
+   "FisherHull"
+  ],
+  "recovered_verified": [
+   "DMIPRICEDCAStrategyFuture",
+   "WTDMIPRICESDCAtrategy",
+   "Trump_LIM"
+  ],
+  "verified_total": 9
+ },
+ "with_total_row": 35
+}

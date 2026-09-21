@@ -13,6 +13,7 @@ former file.
 | 4 | Wave C: canonical measurement results |
 | 5 | Wave C: both bias gates over the 53 rows that produced trades |
 | 6 | Smoke-funnel review 2026-09-10 (read before reclassifying or rerunning any of its rows) |
+| 7 | 5m recovery of the 1m out-of-memory strategies: check of the records and what it brought (2026-09-21) |
 
 A file name inside the text of a merged part (for example `ELIGIBILITY_EXPANSION_PLAN.md`) names the file as it was then; the table "Where a former document went" in `README.md` resolves it.
 
@@ -564,3 +565,58 @@ local-module/load paths, `Proton` remains in its separate FreqAI repair arm,
 and `haGradient` owes its already-recorded look-ahead remeasurement and
 recursive ladder. None of these ten should be retried by another generic smoke
 run.
+
+## 7. 5m recovery of the 1m out-of-memory strategies: check and yield (2026-09-21)
+
+Rule and route: `PIPELINE.md`, Decision record, Amendments of 2026-09-20 and 2026-09-21 (owner). Of 60 strategies whose
+canonical 1m pooled Full-Backtest was `oom_confirmed` or `resource_inconclusive`, 47 passed smoke, look-ahead, warm-up,
+recursion and a measured eight-pair 5m Full-Backtest and were promoted into E1; 13 stopped earlier (5 at warm-up, 3 at
+smoke, 2 at look-ahead, 1 at recursion, 2 without a measured 5m Full-Backtest). The numbers below come from
+`python -m tools.recovery_5m_review` (`results/regime/recovery_5m_review.json`) and are those of the published
+*Regime-Spezialisten* page.
+
+**Check of the records.** For all 47: cohort `E1_expanded`, `technical_chain_complete`, full-backtest status `measured`
+with scope `owner_approved_timeframe_5m_recovery_pooled_pair_universe`, archive present and its digest and trade count equal
+to the manifest, archive timeframe 5m, look-ahead and recursion `PASS`, Stage 8b `PASS` by the at-or-below-5m rule, the
+canonical 1m result kept under `original_full_backtest`. Two defects were found and fixed:
+
+- `regime.attribution` rejected all 47 (scope not canonical, archive timeframe 5m against the profile's 1m), so no ranking
+  contained them. It accepts the owner-approved scopes now.
+- 41 spot recoveries ran over `20200301-20260821` instead of the frozen spot window from 2020-04-01 (24,878 trades opened
+  in March 2020). The diagnostic runner now takes the window per mode; the attribution drops those trades.
+
+Not changed, but visible: the status table and the Test Bench show the look-ahead and warm-up evidence of the original 1m
+identity (start-up of 1440 candles at 1m); the gates at 5m (288 candles) are in `evidence/TIMEFRAME_5M_RECOVERY.json`.
+
+**Where they stand** (567 strategies with a whole-window row, 675 evaluated). 35 of the 47 have a whole-window row.
+
+| | 47 recovered | others |
+|---|---|---|
+| Median rank by validation dollar gain | 295 | 284 (population median) |
+| In the top 10 / 25 / 50 / 100 | 2 / 4 / 7 / 9 | |
+| Whole-window gain above 0 | 46 % | 47 % |
+| Above Buy-and-Hold | 40 % | 37 % |
+| Stage 8b `PASS` | 100 % | 92 % |
+| At least one verified specialist row | 21 of 35 | 298 of 515 |
+| At least one confirmed row | 23 of 35 | 168 of 515 |
+
+In the phase tables they hold 15 of the 80 places of the eight Top-10 lists: BTC sideways 4, BTC transition 3, coin
+sideways 2, coin transition 4, coin bear 2, none in the BTC and coin uptrend. `FisherHull` is first in three of the phase
+lists. Of the 9 verified universal specialists, 3 are recoveries (`DMIPRICEDCAStrategyFuture`, `WTDMIPRICESDCAtrategy`,
+`Trump_LIM`).
+
+**Reading.**
+
+- The whole-window ranking is unremarkable: the median rank is that of the population. Two of the top ten (`DMIPRICEDCAStrategyFuture`,
+  `GRIDDMIPRICEStrategySpot`) are DCA strategies whose own account did not earn what the fixed-stake dollar figure shows: the
+  first ends at 96 % of its start capital with 5x leverage and a 55 % drawdown, the second at 2 % (its account collapsed).
+  The same convention effect as for `ZaratustraDCA5`.
+- The yield is in the phases. Mean-reversion scalpers (BinHV45, Cluc, Low_BB, FisherHull, Trump_LIM) are over-represented in
+  the sideways, transition and bear lists, and confirmed rows are twice as frequent as elsewhere. Solid own accounts:
+  `Trump_LIM` (+129 %, drawdown 14 %), `BinHV45_werkkrew` (+132 %, 16 %), `Low_BB` (+55 %, 22 %), `ClucHAnix` (+163 %, 45 %).
+  `FisherHull` is first in three phases and below Buy-and-Hold over the whole window (excess -$3,199).
+- Independent evidence is smaller than 47: 44 distinct trade sets, in a handful of families (BinHV45, Cluc, DMIPRICE, MiniLambo);
+  none equals the trade set of a strategy outside the group.
+- Cost: 5.1 hours of full-backtest compute, peak memory 6.1 GB, 47 of 60 successes. What is measured is a 5m rerun of
+  1m strategies, that is the same rules at a coarser resolution and not the behaviour the author had; that is why the pages
+  mark them with a dagger.

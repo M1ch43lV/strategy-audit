@@ -65,6 +65,9 @@ container exists. Inspect processes, locks, artifact timestamps, and the run log
   python -m tools.strategy_status_page`. Until it runs, `execution_robustness_status` shows `PENDING` for strategies
   whose detail run has finished. `python -m evidence.execution_robustness --check` says whether the stores are current.
   `evidence/EXECUTION_ROBUSTNESS.json` and `evidence/COST_SCREEN.json` are written only by that module.
+- **Stages 9-13 (Model 0) run in the dispatcher** once no per-strategy work is left and their inputs changed
+  (`python -m tools.regime_evaluation --check` says whether a rerun is due). Model 1/2/3 stay paused. Publishing the
+  artifacts (Regime-Spezialisten, Strategy Test Bench) is still manual.
 - **Check-run finalization is automatic.** Direct canonical bias runs and `runtime/profile_bias_docker.ps1` publish
   status, pipeline state and the page before exiting. Do not reintroduce a manual merge step.
 - **Pipeline-wide counts** come from `evidence/PIPELINE_STATE.json` through `evidence.pipeline_state.EvidenceStore`,

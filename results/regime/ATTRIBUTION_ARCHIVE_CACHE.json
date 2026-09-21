@@ -8128,5 +8128,485 @@
     "mtime_ns": 1788798743332043900,
     "size": 4901439,
     "trades_digest": "26d5ee8ffe0df285a469ce415bb3f4ffeb1b9f69e3cb1bb6bfeedba29c673ab0"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BBRSI2-20260920T213129Z-pairs8-tf5m\\backtest-result-2026-09-20_21-36-49.zip": {
+    "file_sha256": "sha256_7b33584cac48f019b58ec6a65ad89b0d37062bdc1735cc2d82037f64d29111af",
+    "mtime_ns": 1789940214711982200,
+    "size": 47845224
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BBRSI2-20260920T213129Z-pairs8-tf5m\\backtest-result-2026-09-20_21-36-49.zip::BBRSI2": {
+    "mtime_ns": 1789940214711982200,
+    "size": 47845224,
+    "trades_digest": "95a19d2554a7298b90a99564d6c378b22e86f3bcebda0d17f22f446e85ce44d2"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BBands-20260920T212536Z-pairs8-tf5m\\backtest-result-2026-09-20_21-30-41.zip": {
+    "file_sha256": "sha256_9eebb530669dfa748e5a6f411092217622ebab0ab501d3b092ee8b8d7fdbbf19",
+    "mtime_ns": 1789939843428453100,
+    "size": 14272368
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BBands-20260920T212536Z-pairs8-tf5m\\backtest-result-2026-09-20_21-30-41.zip::BBands": {
+    "mtime_ns": 1789939843428453100,
+    "size": 14272368,
+    "trades_digest": "ec23f870ca096d710bc6ef6092ddb47d3452e0d8a0aea5cbb48a9ee08e67f1d6"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BbandRsi-20260920T212025Z-pairs8-tf5m\\backtest-result-2026-09-20_21-24-18.zip": {
+    "file_sha256": "sha256_96dc03c1eea9e61ae26a99e537a59358be5dff09455f9050f815d70fbfba4db3",
+    "mtime_ns": 1789939463284172900,
+    "size": 36482499
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BbandRsi-20260920T212025Z-pairs8-tf5m\\backtest-result-2026-09-20_21-24-18.zip::BbandRsi": {
+    "mtime_ns": 1789939463284172900,
+    "size": 36482499,
+    "trades_digest": "1f51ecad865f4d5f7c98e0212fbb3cb3fdddd1b7bfc4b2890620ed5804d69809"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BinHV45-20260920T214011Z-pairs8-tf5m\\backtest-result-2026-09-20_21-42-07.zip": {
+    "file_sha256": "sha256_11d30727b82d47c0f7442e7cc5549d689f01db8a8d0ab95fe37ef1c51ce6266d",
+    "mtime_ns": 1789940528424154800,
+    "size": 12476238
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BinHV45-20260920T214011Z-pairs8-tf5m\\backtest-result-2026-09-20_21-42-07.zip::BinHV45": {
+    "mtime_ns": 1789940528424154800,
+    "size": 12476238,
+    "trades_digest": "2202c39381f3cbde4aa9059be38f040d8480e9ecdea447531b4b57ceacd223bf"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BinHV45HO-20260920T215014Z-pairs8-tf5m\\backtest-result-2026-09-20_21-52-10.zip": {
+    "file_sha256": "sha256_91d1361213a82ae653b580a7c92f16d0b899cfc11a8cbb9f5f555088033286d0",
+    "mtime_ns": 1789941131671335900,
+    "size": 12357841
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BinHV45HO-20260920T215014Z-pairs8-tf5m\\backtest-result-2026-09-20_21-52-10.zip::BinHV45HO": {
+    "mtime_ns": 1789941131671335900,
+    "size": 12357841,
+    "trades_digest": "b087d3cef0f095e8c0d91d5e0e0d1f497fe4ab5d4c09b017d100b060c4e9ef9b"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BinHV45_kanaxe-20260920T214240Z-pairs8-tf5m\\backtest-result-2026-09-20_21-44-38.zip": {
+    "file_sha256": "sha256_25a299540489d0209e6f13531a291d4fa23d25efa40fcad66f82fbf092794c3c",
+    "mtime_ns": 1789940679817307000,
+    "size": 13063849
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BinHV45_kanaxe-20260920T214240Z-pairs8-tf5m\\backtest-result-2026-09-20_21-44-38.zip::BinHV45_kanaxe": {
+    "mtime_ns": 1789940679817307000,
+    "size": 13063849,
+    "trades_digest": "beb5b4d1c3e207a42e9524a694f3df25de0a2f739647bbd6b0578a35afd5df00"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BinHV45_stash-20260920T214512Z-pairs8-tf5m\\backtest-result-2026-09-20_21-47-10.zip": {
+    "file_sha256": "sha256_de3f1e69bc5188985e93ff473b0017216d10d0845ffa83a7fc05547369bd7ccf",
+    "mtime_ns": 1789940831948795700,
+    "size": 13000024
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BinHV45_stash-20260920T214512Z-pairs8-tf5m\\backtest-result-2026-09-20_21-47-10.zip::BinHV45_stash": {
+    "mtime_ns": 1789940831948795700,
+    "size": 13000024,
+    "trades_digest": "37003963831c7f275bcd4bd541ef7ac10f55d64e32fae89a548d8145e88cff55"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BinHV45_werkkrew-20260920T214743Z-pairs8-tf5m\\backtest-result-2026-09-20_21-49-40.zip": {
+    "file_sha256": "sha256_49db7ca85d6f75a362b885a249944a2c28534bc673a58cef137808f4ed453617",
+    "mtime_ns": 1789940982329181000,
+    "size": 12870716
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\BinHV45_werkkrew-20260920T214743Z-pairs8-tf5m\\backtest-result-2026-09-20_21-49-40.zip::BinHV45_werkkrew": {
+    "mtime_ns": 1789940982329181000,
+    "size": 12870716,
+    "trades_digest": "5a5b45a4e46ad56b40a03f61c34fd228d7eba1cd508d021d20b48ff61195d4e1"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Cluc4-20260920T215245Z-pairs8-tf5m\\backtest-result-2026-09-20_21-54-46.zip": {
+    "file_sha256": "sha256_f2060574561df825c50a2b1790d26e90dc7e9af131e3be39c168ec9cb41380b9",
+    "mtime_ns": 1789941287820672400,
+    "size": 13453255
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Cluc4-20260920T215245Z-pairs8-tf5m\\backtest-result-2026-09-20_21-54-46.zip::Cluc4": {
+    "mtime_ns": 1789941287820672400,
+    "size": 13453255,
+    "trades_digest": "e9e3b43246a222792047dfef58db79b770583b6045bf92a2c327b81a5a46731a"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Cluc4werk-20260920T215522Z-pairs8-tf5m\\backtest-result-2026-09-20_21-57-22.zip": {
+    "file_sha256": "sha256_72cf9cd8a099f051bd2216ec5ccf3ab4d0455fd9a04ffd0dfbeb8e89cbf4f1d3",
+    "mtime_ns": 1789941443842876300,
+    "size": 12997930
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Cluc4werk-20260920T215522Z-pairs8-tf5m\\backtest-result-2026-09-20_21-57-22.zip::Cluc4werk": {
+    "mtime_ns": 1789941443842876300,
+    "size": 12997930,
+    "trades_digest": "79c395b0d79d0c176e6434fffe28750d1321bee917b0fe6cf4aa941da79b1bc2"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Cluc5werk-20260920T215800Z-pairs8-tf5m\\backtest-result-2026-09-20_22-00-34.zip": {
+    "file_sha256": "sha256_68d64536715029d61f961f1e28843ff2482198ff7df32c801b825b9f89d6f3a0",
+    "mtime_ns": 1789941636463868400,
+    "size": 18889557
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Cluc5werk-20260920T215800Z-pairs8-tf5m\\backtest-result-2026-09-20_22-00-34.zip::Cluc5werk": {
+    "mtime_ns": 1789941636463868400,
+    "size": 18889557,
+    "trades_digest": "818d4177683d1f63d24ccc16abb20d4169c58e6726f5268a49d0901d0321a9ce"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Cluc7werk-20260920T220104Z-pairs8-tf5m\\backtest-result-2026-09-20_22-03-01.zip": {
+    "file_sha256": "sha256_62ee90381a197b67be9cf6ff9bf33ce3b48903f54f803f80b34b32326610ef51",
+    "mtime_ns": 1789941782878300000,
+    "size": 12701310
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Cluc7werk-20260920T220104Z-pairs8-tf5m\\backtest-result-2026-09-20_22-03-01.zip::Cluc7werk": {
+    "mtime_ns": 1789941782878300000,
+    "size": 12701310,
+    "trades_digest": "13d2c7ca542055f91b5339674693df139651fd7a100bfae8a076a8bd8588214d"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\ClucHAnix-20260920T220437Z-pairs8-tf5m\\backtest-result-2026-09-20_22-15-46.zip": {
+    "file_sha256": "sha256_74e3fe2f79f1ad3cba3a9f67e029535104bb43354a9ec5b600ad4a3e6177dfbb",
+    "mtime_ns": 1789942547849657400,
+    "size": 14477296
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\ClucHAnix-20260920T220437Z-pairs8-tf5m\\backtest-result-2026-09-20_22-15-46.zip::ClucHAnix": {
+    "mtime_ns": 1789942547849657400,
+    "size": 14477296,
+    "trades_digest": "8d35550dfbbdf74ae651e07b8b03dc2aa53a48426a6f9e8cdc1c1d85731988f9"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\ClucHAwerk-20260920T222402Z-pairs8-tf5m\\backtest-result-2026-09-20_22-35-03.zip": {
+    "file_sha256": "sha256_07fca3cbc61c1f7c9ab0d5202d4da3bf987cb0703b176f732399d13f8ba96374",
+    "mtime_ns": 1789943704606676100,
+    "size": 13656079
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\ClucHAwerk-20260920T222402Z-pairs8-tf5m\\backtest-result-2026-09-20_22-35-03.zip::ClucHAwerk": {
+    "mtime_ns": 1789943704606676100,
+    "size": 13656079,
+    "trades_digest": "b6a71d7908b71c05ba015dd67dbb5fc4fb89dec90cd58faf753f1cd55c186771"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\CombinedBinHAndClucHyper-20260920T223809Z-pairs8-tf5m\\backtest-result-2026-09-20_22-40-51.zip": {
+    "file_sha256": "sha256_d65f0d7d409e3a8c9a8bbe4560f091d06d584d9afb24824f03f1288ec6a110c0",
+    "mtime_ns": 1789944053875743300,
+    "size": 21606472
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\CombinedBinHAndClucHyper-20260920T223809Z-pairs8-tf5m\\backtest-result-2026-09-20_22-40-51.zip::CombinedBinHAndClucHyper": {
+    "mtime_ns": 1789944053875743300,
+    "size": 21606472,
+    "trades_digest": "90f1aab15afa6edab977bcb0da4385b9980212705360a12f010df9270d3147d6"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\CombinedBinHAndClucHyperV0-20260920T224141Z-pairs8-tf5m\\backtest-result-2026-09-20_22-44-47.zip": {
+    "file_sha256": "sha256_f983d44cdf2e636f480dc43e98b0f3e2e1c9810dec716786bb1d469444a98e87",
+    "mtime_ns": 1789944288738264000,
+    "size": 14038239
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\CombinedBinHAndClucHyperV0-20260920T224141Z-pairs8-tf5m\\backtest-result-2026-09-20_22-44-47.zip::CombinedBinHAndClucHyperV0": {
+    "mtime_ns": 1789944288738264000,
+    "size": 14038239,
+    "trades_digest": "d44feb3fef8f67e0297c702daaac2446fcfeed624c90f36a0a4721d353dc9e41"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\CombinedBinHAndClucHyperV3-20260920T224525Z-pairs8-tf5m\\backtest-result-2026-09-20_22-47-40.zip": {
+    "file_sha256": "sha256_0a81c7057b81b7373f86edafeb7976789eab5f5d6d083aa69ea13689575ca17d",
+    "mtime_ns": 1789944461742568100,
+    "size": 12868106
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\CombinedBinHAndClucHyperV3-20260920T224525Z-pairs8-tf5m\\backtest-result-2026-09-20_22-47-40.zip::CombinedBinHAndClucHyperV3": {
+    "mtime_ns": 1789944461742568100,
+    "size": 12868106,
+    "trades_digest": "7c7670cf179497f80388cdd9518d6217be4e8d385e28b4c9f66c4b099960728b"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Combined_Indicators-20260920T223537Z-pairs8-tf5m\\backtest-result-2026-09-20_22-37-37.zip": {
+    "file_sha256": "sha256_2260147494d5772892ba9af144a262eae2079de2900e56c6dff39be5ffb22b87",
+    "mtime_ns": 1789943859146501200,
+    "size": 13339034
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Combined_Indicators-20260920T223537Z-pairs8-tf5m\\backtest-result-2026-09-20_22-37-37.zip::Combined_Indicators": {
+    "mtime_ns": 1789943859146501200,
+    "size": 13339034,
+    "trades_digest": "b00a1fdedb722a1b023d1c8665c75305059b499aced669a4a7f499e0b0e7cf04"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\DMIPRICEDCAStrategyFuture-20260921T005823Z-pairs8-tf5m\\backtest-result-2026-09-21_01-49-27.zip": {
+    "file_sha256": "sha256_04dacd5db98299427140d29d22ef3d95d521333a3fe07e36eea80ad8a962f150",
+    "mtime_ns": 1789955368285207800,
+    "size": 13295934
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\DMIPRICEDCAStrategyFuture-20260921T005823Z-pairs8-tf5m\\backtest-result-2026-09-21_01-49-27.zip::DMIPRICEDCAStrategyFuture": {
+    "mtime_ns": 1789955368285207800,
+    "size": 13295934,
+    "trades_digest": "a028b6dbad72c958f625c3cf089731692e0158c8792b8f0ca8cf7ff9ee9aa044"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\EasyInEasyOut-20260921T015011Z-pairs8-tf5m\\backtest-result-2026-09-21_01-55-04.zip": {
+    "file_sha256": "sha256_9b475af59179ba9e5d84799ae2fbf29b987d58929b2918416406b19dc257c65c",
+    "mtime_ns": 1789955709906898000,
+    "size": 48580612
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\EasyInEasyOut-20260921T015011Z-pairs8-tf5m\\backtest-result-2026-09-21_01-55-04.zip::EasyInEasyOut": {
+    "mtime_ns": 1789955709906898000,
+    "size": 48580612,
+    "trades_digest": "e0e11b09848548bd1a30a46ea39e9a12aa3a401281ac2b59c12a799d50b66460"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\FUTURES-20260921T020053Z-pairs8-tf5m\\backtest-result-2026-09-21_02-03-19.zip": {
+    "file_sha256": "sha256_ab1b944004b166401cf874ec8a9d832936c619dc9c5e22da226afeb66087a7a6",
+    "mtime_ns": 1789956200666808300,
+    "size": 13342688
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\FUTURES-20260921T020053Z-pairs8-tf5m\\backtest-result-2026-09-21_02-03-19.zip::FUTURES": {
+    "mtime_ns": 1789956200666808300,
+    "size": 13342688,
+    "trades_digest": "9503e89a24118695d8fe1d2bf77c83a28109ee8aa0350b83b58f968b02b62fae"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\FisherHull-20260921T015554Z-pairs8-tf5m\\backtest-result-2026-09-21_02-00-04.zip": {
+    "file_sha256": "sha256_15f0a4907107a7fc7eac2bb764fc34d37d03b492546f5eb31332cd8d1bad7f7a",
+    "mtime_ns": 1789956009063453100,
+    "size": 48839839
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\FisherHull-20260921T015554Z-pairs8-tf5m\\backtest-result-2026-09-21_02-00-04.zip::FisherHull": {
+    "mtime_ns": 1789956009063453100,
+    "size": 48839839,
+    "trades_digest": "1af64abee49d966262e88506f4cb43f71571a68f8cfb774caf9a4b0ad00a11c6"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\GPTREV-20260921T020628Z-pairs8-tf5m\\backtest-result-2026-09-21_02-08-32.zip": {
+    "file_sha256": "sha256_21a4ae0faabf3abada5a098418704755350310317de7dedd14428dd4954e5ec1",
+    "mtime_ns": 1789956513508213800,
+    "size": 14154944
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\GPTREV-20260921T020628Z-pairs8-tf5m\\backtest-result-2026-09-21_02-08-32.zip::GPTREV": {
+    "mtime_ns": 1789956513508213800,
+    "size": 14154944,
+    "trades_digest": "f1006773183881091e650b17b48c1aa554054fa45faf94d44e248c202088140e"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\GRIDDMIPRICEStrategyFutureV5Long-20260921T021543Z-pairs8-tf5m\\backtest-result-2026-09-21_02-36-29.zip": {
+    "file_sha256": "sha256_d6e97cb8225e719bfd67f4e50dae799b3cc4692e17006c628fac4b023ee2808c",
+    "mtime_ns": 1789958190644534300,
+    "size": 12980241
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\GRIDDMIPRICEStrategyFutureV5Long-20260921T021543Z-pairs8-tf5m\\backtest-result-2026-09-21_02-36-29.zip::GRIDDMIPRICEStrategyFutureV5Long": {
+    "mtime_ns": 1789958190644534300,
+    "size": 12980241,
+    "trades_digest": "eac173b6f782a3bd1ddcbd7cdae349e0ced06679b9dfd9b5d4917e4aba7df106"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\GRIDDMIPRICEStrategySpot-20260921T030304Z-pairs8-tf5m\\backtest-result-2026-09-21_03-44-57.zip": {
+    "file_sha256": "sha256_ad3689859f1dae5fa332f05943ebef03d2abde5994ca297ffa1649ccc215bb08",
+    "mtime_ns": 1789962298686833500,
+    "size": 13036803
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\GRIDDMIPRICEStrategySpot-20260921T030304Z-pairs8-tf5m\\backtest-result-2026-09-21_03-44-57.zip::GRIDDMIPRICEStrategySpot": {
+    "mtime_ns": 1789962298686833500,
+    "size": 13036803,
+    "trades_digest": "9c3674a8cd9066a59764c68a3aea7a2000240abe60425198db4d848cf223e77d"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\HedgeAdaptiveRegimeStrategy-20260920T201935Z-pairs8-tf5m\\backtest-result-2026-09-20_20-26-55.zip": {
+    "file_sha256": "sha256_51ef422d8164aa27e6c37a921cb5ac05f3201b19d72768606434c72abbf0a5e3",
+    "mtime_ns": 1789936018688587500,
+    "size": 14525651
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\HedgeAdaptiveRegimeStrategy-20260920T201935Z-pairs8-tf5m\\backtest-result-2026-09-20_20-26-55.zip::HedgeAdaptiveRegimeStrategy": {
+    "mtime_ns": 1789936018688587500,
+    "size": 14525651,
+    "trades_digest": "2d96c5790a1b8c2072bc19b77fd7120c187727197bf4e3ab63ed0ab971e0cb31"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\HighFreqDemo-20260921T034817Z-pairs8-tf5m\\backtest-result-2026-09-21_03-53-45.zip": {
+    "file_sha256": "sha256_3fd72ba0984b962b25c97752808050ddc26b4e4852b921fdc8f70db48c422bdc",
+    "mtime_ns": 1789962827291524600,
+    "size": 13483852
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\HighFreqDemo-20260921T034817Z-pairs8-tf5m\\backtest-result-2026-09-21_03-53-45.zip::HighFreqDemo": {
+    "mtime_ns": 1789962827291524600,
+    "size": 13483852,
+    "trades_digest": "c7e5c39d87e0776abe47b9a789e22367d94a7f85675aafd0aed1a39c91fced77"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\JustROCR5-20260921T035418Z-pairs8-tf5m\\backtest-result-2026-09-21_03-56-14.zip": {
+    "file_sha256": "sha256_d68cc4849aa27f12f85a94c9107e20c174b78a1557f51d1fd0d3f3468915fb70",
+    "mtime_ns": 1789962975556859700,
+    "size": 12237624
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\JustROCR5-20260921T035418Z-pairs8-tf5m\\backtest-result-2026-09-21_03-56-14.zip::JustROCR5": {
+    "mtime_ns": 1789962975556859700,
+    "size": 12237624,
+    "trades_digest": "d8c888db4d08727f4318891123f9a91e0a7e7ba68f7c386475eae916b529b408"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Low_BB-20260921T035658Z-pairs8-tf5m\\backtest-result-2026-09-21_03-59-09.zip": {
+    "file_sha256": "sha256_efd53cf9c1839809ff512033b78f974d45884f30d5919583e92e0f0f7a1ca589",
+    "mtime_ns": 1789963150672542400,
+    "size": 15418797
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Low_BB-20260921T035658Z-pairs8-tf5m\\backtest-result-2026-09-21_03-59-09.zip::Low_BB": {
+    "mtime_ns": 1789963150672542400,
+    "size": 15418797,
+    "trades_digest": "0cf6358e7c17eeda945d8af0df66ef0092c43ee003653fdea3977f48cc6ed55e"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\MiniLambo-20260921T040342Z-pairs8-tf5m\\backtest-result-2026-09-21_04-06-07.zip": {
+    "file_sha256": "sha256_7c73129b68cebcdc2900b24c05320e3fd989c72890356ef39b519751ad6adc15",
+    "mtime_ns": 1789963568590743900,
+    "size": 12900629
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\MiniLambo-20260921T040342Z-pairs8-tf5m\\backtest-result-2026-09-21_04-06-07.zip::MiniLambo": {
+    "mtime_ns": 1789963568590743900,
+    "size": 12900629,
+    "trades_digest": "262089c6994d5fa6a5c7eb7b58e5604dedbba4436102941399109eec9820eec7"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\MiniLambo_TBS-20260921T040644Z-pairs8-tf5m\\backtest-result-2026-09-21_04-09-07.zip": {
+    "file_sha256": "sha256_8374740283cd2e1f4635288b775134da3ca55044d8c54af8a9313dc72b8fa568",
+    "mtime_ns": 1789963748806696400,
+    "size": 12900664
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\MiniLambo_TBS-20260921T040644Z-pairs8-tf5m\\backtest-result-2026-09-21_04-09-07.zip::MiniLambo_TBS": {
+    "mtime_ns": 1789963748806696400,
+    "size": 12900664,
+    "trades_digest": "262089c6994d5fa6a5c7eb7b58e5604dedbba4436102941399109eec9820eec7"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\SRsi-20260921T041520Z-pairs8-tf5m\\backtest-result-2026-09-21_04-17-56.zip": {
+    "file_sha256": "sha256_aac5615fd4f94d0f96d4bb4372c5d644474eb6f75f12e094dd3ccfb57da4f4a5",
+    "mtime_ns": 1789964278333662000,
+    "size": 19200384
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\SRsi-20260921T041520Z-pairs8-tf5m\\backtest-result-2026-09-21_04-17-56.zip::SRsi": {
+    "mtime_ns": 1789964278333662000,
+    "size": 19200384,
+    "trades_digest": "b0136db64b7821f468a93d12eb579b1ea0e6c32052ec923b09182ad3d9884148"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Scalp-20260921T040943Z-pairs8-tf5m\\backtest-result-2026-09-21_04-11-55.zip": {
+    "file_sha256": "sha256_c752667f0f4443c5cdb66f63b9e79524ae83b913510f4492f590350e728bc59f",
+    "mtime_ns": 1789963917379162400,
+    "size": 15923215
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Scalp-20260921T040943Z-pairs8-tf5m\\backtest-result-2026-09-21_04-11-55.zip::Scalp": {
+    "mtime_ns": 1789963917379162400,
+    "size": 15923215,
+    "trades_digest": "2a177449c8e9e06aded4e6c17f76a4180c10c987cbb0a8b78bc38b13bdb5604e"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\SmoothScalp-20260921T041234Z-pairs8-tf5m\\backtest-result-2026-09-21_04-14-44.zip": {
+    "file_sha256": "sha256_23f3b2d8c698c2058824a87c7b1911f900da1edb3d3e22a609a27eda036a621d",
+    "mtime_ns": 1789964085916914200,
+    "size": 16054512
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\SmoothScalp-20260921T041234Z-pairs8-tf5m\\backtest-result-2026-09-21_04-14-44.zip::SmoothScalp": {
+    "mtime_ns": 1789964085916914200,
+    "size": 16054512,
+    "trades_digest": "f8715373ba8e13fad729243ef4010f97515f357510bcfb88c258a1bf4678f9e5"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\StrategyScalpingFast-20260921T041848Z-pairs8-tf5m\\backtest-result-2026-09-21_04-22-05.zip": {
+    "file_sha256": "sha256_3bef0eabbfb4f450aca843312edf14c34079f3f2987b59560c515095d168e345",
+    "mtime_ns": 1789964529230613800,
+    "size": 36724258
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\StrategyScalpingFast-20260921T041848Z-pairs8-tf5m\\backtest-result-2026-09-21_04-22-05.zip::StrategyScalpingFast": {
+    "mtime_ns": 1789964529230613800,
+    "size": 36724258,
+    "trades_digest": "9899642522839e0d412ea6385ef394317a95e89e020cf1f1dad733ffa1aecefb"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\SuperTrend-20260921T042659Z-pairs8-tf5m\\backtest-result-2026-09-21_04-32-56.zip": {
+    "file_sha256": "sha256_17fb935515a8c96b67e306a778ddbbb8fa5350ef2265663759e8b57898581867",
+    "mtime_ns": 1789965177812829600,
+    "size": 13566865
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\SuperTrend-20260921T042659Z-pairs8-tf5m\\backtest-result-2026-09-21_04-32-56.zip::SuperTrend": {
+    "mtime_ns": 1789965177812829600,
+    "size": 13566865,
+    "trades_digest": "5b3eb47884b3f3d96c47bced32178785e373b008bb5ce120cbd77a3b599e268f"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\TEMA-20260921T043331Z-pairs8-tf5m\\backtest-result-2026-09-21_04-37-16.zip": {
+    "file_sha256": "sha256_e0f18304f1f5ed63e2bf92252d14bded35ee43fcfb8c6b91541c27e19e100d90",
+    "mtime_ns": 1789965439365477300,
+    "size": 16439679
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\TEMA-20260921T043331Z-pairs8-tf5m\\backtest-result-2026-09-21_04-37-16.zip::TEMA": {
+    "mtime_ns": 1789965439365477300,
+    "size": 16439679,
+    "trades_digest": "9711425228bb8ea8d8c1ff954141e4ee75d49d94fd9e2b3e9dda055d7db7239b"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\TemaMaster3-20260921T043810Z-pairs8-tf5m\\backtest-result-2026-09-21_04-43-09.zip": {
+    "file_sha256": "sha256_173280cdf3412a7151e5566fcec327893a46ea6342f12abed503ec370445a7a6",
+    "mtime_ns": 1789965795274204500,
+    "size": 43163161
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\TemaMaster3-20260921T043810Z-pairs8-tf5m\\backtest-result-2026-09-21_04-43-09.zip::TemaMaster3": {
+    "mtime_ns": 1789965795274204500,
+    "size": 43163161,
+    "trades_digest": "6a91dd574c539879457c766adc114544101fde46bef5aace486a9e0c90d35ca8"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\TrailingBuyStratCluc-20260921T044504Z-pairs8-tf5m\\backtest-result-2026-09-21_04-58-30.zip": {
+    "file_sha256": "sha256_d53a36e8fc270206b1fe77fb1cbf26da8bfe91b81603729ab8182f8da21df182",
+    "mtime_ns": 1789966712435093900,
+    "size": 14480102
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\TrailingBuyStratCluc-20260921T044504Z-pairs8-tf5m\\backtest-result-2026-09-21_04-58-30.zip::TrailingBuyStratCluc": {
+    "mtime_ns": 1789966712435093900,
+    "size": 14480102,
+    "trades_digest": "8d35550dfbbdf74ae651e07b8b03dc2aa53a48426a6f9e8cdc1c1d85731988f9"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Trump_LIM-20260921T050321Z-pairs8-tf5m\\backtest-result-2026-09-21_05-33-46.zip": {
+    "file_sha256": "sha256_d0eb053bd86244cf7f6ea1d571cc5cbb73472edc66f67891a3c49ca86e69e2ee",
+    "mtime_ns": 1789968830835647700,
+    "size": 38505625
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\Trump_LIM-20260921T050321Z-pairs8-tf5m\\backtest-result-2026-09-21_05-33-46.zip::Trump_LIM": {
+    "mtime_ns": 1789968830835647700,
+    "size": 38505625,
+    "trades_digest": "372ce91e901c497aa057871ec64453997642ad7eeecc08cee875442d10422669"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\WTDMIPRICESDCAtrategy-20260921T053423Z-pairs8-tf5m\\backtest-result-2026-09-21_05-46-27.zip": {
+    "file_sha256": "sha256_329033d8acfa4522af65763747a55e2656f5110136ef219a6f75300df9f9b8e7",
+    "mtime_ns": 1789969589029280200,
+    "size": 16158950
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\WTDMIPRICESDCAtrategy-20260921T053423Z-pairs8-tf5m\\backtest-result-2026-09-21_05-46-27.zip::WTDMIPRICESDCAtrategy": {
+    "mtime_ns": 1789969589029280200,
+    "size": 16158950,
+    "trades_digest": "0dc1bbd62465ff02636878264b58a95d34a253422d767733cb229275b2c08317"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\XebTradeStrat-20260921T054711Z-pairs8-tf5m\\backtest-result-2026-09-21_05-49-38.zip": {
+    "file_sha256": "sha256_7b9ea6c985951f942f3aa7b1880e3fa59a16973a673ae64f51e1ed62f07e92a4",
+    "mtime_ns": 1789969780465098500,
+    "size": 15127106
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\XebTradeStrat-20260921T054711Z-pairs8-tf5m\\backtest-result-2026-09-21_05-49-38.zip::XebTradeStrat": {
+    "mtime_ns": 1789969780465098500,
+    "size": 15127106,
+    "trades_digest": "f8a9470aa8fece2708ef5aa099cbaa3e063ad83858aa86f54073b9ecb5027038"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\YOLO-20260921T055024Z-pairs8-tf5m\\backtest-result-2026-09-21_05-52-23.zip": {
+    "file_sha256": "sha256_e82aeb84bc246bb152a5ffb5deaebb28f7bacd08f554c2389c46030470f1d829",
+    "mtime_ns": 1789969944669143300,
+    "size": 12288176
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\YOLO-20260921T055024Z-pairs8-tf5m\\backtest-result-2026-09-21_05-52-23.zip::YOLO": {
+    "mtime_ns": 1789969944669143300,
+    "size": 12288176,
+    "trades_digest": "6a908b1978e0f368634ef3e46c9df45c522e1c2b1d202611f004da8f93d683fa"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\adx_opt_strat-20260920T211647Z-pairs8-tf5m\\backtest-result-2026-09-20_21-19-43.zip": {
+    "file_sha256": "sha256_2e3e21c95c15e6da12f0fba0b69a9efd732312e41c1a39105ffdffdb02d60d37",
+    "mtime_ns": 1789939185572118800,
+    "size": 16678460
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\adx_opt_strat-20260920T211647Z-pairs8-tf5m\\backtest-result-2026-09-20_21-19-43.zip::adx_opt_strat": {
+    "mtime_ns": 1789939185572118800,
+    "size": 16678460,
+    "trades_digest": "cae47f2e934d8dd2e8c00fb058fda8abd316a11e02ba05e9eaa8080ac722cd88"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\bigshort-20260920T213732Z-pairs8-tf5m\\backtest-result-2026-09-20_21-39-36.zip": {
+    "file_sha256": "sha256_fdb486904e52c8927aeed537dc0d49e833a64dc72c1de93acca78ee080e336fb",
+    "mtime_ns": 1789940378142411900,
+    "size": 13105139
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\bigshort-20260920T213732Z-pairs8-tf5m\\backtest-result-2026-09-20_21-39-36.zip::bigshort": {
+    "mtime_ns": 1789940378142411900,
+    "size": 13105139,
+    "trades_digest": "d88bc5dc1fb54647dcd96e8575fa26a1e3c4c0a27af8f2b37882ccb65a1dc1e0"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\gpt_reversal-20260921T020351Z-pairs8-tf5m\\backtest-result-2026-09-21_02-05-56.zip": {
+    "file_sha256": "sha256_1e73468a861fdeef472a4a3e06472005f8eca5e02dee5806055cae4230471449",
+    "mtime_ns": 1789956357885494500,
+    "size": 14154994
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\gpt_reversal-20260921T020351Z-pairs8-tf5m\\backtest-result-2026-09-21_02-05-56.zip::gpt_reversal": {
+    "mtime_ns": 1789956357885494500,
+    "size": 14154994,
+    "trades_digest": "f1006773183881091e650b17b48c1aa554054fa45faf94d44e248c202088140e"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\mark_strat-20260921T035947Z-pairs8-tf5m\\backtest-result-2026-09-21_04-02-51.zip": {
+    "file_sha256": "sha256_96addaee19570ce9ef34a5bc4194db1eb6e8f6a3b4f45355df08b161ec9eaf54",
+    "mtime_ns": 1789963373882107600,
+    "size": 28073518
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\mark_strat-20260921T035947Z-pairs8-tf5m\\backtest-result-2026-09-21_04-02-51.zip::mark_strat": {
+    "mtime_ns": 1789963373882107600,
+    "size": 28073518,
+    "trades_digest": "551e76eaecdba0df55e7e79810e600ab8915f891fc1c62bd7e4be838ec5f061f"
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\strato-20260921T042319Z-pairs8-tf5m\\backtest-result-2026-09-21_04-25-53.zip": {
+    "file_sha256": "sha256_da8b77a8d8de74531629d111a0629d2fdf5bc811bacae29a7570a556206c6c9c",
+    "mtime_ns": 1789964755900370200,
+    "size": 18560658
+  },
+  "C:\\Users\\micro\\GitHub\\freqtrade-benchmarks\\strategy-audit\\user_data\\resource_diagnostics\\strato-20260921T042319Z-pairs8-tf5m\\backtest-result-2026-09-21_04-25-53.zip::strato": {
+    "mtime_ns": 1789964755900370200,
+    "size": 18560658,
+    "trades_digest": "079b3f90deda1f8c4969697e6095978946b7a3b339068e24c16168e44e4cf109"
   }
 }

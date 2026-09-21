@@ -6,8 +6,13 @@ lets each runner remain the owner of its own evidence store.  By default it
 plans only; ``--apply`` is required to start one run and ``--watch --apply``
 repeats that safe one-run cycle.
 
-Gated Model 1/2/3 backtests are intentionally outside this dispatcher and are
-owner-paused until an explicit later decision re-enables them.
+Once no per-strategy work is left it also runs Stages 9-13 for Model 0
+(`tools/regime_evaluation.py`: attribution, specialist evaluation, the two published
+pages), when the fingerprint of their inputs changed.
+
+Gated Model 1/2/3 backtests, their attribution and their comparison are intentionally
+outside this dispatcher and are owner-paused until an explicit later decision
+re-enables them.
 """
 from __future__ import annotations
 
@@ -40,6 +45,7 @@ AUDIT_IMAGE_PREFIX = "strategy-audit-runtime:"
 STALE_LOCK_SECONDS = 300
 PS = "powershell.exe" if os.name == "nt" else "powershell"
 
+REGIME_GATE = "regime_evaluation"
 RUNNERS = {
     "smoke": "runtime/profile_smoke_docker.ps1",
     "lookahead": "runtime/profile_bias_docker.ps1",
@@ -157,7 +163,12 @@ def _first(rows: Iterable[dict], predicate) -> dict | None:
                  if predicate(row)), None)
 
 
-def choose(state: dict, strategy: str = "") -> dict:
+def _regime_stale() -> bool:
+    from tools import regime_evaluation
+    return regime_evaluation.is_stale()[0]
+
+
+def choose(state: dict, strategy: str = "", regime_stale=_regime_stale) -> dict:
     """Choose exactly one safe next action from the canonical read model.
 
     Repair triage and the zero-trade full-window probe are intentionally not
@@ -255,6 +266,13 @@ def choose(state: dict, strategy: str = "") -> dict:
         return {"kind": "escalate", "strategy": row["strategy_id"],
                 "reason": "execution robustness requires a resolvable authored timeframe"}
 
+    # Pipeline-level work, after every strategy-level route is exhausted, never for a single requested strategy:
+    # Stages 9-13 for Model 0 when an input (an accepted archive, the E1 cohort, the regime labels, the robustness
+    # stores or the program source) changed since the last complete run.
+    if not strategy and regime_stale():
+        return {"kind": "run", "gate": REGIME_GATE, "metadata_gate": "regime_evaluation",
+                "strategy": "regime-evaluation-model0", "args": []}
+
     manual = _first(rows, lambda item: bool(_work(item)))
     if manual:
         return {"kind": "escalate", "strategy": manual["strategy_id"],
@@ -276,6 +294,8 @@ def _detail_timeframe(timeframe: str) -> str | None:
 def _command(action: dict) -> list[str]:
     if action["gate"] in DISABLED_GATED_GATES:
         raise DispatchError("Model 1/2/3 gated backtests are owner-paused")
+    if action["gate"] == REGIME_GATE:
+        return [sys.executable, "-m", "tools.regime_evaluation"]
     if action["gate"] == "coverage":
         return [sys.executable, "-m", "evidence.regime_coverage"]
     if action["gate"] == "execution_robustness":
@@ -304,6 +324,8 @@ def _admit_then_refresh() -> None:
 
 def _finalize_success(action: dict) -> None:
     """Publish exactly the derived evidence the completed route requires."""
+    if action["gate"] == REGIME_GATE:
+        return  # the run wrote its own state and pages; no strategy row changes
     if action["gate"] == "execution_detail":
         completed = subprocess.run(
             [sys.executable, "-m", "evidence.execution_robustness"], cwd=ROOT,
@@ -327,6 +349,8 @@ def _result_status(action: dict, returncode: int) -> str:
     """Map process completion to operational metadata, never a strategy verdict."""
     if returncode:
         return "ERROR"
+    if action["gate"] == REGIME_GATE:
+        return "PASS"
     state = _load_state().get("strategies", {}).get(action["strategy"], {})
     if action["gate"] == "full_backtest":
         return "PASS" if state.get("full_backtest_status") == "measured" else "FAIL"
@@ -422,7 +446,7 @@ def selftest() -> None:
     assert choose(base)["gate"] == "lookahead"
     base["strategies"]["B"]["open_work"] = "recursive_ladder_pending;to_be_fixed"
     base["strategies"]["B"]["lookahead"] = "PASS"
-    assert choose(base)["kind"] == "escalate"
+    assert choose(base, regime_stale=lambda: False)["kind"] == "escalate"
     post = {"strategies": {"C": {
         "strategy_id": "C", "technical_chain_complete": True,
         "execution_robustness_status": "PENDING", "timeframe": "1m",
@@ -432,6 +456,14 @@ def selftest() -> None:
     assert choose(post)["gate"] == "execution_detail"
     post["strategies"]["C"]["technical_chain_complete"] = "true"
     assert choose(post)["gate"] == "execution_detail"
+    idle = {"strategies": {"D": {"strategy_id": "D", "open_work": ""}}}
+    assert choose(idle, regime_stale=lambda: True)["gate"] == REGIME_GATE
+    assert choose(idle, regime_stale=lambda: False)["kind"] == "idle"
+    assert choose(idle, "D", regime_stale=lambda: True)["kind"] == "idle"   # never for one requested strategy
+    fresh = {"strategies": {"E": {"strategy_id": "E", "open_work": "first_measurement_in_current_runtime",
+                                  "run_profile": "spot_long"}}}
+    assert choose(fresh, regime_stale=lambda: True)["gate"] == "smoke"    # strategy work comes first
+    assert _command({"gate": REGIME_GATE})[-1] == "tools.regime_evaluation"
     try:
         _command({"gate": "model1"})
     except DispatchError:
