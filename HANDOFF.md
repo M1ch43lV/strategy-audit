@@ -111,6 +111,9 @@ container exists. Inspect processes, locks, artifact timestamps, and the run log
   restart them unless asked.
 - Rotation bot: variants and their result are in `PIPELINE_EXTENSIONS.md` Part 4. `V2` with `N = 2` was rejected on the
   validation window; do not read that window again for a further variant (it would no longer be out of sample).
+  The component search over the corpus (4.4, 4.5) found no reliable component for bear, sideways or transition; the 2x hold
+  doubles the arithmetic return and lowers the growth of the account. Nothing is running for the bot. The four weeks to
+  2026-09-19 are not to be added to any window (owner, 2026-09-21).
 - Root `_sabotage/` was removed on 2026-09-15 (an orphaned fixture of the archived `loadscan.py`).
 
 ## Owner decisions that are open

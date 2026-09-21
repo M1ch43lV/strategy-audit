@@ -1,0 +1,323 @@
+{
+ "candidates": 571,
+ "final": {
+  "chosen": {
+   "bear": "WTDMIPRICEDCAStrategyFuture",
+   "side": "simple_vwap_v1",
+   "trans": "ZaratustraDCA2_06"
+  },
+  "passers": {
+   "bear": [
+    {
+     "cand": "WTDMIPRICEDCAStrategyFuture",
+     "mean_true": 0.06684720753623116,
+     "p_true": 0.005147111496027312,
+     "trades": 194
+    },
+    {
+     "cand": "ZaratustraDCA2_06",
+     "mean_true": 0.05375642047128955,
+     "p_true": 7.295797878059673e-07,
+     "trades": 1729
+    },
+    {
+     "cand": "OversoldReversion",
+     "mean_true": 0.020087533473434137,
+     "p_true": 0.0010215195491860563,
+     "trades": 86
+    },
+    {
+     "cand": "E0V1E_DCA3",
+     "mean_true": 0.019963844394105427,
+     "p_true": 5.279541050118297e-06,
+     "trades": 494
+    },
+    {
+     "cand": "binance",
+     "mean_true": 0.012772901996959858,
+     "p_true": 0.00014461873576998574,
+     "trades": 55
+    },
+    {
+     "cand": "ElliotV4",
+     "mean_true": 0.01157675710675536,
+     "p_true": 0.0007300823766712705,
+     "trades": 146
+    },
+    {
+     "cand": "BB_RPB_TSL_RNG",
+     "mean_true": 0.010922315297017284,
+     "p_true": 0.0008889771136421087,
+     "trades": 177
+    },
+    {
+     "cand": "BB_RPB_TSL_RNG_TBS",
+     "mean_true": 0.010922315297017284,
+     "p_true": 0.0008889771136421087,
+     "trades": 177
+    },
+    {
+     "cand": "TrailingBuyStrat2",
+     "mean_true": 0.010922315297017284,
+     "p_true": 0.0008889771136421087,
+     "trades": 177
+    },
+    {
+     "cand": "E0V1E_protections",
+     "mean_true": 0.010872850394649159,
+     "p_true": 0.00013955312353963745,
+     "trades": 64
+    },
+    {
+     "cand": "E0V1E",
+     "mean_true": 0.010872850394649159,
+     "p_true": 0.00013955312353963745,
+     "trades": 64
+    },
+    {
+     "cand": "BB_RPB_TSL_RNG_2",
+     "mean_true": 0.010742309927742739,
+     "p_true": 0.001628762372728687,
+     "trades": 174
+    },
+    {
+     "cand": "multi_tf",
+     "mean_true": 0.010572973489828138,
+     "p_true": 0.006327971272607091,
+     "trades": 621
+    },
+    {
+     "cand": "NFI46Offset",
+     "mean_true": 0.010378921537973545,
+     "p_true": 0.0037551076937643035,
+     "trades": 102
+    },
+    {
+     "cand": "BinClucMad",
+     "mean_true": 0.010313271571268623,
+     "p_true": 0.0008080367275455913,
+     "trades": 225
+    }
+   ],
+   "side": [
+    {
+     "cand": "simple_vwap_v1",
+     "mean_true": 0.05004711243328856,
+     "p_true": 0.0049680639122658965,
+     "trades": 107
+    },
+    {
+     "cand": "WTDMIPRICEDCAStrategyFuture",
+     "mean_true": 0.04005121898322654,
+     "p_true": 0.004006874720357656,
+     "trades": 50
+    },
+    {
+     "cand": "ActionZone",
+     "mean_true": 0.03675839692622632,
+     "p_true": 0.006971647483953736,
+     "trades": 74
+    },
+    {
+     "cand": "keltnerchannel",
+     "mean_true": 0.03556183582017933,
+     "p_true": 0.0013637929044851838,
+     "trades": 170
+    },
+    {
+     "cand": "SmaRsiStrategy",
+     "mean_true": 0.03459421226392489,
+     "p_true": 0.005540634846282977,
+     "trades": 82
+    },
+    {
+     "cand": "Ichimoku_v31",
+     "mean_true": 0.034285339897670755,
+     "p_true": 0.00012469558508232392,
+     "trades": 164
+    },
+    {
+     "cand": "AlligatorStrategy",
+     "mean_true": 0.03289995022694948,
+     "p_true": 0.005871103095320684,
+     "trades": 196
+    },
+    {
+     "cand": "AverageStrategy",
+     "mean_true": 0.03131478888112802,
+     "p_true": 0.002804981291247066,
+     "trades": 250
+    },
+    {
+     "cand": "Trend_Strength_Directional",
+     "mean_true": 0.021762017078737386,
+     "p_true": 0.00026237256861560976,
+     "trades": 496
+    },
+    {
+     "cand": "IchimokuCloudStrategy",
+     "mean_true": 0.020531191172945988,
+     "p_true": 0.005889586297904703,
+     "trades": 78
+    },
+    {
+     "cand": "NEWTEST15m",
+     "mean_true": 0.020345555321863832,
+     "p_true": 1.8837502577806475e-06,
+     "trades": 157
+    },
+    {
+     "cand": "ADX_15M_USDT2",
+     "mean_true": 0.01594504402307905,
+     "p_true": 0.0006647845643090733,
+     "trades": 421
+    },
+    {
+     "cand": "BBRSIOptimStrategy",
+     "mean_true": 0.015284915744460711,
+     "p_true": 0.0014734105552046683,
+     "trades": 613
+    },
+    {
+     "cand": "wavetrend_rsi",
+     "mean_true": 0.013616267497010047,
+     "p_true": 2.9876911786574922e-05,
+     "trades": 92
+    },
+    {
+     "cand": "MACDStrategyBTC",
+     "mean_true": 0.012443199924933781,
+     "p_true": 0.0002957576728482847,
+     "trades": 387
+    }
+   ],
+   "trans": [
+    {
+     "cand": "ZaratustraDCA2_06",
+     "mean_true": 0.010853486855537933,
+     "p_true": 0.0008806606043542109,
+     "trades": 589
+    },
+    {
+     "cand": "JustROCR",
+     "mean_true": 0.010424409522295302,
+     "p_true": 0.004070731994932131,
+     "trades": 32
+    },
+    {
+     "cand": "SmartMoneyStrategy",
+     "mean_true": 0.008745181999098753,
+     "p_true": 0.00024343409977634067,
+     "trades": 34
+    },
+    {
+     "cand": "ClucFiatSlow",
+     "mean_true": 0.006914364396081998,
+     "p_true": 0.002221135041088229,
+     "trades": 327
+    },
+    {
+     "cand": "ClucFiatROI",
+     "mean_true": 0.006914364396081998,
+     "p_true": 0.002221135041088229,
+     "trades": 327
+    },
+    {
+     "cand": "RSI",
+     "mean_true": 0.006739205574341899,
+     "p_true": 5.158346403910663e-06,
+     "trades": 46
+    },
+    {
+     "cand": "E0V1E_DCA3",
+     "mean_true": 0.005303497334647427,
+     "p_true": 1.7272516941613247e-05,
+     "trades": 104
+    },
+    {
+     "cand": "MFI2",
+     "mean_true": 0.004725090221845164,
+     "p_true": 5.601785341979859e-05,
+     "trades": 53
+    },
+    {
+     "cand": "FiveMinCrossAbove",
+     "mean_true": 0.004650776063176799,
+     "p_true": 2.3381161184943267e-07,
+     "trades": 246
+    },
+    {
+     "cand": "SlowPotato",
+     "mean_true": 0.0037027073948218245,
+     "p_true": 0.0006261170417618533,
+     "trades": 231
+    },
+    {
+     "cand": "UniversalMACD",
+     "mean_true": 0.0036137265797691895,
+     "p_true": 1.3149550526225795e-06,
+     "trades": 102
+    },
+    {
+     "cand": "INSIDEUP",
+     "mean_true": 0.003487236806636342,
+     "p_true": 0.0015739236005652968,
+     "trades": 43
+    },
+    {
+     "cand": "NostalgiaForInfinityV2",
+     "mean_true": 0.003365335878708739,
+     "p_true": 0.003926579490183935,
+     "trades": 39
+    },
+    {
+     "cand": "BBKCBounce",
+     "mean_true": 0.003251930050606198,
+     "p_true": 0.0010324210383992893,
+     "trades": 42
+    },
+    {
+     "cand": "BBRSIv2",
+     "mean_true": 0.003127527129701634,
+     "p_true": 1.835430004648586e-07,
+     "trades": 48
+    }
+   ]
+  }
+ },
+ "floor_trades": 30,
+ "q": 0.1,
+ "rule": "PIPELINE_EXTENSIONS.md Part 4.4",
+ "walk_forward": {
+  "bear": {
+   "chosen": "WTDMIPRICEDCAStrategyFuture",
+   "floor_candidates": 509,
+   "passers": 51,
+   "share_passers_positive_in_test": 0.275,
+   "test_mean_pct_chosen": 0.0,
+   "test_mean_pct_passers": -0.0848,
+   "test_mean_pct_reference_all_floor_candidates": -0.3252,
+   "train_mean_pct_chosen": 8.8117
+  },
+  "side": {
+   "chosen": "simple_vwap_v1",
+   "floor_candidates": 477,
+   "passers": 42,
+   "share_passers_positive_in_test": 0.262,
+   "test_mean_pct_chosen": -0.2873,
+   "test_mean_pct_passers": -0.3859,
+   "test_mean_pct_reference_all_floor_candidates": -1.0883,
+   "train_mean_pct_chosen": 6.6799
+  },
+  "trans": {
+   "chosen": "ZaratustraDCA2_06",
+   "floor_candidates": 426,
+   "passers": 21,
+   "share_passers_positive_in_test": 0.476,
+   "test_mean_pct_chosen": 0.3438,
+   "test_mean_pct_passers": -0.0032,
+   "test_mean_pct_reference_all_floor_candidates": -0.3805,
+   "train_mean_pct_chosen": 1.3287
+  }
+ }
+}

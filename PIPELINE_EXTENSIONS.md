@@ -1113,3 +1113,58 @@ ordered that the four weeks up to 2026-09-19 are **not** added to any window.
 every variant (5m, 1m detail, futures, isolated). Reported next to V2N1: daily return, factors, worst fall of the pooled
 account, liquidations. The portfolio of the component search is reported once with the 1x and once with the 2x hold
 trades. Nothing is chosen from this; it is a measurement of what the leverage does.
+
+### 4.5 Result of the component search and of the 2x hold (2026-09-21)
+
+Reproduce: `python -m bot.component_search`, `python -m bot.component_portfolio`, `python -m bot.run_rotation
+RegimeRotationBotV2N1x2` and `python -m bot.rotation_eval RegimeRotationBotV2N1x2`; figures in
+`results/regime/rotation_bot/component_search.json`, `component_portfolio.json`, `RegimeRotationBotV2N1x2.json`.
+
+**Search, check of the procedure (train 2020-04-01 to 2022-12-31, test 2023).** 571 candidates (E1, execution `PASS`),
+Benjamini-Hochberg q = 0.10, true costs.
+
+| Phase | Passers | Chosen | Mean episode return 2023: chosen / passers / all candidates with the floor | Passers positive in 2023 |
+|---|---|---|---|---|
+| BTC bear | 51 | `WTDMIPRICEDCAStrategyFuture` | 0.00 % (no trade) / -0.08 % / -0.33 % | 28 % |
+| Coin sideways | 42 | `simple_vwap_v1` | -0.29 % / -0.39 % / -1.09 % | 26 % |
+| Coin transition | 21 | `ZaratustraDCA2_06` | +0.34 % / -0.00 % / -0.38 % | 48 % |
+
+The selection is better than no selection (the passers lose less than the reference in every phase) and it does not find
+a component that earns in the test year: the passers average at or below zero and fewer than half are positive. The
+choice made on the whole discovery window is the same three strategies. Per the rule of 4.4 point 5 the selection has
+therefore shown no value beyond avoiding the worst candidates.
+
+**What the chosen strategies are, and why the portfolio figures below must not be taken at face value.**
+`simple_vwap_v1` (4h spot, grid/DCA): median trade -0.5 %, 38 % winners, three trades make 76 % of its validation profit
+and without them it earns 0.025 % per day instead of 0.104 %. `WTDMIPRICEDCAStrategyFuture` (5m futures, 5x leverage,
+DCA): 194 bear trades in discovery, none in the validation window (its canonical account, like that of other DCA
+strategies with an unlimited stake, does not survive), 10 liquidations. `ZaratustraDCA2_06`: about 0.002 % per day in
+validation, negative without its three best trades.
+
+**Portfolio (slot model, arithmetic daily return on provided capital; validation is read for information and is no
+longer out of sample).**
+
+| | Discovery | Validation | Slot growth factor, validation |
+|---|---|---|---|
+| V2N1 (hold 1x, Ichimoku) | 0.178 % | 0.102 % | 1.55 |
+| Hold 1x plus the three chosen | 0.384 % | 0.206 % | 2.84 |
+| V2N1x2 (hold 2x, Ichimoku) | 0.313 % | 0.235 % | 1.06 |
+| Hold 2x plus the three chosen | 0.518 % | 0.339 % | 1.59 |
+
+**2x hold, measured on the bot itself (V2N1x2 against V2N1, validation).** The arithmetic daily return rises from
+0.102 % to 0.235 %, but the account does not follow: the pooled growth factor falls from 1.72 to 1.34, the slot factor
+from 1.55 to 1.06, the worst fall of the pooled account grows from 24 % to 63 %, and 1.6 % of the hold trades are
+liquidated. In the discovery window the 2x hold helps (pooled factor 18.6 against 7.5, worst fall 25 %). The leverage
+doubles the arithmetic figure and the volatility; the falls of 2024 to 2026 cost more than the rises gained.
+
+Reading:
+
+- **The 0.08 % target is met on the arithmetic measure by almost every variant and by the realistic account by none.**
+  The pooled factor of the best 1x variant (1.72 over 963 days) is about 0.056 % per day.
+- **The search did not find a phase component that can be relied on.** The apparent doubling of the portfolio comes from
+  a strategy that lives on three trades and from account effects of DCA strategies, and it did not hold in 2023 in the
+  check of the procedure.
+- **The 2x hold raises the return on paper and lowers the growth of the account in the window that was not used to
+  build it.** It is a measurement, not a recommendation; the owner's decision on leverage is separate.
+- The four weeks up to 2026-09-19 were not added, as ordered. A clean test of anything above needs a window that has not
+  been read; Part 3 is on hold.

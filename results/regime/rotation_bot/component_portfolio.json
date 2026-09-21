@@ -1,0 +1,382 @@
+{
+ "chosen": {
+  "bear": "WTDMIPRICEDCAStrategyFuture",
+  "side": "simple_vwap_v1",
+  "trans": "ZaratustraDCA2_06"
+ },
+ "hold_1x_variant": "RegimeRotationBot",
+ "hold_2x_variant": "RegimeRotationBotV2N1x2",
+ "portfolio_1x": {
+  "components": {
+   "bear:WTDMIPRICEDCAStrategyFuture": {
+    "discovery": {
+     "compounded_daily_net_pct": 0.09202,
+     "compounded_total_factor": 3.5259,
+     "daily_gross_on_provided_pct": 0.1592,
+     "daily_net_on_employed_pct": 1.3507,
+     "daily_net_on_provided_pct": 0.1415,
+     "days": 1370,
+     "exit_reasons": {
+      "liquidation": 5,
+      "partial_exit": 109,
+      "roi": 37,
+      "stop_loss": 43
+     },
+     "mean_ratio_gross_pct": 8.9941,
+     "mean_ratio_net_pct": 7.9941,
+     "share_liquidated": 0.0258,
+     "slot_days": 10960,
+     "trades": 194
+    },
+    "validation": {
+     "days": 963,
+     "slot_days": 6792,
+     "trades": 0
+    }
+   },
+   "hold": {
+    "discovery": {
+     "compounded_daily_net_pct": 0.10073,
+     "compounded_total_factor": 3.9721,
+     "daily_gross_on_provided_pct": 0.13762,
+     "daily_net_on_employed_pct": 0.382,
+     "daily_net_on_provided_pct": 0.13411,
+     "days": 1370,
+     "exit_reasons": {
+      "phase_end": 192
+     },
+     "mean_ratio_gross_pct": 7.8557,
+     "mean_ratio_net_pct": 7.6557,
+     "share_liquidated": 0.0,
+     "slot_days": 10960,
+     "trades": 192
+    },
+    "validation": {
+     "compounded_daily_net_pct": 0.04722,
+     "compounded_total_factor": 1.5755,
+     "daily_gross_on_provided_pct": 0.10326,
+     "daily_net_on_employed_pct": 0.4602,
+     "daily_net_on_provided_pct": 0.09973,
+     "days": 963,
+     "exit_reasons": {
+      "phase_end": 120
+     },
+     "mean_ratio_gross_pct": 5.8447,
+     "mean_ratio_net_pct": 5.6447,
+     "share_liquidated": 0.0,
+     "slot_days": 6792,
+     "trades": 120
+    }
+   },
+   "side:simple_vwap_v1": {
+    "discovery": {
+     "compounded_daily_net_pct": 0.0591,
+     "compounded_total_factor": 2.2467,
+     "daily_gross_on_provided_pct": 0.08451,
+     "daily_net_on_employed_pct": 0.5719,
+     "daily_net_on_provided_pct": 0.08263,
+     "days": 1370,
+     "exit_reasons": {
+      "exit_signal": 103
+     },
+     "mean_ratio_gross_pct": 8.9927,
+     "mean_ratio_net_pct": 8.7927,
+     "share_liquidated": 0.0,
+     "slot_days": 10960,
+     "trades": 103
+    },
+    "validation": {
+     "compounded_daily_net_pct": 0.06728,
+     "compounded_total_factor": 1.9111,
+     "daily_gross_on_provided_pct": 0.10715,
+     "daily_net_on_employed_pct": 0.516,
+     "daily_net_on_provided_pct": 0.10406,
+     "days": 963,
+     "exit_reasons": {
+      "exit_signal": 102,
+      "force_exit": 3
+     },
+     "mean_ratio_gross_pct": 6.9313,
+     "mean_ratio_net_pct": 6.7313,
+     "share_liquidated": 0.0,
+     "slot_days": 6792,
+     "trades": 105
+    }
+   },
+   "trans:ZaratustraDCA2_06": {
+    "discovery": {
+     "compounded_daily_net_pct": 0.02536,
+     "compounded_total_factor": 1.4155,
+     "daily_gross_on_provided_pct": 0.03604,
+     "daily_net_on_employed_pct": 0.3356,
+     "daily_net_on_provided_pct": 0.02535,
+     "days": 1370,
+     "exit_reasons": {
+      "ZaratustraDCA Exit Long": 262,
+      "ZaratustraDCA Exit Short": 238,
+      "stop_loss": 86
+     },
+     "mean_ratio_gross_pct": 0.6741,
+     "mean_ratio_net_pct": 0.4741,
+     "share_liquidated": 0.0,
+     "slot_days": 10960,
+     "trades": 586
+    },
+    "validation": {
+     "compounded_daily_net_pct": 0.00172,
+     "compounded_total_factor": 1.0167,
+     "daily_gross_on_provided_pct": 0.00739,
+     "daily_net_on_employed_pct": 0.0603,
+     "daily_net_on_provided_pct": 0.00221,
+     "days": 963,
+     "exit_reasons": {
+      "ZaratustraDCA Exit Long": 75,
+      "ZaratustraDCA Exit Short": 73,
+      "stop_loss": 28
+     },
+     "mean_ratio_gross_pct": 0.2852,
+     "mean_ratio_net_pct": 0.0852,
+     "share_liquidated": 0.0,
+     "slot_days": 6792,
+     "trades": 176
+    }
+   }
+  },
+  "label": "hold 1x plus chosen candidates",
+  "whole": {
+   "discovery": {
+    "compounded_daily_net_pct": 0.19249,
+    "compounded_total_factor": 13.9378,
+    "daily_gross_on_provided_pct": 0.41737,
+    "daily_net_on_employed_pct": 0.5676,
+    "daily_net_on_provided_pct": 0.38359,
+    "days": 1370,
+    "exit_reasons": {
+     "ZaratustraDCA Exit Long": 262,
+     "ZaratustraDCA Exit Short": 238,
+     "exit_signal": 103,
+     "liquidation": 5,
+     "partial_exit": 109,
+     "phase_end": 192,
+     "roi": 37,
+     "stop_loss": 129
+    },
+    "mean_ratio_gross_pct": 4.2553,
+    "mean_ratio_net_pct": 3.9109,
+    "share_liquidated": 0.0047,
+    "slot_days": 10960,
+    "trades": 1075
+   },
+   "validation": {
+    "compounded_daily_net_pct": 0.1086,
+    "compounded_total_factor": 2.844,
+    "daily_gross_on_provided_pct": 0.21781,
+    "daily_net_on_employed_pct": 0.4528,
+    "daily_net_on_provided_pct": 0.206,
+    "days": 963,
+    "exit_reasons": {
+     "ZaratustraDCA Exit Long": 75,
+     "ZaratustraDCA Exit Short": 73,
+     "exit_signal": 102,
+     "force_exit": 3,
+     "phase_end": 120,
+     "stop_loss": 28
+    },
+    "mean_ratio_gross_pct": 3.6891,
+    "mean_ratio_net_pct": 3.4891,
+    "share_liquidated": 0.0,
+    "slot_days": 6792,
+    "trades": 401
+   }
+  }
+ },
+ "portfolio_2x": {
+  "components": {
+   "bear:WTDMIPRICEDCAStrategyFuture": {
+    "discovery": {
+     "compounded_daily_net_pct": 0.09202,
+     "compounded_total_factor": 3.5259,
+     "daily_gross_on_provided_pct": 0.1592,
+     "daily_net_on_employed_pct": 1.3507,
+     "daily_net_on_provided_pct": 0.1415,
+     "days": 1370,
+     "exit_reasons": {
+      "liquidation": 5,
+      "partial_exit": 109,
+      "roi": 37,
+      "stop_loss": 43
+     },
+     "mean_ratio_gross_pct": 8.9941,
+     "mean_ratio_net_pct": 7.9941,
+     "share_liquidated": 0.0258,
+     "slot_days": 10960,
+     "trades": 194
+    },
+    "validation": {
+     "days": 963,
+     "slot_days": 6792,
+     "trades": 0
+    }
+   },
+   "hold": {
+    "discovery": {
+     "compounded_daily_net_pct": 0.13825,
+     "compounded_total_factor": 6.6377,
+     "daily_gross_on_provided_pct": 0.27561,
+     "daily_net_on_employed_pct": 0.765,
+     "daily_net_on_provided_pct": 0.26857,
+     "days": 1370,
+     "exit_reasons": {
+      "phase_end": 192,
+      "stop_loss": 1
+     },
+     "mean_ratio_gross_pct": 15.6513,
+     "mean_ratio_net_pct": 15.2513,
+     "share_liquidated": 0.0,
+     "slot_days": 10960,
+     "trades": 193
+    },
+    "validation": {
+     "compounded_daily_net_pct": 0.00476,
+     "compounded_total_factor": 1.0469,
+     "daily_gross_on_provided_pct": 0.23967,
+     "daily_net_on_employed_pct": 1.0722,
+     "daily_net_on_provided_pct": 0.23237,
+     "days": 963,
+     "exit_reasons": {
+      "liquidation": 2,
+      "phase_end": 120,
+      "stop_loss": 2
+     },
+     "mean_ratio_gross_pct": 13.1279,
+     "mean_ratio_net_pct": 12.7279,
+     "share_liquidated": 0.0161,
+     "slot_days": 6792,
+     "trades": 124
+    }
+   },
+   "side:simple_vwap_v1": {
+    "discovery": {
+     "compounded_daily_net_pct": 0.0591,
+     "compounded_total_factor": 2.2467,
+     "daily_gross_on_provided_pct": 0.08451,
+     "daily_net_on_employed_pct": 0.5719,
+     "daily_net_on_provided_pct": 0.08263,
+     "days": 1370,
+     "exit_reasons": {
+      "exit_signal": 103
+     },
+     "mean_ratio_gross_pct": 8.9927,
+     "mean_ratio_net_pct": 8.7927,
+     "share_liquidated": 0.0,
+     "slot_days": 10960,
+     "trades": 103
+    },
+    "validation": {
+     "compounded_daily_net_pct": 0.06728,
+     "compounded_total_factor": 1.9111,
+     "daily_gross_on_provided_pct": 0.10715,
+     "daily_net_on_employed_pct": 0.516,
+     "daily_net_on_provided_pct": 0.10406,
+     "days": 963,
+     "exit_reasons": {
+      "exit_signal": 102,
+      "force_exit": 3
+     },
+     "mean_ratio_gross_pct": 6.9313,
+     "mean_ratio_net_pct": 6.7313,
+     "share_liquidated": 0.0,
+     "slot_days": 6792,
+     "trades": 105
+    }
+   },
+   "trans:ZaratustraDCA2_06": {
+    "discovery": {
+     "compounded_daily_net_pct": 0.02536,
+     "compounded_total_factor": 1.4155,
+     "daily_gross_on_provided_pct": 0.03604,
+     "daily_net_on_employed_pct": 0.3356,
+     "daily_net_on_provided_pct": 0.02535,
+     "days": 1370,
+     "exit_reasons": {
+      "ZaratustraDCA Exit Long": 262,
+      "ZaratustraDCA Exit Short": 238,
+      "stop_loss": 86
+     },
+     "mean_ratio_gross_pct": 0.6741,
+     "mean_ratio_net_pct": 0.4741,
+     "share_liquidated": 0.0,
+     "slot_days": 10960,
+     "trades": 586
+    },
+    "validation": {
+     "compounded_daily_net_pct": 0.00172,
+     "compounded_total_factor": 1.0167,
+     "daily_gross_on_provided_pct": 0.00739,
+     "daily_net_on_employed_pct": 0.0603,
+     "daily_net_on_provided_pct": 0.00221,
+     "days": 963,
+     "exit_reasons": {
+      "ZaratustraDCA Exit Long": 75,
+      "ZaratustraDCA Exit Short": 73,
+      "stop_loss": 28
+     },
+     "mean_ratio_gross_pct": 0.2852,
+     "mean_ratio_net_pct": 0.0852,
+     "share_liquidated": 0.0,
+     "slot_days": 6792,
+     "trades": 176
+    }
+   }
+  },
+  "label": "hold 2x plus chosen candidates",
+  "whole": {
+   "discovery": {
+    "compounded_daily_net_pct": 0.23454,
+    "compounded_total_factor": 24.7639,
+    "daily_gross_on_provided_pct": 0.55537,
+    "daily_net_on_employed_pct": 0.7665,
+    "daily_net_on_provided_pct": 0.51805,
+    "days": 1370,
+    "exit_reasons": {
+     "ZaratustraDCA Exit Long": 262,
+     "ZaratustraDCA Exit Short": 238,
+     "exit_signal": 103,
+     "liquidation": 5,
+     "partial_exit": 109,
+     "phase_end": 192,
+     "roi": 37,
+     "stop_loss": 130
+    },
+    "mean_ratio_gross_pct": 5.6569,
+    "mean_ratio_net_pct": 5.2768,
+    "share_liquidated": 0.0046,
+    "slot_days": 10960,
+    "trades": 1076
+   },
+   "validation": {
+    "compounded_daily_net_pct": 0.04826,
+    "compounded_total_factor": 1.5914,
+    "daily_gross_on_provided_pct": 0.35422,
+    "daily_net_on_employed_pct": 0.7443,
+    "daily_net_on_provided_pct": 0.33864,
+    "days": 963,
+    "exit_reasons": {
+     "ZaratustraDCA Exit Long": 75,
+     "ZaratustraDCA Exit Short": 73,
+     "exit_signal": 102,
+     "force_exit": 3,
+     "liquidation": 2,
+     "phase_end": 120,
+     "stop_loss": 30
+    },
+    "mean_ratio_gross_pct": 5.9403,
+    "mean_ratio_net_pct": 5.6791,
+    "share_liquidated": 0.0049,
+    "slot_days": 6792,
+    "trades": 405
+   }
+  }
+ },
+ "rule": "PIPELINE_EXTENSIONS.md Part 4.4"
+}
