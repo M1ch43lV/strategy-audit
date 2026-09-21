@@ -72,6 +72,7 @@ MODULE_REPAIR = os.path.join(ROOT, "evidence/ELIGIBILITY_MODULE_REPAIR.json")
 SIGNATURE_REPAIR = os.path.join(ROOT, "evidence/ELIGIBILITY_SIGNATURE_REPAIR.json")
 FREQAI_REPAIR = os.path.join(ROOT, "evidence/ELIGIBILITY_FREQAI_REPAIR.json")
 FREQAI_WTAI = os.path.join(ROOT, "evidence/ELIGIBILITY_FREQAI_WTAI.json")
+TIMEFRAME_5M_RECOVERY = os.path.join(ROOT, "evidence/TIMEFRAME_5M_RECOVERY.json")
 # A separate arm with its own runtime and its own configs, completed before
 # this table existed. Its records are per-strategy files rather than one store,
 # and nothing has ever read them here - which is how a strategy that PASSED a
@@ -759,6 +760,10 @@ def rows():
         repair_source.setdefault(name, "freqai_model")
     for name in _json(FREQAI_WTAI):
         repair_source.setdefault(name, "freqai_config_built")
+    recovery_5m = _json(TIMEFRAME_5M_RECOVERY, "results")
+    for name, entry in recovery_5m.items():
+        if entry.get("status") == "promoted_E1":
+            repair_source.setdefault(name, "full_backtest_oom_timeframe_5m_recovery")
     # A shim registered in PROFILE_CLASS1 but not carried by any
     # measurement store is still a repair that was applied to that row.
     # Without this the 14 rows the enter_tag shim answers showed their
@@ -1449,6 +1454,12 @@ def rows():
             reason = "full_backtest_not_testable"
             basis = "own_measurement"
             open_work = []
+        recovery = recovery_5m.get(strategy) or {}
+        if recovery.get("status") == "promoted_E1":
+            repair["family"] = "full_backtest_oom_timeframe_5m_recovery"
+            repair["verdict"] = "repaired"
+            repair["note"] = "5m recovery passed all technical gates and was owner-promoted into E1"
+            repair["settings_extra"] = "execution_timeframe=5m; canonical_1m_oom_retained=true"
         if basis == "blocked" and not repair.get("verdict"):
             repair["verdict"] = "to_be_fixed"
         if basis == "blocked":
@@ -1604,8 +1615,12 @@ def rows():
                 review_note,
                 ("Full-Backtest: 1m resource_inconclusive retained; owner-approved "
                  "5m pooled override measured"
-                 if full_backtest.get("measurement_scope") ==
+                if full_backtest.get("measurement_scope") ==
                  "owner_approved_timeframe_override_pooled_pair_universe" else ""),
+                ("Full-Backtest: canonical 1m OOM retained; owner-authorized "
+                 "5m recovery promoted into E1"
+                 if full_backtest.get("measurement_scope") ==
+                 "owner_approved_timeframe_5m_recovery_pooled_pair_universe" else ""),
                 ("coverage %s: %s" % (coverage_status or "absent", coverage_detail[:110])
                  if coverage_status != "PASS" else "")) if part),
             "repair_settings": "; ".join(

@@ -821,6 +821,18 @@ manifest. A measured 5m result remains `pending_owner_promotion`; it cannot
 change E1/C10, source identity, or the meaning of the retained 1m OOM result
 without a later explicit owner decision for that exact implementation identity.
 
+### Amendment 2026-09-21: promote completed 5m OOM recoveries into E1
+
+**Owner's decision.** Once all 60 `repair.timeframe_5m_recovery` cases have
+reached a final result, every identity-current case with four 5m technical
+PASS results and a measured eight-pair 5m Full-Backtest is promoted to
+`E1_expanded` as repaired. `repair.promote_timeframe_5m_recovery` verifies the
+full cohort is complete, refuses a live audit/repair controller, preserves the
+canonical 1m OOM result under `original_full_backtest`, and writes the accepted
+5m record with scope `owner_approved_timeframe_5m_recovery_pooled_pair_universe`.
+It then regenerates published state. A blocked, FOUND, ERROR, or timeout route
+is not promoted.
+
 ### Amendment 2026-09-11: warm-up convergence precedes final recursive-bias
 
 **Owner's decision**, applied prospectively to every strategy that still has

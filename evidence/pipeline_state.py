@@ -51,7 +51,8 @@ def completed_full_backtest(profile, record):
         record.get("status") == "measured",
         record.get("measurement_scope") in (
             "canonical_pooled_native_pair_universe",
-            "owner_approved_timeframe_override_pooled_pair_universe"),
+            "owner_approved_timeframe_override_pooled_pair_universe",
+            "owner_approved_timeframe_5m_recovery_pooled_pair_universe"),
         record.get("run_profile") == profile.get("run_profile"),
         record.get("canonical_sha256") == profile.get("source_sha256"),
     ))

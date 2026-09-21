@@ -191,6 +191,8 @@ def main(argv=None):
     parser.add_argument("--gate-timeout", type=int, default=1200)
     parser.add_argument("--full-timeout", type=int, default=3600)
     parser.add_argument("--apply", action="store_true")
+    parser.add_argument("--promote-successes", action="store_true",
+                        help="after all candidates finish, apply the owner-authorized E1 promotions")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
@@ -214,6 +216,11 @@ def main(argv=None):
         record = run_one(row, data, args.smoke_timeout, args.gate_timeout, args.full_timeout, args.force)
         data["results"][row["strategy_id"]] = record; _write(OUTPUT, data)
         print("[%d/%d] %s %s" % (number, len(rows), row["strategy_id"], record["status"]), flush=True)
+    if args.promote_successes:
+        # This must happen only after the serial run closed its own work. The
+        # standalone promoter additionally refuses a live controller lock.
+        from repair import promote_timeframe_5m_recovery
+        return promote_timeframe_5m_recovery.main(["--apply", "--allow-controller-lock"])
     return 0
 
 

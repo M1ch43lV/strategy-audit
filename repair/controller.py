@@ -106,7 +106,7 @@ def handlers(python: str | None = None) -> tuple[Handler, ...]:
             repair_class="resource",
             description=("Repeat every technical gate at 5m for the 60 1m pooled-OOM "
                          "candidates before an isolated eight-pair 5m recovery full run."),
-            command=(python, "-m", "repair.timeframe_5m_recovery", "--apply"),
+            command=(python, "-m", "repair.timeframe_5m_recovery", "--apply", "--promote-successes"),
             evidence=("evidence/TIMEFRAME_5M_RECOVERY.json",
                       "evidence/TIMEFRAME_5M_RECOVERY_FULL.json"),
         ),

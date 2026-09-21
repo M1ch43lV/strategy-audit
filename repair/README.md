@@ -56,7 +56,9 @@ It writes `evidence/TIMEFRAME_5M_RECOVERY.json` and
 `evidence/TIMEFRAME_5M_RECOVERY_FULL.json`. These files do not change source,
 canonical state, or generated status. A successful alternate full run remains
 `pending_owner_promotion`; it never silently treats 5m as equal to the
-authored 1m result. Run it with
+authored 1m result. The owner authorized promotion of every successful case
+after the complete 60-row analysis; the terminal promoter refuses partial or
+live evidence and preserves the canonical 1m OOM inside each E1 record. Run it with
 `python -m repair.controller --class resource --apply`.
 
 Run standalone repair tools as modules from the repository root, for example
