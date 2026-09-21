@@ -41,7 +41,11 @@ ROBUSTNESS_OUTPUT = os.path.join(ROOT, "evidence", "EXECUTION_ROBUSTNESS.json")
 COST_OUTPUT = os.path.join(ROOT, "evidence", "COST_SCREEN.json")
 DATA_DIR = os.path.join(ROOT, "user_data", "data", "binance")
 
-CANONICAL_SCOPE = "canonical_pooled_native_pair_universe"
+ACCEPTED_BASELINE_SCOPES = frozenset((
+    "canonical_pooled_native_pair_universe",
+    "owner_approved_timeframe_override_pooled_pair_universe",
+    "owner_approved_timeframe_5m_recovery_pooled_pair_universe",
+))
 ROBUSTNESS_STAGE = "post_full_backtest_execution_robustness"
 COST_STAGE = "post_full_backtest_cost_screen"
 
@@ -528,7 +532,7 @@ def regime_screens(blocks):
 def measured_baselines(baseline):
     return {s: r for s, r in baseline.items()
             if isinstance(r, dict) and r.get("status") == "measured"
-            and r.get("measurement_scope") == CANONICAL_SCOPE}
+            and r.get("measurement_scope") in ACCEPTED_BASELINE_SCOPES}
 
 
 def _chunks(items, size):
@@ -684,6 +688,16 @@ def _trade(profit, stake=100.0, duration=120, reason="roi", leverage=1.0):
 
 def selftest():
     assert detail_timeframe("1d") == detail_timeframe("1h") == detail_timeframe("15m") == "5m"
+    selected = measured_baselines({
+        "canonical": {"status": "measured", "measurement_scope":
+                      "canonical_pooled_native_pair_universe"},
+        "override": {"status": "measured", "measurement_scope":
+                     "owner_approved_timeframe_override_pooled_pair_universe"},
+        "recovery": {"status": "measured", "measurement_scope":
+                     "owner_approved_timeframe_5m_recovery_pooled_pair_universe"},
+        "other": {"status": "measured", "measurement_scope": "other"},
+    })
+    assert set(selected) == {"canonical", "override", "recovery"}, selected
     # At or below 5m there is no rerun; such a baseline is equal by owner rule.
     for tf in ("5m", "3m", "1m", "weird"):
         assert detail_timeframe(tf) is None, tf

@@ -853,6 +853,29 @@ def criteria_report(rows, path):
 # counts below are read from the table rather than typed in.
 REPAIRS = [
     {
+        "family": "full_backtest_oom_timeframe_5m_recovery",
+        "name": "Owner-authorized 5m recovery for a canonical 1m OOM",
+        "error": "Canonical pooled 1m Full-Backtest ended with an OOM or "
+                 "resource-inconclusive result.",
+        "cause": "The source-preserving strategy completed the earlier "
+                 "technical checks, but its identity-current pooled 1m "
+                 "Full-Backtest exceeded the available runtime resources. "
+                 "That outcome is resource evidence, not a strategy verdict.",
+        "fix": "`repair/timeframe_5m_recovery.py` repeats Smoke, Look-Ahead, "
+               "Warm-up convergence, and Recursive-bias at an isolated 5m "
+               "execution timeframe. After all four gates pass, it measures "
+               "the same eight-pair pooled portfolio at 5m. "
+               "`repair/promote_timeframe_5m_recovery.py` admits only the "
+               "owner-approved, identity-current successful records into E1 "
+               "and preserves the original 1m OOM record as provenance.",
+        "limit": "This route is limited to the owner-approved 60 identities. "
+                 "A failed, FOUND, timeout, incomplete, or identity-stale "
+                 "recovery is not promoted; the source timeframe and the "
+                 "canonical 1m result remain visible.",
+        "tool": "repair/timeframe_5m_recovery.py; "
+                "repair/promote_timeframe_5m_recovery.py",
+    },
+    {
         "family": "timeframe_missing",
         "name": "Timeframe recovered from the author's own field",
         "error": "Timeframe needs to be set in either configuration or as "

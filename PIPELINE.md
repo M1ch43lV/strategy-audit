@@ -43,7 +43,8 @@ pipeline state, refuses to overlap an active Docker runner, runs the existing
 wrapper, refreshes published state, applies the existing E1 admission command,
 and records routing provenance. It includes Stage 8b after a measured
 Full-Backtest: a 5m detail run above 5m, or the documented at-or-below-5m rule
-plus cost-screen publication. It does not change a gate's selection rule,
+plus cost-screen publication. It never dispatches gated Model 1/2/3 backtests
+while they are owner-paused. It does not change a gate's selection rule,
 repair policy, timeout, evidence store, or preregistered order. Repair-only
 and zero-trade full-window cases are surfaced for escalation rather than
 guessed.
@@ -206,6 +207,18 @@ Sample on this date: **0 of 608 `E1_expanded` strategies have `observed_trades =
 ## Stage 8b — Post-Full-Backtest: Execution Robustness and Cost Screen
 
 Prospective and additive. It follows a measured canonical pooled Full-Backtest of exactly the same implementation and never changes admission or replaces `results/regime/full_backtest_manifest.json`. The binding definitions (thresholds, statuses, validity checks, the cost model) are in `PIPELINE_EXTENSIONS.md`, Part 2, Amendment 2026-09-19; the size and causes of the detail effect and the recommendation for future tests are in its Amendment 2026-09-20; this section only says what runs when. It is numbered 8b so that the stage numbers other files cite stay valid.
+
+The dispatcher selects this stage for every E1 strategy whose identity-current
+full backtest is complete and whose robustness status is `PENDING`. It runs a
+5m detail backtest only above 5m; at or below 5m it rebuilds the execution
+robustness and per-regime cost-screen stores under the owner rule. Publication
+then refreshes the status table, allowing verified-specialist qualification to
+be evaluated without changing E1 admission.
+
+Its accepted baselines include the owner-approved 5m OOM-recovery scope. Those
+records keep their retained 1m OOM provenance, but their accepted 5m archive is
+treated as already at the detail granularity for Stage 8b and is cost-screened
+from that exact archive.
 
 | Program | Reads | Writes |
 |---|---|---|
@@ -832,6 +845,16 @@ canonical 1m OOM result under `original_full_backtest`, and writes the accepted
 5m record with scope `owner_approved_timeframe_5m_recovery_pooled_pair_universe`.
 It then regenerates published state. A blocked, FOUND, ERROR, or timeout route
 is not promoted.
+
+### Amendment 2026-09-21: pause gated Model 1/2/3 backtests
+
+**Owner's decision.** Model 1, Model 2, and Model 3 gated backtests are paused
+until further notice because the approach did not prove useful. Existing
+candidate specifications, manifests, attributions, and pages remain immutable
+historical evidence. The serial pipeline dispatcher must not schedule, resume,
+or create any gated-model run. This does not pause Model 0 technical evidence,
+Stage 8b execution robustness, the cost screen, or verified-specialist
+qualification for admitted strategies.
 
 ### Amendment 2026-09-11: warm-up convergence precedes final recursive-bias
 

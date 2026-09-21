@@ -8,7 +8,7 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 
 | Verdict | Strategies | Meaning |
 |---|---:|---|
-| `repaired` | 157 | runs now, and the run is recorded |
+| `repaired` | 201 | runs now, and the run is recorded |
 | `repair_attempted` | 23 | a route was applied and did not finish the job |
 | `to_be_fixed` | 18 | the route is known, the run has not happened yet |
 | `needs_a_look` | 39 | no route yet; the obstacle has been identified |
@@ -20,9 +20,29 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 
 ## Routes taken
 
+### Owner-authorized 5m recovery for a canonical 1m OOM
+
+`repair_family: full_backtest_oom_timeframe_5m_recovery` &mdash; 47 strategies (repaired 47)
+
+**The message.**
+
+```
+Canonical pooled 1m Full-Backtest ended with an OOM or resource-inconclusive result.
+```
+
+**What it actually was.** The source-preserving strategy completed the earlier technical checks, but its identity-current pooled 1m Full-Backtest exceeded the available runtime resources. That outcome is resource evidence, not a strategy verdict.
+
+**The repair.** `repair/timeframe_5m_recovery.py` repeats Smoke, Look-Ahead, Warm-up convergence, and Recursive-bias at an isolated 5m execution timeframe. After all four gates pass, it measures the same eight-pair pooled portfolio at 5m. `repair/promote_timeframe_5m_recovery.py` admits only the owner-approved, identity-current successful records into E1 and preserves the original 1m OOM record as provenance.
+
+**Where it stops.** This route is limited to the owner-approved 60 identities. A failed, FOUND, timeout, incomplete, or identity-stale recovery is not promoted; the source timeframe and the canonical 1m result remain visible.
+
+Tool: `repair/timeframe_5m_recovery.py; repair/promote_timeframe_5m_recovery.py`.
+
+For example: `BBRSI2`, `BBands`, `BbandRsi`, `BinHV45`, `BinHV45HO`, `BinHV45_kanaxe`.
+
 ### Timeframe recovered from the author's own field
 
-`repair_family: timeframe_missing` &mdash; 48 strategies (repaired 45, to_be_fixed 3)
+`repair_family: timeframe_missing` &mdash; 45 strategies (repaired 42, to_be_fixed 3)
 
 **The message.**
 

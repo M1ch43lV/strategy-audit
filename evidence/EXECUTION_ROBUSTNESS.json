@@ -1670,6 +1670,16 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "BBRSI2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "BBRSI21": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -2453,6 +2463,16 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "BBands": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "BBandsRSI": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -2753,6 +2773,16 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "BbandRsi": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "BbandRsiRolling": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -3031,6 +3061,56 @@
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "BinHV27_werkkrew": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "BinHV45": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "BinHV45HO": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "BinHV45_kanaxe": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "BinHV45_stash": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "BinHV45_werkkrew": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",
@@ -3760,6 +3840,46 @@
       "status": "SENSITIVE",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "Cluc4": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "Cluc4werk": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "Cluc5werk": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "Cluc7werk": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "ClucFiatROI": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -3771,6 +3891,16 @@
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "ClucFiatSlow": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "ClucHAnix": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",
@@ -3860,6 +3990,16 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "ClucHAwerk": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "ClucMay72018": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -3901,6 +4041,36 @@
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "CombinedBinHAndCluc2021Bull": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "CombinedBinHAndClucHyper": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "CombinedBinHAndClucHyperV0": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "CombinedBinHAndClucHyperV3": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",
@@ -4061,6 +4231,16 @@
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "CombinedBinHClucAndMADV9": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "Combined_Indicators": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",
@@ -4518,6 +4698,16 @@
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "DD": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "DMIPRICEDCAStrategyFuture": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",
@@ -5516,6 +5706,16 @@
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "EXPERIMENTAL_STRATEGY": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "EasyInEasyOut": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",
@@ -6526,6 +6726,16 @@
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "FTT_DWT_FBB_FUTURES": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "FUTURES": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",
@@ -8148,6 +8358,16 @@
       "status": "ERROR",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "FisherHull": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "FisherTransformStrategy": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -9354,6 +9574,26 @@
       "status": "SENSITIVE",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "GPTREV": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "GRIDDMIPRICEStrategyFutureV5Long": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "GRIDDMIPRICEStrategyFutureV5Short": {
       "anomalies": [],
       "baseline": {
@@ -9436,6 +9676,16 @@
       "detail_timeframe": "5m",
       "main_timeframe": "4h",
       "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "GRIDDMIPRICEStrategySpot": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
@@ -9772,7 +10022,27 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "HedgeAdaptiveRegimeStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "HeikinAshiStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "HighFreqDemo": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",
@@ -11487,6 +11757,16 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "JustROCR5": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "KAMACCIRSI": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -11667,6 +11947,16 @@
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "LinearRegressionStrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "Low_BB": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",
@@ -12810,6 +13100,26 @@
       "detail_timeframe": "5m",
       "main_timeframe": "1h",
       "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "MiniLambo": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "MiniLambo_TBS": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
@@ -17348,6 +17658,16 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "SRsi": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "STRATEGY_RSI_BB_BOUNDS_CROSS": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -17571,6 +17891,16 @@
       "detail_timeframe": "5m",
       "main_timeframe": "15m",
       "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "Scalp": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
@@ -18296,6 +18626,16 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "SmoothScalp": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "Squeeze001": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -18561,6 +18901,16 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "StrategyScalpingFast": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "SuperHV27_BTC": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -18572,6 +18922,16 @@
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "SuperHV27_ETH": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "SuperTrend": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",
@@ -19026,6 +19386,16 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "TEMA": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "TEMABounce": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -19320,6 +19690,16 @@
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "TemaMaster": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "TemaMaster3": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",
@@ -19684,6 +20064,16 @@
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "TrailingBuyStrat2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "TrailingBuyStratCluc": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",
@@ -20542,6 +20932,16 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "Trump_LIM": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "TwoCandle": {
       "anomalies": [],
       "baseline": {
@@ -20910,6 +21310,16 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "WTDMIPRICESDCAtrategy": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "WTHO": {
       "anomalies": [],
       "baseline": {
@@ -21110,7 +21520,27 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "XebTradeStrat": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "XtraThicc": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "YOLO": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",
@@ -21424,6 +21854,16 @@
       "detail_timeframe": "5m",
       "main_timeframe": "4h",
       "reasons": [],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "adx_opt_strat": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
@@ -21885,6 +22325,16 @@
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "bestV2": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "bigshort": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",
@@ -22979,6 +23429,16 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "gpt_reversal": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "hansencandlepatternV1": {
       "anomalies": [],
       "baseline": {
@@ -23525,6 +23985,16 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "mark_strat": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "momentum": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
@@ -23950,6 +24420,16 @@
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
     "stoploss": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
+    "strato": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,
       "main_timeframe": "5m",

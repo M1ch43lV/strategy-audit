@@ -5,6 +5,9 @@ existing runners without changing their arguments or evidence semantics, and
 lets each runner remain the owner of its own evidence store.  By default it
 plans only; ``--apply`` is required to start one run and ``--watch --apply``
 repeats that safe one-run cycle.
+
+Gated Model 1/2/3 backtests are intentionally outside this dispatcher and are
+owner-paused until an explicit later decision re-enables them.
 """
 from __future__ import annotations
 
@@ -45,6 +48,7 @@ RUNNERS = {
     "full_backtest": "runtime/regime_full_backtest_docker.ps1",
     "execution_detail": "runtime/regime_full_backtest_docker.ps1",
 }
+DISABLED_GATED_GATES = frozenset(("model1", "model2", "model3"))
 KNOWN_SMOKE_PROFILES = {
     "spot_long", "spot_short", "spot_long_short",
     "futures_long", "futures_short", "futures_long_short",
@@ -75,6 +79,11 @@ def _route(gate: str) -> tuple[str, str]:
 
 def _work(row: dict) -> set[str]:
     return set(filter(None, (row.get("open_work") or "").split(";")))
+
+
+def _is_true(value: object) -> bool:
+    """Accept the JSON boolean and the published CSV-style representation."""
+    return value is True or value == "true"
 
 
 def _docker_running() -> list[str]:
@@ -230,7 +239,7 @@ def choose(state: dict, strategy: str = "") -> dict:
                 "args": ["--strategy", row["strategy_id"], "--workers", "1", "--timeout", "3600"]}
 
     row = _first(rows, lambda item: (
-        item.get("technical_chain_complete") is True
+        _is_true(item.get("technical_chain_complete"))
         and item.get("execution_robustness_status") == "PENDING"))
     if row:
         detail_timeframe = _detail_timeframe(row.get("timeframe") or "")
@@ -265,6 +274,8 @@ def _detail_timeframe(timeframe: str) -> str | None:
 
 
 def _command(action: dict) -> list[str]:
+    if action["gate"] in DISABLED_GATED_GATES:
+        raise DispatchError("Model 1/2/3 gated backtests are owner-paused")
     if action["gate"] == "coverage":
         return [sys.executable, "-m", "evidence.regime_coverage"]
     if action["gate"] == "execution_robustness":
@@ -419,6 +430,14 @@ def selftest() -> None:
     assert choose(post)["gate"] == "execution_robustness"
     post["strategies"]["C"]["timeframe"] = "1h"
     assert choose(post)["gate"] == "execution_detail"
+    post["strategies"]["C"]["technical_chain_complete"] = "true"
+    assert choose(post)["gate"] == "execution_detail"
+    try:
+        _command({"gate": "model1"})
+    except DispatchError:
+        pass
+    else:
+        raise AssertionError("owner-paused gated route must be refused")
     print("pipeline_dispatcher selftest: PASS")
 
 

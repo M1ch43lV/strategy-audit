@@ -11,16 +11,14 @@ Never write a count that a command can print: counts in prose are what made the 
 
 ## Baton
 
-- Last agent: claude
-- Last update: 2026-09-20T20:50+02:00
-- Stopped because: the Markdown documents were consolidated (README table, `PIPELINE.md` with decision record,
-  `PIPELINE_EXTENSIONS.md`, `LESSONS.md`, this file rewritten). No measurement was started or stopped.
-- Observed at 20:36: one `strategy-audit-runtime` container was running, started by the Codex dispatcher
-  (`tools/pipeline_dispatcher.py`), and Codex had uncommitted status regenerations in the tree. Do not start a second
-  runner. Run the machine-state commands below before anything else.
-- Next agent should: read `evidence/PIPELINE_STATE.json` or run `python -m evidence.pipeline_state --summary`, then
-  continue the serial dispatcher work. Codex's own baton entries up to 2026-09-18 are in the archive; nothing in them
-  is a standing instruction that is not repeated below.
+- Last agent: codex
+- Last update: 2026-09-21T17:14+02:00
+- Stopped because: no audit runner is active. The owner-approved 5m recovery records have current Stage 8b execution
+  robustness and cost-screen evidence; published status is current.
+- Observed: the dispatcher recognizes published `technical_chain_complete` values in either JSON-boolean or CSV-string
+  form, then completes Stage 8b. Model 1/2/3 gated routes are owner-paused and are explicitly refused by the dispatcher.
+- Next agent should: run the machine-state commands before dispatching. Continue only the non-gated serial chain; do
+  not schedule, resume, or create Model 1/2/3 work until the owner reverses the pause.
 
 ## Objective
 
