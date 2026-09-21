@@ -391,3 +391,8 @@ class RegimeRotationBotV2N1(RegimeRotationBot):
 class RegimeRotationBotV2(RegimeRotationBotV2N1):
     """V2: the component choice above, and a change of phase is followed after 2 consecutive days."""
     phase_confirm_days = 2
+
+
+class RegimeRotationBotV2N1x2(RegimeRotationBotV2N1):
+    """V2N1 with the uptrend hold at 2x leverage (`PIPELINE_EXTENSIONS.md` Part 4.4)."""
+    hold_leverage = 2.0

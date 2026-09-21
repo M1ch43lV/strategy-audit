@@ -1074,3 +1074,42 @@ Reading, without re-tuning:
 - **Limits.** The pooled account concentrates: with few open positions one trade gets all free capital, hence the falls
   above. Validation numbers of the base variant were known when the rule was written (4.1). A single window and one
   path of eight correlated coins; no confidence interval was computed for the differences above.
+
+### 4.4 Rule for the component search and for the 2x hold (written 2026-09-21, before either was run)
+
+Question: can any strategy of the corpus earn more than cash in the phases where the bot sits idle (BTC bear, coin
+sideways, coin transition), and what does a 2x hold do to the daily return? The owner ordered both on 2026-09-21 and
+ordered that the four weeks up to 2026-09-19 are **not** added to any window.
+
+**Component search** (`bot/component_search.py`).
+
+1. *Phases and episodes* are those of the bot (4.2): BTC bull is hold, BTC bear is bear, otherwise the coin's own
+   sideways or transition. An episode is a run of consecutive days of one coin in one phase. A strategy's return in an
+   episode is the sum of the net returns of its trades that opened in it, 0 if it has none. Net is the profit ratio
+   less 0.1 % slippage per side, times leverage.
+2. *Candidates:* every strategy with a canonical Model 0 trade list, `cohort == E1_expanded` and
+   `execution_robustness_status == PASS`, plus the four components of the bot (EI3v2, Ichimoku, BuyOrDie, and Buy-and-Hold
+   of the coin for the phase). At least 30 trades opened in the phase in the training window. The execution status is
+   read from a whole-run comparison and uses no phase result; the cost screen of the specialist page is not used,
+   because it is judged on the validation window.
+3. *Test:* per (candidate, phase), a one-sided t-test that the mean episode return is above 0 against cash, over all
+   episodes of the phase in the training window. The Benjamini-Hochberg procedure at q = 0.10 is applied over all
+   (candidate, phase) tests together. Only passers are eligible. The first pass assumes leverage 1 (the attribution
+   table carries none); for the passers the archive's own leverage is read and the test repeated with the true costs;
+   a passer that fails it drops out.
+4. *Choice:* per phase the eligible candidate with the highest mean episode return in the training window; if none, cash.
+5. *Check of the procedure (walk-forward inside discovery):* training window 2020-04-01 to 2022-12-31, test window 2023.
+   Reported for each phase: the number of passers, the mean 2023 episode return of the chosen candidate, of all
+   passers, and of all candidates with the floor (the "no selection" reference), and the share of passers with a
+   positive 2023 mean. If the chosen candidates do not do better than the reference in 2023, the selection has no
+   demonstrated value and is reported as such.
+6. *Final choice:* training window is the whole discovery window (2020-04-01 to 2023-12-31). The portfolio is hold in the
+   BTC uptrend plus the chosen candidate of each phase, evaluated in the slot model (one slot per coin and day, fixed
+   stake; the pooled account is not computed for the portfolio because trades of different candidates may overlap on
+   one pair). The validation window is read for information and is labelled as no longer out of sample: its numbers
+   for the bot were known, and the specialist page has shown the validation results of every strategy.
+
+**2x hold.** `RegimeRotationBotV2N1x2` is `RegimeRotationBotV2N1` with `hold_leverage = 2.0`, backtested per pair like
+every variant (5m, 1m detail, futures, isolated). Reported next to V2N1: daily return, factors, worst fall of the pooled
+account, liquidations. The portfolio of the component search is reported once with the 1x and once with the 2x hold
+trades. Nothing is chosen from this; it is a measurement of what the leverage does.
