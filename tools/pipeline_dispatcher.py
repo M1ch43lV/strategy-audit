@@ -470,20 +470,23 @@ def dispatcher_lock():
             pass
 
 
-def run_once(apply: bool, strategy: str = "") -> int:
+def run_once(apply: bool, strategy: str = "") -> str:
+    """Plan (and, with ``apply``, run) exactly one step. Returns "idle" when ``choose()`` found no
+    eligible work at all (used by ``--watch`` to stop instead of polling forever), "blocked" for a
+    transient condition expected to clear on its own, and "ran"/"planned" otherwise."""
     active = _docker_running()
     if active:
         print(json.dumps({"kind": "blocked", "reason": "active Docker container", "containers": active}, indent=2))
-        return 0
+        return "blocked"
     current, detail = _state_is_current()
     if not current:
         print(json.dumps({"kind": "blocked", "reason": "published pipeline state is stale",
                           "detail": detail}, ensure_ascii=False, indent=2))
-        return 0
+        return "blocked"
     action = choose(_load_state(), strategy)
     if not apply or action["kind"] != "run":
-        print(json.dumps(action, ensure_ascii=False, indent=2))
-        return 0
+        print(json.dumps(action, ensure_ascii=False, indent=2), flush=True)
+        return "idle" if action["kind"] == "idle" else "planned"
     command = _command(action)
     print(json.dumps({"dispatch": action, "command": command}, ensure_ascii=False, indent=2), flush=True)
     completed = subprocess.run(command, cwd=ROOT, text=True, capture_output=True, check=False)
@@ -493,7 +496,7 @@ def run_once(apply: bool, strategy: str = "") -> int:
     _append_metadata(action, command, status, completed.stdout + completed.stderr)
     if completed.returncode:
         raise DispatchError("runner failed with exit %d" % completed.returncode)
-    return 0
+    return "ran"
 
 
 def selftest() -> None:
@@ -598,8 +601,11 @@ def main(argv=None) -> int:
             if completed.returncode:
                 raise DispatchError("source intake refresh failed with exit %d" % completed.returncode)
         while True:
-            run_once(args.apply, args.strategy or "")
+            outcome = run_once(args.apply, args.strategy or "")
             if not args.watch:
+                return 0
+            if outcome == "idle":
+                print(json.dumps({"kind": "stopping", "reason": "no eligible pending work"}, indent=2), flush=True)
                 return 0
             time.sleep(args.interval)
 

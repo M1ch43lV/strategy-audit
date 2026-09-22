@@ -76682,6 +76682,471 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "NASOSv5HO": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
+      "cohort": "lookahead_pass",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 200
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/NASOSv5HO-4fa36018-ladder.log",
+      "declared_max_drift_pct": 25.881,
+      "declared_startup_candle_count": 200,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "EWO": [
+          25.881,
+          22.68,
+          -0.597,
+          -0.0,
+          0.0
+        ],
+        "ema_100": [
+          0.007,
+          0.005,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "hma_50": [
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_slow": [
+          -0.003,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "sma_9": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 73.0,
+      "file_derived_period": null,
+      "implementation_id": "NASOSv5HO:8bd88a9be50e",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NASOSv5HO --strategy-path user_data/profile_bias_strategies/NASOSv5HO-4fa36018 --timerange 20200301-20200601 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "hma_50",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_4ef8b195c1a55b28c02e222535bc70bdbe955ef0f8a5c00ecbd8fd282d0f633c",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "state": "converged",
+      "strategy_id": "NASOSv5HO",
+      "timeframe": "5m",
+      "timerange": "20200301-20200601"
+    },
+    "NASOSv5PD": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
+      "cohort": "lookahead_pass",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 200
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/NASOSv5PD-ad088fe3-ladder.log",
+      "declared_max_drift_pct": 25.881,
+      "declared_startup_candle_count": 200,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "EWO": [
+          25.881,
+          22.68,
+          -0.597,
+          -0.0,
+          0.0
+        ],
+        "ema_100": [
+          0.007,
+          0.005,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "hma_50": [
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "ma_buy_20": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ma_sell_20": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_slow": [
+          -0.003,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "sma_9": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 73.0,
+      "file_derived_period": null,
+      "implementation_id": "NASOSv5PD:8bd88a9be50e",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NASOSv5PD --strategy-path user_data/profile_bias_strategies/NASOSv5PD-ad088fe3 --timerange 20200301-20200601 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "ma_buy_20",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_4262f2053e4ba51375e87f330e4850e7b0ff5787c8f79d27e22a4d2cd5f66e09",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "state": "converged",
+      "strategy_id": "NASOSv5PD",
+      "timeframe": "5m",
+      "timerange": "20200301-20200601"
+    },
+    "NASOSv5SL": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
+      "cohort": "lookahead_pass",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 200
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/NASOSv5SL-15c5cded-ladder.log",
+      "declared_max_drift_pct": 25.881,
+      "declared_startup_candle_count": 200,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "EWO": [
+          25.881,
+          22.68,
+          -0.597,
+          -0.0,
+          0.0
+        ],
+        "ema_100": [
+          0.007,
+          0.005,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "hma_50": [
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "ma_buy_20": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_slow": [
+          -0.003,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "sma_9": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 72.2,
+      "file_derived_period": null,
+      "implementation_id": "NASOSv5SL:8bd88a9be50e",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NASOSv5SL --strategy-path user_data/profile_bias_strategies/NASOSv5SL-15c5cded --timerange 20200301-20200601 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "ma_buy_20",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_0491390d24c7035f7fb9e823c220bd4dd209f9dd4ebe6a671fb7833954b2e9f9",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "state": "converged",
+      "strategy_id": "NASOSv5SL",
+      "timeframe": "5m",
+      "timerange": "20200301-20200601"
+    },
+    "NASOSv5_antipump": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
+      "cohort": "lookahead_pass",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 200
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/NASOSv5_antipump-90e3cc66-ladder.log",
+      "declared_max_drift_pct": 25.882,
+      "declared_startup_candle_count": 200,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "EWO": [
+          25.881,
+          22.68,
+          -0.597,
+          -0.0,
+          0.0
+        ],
+        "ema_100": [
+          0.007,
+          0.005,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "ema_200": [
+          0.12,
+          0.105,
+          -0.003,
+          -0.0,
+          0.0
+        ],
+        "ema_50": [
+          -0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "hma_50": [
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "ma_sell_16": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pump_strength": [
+          25.882,
+          22.68,
+          -0.597,
+          -0.0,
+          0.0
+        ],
+        "rsi": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_slow": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "sma_9": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 73.0,
+      "file_derived_period": null,
+      "implementation_id": "NASOSv5_antipump:1969540d566f",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy NASOSv5_antipump --strategy-path user_data/profile_bias_strategies/NASOSv5_antipump-90e3cc66 --timerange 20200301-20200601 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "ma_sell_16",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_bda6abd4edd5e124e0a93edc4ad397b97aece1ee421c9fc40ad34d42e3a7bc6d",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "state": "converged",
+      "strategy_id": "NASOSv5_antipump",
+      "timeframe": "5m",
+      "timerange": "20200301-20200601"
+    },
     "NASOSv5_mod1": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 7,
@@ -126486,6 +126951,194 @@
       "strategy_id": "Uptrend",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
+    },
+    "UziChanTB2": {
+      "available_prefix_candles": 35376,
+      "chosen_ladder_days": 14,
+      "chosen_startup_candle_count": 1344,
+      "cohort": "lookahead_pass",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 96
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 192
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 480
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 672
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 1344
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2880
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/UziChanTB2-19d09656-ladder.log",
+      "declared_max_drift_pct": 0.07,
+      "declared_startup_candle_count": 480,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "fastMA": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "hist": [
+          0.23,
+          -0.001,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "s1_ema_md": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "s1_ema_xl": [
+          0.027,
+          -0.001,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "s1_ema_xxl": [
+          null,
+          null,
+          -0.07,
+          -0.016,
+          0.0,
+          0.0
+        ],
+        "s2_bb_lower_band": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "s2_bb_std_dev_value": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "s2_ema": [
+          0.027,
+          -0.001,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "s2_ema_xxl": [
+          null,
+          null,
+          -0.033,
+          -0.004,
+          0.0,
+          0.0
+        ],
+        "s2_ema_xxl_off": [
+          null,
+          null,
+          -0.033,
+          -0.004,
+          0.0,
+          0.0
+        ],
+        "s2_fib_lower_band": [
+          0.001,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "s3_bb_lowerband": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "signal": [
+          0.002,
+          -0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "slowMA": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "vwmacd": [
+          -0.052,
+          -0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 70.3,
+      "file_derived_period": null,
+      "implementation_id": "UziChanTB2:e00bc8e789b0",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy UziChanTB2 --strategy-path user_data/profile_bias_strategies/UziChanTB2-19d09656 --timerange 20200301-20200601 --no-color --startup-candle 96 192 672 1344 2880",
+      "ladder_candles": [
+        96,
+        192,
+        672,
+        1344,
+        2880
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14,
+        30
+      ],
+      "max_drift_indicator": "s1_ema_md",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_249dbebd76b3bc867973051effa21a58b9670f5aad2849f61fb94b3306aaf605",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "state": "converged",
+      "strategy_id": "UziChanTB2",
+      "timeframe": "15m",
+      "timerange": "20200301-20200601"
     },
     "VWAP": {
       "available_prefix_candles": 97222,

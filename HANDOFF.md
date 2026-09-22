@@ -11,12 +11,16 @@ Never write a count that a command can print: counts in prose are what made the 
 
 ## Baton
 
-- Last agent: codex
-- Last update: 2026-09-21T17:14+02:00
-- Stopped because: no audit runner is active. The owner-approved 5m recovery records have current Stage 8b execution
-  robustness and cost-screen evidence; published status is current.
-- Observed: the dispatcher recognizes published `technical_chain_complete` values in either JSON-boolean or CSV-string
-  form, then completes Stage 8b. Model 1/2/3 gated routes are owner-paused and are explicitly refused by the dispatcher.
+- Last agent: claude
+- Last update: 2026-09-22T07:35+02:00
+- Stopped because: the window correction batch (below) is done and the dispatcher found nothing left to run
+  automatically; only a pre-existing manual item is open (`AlexBandSniperV10AI`, `open_work=needs_a_look;
+  recursive_ladder_pending`, unrelated to this batch).
+- Observed: `--watch` used to poll forever, printing `idle` every interval even with nothing to do; stdout is
+  block-buffered when redirected to a log file, so a genuinely finished run looked stalled from the log alone (CPU
+  time, not log growth, is the reliable signal). Fixed: `run_once()` now returns an outcome and `--watch` exits with a
+  `"stopping"` line once `choose()` reports `idle` (`tools/pipeline_dispatcher.py`). A lock left by a hard-killed
+  process (e.g. `TaskStop`) needs `--recover-stale-lock` before the next `--apply`.
 - Next agent should: run the machine-state commands before dispatching. Continue only the non-gated serial chain; do
   not schedule, resume, or create Model 1/2/3 work until the owner reverses the pause.
 
@@ -117,12 +121,12 @@ container exists. Inspect processes, locks, artifact timestamps, and the run log
   2026-09-19 are not to be added to any window (owner, 2026-09-21).
 - Root `_sabotage/` was removed on 2026-09-15 (an orphaned fixture of the archived `loadscan.py`).
 
-## Window correction in progress (owner, 2026-09-21)
+## Window correction done (owner, 2026-09-21)
 
-Spot and futures both start on 2020-04-01. The canonical futures full backtests (73 rows with the old window at the
-time, 69 left after a trial of four) and then their 5m detail runs are repeated by the dispatcher in batches of four
-containers with 3.5 GB, failures alone with 15.5 GB (`python -m tools.pipeline_dispatcher --watch --apply`; without
-`--apply` it prints the next batch). The attribution trims until they are done. The 5m recoveries
+Spot and futures both start on 2020-04-01. The 69 canonical futures full backtests were repeated by the dispatcher in
+batches of four containers with 3.5 GB, 36 failures alone with 15.5 GB (one still `timeout`); their 5m detail runs (41
+strategies) followed, all `measured` on the first pass. Stages 9-13 (Model 0) then reran: 686/741 canonical rows
+`measured`. Both result pages and the Strategy Test Bench were rebuilt on 2026-09-22. The 5m recoveries
 (41 spot, 7 futures) stay trimmed, there is no route to repeat them.
 
 ## Owner decisions that are open

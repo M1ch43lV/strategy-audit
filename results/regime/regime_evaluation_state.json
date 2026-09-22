@@ -1,8 +1,8 @@
 {
- "completed_at": "2026-09-21T16:48:40.531667+00:00",
- "fingerprint": "9332e91830fdf0e12c59b5f66cc86a5a48ad03281485c4ed538fd8f1e7d4e60a",
+ "completed_at": "2026-09-22T05:10:10.943486+00:00",
+ "fingerprint": "5be12994416a4a42156ac534e2ac223f450b19bc48f8f985ee3154e0e4260b8f",
  "scope": "Model 0 only; Model 1/2/3 are owner-paused since 2026-09-21",
- "started_at": "2026-09-21T16:40:48.528383+00:00",
+ "started_at": "2026-09-22T04:59:19.276029+00:00",
  "steps": [
   "regime.regime_engine",
   "regime.validate_regime",
