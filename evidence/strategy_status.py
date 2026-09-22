@@ -398,16 +398,29 @@ def invocation(record, kind, profile, timerange, strategy, source_file,
     return "[reconstructed] " + line
 
 
-def provenance(canonical_file):
+def provenance(canonical_file, known_repo=None, original_file=None):
     """Owner/repository and source path, read off the canonical file itself.
 
     Deliberately not taken from the old ledger, which has a `repo` column: this
     is derivable from the manifest the current pipeline maintains, so the table
     gains provenance without gaining a dependency on the first study.
+
+    A Class 2 overlay's `canonical_file` points under `user_data/profile_repairs/`,
+    not `repos/`, so the path-derived owner/name comes up empty for every
+    repaired strategy (found 2026-09-22: origin-repo links silently missing for
+    FastSupertrend_optim3_rsi_80 and its siblings). `EXECUTION_PROFILES.csv`
+    already carries a `repo` column populated straight from the harvest, so use
+    it first; fall back to deriving from `original_file` (the untouched
+    pre-repair path, which does sit under `repos/`) before giving up.
     """
     path = (canonical_file or "").replace("\\", "/")
+    if known_repo:
+        return known_repo, path
     marker = "repos/"
     index = path.find(marker)
+    if index < 0 and original_file:
+        path = original_file.replace("\\", "/")
+        index = path.find(marker)
     if index < 0:
         return "", path
     stem = path[index + len(marker):].split("/")[0]
@@ -1502,7 +1515,9 @@ def rows():
         duration_s, duration_evidence = test_duration(
             measurement, diagnostics, window, settled, fresh, tried, attempt)
 
-        repo, source_file = provenance(profile.get("canonical_file"))
+        repo, source_file = provenance(
+            profile.get("canonical_file"), profile.get("repo"),
+            profile.get("original_file"))
         run_profile = profile.get("run_profile")
         pairs = len((window.get("pair_results") or {}))
         # The full-window record is the better source for the backtest command
