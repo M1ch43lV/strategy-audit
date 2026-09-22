@@ -1034,6 +1034,11 @@ __CRITERIA__
     return '<a href="https://github.com/'+esc(r.rp)+'" target="_blank" '+
       'rel="noopener noreferrer">'+esc(r.rp)+'</a>';
   }
+  function nameLink(r){
+    if(!r.rp) return esc(r.s);
+    return '<a href="https://github.com/'+esc(r.rp)+'" target="_blank" '+
+      'rel="noopener noreferrer" title="'+esc(r.rp)+'">'+esc(r.s)+'</a>';
+  }
   function render(){
     var list = rows.filter(function(r){
       if(active && r.c !== active) return false;
@@ -1092,7 +1097,7 @@ __CRITERIA__
       var flag = r.g ? '<span class="flag" title="Admitted on a verdict from '+
         'the original sweep; queued for native re-measurement.">inherited</span>' : "";
       return '<tr>'+
-        '<td class="name">'+esc(r.s)+'</td>'+
+        '<td class="name">'+nameLink(r)+'</td>'+
         '<td><span class="pill '+co.cls+'">'+co.label+'</span>'+flag+'</td>'+
         '<td class="small">'+originLink(r)+'</td>'+
         '<td class="small" title="'+(r.tf?"":"could not be determined or reconstructed for this row")+'">'+esc(r.tf||"NA")+'</td>'+

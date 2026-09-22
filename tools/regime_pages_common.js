@@ -30,9 +30,17 @@ function baseStrategyId(id){
   }
   return id;
 }
+// Origin-repo lookup (added 2026-09-22, explicit user request): every table
+// on both pages renders strategy names through this one function, so wiring
+// the link here reaches all of them at once rather than each table's own
+// row-rendering code separately.
+var REPO = typeof REPOMAP === 'undefined' ? {} : REPOMAP;
 function futuresLabel(strategyId){
   var base = baseStrategyId(strategyId);
-  return strategyId + (FUTURES.has(base) ? ' *' : '') + (DCA.has(base) ? ' #' : '') + (REC5.has(base) ? ' †' : '');
+  var label = strategyId + (FUTURES.has(base) ? ' *' : '') + (DCA.has(base) ? ' #' : '') + (REC5.has(base) ? ' †' : '');
+  var repo = REPO[base];
+  if (!repo) return label;
+  return '<a href="https://github.com/' + repo + '" target="_blank" rel="noopener noreferrer">' + label + '</a>';
 }
 
 // Display names only (renamed 2026-09-12 per user request) - the underlying

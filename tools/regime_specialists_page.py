@@ -809,7 +809,12 @@ def build(destination, gating_destination, skip_native=False):
                                     robustness, futures, dca, rows, dv_summary, gain_rows)
     static = {name: io.open(os.path.join(DATA, name.lower() + ".json"), encoding="utf-8").read().strip()
               for name in ("GATEDCOMPARE", "GATEDDETAIL", "TOP10BYREGIME", "COINEPISODES", "COINEPISODECOUNTS")}
-    shared = {"FUTURESSTRATEGIES": _dump(futures), "DCASTRATEGIES": _dump(dca), "RECOVERY5MSTRATEGIES": _dump(recovery_5m_strategies())}
+    # Keyed the same way FUTURES/DCA/REC5 are (bare strategy_id; Modell 1/2/3
+    # candidate_ids strip their gate-variant suffix via baseStrategyId before
+    # lookup), so one map covers every table on both pages through futuresLabel.
+    repo_map = {sid: row["repo"] for sid, row in robustness.table.items() if row.get("repo")}
+    shared = {"FUTURESSTRATEGIES": _dump(futures), "DCASTRATEGIES": _dump(dca),
+              "RECOVERY5MSTRATEGIES": _dump(recovery_5m_strategies()), "REPOMAP": _dump(repo_map)}
     main_blobs = {
         "REGIMEFULL": _dump({"btc": rows["btc"], "coin": rows["coin"]}),
         "UNIVERSAL": _dump(rows["universal"]), "TOTALGAIN": _dump(gain_rows), "PORTFOLIO": _dump(plan),
