@@ -1,5 +1,26 @@
 [
  {
+  "strategy": "AlexBandSniperV10AI",
+  "rule": [
+   "alex_dynamic_optimization_gate",
+   "legacy_signal_int_literal"
+  ],
+  "repair_rules": [
+   "alex_dynamic_optimization_gate",
+   "legacy_signal_int_literal"
+  ],
+  "action": "patched",
+  "reason": [
+   "author's own comment and log line state the intended behaviour (a single switch, off during backtest); gates the hardcoded True and the two entry points that bypass the flag entirely, instead of inventing new logic",
+   "25 assignment(s) of a literal 0/1 into a column this file itself declares bool (signal column, or assigned True/False elsewhere in the same file) - the same value under a different spelling"
+  ],
+  "file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus/AlexBAndSniperV10MLAI.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "behavior_changed"
+ },
+ {
   "strategy": "Schism_BTC",
   "rule": [
    "legacy_signal_int_literal"

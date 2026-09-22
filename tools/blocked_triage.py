@@ -298,6 +298,38 @@ def locate_module(dotted, source_file):
     return os.path.relpath(index[top], ROOT).replace(os.sep, "/")
 
 
+# Per-strategy diagnoses that FAMILIES cannot express. FAMILIES matches a
+# marker string against `runtime_failure`, which is right for a message that
+# names its own cause - it is wrong for "timeout after N seconds", which is
+# generic and shared by strategies that time out for unrelated reasons.
+# Keying on the message here would either miss this strategy or silently
+# swallow every other timeout row into the same explanation. Used only when
+# the diagnosis comes from reading the file itself, not from freqtrade's
+# message, and only for the one strategy it was read from.
+STRATEGY_NOTES = {
+    "AlexBandSniperV10AI": (
+        "individual", "needs_a_look",
+        "Two independent causes, read from source, not from the timeout "
+        "message. (1) enable_dynamic_optimization was hardcoded True against "
+        "the author's own inline comment ('deaktivieren fuer Backtest' - "
+        "disable for backtest); repaired via repair/patch_class2.py's "
+        "alex_dynamic_optimization_gate, which also closes two entry points "
+        "(maybe_optimize_coin, daily_optimization_check) that reached Optuna "
+        "without checking the flag at all - confirmed fixed, no longer the "
+        "blocker. (2) bot_start() unconditionally runs train_ml_from_backtest() "
+        "on every fresh run (no cached model on disk): it loads the full "
+        "available multi-year history for every pair in the shared data "
+        "directory (load_pair_history is called with no timerange), "
+        "recomputes every indicator over that full history, then walks each "
+        "candle in a plain Python loop with a 50-candle lookahead. Nothing in "
+        "the file marks this backtest-inappropriate the way (1) was marked, "
+        "so gating it would invent an author intent that is not written down "
+        "- outside what a Class 2 patch may do. Still times out at 900s (3x "
+        "the smoke default) with (1) fixed; fixing (2) needs an explicit "
+        "policy exception from the repair owner, not a repair."),
+}
+
+
 def family(message):
     for key, marker, verdict, note in FAMILIES:
         if marker in message:
@@ -314,7 +346,8 @@ def triage(probe):
                   "source_file": row["source_file"],
                   "runtime_failure": message}
         load = LOAD_FAILURE.search(message)
-        key, verdict, note = family(message)
+        manual = STRATEGY_NOTES.get(row["strategy_id"])
+        key, verdict, note = (manual[0], manual[1], manual[2]) if manual else family(message)
         if key:
             # A named family wins over the load probe. "Impossible to load
             # FreqaiModel 'CatboostClassifier'" is not a broken strategy file:

@@ -1,0 +1,219 @@
+--- original/repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus/AlexBAndSniperV10MLAI.py
++++ patched/repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus/AlexBAndSniperV10MLAI.py
+@@ -732,7 +732,7 @@
+         self.coin_performance: Dict[str, float] = {}  # ADDED: Performance-Tracking pro Coin
+         
+         # Optimization settings - CHANGED: Enable proactive optimization
+-        self.enable_dynamic_optimization = True  # ADDED: Dynamische Optimierung aktiviert (deaktivieren für Backtest)
++        self.enable_dynamic_optimization = (getattr(self.config.get('runmode'), 'value', '') not in ('backtest', 'hyperopt'))  # ADDED: Dynamische Optimierung aktiviert (deaktivieren für Backtest)
+         self.optimization_min_trades = 0  # CHANGED: No minimum trades required for startup optimization
+         
+         logger.info(f"⚙️  [STRATEGY] Dynamic optimization: {'ENABLED' if self.enable_dynamic_optimization else 'DISABLED'}")
+@@ -1359,6 +1359,8 @@
+             logger.error(f"❌ [OPTUNA] Failed to get trade performance for {pair}: {e}")
+             return []
+     def daily_optimization_check(self):
++        if not self.enable_dynamic_optimization:
++            return
+         """Enhanced optimization check with smarter scheduling"""
+         try:
+             if not self.optuna_manager:
+@@ -2188,8 +2190,8 @@
+         if self.ml_enabled and not self.ml_model_trained:
+             logger.info(f"⏳ [ML] Waiting for model training before generating entries for {pair}")
+             # Still need to initialize columns
+-            dataframe.loc[:, 'enter_long'] = 0
+-            dataframe.loc[:, 'enter_short'] = 0
++            dataframe.loc[:, 'enter_long'] = False
++            dataframe.loc[:, 'enter_short'] = False
+             dataframe.loc[:, 'enter_tag'] = ''
+             dataframe.loc[:, 'entry_type'] = 0
+             return dataframe
+@@ -2197,8 +2199,8 @@
+         logger.info(f"🎯 [ENTRY] Processing entry signals for {pair}")
+         
+         # Initialize
+-        dataframe.loc[:, 'enter_long'] = 0
+-        dataframe.loc[:, 'enter_short'] = 0
++        dataframe.loc[:, 'enter_long'] = False
++        dataframe.loc[:, 'enter_short'] = False
+         dataframe.loc[:, 'enter_tag'] = ''
+         dataframe.loc[:, 'entry_type'] = 0
+ 
+@@ -2519,13 +2521,13 @@
+         # === DEBUG: Check why no divergence signals ===
+         # 1. Super
+         if not signal_lock_enabled or not self.is_signal_locked('Bull_Super', pair):
+-            dataframe.loc[super_long, 'enter_long'] = 1
++            dataframe.loc[super_long, 'enter_long'] = True
+             dataframe.loc[super_long, 'enter_tag'] = 'Bull_Super'
+         else:
+             print(f"Signal LOCKED: Bull_Super for {pair}")
+         
+         if not signal_lock_enabled or not self.is_signal_locked('Bear_Super', pair):
+-            dataframe.loc[super_short, 'enter_short'] = 1
++            dataframe.loc[super_short, 'enter_short'] = True
+             dataframe.loc[super_short, 'enter_tag'] = 'Bear_Super'
+         else:
+             print(f"Signal LOCKED: Bear_Super for {pair}")
+@@ -2533,14 +2535,14 @@
+         # 2. Extreme
+         if not signal_lock_enabled or not self.is_signal_locked('Bull_Extreme', pair):
+             long_condition_extreme_filtered = long_condition_extreme & (dataframe['enter_tag'] == "")
+-            dataframe.loc[long_condition_extreme_filtered, 'enter_long'] = 1
++            dataframe.loc[long_condition_extreme_filtered, 'enter_long'] = True
+             dataframe.loc[long_condition_extreme_filtered, 'enter_tag'] = 'Bull_Extreme'
+         else:
+             print(f"Signal LOCKED: Bull_Extreme for {pair}")
+         
+         if not signal_lock_enabled or not self.is_signal_locked('Bear_Extreme', pair):
+             short_condition_extreme_filtered = short_condition_extreme & (dataframe['enter_tag'] == "")
+-            dataframe.loc[short_condition_extreme_filtered, 'enter_short'] = 1
++            dataframe.loc[short_condition_extreme_filtered, 'enter_short'] = True
+             dataframe.loc[short_condition_extreme_filtered, 'enter_tag'] = 'Bear_Extreme'
+         else:
+             print(f"Signal LOCKED: Bear_Extreme for {pair}")
+@@ -2548,14 +2550,14 @@
+         # 3. HQ
+         if not signal_lock_enabled or not self.is_signal_locked('Bull_HQ', pair):
+             long_condition_hq_filtered = long_condition_hq & (dataframe['enter_tag'] == "")
+-            dataframe.loc[long_condition_hq_filtered, 'enter_long'] = 1
++            dataframe.loc[long_condition_hq_filtered, 'enter_long'] = True
+             dataframe.loc[long_condition_hq_filtered, 'enter_tag'] = 'Bull_HQ'
+         else:
+             print(f"Signal LOCKED: Bull_HQ for {pair}")
+         
+         if not signal_lock_enabled or not self.is_signal_locked('Bear_HQ', pair):
+             short_condition_hq_filtered = short_condition_hq & (dataframe['enter_tag'] == "")
+-            dataframe.loc[short_condition_hq_filtered, 'enter_short'] = 1
++            dataframe.loc[short_condition_hq_filtered, 'enter_short'] = True
+             dataframe.loc[short_condition_hq_filtered, 'enter_tag'] = 'Bear_HQ'
+         else:
+             print(f"Signal LOCKED: Bear_HQ for {pair}")
+@@ -2563,14 +2565,14 @@
+         # 4. Div
+         if not signal_lock_enabled or not self.is_signal_locked('Bull_Div', pair):
+             long_condition_filtered = long_condition & (dataframe['enter_tag'] == "")
+-            dataframe.loc[long_condition_filtered, 'enter_long'] = 1
++            dataframe.loc[long_condition_filtered, 'enter_long'] = True
+             dataframe.loc[long_condition_filtered, 'enter_tag'] = 'Bull_Div'
+         else:
+             print(f"Signal LOCKED: Bull_Div for {pair}")
+         
+         if not signal_lock_enabled or not self.is_signal_locked('Bear_Div', pair):
+             short_condition_filtered = short_condition & (dataframe['enter_tag'] == "")
+-            dataframe.loc[short_condition_filtered, 'enter_short'] = 1
++            dataframe.loc[short_condition_filtered, 'enter_short'] = True
+             dataframe.loc[short_condition_filtered, 'enter_tag'] = 'Bear_Div'
+         else:
+             print(f"Signal LOCKED: Bear_Div for {pair}")
+@@ -2578,14 +2580,14 @@
+         # 5. Early
+         if not signal_lock_enabled or not self.is_signal_locked('Bull_Early', pair):
+             early_long_filtered = early_long & (dataframe['enter_tag'] == "")
+-            dataframe.loc[early_long_filtered, 'enter_long'] = 1
++            dataframe.loc[early_long_filtered, 'enter_long'] = True
+             dataframe.loc[early_long_filtered, 'enter_tag'] = 'Bull_Early'
+         else:
+             print(f"Signal LOCKED: Bull_Early for {pair}")
+         
+         if not signal_lock_enabled or not self.is_signal_locked('Bear_Early', pair):
+             early_short_filtered = early_short & (dataframe['enter_tag'] == "")
+-            dataframe.loc[early_short_filtered, 'enter_short'] = 1
++            dataframe.loc[early_short_filtered, 'enter_short'] = True
+             dataframe.loc[early_short_filtered, 'enter_tag'] = 'Bear_Early'
+         else:
+             print(f"Signal LOCKED: Bear_Early for {pair}")
+@@ -2593,25 +2595,25 @@
+         # 6. Weak
+         if not signal_lock_enabled or not self.is_signal_locked('Bull_Weak', pair):
+             weak_long_filtered = weak_long & (dataframe['enter_tag'] == "")
+-            dataframe.loc[weak_long_filtered, 'enter_long'] = 1
++            dataframe.loc[weak_long_filtered, 'enter_long'] = True
+             dataframe.loc[weak_long_filtered, 'enter_tag'] = 'Bull_Weak'
+         else:
+             print(f"Signal LOCKED: Bull_Weak for {pair}")
+         if not signal_lock_enabled or not self.is_signal_locked('Bull_Confirmed', pair):
+             confirmed_long_filtered = long_condition2 & (dataframe['enter_tag'] == "")
+-            dataframe.loc[confirmed_long_filtered, 'enter_long'] = 1
++            dataframe.loc[confirmed_long_filtered, 'enter_long'] = True
+             dataframe.loc[confirmed_long_filtered, 'enter_tag'] = 'Bull_Confirmed'
+         else:
+             print(f"Signal LOCKED: Bull_Confirmed for {pair}")
+         if not signal_lock_enabled or not self.is_signal_locked('Bear_Confirmed', pair):
+             confirmed_short_filtered = short_condition2 & (dataframe['enter_tag'] == "")
+-            dataframe.loc[confirmed_short_filtered, 'enter_long'] = 1
++            dataframe.loc[confirmed_short_filtered, 'enter_long'] = True
+             dataframe.loc[confirmed_short_filtered, 'enter_tag'] = 'Bear_Confirmed'
+         else:
+             print(f"Signal LOCKED: Bull_Confirmed for {pair}")
+         if not signal_lock_enabled or not self.is_signal_locked('Bear_Weak', pair):
+             weak_short_filtered = weak_short & (dataframe['enter_tag'] == "")
+-            dataframe.loc[weak_short_filtered, 'enter_short'] = 1
++            dataframe.loc[weak_short_filtered, 'enter_short'] = True
+             dataframe.loc[weak_short_filtered, 'enter_tag'] = 'Bear_Weak'
+         else:
+             print(f"Signal LOCKED: Bear_Weak for {pair}")
+@@ -2619,7 +2621,7 @@
+         # 7. Fisher
+         if not signal_lock_enabled or not self.is_signal_locked('Bull_Fisher', pair):
+             fisher_long_filtered = long_condition_fisher & (dataframe['enter_tag'] == "")
+-            dataframe.loc[fisher_long_filtered, 'enter_long'] = 1
++            dataframe.loc[fisher_long_filtered, 'enter_long'] = True
+             dataframe.loc[fisher_long_filtered, 'enter_tag'] = 'Bull_Fisher'
+         else:
+             print(f"Signal LOCKED: Bull_Fisher for {pair}")
+@@ -2687,7 +2689,7 @@
+                         if base_signal == "Unknown":
+                             logger.debug(f"⚠️ [ML] Skipping unknown pattern for {pair} - no matching signal")
+                         else:
+-                            dataframe.loc[dataframe.index[-1], 'enter_long'] = 1
++                            dataframe.loc[dataframe.index[-1], 'enter_long'] = True
+                             dataframe.loc[dataframe.index[-1], 'enter_tag'] = f'ML_{base_signal}_{ml_confidence_long:.0%}'
+                             
+                             logger.info(f"🤖 [ML ENTRY] {pair} - LONG predicted")
+@@ -2719,7 +2721,7 @@
+                         if base_signal == "Unknown":
+                             logger.debug(f"⚠️ [ML] Skipping unknown pattern for {pair} - no matching signal")
+                         else:
+-                            dataframe.loc[dataframe.index[-1], 'enter_short'] = 1
++                            dataframe.loc[dataframe.index[-1], 'enter_short'] = True
+                             dataframe.loc[dataframe.index[-1], 'enter_tag'] = f'ML_{base_signal}_{ml_confidence_short:.0%}'
+                             
+                             logger.info(f"🤖 [ML ENTRY] {pair} - SHORT predicted")
+@@ -3171,8 +3173,8 @@
+         return prot
+     def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+         # Initialize
+-        dataframe['exit_long'] = 0
+-        dataframe['exit_short'] = 0  
++        dataframe['exit_long'] = False
++        dataframe['exit_short'] = False  
+         dataframe['exit_tag'] = ''
+         
+         # === YOUR OTHER EXIT CONDITIONS FIRST ===
+@@ -3184,13 +3186,13 @@
+         if 'enter_long' in dataframe.columns and 'enter_short' in dataframe.columns:
+             # Exit longs on short signals
+             reversal_long_exit = (dataframe['enter_short'] == 1)
+-            dataframe.loc[reversal_long_exit, 'exit_long'] = 1
++            dataframe.loc[reversal_long_exit, 'exit_long'] = True
+             dataframe.loc[reversal_long_exit, 'exit_tag'] = 'Reversal_Short_Signal'
+             
+             # Exit shorts on long signals  
+             if self.can_short:
+                 reversal_short_exit = (dataframe['enter_long'] == 1)
+-                dataframe.loc[reversal_short_exit, 'exit_short'] = 1
++                dataframe.loc[reversal_short_exit, 'exit_short'] = True
+                 dataframe.loc[reversal_short_exit, 'exit_tag'] = 'Reversal_Long_Signal'
+         
+         return dataframe
+@@ -3578,6 +3580,8 @@
+                 logger.error(traceback.format_exc())
+ 
+     def maybe_optimize_coin(self, pair: str, force_startup: bool = False):
++        if not self.enable_dynamic_optimization:
++            return
+         """ENHANCED optimization trigger with profit protection before optimization"""
+         if not self.optuna_manager:
+             logger.debug(f"🚫 [OPTUNA] OptunaManager not available for {pair}")

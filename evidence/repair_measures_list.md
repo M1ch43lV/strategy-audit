@@ -10,12 +10,12 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 |---|---:|---|
 | `repaired` | 201 | runs now, and the run is recorded |
 | `repair_attempted` | 23 | a route was applied and did not finish the job |
-| `to_be_fixed` | 18 | the route is known, the run has not happened yet |
-| `needs_a_look` | 39 | no route yet; the obstacle has been identified |
+| `to_be_fixed` | 17 | the route is known, the run has not happened yet |
+| `needs_a_look` | 52 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 2 | the repair made things worse and was undone |
 | `refuse_repair` | 62 | repairing it would mean inventing the strategy |
 | `excluded_by_policy` | 42 |  |
-| `-` | 62 |  |
+| `-` | 63 |  |
 | `excluded_after_repeated_timeout` | 4 |  |
 
 ## Routes taken
@@ -140,7 +140,7 @@ For example: `ARIMASTR`, `Apollo11`, `BBMod1`, `BB_RPB_TSL`, `BB_RPB_TSL_2`, `BB
 
 ### The author's own module put back on the path
 
-`repair_family: local_module_off_path` &mdash; 84 strategies (repaired 2, repair_attempted 16, to_be_fixed 1, needs_a_look 1, repair_withdrawn 2, - 62)
+`repair_family: local_module_off_path` &mdash; 84 strategies (repaired 2, repair_attempted 16, needs_a_look 1, repair_withdrawn 2, - 63)
 
 **The message.**
 
@@ -383,7 +383,7 @@ For example: `Chained`, `EMA003`, `EnsembleStrategy`, `EnsembleStrategyV1`, `Ens
 
 ### Open: pandas and numpy have moved under the strategy
 
-`repair_family: dtype_drift` &mdash; 8 strategies (to_be_fixed 1, needs_a_look 7)
+`repair_family: dtype_drift` &mdash; 11 strategies (to_be_fixed 1, needs_a_look 10)
 
 **The message.**
 
@@ -400,11 +400,11 @@ Invalid value 'False' for dtype 'float64'
 
 Tool: `blocked_triage.py`.
 
-For example: `DIV_v1`, `GPR`, `MomentumRegimeBasket15m`, `MostOfAll`, `PnF`, `TripleSuperTrendADXRSI`.
+For example: `BBMod1DCA`, `BB_RPB_TSL_Tranz_TrailingBuy`, `CME`, `DIV_v1`, `GPR`, `MomentumRegimeBasket15m`.
 
 ### Open: a package the author depended on
 
-`repair_family: third_party_package` &mdash; 20 strategies (needs_a_look 20)
+`repair_family: third_party_package` &mdash; 30 strategies (needs_a_look 30)
 
 **The message.**
 
@@ -420,7 +420,7 @@ Impossible to load Strategy '<Name>'. This class does not exist or contains Pyth
 
 Tool: `blocked_triage.py`.
 
-For example: `AIAgentTradingStrategy`, `CME`, `Cenderawasih_freqai`, `CopyLitmusMinMaxBroadClassificationStrategy`, `Enchilada`, `HMMv3`.
+For example: `Cenderawasih_freqai`, `CopyLitmusMinMaxBroadClassificationStrategy`, `Enchilada`, `HMMv3`, `KMM`, `LitmusEntryRollClassificationStrategy`.
 
 ### Open: import raises, and it isn't one of the named shapes above
 
@@ -462,7 +462,7 @@ Remora API key missing. Set REMORA_API_KEY env var.
 
 Tool: `blocked_triage.py`.
 
-For example: `AlexBandSniperV10AI`, `AlexNexusForgeV8AIV2`, `AlexNexusForgeV8AIV4_SPOT`, `Danke`, `GRIDDMIPRICEStrategyFutureV4`, `Guacamole`.
+For example: `AlexBandSniperV10AI`, `Danke`, `GRIDDMIPRICEStrategyFutureV4`, `Guacamole`, `Kamaflage`, `ONS_Portfolio`.
 
 ### Refused: FreqAI strategy, but no model named anywhere
 

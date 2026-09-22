@@ -12,17 +12,40 @@ Never write a count that a command can print: counts in prose are what made the 
 ## Baton
 
 - Last agent: claude
-- Last update: 2026-09-22T07:35+02:00
-- Stopped because: the window correction batch (below) is done and the dispatcher found nothing left to run
-  automatically; only a pre-existing manual item is open (`AlexBandSniperV10AI`, `open_work=needs_a_look;
-  recursive_ladder_pending`, unrelated to this batch).
+- Last update: 2026-09-22T09:20+02:00
+- Stopped because: `AlexBandSniperV10AI` (`repos/vaskosmihaylov_nfi-custom-strategies/.../AlexBAndSniperV10MLAI.py`)
+  is partially repaired but still blocked; the remaining cause needs an owner policy call, not a repair.
+  - Fixed and proven (`repair/patch_class2.py` rule `alex_dynamic_optimization_gate`): `enable_dynamic_optimization`
+    was hardcoded `True` against the author's own inline comment ("deaktivieren fuer Backtest"); it is now gated by
+    runmode. Two entry points that reached Optuna without checking the flag at all
+    (`maybe_optimize_coin`, `daily_optimization_check`) are closed too - same flag, same stated intent, they had
+    just never been wired to it.
+  - Still open, not repairable under the project's own no-invention rule: `bot_start()` unconditionally runs
+    `train_ml_from_backtest()` on every fresh run (no cached model on disk). It loads the strategy's FULL available
+    multi-year history for every pair in the shared data directory (`load_pair_history` called with no timerange),
+    recomputes every indicator over that, then walks each candle in a plain Python loop with a 50-candle lookahead.
+    Nothing in the file marks this backtest-inappropriate the way the Optuna flag was marked - gating it would
+    invent author intent that is not written down. Confirmed: still times out at 900s (3x the smoke default) with
+    the Optuna fix in place. Diagnosis recorded in `evidence/BLOCKED_TRIAGE.json` via a new
+    `tools/blocked_triage.py` mechanism (`STRATEGY_NOTES`, keyed by strategy_id) - needed because the generic
+    `FAMILIES` text-match cannot safely scope to one strategy sharing a generic "timeout after N seconds" message.
+  - Also fixed while investigating: `repair/patch_class2.py`'s `targets_from_profiles` read `canonical_file`
+    instead of `original_file` - once a strategy has an overlay selected as canonical, re-running the patcher for
+    it read its own previous output as source, so a rule whose precondition matches only the untouched original
+    silently stopped firing on any second run. General fix, not scoped to this strategy.
+  - Regenerated after these changes: `evidence/EXECUTION_PROFILES.csv` (`python -m evidence.execution_profiles`),
+    `evidence/BLOCKED_TRIAGE.json` and `REPAIR_LIST.md` (`python -m tools.blocked_triage --probe --list` - the
+    `--probe` matters, a bare run silently drops every import-probe classification), `STRATEGY_STATUS.csv`/`.md`
+    and `strategy_status.html` (`python -m evidence.strategy_status`).
 - Observed: `--watch` used to poll forever, printing `idle` every interval even with nothing to do; stdout is
   block-buffered when redirected to a log file, so a genuinely finished run looked stalled from the log alone (CPU
   time, not log growth, is the reliable signal). Fixed: `run_once()` now returns an outcome and `--watch` exits with a
   `"stopping"` line once `choose()` reports `idle` (`tools/pipeline_dispatcher.py`). A lock left by a hard-killed
   process (e.g. `TaskStop`) needs `--recover-stale-lock` before the next `--apply`.
 - Next agent should: run the machine-state commands before dispatching. Continue only the non-gated serial chain; do
-  not schedule, resume, or create Model 1/2/3 work until the owner reverses the pause.
+  not schedule, resume, or create Model 1/2/3 work until the owner reverses the pause. `AlexBandSniperV10AI` stays
+  `needs_a_look` until the owner decides whether to authorize gating `ml_enabled`/`bot_start` by runmode as an
+  explicit exception (it would not be provable the way the Optuna fix was).
 
 ## Objective
 

@@ -446,6 +446,96 @@ def apply_restore_feature_source(src):
     return RX_COMMENTED_MML.sub(repl, src)
 
 
+# ── rule 6b: honor the author's own "disable for backtest" comment ──────────
+
+RX_ALEX_DYN_OPT = re.compile(
+    r"^(?P<indent>[ \t]*)self\.enable_dynamic_optimization[ \t]*=[ \t]*True"
+    r"[ \t]*(?P<comment>#.*deaktivieren.*Backtest.*)$", re.M)
+
+# The flag's own name and its own log line ("Dynamic optimization:
+# {'ENABLED' if self.enable_dynamic_optimization else 'DISABLED'}") declare it
+# a single master switch for the whole feature, not just the first read of it.
+# Two of the feature's own entry points never check it at all:
+#   - maybe_optimize_coin(): reached, unguarded, from a "retrain every 20
+#     trades" trigger and a 24h periodic trigger - both real during a backtest;
+#   - daily_optimization_check(): called from populate_indicators() the very
+#     first time it runs for a pair, because `self.last_daily_check` starts at
+#     0, so `time.time() - 0 > 86400` is true immediately.
+# Silencing the startup call alone leaves the same Optuna search reachable
+# through either path, which is why the file still would not finish under the
+# flag's own stated meaning. Gating these exact, unique def lines completes
+# the single switch the author already named, rather than adding a new one.
+RX_ALEX_MAYBE_OPT_DEF = re.compile(
+    r"^(?P<indent>[ \t]*)def maybe_optimize_coin\(self, pair: str, "
+    r"force_startup: bool = False\):[ \t]*\n", re.M)
+RX_ALEX_DAILY_CHECK_DEF = re.compile(
+    r"^(?P<indent>[ \t]*)def daily_optimization_check\(self\):[ \t]*\n", re.M)
+
+
+def pre_alex_dynamic_opt(src, path):
+    """A strategy flag the author's own inline comment says to flip for
+    backtesting, but which is hardcoded True regardless of run mode, and
+    which two of the feature's own entry points never check at all.
+
+    This is not a reconstruction: the file itself states the intended
+    behaviour ("deaktivieren fuer Backtest" - disable for backtest) right next
+    to the line that fails to do it, and states the feature is a single
+    on/off concept via its own "ENABLED"/"DISABLED" log line. The patch
+    restores exactly that stated intent and changes nothing else. It is
+    scoped to fire only where all of the following hold, so it cannot
+    silently apply to a differently-shaped file:
+
+      1. the exact assignment, with the author's own qualifying comment,
+         is present and unique;
+      2. `super().__init__(config)` already ran earlier in the same method,
+         so `self.config` exists at the point of the assignment;
+      3. the flag is read at least once elsewhere in the file, so gating it
+         has an observable effect confined to what the author already named;
+      4. `maybe_optimize_coin` and `daily_optimization_check` are each
+         defined exactly once, with this exact signature, so the guard can
+         only land in the one function body it was verified against.
+    """
+    matches = list(RX_ALEX_DYN_OPT.finditer(src))
+    if not matches:
+        return False, "no 'enable_dynamic_optimization = True' with the author's own backtest-disable comment"
+    if len(matches) > 1:
+        return False, "more than one matching assignment - not unambiguous"
+    init_idx = src.find("super().__init__(config)")
+    if init_idx == -1 or init_idx > matches[0].start():
+        return False, "super().__init__(config) does not precede the assignment - self.config not proven available"
+    reads = len(re.findall(r"self\.enable_dynamic_optimization\b(?!\s*=[^=])", src))
+    if reads <= 1:  # the assignment itself is one occurrence
+        return False, "flag is never read elsewhere - gating it would have no effect"
+    maybe_defs = list(RX_ALEX_MAYBE_OPT_DEF.finditer(src))
+    daily_defs = list(RX_ALEX_DAILY_CHECK_DEF.finditer(src))
+    if len(maybe_defs) != 1:
+        return False, "maybe_optimize_coin not defined exactly once with the expected signature"
+    if len(daily_defs) != 1:
+        return False, "daily_optimization_check not defined exactly once with the expected signature"
+    return True, ("author's own comment and log line state the intended "
+                  "behaviour (a single switch, off during backtest); gates "
+                  "the hardcoded True and the two entry points that bypass "
+                  "the flag entirely, instead of inventing new logic")
+
+
+def apply_alex_dynamic_opt(src):
+    def repl_assign(m):
+        return ("%sself.enable_dynamic_optimization = ("
+                "getattr(self.config.get('runmode'), 'value', '') "
+                "not in ('backtest', 'hyperopt'))  %s"
+                % (m.group("indent"), m.group("comment").lstrip("#").strip()
+                   and "# " + m.group("comment").lstrip("#").strip()))
+    out = RX_ALEX_DYN_OPT.sub(repl_assign, src)
+
+    def repl_guard(m):
+        body_indent = m.group("indent") + "    "
+        return (m.group(0) + body_indent + "if not self.enable_dynamic_optimization:\n"
+                + body_indent + "    return\n")
+    out = RX_ALEX_MAYBE_OPT_DEF.sub(repl_guard, out)
+    out = RX_ALEX_DAILY_CHECK_DEF.sub(repl_guard, out)
+    return out
+
+
 # ── rule 7: legacy int literal into a now bool-typed column ─────────────────
 
 # freqtrade guarantees these five are declared bool without needing textual
@@ -593,6 +683,7 @@ RULES = [
     ("rolling_any_masked", pre_rolling_any_masked, apply_rolling_any_masked),
     ("rolling_any_detect_only", pre_rolling_any, None),
     ("vin_explicit_rolling_spearman", pre_vin_spearman, apply_vin_spearman),
+    ("alex_dynamic_optimization_gate", pre_alex_dynamic_opt, apply_alex_dynamic_opt),
     ("legacy_signal_int_literal", pre_signal_int_literal,
      apply_signal_int_literal),
 ]
@@ -601,6 +692,8 @@ RULES = [
 def equivalence_status(rule_names):
     """Return the strongest behavior classification among applied rules."""
     if "restore_commented_feature_source" in rule_names:
+        return "behavior_changed"
+    if "alex_dynamic_optimization_gate" in rule_names:
         return "behavior_changed"
     if "rolling_any_masked" in rule_names:
         return "output_equivalent"
@@ -617,7 +710,16 @@ def targets_from_ledger(ledger):
 
 
 def targets_from_profiles(names):
-    """Resolve explicit overlay targets without a temporary ledger file."""
+    """Resolve explicit overlay targets without a temporary ledger file.
+
+    Reads `original_file`, not `canonical_file`. Once a strategy already has
+    an overlay selected as canonical, `canonical_file` points back INTO
+    `repair/patched/` - patching from there would read the previous rule's
+    own output as source, so a rule whose precondition matches the untouched
+    original (e.g. a literal the overlay already rewrote) silently stops
+    firing on a second run. `original_file` is always the untouched repos/
+    source, which is what every rule's precondition is proven against.
+    """
     profiles = os.path.join(ROOT, "evidence", "EXECUTION_PROFILES.csv")
     rows = {row["strategy_id"]: row
             for row in csv.DictReader(io.open(profiles, encoding="utf-8-sig"))}
@@ -626,7 +728,7 @@ def targets_from_profiles(names):
         row = rows.get(name)
         if not row:
             raise ValueError("strategy not present in EXECUTION_PROFILES.csv: %s" % name)
-        out.append((name, row["repo"], row["canonical_file"]))
+        out.append((name, row["repo"], row["original_file"]))
     return out
 
 

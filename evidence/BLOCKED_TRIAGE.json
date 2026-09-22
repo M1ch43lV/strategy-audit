@@ -1,18 +1,6 @@
 {
   "probed": true,
   "results": {
-    "AIAgentTradingStrategy": {
-      "family": "third_party_package",
-      "missing_module": "dotenv",
-      "module_found_at": "",
-      "note": "Imports dotenv, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'dotenv' at AIAgentTradingStrategy.py:20",
-      "runtime_failure": "Impossible to load Strategy 'AIAgentTradingStrategy'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai/AIAgentTradingStrategy.py",
-      "strategy_id": "AIAgentTradingStrategy",
-      "verdict": "needs_a_look"
-    },
     "AdaptiveRenkoStrategy": {
       "family": "no_stoploss",
       "note": "The strategy declares no stoploss. Supplying one does not restore anything the author wrote; it invents the risk management and then measures the invention.",
@@ -31,26 +19,10 @@
     },
     "AlexBandSniperV10AI": {
       "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "'charmap' codec can't encode characters in position 6-127: character maps to <undefined>",
-      "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus/AlexBAndSniperV10MLAI.py",
+      "note": "Two independent causes, read from source, not from the timeout message. (1) enable_dynamic_optimization was hardcoded True against the author's own inline comment ('deaktivieren fuer Backtest' - disable for backtest); repaired via repair/patch_class2.py's alex_dynamic_optimization_gate, which also closes two entry points (maybe_optimize_coin, daily_optimization_check) that reached Optuna without checking the flag at all - confirmed fixed, no longer the blocker. (2) bot_start() unconditionally runs train_ml_from_backtest() on every fresh run (no cached model on disk): it loads the full available multi-year history for every pair in the shared data directory (load_pair_history is called with no timerange), recomputes every indicator over that full history, then walks each candle in a plain Python loop with a 50-candle lookahead. Nothing in the file marks this backtest-inappropriate the way (1) was marked, so gating it would invent an author intent that is not written down - outside what a Class 2 patch may do. Still times out at 900s (3x the smoke default) with (1) fixed; fixing (2) needs an explicit policy exception from the repair owner, not a repair.",
+      "runtime_failure": "timeout after 900 seconds",
+      "source_file": "repair/patched/repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus/AlexBAndSniperV10MLAI.py",
       "strategy_id": "AlexBandSniperV10AI",
-      "verdict": "needs_a_look"
-    },
-    "AlexNexusForgeV8AIV2": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "timeout after 300 seconds",
-      "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus/AlexNexusForgeV8AIV2.py",
-      "strategy_id": "AlexNexusForgeV8AIV2",
-      "verdict": "needs_a_look"
-    },
-    "AlexNexusForgeV8AIV4_SPOT": {
-      "family": "individual",
-      "note": "one of a kind; read the message",
-      "runtime_failure": "timeout after 300 seconds",
-      "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus/AlexNexusForgeV8AIV4_SPOT.py",
-      "strategy_id": "AlexNexusForgeV8AIV4_SPOT",
       "verdict": "needs_a_look"
     },
     "Astro": {
@@ -69,17 +41,13 @@
       "strategy_id": "AutoArimaTripleV1",
       "verdict": "refuse_repair"
     },
-    "BBBHold": {
-      "family": "local_module_off_path",
-      "missing_module": "Config",
-      "module_found_at": "repos/hamidreza07_freqai-strategy/startegy test/5/BigDrop/Config.py",
-      "note": "The module the author imports is in the corpus at repos/hamidreza07_freqai-strategy/startegy test/5/BigDrop/Config.py. Nothing is wrong with the strategy; our import path does not include it.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'Config' at BBBHold.py:19",
-      "runtime_failure": "Impossible to load Strategy 'BBBHold'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/_BBBHold/BBBHold.py",
-      "strategy_id": "BBBHold",
-      "verdict": "to_be_fixed"
+    "BBMod1DCA": {
+      "family": "dtype_drift",
+      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
+      "runtime_failure": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given",
+      "source_file": "user_data/profile_repairs/BBMod1DCA.py",
+      "strategy_id": "BBMod1DCA",
+      "verdict": "needs_a_look"
     },
     "BB_RPB_3c": {
       "family": "local_module_off_path",
@@ -92,6 +60,14 @@
       "source_file": "repos/PeetCrypto_freqtrade-stuff/BB_RPB_3c.py",
       "strategy_id": "BB_RPB_3c",
       "verdict": "to_be_fixed"
+    },
+    "BB_RPB_TSL_Tranz_TrailingBuy": {
+      "family": "dtype_drift",
+      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
+      "runtime_failure": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given",
+      "source_file": "user_data/profile_repairs/BB_RPB_TSL_Tranz_TrailingBuy.py",
+      "strategy_id": "BB_RPB_TSL_Tranz_TrailingBuy",
+      "verdict": "needs_a_look"
     },
     "BaseStrategy": {
       "family": "individual",
@@ -113,18 +89,14 @@
       "family": "local_module_repair_exhausted",
       "note": "BlueEyes_MPP_v1 still lacks framework symbols after restoring its explicit DataFrame annotation and exact repository-local pivots helper. Continuing symbol-by-symbol would reconstruct an incomplete strategy file rather than apply one bounded compatibility repair.",
       "runtime_failure": "name 'merge_informative_pair' is not defined",
-      "source_file": "user_data/profile_repairs/BlueEyes_MPP_v1.py",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/BlueEyes_MPP_v1.py",
       "strategy_id": "BlueEyes_MPP_v1",
       "verdict": "refuse_repair"
     },
     "CME": {
-      "family": "third_party_package",
-      "missing_module": "tvDatafeed",
-      "module_found_at": "",
-      "note": "Imports tvDatafeed, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'tvDatafeed' at CME.py:24",
-      "runtime_failure": "Impossible to load Strategy 'CME'. This class does not exist or contains Python code errors.",
+      "family": "dtype_drift",
+      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
+      "runtime_failure": "incompatible merge keys [0] dtype('<M8[ms]') and dtype('<M8[us]'), must be the same type",
       "source_file": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/CME/user_data/strategies/CME.py",
       "strategy_id": "CME",
       "verdict": "needs_a_look"
@@ -175,11 +147,11 @@
     },
     "CopyLitmusMinMaxBroadClassificationStrategy": {
       "family": "third_party_package",
-      "missing_module": "freqtrade.litmus",
+      "missing_module": "feature_engine",
       "module_found_at": "",
-      "note": "Imports freqtrade.litmus, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "note": "Imports feature_engine, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'freqtrade.litmus' at CopyLitmusMinMaxBroadClassificationStrategy.py:8",
+      "probe_detail": "ModuleNotFoundError: No module named 'feature_engine' at CopyLitmusMinMaxBroadClassificationStrategy.py:3",
       "runtime_failure": "Impossible to load Strategy 'CopyLitmusMinMaxBroadClassificationStrategy'. This class does not exist or contains Python code errors.",
       "source_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated/CopyLitmusMinMaxBroadClassificationStrategy.py",
       "strategy_id": "CopyLitmusMinMaxBroadClassificationStrategy",
@@ -231,6 +203,14 @@
       "runtime_failure": "timeout after 900 seconds",
       "source_file": "user_data/profile_repairs/Danke.py",
       "strategy_id": "Danke",
+      "verdict": "needs_a_look"
+    },
+    "DualModelPolymarketPortfolio": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "",
+      "source_file": "repos/mlsys-io_PortfolioBench/user_data/strategies/DualModelPolymarketPortfolio.py",
+      "strategy_id": "DualModelPolymarketPortfolio",
       "verdict": "needs_a_look"
     },
     "E0V1EAI": {
@@ -395,11 +375,11 @@
     },
     "HMMv3": {
       "family": "third_party_package",
-      "missing_module": "hmmlearn",
+      "missing_module": "yfinance",
       "module_found_at": "",
-      "note": "Imports hmmlearn, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "note": "Imports yfinance, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'hmmlearn' at HMMv3.py:35",
+      "probe_detail": "ModuleNotFoundError: No module named 'yfinance' at HMMv3.py:33",
       "runtime_failure": "Impossible to load Strategy 'HMMv3'. This class does not exist or contains Python code errors.",
       "source_file": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/HMM_updated/user_data/strategies/HMMv3.py",
       "strategy_id": "HMMv3",
@@ -427,11 +407,11 @@
     },
     "LitmusEntryRollClassificationStrategy": {
       "family": "third_party_package",
-      "missing_module": "freqtrade.litmus",
+      "missing_module": "feature_engine",
       "module_found_at": "",
-      "note": "Imports freqtrade.litmus, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "note": "Imports feature_engine, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'freqtrade.litmus' at LitmusEntryRollClassificationStrategy.py:7",
+      "probe_detail": "ModuleNotFoundError: No module named 'feature_engine' at LitmusEntryRollClassificationStrategy.py:3",
       "runtime_failure": "Impossible to load Strategy 'LitmusEntryRollClassificationStrategy'. This class does not exist or contains Python code errors.",
       "source_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/deprecated/LitmusEntryRollClassificationStrategy.py",
       "strategy_id": "LitmusEntryRollClassificationStrategy",
@@ -447,11 +427,11 @@
     },
     "LitmusMLDPStrategy": {
       "family": "third_party_package",
-      "missing_module": "freqtrade.litmus",
+      "missing_module": "feature_engine",
       "module_found_at": "",
-      "note": "Imports freqtrade.litmus, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "note": "Imports feature_engine, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'freqtrade.litmus' at LitmusMLDPStrategy.py:12",
+      "probe_detail": "ModuleNotFoundError: No module named 'feature_engine' at LitmusMLDPStrategy.py:8",
       "runtime_failure": "Impossible to load Strategy 'LitmusMLDPStrategy'. This class does not exist or contains Python code errors.",
       "source_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusMLDPStrategy.py",
       "strategy_id": "LitmusMLDPStrategy",
@@ -467,11 +447,11 @@
     },
     "LitmusMinMaxBroadClassificationStrategy": {
       "family": "third_party_package",
-      "missing_module": "freqtrade.litmus",
+      "missing_module": "feature_engine",
       "module_found_at": "",
-      "note": "Imports freqtrade.litmus, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "note": "Imports feature_engine, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'freqtrade.litmus' at LitmusMinMaxBroadClassificationStrategy.py:7",
+      "probe_detail": "ModuleNotFoundError: No module named 'feature_engine' at LitmusMinMaxBroadClassificationStrategy.py:3",
       "runtime_failure": "Impossible to load Strategy 'LitmusMinMaxBroadClassificationStrategy'. This class does not exist or contains Python code errors.",
       "source_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/user_data/strategies/LitmusMinMaxBroadClassificationStrategy.py",
       "strategy_id": "LitmusMinMaxBroadClassificationStrategy",
@@ -585,6 +565,14 @@
       "strategy_id": "MostOfAll",
       "verdict": "needs_a_look"
     },
+    "MultiMA_TSL3a": {
+      "family": "dtype_drift",
+      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
+      "runtime_failure": "The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the given",
+      "source_file": "user_data/profile_repairs/MultiMA_TSL3a.py",
+      "strategy_id": "MultiMA_TSL3a",
+      "verdict": "needs_a_look"
+    },
     "MultiMa": {
       "family": "author_logic_incomplete",
       "note": "MultiMa generates indicator moving-average columns from a runtime-dependent parameter range and then reads columns it did not generate. Choosing a corrected range changes the signals.",
@@ -617,29 +605,89 @@
       "strategy_id": "MyStrategyNew10",
       "verdict": "refuse_repair"
     },
-    "NFIX7Risk": {
-      "family": "local_module_off_path",
-      "missing_module": "NostalgiaForInfinityX7",
-      "module_found_at": "repos/iterativv_NostalgiaForInfinity/NostalgiaForInfinityX7.py",
-      "note": "The module the author imports is in the corpus at repos/iterativv_NostalgiaForInfinity/NostalgiaForInfinityX7.py. Nothing is wrong with the strategy; our import path does not include it.",
+    "NNPredict_Attention": {
+      "family": "third_party_package",
+      "missing_module": "pywt",
+      "module_found_at": "",
+      "note": "Imports pywt, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'NostalgiaForInfinityX7' at NFIX7Risk.py:33",
-      "runtime_failure": "Impossible to load Strategy 'NFIX7Risk'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/beanbocchi_money-generator/overlay/NFIX7Risk.py",
-      "strategy_id": "NFIX7Risk",
-      "verdict": "to_be_fixed"
+      "probe_detail": "ModuleNotFoundError: No module named 'pywt' at NNPredict_Attention.py:6",
+      "runtime_failure": "Impossible to load Strategy 'NNPredict_Attention'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/NNPredict/NNPredict_Attention.py",
+      "strategy_id": "NNPredict_Attention",
+      "verdict": "needs_a_look"
     },
-    "NNPredict": {
-      "family": "local_module_off_path",
-      "missing_module": "utils",
-      "module_found_at": "repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/utils",
-      "note": "The module the author imports is in the corpus at repos/hamidreza07_freqai-strategy/startegy test/5/_Anomaly/utils. Nothing is wrong with the strategy; our import path does not include it.",
+    "NNPredict_NBeats": {
+      "family": "third_party_package",
+      "missing_module": "pywt",
+      "module_found_at": "",
+      "note": "Imports pywt, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'utils' at NNPredict.py:40",
-      "runtime_failure": "Impossible to load Strategy 'NNPredict'. This class does not exist or contains Python code errors.",
-      "source_file": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/NNPredict.py",
-      "strategy_id": "NNPredict",
-      "verdict": "to_be_fixed"
+      "probe_detail": "ModuleNotFoundError: No module named 'pywt' at NNPredict_NBeats.py:6",
+      "runtime_failure": "Impossible to load Strategy 'NNPredict_NBeats'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_NBeats.py",
+      "strategy_id": "NNPredict_NBeats",
+      "verdict": "needs_a_look"
+    },
+    "NNPredict_NHiTS": {
+      "family": "third_party_package",
+      "missing_module": "pywt",
+      "module_found_at": "",
+      "note": "Imports pywt, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'pywt' at NNPredict_NHiTS.py:6",
+      "runtime_failure": "Impossible to load Strategy 'NNPredict_NHiTS'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_NHiTS.py",
+      "strategy_id": "NNPredict_NHiTS",
+      "verdict": "needs_a_look"
+    },
+    "NNPredict_NLinear": {
+      "family": "third_party_package",
+      "missing_module": "pywt",
+      "module_found_at": "",
+      "note": "Imports pywt, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'pywt' at NNPredict_NLinear.py:6",
+      "runtime_failure": "Impossible to load Strategy 'NNPredict_NLinear'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_NLinear.py",
+      "strategy_id": "NNPredict_NLinear",
+      "verdict": "needs_a_look"
+    },
+    "NNPredict_Ray": {
+      "family": "third_party_package",
+      "missing_module": "pywt",
+      "module_found_at": "",
+      "note": "Imports pywt, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'pywt' at NNPredict_Ray.py:9",
+      "runtime_failure": "Impossible to load Strategy 'NNPredict_Ray'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_Ray.py",
+      "strategy_id": "NNPredict_Ray",
+      "verdict": "needs_a_look"
+    },
+    "NNPredict_TFT": {
+      "family": "third_party_package",
+      "missing_module": "pywt",
+      "module_found_at": "",
+      "note": "Imports pywt, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'pywt' at NNPredict_TFT.py:6",
+      "runtime_failure": "Impossible to load Strategy 'NNPredict_TFT'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_TFT.py",
+      "strategy_id": "NNPredict_TFT",
+      "verdict": "needs_a_look"
+    },
+    "NNPredict_dTransformer": {
+      "family": "third_party_package",
+      "missing_module": "pywt",
+      "module_found_at": "",
+      "note": "Imports pywt, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'pywt' at NNPredict_dTransformer.py:6",
+      "runtime_failure": "Impossible to load Strategy 'NNPredict_dTransformer'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/webclinic017_strategies-freqtrade-/binanceus/NNPredict_dTransformer.py",
+      "strategy_id": "NNPredict_dTransformer",
+      "verdict": "needs_a_look"
     },
     "NewsHeliusBitqueryML": {
       "family": "class_not_loaded",
@@ -708,13 +756,9 @@
       "verdict": "refuse_repair"
     },
     "QuatreMousquetaires": {
-      "family": "third_party_package",
-      "missing_module": "tvDatafeed",
-      "module_found_at": "",
-      "note": "Imports tvDatafeed, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
-      "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'tvDatafeed' at QuatreMousquetaires.py:32",
-      "runtime_failure": "Impossible to load Strategy 'QuatreMousquetaires'. This class does not exist or contains Python code errors.",
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "\"None of ['date'] are in the columns\"",
       "source_file": "repos/djienne_YOUTUBE_STRATEGIES_FREQTRADE/Experiences/4Mousquetaires/user_data/strategies/QuatreMousquetaires.py",
       "strategy_id": "QuatreMousquetaires",
       "verdict": "needs_a_look"
@@ -775,6 +819,98 @@
       "strategy_id": "SimpleRiskFilterStrategy",
       "verdict": "refuse_repair"
     },
+    "Solipsis": {
+      "family": "third_party_package",
+      "missing_module": "arrow",
+      "module_found_at": "",
+      "note": "Imports arrow, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'arrow' at Solipsis-tradedbexp.py:4",
+      "runtime_failure": "Impossible to load Strategy 'Solipsis'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-tradedbexp.py",
+      "strategy_id": "Solipsis",
+      "verdict": "needs_a_look"
+    },
+    "Solipsis3_BTC": {
+      "family": "third_party_package",
+      "missing_module": "arrow",
+      "module_found_at": "",
+      "note": "Imports arrow, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'arrow' at Solipsis-v3.py:4",
+      "runtime_failure": "Impossible to load Strategy 'Solipsis3_BTC'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-v3.py",
+      "strategy_id": "Solipsis3_BTC",
+      "verdict": "needs_a_look"
+    },
+    "Solipsis3_ETH": {
+      "family": "third_party_package",
+      "missing_module": "arrow",
+      "module_found_at": "",
+      "note": "Imports arrow, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'arrow' at Solipsis-v3.py:4",
+      "runtime_failure": "Impossible to load Strategy 'Solipsis3_ETH'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-v3.py",
+      "strategy_id": "Solipsis3_ETH",
+      "verdict": "needs_a_look"
+    },
+    "Solipsis4": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis_v4.py",
+      "strategy_id": "Solipsis4",
+      "verdict": "needs_a_look"
+    },
+    "Solipsis4_BTC": {
+      "family": "third_party_package",
+      "missing_module": "arrow",
+      "module_found_at": "",
+      "note": "Imports arrow, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'arrow' at Solipsis_v4.py:4",
+      "runtime_failure": "Impossible to load Strategy 'Solipsis4_BTC'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis_v4.py",
+      "strategy_id": "Solipsis4_BTC",
+      "verdict": "needs_a_look"
+    },
+    "Solipsis4_ETH": {
+      "family": "third_party_package",
+      "missing_module": "arrow",
+      "module_found_at": "",
+      "note": "Imports arrow, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'arrow' at Solipsis_v4.py:4",
+      "runtime_failure": "Impossible to load Strategy 'Solipsis4_ETH'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis_v4.py",
+      "strategy_id": "Solipsis4_ETH",
+      "verdict": "needs_a_look"
+    },
+    "Solipsis5_BTC": {
+      "family": "third_party_package",
+      "missing_module": "arrow",
+      "module_found_at": "",
+      "note": "Imports arrow, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'arrow' at Solipsis-v2.5.py:4",
+      "runtime_failure": "Impossible to load Strategy 'Solipsis5_BTC'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-v2.5.py",
+      "strategy_id": "Solipsis5_BTC",
+      "verdict": "needs_a_look"
+    },
+    "Solipsis5_ETH": {
+      "family": "third_party_package",
+      "missing_module": "arrow",
+      "module_found_at": "",
+      "note": "Imports arrow, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'arrow' at Solipsis-v2.5.py:4",
+      "runtime_failure": "Impossible to load Strategy 'Solipsis5_ETH'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-v2.5.py",
+      "strategy_id": "Solipsis5_ETH",
+      "verdict": "needs_a_look"
+    },
     "Solipsis6": {
       "family": "individual",
       "note": "one of a kind; read the message",
@@ -783,12 +919,96 @@
       "strategy_id": "Solipsis6",
       "verdict": "needs_a_look"
     },
+    "Solipsis6_BTC": {
+      "family": "third_party_package",
+      "missing_module": "arrow",
+      "module_found_at": "",
+      "note": "Imports arrow, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'arrow' at Solipsis-v2.6.py:4",
+      "runtime_failure": "Impossible to load Strategy 'Solipsis6_BTC'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-v2.6.py",
+      "strategy_id": "Solipsis6_BTC",
+      "verdict": "needs_a_look"
+    },
+    "Solipsis6_ETH": {
+      "family": "third_party_package",
+      "missing_module": "arrow",
+      "module_found_at": "",
+      "note": "Imports arrow, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'arrow' at Solipsis-v2.6.py:4",
+      "runtime_failure": "Impossible to load Strategy 'Solipsis6_ETH'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-v2.6.py",
+      "strategy_id": "Solipsis6_ETH",
+      "verdict": "needs_a_look"
+    },
+    "SolipsisCon_BTC": {
+      "family": "third_party_package",
+      "missing_module": "arrow",
+      "module_found_at": "",
+      "note": "Imports arrow, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'arrow' at Solipsis-Con-v1.py:4",
+      "runtime_failure": "Impossible to load Strategy 'SolipsisCon_BTC'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-Con-v1.py",
+      "strategy_id": "SolipsisCon_BTC",
+      "verdict": "needs_a_look"
+    },
     "SolipsisMM": {
       "family": "individual",
       "note": "one of a kind; read the message",
       "runtime_failure": "module 'custom_indicators' has no attribute 'fib_ret'",
       "source_file": "repos/PeetCrypto_freqtrade-stuff/SolipsisMM.py",
       "strategy_id": "SolipsisMM",
+      "verdict": "needs_a_look"
+    },
+    "SolipsisMM_BTC": {
+      "family": "third_party_package",
+      "missing_module": "arrow",
+      "module_found_at": "",
+      "note": "Imports arrow, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'arrow' at SolipsisMM.py:4",
+      "runtime_failure": "Impossible to load Strategy 'SolipsisMM_BTC'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/SolipsisMM.py",
+      "strategy_id": "SolipsisMM_BTC",
+      "verdict": "needs_a_look"
+    },
+    "SolipsisMM_ETH": {
+      "family": "third_party_package",
+      "missing_module": "arrow",
+      "module_found_at": "",
+      "note": "Imports arrow, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'arrow' at SolipsisMM.py:4",
+      "runtime_failure": "Impossible to load Strategy 'SolipsisMM_ETH'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/SolipsisMM.py",
+      "strategy_id": "SolipsisMM_ETH",
+      "verdict": "needs_a_look"
+    },
+    "Solipsis_BTC": {
+      "family": "third_party_package",
+      "missing_module": "arrow",
+      "module_found_at": "",
+      "note": "Imports arrow, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'arrow' at Solipsis-tradedbexp.py:4",
+      "runtime_failure": "Impossible to load Strategy 'Solipsis_BTC'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-tradedbexp.py",
+      "strategy_id": "Solipsis_BTC",
+      "verdict": "needs_a_look"
+    },
+    "Solipsis_ETH": {
+      "family": "third_party_package",
+      "missing_module": "arrow",
+      "module_found_at": "",
+      "note": "Imports arrow, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "probe": "import_raises",
+      "probe_detail": "ModuleNotFoundError: No module named 'arrow' at Solipsis-Con-v1.py:4",
+      "runtime_failure": "Impossible to load Strategy 'Solipsis_ETH'. This class does not exist or contains Python code errors.",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-Con-v1.py",
+      "strategy_id": "Solipsis_ETH",
       "verdict": "needs_a_look"
     },
     "TGMA": {
@@ -801,15 +1021,31 @@
     },
     "TM3MultiClass": {
       "family": "third_party_package",
-      "missing_module": "lib",
+      "missing_module": "lib.ma",
       "module_found_at": "",
-      "note": "Imports lib, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "note": "Imports lib.ma, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'lib' at TM3MultiClass.py:11",
+      "probe_detail": "ModuleNotFoundError: No module named 'lib.ma' at TM3MultiClass.py:11",
       "runtime_failure": "Impossible to load Strategy 'TM3MultiClass'. This class does not exist or contains Python code errors.",
       "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Ai/TM3MultiClass.py",
       "strategy_id": "TM3MultiClass",
       "verdict": "needs_a_look"
+    },
+    "TPActivatingTSLwithInitialTSLStrategy": {
+      "family": "timeframe_missing",
+      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
+      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
+      "source_file": "repos/keithorange_FreqTradeCustomOrders/tp_activating_tsl_with_inital_tsl_strategy.py",
+      "strategy_id": "TPActivatingTSLwithInitialTSLStrategy",
+      "verdict": "to_be_fixed"
+    },
+    "TPActivatingTSLwithSLStrategy": {
+      "family": "timeframe_missing",
+      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
+      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
+      "source_file": "repos/keithorange_FreqTradeCustomOrders/tp_activating_tsl_with_sl_strategy.py",
+      "strategy_id": "TPActivatingTSLwithSLStrategy",
+      "verdict": "to_be_fixed"
     },
     "TaSearchLevelG15m": {
       "family": "no_stoploss",
@@ -818,6 +1054,14 @@
       "source_file": "repos/hamidreza07_freqai-strategy/startegy test/3/TaSearchLevelG15m/TaSearchLevelG15m.py",
       "strategy_id": "TaSearchLevelG15m",
       "verdict": "refuse_repair"
+    },
+    "TrailingStopLossStrategy": {
+      "family": "timeframe_missing",
+      "note": "37 of these declare the value as ticker_interval, freqtrade's own name for the field before 2021.4. eligibility_timeframe_repair carries it across; the rest are refused there with a reason.",
+      "runtime_failure": "Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`",
+      "source_file": "repos/keithorange_FreqTradeCustomOrders/trailing_stop_loss_strategy.py",
+      "strategy_id": "TrailingStopLossStrategy",
+      "verdict": "to_be_fixed"
     },
     "TrainCatBoostStrategy": {
       "family": "no_stoploss",
@@ -835,14 +1079,6 @@
       "strategy_id": "TrendMomoClassifier",
       "verdict": "to_be_fixed"
     },
-    "TripleSuperTrendADXRSI": {
-      "family": "dtype_drift",
-      "note": "The strategy's own code trips a pandas or numpy type rule that has tightened since it was written. Sometimes a one-line cast the author would recognise, sometimes a real bug. Not one family, despite the shared message.",
-      "runtime_failure": "Invalid value '0' for dtype 'str'. Value should be a string or missing value, got 'int' instead.",
-      "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/TripleSuperTrendADXRSI/TripleSuperTrendADXRSI.py",
-      "strategy_id": "TripleSuperTrendADXRSI",
-      "verdict": "needs_a_look"
-    },
     "TuplaBollinger": {
       "family": "unsupported_exchange_timeframe",
       "note": "TuplaBollinger declares 5h, which Binance does not publish. Resampling another interval would introduce a new candle construction and change the measured strategy.",
@@ -854,7 +1090,7 @@
     "UltraSmartStrategy": {
       "family": "individual",
       "note": "one of a kind; read the message",
-      "runtime_failure": "timeout after 300 seconds",
+      "runtime_failure": "timeout after 3600 seconds",
       "source_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/Lmao/UltraSmartStrategy.py",
       "strategy_id": "UltraSmartStrategy",
       "verdict": "needs_a_look"
@@ -867,6 +1103,14 @@
       "strategy_id": "UpSliceStrategy",
       "verdict": "refuse_repair"
     },
+    "ViNBuyVws": {
+      "family": "individual",
+      "note": "one of a kind; read the message",
+      "runtime_failure": "Rolling.corr() got an unexpected keyword argument 'method'",
+      "source_file": "repos/PeetCrypto_freqtrade-stuff/vin.py",
+      "strategy_id": "ViNBuyVws",
+      "verdict": "needs_a_look"
+    },
     "el_extrema_RL": {
       "family": "freqai_not_enabled",
       "note": "A runtime matter, not a strategy defect: the image needs torch and the config needs a freqai block. Already queued as the FreqAI arm.",
@@ -877,11 +1121,11 @@
     },
     "kac_index_v1": {
       "family": "third_party_package",
-      "missing_module": "tvDatafeed",
+      "missing_module": "ta",
       "module_found_at": "",
-      "note": "Imports tvDatafeed, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "note": "Imports ta, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'tvDatafeed' at kac_index_v1.py:32",
+      "probe_detail": "ModuleNotFoundError: No module named 'ta' at kac_index_v1.py:20",
       "runtime_failure": "Impossible to load Strategy 'kac_index_v1'. This class does not exist or contains Python code errors.",
       "source_file": "repos/titouannwtt_freqtrade-france-strategies-kac-index/freqtrade/user_data/strategies/kac_index_v1.py",
       "strategy_id": "kac_index_v1",
@@ -889,11 +1133,11 @@
     },
     "kac_index_v2": {
       "family": "third_party_package",
-      "missing_module": "tvDatafeed",
+      "missing_module": "ta",
       "module_found_at": "",
-      "note": "Imports tvDatafeed, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
+      "note": "Imports ta, which is not in the corpus and not in the image. Installing an author's declared dependency is legitimate, but it rebuilds the pinned runtime, so it is one decision for all of them rather than a per-row repair.",
       "probe": "import_raises",
-      "probe_detail": "ModuleNotFoundError: No module named 'tvDatafeed' at kac_index_v2.py:39",
+      "probe_detail": "ModuleNotFoundError: No module named 'ta' at kac_index_v2.py:23",
       "runtime_failure": "Impossible to load Strategy 'kac_index_v2'. This class does not exist or contains Python code errors.",
       "source_file": "repos/titouannwtt_freqtrade-france-strategies-kac-index/freqtrade/user_data/strategies/kac_index_v2.py",
       "strategy_id": "kac_index_v2",
