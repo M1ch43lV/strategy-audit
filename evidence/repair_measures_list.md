@@ -11,7 +11,7 @@ Each repaired strategy carries its route in the status table, in `repair_family`
 | `repaired` | 201 | runs now, and the run is recorded |
 | `repair_attempted` | 23 | a route was applied and did not finish the job |
 | `to_be_fixed` | 17 | the route is known, the run has not happened yet |
-| `needs_a_look` | 52 | no route yet; the obstacle has been identified |
+| `needs_a_look` | 51 | no route yet; the obstacle has been identified |
 | `repair_withdrawn` | 2 | the repair made things worse and was undone |
 | `refuse_repair` | 62 | repairing it would mean inventing the strategy |
 | `excluded_by_policy` | 42 |  |
@@ -444,7 +444,7 @@ For example: `NewsHeliusBitqueryML`.
 
 ### Open: one of a kind
 
-`repair_family: individual` &mdash; 10 strategies (needs_a_look 10)
+`repair_family: individual` &mdash; 9 strategies (needs_a_look 9)
 
 **The message.**
 
@@ -462,7 +462,7 @@ Remora API key missing. Set REMORA_API_KEY env var.
 
 Tool: `blocked_triage.py`.
 
-For example: `AlexBandSniperV10AI`, `Danke`, `GRIDDMIPRICEStrategyFutureV4`, `Guacamole`, `Kamaflage`, `ONS_Portfolio`.
+For example: `Danke`, `GRIDDMIPRICEStrategyFutureV4`, `Guacamole`, `Kamaflage`, `ONS_Portfolio`, `QuatreMousquetaires`.
 
 ### Refused: FreqAI strategy, but no model named anywhere
 

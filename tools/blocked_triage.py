@@ -309,7 +309,7 @@ def locate_module(dotted, source_file):
 STRATEGY_NOTES = {
     "AlexBandSniperV10AI": (
         "individual", "needs_a_look",
-        "Two independent causes, read from source, not from the timeout "
+        "Three independent causes, read from source, not from the timeout "
         "message. (1) enable_dynamic_optimization was hardcoded True against "
         "the author's own inline comment ('deaktivieren fuer Backtest' - "
         "disable for backtest); repaired via repair/patch_class2.py's "
@@ -324,9 +324,32 @@ STRATEGY_NOTES = {
         "candle in a plain Python loop with a 50-candle lookahead. Nothing in "
         "the file marks this backtest-inappropriate the way (1) was marked, "
         "so gating it would invent an author intent that is not written down "
-        "- outside what a Class 2 patch may do. Still times out at 900s (3x "
-        "the smoke default) with (1) fixed; fixing (2) needs an explicit "
-        "policy exception from the repair owner, not a repair."),
+        "- outside what a Class 2 patch may do. Worked around by pretraining "
+        "the ML model once (author's own bot_start() cache path: "
+        "ml_entry_predictor.pkl) before the backtest, not by gating the code. "
+        "(3) [resolved] lookahead-analysis used to crash with 'Can only "
+        "compare identically-labeled (both index and columns) DataFrame "
+        "objects' - confirmed by monkey-patching "
+        "LookaheadAnalysis.analyze_indicators and driving the real "
+        "start_lookahead_analysis() entry point: the full-history run "
+        "carried six merged 1h-informative columns (close_1h/date_1h/high_1h/"
+        "low_1h/open_1h/volume_1h), the cut window near the candidate trade "
+        "did not. Cause was in populate_indicators: 'if informative_1h is "
+        "not None and len(informative_1h) > 50 and not "
+        "informative_1h.empty:' skips merge_informative_pair entirely when "
+        "fewer than 50 1h candles are available, while startup_candle_count "
+        "was hardcoded to 10 - far too low to guarantee 50+ 1h candles "
+        "(needs roughly 50*4=200 15m candles just for that guard, more for "
+        "the ema200_1h it then computes) ahead of any analysis window. "
+        "Repaired on the repair owner's explicit direction (raising the "
+        "declared warm-up is a behavior change, not a mechanical fix, so it "
+        "was not applied silently) via repair/patch_class2.py's "
+        "alex_startup_candle_count (10 -> 220 15m candles). Lookahead-"
+        "analysis now completes cleanly with a native verdict: bias found, "
+        "20 of 20 entry signals and 1 of 20 exit signals biased, spanning "
+        "the divergence/pivot and ML-confidence indicators. Strategy is "
+        "excluded on that native evidence (exclusion_reason=lookahead_found) "
+        "- no longer blocked, this note is kept as the repair record."),
 }
 
 

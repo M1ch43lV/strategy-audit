@@ -536,6 +536,72 @@ def apply_alex_dynamic_opt(src):
     return out
 
 
+# ── rule 6c: startup_candle_count too low for the file's own 1h guard ───────
+
+RX_ALEX_STARTUP = re.compile(
+    r"^(?P<indent>[ \t]*)startup_candle_count[ \t]*:[ \t]*int[ \t]*=[ \t]*10[ \t]*$",
+    re.M)
+RX_ALEX_1H_GUARD = re.compile(
+    r"len\(informative_1h\)[ \t]*>[ \t]*50")
+
+# 220 fifteen-minute candles is the smallest round number that clears the
+# file's own "len(informative_1h) > 50" guard with a margin: freqtrade loads
+# informative-timeframe history to cover the same wall-clock span as
+# startup_candle_count on the base (15m) timeframe, so 1h coverage scales by
+# the timeframe ratio (60/15 = 4). 220/4 = 55 1h candles, five clear of the
+# guard's own ">50" - enough that a partial trailing 1h candle at the window
+# edge cannot drop it back to 50 or below. The previous value of 10 cleared
+# neither this guard nor the ema200_1h computed two lines below it once the
+# guard passes.
+ALEX_STARTUP_VALUE = 220
+
+
+def pre_alex_startup_candles(src, path):
+    """`startup_candle_count = 10` is inconsistent with the file's own 1h
+    merge guard (`len(informative_1h) > 50`, populate_indicators) and the
+    ema200_1h it computes once that guard passes - both need far more
+    warm-up than 10 candles can supply. In a short analysis window (the
+    lookahead-analysis "cut" slice near a candidate trade, or the start of
+    any backtest) the guard fails silently, merge_informative_pair is never
+    called, and the six merged 1h/OHLCV columns are present in a longer run
+    but absent in a shorter one - the exact column-set mismatch that crashes
+    freqtrade's own lookahead-analysis
+    ("Can only compare identically-labeled ... DataFrame objects"), and
+    silently changes the strategy's own decision inputs near the start of
+    any run. This does not invent new behaviour: it makes the declared
+    warm-up honor a threshold and a computation the author's own file
+    already require, restoring what len(informative_1h) > 50 assumed was
+    guaranteed. It cannot be called strictly equivalent (any run's leading
+    candles that used to fall short of the guard were seeing dummy 1h
+    columns and now see merged real ones), so it is applied only on the
+    repair owner's explicit direction, not inferred silently like a pure
+    bugfix would be.
+
+    Scoped to fire only where all of the following hold:
+      1. the exact declaration is present and unique;
+      2. the file's own `len(informative_1h) > 50` guard is present, so the
+         fix is proven to target the guard it was diagnosed against, not a
+         differently-shaped file that happens to share the same default.
+    """
+    matches = list(RX_ALEX_STARTUP.finditer(src))
+    if not matches:
+        return False, "no 'startup_candle_count: int = 10' declaration"
+    if len(matches) > 1:
+        return False, "more than one matching declaration - not unambiguous"
+    if not RX_ALEX_1H_GUARD.search(src):
+        return False, "file's own 'len(informative_1h) > 50' guard not found - not the diagnosed shape"
+    return True, ("startup_candle_count raised to %d so the file's own "
+                  "len(informative_1h) > 50 guard and ema200_1h computation "
+                  "have the warm-up they require in every analysis window, "
+                  "not just long ones" % ALEX_STARTUP_VALUE)
+
+
+def apply_alex_startup_candles(src):
+    def repl(m):
+        return "%sstartup_candle_count: int = %d" % (m.group("indent"), ALEX_STARTUP_VALUE)
+    return RX_ALEX_STARTUP.sub(repl, src)
+
+
 # ── rule 7: legacy int literal into a now bool-typed column ─────────────────
 
 # freqtrade guarantees these five are declared bool without needing textual
@@ -684,6 +750,7 @@ RULES = [
     ("rolling_any_detect_only", pre_rolling_any, None),
     ("vin_explicit_rolling_spearman", pre_vin_spearman, apply_vin_spearman),
     ("alex_dynamic_optimization_gate", pre_alex_dynamic_opt, apply_alex_dynamic_opt),
+    ("alex_startup_candle_count", pre_alex_startup_candles, apply_alex_startup_candles),
     ("legacy_signal_int_literal", pre_signal_int_literal,
      apply_signal_int_literal),
 ]
@@ -694,6 +761,8 @@ def equivalence_status(rule_names):
     if "restore_commented_feature_source" in rule_names:
         return "behavior_changed"
     if "alex_dynamic_optimization_gate" in rule_names:
+        return "behavior_changed"
+    if "alex_startup_candle_count" in rule_names:
         return "behavior_changed"
     if "rolling_any_masked" in rule_names:
         return "output_equivalent"

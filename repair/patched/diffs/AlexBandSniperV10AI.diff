@@ -1,5 +1,14 @@
 --- original/repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus/AlexBAndSniperV10MLAI.py
 +++ patched/repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus/AlexBAndSniperV10MLAI.py
+@@ -649,7 +649,7 @@
+     index_range = IntParameter(20, 50, default=30, space='buy', optimize=True, load=True)
+ 
+     # Number of candles the strategy requires before producing valid signals
+-    startup_candle_count: int = 10
++    startup_candle_count: int = 220
+ 
+     # Protection parameters
+     cooldown_lookback = IntParameter(2, 48, default=1, space="protection", optimize=True)
 @@ -732,7 +732,7 @@
          self.coin_performance: Dict[str, float] = {}  # ADDED: Performance-Tracking pro Coin
          

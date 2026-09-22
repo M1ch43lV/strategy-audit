@@ -240,6 +240,26 @@
       "run_profile": "futures_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
+    "AlexBandSniperV10AI": {
+      "canonical_sha256": "sha256_90790053e4b0f8890adfcdc9cc9c32ea3af8d2b29cf82c083ffaadfec4867c03",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "debug_log": "user_data/profile_bias_logs/AlexBandSniperV10AI-2adb86cf-lookahead.log",
+        "elapsed_s": 817.1,
+        "invocation": "freqtrade lookahead-analysis --config runtime/profile_futures_config.json --strategy AlexBandSniperV10AI --strategy-path user_data/profile_bias_strategies/AlexBandSniperV10AI-2adb86cf --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_b4cabded54d56667cb72019e797dc3bea02682b0a287700039998a13a39609a3",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "FOUND",
+        "timerange": "20200301-20200601",
+        "why": "bias: entries 20, exits 1 of 20 signals; indicators pivot_lows, total_bullish_divergences, total_bullish_divergences_count,"
+      },
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
     "AlexBandSniperV58COptuna": {
       "canonical_sha256": "sha256_ea74116e04267f9882295fed2e4223ad6ab0245194939690ad3b917e49a97435",
       "class1_rules": [],

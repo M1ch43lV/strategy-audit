@@ -649,7 +649,7 @@ class AlexBandSniperV10AI(IStrategy):
     index_range = IntParameter(20, 50, default=30, space='buy', optimize=True, load=True)
 
     # Number of candles the strategy requires before producing valid signals
-    startup_candle_count: int = 10
+    startup_candle_count: int = 220
 
     # Protection parameters
     cooldown_lookback = IntParameter(2, 48, default=1, space="protection", optimize=True)

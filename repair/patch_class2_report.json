@@ -3,15 +3,18 @@
   "strategy": "AlexBandSniperV10AI",
   "rule": [
    "alex_dynamic_optimization_gate",
+   "alex_startup_candle_count",
    "legacy_signal_int_literal"
   ],
   "repair_rules": [
    "alex_dynamic_optimization_gate",
+   "alex_startup_candle_count",
    "legacy_signal_int_literal"
   ],
   "action": "patched",
   "reason": [
    "author's own comment and log line state the intended behaviour (a single switch, off during backtest); gates the hardcoded True and the two entry points that bypass the flag entirely, instead of inventing new logic",
+   "startup_candle_count raised to 220 so the file's own len(informative_1h) > 50 guard and ema200_1h computation have the warm-up they require in every analysis window, not just long ones",
    "25 assignment(s) of a literal 0/1 into a column this file itself declares bool (signal column, or assigned True/False elsewhere in the same file) - the same value under a different spelling"
   ],
   "file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus/AlexBAndSniperV10MLAI.py",
