@@ -3,7 +3,9 @@
 This repair tool deliberately fails closed: source code comes from Git HEAD,
 only COMMENT and STRING tokens are translated, and a file is written only if
 its normalized AST is unchanged. Failed translations remain Russian; they are
-never erased or replaced with filler characters.
+never erased or replaced with filler characters. A file whose AST is too deep
+to normalise is refused for the same reason - "could not verify" is never
+written as "verified".
 """
 
 from __future__ import annotations
@@ -239,6 +241,25 @@ def normalized_ast(source: bytes) -> str:
     return ast.dump(tree, include_attributes=False)
 
 
+def equivalence_problem(path: str, source: bytes, translated: bytes) -> str | None:
+    """Why `translated` may not replace `source`, or None when it is proven.
+
+    Normalising walks the tree in Python, so it runs out of stack before
+    `ast.parse` or `compile` do. One strategy of 1.8 MB reaches a 629-level AST
+    while both of those still handle it. A file that cannot be walked is refused
+    here: the caller keeps running, but this file is never written, because
+    "could not verify" must not be written as "verified". Raising the recursion
+    limit would trade this clean refusal for a possible hard crash instead.
+    """
+    try:
+        same_tree = normalized_ast(source) == normalized_ast(translated)
+        if same_tree:
+            compile(translated, path, "exec")
+    except RecursionError:
+        return "AST too deep to verify"
+    return None if same_tree else "normalized AST changed"
+
+
 def source_files() -> list[str]:
     changed = git("diff", "--name-only", "--diff-filter=M", "HEAD").splitlines()
     return sorted(path for path in changed if path.endswith(".py"))
@@ -339,10 +360,10 @@ def main() -> int:
     prepared: dict[str, bytes] = {}
     for path, source in sources.items():
         translated = translate_source(source, cache)
-        if normalized_ast(source) != normalized_ast(translated):
-            failures.append(f"{path}: normalized AST changed")
+        problem = equivalence_problem(path, source, translated)
+        if problem:
+            failures.append(f"{path}: {problem}")
             continue
-        compile(translated, path, "exec")
         prepared[path] = translated
     if failures:
         print(*failures, sep="\n")
