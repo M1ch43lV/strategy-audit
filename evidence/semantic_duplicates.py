@@ -25,6 +25,7 @@ import shutil
 import sys
 import tempfile
 import tokenize
+import warnings
 from collections import defaultdict
 
 from evidence import execution_profiles
@@ -54,7 +55,20 @@ def normalized_ast_digest(source, strategy_id):
     annotations or a runtime name lookup.  References to the class elsewhere
     remain intact, so a strategy that uses its own class identity is not
     incorrectly equated with a renamed copy.
+
+    Compiling a corpus string literal whose escape sequence is invalid - authors
+    ship docstring ASCII art like ``"\\..."`` - raises `SyntaxWarning`. That is a
+    fact about the third-party source, not about this audit, and it cannot be
+    repaired without editing the source whose SHA-256 the whole corpus is keyed
+    on. The parsed value does not depend on the warning being shown, and
+    `evidence.execution_profiles` suppresses it the same way around `ast.parse`.
     """
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", SyntaxWarning)
+        return _normalized_tokens(source, strategy_id)
+
+
+def _normalized_tokens(source, strategy_id):
     lines = source.splitlines(keepends=True)
     token_rows = list(tokenize.generate_tokens(io.StringIO(source).readline))
     import_names = set()
