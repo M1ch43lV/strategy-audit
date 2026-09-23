@@ -19,12 +19,16 @@ never flagged, even though the submodule is missing.
 import ast
 import io
 import os
+import warnings
 
 
 def imported_toplevel(path):
     """Return the set of top-level module names the file imports."""
     try:
-        tree = ast.parse(io.open(path, encoding="utf-8", errors="replace").read())
+        with warnings.catch_warnings():
+            # Corpus escapes are often invalid; the source hash is the identity.
+            warnings.simplefilter("ignore", SyntaxWarning)
+            tree = ast.parse(io.open(path, encoding="utf-8", errors="replace").read())
     except Exception:
         return set()
     out = set()

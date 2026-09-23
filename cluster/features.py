@@ -15,6 +15,7 @@ degraded reading is visible rather than silent.
 import ast
 import io
 import re
+import warnings
 
 # Indicator -> family. This classifies the INDICATOR's intent, not the
 # strategy's: an RSI can perfectly well sit inside a trend-following system.
@@ -56,7 +57,10 @@ RX_STARTUP = re.compile(r"^\s*startup_candle_count\s*[:=]\s*(\d+)", re.M)
 def _calls_ast(src):
     """Names of called functions (trailing attribute, or bare name)."""
     names = set()
-    tree = ast.parse(src)
+    with warnings.catch_warnings():
+        # Corpus escapes are often invalid; the source hash is the identity.
+        warnings.simplefilter("ignore", SyntaxWarning)
+        tree = ast.parse(src)
     for n in ast.walk(tree):
         if isinstance(n, ast.Call):
             f = n.func

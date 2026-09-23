@@ -19,6 +19,7 @@ import io
 import json
 import os
 import sys
+import warnings
 import zipfile
 
 from evidence import profile_full_window
@@ -65,7 +66,10 @@ def declared_trailing(path):
     paste a hyperopt block below their original values, so an early
     ``trailing_stop = False`` can be overridden further down the class body.
     """
-    tree = ast.parse(io.open(path, encoding="utf-8", errors="replace").read())
+    with warnings.catch_warnings():
+        # Corpus escapes are often invalid; the source hash is the identity.
+        warnings.simplefilter("ignore", SyntaxWarning)
+        tree = ast.parse(io.open(path, encoding="utf-8", errors="replace").read())
     found = {}
     for node in ast.walk(tree):
         if not isinstance(node, ast.ClassDef):

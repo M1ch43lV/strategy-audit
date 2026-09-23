@@ -40,6 +40,7 @@ import os
 import re
 import subprocess
 import sys
+import warnings
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -93,7 +94,11 @@ def find_strategies(path):
             p = os.path.join(dirpath, n)
             try:
                 src = io.open(p, encoding="utf-8", errors="replace").read()
-                tree = ast.parse(src)
+                with warnings.catch_warnings():
+                    # Corpus escapes are often invalid; the source hash is the
+                    # identity the whole audit is keyed on.
+                    warnings.simplefilter("ignore", SyntaxWarning)
+                    tree = ast.parse(src)
             except Exception:
                 continue
             for node in ast.walk(tree):

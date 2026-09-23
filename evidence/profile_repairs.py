@@ -14,6 +14,7 @@ import io
 import json
 import os
 import sys
+import warnings
 
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -54,7 +55,10 @@ def _np_where(call):
 
 def patch_string_nan(source):
     """Restore NumPy 1's exact string coercion for nested string np.where."""
-    tree = ast.parse(source)
+    with warnings.catch_warnings():
+        # Corpus escapes are often invalid; the source hash is the identity.
+        warnings.simplefilter("ignore", SyntaxWarning)
+        tree = ast.parse(source)
     starts = _offsets(source)
     replacements = []
     for node in ast.walk(tree):
@@ -85,7 +89,10 @@ def patch_parameter_spaces(source):
     occurs in neither a buy_params nor sell_params dictionary.  The space label
     changes hyperopt organization, not the default/range used by backtesting.
     """
-    tree = ast.parse(source)
+    with warnings.catch_warnings():
+        # Corpus escapes are often invalid; the source hash is the identity.
+        warnings.simplefilter("ignore", SyntaxWarning)
+        tree = ast.parse(source)
     starts = _offsets(source)
     param_dict_keys = set()
     for node in ast.walk(tree):

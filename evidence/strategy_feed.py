@@ -27,6 +27,7 @@ import os
 import re
 import sys
 import time
+import warnings
 from datetime import datetime, timezone
 from typing import Any, Iterable
 from urllib.error import HTTPError, URLError
@@ -85,7 +86,11 @@ def is_istrategy_base(base: ast.expr) -> bool:
 
 def strategy_classes(source: bytes) -> tuple[list[str], str | None]:
     try:
-        tree = ast.parse(source.decode("utf-8-sig", "replace"))
+        with warnings.catch_warnings():
+            # A fetched feed file is third-party text; invalid escape sequences
+            # in it are expected and are not ours to repair.
+            warnings.simplefilter("ignore", SyntaxWarning)
+            tree = ast.parse(source.decode("utf-8-sig", "replace"))
     except SyntaxError as exc:
         return [], "syntax_error: %s" % exc.msg
     return [node.name for node in ast.walk(tree)

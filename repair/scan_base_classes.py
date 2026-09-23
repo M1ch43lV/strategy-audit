@@ -23,6 +23,7 @@ import csv
 import io
 import os
 import sys
+import warnings
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUD = ROOT
@@ -60,7 +61,10 @@ def main():
         if not os.path.exists(p):
             continue
         try:
-            tree = ast.parse(io.open(p, encoding="utf-8", errors="replace").read())
+            with warnings.catch_warnings():
+                # Corpus escapes are often invalid; the source hash is the identity.
+                warnings.simplefilter("ignore", SyntaxWarning)
+                tree = ast.parse(io.open(p, encoding="utf-8", errors="replace").read())
         except SyntaxError:
             continue
         classes = [n for n in ast.walk(tree) if isinstance(n, ast.ClassDef)]

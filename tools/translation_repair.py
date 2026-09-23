@@ -20,6 +20,7 @@ import re
 import subprocess
 import tempfile
 import tokenize
+import warnings
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -228,7 +229,11 @@ class NormalizeStrings(ast.NodeTransformer):
 
 
 def normalized_ast(source: bytes) -> str:
-    tree = ast.parse(source.decode("utf-8-sig"))
+    with warnings.catch_warnings():
+        # A corpus escape sequence can be invalid and is not ours to change;
+        # the equality this gate compares is between the two parsed trees.
+        warnings.simplefilter("ignore", SyntaxWarning)
+        tree = ast.parse(source.decode("utf-8-sig"))
     tree = NormalizeStrings().visit(tree)
     ast.fix_missing_locations(tree)
     return ast.dump(tree, include_attributes=False)

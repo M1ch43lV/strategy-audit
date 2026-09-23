@@ -34,6 +34,7 @@ import json
 import os
 import re
 import sys
+import warnings
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUD = ROOT
@@ -68,7 +69,10 @@ def pre_pmx(src, path):
     # laxer than intended - it could have passed a file where the column IS
     # read. Store/Load contexts answer the question exactly.
     try:
-        tree = ast.parse(src)
+        with warnings.catch_warnings():
+            # Corpus escapes are often invalid; the source hash is the identity.
+            warnings.simplefilter("ignore", SyntaxWarning)
+            tree = ast.parse(src)
     except SyntaxError as e:
         return False, "cannot parse file: %s" % str(e)[:60]
     stores, loads = 0, 0
@@ -108,7 +112,9 @@ RX_PARAM = re.compile(
 def _params_dict(src, which):
     """Keys of the strategy's buy_params / sell_params literal, or None."""
     try:
-        tree = ast.parse(src)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", SyntaxWarning)
+            tree = ast.parse(src)
     except SyntaxError:
         return None
     for node in ast.walk(tree):
@@ -711,7 +717,9 @@ def pre_signal_int_literal(src, path):
     declaration on record, is left untouched.
     """
     try:
-        tree = ast.parse(src)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", SyntaxWarning)
+            tree = ast.parse(src)
     except SyntaxError as e:
         return False, "cannot parse file: %s" % str(e)[:60]
     bool_columns = SIGNAL_COLUMNS | _bool_typed_columns(tree)
@@ -725,7 +733,10 @@ def pre_signal_int_literal(src, path):
 
 
 def apply_signal_int_literal(src):
-    tree = ast.parse(src)
+    with warnings.catch_warnings():
+        # Corpus escapes are often invalid; the source hash is the identity.
+        warnings.simplefilter("ignore", SyntaxWarning)
+        tree = ast.parse(src)
     bool_columns = SIGNAL_COLUMNS | _bool_typed_columns(tree)
     hits = _int_literal_assignments(tree, bool_columns)
     lines = src.splitlines(keepends=True)
